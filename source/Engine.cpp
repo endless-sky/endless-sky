@@ -166,8 +166,21 @@ namespace {
 	template <class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
 	{
-		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
-		added.clear();
+		if(added.empty())
+			return;
+		if(objects.empty())
+			objects.swap(added);
+		else if(objects.size() <= added.size())
+		{
+			objects.swap(added);
+			objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
+			added.clear();
+		}
+		else
+		{
+			objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
+			added.clear();
+		}
 	}
 
 	// Author the given message from the given ship.
@@ -306,7 +319,9 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
-	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP)
+	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP),
+	shipResourceProvider(newVisuals, newFlotsam, newShips, newProjectiles),
+	visualResourceProvider(visuals)
 {
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
@@ -1507,20 +1522,27 @@ void Engine::CalculateStep()
 	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
 
 	// Then, move the other ships.
-	// Keep separate lists for each thread to avoid lock contention.
-	ShipResourceProvider provider(newVisuals, newFlotsam, newShips, newProjectiles);
-		// And a copy of the ship list for random access.
 	for_each(parallel::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
 			return;
 		bool wasUntargetable = !it->IsTargetable();
-		MoveShip(it, provider);
+		MoveShip(it, shipResourceProvider);
 		bool isTargetable = it->IsTargetable();
 		if(flagshipSystem == it->GetSystem()
 			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
 			&& isTargetable && flagshipIsTargetable)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
+	});
+	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
+	// Track which ships have at least one such system ready to fire.
+	hasAntiMissile.reserve(ships.size());
+	hasTractorBeam.reserve(ships.size());
+	copy_if(parallel::par_unseq, ships.begin(), ships.end(), back_inserter(hasAntiMissile), [&](const auto &ship){
+		return ship->HasAntiMissile();
+	});
+	copy_if(parallel::par_unseq, ships.begin(), ships.end(), back_inserter(hasTractorBeam), [&](const auto &ship){
+		return ship->HasTractorBeam();
 	});
 
 	// If the flagship just began jumping, play the appropriate sound.
@@ -1609,10 +1631,8 @@ void Engine::CalculateStep()
 	FillCollisionSets();
 
 	// Perform collision detection.
-	// We store the visuals in a separate list for every thread to reduce lock contention.
-	ResourceProvider<list<Visual>> visualProvider(visuals);
 	for_each(parallel::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
-		DoCollisions(visualProvider, projectile);
+		DoCollisions(visualResourceProvider, projectile);
 	});
 
 	// Now that collision detection is done, clear the cache of ships with anti-
@@ -1829,13 +1849,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship, list<Visual> &newVisuals, li
 
 	// Fire weapons.
 	ship->Fire(newProjectiles, newVisuals);
-
-	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
-	// Track which ships have at least one such system ready to fire.
-	if(ship->HasAntiMissile())
-		hasAntiMissile.emplace_back(ship.get());
-	if(ship->HasTractorBeam())
-		hasTractorBeam.emplace_back(ship.get());
 }
 
 
@@ -2360,8 +2373,8 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 	// If the projectile is still alive, give the anti-missile systems a chance to shoot it down.
 	if(!projectile.IsDead() && projectile.MissileStrength())
 	{
-		for(Ship *ship : hasAntiMissile)
-			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+		for(const auto &ship : hasAntiMissile)
+			if(ship.get() == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 			{
 				const lock_guard<mutex> lock(ship->GetMutex());
 				if(ship->FireAntiMissile(projectile, visuals))
@@ -2426,7 +2439,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		// Also determine the average velocity of the ships pulling on this flotsam.
 		Point avgShipVelocity;
 		int count = 0;
-		for(Ship *ship : hasTractorBeam)
+		for(const auto &ship : hasTractorBeam)
 		{
 			Point shipPull = ship->FireTractorBeam(flotsam, visuals);
 			if(shipPull)

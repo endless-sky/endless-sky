@@ -217,8 +217,8 @@ private:
 
 	// Track which ships currently have anti-missiles or
 	// tractor beams ready to fire.
-	PartiallyGuardedVector<Ship *> hasAntiMissile;
-	PartiallyGuardedVector<Ship *> hasTractorBeam;
+	std::vector<std::shared_ptr<Ship>> hasAntiMissile;
+	std::vector<std::shared_ptr<Ship>> hasTractorBeam;
 
 	AI ai;
 
@@ -309,6 +309,10 @@ private:
 
 	// Mutex for DoGrudge().
 	std::mutex grudgeMutex;
+
+	// Keep separate lists for each thread to avoid lock contention.
+	ShipResourceProvider shipResourceProvider;
+	ResourceProvider<std::list<Visual>> visualResourceProvider;
 };
 
 

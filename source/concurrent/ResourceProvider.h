@@ -162,9 +162,11 @@ template<int I>
 std::enable_if_t<I < sizeof...(Types)>
 ResourceProvider<Types...>::ResourceGuard::Sync()
 {
+	auto &local = this->get<I>();
+	if(!local.empty())
 	{
 		const std::lock_guard<std::mutex> lock(this->provider.remoteLocks[I]);
-		SyncSingle(std::get<I>(provider.remoteResources), this->get<I>());
+		SyncSingle(std::get<I>(provider.remoteResources), local);
 	}
 	Sync<I + 1>();
 }
@@ -186,8 +188,19 @@ template<class ...Types>
 template<class Container>
 void ResourceProvider<Types...>::ResourceGuard::SyncSingle(Container &remote, Container &local)
 {
-	remote.insert(remote.end(), local.begin(), local.end());
-	local.clear();
+	if(remote.empty())
+		remote.swap(local);
+	else if(remote.size() <= local.size())
+	{
+		remote.swap(local);
+		remote.insert(remote.end(), make_move_iterator(local.begin()), make_move_iterator(local.end()));
+		local.clear();
+	}
+	else
+	{
+		remote.insert(remote.end(), make_move_iterator(local.begin()), make_move_iterator(local.end()));
+		local.clear();
+	}
 }
 
 
