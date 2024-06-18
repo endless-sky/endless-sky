@@ -8039,8 +8039,36 @@ mission "Ice Queen 8"
 	on complete
 		conversation
 			`There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo as you make your way through the rubble and around the fire.`
-			`	A group of injured, but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ilidco walks up to you, smiling.`
-			`	"Perfect. They never had a chance." She wipes the blood off her dagger.`
+			`	A group of injured, but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ilidco walks up to you, smiling. She is trailed by a small incongruous toddler with short black hair and lopsided grin.`
+			`	"Perfect. They never had a chance." She wipes the blood off her dagger, and notices your gaze.`
+			`	"The safest place for her was by my side." She says matter of factly, "Randalin this is <first>, you met them long ago when you were a baby. <First> is my friend."`
+			`	She turns back to you, "And <first>, this is Randalin. She's grown a bit since you saw her last."`
+			choice
+				`	"Hi, Randalin. It's wonderful to meet you."`
+					goto hirand
+				`	(Nod at the child.)`
+					goto onlyyou
+				`	"She was with you for the battle?"`
+			`	Ildico shrugs. "Who would I trust with her? Who could I trust with her. Only you, <first>, and you were elsewhere."`
+				goto onlyyou
+
+			label hirand
+			`	The little girl lifts a chubby fist up to you.`
+			choice
+				`	(Fist bump her.)`
+					goto bump
+				`	(Shake her fist.)`
+			`	You awkwardly take her fist in your hand and shake it up and down. Randalin giggles, and babbles something incoherent.`
+				goto words
+			
+			label bump
+			`	Her small fist bumps against yours and then she gives you an easy grin and babbles something incoherent.`
+
+			label words
+			`	"She's not quite got the hang of words yet. But they'll come." Ildico says approvingly.`
+			
+			label onlyyou
+			`	Ilidco puts a hand on Randalin's shoulder and draws her close. She turns her attention back to the battlefield.`
 			`	"This is only the beginning, <first>." Her eyes blaze as she says, "House Drifa will rise again. You'll see. You'll be there."`
 			`	She glances back toward her mulling forces. "Thanks again for this, it means a lot that I can count on you, but I have to work to do. Until next time."`
 			`	Ildico returns to her group, barking orders and gesturing at the rubble and leaving you to your own devices.`
