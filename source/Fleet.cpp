@@ -183,7 +183,7 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
+void Fleet::Enter(const System &system, vector<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
 	if(variants.empty() || personality.IsDerelict())
 		return;
@@ -340,6 +340,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
+	ships.reserve(ships.size() + placed.size());
 	for(shared_ptr<Ship> &ship : placed)
 	{
 		// If this is a carried fighter, no need to position it.
@@ -349,7 +350,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		Angle angle = Angle::Random(360.);
 		Point pos = position + angle.Unit() * (Random::Real() * radius);
 
-		ships.push_front(ship);
+		ships.emplace_back(ship);
 		ship->SetSystem(source);
 		ship->SetPlanet(planet);
 		if(source == &system)
@@ -376,7 +377,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried, bool addCargo) const
+void Fleet::Place(const System &system, vector<shared_ptr<Ship>> &ships, bool carried, bool addCargo) const
 {
 	if(variants.empty())
 		return;
@@ -392,6 +393,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
 	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
+	ships.reserve(ships.size() + placed.size());
 	for(shared_ptr<Ship> &ship : placed)
 	{
 		// If this is a fighter and someone can carry it, no need to position it.
@@ -406,7 +408,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		else
 			ship->Disable();
 
-		ships.push_front(ship);
+		ships.emplace_back(ship);
 		ship->SetSystem(&system);
 		ship->Place(pos, velocity * angle.Unit(), angle);
 

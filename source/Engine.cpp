@@ -101,47 +101,20 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	template <class Type>
-	void Prune(vector<Type> &objects)
+	template <template <class, class> class Container, class Type, class Allocator = allocator<Type>>
+	void Prune(Container<Type, Allocator> &objects)
 	{
-		// First, erase any of the old objects that should be removed.
-		typename vector<Type>::iterator in = objects.begin();
-		while(in != objects.end() && !in->ShouldBeRemoved())
-			++in;
-
-		typename vector<Type>::iterator out = in;
-		while(in != objects.end())
-		{
-			if(!in->ShouldBeRemoved())
-				*out++ = move(*in);
-			++in;
-		}
-		if(out != objects.end())
-			objects.erase(out, objects.end());
+		remove_if(parallel::par_unseq, objects.begin(), objects.end(), [&](const auto &it){
+			return it.ShouldBeRemoved();
+		});
 	}
 
-	template <class Type>
-	void Prune(list<shared_ptr<Type>> &objects)
+	template <template <class, class> class Container, class Type, class Allocator = allocator<shared_ptr<Type>>>
+	void Prune(Container<shared_ptr<Type>, Allocator> &objects)
 	{
-		for(auto it = objects.begin(); it != objects.end(); )
-		{
-			if((*it)->ShouldBeRemoved())
-				it = objects.erase(it);
-			else
-				++it;
-		}
-	}
-
-	template <class Type>
-	void Prune(list<Type> &objects)
-	{
-		for(auto it = objects.begin(); it != objects.end(); )
-		{
-			if(it->ShouldBeRemoved())
-				it = objects.erase(it);
-			else
-				++it;
-		}
+		remove_if(parallel::par_unseq, objects.begin(), objects.end(), [&](const auto &it){
+			return it->ShouldBeRemoved();
+		});
 	}
 
 	template <class Type>
@@ -429,7 +402,7 @@ void Engine::Place()
 	}
 	// Move any ships that were randomly spawned into the main list, now
 	// that all special ships have been repositioned.
-	ships.splice(ships.end(), newShips);
+	Append(ships, newShips);
 
 	center = flagship->Center();
 	centerVelocity = flagship->Velocity();
@@ -1492,12 +1465,11 @@ void Engine::CalculateStep()
 	LockProvider lockProvider;
 	vector<list<Visual>> visualBuffer(lockProvider.Size());
 	vector<list<shared_ptr<Flotsam>>> flotsamBuffer(lockProvider.Size());
-	vector<list<shared_ptr<Ship>>> shipBuffer(lockProvider.Size());
+	vector<vector<shared_ptr<Ship>>> shipBuffer(lockProvider.Size());
 	vector<vector<Projectile>> projectileBuffer(lockProvider.Size());
 
 	// And a copy of the ship list for random access.
-	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
-	for_each(parallel::par, shipVector.begin(), shipVector.end(), [&](const shared_ptr<Ship> &it)
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
 			return;
@@ -1515,7 +1487,7 @@ void Engine::CalculateStep()
 	for(auto &item : flotsamBuffer)
 		newFlotsam.splice(newFlotsam.end(), item);
 	for(auto &item : shipBuffer)
-		newShips.splice(newShips.end(), item);
+		Append(ships, item); // newShips and ships doesn't get read from after this, so we can copy directly to ships
 	for(auto &item : projectileBuffer)
 		Append(newProjectiles, item);
 
@@ -1592,7 +1564,7 @@ void Engine::CalculateStep()
 	// be drawn this step (and the projectiles will participate in collision
 	// detection) but they should not be moved, which is why we put off adding
 	// them to the lists until now.
-	ships.splice(ships.end(), newShips);
+	Append(ships, newShips);
 	Append(projectiles, newProjectiles);
 	flotsam.splice(flotsam.end(), newFlotsam);
 	visuals.splice(visuals.end(), newVisuals);
@@ -1734,7 +1706,7 @@ void Engine::CalculateStep()
 // Move a ship. Can be called concurrently.
 void Engine::MoveShip(const shared_ptr<Ship> &ship, LockProvider &locks, vector<list<Visual>> &visualsBuffer,
 		vector<list<shared_ptr<Flotsam>>> &flotsamBuffer,
-		vector<list<shared_ptr<Ship>>> &shipBuffer, vector<vector<Projectile>> &projectileBuffer)
+		vector<vector<shared_ptr<Ship>>> &shipBuffer, vector<vector<Projectile>> &projectileBuffer)
 {
 	const auto lock = locks.Lock();
 	MoveShip(ship, visualsBuffer[lock.Index()], flotsamBuffer[lock.Index()], shipBuffer[lock.Index()],
@@ -1746,7 +1718,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship, LockProvider &locks, vector<
 // Move a ship. Also determine if the ship should generate hyperspace sounds or
 // boarding events, fire weapons, and launch fighters.
 void Engine::MoveShip(const shared_ptr<Ship> &ship, list<Visual> &newVisuals, list<shared_ptr<Flotsam>> &newFlotsam,
-		list<shared_ptr<Ship>> &newShips, vector<Projectile> &newProjectiles)
+		vector<shared_ptr<Ship>> &newShips, vector<Projectile> &newProjectiles)
 {
 	// Various actions a ship could have taken last frame may have impacted the accuracy of cached values.
 	// Therefore, determine with any information needs recalculated and cache it.

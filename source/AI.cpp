@@ -321,7 +321,7 @@ namespace {
 
 
 
-AI::AI(const PlayerInfo &player, const List<Ship> &ships,
+AI::AI(const PlayerInfo &player, const vector<shared_ptr<Ship>> &ships,
 		const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
@@ -560,7 +560,7 @@ void AI::Step(Command &activeCommands)
 		else
 			++it;
 	}
-	for(const auto &it : ships)
+	for_each(parallel::par_unseq, ships.begin(), ships.end(),[&](const auto &it)
 	{
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
@@ -568,7 +568,7 @@ void AI::Step(Command &activeCommands)
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
-	}
+	});
 
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -579,9 +579,7 @@ void AI::Step(Command &activeCommands)
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 
-	// Copy the ship pointers for parallel execution
-	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
-	for_each(parallel::par, shipVector.begin(), shipVector.end(), [&](auto &it)
+	for_each(parallel::par, ships.begin(), ships.end(), [&](auto &it)
 	{
 		// A destroyed ship can't do anything.
 		if(it->IsDestroyed())
@@ -914,7 +912,7 @@ void AI::Step(Command &activeCommands)
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
+				auto getParentFrom = [&it, &gov, &parentChoices](const vector<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
@@ -4592,7 +4590,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	}
 
 	// Ships with nearby allies consider their allies' strength as well as their own.
-	for(const auto &it : ships)
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const Government *gov = it->GetGovernment();
 
@@ -4602,7 +4600,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
-			continue;
+			return;
 
 		int64_t &myStrength = shipStrength[it.get()];
 		for(const auto &allies : governmentRosters)
@@ -4614,7 +4612,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
 					myStrength += ally->Strength();
 		}
-	}
+	});
 }
 
 

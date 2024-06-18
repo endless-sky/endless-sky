@@ -165,9 +165,9 @@ private:
 	// Thread-safe wrapper for MoveShip.
 	void MoveShip(const std::shared_ptr<Ship> &ship, LockProvider &locks,
 			std::vector<std::list<Visual>> &visualsBuffer, std::vector<std::list<std::shared_ptr<Flotsam>>> &flotsamBuffer,
-			std::vector<std::list<std::shared_ptr<Ship>>> &newShips, std::vector<std::vector<Projectile>> &projectiles);
+			std::vector<std::vector<std::shared_ptr<Ship>>> &newShips, std::vector<std::vector<Projectile>> &projectiles);
 	void MoveShip(const std::shared_ptr<Ship> &ship, std::list<Visual> &visuals,
-			std::list<std::shared_ptr<Flotsam>> &flotsam, std::list<std::shared_ptr<Ship>> &newShips,
+			std::list<std::shared_ptr<Flotsam>> &flotsam, std::vector<std::shared_ptr<Ship>> &newShips,
 			std::vector<Projectile> &projectiles);
 
 	void SpawnFleets();
@@ -199,7 +199,7 @@ private:
 private:
 	PlayerInfo &player;
 
-	std::list<std::shared_ptr<Ship>> ships;
+	std::vector<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
 	std::vector<Weather> activeWeather;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
@@ -207,7 +207,7 @@ private:
 	AsteroidField asteroids;
 
 	// New objects created within the latest step:
-	std::list<std::shared_ptr<Ship>> newShips;
+	std::vector<std::shared_ptr<Ship>> newShips;
 	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
 	std::list<Visual> newVisuals;

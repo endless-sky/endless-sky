@@ -53,7 +53,7 @@ public:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
+	AI(const PlayerInfo &player, const std::vector<std::shared_ptr<Ship>> &ships,
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
@@ -215,7 +215,7 @@ private:
 	// TODO: Figure out a way to remove the player dependency.
 	const PlayerInfo &player;
 	// Data from the game engine.
-	const List<Ship> &ships;
+	const std::vector<std::shared_ptr<Ship>> &ships;
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 

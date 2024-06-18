@@ -1667,7 +1667,7 @@ void Ship::Move(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Launch any ships that are ready to launch.
-void Ship::Launch(list<shared_ptr<Ship>> &ships, list<Visual> &visuals)
+void Ship::Launch(vector<shared_ptr<Ship>> &ships, list<Visual> &visuals)
 {
 	// Allow carried ships to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
@@ -1677,6 +1677,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, list<Visual> &visuals)
 			(cloak && !attributes.Get("cloaked deployment"))))
 		return;
 
+	ships.reserve(ships.size() + bays.size());
 	for(Bay &bay : bays)
 		if(bay.ship
 			&& ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))

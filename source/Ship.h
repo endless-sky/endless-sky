@@ -216,7 +216,7 @@ public:
 	void Move(std::list<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
 	// Launch any ships that are ready to launch.
-	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::list<Visual> &visuals);
+	void Launch(std::vector<std::shared_ptr<Ship>> &ships, std::list<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
