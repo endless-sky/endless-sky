@@ -62,6 +62,8 @@ protected:
 	virtual int FindItem(const std::string &text) const = 0;
 
 	virtual void DrawItems() = 0;
+	virtual void DrawSelectedSprite(const Point &corner) const;
+	virtual void DrawCompareSprite(const Point &corner) const;
 
 	void DrawKey() const;
 	void DrawPanel() const;

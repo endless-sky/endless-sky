@@ -208,6 +208,20 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
+void MapSalesPanel::DrawSelectedSprite(const Point &corner) const
+{
+	DrawSprite(corner, SelectedSprite(), SelectedSpriteSwizzle());
+}
+
+
+
+void MapSalesPanel::DrawCompareSprite(const Point &corner) const
+{
+	DrawSprite(corner, CompareSprite(), CompareSpriteSwizzle());
+}
+
+
+
 int MapSalesPanel::SelectedSpriteSwizzle() const
 {
 	return 0;
@@ -311,13 +325,13 @@ void MapSalesPanel::DrawInfo() const
 			topLeft.X() += compareInfo.PanelWidth() + box->Width();
 
 			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
-			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), CompareSpriteSwizzle());
+			DrawSelectedSprite(topLeft + Point(-95., 5.));
+			DrawCompareSprite(topLeft + Point(-95., 105.));
 		}
 		else
 		{
 			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
+			DrawSelectedSprite(topLeft + Point(-95., 5.));
 		}
 		selectedInfo.DrawAttributes(topLeft);
 	}

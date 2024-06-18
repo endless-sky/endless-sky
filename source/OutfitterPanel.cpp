@@ -260,7 +260,10 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
-		const Sprite *thumbnail = selectedOutfit->Thumbnail();
+		const Body body = selectedOutfit->ThumbnailBody();
+		const bool isAnimated = body.GetSprite() != nullptr;
+		const float frame = isAnimated ? body.GetFrame(step) : 0.f;
+		const Sprite *thumbnail = isAnimated ? body.GetSprite() : selectedOutfit->Thumbnail();
 		const float tileSize = thumbnail
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
@@ -270,7 +273,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
-			SpriteShader::Draw(thumbnail, thumbnailCenter);
+			SpriteShader::Draw(thumbnail, thumbnailCenter, isAnimated ? body.Scale() : 1.f, 0, frame);
 
 		const bool hasDescription = outfitInfo.DescriptionHeight();
 
