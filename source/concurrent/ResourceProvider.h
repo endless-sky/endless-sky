@@ -45,6 +45,9 @@ public:
 		template<std::size_t I>
 		inline auto &get() const;
 
+		template<std::size_t I>
+		inline auto &get();
+
 		// Gets the index of this mutex in the parent ResourceProvider.
 		inline size_t Index() const;
 
@@ -53,7 +56,7 @@ public:
 		template<int Index = 0>
 		inline std::enable_if_t<Index < sizeof...(Types)> Sync();
 		template<int Index = 0>
-		inline std::enable_if_t<Index == sizeof...(Types)> Sync();
+		inline std::enable_if_t<Index >= sizeof...(Types)> Sync();
 
 		// Adds all contents of the local container to the remote.
 		template<class Container>
@@ -136,6 +139,15 @@ auto &ResourceProvider<Types...>::ResourceGuard::get() const
 
 
 
+template <class ...Types>
+template<std::size_t I>
+auto &ResourceProvider<Types...>::ResourceGuard::get()
+{
+	return std::get<I>(provider)[index];
+}
+
+
+
 // Gets the index of this mutex in the parent ResourceProvider.
 template <class ...Types>
 size_t ResourceProvider<Types...>::ResourceGuard::Index() const
@@ -152,7 +164,7 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 {
 	{
 		const std::lock_guard<std::mutex> lock(this->provider.remoteLocks[index]);
-		SyncSingle(std::get<index>(provider.remoteResources), get<index>());
+		SyncSingle(std::get<index>(provider.remoteResources), this->get<index>());
 	}
 	Sync<index + 1>();
 }
@@ -161,7 +173,7 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 
 template<class ...Types>
 template<int Index>
-std::enable_if_t<Index == sizeof...(Types)>
+std::enable_if_t<Index >= sizeof...(Types)>
 ResourceProvider<Types...>::ResourceGuard::Sync()
 {
 	// End of recursion
