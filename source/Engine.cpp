@@ -2441,19 +2441,20 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Unless something went wrong while forming the message, display it.
-	if(message.empty()) return;
+	if(message.empty())
+		return;
 
 	int free = collector->Cargo().Free();
 	int total = 0;
-	for(const shared_ptr <Ship> &ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked() && ship->GetSystem() == player.GetSystem())
 			total += ship->Cargo().Free();
 
+	message += " (" + Format::CargoString(free, "free space") + " remaining";
 	if(free == total)
-		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
+		message += ".)";
 	else
-		message += " (" + Format::CargoString(free, "free space") + " remaining, "
-				+ Format::MassString(total) + " in fleet.)";
+		message += ", " + Format::MassString(total) + " in fleet.)";
 	Messages::Add(message, Messages::Importance::High);
 }
 
