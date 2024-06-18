@@ -187,6 +187,7 @@ template<class Container>
 void ResourceProvider<Types...>::ResourceGuard::SyncSingle(Container &remote, Container &local)
 {
 	remote.insert(remote.end(), local.begin(), local.end());
+	local.clear();
 }
 
 
