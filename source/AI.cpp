@@ -560,15 +560,17 @@ void AI::Step(Command &activeCommands)
 		else
 			++it;
 	}
-	for(const auto &it : ships)
+	mutex lock;
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
 		{
+			lock_guard<mutex> guard(lock);
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
-	}
+	});
 
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
