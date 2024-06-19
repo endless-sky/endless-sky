@@ -147,7 +147,7 @@ person "Cap'n Pester" # Reference to Escape Velocity
 
 
 
-person "Marauding Max" # Wrzlpnft
+person "Marauding Max" # Wrzlprnft
 	government "Marauder"
 	frequency 400
 	personality
