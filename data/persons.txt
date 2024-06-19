@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-person "Michael Zahniser"
+person "Michael Zahniser" # Michael Zahniser
 	government "Author"
 	personality
 		plunders
@@ -117,7 +117,7 @@ ship "Finch" "Finch (MZ)"
 
 
 
-person "Cap'n Pester"
+person "Cap'n Pester" # Reference to Escape Velocity
 	government "Parrot"
 	frequency 300
 	personality
@@ -147,7 +147,7 @@ person "Cap'n Pester"
 
 
 
-person "Marauding Max"
+person "Marauding Max" # Wrzlpnft
 	government "Marauder"
 	frequency 400
 	personality
@@ -293,7 +293,7 @@ ship "Marauder Fury"
 
 
 
-person "Captain Nate"
+person "Captain Nate" # Pointedstick
 	government "Author"
 	frequency 300
 	personality
@@ -432,7 +432,7 @@ person "Captain Nate"
 
 
 
-person "Tranquility"
+person "Tranquility" # ???
 	government "Merchant"
 	frequency 100
 	personality
@@ -519,7 +519,7 @@ ship "Lampyrid-Class Transport"
 
 
 
-person "Power of the People"
+person "Power of the People" # tehhowch
 	government "Author"
 	frequency 200
 	personality
@@ -699,7 +699,7 @@ ship "Modified Osprey"
 
 
 
-person "Local God"
+person "Local God" # LocalGod79
 	government "Author"
 	frequency 200
 	personality
@@ -891,7 +891,7 @@ person "Subsidurial"
 
 
 
-person "Prototype B3-CC4"
+person "Prototype B3-CC4" # beccabunny
 	government "Author"
 	frequency 1000
 	personality
@@ -1130,7 +1130,7 @@ outfit "Tree Skeleton Key Stone"
 
 
 
-person "Rais Iris XVIII"
+person "Rais Iris XVIII" # MCOfficer
 	government "Author"
 	frequency 200
 	personality
@@ -1272,7 +1272,7 @@ ship "Marauder Bactrian"
 
 
 
-person "Zitchas"
+person "Zitchas" # Zitchas
 	government "Author"
 	frequency 1000
 	personality
@@ -1400,7 +1400,7 @@ person "Zitchas"
 
 
 
-person "Brick"
+person "Brick" # Brick63
 	government "Author"
 	frequency 300
 	personality
@@ -1505,7 +1505,7 @@ ship "Modified Boxwing"
 
 
 
-person "Gefullte Taubenbrust"
+person "Gefullte Taubenbrust" # GefullteTaubenbrust2
 	government "Author"
 	frequency 200
 	personality
@@ -1728,7 +1728,7 @@ effect "fusion cannon cloud"
 
 
 
-person "MasterOfGrey"
+person "MasterOfGrey" # MasterOfGrey
 	government "Author"
 	frequency 200
 	personality
@@ -1855,7 +1855,7 @@ ship "Modified Ladybug"
 
 
 
-person "Patrol Team"
+person "Patrol Team" # Reviewers
 	government "Author"
 	frequency 300
 	personality
