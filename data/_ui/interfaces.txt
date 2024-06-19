@@ -1297,6 +1297,9 @@ interface "shop"
 	anchor bottom right
 	value "fleet bar width" 250
 	value "item bar width" 300
+	box "find button"
+		center -580 -20
+		dimensions 26 26
 	box "leave button"
 		center -45 -25
 		dimensions 70 30
@@ -1312,6 +1315,10 @@ interface "shop"
 	box "sell ship button"
 		center -215 -25
 		dimensions 50 30
+
+	button f ""
+		center -580 -20
+		dimensions 26 26
 
 	button l "_Leave"
 		center -45 -25

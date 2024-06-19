@@ -460,10 +460,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 bool ShopPanel::Click(int x, int y, int /* clicks */)
 {
 	dragShip = nullptr;
-	// Handle clicks on the buttons.
+
+	// Ignore clicks in the button area.
 	char button = CheckButton(x, y);
-	if(button)
-		return DoKey(button);
+	if(button == ' ')
+		return false;
 
 	// Check for clicks on the ShipsSidebar pane arrows.
 	if(x >= Screen::Right() - 20)
@@ -932,13 +933,12 @@ void ShopPanel::DrawButtons()
 		info.SetCondition("can park");
 	else if(CanUnpark())
 		info.SetCondition("can unpark");
-	shopUi->Draw(info, nullptr);
+	shopUi->Draw(info, this);
 
-	const Point findCenter = Screen::BottomRight() - Point(580, 20);
-	const Sprite *findIcon =
-		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
-	SpriteShader::Draw(findIcon, findCenter);
-	static const string FIND = "_Find";
+	const Rectangle findButton = shopUi->GetBox("find button");
+	const Sprite *findIcon = SpriteSet::Get(hoverButton == 'f'
+		? "ui/find selected" : "ui/find unselected");
+	SpriteShader::Draw(findIcon, findButton.Center());
 
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -1524,28 +1524,15 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
+// Check if the given point is within an icon button, and if so return the
+// letter of the button, ' ' if it's in a dead zone, or \0 otherwise.
 char ShopPanel::CheckButton(int x, int y)
 {
-	const Point click(x, y);
+	const Point point(x, y);
 	const Interface *shopUi = GameData::Interfaces().Get("shop");
-	const Rectangle leaveButton = shopUi->GetBox("leave button");
-	const Rectangle parkButton = shopUi->GetBox("park button");
-	const Rectangle buyButton = shopUi->GetBox("buy button");
-	const Rectangle sellButton = shopUi->GetBox(isOutfitter ? "sell button" : "sell ship button");
+	const Rectangle findButton = shopUi->GetBox("find button");
 
-	if(leaveButton.Contains(click))
-		return 'l';
-	if(parkButton.Contains(click))
-		return 'k';
-	if(buyButton.Contains(click))
-		return IsAlreadyOwned() ? 'i' : 'b';
-	if(sellButton.Contains(click))
-		return 's';
-
-	if(x > Screen::Right() - SIDE_WIDTH - 42 && x < Screen::Right() - SIDE_WIDTH - 16 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
+	if(findButton.Contains(point))
 		return 'f';
 
 	if(x < Screen::Right() - SIDE_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
