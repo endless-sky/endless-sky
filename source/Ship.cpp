@@ -990,6 +990,12 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			for(const auto &it : baseAttributes.CargoScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("cargo scan sound", it.first->Name());
+			for(const auto &it : baseAttributes.OutfitScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("outfit scan sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1857,7 +1863,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
-	bool activeScanning = false;
+	int activeScanning = 0;
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
@@ -1870,7 +1876,7 @@ int Ship::Scan(const PlayerInfo &player)
 			return;
 
 		startedScanning |= !elapsed;
-		activeScanning = true;
+		activeScanning |= event;
 
 		// Total scan time is:
 		// Proportional to e^(0.5 * (distance / range)^2),
@@ -1903,8 +1909,21 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	if(isYours || (target->isYours && activeScanning))
-		Audio::Play(Audio::Get("scan"), Position());
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	{
+		if(sounds.empty())
+			Audio::Play(Audio::Get("scan"), position);
+		else
+			for(const auto &sound : sounds)
+				Audio::Play(sound.first, position);
+	};
+	if(isYours || (target->isYours))
+	{
+		if(activeScanning & ShipEvent::SCAN_CARGO)
+			playScanSounds(attributes.CargoScanSounds(), position);
+		if(activeScanning & ShipEvent::SCAN_OUTFITS)
+			playScanSounds(attributes.OutfitScanSounds(), position);
+	}
 
 	bool isImportant = false;
 	if(target->isYours)
