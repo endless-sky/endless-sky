@@ -980,6 +980,19 @@ mission "FW Pirates 1"
 			
 			label agree
 			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."`
+			choice
+				`	"Sounds good."`
+					goto leave
+				`	"What about the pirate systems to the north of Men?"`
+			`	Tomek shrugs. "Simply put, those worlds aren't a threat to us right now. From what we can gather, most of the factions there are focused on internal power struggles at the moment rather than piracy in the Rim. Those CCOR guerrillas are more than enough to keep any pirate warlords there busy for the immediate future."`
+			choice
+				`	"CCOR?"`
+					goto ccor
+				`	"Understood."`
+					goto leave
+			label ccor
+			`	Tomek looks surprised. "I assumed you knew. The Confederated Councils of the Outer Rim was a government that tried to practice its own particular flavor of communism outside of the Republic's influence. They fell around 50 years ago, and their former planets are now under the control of either pirate gangs or guerrilla groups trying to restore the CCOR. I wouldn't worry about the guerrillas too much - at this point, they're little more than a pirate gang themselves."`
+			label leave
 			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
 	
@@ -2249,8 +2262,9 @@ mission "FW Rogue Elements"
 		has "event: wolf pack reveal"
 	on offer
 		event "navy occupying the south" 45
+		event "memorial on Deep"
 		conversation
-			`After you land, you notice that a sizeable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
+			`After you land, you notice that a sizable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
 			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievances were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
 			`	"We tried our best, even with the system stacked against us. Councilor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
 			`	"And so we banded together. Friends and family locked in arms, doing that which the Republic would not. We looked out for each other, and raised our own defenses against the piracy that we so feared. And then we stood up together and told the Republic that we would take their neglect no longer. We shouted that the system does not work, and so we will create our own! We, with the sweat, blood, and tears of generations, birthed these Free Worlds!`

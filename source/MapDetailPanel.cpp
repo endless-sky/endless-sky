@@ -519,7 +519,7 @@ void MapDetailPanel::DrawKey()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 
-	Point pos = Screen::TopRight() + Point(-110., 310.);
+	Point pos = Screen::TopRight() + Point(-130., 310.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 
