@@ -565,7 +565,6 @@ void AI::Step(Command &activeCommands)
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
 		{
-			lock_guard<mutex> guard(mutex);
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
