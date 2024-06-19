@@ -800,12 +800,16 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
+				if(Preferences::Has(PRICE_PARENS))
+					price += "(";
 				if(value > 0)
 					price += '+';
 				else if(value < 0)
 					price += '-';
 				value = abs(value);
 				price += to_string(value);
+				if(Preferences::Has(PRICE_PARENS))
+					price += ")";
 			}
 		}
 		else
