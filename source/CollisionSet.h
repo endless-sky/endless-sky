@@ -99,10 +99,6 @@ private:
 	std::vector<Entry> sorted;
 	// After Finish(), counts[index] is where a certain bin begins.
 	std::vector<unsigned> counts;
-
-	// Keep track of which objects we've already considered
-	mutable std::vector<unsigned> seen;
-	mutable unsigned seenEpoch = 0;
 };
 
 
