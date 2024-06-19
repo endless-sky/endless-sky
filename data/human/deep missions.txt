@@ -4666,12 +4666,12 @@ mission "Hroar's Haulers 6"
 		`	Hroar watches the bartender, Havi, refill is drink and then turns back to you and smirks. "Just one or two more, and then the real fun begins. We're almost there, <first>."`
 		`	He turns away from you and goes back to drinking. It's clear he considers the conversation over.`
 			accept
-		
+
 		label letsgo
 		`	"Ha!" Hroar grunts and slaps you on the back, "That's the spirit. Best to just get to it when a job needs getting done. Don't worry though, <first>, only one or two more of these prep jobs to go and then the real fun can begin."`
 		`	He turns away from you and goes back to drinking. "Now run along, that equipment isn't about to haul itself."`
 			accept
-		
+
 	on complete
 		dialog
 			`	The dark side of Midgard is filled with the glowing constellations of uncountable cities and townships. It glitters in sharp contrast to the many much more recently colonized worlds where the lights in the dark are few and far between. The <ship> glides through Midgard's crisp atmosphere and finds a well cared for berth in the capital of New Reykjavik. Once landed you head to the spaceport to meet your contact.`
@@ -4784,6 +4784,7 @@ mission "Hroar's Haulers 9"
 				`   "I can be relied upon to do whatever I want."`
 			`   Yngvar tugs you even closer, almost into an embrace and says gravely into your ear. "And I can be relied on to throw you out an airlock if you jeopardize the Haul."`
 			`   He releases your hand, straightens up, steps back, and gives you a cold smile.`
+
 			label noproblem
 			`   "Good. Now, that we understand each other, let's stop wasting time, I'm gonna need you to swing us by Helheim real quick."`
 			choice
@@ -4796,9 +4797,9 @@ mission "Hroar's Haulers 9"
 			`	He smiles and gives you a respecful nod. "Great. We're losing daylight somewhere. So let's go."`
 			`	Yngvar pulls out his respirator and waves his hand toward the door, "After you."`
 				accept
-			
+
 			label orders
-			`	His old wrinkled face rolls up into a deeply unimpressed frown. "Something wrong with you? I'm as sure as vacuum is cold that Hartha-Hroar told what my role is here."`
+			`	His old wrinkled face rolls up into a deeply unimpressed frown. "Something wrong with you? I'm as sure as vacuum is cold that Hartha-Hroar told you what my role is here."`
 			`	He leans in until his disapproving face is only a few inches from yours, "I am the logistics officer on this on Haul. Either get out of both our ways and help me get this Haul done. Or go find work somewhere else. Ain't no room in the Haulers for a trumped up Captain who thinks their exhaust don't stink." `
 			`	Yngvar leans back and his one good eye narrows, "Now, you gonna take us to Helheim, or you gonna keep making an ass out of yourself?"`
 			choice
@@ -4813,6 +4814,8 @@ mission "Hroar's Haulers 9"
 
 			label fine
 			`	Yngvar nods, "Ain't nothing wrong with asking questions. That's half the reason I am here."`
+
+			label whyhel
 			`	"We've been moving and storing all the cargo for the Long Haul to Muspel over the last few months. I'm sure Hartha-Hroar had you running all over collecting supplies. Problem is some cargo doesn't store too good. The folk kind. Which is why we have to wait until everything else is ready to go before we start loading up the guest-workers on Helheim. Which is where we're at in the timeline right now. We need to stop by Helheim, make sure them folks are loaded up, and then head to Muspel to pick up the rest of the caravan."`
 			`	The old man taps his watchless wrist, "Now, we're losing daylight somewhere, so what do you say we get out of this dump and on our way to Helheim?"`
 			choice
