@@ -552,7 +552,7 @@ void AI::Step(Command &activeCommands)
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
 	// the fence count map after a few seconds.
-	for(auto it = fenceCount.begin(); it != fenceCount.end(); )
+	for(auto it = fenceCount.begin(); it != fenceCount.end();)
 	{
 		it->second -= FENCE_DECAY;
 		if(it->second < 0)
@@ -560,15 +560,16 @@ void AI::Step(Command &activeCommands)
 		else
 			++it;
 	}
-	for_each(parallel::par_unseq, ships.begin(), ships.end(), [&](const auto &it)
+	for(const auto &it : ships)
 	{
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
 		{
+			lock_guard<mutex> guard(mutex);
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
-	});
+	}
 
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
