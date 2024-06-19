@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -41,7 +42,8 @@ namespace {
 
 
 MessageLogPanel::MessageLogPanel()
-	: messages(Messages::GetLog()), width(GameData::Interfaces().Get("message log")->GetValue("width"))
+	: messages(Messages::GetLog()),
+	interface(GameData::Interfaces().Get("message log")), width(interface->GetValue("width"))
 {
 	SetInterruptible(false);
 }
@@ -61,6 +63,14 @@ void MessageLogPanel::Draw()
 		backColor);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + width);
+
+	Information info;
+	if(messages.empty())
+	{
+		info.SetCondition("empty");
+		interface->Draw(info, nullptr);
+		return;
+	}
 
 	const Font &font = FontSet::Get(14);
 
