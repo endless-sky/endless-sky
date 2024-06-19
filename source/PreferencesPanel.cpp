@@ -77,6 +77,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string PRICE_PARENS = "Show parenthesis on Job Board";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -634,7 +635,8 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
-		DATE_FORMAT
+		DATE_FORMAT,
+		PRICE_PARENS
 	};
 
 	bool isCategory = true;
@@ -827,6 +829,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == PRICE_PARENS)
+		{
+			isOn = true;
+			text = Preferences::Has(PRICE_PARENS);
 		}
 		else
 			text = isOn ? "on" : "off";
