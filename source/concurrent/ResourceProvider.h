@@ -228,7 +228,7 @@ ResourceProvider<Types...>::ResourceProvider(size_t size, Types & ...remoteResou
 // Creates a provider with the default number of mutexes.
 template <class ...Types>
 ResourceProvider<Types...>::ResourceProvider(Types & ...remoteResources)
-		: ResourceProvider(std::thread::hardware_concurrency(), remoteResources...)
+		: ResourceProvider(std::thread::hardware_concurrency() * 2, remoteResources...)
 {
 }
 
