@@ -1459,7 +1459,7 @@ tip "Landing zoom"
 	`Apply a cinematic zoom in and out when you are landing and taking off.`
 
 tip "Half speed"
-	`Reduces FPS to 30, halving the speed of the game.`
+	`Reduce FPS to 30, halving the speed of the game.`
 
 tip "Scroll speed"
 	`The speed of scrolling in panels that can scroll.`
