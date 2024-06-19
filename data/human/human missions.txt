@@ -5809,7 +5809,7 @@ mission "Quicksilver Mixup 1"
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???"`
-			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO!!!"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
@@ -5856,8 +5856,8 @@ mission "Quicksilver Mixup 2"
 		has "event: quicksilver mixup 2 available"
 	on offer
 		conversation
-			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
-			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
+			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet walks up to you after ending a hurried conversation with another pilot.`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, due to some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
 			choice
 				`	"Oh, so you guys did set up that regular shipment after all!"`
 					goto context
@@ -5885,7 +5885,7 @@ mission "Quicksilver Mixup 2"
 			`	The man takes a look at his tablet and says, "This week, it totaled... <tons> of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
 			`	"<tons> of misposted packages? Just this month?!" you ask.`
 			`	He nods. "Told you it happened often. And only a few of these packages even weigh over a kilo! Big shipments hardly get misposted; it's mostly private citizens who make these kinds of mistakes. Mostly. You'd be amazed!"`
-			`	You two shake hands and arrange for the misposted packages to be loaded onto the <ship>. Time to head to <planet>.`
+			`	The two of you shake hands and arrange for the misposted packages to be loaded onto the <ship>. Time to head to <planet>.`
 				accept
 
 			label refuse
@@ -5894,7 +5894,7 @@ mission "Quicksilver Mixup 2"
 	on visit
 		dialog `You have reached <planet>, but your escort, loaded with the shipment, has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
-		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to <origin>. Again, you have 10 days to make the delivery.`
+		dialog `You contact the spaceport authorities and they direct you to the right landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to <origin>. Again, you have 10 days to make the delivery.`
 
 
 mission "Quicksilver Mixup 3"
@@ -5911,7 +5911,7 @@ mission "Quicksilver Mixup 3"
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
-		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for <payment>. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
 
 
 
