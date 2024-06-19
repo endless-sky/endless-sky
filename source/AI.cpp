@@ -4592,6 +4592,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	}
 
 	// Ships with nearby allies consider their allies' strength as well as their own.
+	mutex lock;
 	for_each(parallel::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const Government *gov = it->GetGovernment();
@@ -4604,7 +4605,9 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
 			return;
 
+		unique_lock<mutex> guard(lock);
 		int64_t &myStrength = shipStrength[it.get()];
+		guard.unlock();
 		for(const auto &allies : governmentRosters)
 		{
 			// If this is not an allied government, its ships will not assist this ship when attacked.

@@ -2342,12 +2342,8 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType;
-				{
-					const lock_guard<mutex> lock(ship->GetMutex());
-					eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
 							targeted ? gov : nullptr);
-				}
 
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
@@ -2355,7 +2351,6 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 		}
 		else if(hit)
 		{
-			const lock_guard<mutex> lock(hit->GetMutex());
 			if(collisionType == CollisionType::SHIP)
 			{
 				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
@@ -2363,7 +2358,10 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 					eventQueue.emplace_back(gov, shipHit, eventType);
 			}
 			else if(collisionType == CollisionType::MINABLE)
+			{
+				lock_guard<mutex> lock(hit->GetMutex());
 				reinterpret_cast<Minable *>(hit)->TakeDamage(projectile);
+			}
 		}
 
 		if(shipHit)
@@ -2378,7 +2376,6 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 		for(const auto &ship : hasAntiMissile)
 			if(ship.get() == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 			{
-				const lock_guard<mutex> lock(ship->GetMutex());
 				if(ship->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
@@ -2711,11 +2708,10 @@ void Engine::DrawShipSprites(const Ship &ship)
 // player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
-	// Projectile collisions may trigger this concurrently
-	const lock_guard<mutex> lock(grudgeMutex);
 
 	if(attacker->IsPlayer())
 	{
+		const lock_guard<mutex> lock(grudgeMutex);
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
 		if(previous && previous->CanSendHail(player))
 		{
@@ -2728,6 +2724,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(grudgeTime)
 		return;
 
+	const lock_guard<mutex> lock(grudgeMutex);
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
 	if(grudge.count(attacker))

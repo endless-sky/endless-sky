@@ -2052,6 +2052,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, list<Visual> &visuals)
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
+	const lock_guard<std::mutex> lock(GetMutex());
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -2107,7 +2108,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, list<Visual> &visuals)
 				// Remember that this flotsam is being pulled by a tractor beam so that this ship
 				// doesn't try to manually collect it.
 				tractorFlotsam.insert(&flotsam);
-				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
+				// If this ship is opportunistic, then only fire one tractor beam at each flotsam.
 				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
 					break;
 			}
@@ -3013,64 +3014,71 @@ int Ship::TakeDamage(list<Visual> &visuals, const DamageDealt &damage, const Gov
 {
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
-	bool wasDisabled = IsDisabled();
-	bool wasDestroyed = IsDestroyed();
-
-	shields -= damage.Shield();
-	if(damage.Shield() && !isDisabled)
-	{
-		int disabledDelay = attributes.Get("depleted shield delay");
-		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay)
-			? disabledDelay : attributes.Get("shield delay"));
-	}
-	hull -= damage.Hull();
-	if(damage.Hull() && !isDisabled)
-		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
-
-	energy -= damage.Energy();
-	heat += damage.Heat();
-	fuel -= damage.Fuel();
-
-	discharge += damage.Discharge();
-	corrosion += damage.Corrosion();
-	ionization += damage.Ion();
-	scrambling += damage.Scrambling();
-	burning += damage.Burn();
-	leakage += damage.Leak();
-
-	disruption += damage.Disruption();
-	slowness += damage.Slowing();
-
-	if(damage.HitForce())
-		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
-
-	// Prevent various stats from reaching unallowable values.
-	hull = min(hull, MaxHull());
-	shields = min(shields, MaxShields());
-	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
-	// will clamp it to a maximum value at the beginning of the next frame.
-	energy = max(0., energy);
-	fuel = max(0., fuel);
-	heat = max(0., heat);
-
-	// Recalculate the disabled ship check.
-	isDisabled = true;
-	isDisabled = IsDisabled();
-
-	// Report what happened to this ship from this weapon.
+	// Keep track of what happened to this ship from this weapon.
 	int type = 0;
-	if(!wasDisabled && isDisabled)
+	// Calculate damage
 	{
-		type |= ShipEvent::DISABLE;
-		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
-	}
-	if(!wasDestroyed && IsDestroyed())
-	{
-		type |= ShipEvent::DESTROY;
+		// Don't modify these attributes concurrently.
+		const lock_guard<std::mutex> lock(GetMutex());
 
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+		bool wasDisabled = IsDisabled();
+		bool wasDestroyed = IsDestroyed();
+
+		shields -= damage.Shield();
+		if(damage.Shield() && !isDisabled)
+		{
+			int disabledDelay = attributes.Get("depleted shield delay");
+			shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay)
+					? disabledDelay : attributes.Get("shield delay"));
+		}
+		hull -= damage.Hull();
+		if(damage.Hull() && !isDisabled)
+			hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
+
+		energy -= damage.Energy();
+		heat += damage.Heat();
+		fuel -= damage.Fuel();
+
+		discharge += damage.Discharge();
+		corrosion += damage.Corrosion();
+		ionization += damage.Ion();
+		scrambling += damage.Scrambling();
+		burning += damage.Burn();
+		leakage += damage.Leak();
+
+		disruption += damage.Disruption();
+		slowness += damage.Slowing();
+
+		if(damage.HitForce())
+			ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
+
+		// Prevent various stats from reaching unallowable values.
+		hull = min(hull, MaxHull());
+		shields = min(shields, MaxShields());
+		// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
+		// will clamp it to a maximum value at the beginning of the next frame.
+		energy = max(0., energy);
+		fuel = max(0., fuel);
+		heat = max(0., heat);
+
+		// Recalculate the disabled ship check.
+		isDisabled = true;
+		isDisabled = IsDisabled();
+
+		// Report what happened to this ship from this weapon.
+		if(!wasDisabled && isDisabled)
+		{
+			type |= ShipEvent::DISABLE;
+			hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
+		}
+		if(!wasDestroyed && IsDestroyed())
+		{
+			type |= ShipEvent::DESTROY;
+
+			if(IsYours() && Preferences::Has("Extra fleet status messages"))
+				Messages::Add("Your " + DisplayModelName() +
+						" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+		}
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4808,6 +4816,7 @@ void Ship::DoEngineVisuals(list<Visual> &visuals, bool isUsingAfterburner)
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
+	lock_guard<std::mutex> lock(GetMutex());
 	escorts.push_back(ship.shared_from_this());
 }
 
@@ -4815,6 +4824,7 @@ void Ship::AddEscort(Ship &ship)
 
 void Ship::RemoveEscort(const Ship &ship)
 {
+	lock_guard<std::mutex> lock(GetMutex());
 	auto it = escorts.begin();
 	for( ; it != escorts.end(); ++it)
 		if(it->lock().get() == &ship)
