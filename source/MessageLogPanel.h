@@ -43,7 +43,6 @@ protected:
 private:
 	const std::deque<std::pair<std::string, Messages::Importance>> &messages;
 
-	const Interface *interf;
 	const double width;
 	// Current scroll:
 	double scroll = 0.;

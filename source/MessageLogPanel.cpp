@@ -42,8 +42,7 @@ namespace {
 
 
 MessageLogPanel::MessageLogPanel()
-	: messages(Messages::GetLog()),
-	interf(GameData::Interfaces().Get("message log")), width(interf->GetValue("width"))
+	: messages(Messages::GetLog()), width(GameData::Interfaces().Get("message log")->GetValue("width"))
 {
 	SetInterruptible(false);
 }
@@ -68,7 +67,7 @@ void MessageLogPanel::Draw()
 	if(messages.empty())
 	{
 		info.SetCondition("empty");
-		interf->Draw(info, nullptr);
+		GameData::Interfaces().Get("message log")->Draw(info, nullptr);
 		return;
 	}
 
