@@ -42,4 +42,6 @@ private:
 	Point randomPos;
 };
 
+
+
 #endif
