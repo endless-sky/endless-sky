@@ -210,6 +210,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Mortgage.h
 	Music.cpp
 	Music.h
+	NameDialog.cpp
+	NameDialog.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp

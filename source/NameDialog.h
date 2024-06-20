@@ -18,12 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
-#include "text/Font.h"
 #include "GameData.h"
 #include "Phrase.h"
 #include "Point.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
 
 #include <string>
 
@@ -37,31 +34,10 @@ public:
 	NameDialog(T *panel, void (T::*fun)(const string &), const string &message, string initialValue = "")
 		: Dialog(panel, fun, message, initialValue) {}
 
-	virtual void Draw() override
-	{
-		Dialog::Draw();
-
-		randomPos = cancelPos - Point(100., 0.);
-		SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
-
-		const Font &font = FontSet::Get(14);
-		static const string label = "Random";
-		Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
-		font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
-	}
+	virtual void Draw() override;
 
 protected:
-	virtual bool Click(int x, int y, int clicks) override
-	{
-		Point off = Point(x, y) - randomPos;
-		if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
-		{
-			// TODO: always chooses human names even for alien ships
-			input = GameData::Phrases().Get("civilian")->Get();
-			return true;
-		}
-		return Dialog::Click(x, y, clicks);
-	}
+	virtual bool Click(int x, int y, int clicks) override;
 
 private:
 	Point randomPos;
