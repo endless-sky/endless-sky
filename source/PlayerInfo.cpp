@@ -1865,11 +1865,18 @@ const CargoHold &PlayerInfo::DistributeCargo()
 			}
 			else
 			{
-				// Your flagship takes first priority for passengers but last for cargo.
+				// Your flagship takes first priority for passengers but last for cargo from
+				// non-unique missions.
 				desiredCrew = ship->Crew();
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+				// Load unique mission cargo onto the flagship.
+				for(const auto &it : cargo.MissionCargo())
+				{
+					if(it.first->IsUnique())
+						cargo.Transfer(it.first, it.second, ship->Cargo());
+				}
 			}
 		}
 	// Load up your flagship last, so that it will have space free for any
