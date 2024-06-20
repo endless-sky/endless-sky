@@ -80,7 +80,6 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
-	const string PRICE_PARENS = "Show parenthesis on Job Board";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -694,7 +693,7 @@ void PreferencesPanel::DrawSettings()
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,
-		PRICE_PARENS
+		Preferences::PRICE_PARENS
 	};
 
 	bool isCategory = true;
