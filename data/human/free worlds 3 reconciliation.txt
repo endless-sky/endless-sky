@@ -801,7 +801,7 @@ mission "FW Syndicate Capture 1B"
 	npc
 		system Ruchbah
 		government Syndicate
-		personality heroic staying nemesis
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
@@ -1038,7 +1038,7 @@ mission "FW Pug 2"
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
-	blocked `As you are landing, Alondo contacts you and says, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
+	blocked `As you are landing, Alondo contacts you and asks, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1101,16 +1101,16 @@ mission "FW Pug 2A"
 		log "Agreed to travel to Syndicate space through the one remaining hyperspace path that is still open, through the uninhabited star systems to the north."
 		conversation
 			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
-			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber asking the members of Parliament for more information, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they fear that the one remaining link will disappear any day now.`
+			`	Parliament is eager now to meet with you, and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber asking the members of Parliament for more information, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they fear that the one remaining link will disappear any day now.`
 			`	As the conversation continues, it eventually becomes clear why you have been called here: the Republic wants you to take on the risk none of them is willing to face, and travel through to Syndicate space to reason with their leaders.`
 			choice
 				`	"If this is what it takes to keep human space from being torn into fragments, I will risk my ship to go meet with the Syndicate."`
 					goto yes
 				`	"This sounds like a job for the Navy, not for me. I can't risk being trapped in hostile Syndicate space forever."`
 					goto no
-				`	"Did the Syndicate communicate anything to you before the links were cut, that might help us guess at their intentions?"`
+				`	"Did the Syndicate communicate anything to you before the links were cut that might help us guess at their intentions?"`
 			
-			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other, some sort of internal power struggle."`
+			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other. Some sort of internal power struggle."`
 			`	Another man speaks up and adds, "We had also been aware for some time that the Syndicate had gained access to alien technology, through encounters with a nomadic alien species currently inhabiting the galactic core. They may have found a way to use that technology to alter the links." From the surprised expressions on the faces of many of the other members of Parliament, it's clear that this information is new to them.`
 			choice
 				`	"Very well, we will accept this mission."`
@@ -2019,7 +2019,7 @@ mission "FW Pug 4C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "reconnected delta capricorni"
+		event "reconnected delta capricorni" 0
 		conversation
 			`Freya sent detailed instructions with the reflector for where it should be set up and how it should be adjusted to interface with the transmitter back in Pug space. You hand it over to a team of Syndicate engineers, who seem quite capable and confident that they can make it work; you suspect that these are the same engineers who have been playing with equipment stolen from the Korath, so they are no strangers to alien technology.`
 			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to reopen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in reopening the link.`
@@ -2169,7 +2169,7 @@ mission "FW Pug 5B"
 	
 	on offer
 		log "Succeeded in rendezvousing with the Navy in the Sol system and reopening a link to the Pug territory. But now Shiver is under attack by a massive Pug fleet."
-		event "reconnected altair"
+		event "reconnected altair" 0
 		conversation
 			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam homes in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
 			`	A second later your own communicator beeps. It's Freya. "Get back here quickly," she says. "Bring whatever reinforcements you can. A massive Pug fleet just appeared in orbit."`
@@ -2447,7 +2447,7 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"I don't see why not," says Danforth, fixing Alastair with a piercing gaze. "It's certainly better than leaving it in Syndicate hands."`
 			label end
-			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas."`
+			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas?"`
 			`	"The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
 				accept
 	
