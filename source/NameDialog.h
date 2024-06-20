@@ -34,8 +34,8 @@ using namespace std;
 class NameDialog : public Dialog {
 public:
 	template <class T>
-	NameDialog(T *panel, void (T::*fun)(const string &), const string &message)
-		: Dialog(panel, fun, message) {}
+	NameDialog(T *panel, void (T::*fun)(const string &), const string &message, string initialValue = "")
+		: Dialog(panel, fun, message, initialValue) {}
 
 	virtual void Draw() override
 	{
@@ -56,6 +56,7 @@ protected:
 		Point off = Point(x, y) - randomPos;
 		if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
 		{
+			// TODO: always chooses human names even for alien ships
 			input = GameData::Phrases().Get("civilian")->Get();
 			return true;
 		}
