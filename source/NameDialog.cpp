@@ -29,7 +29,7 @@ void NameDialog::Draw()
 	SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
 
 	const Font &font = FontSet::Get(14);
-	static const string RANDOM = "Random";
+	static const string RANDOM = "Suggest";
 	Point labelPos = randomPos - .5 * Point(font.Width(RANDOM), font.Height());
 	font.Draw(RANDOM, labelPos, *GameData::Colors().Get("medium"));
 }
