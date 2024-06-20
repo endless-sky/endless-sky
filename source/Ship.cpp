@@ -1863,8 +1863,8 @@ int Ship::Scan(const PlayerInfo &player)
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
-	int activeScanning = 0;
-	int result = 0;
+	int activeScanning = ShipEvent::NONE;
+ 	int result = ShipEvent::NONE;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
