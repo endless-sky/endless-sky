@@ -29,9 +29,9 @@ void NameDialog::Draw()
 	SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
 
 	const Font &font = FontSet::Get(14);
-	static const string label = "Random";
-	Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
-	font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
+	static const string RANDOM = "Random";
+	Point labelPos = randomPos - .5 * Point(font.Width(RANDOM), font.Height());
+	font.Draw(RANDOM, labelPos, *GameData::Colors().Get("medium"));
 }
 
 bool NameDialog::Click(int x, int y, int clicks)
