@@ -63,11 +63,13 @@ public:
 		template<class Item, class Alloc>
 		inline void SyncSingle(std::vector<Item, Alloc> &remote, std::vector<Item, Alloc> &local);
 
-		template<class Item>
-		inline void SyncSingle(std::vector<std::vector<Item>> &remote, std::vector<std::vector<Item>> &local);
+		template<class Item, class Alloc1, class Alloc2>
+		inline void SyncSingle(std::vector<std::vector<Item, Alloc2>, Alloc1> &remote,
+				std::vector<std::vector<Item, Alloc2>, Alloc1> &local);
 
-		template<class Key, template<class> class Container, class NestedValue>
-		inline void SyncSingle(std::map<Key, Container<NestedValue>> &remote, std::map<Key, Container<NestedValue>> &local);
+		template<class Key, template<class...> class Container, class ...NestedValue, class Compare, class Alloc>
+		inline void SyncSingle(std::map<Key, Container<NestedValue...>, Compare, Alloc> &remote,
+				std::map<Key, Container<NestedValue...>, Compare, Alloc> &local);
 
 		template<class Item, class Alloc = std::allocator<Item>>
 		inline void SyncSingle(std::list<Item, Alloc> &remote, std::list<Item, Alloc> &local);
@@ -215,9 +217,9 @@ void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<Item, All
 
 
 template<class ...Types>
-template<class Item>
-inline void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<std::vector<Item>> &remote,
-		std::vector<std::vector<Item>> &local)
+template<class Item, class Alloc1, class Alloc2>
+void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<std::vector<Item, Alloc2>, Alloc1> &remote,
+		std::vector<std::vector<Item, Alloc2>, Alloc1> &local)
 {
 	for(auto &item : local)
 		remote.emplace_back().swap(item);
@@ -227,9 +229,10 @@ inline void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<st
 
 
 template<class ...Types>
-template<class Key, template<class> class Container, class NestedValue>
-void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::map<Key, Container<NestedValue>> &remote,
-		std::map<Key, Container<NestedValue>> &local)
+template<class Key, template<class...> class Container, class ...NestedValue, class Compare, class Alloc>
+void ResourceProvider<Types...>::ResourceGuard::SyncSingle(
+		std::map<Key, Container<NestedValue...>, Compare, Alloc> &remote,
+		std::map<Key, Container<NestedValue...>, Compare, Alloc> &local)
 {
 	for(auto &it : local)
 		SyncSingle(remote[it.first], it.second);
