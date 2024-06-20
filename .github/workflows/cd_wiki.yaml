@@ -22,7 +22,7 @@ jobs:
           git clone "https://github.com/endless-sky/endless-sky-wiki.git"
       - name: Checkout wiki
         run: git clone "https://github.com/${{ github.repository }}.wiki.git"
-      - name: Synchronise files
+      - name: Synchronize files
         run: rsync --delete -rvh -e .git endless-sky-wiki/wiki/* endless-sky.wiki/
       - name: Check for changes
         id: check-diff
