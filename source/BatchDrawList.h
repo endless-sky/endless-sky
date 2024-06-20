@@ -46,9 +46,9 @@ public:
 	// Draw all the items in this list.
 	void Draw() const;
 
-	template<template<class> class Container, class Item>
+	template<template<class, class...> class Container, class Item, class ...Params>
 	std::enable_if_t<std::is_base_of_v<Projectile, Item> || std::is_base_of_v<Visual, Item>>
-	AddBatch(const Container<Item> &batch);
+	AddBatch(const Container<Item, Params...> &batch);
 
 
 private:
@@ -81,9 +81,9 @@ private:
 
 
 
-template<template<class> class Container, class Item>
+template<template<class, class...> class Container, class Item, class ...Params>
 std::enable_if_t<std::is_base_of_v<Projectile, Item> || std::is_base_of_v<Visual, Item>>
-BatchDrawList::AddBatch(const Container<Item> &batch)
+BatchDrawList::AddBatch(const Container<Item, Params...> &batch)
 {
 	for_each_mt(batch.begin(), batch.end(), [&](const auto &item) {
 		const thread_local auto lock = resourceProvider.Lock();
