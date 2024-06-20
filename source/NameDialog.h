@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
-using namespace std;
 
 // The name entry dialog should include a "Random" button to choose a random
 // name using the civilian ship name generator.
