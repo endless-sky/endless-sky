@@ -2451,7 +2451,7 @@ planet "Kort Kehai"
 	bribe 0
 	tribute 100
 		threshold 1500
-		fleet "Wanderer Defense"
+		fleet "Wanderer Defense" 3
 
 planet "Kort Vek'kri"
 	attributes wanderer
@@ -2462,7 +2462,7 @@ planet "Kort Vek'kri"
 	bribe 0
 	tribute 500
 		threshold 2000
-		fleet "Wanderer Defense" 3
+		fleet "Wanderer Defense" 4
 
 planet "Kraken Station"
 	attributes "near earth" station
@@ -4507,7 +4507,7 @@ planet "Tik Klai"
 	bribe 0
 	tribute 600
 		threshold 3500
-		fleet "Wanderer Defense" 3
+		fleet "Wanderer Defense" 4
 
 planet Tinker
 	attributes factory mining "near earth"
@@ -4724,7 +4724,7 @@ planet "Var' Roi"
 	bribe 0
 	tribute 100
 		threshold 350
-		fleet "Wanderer Defense"
+		fleet "Wanderer Defense" 4
 
 planet "Vara K'chrai"
 	attributes urban wanderer
@@ -4772,7 +4772,7 @@ planet "Vara Kehi'ki"
 	bribe 0
 	tribute 900
 		threshold 1230
-		fleet "Wanderer Defense" 2
+		fleet "Wanderer Defense" 5
 
 planet "Vara Pug"
 	attributes pug
@@ -4808,7 +4808,7 @@ planet "Varu Ek'lak'lai"
 	bribe 0
 	tribute 1300
 		threshold 3400
-		fleet "Wanderer Defense" 3
+		fleet "Wanderer Defense" 4
 
 planet "Varu K'est"
 	attributes military wanderer
@@ -4833,8 +4833,8 @@ planet "Varu K'prai"
 	bribe 0
 	tribute 800
 		threshold 1200
-		fleet "Wanderer Defense"
-		fleet "Wanderer Freight" 2
+		fleet "Wanderer Defense" 2
+		fleet "Wanderer Freight" 4
 
 planet "Varu Mer'ek"
 	attributes factory wanderer
@@ -4859,7 +4859,7 @@ planet "Varu Tek'kai"
 	bribe 0
 	tribute 200
 		threshold 1300
-		fleet "Wanderer Defense"
+		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
 	attributes factory wanderer
