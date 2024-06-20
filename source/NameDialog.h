@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class NameDialog : public Dialog {
 public:
 	template <class T>
-	NameDialog(T *panel, void (T::*fun)(const string &), const string &message, string initialValue = "")
+	NameDialog(T *panel, void (T::*fun)(const std::string &), const std::string &message, std::string initialValue = "")
 		: Dialog(panel, fun, message, initialValue) {}
 
 	virtual void Draw() override;
