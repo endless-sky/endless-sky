@@ -4723,7 +4723,7 @@ planet "Var' Roi"
 	"required reputation" 25
 	bribe 0
 	tribute 100
-		threshold 350
+		threshold 1500
 		fleet "Wanderer Defense" 4
 
 planet "Vara K'chrai"
@@ -4820,7 +4820,7 @@ planet "Varu K'est"
 	"required reputation" 15
 	bribe 0
 	tribute 1600
-		threshold 2000
+		threshold 5500
 		fleet "Wanderer Defense" 16
 
 planet "Varu K'prai"
@@ -4858,7 +4858,7 @@ planet "Varu Tek'kai"
 	"required reputation" 15
 	bribe 0
 	tribute 200
-		threshold 1300
+		threshold 1500
 		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
