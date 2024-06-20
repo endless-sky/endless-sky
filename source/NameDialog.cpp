@@ -34,6 +34,8 @@ void NameDialog::Draw()
 	font.Draw(RANDOM, labelPos, *GameData::Colors().Get("medium"));
 }
 
+
+
 bool NameDialog::Click(int x, int y, int clicks)
 {
 	Point off = Point(x, y) - randomPos;
