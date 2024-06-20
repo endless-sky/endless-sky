@@ -41,7 +41,7 @@ public:
 	{
 		Dialog::Draw();
 
-		randomPos = cancelPos - Point(80., 0.);
+		randomPos = cancelPos - Point(100., 0.);
 		SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
 
 		const Font &font = FontSet::Get(14);
