@@ -903,11 +903,6 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
 		}
-		else if(setting == PRICE_PARENS)
-		{
-			isOn = true;
-			text = Preferences::GetPriceParens();
-		}
 		else
 			text = isOn ? "on" : "off";
 
