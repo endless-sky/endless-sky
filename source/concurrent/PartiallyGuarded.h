@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <list>
 #include <mutex>
+#include <vector>
 
 
 
@@ -35,6 +36,10 @@ public:
 		return std::list<T, Allocator>::emplace_back(args...);
 	}
 
+	// Prevent accidental push_back operations.
+	void push_back(const T &value) = delete;
+	void push_back(T &&value) = delete;
+
 private:
 	std::mutex write_mutex;
 };
@@ -48,6 +53,10 @@ public:
 		const std::lock_guard<std::mutex> lock(write_mutex);
 		return std::vector<T, Allocator>::emplace_back(args...);
 	}
+
+	// Prevent accidental push_back operations.
+	void push_back(const T &value) = delete;
+	void push_back(T &&value) = delete;
 
 private:
 	std::mutex write_mutex;

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <array>
 #include <list>
+#include <map>
 #include <mutex>
 #include <thread>
 #include <tuple>
@@ -59,8 +60,14 @@ public:
 		inline std::enable_if_t<Index >= sizeof...(Types)> Sync();
 
 		// Adds all contents of the local container to the remote.
-		template<class Container>
-		inline void SyncSingle(Container &remote, Container &local);
+		template<class Item, class Alloc>
+		inline void SyncSingle(std::vector<Item, Alloc> &remote, std::vector<Item, Alloc> &local);
+
+		template<class Item>
+		inline void SyncSingle(std::vector<std::vector<Item>> &remote, std::vector<std::vector<Item>> &local);
+
+		template<class Key, template<class> class Container, class NestedValue>
+		inline void SyncSingle(std::map<Key, Container<NestedValue>> &remote, std::map<Key, Container<NestedValue>> &local);
 
 		template<class Item, class Alloc = std::allocator<Item>>
 		inline void SyncSingle(std::list<Item, Alloc> &remote, std::list<Item, Alloc> &local);
@@ -73,6 +80,7 @@ public:
 
 
 public:
+	ResourceProvider() = delete;
 	// Creates a provider with the specified number of mutexes.
 	ResourceProvider(size_t size, Types & ...remoteResources);
 	// Creates a provider with the default number of mutexes.
@@ -185,8 +193,8 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 
 // Adds all contents of the local container to the remote.
 template<class ...Types>
-template<class Container>
-void ResourceProvider<Types...>::ResourceGuard::SyncSingle(Container &remote, Container &local)
+template<class Item, class Alloc>
+void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<Item, Alloc> &remote, std::vector<Item, Alloc> &local)
 {
 	if(remote.empty())
 		remote.swap(local);
@@ -201,6 +209,30 @@ void ResourceProvider<Types...>::ResourceGuard::SyncSingle(Container &remote, Co
 		remote.insert(remote.end(), make_move_iterator(local.begin()), make_move_iterator(local.end()));
 		local.clear();
 	}
+}
+
+
+
+template<class ...Types>
+template<class Item>
+inline void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<std::vector<Item>> &remote,
+		std::vector<std::vector<Item>> &local)
+{
+	for(auto &item : local)
+		remote.emplace_back().swap(item);
+	local.clear();
+}
+
+
+
+template<class ...Types>
+template<class Key, template<class> class Container, class NestedValue>
+void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::map<Key, Container<NestedValue>> &remote,
+		std::map<Key, Container<NestedValue>> &local)
+{
+	for(auto &it : local)
+		SyncSingle(remote[it.first], it.second);
+	local.clear();
 }
 
 

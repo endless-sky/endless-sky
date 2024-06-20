@@ -4629,10 +4629,8 @@ void AI::CacheShipLists()
 	enemyLists.clear();
 	for(const auto &git : governmentRosters)
 	{
-		allyLists.emplace(git.first, vector<Ship *>());
-		allyLists.at(git.first).reserve(ships.size());
-		enemyLists.emplace(git.first, vector<Ship *>());
-		enemyLists.at(git.first).reserve(ships.size());
+		allyLists.emplace(git.first, vector<Ship *>()).first->second.reserve(ships.size());
+		enemyLists.emplace(git.first, vector<Ship *>()).first->second.reserve(ships.size());
 		for(const auto &oit : governmentRosters)
 		{
 			auto &list = git.first->IsEnemy(oit.first)

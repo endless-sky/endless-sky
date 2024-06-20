@@ -1646,8 +1646,9 @@ void Engine::CalculateStep()
 		DoWeather(weather);
 
 	// Check for flotsam collection (collisions with ships).
-	for(const shared_ptr<Flotsam> &it : flotsam)
+	for_each_mt(flotsam.begin(), flotsam.end(), [&](const auto &it) {
 		DoCollection(*it);
+	});
 
 	// Now that flotsam collection is done, clear the cache of ships with
 	// tractor beam systems ready to fire.
@@ -1738,11 +1739,9 @@ void Engine::CalculateStep()
 		}
 	}
 	// Draw the projectiles.
-	for(const Projectile &projectile : projectiles)
-		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());
+	batchDraw[currentCalcBuffer].AddBatch(projectiles);
 	// Draw the visuals.
-	for(const Visual &visual : visuals)
-		batchDraw[currentCalcBuffer].AddVisual(visual);
+	batchDraw[currentCalcBuffer].AddBatch(visuals);
 
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -2229,7 +2228,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 
 
 // Perform collision detection.
-void Engine::DoCollisions(ResourceProvider<std::list<Visual>> &provider, Projectile &projectile)
+void Engine::DoCollisions(ResourceProvider<list<Visual>> &provider, Projectile &projectile)
 {
 	const auto lock = provider.Lock();
 	DoCollisions(lock.get<0>(), projectile);

@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARALLEL_H_
 #define PARALLEL_H_
 
+#include "Scheduler.h"
+
 #include <version>
 
 
@@ -74,25 +76,9 @@ private:
 template<class RandomIt, class Func>
 void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 {
-	if(begin == end)
-		return;
-
-	int subtaskCount = std::distance(begin, end);
-	int taskCount = std::min(subtaskCount, static_cast<int>(8 * std::thread::hardware_concurrency()));
-	int itemPerTask = subtaskCount / taskCount;
-
-	RandomIt current = begin;
-	for(int i = 0; i <= taskCount && current != end; i++)
-	{
-		RandomIt first = current;
-		RandomIt last = (i == taskCount ? end : first + itemPerTask);
-		current = last;
-		Run([=]
-		{
-			for(RandomIt it = first; it != last; it++)
-				f(*it);
-		});
-	}
+	for(const auto &item : Scheduler::Schedule(begin, end, f, 8 * std::thread::hardware_concurrency()))
+		Run(item);
+	Wait();
 }
 
 
@@ -149,5 +135,26 @@ inline void stable_sort(ExecutionPolicy, RandomIt first, RandomIt last)
 namespace parallel = std::execution;
 
 #endif
+
+namespace {
+	// A forced multithreaded for_each implementation where the executing threads are guaranteed
+	// to terminate before leaving the function. Unlike the standard implementation, this does not
+	// permit threads to be reused for future for_each_mt calls. This allows using ResourceGuards
+	// with thread-local lifetime for greater efficiency.
+	// This function is available on all backends, and does not require a random access iterator.
+	template<class It, class Func>
+	inline void for_each_mt(It begin, It end, Func &&f)
+	{
+		const auto tasks = Scheduler::Schedule(begin, end, f, std::thread::hardware_concurrency());
+		std::vector<std::thread> threads;
+		threads.reserve(tasks.size());
+
+		for(const auto &task : tasks)
+			threads.emplace_back(task);
+
+		for(auto &thread : threads)
+			thread.join();
+	}
+}
 
 #endif

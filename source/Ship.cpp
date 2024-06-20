@@ -2096,6 +2096,8 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, list<Visual> &visuals)
 
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const vector<Hardpoint> &hardpoints = armament.Get();
+
+	lock_guard<std::mutex> lock(GetMutex());
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();

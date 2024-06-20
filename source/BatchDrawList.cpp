@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BatchShader.h"
 #include "Body.h"
+#include "Projectile.h"
 #include "Screen.h"
 #include "Sprite.h"
 
@@ -34,6 +35,12 @@ namespace {
 		v.push_back(frame);
 		v.push_back(alpha);
 	}
+}
+
+
+
+BatchDrawList::BatchDrawList() : resourceProvider(data)
+{
 }
 
 
@@ -59,6 +66,14 @@ void BatchDrawList::SetCenter(const Point &center)
 // Add an unswizzled object based on the Body class.
 bool BatchDrawList::Add(const Body &body, float clip)
 {
+	auto &vector = data[body.GetSprite()];
+	return Add(body, clip, vector.empty() ? vector.emplace_back() : vector[0]);
+}
+
+
+
+bool BatchDrawList::Add(const Body &body, float clip, vector<float> &v)
+{
 	// TODO: Rather than compensate using 1/2 the Visual | Projectile velocity, we should
 	// extend the Sprite class to know its reference point. For most sprites, this will be
 	// the horizontal and vertical middle of the sprite, but for "laser" projectiles, this
@@ -69,7 +84,14 @@ bool BatchDrawList::Add(const Body &body, float clip)
 	// we want it to be drawn with its center halfway to the target. For longer-lived projectiles, we
 	// expect the position to be the actual location of the projectile at that point in time.
 	Point position = (body.Position() + .5 * body.Velocity() - center) * zoom;
-	return Add(body, position, clip);
+	return Add(body, position, clip, v);
+}
+
+
+
+bool BatchDrawList::AddProjectile(const Projectile &body, std::vector<float> &v)
+{
+	return Add(body, body.Clip(), v);
 }
 
 
@@ -77,7 +99,15 @@ bool BatchDrawList::Add(const Body &body, float clip)
 // TODO: Once we have sprite reference positions, this method will not be needed.
 bool BatchDrawList::AddVisual(const Body &visual)
 {
-	return Add(visual, (visual.Position() - center) * zoom, 1.f);
+	auto &vector = data[visual.GetSprite()];
+	return AddVisual(visual, vector.empty() ? vector.emplace_back() : vector[0]);
+}
+
+
+
+bool BatchDrawList::AddVisual(const Body &visual, vector<float> &v)
+{
+	return Add(visual, (visual.Position() - center) * zoom, 1.f, v);
 }
 
 
@@ -87,8 +117,9 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 
-	for(const pair<const Sprite * const, vector<float>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second);
+	for(const pair<const Sprite * const, vector<vector<float>>> &it : data)
+		for(const auto &item : it.second)
+			BatchShader::Add(it.first, isHighDPI, item);
 
 	BatchShader::Unbind();
 }
@@ -118,13 +149,11 @@ bool BatchDrawList::Cull(const Body &body, const Point &position) const
 
 
 
-bool BatchDrawList::Add(const Body &body, Point position, float clip)
+bool BatchDrawList::Add(const Body &body, Point position, float clip, vector<float> &v)
 {
 	if(Cull(body, position))
 		return false;
 
-	// Get the data vector for this particular sprite.
-	vector<float> &v = data[body.GetSprite()];
 	// The sprite frame is the same for every vertex.
 	float frame = body.GetFrame(step);
 
