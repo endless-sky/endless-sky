@@ -35,8 +35,9 @@ public:
 
 	// Gets the mutex for this object.
 	std::mutex &GetMutex();
+	[[nodiscard]] std::lock_guard<std::mutex> Lock() const;
 protected:
-	std::mutex mutex;
+	mutable std::mutex mutex;
 };
 
 

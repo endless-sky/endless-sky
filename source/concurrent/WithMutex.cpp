@@ -46,3 +46,10 @@ std::mutex &WithMutex::GetMutex() {
 	return mutex;
 }
 
+
+
+std::lock_guard<std::mutex> WithMutex::Lock() const
+{
+	return std::lock_guard<std::mutex>(mutex);
+}
+

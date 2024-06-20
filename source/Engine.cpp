@@ -2358,7 +2358,7 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 			}
 			else if(collisionType == CollisionType::MINABLE)
 			{
-				lock_guard<mutex> lock(hit->GetMutex());
+				lock_guard<mutex> lock = hit->Lock();
 				reinterpret_cast<Minable *>(hit)->TakeDamage(projectile);
 			}
 		}

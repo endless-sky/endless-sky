@@ -2052,7 +2052,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, list<Visual> &visuals)
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
-	const lock_guard<std::mutex> lock(GetMutex());
+	const lock_guard<std::mutex> lock = Lock();
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -3019,7 +3019,7 @@ int Ship::TakeDamage(list<Visual> &visuals, const DamageDealt &damage, const Gov
 	// Calculate damage
 	{
 		// Don't modify these attributes concurrently.
-		const lock_guard<std::mutex> lock(GetMutex());
+		const lock_guard<std::mutex> lock = Lock();
 
 		bool wasDisabled = IsDisabled();
 		bool wasDestroyed = IsDestroyed();
@@ -4816,7 +4816,7 @@ void Ship::DoEngineVisuals(list<Visual> &visuals, bool isUsingAfterburner)
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	lock_guard<std::mutex> lock(GetMutex());
+	lock_guard<std::mutex> lock = Lock();
 	escorts.push_back(ship.shared_from_this());
 }
 
@@ -4824,7 +4824,7 @@ void Ship::AddEscort(Ship &ship)
 
 void Ship::RemoveEscort(const Ship &ship)
 {
-	lock_guard<std::mutex> lock(GetMutex());
+	lock_guard<std::mutex> lock = Lock();
 	auto it = escorts.begin();
 	for( ; it != escorts.end(); ++it)
 		if(it->lock().get() == &ship)
