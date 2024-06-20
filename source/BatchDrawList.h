@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef BATCH_DRAW_LIST_H_
 #define BATCH_DRAW_LIST_H_
 
-#include "Point.h"
 #include "concurrent/Parallel.h"
+#include "Point.h"
 #include "concurrent/ResourceProvider.h"
 
 #include <map>
@@ -85,7 +85,7 @@ template<template<class> class Container, class Item>
 std::enable_if_t<std::is_base_of_v<Projectile, Item> || std::is_base_of_v<Visual, Item>>
 BatchDrawList::AddBatch(const Container<Item> &batch)
 {
-	for_each_mt(batch.begin(), batch.end(), [&](const auto &item){
+	for_each_mt(batch.begin(), batch.end(), [&](const auto &item) {
 		const thread_local auto lock = resourceProvider.Lock();
 
 		std::vector<std::vector<float>> &data = lock.get<0>()[item.GetSprite()];

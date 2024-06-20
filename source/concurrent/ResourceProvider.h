@@ -194,7 +194,8 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 // Adds all contents of the local container to the remote.
 template<class ...Types>
 template<class Item, class Alloc>
-void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<Item, Alloc> &remote, std::vector<Item, Alloc> &local)
+void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<Item, Alloc> &remote,
+		std::vector<Item, Alloc> &local)
 {
 	if(remote.empty())
 		remote.swap(local);
