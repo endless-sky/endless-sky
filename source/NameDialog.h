@@ -39,6 +39,7 @@ public:
 protected:
 	virtual bool Click(int x, int y, int clicks) override;
 
+
 private:
 	Point randomPos;
 };
