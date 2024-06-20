@@ -735,5 +735,5 @@ int Preferences::GetPreviousSaveCount()
 
 bool Preferences::GetPriceParens()
 {
-	return PriceParens
+	return PriceParens;
 }
