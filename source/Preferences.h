@@ -188,6 +188,8 @@ public:
 	static bool DoAlertHelper(AlertIndicator toDo);
 
 	static int GetPreviousSaveCount();
+
+	static bool GetPriceParens();
 };
 
 
