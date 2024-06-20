@@ -45,7 +45,7 @@ mission "FW Epilogue: Ijs and Katya"
 			
 			label game
 			`	"Whoops," says Ijs, "now you've done it, there goes the fourth wall."`
-			`	Katya laughs. "Well, there's already lots beyond human space to see, and I'm sure you can find more things to do out there as well as closer to home. If you're so eager to explore more of the galaxy, <first>, or to discover what new adventures it has to offer, maybe you should volunteer to help out with creating the stories to populate it. This is an open source game after all, and it relies on people like you to bring it life."`
+			`	Katya laughs. "Well, there's already lots beyond human space to see, and I'm sure you can find more things to do out there as well as closer to home. If you're so eager to explore more of the galaxy, <first>, or to discover what new adventures it has to offer, maybe you should volunteer to help out with creating the stories to populate it. This is an open source game after all, and it relies on people like you to bring it to life."`
 				goto end
 			
 			label end
@@ -189,7 +189,7 @@ mission "FW Epilogue: Danforth"
 			
 			label next
 			`	"Are the pirates giving you any trouble?" you ask.`
-			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the South. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
+			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds mostly driving them out of the South. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
 			
 			branch checkmate2
 				has "free worlds checkmate"
@@ -214,7 +214,7 @@ mission "FW Epilogue: Edward"
 		has "free worlds plot completed"
 	on offer
 		conversation "edward epilogue"
-	npc save disable
+	npc disable save
 		government "Test Dummy"
 		personality disables heroic staying
 		ship "Leviathan (Plasma Repeater)" "Hunk"
@@ -230,7 +230,7 @@ mission "FW Epilogue: Edward"
 conversation "edward epilogue"
 	branch completed
 		has "FW Epilogue: Edward: done"
-	`As you complete your landing procedure, you recall having come here to assist in some testing for new weapons, back in the thick of the war. Do you want to check in on Barmy Edwards, the lead engineer?`
+	`As you complete your landing procedure, you recall having come here to assist in some testing for new weapons, back in the thick of the war. Do you want to check in on Barmy Edward, the lead engineer?`
 	choice
 		`	(Yes.)`
 		`	(No.)`
