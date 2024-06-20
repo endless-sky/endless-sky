@@ -4858,7 +4858,7 @@ planet "Varu Tek'kai"
 	"required reputation" 15
 	bribe 0
 	tribute 200
-		threshold 1500
+		threshold 1700
 		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
@@ -4870,8 +4870,8 @@ planet "Varu Tev'kei"
 	"required reputation" 15
 	bribe 0
 	tribute 500
-		threshold 1500
-		fleet "Wanderer Defense" 3
+		threshold 1950
+		fleet "Wanderer Defense" 5
 
 planet Vatican
 	attributes lava uninhabited
