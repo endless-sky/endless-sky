@@ -78,7 +78,7 @@ void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 		return;
 
 	int subtaskCount = std::distance(begin, end);
-	int taskCount = std::min(subtaskCount, static_cast<int>(4 * std::thread::hardware_concurrency()));
+	int taskCount = std::min(subtaskCount, static_cast<int>(8 * std::thread::hardware_concurrency()));
 	int itemPerTask = subtaskCount / taskCount;
 
 	RandomIt current = begin;
