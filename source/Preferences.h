@@ -103,6 +103,8 @@ public:
 		BOTH
 	};
 
+	inline static const std::string PRICE_PARENS = "Show parenthesis on Job Board";
+
 
 public:
 	static void Load();
