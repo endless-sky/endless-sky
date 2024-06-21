@@ -137,8 +137,6 @@ if(NOT ES_PARALLEL_USE_TASK_QUEUE)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 endif()
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
-
 # Link with the UUID library, which is different for each OS.
 if(UNIX)
 	if(APPLE)
