@@ -104,6 +104,7 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.cpp
 	EscortDisplay.h
 	ExclusiveItem.h
+	FighterHitHelper.h
 	File.cpp
 	File.h
 	Files.cpp

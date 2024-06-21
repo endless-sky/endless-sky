@@ -212,7 +212,7 @@ void DistanceMap::Init(const Ship *ship)
 		}
 	}
 
-	// Find the route with lowest fuel use. If multiple routes use the same fuel,
+	// Find the route with the lowest fuel use. If multiple routes use the same fuel,
 	// choose the one with the fewest jumps (i.e. using jump drive rather than
 	// hyperdrive). If multiple routes have the same fuel and the same number of
 	// jumps, break the tie by using how "dangerous" the route is.
