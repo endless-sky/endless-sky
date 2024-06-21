@@ -713,6 +713,7 @@ trade
 		"video cards"
 		"voltage converters"
 		"wireless receivers"
+		"wires"
 	commodity "Heavy Metals" 610 1310
 		"actinide metals"
 		"barium"
