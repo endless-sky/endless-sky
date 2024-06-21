@@ -88,10 +88,10 @@ tip "burn resistance heat:"
 	`Heat generated per second when resisting burn damage.`
 
 tip "capture attack:"
-	`Increases the "strength" of one crew member when attacking another ship to capture it. Each crew member can only wield one weapon at a time, but they will use whichever weapons provide the highest power.`
+	`Increases the odds of killing an enemy crew member in a boarding assault against an enemy ship. Each crew member can wield one defensive and one offensive weapon at a time, and they will use whichever weapons provide the highest power.`
 
 tip "capture defense:"
-	`Increases the "strength" of one crew member when defending against an attempt to capture this ship. Each crew member can only wield one weapon at a time, but they will use whichever weapons provide the highest power.`
+	`Decrease the odds of your crew member dying in a boarding assault against an enemy ship. Each crew member can wield one defensive and one offensive weapon at a time, and they will use whichever weapons provide the highest power.`
 
 tip "cargo:"
 	`Tons of cargo this ship is carrying right now, out of its maximum.`
