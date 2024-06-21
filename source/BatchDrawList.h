@@ -41,6 +41,7 @@ public:
 
 	// Add an unswizzled object based on the Body class.
 	bool Add(const Body &body, float clip = 1.f);
+	bool AddProjectile(const Projectile &body);
 	bool AddVisual(const Body &visual);
 
 	// Draw all the items in this list.

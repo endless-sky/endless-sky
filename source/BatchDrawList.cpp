@@ -89,6 +89,13 @@ bool BatchDrawList::Add(const Body &body, float clip, vector<float> &v)
 
 
 
+bool BatchDrawList::AddProjectile(const Projectile &body)
+{
+	return Add(body, body.Clip());
+}
+
+
+
 bool BatchDrawList::AddProjectile(const Projectile &body, std::vector<float> &v)
 {
 	return Add(body, body.Clip(), v);
