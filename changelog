@@ -25,6 +25,14 @@ Version 0.10.8
     * Balance:
       * Reduced `relative heat damage` by a factor of 1.5, for consistency with the mass rebalance in v0.10.7. (@Quantumshark)
       * Reduced the difficulty of "Wanderers: Mind 6". (@TheGiraffe3)
+        * Wanderer escorts: +1 Tempest.
+        * Friendly Mereti:
+          * -1 Model 128,
+          * +2 Model 16.
+        * Hostile Mereti:
+          * -1 Model 128,
+          * -1 Model 64,
+          * -1 Model 32.
   * Game mechanics:
     * New mechanics:
       * Added a gamerule for controlling disabled fighter projectile collision. (@tibetiroka)
