@@ -135,7 +135,7 @@ mission "Unfettered Jump Drive 4"
 
 			label trade
 			branch cargo
-				has "outfit (installed): Jump Drive"
+				has "outfit (cargo): Jump Drive"
 			action
 				outfit "Hyperdrive" 1
 			label cargo

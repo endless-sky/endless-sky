@@ -183,11 +183,11 @@ mission "Unfettered Jump Drive 1"
 			choice
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					to display
-						has "outfit (installed): Jump Drive"
+						not "outfit (cargo): Jump Drive"
 					goto end
 				`	"You can take the jump drive from my cargo, but I don't need a hyperdrive in exchange."`
 					to display
-						not "outfit (installed): Jump Drive"
+						has "outfit (cargo): Jump Drive"
 					goto cargo
 				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
@@ -235,7 +235,7 @@ mission "Unfettered Jump Drive 2"
 					defer
 				`	"Yes, I will sell you my jump drive."`
 			branch cargo
-				has "outfit (installed): Jump Drive"
+				has "outfit (cargo): Jump Drive"
 			action
 				outfit "Hyperdrive" 1
 			label cargo
@@ -309,7 +309,7 @@ mission "Unfettered Jump Drive 3"
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
 			label job
 			branch cargo
-				has "outfit (installed): Jump Drive"
+				has "outfit (cargo): Jump Drive"
 			action
 				outfit "Hyperdrive" 1
 			label cargo
@@ -484,7 +484,7 @@ mission "Unfettered Jump Drive Trading"
 			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
 			label end
 			branch cargo
-				has "outfit (installed): Jump Drive"
+				has "outfit (cargo): Jump Drive"
 			action
 				outfit "Hyperdrive" 1
 			label cargo
