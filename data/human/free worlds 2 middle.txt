@@ -1722,7 +1722,7 @@ mission "FW Albatross 1"
 				goto alondo
 			label alondo
 			`	You ask, "Wait, doesn't Alondo usually handle the diplomacy?"`
-			`	"Usually, yes," she says. "But the locals on Albatross specifically asked for JJ. They're a very traditional population, and JJ is well-known as both a family man and a brave soldier. Whereas Alondo is... Alondo."`
+			`	"Usually, yes," she says. "But the locals on Albatross specifically asked for JJ. They're a very traditional population, and JJ is well-known as both a family man and a brave soldier. Whereas Alondo is... alondo."`
 			choice
 				`	"Fair enough. Let's head to <planet>!"`
 					accept

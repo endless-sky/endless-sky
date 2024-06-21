@@ -1071,7 +1071,7 @@ mission "Deep: Project Hawking"
 			
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
-			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
+			`	"... thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
 			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "... <last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				accept
 	
@@ -2391,7 +2391,7 @@ mission "Deep: Scientist Rescue 3A"
 					goto accept
 				`	"I'm sorry, but I don't have the power to defeat that Bactrian. You're going to need to do it yourself."`
 			
-			`	"I see... Good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+			`	"I see... good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				decline
 			
 			label accept
@@ -3403,7 +3403,7 @@ mission "Home for Skadenga 4"
 				`	"Did I stutter?"`
 			`	"That changes things, then." Kaiden turns to Grayden. "Are there even incentives?"`
 			`	Grayden is busy scanning through a tablet. "No re-urbanization kickbacks, no university-study grants, not even a housing development utilization bonus. The entire thing will probably still be a tax write off, but the Census and Culture Bureau won't be happy. Plus, obviously, no finder's fee from them."`
-			`	Kaiden then looks to Braiden who shakes his head. "Public Relations for people moving to... Windblain? No one who is anyone lives on Windblain, and no one else cares about those people."`
+			`	Kaiden then looks to Braiden who shakes his head. "Public Relations for people moving to... windblain? No one who is anyone lives on Windblain, and no one else cares about those people."`
 			`	"Yeah, we're sorry, but this isn't going to work for us." Kaiden puts on a pained face. "This just isn't the kind of project we are willing to take on at the moment." They all stand in near unison. "In the future, try not to waste our time." Kaiden says as the three of them exit the room.`
 			`	Your escort reappears. "I've been instructed to inform you that there is no one else in the Deep capable of moving the amount of people you want to move. When you're ready to be practical, contact us and we'll be more than happy to help. Now, follow me out of the building." You ride the long elevator down to the lobby and are shown the door. As you leave, another employee follows you out. As he passes you, he quietly says, "Meet me in the spaceport."`
 				decline

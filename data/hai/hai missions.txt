@@ -1814,7 +1814,7 @@ mission "Station Exploration 1"
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 					decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... but we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
 					to display
@@ -1998,7 +1998,7 @@ mission "Hai Pilgrimage"
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 					goto dangerous
 			label teachings
-			`	An unreadable expression appears on Hareek's face. "Ah, apologies for my rudeness - you probably do not know who I am. How do I explain this... You have your preachers and wise ones among the humans, yes? I am something similar. Now, will you take me to <destination>?"`
+			`	An unreadable expression appears on Hareek's face. "Ah, apologies for my rudeness - you probably do not know who I am. How do I explain this... you have your preachers and wise ones among the humans, yes? I am something similar. Now, will you take me to <destination>?"`
 			choice
 				`	"So you're going to preach to the Unfettered?"`
 				`	"I can take you."`

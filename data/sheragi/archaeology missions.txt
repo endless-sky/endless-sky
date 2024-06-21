@@ -713,7 +713,7 @@ mission "Sheragi Archaeology: The Box 2"
 			label offlimit
 			`	"Here it is!"`
 			`	There is a tunnel going deep underground inside the room, but Albert sets his attention on a large safe instead. As he opens it up, he begins to explain the situation.`
-			`	"So, from what we know, the Sheragi died off in a war of catastrophic proportions. One of our interns suggested we survey deeper underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we allowed her to play around with the ground-penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the dirt. Clearly man-made. Well... Sheragi-made, in this case. So we dug deeper, and found what we can only assume to have been a bunker, showing signs of having been hit by a powerful kinetic weapon. Despite the damage, we could still salvage some artifacts from the debris. Particularly, this thing."`
+			`	"So, from what we know, the Sheragi died off in a war of catastrophic proportions. One of our interns suggested we survey deeper underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we allowed her to play around with the ground-penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the dirt. Clearly man-made. Well... sheragi-made, in this case. So we dug deeper, and found what we can only assume to have been a bunker, showing signs of having been hit by a powerful kinetic weapon. Despite the damage, we could still salvage some artifacts from the debris. Particularly, this thing."`
 			`	Albert opens the safe and shows you a weathered, red metal cube, around a quarter of a meter on each side. He struggles with the weight, but manages to set it down on the floor.`
 			`	"This appears to be a data storage device of some sort. It was connected to what we think were once computers, but nothing else was salvageable after spending thousands of years under the wet soil. Based on how sturdy this thing is, it's plausible that some of the data could have survived, like a time capsule.`
 			`	"I have a contact back on Vinci who could probably figure this out, and this is where you come in. You remember John, right? I can't leave the dig site, but I also don't have anyone else I could trust to carry such a valuable artifact. Will you take it there for me?"`
@@ -783,10 +783,10 @@ mission "Sheragi Archaeology: The Box 3"
 			label bad
 			`	"The bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
 			`	"And the worse news?" you ask.`
-			`	"Well... Some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+			`	"Well... some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
 				goto whatnow
 			label worse
-			`	"Well... Some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+			`	"Well... some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
 			`	"And the bad news?" you ask`
 			`	"The less bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
 			label whatnow
@@ -909,7 +909,7 @@ mission "Sheragi Archaeology: The Box 4"
 					goto pay
 
 			label nomoney
-			`	"I know you don't. I can arrange for the payment to be made in different ways. Organ donation, prostitution, volunteering as a test subject... We'll need an appraisal first, though."`
+			`	"I know you don't. I can arrange for the payment to be made in different ways. Organ donation, prostitution, volunteering as a test subject... we'll need an appraisal first, though."`
 			`	You politely decline.`
 			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is."`
 				goto exit
@@ -1027,7 +1027,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			
 			`	You land and cautiously open the hatch to talk with them.`
 			`	"Who do you work for? Where is the cube you stole?" you ask.`
-			`	"So that old thing was yours?" one woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
+			`	"So that old thing was yours?" one woman up front says. "I knew that mission was sketchy... we're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
 			`	"If you want the cube, you can have it if you spare us. It's not worth our lives."`
 			choice
 				`	(Spare them.)`
@@ -1173,7 +1173,7 @@ mission "Sheragi Archaeology: The Box 7b"
 			`	You produce an image of the cube that you found on your holopad. The curator stares at it, and then slowly turns to you with pity in his eyes.`
 			`	"This box is red," he says gently. "I read a thesis once on the prevalence of color blindness in humans, but-"`
 			`	In the interest of time, you interrupt the curator and explain that "black box," in human terminology, refers to a device used to collect and preserve flight data in the event of a catastrophic failure.`
-			`	Recognition seems to dawn on him. "A Sheragi 'black box,' you say? That's an incredible find! Be careful about the information it contains, though. They are a doomed species. Don't you humans have a legend about a cursed box? What was it... Pandora's Box?`
+			`	Recognition seems to dawn on him. "A Sheragi 'black box,' you say? That's an incredible find! Be careful about the information it contains, though. They are a doomed species. Don't you humans have a legend about a cursed box? What was it... pandora's Box?`
 			label end
 			`	"In any case... I am not authorized to sell you documents, I just take care of artifacts here. Giving Sheragi technology to humans will likely be a very bureaucratic process. I suggest you contact the Ministry of Culture on Hai-home."`
 			`	You thank him for his help, and make your way back to the spaceport, mentally preparing yourself for what is likely to be a long meeting.`
@@ -1380,7 +1380,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			choice
 				`	"Who are you?"`
 					goto who
-				`	"What... What is this feeling?"`
+				`	"What... what is this feeling?"`
 			`	There is a pause. The feeling of being watched becomes intense, as if you're being studied intently.`
 			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization.`
 			label who
@@ -1437,8 +1437,8 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			choice
 				`	"What banging sound?"`
 				`	"I don't hear anything."`
-			`	"Strange. I've asked the others here but they don't hear anything either... Anyway, we've found many amazing things. This farm is just the tip of the iceberg. Given that the Emerald Sword had to be able to survive the long flight through interstellar space at sublight speeds, it's no surprise that the crew had to make the ship self-sustaining. I'm sure there's much we could learn technologically from this ship. But we've also found many... disturbing things..." his voice trails off again.`
-			`	"These bodies tell stories, <last>. Terrible stories. The entrance into this area of the ship was welded shut. Almost all the corpses outside of this area were skeletons, while those inside, like this one, were mummified. My best guess is that at some point after arriving here, they realized that even with a facility like this they'd run out of food in due time." Foster kneels down to get closer to the corpse. "I'm having very vivid visions of it all, almost as if I'm there in the moment, but it's all happening so fast... They turned on each other in desperation. A small group decided to shut the rest off from the food supply, leaving them to starve. Then those in here lived off of what they had left until the life support systems gave out.`
+			`	"Strange. I've asked the others here but they don't hear anything either... anyway, we've found many amazing things. This farm is just the tip of the iceberg. Given that the Emerald Sword had to be able to survive the long flight through interstellar space at sublight speeds, it's no surprise that the crew had to make the ship self-sustaining. I'm sure there's much we could learn technologically from this ship. But we've also found many... disturbing things..." his voice trails off again.`
+			`	"These bodies tell stories, <last>. Terrible stories. The entrance into this area of the ship was welded shut. Almost all the corpses outside of this area were skeletons, while those inside, like this one, were mummified. My best guess is that at some point after arriving here, they realized that even with a facility like this they'd run out of food in due time." Foster kneels down to get closer to the corpse. "I'm having very vivid visions of it all, almost as if I'm there in the moment, but it's all happening so fast... they turned on each other in desperation. A small group decided to shut the rest off from the food supply, leaving them to starve. Then those in here lived off of what they had left until the life support systems gave out.`
 			`	"In all my years, I've never felt as impacted by my work as I do now. I'm feeling very uncharacteristically... emotional at the sight of all this." Foster turns away from you and wipes a tear from his eyes.`
 			choice
 				`	"You have every right to be emotional. We've made an amazing but tragic discovery."`

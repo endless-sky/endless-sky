@@ -486,7 +486,7 @@ mission "FW Wolf Pack 1B"
 				`	"Thank you."`
 					goto leave
 				`	"May I ask who you are and why you sympathize with us?"`
-			`	"You can call me... Agent Falco. As to my true identity, naturally you will understand that I cannot divulge it."`
+			`	"You can call me... agent Falco. As to my true identity, naturally you will understand that I cannot divulge it."`
 			`	"Of course," you say.`
 			label leave
 			`	"I wish you the best of luck in your struggle against the evil plutocrats," he says. "May we yet live to see the day when all people live in prosperity and freedom. Farewell, brave insurgent." It is an overly dramatic speech, and sounds like he's been rehearsing it for a while. You respond with what you hope is a properly elegant salute, and he leaves.`

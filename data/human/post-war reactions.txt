@@ -243,7 +243,7 @@ mission "War Reactions: Syndicate Orphan"
 			`	"Woah, you sound really smart. Like one of those sensible experts in the vids! Still, without people like you, the Pug's plan couldn't have worked. I still reckon you were the best, Captain."`
 				goto salute
 			label hell
-			`	"You went through hell for us, eh? That sounds less fun than I thought... Maybe I should stick to school and be an engineer instead of a pilot. I dunno."`
+			`	"You went through hell for us, eh? That sounds less fun than I thought... maybe I should stick to school and be an engineer instead of a pilot. I dunno."`
 				goto salute
 			label chess
 			`	"The Syndicate is training me to maintain and they're even going to train me to pilot their combat ships when I'm older! One day, I'll fight aliens like you did."`
