@@ -633,7 +633,6 @@ mission "<uhai> 0: Bring Hai"
 					goto brethren
 				`	"Why do you need me to do it?"`
 			label whyme
-			# it may not be true that more Hai come to UHai space but it's how he would present it
 			`	"Well, normally they would be able to pay to come here, but the price now is quite high; too high, due to an increase in the amount of Hai wanting to come to our space. Even in normal times, the Fettered Hai make it difficult for us to go anywhere; as you have probably noticed, they have a fleet on the border between us. And not that many Hai captains are willing to come here. When they do, some charge large fees because of the obvious risks involved - for instance, getting killed in the crossfire. Others are more generous, of course, but it is still not enough.`
 			`	"Yet you somehow made your way here, probably also under fire from our own people, but, if you choose to assist us, I'll ensure you won't have any issues getting out of here. So, are you willing to help us?"`
 			choice
@@ -925,11 +924,10 @@ mission "<uhai> 2: Prove Your Strength"
 	on disabled
 		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the mean time I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
 		fine 250000
-	# if you have a heavy warship, or two mediums he'll bring "friends"
+	# if you have a heavy warship/two mediums or you pissed him off, he'll bring "friends"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching unconstrained
-		# note: this does not quite work as it should: it's only checked upon offering of the mission and entering a system, it should be as you launch and then we can set a condition for it
 		to spawn
 			or
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 8
@@ -1028,7 +1026,6 @@ mission "<uhai> 2: Prove Your Strength"
 				log `Defeated an Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
 				event "unfettered: JD raid plan ready" 5 15
 				set "unfettered: duel ready"
-				# there's no way to get these before the duel
 				"unfettered: took Si-Ra' stuff" = "outfit (all): Gold Bars" + "outfit (all): Ionic Blaster Prototype" * 2
 			`	As he passes near you he quickly speaks, "It'll be a few weeks before I'm ready for more action."`
 				accept
@@ -1073,7 +1070,6 @@ event "cerberus revealed"
 	government "Cerberus"
 		remove "display name"
 
-# SPOILER: stealing JD from a vault guarded by the Alpha's indoctrinated pirates: Cerberus
 mission "<uhai> 3: Recover Jump Drives"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover 4 jump drives from a vault.`
@@ -1268,7 +1264,6 @@ mission "<uhai> 3: Jump Drive Vault"
 				`	"I'll come in."`
 				`	(Stay outside.)`
 					goto outside
-			# He would be fine with you dying so he does not have to share to loot...
 			`	He sighs. "As ye wish, but I do hope ye can hold yer own on the ground as well as in space. I have disabled the automated defenses, in case they have been hijacked. We just have to go in, make sure they recognize us as friendlies, and then reactivate them." You really wonder where the vault could be, until you see the Hai walk right through part of the mountain in front of you. It must be a hologram, disguising the entry! You hurry to catch up to him.`
 			`	At first, you don't notice anything particularly suspicious, but you do hear the low hum of running electronics and machinery in the distance. Though the vault is clearly alien in origin, you cannot pinpoint one race; instead, it seems to be a mix of many. All of it is very, very old, and there is no illumination, possibly because your friend cut all power. Even without light, you can tell there is clearly is space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of green light, far away on your left.`
 			choice
@@ -1329,7 +1324,7 @@ mission "<uhai> 3: Jump Drive Vault"
 		system "Almaaz"
 		fleet "Large Northern Pirates"
 
-# Additional ships will spawn if you brought a JD with you before the start of this mission.
+# Additional ships will spawn if you brought a JD with you.
 mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
 	landing
 	invisible
@@ -1513,7 +1508,7 @@ mission "<uhai> 4: Scan Geocoris"
 		clear "unfettered: entered Ya Hai"
 		log `Scanned a Geocoris for the Unfettered. They seemed interested in the design - probably with a ship of their own in mind.`
 		payment 150000
-		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will need some time to analyze the scans and you may return in a few weeks for further work.`
+		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will take a while to analyze the scans, and advise you not to wait for it. They also remind you to check the job board for other ways to assist True Hai.`
 		event "unfettered: analyzed the scans" 10 20
 
 mission "<uhai> 4: Geocoris Arrival"
