@@ -1179,7 +1179,10 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		// Convert to raw window coordinates, at the new zoom level.
 		cursorPosition *= Screen::Zoom() / 100.;
 		cursorPosition += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		// Force SDL to warp the mouse.
+		SDL_SetRelativeMouseMode(SDL_TRUE);
 		SDL_WarpMouseInWindow(nullptr, cursorPosition.X(), cursorPosition.Y());
+		SDL_SetRelativeMouseMode(SDL_FALSE);
 	}
 	else if(str == BOARDING_PRIORITY)
 		Preferences::ToggleBoarding();
