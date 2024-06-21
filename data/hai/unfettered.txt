@@ -64,3 +64,207 @@ phrase "cerberus hails"
 		# your quest is void (futile)
 		"Porotar Elnam."
 
+
+phrase "unfettered challenger"
+	word
+		"The rules of the duel are clear: do not"
+		"Do not"
+		"Do not"
+		"You have asked for a time out, now do not"
+	word
+		" "
+		" attempt to "
+		" try to "
+		" presume to "
+		" think you can "
+	word
+		"attack me"
+		"shoot me"
+	word
+		" "
+	word
+		"until a day has passed"
+		"until you have changed system or landed"
+		"until the time out is considered over"
+	word
+		", "
+	word
+		"or"
+		"else"
+		"if you do"
+	word
+		" "
+	word
+		"my brethren"
+		"fellow Unfettered"
+		"all true Hai"
+	word
+		" "
+	word
+		"will"
+		"shall be forced to"
+		"will not hesitate to"
+	word
+		"take action"
+		"shoot"
+		"defend me"
+		"do what it takes to maintain order"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Stop "
+		"Quit "
+	word
+		"shaming yourself"
+		"running away"
+		"overthinking"
+		"recharging your shields"
+		"hiding in fear"
+	word
+		" and come "
+		" and come try and "
+	word
+		"defeat "
+		"fight "
+	word
+		"me."
+	word
+		" Now is the time to reveal ourselves in the glory of battle"
+		" Show me what you got"
+		" That's more like it"
+		" Time for a fair fight"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Now is not the time for talk"
+		"Yes! Fight me"
+		"Our battle will be sang in legends for years to come"
+		"Do not try to distract me with hails"
+		"Do you want to surrender already? Ha"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Do you wish to end the fight?"
+		"I can see you are having difficulties. Feel free to call this off for another time..."
+		"Remember, you only need to give me a symbolic bribe for this to stop."
+		"This is not a duel to the death, or else only one of us would be able learn."
+		"Do you wish to surrender?"
+		"I am reasonable. If you wish to surrender, we can come to terms."
+		"You are lucky that I have to accept any ceasefire if you ask... you would do well not to attempt anything."
+
+phrase "hostile unfettered challenger"
+	word
+		"Here's a "
+	word
+		"free"
+		"useful"
+		"common"
+	word
+		" tip: "
+		" hint: "
+	word
+		"when feeling overwhelmed in duels you can always ${overwhelmed in duel}! Try it next time."
+		"the challengers have common weaknesses, and you should try to get an edge by ${advantage in duel}."
+		
+
+phrase "overwhelmed in duel"
+	word
+		"tactically retreat to the edge of the system"
+		"bribe the challengers"
+		"try to split the enemies apart"
+		"go to another system"
+		"upgrade your ship design"
+		"scan the enemy to find out their vulnerabilities"
+
+phrase "advantage in duel"
+	word
+		"figuring out if their engines are weak"
+		"trying to slide away whilst shooting them back"
+		"using your range advantage, be it in missiles, ion cannons or else"
+		"try to get your hands on powerful prototypes"
+		"go and acquire alien technology, even human ones have their uses"
+		"overheat their ship"
+		"shoot them down with missiles if they lack sufficient jammers and anti-missiles"
+		"try to get at their batteries with ion weapons"
+
+phrase "hostile unfettered challenger"
+	word
+		"If you happen to know of "
+		"If you heard of "
+		"When you come to know about "
+		"Next time you get your hands on "
+		"If you 'find' "
+	word
+		"a strong"
+		"an interesting"
+		"a 'good'"
+		"an exotic"
+		"a respectable"
+		"a powerful"
+		"an overpowered"
+	word
+		" weapon combo"
+		" alien weapon"
+		" human junk-weapon"
+	word
+		", you should come and "
+	word
+		"demonstrate it to us in action"
+		"fight me with it"
+		"sell it to us, after a proper demonstration"
+		"you might find some of us willing to buy it, for the proper price"
+	word
+		"!"
+
+phrase "defeated unfettered challenger"
+	word
+		"You have "
+		"You succeeded in "
+		"You managed to have "
+		"Somehow, you have "
+		"I must admit you have "
+	word
+		"beaten "
+		"defeated "
+		"ashamed "
+		"disabled "
+		"revealed my weakness% "
+	word
+		"me in a% "
+	word
+		"glorious "
+		"pathetic "
+		"exceptional "
+		"grandiose "
+		"fast-paced "
+		"strategic "
+	word
+		"battle"
+		"combat"
+		"duel"
+		"fight"
+		"challenge"
+	word
+		"."
+		"!"
+	word
+		" What more do you want from me?" 3
+		" Do not presume you may board me." 3
+		" Do not even think about capturing my ship." 3
+		" Now it is over, time to lay down your weapons." 3
+		" I accept my fate, take what is rightfully yours." 3
+		" Great stories will be told!" 3
+		" You have the right to plunder." 3
+		" It would seem you are as strong as some pretended, perhaps even more." 3
+		" Finish me! I would rather die than have to live with this insult."
+	replace
+		"% me" ""
+		"a% e" "an e"
+		"a%" "a"
+

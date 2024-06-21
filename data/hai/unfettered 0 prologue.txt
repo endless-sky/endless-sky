@@ -343,6 +343,7 @@ mission "Unfettered Jump Drive Trading"
 		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
 		"unfettered: jd to sell" <= "Unfettered Jump Drive 4: failed"
+		not "unfettered: outcast"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
@@ -950,10 +951,10 @@ mission "<uhai> 2: Prove Your Strength"
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching unconstrained
-		# vulnerable to ion
 		ship "Si-Ra' Scorpion" "Intrepid"
 		on kill
-			conversation "unfettered outcast"
+			dialog `"You receive a message from the local unfettered authorities, "You have failed to uphold the standards of the duel. You will not be trusted enough to be offered any missions anymore."`
+			set "unfettered: outcast"
 		conversation
 			`Now that you have disabled the <npc>, its captain hails you.`
 			branch "wanderer first"

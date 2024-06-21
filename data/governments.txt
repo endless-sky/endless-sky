@@ -967,9 +967,6 @@ government "Cerberus"
 	"crew defense" 1
 
 	"player reputation" -1000
-	"attitude toward"
-		"Shadow" -.1
-		"Midas" -.1
 	"display name" "Pirate"
 	bribe 0
 	fine 0
