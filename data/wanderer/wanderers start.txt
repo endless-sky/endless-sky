@@ -618,7 +618,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 	on enter
 		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like you doing this far out in the void? Be ye lost, landlubber? This be yer last warning! Take arms to defend this world against us, and ye will be considered Fettered forever. Make yer choice carefully, Cap'n. I strongly council ye to abort this mission, savvy?"`
 	on fail
-		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful matey back in Unfettered space... Feel free to visit Darkcloak. I'll be there once I'm done with this raid. Speaking of which, ye were tagged as loot so I'd recommend ye run off for the time being!"`
+		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful matey back in Unfettered space... feel free to visit Darkcloak. I'll be there once I'm done with this raid. Speaking of which, ye were tagged as loot so I'd recommend ye run off for the time being!"`
 		"reputation: Hai (Unfettered)" >?= 100
 
 	npc

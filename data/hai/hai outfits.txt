@@ -843,7 +843,7 @@ outfit "Heshi"
 	"maintenance costs" 100
 	"unplunderable" 1
 	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the morale of enemies attacking the ship."
-	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate... Furthermore, it is very useful in the event of an interrogation."
+	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate... furthermore, it is very useful in the event of an interrogation."
 
 outfit "Shield Beetle Pendant"
 	category "Unique"
