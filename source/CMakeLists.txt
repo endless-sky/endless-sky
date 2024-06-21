@@ -355,8 +355,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shift.h
 	concurrent/Parallel.cpp
 	concurrent/Parallel.h
-	concurrent/ResourceProvider.h
 	concurrent/PartiallyGuarded.h
+	concurrent/ResourceProvider.h
 	concurrent/Scheduler.h
 	concurrent/WithMutex.cpp
 	concurrent/WithMutex.h
