@@ -1658,20 +1658,24 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	SetFlagship(*flagship);
 
 	// Recharge any ships that can be recharged, and load available cargo.
-	const bool canUseServices = planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			// Recalculate the weapon cache in case a mass-less change had an effect.
 			ship->GetAICache().Calibrate(*ship.get());
-			if(ship->GetSystem() != system)
+
+			const Planet *shipPlanet = ship->GetPlanet();
+			if(ship->GetSystem() != system || !shipPlanet)
 			{
 				ship->Recharge(Port::RechargeType::None, false);
 				continue;
 			}
 			else
-				ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
-					planet->GetPort().HasService(Port::ServicesType::HireCrew));
+			{
+				const Port &shipPort = shipPlanet->GetPort();
+				ship->Recharge(shipPlanet->CanUseServices() ? shipPort.GetRecharges() : Port::RechargeType::None,
+					shipPort.HasService(Port::ServicesType::HireCrew));
+			}
 		}
 
 	if(distributeCargo)
