@@ -4126,7 +4126,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			}
 		}
 	}
-	else if(activeCommands.Has(Command::SELECT_PLANET) && !ship.IsEnteringHyperspace())
+	else if(activeCommands.Has(Command::SELECT_PLANET) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
 	{
 		// Cycle through possible landing sites:
 		// Track all possible landable objects in the current system.
@@ -4137,11 +4137,12 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				landables.emplace_back(&object);
 		}
 
-		// If the player has selected a planet in this system, cycle from there.
+		// If the player has not selected a planet in this system, pick the first planet.
+		// Otherwise, cycle to the next landable planet from the selected one.
 		const StellarObject *target = ship.GetTargetStellar();
 		auto landIt = find(landables.cbegin(), landables.cend(), target);
 		if(landIt == landables.cend())
-			landIt = landables.cbegin(); // No, so pick first planet.
+			landIt = landables.cbegin();
 		else if(++landIt == landables.cend())
 			landIt = landables.cbegin();
 
