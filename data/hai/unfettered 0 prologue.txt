@@ -292,7 +292,7 @@ mission "Unfettered Jump Drive 3"
 				`	"What do you plan to do to the species that inhabits those worlds now?"`
 			
 			label wanderers
-			`	"Those worlds are now held by a species of scavengers, who feast on the ruins of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
+			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
 			label job
 			`	"If you want to provide us with more jump drives, visit the job board from now on," says the leader. "We will have warriors ready to receive them from you for the usual pay."`
@@ -340,8 +340,6 @@ mission "Unfettered Jump Drive Trading"
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
 		not "Wanderers: Jump Drive Source: done"
-		# This blocks the mission behind having beaten the Auxiliary (should be moved to the side missions in another PR)
-		has "salary: Unfettered"
 		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
 		"unfettered: jd to sell" <= "Unfettered Jump Drive 4: failed"
