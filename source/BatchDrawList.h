@@ -86,7 +86,7 @@ std::enable_if_t<std::is_base_of_v<Projectile, Item> || std::is_base_of_v<Visual
 BatchDrawList::AddBatch(const Container<Item, Params...> &batch)
 {
 	for_each_mt(batch.begin(), batch.end(), [&](const auto &item) {
-		const thread_local auto lock = resourceProvider.Lock();
+		const /*thread_local*/ auto lock = resourceProvider.Lock();
 
 		std::vector<std::vector<float>> &data = lock.get<0>()[item.GetSprite()];
 		std::vector<float> &inner = data.empty() ? data.emplace_back() : data[0];

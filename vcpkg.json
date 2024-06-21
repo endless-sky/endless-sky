@@ -39,7 +39,10 @@
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
         "libmad",
-        "tbb"
+        {
+          "name": "tbb",
+          "platform": "linux"
+        }
       ]
     }
   }
