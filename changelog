@@ -11,7 +11,7 @@ Version 0.10.8
       * Fixed a crash when sorting ships without a ship selected with clang. (@warp-core)
       * Fixed a crash with non-ASCII characters passed to cctype methods with clang. (@warp-core)
       * Fixed a crash when sorting the ship list with no ships. (@warp-core)
-      * Properly reset the player's flagship after death. (@tibetiroka)
+      * Fixed issues with the player interacting with the game after death. (@tibetiroka)
       * Unicode byte order marks at the beginning of data files will no longer be tokenized. (@warp-core)
       * The flagship will no longer move through wormholes ahead of escorts when using fleet jumping. (@Koranir)
       * The message for a player escort being destroyed will now appear earlier and not be duplicated. (@nickshanks)
@@ -23,12 +23,12 @@ Version 0.10.8
       * Reduced the pay and availability of Swiftsong jobs. (@roadrunner56)
       * The Umbral system is now "mark"ed by the "Pirate Duel" mission, instead of being a waypoint. (@ziproot)
     * Balance:
-      * Reduced `relative heat damage` by a factor of 1.5, for consistency with the mass rebalance in v0.10.7. (@Quantumshark)
+      * Reduced "relative heat damage" by a factor of 1.5, for consistency with the mass rebalance in v0.10.7. (@Quantumshark)
       * Reduced the difficulty of "Wanderers: Mind 6". (@TheGiraffe3)
         * Wanderer escorts: +1 Tempest.
         * Friendly Mereti:
           * -1 Model 128,
-          * +2 Model 16.
+          * +2 Model 16s.
         * Hostile Mereti:
           * -1 Model 128,
           * -1 Model 64,
@@ -37,13 +37,13 @@ Version 0.10.8
     * New mechanics:
       * Added a gamerule for controlling disabled fighter projectile collision. (@tibetiroka)
   * User interface:
-    * The message for the destruction of an escort will now include its name. (@nickshanks)
+    * The message for the destruction of an escort will now include its model name. (@nickshanks)
     * Salaries and tribute payments in the player info panel are now sorted in descending order. (@nickshanks)
-    * The mission description pane will no longer be shown if there is now mission selected. (@nickshanks)
+    * The mission description pane will no longer be shown if there is no mission selected. (@nickshanks)
     * Added more precise scroll speed settings. (@nickshanks)
   * CI/CD and development environment:
     * Updated the issue and PR templates to account for the new wiki repository. (@warp-core)
-    * Fixed the steam linux build. (@warp-core)
+    * Fixed the Steam Linux build. (@warp-core)
     * Added an action to update the GitHub wiki from the endless-sky/endless-sky-wiki repository. (@warp-core)
 
 Version 0.10.7
