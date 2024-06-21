@@ -810,9 +810,6 @@ event "unfettered: access to Mera's lab"
 
 
 
-# SPOILER: he tests your military aptitude before asking you to take him to pirate space.
-# gameplay wise if you win this mission you should be able to do the following ones, it tests if your strength is high enough.
-# Since it is the first one you can do it many times until you succeed.
 mission "<uhai> 2: Prove Your Strength"
 	autosave
 	repeat
