@@ -679,7 +679,6 @@ government "Hai (Unfettered Challenger)"
 	"crew defense" 2.2
 
 	"player reputation" -1000
-	"bribe" .001
 	"fine" 0
 	"travel restrictions"
 		system "Wah Ki"
@@ -687,13 +686,7 @@ government "Hai (Unfettered Challenger)"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered challenger"
 	"hostile disabled hail" "defeated unfettered challenger"
-	"penalty for"
-		# to easily count the amount of them that have been beaten without being killed
-		assist 0
-		disable -.1
-		board 0
-		capture .1
-		destroy .1
+
 government "Heliarch"
 	swizzle 22
 	color 1 .8 .5
