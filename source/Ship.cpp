@@ -4974,6 +4974,14 @@ double Ship::CalculateDeterrence() const
 
 bool Ship::Immitates(const Ship &other) const
 {
+	// Some early return checks.
+	if(other.DisplayModelName() != DisplayModelName())
+		return false;
+
+	for(auto oit : outfits)
+		if(other.OutfitCount(oit.first) != OutfitCount(oit.first))
+			return false;
+
 	// We have to test this in both directions to avoid false positives when the right hand side
 	//  includes attributes not present on the left hand side of the first loop.
 	// Testing size() wouldn't work because attributes are incremented (created if necessary) when
