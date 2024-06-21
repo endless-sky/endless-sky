@@ -208,29 +208,6 @@ outfitter "Unfettered Basics"
 	"Outfit Scanner"
 
 
-# When possible add all outfits not here but in the Hai shipyards at 1.5x the cost.
-# Includes the ion cannon, the reverse thrusters, the Valley Batteries and the biggest engines.
-outfitter "Unfettered"
-	"Pulse Turret"
-	"Chameleon Anti-Missile"
-	"Hai Tracker Pod"
-	"Tracker Storage Pod"
-	"Bunk Room"
-	"Outfits Expansion"
-	"Hai Diamond Regenerator"
-	"Hai Gorge Batteries"
-	"Hai Ravine Batteries"
-	"Boulder Reactor"
-	"Pebble Core"
-	`"Benga" Atomic Thruster`
-	`"Benga" Atomic Steering`
-	`"Biroo" Atomic Thruster`
-	`"Biroo" Atomic Steering`
-	`"Bondir" Atomic Thruster`
-	`"Bondir" Atomic Steering`
-	`"Bufaer" Atomic Steering`
-
-
 outfitter "Mera's Lab"
 	"Hai Tracker"
 	"Chameleon Anti-Missile"

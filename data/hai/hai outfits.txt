@@ -471,16 +471,6 @@ outfit "Hai Williwaw Cooling"
 	"cooling" 11
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
-outfit "Hai Zephyr Cooling"
-	category "Systems"
-	cost 72000
-	thumbnail "outfit/hai zephyr"
-	"mass" 14
-	"outfit space" -14
-	"cooling" 24
-	description `This modern cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused that the Williwaw had such a "primitive" design yet simultaneously shared many similarities with a Korath heat shunt.`
-	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with "proper" heat shunt theory and design.`
-
 outfit "Quantum Keystone"
 	category "Systems"
 	cost 12000
@@ -849,7 +839,7 @@ outfit "Shield Beetle Pendant"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	"unique" 1
-	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle.A gift from Nanachi."
+	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
 	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
 
 

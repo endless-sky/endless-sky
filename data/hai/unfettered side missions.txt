@@ -1,5 +1,4 @@
-# Copyright (c) 2015 by Michael Zahniser for the first mission
-# Copyright (c) 2022 by Hurleveur for the rest
+# Copyright (c) 2015 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -54,6 +53,7 @@ mission "Unfettered returning home"
 			label end
 			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
 				accept
+
 	on visit
 		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
@@ -65,4 +65,3 @@ mission "Unfettered returning home"
 		"reputation: Hai Merchant" += 10
 		"reputation: Hai Merchant (Human)" += 10
 		"reputation: Hai Merchant (Sympathizers)" += 10
-
