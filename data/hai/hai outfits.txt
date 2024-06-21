@@ -481,6 +481,17 @@ outfit "Quantum Keystone"
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 	description "	This keystone comes with a package including a holo-film certificate of authenticity certifying its origins on Hai-home, a decorative but robust frame, and a tiny plaque with the keystone logo and sale number stamped on it. The packaging suggests mounting the framed certificate in a prominent location near the main airlock or public common area."
 
+
+outfit "Hai Zephyr Cooling"
+	category "Systems"
+	cost 72000
+	thumbnail "outfit/hai zephyr"
+	"mass" 14
+	"outfit space" -14
+	"cooling" 24
+	description `This modern cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused that the Williwaw had such a "primitive" design yet simultaneously shared many similarities with a Korath heat shunt.`
+	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with "proper" heat shunt theory and design.`
+
 outfit "Value Detector"
 	category "Systems"
 	cost 260000
