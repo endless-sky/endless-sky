@@ -222,7 +222,8 @@ void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::vector<std::vect
 		std::vector<std::vector<Item, Alloc2>, Alloc1> &local)
 {
 	for(auto &item : local)
-		remote.emplace_back().swap(item);
+		if(!item.empty())
+			remote.emplace_back().swap(item);
 	local.clear();
 }
 

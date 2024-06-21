@@ -85,8 +85,16 @@ template<template<class, class...> class Container, class Item, class ...Params>
 std::enable_if_t<std::is_base_of_v<Projectile, Item> || std::is_base_of_v<Visual, Item>>
 BatchDrawList::AddBatch(const Container<Item, Params...> &batch)
 {
+	// Windows doesn't support thread locals in block scope.
+	#if defined(__WIN32__) || defined(__WIN64__)
+		for(const Item &item : batch)
+			if constexpr(std::is_base_of_v<Projectile, Item>)
+				AddProjectile(item, inner);
+			else
+				AddVisual(item, inner);
+	#else
 	for_each_mt(batch.begin(), batch.end(), [&](const auto &item) {
-		const /*thread_local*/ auto lock = resourceProvider.Lock();
+		const thread_local auto lock = resourceProvider.Lock();
 
 		std::vector<std::vector<float>> &data = lock.get<0>()[item.GetSprite()];
 		std::vector<float> &inner = data.empty() ? data.emplace_back() : data[0];
@@ -96,6 +104,7 @@ BatchDrawList::AddBatch(const Container<Item, Params...> &batch)
 		else
 			AddVisual(item, inner);
 	});
+	#endif
 }
 
 
