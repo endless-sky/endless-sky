@@ -89,9 +89,9 @@ BatchDrawList::AddBatch(const Container<Item, Params...> &batch)
 	#if defined(__WIN32__) || defined(__WIN64__)
 		for(const Item &item : batch)
 			if constexpr(std::is_base_of_v<Projectile, Item>)
-				AddProjectile(item, inner);
+				AddProjectile(item);
 			else
-				AddVisual(item, inner);
+				AddVisual(item);
 	#else
 	for_each_mt(batch.begin(), batch.end(), [&](const auto &item) {
 		const thread_local auto lock = resourceProvider.Lock();
