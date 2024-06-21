@@ -103,8 +103,6 @@ public:
 		BOTH
 	};
 
-	inline static const std::string PRICE_PARENS = "Show parenthesis on Job Board";
-
 
 public:
 	static void Load();
@@ -190,8 +188,6 @@ public:
 	static bool DoAlertHelper(AlertIndicator toDo);
 
 	static int GetPreviousSaveCount();
-
-	static bool GetPriceParens();
 };
 
 

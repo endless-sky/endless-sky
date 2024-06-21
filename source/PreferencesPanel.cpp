@@ -693,7 +693,7 @@ void PreferencesPanel::DrawSettings()
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,
-		Preferences::PRICE_PARENS
+		"Show parenthesis on Job Board"
 	};
 
 	bool isCategory = true;

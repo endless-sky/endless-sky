@@ -36,8 +36,6 @@ namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
 
-	bool PriceParens = false;
-
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
@@ -155,7 +153,6 @@ void Preferences::Load()
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
 	settings["Landing zoom"] = true;
-	settings["Show parenthesis on Job Board"] = false;
 	settings["Render motion blur"] = true;
 	settings["Cloaked ship outlines"] = true;
 	settings[FRUGAL_ESCORTS] = true;
@@ -732,9 +729,4 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
-}
-
-bool Preferences::GetPriceParens()
-{
-	return PriceParens;
 }
