@@ -129,13 +129,15 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
-	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm pthread)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 endif()
 if(NOT ES_PARALLEL_USE_TASK_QUEUE)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 endif()
+
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Link with the UUID library, which is different for each OS.
 if(UNIX)
