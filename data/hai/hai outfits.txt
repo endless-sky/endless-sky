@@ -832,7 +832,7 @@ outfit "Dual Pulse Pistols"
 	"capture attack" 2.6
 	"capture defense" 1.6
 	"unplunderable" 1
-	description "A pair of modified heavy pulse pistols that are favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
+	description "A pair of modified heavy pulse pistols, these arms are favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
 
 outfit "Heshi"
 	category "Unique"
@@ -843,8 +843,8 @@ outfit "Heshi"
 	"capture defense" 8
 	"maintenance costs" 100
 	"unplunderable" 1
-	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the morale of enemies attacking the ship."
-	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate... furthermore, it is very useful in the event of an interrogation."
+	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge, scorpion-like creature. It must be fed and cared for, but when unleashed can be very useful in damaging the morale of enemies attacking the ship."
+	description "It can also be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate - this makes it very useful in interrogations."
 
 outfit "Shield Beetle Pendant"
 	category "Unique"

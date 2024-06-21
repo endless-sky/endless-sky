@@ -46,7 +46,7 @@ phrase "cerberus hails"
 		"My price is far above what you could possibly afford. Do not even attempt to bribe me."
 		"Do you hope to corrupt me? There is no price that is high enough."
 		"I guard the gates of Hell. You will not deter me from that."
-		"You think yourself special? You will die, just like the rest of your ignorant fools!"
+		"You think yourself special? You will die, just like the rest of you ignorant fools!"
 		"There can only be death for the likes of you."
 		"The Masters are superior to you."
 		"You may manage to kill me, but you will never break me."
@@ -84,7 +84,7 @@ phrase "unfettered challenger"
 		" "
 	word
 		"until a day has passed"
-		"until you have changed system or landed"
+		"until you have changed systems or landed"
 		"until the time out is considered over"
 	word
 		", "
@@ -133,7 +133,6 @@ phrase "hostile unfettered challenger"
 	word
 		" Now is the time to reveal ourselves in the glory of battle"
 		" Show me what you got"
-		" That's more like it"
 		" Time for a fair fight"
 	word
 		"!"
@@ -153,7 +152,7 @@ phrase "hostile unfettered challenger"
 		"Do you wish to end the fight?"
 		"I can see you are having difficulties. Feel free to call this off for another time..."
 		"Remember, you only need to give me a symbolic bribe for this to stop."
-		"This is not a duel to the death, or else only one of us would be able learn."
+		"This is not a duel to the death, or else only one of us would be able to learn."
 		"Do you wish to surrender?"
 		"I am reasonable. If you wish to surrender, we can come to terms."
 		"You are lucky that I have to accept any ceasefire if you ask... you would do well not to attempt anything."
@@ -170,7 +169,7 @@ phrase "hostile unfettered challenger"
 		" hint: "
 	word
 		"when feeling overwhelmed in duels you can always ${overwhelmed in duel}! Try it next time."
-		"the challengers have common weaknesses, and you should try to get an edge by ${advantage in duel}."
+		"challengers have common weaknesses, and you should try to get an edge by ${advantage in duel}."
 		
 
 phrase "overwhelmed in duel"
@@ -188,7 +187,7 @@ phrase "advantage in duel"
 		"trying to slide away whilst shooting them back"
 		"using your range advantage, be it in missiles, ion cannons or else"
 		"try to get your hands on powerful prototypes"
-		"go and acquire alien technology, even human ones have their uses"
+		"go and acquire alien technology. Even human ones have their uses"
 		"overheat their ship"
 		"shoot them down with missiles if they lack sufficient jammers and anti-missiles"
 		"try to get at their batteries with ion weapons"
@@ -203,7 +202,7 @@ phrase "hostile unfettered challenger"
 	word
 		"a strong"
 		"an interesting"
-		"a 'good'"
+		"a good"
 		"an exotic"
 		"a respectable"
 		"a powerful"
@@ -218,14 +217,16 @@ phrase "hostile unfettered challenger"
 		"demonstrate it to us in action"
 		"fight me with it"
 		"sell it to us, after a proper demonstration"
-		"you might find some of us willing to buy it, for the proper price"
+	word
+		"."
+	word
+		" You might find some of us willing to buy it, for the proper price"
 	word
 		"!"
 
 phrase "defeated unfettered challenger"
 	word
 		"You have "
-		"You succeeded in "
 		"You managed to have "
 		"Somehow, you have "
 		"I must admit you have "
@@ -257,8 +258,8 @@ phrase "defeated unfettered challenger"
 		" What more do you want from me?" 3
 		" Do not presume you may board me." 3
 		" Do not even think about capturing my ship." 3
-		" Now it is over, time to lay down your weapons." 3
-		" I accept my fate, take what is rightfully yours." 3
+		" Now that it is over, time to lay down your weapons." 3
+		" I accept my fate. Take what is rightfully yours." 3
 		" Great stories will be told!" 3
 		" You have the right to plunder." 3
 		" It would seem you are as strong as some pretended, perhaps even more." 3
