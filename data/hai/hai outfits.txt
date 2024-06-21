@@ -844,29 +844,12 @@ outfit "Heshi"
 	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the morale of enemies attacking the ship."
 	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate... Furthermore, it is very useful in the event of an interrogation."
 
-outfit "Unfettered License"
-	category "Licenses"
-	thumbnail "outfit/true unfettered license"
-	"unplunderable" 1
-	description "This sword may be a bit of a strange license, but its intention is to inspire pride in the wearer, and when the Unfettered see it, they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
-	description "	When striking, somehow this blade feels very light, as though it was moving along with its wielder. The blade itself is mostly designed to be defensive and fits you quite well, despite clearly being meant for a Hai."
-
-outfit "Ionic Blade"
-	category "Unique"
-	cost 1000000
-	thumbnail "outfit/ionic blade"
-	"capture attack" 10
-	"capture defense" 10
-	"energy consumption" 0.1
-	"unplunderable" 1
-	description "This legendary blade is able to affect nearby electric fields, powering down any energy-based weapons the enemy may have. It generates a small EM pulse which can sometimes be wielded to stun enemies within reach, and it can even be used to open hatches or temporarily deactivate defenses. However, this blade needs to be recharged before each battle and is made useless once its power supply runs out. It also has magnetic properties - the more charged it is, the more repulsive it is to any metals, making it a lifesaver in some scenarios. The effect is almost akin to a temporary 'force field' around the wielder."
-
 outfit "Shield Beetle Pendant"
 	category "Unique"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	"unique" 1
-	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
+	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle.A gift from Nanachi."
 	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
 
 

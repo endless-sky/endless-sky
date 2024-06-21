@@ -926,10 +926,6 @@ mission "Unfettered: Jump Drive Source"
 		conversation
 			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
 			choice
-				`	(No. I will not betray them.)`
-					to display
-						has "salary: Unfettered"
-					decline
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
@@ -1022,17 +1018,7 @@ mission "Wanderers: Alpha Surveillance A"
 				`	"Is it possible that they have a hidden base on one of your worlds?"`
 				`	"Do you know where they went when you banned them from your space?"`
 					goto where
-				`	"I'm pretty sure I found one of their old bases."`
-					to display
-						has "alpha: host found"
-					goto oldbase
 			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
-			`	"Then where could they have gone?" you ask.`
-				goto where
-			label oldbase
-			action
-				set "told wanderers the alpha base location"
-			`	"An old base, you say? They probably no longer operate there anymore then. I would advise against going there again, because it will most likely have traps."`
 			`	"Then where could they have gone?" you ask.`
 			label where
 			`	"We do not know," he says. "It is not our business to track the doings of other species, outside our territory. And during the time of the Korath raids, we would not have had the capacity to track them, anyway."`
@@ -1244,16 +1230,6 @@ mission "Wanderers: Alpha Surveillance D"
 			has "Wanderers: Alpha Surveillance C (Naughty): done"
 	passengers 1
 	blocked "You need a bunk free in order to take on this mission."
-	substitutions
-		"<base found>" "It appears that you have found the Alpha base."
-		"<base found>" "You were right all along, this is indeed the Alpha base, right where you said it would be."
-			has "told wanderers the alpha base location"
-		"<base found>" "It appears that the base is not as old and abandoned as it first seemed."
-			not "told wanderers the alpha base location"
-			has "alpha: host found"
-		<guess> `".`
-		<guess> `". This will probably be the same path as last time.`
-			has "alpha: host found"
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
@@ -1274,7 +1250,7 @@ mission "Wanderers: Alpha Surveillance D"
 				accept
 	
 	on enter "Hi Yahr"
-		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space<guess>`
+		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
 	on enter "Celeborim"
 		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
 	on enter "Asikafarnut"
@@ -1286,15 +1262,7 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
-		conversation
-			`When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
-			branch nothing
-				not "flagship base attribute: unfettered remote"
-			`	You start preparing for the fight, but seconds later you notice an orange light on your console, blinking slowly.`
-			`	Time seems to slow down as it starts flashing faster and faster, and you finally realize what it must be.`
-			`	A self-destruct indicator! Maybe coming here with the <ship> as your flagship was not the best idea.`
-				explode
-			label nothing
+		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
 	
 	npc
 		government "Kor Sestor"
@@ -1341,15 +1309,9 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 	source "Avalon"
 	to offer
 		has "Wanderers: Alpha Surveillance D: active"
-	substitutions
-		<sensors> "but your sensors are not able to locate it, and even if you could"
-		<sensors> "you are able to locate it after some time. However,"
-			"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
-		<sensors> "you still know the location from last time. However, it is heavily guarded this time, and"
-			has "alpha: host found"
 	on offer
 		conversation
-			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, <sensors> you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
+			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, but your sensors are not able to locate it, and even if you could you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
 				decline
 
 
