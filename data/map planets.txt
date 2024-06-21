@@ -2814,8 +2814,8 @@ planet "Mereti Station"
 planet Methuselah
 	attributes "requires: gaslining"
 	landscape land/methuselah
-	description `This world feels ancient, the air is calm as if the last storm ended millenias ago. A continuous deep sound from below seems to tell a story from the early days of the universe, memories of hotter and faster times.`
-	description `From time to time single giant creatures can be seen moving in total peace.`
+	description `This world feels ancient, and the air is calm as if the last storm ended millennia ago. A continuous deep sound from below seems to tell a story from the early days of the universe - memories of hotter and faster times.`
+	description `From time to time giant creatures can be seen moving in total peace.`
 	government Uninhabited
 
 planet "Miblulub's Plenty"
@@ -3517,7 +3517,7 @@ planet "Pon'tes"
 	outfitter "Hicemus"
 	shipyard "Hicemus"
 	description "Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
-	description "Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through the tube-like hallways."
+	description "Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways."
 	spaceport "The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
 	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. Only a few seem to transport people."
 
@@ -4276,7 +4276,7 @@ planet "Spec Inci"
 	attributes "incipias quarg" quarg
 	landscape land/sky7
 	description "This small moon seems to be used mainly as a shipment and processing base, run with the typical efficiency of the Quarg. You wouldn't have even noticed the freighters dropping off large amounts of raw ore for processing if it were not for their large size, as they are surprisingly silent when working. Other ships load the processed materials and fly away."
-	spaceport "The spaceport is fully automated. You can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the many hangars. One section of the spaceport is restricted and a large amount of military ships can be seen."
+	spaceport "The spaceport is fully automated, and you can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the moon's many hangars. One section of the spaceport is restricted, where a large amount of military ships can be seen."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9
@@ -4715,8 +4715,8 @@ planet "Typhon Station"
 planet "Ut Divitas"
 	attributes "incipias quarg" quarg
 	landscape land/canyon13
-	description "The surface here is bare and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract and elegant unlike anything humans have ever built."
-	spaceport "The spaceport is a small one, consisting of only a few landing pads. Ships parked here are mostly civilian. The Quarg working here seem to be confused by your presence."
+	description "The surface here is bare and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract, elegant, and unlike anything humans have ever built."
+	spaceport "The spaceport is a small one, consisting of only a few landing pads. Ships parked here appear to be mostly civilian. The Quarg working here seem to be confused by your presence."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9

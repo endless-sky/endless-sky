@@ -140,7 +140,7 @@ mission "Incipias: Meet the Quarg"
 			label "new species"
 			`	"What a peculiar task that is." It looks confused and tilts its head. "What do you hope to achieve by this? That an unfathomable amount of dangers come with encountering and treating with other species, did you not foresee? The boundaries of space are not idle accidents. I advise you to be scrupulous and ponder every last step."`
 			label "end"
-			`	After a short pause it continues talking; you notice an almost-hidden frustration lurking beneath the Quarg's face. "You are permitted to travel here, but there are conditions. Not too far from here another kind has begun their journey to the stars. Do not interrupt them for your own sake, as we will avenge any hostile actions against them."`
+			`	After a short pause it continues talking; you notice an almost-hidden frustration lurking beneath the Quarg's face. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon another kind has initiated their journey to the stars. Do not interrupt them for your own sake, as we will avenge any hostile actions against them."`
 			`	With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
 
 # TODO: Maybe add a version of the ships sprite that looks damaged/modded.
