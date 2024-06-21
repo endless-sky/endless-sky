@@ -804,9 +804,6 @@ void MapDetailPanel::DrawInfo()
 					price += "(";
 				if(value > 0)
 					price += '+';
-				else if(value < 0)
-					price += '-';
-				value = abs(value);
 				price += to_string(value);
 				if(Preferences::Has(Preferences::PRICE_PARENS))
 					price += ")";
