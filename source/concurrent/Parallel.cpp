@@ -17,6 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-# ifdef ES_PARALLEL_USE_TASK_QUEUE
+#ifdef ES_PARALLEL_USE_TASK_QUEUE
 TaskQueue Parallel::queue;
 #endif

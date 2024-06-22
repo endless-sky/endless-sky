@@ -708,11 +708,11 @@ void Planet::DeployDefense(vector<shared_ptr<Ship>> &ships) const
 	// All defenders use a special personality.
 	Personality defenderPersonality = Personality::Defender();
 	Personality fighterPersonality = Personality::DefenderFighter();
-	for(const auto &item : defenders)
+	for(const auto &it : defenders)
 	{
-		item->SetPersonality(defenderPersonality);
-		if(item->HasBays())
-			for(auto bay = item->Bays().begin(); bay != item->Bays().end(); ++bay)
+		it->SetPersonality(defenderPersonality);
+		if(it->HasBays())
+			for(auto bay = it->Bays().begin(); bay != it->Bays().end(); ++bay)
 				if(bay->ship)
 					bay->ship->SetPersonality(fighterPersonality);
 	}

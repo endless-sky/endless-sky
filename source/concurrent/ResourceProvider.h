@@ -83,9 +83,9 @@ public:
 
 public:
 	ResourceProvider() = delete;
-	// Creates a provider with the specified number of mutexes.
+	// Creates a provider with the specified number of mutexes (support for that many concurrent threads).
 	ResourceProvider(size_t size, Types & ...remoteResources);
-	// Creates a provider with the default number of mutexes.
+	// Creates a provider with the default number of mutexes (support for that many concurrent threads).
 	ResourceProvider(Types & ...remoteResources);
 
 	// Don't allow copying or moving
@@ -94,10 +94,10 @@ public:
 	ResourceProvider &operator=(const ResourceProvider &other) = delete;
 	ResourceProvider &operator=(const ResourceProvider &&other) = delete;
 
-	// Lock a mutex, and return a guard for that lock.
+	// Lock a mutex, and return a guard for that lock and its guarded resources.
 	const ResourceGuard Lock();
 
-	// The number of resources stored.
+	// The number of supported concurrent threads.
 	size_t Size() const;
 
 
@@ -276,7 +276,7 @@ ResourceProvider<Types...>::ResourceProvider(Types & ...remoteResources)
 template <class ...Types>
 const typename ResourceProvider<Types...>::ResourceGuard ResourceProvider<Types...>::Lock()
 {
-	// Find a free lock, and call get a resource guard with the locked lists.
+	// Find a free lock, and get a resource guard with the locked resources.
 	size_t id = std::hash<std::thread::id>{}(std::this_thread::get_id());
 	const size_t index = id % Size();
 	if(locks[index].try_lock())

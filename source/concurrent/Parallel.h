@@ -90,10 +90,7 @@ inline void for_each(ExecutionPolicy e, RandomIt begin, RandomIt end, Func &&f)
 	if(e == parallel::seq)
 		std::for_each(begin, end, f);
 	else
-	{
 		Parallel::RunBulk(begin, end, f);
-		Parallel::Wait();
-	}
 }
 
 
