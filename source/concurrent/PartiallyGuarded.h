@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Containers that guard against certain concurrent calls. Use with caution.
+// Containers that guard against some concurrent modifications. Use with caution.
 // For most purposes, this can be treated and passed around like any stl container,
 // but any function modifying it inside a concurrent context MUST receive it as a PartiallyGuarded object
 // to ensure proper handling.
@@ -71,23 +71,20 @@ public:
 	inline auto emplace(Args &&... args)
 	{
 		const std::lock_guard<std::mutex> lock(write_mutex);
-		return std::map<Key, Value,Compare, Allocator>::emplace(args...);
+		return std::map<Key, Value, Compare, Allocator>::emplace(args...);
 	}
 
 	inline auto &operator[](const Key &key)
 	{
 		const std::lock_guard<std::mutex> lock(write_mutex);
-		return std::map<Key, Value,Compare, Allocator>::operator[](key);
+		return std::map<Key, Value, Compare, Allocator>::operator[](key);
 	}
 
 	inline auto erase(const Key &key)
 	{
 		const std::lock_guard<std::mutex> lock(write_mutex);
-		return std::map<Key, Value,Compare, Allocator>::erase(key);
+		return std::map<Key, Value, Compare, Allocator>::erase(key);
 	}
-
-	// Prevent accidental push_back operations.
-	void insert(const Value &value) = delete;
 
 private:
 	std::mutex write_mutex;

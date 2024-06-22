@@ -4572,7 +4572,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 				strength[gov] += it->Strength();
 		}
 		// Check if this government has the authority to enforce scans & fines in this system.
-		if(scanPermissions.count(gov))
+		if(!scanPermissions.count(gov))
 			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
 
 	}
