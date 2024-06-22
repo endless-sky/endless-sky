@@ -65,10 +65,14 @@
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
         <p>These changes include:</p>
         <ul>
-          <li></li>
+          <li>Fixed various crashes, including ones that could occur when sorting ships or when using the flagship outline or new cloaked settings.</li>
+          <li>The flagship will no longer move through wormholes ahead of escorts when using fleet jumping.</li>
+          <li>Reduced the difficulty of the battle in "Wanderers: Mind 6".</li>
+          <li>Added a gamerule for controlling the disabled fighter projectile collision behavior introduced in v0.10.7.</li>
+          <li>Illegal mission passengers can now be detected by planetary security. Previously, missions with only illegal passengers could never result in a fine.</li>
         </ul>
-        <p>There's much more in the changelog!</p>
-        <p>Special thanks to the ??? people who contributed to this release!</p>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.10.8/changelog</url>
     </release>
