@@ -1212,7 +1212,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 			label childish
 			action
 				set "Hai Reveal [A09] History of Appeasement: interrupted argument"
-			`	As the pair turn towards you, Teeneep looks mortified. "Captain <last>, I... I'm sorry you had to see me like this. I just... sayari?"`
+			`	As the pair turn towards you, Teeneep looks mortified. "Captain <last>, I... I'm sorry you had to see me like this. I just... Sayari?"`
 			`	"Welcome back, Captain <last>. I must apologize for my friend's state. She's just discovered some rather unfortunate information."`
 				goto arrived
 			label interrupt
