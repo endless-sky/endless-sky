@@ -770,6 +770,34 @@ void PlayerInfo::IncrementDate()
 		message += ".";
 		Messages::Add(message, Messages::Importance::High);
 		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				if(it.first->TributeDailyPenalty())
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-it.first->TributeDailyPenalty());
+					governments.insert(gov);
+				}
+			}
+			message = "Your reputation with ";
+			if(governments.size() == 1)
+				message += (*governments.cbegin())->GetName();
+			else
+				for(auto it = governments.cbegin(); it != governments.cend(); ++it)
+				{
+					if(it == prev(governments.cend()))
+						message += "and " + (*it)->GetName();
+					else
+						message += (*it)->GetName() + ", ";
+				}
+			message += " has been severed because of your active tribute demands.";
+			Messages::Add(message, Messages::Importance::High);
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for
