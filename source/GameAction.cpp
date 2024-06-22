@@ -120,6 +120,28 @@ namespace {
 			message += "flagship.";
 		Messages::Add(message, Messages::Importance::High);
 	}
+
+	int CountInCargo(const Outfit *outfit, const PlayerInfo &player)
+	{
+		int available = 0;
+		// If landed, all cargo from available ships is pooled together.
+		if(player.GetPlanet())
+			available += player.Cargo().Get(outfit);
+		// Otherwise only count outfits in the cargo holds of in-system ships.
+		else
+		{
+			const System *here = player.GetSystem();
+			for(const auto &ship : player.Ships())
+			{
+				if(ship->IsDisabled() || ship->IsParked())
+					continue;
+				if(ship->GetSystem() == here || (ship->CanBeCarried()
+						&& !ship->GetSystem() && ship->GetParent()->GetSystem() == here))
+					available += ship->Cargo().Get(outfit);
+			}
+		}
+		return available;
+	}
 }
 
 
@@ -359,6 +381,39 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 const vector<ShipManager> &GameAction::Ships() const noexcept
 {
 	return giftShips;
+}
+
+
+
+// Check if this action can be completed right now.
+bool GameAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+{
+	if(player.Accounts().Credits() < -payment)
+		return false;
+
+	const Ship *flagship = player.Flagship();
+	for(auto &&it : giftOutfits)
+	{
+		// If this outfit is being given, the player doesn't need to have it.
+		if(it.second > 0)
+			continue;
+
+		// Outfits may always be taken from the flagship. If landed, they may also be taken from
+		// the collective cargo hold of any in-system, non-disabled escorts (player.Cargo()). If
+		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
+		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
+		int available = flagship ? flagship->OutfitCount(it.first) : 0;
+		available += boardingShip ? flagship->Cargo().Get(it.first)
+				: CountInCargo(it.first, player);
+
+		if(available < -it.second)
+			return false;
+	}
+
+	for(auto &&it : giftShips)
+		if(!it.CanBeDone(player))
+			return false;
+	return true;
 }
 
 

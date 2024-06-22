@@ -1107,6 +1107,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		--player.Conditions()[name + ": active"];
 		++player.Conditions()[name + ": done"];
+		// Run any SAVE actions on NPCs from this mission.
+		for(auto &npc : npcs)
+			npc.DoAction(NPC::Trigger::SAVE, player, ui, this);
 	}
 
 	// "Jobs" should never show dialogs when offered, nor should they call the

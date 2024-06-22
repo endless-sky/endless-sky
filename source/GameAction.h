@@ -68,6 +68,8 @@ public:
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
 	const std::vector<ShipManager> &Ships() const noexcept;
 
+	// Check if this action can be completed right now.
+	bool CanBeDone(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui, const Mission *caller) const;
 
