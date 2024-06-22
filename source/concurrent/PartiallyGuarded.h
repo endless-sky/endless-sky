@@ -63,8 +63,8 @@ private:
 	std::mutex write_mutex;
 };
 
-template<class Key, class Value, class Compare = std::less<Key>, class Allocator =
-        std::allocator<std::pair<const Key, Value>>>
+template<class Key, class Value, class Compare = std::less<Key>,
+		class Allocator = std::allocator<std::pair<const Key, Value>>>
 class PartiallyGuardedMap : public std::map<Key, Value, Compare, Allocator> {
 public:
 	template<class... Args>
