@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "FireCommand.h"
+#include "concurrent/PartiallyGuarded.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -248,16 +249,16 @@ private:
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<const Government *, bool> scanPermissions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
-	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
-	std::map<const Ship *, int> swarmCount;
+	PartiallyGuardedMap<const Ship *, std::weak_ptr<Ship>> helperList;
+	PartiallyGuardedMap<const Ship *, int> swarmCount;
 	std::map<const Ship *, int> fenceCount;
-	std::map<const Ship *, std::set<const Ship *>> cargoScans;
-	std::map<const Ship *, std::set<const Ship *>> outfitScans;
-	std::map<const Ship *, int> scanTime;
-	std::map<const Ship *, Angle> miningAngle;
-	std::map<const Ship *, double> miningRadius;
-	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, double> appeasementThreshold;
+	PartiallyGuardedMap<const Ship *, std::set<const Ship *>> cargoScans;
+	PartiallyGuardedMap<const Ship *, std::set<const Ship *>> outfitScans;
+	PartiallyGuardedMap<const Ship *, int> scanTime;
+	PartiallyGuardedMap<const Ship *, Angle> miningAngle;
+	PartiallyGuardedMap<const Ship *, double> miningRadius;
+	PartiallyGuardedMap<const Ship *, int> miningTime;
+	PartiallyGuardedMap<const Ship *, double> appeasementThreshold;
 
 	std::map<const Ship *, int64_t> shipStrength;
 

@@ -845,7 +845,7 @@ void AI::Step(Command &activeCommands)
 		// Surveillance NPCs with enforcement authority (or those from
 		// missions) should perform scans and surveys of the system.
 		if(isPresent && personality.IsSurveillance() && !strandedWithHelper
-				&& (scanPermissions[gov] || it->IsSpecial()))
+				&& (scanPermissions.at(gov) || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
