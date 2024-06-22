@@ -754,14 +754,14 @@ bool Mission::CheckDeadline(const Date &today)
 
 
 
-// Check if you have special clearance to land on your destination.
-bool Mission::HasClearance(const Planet *planet) const
+// Check if the given player has special clearance to land on your destination.
+bool Mission::HasClearance(const PlayerInfo &player, const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
 	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
 		return true;
-	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
+	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet, &player));
 }
 
 
@@ -792,7 +792,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(!boardingShip)
 			return false;
 
-		if(!sourceFilter.Matches(*boardingShip))
+		if(!sourceFilter.Matches(*boardingShip, &player))
 			return false;
 	}
 	else
@@ -800,7 +800,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(source && source != player.GetPlanet())
 			return false;
 
-		if(!sourceFilter.Matches(player.GetPlanet()))
+		if(!sourceFilter.Matches(player.GetPlanet(), &player))
 			return false;
 	}
 
@@ -1290,7 +1290,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		const System *system = filter.PickSystem(sourceSystem);
+		const System *system = filter.PickSystem(sourceSystem, &player);
 		if(!system)
 			return result;
 		result.waypoints.insert(system);
@@ -1312,7 +1312,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
-		const Planet *planet = filter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty(), false);
+		const Planet *planet = filter.PickPlanet(sourceSystem, &player, ignoreClearance || !clearance.empty(), false);
 		if(!planet)
 			return result;
 		result.stopovers.insert(planet);
@@ -1325,7 +1325,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
+		result.destination = destinationFilter.PickPlanet(sourceSystem, &player, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1481,7 +1481,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

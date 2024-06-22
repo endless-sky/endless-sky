@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "News.h"
 
 #include "DataNode.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "SpriteSet.h"
 
@@ -109,13 +110,19 @@ bool News::IsEmpty() const
 
 
 // Check if this news item is available given the player's planet and conditions.
-bool News::Matches(const Planet *planet, const ConditionsStore &conditions) const
+bool News::AvailableTo(const PlayerInfo &player) const
 {
 	// If no location filter is specified, it should never match. This can be
 	// used to create news items that are never shown until an event "activates"
 	// them by specifying their location.
 	// Similarly, by updating a news item with "remove location", it can be deactivated.
-	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(conditions));
+	if(location.IsEmpty())
+		return false;
+	else if(!location.Matches(player.GetPlanet(), &player))
+		return false;
+	else if(!toShow.Test(player.Conditions()))
+		return false;
+	return true;
 }
 
 
