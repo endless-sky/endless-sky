@@ -4563,21 +4563,25 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	// Tally the strength of a government by the strength of its present and able ships.
 	governmentRosters.clear();
 	for(const auto &it : ships)
-		if(it->GetGovernment() && it->GetSystem() == playerSystem)
+	{
+		const Government *gov = it->GetGovernment();
+		if(gov && it->GetSystem() == playerSystem)
 		{
-			governmentRosters[it->GetGovernment()].emplace_back(it.get());
+			governmentRosters[gov].emplace_back(it.get());
 			if(!it->IsDisabled())
-				strength[it->GetGovernment()] += it->Strength();
+				strength[gov] += it->Strength();
 		}
+		// Check if this government has the authority to enforce scans & fines in this system.
+		if(scanPermissions.count(gov))
+			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
+
+	}
 
 	// Strengths of enemies and allies are rebuilt every step.
 	enemyStrength.clear();
 	allyStrength.clear();
 	for(const auto &gov : strength)
 	{
-		// Check if this government has the authority to enforce scans & fines in this system.
-		scanPermissions.emplace(gov.first, gov.first && gov.first->CanEnforce(playerSystem));
-
 		set<const Government *> allies;
 		for(const auto &enemy : strength)
 			if(enemy.first->IsEnemy(gov.first))
