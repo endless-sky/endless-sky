@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Table.h"
 
 #include <algorithm>
+#include <limits>
 #include <map>
 #include <sstream>
 
@@ -238,9 +239,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
-	attributeLabels.push_back("cargo efficiency:");
-	attributeValues.push_back(Format::Number(attributes.Get("cargo space") / ship.RequiredCrew()));
-	attributesHeight += 20;
+	if(scrollingPanel)
+	{
+		attributeLabels.push_back("cargo efficiency:");
+		attributeValues.push_back(Format::Number(attributes.Get("cargo space") / ship.RequiredCrew()));
+		attributesHeight += 20;
+	}
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	if(isGeneric)
@@ -386,6 +390,19 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(60. * maxHeat));
+
+	if(scrollingPanel)
+	{
+		const double energyDuration = maxEnergy / (60. * max(0., -derived.Get("net energy")));
+		const double heatDuration = maxHeat / max(0., derived.Get("net heat") - maxHeat);
+		attributesHeight += 20;
+		tableLabels.push_back("time at max:");
+		energyTable.push_back((derived.Get("net energy") < 0. && energyDuration != numeric_limits<double>::infinity())
+			? Format::Number(energyDuration) + "s" : "unlimited");
+		heatTable.push_back(heatDuration != numeric_limits<double>::infinity()
+			? Format::Number(heatDuration) + "s" : "unlimited");
+	}
+
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
