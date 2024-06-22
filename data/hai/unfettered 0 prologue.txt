@@ -652,7 +652,7 @@ mission "<uhai> 0: Bring Hai"
 			choice
 				`	"What is it exactly that you want me to do?"`
 					goto action
-				`	"I believe they would not have their place here. I will not bring them."`
+				`	"I don't think they would fit here. I won't bring them."`
 					decline
 			label limits
 			`	"I mean that they are prevented from reaching their true potential. Once we had many stars and planets to call ours, but since then most of the Hai have decided to stop changing, and to stay peaceful with all species. They have chosen to decay, to grow soft. We Unfettered decided to keep our legacy, our way of life, and to evolve, to grow."`
