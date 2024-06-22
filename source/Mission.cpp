@@ -361,8 +361,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("passengers", passengers);
 		if(paymentApparent)
 			out.Write("apparent payment", paymentApparent);
-		if(illegalCargoFine)
-			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
+		if(fine)
+			out.Write("illegal", fine, fineMessage);
 		if(failIfDiscovered)
 			out.Write("stealth");
 		if(!isVisible)
@@ -690,16 +690,16 @@ int Mission::CargoSize() const
 
 
 
-int Mission::IllegalCargoFine() const
+int Mission::Fine() const
 {
-	return illegalCargoFine;
+	return fine;
 }
 
 
 
-string Mission::IllegalCargoMessage() const
+string Mission::FineMessage() const
 {
-	return illegalCargoMessage;
+	return fineMessage;
 }
 
 
@@ -1191,7 +1191,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
+		string message;
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1201,8 +1201,6 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			// If any mission passengers were present, this mission is failed.
 			for(const auto &it : event.Target()->Cargo().PassengerList())
 				failed |= (it.first == this && it.second);
-			if(failed)
-				message += "lost. ";
 		}
 		else if(event.Type() & ShipEvent::BOARD)
 		{
@@ -1210,7 +1208,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			for(const auto &it : event.Actor()->Cargo().MissionCargo())
 				failed |= (it.first == this);
 			if(failed)
-				message += "plundered. ";
+				message = "Your " + event.Target()->DisplayModelName() +
+					" \"" + event.Target()->Name() + "\" has been plundered. ";
 		}
 
 		if(failed)
@@ -1389,8 +1388,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			result.passengers = passengers;
 	}
 	result.paymentApparent = paymentApparent;
-	result.illegalCargoFine = illegalCargoFine;
-	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
+	result.fine = fine;
+	result.fineMessage = Phrase::ExpandPhrases(fineMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
 	result.distanceCalcSettings = distanceCalcSettings;
@@ -1630,11 +1629,11 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 bool Mission::ParseContraband(const DataNode &node)
 {
 	if(node.Token(0) == "illegal" && node.Size() == 2)
-		illegalCargoFine = node.Value(1);
+		fine = node.Value(1);
 	else if(node.Token(0) == "illegal" && node.Size() == 3)
 	{
-		illegalCargoFine = node.Value(1);
-		illegalCargoMessage = node.Token(2);
+		fine = node.Value(1);
+		fineMessage = node.Token(2);
 	}
 	else if(node.Token(0) == "stealth")
 		failIfDiscovered = true;
