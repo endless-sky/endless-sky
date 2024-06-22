@@ -543,7 +543,7 @@ mission "<uhai> 0: Bring Hai"
 			has "language: Hai"
 		<secondgroup> "He does not seem pleased, speaking with contained anger. You are not sure if he is demanding something, or simply complaining."
 			not "language: Hai"
-		<secondgroup> `"Things are going [poorly, worse]. In all my life never has it been more [rough, unsustainable]. Never have there been so many in need! Never so little to harvest, worse [housing, sanitation]... Something needs to be done, and quickly! We, and our way of life, are dying."`
+		<secondgroup> `"Things are going [poorly, worse]. In all my life never has it been more [rough, unsustainable]. Never have there been so many in need! Never so little to harvest, never such poor [housing, sanitation]... Something needs to be done, and quickly! We, and our way of life, are dying."`
 			has "language: Hai"
 		<thirdgroup> "seemingly heartbroken by this little one's words. Raising his voice for all to hear, he appears to be asking something to the gathered Hai."
 			not "language: Hai"
@@ -566,9 +566,9 @@ mission "<uhai> 0: Bring Hai"
 				`	(Ignore them and go back to my ship.)`
 					defer
 			`	As you are moving with the crowd towards the nearest stadium entrance - a large open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
-			`	When it is their turn in line, a couple towing four children with them, begin to plead. <firstgroup> The officials, perhaps the "Chiefs", which you have heard lead the Unfettered, speak among themselves. Then they turn back to the petitioners, and together, close their left hands and raise them up, before lowering them and opening their palms, as if presenting something. By the relief on the couple's faces, you assume their request has been granted.`
+			`	When it is their turn in line, a couple towing four children with them begin to plead. <firstgroup> The officials, perhaps the "Chiefs" which you have heard lead the Unfettered, speak among themselves. Then they turn back to the petitioners, and together, close their left hands and raise them up, before lowering them and opening their palms, as if presenting something. By the relief on the couple's faces, you assume their request has been granted.`
 			choice
-				`	(Move a bit to see the next petitionners as they approach.)`
+				`	(Move a bit to see the next petitioners as they approach.)`
 			`	The next in line seems quite old, but he still moves proudly as if not limited by his age. <secondgroup> This one, probably a soldier of some kind, evidently has some special status or a reputation which has earned the right for him to speak this way. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
 			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears to be something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring of the crowd. "Hi," she says with a warm, somewhat embarrassed chuckle, "I have noticed you easily among Hai. Do you want me to help translate what they say?"`
 			choice
@@ -597,7 +597,7 @@ mission "<uhai> 0: Bring Hai"
 				"unfettered: Merora translate" ++
 				log "Minor People" "Merora" "A young adolescent Hai that came to Unfettered space after losing her parents to pirates. She is handling the loss very well, at least on the surface."
 			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space just a few weeks ago. What about you?" she asks.`
-			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other.`
+			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting him as they speak quietly to each other.`
 			`	The Chief rises and turns to those watching to share the child's words, and Merora then translates it to you, "The child wishes to return home, to Hai space. However, he cannot do that alone, and the Chief is asking for someone to escort him, or find him a suitable transport. All Hai captains, even those who do not otherwise sympathize with our cause, would easily accept taking a child back to Hai space, without ever asking for anything in return. It only needs to be arranged by someone, as the child does not know who to turn to."`
 			choice
 				`	(Rise up.)`
@@ -641,7 +641,7 @@ mission "<uhai> 0: Bring Hai"
 				`	"This seems like a bad idea. Ask someone else."`
 					decline
 			label brethren
-			`	"Then you have heard about the stories of the Drak modifying our people..." He sighs and deflates a bit. "I do not believe in such things. What makes a Hai - or any other species - 'true' is in their heart. It will take them wherever they want to go." He pauses, thinking, and when he speaks again it is with deep conviction. "Even if we quarrel with the Elders, it does not mean we hate other Hai, nor do they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the Elders, who cannot help but think in a box."`
+			`	"Then you have heard about the stories of the Drak modifying our people..." he sighs and deflates a bit. "I do not believe in such things. What makes a Hai - or any other species - 'true' is in their heart. It will take them wherever they want to go." He pauses, thinking, and when he speaks again it is with deep conviction. "Even if we quarrel with the Elders, it does not mean we hate other Hai, nor do they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the Elders, who cannot help but think in a box."`
 			choice
 				`	"Will this get me into any trouble with the Hai?"`
 				`	"What limits?"`
@@ -662,7 +662,7 @@ mission "<uhai> 0: Bring Hai"
 				`	"But I thought the Unfettered only split from the Hai a few hundred years ago?"`
 					to display
 						has "Ask the Hai about the Unfettered: offered"
-			`	He raises an eyebrow, "That is true. You seem to be well versed in Hai history. But there is never only one version of it. When I speak of the 'Unfettered' I mean more than what we are today, more than all the Hai in Unfettered space.`
+			`	He raises an eyebrow. "That is true. You seem to be well versed in Hai history. But there is never only one version of it. When I speak of the 'Unfettered' I mean more than what we are today, more than all the Hai in Unfettered space.`
 			`	"This word includes all those that are willing to fight for their values. Hai like that existed before the alien raids. They existed even before the coming of the great Hai empire. Ever since the Hai first drew breath they existed, and they always will, even if the Unfettered government falls. We Hai are not the only ones that can be 'Unfettered', either. One cannot kill an idea. But let us go back to the matter at hand, shall we?"`
 			label action
 			`	"It's pretty simple: you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet. They will find their way from there." Seeing how everything here is in a... chaotic state, to say the least, one can only hope that to be true. The Hai you're fetching are hopefully aware of this already, or you may have to bring them back...`
@@ -672,7 +672,7 @@ mission "<uhai> 0: Bring Hai"
 				`	"I don't want to bring you Hai defectors. Sorry."`
 			`	He seems shocked by your use of that word. "Defectors?! If you think that way then it is best you do not bring them indeed."`
 	on stopover
-		dialog `The small group of Hai are waiting for you in the spaceport as planned, and they seem happy to get on your ship. Now return to <origin> with them.`
+		dialog `The small group of Hai are waiting for you in the spaceport as planned, and they seem happy to get on your ship. Now you should return to <origin> with them.`
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -712,7 +712,7 @@ mission "<uhai> 1: Bring Medicine"
 	substitutions
 		<prioritymessage> `Unfortunately, because it's in Hai, you can only guess at the meaning of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds.`
 			not "language: Hai"
-		<prioritymessage> `"Assistance requested from all available pilots, Unfettered or not. Local outbreak of broiling sickness has spread catastrophically in our space, and is now classified as an uncontrolled [epidemic, plague]. Hundreds of Hai are already critically ill and Unfettered hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from Stonebreak for immediate return."`
+		<prioritymessage> `"Assistance requested from all available pilots, Unfettered or not. A local outbreak of broiling sickness has spread catastrophically in our space, and is now classified as an uncontrolled [epidemic, plague]. Hundreds of Hai are already critically ill and Unfettered hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from Stonebreak for immediate return."`
 			has "language: Hai"
 	on offer
 		conversation
@@ -731,7 +731,7 @@ mission "<uhai> 1: Bring Medicine"
 					goto translation
 				`	(I don't have time for this.)`
 			label leave
-			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You decide to run off immediately in case someone noticed. The Chief that asked for your assistance will probably be disappointed about this.`
+			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You decide to take off immediately in case someone noticed. The Chief that asked for your assistance will probably be disappointed about this.`
 				flee
 			label translation
 			`	You hail the nearest Unfettered ship, sending a request for a translation of the message. Surprisingly, they are more than willing to translate the important parts for you, although they have trouble finding some of the words. "There is a... 'plague' here. Go to <stopovers> to get the... the anti-plague! Now!" They then cut the transmission.`
@@ -743,7 +743,7 @@ mission "<uhai> 1: Bring Medicine"
 			`	You are quickly assigned the collection of supplies from <stopovers> and urged to return them as quickly as possible.`
 				accept
 	on stopover
-		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and, once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
+		dialog `You're surprised to see that the Hai are more than happy to give you the medical supplies needed. They load up the cargo and, once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -752,8 +752,8 @@ mission "<uhai> 1: Bring Medicine"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		event "unfettered: access to Mera's lab"
-		log `Brought medical supplies to Darkcloak to prevent an epidemic.`
-		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence. He also appears to be quite empathic.`
+		log `Brought some medical supplies to Darkcloak to prevent an epidemic.`
+		log "People" "Sookootow" `An Unfettered Chief who is worried for his people, whether they are inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence. He also appears to be quite empathic.`
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. To your surprise, some Unfettered have weapons even near this hospital, albeit holstered at all times. As you're returning to your ship, one of them catches up to you. "Hello, <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally." He takes a second to get his breath back, before continuing, "I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
@@ -765,19 +765,20 @@ mission "<uhai> 1: Bring Medicine"
 				`	"What could have caused this crisis? Does it happen often?"`
 				`	"Are all Unfettered soldiers? I see a lot of you armed and seemingly ready for action."`
 					goto soldiers
-			`	"I am no doctor, but I can at least tell you that it very much depends on who you ask... Some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, some of the Hai who sympathize with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
+			`	"I am no doctor, but I can at least tell you that it very much depends on who you ask... some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, some of the Hai who sympathize with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
 			`	"As for the frequency, the precarious conditions here mean this happens too often for our liking. As a result, we have a habit of quickly reacting to any seemingly deadly diseases. That means that sometimes we worry for nothing, but this was not one of those times. We are a strong people, but even a strong Heshi is nothing in shallow water. It is a matter of life or death that the hospital be in its best possible state, but it is only that way thanks to much work and investment. The many places in which our people live are not quite as sophisticated."`
 			choice
 				`	"What is a 'Heshi'?"`
 					to display
 						not "outfit: Heshi"
 					goto explainheshi
-				`	"A Heshi, like this one you mean?"`
+				`	"A Heshi, like this one I have?"`
 					to display
 						has "outfit: Heshi"
 				`	"Glad to have prevented a disaster then."`
 					decline
-			`	You can see the confusion on his face when you show him a picture of the Heshi you won from fighting the Captain, "So you have proven yourself already, impressive. You show great potential! The next time you fight this Captain you will gain his position as per the rules of the duels!`
+			`	You can see the confusion on his face when you show him a picture of the Heshi you won from fighting the Captain. "So you have proven yourself already, impressive. You show great potential! The next time you fight this Captain you will gain his position as per the rules of the duel!`
+				decline
 			label explainheshi
 			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. Most are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it one Captain possesses one of monstrous size."`
 				decline
@@ -837,7 +838,7 @@ mission "<uhai> 2: Prove Your Strength"
 					not "visited planet: Firelode"
 			`	The Unfettered present are proudly showing their weapons, more so than on other planets, and some of them are even armored. They seem ready for action, at any time. Thankfully they no longer consider you an enemy, at least for the moment.`
 			`	Eventually your attention is drawn to a gathering, where someone is speaking loudly to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
-			`	"Arrr, be this the bilge-sucking<, unfettered title> ye all speak so highly of? The one who fears not to come into our ports, and fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
+			`	"Arrr, be this the bilge-sucking<, unfettered title> ye all speak so highly of? The one who fears not to come into our ports, and fight our ships?" he asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
@@ -851,7 +852,7 @@ mission "<uhai> 2: Prove Your Strength"
 					goto provoke
 				`	(Go. He's not worth it.)`
 					goto run
-			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it," he asks in a disrespectful tone, before turning to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
+			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he asks in a disrespectful tone, before turning to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
 			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
@@ -870,7 +871,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown the Unfettered how much of a coward you are, and you will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess it only be fair that ye know... Ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, or more if your ship be strong, offered in space before the battle begins, to demand it be fought another day. After ye did that, ye must wait a full day, or 'twill be considered an offense, and all nearby ships will fire at you! The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is the right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
+			`	"I guess it only be fair that ye know... ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, or more if your ship be strong, offered in space before the battle begins, to demand it be fought another day. After ye did that, ye must wait a full day, or 'twill be considered an offense, and all nearby ships will fire at you! The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is the right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
@@ -879,9 +880,9 @@ mission "<uhai> 2: Prove Your Strength"
 					goto run
 			label crush
 			action
-				"unfettered rep: Sira" --
-			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you, but thankfully they show restrain as he shouts for them to stop. You sense your right arm is numb from the shots, but other than that you are fine.`
-			`	"Ye think yerself strong, eh mate? Ye better be ready to prove it in a proper duel with your ship, against me and me mateys!" He shouts, but he seems more disappointed than angry.`
+				"unfettered rep: Si-ra" --
+			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you, but thankfully they show restraint as he shouts for them to stop. You sense your right arm is numb from the shots, but other than that you are fine.`
+			`	"Ye think yerself strong, eh mate? Ye better be ready to prove it in a proper duel with your ship, against me and me mateys!" he shouts, but he seems more disappointed than angry.`
 			`	He then moves with frightening speed, and is somehow in front of you with a blade on your neck before you could move a muscle. "And don't test me," he adds with a dark look, before putting his blade away once he's sure he got his point across. The crowd stays silent, but you can tell they were prepared to support him, had the need arisen.`
 				goto accept
 			label waiting
@@ -922,7 +923,7 @@ mission "<uhai> 2: Prove Your Strength"
 				fail "<uhai> 2: Prove Your Strength"
 				fine 25000
 	on disabled
-		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the mean time I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
+		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the mean time I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, for me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
 		fine 250000
 	# if you have a heavy warship/two mediums or you pissed him off, he'll bring "friends"
 	npc disable
@@ -951,7 +952,7 @@ mission "<uhai> 2: Prove Your Strength"
 		personality disables staying heroic target launching unconstrained
 		ship "Si-Ra' Scorpion" "Intrepid"
 		on kill
-			dialog `"You receive a message from the local unfettered authorities, "You have failed to uphold the standards of the duel. You will not be trusted enough to be offered any missions anymore."`
+			dialog `"You receive a message from the local Unfettered authorities. "You have failed to uphold the standards of the duel. You will not be trusted enough to be offered any missions anymore."`
 			set "unfettered: outcast"
 		conversation
 			`Now that you have disabled the <npc>, its captain hails you.`
@@ -975,7 +976,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... a mistake which I shall not make again next time."`
 			choice
 				`	"You could have just asked."`
-			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." He shouts something in Hai, presumably to the crew member who just spoke.`
+			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." he shouts something in Hai, presumably to the crew member who just spoke.`
 				goto end
 			label dangerous
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
@@ -995,13 +996,14 @@ mission "<uhai> 2: Prove Your Strength"
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on visit
 		dialog "You have not yet defeated the Unfettered Captain, and landing like this means you choose to delay the duel to another time."
+		fail
 	on complete
 		conversation
 			`You land and the Captain joins you once he is done with repairs. He presents what looks like an aquarium as a reward for the duel.`
 			`	As you move closer to inspect it you are almost frightened to death by the huge scorpion looking creature rushing towards you.`
-			`	There is little time to think as the huge creature gets closer and closer!`
+			`	There is little time to think as the huge creature gets closer and closer.`
 			choice
-				`	(Run far away in case it escapes!)`
+				`	(Run far away in case it escapes.)`
 					goto run
 				`	(Leap back to a respectable distance.)`
 				`	(Stay there.)`
@@ -1011,6 +1013,7 @@ mission "<uhai> 2: Prove Your Strength"
 				`	(Try to calm it.)`
 					goto calm
 			`	Surprisingly, no Unfettered look amused by the apparent cowardliness. "Fear is good, so long as it does not control you," one of them says.`
+				goto reward
 			label calm
 			action
 				"unfettered rep: Si-Ra" ++
@@ -1051,7 +1054,7 @@ mission "<uhai> 2: Prove Your Strength"
 				`	(Wake up.)`
 				`	(Give up.)`
 					goto death
-			`	You wake up in a hospital bed, the Captain is there and speaks very quietly, almost gently, "That was maybe not smart, lad, but it sure was brave! You have what it takes to be one of us, just make sure you don't get killed next time." He then moves to the door behind you.`
+			`	You wake up in a hospital bed. The captain is there and speaks very quietly, almost gently, "That was maybe not smart, lad, but it sure was brave! You have what it takes to be one of us. Just make sure you don't get killed next time." He then moves to the door behind you.`
 				goto end
 			label run
 			action
@@ -1114,7 +1117,7 @@ mission "<uhai> 3: Recover Jump Drives"
 					goto cut
 			action
 				"unfettered rep: Si-Ra" --
-			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The parrots to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
+			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The parrots to the north would like to see me walk the plank as well... a jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -1123,7 +1126,7 @@ mission "<uhai> 3: Recover Jump Drives"
 				`	"Sorry, but I won't risk my ship by going anywhere close to these pirates."`
 					decline
 			label cut
-			`	"Ye humans always be obsessed with yer doubloons... So much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
+			`	"Ye humans always be obsessed with yer doubloons... so much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
 			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the parrots up north would decide to fit ye with a hempen halter from yer association with us."`
 			choice
@@ -1134,7 +1137,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			`	"The aliens we be raiding, ye swab! And don't be joining that party until we tell ya so!"`
 			label ship
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
-			`	"Hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
+			`	"But hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
 				to display
 					"cargo space" < 80
 			`	You show him to his bunk but he refuses to go there, "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
@@ -1189,7 +1192,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			`	You can see he takes a bit of time considering your request, before answering, "Alright, but since yer changing the deal, I be deducting an extra!"`
 				goto choice
 			label "good boy!"
-			`	"Alright! I like yer spirit, mate. This one's on me, consider it a reward for doing this mission so well, and being a lovely fellow."`
+			`	"Alright! I like yer spirit, mate. This one's on me, and consider it a reward for doing this mission so well, and being a lovely fellow."`
 				goto choice
 			label cerberus
 			`	"If ye really must know, that be how the spineless, biscuit eatin' pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
@@ -1203,7 +1206,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			action
 				clear "unfettered: took Si-Ra' stuff"
 				"unfettered rep: Si-Ra" ++
-			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, I wonder what happened to him."`
+			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, and I wonder what happened to him."`
 				to display
 					has "first name: Jack"
 			`	Then he raises his fist towards you, presumably some form of salute. The act takes you by surprise, but before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he kept going on about.`
@@ -1219,7 +1222,7 @@ mission "<uhai> 3: Jump Drive Vault"
 		has "<uhai> 3: Recover Jump Drives: active"
 	on offer
 		conversation
-			`You park your ship close to the hidden depot, as suggested by the Hai, at a less-used auxiliary spaceport. Often used by captains seeking a degree of discretion, they tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be close enough to intervene should anything go wrong.`
+			`You park your ship close to the hidden depot, as suggested by the captain, at a less-used auxiliary spaceport. Often used by captains seeking a degree of discretion, they tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be close enough to intervene should anything go wrong.`
 			`	You then follow the Unfettered captain to the hatch. He is well-prepared and quite deft, even given that he is wearing what seems to be a heavy combat suit.`
 			choice
 				`	(No time for talking.)`
@@ -1248,7 +1251,7 @@ mission "<uhai> 3: Jump Drive Vault"
 			label discreet
 			action
 				"unfettered rep: Si-Ra" ++
-			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what.`
+			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he does not seem to be following you, something seems odd about him, but you cannot pinpoint what.`
 			`	Continuing up the mountain, more and more you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it is safe to assume that even more defenses are hidden, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Blimey, someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon, and he dons his helmet. "Stay here. I will take care of this."`
 			choice
@@ -1277,7 +1280,7 @@ mission "<uhai> 3: Jump Drive Vault"
 				fail "<uhai> 3: Recover Jump Drives"
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend. You can see his bloody knife, with what seems to be a snake on it, before losing consciousness.`
 			`	When you wake up everything is blurry, all you can see is a powerful, almost divine, light.`
-			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered.`
+			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of Battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered.`
 				decline
 			label down
 			action
@@ -1297,7 +1300,7 @@ mission "<uhai> 3: Jump Drive Vault"
 			action
 				"unfettered rep: Si-Ra" --
 			label notagain
-			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
+			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some Unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
 				goto ship
 			label vault
 			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the jump drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the drives to blow when used. Checking that takes time." He takes some time to think before continuing, "Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
@@ -1308,7 +1311,7 @@ mission "<uhai> 3: Jump Drive Vault"
 			`	"We be not the ones who placed these drives here..." The Hai doesn't seem to want to tell you much about this vault.`
 			label ship
 			`	As soon as your ship arrives, you give the orders to collect the jump drives and install them if possible, so you may flee more swiftly. When your ship takes off, you notice more activity than on the way in...`
-			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not, giving you advice. "They'll probably be launching after us, you should first get some distance from them before trying to jump away."`
+			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not, giving you advice. "They'll probably be launching after us, so you should first get some distance from them before trying to jump away."`
 				launch
 	on accept
 		outfit "Jump Drive" 4
@@ -1379,7 +1382,7 @@ mission "<uhai> 4: Scan Geocoris"
 			`As you wander through the spaceport, you find a market with a limited diversity of goods, although some of it seems to be completely alien, even by Hai standards. You can even spot human food and technology, although those are the only recent items here. Most of it is very ancient, and you doubt everything is functional...`
 			`	Most Unfettered here are just busy buying what little food there is, that is if they can even afford it. You see two of them disputing, probably over the cost of some item, but decide not to intervene given how they generally respond to your mere presence.`
 			`	An Unfettered approaches you. At first, you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out in the crowd. There are not many non-Hai on the Unfettered worlds.`
-			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says. "It would pay well," she adds.`
+			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says, and adds, "It would pay well."`
 			choice
 				`	"Sure, what can I do for you?"`
 				`	"How do you know me?"`
@@ -1458,7 +1461,7 @@ mission "<uhai> 4: Scan Geocoris"
 			label declining
 			action
 				"unfettered rep: Mera" --
-			`	She clench her fist, visibly angry for a moment, before calming down. "Alright, but it will take a while for me to get someone else to scan a Geocoris, and we're missing a significant opportunity."`
+			`	She clenches her fist, visibly angry for a moment, before calming down. "Alright, but it will take a while for me to get someone else to scan a Geocoris, and we're missing a significant opportunity."`
 			choice
 				`	"Okay, okay. I changed my mind."`
 					goto choose
