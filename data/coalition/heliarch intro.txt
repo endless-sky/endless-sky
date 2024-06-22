@@ -1699,7 +1699,7 @@ mission "Heliarch Drills 2-A"
 				`	"Okay, I'll head out to the planets then."`
 					goto accept
 				`	"Can you tell me where my pursuers will be?"`
-			`	"Know of their pursuers, the pursued do not," she says, letting out a laugh as if it was a joke. "Well, usually... from many systems across the Coalition, the Hunters are. Ready to follow your ship when you launch, they will be."`
+			`	"Know of their pursuers, the pursued do not," she says, letting out a laugh as if it was a joke. "Well, usually... From many systems across the Coalition, the Hunters are. Ready to follow your ship when you launch, they will be."`
 			label accept
 			`	She points again to one of the planets. "Still preparing, some Hunters around Ashy Reach are, so head for <planet> first, you should." She wishes you luck on avoiding the Hunters and heads off to a Heliarch military building.`
 				accept
