@@ -1,5 +1,5 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: endless-sky 
+Upstream-Name: endless-sky
 Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
 
@@ -1623,6 +1623,13 @@ Files:
  images/land/water25*
 Copyright: DAK
 License: CC-BY-SA 4.0
+
+Files:
+ images/land/fields30*
+ images/land/mountain30*
+ images/land/water26*
+Copyright: Senn
+License: CC0
 
 Files:
  images/planet/nebula1*
