@@ -94,7 +94,7 @@ private:
 	InfoPanelState panelState;
 
 	// Column headers that sort ships when clicked.
-	std::vector<ClickZone<PlayerInfoPanel::SortableColumn>> menuZones;
+	std::vector<ClickZone<const PlayerInfoPanel::SortableColumn *>> menuZones;
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;

@@ -511,7 +511,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	for(auto &zone : menuZones)
 		if(zone.Contains(mouse))
 		{
-			SortShips(*zone.Value().shipSort);
+			SortShips(*zone.Value()->shipSort);
 			return true;
 		}
 
@@ -726,7 +726,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		table.Draw(column.name, columnHeaderColor);
 
-		menuZones.emplace_back(zone, column);
+		menuZones.emplace_back(zone, &column);
 	}
 
 	table.DrawGap(5);
@@ -798,7 +798,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	for(auto &zone : menuZones)
 		if(zone.Contains(hoverPoint))
-			DrawTooltip(zone.Value().Tooltip(), hoverPoint);
+			DrawTooltip(zone.Value()->Tooltip(), hoverPoint);
 
 	// Re-ordering ships in your fleet.
 	if(isDragging)
