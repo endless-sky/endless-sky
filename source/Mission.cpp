@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -1006,6 +1007,10 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
+	for(const auto &keyValue : subs)
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	Format::Expand(subs);
+
 	string message = Format::Replace(blocked, subs);
 	blocked.clear();
 	return message;
@@ -1469,6 +1474,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<waypoints>"] = systemsReplacement(result.waypoints);
 	if(!result.markedSystems.empty())
 		subs["<marks>"] = systemsReplacement(result.markedSystems);
+
+	// Done making subs, so expand the phrases and recursively substitute.
+	for(const auto &keyValue : subs)
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	Format::Expand(subs);
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	string reason;
