@@ -2088,7 +2088,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, list<Visual> &visuals)
 			return pullVector;
 		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return pullVector;
-		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(GetParent() && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return pullVector;
 	}
 

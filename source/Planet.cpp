@@ -102,7 +102,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "description")
-				description.clear();
+				description.Clear();
 			else if(key == "port" || key == "spaceport")
 			{
 				port = Port();
@@ -178,17 +178,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
-		else if(key == "description" || key == "spaceport")
+		else if(key == "description")
+			description.Load(child);
+		else if(key == "spaceport")
 		{
-			const bool isDescription = key == "description";
-			if(!isDescription)
-				port.LoadDefaultSpaceport();
-
-			string &text = isDescription ? description : port.Description();
-			if(!text.empty() && !value.empty() && value[0] > ' ')
-				text += '\t';
-			text += value;
-			text += '\n';
+			port.LoadDefaultSpaceport();
+			port.LoadDescription(child);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -348,7 +343,7 @@ const string &Planet::TrueName() const
 
 
 // Get the planet's descriptive text.
-const string &Planet::Description() const
+const Paragraphs &Planet::Description() const
 {
 	return description;
 }

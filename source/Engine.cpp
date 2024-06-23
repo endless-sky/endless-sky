@@ -2477,7 +2477,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			return;
 		if(collector == player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return;
-		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(collector != player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return;
 	}
 
