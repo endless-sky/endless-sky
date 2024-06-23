@@ -113,6 +113,7 @@ target_sources(EndlessSkyLib PRIVATE
 	FillShader.h
 	FireCommand.cpp
 	FireCommand.h
+	FlatMap.h
 	Fleet.cpp
 	Fleet.h
 	FleetCargo.cpp
