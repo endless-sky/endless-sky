@@ -1191,9 +1191,6 @@ tip "no bays?"
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon.`
 
-tip "under 20s of battery?"
-	`This ship has less than 20 seconds of combat battery power.`
-
 
 
 # Boolean attributes:

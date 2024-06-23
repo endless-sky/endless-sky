@@ -908,94 +908,92 @@ void Ship::FinishLoading(bool isNewInstance)
 
 void Ship::RecomputeDerivedAttributes()
 {
-	{
-		double shieldRegen = (attributes.Get("shield generation")
-			+ attributes.Get("delayed shield generation"))
-			* (1. + attributes.Get("shield generation multiplier"));
-		bool hasShieldRegen = shieldRegen > 0.;
-		derivedAttributes["shield regen"] = shieldRegen;
+	double shieldRegen = (attributes.Get("shield generation")
+		+ attributes.Get("delayed shield generation"))
+		* (1. + attributes.Get("shield generation multiplier"));
+	bool hasShieldRegen = shieldRegen > 0.;
+	derivedAttributes["shield regen"] = shieldRegen;
 
-		double hullRepair = (attributes.Get("hull repair rate")
-			+ attributes.Get("delayed hull repair rate"))
-			* (1. + attributes.Get("hull repair multiplier"));
-		bool hasHullRepair = hullRepair > 0.;
-		derivedAttributes["hull repair"] = hullRepair;
+	double hullRepair = (attributes.Get("hull repair rate")
+		+ attributes.Get("delayed hull repair rate"))
+		* (1. + attributes.Get("hull repair multiplier"));
+	bool hasHullRepair = hullRepair > 0.;
+	derivedAttributes["hull repair"] = hullRepair;
 
-		const double idleEnergyPerFrame = attributes.Get("energy generation")
-			+ attributes.Get("solar collection")
-			+ attributes.Get("fuel energy")
-			- attributes.Get("energy consumption")
-			- attributes.Get("cooling energy");
-		derivedAttributes["idle energy per frame"] = idleEnergyPerFrame;
+	const double idleEnergyPerFrame = attributes.Get("energy generation")
+		+ attributes.Get("solar collection")
+		+ attributes.Get("fuel energy")
+		- attributes.Get("energy consumption")
+		- attributes.Get("cooling energy");
+	derivedAttributes["idle energy per frame"] = idleEnergyPerFrame;
 
-		const double idleHeatPerFrame = attributes.Get("heat generation")
-			+ attributes.Get("solar heat")
-			+ attributes.Get("fuel heat")
-			- CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
-		derivedAttributes["idle heat per frame"] = idleHeatPerFrame;
+	const double idleHeatPerFrame = attributes.Get("heat generation")
+		+ attributes.Get("solar heat")
+		+ attributes.Get("fuel heat")
+		- CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
+	derivedAttributes["idle heat per frame"] = idleHeatPerFrame;
 
-		const double movingEnergyPerFrame =
-			max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-			+ attributes.Get("turning energy")
-			+ attributes.Get("afterburner energy");
-		derivedAttributes["moving energy per frame"] = movingEnergyPerFrame;
+	const double movingEnergyPerFrame =
+		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+		+ attributes.Get("turning energy")
+		+ attributes.Get("afterburner energy");
+	derivedAttributes["moving energy per frame"] = movingEnergyPerFrame;
 
-		const double movingHeatPerFrame =
-			max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-			+ attributes.Get("turning heat")
-			+ attributes.Get("afterburner heat");
-		derivedAttributes["moving heat per frame"] = movingHeatPerFrame;
+	const double movingHeatPerFrame =
+		max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
+		+ attributes.Get("turning heat")
+		+ attributes.Get("afterburner heat");
+	derivedAttributes["moving heat per frame"] = movingHeatPerFrame;
 
-		double firingEnergy = 0.;
-		double firingHeat = 0.;
-		for(const auto &it : outfits)
-			if(it.first->IsWeapon() && it.first->Reload())
-			{
-				firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
-				firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
-			}
-		derivedAttributes["firing energy"] = firingEnergy;
-		derivedAttributes["firing heat"] = firingHeat;
+	double firingEnergy = 0.;
+	double firingHeat = 0.;
+	for(const auto &it : outfits)
+		if(it.first->IsWeapon() && it.first->Reload())
+		{
+			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
+			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+		}
+	derivedAttributes["firing energy"] = firingEnergy;
+	derivedAttributes["firing heat"] = firingHeat;
 
-		double shieldEnergy = hasShieldRegen ? (attributes.Get("shield energy")
-			+ attributes.Get("delayed shield energy"))
-			* (1. + attributes.Get("shield energy multiplier")) : 0.;
-		derivedAttributes["total shield energy cost"] = shieldEnergy;
-		double hullEnergy = hasHullRepair ? (attributes.Get("hull energy")
-			+ attributes.Get("delayed hull energy"))
-			* (1. + attributes.Get("hull energy multiplier")) : 0.;
-		derivedAttributes["total hull energy cost"] = hullEnergy;
-		derivedAttributes["total shield & hull energy cost"] = (shieldEnergy + hullEnergy);
+	double shieldEnergy = hasShieldRegen ? (attributes.Get("shield energy")
+		+ attributes.Get("delayed shield energy"))
+		* (1. + attributes.Get("shield energy multiplier")) : 0.;
+	derivedAttributes["total shield energy cost"] = shieldEnergy;
+	double hullEnergy = hasHullRepair ? (attributes.Get("hull energy")
+		+ attributes.Get("delayed hull energy"))
+		* (1. + attributes.Get("hull energy multiplier")) : 0.;
+	derivedAttributes["total hull energy cost"] = hullEnergy;
+	derivedAttributes["total shield & hull energy cost"] = (shieldEnergy + hullEnergy);
 
-		double shieldHeat = hasShieldRegen ? (attributes.Get("shield heat")
-			+ attributes.Get("delayed shield heat"))
-			* (1. + attributes.Get("shield heat multiplier")) : 0.;
-		derivedAttributes["total shield heat cost"] = shieldHeat;
-		double hullHeat = hasHullRepair ? (attributes.Get("hull heat")
-			+ attributes.Get("delayed hull heat"))
-			* (1. + attributes.Get("hull heat multiplier")) : 0.;
-		derivedAttributes["total hull heat cost"] = hullHeat;
-		derivedAttributes["total shield & hull heat cost"] = (shieldHeat + hullHeat);
+	double shieldHeat = hasShieldRegen ? (attributes.Get("shield heat")
+		+ attributes.Get("delayed shield heat"))
+		* (1. + attributes.Get("shield heat multiplier")) : 0.;
+	derivedAttributes["total shield heat cost"] = shieldHeat;
+	double hullHeat = hasHullRepair ? (attributes.Get("hull heat")
+		+ attributes.Get("delayed hull heat"))
+		* (1. + attributes.Get("hull heat multiplier")) : 0.;
+	derivedAttributes["total hull heat cost"] = hullHeat;
+	derivedAttributes["total shield & hull heat cost"] = (shieldHeat + hullHeat);
 
-		const double overallEnergy = idleEnergyPerFrame
-			- movingEnergyPerFrame
-			- firingEnergy
-			- shieldEnergy
-			- hullEnergy;
-		derivedAttributes["net energy"] = overallEnergy;
+	const double overallEnergy = idleEnergyPerFrame
+		- movingEnergyPerFrame
+		- firingEnergy
+		- shieldEnergy
+		- hullEnergy;
+	derivedAttributes["net energy"] = overallEnergy;
 
-		const double overallHeat = idleHeatPerFrame
-			+ movingHeatPerFrame
-			+ firingHeat
-			+ shieldHeat
-			+ hullHeat;
-		derivedAttributes["net heat"] = overallHeat;
+	const double overallHeat = idleHeatPerFrame
+		+ movingHeatPerFrame
+		+ firingHeat
+		+ shieldHeat
+		+ hullHeat;
+	derivedAttributes["net heat"] = overallHeat;
 
-		const double maxEnergy = attributes.Get("energy capacity");
-		const double maxHeat = HeatDissipation() * MaximumHeat();
-		derivedAttributes["max energy"] = maxEnergy;
-		derivedAttributes["max heat"] = maxHeat;
-	}
+	const double maxEnergy = attributes.Get("energy capacity");
+	const double maxHeat = HeatDissipation() * MaximumHeat();
+	derivedAttributes["max energy"] = maxEnergy;
+	derivedAttributes["max heat"] = maxHeat;
 }
 
 
@@ -1421,8 +1419,6 @@ vector<string> Ship::FlightCheck() const
 				checks.emplace_back("insufficient energy to fire?");
 				break;
 			}
-		if(-20. * 60. * derivedAttributes.Get("net energy") > battery)
-			checks.emplace_back("under 20s of battery?");
 	}
 
 	return checks;
