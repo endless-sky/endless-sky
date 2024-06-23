@@ -1602,8 +1602,6 @@ Files:
  images/land/city26*
  images/land/city27*
  images/land/city28*
- images/land/clouds9*
- images/land/clouds10*
  images/land/fields28*
  images/land/fields29*
  images/land/forest11*
@@ -1622,7 +1620,7 @@ Files:
  images/land/water24*
  images/land/water25*
 Copyright: DAK
-License: CC-BY-SA 4.0
+License: CC-BY-SA-4.0
 
 Files:
  images/land/fields30*
@@ -2432,6 +2430,12 @@ Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 Files:
  images/land/clouds*
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
+License: CC-BY-SA-4.0
+
+Files: 
+ images/land/clouds9*
+ images/land/clouds10*
+Copyright: DAK (4robitsagmail.com)
 License: CC-BY-SA-4.0
 
 Files:
