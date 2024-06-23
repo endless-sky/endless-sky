@@ -819,7 +819,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 void PlayerInfoPanel::DrawTooltip(const string &text, const Point &hoverPoint)
 {
-	if(text == "")
+	if(text.empty())
 		return;
 
 	const int WIDTH = 250;
