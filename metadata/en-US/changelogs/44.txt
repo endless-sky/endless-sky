@@ -1,0 +1,5 @@
+* Update to 0.10.8
+* Added message log button
+* Added board button
+* Fixed layouts in ship info graphics
+
