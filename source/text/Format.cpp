@@ -19,7 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <cstring>
+#include <functional>
 #include <sstream>
+#include <unordered_set>
 
 using namespace std;
 
@@ -132,6 +135,86 @@ namespace {
 			result += '-';
 
 		reverse(result.begin(), result.end());
+	}
+
+	string StringSubstituter(const string &source,
+			function<const string *(const string &)> SubstitutionFor)
+	{
+		string target;
+		target.reserve(source.length());
+
+		string key;
+		size_t start = 0;
+		size_t search = start;
+		while(search < source.length())
+		{
+			size_t left = source.find('<', search);
+			if(left == string::npos)
+				break;
+
+			size_t right = source.find('>', left);
+			if(right == string::npos)
+				break;
+
+			++right;
+			size_t length = right - left;
+			key.assign(source, left, length);
+			const string *sub = SubstitutionFor(key);
+			if(sub)
+			{
+				target.append(source, start, left - start);
+				target.append(*sub, 0, string::npos);
+				start = right;
+				search = start;
+			}
+			else
+				search = left + 1;
+		}
+
+		target.append(source, start, source.length() - start);
+		return target;
+	}
+
+	// Helper function for Format::Expand, to recursively expand one key,
+	// detecting cycles in the graph (and thus avoiding infinite recursion).
+	void ExpandInto(const string &key, const string &oldValue, const map<string, string> &source,
+			map<string, string> &result, unordered_set<string> &keysBeingExpanded)
+	{
+		// Optimization for a common case: no substitutions in the substitution.
+		if(oldValue.find('<') == string::npos)
+		{
+			result.emplace(key, oldValue);
+			return;
+		}
+
+		// Declare our intention to process this key so a later attempt will
+		// detect recursion.
+		auto inserted = keysBeingExpanded.insert(key);
+
+		auto SubstitutionFor = [&](const string &request) -> const string *
+		{
+			auto hasResult = result.find(request);
+			// Already finished this one.
+			if(hasResult != result.end())
+				return &hasResult->second;
+			// Refuse to traverse a cycle in the graph.
+			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
+				return nullptr;
+			auto hasSource = source.find(request);
+			// Undefined key.
+			if(hasSource == source.end())
+				return nullptr;
+			// This key-value pair has not been expanded yet.
+			ExpandInto(request, hasSource->second, source, result, keysBeingExpanded);
+			hasResult = result.find(request);
+			return hasResult == result.end() ? nullptr : &hasResult->second;
+		};
+
+		string newValue = StringSubstituter(oldValue, SubstitutionFor);
+
+		// Success! Indicate we're done expanding this key, and provide its value.
+		keysBeingExpanded.erase(inserted.first);
+		result.emplace(key, newValue);
 	}
 
 	// Helper function for ExpandConditions.
@@ -485,41 +568,25 @@ double Format::Parse(const string &str)
 
 string Format::Replace(const string &source, const map<string, string> &keys)
 {
-	string result;
-	result.reserve(source.length());
-
-	size_t start = 0;
-	size_t search = start;
-	while(search < source.length())
+	auto SubstitutionFor = [&](const string &key) -> const string *
 	{
-		size_t left = source.find('<', search);
-		if(left == string::npos)
-			break;
+		auto found = keys.find(key);
+		return (found == keys.end()) ? nullptr : &found->second;
+	};
 
-		size_t right = source.find('>', left);
-		if(right == string::npos)
-			break;
+	return StringSubstituter(source, SubstitutionFor);
+}
 
-		bool matched = false;
-		++right;
-		size_t length = right - left;
-		for(const auto &it : keys)
-			if(!source.compare(left, length, it.first))
-			{
-				result.append(source, start, left - start);
-				result.append(it.second);
-				start = right;
-				search = start;
-				matched = true;
-				break;
-			}
 
-		if(!matched)
-			search = left + 1;
-	}
 
-	result.append(source, start, source.length() - start);
-	return result;
+void Format::Expand(map<string, string> &keys)
+{
+	map<string, string> newKeys;
+	unordered_set<string> keysBeingExpanded;
+	for(auto it = keys.begin(); it != keys.end(); ++it)
+		if(newKeys.find(it->first) == newKeys.end())
+			ExpandInto(it->first, it->second, keys, newKeys, keysBeingExpanded);
+	keys.swap(newKeys);
 }
 
 
