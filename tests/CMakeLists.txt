@@ -12,7 +12,7 @@ endif()
 
 
 # Print subdirectories
-file (GLOB files "${CMAKE_SOURCE_DIR}/**/*")
+file (GLOB_RECURSE files "${CMAKE_SOURCE_DIR}/**/*")
 message(STATUS "Subdirectories in ${CMAKE_SOURCE_DIR}:")
 foreach(file ${files})
 	message(STATUS "  ${file}")
@@ -24,7 +24,7 @@ set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.c
 if(UNIX AND NOT APPLE)
 	set(PATH="/vcpkg_installed/x64-linux")
 elseif(WIN64)
-	set(PATH="/build/ci/vcpkg_installed/x64-windows")
+	set(PATH="/build/ci/vcpkg_installed/x64-windows-")
 elseif(WIN32)
 	set(PATH="/build/ci/vcpkg_installed/x86-windows")
 else()
