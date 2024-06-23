@@ -959,7 +959,7 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 
 
 
-string PlayerInfoPanel::SortableColumn::Tooltip() const
+const string &PlayerInfoPanel::SortableColumn::Tooltip() const
 {
 	return GameData::Tooltip(name + " column");
 }
