@@ -4771,7 +4771,7 @@ planet "Vara Kehi'ki"
 	"required reputation" 15
 	bribe 0
 	tribute 900
-		threshold 1230
+		threshold 3500
 		fleet "Wanderer Defense" 5
 
 planet "Vara Pug"
