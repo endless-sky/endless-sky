@@ -9,11 +9,39 @@ if(NOT MSVC)
 endif()
 
 # Enable vcpkg packages.
+
+function(get_subdirectories dir result)
+	file(GLOB children ${dir}/*)
+	set(subdirs "")
+	foreach(child ${children})
+		if(IS_DIRECTORY ${child})
+			list(APPEND subdirs ${child})
+		endif()
+	endforeach()
+	set(${result} ${subdirs} PARENT_SCOPE)
+endfunction()
+
+# Specify the directory to list subdirectories
+set(MY_DIRECTORY "${CMAKE_SOURCE_DIR}/vcpkg_installed")
+
+# Collect subdirectories
+get_subdirectories(${MY_DIRECTORY} SUBDIRS)
+
+# Print subdirectories
+message(STATUS "Subdirectories in ${MY_DIRECTORY}:")
+foreach(subdir ${SUBDIRS})
+	message(STATUS "  ${subdir}")
+endforeach()
+
+
+
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 if(UNIX AND NOT APPLE)
 	set(TRIPLET="x64-linux")
+elseif(WIN64)
+	set(TRIPLET="x64-windows")
 elseif(WIN32)
-	set(TRIPLET="${VCPKG_TARGET_ARCHITECTURE}-windows")
+	set(TRIPLET="x32-windows")
 else()
 	set(TRIPLET=VCPKG_TARGET_TRIPLET)
 endif()
