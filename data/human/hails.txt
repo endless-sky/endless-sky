@@ -7180,7 +7180,7 @@ phrase "test dummy"
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
 		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
-		`"Is there a God," they asked me... yes, here is a God.`
+		`"Is there a God," they asked me... Yes, here is a God.`
 
 phrase "disabled test dummy"
 	word

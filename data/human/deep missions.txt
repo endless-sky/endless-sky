@@ -1071,7 +1071,7 @@ mission "Deep: Project Hawking"
 			
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
-			`	"... thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
+			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
 			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "... <last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				accept
 	
@@ -2391,7 +2391,7 @@ mission "Deep: Scientist Rescue 3A"
 					goto accept
 				`	"I'm sorry, but I don't have the power to defeat that Bactrian. You're going to need to do it yourself."`
 			
-			`	"I see... good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
+			`	"I see... Good luck on your travels, Captain <last>." Lieutenant Paris starts walking over to the Star Queen, leaving you alone next to your ship.`
 				decline
 			
 			label accept
