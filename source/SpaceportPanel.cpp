@@ -92,7 +92,7 @@ void SpaceportPanel::Draw()
 		return;
 
 	Rectangle box = ui.GetBox("content");
-	text.Wrap(port.Description());
+	text.Wrap(port.Description().ToString(player.Conditions()));
 	text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 
 	if(hasNews)
