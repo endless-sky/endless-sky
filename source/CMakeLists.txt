@@ -226,6 +226,8 @@ target_sources(EndlessSkyLib PRIVATE
 	OutlineShader.h
 	Panel.cpp
 	Panel.h
+	Paragraphs.cpp
+	Paragraphs.h
 	Person.cpp
 	Person.h
 	Personality.cpp
