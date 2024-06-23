@@ -77,7 +77,7 @@ private:
 	public:
 		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
 
-		std::string Tooltip() const;
+		const std::string &Tooltip() const;
 
 		std::string name;
 		double offset = 0.;
