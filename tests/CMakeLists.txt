@@ -22,13 +22,14 @@ endforeach()
 
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 if(UNIX AND NOT APPLE)
-	set(PATH="/vcpkg_installed/x64-linux")
+	set(PATH="vcpkg_installed/x64-linux")
 elseif(WIN32)
-	set(PATH="/build/ci/vcpkg_installed/${VCPKG_TARGET_ARCHITECTURE}-windows-${VCPKG_BUILD_TYPE}")
+	set(PATH="build/ci/vcpkg_installed/${VCPKG_TARGET_ARCHITECTURE}-windows-release")
 else()
-	set(PATH="/vcpkg_installed/${VCPKG_TARGET_TRIPLET}")
+	set(PATH="vcpkg_installed/${VCPKG_TARGET_TRIPLET}")
 endif()
 set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/${PATH}")
+message("Prefix is ${CMAKE_PREFIX_PATH}")
 
 find_package(Catch2 CONFIG REQUIRED)
 
