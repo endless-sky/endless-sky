@@ -3,7 +3,8 @@
     {
       "name": "openal-soft",
       "platform": "osx"
-    }
+    },
+    "catch2"
   ],
   "features": {
     "system-libs": {

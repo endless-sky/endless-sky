@@ -108,19 +108,19 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]") {
 	GIVEN( "The string 123.45" ) {
 		THEN( "parses to 123.45" ) {
-			CHECK( Format::Parse("123.45") == Approx(123.45) );
+			CHECK_THAT( Format::Parse("123.45"), Catch::Matchers::WithinAbs(123.45, 0.0001) );
 		}
 	}
 
 	GIVEN( "The string 1,234K" ) {
 		THEN( "parses to 1234000" ) {
-			CHECK( Format::Parse("1,234K") == Approx(1234000.) );
+			CHECK_THAT( Format::Parse("1,234K"), Catch::Matchers::WithinAbs(1234000., 0.0001) );
 		}
 	}
 
 	GIVEN( "The string 1 523 004" ) {
 		THEN( "parses to 1523004" ) {
-			CHECK( Format::Parse("1 523 004") == Approx(1523004.) );
+			CHECK_THAT( Format::Parse("1 523 004"), Catch::Matchers::WithinAbs(1523004., 0.0001) );
 		}
 	}
 }
