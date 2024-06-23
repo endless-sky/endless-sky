@@ -10,27 +10,12 @@ endif()
 
 # Enable vcpkg packages.
 
-function(get_subdirectories dir result)
-	file(GLOB children ${dir}/*)
-	set(subdirs "")
-	foreach(child ${children})
-		if(IS_DIRECTORY ${child})
-			list(APPEND subdirs ${child})
-		endif()
-	endforeach()
-	set(${result} ${subdirs} PARENT_SCOPE)
-endfunction()
-
-# Specify the directory to list subdirectories
-set(MY_DIRECTORY "${CMAKE_SOURCE_DIR}/vcpkg_installed")
-
-# Collect subdirectories
-get_subdirectories(${MY_DIRECTORY} SUBDIRS)
 
 # Print subdirectories
-message(STATUS "Subdirectories in ${MY_DIRECTORY}:")
-foreach(subdir ${SUBDIRS})
-	message(STATUS "  ${subdir}")
+file (GLOB files "${CMAKE_SOURCE_DIR}/**/*")
+message(STATUS "Subdirectories in ${CMAKE_SOURCE_DIR}:")
+foreach(file ${files})
+	message(STATUS "  ${file}")
 endforeach()
 
 
