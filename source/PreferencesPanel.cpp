@@ -357,9 +357,9 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		{
 			int speed = Preferences::ScrollSpeed();
 			if(dy < 0.)
-				speed = max(20, speed - 20);
+				speed = max(10, speed - 10);
 			else
-				speed = min(60, speed + 20);
+				speed = min(60, speed + 10);
 			Preferences::SetScrollSpeed(speed);
 		}
 		return true;
@@ -1231,10 +1231,10 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == SCROLL_SPEED)
 	{
-		// Toggle between three different speeds.
-		int speed = Preferences::ScrollSpeed() + 20;
+		// Toggle between six different speeds.
+		int speed = Preferences::ScrollSpeed() + 10;
 		if(speed > 60)
-			speed = 20;
+			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
 	else if(str == DATE_FORMAT)

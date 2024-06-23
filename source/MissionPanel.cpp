@@ -845,6 +845,9 @@ void MissionPanel::DrawMissionInfo()
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
 
+	if(availableIt != available.end() || acceptedIt != accepted.end())
+		info.SetCondition("has description");
+
 	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
 	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
 

@@ -39,9 +39,16 @@ AmmoDisplay::AmmoDisplay(PlayerInfo &player)
 
 
 
-void AmmoDisplay::Update(const Ship &flagship)
+void AmmoDisplay::Reset()
 {
 	ammo.clear();
+}
+
+
+
+void AmmoDisplay::Update(const Ship &flagship)
+{
+	Reset();
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
