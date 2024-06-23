@@ -46,6 +46,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+class Color;
+
 namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
@@ -85,6 +87,32 @@ namespace {
 				table.Advance();
 		}
 	}
+
+	void DrawTooltip(const string &text, const Point &hoverPoint)
+	{
+		if(text.empty())
+			return;
+
+		const int WIDTH = 250;
+		const int PAD = 10;
+		WrappedText wrap(FontSet::Get(14));
+		wrap.SetWrapWidth(WIDTH - 2 * PAD);
+		wrap.Wrap(text);
+		int longest = wrap.LongestLineWidth();
+		if(longest < wrap.WrapWidth())
+		{
+			wrap.SetWrapWidth(longest);
+			wrap.Wrap(text);
+		}
+
+		const Color *backColor = GameData::Colors().Get("tooltip background");
+		const Color *textColor = GameData::Colors().Get("medium");
+		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
+		Point anchor = hoverPoint + Point(0., textSize.Y());
+		FillShader::Fill(anchor - .5 * textSize, textSize, *backColor);
+		wrap.Draw(anchor - textSize + Point(PAD, PAD), *textColor);
+	}
+
 
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
@@ -815,32 +843,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	}
 }
 
-
-
-void PlayerInfoPanel::DrawTooltip(const string &text, const Point &hoverPoint)
-{
-	if(text.empty())
-		return;
-
-	const int WIDTH = 250;
-	const int PAD = 10;
-	WrappedText wrap(FontSet::Get(14));
-	wrap.SetWrapWidth(WIDTH - 2 * PAD);
-	wrap.Wrap(text);
-	int longest = wrap.LongestLineWidth();
-	if(longest < wrap.WrapWidth())
-	{
-		wrap.SetWrapWidth(longest);
-		wrap.Wrap(text);
-	}
-
-	const Color *backColor = GameData::Colors().Get("tooltip background");
-	const Color *textColor = GameData::Colors().Get("medium");
-	Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-	Point anchor = hoverPoint + Point(0., textSize.Y());
-	FillShader::Fill(anchor - .5 * textSize, textSize, *backColor);
-	wrap.Draw(anchor - textSize + Point(PAD, PAD), *textColor);
-}
 
 
 // Sorts the player's fleet given a comparator function (based on column).

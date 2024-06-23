@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Color.h"
 #include "InfoPanelState.h"
 #include "text/layout.hpp"
 #include "Point.h"
@@ -61,8 +60,6 @@ private:
 	// Draw the two subsections of this panel.
 	void DrawPlayer(const Rectangle &bounds);
 	void DrawFleet(const Rectangle &bounds);
-
-	void DrawTooltip(const std::string &text, const Point &hoverPoint);
 
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
