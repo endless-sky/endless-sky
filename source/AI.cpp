@@ -4222,65 +4222,68 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 		Messages::Importance messageImportance = Messages::Importance::High;
 
-		// Land on the nearest eligible planet. Prefer inhabited ones with fuel.
-		set<string> types;
-		if(!target && !landables.empty())
+		if (message.empty())
 		{
-			if(landables.size() == 1)
-				ship.SetTargetStellar(landables.front());
-			else
+			// Land on the nearest eligible planet. Prefer inhabited ones with fuel.
+			set<string> types;
+			if(!target && !landables.empty())
 			{
-				double closest = numeric_limits<double>::infinity();
-				for(const auto &object : landables)
+				if(landables.size() == 1)
+					ship.SetTargetStellar(landables.front());
+				else
 				{
-					double distance = ship.Position().Distance(object->Position());
-					const Planet *planet = object->GetPlanet();
-					types.insert(planet->Noun());
-					if((!planet->CanLand() || !planet->GetPort().CanRecharge(Port::RechargeType::Fuel))
-							&& !planet->IsWormhole())
-						distance += 10000.;
-
-					if(distance < closest)
+					double closest = numeric_limits<double>::infinity();
+					for(const auto &object : landables)
 					{
-						ship.SetTargetStellar(object);
-						closest = distance;
+						double distance = ship.Position().Distance(object->Position());
+						const Planet *planet = object->GetPlanet();
+						types.insert(planet->Noun());
+						if((!planet->CanLand() || !planet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+								&& !planet->IsWormhole())
+							distance += 10000.;
+
+						if(distance < closest)
+						{
+							ship.SetTargetStellar(object);
+							closest = distance;
+						}
 					}
 				}
+				target = ship.GetTargetStellar();
 			}
-			target = ship.GetTargetStellar();
-		}
 
-		if(!target)
-		{
-			message = "There are no planets in this system that you can land on.";
-			messageImportance = Messages::Importance::Highest;
-			Audio::Play(Audio::Get("fail"));
-		}
-		else if(!target->GetPlanet()->CanLand())
-		{
-			message = "The authorities on this " + target->GetPlanet()->Noun() +
-				" refuse to clear you to land here.";
-			messageImportance = Messages::Importance::Highest;
-			Audio::Play(Audio::Get("fail"));
-		}
-		else if(!types.empty())
-		{
-			message = "You can land on more than one ";
-			set<string>::const_iterator it = types.begin();
-			message += *it++;
-			if(it != types.end())
+			if(!target)
 			{
-				set<string>::const_iterator last = --types.end();
-				if(it != last)
-					message += ',';
-				while(it != last)
-					message += ' ' + *it++ + ',';
-				message += " or " + *it;
+				message = "There are no planets in this system that you can land on.";
+				messageImportance = Messages::Importance::Highest;
+				Audio::Play(Audio::Get("fail"));
 			}
-			message += " in this system. Landing on " + target->Name() + ".";
+			else if(!target->GetPlanet()->CanLand())
+			{
+				message = "The authorities on this " + target->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
+				messageImportance = Messages::Importance::Highest;
+				Audio::Play(Audio::Get("fail"));
+			}
+			else if(!types.empty())
+			{
+				message = "You can land on more than one ";
+				set<string>::const_iterator it = types.begin();
+				message += *it++;
+				if(it != types.end())
+				{
+					set<string>::const_iterator last = --types.end();
+					if(it != last)
+						message += ',';
+					while(it != last)
+						message += ' ' + *it++ + ',';
+					message += " or " + *it;
+				}
+				message += " in this system. Landing on " + target->Name() + ".";
+			}
+			else
+				message = "Landing on " + target->Name() + ".";
 		}
-		else
-			message = "Landing on " + target->Name() + ".";
 		if(!message.empty())
 			Messages::Add(message, messageImportance);
 	}

@@ -1220,7 +1220,10 @@ tip "Auto steer"
 	`If the "Automatic aiming" setting is off, activate automatic aiming when this key is held.`
 
 tip "Land on planet / station"
-	`Land on the selected planet. If no planet is selected, automatically selects a planet to land on, or attempts to land on the planet you are directly on top of if traveling at low speeds. If a planet is already selected, double tapping will cycle to the next planet.`
+	`Land on the selected planet. If no planet is selected, automatically selects a planet to land on, or attempts to land on the planet you are directly on top of if traveling at low speeds.`
+
+tip "Select planet / station"
+	`Select a planet or station that can be landed on. If one is already selected, cycle to the next one.`
 
 tip "Initiate hyperspace jump"
 	`Initiate a hyperspace jump to follow your current travel plan. If you have no travel plan, initiates a jump nearest to your current facing angle. When held, commands your escorts to get ready to jump and only initiates the jump when released.`
