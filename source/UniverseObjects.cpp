@@ -144,10 +144,14 @@ void UniverseObjects::Change(const DataNode &node)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
+	else if(node.Token(0) == "outfitterStock" && node.Size() >= 2)
+		outfitRandomStock.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
 		planets.Get(node.Token(1))->Load(node, wormholes);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
+	else if(node.Token(0) == "shipyardStock" && node.Size() >= 2)
+		shipRandomStock.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
 		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)

@@ -24,6 +24,56 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
+// Struct representing an item that may sometimes be in stock.
+template <class Item>
+struct RandomStockItem
+{
+	const Item *item;
+	int probability = 100;
+	int quantity = 1;
+};
+
+
+
+// Class representing a set of items that is sometimes in stock.
+template <class Item>
+class RandomStock : public std::list<RandomStockItem<Item>>
+{
+public:
+	void Load(const DataNode &node, const Set<Item> &items);
+};
+
+
+
+template <class Item>
+void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
+{
+	for(const DataNode &child : node)
+	{
+		const std::string &token = child.Token(0);
+		bool remove = (token == "clear" || token == "remove");
+		if(remove && child.Size() == 1)
+			this->clear();
+		else if(remove && child.Size() >= 2)
+		{
+			const auto it = items.Get(child.Token(1));
+			this->remove_if([&it](RandomStockItem<Item> o){ return o.item == it; });
+		}
+		else
+		{
+			int index = token == "add" ? 1 : 0;
+			RandomStockItem<Item> rs = { items.Get(child.Token(index++)) };
+			if(child.Size() >= index)
+				rs.probability = std::stoi(child.Token(index++));
+			if(child.Size() >= index)
+				rs.quantity = std::stoi(child.Token(index++));
+			this->emplace(rs); // FIXME This doesn't compile because it can't find emplace for some reason.
+		}
+	}
+}
+
+
+
 // Class representing a set of items that are for sale on a given planet.
 // Multiple sale sets can be merged together into a single one.
 template <class Item>

@@ -124,6 +124,8 @@ private:
 	Set<TestData> testDataSets;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
+	Set<RandomStock<Ship>> shipRandomStock;
+	Set<RandomStock<Outfit>> outfitRandomStock;
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 

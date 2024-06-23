@@ -447,6 +447,13 @@ const Sale<Ship> &Planet::Shipyard() const
 }
 
 
+// Get ships that may be on sale.
+const std::list<const RandomStock<Ship> *> &Planet::ShipRandomStock() const
+{
+	return shipRandomStock;
+}
+
+
 
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
@@ -464,6 +471,14 @@ const Sale<Outfit> &Planet::Outfitter() const
 		outfitter.Add(*sale);
 
 	return outfitter;
+}
+
+
+
+// Get outfits that may be on sale.
+const std::list<const RandomStock<Outfit> *> &Planet::OutfitRandomStock() const
+{
+	return outfitRandomStock;
 }
 
 

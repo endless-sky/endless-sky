@@ -101,10 +101,14 @@ public:
 	bool HasShipyard() const;
 	// Get the list of ships in the shipyard.
 	const Sale<Ship> &Shipyard() const;
+	// Get ships that may be on sale.
+	const std::list<const RandomStock<Ship> *> &ShipRandomStock() const;
 	// Check if this planet has an outfitter.
 	bool HasOutfitter() const;
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
+	// Get outfits that may be on sale.
+	const std::list<const RandomStock<Outfit> *> &OutfitRandomStock() const;
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -172,6 +176,10 @@ private:
 	// first asked for:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
+
+	// Ships and outfits that may randomly be in stock.
+	std::list<const RandomStock<Ship> *> shipRandomStock;
+	std::list<const RandomStock<Outfit> *> outfitRandomStock;
 
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
