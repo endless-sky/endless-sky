@@ -1083,7 +1083,7 @@ ship "Penguin"
 		"bunks" 3
 		"mass" 89
 		"drag" 1.37
-		"heat dissipation" 0.82
+		"heat dissipation" 0.88
 		"fuel capacity" 800
 		"energy capacity" 300
 		"ramscoop" 1.25
@@ -1107,9 +1107,17 @@ ship "Penguin"
 		"scramble protection" 0.25
 		"ion resistance" 0.05
 		"scramble resistance" 0.05
-		"thrust" 4.2
-		"turn" 80.0
-		"reverse thrust" 4.2
+		"thrust" 6.3
+		"thrusting energy" 0.6
+		"thrusting heat" 0.55
+		"turn" 120.0
+		"turning energy" 0.22
+		"turning heat" 0.24
+		"reverse thrust" 6.3
+		"reverse thrusting energy" 0.55
+		"reverse thrusting heat" 0.55
+		"energy generation" 0.6
+		"heat generation" 1
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
