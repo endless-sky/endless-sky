@@ -67,14 +67,11 @@ ipch/
 .idea/
 .idea_modules/
 compile_commands.json
-<<<<<<< HEAD
 /.gitmodules
 *.swp
 *.swo
-=======
 CMakeUserPresets.json
 .gitmodules
 
 # static code analysis
 /.scannerwork
->>>>>>> v0.10.0

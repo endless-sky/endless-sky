@@ -567,7 +567,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 
-	// Fill in any undefined state colors. By default labels are "medium", strings
+	// Fill in any undefined state colors. By default, labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
 	if(!color[Element::ACTIVE] && !buttonKey && command == Command::NONE)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
