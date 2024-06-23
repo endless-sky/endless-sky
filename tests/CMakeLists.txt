@@ -9,6 +9,7 @@ if(NOT MSVC)
 endif()
 
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+message(VCPKG_TARGET_TRIPLET)
 if(VCPKG_TARGET_TRIPLET STREQUAL "x64-linux-dynamic")
 	set(TRIPLET="x64-linux")
 else()
