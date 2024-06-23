@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
+#include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
@@ -23,8 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Phrase.h"
 
 #include <map>
-#include <memory>
 #include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -71,18 +73,41 @@ public:
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs,
+	MissionAction Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
 		const System *origin, int jumps, int64_t payload) const;
 
 	int64_t Payment() const noexcept;
+
+
+private:
+	class MissionDialog {
+	public:
+		MissionDialog(const ExclusiveItem<Phrase> &);
+		MissionDialog(const std::string &);
+		MissionDialog(const DataNode &);
+
+
+		std::string dialogText;
+		ExclusiveItem<Phrase> dialogPhrase;
+		ConditionSet condition;
+	};
+
+
+private:
+	std::string CollapseDialog(const ConditionsStore *store, const std::map<std::string, std::string> *subs) const;
+
 
 private:
 	std::string trigger;
 	std::string system;
 	LocationFilter systemFilter;
 
+	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
 	std::string dialogText;
-	ExclusiveItem<Phrase> dialogPhrase;
+
+	// Logic for creating dialog text. Only valid for missions read in from game data files.
+	std::vector<MissionDialog> dialog;
+
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
