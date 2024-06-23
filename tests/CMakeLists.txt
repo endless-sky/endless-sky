@@ -8,14 +8,17 @@ if(NOT MSVC)
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
+# Enable vcpkg packages.
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-message("target triplet=${VCPKG_TARGET_TRIPLET}")
-if(VCPKG_TARGET_TRIPLET STREQUAL "x64-linux-dynamic")
+if(UNIX AND NOT APPLE)
 	set(TRIPLET="x64-linux")
+elseif(WIN32)
+	set(TRIPLET="${VCPKG_TARGET_ARCHITECTURE}-windows")
 else()
 	set(TRIPLET=VCPKG_TARGET_TRIPLET)
 endif()
 set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/${TRIPLET}")
+
 find_package(Catch2 CONFIG REQUIRED)
 
 # Every source file (and header file) should be listed here.
