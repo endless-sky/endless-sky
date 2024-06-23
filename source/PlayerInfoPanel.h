@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Color.h"
 #include "InfoPanelState.h"
 #include "text/layout.hpp"
 #include "Point.h"
@@ -61,6 +62,8 @@ private:
 	void DrawPlayer(const Rectangle &bounds);
 	void DrawFleet(const Rectangle &bounds);
 
+	void DrawTooltip(const std::string &text, const Point &hoverPoint);
+
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
 	// Adjust the scroll by the given amount. Return true if it changed.
@@ -73,6 +76,8 @@ private:
 	class SortableColumn {
 	public:
 		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
+
+		std::string Tooltip() const;
 
 		std::string name;
 		double offset = 0.;
@@ -89,7 +94,7 @@ private:
 	InfoPanelState panelState;
 
 	// Column headers that sort ships when clicked.
-	std::vector<ClickZone<InfoPanelState::ShipComparator *>> menuZones;
+	std::vector<ClickZone<PlayerInfoPanel::SortableColumn>> menuZones;
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
