@@ -9,17 +9,7 @@ if(NOT MSVC)
 endif()
 
 # Enable vcpkg packages.
-
-
-# Print subdirectories
-file (GLOB_RECURSE files "${CMAKE_SOURCE_DIR}/**/*")
-message(STATUS "Subdirectories in ${CMAKE_SOURCE_DIR}:")
-foreach(file ${files})
-	message(STATUS "  ${file}")
-endforeach()
-
-
-
+# For some reason, they don't get detected automatically in this multi-level config.
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 if(UNIX AND NOT APPLE)
 	set(CUSTOM_PATH "vcpkg_installed/x64-linux")
@@ -33,7 +23,6 @@ else()
 	endif()
 endif()
 set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/${CUSTOM_PATH}")
-message("Prefix is ${CMAKE_PREFIX_PATH}")
 
 find_package(Catch2 CONFIG REQUIRED)
 
