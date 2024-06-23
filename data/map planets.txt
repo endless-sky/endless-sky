@@ -2449,6 +2449,9 @@ planet "Kort Kehai"
 	spaceport `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
 	"required reputation" 2
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 3
 
 planet "Kort Vek'kri"
 	attributes wanderer
@@ -2457,6 +2460,9 @@ planet "Kort Vek'kri"
 	spaceport `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
 	"required reputation" 2
 	bribe 0
+	tribute 500
+		threshold 2000
+		fleet "Wanderer Defense" 4
 
 planet "Kraken Station"
 	attributes "near earth" station
@@ -4495,10 +4501,13 @@ planet "Tik Klai"
 	attributes research wanderer
 	landscape land/badlands2
 	description `This world is uncomfortably hot, even for the Wanderers, and so close to its star that the surface is bathed in dangerous levels of ultraviolet light. The few Wanderer installations here are buried underground, with only a few access hatches and storage buildings on the surface.`
-	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
+	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the Wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
 	spaceport `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
 	"required reputation" 35
 	bribe 0
+	tribute 600
+		threshold 3500
+		fleet "Wanderer Defense" 4
 
 planet Tinker
 	attributes factory mining "near earth"
@@ -4688,6 +4697,9 @@ planet "Var' Kar'i'i"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 1700
+		threshold 5000
+		fleet "Wanderer Defense" 7
 
 planet "Var' Kayi"
 	attributes urban wanderer
@@ -4699,6 +4711,9 @@ planet "Var' Kayi"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 4500
+		threshold 12500
+		fleet "Wanderer Defense" 12
 
 planet "Var' Roi"
 	attributes frozen moon research wanderer
@@ -4707,6 +4722,9 @@ planet "Var' Roi"
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
 	"required reputation" 25
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 4
 
 planet "Vara K'chrai"
 	attributes urban wanderer
@@ -4717,6 +4735,9 @@ planet "Vara K'chrai"
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
 	bribe 0
+	tribute 8000
+		threshold 14000
+		fleet "Wanderer Defense" 17
 
 planet "Vara Ke'sok"
 	attributes fishing wanderer
@@ -4725,6 +4746,9 @@ planet "Vara Ke'sok"
 	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
 	"required reputation" 5
 	bribe 0
+	tribute 500
+		threshold 2500
+		fleet "Wanderer Defense" 4
 
 planet "Vara Ke'stai"
 	attributes farming wanderer
@@ -4734,6 +4758,9 @@ planet "Vara Ke'stai"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 650
+		threshold 4300
+		fleet "Wanderer Defense" 3
 
 planet "Vara Kehi'ki"
 	attributes farming research wanderer
@@ -4743,6 +4770,9 @@ planet "Vara Kehi'ki"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 900
+		threshold 3500
+		fleet "Wanderer Defense" 5
 
 planet "Vara Pug"
 	attributes pug
@@ -4763,6 +4793,9 @@ planet "Vara Rakak"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 2300
+		threshold 6500
+		fleet "Wanderer Defense" 5
 
 planet "Varu Ek'lak'lai"
 	attributes mining wanderer
@@ -4773,6 +4806,9 @@ planet "Varu Ek'lak'lai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 1300
+		threshold 3400
+		fleet "Wanderer Defense" 4
 
 planet "Varu K'est"
 	attributes military wanderer
@@ -4783,6 +4819,9 @@ planet "Varu K'est"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 5500
+		fleet "Wanderer Defense" 16
 
 planet "Varu K'prai"
 	attributes oil wanderer
@@ -4792,6 +4831,10 @@ planet "Varu K'prai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 800
+		threshold 1800
+		fleet "Wanderer Defense" 2
+		fleet "Wanderer Freight" 4
 
 planet "Varu Mer'ek"
 	attributes factory wanderer
@@ -4802,6 +4845,9 @@ planet "Varu Mer'ek"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 3200
+		fleet "Wanderer Defense" 3
 
 planet "Varu Tek'kai"
 	attributes factory moon wanderer
@@ -4811,6 +4857,9 @@ planet "Varu Tek'kai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 200
+		threshold 1700
+		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
 	attributes factory wanderer
@@ -4820,6 +4869,9 @@ planet "Varu Tev'kei"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 500
+		threshold 1950
+		fleet "Wanderer Defense" 5
 
 planet Vatican
 	attributes lava uninhabited
