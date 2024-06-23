@@ -4832,7 +4832,7 @@ planet "Varu K'prai"
 	"required reputation" 15
 	bribe 0
 	tribute 800
-		threshold 1200
+		threshold 1800
 		fleet "Wanderer Defense" 2
 		fleet "Wanderer Freight" 4
 
