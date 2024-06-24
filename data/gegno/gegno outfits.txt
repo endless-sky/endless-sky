@@ -819,7 +819,7 @@ outfit "Excavator"
 		"minable damage" 104
 		"prospecting" 145
 		"hit force" -6
-	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
+	description `Excavators are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
 
 effect "excavate"
 	sprite "effect/smoke"
