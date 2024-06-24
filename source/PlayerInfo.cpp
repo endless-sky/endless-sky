@@ -4477,7 +4477,6 @@ void PlayerInfo::Save(DataWriter &out) const
 		}
 		out.EndChild();
 	}
-
 	if(!stockDiscounts.empty())
 	{
 		out.Write("discounts");
@@ -4507,7 +4506,6 @@ void PlayerInfo::Save(DataWriter &out) const
 		}
 		out.EndChild();
 	}
-
 	if(!shipStockDiscounts.empty())
 	{
 		out.Write("ship discounts");
