@@ -410,7 +410,7 @@ news "hai attacked by pirates"
 		word
 			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well join the Unfettered now that I have nothing to lose."
 			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look where that got them! I will join the Unfettered; they are right."
-			"Human ships are so frail... my sister was on one, and she told me it lost all of its shields in a few shots! Thankfully, human weapons are not that strong either, so they were able to escape." 3
+			"Human ships are so frail... My sister was on one, and she told me it lost all of its shields in a few shots! Thankfully, human weapons are not that strong either, so they were able to escape." 3
 			"You call these human vessels ships? They just barely protect against the void. Given the danger of human space, I would expect humans to have more heavy transports that can at least try to defend themselves, such as the Behemoth!" 2
 			"No wonder you have so many pirates in your space, with those fragile freighters you have. So much cargo with so little protection is pure madness! That is why I love humans." 3
 		word
