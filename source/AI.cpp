@@ -4222,7 +4222,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 		Messages::Importance messageImportance = Messages::Importance::High;
 
-		if (message.empty())
+		if(message.empty())
 		{
 			// Land on the nearest eligible planet. Prefer inhabited ones with fuel.
 			set<string> types;
