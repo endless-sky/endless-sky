@@ -391,14 +391,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'k' || (key == 'p' && (mod & KMOD_SHIFT)))
 	{
 		const Ship *flagship = player.Flagship();
-		set<const Ship *> selectedEscorts;
-		copy_if(playerShips.begin(), playerShips.end(), inserter(selectedEscorts, selectedEscorts.end()),
-			[&](const Ship *ship){ return ship != flagship; });
-		bool allParked = all_of(selectedEscorts.begin(), selectedEscorts.end(),
-			[&](const Ship *ship){ return ship->IsParked() && !ship->IsDisabled(); });
+		bool anyEscortUnparked = any_of(playerShips.begin(), playerShips.end(),
+			[&](const Ship *ship){ return ship != flagship && !ship->IsParked() && !ship->IsDisabled(); });
 		for(const Ship *ship : playerShips)
 			if(ship != flagship && !ship->IsDisabled())
-				player.ParkShip(ship, !allParked);
+				player.ParkShip(ship, anyEscortUnparked);
 	}
 	else if(key >= '0' && key <= '9')
 	{
