@@ -79,7 +79,7 @@ namespace {
 			cout << DataWriter::Quote(saleIt.first);
 			int index = 0;
 			for(auto &item : saleIt.second)
-				cout << (index++ ? ';' : ',') <<DataWriter::Quote(ObjectName(*item));
+				cout << (index++ ? ';' : ',') << DataWriter::Quote(ObjectName(*item));
 			cout << '\n';
 		}
 	}
