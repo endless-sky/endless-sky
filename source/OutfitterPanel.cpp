@@ -383,6 +383,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	{
 		// Determine what you will have to pay to buy this outfit.
 		int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
+		cost = cost * (100 - player.StockDiscount(selectedOutfit)) / 100;
 		int64_t credits = player.Accounts().Credits();
 
 		if(cost > credits)
@@ -520,6 +521,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 					continue;
 				player.Cargo().Add(selectedOutfit);
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+				price = price * (100 - player.StockDiscount(selectedOutfit)) / 100;
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -1);
 				continue;
@@ -543,6 +545,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 			else
 			{
 				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+				price = price * (100 - player.StockDiscount(selectedOutfit)) / 100;
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -1);
 			}
@@ -593,6 +596,7 @@ void OutfitterPanel::Sell(bool toStorage)
 		else
 		{
 			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+			price = price * (100 - player.StockDiscount(selectedOutfit)) / 100;
 			player.Accounts().AddCredits(price);
 			player.AddStock(selectedOutfit, 1);
 		}
@@ -628,6 +632,7 @@ void OutfitterPanel::Sell(bool toStorage)
 			else
 			{
 				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+				price = price * (100 - player.StockDiscount(selectedOutfit)) / 100;
 				player.Accounts().AddCredits(price);
 				player.AddStock(selectedOutfit, 1);
 			}
@@ -649,6 +654,7 @@ void OutfitterPanel::Sell(bool toStorage)
 					if(mustSell)
 					{
 						int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
+						price = price * (100 - player.StockDiscount(ammo)) / 100;
 						player.Accounts().AddCredits(price);
 						player.AddStock(ammo, mustSell);
 					}
@@ -662,6 +668,7 @@ void OutfitterPanel::Sell(bool toStorage)
 	{
 		storage.Remove(selectedOutfit);
 		int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+		price = price * (100 - player.StockDiscount(selectedOutfit)) / 100;
 		player.Accounts().AddCredits(price);
 		player.AddStock(selectedOutfit, 1);
 	}
@@ -909,7 +916,7 @@ void OutfitterPanel::CheckRefill()
 		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage().Get(it.first));
 		if(!outfitter.Has(it.first))
 			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += player.StockDepreciation().Value(it.first, day, it.second);
+		cost += player.StockDepreciation().Value(it.first, day, it.second) * (100 - player.StockDiscount(it.first)) / 100;
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
@@ -948,6 +955,7 @@ void OutfitterPanel::Refill()
 				if(neededAmmo && available > 0)
 				{
 					int64_t price = player.StockDepreciation().Value(outfit, day, available);
+					price = price * (100 - player.StockDiscount(outfit)) / 100;
 					player.Accounts().AddCredits(-price);
 					player.AddStock(outfit, -available);
 				}

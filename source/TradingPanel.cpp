@@ -264,6 +264,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
+			value = value * (100 - player.StockDiscount(outfit)) / 100;
 			profit += value;
 			tonsSold += static_cast<int>(amount * outfit->Mass());
 

@@ -117,6 +117,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "shipyardStock")
+				shipRandomStock.clear();
+			else if(key == "outfitterStock")
+				outfitRandomStock.clear();
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "required reputation")
@@ -167,6 +171,20 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				outfitSales.erase(GameData::Outfitters().Get(value));
 			else
 				outfitSales.insert(GameData::Outfitters().Get(value));
+		}
+		else if(key == "shipyardStock")
+		{
+			if(remove)
+				shipRandomStock.erase(GameData::ShipRandomStocks().Get(value));
+			else
+				shipRandomStock.insert(GameData::ShipRandomStocks().Get(value));
+		}
+		else if(key == "outfitterStock")
+		{
+			if(remove)
+				outfitRandomStock.erase(GameData::OutfitRandomStocks().Get(value));
+			else
+				outfitRandomStock.insert(GameData::OutfitRandomStocks().Get(value));
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
@@ -448,7 +466,7 @@ const Sale<Ship> &Planet::Shipyard() const
 
 
 // Get ships that may be on sale.
-const std::list<const RandomStock<Ship> *> &Planet::ShipRandomStock() const
+const std::set<const RandomStock<Ship> *> &Planet::ShipRandomStock() const
 {
 	return shipRandomStock;
 }
@@ -476,7 +494,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 
 
 // Get outfits that may be on sale.
-const std::list<const RandomStock<Outfit> *> &Planet::OutfitRandomStock() const
+const std::set<const RandomStock<Outfit> *> &Planet::OutfitRandomStock() const
 {
 	return outfitRandomStock;
 }

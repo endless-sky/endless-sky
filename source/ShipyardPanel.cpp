@@ -123,7 +123,7 @@ int ShipyardPanel::TileSize() const
 bool ShipyardPanel::HasItem(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	return shipyard.Has(ship);
+	return shipyard.Has(ship) || player.ShipStock(ship) > 0;
 }
 
 
@@ -136,6 +136,18 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 		return;
 
 	DrawShip(*ship, point, ship == selectedShip);
+
+	// Don't show the "in stock" amount if the ship has an unlimited stock.
+	if(!shipyard.Has(ship) && player.ShipStock(ship) > 0)
+	{
+		const Font &font = FontSet::Get(14);
+		const Color &bright = *GameData::Colors().Get("bright");
+		string message = "in stock: " + to_string(player.ShipStock(ship));
+		Point pos = point + Point(
+			SHIP_SIZE / 2 - 20 - font.Width(message),
+			SHIP_SIZE / 2 - 24);
+		font.Draw(message, pos, bright);
+	}
 }
 
 
@@ -233,6 +245,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 		return false;
 
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
+	cost = cost * (100 - player.ShipStockDiscount(selectedShip)) / 100;
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
@@ -275,6 +288,9 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return;
+
+	if(!shipyard.Has(selectedShip))
+		player.RemoveShipStock(selectedShip);
 
 	modifier = Modifier();
 	string message;

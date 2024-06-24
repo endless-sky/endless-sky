@@ -29,8 +29,12 @@ template <class Item>
 struct RandomStockItem
 {
 	const Item *item;
-	int probability = 100;
-	int quantity = 1;
+	// Probability this item is in stock, in percent.
+	unsigned int probability = 100;
+	// The number of such items in stock.
+	unsigned int quantity = 1;
+	// Percentage discount on the normal price.
+	int discount = 0;
 };
 
 
@@ -63,11 +67,19 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 		{
 			int index = token == "add" ? 1 : 0;
 			RandomStockItem<Item> rs = { items.Get(child.Token(index++)) };
-			if(child.Size() >= index)
+			if(child.Size() > index)
 				rs.probability = std::stoi(child.Token(index++));
-			if(child.Size() >= index)
-				rs.quantity = std::stoi(child.Token(index++));
-			this->emplace(rs); // FIXME This doesn't compile because it can't find emplace for some reason.
+
+			for(const DataNode &grand : child)
+			{
+				const std::string &grandToken = grand.Token(0);
+				if(grandToken == "quantity")
+					rs.quantity = std::stoi(grand.Token(1));
+				if(grandToken == "discount")
+					rs.discount = std::stoi(grand.Token(1));
+			}
+
+			this->push_back(rs);
 		}
 	}
 }

@@ -315,10 +315,17 @@ public:
 	// available to buy back until you take off.
 	const std::map<const Outfit*, int> &GetStock() const;
 	int Stock(const Outfit *outfit) const;
+	int StockDiscount(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
+
+	// Any ships that are in stock due to random stocking.
+	const std::map<const Ship*, int> &GetShipStock() const;
+	int ShipStock(const Ship *ship) const;
+	int ShipStockDiscount(const Ship *ship) const;
+	void RemoveShipStock(const Ship *ship);
 
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
@@ -351,6 +358,8 @@ private:
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
+	// Planets may have random items in stock, which is also generated when you land.
+	void CreateRandomStock();
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
@@ -440,6 +449,9 @@ private:
 	std::set<const Outfit *> selectedWeapons;
 
 	std::map<const Outfit *, int> stock;
+	std::map<const Outfit *, int> stockDiscounts;
+	std::map<const Ship *, int> shipStock;
+	std::map<const Ship *, int> shipStockDiscounts;
 	Depreciation depreciation;
 	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;

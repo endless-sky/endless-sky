@@ -373,6 +373,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
+		else if(key == "outfitterStock" && node.Size() >= 2)
+			outfitRandomStock.Get(node.Token(1))->Load(node, outfits);
 		else if(key == "person" && node.Size() >= 2)
 			persons.Get(node.Token(1))->Load(node);
 		else if(key == "phrase" && node.Size() >= 2)
@@ -387,6 +389,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
+		else if(key == "shipyardStock" && node.Size() >= 2)
+			shipRandomStock.Get(node.Token(1))->Load(node, ships);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
