@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_DATA_H_
 
 #include "CategoryTypes.h"
+#include "RandomStock.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"

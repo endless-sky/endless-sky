@@ -24,67 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Struct representing an item that may sometimes be in stock.
-template <class Item>
-struct RandomStockItem
-{
-	const Item *item;
-	// Probability this item is in stock, in percent.
-	unsigned int probability = 100;
-	// The number of such items in stock.
-	unsigned int quantity = 1;
-	// Percentage discount on the normal price.
-	int discount = 0;
-};
-
-
-
-// Class representing a set of items that is sometimes in stock.
-template <class Item>
-class RandomStock : public std::list<RandomStockItem<Item>>
-{
-public:
-	void Load(const DataNode &node, const Set<Item> &items);
-};
-
-
-
-template <class Item>
-void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
-{
-	for(const DataNode &child : node)
-	{
-		const std::string &token = child.Token(0);
-		bool remove = (token == "clear" || token == "remove");
-		if(remove && child.Size() == 1)
-			this->clear();
-		else if(remove && child.Size() >= 2)
-		{
-			const auto it = items.Get(child.Token(1));
-			this->remove_if([&it](RandomStockItem<Item> o){ return o.item == it; });
-		}
-		else
-		{
-			RandomStockItem<Item> rs = { items.Get(child.Token(token == "add" ? 1 : 0)) };
-
-			for(const DataNode &grand : child)
-			{
-				const std::string &grandToken = grand.Token(0);
-				if(grandToken == "probability")
-					rs.probability = std::stoi(grand.Token(1));
-				if(grandToken == "quantity")
-					rs.quantity = std::stoi(grand.Token(1));
-				if(grandToken == "discount")
-					rs.discount = std::stoi(grand.Token(1));
-			}
-
-			this->push_back(rs);
-		}
-	}
-}
-
-
-
 // Class representing a set of items that are for sale on a given planet.
 // Multiple sale sets can be merged together into a single one.
 template <class Item>

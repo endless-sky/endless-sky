@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Paragraphs.h"
 #include "Port.h"
+#include "RandomStock.h"
 #include "Sale.h"
 
 #include <list>
