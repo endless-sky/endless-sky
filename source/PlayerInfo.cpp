@@ -1347,7 +1347,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
 	// Check if the ship in the first position can be a flagship and is in the current system.
-	vector<shared_ptr<Ship>>::iterator firstShipIt = ships.begin();
+	auto firstShipIt = ships.begin();
 	if(Preferences::Has("Automatically unpark flagship")
 			&& (*firstShipIt)->CanBeFlagship() && (*firstShipIt)->GetSystem() == system)
 	{
@@ -1372,13 +1372,11 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 		shared_ptr<Ship> newFirstShip = ships.front();
 		// Check if the position of the flagship has changed and
 		// if the ship in the first position can be a flagship and is in the current system.
-		if(newFirstShip != oldFirstShip && Preferences::Has("Automatically unpark flagship"))
+		if(newFirstShip != oldFirstShip && Preferences::Has("Automatically unpark flagship")
+				&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system)
 		{
-			if(newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system)
-			{
-				newFirstShip->SetIsParked(false);
-				oldFirstShip->SetIsParked(true);
-			}
+			newFirstShip->SetIsParked(false);
+			oldFirstShip->SetIsParked(true);
 		}
 		flagship.reset();
 	}
