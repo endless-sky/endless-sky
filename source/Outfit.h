@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dictionary.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -44,6 +45,7 @@ public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
 
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
@@ -60,8 +62,10 @@ public:
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
-	// Get the licenses needed to buy or operate this ship.
+	// Get the licenses needed to buy this item.
 	const std::vector<std::string> &Licenses() const;
+	// Get the tags that have been placed on this item.
+	const std::set<std::string> &Tags() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 
@@ -124,6 +128,7 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
+	std::set<std::string> tags;
 
 	Dictionary attributes;
 

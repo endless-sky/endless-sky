@@ -288,13 +288,21 @@ void Outfit::Load(const DataNode &node)
 		{
 			// Add any new licenses that were specified "inline".
 			if(child.Size() >= 2)
-			{
 				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
 					AddLicense(*it);
-			}
 			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
+		}
+		else if(child.Token(0) == "tag" && (child.HasChildren() || child.Size() >= 2))
+		{
+			// Add any new tags that were specified "inline".
+			if(child.Size() >= 2)
+				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+					tags.insert(*it);
+			// Add any new tags that were specified as an indented list.
+			for(const DataNode &grand : child)
+				tags.insert(grand.Token(0));
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
@@ -443,10 +451,18 @@ const string &Outfit::Description() const
 
 
 
-// Get the licenses needed to purchase this outfit.
+// Get the licenses needed to purchase this item.
 const vector<string> &Outfit::Licenses() const
 {
 	return licenses;
+}
+
+
+
+	// Get the tags that have been placed on this item.
+const set<string> &Outfit::Tags() const
+{
+	return tags;
 }
 
 
