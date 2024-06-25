@@ -461,7 +461,7 @@ const Sale<Ship> &Planet::Shipyard() const
 
 
 // Get ships that may be on sale.
-const std::set<const RandomStock<Ship> *> &Planet::ShipRandomStock() const
+const set<const RandomStock<Ship> *> &Planet::ShipRandomStock() const
 {
 	return shipRandomStock;
 }
@@ -489,7 +489,7 @@ const Sale<Outfit> &Planet::Outfitter() const
 
 
 // Get outfits that may be on sale.
-const std::set<const RandomStock<Outfit> *> &Planet::OutfitRandomStock() const
+const set<const RandomStock<Outfit> *> &Planet::OutfitRandomStock() const
 {
 	return outfitRandomStock;
 }

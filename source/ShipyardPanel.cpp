@@ -289,12 +289,8 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	if(licenseCost < 0)
 		return;
 
-
-
 	if(!shipyard.Has(selectedShip))
 		player.RemoveShipStock(selectedShip);
-
-
 
 	modifier = Modifier();
 	string message;

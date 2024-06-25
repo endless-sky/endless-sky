@@ -2959,7 +2959,7 @@ int PlayerInfo::ShipStockDiscount(const Ship *ship) const
 
 void PlayerInfo::RemoveShipStock(const Ship *ship)
 {
-	shipStock[ship]--;
+	shipStock[ship] = max(shipStock[ship] - 1, 0);
 }
 
 
@@ -4076,7 +4076,7 @@ void PlayerInfo::CreateRandomStock()
 			if(!planet->Outfitter().Has(stockItem.item) && Random::Int(100) < stockItem.probability)
 			{
 				stock[stockItem.item] += stockItem.quantity;
-				stockDiscounts[stockItem.item] = std::max(stockItem.discount, stockDiscounts[stockItem.item]);
+				stockDiscounts[stockItem.item] = max(stockItem.discount, stockDiscounts[stockItem.item]);
 			}
 
 	for(const auto &rStock : planet->ShipRandomStock())
@@ -4084,7 +4084,7 @@ void PlayerInfo::CreateRandomStock()
 			if(!planet->Shipyard().Has(stockItem.item) && Random::Int(100) < stockItem.probability)
 			{
 				shipStock[stockItem.item] += stockItem.quantity;
-				shipStockDiscounts[stockItem.item] = std::max(stockItem.discount, shipStockDiscounts[stockItem.item]);
+				shipStockDiscounts[stockItem.item] = max(stockItem.discount, shipStockDiscounts[stockItem.item]);
 			}
 }
 
@@ -4483,7 +4483,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.BeginChild();
 		for(const auto &it : stockDiscounts)
 		{
-			if(it.second != 0)
+			if(it.second)
 				out.Write(it.first->TrueName(), it.second);
 		}
 		out.EndChild();
@@ -4512,7 +4512,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.BeginChild();
 		for(const auto &it : shipStockDiscounts)
 		{
-			if(it.second != 0)
+			if(it.second)
 				out.Write(it.first->VariantName(), it.second);
 		}
 		out.EndChild();
