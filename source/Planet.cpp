@@ -117,9 +117,9 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
-			else if(key == "shipyardStock")
+			else if(key == "shipyard stock")
 				shipRandomStock.clear();
-			else if(key == "outfitterStock")
+			else if(key == "outfitter stock")
 				outfitRandomStock.clear();
 			else if(key == "government")
 				government = nullptr;
@@ -172,14 +172,14 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else
 				outfitSales.insert(GameData::Outfitters().Get(value));
 		}
-		else if(key == "shipyardStock")
+		else if(key == "shipyard stock")
 		{
 			if(remove)
 				shipRandomStock.erase(GameData::ShipRandomStocks().Get(value));
 			else
 				shipRandomStock.insert(GameData::ShipRandomStocks().Get(value));
 		}
-		else if(key == "outfitterStock")
+		else if(key == "outfitter stock")
 		{
 			if(remove)
 				outfitRandomStock.erase(GameData::OutfitRandomStocks().Get(value));

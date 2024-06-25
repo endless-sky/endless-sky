@@ -65,14 +65,13 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 		}
 		else
 		{
-			int index = token == "add" ? 1 : 0;
-			RandomStockItem<Item> rs = { items.Get(child.Token(index++)) };
-			if(child.Size() > index)
-				rs.probability = std::stoi(child.Token(index++));
+			RandomStockItem<Item> rs = { items.Get(child.Token(token == "add" ? 1 : 0)) };
 
 			for(const DataNode &grand : child)
 			{
 				const std::string &grandToken = grand.Token(0);
+				if(grandToken == "probability")
+					rs.probability = std::stoi(grand.Token(1));
 				if(grandToken == "quantity")
 					rs.quantity = std::stoi(grand.Token(1));
 				if(grandToken == "discount")
