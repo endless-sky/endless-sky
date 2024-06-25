@@ -111,7 +111,6 @@ namespace {
 		wrap.Draw(anchor - textSize + Point(PAD, PAD), *textColor);
 	}
 
-
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		return lhs->Name() < rhs->Name();
