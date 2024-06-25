@@ -109,13 +109,13 @@ ship "Antlion"
 	attributes
 		category "Heavy Warship"
 		cost 35200000
-		mass 520
+		mass 728
 		bunks 67
 		"cargo space" 56
-		drag 6.9
+		drag 9.6
 		"engine capacity" 180
 		"fuel capacity" 700
-		"heat dissipation" 0.66
+		"heat dissipation" 0.47
 		hull 9000
 		"outfit space" 696
 		"required crew" 35
@@ -244,10 +244,10 @@ ship "Sea Dragon"
 		hull 5600
 		"required crew" 20
 		bunks 34
-		mass 330
-		drag 5
+		mass 800
+		drag 8
 		"fuel capacity" 600
-		"heat dissipation" .6
+		"heat dissipation" .45
 		"cargo space" 20
 		"outfit space" 555
 		"weapon capacity" 188
