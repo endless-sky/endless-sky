@@ -46,8 +46,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-class Color;
-
 namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
