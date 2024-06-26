@@ -111,6 +111,7 @@ outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
 	thumbnail "outfit/medium quarg thruster"
+	"thruster accessory slot" 1
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70

@@ -147,6 +147,7 @@ outfit "RG15 Torch Thruster"
 		"Gegno Civilian"
 	cost 17000
 	thumbnail "outfit/small torch thruster vi"
+	"thruster accessory slot" 1
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
@@ -183,6 +184,7 @@ outfit "RG18 Torch Thruster"
 		"Gegno Civilian"
 	cost 38000
 	thumbnail "outfit/medium torch thruster vi"
+	"thruster accessory slot" 1
 	"mass" 51
 	"outfit space" -51
 	"engine capacity" -51
@@ -222,6 +224,7 @@ outfit "RG3 Torch Thruster"
 		"Vi Lord"
 	cost 84000
 	thumbnail "outfit/large torch thruster vi"
+	"thruster accessory slot" 1
 	"mass" 83
 	"outfit space" -83
 	"engine capacity" -83
@@ -264,6 +267,7 @@ outfit "SC-1 Plasma Engines"
 		"Scin Architect"
 	cost 21200
 	thumbnail "outfit/tiny plasma engines scin"
+	"thruster accessory slot" 1
 	"mass" 21
 	"outfit space" -21
 	"engine capacity" -21
@@ -289,6 +293,7 @@ outfit "SC-12 Plasma Thruster"
 		"Scin Adjutant"
 	cost 20900
 	thumbnail "outfit/small plasma thruster scin"
+	"thruster accessory slot" 1
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
@@ -327,6 +332,7 @@ outfit "SC-14 Plasma Thruster"
 		"Scin Adjutant"
 	cost 52500
 	thumbnail "outfit/medium plasma thruster scin"
+	"thruster accessory slot" 1
 	"mass" 45
 	"outfit space" -45
 	"engine capacity" -45
@@ -367,6 +373,7 @@ outfit "SC-15 Plasma Thrusters"
 		"Scin Architect"
 	cost 170400
 	thumbnail "outfit/large plasma engines scin"
+	"thruster accessory slot" 1
 	"mass" 112
 	"outfit space" -112
 	"engine capacity" -112

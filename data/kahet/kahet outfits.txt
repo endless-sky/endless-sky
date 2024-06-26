@@ -401,6 +401,7 @@ outfit "Maeri Engine Nacelles"
 	category "Engines"
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
+	"thruster accessory slot" 1
 	"mass" 59
 	"outfit space" -76
 	"engine capacity" -59
@@ -423,6 +424,7 @@ outfit "Ka'het Sustainer Nacelles"
 	category "Engines"
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
+	"thruster accessory slot" 1
 	"mass" 27
 	"outfit space" -34
 	"engine capacity" -27
@@ -445,6 +447,7 @@ outfit "Telis Engine Nacelles"
 	category "Engines"
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
+	"thruster accessory slot" 1
 	"mass" 81
 	"outfit space" -101
 	"engine capacity" -81
@@ -466,6 +469,7 @@ outfit "Vareti Engine Block"
 	category "Engines"
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
+	"thruster accessory slot" 1
 	"mass" 137
 	"outfit space" -168
 	"engine capacity" -137
@@ -487,6 +491,7 @@ outfit "Ka'het Compact Engine"
 	category "Engines"
 	"cost" 172000
 	thumbnail "outfit/ka'het compact engine"
+	"thruster accessory slot" 1
 	"mass" 21
 	"outfit space" -26
 	"engine capacity" -21

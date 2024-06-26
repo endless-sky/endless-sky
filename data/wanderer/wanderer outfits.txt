@@ -426,6 +426,7 @@ outfit "Type 1 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 135000
 	thumbnail "outfit/tiny radiant thruster"
+	"thruster accessory slot" 1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -444,6 +445,7 @@ outfit "Type 2 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 390000
 	thumbnail "outfit/small radiant thruster"
+	"thruster accessory slot" 1
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
@@ -462,6 +464,7 @@ outfit "Type 3 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 750000
 	thumbnail "outfit/medium radiant thruster"
+	"thruster accessory slot" 1
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
@@ -480,6 +483,7 @@ outfit "Type 4 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 1370000
 	thumbnail "outfit/large radiant thruster"
+	"thruster accessory slot" 1
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65

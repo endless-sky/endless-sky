@@ -58,6 +58,7 @@ outfit "Korath Ark'torbal Thruster"
 	category "Engines"
 	"cost" 40000
 	thumbnail "outfit/unknown"
+	"thruster accessory slot" 1
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
@@ -85,6 +86,7 @@ outfit "Korath Jak'torbal Thruster"
 	category "Engines"
 	"cost" 317000
 	thumbnail "outfit/unknown"
+	"thruster accessory slot" 1
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
@@ -223,6 +225,7 @@ outfit "Afterburner"
 	category "Engines"
 	"cost" 70000
 	thumbnail "outfit/afterburner"
+	"thruster accessory slot" -1
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
@@ -231,6 +234,7 @@ outfit "Afterburner"
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 
 

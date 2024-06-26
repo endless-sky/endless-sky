@@ -226,12 +226,14 @@ outfit "Afterburner (Asteroid Class)"
 	"afterburner effect" "korath afterburner tiny"
 	description "The smallest of afterburners is as much Fuel Processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
+	description "	Despite being labeled an afterburner and connected to that control system on ships, this outfit does not fill the afterburner slot on a thruster."
 
 outfit "Afterburner (Comet Class)"
 	plural "Afterburners (Comet Class)"
 	category "Engines"
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
+	"thruster accessory slot" -1
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -242,12 +244,14 @@ outfit "Afterburner (Comet Class)"
 	"afterburner effect" "korath afterburner small"
 	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 outfit "Afterburner (Lunar Class)"
 	plural "Afterburners (Lunar Class)"
 	category "Engines"
 	"cost" 647000
 	thumbnail "outfit/medium korath afterburner"
+	"thruster accessory slot" -1
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -258,12 +262,14 @@ outfit "Afterburner (Lunar Class)"
 	"afterburner effect" "korath afterburner medium"
 	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, the prospect of installing one brings to mind many safety concerns."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 outfit "Afterburner (Planetary Class)"
 	plural "Afterburners (Planetary Class)"
 	category "Engines"
 	"cost" 1459000
 	thumbnail "outfit/large korath afterburner"
+	"thruster accessory slot" -1
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
@@ -275,12 +281,14 @@ outfit "Afterburner (Planetary Class)"
 	"heat capacity" 150
 	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 outfit "Afterburner (Stellar Class)"
 	plural "Afterburners (Stellar Class)"
 	category "Engines"
 	"cost" 3280000
 	thumbnail "outfit/huge korath afterburner"
+	"thruster accessory slot" -1
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
@@ -294,6 +302,7 @@ outfit "Afterburner (Stellar Class)"
 	"heat capacity" 150
 	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, in order to keep the reaction chambers from melting."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "korath afterburner tiny"
 	sprite "effect/korath afterburner"
@@ -365,6 +374,7 @@ outfit "Engine (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
+	"thruster accessory slot" 1
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -501,6 +511,7 @@ outfit "Thruster (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
+	"thruster accessory slot" 1
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -517,6 +528,7 @@ outfit "Thruster (Comet Class)"
 	category "Engines"
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
+	"thruster accessory slot" 1
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
@@ -533,6 +545,7 @@ outfit "Thruster (Lunar Class)"
 	category "Engines"
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
+	"thruster accessory slot" 1
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
@@ -549,6 +562,7 @@ outfit "Thruster (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
+	"thruster accessory slot" 1
 	"mass" 68
 	"outfit space" -68
 	"engine capacity" -68
@@ -565,6 +579,7 @@ outfit "Thruster (Stellar Class)"
 	category "Engines"
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
+	"thruster accessory slot" 1
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -118
@@ -660,6 +675,7 @@ outfit "Arkrof GP Hybrid Thruster"
 	category "Engines"
 	"cost" 165000
 	thumbnail "outfit/tiny efreti thruster"
+	"thruster accessory slot" 1
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -675,6 +691,7 @@ outfit "Farves GP Hybrid Thruster"
 	category "Engines"
 	"cost" 405000
 	thumbnail "outfit/small efreti thruster"
+	"thruster accessory slot" 1
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -690,6 +707,7 @@ outfit "Gaktem GP Hybrid Thruster"
 	category "Engines"
 	"cost" 883000
 	thumbnail "outfit/medium efreti thruster"
+	"thruster accessory slot" 1
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
@@ -705,6 +723,7 @@ outfit "Nelmeb GP Hybrid Thruster"
 	category "Engines"
 	"cost" 1649000
 	thumbnail "outfit/large efreti thruster"
+	"thruster accessory slot" 1
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86

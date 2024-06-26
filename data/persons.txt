@@ -629,6 +629,7 @@ ship "Modified Osprey"
 		"outfit space" 2172
 		"weapon capacity" 851
 		"engine capacity" 499
+		"thruster accessory slot" 4
 		"afterburner fuel" -.678
 		"afterburner heat" -30
 		"ramscoop" 6

@@ -298,6 +298,7 @@ outfit "Small Thrust Module"
 		Coalition
 	"cost" 66000
 	thumbnail "outfit/small thrust module"
+	"thruster accessory slot" 1
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
@@ -315,6 +316,7 @@ outfit "Large Thrust Module"
 		Coalition
 	"cost" 292000
 	thumbnail "outfit/large thrust module"
+	"thruster accessory slot" 1
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32

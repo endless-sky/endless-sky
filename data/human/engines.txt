@@ -17,6 +17,7 @@ outfit "Volcano Afterburner"
 	index 10
 	"cost" 70000
 	thumbnail "outfit/afterburner"
+	"thruster accessory slot" -1
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
@@ -25,6 +26,7 @@ outfit "Volcano Afterburner"
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "afterburner"
 	sprite "effect/afterburner"
@@ -43,6 +45,7 @@ outfit "Caldera Afterburner"
 	index 20
 	"cost" 390000
 	thumbnail "outfit/caldera afterburner"
+	"thruster accessory slot" -1
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
@@ -51,6 +54,7 @@ outfit "Caldera Afterburner"
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
 	description "The Caldera Afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "caldera afterburner"
 	sprite "effect/afterburner"
@@ -70,6 +74,7 @@ outfit "Ionic Afterburner"
 	index 30
 	"cost" 340000
 	thumbnail "outfit/ionic afterburner"
+	"thruster accessory slot" -1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -79,6 +84,7 @@ outfit "Ionic Afterburner"
 	"afterburner heat" 4.0
 	"afterburner effect" "ionic afterburner"
 	description "The Ionic Afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "ionic afterburner"
 	sprite "effect/ionic afterburner"
@@ -100,6 +106,7 @@ outfit "X1050 Ion Engines"
 	index 10
 	"cost" 20000
 	thumbnail "outfit/tiny ion engines"
+	"thruster accessory slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -125,6 +132,7 @@ outfit "X1700 Ion Thruster"
 	index 17
 	"cost" 12000
 	thumbnail "outfit/tiny ion thruster"
+	"thruster accessory slot" 1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -143,6 +151,7 @@ outfit "X2700 Ion Thruster"
 	index 27
 	"cost" 26000
 	thumbnail "outfit/small ion thruster"
+	"thruster accessory slot" 1
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
@@ -161,6 +170,7 @@ outfit "X3700 Ion Thruster"
 	index 37
 	"cost" 58000
 	thumbnail "outfit/medium ion thruster"
+	"thruster accessory slot" 1
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -179,6 +189,7 @@ outfit "X4700 Ion Thruster"
 	index 47
 	"cost" 128000
 	thumbnail "outfit/large ion thruster"
+	"thruster accessory slot" 1
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
@@ -197,6 +208,7 @@ outfit "X5700 Ion Thruster"
 	index 57
 	"cost" 281000
 	thumbnail "outfit/huge ion thruster"
+	"thruster accessory slot" 1
 	"mass" 121
 	"outfit space" -121
 	"engine capacity" -121
@@ -327,6 +339,7 @@ outfit "Chipmunk Plasma Thruster"
 	index 15
 	"cost" 20000
 	thumbnail "outfit/tiny plasma thruster"
+	"thruster accessory slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -345,6 +358,7 @@ outfit "Greyhound Plasma Thruster"
 	index 25
 	"cost" 45000
 	thumbnail "outfit/small plasma thruster"
+	"thruster accessory slot" 1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -363,6 +377,7 @@ outfit "Impala Plasma Thruster"
 	index 35
 	"cost" 99000
 	thumbnail "outfit/medium plasma thruster"
+	"thruster accessory slot" 1
 	"mass" 58
 	"outfit space" -58
 	"engine capacity" -58
@@ -381,6 +396,7 @@ outfit "Orca Plasma Thruster"
 	index 45
 	"cost" 217000
 	thumbnail "outfit/large plasma thruster"
+	"thruster accessory slot" 1
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
@@ -399,6 +415,7 @@ outfit "Tyrant Plasma Thruster"
 	index 55
 	"cost" 389000
 	thumbnail "outfit/huge plasma thruster"
+	"thruster accessory slot" 1
 	"mass" 129
 	"outfit space" -129
 	"engine capacity" -129
@@ -529,6 +546,7 @@ outfit "A120 Atomic Thruster"
 	index 15
 	"cost" 140000
 	thumbnail "outfit/tiny atomic thruster"
+	"thruster accessory slot" 1
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
@@ -546,6 +564,7 @@ outfit "A250 Atomic Thruster"
 	index 25
 	"cost" 280000
 	thumbnail "outfit/small atomic thruster"
+	"thruster accessory slot" 1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -563,6 +582,7 @@ outfit "A370 Atomic Thruster"
 	index 35
 	"cost" 560000
 	thumbnail "outfit/medium atomic thruster"
+	"thruster accessory slot" 1
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
@@ -580,6 +600,7 @@ outfit "A520 Atomic Thruster"
 	index 45
 	"cost" 1120000
 	thumbnail "outfit/large atomic thruster"
+	"thruster accessory slot" 1
 	"mass" 82
 	"outfit space" -82
 	"engine capacity" -82
@@ -597,6 +618,7 @@ outfit "A860 Atomic Thruster"
 	index 55
 	"cost" 2240000
 	thumbnail "outfit/huge atomic thruster"
+	"thruster accessory slot" 1
 	"mass" 127
 	"outfit space" -127
 	"engine capacity" -127

@@ -485,6 +485,7 @@ ship "'olofez" "'olofez (Digger)"
 ship "'olofez" "'olofez (World-Ship)"
 	add attributes
 		"atmosphere scan" 1
+		"thruster accessory slot" 1
 	outfits
 		"Generator (Candle Class)"
 		"Systems Core (Tiny)"
