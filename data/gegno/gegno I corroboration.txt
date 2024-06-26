@@ -334,7 +334,7 @@ mission "Gegno Suspicions"
 			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg who has helped you in the past, along with a few others. "Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
 			choice
 				`	"Sure."`
-					goto "follow"
+					goto follow
 				`	"How long will it take?"`
 			`	"As long as is required, for this matter is of symbolic importance," it says, with a slightly elevated tone.`
 
@@ -570,7 +570,7 @@ mission "Gegno Anticipation"
 				`	"That they want nothing to do with me?"`
 					goto "deny me"
 				`	"I don't know."`
-					goto "unsure"
+					goto unsure
 
 			action
 				set "gegno word: accept"
@@ -578,24 +578,24 @@ mission "Gegno Anticipation"
 			choice
 				`	"I've helped them before, and I could help them now."`
 				`	"I figured you could convince them."`
-					goto "convince"
+					goto convince
 				`	"I don't know."`
-					goto "unsure"
+					goto unsure
 
 			`	Adrauni ponders for a few moments as you continue walking through the impeccable interior of the ringworld. "That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide beneficial assistance to the Gegno, a beneficent response in return is not necessitated. You have heeded my warnings at this juncture, yet you simply are doing what the Gegno desired from the beginning, and that is leaving them alone."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
-					goto "better"
+					goto better
 				`	"There must be something I can do."`
-					goto "understand"
+					goto understand
 
 			label "convince"
 			`	Adrauni gives you a slight glare while continuing through the ringworld. "Do you not recall my prior mention of us Quarg having attempted such desired persuasions? It is not within our ability to convince the Gegno of anything. They are greatly devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
-					goto "better"
+					goto better
 				`	"There must be something I can do."`
-					goto "understand"
+					goto understand
 
 			label "deny me"
 			action
@@ -604,24 +604,24 @@ mission "Gegno Anticipation"
 			choice
 				`	"The way they act around me."`
 				`	"From what you've told me before."`
-					goto "before"
+					goto before
 				`	"I don't know."`
-					goto "unsure"
+					goto unsure
 
 			`	"Indeed, the Gegno are wary of you, who lack caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno seems to ask a question in their language, but receives no response. Adrauni pauses a while longer before speaking again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno; however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
 			choice
 				`	"Are you saying there's something I can do?"`
-					goto "understand"
+					goto understand
 				`	"I'm not sure I understand."`
-					goto "interest"
+					goto interest
 
 			label "before"
 			`	"I see." Adrauni blinks slowly while staring at you. It's almost as if it is surprised, or at the very least, not expecting that response. "Wise it is that you follow my fortunate instruction. If it weren't as such, I may not be the one speaking with you in this moment. Or, perhaps, it would be no one." It then looks forward again as you continue on your stroll, leaving you to think on those words. "Unfortunately, the Quarg are unable to further assist you in this delicate matter. If you recall, we have attempted prior counsel with the Gegno, yet bound they are in their ways, even should it mean incredulously opposing us Quarg."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
-					goto "better"
+					goto better
 				`	"There must be something I can do."`
-					goto "understand"
+					goto understand
 
 			label "unsure"
 			action
@@ -629,7 +629,7 @@ mission "Gegno Anticipation"
 			`	Adrauni turns to you briefly, staring at you blankly, then turns to the Gegno and mutters something in their language before responding to you. "And why is it that you are unsure?"`
 			choice
 				`	"I wasn't sure you could convince them."`
-					goto "convince"
+					goto convince
 				`	"I don't know anything about them."`
 
 			action
@@ -637,9 +637,9 @@ mission "Gegno Anticipation"
 			`	After a pause, Adrauni turns toward you, glares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this, that the Gegno are not what I would consider humans to possess knowledge of. Should you learn more, I'm afraid even then that the Gegno do not contrastingly desire, what was the human word - camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
 			choice
 				`	"Maybe it's better I do leave them alone."`
-					goto "better"
+					goto better
 				`	"There must be something I can do."`
-					goto "understand"
+					goto understand
 
 			label "interest"
 			`	The Quarg turns back to you. "You are here not at the whim of your fanatic species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno walking besides it and begins a somewhat lengthy conversation with them.`
@@ -665,12 +665,12 @@ mission "Gegno Anticipation"
 				`	"Couldn't we have just asked the Gegno from earlier?"`
 					to display
 						not "gegno: asked dialog"
-					goto "ask"
+					goto ask
 
 				`	"I'm not sure that's safe. Could you escort me there?"`
 					to display
 						not "gegno: escort dialog"
-					goto "escort"
+					goto escort
 			
 				`	"Thank you. I will leave now."`
 					to display
@@ -721,7 +721,7 @@ mission "Gegno Anticipation"
 			`	You sit down, along with two other Quarg, and the rest of them leave the room with the door sliding shut behind them. Adrauni stares blankly at you for a while, then speaks. "I presume you understand what result came from my negotiations with the tedious Gegno."`
 			choice
 				`	"That they are upset with me?"`
-					goto "upset"
+					goto upset
 				`	"That they will tolerate me?"`
 				`	"No, I do not."`
 					goto "no idea"
@@ -730,50 +730,50 @@ mission "Gegno Anticipation"
 			choice
 				`	"Permission to land on their worlds."`
 				`	"Allow me access to their technology."`
-					goto "tech"
+					goto tech
 				`	"I don't know."`
 					goto "dont know"
 
 			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerant of your species, access to only some of our wondrous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? It may be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it responds with a conversation in its own language.`
 			choice
 				`	"Is there no way I can work with the Gegno?"`
-					goto "work"
+					goto work
 				`	"I guess I should leave them alone."`
-					goto "alone"
+					goto alone
 
 			label "tech"
 			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our technology have we given? One is not owed rights to another's inventions under pretensive tolerance." The other Quarg in the room look at Adrauni strangely, after which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much of intrigue at all."`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
-					goto "work"
+					goto work
 				`	"I guess I should leave them alone."`
-					goto "alone"
+					goto alone
 
 			label "dont know"
 			`	"Indeed, you do not. To tolerate is to authorize unrestricted occurrence despite undesired preface. In this lies not the Gegno's interest, as once I have said before." It looks up in thought for several moments. "Perhaps in your naive judgment I am mistaken. Humans tolerate their own undesirables, those who have come to be known as corsairs. Portions of your species permit their tiresome actions, while others do not. Be that as it may, suppose a species other than humanity begins similar agitation. I would presume the case to be different." Adrauni then begins a conversation with the other Quarg in the room.`
 			choice
 				`	"Are you saying there's no way I can work with the Gegno?"`
-					goto "work"
+					goto work
 				`	"I guess I should leave them alone."`
-					goto "alone"
+					goto alone
 
 
 			label "upset"
 			`	"It would be evidently so, given that those of the Vi themselves have brazenly entered our ring. A show of force is most unprecedented, even more so opposed to other means of less immodest communication. I had the slightest hope you understood my preachings of nonviolence, as I believe there to be benefit from optimistic aspirations in younger species, but ultimately my hopes are proven unfounded." Some of the other Quarg in the room abruptly address Adrauni as if you weren't present and begin a long period of debate, occasionally punctuated by glares in your direction.`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
-					goto "work"
+					goto work
 				`	"I guess I should leave them alone."`
-					goto "alone"
+					goto alone
 
 
 			label "no idea"
 			`	"Yes, I believe that to be a common theme in this extraneous situation. It is quite a dangerous practice to commit an act before knowledge, as we Quarg have been advising you impulsive humans for many years. In our discussions with you, evident it is that this has proven to be true. However, the great bounds stepped beyond here go beyond what we are able to accommodate." Adrauni then changes its expression slightly, glowering at you again. "Particularly after continual warnings prior." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
-					goto "work"
+					goto work
 				`	"I guess I should leave them alone."`
-					goto "alone"
+					goto alone
 
 			
 			label "work"
@@ -796,7 +796,7 @@ mission "Gegno Anticipation"
 				`	"Couldn't we just ask the Gegno over there?"`
 					to display
 						not "gegno: there dialog"
-					goto "there"
+					goto there
 			
 				`	"I will be leaving now."`
 					to display
@@ -917,26 +917,26 @@ mission "Gegno Intervention"
 			choice
 				`	"Dismissed?"`
 				`	"Will you be coming with me?"`
-					goto "coming"
+					goto coming
 				`	"Alright, I will go."`
-					goto "end"
+					goto end
 
 			`	Adrauni thinks for a brief moment. "A more appropriate expression would be exiled, or perhaps shunned? Gegno culture is to hold all as a great home. Your presence in their space is to say you have already entered, though it is now an invitation you are no longer welcome to."`
 			choice
 				`	"Aren't I already unwelcome?"`
 				`	"They can't decide where I go."`
-					goto "where"
+					goto where
 			
 			`	"It is a difficult philosophy to explain. We Quarg were also subject to inhospitality. In some notable capacities we still are - however, it is of a different manner than this one."`
-				goto "end"
+				goto end
 
 			label "where"
 			`	"Be that as it may, do not rushedly conflate such with unpunishable action. On their worlds is to their own conscientious discretion. However, what action you ultimately decide upon in their space is not without observation."`
-				goto "end"
+				goto end
 
 			label "coming"
 			`	"I shall not be. Indeed, it is regrettable that I can no longer be of assistance, but the fate of this matter belongs to only you and the Gegno."`
-				goto "end"
+				goto end
 
 			label "end"
 			`	Adrauni stands up to its full height before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire for wise decisions from you in your journey ahead, <first> <last>." Adrauni gives you a lengthy bow and leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if that's even still possible.`
@@ -1036,7 +1036,7 @@ mission "Acquiescence"
 			`	The Gegno that has guided you here gestures for you to go join them at their location among the others.`
 			choice
 				`	(Go to the Gegno.)`
-					goto "meeting"
+					goto meeting
 				`	(Stay where you are.)`
 
 			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You might as well play by their rules, given the situation.`
@@ -1047,7 +1047,7 @@ mission "Acquiescence"
 			`	Though it felt like it might not happen, the moment comes where the bulkiest of the trio directly gestures to you. The tension of the situation skyrockets as they say something in their language, then motion for you to stand across from them. All of the other Gegno are now staring you down, waiting, as your guide heads off to the side.`
 			choice
 				`	(Approach the trio.)`
-					goto "trio"
+					goto trio
 				`	(Remain where you stand.)`
 
 			`	You choose not to do anything else, remaining where you stand. Anything you do would likely be held against you. Another few moments go by and the Gegno trio return to the table, beginning to discuss amongst themselves using the assorted objects on the table grid. Images and words are cycled through on the monitor, but you're too far away to see any of them. Several more minutes pass, and you feel like they've all but forgotten you as you start to tune out their discussion. Eventually, you're pulled back to reality; everything has gone silent yet again and one member of the Gegno trio calls to you to get your attention on the display.`
@@ -1103,7 +1103,7 @@ mission "Acquiescence"
 			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the objects and the table, while all three of them back up themselves, leaving you alone in the open.`
 			choice
 				`	(Approach the table and try to explain the incidents you were involved in.)`
-					goto "explain"
+					goto explain
 				`	(Stay where you are and do nothing.)`
 
 			action
@@ -1121,7 +1121,7 @@ mission "Acquiescence"
 			`	Surprising both you and the other Gegno, an image of the planet Earth appears on the monitor. There's no way the Gegno have ever left the borders of their own territory, let alone visited human space. How they got this image is a mystery, but the fact is that an image of the ancestral homeworld of humanity is right in front of you. The member of the Gegno trio that has spoken the least then steps forward, but instead of heading to the table, they make their way to you directly.`
 			choice
 				`	(Do nothing.)`
-					goto "home"
+					goto home
 				`	(Place your hand on your holster.)`
 			`	If the Gegno have an image of Earth, who knows what they know about you, or humanity in general? Slowly moving your hand to your holstered weapon, you prepare yourself for any possible aggression. Even though you do so, the Gegno doesn't hesitate or stop heading in your direction, although some in the crowd seem slightly concerned.`
 
@@ -1130,10 +1130,10 @@ mission "Acquiescence"
 			choice
 				`	(Don't say anything.)`
 				`	"...Dueyu Earth?"`
-					goto "dueyu"
+					goto dueyu
 
 			`	Without saying a word, you continue to look at the Gegno, and it continues to stare back, pondering your silence. They make a snorting sound with their nose, then leave you to join the other two behind them.`
-				goto "decision"
+				goto decision
 
 			label "dueyu"
 			`	The Gegno leans closer to your height and displays a peculiar expression - possibly one of disapproval. You panic a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, somewhat like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, 'Dueyu.'" Getting back up, the Gegno heads back to the other two behind them.`
@@ -1196,7 +1196,7 @@ mission "Gegno Asteroid Mining Prologue"
 			`	Eventually, you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others talking among each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. With one last meaningful look, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they were treated back on Dueyu Eitch.`
 			choice
 				`	(Go to the display.)`
-					goto "board"
+					goto board
 				`	(Try to communicate with the other Gegno around you.)`
 			
 			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
@@ -1206,7 +1206,7 @@ mission "Gegno Asteroid Mining Prologue"
 			choice
 				`	(Accept one of the jobs.)`
 				`	(Leave without doing anything.)`
-					goto "nothing"
+					goto nothing
 			
 			label "accept"
 			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so. While they silently judge, you manage to figure out that it's a touch-sensitive interface, though it takes a lot of force for you to get it to work.`
@@ -1221,7 +1221,7 @@ mission "Gegno Asteroid Mining Prologue"
 			`	Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
 			choice
 				`	(Yes.)`
-					goto "accept"
+					goto accept
 				`	(No.)`
 					defer
 	on visit
