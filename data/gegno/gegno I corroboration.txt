@@ -535,8 +535,7 @@ mission "Return to Giaru Gegno"
 			"gegno: encounters" >= 6
 		not "Gegno Genocide Defense: offered"
 	on enter
-		dialog
-			`Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
+		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
 				accept
 	on complete
 		fail "Scin Surveillance"
