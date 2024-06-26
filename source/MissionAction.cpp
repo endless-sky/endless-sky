@@ -57,6 +57,62 @@ namespace {
 
 
 
+MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
+	dialogPhrase(phrase)
+{
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const string &text):
+	dialogText(text)
+{
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const DataNode &node)
+{
+	// Handle anonymous phrases
+	//    phrase
+	//       ...
+	if(node.Size() == 1 && node.Token(0) == "phrase")
+	{
+		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
+		// Anonymous phrases do not support "to display"
+		return;
+	}
+
+	// Handle named phrases
+	//    phrase "A Phrase Name"
+	if(node.Size() == 2 && node.Token(0) == "phrase")
+		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
+
+	// Handle regular dialog text
+	//    "Some thrilling dialog that truly moves the player."
+	else
+	{
+		if(node.Size() > 1)
+			node.PrintTrace("Ignoring extra tokens.");
+		dialogText = node.Token(0);
+
+		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
+		if(dialogText.empty())
+			dialogText = '\t';
+	}
+
+	// Search for "to display" lines.
+	for(auto &child : node)
+	{
+		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
+			node.PrintTrace("Ignoring unrecognized dialog token");
+		else
+			condition.Load(child);
+	}
+}
+
+
+
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node)
 {
@@ -74,6 +130,12 @@ void MissionAction::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 		LoadSingle(child);
+
+	// Collapse pure-text dialog (no conditions or phrases). This is necessary to handle saved missions.
+	// It is also an optimization for the most common case in game data files.
+	dialogText = CollapseDialog(nullptr, nullptr);
+	if(!dialogText.empty())
+		dialog.clear();
 }
 
 
@@ -85,23 +147,14 @@ void MissionAction::LoadSingle(const DataNode &child)
 
 	if(key == "dialog")
 	{
-		if(hasValue && child.Token(1) == "phrase")
-		{
-			if(!child.HasChildren() && child.Size() == 3)
-				dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
-			else
-				child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
-		{
-			const DataNode &firstGrand = (*child.begin());
-			if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-				dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
-			else
-				firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else
-			Dialog::ParseTextNode(child, 1, dialogText);
+		// Parse the "dialog phrase whatever" and "dialog whatever" lines:
+		if(child.Size() == 3 && child.Token(1) == "phrase")
+			dialog.emplace_back(ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2))));
+		else if(hasValue)
+			dialog.emplace_back(child.Token(1));
+		// Parse embedded child dialog
+		for(const auto &grand : child)
+			dialog.emplace_back(grand);
 	}
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child));
@@ -128,6 +181,8 @@ void MissionAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 	}
+	else if(key == "can trigger after failure")
+		runsWhenFailed = true;
 	else
 		action.LoadSingle(child);
 }
@@ -188,10 +243,6 @@ string MissionAction::Validate() const
 	if(!systemFilter.IsValid())
 		return "system location filter";
 
-	// Stock phrases that generate text must be defined.
-	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
-		return "stock phrase";
-
 	// Stock conversations must be defined.
 	if(conversation.IsStock() && conversation->IsEmpty())
 		return "stock conversation";
@@ -220,8 +271,10 @@ const string &MissionAction::DialogText() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
 {
+	if(isFailed && !runsWhenFailed)
+		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;
 
@@ -353,7 +406,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
+MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	MissionAction result;
@@ -369,9 +422,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
-	if(!dialogText.empty())
-		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
+	result.dialogText = CollapseDialog(&store, &subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
@@ -391,4 +442,58 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 int64_t MissionAction::Payment() const noexcept
 {
 	return action.Payment();
+}
+
+
+
+string MissionAction::CollapseDialog(const ConditionsStore *store, const map<string, string> *subs) const
+{
+	// No store or subs means we're determining whether the dialog is pure text.
+	// This is done at load time.
+	bool loadTimeScan = !store || !subs;
+
+	// Result is already cached for dialogs that are pure text at Load() time.
+	if(!dialogText.empty())
+	{
+		if(loadTimeScan)
+			return dialogText;
+		else
+			return Format::Replace(Phrase::ExpandPhrases(dialogText), *subs);
+	}
+
+	string resultText;
+	for(auto &item : dialog)
+	{
+		// When checking for a pure-text dialog, reject a dialog with conditions or phrases,
+		// An empty string return value tells the caller that this dialog isn't pure text.
+		if(loadTimeScan && (!item.condition.IsEmpty() || item.dialogText.empty()))
+			return string();
+
+		// Skip text that is disabled.
+		if(!item.condition.IsEmpty() && !item.condition.Test(*store))
+			continue;
+
+		// Evaluate the phrase if we have one, otherwise copy the prepared text.
+		string content;
+		if(!item.dialogText.empty())
+			content = item.dialogText;
+		else if(item.dialogPhrase.IsStock() && item.dialogPhrase->IsEmpty())
+			content = "stock phrase";
+		else
+			content = item.dialogPhrase->Get();
+
+		// Expand any ${phrases} and <substitutions>
+		if(!loadTimeScan)
+			content = Format::Replace(Phrase::ExpandPhrases(content), *subs);
+
+		// Concatenated lines should start with a tab and be preceeded by end-of-line.
+		if(!resultText.empty())
+		{
+			resultText += '\n';
+			if(!content.empty() && content[0] != '\t')
+				resultText += '\t';
+		}
+		resultText += content;
+	}
+	return resultText;
 }

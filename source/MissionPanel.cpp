@@ -74,6 +74,10 @@ namespace {
 			if(stopover->IsInSystem(system))
 				return true;
 
+		for(const System *mark : mission.MarkedSystems())
+			if(mark == system)
+				return true;
+
 		return false;
 	}
 
@@ -656,7 +660,7 @@ void MissionPanel::DrawKey() const
 		"Too little space to accept",
 		"Active job; go here to complete",
 		"Has unfinished requirements",
-		"Waypoint you must visit"
+		"System of importance"
 	};
 	int selected = -1;
 	if(availableIt != available.end())
@@ -679,9 +683,11 @@ void MissionPanel::DrawKey() const
 void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
+	toVisit.insert(mission.MarkedSystems().begin(), mission.MarkedSystems().end());
 	for(const Planet *planet : mission.Stopovers())
 		toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
+	hasVisited.insert(mission.UnmarkedSystems().begin(), mission.UnmarkedSystems().end());
 	for(const Planet *planet : mission.VisitedStopovers())
 		hasVisited.insert(planet->GetSystem());
 
@@ -838,6 +844,9 @@ void MissionPanel::DrawMissionInfo()
 		info.SetCondition("can accept");
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
+
+	if(availableIt != available.end() || acceptedIt != accepted.end())
+		info.SetCondition("has description");
 
 	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
 	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
@@ -1112,6 +1121,12 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 			return;
 		}
 
+	for(const System *mark : mission.MarkedSystems())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(mark);
+			return;
+		}
 
 	cycleInvolvedIndex = 0;
 	CenterOnSystem(mission.Destination()->GetSystem());

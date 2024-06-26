@@ -21,9 +21,9 @@ ship "Marauder Arrow"
 		"hull" 500
 		"required crew" 2
 		"bunks" 5
-		"mass" 145
-		"drag" 2.0
-		"heat dissipation" .85
+		"mass" 200
+		"drag" 2.3
+		"heat dissipation" .74
 		"fuel capacity" 600
 		"cargo space" 5
 		"outfit space" 210
@@ -73,6 +73,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		"Supercapacitor" 2
 		"D14-RN Shield Generator"
 		"Laser Rifle" 5
+		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -120,9 +121,9 @@ ship "Marauder Bounder"
 		"hull" 700
 		"required crew" 2
 		"bunks" 18
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
+		"mass" 220
+		"drag" 4.4
+		"heat dissipation" .67
 		"fuel capacity" 800
 		"cargo space" 20
 		"outfit space" 240
@@ -231,9 +232,9 @@ ship "Marauder Falcon"
 		"hull" 4100
 		"required crew" 57
 		"bunks" 96
-		"mass" 560
-		"drag" 6.7
-		"heat dissipation" .8
+		"mass" 1390
+		"drag" 11.4
+		"heat dissipation" .42
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 620
@@ -259,6 +260,7 @@ ship "Marauder Falcon"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Laser Rifle" 80
+		"Nerve Gas" 15
 		"Security Station"
 		
 		"A520 Atomic Thruster"
@@ -337,6 +339,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Laser Rifle" 80
+		"Nerve Gas" 20
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -369,9 +372,9 @@ ship "Marauder Firebird"
 		"hull" 3600
 		"required crew" 10
 		"bunks" 25
-		"mass" 350
-		"drag" 4.5
-		"heat dissipation" .6
+		"mass" 750
+		"drag" 6.7
+		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 450
@@ -394,6 +397,7 @@ ship "Marauder Firebird"
 		"Liquid Helium Cooler"
 		"Outfits Expansion"
 		"Laser Rifle" 25
+		"Nerve Gas" 29
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -433,6 +437,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
+		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -460,6 +465,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
+		"Nerve Gas" 13
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -485,9 +491,9 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 680
-		"drag" 8.1
-		"heat dissipation" .5
+		"mass" 1700
+		"drag" 14.2
+		"heat dissipation" .3
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 680
@@ -512,6 +518,7 @@ ship "Marauder Leviathan"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
+		"Nerve Gas" 15
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -555,6 +562,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
+		"Nerve Gas" 8
 		
 		"A520 Atomic Thruster"
 		"A865 Atomic Steering"
@@ -585,6 +593,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
+		"Nerve Gas" 48
 
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -613,9 +622,9 @@ ship "Marauder Manta"
 		"hull" 1750
 		"required crew" 7
 		"bunks" 11
-		"mass" 195
-		"drag" 4.7
-		"heat dissipation" .8
+		"mass" 400
+		"drag" 6.3
+		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 400
@@ -639,6 +648,7 @@ ship "Marauder Manta"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 3
 		"Laser Rifle" 8
+		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -713,6 +723,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"D14-RN Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 11
+		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -741,9 +752,9 @@ ship "Marauder Quicksilver"
 		"hull" 900
 		"required crew" 4
 		"bunks" 7
-		"mass" 140
-		"drag" 2.7
-		"heat dissipation" .8
+		"mass" 220
+		"drag" 3.2
+		"heat dissipation" .67
 		"fuel capacity" 400
 		"cargo space" 5
 		"outfit space" 265
@@ -801,6 +812,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 2
 		"Laser Rifle" 5
+		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -902,9 +914,9 @@ ship "Marauder Raven"
 		"hull" 1600
 		"required crew" 7
 		"bunks" 14
-		"mass" 145
-		"drag" 3.7
-		"heat dissipation" .8
+		"mass" 280
+		"drag" 4.8
+		"heat dissipation" .62
 		"fuel capacity" 500
 		"cargo space" 20
 		"outfit space" 310
@@ -931,6 +943,7 @@ ship "Marauder Raven"
 		"Volcano Afterburner"
 		"Hyperdrive"
 		"Laser Rifle" 14
+		"Nerve Gas" 3
 	
 	engine -9.5 63
 	engine 9.5 63
@@ -966,6 +979,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
+		"Nerve Gas"
 	
 	engine -10.5 63.5
 	engine 10.5 63.5
@@ -994,6 +1008,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
+		"Nerve Gas" 5
 	
 	gun -13.5 -35.5
 	gun 13.5 -35.5
@@ -1014,9 +1029,9 @@ ship "Marauder Splinter"
 		"hull" 1950
 		"required crew" 8
 		"bunks" 22
-		"mass" 275
-		"drag" 4.0
-		"heat dissipation" .7
+		"mass" 565
+		"drag" 5.6
+		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 450
@@ -1038,6 +1053,7 @@ ship "Marauder Splinter"
 		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 22
+		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -1105,6 +1121,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 2
 		"Laser Rifle" 20
+		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"

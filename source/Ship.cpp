@@ -1302,7 +1302,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar && !consuming)
+		if(energy <= battery)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -2085,7 +2085,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return pullVector;
-		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(GetParent() && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return pullVector;
 	}
 
@@ -2200,6 +2200,9 @@ bool Ship::CanLand() const
 		return false;
 
 	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
+		return false;
+
+	if(commands.Has(Command::WAIT))
 		return false;
 
 	Point distance = GetTargetStellar()->Position() - position;
@@ -2373,6 +2376,7 @@ int Ship::CustomSwizzle() const
 {
 	return customSwizzle;
 }
+
 
 
 // Check if the ship is thrusting. If so, the engine sound should be played.
@@ -2850,7 +2854,7 @@ bool Ship::Phases(Projectile &projectile) const
 		return true;
 
 	// Perform the most expensive checks last.
-	// If multiple ships with partial phasing are stacked on top of eachother, then the chance of collision increases
+	// If multiple ships with partial phasing are stacked on top of each other, then the chance of collision increases
 	// significantly, because each ship in the firing-line resets the SetPhase of the previous one. But such stacks
 	// are rare, so we are not going to do anything special for this.
 	if(attributes.Get("cloak phasing") >= Random::Real())
@@ -2972,13 +2976,14 @@ double Ship::Acceleration() const
 
 
 
-double Ship::MaxVelocity() const
+double Ship::MaxVelocity(bool withAfterburner) const
 {
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
+	double afterburnerThrust = attributes.Get("afterburner thrust");
+	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
 
@@ -3058,7 +3063,13 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
 	if(!wasDestroyed && IsDestroyed())
+	{
 		type |= ShipEvent::DESTROY;
+
+		if(IsYours() && Preferences::Has("Extra fleet status messages"))
+			Messages::Add("Your " + DisplayModelName() +
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
@@ -3725,9 +3736,6 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	// Once we've created enough little explosions, die.
 	if(explosionCount == explosionTotal || forget)
 	{
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
-			Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
-
 		if(!forget)
 		{
 			const Effect *effect = GameData::Effects().Get("smoke");
