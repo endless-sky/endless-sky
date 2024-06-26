@@ -713,7 +713,7 @@ mission "Gegno Exploration Nudge"
 				decline
 			
 			label provocative
-			`After the aggressive encounter on <origin>, you recall that the map device showed markings for a few other planets throughout Gegno space as well. From what you can remember, one of them was a desert planet, another was a terrestrial world, and another a small moon. For them to be intentionally marked in such a way could suggest there are other places you could run into the Gegno again, though it might be best to practice caution moving forward.
+			`After the aggressive encounter on <origin>, you recall that the map device showed markings for a few other planets throughout Gegno space as well. From what you can remember, one of them was a desert planet, another was a terrestrial world, and another a small moon. For them to be intentionally marked in such a way could suggest there are other places you could run into the Gegno again, though it might be best to practice caution moving forward.`
 
 
 # Gegno Superheavy Missions
