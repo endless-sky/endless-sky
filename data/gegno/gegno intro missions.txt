@@ -451,19 +451,19 @@ mission "Suspicious Scin"
 		system
 			near "Pukako" 2
 		dialog
-			`The signal coming from the mysterious device is weak. You must be far away from the location marked on the device.`
+			`The signal coming from the mysterious device is weak. You must be getting farther away from the location marked on the device.`
 
 	on enter
 		system
 			near "Ptetubo" 2
 		dialog
-			`The signal coming from the mysterious device is weak. You must be far away from the location marked on the device.`
+			`The signal coming from the mysterious device is weak. You must be getting farther away from the location marked on the device.`
 
 	on enter
 		system
 			near "Ilirco" 1 2
 		dialog
-			`The signal coming from the mysterious device is stronger now. You seem to be getting close to the location marked on the device.`
+			`The signal coming from the mysterious device is becoming stronger now. You seem to be getting closer to the location marked on the device.`
 
 	on enter "Ilirco"
 		conversation
@@ -508,7 +508,7 @@ mission "First Contact: Gegno Scin"
 				goto interaction
 			
 			label wait
-			`	Bringing your ship to a hault, you decide to wait and see what the Scin ship does as it advances towards you. As it slowly approaches, it slows down and eventually stops for a brief moment. Ever so slightly, the warship then begins to reverse backwards, and continues to drift away from you while facing you. They don't seem to be cautious of you, rather, it's almost as if they're implying to follow them.`
+			`	Bringing your ship to a halt, you decide to wait and see what the Scin ship does as it advances towards you. As it slowly approaches, it slows down and eventually stops for a brief moment. Ever so slightly, the warship then begins to reverse backwards, and continues to drift away from you while facing you. They don't seem to be cautious of you, rather, it's almost as if they're implying to follow them.`
 				goto interaction
 
 			label interaction
@@ -520,7 +520,7 @@ mission "First Contact: Gegno Scin"
 			label "leave"
 			action
 				set "gegno: left scin"
-			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. Once you finally make it back into space, the Scin ship breaks from formation and flies away. You're unsure of what they're doing on the planet or why you've been lead to them, but it's probably better you be careful not to get involved.`
+			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. Once you finally make it back into space, the Scin ship breaks from formation and flies away. You're unsure of what they're doing on the planet or why you've been lead to them, but it's probably better for you to be careful and not get involved.`
 				accept
 
 			label "follow"
@@ -541,7 +541,7 @@ mission "First Contact: Gegno Scin"
 				`	(Reach for my pistol.)`
 					goto "reach"
 			label "sit"
-			`	You also sit down, taking a good look at them. Their skin appears almost bone-like with very faint patterns of light green. Unlike the Vi, they have three small horns and barely any hair at all. They seem just as interested in your appearance, looking you up and down. Another Scin from the freighter walks over, bringing some sort of device and kneeling down next to the robed one, who takes the device and sets it down between you and them. It looks like some sort of tablet or drawing implement.`
+			`	You sit down, taking a good look at them. Their skin appears almost bone-like with very faint patterns of light green. Unlike the Vi, they have three small horns and barely any hair at all. They seem just as interested in your appearance, looking you up and down. Another Scin from the freighter walks over, bringing some sort of device and kneeling down next to the robed one, who takes the device and sets it down between you and them. It looks like some sort of tablet or drawing implement.`
 			`	The Scin then reaches their palm out and makes a mark on one half of the display, then turns it to you.`
 			choice
 				`	(Place my hand on the device.)`
@@ -786,7 +786,7 @@ mission "Gegno Genocide Defense"
 
 			label "corroboration provocation homeworld"
 			`Following your assault on the Gegno fleet, you still attempt to land on the Gegno homeworld, but a large number of hostile ships are already guarding the planet's surface. Suddenly, you receive an incoming hail, though not from the Gegno.`
-			`	"It was incredibly unwise to fire upon guardians of the Gegno homeworld." The voice belongs to that of a Quarg, though it sounds quite displeased. "They simply are present to quell unease of your foreign involvement, yet you chose hostility with them above the most sacred of planets." A Quarg ship then appears from the horizon, quickly flying over to your ship as you receive another hail. "You shall find yourself no longer welcome in Gegno space, as well as at the end of our patience."`
+			`	"It was incredibly unwise to fire upon guardians of the Gegno homeworld." The frigid voice belongs to that of a Quarg, though it sounds quite displeased. "They simply are present to quell unease of your foreign involvement, yet you chose hostility with them above the most sacred of planets." A Quarg ship then appears from the horizon, quickly flying over to your ship as you receive another hail. "You shall find yourself no longer welcome in Gegno space, as well as at the end of our patience."`
 			`	Without giving pause, the Quarg ship escorts you back into the atmosphere, and the Gegno ships hesitantly pull back for the time being. As you leave the planet, they hail you one last time. "Your actions will have certainly caused instability with the Gegno. Your best course of action is to leave this space at once. We shall be watching." After that, the ship disappears.`
 				launch
 

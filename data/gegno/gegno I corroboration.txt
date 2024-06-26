@@ -188,7 +188,7 @@ mission "Brief Bystander"
 			label investigate
 			action
 				set "gegno: approached bystander"
-			`	You steer your ship toward the shuttle, and once you approach it, you are able to see a Gegno on the ground fiddling with one of the nearby devices. Though, as you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
+			`	You steer your ship toward the shuttle, and once you approach it, you are able to see a Gegno on the ground fiddling with one of the nearby devices. As you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
 			`	Landing beside the satellite, you step out to take a look. The device is indistinguishable from any of the others you have seen so far. Its only notable feature seems to be its advanced age.`
 				decline
 
@@ -1027,8 +1027,8 @@ mission "Acquiescence"
 
 
 			label "tower"
-			`	The tower ahead of you is truly a sight to behold. It appears to be larger and taller than anything in human architecture, yet it looks very old - noticeably so - compared to the portions you've seen higher up in the clouds of dark smog. The base, which grows larger the higher up the tower goes, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
-			`	You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, whom has been many steps ahead of you, grunts and gestures for you to enter a cage-like platform at the other side of an enormous room.`
+			`	The tower ahead of you is truly a sight to behold. It appears to be larger and taller than anything in human architecture, yet it looks very old - noticeably so - compared to the portions you've seen higher up in the clouds of dark smog. The base, which grows larger as the tower gets taller, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
+			`	You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, who has been many steps ahead of you, grunts and gestures for you to enter a cage-like platform at the other side of an enormous room.`
 			choice
 				`	(Enter the cage.)`
 			`	Thankfully, the cage is not anything like a jail cell; with a clank of chains and other indeterminate sounds, you begin to ascend upwards to wherever your next destination may be. However, the shaking and clanging of the lift doesn't exactly ease your mind. All of a sudden, you start to hear a deep, methodical rumble coming from above you. In that same instant, you're hit with a gust of air. Your cage is outside the building, and it is rocketing upward with only the support of a few rails and pulleys. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in one to your left in the distance. As you're ascending, you see that many Gegno are lined up on several balconies at different levels of the tower, playing large timpani-like drums in a steady rhythm. Occasionally they yell or play a horn-like instrument.`
@@ -1079,7 +1079,7 @@ mission "Acquiescence"
 					has "Foreign Spectator I: failed"
 
 
-			`	One of the more largely represented situations is the one that involved a large battle between the Vi and Scin over a moon orbiting a forest world. A long list of phrases scrolls by with graphics of different Gegno ships next to them, probably those who took part in said battle. The Gegno around you murmur to each other, occasionally grunting.`
+			`	One of the more prominent situations is the one that involved a large battle between the Vi and Scin over a moon orbiting a forest world. A long list of phrases scrolls by with graphics of different Gegno ships next to them, probably those who took part in said battle. The Gegno around you murmur to each other, occasionally grunting.`
 				to display
 					has "Battle over Zydee: offered"
 
@@ -1113,7 +1113,7 @@ mission "Acquiescence"
 
 
 			label "explain"
-			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, which nobody seems to be bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves; rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back away from the table. The trio march back up to it, discussing your response amongst themselves. They start moving all of the models aside as if they're setting up for something.`
+			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, which nobody seems to be bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves; rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back away from the table. The trio march back up to it, discussing your response amongst themselves. They then start moving all of the models aside as if they're setting up for something.`
 				goto "what does home mean"
 
 
