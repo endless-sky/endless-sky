@@ -8112,7 +8112,7 @@ mission "Skadenga: Blood of Surtr"
 
 			label hrithland
 			`	You pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit it.`
-			`	At the old village hall you find the Ondurdis and Aldfrith in conversation with a band of people who quite stick out here, foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
+			`	At the old village hall you find the Ondurdis and Aldfrith deep in conversation with a band of people who stick out beside the Skadenga and Ranfolk; they appear to be foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
 			`	"<first>!" the Ondurdis exclaims happily. "My heart sings to see you." `
 			choice
 				`	"Who are they?"`
