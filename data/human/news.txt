@@ -411,6 +411,7 @@ news "investigator"
 			"Better to have loved and lost, so that you can hire me to find back."
 			"I'm tracking some shady businesses. Did you see someone carrying containers in the last 10 minutes?"
 			"They said they didn't poison the CEO, but nobody knew the CEO was poisoned."
+			"Here, let me give you my card. Notify me when you see any suspicious activity around here."
 		word
 			`"`
 
@@ -526,6 +527,7 @@ news "waste collector"
 			"All's fine and dandy until someone dumps a ton of rotten Caldan lobsters and you have to deal with the smell."
 			"My worth comes from removing what's worthless!"
 			"You wouldn't believe some of the stuff people throw away around the spaceport. Yesterday I found a perfectly intact ${small trash item} that someone had dumped."
+			"My shuttle got serious damage when some ${small trash item} exploded because it was not properly disposed."
 			"You may look down on me, but I earn more money in a day than you do in a month."
 		word
 			`"`
@@ -585,6 +587,7 @@ news "housekeeper"
 			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computer game until two days after it gets on the market."
 			"I just got fired. The dog of one of the kids died and the missus asked me to fly to Earth and buy a new identical one. When I returned she was screaming that she didn't need two dead dogs."
 			"There's one law for the rich and another law for the poor. One small mistake by me and I'm out back to the horrible place I emigrated from."
+			"I don't know what part of NO those spoiled kids didn't understand, but I'm not cooking 5 course dinners every day when they eat almost nothing."
 		word
 			`"`
 
@@ -607,6 +610,8 @@ news "groundskeeper"
 			"Despite all our best terraforming efforts, it can still be hard to get native Earth plants to grow on an alien world."
 			"My employer once asked me to add a garden in their Star Queen. The pirates were sure confused when they boarded us."
 			"My employer owns almost two complete planets, but today I'm watering the plants in the small apartment she owns on this planet."
+			"My boss didn't take no for an answer when I told her that this was the wrong season for seeding. So here I am, trying to grow plants that will die within days."
+			"The request to water the plants is still going to be ignored while it is raining. No matter how much they pay me."
 		word
 			`"`
 
@@ -630,6 +635,16 @@ news "hair stylist"
 			"A real challenge for my profession in this day and age is finding styles that work in both high and low gravity environments."
 		word
 			`"`
+
+
+
+news "painter"
+	name
+		word
+			"Painter"
+	message
+		word
+			"He who can, creates; he who cannot, transports. Sorry, no offence meant to you."
 
 
 
