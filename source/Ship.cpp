@@ -4974,31 +4974,5 @@ double Ship::CalculateDeterrence() const
 
 bool Ship::Immitates(const Ship &other) const
 {
-	// Some early return checks.
-	if(other.DisplayModelName() != DisplayModelName())
-		return false;
-
-	for(auto oit : outfits)
-		if(other.OutfitCount(oit.first) != OutfitCount(oit.first))
-			return false;
-
-	// We have to test this in both directions to avoid false positives when the right hand side
-	//  includes attributes not present on the left hand side of the first loop.
-	// Testing size() wouldn't work because attributes are incremented (created if necessary) when
-	//  outfits are installed, but are only decremented to zero (not deleted from the Dictionary)
-	//  when outfits are uninstalled, thus lengths can differ for identical configurations.
-	// We would need to filter the vectors for non-zero values before comparing their sizes.
-
-	const Dictionary &myAttributes = attributes.Attributes();
-	const Dictionary &otherAttributes = other.Attributes().Attributes();
-
-	for(auto &it : myAttributes)
-		if(otherAttributes.Get(it.first) != it.second)
-			return false;
-
-	for(auto &it : otherAttributes)
-		if(myAttributes.Get(it.first) != it.second)
-			return false;
-
-	return true;
+	return DisplayModelName() == other.DisplayModelName() && outfits == other.Outfits();
 }
