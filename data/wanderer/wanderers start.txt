@@ -1187,9 +1187,9 @@ ship "Carrier" "Carrier (Alpha)"
 		"Jump Drive"
 	
 	gun -17.5 -176.5 "Hai Tracker Pod"
-	gun  17.5 -176.5 "Hai Tracker Pod"
+	gun 17.5 -176.5 "Hai Tracker Pod"
 	gun -17.5 -176.5 "Ion Cannon"
-	gun  17.5 -176.5 "Ion Cannon"
+	gun 17.5 -176.5 "Ion Cannon"
 	gun -26 -167.5 "Hai Tracker Pod"
 	gun 26 -167.5 "Hai Tracker Pod"
 	gun -26 -167.5
