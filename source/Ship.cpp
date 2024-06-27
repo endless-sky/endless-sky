@@ -4974,5 +4974,5 @@ double Ship::CalculateDeterrence() const
 
 bool Ship::Immitates(const Ship &other) const
 {
-	return DisplayModelName() == other.DisplayModelName() && outfits == other.Outfits();
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
