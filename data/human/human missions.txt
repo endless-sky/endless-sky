@@ -5984,7 +5984,6 @@ mission "Argosy Hijacking"
 		on kill
 			set "destroyed hijacked argosy"
 			dialog `You have destroyed the Moonshake Express. The ship's captain won't be impressed.`
-			fail
 
 	on fail
 		conversation
