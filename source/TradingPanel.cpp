@@ -123,20 +123,18 @@ void TradingPanel::Draw()
 	font.Draw("free:", Point(MIN_X + SELL_X + 5, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(MIN_X + HOLD_X, lastY), selected);
 
+	bool hasOutfits = false;
+	bool hasMinables = false;
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
-	sellOutfits = false;
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
-		bool hasOutfits = false;
-		bool hasMinables = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
 				bool isMinable = it.first->Get("minable");
 				(isMinable ? hasMinables : hasOutfits) = true;
 			}
-		sellOutfits = (hasOutfits && !hasMinables);
 
 		string str = Format::MassString(outfits + missionCargo) + " of ";
 		if(hasMinables && missionCargo)
@@ -144,11 +142,11 @@ void TradingPanel::Draw()
 		else if(hasOutfits && missionCargo)
 			str += "outfits and mission cargo.";
 		else if(hasOutfits && hasMinables)
-			str += "outfits and special commodities.";
+			str += "outfits and minerals.";
 		else if(hasOutfits)
 			str += "outfits.";
 		else if(hasMinables)
-			str += "special commodities.";
+			str += "minerals.";
 		else
 			str += "mission cargo.";
 		font.Draw(str, Point(MIN_X + NAME_X, lastY), unselected);
@@ -200,7 +198,6 @@ void TradingPanel::Draw()
 
 		if(hold)
 		{
-			sellOutfits = false;
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(MIN_X + HOLD_X, y), selected);
 		}
@@ -210,9 +207,11 @@ void TradingPanel::Draw()
 		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
 
 	Information info;
-	if(sellOutfits)
+	if(hasOutfits)
 		info.SetCondition("can sell outfits");
-	else if(player.Cargo().HasOutfits() || canSell)
+	if(hasMinables)
+		info.SetCondition("can sell minerals");
+	if(canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
@@ -255,14 +254,35 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			player.Cargo().Remove(commodity, amount);
 		}
+	}
+	else if(key == 'n' || key == 'M' || (key == 'm' && (mod & KMOD_SHIFT)))
+	{
+		for(const auto &it : player.Cargo().Outfits())
+		{
+			const Outfit * const outfit = it.first;
+			if(outfit->Get("minable") <= 0.) // only sell minerals
+				continue;
+
+			const int64_t &amount = it.second;
+			int64_t value = amount * outfit->Cost();
+			profit += value;
+			tonsSold += static_cast<int>(amount * outfit->Mass());
+
+			player.AddStock(outfit, amount);
+			player.Accounts().AddCredits(value);
+			player.Cargo().Remove(outfit, amount);
+		}
+	}
+	else if(key == 'f' || key == 'O' || (key == 'o' && (mod & KMOD_SHIFT)))
+	{
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			const Outfit * const outfit = it.first;
-			const int64_t &amount = it.second;
-			if(outfit->Get("minable") <= 0. && !sellOutfits)
+			if(outfit->Get("minable") > 0) // don't sell minerals
 				continue;
 
+			const int64_t &amount = it.second;
 			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
 			profit += value;
 			tonsSold += static_cast<int>(amount * outfit->Mass());
