@@ -35,5 +35,8 @@ This save file can be used to test these changes:
  - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/endless-sky/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
  - [ ] I created a PR to the [endless-sky-high-dpi repo](https://github.com/endless-sky/endless-sky-high-dpi) with the `@2x` versions of these art assets: {{insert PR link}}
 
+## Wiki Update
+(If this PR adds a new feature or modifies a feature that should be documented in the [GitHub wiki](https://github.com/endless-sky/endless-sky/wiki), open a PR to the [wiki repository](https://github.com/endless-sky/endless-sky-wiki) and provide a link.)
+
 ## Performance Impact
 {{If this PR changed code, describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed.}}
