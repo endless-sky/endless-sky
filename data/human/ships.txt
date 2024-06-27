@@ -889,7 +889,7 @@ ship "Carrier"
 		"fuel capacity" 700
 		"cargo space" 100
 		"outfit space" 820
-		"weapon capacity" 230
+		"weapon capacity" 240
 		"engine capacity" 210
 		weapon
 			"blast radius" 300
@@ -899,6 +899,8 @@ ship "Carrier"
 	outfits
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
+		"Sidewinder Missile Rack" 8
+		"Sidewinder Missile" 184
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Heavy Laser Turret"
@@ -906,13 +908,13 @@ ship "Carrier"
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
-		"D94-YV Shield Generator"
+		"D94-YV Shield Generator" 2
 		"Large Radar Jammer" 2
 		"Water Coolant System"
 		"Brig"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
-		"Security Station"
+		"Security Station" 2
 		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"

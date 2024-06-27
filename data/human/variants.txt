@@ -878,17 +878,21 @@ ship "Bulwark" "Bulwark (Heavy)"
 ship "Carrier" "Carrier (Jump)"
 	outfits
 		"Typhoon Launcher" 2
-		"Typhoon" 60
+		"Typhoon Torpedo" 60
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
+		"Sidewinder Missile Rack" 8
+		"Sidewinder Missile" 184
 		"Electron Turret"
 		"Heavy Anti-Missile Turret" 2
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
+		"Security Station" 2
+		"Brig"
 		"Armageddon Core"
-		"Dwarf Core"
 		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
+		"D94-YV Shield Generator" 2
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Water Coolant System"
@@ -909,22 +913,23 @@ ship "Carrier" "Carrier (Jump)"
 ship "Carrier" "Carrier (Mark II)"
 	outfits
 		"Typhoon Launcher" 2
-		"Typhoon" 60
+		"Typhoon Torpedo" 60
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
+		"Sidewinder Missile Rack" 8
+		"Sidewinder Missile" 184
 		"Electron Turret"
 		"Heavy Anti-Missile Turret" 2
 		"Armageddon Core"
-		"Dwarf Core"
 		"LP036a Battery Pack"
-		"Supercapacitor" 3
-		"D94-YV Shield Generator"
+		"D94-YV Shield Generator" 2
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 4
 		"Brig"
 		"Laser Rifle" 45
 		"Fragmentation Grenades" 45
+		"Security Station" 2
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
