@@ -144,6 +144,12 @@ event "war begins"
 		description `Bourne is a well-developed industrial world that was first settled four centuries ago. Its cities are home to some of the richest individuals in this section of the galaxy, but also home to tens of thousands of homeless people, and many others whose factory jobs are barely providing enough to make ends meet.`
 		description `	Outside the cities, the climate is somewhat dry, but the deep valleys and some coastal regions are suitable for farming. Very little of the planet remains that is untouched by human hands.`
 		description `	Bourne is also the seat of government for the newly formed Free Worlds.`
+	fleet "Navy Surveillance"
+		fighters
+			names "republic fighter"
+		add variant 10
+			"Cruiser"
+			"Surveillance Drone" 4
 
 mission "event: war begins"
 	landing
@@ -195,7 +201,6 @@ event "initial deployment 1"
 		fleet "Large Northern Merchants" 2900
 		fleet "Small Republic" 600
 		fleet "Large Republic" 400
-		fleet "Navy Surveillance" 2000
 		fleet "Republic Logistics" 4000
 	planet "Ingot"
 		description `Ingot is a volcanic moon, totally unsuitable for life but rich in metal. The miners who work here must spend all their time inside pressurized buildings.`
@@ -215,7 +220,6 @@ event "initial deployment 1"
 		fleet "Small Southern Merchants" 1100
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
-		fleet "Navy Surveillance" 2000
 		fleet "Republic Logistics" 3500
 	system "Algorel"
 		fleet "Small Southern Merchants" 800
@@ -224,7 +228,6 @@ event "initial deployment 1"
 		fleet "Large Republic" 500
 		fleet "Small Southern Pirates" 2500
 		fleet "Large Southern Pirates" 8000
-		fleet "Navy Surveillance" 2000
 		fleet "Republic Logistics" 4000
 	planet "New Wales"
 		description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals.`
@@ -236,7 +239,6 @@ event "initial deployment 1"
 		fleet "Small Republic" 1200
 		fleet "Large Republic" 1800
 		fleet "Small Southern Pirates" 9000
-		fleet "Navy Surveillance" 2000
 	system "Ipsing"
 		fleet "Small Southern Merchants" 2800
 		fleet "Large Southern Merchants" 7000
@@ -244,7 +246,6 @@ event "initial deployment 1"
 		fleet "Large Republic" 4000
 		fleet "Small Southern Pirates" 5000
 		fleet "Derelict Northern" 10000
-		fleet "Navy Surveillance" 2000
 	system "Mizar"
 		fleet "Small Southern Merchants" 1400
 		fleet "Large Southern Merchants" 4500
@@ -252,7 +253,6 @@ event "initial deployment 1"
 		fleet "Large Republic" 1400
 		fleet "Small Southern Pirates" 9000
 		fleet "Derelict Northern" 30000
-		fleet "Navy Surveillance" 2000
 	system "Muphrid"
 		fleet "Small Southern Merchants" 1200
 		fleet "Large Southern Merchants" 4800
@@ -260,13 +260,11 @@ event "initial deployment 1"
 		fleet "Large Republic" 1900
 		fleet "Small Southern Pirates" 9000
 		fleet "Derelict Northern" 30000
-		fleet "Navy Surveillance" 2000
 	system "Menkent"
 		fleet "Small Southern Merchants" 700
 		fleet "Large Southern Merchants" 1900
 		fleet "Small Republic" 500
 		fleet "Large Republic" 600
-		fleet "Navy Surveillance" 2000
 		fleet "Republic Logistics" 10000
 		fleet "Human Miners" 2000
 	planet "New Austria"
@@ -330,7 +328,6 @@ event "initial deployment 2"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
 		fleet "Derelict Northern" 30000
-		fleet "Navy Surveillance" 1600
 	system "Delta Velorum"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
@@ -338,7 +335,6 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 5000
 		fleet "Small Republic" 1600
 		fleet "Large Republic" 2400
-		fleet "Navy Surveillance" 1600
 	system "Turais"
 		fleet "Small Southern Merchants" 2000
 		fleet "Large Southern Merchants" 6000
@@ -346,7 +342,6 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 7000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1800
-		fleet "Navy Surveillance" 1600
 	system "Gacrux"
 		fleet "Small Southern Merchants" 2000
 		fleet "Large Southern Merchants" 5000
@@ -355,21 +350,18 @@ event "initial deployment 2"
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
 		fleet "Derelict Northern" 30000
-		fleet "Navy Surveillance" 1600
 	system "Cor Caroli"
 		fleet "Small Southern Merchants" 700
 		fleet "Large Southern Merchants" 1300
 		fleet "Small Southern Pirates" 2000
 		fleet "Small Republic" 1200
 		fleet "Large Republic" 1800
-		fleet "Navy Surveillance" 1600
 	system "Muhlifain"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3500
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 4000
-		fleet "Navy Surveillance" 1600
 	system "Vindemiatrix"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 3000
@@ -377,7 +369,6 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
-		fleet "Navy Surveillance" 1600
 	system "Sarin"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
@@ -385,7 +376,6 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 6000
 		fleet "Small Republic" 8000
 		fleet "Large Republic" 15000
-		fleet "Navy Surveillance" 1600
 	system "Alioth"
 		fleet "Small Southern Merchants" 400
 		fleet "Large Northern Merchants" 600
@@ -393,7 +383,6 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 2400
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 4000
-		fleet "Navy Surveillance" 1600
 	system "Holeb"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
@@ -401,28 +390,24 @@ event "initial deployment 2"
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
 		fleet "Derelict Southern" 30000
-		fleet "Navy Surveillance" 1600
 	system "Arcturus"
 		fleet "Small Southern Merchants" 700
 		fleet "Large Southern Merchants" 3000
 		fleet "Small Southern Pirates" 4000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
-		fleet "Navy Surveillance" 1600
 	system "Rutilicus"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Southern Pirates" 8000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
-		fleet "Navy Surveillance" 1600
 	system "Alphecca"
 		fleet "Small Southern Merchants" 2000
 		fleet "Large Northern Merchants" 3500
 		fleet "Small Southern Pirates" 3000
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 4000
-		fleet "Navy Surveillance" 1600
 	system "Boral"
 		fleet "Small Southern Merchants" 3000
 		fleet "Large Northern Merchants" 8000
@@ -430,14 +415,12 @@ event "initial deployment 2"
 		fleet "Small Republic" 7000
 		fleet "Large Republic" 12000
 		fleet "Derelict Southern" 10000
-		fleet "Navy Surveillance" 1600
 	system "Cebalrai"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Southern Pirates" 4000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
-		fleet "Navy Surveillance" 1600
 	system "Rasalhague"
 		fleet "Small Southern Merchants" 1500
 		fleet "Large Southern Merchants" 2000
@@ -445,7 +428,6 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 8000
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 4000
-		fleet "Navy Surveillance" 1600
 
 # Compatibility patch event in case the pirates were added by the second deployment, pre-0.10.7
 event "remove pirates from Ildaria"
