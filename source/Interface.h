@@ -21,9 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "text/truncate.hpp"
 
+#include <limits>
 #include <map>
 #include <string>
 #include <vector>
+
+using namespace std;
 
 class DataNode;
 class Information;
@@ -198,6 +201,7 @@ private:
 	private:
 		std::string name;
 		const Color *color = nullptr;
+		double mapColor = numeric_limits<double>::quiet_NaN();
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;
