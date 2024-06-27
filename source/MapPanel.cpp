@@ -1381,7 +1381,7 @@ void MapPanel::DrawSystems()
 	// If coloring by government, we need to keep track of which ones are
 	// most prevalent.
 	if(commodity == SHOW_GOVERNMENT)
-		GovernmentCounts.clear();
+		governmentCounts.clear();
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
@@ -1403,7 +1403,7 @@ void MapPanel::DrawSystems()
 			// Count the number of occurences of each government.
 			// Exclude ones that are uninhabited, unexplored, or aren't their true color
 			if(node.government && node.isInhabited && node.color == GovernmentColor(node.government))
-				GovernmentCounts[node.government]++;
+				governmentCounts[node.government]++;
 		}
 	}
 }

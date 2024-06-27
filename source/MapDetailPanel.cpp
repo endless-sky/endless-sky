@@ -590,7 +590,7 @@ void MapDetailPanel::DrawKey()
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
 		vector<pair<unsigned int, const Government *>> screenNum;
-		for(const auto &it : GovernmentCounts)
+		for(const auto &it : governmentCounts)
 		{
 			if(!it.first)
 				continue;
