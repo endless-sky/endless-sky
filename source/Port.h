@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PORT_H_
 #define PORT_H_
 
+#include "Paragraphs.h"
+
 #include <string>
 
 class DataNode;
@@ -63,6 +65,9 @@ public:
 	void LoadDefaultSpaceport();
 	void LoadUninhabitedSpaceport();
 
+	// Load a port's description text paragraphs from the planet spaceport description.
+	void LoadDescription(const DataNode &node);
+
 	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;
 
@@ -73,8 +78,7 @@ public:
 	int GetRecharges() const;
 
 	const std::string &Name() const;
-	std::string &Description();
-	const std::string &Description() const;
+	const Paragraphs &Description() const;
 
 	// Check whether the given recharging is possible.
 	bool CanRecharge(int type) const;
@@ -93,7 +97,7 @@ private:
 
 	// The description of this port. Shown when clicking on the
 	// port button on the planet panel.
-	std::string description;
+	Paragraphs description;
 
 	// What is recharged when landing on this port.
 	int recharge = RechargeType::None;
