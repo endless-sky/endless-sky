@@ -393,6 +393,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 
 
 
+// Load attributes that represent a ship explosion.
+void Weapon::SetExplosion(double blastRadius, double shieldDamage, double hullDamage, double hitForce)
+{
+	isWeapon = true;
+	this->blastRadius = blastRadius;
+	damage[SHIELD_DAMAGE] = shieldDamage;
+	damage[HULL_DAMAGE] = hullDamage;
+	damage[HIT_FORCE] = hitForce;
+}
+
+
+
 bool Weapon::IsWeapon() const
 {
 	return isWeapon;

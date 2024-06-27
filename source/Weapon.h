@@ -59,6 +59,8 @@ public:
 public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
+	// Set attributes that represent a ship explosion.
+	void SetExplosion(double blastRadius, double shieldDamage, double hullDamage, double hitForce);
 	bool IsWeapon() const;
 
 	// Get assets used by this weapon.

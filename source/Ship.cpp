@@ -482,6 +482,30 @@ void Ship::Load(const DataNode &node)
 				leak.closePeriod = child.Value(3);
 			leaks.push_back(leak);
 		}
+		else if(key == "auto explosion")
+		{
+			autoExplosion = AutoExplosion();
+			autoExplosion->baseMult = child.Size() >= 2 ? child.Value(1) : 1.;
+			for(const auto &grand : child)
+			{
+				if(grand.Size() < 2)
+				{
+					grand.PrintTrace("Skipping node without value:");
+					continue;
+				}
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "blast radius")
+					autoExplosion->radiusMult = grand.Value(1);
+				else if(grandKey == "shield damage")
+					autoExplosion->shieldMult = grand.Value(1);
+				else if(grandKey == "hull damage")
+					autoExplosion->hullMult = grand.Value(1);
+				else if(grandKey == "hit force")
+					autoExplosion->forceMult = grand.Value(1);
+				else
+					grand.PrintTrace("Skipping unrecognised token:");
+			}
+		}
 		else if(key == "explode" && child.Size() >= 2)
 		{
 			if(!hasExplode)
@@ -601,6 +625,21 @@ void Ship::Load(const DataNode &node)
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading(bool isNewInstance)
 {
+	// Automatically create an explosion for this ship if requested but
+	// only if the ship does not already have a defined explosion.
+	if(autoExplosion && !baseAttributes.IsWeapon())
+	{
+		double baseShields = baseAttributes.Get("shields");
+		double baseHull = baseAttributes.Get("hull");
+		double scale = (baseShields + baseHull) * autoExplosion->baseMult;
+
+		double radius = scale * autoExplosion->radiusMult;
+		double shieldDamage = scale * autoExplosion->shieldMult;
+		double hullDamage = scale * autoExplosion->hullMult;
+		double hitForce = scale * autoExplosion->forceMult;
+		baseAttributes.SetExplosion(radius, shieldDamage, hullDamage, hitForce);
+	}
+
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
