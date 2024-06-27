@@ -4482,13 +4482,13 @@ void Ship::StepPilot()
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
+		if(isYours || personality.IsEscort())
 		{
-			if(parent.lock())
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
-			else
+			if(!parent.lock())
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+					, Messages::Importance::Low);
+			else if(Preferences::Has("Extra fleet status messages"))
+				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}
