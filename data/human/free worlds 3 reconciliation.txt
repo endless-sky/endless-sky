@@ -438,7 +438,7 @@ mission "FW Defend Farpoint"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -2149,7 +2149,7 @@ mission "FW Pug 5A"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 
@@ -2194,7 +2194,7 @@ mission "FW Pug 5B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	
@@ -2260,7 +2260,7 @@ mission "FW Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc
@@ -2280,7 +2280,7 @@ mission "FW Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat" 3
 	npc
@@ -2541,7 +2541,7 @@ mission "FW Syndicate Extremists 1B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)" 3
-				"Lance" 12
+				"Lance" 24
 				"Combat Drone" 18
 				"Cruiser (Mark II)" 3
 				"Combat Drone" 12
