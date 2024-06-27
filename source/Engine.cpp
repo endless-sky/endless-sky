@@ -2413,6 +2413,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!collector->IsYours())
 		return;
 
+	if(collector->GetParent() && !Preferences::Has("Extra fleet status messages"))
+		return;
+
 	// One of your ships picked up this flotsam. Describe who it was.
 	string name = (!collector->GetParent() ? "You" :
 			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";

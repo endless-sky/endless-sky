@@ -3066,7 +3066,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	{
 		type |= ShipEvent::DESTROY;
 
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
+		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
 				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
 	}
