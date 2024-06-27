@@ -3541,6 +3541,12 @@ Copyright: NASA
 License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
 
+Files:
+ images/ui/message?log?key*
+Copyright: TomGoodIdea (https://github.com/TomGoodIdea)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
  placed in the public domain. In June 2017, Unsplash modified their terms and conditions to make all images
