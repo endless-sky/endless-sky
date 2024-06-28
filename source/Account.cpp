@@ -440,7 +440,8 @@ Receipt Account::PayMortgages()
 
 	for(Mortgage &mortgage : mortgages)
 	{
-		if(!(mortgage.Type() == "Mortgage")) continue;
+		if(!(mortgage.Type() == "Mortgage"))
+			continue;
 		int64_t payment = mortgage.Payment();
 		if(payment > credits)
 		{
