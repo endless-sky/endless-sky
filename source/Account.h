@@ -46,7 +46,7 @@ public:
 	// Write account information to a saved game file.
 	void Save(DataWriter &out) const;
 
-	// Get much the player currently has in the bank.
+	// Get how many credits the player currently has in the bank.
 	int64_t Credits() const;
 
 	// Set the number of credits in the players account.
