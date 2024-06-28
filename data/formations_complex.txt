@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-formation "Atomic medium"
+formation "Atomic"
 	flippable x
 	rotatable 0
 	# Section in front of the lead ship
@@ -40,7 +40,7 @@ formation "Atomic medium"
 			positions 1
 
 
-formation "Diamond medium"
+formation "Diamond"
 	flippable x y
 	rotatable 90
 	# Segment below, right of lead ship. Growing in down/right direction
@@ -82,7 +82,7 @@ formation "Diamond medium"
 
 
 # Triangle forming behind the formation leader.
-formation "Delta (tailing) medium"
+formation "Delta (tailing)"
 	flippable y
 	line
 		start -75 129.9
@@ -94,7 +94,7 @@ formation "Delta (tailing) medium"
 			positions 1
 
 
-formation "Hegagon (wide) medium"
+formation "Hegagon (wide)"
 	flippable y
 	rotatable 60
 	# section lower-right
@@ -154,7 +154,7 @@ formation "Hegagon (wide) medium"
 
 
 # Regular triangle with the formation leader in the center at the front and the point of the triangle facing backwards.
-formation "Nabla (trailing) medium"
+formation "Nabla (trailing)"
 	flippable y
 	line
 		start -150 0
@@ -176,7 +176,7 @@ formation "Nabla (trailing) medium"
 
 # A sphere around the flagship
 # Built in six segment sections using the same layouting as the hexagon shape.
-formation "Sphere medium"
+formation "Sphere"
 	flippable x y
 	rotatable 0
 	arc
@@ -194,7 +194,7 @@ formation "Sphere medium"
 # Square with flagship in the center.
 # Order of the segments is important; to make it grow nicely line by line without gaps.
 # Direction of the lines (start and end) is also important to avoid gaps.
-formation "Square medium"
+formation "Square"
 	flippable x y
 	rotatable 90
 	# Segment ahead of the lead-ship, growing forward, a bit offset to right
