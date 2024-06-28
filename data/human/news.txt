@@ -1883,7 +1883,6 @@ news "merchant in pirate space"
 			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 			"The optimist has the glass half full, the pessimist has the glass half empty, but here you are already lucky if the glass doesn't get shot, stolen, or broken before you take your first sip."
 			"It's very silent here. Like the silence just before a huge thunderstorm hits."
-			"The early Firebird gets the Wormhole."
 		word
 			`"`
 
