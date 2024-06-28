@@ -672,7 +672,7 @@ news "tour guide"
 			"Antigrav boards for rent! You break it, you pay."
 			"I sometimes misread 'wine tasting' as 'time wasting.' The worst part is that nobody's noticed so far."
 			"Looking for some company for tonight? No questions asked, no strings attached. Just contact me if you need anything."
-			"Burn the candle at both ends. Sign up for our romantic zero gravity dinner!"
+			"Burn the candle at both ends. Sign up for our romantic zero-gravity dinner!"
 			"Friends, fellow planetmen, and travellers. Welcome to today's tour of this wonderful spaceport."
 		word
 			`"`
@@ -999,14 +999,14 @@ news "ship salesperson"
 			"Like new, low mileage, previously owned by an elderly lady."
 			"Hey, you there! I have the perfect ship for you."
 			"One of my ships has a fuel leak? No way, it's... sweat from all the hard work it does."
-			"Don't ask where I got my merchandise. Those shuttles fell out off the cargo-hold of a transport ship."
+			"Don't ask where I got my merchandise. Those shuttles fell out of the cargo hold of a transport ship."
 			"Of course I sell junk. If the ships were any good then the previous owners would have kept them."
 			"Help feed the children. My children. Come buy a ship."
-			"Those Firebirds are not old junk! Those are classics!"
-			"Every ship I sell has a free extra vehicular suit and free repair kit included. But you will rarely need it."
-			"How much credits do you have to spend on a new ship? I have something in every price-range."
-			"Why buy that fuel-in-efficient Flivver, when you can save 100 credits per year on fuel by spending 150k credits more on a Heavy Shuttle?"
-			"The left wing doesn't know what the right wing is doing. So you need to add a little bit of manual steering."
+			"My Firebirds are not old junk! These are classics!"
+			"Every ship I sell has a free extra vehicular suit and free repair kit included, but you will rarely need it."
+			"How many credits do you have to spend on a new ship? I have something in every price range."
+			"Why buy that fuel inefficient Flivver, when you can save 100 credits per year on fuel by spending 150k credits more on a Heavy Shuttle?"
+			"The left wing doesn't know what the right wing is doing, so you need to add a little bit of manual steering."
 		word
 			`"`
 
@@ -1103,7 +1103,7 @@ news "public relations worker"
 			"If you ever get accused of smuggling drugs, then the first person to call is not your lawyer, but me."
 			"It doesn't matter if an accusation is true or false. What does matter is if an accusation is made public or not."
 			"One of my clients crashed her shuttle into the Parliament building. Keeping that out of the news was horribly expensive, but it was still cheaper than the reputation hit if it were broadcast."
-			"I'm so happy for you, that I'm here. You look like you could use some good marketing advice."
+			"I'm so happy for you that I'm here. You look like you could use some good marketing advice."
 			"There is no such thing as bad publicity. Just make sure you are not forgotten."
 		word
 			`"`
