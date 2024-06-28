@@ -1761,11 +1761,11 @@ news "convicted criminal"
 			`"`
 		word
 			"I fought the law, and the law won."
-			"I'm innocent, I tell you! They convicted me for five murders, but I only killed two people!"
+			"I'm innocent, I tell you! They convicted me for five murders, yet I only killed two people!"
 			"Two years of food and housing for free, and all the time in the world to read. I'm so looking forward to staying in prison."
 			"I should have gone to one of those pirate worlds. They would never have caught me."
 			"They said I took a bribe to lose the game, but that is not true! I would also have gotten the credits if we had won!"
-			"The rich just buy themselves out of legal troubles! The Mayor was in on the plan, but he got away with a fine of 100 credits and I'm here serving 5 years!"
+			"The rich just buy themselves out of legal troubles! The Mayor was in on the plan, but he got away with a fine of 100 credits and I'm here serving five years!"
 		word
 			`"`
 
@@ -2312,7 +2312,7 @@ news "safety posters"
 			"PROTECTIVE EQUIPMENT REQUIRED WITHIN HAZARD ZONE"
 			"Keep hands on railing when traversing stairs."
 			"Sensitive electronics. Use electrostatic discharge protection in this area."
-			"Strong magnets in use. Don't enter production hall with metal prothesis."
+			"Strong magnets in use. Don't enter the production hall with metal on your body."
 		word
 			`"`
 
