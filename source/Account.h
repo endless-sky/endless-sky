@@ -149,6 +149,10 @@ private:
 	// NOTE: This function may modify the credits variable during execution.
 	Receipt PayFines();
 
+	// Attempt to pay debts, returning the results.
+	// NOTE: This function may modify the credits variable during execution.
+	Receipt PayDebts();
+
 	// Generate a log string from the given receipts.
 	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
 

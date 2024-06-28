@@ -372,7 +372,7 @@ std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance)
 	// or skipped completely (accruing interest and reducing your credit score).
 	receipts.push_back(PayMortgages());
 	receipts.push_back(PayFines());
-	// TODO: CREATE COPY OF THESE TWO FOR PayDebt()
+	receipts.push_back(PayDebts());
 
 	return receipts;
 }
@@ -499,6 +499,36 @@ Receipt Account::PayFines()
 
 
 
+Receipt Account::PayDebts()
+{
+	// This function needs to preserve:
+	//    1. The number of credits paid towards ALL debts
+	//    2. Whether ANY fine was not paid in full
+	Receipt receipt;
+	if(mortgages.empty()) return receipt;
+
+	for(Mortgage &mortgage : mortgages)
+	{
+		if(!(mortgage.Type() == "Debt")) continue;
+		int64_t payment = mortgage.Payment();
+		if(payment > credits)
+		{
+			mortgage.MissPayment();
+			receipt.paidInFull = false;
+		}
+		else
+		{
+			payment = mortgage.MakePayment();
+			credits -= payment;
+			receipt.creditsPaid += payment;
+		}
+	}
+
+	return receipt;
+}
+
+
+
 const string Account::GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const
 {
 	ostringstream log;
@@ -511,8 +541,7 @@ const string Account::GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) 
 
 	if(Mortgages().size() > 0)
 	{
-		// TODO: ADD CHECK FOR DEBT PAID
-		if(!receipts->at(2).paidInFull || !receipts->at(3).paidInFull)
+		if(!receipts->at(2).paidInFull || !receipts->at(3).paidInFull || !receipts->at(4).paidInFull)
 			log << "You missed a mortgage payment. ";
 	}
 
@@ -572,7 +601,6 @@ bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts)
 
 
 
-// TODO: ADD COVERAGE FOR DEBT PAYMENTS
 string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts)
 {
 	ostringstream log;
@@ -605,7 +633,10 @@ string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts)
 			log << Format::CreditString(receipts->at(2).creditsPaid) << " in mortgages"
 				<< (receipts->at(3).creditsPaid ? " and " : ".");
 		if(receipts->at(3).creditsPaid)
-			log << Format::CreditString(receipts->at(3).creditsPaid) << " in fines.";
+			log << Format::CreditString(receipts->at(3).creditsPaid) << " in fines"
+				<< (receipts->at(4).creditsPaid ? " and " : ".");
+		if(receipts->at(4).creditsPaid)
+			log << Format::CreditString(receipts->at(3).creditsPaid) << " in debt.";
 	}
 
 	return log.str();
