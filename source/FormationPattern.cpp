@@ -246,12 +246,6 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 		lineRepeatPositions += line.repeats[repeatNr].repeatPositions * ring;
 	}
 
-	// If we skip positions, then remove them from the counting.
-	if(line.skipFirst && lineRepeatPositions > 0)
-		--lineRepeatPositions;
-	if(line.skipLast && lineRepeatPositions > 0)
-		--lineRepeatPositions;
-
 	// If we are in a later ring, then skip lines that don't repeat.
 	if(lineRepeatPositions < 0)
 		return 0;
@@ -261,11 +255,11 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 
 
 
-// Get a formation position based on ring, line (or arc)-number and position on the line.
+// Get a formation position based on ring, line-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
 	unsigned int linePosition) const
 {
-	// First check if the inputs result in a valid line or arc position.
+	// First check if the inputs result in a valid line position.
 	if(lineNr >= lines.size())
 		return Point();
 	const Line &line = lines[lineNr];
@@ -276,7 +270,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	Point startPx = line.start;
 	Point endOrAnchorPx = line.endOrAnchor;
 
-	// Get the number of positions for this line or arc.
+	// Get the number of positions for this line.
 	int positions = line.positions;
 
 	// Check if we have a valid repeat section and apply it to the common calculations if we have it.
@@ -288,38 +282,6 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		endOrAnchorPx += repeat->repeatEndOrAnchor * ring;
 		positions += repeat->repeatPositions * ring;
 	}
-
-	if(line.skipFirst)
-		++linePosition;
-
-	// Switch to arc-specific calculations if this line is an arc.
-	if(line.isArc)
-	{
-		// Calculate angles and radius from anchor to start.
-		double startAngle = Angle(startPx).Degrees();
-		double endAngle = line.angle;
-		double radius = startPx.Length();
-
-		// Apply repeat section for endAngle, startAngle and anchor were already done before.
-		if(repeat)
-			endAngle += repeat->repeatAngle * ring;
-
-		// Apply positions to get the correct position-angle.
-		if(positions > 1)
-			endAngle /= positions - 1;
-		double positionAngle = startAngle + endAngle * linePosition;
-
-		// Get into the range of 0 to 360 for conversion to angle.
-		if(positionAngle < 0)
-			positionAngle = -fmod(-positionAngle, 360) + 360;
-		else
-			positionAngle = fmod(positionAngle, 360);
-
-		// Combine anchor with the position and return the result.
-		return endOrAnchorPx + Angle(positionAngle).Unit() * radius;
-	}
-
-	// This is not an arc, perform the line-based calculations.
 
 	// Calculate the step from each position between start and end.
 	Point positionPx = endOrAnchorPx - startPx;
