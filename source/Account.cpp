@@ -173,7 +173,7 @@ const vector<Mortgage> &Account::Mortgages() const
 
 void Account::AddMortgage(int64_t principal)
 {
-	mortgages.emplace_back(principal, creditScore);
+	mortgages.emplace_back("Mortgage", principal, creditScore);
 	credits += principal;
 }
 
@@ -182,7 +182,7 @@ void Account::AddMortgage(int64_t principal)
 // Add a mortgage with an interest rate of zero and a short term.
 void Account::AddFine(int64_t amount)
 {
-	mortgages.emplace_back(amount, 0, 60);
+	mortgages.emplace_back("Fine", amount, 0, 60);
 }
 
 
@@ -234,7 +234,6 @@ int64_t Account::TotalDebt(const string &type) const
 	for(const Mortgage &mortgage : mortgages)
 		if(type.empty() || mortgage.Type() == type)
 			total += mortgage.Principal();
-
 
 	return total;
 }
@@ -364,7 +363,7 @@ std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance)
 	receipts.push_back(PayMortgages());
 	receipts.push_back(PayFines());
 	// TODO: CREATE COPY OF THESE TWO FOR PayDebt()
-	
+
 	return receipts;
 }
 
@@ -629,5 +628,6 @@ int64_t Account::YearlyRevenue() const
 
 	// Note that this intentionally under-estimates if the player has not yet
 	// played for long enough to accumulate a full income history.
+
 	return ((history.back() - history.front()) * 365) / HISTORY;
 }
