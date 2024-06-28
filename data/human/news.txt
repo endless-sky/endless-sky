@@ -1724,6 +1724,7 @@ news "republic soldier (bragging)"
 			"Run, the Navy is here!"
 			"You don't have jurisdiction here."
 			"You think you can hit me over that distance?"
+			"What are you gonna do? Shoot me?"
 		word
 			`'"`
 
