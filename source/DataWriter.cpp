@@ -121,7 +121,8 @@ void DataWriter::EndChild()
 // Write a comment line, at the current indentation level.
 void DataWriter::WriteComment(const string &str)
 {
-	out << *before << "# " << str << '\n';
+	out << *before << "# " << str;
+	Write();
 }
 
 

@@ -52,7 +52,8 @@ TEST_CASE( "DataWriter::WriteComment", "[datawriter][writecomment]" ) {
 		writer.WriteToken("hello there");
 		THEN( "writing a comment is possible" ) {
 			writer.WriteComment("comment");
-			CHECK( writer.SaveToString() == "\"hello there\" # comment\n" );
+			writer.Write("next line");
+			CHECK( writer.SaveToString() == "\"hello there\" # comment\n\"next line\"\n" );
 		}
 	}
 	GIVEN( "a DataWriter with multiple lines" ) {
@@ -68,14 +69,50 @@ TEST_CASE( "DataWriter::WriteComment", "[datawriter][writecomment]" ) {
 		THEN( "writing a comment is possible" ) {
 			writer.Write("there");
 			writer.WriteComment("comment");
+			writer.Write("after comment");
 			writer.EndChild();
-			CHECK( writer.SaveToString() == "hello\n\tthere\n\t# comment\n" );
+			writer.Write("outer");
+			CHECK( writer.SaveToString() == "hello\n\tthere\n\t# comment\n\t\"after comment\"\nouter\n" );
 		}
 		THEN( "writing an inline comment is possible" ) {
 			writer.WriteToken("there");
 			writer.WriteComment("comment");
 			writer.EndChild();
 			CHECK( writer.SaveToString() == "hello\n\tthere # comment\n" );
+		}
+	}
+	GIVEN( "a DataWriter with multiple levels of indentation" ) {
+		writer.Write("first");
+		writer.BeginChild();
+		writer.Write("second");
+		writer.BeginChild();
+		writer.Write("third");
+		THEN( "writing a comment is possible" ) {
+			writer.WriteComment("comment");
+			writer.Write("after comment");
+			writer.EndChild();
+			writer.Write("second after");
+			CHECK( writer.SaveToString() ==
+R"(first
+	second
+		third
+		# comment
+		"after comment"
+	"second after"
+)" );
+		}
+		THEN( "writing an inline comment is possible" ) {
+			writer.WriteToken("begin");
+			writer.WriteComment("comment");
+			writer.EndChild();
+			writer.Write("second after");
+			CHECK( writer.SaveToString() ==
+R"(first
+	second
+		third
+		begin # comment
+	"second after"
+)" );
 		}
 	}
 }
