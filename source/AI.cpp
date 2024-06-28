@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
+#include "concurrent/Parallel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -320,12 +321,10 @@ namespace {
 
 
 
-AI::AI(const PlayerInfo &player, const List<Ship> &ships,
+AI::AI(const PlayerInfo &player, const vector<shared_ptr<Ship>> &ships,
 		const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
-	// Allocate a starting amount of hardpoints for ships.
-	firingCommands.SetHardpoints(12);
 }
 
 
@@ -553,7 +552,7 @@ void AI::Step(Command &activeCommands)
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
 	// the fence count map after a few seconds.
-	for(auto it = fenceCount.begin(); it != fenceCount.end(); )
+	for(auto it = fenceCount.begin(); it != fenceCount.end();)
 	{
 		it->second -= FENCE_DECAY;
 		if(it->second < 0)
@@ -561,15 +560,17 @@ void AI::Step(Command &activeCommands)
 		else
 			++it;
 	}
-	for(const auto &it : ships)
+	mutex lock;
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
 		{
+			lock_guard<mutex> guard(lock);
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
-	}
+	});
 
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -579,21 +580,24 @@ void AI::Step(Command &activeCommands)
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
-	for(const auto &it : ships)
+
+	for_each(parallel::par, ships.begin(), ships.end(), [&](auto &it)
 	{
 		// A destroyed ship can't do anything.
 		if(it->IsDestroyed())
-			continue;
+			return;
 		// Skip any carried fighters or drones that are somehow in the list.
 		if(!it->GetSystem())
-			continue;
+			return;
+
+		FireCommand firingCommands;
 
 		if(it.get() == flagship)
 		{
 			// Player cannot do anything if the flagship is landing.
 			if(!flagship->IsLanding())
-				MovePlayer(*it, activeCommands);
-			continue;
+				MovePlayer(*it, activeCommands, firingCommands);
+			return;
 		}
 
 		const Government *gov = it->GetGovernment();
@@ -623,12 +627,12 @@ void AI::Step(Command &activeCommands)
 					double &threshold = appeasementThreshold[it.get()];
 					threshold = max((1. - health) + .1, threshold);
 				}
-				continue;
+				return;
 			}
 		}
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsOverheated())
-			continue;
+			return;
 
 		Command command;
 		firingCommands.SetHardpoints(it->Weapons().size());
@@ -651,7 +655,7 @@ void AI::Step(Command &activeCommands)
 			{
 				// The ship chose to retreat from its target, e.g. to repair.
 				it->SetCommands(command);
-				continue;
+				return;
 			}
 
 		shared_ptr<Ship> parent = it->GetParent();
@@ -669,8 +673,8 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Ship> target = it->GetTargetShip();
 		shared_ptr<Minable> targetAsteroid = it->GetTargetAsteroid();
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
-		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
-			continue;
+		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command, firingCommands))
+			return;
 		// Determine if this ship was trying to scan its previous target. If so, keep
 		// track of this ship's scan time and count.
 		if(isPresent && !it->IsYours())
@@ -719,7 +723,7 @@ void AI::Step(Command &activeCommands)
 		{
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		// Run away if your hostile target is not disabled
@@ -794,7 +798,7 @@ void AI::Step(Command &activeCommands)
 				it->SetTargetShip(shipToAssist);
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
-				continue;
+				return;
 			}
 		}
 
@@ -826,7 +830,7 @@ void AI::Step(Command &activeCommands)
 			DoSwarming(*it, command, target);
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		if(isPresent && personality.IsSecretive())
@@ -834,19 +838,19 @@ void AI::Step(Command &activeCommands)
 			if(DoSecretive(*it, command))
 			{
 				it->SetCommands(command);
-				continue;
+				return;
 			}
 		}
 
 		// Surveillance NPCs with enforcement authority (or those from
 		// missions) should perform scans and surveys of the system.
 		if(isPresent && personality.IsSurveillance() && !strandedWithHelper
-				&& (scanPermissions[gov] || it->IsSpecial()))
+				&& (scanPermissions.at(gov) || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		// Ships that harvest flotsam prioritize it over stopping to be refueled.
@@ -854,7 +858,7 @@ void AI::Step(Command &activeCommands)
 		{
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
@@ -870,10 +874,10 @@ void AI::Step(Command &activeCommands)
 					command |= Command::DEPLOY;
 					Deploy(*it, false);
 				}
-				DoMining(*it, command);
+				DoMining(*it, command, firingCommands);
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
-				continue;
+				return;
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
 			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
@@ -887,7 +891,7 @@ void AI::Step(Command &activeCommands)
 					AutoFire(*it, firingCommands, *minable);
 					it->SetCommands(command);
 					it->SetCommands(firingCommands);
-					continue;
+					return;
 				}
 			}
 			it->SetTargetAsteroid(nullptr);
@@ -910,7 +914,7 @@ void AI::Step(Command &activeCommands)
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
+				auto getParentFrom = [&it, &gov, &parentChoices](const vector<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
@@ -982,7 +986,7 @@ void AI::Step(Command &activeCommands)
 				command |= Command::BOARD;
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
-				continue;
+				return;
 			}
 			// If we get here, it means that the ship has not decided to return
 			// to its mothership. So, it should continue to be deployed.
@@ -1015,7 +1019,7 @@ void AI::Step(Command &activeCommands)
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
-		else if(FollowOrders(*it, command))
+		else if(FollowOrders(*it, command, firingCommands))
 		{
 			// If this is an escort and it followed orders, its only final task
 			// is to convert completed MOVE_TO orders into HOLD_POSITION orders.
@@ -1083,7 +1087,7 @@ void AI::Step(Command &activeCommands)
 
 		it->SetCommands(command);
 		it->SetCommands(firingCommands);
-	}
+	});
 }
 
 
@@ -1542,7 +1546,7 @@ vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double max
 
 
 
-bool AI::FollowOrders(Ship &ship, Command &command) const
+bool AI::FollowOrders(Ship &ship, Command &command, FireCommand &firingCommands) const
 {
 	auto it = orders.find(&ship);
 	if(it == orders.end())
@@ -2902,7 +2906,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 
 
 
-void AI::DoMining(Ship &ship, Command &command)
+void AI::DoMining(Ship &ship, Command &command, FireCommand &firingCommands)
 {
 	// This function is only called for ships that are in the player's system.
 	// Update the radius that the ship is searching for asteroids at.
@@ -3868,7 +3872,7 @@ bool AI::TargetMinable(Ship &ship) const
 
 
 
-void AI::MovePlayer(Ship &ship, Command &activeCommands)
+void AI::MovePlayer(Ship &ship, Command &activeCommands, FireCommand &firingCommands)
 {
 	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size());
@@ -4106,7 +4110,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else
 			{
 				// Sort the list of options in increasing order of desirability.
-				sort(options.begin(), options.end(),
+				sort(parallel::par_unseq, options.begin(), options.end(),
 					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
 						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)
@@ -4562,12 +4566,19 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	// Tally the strength of a government by the strength of its present and able ships.
 	governmentRosters.clear();
 	for(const auto &it : ships)
-		if(it->GetGovernment() && it->GetSystem() == playerSystem)
+	{
+		const Government *gov = it->GetGovernment();
+		if(gov && it->GetSystem() == playerSystem)
 		{
-			governmentRosters[it->GetGovernment()].emplace_back(it.get());
+			governmentRosters[gov].emplace_back(it.get());
 			if(!it->IsDisabled())
-				strength[it->GetGovernment()] += it->Strength();
+				strength[gov] += it->Strength();
 		}
+		// Check if this government has the authority to enforce scans & fines in this system.
+		if(!scanPermissions.count(gov))
+			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
+
+	}
 
 	// Strengths of enemies and allies are rebuilt every step.
 	enemyStrength.clear();
@@ -4591,19 +4602,18 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	}
 
 	// Ships with nearby allies consider their allies' strength as well as their own.
-	for(const auto &it : ships)
+	mutex lock;
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const Government *gov = it->GetGovernment();
 
-		// Check if this ship's government has the authority to enforce scans & fines in this system.
-		if(!scanPermissions.count(gov))
-			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
-
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
-			continue;
+			return;
 
+		unique_lock<mutex> guard(lock);
 		int64_t &myStrength = shipStrength[it.get()];
+		guard.unlock();
 		for(const auto &allies : governmentRosters)
 		{
 			// If this is not an allied government, its ships will not assist this ship when attacked.
@@ -4613,7 +4623,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
 					myStrength += ally->Strength();
 		}
-	}
+	});
 }
 
 
@@ -4625,10 +4635,8 @@ void AI::CacheShipLists()
 	enemyLists.clear();
 	for(const auto &git : governmentRosters)
 	{
-		allyLists.emplace(git.first, vector<Ship *>());
-		allyLists.at(git.first).reserve(ships.size());
-		enemyLists.emplace(git.first, vector<Ship *>());
-		enemyLists.at(git.first).reserve(ships.size());
+		allyLists.emplace(git.first, vector<Ship *>()).first->second.reserve(ships.size());
+		enemyLists.emplace(git.first, vector<Ship *>()).first->second.reserve(ships.size());
 		for(const auto &oit : governmentRosters)
 		{
 			auto &list = git.first->IsEnemy(oit.first)

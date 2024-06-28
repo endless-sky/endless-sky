@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
+#include "concurrent/WithMutex.h"
 
 #include <cstdint>
 #include <string>
@@ -32,7 +33,7 @@ class Sprite;
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
-class Body {
+class Body : public WithMutex {
 public:
 	// Constructors.
 	Body() = default;

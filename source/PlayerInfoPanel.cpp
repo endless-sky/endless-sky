@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
+#include "concurrent/Parallel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -840,6 +841,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 		}
 
 	stable_sort(
+		parallel::par_unseq,
 		panelState.Ships().begin() + 1,
 		panelState.Ships().end(),
 		shipComparator

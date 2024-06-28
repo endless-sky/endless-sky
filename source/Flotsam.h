@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "Point.h"
 
+#include <list>
 #include <string>
-#include <vector>
 
 class Effect;
 class Government;
@@ -54,7 +54,7 @@ public:
 	void Place(const Body &source, const Point &dv);
 
 	// Move the object one time-step forward.
-	void Move(std::vector<Visual> &visuals);
+	void Move(std::list<Visual> &visuals);
 	void SetVelocity(Point velocity);
 
 	// This is the one ship that cannot pick up this flotsam.
