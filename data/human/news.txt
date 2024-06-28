@@ -1445,8 +1445,8 @@ news "work coach"
 		word
 			"A startup company once hired me, and I immediately advised them to stop; hiring an expensive consultant like me is a horrible decision for a cash strapped startup."
 			"Working as the head of a company requires sound decision making abilities. Hiring an expensive consultant like me usually suggests a lack thereof, but I'm not complaining since I get paid well."
-			"My first advice is always free. And let me just give it to you; I strongly recommend hiring me."
-			"Here is a piece of free advice; I strongly recommend hiring me."
+			"My first advice is always free. And let me just give it to you: I strongly recommend hiring me."
+			"Here is a piece of free advice: I strongly recommend hiring me."
 		word
 			`"`
 
@@ -1470,8 +1470,8 @@ news "scientist"
 			"We've got student interns in the lab this month. A few of them are very bright!"
 			"Excuse me, captain, I have to resume work on a paper I'm co-authoring. Would you like an advance copy?"
 			"My research concerns force fields. No, not those kinds of force fields."
-			"I'm working on a top secret project; even I don't know what I'm doing."
-			"Working on a top secret project; would love to tell you, but then I need to kill you. Haha just kidding, I'm doing research on producing staples more cheaply."
+			"I'm working on a top secret project: even I don't know what I'm doing."
+			"Working on a top secret project; would love to tell you, but then I'd need to kill you. Haha, just kidding. I'm doing research on producing staples more cheaply."
 		word
 			`"`
 
@@ -1570,7 +1570,7 @@ news "tourist"
 			"Warn me if you see my partner or my secret lover. They learned about each other and now they're both trying to kill me."
 			"Get away from me! I already told twenty of your colleagues that I don't need a taxi service."
 			"You there, where are my bags! What do you mean by you don't know? You look like one of those dockworkers."
-			"We are not amused. The Starqueen Victoria is delayed by 2 minutes, and I need to wait here among the commoners with no privacy whatsoever."
+			"We are not amused. The Star Queen Victoria is delayed by two minutes, and I need to wait here among the commoners, with no privacy whatsoever."
 			"Once more unto the beach planet, dear friends, once more."
 		word
 			`"`
