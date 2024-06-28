@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 
-// A utility stucture to return multpile values needed during processing
+// A utility structure to return multiple values needed during processing
 // inside the Step function and its subprocesses.
 struct Receipt {
 	bool paidInFull = true;
