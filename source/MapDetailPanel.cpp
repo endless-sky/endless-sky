@@ -588,7 +588,8 @@ void MapDetailPanel::DrawKey()
 	else if(commodity == SHOW_GOVERNMENT)
 	{
 		// Each system is colored by the government of the system. Only the
-		// `availableLines` largest visible governments are labeled in the legend, as well as uninhabited & unexplored (if applicable).
+		// `availableLines` largest visible governments are labeled in the legend, as
+		// well as uninhabited & unexplored (if applicable).
 		vector<pair<unsigned int, const Government *>> screenNum;
 		for(const auto &it : governmentCounts)
 		{
