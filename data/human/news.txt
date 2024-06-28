@@ -151,7 +151,6 @@ news "merchant in human space"
 			"I spy with my little eye... something large, flat, and sturdy. The landing pads! How did you know?"
 			"A Star Barge, by any other name, is still just a moving cargo container."
 			"I named my ship Titanic. It's a strong sounding name, but I feel people are making fun of me."
-			"The early Firebird gets the Wormhole."
 			"One Sparrow doesn't make a summer. You need a whole fleet of those to be effective."
 			"No good deed goes unpunished. I once helped some good friends of mine to become pilots as well, but they took over my most profitable trade-route."
 		word
@@ -1884,6 +1883,7 @@ news "merchant in pirate space"
 			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 			"The optimist has the glass half full, the pessimist has the glass half empty, but here you are already lucky if the glass doesn't get shot, stolen, or broken before you take your first sip."
 			"It's very silent here. Like the silence just before a huge thunderstorm hits."
+			"The early Firebird gets the Wormhole."
 		word
 			`"`
 
@@ -2014,7 +2014,7 @@ news "spaceport video advertisement"
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
 			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
-			"Six days pirate hunting cruise, shoot real pirates for 2000 credits a day. 400 bullets included for free."
+			"Six days cruise to hunt pirates, shoot real pirates for 2000 credits a day. 400 bullets included for free."
 			"Buy local, buy Southbound Haulers. Also for merchants not from the South."
 
 
@@ -2383,5 +2383,4 @@ news "graffiti on spaceport wall"
 			"On a small space-station / early in the morning / seven spaceships landed / nicely in a line / and the captain / transmitted departure / tick tick woosh woosh / here we go"
 			"Time flies like an Arrow, fruit flies like a Banana."
 			"The panda eats shoots and leaves. The hunter eats, shoots and leaves."
-			"While the man was hunting the deer ran through the forest."
 			"The hyperlane to hell is paved with good intentions."
