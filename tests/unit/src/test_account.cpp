@@ -131,6 +131,14 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 					REQUIRE(account.Mortgages().size() == 2);
 				}
 			}
+			AND_WHEN( "A debt is added to the account" ) {
+				account.AddDebt(20000, 0.1, 1000);
+				THEN( "The user has 2 mortgages" ) {
+					REQUIRE(account.Credits() == 480000);
+					REQUIRE(account.CreditScore() == 400);
+					REQUIRE(account.Mortgages().size() == 3);
+				}
+			}
 		}
 		WHEN( "The mortgage is paid off at the bank" ) {
 			account.PayExtra(0, 480000);
