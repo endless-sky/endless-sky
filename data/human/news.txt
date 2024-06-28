@@ -1684,13 +1684,13 @@ news "republic soldier"
 			"Nobody thinks about the Alphas anymore, but don't forget that they just disappeared. They could return at any time. If that happens, I'm going to kill every last one of 'em."
 			"While it seems pointless to have the Bactrian locked behind a license, don't forget that it's one of the oldest designs in human space. It was the Navy Carrier of its time - and it's still comparable to one."
 			`We recently went to full alert, because somebody screamed "It's scrambled!" Turns out some rookie in the galley was enthusiastic about making scrambled eggs.`
-			"Curiosity killed the cat. The R.N.S. Curiosity landed right on top of the poor creature."
+			"Curiosity killed the cat. Yes, the R.N.S. Curiosity landed right on top of the poor creature."
 			"We arrested a fortune teller yesterday; they didn't see it coming."
 		word
 			`"`
 
 
-news "republic soldier [bragging]"
+news "republic soldier (bragging)"
 	location
 		government "Republic"
 		attributes "military"
@@ -1701,7 +1701,7 @@ news "republic soldier [bragging]"
 		word
 			`"`
 		word
-			"The last words of that "
+			"The last words of that " 2
 			"The famous last words of that "
 		word
 			"pirate"
@@ -1710,7 +1710,7 @@ news "republic soldier [bragging]"
 			"troublemaker"
 			"terrorist"
 		word
-			" were; "
+			" were: "
 		word
 			"Don't you dare shoot that gun!"
 			"I am faster than you!"
