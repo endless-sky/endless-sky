@@ -13,19 +13,19 @@
 
 
 # Formation where ships fly in a diagonal line left behind the formation leader.
-formation "Echelon (left) medium"
+formation "Echelon (left)"
 	position -150 150
 		repeat -150 150
 
 
 # Formation where ships fly in a diagonal line right behind the formation leader.
-formation "Echelon (right) medium"
+formation "Echelon (right)"
 	position 150 150
 		repeat 150 150
 
 
 # Formation where ships form a line right and left of the formation leader.
-formation "Line (sides) medium"
+formation "Line (sides)"
 	flippable x y
 	rotatable 180
 	position -200 0
@@ -35,7 +35,7 @@ formation "Line (sides) medium"
 
 
 # Formation where ships form a line behind the formation leader.
-formation "Line (trailing) medium"
+formation "Line (trailing)"
 	flippable y
 	position 0 200
 		repeat 0 200
@@ -53,7 +53,7 @@ formation "Vic large"
 
 # Formation with two legs extending on a 30 degree angle behind the lead ship.
 # For warship-sized escorts
-formation "Vic medium"
+formation "Vic"
 	flippable y
 	position -150 87
 		repeat -150 87
@@ -72,7 +72,7 @@ formation "Vic small"
 
 # X shaped formation that rotates with the flagship.
 # For warship-sized escorts
-formation "X medium"
+formation "X"
 	flippable x y
 	rotatable 90
 	position -150 150
@@ -87,7 +87,7 @@ formation "X medium"
 
 # Stable X or + shaped formation that doesn't rotate with the flagship.
 # For warship-sized escorts
-formation "X stable medium"
+formation "X stable"
 	rotatable 0
 	position -150 150
 		repeat -150 150
