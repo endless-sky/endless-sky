@@ -187,6 +187,18 @@ void Account::AddFine(int64_t amount)
 
 
 
+// Add debt with the given interest rate and term. If no interest rate is
+// given then the player's credit score is used to determine the interest rate.
+void Account::AddDebt(int64_t amount, optional<double> interest, int term)
+{
+	if(interest)
+		mortgages.emplace_back("Debt", amount, *interest, term);
+	else
+		mortgages.emplace_back("Debt", amount, creditScore, term);
+}
+
+
+
 void Account::PayExtra(int mortgage, int64_t amount)
 {
 	if(static_cast<unsigned>(mortgage) >= mortgages.size()

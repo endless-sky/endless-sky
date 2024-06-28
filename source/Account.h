@@ -79,6 +79,9 @@ public:
 	// Add a "fine" as a mortgage.
 	void AddFine(int64_t amount);
 
+	// Add a "debt" as a mortgage.
+	void AddDebt(int64_t amount, std::optional<double> interest, int term);
+
 	// Pay down extra principal on a mortgage.
 	void PayExtra(int mortgage, int64_t amount);
 
