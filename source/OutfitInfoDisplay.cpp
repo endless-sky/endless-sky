@@ -53,7 +53,7 @@ namespace {
 		{"cloaking energy", 0},
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
-		{"cloaking shield", 0},
+		{"cloaking shields", 0},
 		{"cloaked firing", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
@@ -624,6 +624,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.emplace_back("turret turn rate:");
 		attributeValues.emplace_back(Format::Number(turretTurn));
+		attributesHeight += 20;
+	}
+	double arc = outfit.Arc();
+	if(arc < 360.)
+	{
+		attributeLabels.emplace_back("arc:");
+		attributeValues.emplace_back(Format::Number(arc));
 		attributesHeight += 20;
 	}
 	int homing = outfit.Homing();

@@ -511,6 +511,14 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				if(stopover->IsInSystem(&system))
 					DrawPointer(from, missionCounter, waypointColor, false);
 			}
+
+			for(const System *mark : mission.MarkedSystems())
+			{
+				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+					break;
+				if(mark == &system)
+					DrawPointer(from, missionCounter, waypointColor, false);
+			}
 		}
 	}
 
@@ -888,7 +896,7 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
-	return mission.IsSatisfied(player) && !mission.HasFailed(player);
+	return mission.IsSatisfied(player) && !mission.IsFailed(player);
 }
 
 
@@ -1473,6 +1481,8 @@ void MapPanel::DrawMissions()
 			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
 			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		for(const System *mark : mission.MarkedSystems())
+			DrawPointer(mark, missionCount[mark].drawn, waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
