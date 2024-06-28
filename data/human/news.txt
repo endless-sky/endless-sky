@@ -638,6 +638,9 @@ news "hair stylist"
 
 
 news "painter"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "tourism"
 	name
 		word
 			"Painter"
