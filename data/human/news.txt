@@ -407,7 +407,7 @@ news "investigator"
 		word
 			`"`
 		word
-			"Better to have loved and lost, so that you can hire me to find back."
+			"Better to have loved and lost, than to never have had a good reason at all to hire me to find it back."
 			"I'm tracking some shady businesses. Have you seen someone carrying containers in the last ten minutes?"
 			"They said they didn't poison the CEO, but nobody knew the CEO was poisoned."
 			"Here, let me give you my card. Notify me if you see any suspicious activity around here."
