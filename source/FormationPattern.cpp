@@ -261,7 +261,7 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 
 
 
-// Get a formation position based on ring, line(or arc)-number and position on the line.
+// Get a formation position based on ring, line (or arc)-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
 	unsigned int linePosition) const
 {
