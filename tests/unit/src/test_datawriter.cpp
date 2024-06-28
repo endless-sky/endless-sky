@@ -99,7 +99,7 @@ R"(first
 		# comment
 		"after comment"
 	"second after"
-)" );
+)");
 		}
 		THEN( "writing an inline comment is possible" ) {
 			writer.WriteToken("begin");
@@ -112,7 +112,7 @@ R"(first
 		third
 		begin # comment
 	"second after"
-)" );
+)");
 		}
 	}
 }
