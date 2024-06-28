@@ -88,7 +88,8 @@ public:
 	// Check how big a mortgage the player can afford to pay at their current income.
 	int64_t Prequalify() const;
 
-	// Get the total amount owed for "Mortgage", "Fine", or both.
+	// Get the total amount owed for a specific type of mortgage, or all
+	// mortgages if a blank string is provided.
 	int64_t TotalDebt(const std::string &type = "") const;
 
 	// Access the overdue crew salaries.

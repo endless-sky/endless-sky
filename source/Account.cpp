@@ -239,14 +239,12 @@ int64_t Account::Prequalify() const
 
 
 
-// Sum the principals of all mortgages of a given type and return the result
 int64_t Account::TotalDebt(const string &type) const
 {
 	int64_t total = 0;
 	for(const Mortgage &mortgage : mortgages)
 		if(type.empty() || mortgage.Type() == type)
 			total += mortgage.Principal();
-
 	return total;
 }
 
