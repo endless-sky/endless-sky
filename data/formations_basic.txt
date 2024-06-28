@@ -42,32 +42,12 @@ formation "Line (trailing)"
 
 
 # Formation with two legs extending on a 30 degree angle behind the lead ship.
-# For interceptor-sized escorts
-formation "Vic large"
-	flippable y
-	position -200 115
-		repeat -200 115
-	position 200 115
-		repeat 200 115
-
-
-# Formation with two legs extending on a 30 degree angle behind the lead ship.
-# For warship-sized escorts
 formation "Vic"
 	flippable y
 	position -150 87
 		repeat -150 87
 	position 150 87
 		repeat 150 87
-
-
-# Formation with two legs extending on a 30 degree angle behind the lead ship.
-formation "Vic small"
-	flippable y
-	position -100 57.5
-		repeat -100 57.5
-	position 100 57.5
-		repeat 100 57.5
 
 
 # X shaped formation that rotates with the flagship.
@@ -86,7 +66,6 @@ formation "X"
 
 
 # Stable X or + shaped formation that doesn't rotate with the flagship.
-# For warship-sized escorts
 formation "X stable"
 	rotatable 0
 	position -150 150
