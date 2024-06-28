@@ -26,6 +26,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
+	unit/src/test_datawriter.cpp
 	unit/src/test_dictionary.cpp
 	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
