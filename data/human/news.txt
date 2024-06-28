@@ -152,7 +152,7 @@ news "merchant in human space"
 			"A Star Barge, by any other name, is still just a moving cargo container."
 			"I named my ship Titanic. It's a strong sounding name, but I feel people are making fun of me."
 			"One Sparrow doesn't make a summer. You need a whole fleet of those to be effective."
-			"No good deed goes unpunished. I once helped some good friends of mine to become pilots as well, but they took over my most profitable trade-route."
+			"No good deed goes unpunished. I once helped some good friends of mine to become pilots as well, but they took over my most profitable trade route."
 		word
 			`"`
 
@@ -340,7 +340,7 @@ news "grifter"
 			"Can I offer you a lucky playing card deck? You're guaranteed to get perfect hands in every game you play! What? No! It's not just a pile of 52 aces!"
 			"This laser razor never needs sharpening! Achieve a smoking hot look every time!"
 			"All that glitters is not gold, but it still is valuable as long as we can sell it to some fool."
-			`"Something old, something new, something borrowed, something blue", we sell it all at our nice shop near you.`
+			`"Something old, something new, something borrowed, something blue," we sell it all at our nice shop near you.`
 		word
 			`"`
 
@@ -365,7 +365,7 @@ news "company psychologist"
 			"A man is judged by his deeds, not by his words, except in my profession; the more I talk, the more people value me."
 			"People are sometimes afraid that we psychologists can read their minds, but we are actually more scared of learning our own motivations during our studies."
 			"Better to be rejected for who you are, than to be accepted for whom you are not."
-			"Leave behind what you don't need, to create space to find what makes you progress."
+			"Leave behind what you don't need, to create space and find what makes you progress."
 			"Better comforted by a lie, than hurt by the truth. Hurt people are really unproductive."
 			"Difficult times create strong people. But we are here for when it gets a little too difficult."
 		word
@@ -408,9 +408,9 @@ news "investigator"
 			`"`
 		word
 			"Better to have loved and lost, so that you can hire me to find back."
-			"I'm tracking some shady businesses. Did you see someone carrying containers in the last 10 minutes?"
+			"I'm tracking some shady businesses. Have you seen someone carrying containers in the last ten minutes?"
 			"They said they didn't poison the CEO, but nobody knew the CEO was poisoned."
-			"Here, let me give you my card. Notify me when you see any suspicious activity around here."
+			"Here, let me give you my card. Notify me if you see any suspicious activity around here."
 		word
 			`"`
 
@@ -462,8 +462,8 @@ news "unemployed youth"
 			"I will work for food."
 			"I will work for transport out of this place."
 			"I barely have any money today, but that will change; just wait until my ship comes in."
-			"Don't trust anyone over 30. They are the ones that got us in this mess in the first place."
-			`People have been complaining about the "Kids these days" since 624 BC. Wonder how humanity survived this long.`
+			"Don't trust anyone over thirty. They are the ones that got us in this mess in the first place."
+			`People have been complaining about the "kids these days" since 624 BC. Wonder how humanity survived this long.`
 			"OK, boomer. Nice of you to visit us, now be on your way again."
 		word
 			`"`
@@ -526,7 +526,7 @@ news "waste collector"
 			"All's fine and dandy until someone dumps a ton of rotten Caldan lobsters and you have to deal with the smell."
 			"My worth comes from removing what's worthless!"
 			"You wouldn't believe some of the stuff people throw away around the spaceport. Yesterday I found a perfectly intact ${small trash item} that someone had dumped."
-			"My shuttle got serious damage when some ${small trash item} exploded because it was not properly disposed of."
+			"My shuttle got some serious damage when a ${small trash item} exploded because it was not properly disposed of."
 			"You may look down on me, but I earn more money in a day than you do in a month."
 		word
 			`"`
@@ -585,8 +585,8 @@ news "housekeeper"
 			"If rich kids are so pampered that they've never so much as had to wash a dish in their entire lives, it makes me wonder how they hope to be independent adults one day."
 			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computer game until two days after it gets on the market."
 			"I just got fired. The dog of one of the kids died and the missus asked me to fly to Earth and buy a new identical one. When I returned she was screaming that she didn't need two dead dogs."
-			"There's one law for the rich and another law for the poor. One small mistake by me and I'm out back to the horrible place I emigrated from."
-			"I don't know what part of NO those spoiled kids didn't understand, but I'm not cooking 5 course dinners every day when they eat almost nothing."
+			"There's one law for the rich and another law for the poor. One small mistake by me and I'm back to the horrible place I emigrated from."
+			`I don't know what part of "no" those spoiled kids didn't understand, but I'm not cooking 5 course dinners every day when they eat almost nothing.`
 		word
 			`"`
 
@@ -643,7 +643,7 @@ news "painter"
 			"Painter"
 	message
 		word
-			"He who can, creates; he who cannot, transports. Sorry, no offence meant to you."
+			"He who can, creates; he who cannot, transports. Sorry, no offense meant to you."
 
 
 
