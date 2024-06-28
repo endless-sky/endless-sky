@@ -1304,7 +1304,7 @@ tip "Fleet: Gather around me"
 	`With <shift>, change the formation pattern in your fleet.`
 
 tip "Fleet: Hold position"
-	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
+	`Command your fleet to hold its current position. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
 
 tip "Fleet: Toggle ammo usage"
 	`Toggle the "Escorts expend ammo" setting.`
