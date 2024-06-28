@@ -127,10 +127,6 @@ public:
 
 
 private:
-	// Attempt to pay all bills, returning the results.
-	// NOTE: This function may modify account data during operation.
-	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
-
 	// Attempt to pay crew salaries, returning the results.
 	// NOTE: This function may modify the credits and overdueCrewSalaries
 	// variables during execution.

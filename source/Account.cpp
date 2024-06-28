@@ -339,7 +339,19 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Step 1: Pay the bills
-	std::vector<Receipt> receipts = PayBills(salaries, maintenance);
+	std::vector<Receipt> receipts;
+
+	// Crew salaries take highest priority.
+	receipts.push_back(PayCrewSalaries(salaries));
+
+	// Maintenance costs are dealt with after crew salaries given that they act similarly.
+	receipts.push_back(PayMaintenance(maintenance));
+
+	// Unlike salaries, each mortgage payment must either be made in its entirety,
+	// or skipped completely (accruing interest and reducing your credit score).
+	receipts.push_back(PayMortgages());
+	receipts.push_back(PayFines());
+	receipts.push_back(PayDebts());
 	out << GenerateMissedPaymentLogs(&receipts);
 
 	// If any mortgage has been fully paid off, remove it from the list.
@@ -354,27 +366,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	out << GeneratePaymentLogs(&receipts);
 	return out.str();
-}
-
-
-
-std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance)
-{
-	std::vector<Receipt> receipts;
-
-	// Crew salaries take highest priority.
-	receipts.push_back(PayCrewSalaries(salaries));
-
-	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	receipts.push_back(PayMaintenance(maintenance));
-
-	// Unlike salaries, each mortgage payment must either be made in its entirety,
-	// or skipped completely (accruing interest and reducing your credit score).
-	receipts.push_back(PayMortgages());
-	receipts.push_back(PayFines());
-	receipts.push_back(PayDebts());
-
-	return receipts;
 }
 
 
