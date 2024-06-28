@@ -1569,7 +1569,7 @@ news "tourist"
 			"Can I speak to the manager? The landing on this planet was a bit rough and I'm seriously considering filing a complaint."
 			"Warn me if you see my partner or my secret lover. They learned about each other and now they're both trying to kill me."
 			"Get away from me! I already told twenty of your colleagues that I don't need a taxi service."
-			"You there, where are my bags! What do you mean by you don't know? You look like one of those dockworkers."
+			"You there, where are my bags! What do you mean by 'you don't know'? You look like one of those dockworkers."
 			"We are not amused. The Star Queen Victoria is delayed by two minutes, and I need to wait here among the commoners, with no privacy whatsoever."
 			"Once more unto the beach planet, dear friends, once more."
 		word
@@ -1710,7 +1710,7 @@ news "republic soldier (bragging)"
 			"troublemaker"
 			"terrorist"
 		word
-			" were: "
+			" were: '"
 		word
 			"Don't you dare shoot that gun!"
 			"I am faster than you!"
@@ -1724,7 +1724,7 @@ news "republic soldier (bragging)"
 			"You don't have jurisdiction here."
 			"You think you can hit me over that distance?"
 		word
-			`"`
+			`'"`
 
 
 news "lawyer"
@@ -2014,7 +2014,7 @@ news "spaceport video advertisement"
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
 			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
 			"Take a cruise of six days to hunt pirates, shoot real pirates for 2000 credits a day. 400 bullets included, for free."
-			"Buy local, buy Southbound Haulers. Also for merchants not from the South."
+			"Buy local, buy Southbound Haulers. There is always a dealer close to you."
 
 
 
