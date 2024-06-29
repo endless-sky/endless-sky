@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "ColumnChooserPanel.h"
 #include "Command.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -35,6 +36,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoPanel.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "System.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
@@ -230,7 +234,8 @@ void PlayerInfoPanel::Step()
 void PlayerInfoPanel::Draw()
 {
 	// Dim everything behind this panel.
-	DrawBackdrop();
+	if(GetUI()->IsTop(this))
+		DrawBackdrop();
 
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
@@ -298,6 +303,13 @@ void PlayerInfoPanel::Draw()
 
 	DrawPlayer(infoPanelUi->GetBox("player"));
 	DrawFleet(infoPanelUi->GetBox("fleet"));
+
+	// draw closed column chooser pop-up
+	if(GetUI()->IsTop(this))
+	{
+		const Interface *columnChooser = GameData::Interfaces().Get("columns menu");
+		columnChooser->Draw(interfaceInfo, this);
+	}
 }
 
 
@@ -529,6 +541,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			ScrollAbsolute(panelState.SelectedIndex());
 		}
 	}
+	else if(key == 'n')
+		GetUI()->Push(new ColumnChooserPanel(&panelState));
 	else
 		return false;
 
@@ -736,9 +750,13 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	// Table attributes.
 	Table table;
 	static const int GUTTER = 3;
+	const set<const string> visibleColumns = panelState.VisibleColumns();
 	int offset = 0;
 	for(const auto &column : columns)
 	{
+		if(visibleColumns.find(column.name) == visibleColumns.end())
+			continue;
+
 		table.AddColumn(offset + (column.layout.align == Alignment::RIGHT
 			? column.layout.width : 0), column.layout);
 		offset += column.layout.width + GUTTER;
@@ -754,6 +772,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	offset = 0;
 	for(const auto &column : columns)
 	{
+		if(visibleColumns.find(column.name) == visibleColumns.end())
+			continue;
+
 		Rectangle zone = Rectangle(tablePoint + Point(offset, 0) +
 			.5 * Point(column.layout.width - GUTTER, rowHeight),
 			Point(column.layout.width, rowHeight)
@@ -813,6 +834,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		std::vector<std::string> row;
 		for(const auto &column : columns)
 		{
+			if(visibleColumns.find(column.name) == visibleColumns.end())
+				continue;
+
 			// Decided an if-else chain was less faff than using a switch on a std::string hash, or an enum.
 			if(column.name == "ship")
 				// Indent the ship name if it is a fighter or drone.

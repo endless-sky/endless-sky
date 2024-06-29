@@ -22,7 +22,15 @@ using namespace std;
 
 
 InfoPanelState::InfoPanelState(PlayerInfo &player)
-	: player(player), ships(player.Ships()), canEdit(player.GetPlanet())
+	: player(player), ships(player.Ships()), canEdit(player.GetPlanet()), visibleColumns({
+		"ship",
+		"model",
+		"system",
+		"shields",
+		"hull",
+		"fuel",
+		"crew",
+	})
 {
 }
 
@@ -218,4 +226,33 @@ InfoPanelState::ShipComparator *InfoPanelState::CurrentSort() const
 void InfoPanelState::SetCurrentSort(ShipComparator *newSort)
 {
 	currentSort = newSort;
+}
+
+
+
+set<const string> InfoPanelState::VisibleColumns() const
+{
+	return visibleColumns;
+}
+
+
+
+void InfoPanelState::ShowColumn(const string key)
+{
+	visibleColumns.insert(key);
+}
+
+
+
+void InfoPanelState::HideColumn(const string key)
+{
+	visibleColumns.erase(key);
+}
+
+
+
+void InfoPanelState::ToggleColumn(const string key)
+{
+	visibleColumns.find(key) == visibleColumns.end() ?
+		ShowColumn(key) : HideColumn(key);
 }
