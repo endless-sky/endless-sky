@@ -88,11 +88,8 @@ int Depreciation::AgeForDepreciation(double depreciation)
 	if(depreciation >= 1)
 		return 0;
 
-	// According to Wolfram Alpha, solving the depreciation function for age gives the following
-	// delightful result:
-	// age = (W(-(Min * pow(Daily, GracePeriod - MaxAge) * (GracePeriod - MaxAge) * log(Daily)) / (Min - 1)) + MaxAge * log(Daily)) / log(Daily)
-	// Where W is the Lambert W function.
-	// So we're going to solve this in a brute-force fashion.
+	// Unfortunately, solving the depreciation function for age gives a horrible formula involving
+	// the Lambert W function. So instead, just increase age by 1 until the depreciation is right.
 	int age = -1;
 	while(Depreciate(++age) > depreciation);
 	return age;
