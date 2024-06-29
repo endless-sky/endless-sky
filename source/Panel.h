@@ -132,6 +132,10 @@ private:
 		std::function<void()> fun;
 	};
 
+	// The UI class will not directly call the virtual methods, but will call
+	// these instead. These methods will recursively allow child panels to
+	// handle the event first, before calling the virtual method for the derived
+	// class to handle it.
 	bool DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
 	bool DoClick(int x, int y, int clicks);
 	bool DoRClick(int x, int y);
