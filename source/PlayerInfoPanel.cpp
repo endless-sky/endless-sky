@@ -166,6 +166,13 @@ namespace {
 		return lhs->Deterrence() < rhs->Deterrence();
 	}
 
+	bool CompareCargo(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		int left = lround(lhs->Attributes().Get("cargo space") - lhs->Cargo().Used());
+		int right = lround(rhs->Attributes().Get("cargo space") - rhs->Cargo().Used());
+		return left < right;
+	}
+
 	// A helper function for reversing the arguments of the given function F.
 	template <InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -190,6 +197,8 @@ namespace {
 			return ReverseCompare<CompareFuel>;
 		else if(f == &CompareDeterrence)
 			return ReverseCompare<CompareDeterrence>;
+		else if(f == &CompareCargo)
+			return ReverseCompare<CompareCargo>;
 		return ReverseCompare<CompareRequiredCrew>;
 	}
 }
@@ -203,7 +212,8 @@ const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[] = {
 	SortableColumn("hull", {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
 	SortableColumn("fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
 	SortableColumn("combat", {57, Alignment::RIGHT, Truncate::BACK}, CompareDeterrence),
-	SortableColumn("crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
+	SortableColumn("crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew),
+	SortableColumn("cargo", {57, Alignment::RIGHT, Truncate::BACK}, CompareCargo)
 };
 
 
@@ -866,6 +876,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			}
 			else if(column.name == "combat")
 				row.emplace_back(to_string(lround(ship.Deterrence() * 100.)));
+			else if(column.name == "cargo")
+				row.emplace_back(to_string(lround(ship.Attributes().Get("cargo space") - ship.Cargo().Used())));
 			else
 				row.emplace_back("-");
 		}
