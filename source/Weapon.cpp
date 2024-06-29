@@ -115,7 +115,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "submunition")
 		{
 			submunitions.emplace_back(
-				GameData::Outfits().Get(child.Token(1)),
+				&GameData::Outfits().Get(child.Token(1))->GetWeapon(),
 				(child.Size() >= 3) ? child.Value(2) : 1);
 			for(const DataNode &grand : child)
 			{

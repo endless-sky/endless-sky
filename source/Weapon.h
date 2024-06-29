@@ -57,6 +57,8 @@ public:
 
 
 public:
+	Weapon() = default;
+
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void LoadWeapon(const DataNode &node);
 	bool IsWeapon() const;
@@ -211,8 +213,9 @@ public:
 	// Return the ranges at which the weapon's damage dropoff begins and ends.
 	const std::pair<double, double> &DropoffRanges() const;
 
+private:
+	friend class Outfit;
 
-protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
 	// default turnrate.
 	void SetTurretTurn(double rate);
@@ -221,8 +224,6 @@ protected:
 	// of that outfit consumed upon fire.
 	std::pair<const Outfit*, int> ammo;
 
-
-private:
 	double TotalDamage(int index) const;
 
 

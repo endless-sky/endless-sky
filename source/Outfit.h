@@ -39,7 +39,7 @@ class Sprite;
 // set of attributes unique to them, and outfits can also specify additional
 // information like the sprite to use in the outfitter panel for selling them,
 // or the sprite or sound to be used for an engine flare.
-class Outfit : public Weapon {
+class Outfit {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
@@ -49,6 +49,7 @@ public:
 	// "attributes" node.
 	void Load(const DataNode &node);
 	bool IsDefined() const;
+	bool IsWeapon() const;
 
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
@@ -68,6 +69,7 @@ public:
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
+	const Weapon &GetWeapon() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -126,6 +128,7 @@ private:
 	std::vector<std::string> licenses;
 
 	Dictionary attributes;
+	Weapon weapon;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.

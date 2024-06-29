@@ -107,7 +107,7 @@ int Armament::Add(const Outfit *outfit, int count)
 		// If this weapon is streamed, create a stream counter. If it is not
 		// streamed, or if the last of this weapon has been uninstalled, erase the
 		// stream counter (if there is one).
-		if(added > 0 && outfit->IsStreamed())
+		if(added > 0 && outfit->GetWeapon().IsStreamed())
 			streamReload[outfit] = 0;
 		else
 			streamReload.erase(outfit);
@@ -141,7 +141,7 @@ void Armament::ReloadAll()
 
 			// If this weapon is streamed, create a stream counter.
 			const Outfit *outfit = hardpoint.GetOutfit();
-			if(outfit->IsStreamed())
+			if(outfit->GetWeapon().IsStreamed())
 				streamReload[outfit] = 0;
 		}
 }
@@ -211,7 +211,7 @@ set<const Outfit *> Armament::RestockableAmmo() const
 	auto restockable = set<const Outfit *>{};
 	for(const Hardpoint &hardpoint : hardpoints)
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
+		const Weapon *weapon = &hardpoint.GetOutfit()->GetWeapon();
 		if(weapon)
 		{
 			const Outfit *ammo = weapon->Ammo();
@@ -250,7 +250,7 @@ void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles,
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
+			it->second += it->first->GetWeapon().Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
 	if(jammed)
