@@ -245,7 +245,6 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 		return false;
 
 	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
-	cost = cost * (100 - player.ShipStockDiscount(selectedShip)) / 100;
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());

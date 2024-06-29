@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RANDOMSTOCK_H_
 
 #include "DataNode.h"
+#include "Depreciation.h"
 #include "Set.h"
 
 #include <set>
@@ -33,8 +34,8 @@ struct RandomStockItem
 	unsigned int probability = 100;
 	// The number of such items in stock.
 	unsigned int quantity = 1;
-	// Percentage discount on the normal price.
-	int discount = 0;
+	// Days of depreciation.
+	unsigned int depreciation = 0;
 };
 
 
@@ -74,8 +75,10 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 					rs.probability = std::stoi(grand.Token(1));
 				if(grandToken == "quantity")
 					rs.quantity = std::stoi(grand.Token(1));
+				if(grandToken == "depreciation")
+					rs.depreciation = std::stoi(grand.Token(1));
 				if(grandToken == "discount")
-					rs.discount = std::stoi(grand.Token(1));
+					rs.depreciation = Depreciation::AgeForDepreciation(1 - stoi(grand.Token(1)) / 100.0);
 			}
 
 			this->push_back(rs);

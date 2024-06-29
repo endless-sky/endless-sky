@@ -291,9 +291,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int day = player.GetDate().DaysSinceEpoch();
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
-	buyValue = buyValue * (100 - player.StockDiscount(&outfit)) / 100;
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
-	sellValue = sellValue * (100 - player.StockDiscount(&outfit)) / 100;
 
 	for(const string &license : outfit.Licenses())
 	{

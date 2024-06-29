@@ -179,8 +179,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	int64_t fullCost = ship.Cost();
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	int64_t depreciated = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
-	if(!ship.IsYours())
-		depreciated = depreciated * (100 - player.ShipStockDiscount(&ship)) / 100;
 	if(depreciated == fullCost)
 		attributeLabels.push_back("cost:");
 	else
