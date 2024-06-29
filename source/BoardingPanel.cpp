@@ -318,10 +318,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else
 		{
-			if(youAttack)
-				messages.push_back("You attack. ");
-			else if(enemyAttacks)
-				messages.push_back("You defend. ");
+			unsigned int yourAttackCasualties = 0;
+			unsigned int yourDefenseCasualties = 0;
+			unsigned int victimAttackCasualties = 0;
+			unsigned int victimDefenseCasualties = 0;
 
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
@@ -333,33 +333,81 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourCrew || !enemyCrew)
 					break;
 
-				// Your chance of winning this round is equal to the ratio of
-				// your power to the enemy's power.
-				double yourPower = (youAttack ?
-					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
-				double enemyPower = (enemyAttacks ?
-					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
-
-				double total = yourPower + enemyPower;
-				if(!total)
-					break;
-
-				if(Random::Real() * total >= yourPower)
-					you->AddCrew(-1);
-				else
-					victim->AddCrew(-1);
+				if(youAttack)
+				{
+					// Your chance of winning this round is equal to the ratio of
+					// your power to the enemy's power.
+					double yourAttackPower = attackOdds.AttackerPower(yourCrew);
+					double enemyDefensePower = attackOdds.DefenderPower(enemyCrew);
+					double total = yourAttackPower + enemyDefensePower;
+					if(total)
+					{
+						if(Random::Real() * total >= yourAttackPower)
+						{
+							++yourAttackCasualties;
+							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
+						}
+						else
+						{
+							++victimDefenseCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
+				}
+				if(enemyAttacks)
+				{
+					double enemyAttackPower = defenseOdds.AttackerPower(enemyCrew);
+					double yourDefensePower = defenseOdds.DefenderPower(yourCrew);
+					double total = enemyAttackPower + yourDefensePower;
+					if(total)
+					{
+						if(Random::Real() * total >= yourDefensePower)
+						{
+							++yourDefenseCasualties;
+							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
+						}
+						else
+						{
+							++victimAttackCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
+				}
 			}
 
-			// Report how many casualties each side suffered.
-			int yourCasualties = yourStartCrew - you->Crew();
-			int enemyCasualties = enemyStartCrew - victim->Crew();
-			if(yourCasualties && enemyCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties)
-					+ " crew; they lose " + to_string(enemyCasualties) + ".";
-			else if(yourCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
-			else if(enemyCasualties)
-				messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
+			// Report what happened and how many casualties each side suffered.
+			if(youAttack)
+			{
+				messages.push_back("You attack. ");
+
+				if(yourAttackCasualties && victimDefenseCasualties)
+					messages.back() += "You lose " + to_string(yourAttackCasualties)
+						+ " crew; they lose " + to_string(victimDefenseCasualties) + ".";
+				else if(yourAttackCasualties)
+					messages.back() += "You lose " + to_string(yourAttackCasualties) + " crew.";
+				else if(victimDefenseCasualties)
+					messages.back() += "They lose " + to_string(victimDefenseCasualties) + " crew.";
+			}
+			if(enemyAttacks)
+			{
+				messages.push_back("They attack. ");
+
+				if(yourDefenseCasualties && victimAttackCasualties)
+					messages.back() += "You lose " + to_string(yourDefenseCasualties)
+						+ " crew; they lose " + to_string(victimAttackCasualties) + ".";
+				else if(yourDefenseCasualties)
+					messages.back() += "You lose " + to_string(yourDefenseCasualties) + " crew.";
+				else if(victimAttackCasualties)
+					messages.back() += "They lose " + to_string(victimAttackCasualties) + " crew.";
+			}
 
 			// Check if either ship has been captured.
 			if(!you->Crew())
