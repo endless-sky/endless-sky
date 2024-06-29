@@ -809,6 +809,23 @@ government "Ka'sei"
 
 color "governments: Korath Exiles" .8 .5 .1
 
+# Used only by the Patir Mystery mission in question
+government "Ka'sei (12A)"
+	"display name" "Ka'sei"
+	swizzle 0
+	language "???"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 10
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
+
 government "Korath"
 	swizzle 0
 	color "governments: Korath Exiles"
@@ -936,6 +953,21 @@ government "Lunarium (Hidden)"
 		"Quarg" .01
 		"Heliarch" -.01
 		"Pirate" -.01
+
+government "Magic Asteroid"
+	"display name" "???"
+	swizzle 0
+	language "???"
+	
+	"attitude toward"
+		"Ka'sei (12A)" -.01
+		"Uninhabited" -.01
+
+	"player reputation" 10
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
 
 government "Marauder"
 	swizzle 6
