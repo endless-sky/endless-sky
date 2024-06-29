@@ -13,6 +13,7 @@
 
 ship "Nanobot"
 	attributes
+		category "Unclassified"
 		"hull" 100
 		"automaton" 1
 		"mass" 10

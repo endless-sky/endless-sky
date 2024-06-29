@@ -787,7 +787,7 @@ ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		cost 142857
 		shields 39000
 		hull 27000
