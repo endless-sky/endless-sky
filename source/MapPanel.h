@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "BatchDrawList.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
@@ -140,6 +141,7 @@ protected:
 	int recentering = 0;
 	int commodity;
 	int step = 0;
+	bool isStarry = false;
 	std::string buttonCondition;
 
 	// Distance from the screen center to the nearest owned system,
@@ -186,17 +188,21 @@ private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
 
+	BatchDrawList batchDraw;
+
 	class Node {
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+			const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcon(mapIcon) {}
 
 		Point position;
 		Color color;
 		std::string name;
 		Color nameColor;
 		const Government *government;
+		std::vector<std::string> mapIcon;
 	};
 	std::vector<Node> nodes;
 

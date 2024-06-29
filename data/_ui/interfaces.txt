@@ -1376,6 +1376,21 @@ interface "map buttons" bottom right
 		from -50 -90 to -80 -120
 		size 18
 
+	visible if "!is starry"
+	sprite "ui/star"
+		from 0 -120 to -49 -169
+	active if "!is starry"
+	button ] "_"
+		from 0 -120 to -49 -169
+		size 18
+	visible if "is starry"
+	sprite "ui/ring"
+		from 0 -120 to -49 -169
+	active if "is starry"
+	button [ "_"
+		from 0 -120 to -49 -169
+		size 18
+
 
 interface "map buttons (small screen)" bottom right
 	active if "!is shipyards"
