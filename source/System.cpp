@@ -153,6 +153,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				ramscoopAddend = 0.;
 				ramscoopMultiplier = 1.;
 			}
+			else if(key == "linger time")
+				requestedLingerTime = -1;
 			else if(key == "trade")
 				trade.clear();
 			else if(key == "fleet")
@@ -217,6 +219,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
+		else if(!remove && child.Size() == valueIndex + 1 && key == "linger time")
+			requestedLingerTime = child.Value(valueIndex);
 		// Handle the attributes which can be "removed."
 		else if(key == "attributes")
 		{
@@ -530,6 +534,8 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		minimumFleetPeriod = min<int>(minimumFleetPeriod, event.Period());
 	if(minimumFleetPeriod == numeric_limits<int>::max())
 		minimumFleetPeriod = 0;
+
+	actualLingerTime = requestedLingerTime >= 0 ? requestedLingerTime : minimumFleetPeriod / 4;
 }
 
 
@@ -979,6 +985,20 @@ double System::Danger() const
 int System::MinimumFleetPeriod() const
 {
 	return minimumFleetPeriod;
+}
+
+
+
+int System::RequestedLingerTime() const
+{
+	return requestedLingerTime;
+}
+
+
+
+int System::ActualLingerTime() const
+{
+	return actualLingerTime;
 }
 
 
