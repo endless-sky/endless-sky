@@ -173,6 +173,22 @@ namespace {
 		return left < right;
 	}
 
+	bool CompareCargoEfficiency(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		// "n/a"
+		if(lhs->RequiredCrew() == 0 && lhs->Attributes().Get("cargo space") == 0)
+			return true;
+		if(rhs->RequiredCrew() == 0 && rhs->Attributes().Get("cargo space") == 0)
+			return false;
+
+		// "infinite"
+		if(lhs->RequiredCrew() == 0 && rhs->RequiredCrew() == 0)
+			return lhs->Attributes().Get("cargo space") < rhs->Attributes().Get("cargo space");
+
+		auto value = [](const shared_ptr<Ship> &ship){ return ship->Attributes().Get("cargo space") / ship->RequiredCrew(); };
+		return value(lhs) < value(rhs);
+	}
+
 	// A helper function for reversing the arguments of the given function F.
 	template <InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -199,6 +215,8 @@ namespace {
 			return ReverseCompare<CompareDeterrence>;
 		else if(f == &CompareCargo)
 			return ReverseCompare<CompareCargo>;
+		else if(f == &CompareCargoEfficiency)
+			return ReverseCompare<CompareCargoEfficiency>;
 		return ReverseCompare<CompareRequiredCrew>;
 	}
 }
@@ -213,7 +231,8 @@ const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[] = {
 	SortableColumn("fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
 	SortableColumn("combat", {57, Alignment::RIGHT, Truncate::BACK}, CompareDeterrence),
 	SortableColumn("crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew),
-	SortableColumn("cargo", {57, Alignment::RIGHT, Truncate::BACK}, CompareCargo)
+	SortableColumn("free cargo", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargo),
+	SortableColumn("cargo eff.", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargoEfficiency)
 };
 
 
@@ -856,7 +875,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			else if(column.name == "system")
 			{
 				const System *system = ship.GetSystem();
-				row.emplace_back(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
+				row.emplace_back(system ? (player.KnowsName(*system) ? system->Name() : "unexplored system") : "");
 			}
 			else if(column.name == "shields")
 				row.emplace_back(to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%");
@@ -872,12 +891,19 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 				int crewCount = ship.Crew();
 				if(!isFlagship)
 					crewCount = min(crewCount, ship.RequiredCrew());
-				row.emplace_back(ship.IsParked() ? "Parked" : to_string(crewCount));
+				row.emplace_back(ship.IsParked() ? "parked" : to_string(crewCount));
 			}
 			else if(column.name == "combat")
 				row.emplace_back(to_string(lround(ship.Deterrence() * 100.)));
-			else if(column.name == "cargo")
+			else if(column.name == "free cargo")
 				row.emplace_back(to_string(lround(ship.Attributes().Get("cargo space") - ship.Cargo().Used())));
+			else if(column.name == "cargo eff.")
+			{
+				int crew = ship.RequiredCrew();
+				double cargo = ship.Attributes().Get("cargo space");
+				double ratio = cargo / crew;
+				row.emplace_back(crew ? ratio == lround(ratio) ? Format::Number(ratio) : Format::Decimal(ratio, 2) : cargo ? "infinite" : "n/a");
+			}
 			else
 				row.emplace_back("-");
 		}

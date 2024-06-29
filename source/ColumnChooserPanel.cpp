@@ -81,7 +81,8 @@ void ColumnChooserPanel::Draw()
 		{"fuel", "Fuel"},
 		{"combat", "Combat prowess"},
 		{"crew", "Crew"},
-		{"cargo", "Free cargo space"},
+		{"free cargo", "Free cargo space"},
+		{"cargo eff.", "Cargo efficiency"},
 	};
 
 	// Table table;
