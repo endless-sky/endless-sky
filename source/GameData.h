@@ -78,6 +78,7 @@ class GameData {
 public:
 	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
+	static void Clear();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadSettings();

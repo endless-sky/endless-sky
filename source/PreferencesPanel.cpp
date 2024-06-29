@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Messenger.h"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Preferences.h"
@@ -237,6 +238,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(key == 'r' && page == 'p')
+	{
+		Messenger::SetReload(true);
+		GetUI()->Quit();
 	}
 	else
 		return false;

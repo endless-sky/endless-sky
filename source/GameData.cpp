@@ -75,6 +75,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	bool initiallyLoaded = false;
+
 	UniverseObjects objects;
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
@@ -248,6 +250,43 @@ void GameData::FinishLoading()
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+}
+
+
+
+void GameData::Clear()
+{
+	objects.Clear();
+	defaultFleets.Clear();
+	defaultGovernments.Clear();
+	defaultPlanets.Clear();
+	defaultSystems.Clear();
+	defaultGalaxies.Clear();
+	defaultShipSales.Clear();
+	defaultOutfitSales.Clear();
+	defaultSubstitutions = TextReplacements();
+	defaultWormholes.Clear();
+	playerGovernment = nullptr;
+
+	politics.Reset();
+
+	sources.clear();
+	deferred.clear();
+	preloaded.clear();
+
+	maskManager.Clear();
+
+	purchases.clear();
+
+	Plugins::Clear();
+
+	SpriteSet::Clear();
+	Music::Reset();
+
+	// Needs to be done after SpriteSet::Clear to avoid invalidating pointers.
+	background.Reset();
+
+	initiallyLoaded = false;
 }
 
 

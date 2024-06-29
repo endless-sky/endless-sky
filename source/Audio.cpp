@@ -117,7 +117,8 @@ namespace {
 // Begin loading sounds (in a separate thread).
 void Audio::Init(const vector<string> &sources)
 {
-	device = alcOpenDevice(nullptr);
+	if(!device)
+		device = alcOpenDevice(nullptr);
 	if(!device)
 		return;
 
@@ -176,6 +177,29 @@ void Audio::Init(const vector<string> &sources)
 	}
 	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
 	alSourcePlay(musicSource);
+}
+
+
+
+void Audio::Reset()
+{
+	isInitialized = false;
+
+
+	deferred.clear();
+
+	sounds.clear();
+
+	sources.clear();
+	recycledSources.clear();
+	endingSources.clear();
+
+	loadQueue.clear();
+	loadThread.join();
+
+	alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
+	alDeleteSources(1, &musicSource);
+	alcDestroyContext(context);
 }
 
 

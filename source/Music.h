@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Music {
 public:
 	static void Init(const std::vector<std::string> &sources);
+	static void Reset();
 
 
 public:

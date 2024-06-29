@@ -81,6 +81,8 @@ public:
 	static void LoadSettings();
 	static void Save();
 
+	static void Clear();
+
 	// Whether the path points to a valid plugin.
 	static bool IsPlugin(const std::string &path);
 	// Returns true if any plugin enabled or disabled setting has changed since

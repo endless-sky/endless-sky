@@ -551,8 +551,13 @@ interface "plugins"
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
+	sprite "ui/wide button"
+		center -50 210
+	button r "_Reload Data"
+		center -50 210
+		dimensions 90 30
 	visible if "show plugins changed"
-	label "Restart to apply changes"
+	label "Reload to apply changes"
 		from -225 -236
 		align top left
 		color "plugin reload required"

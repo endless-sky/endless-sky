@@ -38,6 +38,13 @@ const Sprite *SpriteSet::Get(const string &name)
 
 
 
+void SpriteSet::Clear()
+{
+	sprites.clear();
+}
+
+
+
 void SpriteSet::CheckReferences()
 {
 	for(const auto &pair : sprites)

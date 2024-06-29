@@ -23,7 +23,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Engine.h"
 #include "Files.h"
+#include "Messenger.h"
 #include "text/Font.h"
+#include "text/FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
@@ -212,8 +214,42 @@ int main(int argc, char *argv[])
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0);
 
-		// This is the main loop where all the action begins.
-		GameLoop(player, queue, conversation, testToRunName, debugMode);
+		// In case the player wants to reload.
+		shared_future<void> dataReloading;
+
+		// This loop is for the case of a data reload.
+		do {
+			Messenger::SetReload(false);
+
+			// This is the main loop where all the action begins.
+			GameLoop(player, queue, conversation, testToRunName, debugMode);
+
+			if(Messenger::GetReload())
+			{
+				// Show something to the player while game is reloading.
+				glClear(GL_COLOR_BUFFER_BIT);
+				WrappedText wrap;
+				wrap.SetAlignment(Alignment::JUSTIFIED);
+				wrap.SetFont(FontSet::Get(18));
+				wrap.Wrap("Reloading game data...");
+				wrap.Draw(Point(-100., 0.), *GameData::Colors().Get("medium"));
+				GameWindow::Step();
+
+				// Save changes to plugin states.
+				Plugins::Save();
+
+				// Reset all data, including sprites and sounds.
+				Audio::Reset();
+				GameData::Clear();
+
+				// Load previously saved plugin data.
+				Plugins::LoadSettings();
+
+				// Load game data, sprites, and sounds again.
+				dataReloading = GameData::BeginLoad(queue, isConsoleOnly, debugMode, isTesting && !debugMode);
+				Audio::Init(GameData::Sources());
+			}
+		} while(Messenger::GetReload());
 	}
 	catch(Test::known_failure_tag)
 	{

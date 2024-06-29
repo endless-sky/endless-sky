@@ -91,6 +91,9 @@ public:
 	void DrawMenuBackground(Panel *panel) const;
 
 
+	void Clear();
+
+
 private:
 	void LoadFile(const std::string &path, bool debugMode = false);
 
