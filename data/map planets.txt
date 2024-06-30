@@ -505,7 +505,7 @@ planet "Buccaneer Bay"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	outfitter "Pirate Advanced Ouftits"
+	outfitter "Pirate Advanced Outfits"
 	security 0
 	tribute 800
 		threshold 3000
@@ -1901,7 +1901,7 @@ planet Greenrock
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Pirate Outfits"
-	outfitter "Pirate Advanced Ouftits"
+	outfitter "Pirate Advanced Outfits"
 	outfitter "South Pirate Advanced Outfits"
 	bribe 0.05
 	security 0
