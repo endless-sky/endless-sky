@@ -69,7 +69,7 @@ news "merchant anywhere"
 			"It's better to light a thruster than curse the darkness."
 			"Nothing ventured, nothing gained. I always invest all my profits in new ships."
 			"Fortune favors the bold. Look at the valuable minerals I found in the uninhabited system two jumps from here."
-			"Having both feet firmly on the ground doesn't make you get one step to completing your missions."
+			"Having both feet firmly on the ground doesn't make you take one step to completing your missions."
 			"The darkest hour is just before the departure."
 			"Don't look a gift shuttle in the engine outlets."
 		word
@@ -364,7 +364,7 @@ news "company psychologist"
 			"A trouble shared is a trouble halved, so most resource issues can be brought within acceptable limits by just pretending to listen."
 			"A man is judged by his deeds, not by his words, except in my profession; the more I talk, the more people value me."
 			"People are sometimes afraid that we psychologists can read their minds, but we are actually more scared of learning our own motivations during our studies."
-			"Better to be rejected for who you are, than to be accepted for whom you are not."
+			"Better to be rejected for who you are, than to be accepted for who you are not."
 			"Leave behind what you don't need, to create space and find what makes you progress."
 			"Better comforted by a lie, than hurt by the truth. Hurt people are really unproductive."
 			"Difficult times create strong people. But we are here for when it gets a little too difficult."
@@ -1448,7 +1448,7 @@ news "work coach"
 		word
 			"A startup company once hired me, and I immediately advised them to stop; hiring an expensive consultant like me is a horrible decision for a cash strapped startup."
 			"Working as the head of a company requires sound decision making abilities. Hiring an expensive consultant like me usually suggests a lack thereof, but I'm not complaining since I get paid well."
-			"My first advice is always free. And let me just give it to you: I strongly recommend hiring me."
+			"My first piece of advice is always free. And let me just give it to you: I strongly recommend hiring me."
 			"Here is a piece of free advice: I strongly recommend hiring me."
 		word
 			`"`
@@ -1770,7 +1770,7 @@ news "convicted criminal"
 			"Two years of food and housing for free, and all the time in the world to read. I'm so looking forward to staying in prison."
 			"I should have gone to one of those pirate worlds. They would never have caught me."
 			"They said I took a bribe to lose the game, but that is not true! I would also have gotten the credits if we had won!"
-			"The rich just buy themselves out of legal troubles! The Mayor was in on the plan, but he got away with a fine of 100 credits and I'm here serving five years!"
+			"The rich just buy themselves out of legal troubles! The Mayor was in on the plan, but he got away with a fine of 1000 credits and I'm here serving five years!"
 		word
 			`"`
 
