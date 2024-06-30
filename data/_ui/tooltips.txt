@@ -1403,7 +1403,7 @@ tip "Alert indicator"
 	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
 
 tip "Extra fleet status messages"
-	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
+	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
 
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
