@@ -153,6 +153,7 @@ news "merchant in human space"
 			"I named my ship Titanic. It's a strong sounding name, but I feel people are making fun of me."
 			"One Sparrow doesn't make a summer. You need a whole fleet of those to be effective."
 			"No good deed goes unpunished. I once helped some good friends of mine to become pilots as well, but they took over my most profitable trade route."
+			"Spaceships are safe in a spaceport, but that is not what spaceships are built for."
 		word
 			`"`
 
@@ -2388,3 +2389,6 @@ news "graffiti on spaceport wall"
 			"Time flies like an Arrow, fruit flies like a banana."
 			"The panda eats shoots and leaves. The hunter eats, shoots and leaves."
 			"The hyperlane to hell is paved with good intentions."
+			"Because I could not stop for Death - He kindly stopped for me - The Shuttle held but just one bunk - Most Peacefully. / We slowly flew; He knew no haste - And I had put away - My labor and my leisure too, - For His Civility." # Based on Emily Dickinsons "Because I could not stop for Death"
+			"We passed the Carrier, where Soldiers strove - In Fighters; in the Void - We passed the Bays with Docked Drones - We passed the Hardened Hull. / Or rather; It passed Us - The Dew drew quivering and Chill - For decompressed, my spacesuit - My tether, torn away." # Based on Emily Dickinsons "Because I could not stop for Death"
+			"We paused before a House that seemed - A Cylinder to be launched - The Roof was scarcely visible - The Flag; covering around. / Since then, 'tis Centuries, and yet - Feels shorter than the Day - I first surmised the Torpedo Bay - Aimed toward Eternity." # Based on Emily Dickinsons "Because I could not stop for Death"
