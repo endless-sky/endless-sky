@@ -1,5 +1,5 @@
-/* ColumnChooserPanel.cpp
-Copyright (c) 2017 by Endless Sky contributors
+/* ColumnChooserPanel.h
+Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software

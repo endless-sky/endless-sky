@@ -1,5 +1,5 @@
 /* ColumnChooserPanel.cpp
-Copyright (c) 2017 by Endless Sky contributors
+Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -49,7 +49,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-ColumnChooserPanel::ColumnChooserPanel(const vector<PlayerInfoPanel::SortableColumn> &columns, InfoPanelState *panelState)
+ColumnChooserPanel::ColumnChooserPanel(const vector<PlayerInfoPanel::SortableColumn> &columns,
+	InfoPanelState *panelState)
 	: columns(columns), panelState(panelState)
 {
 	SetInterruptible(false);
@@ -80,7 +81,7 @@ void ColumnChooserPanel::Draw()
 	const set<const string> visibleColumns = panelState->VisibleColumns();
 	auto isVisible = [&](string name){ return visibleColumns.find(name) != visibleColumns.end(); };
 	const float availableWidth = 727 - accumulate(columns.begin(), columns.end(), 0,
-		[&](int acc, PlayerInfoPanel::SortableColumn column){
+		[&](int acc, PlayerInfoPanel::SortableColumn column) {
 			return acc + (isVisible(column.name) ? column.layout.width : 0);
 		});
 	for(PlayerInfoPanel::SortableColumn column : columns)
