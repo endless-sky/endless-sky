@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Command.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -31,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
@@ -82,6 +84,31 @@ namespace {
 			else
 				table.Advance();
 		}
+	}
+
+	void DrawTooltip(const string &text, const Point &hoverPoint)
+	{
+		if(text.empty())
+			return;
+
+		const int WIDTH = 250;
+		const int PAD = 10;
+		WrappedText wrap(FontSet::Get(14));
+		wrap.SetWrapWidth(WIDTH - 2 * PAD);
+		wrap.Wrap(text);
+		int longest = wrap.LongestLineWidth();
+		if(longest < wrap.WrapWidth())
+		{
+			wrap.SetWrapWidth(longest);
+			wrap.Wrap(text);
+		}
+
+		const Color *backColor = GameData::Colors().Get("tooltip background");
+		const Color *textColor = GameData::Colors().Get("medium");
+		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
+		Point anchor = hoverPoint + Point(0., textSize.Y());
+		FillShader::Fill(anchor - .5 * textSize, textSize, *backColor);
+		wrap.Draw(anchor - textSize + Point(PAD, PAD), *textColor);
 	}
 
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -517,7 +544,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	for(auto &zone : menuZones)
 		if(zone.Contains(mouse))
 		{
-			SortShips(*zone.Value());
+			SortShips(*zone.Value()->shipSort);
 			return true;
 		}
 
@@ -741,7 +768,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		table.Draw(column.name, columnHeaderColor);
 
-		menuZones.emplace_back(zone, column.shipSort);
+		menuZones.emplace_back(zone, &column);
 	}
 
 	table.DrawGap(5);
@@ -824,6 +851,10 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		++index;
 	}
+
+	for(auto &zone : menuZones)
+		if(zone.Contains(hoverPoint))
+			DrawTooltip(zone.Value()->Tooltip(), hoverPoint);
 
 	// Re-ordering ships in your fleet.
 	if(isDragging)
@@ -952,4 +983,11 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 )
 	: name(name), layout(layout), shipSort(shipSort)
 {
+}
+
+
+
+const string &PlayerInfoPanel::SortableColumn::Tooltip() const
+{
+	return GameData::Tooltip(name + " column");
 }
