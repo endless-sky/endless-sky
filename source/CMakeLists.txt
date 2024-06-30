@@ -333,6 +333,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TestContext.h
 	TestData.cpp
 	TestData.h
+	TextArea.cpp
+	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
 	Trade.cpp
