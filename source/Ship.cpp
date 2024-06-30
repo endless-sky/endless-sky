@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "Flotsam.h"
 #include "text/Format.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "JumpTypes.h"
@@ -566,6 +567,8 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "formation" && child.Size() >= 2)
+			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "remove" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "bays")
@@ -1116,7 +1119,8 @@ void Ship::Save(DataWriter &out) const
 			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
 		});
-
+		if(formationPattern)
+			out.Write("formation", formationPattern->Name());
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
 		else
@@ -3066,7 +3070,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	{
 		type |= ShipEvent::DESTROY;
 
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
+		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
 				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
 	}
@@ -3588,6 +3592,13 @@ const set<const Flotsam *> &Ship::GetTractorFlotsam() const
 
 
 
+const FormationPattern *Ship::GetFormationPattern() const
+{
+	return formationPattern;
+}
+
+
+
 void Ship::SetFleeing(bool fleeing)
 {
 	isFleeing = fleeing;
@@ -3656,6 +3667,13 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 	parent = ship;
 	if(ship)
 		ship->AddEscort(*this);
+}
+
+
+
+void Ship::SetFormationPattern(const FormationPattern *formationToSet)
+{
+	formationPattern = formationToSet;
 }
 
 
@@ -4482,13 +4500,13 @@ void Ship::StepPilot()
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
+		if(isYours || personality.IsEscort())
 		{
-			if(parent.lock())
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
-			else
+			if(!parent.lock())
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+					, Messages::Importance::Low);
+			else if(Preferences::Has("Extra fleet status messages"))
+				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}
