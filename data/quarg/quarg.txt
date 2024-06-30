@@ -100,7 +100,7 @@ fleet "Large Quarg"
 
 fleet "Quarg Jumpers"
 	government "Quarg"
-	names "Quarg"
+	names "quarg"
 	cargo 2
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
@@ -111,7 +111,7 @@ fleet "Quarg Jumpers"
 
 fleet "Quarg Hunters"
 	government "Quarg"
-	names "Quarg"
+	names "quarg"
 	cargo 4
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
@@ -122,7 +122,7 @@ fleet "Quarg Hunters"
 
 fleet "Quarg Planetary Defense"
 	government "Quarg"
-	names "Quarg"
+	names "quarg"
 	cargo 4
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
