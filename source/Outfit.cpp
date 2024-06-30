@@ -266,6 +266,11 @@ void Outfit::Load(const DataNode &node)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "thumbnail sprite")
+		{
+			thumbnailBody = Body();
+			thumbnailBody.LoadSprite(child);
+		}
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -455,6 +460,14 @@ const vector<string> &Outfit::Licenses() const
 const Sprite *Outfit::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+// Get the image to display in the outfitter when buying this item.
+const Body &Outfit::ThumbnailBody() const
+{
+	return thumbnailBody;
 }
 
 
