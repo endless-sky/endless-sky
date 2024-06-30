@@ -136,7 +136,7 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 				THEN( "The user has 2 mortgages" ) {
 					REQUIRE(account.Credits() == 480000);
 					REQUIRE(account.CreditScore() == 400);
-					REQUIRE(account.Mortgages().size() == 3);
+					REQUIRE(account.Mortgages().size() == 2);
 				}
 			}
 		}
