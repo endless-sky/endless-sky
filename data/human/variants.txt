@@ -2149,6 +2149,23 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"Hyperdrive"
 
 
+ship "Gunboat" "Gunboat (Scanner)"
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Tactical Scanner"
+		"Brig"
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		"Cargo Scanner"
+		"Outfit Scanner"
+
+
 
 ship "Hauler" "Hauler (Hai)"
 	outfits

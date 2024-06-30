@@ -1464,16 +1464,11 @@ fleet "Republic Logistics"
 fleet "Navy Surveillance"
 	government "Republic"
 	names "republic capital"
-	fighters
-		names "republic fighter"
 	cargo 0
 	personality
 		surveillance opportunistic
 	variant 10
-		"Cruiser"
-		"Surveillance Drone" 4
-	variant 10
-		"Gunboat" 2
+		"Gunboat (Scanner)" 2
 
 fleet "Small Deep Merchants"
 	government "Merchant"
