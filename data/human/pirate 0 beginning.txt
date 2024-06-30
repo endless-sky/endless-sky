@@ -78,7 +78,7 @@ mission "SoPi 0: Scanning"
 			label converse1
 			`	As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
 				launch
-		npc save "scan outfits"
+		npc save
 			fleet "Scan Fleet"
 			government "Pirate"
 			personality heroic secretive staying
