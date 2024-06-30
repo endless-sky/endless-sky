@@ -69,20 +69,10 @@ void ColumnChooserPanel::Draw()
 	info.SetCondition("columns menu open");
 	columnChooser->Draw(info, this);
 
-	// const Sprite *top = SpriteSet::Get("ui/dialog top");
-	// const Sprite *middle = SpriteSet::Get("ui/dialog middle");
-	// const Sprite *bottom = SpriteSet::Get("ui/dialog bottom");
-
 	const Font &font = FontSet::Get(14);
 	const Color * const dim = GameData::Colors().Get("dim");
 	const Color *color[] = {GameData::Colors().Get("medium"), GameData::Colors().Get("bright")};
 	const Sprite *box[] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
-
-	// Table table;
-	// table.AddColumn(
-	// 	pluginListClip->Left() + box[0]->Width(),
-	// 	Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
-	// );
 
 	Point topLeft(270., -280.);
 	const Point boxSize = Point(box[0]->Width(), box[0]->Height());

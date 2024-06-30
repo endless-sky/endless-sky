@@ -161,32 +161,11 @@ namespace {
 		return lhs->RequiredCrew() < rhs->RequiredCrew();
 	}
 
-	bool CompareDeterrence(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
-	{
-		return lhs->Deterrence() < rhs->Deterrence();
-	}
-
 	bool CompareCargo(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		int left = lround(lhs->Attributes().Get("cargo space") - lhs->Cargo().Used());
 		int right = lround(rhs->Attributes().Get("cargo space") - rhs->Cargo().Used());
 		return left < right;
-	}
-
-	bool CompareCargoEfficiency(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
-	{
-		// "n/a"
-		if(lhs->RequiredCrew() == 0 && lhs->Attributes().Get("cargo space") == 0)
-			return true;
-		if(rhs->RequiredCrew() == 0 && rhs->Attributes().Get("cargo space") == 0)
-			return false;
-
-		// "infinite"
-		if(lhs->RequiredCrew() == 0 && rhs->RequiredCrew() == 0)
-			return lhs->Attributes().Get("cargo space") < rhs->Attributes().Get("cargo space");
-
-		auto value = [](const shared_ptr<Ship> &ship){ return ship->Attributes().Get("cargo space") / ship->RequiredCrew(); };
-		return value(lhs) < value(rhs);
 	}
 
 	// A helper function for reversing the arguments of the given function F.
@@ -211,12 +190,8 @@ namespace {
 			return ReverseCompare<CompareHull>;
 		else if(f == CompareFuel)
 			return ReverseCompare<CompareFuel>;
-		else if(f == CompareDeterrence)
-			return ReverseCompare<CompareDeterrence>;
 		else if(f == CompareCargo)
 			return ReverseCompare<CompareCargo>;
-		else if(f == CompareCargoEfficiency)
-			return ReverseCompare<CompareCargoEfficiency>;
 		return ReverseCompare<CompareRequiredCrew>;
 	}
 }
@@ -229,10 +204,8 @@ const vector<PlayerInfoPanel::SortableColumn> PlayerInfoPanel::columns = {
 	SortableColumn("shields", "Shield strength", {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
 	SortableColumn("hull", "Hull integrity", {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
 	SortableColumn("fuel", "Fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
-	SortableColumn("combat", "Combat prowess", {57, Alignment::RIGHT, Truncate::BACK}, CompareDeterrence),
 	SortableColumn("crew", "Crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew),
 	SortableColumn("free cargo", "Free cargo space", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargo),
-	SortableColumn("cargo eff.", "Cargo efficiency", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargoEfficiency)
 };
 
 

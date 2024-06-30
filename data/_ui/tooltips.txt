@@ -1469,5 +1469,3 @@ tip "Date format"
 # Player info panel
 tip "crew column"
 	`Crew currently aboard the ship. May be fewer than minimum complement.`
-tip "cargo eff. column"
-	`Cargo efficiency, the ratio of cargo space to required crew members; useful for profitable trading.`
