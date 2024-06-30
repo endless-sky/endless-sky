@@ -197,25 +197,25 @@ namespace {
 	}
 
 	// Reverses the argument order of the given comparator function.
-	InfoPanelState::ShipComparator &GetReverseCompareFrom(InfoPanelState::ShipComparator &f)
+	InfoPanelState::ShipComparator &GetReverseCompareFrom(InfoPanelState::ShipComparator f)
 	{
-		if(f == &CompareName)
+		if(f == CompareName)
 			return ReverseCompare<CompareName>;
-		else if(f == &CompareModelName)
+		else if(f == CompareModelName)
 			return ReverseCompare<CompareModelName>;
-		else if(f == &CompareSystem)
+		else if(f == CompareSystem)
 			return ReverseCompare<CompareSystem>;
-		else if(f == &CompareShields)
+		else if(f == CompareShields)
 			return ReverseCompare<CompareShields>;
-		else if(f == &CompareHull)
+		else if(f == CompareHull)
 			return ReverseCompare<CompareHull>;
-		else if(f == &CompareFuel)
+		else if(f == CompareFuel)
 			return ReverseCompare<CompareFuel>;
-		else if(f == &CompareDeterrence)
+		else if(f == CompareDeterrence)
 			return ReverseCompare<CompareDeterrence>;
-		else if(f == &CompareCargo)
+		else if(f == CompareCargo)
 			return ReverseCompare<CompareCargo>;
-		else if(f == &CompareCargoEfficiency)
+		else if(f == CompareCargoEfficiency)
 			return ReverseCompare<CompareCargoEfficiency>;
 		return ReverseCompare<CompareRequiredCrew>;
 	}
@@ -943,7 +943,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 
 	// Clicking on a sort column twice reverses the comparison.
 	if(panelState.CurrentSort() == shipComparator)
-		shipComparator = GetReverseCompareFrom(*shipComparator);
+		shipComparator = GetReverseCompareFrom(shipComparator);
 
 	// Save selected ships to preserve selection after sort.
 	multiset<shared_ptr<Ship>, InfoPanelState::ShipComparator *> selectedShips(shipComparator);
