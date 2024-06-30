@@ -15316,6 +15316,7 @@ system Gienah
 	habitable 600
 	belt 1965
 	link Algenib
+	link Nashira
 	link Persian
 	asteroids "small rock" 1 2.574
 	asteroids "medium rock" 4 2.448
@@ -24106,6 +24107,39 @@ system Naper
 			sprite planet/dust5-b
 			distance 286
 			period 23.8403
+
+system Nashira
+	pos -207.9 380.6
+	government Uninhabited
+	arrival 5000
+	habitable 11350
+	belt 1044 5
+	belt 2043 2
+	haze _menu/haze-33
+	link Gienah
+	asteroids "small rock" 34 2.803
+	asteroids "large rock" 3 2.293
+	asteroids "small metal" 11 2.948
+	asteroids "medium metal" 13 2.22
+	asteroids "large metal" 12 1.893
+	minables iron 21 4.7
+	minables copper 12 2.9
+	minables lead 9 3.2
+	minables silicon 9 5.3
+	minables tungsten 13 7
+	fleet "Small Core Pirates" 900
+	fleet "Large Core Pirates" 2300
+	object
+		sprite star/b-giant
+		period 20
+	object
+		sprite planet/rock20
+		distance 2060.42
+		period 351.152
+	object
+		sprite planet/dust7
+		distance 3719
+		period 851.532
 
 system Nenia
 	pos -39.1297 467.242
