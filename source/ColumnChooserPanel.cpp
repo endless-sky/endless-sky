@@ -69,7 +69,12 @@ void ColumnChooserPanel::Draw()
 	info.SetCondition("columns menu open");
 	columnChooser->Draw(info, this);
 
+	// const Sprite *top = SpriteSet::Get("ui/dialog top");
+	// const Sprite *middle = SpriteSet::Get("ui/dialog middle");
+	// const Sprite *bottom = SpriteSet::Get("ui/dialog bottom");
+
 	const Font &font = FontSet::Get(14);
+	const Color * const dim = GameData::Colors().Get("dim");
 	const Color *color[] = {GameData::Colors().Get("medium"), GameData::Colors().Get("bright")};
 	const Sprite *box[] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
@@ -83,18 +88,24 @@ void ColumnChooserPanel::Draw()
 	const Point boxSize = Point(box[0]->Width(), box[0]->Height());
 	static const Point ROW_ADVANCE(0., 20.);
 	const set<const string> visibleColumns = panelState->VisibleColumns();
+	auto isVisible = [&](string name){ return visibleColumns.find(name) != visibleColumns.end(); };
+	const float availableWidth = 727 - accumulate(columns.begin(), columns.end(), 0,
+		[&](int acc, PlayerInfoPanel::SortableColumn column){
+			return acc + (isVisible(column.name) ? column.layout.width : 0);
+		});
 	for(PlayerInfoPanel::SortableColumn column : columns)
 	{
-		bool visible = (visibleColumns.find(column.name) != visibleColumns.end());
+		bool visible = isVisible(column.name);
+		bool enabled = visible || column.layout.width <= availableWidth;
 
-		const Sprite *sprite = box[visible];
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, boxSize);
-		SpriteShader::Draw(sprite, spriteBounds.Center());
+		SpriteShader::Draw(box[visible], spriteBounds.Center());
 
 		Point textPos = topLeft + Point(box[0]->Width(), 2.);
-		font.Draw(column.checkboxLabel, textPos, *color[visible]);
+		font.Draw(column.checkboxLabel, textPos, enabled ? *color[visible] : *dim);
 
-		zones.emplace_back(ClickZone(Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y())), column.name));
+		if(enabled)
+			zones.emplace_back(ClickZone(Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y())), column.name));
 
 		topLeft = topLeft + ROW_ADVANCE;
 	}
