@@ -81,9 +81,10 @@ const Command Command::HOLD(ONE << 30, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 31, "Fleet: Harvest flotsam");
 const Command Command::AMMO(ONE << 32, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 33, "Auto steer");
-const Command Command::WAIT(ONE << 34, "");
-const Command Command::STOP(ONE << 35, "");
-const Command Command::SHIFT(ONE << 36, "");
+const Command Command::PAUSE(ONE << 34, "Pause");
+const Command Command::WAIT(ONE << 35, "");
+const Command Command::STOP(ONE << 36, "");
+const Command Command::SHIFT(ONE << 37, "");
 
 
 
