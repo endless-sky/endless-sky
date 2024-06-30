@@ -1329,6 +1329,8 @@ vector<string> Ship::FlightCheck() const
 				checks.emplace_back("insufficient energy to fire?");
 				break;
 			}
+		if(CoolingEfficiency() < .5)
+			checks.emplace_back("inefficient cooling?");
 	}
 
 	return checks;
