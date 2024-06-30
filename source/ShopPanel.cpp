@@ -67,8 +67,8 @@ namespace {
 
 	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
 	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
+		const int WIDTH = 250;
+		const int PAD = 10;
 		WrappedText wrap(FontSet::Get(14));
 		wrap.SetWrapWidth(WIDTH - 2 * PAD);
 		wrap.Wrap(text);
