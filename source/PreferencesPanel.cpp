@@ -665,6 +665,7 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
+		"Automatically unpark flagship",
 		"\n",
 		"Gameplay",
 		"Control ship with mouse",

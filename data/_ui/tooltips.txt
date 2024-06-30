@@ -1405,6 +1405,9 @@ tip "Alert indicator"
 tip "Extra fleet status messages"
 	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
 
+tip "Automatically unpark flagship"
+	`Automatically swap your current flagship with another ship that happens to be in first place of the order.`
+
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
 
