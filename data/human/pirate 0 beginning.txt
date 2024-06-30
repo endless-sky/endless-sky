@@ -40,9 +40,9 @@ mission "SoPi 0: Scanning"
 					goto mistake
 			label mistake
 			`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
-					goto question
+					goto question1
 			label question1
-			`	"Well, well...what do we have here..." Two goons, one dressed in a sassy gray jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, which are turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and presses it against your throat slightly. "Answer me or else my blade will speak for me."`
+			`	"Well, well...what do we have here..." Two goons appear, one dressed in a sassy gray jacket labeled "Leviathan is My GOAT, Sorry Kestrel," the other fumbling with a few of the same kinds of knives stuck on to your sleeves, which are turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and presses it against your throat slightly. "Answer me or else my blade will speak for me."`
 			choice
 				`	(Shake my head.)`
 					goto nospat
@@ -73,12 +73,12 @@ mission "SoPi 0: Scanning"
 			label converse0
 			`	"I'll get to the tip of the blade real fast..." GaSan says, twirling one of his knives in his free hand while hauling you up from the floor. "My superiors have assigned me to scout in the Northern Pirate Regions, I don't know what's in their brains but a journey there is a hell of a ride." His face contorts into disdain for just a second before regaining a smug smile. "However, a life of a new brat around would never rival mine, so..." His gaze meets yours while his smile widens, revealing two rows of golden teeth like a tiger in the process of chomping his prey. "Better get going, <first>."`
 			choice
-			`	(Silently backpedal away from him and run to your ship, taking off.)`
-				goto converse1
+				`	(Silently backpedal away from him and run to your ship, taking off.)`
+					goto converse1
 			label converse1
 			`	As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
 				launch
-		npc "scan outfits"
+		npc save "scan outfits"
 			fleet "Scan Fleet"
 			government "Pirate"
 			personality heroic secretive staying
