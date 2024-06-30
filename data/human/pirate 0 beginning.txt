@@ -20,8 +20,11 @@ mission "SoPi 0: Scanning"
 		not attributes "ccor"
 		not planet "Greenrock"
 	destination "Greenrock"
-	waypoint "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
-	mark "Almaaz"
+	waypoint "Almaaz"
+	waypoint "Alnilam"
+	waypoint "Arneb" 
+	waypoint "Hatysa"
+	waypoint "Unagi"
 	to offer
 		random < 60
 		has "outfit (flagship installed): Jump Drive"
