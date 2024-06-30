@@ -158,13 +158,13 @@ namespace {
 
 // Table columns and their starting x positions, end x positions, alignment and sort comparator.
 const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[7] = {
-	SortableColumn("ship", 0, 217, {217, Truncate::MIDDLE}, CompareName),
-	SortableColumn("model", 220, 347, {127, Truncate::BACK}, CompareModelName),
-	SortableColumn("system", 350, 487, {137, Truncate::BACK}, CompareSystem),
-	SortableColumn("shields", 550, 493, {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
-	SortableColumn("hull", 610, 553, {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
-	SortableColumn("fuel", 670, 613, {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
-	SortableColumn("crew", 730, 673, {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
+	SortableColumn("ship", {217, Truncate::MIDDLE}, CompareName),
+	SortableColumn("model", {127, Truncate::BACK}, CompareModelName),
+	SortableColumn("system", {137, Truncate::BACK}, CompareSystem),
+	SortableColumn("shields", {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
+	SortableColumn("hull", {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
+	SortableColumn("fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
+	SortableColumn("crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
 };
 
 
@@ -700,8 +700,14 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	// Table attributes.
 	Table table;
-	for(const auto &col : columns)
-		table.AddColumn(col.offset, col.layout);
+	static const int GUTTER = 3;
+	int offset = 0;
+	for(const auto &column : columns)
+	{
+		table.AddColumn(offset + (column.layout.align == Alignment::RIGHT
+			? column.layout.width : 0), column.layout);
+		offset += column.layout.width + GUTTER;
+	}
 
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
@@ -709,12 +715,15 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	// Header row.
 	const Point tablePoint = table.GetPoint();
+	const double rowHeight = table.GetRowSize().Y();
+	offset = 0;
 	for(const auto &column : columns)
 	{
-		Rectangle zone = Rectangle(
-			tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
-			Point(column.layout.width, table.GetRowSize().Y())
+		Rectangle zone = Rectangle(tablePoint + Point(offset, 0) +
+			.5 * Point(column.layout.width - GUTTER, rowHeight),
+			Point(column.layout.width, rowHeight)
 		);
+		offset += column.layout.width + GUTTER;
 
 		// Highlight the column header if it is under the mouse
 		// or ships are sorted according to that column.
@@ -916,11 +925,9 @@ bool PlayerInfoPanel::Scroll(int distance)
 
 PlayerInfoPanel::SortableColumn::SortableColumn(
 	string name,
-	double offset,
-	double endX,
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-	: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
+	: name(name), layout(layout), shipSort(shipSort)
 {
 }
