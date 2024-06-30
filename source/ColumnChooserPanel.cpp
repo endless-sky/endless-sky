@@ -141,7 +141,7 @@ bool ColumnChooserPanel::Click(int x, int y, int /* clicks */)
 
 void ColumnChooserPanel::DrawTooltip(const string &text, const Point &hoverPoint)
 {
-	if(text == "")
+	if(text.empty())
 		return;
 
 	const int WIDTH = 250;

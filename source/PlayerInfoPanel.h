@@ -49,7 +49,7 @@ public:
 	public:
 		SortableColumn(std::string name, std::string checkboxLabel, Layout layout, InfoPanelState::ShipComparator *shipSort);
 
-		std::string Tooltip() const;
+		const std::string &Tooltip() const;
 
 		std::string name;
 		std::string checkboxLabel;
