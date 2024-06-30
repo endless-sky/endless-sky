@@ -22,7 +22,7 @@ mission "SoPi 0: Scanning"
 	destination "Greenrock"
 	waypoint "Almaaz"
 	waypoint "Alnilam"
-	waypoint "Arneb" 
+	waypoint "Arneb"
 	waypoint "Hatysa"
 	waypoint "Unagi"
 	to offer
@@ -39,7 +39,7 @@ mission "SoPi 0: Scanning"
 				`	(Try to catch the knife between two of your fingers John Wick style.)`
 					goto mistake
 			label mistake
-				`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
+			`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
 					goto question
 			label question1
 			`	"Well, well...what do we have here..." Two goons, one dressed in a sassy gray jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, which are turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and presses it against your throat slightly. "Answer me or else my blade will speak for me."`
@@ -53,23 +53,23 @@ mission "SoPi 0: Scanning"
 			label nospat
 				`	The goon looks at you for a second, and then spits at your right eye. "Piece of coward", he grumbles and stands up after retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "these newbies are getting soft I tell ya...soft." Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on.`
 			choice
-			`	(Gingerly shake his hand.)`
-				goto converse0
+				`	(Gingerly shake his hand.)`
+					goto converse0
 			label yesspat
 			`	The goon looks at you for a second, then spits at your left eye. "Flamboyant as hell", he grumbles and stands up, retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "These newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on.`
 			choice
-			`	(Gingerly shake his hand.)`
-				goto converse0
+				`	(Gingerly shake his hand.)`
+					goto converse0
 			label question2
 			`	"You don't...know anything?", The goon's smile nearly cracks his already scarred face, "Oh man...this is..." His chuckles rang across the spaceport, halting curious onlookers and earning eyes from everywhere. "Ok ok" He smiles.`
 			choice
-			`	(Laugh and try to soften the mood.)`
-				goto doublespat
+				`	(Laugh and try to soften the mood.)`
+					goto doublespat
 			label doublespat
-			`	The goon's smile vanishes as fast as it had come. Looking at you for a second, he spits into to of your eyes with two quick movements of the mouth. "Flamboyant as hell and a piece of coward," he grumbles and stands up, after retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "These newbies are getting egos I tell ya...egos and softness." Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on, "Your stupidity is on another level if you consider yourself innocent of knowledge when you choose to live a life of looting and plundering."`
+			`	The goon's smile vanishes as fast as it had come. Looking at you for a second, he spits into to both of your eyes with two quick movements of the mouth. "Flamboyant as hell and a piece of coward," he grumbles and stands up, after retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "These newbies are getting egos I tell ya...egos and softness." Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on, "Your stupidity is on another level if you consider yourself innocent of knowledge when you choose to live a life of looting and plundering."`
 			choice
-			`	(Gingerly shake his hand.)`
-				goto converse0
+				`	(Gingerly shake his hand.)`
+					goto converse0
 			label converse0
 			`	"I'll get to the tip of the blade real fast..." GaSan says, twirling one of his knives in his free hand while hauling you up from the floor. "My superiors have assigned me to scout in the Northern Pirate Regions, I don't know what's in their brains but a journey there is a hell of a ride." His face contorts into disdain for just a second before regaining a smug smile. "However, a life of a new brat around would never rival mine, so..." His gaze meets yours while his smile widens, revealing two rows of golden teeth like a tiger in the process of chomping his prey. "Better get going, <first>."`
 			choice
