@@ -1436,7 +1436,7 @@ mission "FW Pirates: Attack 2"
 			variant
 				"Aerie" 2
 				"Mule (Heavy)"
-				"Dagger" 5
+				"Dagger" 9
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
