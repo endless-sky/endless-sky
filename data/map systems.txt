@@ -23510,6 +23510,10 @@ system Misam
 			sprite planet/lava0-b
 			distance 159
 			period 24.2278
+	object "Copperline Station"
+		sprite planet/station1b-recolor
+		distance 1975
+		period 165
 	object "New Tortuga"
 		sprite planet/ocean3-b
 		distance 3010.56

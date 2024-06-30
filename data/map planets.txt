@@ -754,6 +754,15 @@ planet "Cool Forest"
 	spaceport `The spaceport here is a major city, with a continuous stream of cargo transports bringing goods manufactured on Cool Forest's sister planet, Diligent Hand. Here, some final assembly, testing, and repackaging is performed before those goods are shipped out to the rest of Saryd space and beyond.`
 	security 0.3
 
+planet "Copperline Station"
+	attributes pirate station frontier "core pirate" smuggling
+	landscape land/distillery1
+	description `C2H5OH: Sweet, sweet ethyl alcohol, the nectar of the Gods spilled upon the heavens themselves. The Great Molecular Cloud which protrudes into this star system has long been a mythical promised land to spacers, whispered of since humanity first turned their spectroscopes towards the stars.`
+	description `Myth no more, the harvesting of the Cloud to be processed into drinking alcohol is now a fairly lucrative industry - if one that the inhabitants of Copperline Station refuse to pay taxes on.`
+	description `The station itself is a fairly riotous assemblage of hangars, industrial distilleries, habitats, and ill-advises combinations thereof which would, no doubt, leave Republic health and safety officials aghast.`
+	spaceport `Bootleggers are notorious for their hotrodded starships, but most of the vessels parked here look decidedly mundane. Stock hull configuration, stock paint jobs, nothing that would call attention to them as anything but another interstellar traveler. It's only when you see a shuttle that's undergoing maintenance that the oversized engines and custom afterburner become visible.`
+	government Independent
+
 planet Cornucopia
 	attributes farming forest frontier research south
 	landscape land/fields0
