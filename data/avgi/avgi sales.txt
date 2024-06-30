@@ -1,0 +1,144 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+shipyard "Avgi Developer"
+	"Akoustiki"
+	"Atenuatia"
+	"Avlaki"
+	"Diaspersi"
+	"Difraktos"
+	"Entasi"
+	"Frequentia"
+	"Harmonikos"
+	"Interferos"
+	"Koryfi"
+	"Melodikos"
+	"Modified Tachytia"
+	"Optikon"
+	"Phononos"
+	"Photikon"
+	"Polari"
+	"Prismaios"
+	"Refraktos"
+	"Sonikis"
+	"Tremoros"
+	"Undsyni"
+	"Undulon"
+	"Vibratia"
+
+shipyard "Avgi Civilian Basics"
+	"Koryfi"
+	"Avlaki"
+	"Frequentia"
+	"Akoustiki"
+	"Sonikis"
+	"Optikon"
+
+shipyard "Avgi Civilian Advanced"
+	"Phononos"
+	"Melodikos"
+	"Harmonikos"
+	"Undsyni"
+	"Interferos"
+	"Polari"
+
+shipyard "Avgi Dissonance Basics"
+	"Entasi"
+	"Akoustiki"
+	"Sonikis"
+
+shipyard "Avgi Spaceguard Light"
+	"Tremoros"
+	"Prismaios"
+	"Interferos"
+	"Photikon"
+	"Vibratia"
+	"Undulon"
+
+shipyard "Avgi Spaceguard Heavy"
+	"Diaspersi"
+	"Refraktos"
+	"Difraktos"
+	"Atenuatia"
+
+
+outfitter "Avgi Basic Systems"
+	"Lantern Fission Core"
+	"Photoelectric Scales"
+	"Concentrating Solar Cell"
+	"Concentrating Solar Array"
+	"Ultracapacitor Cell"
+	"Ultracapacitor Bank"
+	"Multispectral Scanner"
+	"Cryogenic Deuterium Tank"
+	"Deuterium Slush Tank"
+	"Electrostatic Ramscoop"
+	"Radiative Scales"
+	"Hyperdrive"
+	"Local Map"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Luxury Accommodations"
+	"Ultrarelativistic Electron Beam"
+
+outfitter "Avgi Advanced Systems"
+	"Diffuse Deflector"
+	"Spectrometer Array"
+	"Thermal Sink Partition"
+	"Plasmadyne Ramscoop"
+	"Nanoceramic Scales"
+	"Concealment Scales"
+
+outfitter "Avgi Basic Drives"
+	"Magnetoplasma Drive"
+	`Z-330 "Spark" Fusion Torch`
+	"XY-180 Radial Thrusters"
+	"XY-360 Radial Thrusters"
+	"Remass Injector"
+	"Inductive Extractor"
+
+outfitter "Avgi Advanced Drives"
+	`Z-660 "Zap" Fusion Torch`
+	`Z-990 "Arc" Fusion Torch`
+	"XY-720 Radial Thrusters"
+
+outfitter "Avgi Basic Combat"
+	"Speck Round"
+	"Speck Magazine"
+	"Speckle Coilgun"
+	"Speckle Turret"
+	`"Nettle" Kinetic Missile`
+	"Nettle Magazine"
+	"Nettle Launcher"
+
+outfitter "Avgi Advanced Combat"
+	"Optical Lasing Generator"
+	"Green Optical Laser"
+	"Blue Optical Laser"
+	"Nettle Launch Array"
+	"Diffuse Deflector"
+	"Specular Deflector"
+
+outfitter "Avgi Atomics"
+	"Equinox Torpedo"
+	"Equinox Torpedo Pylon"
+	"Equinox Torpedo Stockpile"
+	`"Orchid" Nuclear Missile`
+	"Orchid Magazine"
+	"Orchid Launcher"
+	"Orchid Launch Array"
+	`"Snapdragon" Nuclear Shaped Charge`
+	"Snapdragon Magazine"
+	"Snapdragon Launcher"
+

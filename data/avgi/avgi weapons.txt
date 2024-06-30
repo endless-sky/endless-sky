@@ -1,0 +1,803 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+# Kinetic Weapons:
+
+outfit "Speck Round"
+	category "Ammunition"
+	cost 6
+	thumbnail "outfit/speck round"
+	"mass" 0.003
+	"speck capacity" -1
+	"flotsam chance" 1
+	description "These densely-wound metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+
+
+outfit "Speck Magazine"
+	category "Ammunition"
+	cost 60000
+	thumbnail "outfit/unknown"
+	"mass" 2.4
+	"outfit space" -6
+	"speck capacity" 1200
+	description "While Speckle Coilguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
+
+
+outfit "Speckle Coilgun"
+	category "Guns"
+	cost 40000
+	thumbnail "outfit/speckle coilgun"
+	"mass" 6.3
+	"outfit space" -9
+	"weapon capacity" -9
+	"energy capacity" 90
+	"gun ports" -1
+	"speck capacity" 900
+	weapon
+		sound "speckle"
+		ammo "Speck Round"
+		"fire effect" "speckle fire"
+		"inaccuracy" 1.2
+		"velocity" 60
+		"lifetime" 0
+		"reload" 20
+		"burst reload" 15
+		"burst count" 3
+		"cluster"
+		"firing energy" 36
+		"firing heat" 30
+		"firing force" 12
+		"submunition" "Speck"
+	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
+	description "Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
+	
+
+outfit "Speckle Turret"
+	category "Turrets"
+	cost 40000
+	thumbnail "outfit/speckle turret"
+	"mass" 16.8
+	"outfit space" -24
+	"weapon capacity" -24
+	"energy capacity" 180
+	"turret mounts" -1
+	"speck capacity" 2400
+	weapon
+		sound "speckle"
+		ammo "Speck Round" 2
+		"hardpoint sprite" "hardpoint/speckle turret"
+		"hardpoint offset" 6
+		"fire effect" "speckle fire"
+		"inaccuracy" 0.9
+		"velocity" 60
+		"reload" 20
+		"burst reload" 15
+		"burst count" 3
+		"cluster"
+		"turret turn" 3
+		"firing energy" 72
+		"firing heat" 60
+		"firing force" 24
+		"submunition" "Speck"
+			"offset" -3 0
+		"submunition" "Speck"
+			"offset" 3 0
+	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
+	description "Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer ranged weapons used by the Avgi, but the sheer firepower it can put out makes it deadly in close range."
+
+
+outfit "Speck"
+	weapon
+		sprite "projectile/speck"
+			"frame rate" 60
+			"no repeat"
+		"hit effect" "bullet impact"
+		"lifetime" 15
+		"random lifetime" 3
+		"shield damage" 24
+		"hull damage" 48
+		"hit force" 18
+
+
+effect "speckle fire"
+	sprite "effect/emp torpedo fire"
+		"scale" 0.75
+		"random start frame"
+		"frame rate" 60
+	"lifetime" 3
+	"random angle" 30
+
+
+# Energy Weapons:
+
+outfit "Green Optical Laser"
+	category "Turrets"
+	cost 120000
+	thumbnail "outfit/avgi green laser"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -6
+	"turret mounts" -1
+	"optical jamming" 6
+	"lasing power" -1
+	weapon
+		"hardpoint sprite" "hardpoint/avgi green laser"
+		sound "disruptor"
+		"die effect" "laser ejecta" 4
+		"die effect" "green laser reflection" 30
+		"die effect" "green laser scattering"
+		"fire effect" "green laser fire"
+		"anti-missile" 2
+		"velocity" 1800
+		"lifetime" 1
+		"firing energy" 9
+		"firing heat" 9
+	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret seems designed to hold a beam on target at an extreme distance for a longer period of time using its precise optics, making it better suited for defending and supporting other ships from afar."
+	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
+
+
+outfit "Blue Optical Laser"
+	category "Turrets"
+	licenses
+		"Twilight Guard"
+	cost 120000
+	thumbnail "outfit/avgi blue laser"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"turret mounts" -1
+	"optical jamming" 12
+	"lasing power" -3
+	weapon
+		"hardpoint sprite" "hardpoint/avgi blue laser"
+		sprite "projectile/avgi laser blue"
+			"frame rate" 1
+		sound "disruptor"
+		"hit effect" "laser ejecta" 4
+		"hit effect" "blue laser reflection" 30
+		"hit effect" "blue laser scattering"
+		"fire effect" "blue laser fire"
+		"velocity" 2400
+		"lifetime" 1
+		"reload" 1
+		"turret turn" 6
+		"firing energy" 12
+		"firing heat" 12
+		"shield damage" 3
+		"hull damage" 4.2
+		"heat damage" 6
+		"damage dropoff" 0 2400
+		"dropoff modifier" 0
+	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam ideal for damaging other ships. By pulsing thousands of times each second, the beam can create thermal and mechanical shocks in the target material, enhancing its ability to drill through armor. Unlike the advanced beam weapons used by some other species, this laser is subject to the effects of diffraction, causing its damage to become less intense with distance while also rendering it invisible. However, precise optics allow the beam to be targeted from an exceptional range, despite the tenuous damage at the edge of the laser's reach."
+	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
+
+
+effect "laser ejecta"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 20
+		scale 0.75
+	"random lifetime" 3
+	"random angle" 30
+	"random spin" 15
+	"random velocity" -12
+	"velocity scale" -0.003
+
+effect "blue laser reflection"
+	sprite "effect/skylance impact"
+		"no repeat"
+		"frame rate" 20
+		"scale" 0.125
+	"lifetime" 3
+	"random lifetime" 2
+	"random velocity" -12
+	"velocity scale" -0.0009
+
+effect "blue laser scattering"
+	sprite "effect/skylance impact"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 3
+	"velocity scale" 0
+	
+effect "blue laser fire"
+	sprite "effect/ion rain impact"
+		"frame rate" 4
+		"random start frame"
+	"lifetime" 1
+
+effect "green laser scattering"
+	sprite "effect/heavy laser impact"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 1
+	"velocity scale" 0
+
+effect "green laser reflection"
+	sprite "effect/typhoon fire"
+		"frame rate" 20
+		"random start frame"
+		scale 0.25
+	"lifetime" 3
+	"random lifetime" 2
+	"random velocity" -24
+	
+effect "green laser fire"
+	sprite "effect/heavy laser impact"
+		"frame rate" 5
+	"lifetime" 1
+
+outfit "Ultrarelativistic Electron Beam"
+	category "Guns"
+	cost 40000
+	thumbnail "outfit/unknown"
+	"mass" 90
+	"outfit space" -90
+	"weapon capacity" -90
+	"gun ports" -1
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 30
+			"no repeat"
+		sound "slicer"
+		"fire effect" "electron flare"
+		"firing energy" 540
+		"firing heat" 180
+		"firing scramble" 6
+		"reload" 18
+		"burst count" 1
+		"inaccuracy" 6
+			"narrow"
+		"velocity override" 300
+		"piercing" 0.3
+		"submunition" "Electron Packet" 180
+
+outfit "Electron Packet"
+	weapon
+		sprite "effect/mhd spark"
+			"frame rate" 30
+			"no repeat"
+		"hit effect" "bremsstrahlung"
+		"hit effect" "nuclear spallation"
+		"velocity" 300
+		"random velocity" -240
+		"lifetime" 6
+		"random lifetime" 3
+		"inaccuracy" 0.3
+		"shield damage" 1.8
+		"hull damage" 1.2
+		"ion damage" 0.006
+		"piercing" 0.3
+
+effect "bremsstrahlung"
+	sprite "effect/skylance impact"
+		"frame rate" 30
+		"no repeat"
+		scale 0.5
+	"random lifetime" 6
+	"velocity scale" 0.3
+
+effect "nuclear spallation"
+	sprite "effect/detainer sparks"
+		"frame rate" 60
+		"no repeat"
+		scale 0.5
+	"random angle" 15
+	"random spin" 15
+	"random lifetime" 12
+	"random velocity" -6
+	"velocity scale" -0.03
+
+effect "electron flare"
+	sprite "effect/pwaveflare"
+		"frame rate" 60
+		"random start frame"
+	"lifetime" 1
+	"velocity scale" 1
+
+
+# Missiles:
+
+outfit `"Nettle" Kinetic Missile`
+	category "Ammunition"
+	licenses
+		"Twilight Guard"
+	cost 600
+	thumbnail "outfit/nettle missile"
+	"mass" 0.15
+	"nettle capacity" -1
+	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. This makes it difficult to shoot down without very long-ranged antimissile systems."
+
+
+outfit "Nettle Magazine"
+	category "Ammunition"
+	licenses
+		"Twilight Guard"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -12
+	"nettle capacity" 60
+	ammo `"Nettle" Kinetic Missile`
+	description "Nettle storage"
+
+
+outfit "Nettle Launcher"
+	category "Secondary Weapons"
+	licenses
+		"Twilight Guard"
+	cost 1370000
+	thumbnail "outfit/unknown"
+	"mass" 6
+	"outfit space" -15
+	"weapon capacity" -15
+	"gun ports" -1
+	"nettle capacity" 60
+	weapon
+		sprite "projectile/shardactive"
+			"no repeat"
+			"frame rate" .25
+		sound "finisher"
+		ammo `"Nettle" Kinetic Missile`
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"fire effect" "speckle fire"
+		"inaccuracy" 2.4
+		"velocity" 6
+		"lifetime" 15
+		"reload" 45
+		"firing energy" 6
+		"firing heat" 3
+		"infrared tracking" 0.9
+		"missile strength" 9
+		"submunition" "Nettle Active"
+	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
+	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
+	description "This is a standard modular launcher designed for use on light to medium warships. A coilgun launch system allows the missiles to be deployed with considerable initial velocity, making up for the limited fuel supply on the missile itself."
+
+
+outfit "Nettle Launch Array"
+	category "Secondary Weapons"
+	licenses
+		"Twilight Guard"
+	cost 1370000
+	thumbnail "outfit/unknown"
+	"mass" 9
+	"outfit space" -45
+	"weapon capacity" -45
+	"turret mounts" -1
+	"nettle capacity" 240
+	weapon
+		sprite "projectile/shardactive"
+			"no repeat"
+			"frame rate" .25
+		sound "finisher"
+		ammo `"Nettle" Kinetic Missile`
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 90
+		"velocity" 3
+		"lifetime" 30
+		"reload" 15
+		"burst reload" 9
+		"burst count" 12
+		"turret turn" 9
+		"firing energy" 3
+		"infrared tracking" 0.9
+		"missile strength" 9
+		"submunition" "Nettle Active"
+		"stream"
+	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
+	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
+	description "This large Vertical Launch Cell array is made up of forty cells, each with Nettles stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
+
+
+outfit "Nettle Active"
+	weapon
+		sprite "projectile/shardactive"
+			"no repeat"
+			"frame rate" .25
+		"hit effect" "missile hit"
+		"live effect" "nettle exhaust" 1800
+		"die effect" "missile death"
+		"lifetime" 1800
+		"split range" 240
+		"acceleration" 0.3
+		"drag" .009
+		"turn" 9
+		"homing" 4
+		"infrared tracking" 0.9
+		"hit force" 300
+		"missile strength" 12
+		"submunition" "Fleck Flack" 30
+
+
+outfit "Fleck Flack"
+	weapon
+		sprite "projectile/fleck"
+			"frame rate" 30
+			"no repeat"
+		"die effect" "missile death"
+		"hit effect" "bombardment impact"
+		"inaccuracy" 18
+			narrow
+		"lifetime" 60
+		"random lifetime" 30
+		"random velocity" -6
+		"shield damage" 6
+		"hull damage" 9
+		"hit force" 90
+		"missile strength" 3
+
+effect "nettle exhaust"
+	sprite "effect/avgi flare/rcs"
+		"random start frame"
+		"scale" 0.5
+	"lifetime" 0
+
+
+outfit `"Orchid" Nuclear Missile`
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 660000
+	thumbnail "outfit/orchid missile"
+	"mass" 0.9
+	"orchid capacity" -1
+	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
+	description "This particular missile carries a compact thermonuclear warhead, a geometrically complex staged device with a far higher yield density than anything humanity has developed. It seems to be the product of centuries of development of nuclear arms, as opposed to humanity's long abstentation from nuclear weapons research."
+
+
+outfit "Orchid Magazine"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 1.2
+	"outfit space" -12
+	"orchid capacity" 12
+	ammo `"Orchid" Nuclear Missile`
+	description "Orchid storage"
+
+
+outfit "Orchid Launcher"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
+	cost 1370000
+	thumbnail "outfit/orchid missile launcher"
+	"mass" 4.5
+	"outfit space" -18
+	"weapon capacity" -18
+	"gun ports" -1
+	"orchid capacity" 12
+	weapon
+		sprite "projectile/thunderhead fragment"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo `"Orchid" Nuclear Missile`
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"fire effect" "speckle fire"
+		"inaccuracy" 2.4
+		"velocity" 9
+		"lifetime" 30
+		"reload" 60
+		"firing energy" 6
+		"firing heat" 3
+		"radar tracking" 0.6
+		"infrared tracking" 0.9
+		"missile strength" 36
+		"submunition" "Orchid Active"
+		stream
+	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
+	description "A standard modular launcher such as this one is designed to be easily installed on light to medium warships."
+
+
+outfit "Orchid Launch Array"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
+	cost 1370000
+	thumbnail "outfit/unknown"
+	"mass" 4.8
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	"orchid capacity" 48
+	weapon
+		sprite "projectile/thunderhead fragment"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo `"Orchid" Nuclear Missile`
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 45
+		"velocity" 3
+		"lifetime" 30
+		"reload" 30
+		"burst reload" 12
+		"burst count" 3
+		"turret turn" 9
+		"firing energy" 3
+		"radar tracking" 0.6
+		"infrared tracking" 0.9
+		"missile strength" 36
+		"submunition" "Orchid Active"
+		"stream"
+
+
+outfit "Orchid Active"
+	weapon
+		sprite "projectile/thunderhead fragment"
+			"frame rate" 2.4
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 9
+		"hit effect" "fission fragments" 240
+		"live effect" "nettle exhaust" 1800
+		"die effect" "missile death"
+		"lifetime" 1800
+		"acceleration" 0.6
+		"drag" .03
+		"turn" 9
+		"homing" 4
+		"radar tracking" 0.9
+		"infrared tracking" 0.6
+		"trigger radius" 60
+		"blast radius" 180
+		"shield damage" 9000
+		"hull damage" 6000
+		"hit force" 3600
+		"missile strength" 42
+
+
+outfit `"Snapdragon" Nuclear Shaped Charge`
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 660000
+	thumbnail "outfit/casaba howitzer"
+	"mass" 1
+	"snapdragon capacity" -1
+	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
+
+
+outfit "Snapdragon Magazine"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -18
+	"snapdragon capacity" 12
+	ammo `"Snapdragon" Nuclear Shaped Charge`
+	description "Snapdragon storage"
+
+
+outfit "Snapdragon Launcher"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
+	cost 1370000
+	thumbnail "outfit/casaba howitzer launcher"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"gun ports" -1
+	"snapdragon capacity" 12
+	weapon
+		sprite "projectile/finisher activating"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo `"Snapdragon" Nuclear Shaped Charge`
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 8
+		"die effect" "finisher fragment" 6
+		"hit effect" "medium explosion"
+		"inaccuracy" 3
+		"velocity" 6
+		"lifetime" 30
+		"reload" 90
+		"firing energy" 6
+		"firing heat" 3
+		"optical tracking" 0.9
+		"radar tracking" 0.6
+		"missile strength" 36
+		"submunition" "Active Snapdragon"
+	description `Casaba Howitzer`
+
+
+outfit "Active Snapdragon"
+	weapon
+		sprite "projectile/thunderhead"
+			"frame rate" 2.4
+		"live effect" "finisher trail" 50
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 12
+		"hit effect" "fission fragments" 60
+		"die effect" "thermonuclear flash"
+		"lifetime" 1200
+		"acceleration" 0.6
+		"drag" .03
+		"turn" 6
+		"homing" 3
+		"optical tracking" 0.9
+		"radar tracking" 0.6
+		"split range" 900
+		"missile strength" 36
+		"submunition" "Snapfront" 120
+		"submunition" "Snapback" 90
+
+
+outfit "Snapfront"
+	weapon
+		sprite "effect/plasma impact"
+			"frame rate" 30
+			"no repeat"
+			"scale" 0.5
+		"hit effect" "nuclear spallation"
+		"live effect" "casaba trail" 60
+		"inaccuracy" 9
+			narrow
+		"lifetime" 30
+		"random lifetime" 30
+		"velocity" 60
+		"random velocity" -60
+		"shield damage" 120
+		"hull damage" 180
+		"hit force" 180
+
+
+outfit "Snapback"
+	weapon
+		sprite "effect/composed"
+			"frame rate" 60
+			"no repeat"
+		"hit effect" "nuclear spallation"
+		"live effect" "casaba trail" 60
+		"inaccuracy" 90
+			narrow
+			inverted
+		"random lifetime" 30
+		"random velocity" -60
+		"shield damage" 60
+		"hull damage" 90
+		"hit force" 90
+
+
+effect "casaba trail"
+	sprite "effect/flame"
+		"frame rate" 30
+		"no repeat"
+	"random angle" 30
+	"random lifetime" 12
+	"random velocity" -6
+
+
+outfit "Equinox Torpedo"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 660000
+	thumbnail "outfit/equinox torpedo"
+	"mass" 3
+	"equinox capacity" -1
+	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox is essentially an unguided torpedo. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
+	description "A thin coating of ablative polymer designed to resist lasers was the only mass the Avgi were willing to allocate to armor, and as such the Equinox is easily shot down by most modern antimissile systems."
+
+
+outfit "Equinox Torpedo Pylon"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
+	cost 80000
+	thumbnail "outfit/equinox torpedo pylon"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -9
+	"gun ports" -1
+	"equinox capacity" 1
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		sound "torpedo"
+		ammo "Equinox Torpedo"
+		"stream"
+		icon "icon/nuke"
+		"fire effect" "torpedo fire"
+		"firing energy" 30
+		"reload" 360
+		"lifetime" 3
+		"velocity" 12
+		"range override" 600
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 900
+		"die effect" "missile death"
+		"missile strength" 24
+		"submunition" "Equinox Active"
+	description "Developed concurrently with the Photikon Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
+	description "Unlike the nuclear missiles employed by the Avgi, the Equinox carries only enough propellant to make small adjustments to its trajectory, and lacks the ability to accelerate entirely. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for an oversized warhead."
+	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling the torpedo towards its target."
+
+
+outfit "Equinox Active"
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		"lifetime" 600
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 900
+		"die effect" "missile death"
+		"shield damage" 14400
+		"hull damage" 9000
+		"heat damage" 7200
+		"hit force" 3600
+		"blast radius" 240
+		"trigger radius" 120
+		"missile strength" 24
+
+
+outfit "Equinox Torpedo Stockpile"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 6
+	"outfit space" -24
+	"cargo space" -18
+	"crew requirement" 3
+	"equinox capacity" 12
+	ammo "Equinox Torpedo"
+	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Equinox Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
+	description "The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
+
+
+effect "thermonuclear flash"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion nuke"
+	"lifetime" 15
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4
+
+effect "prompt radiation"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 36
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 8
+	"velocity scale" 0.1
+
+effect "fission fragments"
+	sprite "effect/finisher sparks"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 5
+	"velocity scale" 0.1

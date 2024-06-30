@@ -1,0 +1,609 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+# Systems:
+
+outfit "Radiative Scales"
+	plural "Radiative Scales"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"anchor point" -1
+	"heat dissipation" 0.3
+	"solar heat" 3
+	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, improving its ability to radiate away waste heat. The radiative power scales with the temperature of the waste heat being rejected, making Radiative Scales work better for hotter-running ships."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Concealment Scales"
+	plural "Concealment Scales"
+	category "Systems"
+	licenses
+		"Twilight Guard"
+	cost 2000000
+	thumbnail "outfit/unknown"
+	"mass" 6
+	"anchor point" -1
+	"scan interference" 6
+	"radar jamming" 12
+	"optical jamming" 12
+	"solar heat" 6
+	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with and jamming any attempts to scan or detect a ship. Working in aggregate, the phased array can be used to jam the sensors of missiles from further away, or even blind them with a low-power beam. However, the density of quantum dots required to produce these effects considerably increases the amount of sunlight absorbed by a ship using Concealment Scales, and such an advanced material does not come cheap."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Nanoceramic Scales"
+	plural "Nanoceramic Scales"
+	category "Systems"
+	licenses
+		"Twilight Guard"
+	cost 200000
+	thumbnail "outfit/unknown"
+	"mass" 36
+	"anchor point" -1
+	"hull multiplier" 0.33
+	"shield generation multiplier" -0.33
+	"solar heat" 3
+	description "These extra armor plates can significantly reinforce a ship's hull, but are quite heavy. The added bulk in front of a ship's shield emitters also interferes with the rate at which they can be recharged, impairing a ship's shield generation."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Adamant Scales"
+	plural "Adamant Scales"
+	category "Systems"
+	licenses
+		"Twilight Guard"
+	cost 200000
+	thumbnail "outfit/unknown"
+	"mass" 36
+	"anchor point" -1
+	"hull multiplier" 0.6
+	"solar heat" 3
+	description "Thanks to recent breakthroughs in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Warding Scales"
+	plural "Warding Scales"
+	category "Systems"
+	licenses
+		"Twilight Guard"
+	cost 200000
+	thumbnail "outfit/unknown"
+	"mass" 42
+	"anchor point" -1
+	"shield multiplier" 2
+	"solar heat" 3
+	description "Breakthrough physics research has allowed the Avgi to create advanced shield emitters well in advance of their previous ones. While baked into the ships of most species, Avgi starship construction is sophisticated enough to allow their shield matrices to be retrofitted with relative ease."
+	description "Warding Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Electrostatic Ramscoop"
+	category "Systems"
+	cost 720000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"outfit space" -12
+	"ramscoop" 6
+	"fuel generation" 0.03
+	"energy consumption" 1.2
+	"solar heat" 2.4
+	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a more predictable supply of fuel, even around stars with solar winds poor in deuterium. Of course, the power required for the lasers can be quite considerable."
+
+
+
+outfit "Plasmadyne Ramscoop"
+	category "Systems"
+	cost 60000000
+	thumbnail "outfit/unknown"
+	"mass" 60
+	"outfit space" -120
+	"gun ports" -1
+	"spinal mount" -1
+	"ramscoop" 90
+	"fuel generation" 0.6
+	"energy consumption" 9
+	"solar heat" 9
+	weapon
+		"hardpoint sprite" "hardpoint/plasmadyne ramscoop"
+	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart. Ramscoops like this one were once used in Avgi ram-augmented torchships, allowing them to reach incredible velocities during their sublight interstellar journeys."
+
+
+outfit "Deuterium Slush Tank"
+	category "Systems"
+	cost 90000
+	thumbnail "outfit/deuterium slush tank"
+	"mass" 3
+	"outfit space" -12
+	"fuel capacity" 300
+	"energy consumption" 0.6
+	"heat generation" 0.6
+	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system requires a small amount of energy, however.`
+
+outfit "Cryogenic Deuterium Tank"
+	category "Systems"
+	cost 30000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"outfit space" -6
+	"cargo space" -30
+	"fuel capacity" 600
+	description `This insulated pressure vessel is designed to store hyperspace fuel under cryogenic temperatures for bulk transport. While not quite as efficient as a deuterium slush tank, this outfit is designed to work with a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for deep cryocoolers.`
+
+
+outfit "Thermal Sink Partition"
+	category "Systems"
+	cost 84000
+	thumbnail "outfit/densified fuel tank"
+	"mass" 9
+	"outfit space" -3
+	"fuel capacity" -100
+	"heat capacity" 180
+	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing them to be partially filled with a nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at a safe temperature.`
+
+
+outfit "Multispectral Scanner"
+	category "Systems"
+	cost 24000
+	thumbnail "outfit/multispectral scanner"
+	"mass" 3
+	"outfit space" -6
+	"tactical scan power" 72
+	"asteroid scan power" 36
+	"energy consumption" 0.15
+	"heat generation" 0.3
+	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data. Additionally, analyzing the albedo of passive objects such as asteroids can reveal the composition of surface deposits at a low accuracy."
+	description "To increase the sensitivity of the instrument, certain component sensors require constant cooling to microkelvin scale temperatures. The heat pump system responsible for maintaining this requires a surprising amount of energy, while also producing a small amount of waste heat."
+
+
+outfit "Spectrometer Array"
+	category "Systems"
+	cost 24000
+	thumbnail "outfit/spectrometer array"
+	"mass" 6
+	"outfit space" -12
+	"outfit scan power" 42
+	"outfit scan efficiency" 12
+	"cargo scan power" 42
+	"cargo scan efficiency" 12
+	"asteroid scan power" 144
+	"energy consumption" 0.03
+	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visible, but is sadly useless against shielded ships and their internal systems."
+	description "Unfortunately, while Avgi sensors excel in reading basic physical and chemical information, such as the composition of an object, the amount of sensor data required to predict an outfit's functionality means this sensor can be quite slow when scanning a ship's complex systems or cargo."
+
+
+outfit "Diffuse Deflector"
+	category "Systems"
+	cost 1200000
+	thumbnail "outfit/unknown"
+	"mass" 48
+	"outfit space" -48
+	"delayed shield generation" 0.6
+	"delayed shield energy" 1.8
+	"delayed shield heat" 4.8
+	"shield delay" 3
+	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about half as strong, while also consuming much more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield."
+
+
+outfit "Specular Deflector"
+	category "Systems"
+	cost 2100000
+	thumbnail "outfit/unknown"
+	"mass" 72
+	"outfit space" -72
+	"delayed shield generation" 1.2
+	"delayed shield energy" 3.6
+	"delayed shield heat" 9.6
+	"shield delay" 3
+	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their limited theory of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete understanding of the base physics behind shielding, and this generator approaches that limit."
+
+
+outfit "Optical Lasing Generator"
+	category "Systems"
+	cost 120000
+	thumbnail "outfit/unknown"
+	"mass" 30
+	"outfit space" -30
+	"lasing power" 3
+	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
+	description "The infrared light produced in the coil can either be passed through a frequency doubling crystal to support up to three Green Optical Lasers, or frequency tripled to support a single Blue Optical Laser."
+
+
+
+# Power:
+
+
+outfit "Concentrating Solar Cell"
+	category "Power"
+	cost 12600
+	thumbnail "outfit/unknown"
+	"mass" 1
+	"outfit space" -3
+	"solar collection" 0.3
+	"solar heat" 0.12
+	description "This tiny set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient solar cells, reducing weight and improving efficiency."
+
+
+outfit "Concentrating Solar Array"
+	category "Power"
+	cost 114000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -18
+	"solar collection" 2.4
+	"solar heat" 1.02
+	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient solar cells, reducing weight and improving efficiency."
+	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
+
+
+outfit "Photoelectric Scales"
+	plural "Photoelectric Scales"
+	category "Power"
+	cost 294000
+	thumbnail "outfit/photoelectric scales"
+	"mass" 24
+	"anchor point" -1
+	"solar collection" 6
+	"solar heat" 1.8
+	description "These concentrating solar panels can be mounted conformally to a ship's hull, efficiently collecting sunlight and turning it into usable energy."
+	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+
+
+outfit "Lantern Fission Core"
+	category "Power"
+	cost 1200000
+	thumbnail "outfit/lantern fission core"
+	"mass" 24
+	"outfit space" -24
+	"energy generation" 3.9
+	"heat generation" 12
+	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size, at the cost of producing significant amounts of waste heat."
+
+
+outfit "Ultracapacitor Cell"
+	category "Power"
+	cost 20400
+	thumbnail "outfit/unknown"
+	"mass" 1
+	"outfit space" -3
+	"energy capacity" 1500
+	"ion protection" -0.01
+	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together. While not the most efficient in their use of outfit space, this capacitor cell is extraordinarily energy dense for its mass, a deliberate design choice from the days of sublight interstellar travel, when every gram counted."
+	"description" "Unfortunately, the internal structure is also quite delicate, and is prone to potential discharge when exposed to ionizing radiation. Thankfully, resilient grounding leads prevents this discharge from becoming catastrophic."
+	
+	
+outfit "Ultracapacitor Bank"
+	category "Power"
+	cost 200000
+	thumbnail "outfit/unknown"
+	"mass" 6
+	"outfit space" -18
+	"energy capacity" 10800
+	"ion protection" -0.03
+	"description" "These fractal capacitors are capable of storing a large amount of energy within superconducting graphene sheets. This capacitor bank chains together six individual cells, but saves space by discarding redundant components and unnecessary structural mass."
+	"description" "Like its component cells, the capacitor bank is vulnerable to ionizing weapons, but is relatively better shielded for its size by virtue of its reduced surface area to volume ratio."
+
+
+# Engines:
+
+outfit "Magnetoplasma Drive"
+	category "Engines"
+	"cost" 30000
+	thumbnail "outfit/magnetoplasma drive"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"thrust" 9
+	"thrusting energy" 0.6
+	"thrusting heat" 0.3
+	"reverse thrust" 9
+	"reverse thrusting energy" 0.6
+	"reverse thrusting heat" 0.3
+	"turn" 270
+	"turning energy" 0.6
+	"turning heat" 0.3
+	"drag reduction" 1
+	"flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
+	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry."
+	description "Designed to be clustered, this design is capable of full six-axis control."
+
+
+outfit `Z-330 "Spark" Fusion Torch`
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 660000
+	thumbnail "outfit/fusion engine small"
+	"mass" 99
+	"outfit space" -33
+	"engine capacity" -33
+	"thrust" 108
+	"thrusting energy" 9
+	"thrusting heat" 45
+	"thrusting fuel" 0.09
+	"drag reduction" 0.3
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
+		"scale" 0.75
+	"flare sound" "zpinch"
+	"afterburner effect" "small remass injection"
+	"magnozzle rings" 3
+	description "Balance TBD"
+
+
+outfit `Z-660 "Zap" Fusion Torch`
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 1440000
+	thumbnail "outfit/fusion engine medium"
+	"mass" 198
+	"outfit space" -66
+	"engine capacity" -66
+	"thrust" 222
+	"thrusting energy" 18
+	"thrusting heat" 90
+	"thrusting fuel" 0.18
+	"drag reduction" 0.6
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
+	"flare sound" "zpinch"
+	"afterburner effect" "medium remass injection"
+	"magnozzle rings" 6
+	description "Balance TBD"
+
+
+outfit `Z-990 "Arc" Fusion Torch`
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 2760000
+	thumbnail "outfit/fusion engine large"
+	"mass" 297
+	"outfit space" -99
+	"engine capacity" -99
+	"thrust" 360
+	"thrusting energy" 27
+	"thrusting heat" 135
+	"thrusting fuel" 0.27
+	"drag reduction" 0.9
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 30
+		"scale" 2
+	"flare sound" "zpinch"
+	"afterburner effect" "large remass injection"
+	"magnozzle rings" 9
+	description "The largest of the standard fusion torches used by the Avgi"
+
+
+effect "small remass injection"
+	sprite "effect/avgi flare/afterburner"
+		"frame rate" 30
+		"scale" 0.75
+	sound "flamethrower"
+
+effect "medium remass injection"
+	sprite "effect/avgi flare/afterburner"
+		"frame rate" 30
+	sound "flamethrower"
+
+effect "large remass injection"
+	sprite "effect/avgi flare/afterburner"
+		"frame rate" 30
+		"scale" 2
+	sound "flamethrower"
+
+
+outfit "Remass Injector"
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 2760000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -3
+	"engine capacity" -3
+	"afterburner thrust" 90
+	"afterburner energy" 3
+	"afterburner heat" -12
+	"afterburner fuel" 0.3
+	"magnozzle rings" -1
+	description "A powerful magnetohydrodynamic turbopump forces a torrent of water into a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow helps reduce the waste heat imparted on a ship by the torch drive."
+	description "The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnozzle ring slot to be installed."
+
+
+outfit "Inductive Extractor"
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 2760000
+	thumbnail "outfit/unknown"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -3
+	"energy generation" 1.5
+	"heat generation" 1.5
+	"thrust" -9
+	"thrusting energy" -30
+	"thrusting heat" 6
+	"magnozzle rings" -1
+	description "A reinforced superconducting loop and power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it expands against the field produced by the magnetic nozzle. This removes some energy from the exhaust plume and reduces its produced thrust, but the liberated energy is great enough that this is the primary means by which high performance Avgi starships generate power."
+	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
+
+
+outfit "XY-180 Radial Thrusters"
+	plural "XY-180 Radial Thrusters"
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 221000
+	thumbnail "outfit/rcs small"
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"turn" 810
+	"turning energy" 1.5
+	"turning heat" -3
+	"reverse thrust" 9
+	"reverse thrusting energy" 1.5
+	"reverse thrusting heat" -3
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.0625
+	"steering flare sound" "plasma small"
+	"reverse flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.125
+	"reverse flare sound" "plasma small"
+	description `Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have excess heat in order to function.`
+
+
+outfit "XY-360 Radial Thrusters"
+	plural "XY-360 Radial Thrusters"
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 473000
+	thumbnail "outfit/rcs large"
+	"mass" 36
+	"outfit space" -36
+	"engine capacity" -36
+	"turn" 1710
+	"turning energy" 3
+	"turning heat" -6
+	"reverse thrust" 18
+	"reverse thrusting energy" 3
+	"reverse thrusting heat" -6
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.125
+	"steering flare sound" "plasma small"
+	"reverse flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.25
+	"reverse flare sound" "plasma small"
+	description "The Avgi have designed their radial thrusters to synergize well with their fusion torches, tapping off high temperature waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves efficiency at the cost of using some energy. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
+
+
+outfit "XY-720 Radial Thrusters"
+	plural "XY-720 Radial Thrusters"
+	category "Engines"
+	licenses
+		"Twilight Guard"
+	"cost" 1077000
+	thumbnail "outfit/rcs huge"
+	"mass" 72
+	"outfit space" -72
+	"engine capacity" -72
+	"turn" 3600
+	"turning energy" 6
+	"turning heat" -9
+	"reverse thrust" 36
+	"reverse thrusting energy" 6
+	"reverse thrusting heat" -9
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.25
+	"steering flare sound" "plasma small"
+	"reverse flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.5
+	"reverse flare sound" "plasma small"
+	description "This large set of radial thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
+
+
+outfit `Z-1200 "Beam" Antimatter Torch`
+	category "Engines"
+	"cost" 900000000
+	thumbnail "outfit/unknown"
+	"mass" 360
+	"outfit space" -120
+	"engine capacity" -120
+	"thrust" 540
+	"thrusting energy" 12
+	"thrusting heat" 90
+	"thrusting fuel" 0.24
+	"drag reduction" 9
+	"flare sprite" "effect/avgi flare/antimatter"
+		"frame rate" 30
+	"flare sound" "zpinch"
+	"turn" 4200
+	"turning energy" 3.6
+	"turning heat" 2.4
+	"steering flare sprite" "effect/avgi flare/antimatter"
+		"frame rate" 30
+		"scale" 0.125
+	"steering flare sound" "remnant afterburner"
+	"magnozzle rings" 18
+	description "Balance TBD"
+
+
+# Special:
+
+outfit "Anomalous Mass"
+	plural "Anomalous Masses"
+	category "Special"
+	cost 600000
+	thumbnail "outfit/unknown"
+	"flotsam chance" 0.5
+	"unplunderable" 1
+	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, resisting any attempts to probe its makeup."
+
+
+outfit "Electromotive Rifle"
+	category "Hand to Hand"
+	licenses
+		"Avgi Civilian"
+	cost 53000
+	thumbnail "outfit/unknown"
+	"capture attack" 0.6
+	"capture defense" 1.2
+	"unplunderable" 1
+	description "This slim coilgun rifle fires a small metallic glass flechette with deadly accuracy. While those intended for ground combat can easily achieve muzzle velocities in the high hypersonic regime, this version, adapted for shipboard combat, is deliberately undervolted to reduce the risk of overpenetrating and breaching a ship's hull."
+
+
+outfit "Lancet Adamant"
+	category "Unique"
+	cost 3000000
+	thumbnail "outfit/unknown"
+	"capture attack" 3
+	"capture defense" 6
+	"unplunderable" 1
+	description "A purely ceremonial weapon, this sleek shortspear is made from a continuous piece of adamantine, or nanodiamond. While not particularly useful in the realities of modern ranged combat, it certainly looks impressive."
+
+
+outfit "Twilight Guard License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+
+# outfit "Avgi Starfarer License"
+# 	category "Licenses"
+# 	thumbnail "outfit/unknown"
+
+# outfit "Avgi Starship License"
+# 	category "Licenses"
+# 	thumbnail "outfit/unknown"
+
+outfit "Avgi Atomics License"
+	category "Licenses"
+	thumbnail "outfit/unknown"

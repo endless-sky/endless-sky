@@ -1,0 +1,477 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+fleet "Avgi Core Defense"
+	government "Avgi (Twilight Guard)"
+	names "avgi military names"
+	fighters
+		names "avgi fighter names"
+		personality
+			heroic surveillance
+	personality
+		lingering heroic
+	variant 10
+		"Diaspersi"
+		"Vibratia" 6
+		"Photikon" 2
+	variant 5
+		"Diaspersi"
+		"Vibratia" 3
+		"Undulon" 3
+		"Photikon (Atomic)" 2
+	variant 10
+		"Difraktos"
+	variant 10
+		"Refraktos"
+	variant 10
+		"Difraktos"
+	variant 10
+		"Difraktos (Missile)"
+	variant 10
+		"Difraktos (Kinetic)"
+	variant 10
+		"Prismaios" 2
+	variant 10
+		"Tremoros" 3
+	variant 1
+		"Atenuatia"
+		"Diaspersi"
+		"Vibratia" 22
+		"Photikon (Atomic)" 8
+		"Optikon" 2
+		"Difraktos (Missile)"
+		"Difraktos (Kinetic)"
+		"Refraktos"
+		"Prismaios" 2
+		"Tremoros" 3
+
+
+fleet "Avgi Orbital Defense"
+	government "Avgi (Twilight Guard)"
+	names "avgi fighter names"
+	personality
+		lingering heroic surveillance
+	variant 20
+		"Undulon" 3
+	variant 20
+		"Vibratia" 6
+	variant 10
+		"Photikon (Atomic)" 3
+	variant 5
+		"Optikon" 3
+
+
+fleet "Avgi Patrol"
+	government "Avgi (Twilight Guard)"
+	names "avgi military names"
+	cargo 4
+	commodities "Food" "Equipment" "Medical"
+	fighters
+		names "avgi fighter names"
+		personality
+			disables surveillance
+	personality
+		surveillance hunting
+	variant 12
+		"Tremoros"
+	variant 6
+		"Tremoros" 3
+	variant 6
+		"Prismaios"
+	variant 2
+		"Diaspersi"
+		"Vibratia" 3
+		"Optikon" 3
+		"Photikon" 2
+	variant 1
+		"Difraktos"
+	variant 1
+		"Refraktos"
+		"Tremoros" 2
+
+
+fleet "Avgi Scouts"
+	government "Avgi (Twilight Guard)"
+	names "avgi civilian names"
+	cargo 3
+	commodities "Food" "Equipment" "Medical"
+	fighters
+		names "avgi fighter names"
+	personality
+		surveillance timid coward merciful
+		confusion 20
+	variant 12
+		"Polari"
+		"Optikon" 2
+	variant 9
+		"Polari"
+		"Optikon" 2
+		"Tremoros"
+	variant 3
+		"Polari" 2
+		"Optikon" 4
+		"Tremoros" 3
+	variant 1
+		"Polari" 2
+		"Optikon" 2
+		"Prismaios"
+
+
+fleet "Avgi Strike Group"
+	government "Avgi (Twilight Guard)"
+	names "avgi military names"
+	cargo 3
+	commodities "Food" "Equipment" "Medical"
+	fighters
+		names "avgi fighter names"
+		personality
+			hunting disables merciful
+	personality
+		confusion 10
+		heroic disables
+	variant 10
+		"Prismaios" 3
+	variant 10
+		"Diaspersi"
+		"Vibratia" 3
+		"Optikon" 3
+		"Photikon" 2
+	variant 10
+		"Difraktos"
+	variant 10
+		"Difraktos (Missile)"
+		"Refraktos"
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+
+
+
+fleet "Avgi Fleetgroup"
+	government "Avgi (Twilight Guard)"
+	names "avgi military names"
+	cargo 4
+	commodities "Food" "Equipment" "Medical" "Heavy Metals"
+	fighters
+		names "avgi fighter names"
+		personality
+			hunting disables swarming
+	personality
+		confusion 10
+		heroic
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos"
+		"Prismaios"
+		"Tremoros" 3
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos (Kinetic)"
+		"Prismaios"
+		"Tremoros" 3
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Refraktos"
+		"Prismaios"
+		"Tremoros" 3
+	variant 3
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos (Missile)"
+		"Difraktos (Kinetic)"
+		"Refraktos"
+		"Prismaios" 2
+		"Tremoros" 3
+	variant 2
+		"Atenuatia"
+		"Diaspersi"
+		"Vibratia" 22
+		"Photikon" 8
+		"Optikon" 2
+		"Difraktos"
+		"Refraktos"
+		"Prismaios" 2
+		"Tremoros" 3
+
+
+fleet "Small Avgi Merchants"
+	government "Avgi"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			swarming
+	personality
+		confusion 30
+		timid coward appeasing merciful opportunistic
+	variant 20
+		"Koryfi"
+	variant 20
+		"Avlaki"
+	variant 20
+		"Phononos"
+	variant 10
+		"Koryfi"
+		"Avlaki"
+	variant 10
+		"Koryfi" 2
+	variant 10
+		"Avlaki" 2
+	variant 10
+		"Koryfi" 2
+		"Tremoros"
+	variant 10
+		"Avlaki" 2
+		"Tremoros"
+
+
+fleet "Large Avgi Merchants"
+	government "Avgi"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			swarming
+	personality
+		confusion 30
+		timid coward appeasing merciful opportunistic
+	variant 10
+		"Koryfi" 3
+		"Frequentia"
+	variant 10
+		"Avlaki" 3
+		"Frequentia"
+	variant 10
+		"Koryfi" 3
+		"Interferos"
+	variant 10
+		"Avlaki" 3
+		"Interferos"
+	variant 10
+		"Melodikos"
+		"Tremoros" 2
+		"Frequentia"
+	variant 10
+		"Melodikos"
+		"Tremoros"
+		"Frequentia"
+	variant 10
+		"Harmonikos"
+		"Tremoros" 2
+	variant 10
+		"Harmonikos"
+		"Tremoros" 2
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+	variant 10
+		"Undsyni (Tanker)"
+		"Sonikis (Tanker)" 4
+	variant 10
+		"Koryfi" 2
+	variant 10
+		"Avlaki" 2
+	variant 10
+		"Harmonikos"
+		"Melodikos"
+		"Interferos"
+		"Tremoros"
+	variant 10
+		"Harmonikos"
+		"Melodikos"
+		"Undsyni (Tanker)"
+		"Sonikis (Tanker)" 4
+
+
+fleet "Avgi Miners"
+	government "Avgi"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			mining harvests swarming
+	personality
+		confusion 30
+		mining harvests timid coward appeasing disables
+	variant 20
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+	variant 25
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+	variant 20
+		"Sonikis (Armed)"
+	variant 10
+		"Sonikis (Armed)" 3
+	variant 20
+		"Akoustiki"
+	variant 10
+		"Akoustiki" 3
+
+
+fleet "Small Dissonance Merchants"
+	government "Avgi (Dissonance)"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			mining harvests swarming
+	personality
+		confusion 15
+		coward timid disables secretive opportunistic
+	variant 20
+		"Koryfi"
+	variant 20
+		"Avlaki"
+	variant 10
+		"Koryfi"
+		"Phononos"
+	variant 10
+		"Avlaki"
+		"Phononos"
+	variant 10
+		"Phononos"
+		"Tremoros"
+	variant 10
+		"Koryfi"
+		"Tremoros"
+	variant 10
+		"Avlaki"
+		"Tremoros"
+
+
+fleet "Large Dissonance Merchants"
+	government "Avgi (Dissonance)"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			mining harvests swarming
+	personality
+		confusion 15
+		coward timid disables secretive opportunistic
+	variant 10
+		"Koryfi" 2
+		"Tremoros" 2
+	variant 10
+		"Avlaki" 2
+		"Tremoros" 3
+	variant 10
+		"Koryfi" 2
+		"Interferos"
+	variant 10
+		"Avlaki" 2
+		"Interferos"
+	variant 10
+		"Avlaki"
+		"Frequentia"
+		"Tremoros"
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+		"Frequentia"
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+		"Frequentia" 2
+	variant 10
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+		"Interferos"
+	variant 10
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+		"Tremoros" 2
+	variant 15
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+
+
+fleet "Dissonance Miners"
+	government "Avgi (Dissonance)"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			mining harvests
+	personality
+		confusion 20
+		mining harvests timid coward hunting disables plunders secretive
+	variant 20
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+	variant 25
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+	variant 20
+		"Sonikis (Armed)"
+	variant 10
+		"Sonikis (Armed)" 3
+	variant 20
+		"Akoustiki"
+	variant 10
+		"Akoustiki" 3
+
+
+fleet "Small Dissonance Pirates"
+	government "Avgi (Angry Dissonance)"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			daring harvests swarming
+	personality
+		confusion 15
+		coward timid disables plunders secretive
+	variant 20
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+
+
+fleet "Large Dissonance Pirates"
+	government "Avgi (Angry Dissonance)"
+	names "avgi civilian names"
+	fighters
+		names "avgi fighter names"
+		personality
+			daring harvests swarming
+	personality
+		confusion 15
+		coward timid disables plunders secretive
+	variant 20
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+		"Tremoros" 2
+	variant 10
+		"Interferos"
+	variant 10
+		"Undsyni"
+		"Sonikis (Armed)" 4

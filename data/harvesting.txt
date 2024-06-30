@@ -417,3 +417,68 @@ minable "unknown"
 	explode "bolide" 20
 	explode "blood" 10
 	explode "final explosion medium"
+	
+
+
+# Gossamer Smoke Ring Minables
+
+
+minable "small droplet"
+	"display name" Small
+	noun "Water Droplet"
+	sprite "asteroid/small droplet/small droplet"
+	hull 60
+	"random hull" 30
+	payload "Boiled Voidfish" 1
+	explode puff
+
+minable "medium droplet"
+	"display name" Medium
+	noun "Water Droplet"
+	sprite "asteroid/medium droplet/medium droplet"
+	hull 120
+	"random hull" 60
+	payload "Boiled Voidfish" 6
+	explode puff
+
+minable "large droplet"
+	"display name" Large
+	noun "Water Droplet"
+	sprite "asteroid/large droplet/large droplet"
+	hull 300
+	"random hull" 120
+	payload "Boiled Voidfish" 12
+	explode puff
+
+outfit "Boiled Voidfish"
+	category Minerals
+	plural "Boiled Fish"
+	cost 2400
+	thumbnail "outfit/unknown"
+	"flotsam sprite" "effect/flotsam iron"
+	"mass" 1
+	"installable" -1
+	"minable" 1
+	description "Voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze dried, they are surprisingly appetizing."
+
+
+minable "integral tree"
+	"display name" Integral
+	noun Tree
+	sprite "asteroid/integral tree/tree"
+	hull 120
+	"random hull" 120
+	payload "Integral Wood" 6
+	explode puff
+
+outfit "Integral Wood"
+	category Minerals
+	plural "Integral Wood"
+	cost 12000
+	thumbnail "outfit/unknown"
+	"flotsam sprite" "effect/flotsam neodymium"
+	"mass" 0.3
+	"installable" -1
+	"minable" 1
+	description "Wood harvested from an integral tree. Exquisitely lightweight, strong, and radiation resistant, it fetches extraordinary prices on the market for exotic goods."
+	description "Some claim it would even be the material of choice for a wooden starship, as ridiculous as that idea is."

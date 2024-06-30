@@ -11,6 +11,27 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+government "Aberrant"
+	swizzle 0
+	language "Ka'het"
+	color 0.4 0.4 0.7
+
+	"player reputation" -1000
+	"attitude toward"
+		Avgi -0.01
+		"Avgi (Consonance)" -0.01
+		"Avgi (Twilight Guard)" -0.01
+		"Avgi (Dissonance)" -0.01
+		"Avgi (Angry Dissonance)" -0.01
+		"Avgi (Wandering Fleet)" -0.01
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 government "Alpha"
 	swizzle 1
 	"crew attack" 1.5
@@ -24,6 +45,149 @@ government "Author"
 	"bribe" 0
 	"friendly disabled hail" "friendly disabled"
 	"hostile disabled hail" "hostile disabled"
+
+color "governments: Avgi" 0 0.72 0.84
+
+government "Avgi"
+	swizzle 15
+	language Avgi
+	color "governments: Avgi"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi (Consonance)" 0.5
+		"Avgi (Twilight Guard)" 0.5
+		"Avgi (Dissonance)" 0.01
+		"Avgi (Angry Dissonance)" -0.05
+		"Aberrant" -0.1
+	bribe 0.3
+	"friendly hail" "friendly avgi"
+	"friendly disabled hail" "friendly disabled avgi"
+	"hostile hail" "hostile avgi"
+	"hostile disabled hail" "hostile disabled avgi"
+
+government "Avgi (Consonance)"
+	"display name" "Consonance"
+	swizzle 15
+	language Avgi
+	color "governments: Avgi"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Dissonance)" 0.1
+		"Avgi (Angry Dissonance)" -0.05
+		"Aberrant" -0.1
+	"penalty for"
+		disable 0.3
+		board 0.2
+		capture 3
+		destroy 2
+	bribe 0.3
+	"friendly hail" "friendly avgi"
+	"friendly disabled hail" "friendly disabled avgi"
+	"hostile hail" "hostile avgi"
+	"hostile disabled hail" "hostile disabled avgi"
+
+government "Avgi (Twilight Guard)"
+	"display name" "Twilight Guard"
+	swizzle 12
+	language Avgi
+	color "governments: Avgi"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 1
+		"Avgi (Dissonance)" 0.1
+		"Avgi (Angry Dissonance)" -0.05
+		"Aberrant" -0.1
+	"penalty for"
+		disable 0.3
+		board 0.2
+		capture 3
+		destroy 2
+		provoke 0.1
+	bribe 0
+	"friendly hail" "friendly twilight guard"
+	"friendly disabled hail" "friendly disabled twilight guard"
+	"hostile hail" "hostile twilight guard"
+	"hostile disabled hail" "hostile disabled twilight guard"
+
+
+color "governments: Dissonance" 1 0 0.588
+
+government "Avgi (Dissonance)"
+	"display name" "Dissonance"
+	swizzle 1
+	language Avgi
+	color "governments: Dissonance"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 0.01
+		"Avgi (Twilight Guard)" 0.01
+		"Avgi (Angry Dissonance)" 0.01
+		"Aberrant" -0.01
+	"custom penalties for"
+		"Avgi (Angry Dissonance)"
+			disable 0
+			board 0.1
+			capture 1
+			destroy 1
+			provoke 0
+	bribe 0.3
+	"friendly hail" "friendly dissonance"
+	"friendly disabled hail" "friendly disabled dissonance"
+	"hostile hail" "hostile dissonance"
+	"hostile disabled hail" "hostile disabled dissonance"
+
+government "Avgi (Angry Dissonance)"
+	"display name" "Dissonance"
+	swizzle 1
+	language Avgi
+	color "governments: Dissonance"
+	"player reputation" 0
+
+	"attitude toward"
+		"Avgi" -0.01
+		"Avgi (Consonance)" -0.05
+		"Avgi (Twilight Guard)" -0.05
+		"Avgi (Dissonance)" 1
+		"Aberrant" -0.01
+	bribe 0.3
+	"friendly hail" "friendly dissonance"
+	"friendly disabled hail" "friendly disabled dissonance"
+	"hostile hail" "hostile dissonance"
+	"hostile disabled hail" "hostile disabled dissonance"
+	raid "Large Dissonance Pirates"
+
+
+government "Avgi (Wandering Fleet)"
+	"display name" "Wandering Fleet"
+	swizzle 6
+	language Avgi
+	color "governments: Avgi"
+
+	"player reputation" 0
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 0.01
+		"Avgi (Twilight Guard)" 0.01
+		"Avgi (Dissonance)" 0.01
+		"Aberrant" -0.1
+	"penalty for"
+		disable 1
+		board 1
+		capture 3
+		destroy 2
+		provoke 0.1
+		scan 0.01
+	bribe 0
+	"travel restrictions"
+		system "Arche"
+		system "Ballad"
 
 government "Bad Trip"
 	swizzle 0

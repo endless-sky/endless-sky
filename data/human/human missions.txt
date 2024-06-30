@@ -4886,6 +4886,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	source
 		attributes "frontier" "pirate"
+		government "Republic" "Free Worlds" "Syndicate" "Pirate"
 	stopover "Skymoot"
 	to offer
 		random < 15
