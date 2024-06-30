@@ -80,6 +80,7 @@ planet Albatross
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -20
 	security 0
@@ -377,6 +378,7 @@ planet Bloodsea
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
@@ -504,6 +506,7 @@ planet "Buccaneer Bay"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	security 0
@@ -785,6 +788,7 @@ planet Covert
 	shipyard "Core Pirates"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	"required reputation" 10
@@ -895,6 +899,7 @@ planet "Deadman's Cove"
 	spaceport `Your ship is on a landing pad only a few meters above the pounding surf, and you can't help worrying about what might happen if the tide rises any higher. If nothing else, the salt water is bound to corrode your hull if you stay here too long. You make your way to a bar where a cage hanging from the ceiling holds an actual parrot. After trying for a while to get it to talk to you, you realize that it is dead, stuffed and nailed to its perch.`
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.03
 	security 0
@@ -1634,6 +1639,7 @@ planet Freedom
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
@@ -1672,6 +1678,7 @@ planet Gagarin
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.07
 	security 0
@@ -1900,6 +1907,7 @@ planet Greenrock
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
@@ -2015,6 +2023,7 @@ planet Haven
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "Northern Explorers"
@@ -2329,6 +2338,7 @@ planet Jakobsen
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Ammo South"
 	security 0
@@ -2891,6 +2901,7 @@ planet Mordente-Bridi
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
@@ -3173,6 +3184,7 @@ planet "New Tortuga"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "Syndicate Basics"
@@ -4168,6 +4180,7 @@ planet "Smuggler's Den"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
@@ -4316,6 +4329,7 @@ planet Stormhold
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	bribe 0.03
@@ -4481,6 +4495,7 @@ planet Thule
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	bribe 0.05
@@ -4559,6 +4574,7 @@ planet Trinket
 	outfitter "Kraz Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.02
 	security 0.4
@@ -5154,6 +5170,7 @@ planet Zenith
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous concrete fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.04
 	security 0
