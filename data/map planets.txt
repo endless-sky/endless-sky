@@ -44,6 +44,12 @@ planet Ada
 		threshold 8000
 		fleet "Large Republic" 16
 
+planet Aera
+	attributes "requires: gaslining"
+	landscape land/aera
+	description `Aera is a large tidally locked ice giant close to its parent star. Its methane atmosphere is dominated by a titanic hurricane covering the dayside half of the planet, the result of tidal forces drawing streams of air and clouds into a planet-sized storm. The eye of the hurricane is surprisingly calm, but the heat of perpetual daylight drives temperatures higher than what is habitable for most life.`
+	government Uninhabited
+
 planet Aetuah
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa30
@@ -1798,6 +1804,12 @@ planet Glaze
 		threshold 3500
 		fleet "Large Militia" 25
 
+planet Gliese
+	attributes "requires: gaslining"
+	landscape land/gliese
+	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving. The clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
+	government Uninhabited
+
 planet "Glittering Ice"
 	attributes frozen saryd
 	landscape land/snow7
@@ -2183,6 +2195,12 @@ planet Humanika
 		threshold 8000
 		fleet Quarg 2
 
+planet Humo
+	attributes "requires: gaslining"
+	landscape land/humo
+	description `Interestingly, this gas giant is not only made from gaseous elements; sand is being pushed around in the air and accumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for the presence of sand in the upper atmosphere. While the sand itself is not dangerous, it may pile up in your ship's mechanics if you stay here for too long.`
+	government Uninhabited
+
 planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
@@ -2236,6 +2254,12 @@ planet "Iemn Eitch"
 	"required reputation" 2
 	bribe 0
 	security 0
+
+planet "Igna"
+	landscape land/igna
+	attributes "requires: gaslining"
+	description `This gas giant has an extremely hot atmosphere due to its proximity to the system's star. The clouds emit a warm, orange glow, enabling good visibility even into deeper layers. Occasional storms break the almost peaceful atmosphere, raging violently but disappearing as quickly as they appeared.`
+	government Uninhabited
 
 planet "Illbo Avo"
 	attributes bunrodea military moon
@@ -2793,6 +2817,13 @@ planet "Mereti Station"
 	bribe 0
 	security 0
 
+planet Methuselah
+	attributes "requires: gaslining"
+	landscape land/methuselah
+	description `This world feels ancient, and the air is calm as if the last storm ended millennia ago. A continuous deep sound from below seems to tell a story from the early days of the universe - memories of hotter and faster times.`
+	description `From time to time giant creatures can be seen moving in total peace.`
+	government Uninhabited
+
 planet "Miblulub's Plenty"
 	attributes arach farming folklore longcows
 	landscape land/fields7
@@ -3305,6 +3336,12 @@ planet Ochrescoop
 	bribe 0.1
 	security 0.5
 
+planet "Occupas"
+	attributes "requires: gaslining"
+	landscape land/occupas
+	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time some strange giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
+	government Uninhabited
+
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
 	landscape land/station36
@@ -3479,6 +3516,17 @@ planet Poisonwood
 		threshold 2000
 		fleet "Large Militia" 7
 
+planet "Pon'tes"
+	government "Hicemus"
+	landscape land/station16
+	"required reputation" 10
+	outfitter "Hicemus"
+	shipyard "Hicemus"
+	description "Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
+	description "Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways."
+	spaceport "The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
+	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. Only a few seem to transport people."
+
 planet Poseidos
 	attributes fishing rim
 	landscape land/sea9
@@ -3571,6 +3619,16 @@ planet Rand
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet "Redias"
+	landscape land/redias
+	attributes "requires: gaslining"
+	"required reputation" 10
+	description "The home planet of the Incipias is reigned over by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed."
+	description "The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds."
+	spaceport "Because of the size of their homeworld the Incipias built not one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong, but they still require a great deal of energy to be held in place."
+	spaceport "The spaceports themselves are giant circular platforms with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land at each spaceport at a time."
+	government "Conlatio"
 
 planet Redwatch
 	attributes hai station uninhabited
@@ -4220,6 +4278,15 @@ planet Sopoyra
 	bribe 0
 	security 0
 
+planet "Spec Inci"
+	attributes "incipias quarg" quarg
+	landscape land/sky7
+	description "This small moon seems to be used mainly as a shipment and processing base, run with the typical efficiency of the Quarg. You wouldn't have even noticed the freighters dropping off large amounts of raw ore for processing if it were not for their large size, as they are surprisingly silent when working. Other ships load the processed materials and fly away."
+	spaceport "The spaceport is fully automated, and you can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the moon's many hangars. One section of the spaceport is restricted, where a large amount of military ships can be seen."
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
+
 planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands11
@@ -4536,6 +4603,12 @@ planet Topkapi
 	government Uninhabited
 	security 0
 
+planet Treser
+	attributes "requires: gaslining"
+	landscape land/treser
+	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the incoming light, resulting in an enormous amount of heat in the atmosphere of this gas giant. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
+	government Uninhabited
+
 planet Trinket
 	attributes south tourism
 	landscape land/beach3
@@ -4613,6 +4686,12 @@ planet Tundra
 		threshold 3000
 		fleet "Large Militia" 6
 
+planet "Turra"
+	attributes "requires: gaslining"
+	landscape land/turra
+	description `Turra's thick atmosphere make this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing all light that shines on them.`
+	government Uninhabited
+
 planet "Turquoise Four"
 	attributes farming kimek
 	landscape land/beach14
@@ -4641,6 +4720,15 @@ planet "Typhon Station"
 	tribute 500
 		threshold 2000
 		fleet "Large Militia" 8
+
+planet "Ut Divitas"
+	attributes "incipias quarg" quarg
+	landscape land/canyon13
+	description "The surface here is bare and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract, elegant, and unlike anything humans have ever built."
+	spaceport "The spaceport is a small one, consisting of only a few landing pads. Ships parked here appear to be mostly civilian. The Quarg working here seem to be confused by your presence."
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
 
 planet Vail
 	attributes farming paradise tourism
@@ -4945,6 +5033,12 @@ planet "Vivid Aether"
 	landscape land/nasa29
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
+	government Uninhabited
+
+planet Vulpa
+	attributes "requires: gaslining"
+	landscape land/vulpa
+	description `At first sight this looks like a friendly gas giant. The blue tones invoke the feeling of an ocean world, but looks can be deceiving. The clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them but it is advisable not to stay here for too long.`
 	government Uninhabited
 
 planet Warfeed

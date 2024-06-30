@@ -3541,6 +3541,57 @@ Copyright: NASA
 License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
 
+Files:
+ images/_menu/haze-dark-nebula*
+ images/effect/incipias?flare/*
+ images/effect/plasma?exhaust*
+ images/effect/plasma?particle*
+ images/effect/stagnation?beam?impact*
+ images/effect/star?tail*
+ images/hardpoint/stagnation?beam*
+ images/outfit/gas?class?shield*
+ images/outfit/liquid?class?shield*
+ images/outfit/metallic?hydrogen?cell*
+ images/outfit/mh?*
+ images/outfit/plasma?discharger*
+ images/outfit/stagnation?beamx*
+ images/outfit/star?tail?*
+ images/planet/aera*
+ images/planet/gliese*
+ images/planet/redias*
+ images/planet/treser*
+ images/planet/vulpa*
+ images/projectile/plasma?discharge*
+ images/projectile/stagnation?beam*
+ images/projectile/star?tail*
+ images/projectile/strange?ray*
+ images/scene/incipias?message*
+ images/star/a-eater*
+ images/star/neutron-small*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+
+Files:
+ images/planet/pontes.png
+ images/ship/cirrus.png
+ images/thumbnail/cirrus.png
+ images/ship/gerro.png
+ images/thumbnail/geroo.png
+ images/ship/nimbus.png
+ images/thumbnail/nimbus.png
+ images/ship/silent?harvester.png
+ images/ship/stratus.png
+ images/thumbnail/stratus.png
+ images/ship/venta.png
+ images/thumbnail/venta.png
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/cloud?piercer*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
  placed in the public domain. In June 2017, Unsplash modified their terms and conditions to make all images
