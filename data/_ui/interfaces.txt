@@ -1590,12 +1590,10 @@ interface "columns menu"
 		center 380 -195
 	sprite "ui/dialog middle"
 		center 380 -155
-	sprite "ui/dialog middle"
-		center 380 -115
 	sprite "ui/dialog bottom"
-		center 380 -50
+		center 380 -90
 	button a _Apply
-		center 470 -30
+		center 470 -70
 		dimensions 71 31
 
 
