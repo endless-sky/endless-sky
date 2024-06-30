@@ -76,16 +76,16 @@ mission "SoPi 0: Scanning"
 				`	(Silently backpedal away from him and run to your ship, taking off.)`
 					goto converse1
 			label converse1
-			`	As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
+			`	As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as requested.`
 				launch
-		npc save
-			fleet "Scan Fleet"
-			government "Pirate"
-			personality heroic secretive staying
-			system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
-			on kill
-				dialog `Carl GaSan probably would have preferred you didn't kill these...`
-			on "scan outfits"
-				dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock and give your logs to Carl GaSan.`
-			on encounter
-				dialog `Some of the ships you see are behaving strangely. Maybe you should scan them and give Carl GaSan the data.`
+	npc save "scan outfits"
+		fleet "Scan Fleet"
+		government "Pirate"
+		personality heroic secretive staying
+		system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
+		on kill
+			dialog `Carl GaSan probably would have preferred you didn't kill these...`
+		on "scan outfits"
+			dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock and give your logs to Carl GaSan.`
+		on encounter
+			dialog `Some of the ships you see are behaving strangely... maybe you should scan them and give Carl GaSan the data.`
