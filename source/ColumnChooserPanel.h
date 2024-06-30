@@ -36,7 +36,7 @@ class PlayerInfo;
 // their fleet (including changing which one is the flagship).
 class ColumnChooserPanel : public Panel {
 public:
-	explicit ColumnChooserPanel(InfoPanelState *panelState);
+	explicit ColumnChooserPanel(const std::vector<PlayerInfoPanel::SortableColumn> &columns, InfoPanelState *panelState);
 
 	virtual void Draw() override;
 
@@ -63,6 +63,7 @@ private:
 	bool ScrollAbsolute(int scroll);
 
 private:
+	std::vector<PlayerInfoPanel::SortableColumn> columns;
 	InfoPanelState *panelState;
 
 	std::vector<ClickZone<std::string>> zones;

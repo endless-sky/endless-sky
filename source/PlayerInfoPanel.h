@@ -45,6 +45,18 @@ public:
 	// The player info panel allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
 
+	class SortableColumn {
+	public:
+		SortableColumn(std::string name, std::string checkboxLabel, Layout layout, InfoPanelState::ShipComparator *shipSort);
+
+		std::string Tooltip() const;
+
+		std::string name;
+		std::string checkboxLabel;
+		Layout layout;
+		InfoPanelState::ShipComparator *shipSort = nullptr;
+	};
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -70,21 +82,11 @@ private:
 
 	void SortShips(InfoPanelState::ShipComparator *shipComparator);
 
-	class SortableColumn {
-	public:
-		SortableColumn(std::string name, Layout layout, InfoPanelState::ShipComparator *shipSort);
-
-		const std::string &Tooltip() const;
-
-		std::string name;
-		Layout layout;
-		InfoPanelState::ShipComparator *shipSort = nullptr;
-	};
 
 private:
 	PlayerInfo &player;
 
-	static const SortableColumn columns[];
+	static const std::vector<SortableColumn> columns;
 
 	InfoPanelState panelState;
 

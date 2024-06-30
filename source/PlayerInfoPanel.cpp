@@ -222,17 +222,17 @@ namespace {
 }
 
 // Table columns and their starting x positions, end x positions, alignment and sort comparator.
-const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[] = {
-	SortableColumn("ship", {202, Truncate::MIDDLE}, CompareName),
-	SortableColumn("model", {127, Truncate::BACK}, CompareModelName),
-	SortableColumn("system", {92, Truncate::BACK}, CompareSystem),
-	SortableColumn("shields", {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
-	SortableColumn("hull", {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
-	SortableColumn("fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
-	SortableColumn("combat", {57, Alignment::RIGHT, Truncate::BACK}, CompareDeterrence),
-	SortableColumn("crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew),
-	SortableColumn("free cargo", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargo),
-	SortableColumn("cargo eff.", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargoEfficiency)
+const vector<PlayerInfoPanel::SortableColumn> PlayerInfoPanel::columns = {
+	SortableColumn("ship", "Ship name", {217, Truncate::MIDDLE}, CompareName),
+	SortableColumn("model", "Ship model", {127, Truncate::BACK}, CompareModelName),
+	SortableColumn("system", "Current system", {137, Truncate::BACK}, CompareSystem),
+	SortableColumn("shields", "Shield strength", {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
+	SortableColumn("hull", "Hull integrity", {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
+	SortableColumn("fuel", "Fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
+	SortableColumn("combat", "Combat prowess", {57, Alignment::RIGHT, Truncate::BACK}, CompareDeterrence),
+	SortableColumn("crew", "Crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew),
+	SortableColumn("free cargo", "Free cargo space", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargo),
+	SortableColumn("cargo eff.", "Cargo efficiency", {77, Alignment::RIGHT, Truncate::BACK}, CompareCargoEfficiency)
 };
 
 
@@ -571,7 +571,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		}
 	}
 	else if(key == 'n')
-		GetUI()->Push(new ColumnChooserPanel(&panelState));
+		GetUI()->Push(new ColumnChooserPanel(columns, &panelState));
 	else
 		return false;
 
@@ -1040,10 +1040,11 @@ bool PlayerInfoPanel::Scroll(int distance)
 
 PlayerInfoPanel::SortableColumn::SortableColumn(
 	string name,
+	string checkboxLabel,
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-	: name(name), layout(layout), shipSort(shipSort)
+	: name(name), checkboxLabel(checkboxLabel), layout(layout), shipSort(shipSort)
 {
 }
 

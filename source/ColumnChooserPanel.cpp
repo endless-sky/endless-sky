@@ -49,8 +49,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-ColumnChooserPanel::ColumnChooserPanel(InfoPanelState *panelState)
-	: panelState(panelState)
+ColumnChooserPanel::ColumnChooserPanel(const vector<PlayerInfoPanel::SortableColumn> &columns, InfoPanelState *panelState)
+	: columns(columns), panelState(panelState)
 {
 	SetInterruptible(false);
 }
@@ -72,18 +72,6 @@ void ColumnChooserPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	const Color *color[] = {GameData::Colors().Get("medium"), GameData::Colors().Get("bright")};
 	const Sprite *box[] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
-	const string columns[][2] = {
-		{"ship", "Ship name"},
-		{"model", "Ship model"},
-		{"system", "Current system"},
-		{"shields", "Shield strength"},
-		{"hull", "Hull integrity"},
-		{"fuel", "Fuel"},
-		{"combat", "Combat prowess"},
-		{"crew", "Crew"},
-		{"free cargo", "Free cargo space"},
-		{"cargo eff.", "Cargo efficiency"},
-	};
 
 	// Table table;
 	// table.AddColumn(
@@ -95,18 +83,18 @@ void ColumnChooserPanel::Draw()
 	const Point boxSize = Point(box[0]->Width(), box[0]->Height());
 	static const Point ROW_ADVANCE(0., 20.);
 	const set<const string> visibleColumns = panelState->VisibleColumns();
-	for(const string * const column : columns)
+	for(PlayerInfoPanel::SortableColumn column : columns)
 	{
-		bool visible = (visibleColumns.find(column[0]) != visibleColumns.end());
+		bool visible = (visibleColumns.find(column.name) != visibleColumns.end());
 
 		const Sprite *sprite = box[visible];
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, boxSize);
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
 		Point textPos = topLeft + Point(box[0]->Width(), 2.);
-		font.Draw(column[1], textPos, *color[visible]);
+		font.Draw(column.checkboxLabel, textPos, *color[visible]);
 
-		zones.emplace_back(ClickZone(Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y())), column[0]));
+		zones.emplace_back(ClickZone(Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y())), column.name));
 
 		topLeft = topLeft + ROW_ADVANCE;
 	}
@@ -123,7 +111,7 @@ bool ColumnChooserPanel::AllowsFastForward() const noexcept
 
 bool ColumnChooserPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'a')
+	if(key == 'a' || key == 'n')
 		GetUI()->Pop(this);
 	else
 		return false;
