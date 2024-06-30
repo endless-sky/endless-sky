@@ -407,6 +407,10 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "start")
 			startData.Load(child);
+		else if(child.Token(0) == "locked ships")
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 1)
+					lockedIds.emplace_back(EsUuid::FromString(grand.Token(0)));
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -2838,6 +2842,31 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 
 
+bool PlayerInfo::UuidLocked(const EsUuid &uuid) const
+{
+	return find(lockedIds.begin(), lockedIds.end(), uuid) != lockedIds.end();
+}
+
+
+
+void PlayerInfo::LockUuid(const EsUuid &uuid)
+{
+	if(!UuidLocked(uuid))
+	{
+		lockedIds.emplace_back();
+		lockedIds.back().clone(uuid);
+	}
+}
+
+
+
+void PlayerInfo::UnlockUuid(const EsUuid &uuid)
+{
+	lockedIds.erase(find(lockedIds.begin(), lockedIds.end(), uuid));
+}
+
+
+
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
 const map<const Outfit *, int> &PlayerInfo::GetStock() const
@@ -4328,6 +4357,17 @@ void PlayerInfo::Save(DataWriter &out) const
 		auto it = groups.find(ship.get());
 		if(it != groups.end() && it->second)
 			out.Write("groups", it->second);
+	}
+	if(!lockedIds.empty())
+	{
+		out.Write();
+		out.Write("locked ships");
+		out.BeginChild();
+		for(const auto &shipUuid : lockedIds)
+		{
+			out.Write(shipUuid.ToString());
+		}
+		out.EndChild();
 	}
 	if(!planetaryStorage.empty())
 	{

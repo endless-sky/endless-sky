@@ -157,8 +157,10 @@ namespace {
 }
 
 // Table columns and their starting x positions, end x positions, alignment and sort comparator.
-const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[7] = {
-	SortableColumn("ship", 0, 217, {217, Truncate::MIDDLE}, CompareName),
+const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[8] = {
+	SortableColumn("ship", 0, 216, {216, Truncate::MIDDLE}, CompareName),
+	// TODO: Actually sort by locked ships once #8529 lands, as playerinfo needs to be static.
+	SortableColumn("", 216, 217, {1, Truncate::MIDDLE}, CompareName),
 	SortableColumn("model", 220, 347, {127, Truncate::BACK}, CompareModelName),
 	SortableColumn("system", 350, 487, {137, Truncate::BACK}, CompareSystem),
 	SortableColumn("shields", 550, 493, {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
@@ -757,17 +759,19 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();
 
-		table.SetColor(
+		Color rowColor =
 			isDead ? dead
 			: isHovered ? bright
 			: isFlagship ? flagship
 			: isDisabled ? disabled
 			: isElsewhere ? elsewhere
-			: dim
-		);
+			: dim;
+		table.SetColor(rowColor);
 
 		// Indent the ship name if it is a fighter or drone.
-		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
+		string shipName = ship.CanBeCarried() ? "    " + ship.Name() : ship.Name();
+		table.DrawTruncatedPair(shipName, rowColor, player.UuidLocked(ship.UUID()) ? "*" : "",
+			rowColor, Truncate::BACK, false);
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
