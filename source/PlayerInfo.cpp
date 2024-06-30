@@ -2321,8 +2321,12 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 	subs["<first>"] = FirstName();
 	subs["<last>"] = LastName();
-	if(Flagship())
-		subs["<ship>"] = Flagship()->Name();
+	const Ship *flag = Flagship();
+	if(flag)
+	{
+		subs["<ship>"] = flag->Name();
+		subs["<model>"] = flag->DisplayModelName();
+	}
 
 	subs["<system>"] = GetSystem()->Name();
 	subs["<date>"] = GetDate().ToString();
@@ -4143,8 +4147,12 @@ void PlayerInfo::StepMissions(UI *ui)
 		{"<first>", firstName},
 		{"<last>", lastName}
 	};
-	if(Flagship())
-		substitutions["<ship>"] = Flagship()->Name();
+	const Ship *flag = Flagship();
+	if(flag)
+	{
+		substitutions["<ship>"] = flag->Name();
+		substitutions["<model>"] = flag->DisplayModelName();
+	}
 
 	auto mit = missions.begin();
 	while(mit != missions.end())

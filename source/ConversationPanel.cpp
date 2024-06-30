@@ -73,9 +73,15 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(ship)
+	{
 		subs["<ship>"] = ship->Name();
+		subs["<model>"] = ship->DisplayModelName();
+	}
 	else if(player.Flagship())
+	{
 		subs["<ship>"] = player.Flagship()->Name();
+		subs["<model>"] = player.Flagship()->DisplayModelName();
+	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.

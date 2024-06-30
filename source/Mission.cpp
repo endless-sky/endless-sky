@@ -993,7 +993,10 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(flagship)
+	{
 		subs["<ship>"] = flagship->Name();
+		subs["<model>"] = flagship->DisplayModelName();
+	}
 
 	const auto &playerConditions = player.Conditions();
 	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
