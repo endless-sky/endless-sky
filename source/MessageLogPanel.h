@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Messages.h"
 
+class Interface;
+
 
 
 // User interface panel that displays the message log.
