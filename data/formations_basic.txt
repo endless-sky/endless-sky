@@ -51,7 +51,6 @@ formation "Vic"
 
 
 # X shaped formation that rotates with the flagship.
-# For warship-sized escorts
 formation "X"
 	flippable x y
 	rotatable 90
