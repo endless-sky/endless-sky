@@ -55,7 +55,8 @@ void ColumnChooserPanel::Draw()
 
 	const Font &font = FontSet::Get(14);
 	const Color * const dim = GameData::Colors().Get("dim");
-	const Color *color[] = {GameData::Colors().Get("medium"), GameData::Colors().Get("bright")};
+	const Color * const medium = GameData::Colors().Get("medium");
+	const Color * const bright = GameData::Colors().Get("bright");
 	const Sprite *box[] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
 	Point topLeft(270., -280.);
@@ -69,17 +70,20 @@ void ColumnChooserPanel::Draw()
 		});
 	for(PlayerInfoPanel::SortableColumn column : columns)
 	{
+		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y()));
+
 		bool visible = isVisible(column.name);
 		bool enabled = visible || column.layout.width <= availableWidth;
+		bool hover = zoneBounds.Contains(hoverPoint);
 
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, boxSize);
 		SpriteShader::Draw(box[visible], spriteBounds.Center());
 
 		Point textPos = topLeft + Point(box[0]->Width(), 2.);
-		font.Draw(column.checkboxLabel, textPos, enabled ? *color[visible] : *dim);
+		font.Draw(column.checkboxLabel, textPos, enabled ? hover ? *bright : *medium : *dim);
 
 		if(enabled)
-			zones.emplace_back(ClickZone(Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y())), column.name));
+			zones.emplace_back(ClickZone(zoneBounds, column.name));
 
 		topLeft = topLeft + ROW_ADVANCE;
 	}
@@ -108,89 +112,18 @@ bool ColumnChooserPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 
 bool ColumnChooserPanel::Click(int x, int y, int /* clicks */)
 {
-	Point mouse = Point(x, y);
+	Point mouse(x, y);
 	for(auto &zone : zones)
 		if(zone.Contains(mouse))
-		{
-			// toggle checkbox
-			panelState->ToggleColumn(zone.Value());
-
-			return true;
-		}
+			return panelState->ToggleColumn(zone.Value()), true;
 
 	return false;
 }
 
 
 
-void ColumnChooserPanel::DrawTooltip(const string &text, const Point &hoverPoint)
-{
-	if(text.empty())
-		return;
-
-	const int WIDTH = 250;
-	const int PAD = 10;
-	WrappedText wrap(FontSet::Get(14));
-	wrap.SetWrapWidth(WIDTH - 2 * PAD);
-	wrap.Wrap(text);
-	int longest = wrap.LongestLineWidth();
-	if(longest < wrap.WrapWidth())
-	{
-		wrap.SetWrapWidth(longest);
-		wrap.Wrap(text);
-	}
-
-	const Color *backColor = GameData::Colors().Get("tooltip background");
-	const Color *textColor = GameData::Colors().Get("medium");
-	Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-	Point anchor = hoverPoint + Point(0., textSize.Y());
-	FillShader::Fill(anchor - .5 * textSize, textSize, *backColor);
-	wrap.Draw(anchor - textSize + Point(PAD, PAD), *textColor);
-}
-
-
-
 bool ColumnChooserPanel::Hover(int x, int y)
 {
-	return Hover(Point(x, y));
-}
-
-
-
-bool ColumnChooserPanel::Hover(const Point &point)
-{
-	hoverPoint = point;
-	hoverIndex = -1;
-
-	return true;
-}
-
-
-
-bool ColumnChooserPanel::Scroll(double /* dx */, double dy)
-{
-	return Scroll(dy * -.1 * Preferences::ScrollSpeed());
-}
-
-
-
-bool ColumnChooserPanel::ScrollAbsolute(int scroll)
-{
-	// int maxScroll = columns.size() - LINES_PER_PAGE;
-	// int newScroll = max(0, min<int>(maxScroll, scroll));
-	// if(panelState.Scroll() == newScroll)
-	// 	return false;
-
-	// panelState.SetScroll(newScroll);
-
-	return true;
-}
-
-
-
-// Adjust the scroll by the given amount. Return true if it changed.
-bool ColumnChooserPanel::Scroll(int distance)
-{
-	// return ScrollAbsolute(panelState.Scroll() + distance);
+	hoverPoint = Point(x, y);
 	return true;
 }

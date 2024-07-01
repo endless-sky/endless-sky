@@ -26,9 +26,7 @@ class PlayerInfo;
 
 
 
-// This panel displays detailed information about the player and their fleet. If
-// the player is landed on a planet, it also allows them to reorder the ships in
-// their fleet (including changing which one is the flagship).
+// This panel represents a pop-up menu containing checkboxes to show/hide table columns.
 class ColumnChooserPanel : public Panel {
 public:
 	explicit ColumnChooserPanel(const std::vector<PlayerInfoPanel::SortableColumn> &columns, InfoPanelState *panelState);
@@ -44,30 +42,13 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Scroll(double dx, double dy) override;
 
-
-private:
-	void DrawTooltip(const std::string &text, const Point &hoverPoint);
-
-	// Handle mouse hover (also including hover during drag actions):
-	bool Hover(const Point &point);
-	// Adjust the scroll by the given amount. Return true if it changed.
-	bool Scroll(int distance);
-	// Try to scroll to the given position. Return true if position changed.
-	bool ScrollAbsolute(int scroll);
 
 private:
 	std::vector<PlayerInfoPanel::SortableColumn> columns;
 	InfoPanelState *panelState;
 
 	std::vector<ClickZone<std::string>> zones;
-
-	// Keep track of which toggle the mouse is hovering over.
-	int hoverIndex = -1;
-
-	// Initialize mouse point to something off-screen to not
-	// make the game think the player is hovering on something.
 	Point hoverPoint = Point(-10000, -10000);
 };
 
