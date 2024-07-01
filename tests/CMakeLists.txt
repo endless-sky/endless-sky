@@ -8,10 +8,27 @@ if(NOT MSVC)
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
+# Enable vcpkg packages.
+# For some reason, they don't get detected automatically in this multi-level config.
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+if(UNIX AND NOT APPLE)
+	set(CUSTOM_PATH "vcpkg_installed/x64-linux")
+elseif(UNIX AND APPLE)
+	set(CUSTOM_PATH "vcpkg_installed/${VCPKG_TARGET_TRIPLET}")
+else()
+	if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+		set(CUSTOM_PATH "build/ci/vcpkg_installed/x64-windows-release")
+	else()
+		set(CUSTOM_PATH "build/ci/vcpkg_installed/win64-release")
+	endif()
+endif()
+set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/${CUSTOM_PATH}")
+
+find_package(Catch2 CONFIG REQUIRED)
+
 # Every source file (and header file) should be listed here.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
-	unit/include/catch.hpp
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
 	unit/include/output-capture.hpp
@@ -73,6 +90,7 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
+target_link_libraries(EndlessSkyTests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
 # CTest support for our unit tests.
