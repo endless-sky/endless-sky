@@ -1942,7 +1942,7 @@ system Ablub
 		period 2236.11
 
 system Acamar
-	pos -284 -3
+	pos -281 1
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -2003,15 +2003,15 @@ system Acamar
 		period 3183.91
 
 system Achernar
-	pos -93 154
+	pos -111 147
 	government Syndicate
 	attributes "core"
 	arrival 625
 	habitable 625
 	belt 1963
 	haze _menu/haze-133
-	link "Al Dhanab"
 	link Alpheratz
+	link Nembus
 	link Polaris
 	link Schedar
 	asteroids "medium metal" 27 1.8676
@@ -3018,15 +3018,14 @@ system Aksek
 		period 2574.48
 
 system "Al Dhanab"
-	pos -177 207
+	pos -166 212
 	government Syndicate
 	attributes "core"
 	arrival 1080
 	habitable 1080
 	belt 1432
 	haze _menu/haze-133
-	link Achernar
-	link Alpheratz
+	link Homam
 	link Mirach
 	link Scheat
 	asteroids "small rock" 65 3.45
@@ -3270,16 +3269,15 @@ system Albireo
 		period 1509.48
 
 system Alcyone
-	pos -80 -144
+	pos -76 -144
 	government Pirate
-	attributes "core"
-	arrival 500
-	habitable 295
+	attributes "bright star" "core" "notable star"
+	arrival 5600
+	habitable 5600
 	belt 1438
 	haze _menu/haze-133
 	link Durax
 	link Oblate
-	link Zaurak
 	asteroids "small rock" 4 1.62
 	asteroids "medium rock" 16 1.3176
 	asteroids "large rock" 16 1.08
@@ -3301,42 +3299,37 @@ system Alcyone
 	fleet "Large Syndicate" 1200
 	fleet "Korath Large Raid" 50000
 	object
-		sprite star/m5
-		distance 49.6028
-		period 26.2809
+		sprite star/b5
+		period 26.281
 		offset 180
-	object
-		sprite star/m8
-		distance 58.7886
-		period 26.2809
 	object Stormhold
-		sprite planet/cloud1
-		distance 332.91
-		period 141.461
+		sprite planet/ocean0
+		distance 5070.207
+		period 1929.765
 	object
 		sprite planet/gas4-b
-		distance 894.47
-		period 623.013
+		distance 3007.117
+		period 881.437
 		object
 			sprite planet/ice7
 			distance 252
-			period 13.5253
+			period 13.525
 	object
 		sprite planet/rock13
-		distance 1855.03
-		period 1860.69
+		distance 1357.084
+		period 267.224
 	object
 		sprite planet/neptune-b
-		distance 3456.59
-		period 4732.82
+		distance 9233.741
+		period 4742.775
 		object
 			sprite planet/rock0-b
 			distance 216
-			period 14.1091
+			period 14.109
 		object
 			sprite planet/rock3
 			distance 315
-			period 24.8475
+			period 24.848
 
 system Aldebaran
 	pos -356 -26
@@ -3386,15 +3379,15 @@ system Aldebaran
 		period 1570.88
 
 system Alderamin
-	pos -272 258
+	pos -281 254
 	government Syndicate
 	attributes "core"
 	arrival 1705
 	habitable 1705
 	belt 1908
 	haze _menu/haze-133
-	link Alnair
 	link "Delta Capricorni"
+	link Veritate
 	asteroids "small rock" 1 9.5472
 	asteroids "medium rock" 3 8.5644
 	asteroids "large rock" 1 10.3896
@@ -3652,7 +3645,7 @@ system Aleit
 		offset 340
 
 system Algenib
-	pos -118 341
+	pos -175 353
 	government Pirate
 	attributes "core"
 	arrival 500
@@ -3708,6 +3701,60 @@ system Algenib
 			sprite planet/dust0
 			distance 497
 			period 42.6838
+
+system Algenudi
+	pos -221 128
+	government Syndicate
+	attributes "core" "giant star" "notable star"
+	habitable 3000
+	belt 1144 10
+	link Ankaa
+	link Fomalhaut
+	link Homam
+	link Markab
+	link Schemali
+	asteroids "small rock" 20 2.369
+	asteroids "large rock" 2 2.52
+	asteroids "small metal" 7 1.915
+	asteroids "medium metal" 6 1.865
+	asteroids "large metal" 2 2.066
+	minables aluminum 1 3.956
+	minables copper 7 2.921
+	trade Clothing 205
+	trade Electronics 751
+	trade Equipment 567
+	trade Food 240
+	trade "Heavy Metals" 694
+	trade Industrial 759
+	trade "Luxury Goods" 1072
+	trade Medical 713
+	trade Metal 340
+	trade Plastic 293
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 1200
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 2400
+	fleet "Large Core Pirates" 6000
+	object
+		sprite star/k-giant
+		period 10
+	object
+		sprite planet/lava3-b
+		distance 946
+		period 212.489
+	object
+		sprite planet/rock10
+		distance 2293.674
+		period 802.226
+	object
+		sprite planet/gas2
+		distance 3743
+		period 1672.357
+		object
+			sprite planet/io
+			distance 278
+			period 175.214
 
 system Algieba
 	pos -691 -52
@@ -3781,13 +3828,14 @@ system Algieba
 			period 22.4237
 
 system Algol
-	pos -210 17
+	pos -190 19
 	government Syndicate
 	attributes "bright star" "core" "notable star"
 	arrival 3490
 	habitable 3490
 	belt 1839
 	haze _menu/haze-133
+	link Maia
 	link Ruchbah
 	asteroids "large metal" 1 1.35
 	trade Clothing 219
@@ -4214,14 +4262,14 @@ system Almaaz
 		period 1630.22
 
 system Almach
-	pos -7 232
+	pos -56 235
 	government Pirate
 	attributes "core"
 	arrival 500
 	habitable 370
 	belt 1914
 	haze _menu/haze-133
-	link Schedar
+	link Nembus
 	asteroids "small rock" 105 2.2763
 	asteroids "medium rock" 54 1.5028
 	asteroids "large rock" 47 1.6133
@@ -4279,15 +4327,15 @@ system Almach
 			period 26.8252
 
 system Alnair
-	pos -272 314
+	pos -268 310
 	government Syndicate
 	attributes "core"
 	arrival 500
 	habitable 135
 	belt 1969
 	haze _menu/haze-133
-	link Alderamin
-	link Persian
+	link Marakk
+	link Veritate
 	asteroids "small rock" 20 6.825
 	asteroids "medium rock" 242 4.355
 	asteroids "large rock" 19 8.32
@@ -4756,7 +4804,7 @@ system "Alpha Centauri"
 		period 3022.55
 
 system "Alpha Hydri"
-	pos -97 98
+	pos -117 99
 	government Syndicate
 	attributes "core"
 	arrival 1450
@@ -4930,7 +4978,7 @@ system Alphecca
 		period 1008.95
 
 system Alpheratz
-	pos -176 125
+	pos -173 109
 	government Syndicate
 	attributes "core"
 	arrival 1115
@@ -4938,7 +4986,7 @@ system Alpheratz
 	belt 1645
 	haze _menu/haze-133
 	link Achernar
-	link "Al Dhanab"
+	link Homam
 	link Ruchbah
 	asteroids "small rock" 8 5.44
 	asteroids "medium rock" 5 4.12
@@ -5072,8 +5120,8 @@ system Altair
 	habitable 995
 	belt 1830
 	link "Delta Capricorni"
-	link Fomalhaut
 	link Sol
+	link "Van Maanen's Star"
 	link Vega
 	asteroids "large metal" 1 4.6748
 	trade Clothing 378
@@ -5309,16 +5357,17 @@ system "Ancient Hope"
 			period 14.3618
 
 system Ankaa
-	pos -230 100
+	pos -214 84
 	government Syndicate
 	attributes "core"
 	arrival 625
 	habitable 625
 	belt 1003
 	haze _menu/haze-133
-	link Diphda
-	link Markab
+	link Algenudi
+	link Mira
 	link Ruchbah
+	link Schemali
 	asteroids "medium rock" 1 2.016
 	asteroids "large rock" 1 1.664
 	asteroids "small metal" 1 4.352
@@ -6057,9 +6106,71 @@ system Aspidiske
 		distance 2771.8
 		period 536.220
 
+system Asterope
+	pos -78 -15
+	government Syndicate
+	attributes "bright star" "core" "notable star"
+	habitable 5000
+	belt 1761 2
+	link Zaurak
+	asteroids "medium rock" 1 1.334
+	asteroids "large rock" 2 1.863
+	asteroids "small metal" 3 1.771
+	asteroids "medium metal" 2 2.139
+	asteroids "large metal" 1 1.403
+	minables neodymium 22 6.591
+	minables iron 41 3.214
+	trade Clothing 381
+	trade Electronics 632
+	trade Equipment 605
+	trade Food 261
+	trade "Heavy Metals" 958
+	trade Industrial 738
+	trade "Luxury Goods" 1097
+	trade Medical 651
+	trade Metal 327
+	trade Plastic 416
+	fleet "Small Syndicate" 2000
+	fleet "Large Syndicate" 3000
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 6000
+	fleet "Human Miners" 2000
+	fleet "Korath Miners" 17000
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/mercury-b
+		distance 366
+		period 39.609
+	object
+		sprite planet/gas2
+		distance 1388
+		period 292.522
+		object
+			sprite planet/oberon
+			distance 285
+			period 296.32
+		object
+			sprite planet/miranda-b
+			distance 433
+			period 426.23
+	object
+		sprite planet/gas4
+		distance 3637
+		period 1240.766
+		object
+			sprite planet/rhea
+			distance 254
+			period 125.901
+		object
+			sprite planet/lava0-b
+			distance 413
+			period 219.656
+
 system Atik
 	pos -66 -52
-	government Uninhabited
+	government Pirate
 	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 5000
 	habitable 15105
@@ -6119,6 +6230,71 @@ system Atik
 		sprite planet/lava1
 		distance 1905.05
 		period 270.619
+
+system Atlas
+	pos -111 -59
+	government Syndicate
+	attributes "core" "bright star" "giant star" "multi-star" "notable star"
+	habitable 7507.33
+	belt 1706 7
+	link Alcyone
+	link Electra
+	link Zaurak
+	asteroids "small rock" 9 1.904
+	asteroids "medium rock" 2 2.688
+	asteroids "large rock" 5 2.156
+	asteroids "small metal" 14 1.932
+	asteroids "medium metal" 52 2.436
+	asteroids "large metal" 31 2.772
+	minables copper 11 4.43
+	minables iron 5 4.35
+	trade Clothing 385
+	trade Electronics 626
+	trade Equipment 617
+	trade Food 248
+	trade "Heavy Metals" 964
+	trade Industrial 751
+	trade "Luxury Goods" 1113
+	trade Medical 656
+	trade Metal 328
+	trade Plastic 399
+	fleet "Small Core Pirates" 800
+	fleet "Large Core Pirates" 1000
+	fleet "Large Syndicate" 2000
+	object
+		sprite star/b8
+		distance 111.573
+		period 50.767
+	object
+		sprite star/b5
+		distance 105.245
+		period 50.767
+		offset 120
+	object
+		sprite star/b3
+		distance 106.1
+		period 50.767
+		offset 240
+	object
+		sprite planet/gas2-hot
+		distance 1045.132
+		period 155.982
+		object
+			sprite planet/dust3
+			distance 220
+			period 123.349
+	object
+		sprite planet/gas2-b
+		distance 2997
+		period 757.438
+		object
+			sprite planet/oberon-b
+			distance 281
+			period 290.104
+	object
+		sprite planet/gas17
+		distance 5443.217
+		period 1853.961
 
 system Atria
 	pos -551 532
@@ -6558,7 +6734,7 @@ system Belenos
 			period 81
 
 system Bellatrix
-	pos -225 -82
+	pos -227 -117
 	government Syndicate
 	attributes "core"
 	arrival 680
@@ -7883,7 +8059,7 @@ system Capella
 			period 31.7666
 
 system Caph
-	pos -295 77
+	pos -296 68
 	government Syndicate
 	attributes "near earth"
 	arrival 700
@@ -7891,7 +8067,7 @@ system Caph
 	belt 1173
 	link Diphda
 	link Eteron
-	link Sol
+	link "Tau Ceti"
 	asteroids "small rock" 19 4.14
 	asteroids "medium rock" 15 2.925
 	asteroids "large rock" 104 3.6
@@ -10203,7 +10379,7 @@ system Delia
 		period 5611.94
 
 system "Delta Capricorni"
-	pos -285 202
+	pos -282 201
 	government Syndicate
 	attributes "core"
 	arrival 855
@@ -10212,6 +10388,7 @@ system "Delta Capricorni"
 	haze _menu/haze-133
 	link Alderamin
 	link Altair
+	link Fomalhaut
 	link Markab
 	link Scheat
 	asteroids "small rock" 4 9.744
@@ -10557,7 +10734,7 @@ system Devil-Hide
 
 system Devil-Run
 	hidden
-	pos -148 162
+	pos -75 254
 	government Uninhabited
 	attributes "inaccessible"
 	arrival 1080
@@ -10630,7 +10807,7 @@ system Diespiter
 			period 14
 
 system Diphda
-	pos -262 61
+	pos -270 36
 	government Syndicate
 	attributes "near earth"
 	arrival 585
@@ -10638,8 +10815,9 @@ system Diphda
 	belt 1559
 	haze _menu/haze-133
 	link Acamar
-	link Ankaa
 	link Caph
+	link Mira
+	link Schemali
 	asteroids "small rock" 22 4.536
 	asteroids "medium rock" 23 7.7112
 	asteroids "large rock" 29 6.0264
@@ -11957,6 +12135,80 @@ system "Elabi Choati"
 		sprite planet/gas13-b
 		distance 2183.75
 		period 745.253
+
+system Electra
+	pos -145 -89
+	government Syndicate
+	attributes "core" "bright star" "giant star" "notable star"
+	habitable 11350
+	belt 1672 3
+	link Atlas
+	link Menkar
+	link Pleione
+	link Zaurak
+	asteroids "small rock" 2 2.766
+	asteroids "medium rock" 7 1.885
+	asteroids "small metal" 4 2.402
+	asteroids "medium metal" 8 2.098
+	minables silver 4 3.262
+	minables silicon 8 4.104
+	minables titanium 17 4.122
+	trade Clothing 327
+	trade Electronics 743
+	trade Equipment 662
+	trade Food 158
+	trade "Heavy Metals" 971
+	trade Industrial 833
+	trade "Luxury Goods" 963
+	trade Medical 769
+	trade Metal 396
+	trade Plastic 285
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 1500
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 2000
+	object
+		sprite star/b-giant
+		period 10
+	object
+		sprite planet/rock15
+		distance 452
+		period 36.08
+	object
+		sprite planet/gas0
+		distance 1091
+		period 135.3
+		object
+			sprite planet/ice0-b
+			distance 272
+			period 169.572
+	object
+		sprite planet/gas1
+		distance 2914
+		period 590.604
+	object
+		sprite planet/gas11
+		distance 4491
+		period 1129.995
+		object
+			sprite planet/io-b
+			distance 264.619
+			period 142.306
+		object
+			sprite planet/rock20
+			distance 369.798
+			period 254.978
+		object
+			sprite planet/miranda-b
+			distance 490
+			period 513.105
+	object
+		sprite planet/gas4
+		distance 7000
+		period 2198.918
 
 system Elifennka
 	pos 990.5 -728.2
@@ -14285,14 +14537,16 @@ system Flugbu
 			period 37.165
 
 system Fomalhaut
-	pos -314 124
+	pos -274 146
 	government Syndicate
 	attributes "near earth"
 	arrival 500
 	habitable 450
 	belt 1854
-	link Altair
+	link Algenudi
+	link "Delta Capricorni"
 	link Markab
+	link "Van Maanen's Star"
 	asteroids "small rock" 3 7.1415
 	asteroids "medium rock" 2 9.2529
 	asteroids "large rock" 1 4.2228
@@ -14892,14 +15146,14 @@ system Gacrux
 			period 33.4236
 
 system "Gamma Cassiopeiae"
-	pos -116 293
+	pos -74 297
 	government Syndicate
 	attributes "bright star" "core" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1779
 	haze _menu/haze-133
-	link Mirach
+	link Sadiradra
 	asteroids "small rock" 17 7.4936
 	asteroids "medium rock" 64 2.8101
 	asteroids "large rock" 3 5.0692
@@ -15309,14 +15563,16 @@ system Ghhil
 		period 3478.46
 
 system Gienah
-	pos -176 354
+	pos -131 347
 	government Pirate
 	attributes "core"
 	arrival 600
 	habitable 600
 	belt 1965
 	link Algenib
+	link Nashira
 	link Persian
+	link Titawin
 	asteroids "small rock" 1 2.574
 	asteroids "medium rock" 4 2.448
 	asteroids "large rock" 16 2.16
@@ -16090,7 +16346,7 @@ system Hadar
 			period 13.7068
 
 system Hamal
-	pos -129 24
+	pos -139 26
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -16856,6 +17112,65 @@ system Holeb
 		sprite planet/jupiter
 		distance 3958.09
 		period 1700.75
+
+system Homam
+	pos -163 156
+	government Syndicate
+	attributes "bright star" "core" "notable star"
+	habitable 5000
+	belt 1684 6
+	link "Al Dhanab"
+	link Algenudi
+	link Alpheratz
+	link Nembus
+	link Salm
+	asteroids "small rock" 2 3.042
+	asteroids "medium rock" 33 1.724
+	asteroids "large rock" 9 1.724
+	asteroids "small metal" 3 2.941
+	asteroids "medium metal" 5 3.11
+	asteroids "large metal" 1 3.143
+	minables aluminum 6 3.34
+	minables iron 11 2.408
+	trade Clothing 232
+	trade Electronics 809
+	trade Equipment 573
+	trade Food 318
+	trade "Heavy Metals" 674
+	trade Industrial 655
+	trade "Luxury Goods" 1009
+	trade Medical 718
+	trade Metal 262
+	trade Plastic 317
+	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 800
+	fleet "Small Syndicate" 1200
+	fleet "Large Syndicate" 2500
+	fleet "Small Core Pirates" 1400
+	fleet "Large Core Pirates" 3000
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/gas7-hot
+		distance 3110.974
+		period 981.566
+		object
+			sprite planet/ice7-b
+			distance 436
+			period 238.258
+		object
+			sprite planet/dust0-b
+			distance 600
+			period 905.151
+	object
+		sprite planet/gas8
+		distance 5475
+		period 2291.665
+		object
+			sprite planet/ice8-b
+			distance 271
+			period 168.638
 
 system Homeward
 	pos -1045.59 477.051
@@ -19905,7 +20220,7 @@ system Kochab
 		period 2474.09
 
 system "Kor Ak'Mari"
-	pos 43 42
+	pos 3 107
 	government Korath
 	attributes "carbon" "korath" "notable star"
 	arrival 3100
@@ -19967,7 +20282,7 @@ system "Kor Ak'Mari"
 		period 1668.15
 
 system "Kor En'lakfar"
-	pos -31 -33
+	pos -69 62
 	government Korath
 	attributes "korath"
 	arrival 1080
@@ -20037,7 +20352,7 @@ system "Kor En'lakfar"
 			period 49.9035
 
 system "Kor Fel'tar"
-	pos 29 -66
+	pos -15 25
 	government Korath
 	attributes "korath"
 	arrival 500
@@ -20110,7 +20425,7 @@ system "Kor Fel'tar"
 			period 47.3517
 
 system "Kor Men"
-	pos 6 -5
+	pos -34 89
 	government Korath
 	attributes "korath"
 	arrival 2340
@@ -20181,7 +20496,7 @@ system "Kor Men"
 		period 1346.18
 
 system "Kor Nor'peli"
-	pos 52 160
+	pos 42 216
 	government Korath
 	attributes "korath"
 	arrival 585
@@ -20254,7 +20569,7 @@ system "Kor Nor'peli"
 			period 12.7057
 
 system "Kor Tar'bei"
-	pos 57 106
+	pos 52 159
 	government Korath
 	attributes "korath"
 	arrival 500
@@ -20319,7 +20634,7 @@ system "Kor Tar'bei"
 		period 3427.41
 
 system "Kor Zena'i"
-	pos -2 83
+	pos -7 136
 	government Korath
 	attributes "korath"
 	arrival 1385
@@ -20590,7 +20905,7 @@ system Kraz
 			period 26.5299
 
 system Kugel
-	pos -230 -26
+	pos -252 -31
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -21611,6 +21926,71 @@ system MS-219
 			distance 385.29
 			period 80
 
+system Maia
+	pos -150 -3
+	government Syndicate
+	attributes "core" "bright star" "notable star"
+	habitable 5000
+	belt 1117 9
+	belt 2166 3
+	link Algol
+	link Pleione
+	asteroids "small rock" 2 3.483
+	asteroids "medium rock" 16 2.268
+	asteroids "large rock" 6 3.361
+	asteroids "small metal" 11 3.848
+	asteroids "medium metal" 118 3.564
+	asteroids "large metal" 4 2.308
+	minables aluminum 32 4.82
+	trade Clothing 327
+	trade Electronics 743
+	trade Equipment 662
+	trade Food 158
+	trade "Heavy Metals" 971
+	trade Industrial 833
+	trade "Luxury Goods" 963
+	trade Medical 769
+	trade Metal 396
+	trade Plastic 285
+	fleet "Small Core Merchants" 5000
+	fleet "Large Core Merchants" 7000
+	fleet "Small Syndicate" 3000
+	fleet "Large Syndicate" 4000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 3000
+	object
+		sprite star/b8
+		period 10
+	object
+		sprite planet/rock13-b
+		distance 391
+		period 43.736
+	object
+		sprite planet/ice3-b
+		distance 1150
+		period 220.608
+		object
+			sprite planet/europa-b
+			distance 186
+			period 120
+	object
+		sprite planet/gas16-b
+		distance 1910
+		period 472.199
+	object
+		sprite planet/gas2
+		distance 3693
+		period 1269.533
+		object
+			sprite planet/oberon
+			distance 291
+			period 305.727
+		object
+			sprite planet/ice8
+			distance 392
+			period 293.379
+
 system Makferuti
 	pos 288.431 -628.812
 	government "Kor Sestor"
@@ -21717,15 +22097,81 @@ system Maoni
 		distance 974.4
 		period 1216.65
 
+system Marakk
+	pos -238 339
+	government Syndicate
+	attributes "core" "giant star" "multi-star" "notable star"
+	habitable 6085.364
+	belt 1937 8
+	belt 2249 8
+	link Alnair
+	link Persian
+	asteroids "small rock" 4 8.12
+	asteroids "medium rock" 22 5.197
+	asteroids "large rock" 6 6.415
+	asteroids "large metal" 1 5.034
+	minables aluminum 12 10.584
+	trade Clothing 260
+	trade Electronics 661
+	trade Equipment 400
+	trade Food 471
+	trade "Heavy Metals" 919
+	trade Industrial 661
+	trade "Luxury Goods" 977
+	trade Medical 582
+	trade Metal 216
+	trade Plastic 502
+	fleet "Small Syndicate" 1500
+	fleet "Large Syndicate" 6000
+	fleet "Small Core Pirates" 800
+	fleet "Large Core Pirates" 2000
+	object
+		sprite star/g-supergiant
+		distance 5.39
+		period 279.535
+	object
+		sprite star/f-dwarf
+		distance 437.212
+		period 279.535
+		offset 180
+	object
+		sprite planet/lava7-b
+		distance 849
+		period 126.846
+	object
+		sprite planet/gas2-hot
+		distance 2776.176
+		period 750.045
+		object
+			sprite planet/callisto-b
+			distance 297
+			period 133.953
+		object
+			sprite planet/miranda-b
+			distance 466
+			period 475.873
+	object
+		sprite planet/gas11
+		distance 5808.2
+		period 2269.756
+		object
+			sprite planet/ice8
+			distance 257
+			period 155.74
+	object
+		sprite planet/gas12
+		distance 9529.012
+		period 4769.672
+
 system Markab
-	pos -241 168
+	pos -234 183
 	government Syndicate
 	attributes "core"
 	arrival 625
 	habitable 625
 	belt 1411
 	haze _menu/haze-133
-	link Ankaa
+	link Algenudi
 	link "Delta Capricorni"
 	link Fomalhaut
 	link Scheat
@@ -21869,15 +22315,14 @@ system Markeb
 		period 2775.06
 
 system Matar
-	pos -218 272
+	pos -230 244
 	government Syndicate
 	attributes "core"
 	arrival 500
 	habitable 450
 	belt 1308
 	haze _menu/haze-133
-	link Persian
-	link Scheat
+	link Veritate
 	asteroids "large metal" 1 3.0888
 	trade Clothing 223
 	trade Electronics 686
@@ -22646,7 +23091,7 @@ system Menkalinan
 			period 26.6433
 
 system Menkar
-	pos -183 -52
+	pos -194 -80
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -22654,8 +23099,8 @@ system Menkar
 	belt 1634
 	haze _menu/haze-133
 	link Bellatrix
+	link Electra
 	link Mirfak
-	link Zaurak
 	asteroids "small rock" 109 4.3
 	asteroids "medium rock" 33 7.45
 	asteroids "large rock" 44 6.45
@@ -22847,6 +23292,58 @@ system Merak
 		sprite planet/luna
 		distance 2504.4
 		period 1501.33
+
+system Merope
+	pos -225 -57
+	government Syndicate
+	attributes "bright star" "core" "notable star"
+	habitable 5600
+	belt 1907 6
+	belt 2111
+	belt 2601 10
+	link Pleione
+	asteroids "medium rock" 22 7.695
+	asteroids "large rock" 14 7.452
+	asteroids "small metal" 12 7.533
+	asteroids "medium metal" 7 7.128
+	asteroids "large metal" 1 4.05
+	minables gold 7 7.177
+	trade Clothing 219
+	trade Electronics 578
+	trade Equipment 650
+	trade Food 327
+	trade "Heavy Metals" 934
+	trade Industrial 751
+	trade "Luxury Goods" 1313
+	trade Medical 512
+	trade Metal 335
+	trade Plastic 421
+	fleet "Small Syndicate" 8000
+	fleet "Large Core Pirates" 4000
+	fleet "Small Core Pirates" 3000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/gas6-hot
+		distance 836.075
+		period 129.221
+		object
+			sprite planet/luna-b
+			distance 227
+			period 129.282
+	object
+		sprite planet/gas10-hot
+		distance 2381.845
+		period 621.35
+		object
+			sprite planet/ice0
+			distance 234
+			period 135.308
+		object
+			sprite planet/dust1
+			distance 374
+			period 224.95
 
 system Mesuket
 	pos 220.431 -409.812
@@ -23265,8 +23762,66 @@ system Mintaka
 		distance 4566.87
 		period 4209.57
 
+system Mira
+	pos -226 48
+	government Syndicate
+	attributes "core" "giant star" "notable star"
+	habitable 2327.235
+	belt 1166 10
+	belt 2134 6
+	belt 2166 3
+	link Ankaa
+	link Diphda
+	link Schemali
+	link Taygeta
+	asteroids "medium rock" 5 4.733
+	asteroids "large rock" 5 4.154
+	asteroids "medium metal" 1 3.719
+	asteroids "large metal" 1 3.091
+	minables lead 9 5.936
+	trade Clothing 323
+	trade Electronics 642
+	trade Equipment 465
+	trade Food 359
+	trade "Heavy Metals" 763
+	trade Industrial 714
+	trade "Luxury Goods" 1284
+	trade Medical 600
+	trade Metal 277
+	trade Plastic 392
+	fleet "Small Core Merchants" 8000
+	fleet "Large Core Merchants" 2000
+	fleet "Small Syndicate" 2000
+	fleet "Large Syndicate" 4000
+	fleet "Small Core Pirates" 5000
+	object
+		sprite star/m-giant
+		distance 6.656
+		period 93.866
+		offset 180
+	object
+		sprite star/f-dwarf
+		distance 282.184
+		period 93.866
+	object
+		sprite planet/mars-b
+		distance 1037
+		period 276.89
+	object
+		sprite planet/gas5-b
+		distance 1919
+		period 697.031
+		object
+			sprite planet/dust0
+			distance 286
+			period 297.881
+	object
+		sprite planet/gas0
+		distance 3644
+		period 1823.927
+
 system Mirach
-	pos -166 250
+	pos -159 247
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -23274,9 +23829,10 @@ system Mirach
 	belt 1980
 	haze _menu/haze-133
 	link "Al Dhanab"
-	link "Gamma Cassiopeiae"
+	link Sadiradra
 	link Scheat
-	link Schedar
+	link Titawin
+	link Veritate
 	asteroids "small rock" 84 3.4884
 	asteroids "medium rock" 64 3.1518
 	asteroids "large rock" 6 4.0698
@@ -23336,7 +23892,7 @@ system Mirach
 			period 25.0252
 
 system Mirfak
-	pos -187 -128
+	pos -190 -159
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -23456,7 +24012,7 @@ system Mirzam
 			period 12.1447
 
 system Misam
-	pos -9 -80
+	pos -15 -66
 	government Pirate
 	attributes "core" "multi-star" "notable star"
 	arrival 3835
@@ -23700,7 +24256,7 @@ system Mohuwo
 			period 545.3
 
 system Moktar
-	pos -169 -170
+	pos -159 -179
 	government Syndicate
 	attributes "core"
 	arrival 530
@@ -24106,6 +24662,93 @@ system Naper
 			sprite planet/dust5-b
 			distance 286
 			period 23.8403
+
+system Nashira
+	pos -69 322
+	government Pirate
+	arrival 5000
+	habitable 11350
+	belt 1044 5
+	belt 2043 2
+	haze _menu/haze-33
+	link Gienah
+	asteroids "small rock" 34 2.803
+	asteroids "large rock" 3 2.293
+	asteroids "small metal" 11 2.948
+	asteroids "medium metal" 13 2.22
+	asteroids "large metal" 12 1.893
+	minables iron 21 4.7
+	minables copper 12 2.9
+	minables lead 9 3.2
+	minables silicon 9 5.3
+	minables tungsten 13 7
+	fleet "Small Core Pirates" 900
+	fleet "Large Core Pirates" 2300
+	object
+		sprite star/b-giant
+		period 20
+	object
+		sprite planet/rock20
+		distance 2060.42
+		period 351.152
+	object
+		sprite planet/dust7
+		distance 3719
+		period 851.532
+
+system Nembus
+	pos -121 226
+	government Syndicate
+	attributes "core" "giant star" "notable star"
+	habitable 3000
+	belt 1295 2
+	haze _menu/haze-133
+	link Achernar
+	link Almach
+	link Homam
+	link Sadiradra
+	link Schedar
+	asteroids "large metal" 1 1.479
+	trade Clothing 252
+	trade Electronics 672
+	trade Equipment 540
+	trade Food 419
+	trade "Heavy Metals" 804
+	trade Industrial 658
+	trade "Luxury Goods" 1068
+	trade Medical 694
+	trade Metal 261
+	trade Plastic 284
+	fleet "Small Core Pirates" 800
+	fleet "Large Core Pirates" 1800
+	fleet "Large Syndicate" 6000
+	object
+		sprite star/k-giant
+		period 10
+	object
+		sprite planet/rock10
+		distance 714.674
+		period 139.528
+	object
+		sprite planet/gas11-b
+		distance 2230.48
+		period 769.302
+		object
+			sprite planet/rock7-b
+			distance 285
+			period 227.604
+	object
+		sprite planet/rock6-b
+		distance 3657.971
+		period 1615.696
+	object
+		sprite planet/uranus
+		distance 4866.668
+		period 2479.402
+		object
+			sprite planet/dust0-b
+			distance 247
+			period 239.078
 
 system Nenia
 	pos -39.1297 467.242
@@ -24662,7 +25305,7 @@ system O-3184
 		period 7452.58
 
 system Oblate
-	pos -124 -119
+	pos -122 -123
 	government Pirate
 	attributes "core" "giant star" "notable star"
 	arrival 2300
@@ -25873,16 +26516,16 @@ system Perfica
 		period 2668.74
 
 system Persian
-	pos -203 331
+	pos -188 318
 	government Syndicate
 	attributes "core"
 	arrival 3920
 	habitable 3920
 	belt 1308
 	haze _menu/haze-133
-	link Alnair
 	link Gienah
-	link Matar
+	link Marakk
+	link Veritate
 	asteroids "small rock" 6 3.887
 	asteroids "medium rock" 25 8.671
 	asteroids "large rock" 34 4.9634
@@ -26348,6 +26991,62 @@ system Pik'ro'iyak
 		distance 3272.11
 		period 4936.71
 
+system Pleione
+	pos -174 -41
+	government Syndicate
+	attributes "core" "bright star" "multi-star" "notable star"
+	habitable 7507.33
+	belt 1644 7
+	link Electra
+	link Maia
+	link Merope
+	link Taygeta
+	asteroids "small rock" 3 5.897
+	asteroids "medium rock" 2 4.514
+	asteroids "large rock" 5 5.97
+	asteroids "small metal" 12 4.077
+	asteroids "medium metal" 19 3.64
+	asteroids "large metal" 12 5.751
+	minables silver 17 7.177
+	trade Clothing 327
+	trade Electronics 743
+	trade Equipment 662
+	trade Food 158
+	trade "Heavy Metals" 971
+	trade Industrial 833
+	trade "Luxury Goods" 963
+	trade Medical 769
+	trade Metal 396
+	trade Plastic 285
+	fleet "Small Core Merchants" 6000
+	fleet "Large Core Merchants" 8000
+	fleet "Small Syndicate" 4000
+	fleet "Large Syndicate" 6000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 5000
+	object
+		sprite star/b8
+		distance 84.925
+		period 63.518
+	object
+		sprite star/b5
+		distance 86.686
+		period 63.518
+		offset 180
+	object
+		sprite planet/gas9-hot
+		distance 1303.559
+		period 217.277
+		object
+			sprite planet/rock0-b
+			distance 286
+			period 182.831
+	object
+		sprite planet/gas8-hot
+		distance 2887
+		period 716.123
+
 system Plort
 	pos -708.587 723.051
 	government Coalition
@@ -26413,7 +27112,7 @@ system Plort
 			period 17.2667
 
 system Polaris
-	pos -35 126
+	pos -67 126
 	government Syndicate
 	attributes "core"
 	arrival 1715
@@ -28310,7 +29009,7 @@ system Rouseu
 		offset 1332
 
 system Ruchbah
-	pos -174 69
+	pos -171 65
 	government Syndicate
 	attributes "core"
 	arrival 2560
@@ -28679,6 +29378,68 @@ system Sadalsuud
 		distance 4591.9
 		period 3268.62
 
+system Sadiradra
+	pos -115 270
+	government Syndicate
+	attributes "core" "multi-star" "notable star"
+	habitable 3456.23
+	belt 1532 5
+	link "Gamma Cassiopeiae"
+	link Mirach
+	link Nembus
+	link Titawin
+	asteroids "small rock" 3 1.387
+	asteroids "medium rock" 5 1.714
+	asteroids "large rock" 3 1.612
+	asteroids "medium metal" 2 1.367
+	asteroids "large metal" 2 1.04
+	trade Clothing 252
+	trade Electronics 672
+	trade Equipment 540
+	trade Food 419
+	trade "Heavy Metals" 804
+	trade Industrial 658
+	trade "Luxury Goods" 1068
+	trade Medical 694
+	trade Metal 261
+	trade Plastic 284
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2000
+	fleet "Large Syndicate" 5000
+	object
+		sprite star/f5-old
+		distance 9.97
+		period 63.523
+	object
+		sprite star/k5
+		distance 128.598
+		period 63.523
+		offset 180
+	object
+		sprite planet/dust7-b
+		distance 719
+		period 131.175
+	object
+		sprite planet/gas4
+		distance 3654
+		period 1502.836
+		object
+			sprite "planet/yniu ena"
+			distance 264
+			period 162.146
+		object
+			sprite planet/dust5-b
+			distance 433
+			period 235.803
+	object
+		sprite planet/gas12
+		distance 4739
+		period 2219.672
+		object
+			sprite planet/io
+			distance 304
+			period 200.36
+
 system Sadr
 	pos -287 543
 	government Republic
@@ -28888,6 +29649,64 @@ system Salipastart
 			distance 291
 			period 21.2086
 
+system Salm
+	pos -195 169
+	government Syndicate
+	attributes "bright star" "core" "notable star"
+	habitable 3400
+	belt 1532 9
+	link Homam
+	asteroids "small rock" 4 5.82
+	asteroids "medium rock" 6 5.88
+	asteroids "large rock" 2 5.4
+	asteroids "small metal" 19 3
+	asteroids "medium metal" 8 3.3
+	asteroids "large metal" 2 4.08
+	minables uranium 1 9.148
+	minables aluminum 2 7.759
+	minables iron 11 9.848
+	trade Clothing 252
+	trade Electronics 672
+	trade Equipment 540
+	trade Food 419
+	trade "Heavy Metals" 804
+	trade Industrial 658
+	trade "Luxury Goods" 1068
+	trade Medical 694
+	trade Metal 261
+	trade Plastic 284
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Small Syndicate" 4000
+	fleet "Large Syndicate" 5000
+	object
+		sprite star/a3
+		period 10
+	object
+		sprite planet/gas14-b
+		distance 2218.984
+		period 717.054
+		object
+			sprite planet/ice7
+			distance 263
+			period 111.622
+	object
+		sprite planet/gas7
+		distance 4056.016
+		period 1772.026
+		object
+			sprite planet/ice7-b
+			distance 300
+			period 135.988
+		object
+			sprite planet/ice8
+			distance 447
+			period 357.241
+	object
+		sprite planet/gas17
+		distance 5667
+		period 2926.512
+
 system Saquergen
 	pos -482 561
 	government Uninhabited
@@ -29082,7 +29901,7 @@ system Sayaiban
 		period 536.924
 
 system Scheat
-	pos -205 233
+	pos -198 230
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -29092,7 +29911,6 @@ system Scheat
 	link "Al Dhanab"
 	link "Delta Capricorni"
 	link Markab
-	link Matar
 	link Mirach
 	asteroids "large metal" 1 5.0547
 	trade Clothing 279
@@ -29142,7 +29960,7 @@ system Scheat
 			period 13.1034
 
 system Schedar
-	pos -93 229
+	pos -79 187
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -29150,8 +29968,7 @@ system Schedar
 	belt 1903
 	haze _menu/haze-133
 	link Achernar
-	link Almach
-	link Mirach
+	link Nembus
 	asteroids "small rock" 10 1.736
 	asteroids "medium rock" 2 0.896
 	asteroids "large rock" 3 1.148
@@ -29210,6 +30027,64 @@ system Schedar
 			sprite planet/rock7-b
 			distance 298
 			period 25.3563
+
+system Schemali
+	pos -262 99
+	government Syndicate
+	attributes "core" "giant star" "notable star"
+	habitable 3000
+	belt 1509 6
+	link Algenudi
+	link Ankaa
+	link Diphda
+	link Mira
+	asteroids "small rock" 12 2.094
+	asteroids "medium rock" 36 2.203
+	asteroids "large rock" 13 1.768
+	asteroids "small metal" 77 2.666
+	asteroids "medium metal" 104 1.605
+	asteroids "large metal" 14 1.469
+	minables tungsten 16 3.958
+	minables titanium 6 3.399
+	trade Clothing 205
+	trade Electronics 751
+	trade Equipment 567
+	trade Food 240
+	trade "Heavy Metals" 694
+	trade Industrial 759
+	trade "Luxury Goods" 1072
+	trade Medical 713
+	trade Metal 340
+	trade Plastic 293
+	fleet "Small Core Merchants" 3000
+	fleet "Large Core Merchants" 6000
+	fleet "Small Syndicate" 2400
+	fleet "Large Syndicate" 4000
+	fleet "Small Core Pirates" 3500
+	fleet "Human Miners" 2000
+	object
+		sprite star/k-giant
+		period 10
+	object
+		sprite planet/rock10-b
+		distance 492
+		period 79.698
+	object
+		sprite planet/gas17
+		distance 1951
+		period 629.34
+		object
+			sprite planet/rock14
+			distance 241
+			period 97.914
+	object
+		sprite planet/ice7-b
+		distance 3785
+		period 1700.584
+	object
+		sprite planet/gas12
+		distance 4512
+		period 2213.365
 
 system Scija
 	pos 651.5 -586
@@ -29777,7 +30652,7 @@ system Shaula
 			period 22.0718
 
 system Sheratan
-	pos -40 45
+	pos -87 34
 	government Syndicate
 	attributes "core"
 	arrival 2085
@@ -30551,9 +31426,9 @@ system Sol
 	haze _menu/haze-67
 	link "Alpha Centauri"
 	link Altair
-	link Caph
 	link Denebola
 	link Sirius
+	link "Tau Ceti"
 	link Vega
 	asteroids "small rock" 30 2.691
 	asteroids "large rock" 50 5.0508
@@ -31811,6 +32686,115 @@ system Tarazed
 			distance 228
 			period 16.9693
 
+system "Tau Ceti"
+	pos -341 86
+	government Republic
+	attributes "near earth"
+	habitable 550
+	belt 1873 5
+	belt 2041 10
+	belt 2534 3
+	link Caph
+	link Sol
+	asteroids "medium rock" 52 5.502
+	asteroids "large rock" 1 4.664
+	asteroids "small metal" 15 3.708
+	asteroids "large metal" 50 5.741
+	asteroids "small rock" 401 1.411
+	minables lead 7 10.671
+	minables titanium 6 9.984
+	minables iron 24 9.608
+	trade Clothing 292
+	trade Electronics 753
+	trade Equipment 504
+	trade Food 512
+	trade "Heavy Metals" 852
+	trade Industrial 643
+	trade "Luxury Goods" 1259
+	trade Medical 535
+	trade Metal 341
+	trade Plastic 280
+	fleet "Small Northern Merchants" 300
+	fleet "Large Northern Merchants" 500
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 3000
+	fleet "Republic Logistics" 2000
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 2000
+	fleet "Human Miners" 1000
+	object
+		sprite star/g8
+		period 10
+	object
+		sprite planet/venus
+		distance 289
+		period 83.796
+	object
+		sprite planet/dust2
+		distance 937
+		period 489.202
+	object
+		sprite planet/gas3-b
+		distance 1841
+		period 1347.285
+	object
+		sprite planet/gas10-hot
+		distance 2758
+		period 2470.416
+
+system Taygeta
+	pos -222 -6
+	government Syndicate
+	attributes "bright star" "core" "notable star"
+	habitable 5600
+	belt 1573 5
+	link Mira
+	link Pleione
+	asteroids "large metal" 1 1.078
+	trade Clothing 323
+	trade Electronics 642
+	trade Equipment 465
+	trade Food 359
+	trade "Heavy Metals" 763
+	trade Industrial 714
+	trade "Luxury Goods" 1284
+	trade Medical 600
+	trade Metal 277
+	trade Plastic 392
+	fleet "Small Core Merchants" 8000
+	fleet "Large Core Merchants" 12000
+	fleet "Small Syndicate" 4000
+	fleet "Large Syndicate" 6000
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 6000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/rock10-b
+		distance 568
+		period 72.358
+		object
+			sprite planet/rock7-b
+			distance 175
+			period 109.514
+	object
+		sprite planet/gas6-b
+		distance 1549
+		period 325.869
+		object
+			sprite planet/callisto
+			distance 263
+			period 111.622
+	object
+		sprite planet/gas17
+		distance 3199
+		period 967.136
+	object
+		sprite planet/gas14-b
+		distance 4311
+		period 1512.979
+
 system Tebuteb
 	pos -615.587 710.051
 	government Coalition
@@ -32145,6 +33129,80 @@ system Thuban
 		distance 100
 		period 50
 		offset 180
+
+system Titawin
+	pos -138 293
+	government Syndicate
+	attributes "core" "multi-star" "notable star"
+	habitable 1330.038
+	belt 1995 6
+	link Gienah
+	link Mirach
+	link Sadiradra
+	asteroids "small rock" 41 5.737
+	asteroids "medium rock" 53 6.345
+	asteroids "large rock" 24 3.375
+	asteroids "medium metal" 26 5.603
+	asteroids "large metal" 1 5.062
+	minables titanium 7 8.337
+	trade Clothing 252
+	trade Electronics 672
+	trade Equipment 540
+	trade Food 419
+	trade "Heavy Metals" 804
+	trade Industrial 658
+	trade "Luxury Goods" 1068
+	trade Medical 694
+	trade Metal 261
+	trade Plastic 284
+	fleet "Small Core Pirates" 800
+	fleet "Large Core Pirates" 1800
+	fleet "Large Syndicate" 6000
+	object
+		sprite star/f8
+		distance 101.714
+		period 47.905
+	object
+		sprite star/m3
+		distance 50.286
+		period 47.905
+		offset 180
+	object
+		sprite planet/europa-b
+		distance 686
+		period 197.067
+	object
+		sprite planet/cloud4
+		distance 1051
+		period 373.708
+	object
+		sprite planet/gas5-b
+		distance 2361
+		period 1258.265
+		object
+			sprite planet/dust4-b
+			distance 263
+			period 132.652
+		object
+			sprite planet/luna
+			distance 431
+			period 338.233
+	object
+		sprite planet/gas9-b
+		distance 3456
+		period 2228.377
+		object
+			sprite planet/lava0-b
+			distance 273
+			period 118.049
+	object
+		sprite planet/gas5
+		distance 8284
+		period 8269.67
+		object
+			sprite planet/dust4
+			distance 297
+			period 159.189
 
 system Torbab
 	pos -949.587 490.051
@@ -33231,6 +34289,52 @@ system Vanguwo
 		distance 7325
 		period 3940.43
 
+system "Van Maanen's Star"
+	pos -312 116
+	government Republic
+	attributes "near earth"
+	habitable 355
+	belt 1021
+	link Altair
+	link Fomalhaut
+	asteroids "medium metal" 14 3.293
+	asteroids "large metal" 6 3.158
+	minables tungsten 2 3.049
+	minables lead 13 2.892
+	trade Clothing 336
+	trade Electronics 735
+	trade Equipment 401
+	trade Food 527
+	trade "Heavy Metals" 713
+	trade Industrial 626
+	trade "Luxury Goods" 1047
+	trade Medical 531
+	trade Metal 285
+	trade Plastic 267
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 1200
+	fleet "Small Northern Merchants" 300
+	fleet "Large Northern Merchants" 500
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 3000
+	fleet "Republic Logistics" 3000
+	fleet "Human Miners" 2000
+	object
+		sprite star/f-dwarf
+		period 10
+	object
+		sprite planet/dust2
+		distance 2031.608
+		period 1944.042
+	object
+		sprite planet/rhea
+		distance 3115.477
+		period 3691.753
+	object
+		sprite planet/gas1-b
+		distance 4406.953
+		period 6210.884
+
 system Vaticanus
 	pos 324 112
 	government Uninhabited
@@ -33351,6 +34455,73 @@ system Vega
 		sprite planet/gas8
 		distance 2981.84
 		period 1710.41
+
+system Veritate
+	pos -222 282
+	government Syndicate
+	attributes "core" "giant star" "notable star"
+	habitable 3000
+	belt 1654 5
+	link Alderamin
+	link Alnair
+	link Matar
+	link Mirach
+	link Persian
+	asteroids "small rock" 5 3.828
+	asteroids "medium rock" 5 6.27
+	asteroids "large rock" 5 3.696
+	asteroids "small metal" 35 4.422
+	asteroids "medium metal" 49 6.336
+	asteroids "large metal" 14 3.366
+	minables silver 5 8.926
+	minables lead 5 9.6
+	trade Clothing 223
+	trade Electronics 686
+	trade Equipment 433
+	trade Food 453
+	trade "Heavy Metals" 823
+	trade Industrial 609
+	trade "Luxury Goods" 937
+	trade Medical 641
+	trade Metal 209
+	trade Plastic 407
+	fleet "Small Core Merchants" 2500
+	fleet "Large Core Merchants" 3500
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Small Syndicate" 3000
+	fleet "Large Syndicate" 6000
+	object
+		sprite star/k-giant
+		period 10
+	object
+		sprite planet/lava6-b
+		distance 1140
+		period 281.097
+	object
+		sprite planet/gas10-b
+		distance 2413
+		period 865.636
+	object
+		sprite planet/jupiter-b
+		distance 3314
+		period 1393.247
+	object
+		sprite planet/tethys
+		distance 4256
+		period 2027.691
+	object
+		sprite planet/gas13
+		distance 13396
+		period 11323.015
+		object
+			sprite planet/dust7-b
+			distance 272
+			period 169.572
+		object
+			sprite planet/oberon-b
+			distance 389
+			period 472.518
 
 system Vesvii
 	pos 792.58 -432.88
@@ -34791,15 +35962,16 @@ system Yranjiu
 		period 838.444
 
 system Zaurak
-	pos -109 -34
+	pos -121 -31
 	government Syndicate
 	attributes "core"
 	arrival 625
 	habitable 625
 	belt 1130
 	haze _menu/haze-133
-	link Alcyone
-	link Menkar
+	link Asterope
+	link Atlas
+	link Electra
 	link Sheratan
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
