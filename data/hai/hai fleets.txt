@@ -468,7 +468,7 @@ fleet "Large Hai Merchant (Sympathizers)"
 
 fleet "Small Hai Merchant (Human)"
 	government "Hai Merchant (Human)"
-	names "hai"
+	names "hai (human)"
 	cargo 3
 	personality
 		confusion 25
@@ -521,7 +521,7 @@ fleet "Small Hai Merchant (Human)"
 
 fleet "Large Hai Merchant (Human)"
 	government "Hai Merchant (Human)"
-	names "hai"
+	names "hai (human)"
 	cargo 4
 	personality
 		confusion 25
