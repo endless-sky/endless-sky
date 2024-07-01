@@ -180,3 +180,57 @@ phrase "gegno united"
 		"Dueyoh"
 		"Uuftei"
 		"Ootyff"
+
+
+# Untranslated Hails.
+
+phrase "gegno untranslated"
+	word
+		"Dudyei deiar tii cie dueyu."
+		"Udiyh tei tdiser, yye dudyei."
+		"Yye dudyei tei piyepuo."
+		"Tii duieml emm taei ooutei."
+		"Yye dudyei udiei tii ayyr dueyu."
+		"Tii keiou uf Oukeug."
+		"Oukeug keiou uf teim."
+		"Tii ayyr eno Gegno."
+		"Vytii ayyr eisktici uf tii."
+		"Scienn ayyr eisktici uf tii."
+
+
+# Mining job dialog.
+
+phrase "gegno mining payment dialog"
+	word
+		"Following a small debate,"
+		"After you depart from your ship,"
+		"Almost absent-mindedly,"
+		"Without paying you the slightest attention,"
+		"With only a noncommittal grunt,"
+	word
+		" "
+	word
+		"a few bulky Gegno"
+		"a group of irritated Gegno"
+		"some unenthused Gegno workers"
+		"a large group of Gegno"
+		"a couple of hulking Gegno"
+	word
+		" "
+	word
+		"hesitantly"
+		"quickly"
+		"slowly"
+		"easily"
+		"haphazardly"
+	word
+		" "
+	word
+		"unload your ship of materials,"
+		"unload the materials out of your cargo bay,"
+		"haul the materials out of your ship,"
+		"unpack the materials from your cargo hold,"
+	word
+		" "
+	word
+		"and you are paid <payment>."
