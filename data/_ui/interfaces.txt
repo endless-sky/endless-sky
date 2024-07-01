@@ -197,8 +197,10 @@ color "map danger none" .1 .6 0. .4
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
 
-# Color of warning message when users enable or disable plugins via in-game UI.
+# Colors used in the plugin panel
 color "plugin reload required" .75 .1 .1 0.
+color "plugin outdated" .75 .75 0. 0.
+color "plugin removed" .7 .1 .0 0.
 
 
 
@@ -481,6 +483,11 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	button l "_Library"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	visible if "multiple controls pages"
 	sprite "ui/dialog cancel"
 		center -115 210
@@ -514,6 +521,11 @@ interface "settings"
 		dimensions 90 30
 		color medium
 		hover bright
+	button l "_Library"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	visible if "multiple settings pages"
 	sprite "ui/dialog cancel"
 		center -115 210
@@ -527,7 +539,6 @@ interface "settings"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-	
 
 
 
@@ -548,8 +559,16 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	button l "_Library"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	button o "_Open Plugins"
 		center -195 210
+		dimensions 120 30
+	button u "_Uninstall"
+		center -65 210
 		dimensions 120 30
 	visible if "show plugins changed"
 	label "Restart to apply changes"
@@ -568,6 +587,63 @@ interface "plugins"
 		from -250 -216 to -10 184
 	box "plugin description"
 		from 250 -244 to 10 184
+
+
+
+interface "install plugins"
+	sprite "ui/install plugins panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	button l "_Library"
+		center -300 -110
+		dimensions 90 30
+		color bright
+
+	active if "next install plugin"
+	button e "n_ext>"
+		center -30 170
+		dimensions 120 30
+	active if "previous install plugin"
+	button r "<p_revious"
+		center -215 170
+		dimensions 120 30
+
+	visible if "!can update"
+	active if "can install"
+	button i "_Install"
+		center -195 210
+		dimensions 120 30
+
+	visible if "can update"
+	active if "can update"
+	button u "_Update"
+		center -195 210
+		dimensions 120 30
+
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
+	label "Installable Plugins:"
+		from -225 -236
+		align top left
+		color bright
 
 
 

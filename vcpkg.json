@@ -28,13 +28,32 @@
           ],
           "platform": "linux"
         },
-        "sdl2"
+        "sdl2",
+        {
+          "name": "sdl2",
+          "features": [
+            "x11",
+            "wayland"
+          ],
+          "platform": "linux"
+        },
+        "curl",
+        {
+          "name": "libarchive",
+          "default-features": false
+        },
+        "nlohmann-json"
       ]
     },
     "steam-libs": {
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
-        "libmad"
+        "libmad",
+        "nlohmann-json",
+        {
+          "name": "libarchive",
+          "default-features": false
+        }
       ]
     }
   }

@@ -350,6 +350,20 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 
 
 
+// Add a sprite to the queue.
+void GameData::RequestSpriteLoad(TaskQueue &queue, const std::string &path, const std::string &name)
+{
+	auto image = make_shared<ImageSet>(name);
+	image->Add(path);
+	if(!image->IsEmpty())
+	{
+		image->ValidateFrames();
+		LoadSprite(queue, image);
+	}
+}
+
+
+
 // Get the list of resource sources (i.e. plugin folders).
 const vector<string> &GameData::Sources()
 {

@@ -88,6 +88,9 @@ public:
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
 	static void Preload(TaskQueue &queue, const Sprite *sprite);
+	// Add a sprite to the queue.
+	static void RequestSpriteLoad(TaskQueue &queue, const std::string &path, const std::string &name);
+
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();

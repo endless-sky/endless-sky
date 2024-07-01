@@ -18,14 +18,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
+#include "Command.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "ImageBuffer.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Preferences.h"
@@ -43,6 +46,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include <cstdio>
+#include <fstream>
+#include <thread>
+#include <utility>
+
+#include "Logger.h"
 
 using namespace std;
 
@@ -84,8 +93,15 @@ namespace {
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
 	const int SETTINGS_PAGE_COUNT = 2;
+
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+
+	// The url to the plugins-list.
+	const string PLUGIN_LIST_URL =
+		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json";
+
+	const size_t MAX_PLUGIN_INSTALLS_PER_PAGE = 18;
 }
 
 
@@ -154,14 +170,33 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous settings");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
+	if(latestPlugin)
+	{
+		if(latestPlugin->installed)
+			info.SetCondition("installed plugin");
+		if(!latestPlugin->installed)
+			info.SetCondition("can install");
+		if(latestPlugin->outdated && latestPlugin->installed)
+			info.SetCondition("can update");
+	}
+	if(currentPluginInstallPage > 0)
+		info.SetCondition("previous install plugin");
+	if(currentPluginInstallPage < pluginInstallPages - 1)
+		info.SetCondition("next install plugin");
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	string pageName = (page == 'c' ? "controls" :
+		(page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins"));
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
+
+	if(Plugins::IsInBackground())
+		SpriteShader::Draw(SpriteSet::Get("ui/downloading"), Screen::TopLeft() + Point(30., 30.));
 
 	zones.clear();
 	prefZones.clear();
 	pluginZones.clear();
+	pluginInstallZones.clear();
 	if(page == 'c')
 	{
 		DrawControls();
@@ -174,6 +209,15 @@ void PreferencesPanel::Draw()
 	}
 	else if(page == 'p')
 		DrawPlugins();
+	else if(page == 'i')
+		DrawPluginInstalls();
+}
+
+
+
+void PreferencesPanel::Step()
+{
+	queue.ProcessSyncTasks();
 }
 
 
@@ -212,6 +256,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
+	else if(key == 'u' && page == 'p')
+		Plugins::DeletePlugin(selectedPlugin);
 	else if((key == 'n' || key == SDLK_PAGEUP)
 		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
 		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
@@ -237,6 +283,39 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(key == 'l')
+	{
+		page = 'i';
+		if(!downloadedInfo)
+		{
+			ProcessPluginIndex();
+			while(!downloadedInfo)
+				std::this_thread::sleep_for(200ms);
+		}
+
+		if(!pluginInstallData.empty())
+			RenderPluginDescription(SpriteSet::Get(pluginInstallData.front().name + "-libicon"),
+				pluginInstallData.front().aboutText);
+	}
+	else if(key == 'i' && page == 'i' && latestPlugin && latestPlugin->url.size()
+		&& !latestPlugin->installed)
+		installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+	else if(key == 'u' && page == 'i' && latestPlugin && latestPlugin->url.size()
+		&& latestPlugin->outdated)
+		installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
+	else if(key == 'r' && page == 'i')
+	{
+		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
+		selected = 0;
+		selecPluginInstall = nullptr;
+	}
+	else if(key == 'e' && page == 'i')
+	{
+		currentPluginInstallPage = ((currentPluginInstallPage < pluginInstallPages - 1) ?
+			currentPluginInstallPage + 1 : pluginInstallPages - 1);
+		selected = 0;
+		selecPluginInstall = nullptr;
 	}
 	else
 		return false;
@@ -291,6 +370,14 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		}
 	}
 
+	for(const auto &zone : pluginInstallZones)
+		if(zone.Contains(point))
+		{
+			clickedPluginInstall = zone.Value();
+			RenderPluginDescription(SpriteSet::Get(clickedPluginInstall->name + "-libicon"), clickedPluginInstall->aboutText);
+			break;
+		}
+
 	return true;
 }
 
@@ -315,6 +402,10 @@ bool PreferencesPanel::Hover(int x, int y)
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
 			hoverItem = zone.Value();
+
+	for(const auto &zone : pluginInstallZones)
+		if(zone.Contains(hoverPoint))
+			hoverPluginInstall = zone.Value();
 
 	return true;
 }
@@ -364,13 +455,13 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		}
 		return true;
 	}
-	else if(page == 'p')
+	else if(page == 'p' || page == 'i')
 	{
-		auto ui = GameData::Interfaces().Get("plugins");
+		const Interface *ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
-		if(pluginBox.Contains(hoverPoint))
+		if(page != 'i' && pluginBox.Contains(hoverPoint))
 		{
 			pluginListScroll.Scroll(-dy * Preferences::ScrollSpeed());
 			return true;
@@ -388,13 +479,13 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 bool PreferencesPanel::Drag(double dx, double dy)
 {
-	if(page == 'p')
+	if(page == 'p' || page == 'i')
 	{
 		auto ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
-		if(pluginBox.Contains(hoverPoint))
+		if(page == 'p' && pluginBox.Contains(hoverPoint))
 		{
 			// Steps is zero so that we don't animate mouse drags.
 			pluginListScroll.Scroll(-dy, 0);
@@ -933,6 +1024,7 @@ void PreferencesPanel::DrawPlugins()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &removed = *GameData::Colors().Get("plugin removed");
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
@@ -974,12 +1066,18 @@ void PreferencesPanel::DrawPlugins()
 
 		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
+
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
-		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
-		if(isSelected)
+		if(!displayed)
+			continue;
+
+		AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
+
+		if(plugin.removed)
+			table.Draw(plugin.name, removed);
+		else if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
 			table.Draw(plugin.name, plugin.enabled ? medium : dim);
@@ -1050,12 +1148,123 @@ void PreferencesPanel::DrawPlugins()
 
 
 
+void PreferencesPanel::DrawPluginInstalls()
+{
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &outdated = *GameData::Colors().Get("plugin outdated");
+
+	const int MAX_TEXT_WIDTH = 230;
+	Table table;
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
+	table.SetUnderline(-120, 100);
+
+	int firstY = -238;
+	table.DrawAt(Point(-110, firstY));
+	table.DrawUnderline(medium);
+	table.DrawGap(25);
+
+	const Font &font = FontSet::Get(14);
+
+	if(selecPluginInstall != oldSelecPluginInstall)
+		latestPlugin = selecPluginInstall;
+	if(clickedPluginInstall != oldClickedPluginInstall)
+		latestPlugin = clickedPluginInstall;
+
+	oldSelecPluginInstall = selecPluginInstall;
+	oldClickedPluginInstall = clickedPluginInstall;
+
+	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
+	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
+	for(int x = currentPageIndex; x < maxIndex; x++)
+	{
+		Plugins::InstallData &installData = pluginInstallData.at(x);
+		if(installData.name.empty())
+			continue;
+
+		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
+
+		// Use url as that is more unique, just in case.
+		bool isHover = (hoverPluginInstall ? installData.url == hoverPluginInstall->url : false);
+		bool isClick = (clickedPluginInstall ? installData.url == clickedPluginInstall->url : false);
+		bool isSelec = (selecPluginInstall ? installData.url == selecPluginInstall->url : false);
+		bool isLatest = (latestPlugin ? installData.url == latestPlugin->url : false);
+		if(isHover || isClick)
+			table.DrawHighlight(back);
+		else if(isSelec)
+		{
+			table.SetHighlight(-120, font.Width(selecPluginInstall->name) - 100);
+			table.DrawHighlight(back);
+			table.SetHighlight(-120, 100);
+		}
+
+		if(installData.installed && installData.outdated)
+			table.Draw(installData.name, outdated);
+		else if(installData.installed)
+			table.Draw(installData.name, dim);
+		else if(isLatest)
+			table.Draw(installData.name, bright);
+		else
+			table.Draw(installData.name, medium);
+	}
+
+	if(!selecPluginInstall && !pluginInstallZones.empty())
+		selecPluginInstall = pluginInstallZones.at(0).Value();
+
+
+	const Point UP{0, -1};
+	const Point DOWN{0, 1};
+	const Point POINTER_OFFSET{0, 5};
+	if(pluginDescriptionBuffer)
+	{
+		pluginDescriptionScroll.Step();
+
+		pluginDescriptionBuffer->SetFadePadding(
+			pluginDescriptionScroll.IsScrollAtMin() ? 0 : 20,
+			pluginDescriptionScroll.IsScrollAtMax() ? 0 : 20
+		);
+
+		const Interface *pluginUI = GameData::Interfaces().Get("plugins");
+		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
+		pluginDescriptionBuffer->Draw(
+			descriptionBox.Center(),
+			descriptionBox.Dimensions(),
+			Point(0, static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
+		);
+
+		if(pluginDescriptionScroll.Scrollable())
+		{
+			// Draw up and down pointers, mostly to indicate when
+			// scrolling is possible, but might as well make them
+			// clickable too.
+			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+			PointerShader::Draw(topRight.Center(), UP,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
+
+			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
+			PointerShader::Draw(bottomRight.Center(), DOWN,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
+		}
+	}
+}
+
+
+
 // Render the named plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
 {
+	static const string EMPTY = "(No description given.)";
+
 	const Plugin *plugin = Plugins::Get().Find(pluginName);
 	if(plugin)
-		RenderPluginDescription(*plugin);
+	{
+		const Sprite *sprite = SpriteSet::Get(plugin->name);
+		RenderPluginDescription(sprite, plugin->aboutText.empty() ? EMPTY : plugin->CreateDescription());
+	}
 	else
 		pluginDescriptionBuffer.reset();
 }
@@ -1063,7 +1272,7 @@ void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
 
 
 // Render the plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
+void PreferencesPanel::RenderPluginDescription(const Sprite *sprite, const std::string &description)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
@@ -1074,15 +1283,18 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	pluginDescriptionScroll.Set(0, 0);
 
 	// Compute the height before drawing, so that we know the scroll bounds.
-	const Sprite *sprite = SpriteSet::Get(plugin.name);
 	int descriptionHeight = 0;
+	float zoom = 1.f;
 	if(sprite)
-		descriptionHeight += sprite->Height() + 10;
+	{
+		if(sprite->Width() > box.Width())
+			zoom = box.Width() / sprite->Width();
+		descriptionHeight += sprite->Height() * zoom + 10;
+	}
 
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
-	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
+	wrap.Wrap(description);
 
 	descriptionHeight += wrap.Height();
 
@@ -1099,7 +1311,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	if(sprite)
 	{
 		Point center(0., top.Y() + .5 * sprite->Height());
-		SpriteShader::Draw(sprite, center);
+		SpriteShader::Draw(sprite, center, zoom);
 		top.Y() += sprite->Height() + 10.;
 	}
 
@@ -1261,6 +1473,11 @@ void PreferencesPanel::HandleUp()
 		RenderPluginDescription(selectedPlugin);
 		ScrollSelectedPlugin();
 		break;
+	case 'i':
+		selecPluginInstall = pluginInstallZones.at(selected).Value();
+		RenderPluginDescription(SpriteSet::Get(selecPluginInstall->name + "-libicon"), selecPluginInstall->aboutText);
+		ScrollSelectedPlugin();
+		break;
 	default:
 		break;
 	}
@@ -1286,6 +1503,12 @@ void PreferencesPanel::HandleDown()
 		RenderPluginDescription(selectedPlugin);
 		ScrollSelectedPlugin();
 		break;
+	case 'i':
+		selected = min(selected + 1, static_cast<int>(pluginInstallZones.size() - 1));
+		selecPluginInstall = pluginInstallZones.at(selected).Value();
+		RenderPluginDescription(SpriteSet::Get(selecPluginInstall->name + "-libicon"), selecPluginInstall->aboutText);
+		ScrollSelectedPlugin();
+		break;
 	default:
 		break;
 	}
@@ -1306,9 +1529,59 @@ void PreferencesPanel::HandleConfirm()
 	case 'p':
 		Plugins::TogglePlugin(selectedPlugin);
 		break;
+	case 'i':
+		if(latestPlugin && latestPlugin->url.size() && !latestPlugin->installed)
+			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+		else if(latestPlugin && latestPlugin->url.size() && latestPlugin->outdated)
+			installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
+		break;
 	default:
 		break;
 	}
+}
+
+
+
+void PreferencesPanel::ProcessPluginIndex()
+{
+	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> void {
+		GetUI()->Push(new Dialog("Downloading plugin index, please wait."));
+		if(!Plugins::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json"))
+		{
+			GetUI()->Pop(GetUI()->Top().get());
+			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex,
+				"Failed to download plugin index, try again?"));
+			return;
+		}
+		ifstream pluginlistFile(Files::Config() + "plugins.json");
+		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
+		pluginInstallPages = ceil(static_cast<float>(pluginInstallList.size())
+			/ static_cast<float>(MAX_PLUGIN_INSTALLS_PER_PAGE));
+		for(const auto &pluginInstall : pluginInstallList)
+		{
+			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
+			bool isInstalled = installedVersion && !installedVersion->removed;
+			string pluginName = pluginInstall["name"];
+			Plugins::InstallData installData(
+				pluginName,
+				pluginInstall["url"],
+				pluginInstall["version"],
+				pluginInstall["description"],
+				isInstalled,
+				isInstalled && installedVersion->version != pluginInstall["version"]
+			);
+			pluginInstallData.emplace_back(installData);
+
+			Files::CreateFolder(Files::Config() + "icons/");
+			string iconPath = Files::Config() + "icons/" + pluginName + ".png";
+			if(!Files::Exists(iconPath) && pluginInstall.contains("iconUrl"))
+				Plugins::Download(pluginInstall["iconUrl"], iconPath);
+			if(Files::Exists(iconPath))
+				GameData::RequestSpriteLoad(queue, iconPath, pluginName + "-libicon");
+		}
+		downloadedInfo = true;
+		GetUI()->Pop(GetUI()->Top().get());
+	}));
 }
 
 
