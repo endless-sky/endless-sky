@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Paragraphs.h"
 #include "Port.h"
-#include "RandomStock.h"
 #include "Sale.h"
 
 #include <list>
@@ -32,6 +31,7 @@ class Fleet;
 class Government;
 class Outfit;
 class PlayerInfo;
+template <typename Item> class RandomStock;
 class Ship;
 class Sprite;
 class System;

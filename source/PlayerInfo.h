@@ -313,9 +313,9 @@ public:
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
-	const std::map<const Outfit*, int> &GetStock() const;
-	int Stock(const Outfit *outfit) const;
-	void AddStock(const Outfit *outfit, int count);
+	const std::map<const Outfit*, int> &GetOutfitStock() const;
+	int OutfitStock(const Outfit *outfit) const;
+	void AddOutfitStock(const Outfit *outfit, int count);
 	// Get depreciation information.
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
@@ -446,7 +446,7 @@ private:
 
 	std::set<const Outfit *> selectedWeapons;
 
-	std::map<const Outfit *, int> stock;
+	std::map<const Outfit *, int> outfitStock;
 	std::map<const Ship *, int> shipStock;
 	Depreciation depreciation;
 	Depreciation stockDepreciation;

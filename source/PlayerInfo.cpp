@@ -304,11 +304,12 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
+		// This node is called "stock" and not "outfit stock" for backwards compatibility.
 		else if(child.Token(0) == "stock")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+					outfitStock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
 		else if(child.Token(0) == "ship stock")
 		{
@@ -1193,7 +1194,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 
 		depreciation.Buy(*model, day, &stockDepreciation);
 		for(const auto &it : model->Outfits())
-			stock[it.first] -= it.second;
+			outfitStock[it.first] -= it.second;
 
 		if(ships.back()->HasBays())
 			displayCarrierHelp = true;
@@ -1248,7 +1249,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 			else
 			{
 				for(const auto &it : selected->Outfits())
-					stock[it.first] += it.second;
+					outfitStock[it.first] += it.second;
 			}
 
 			accounts.AddCredits(cost);
@@ -1282,7 +1283,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 						if(outfit != model->Outfits().end())
 							amountToTake = max(it.second, outfit->second);
 					}
-					stock[it.first] += it.second - amountToTake;
+					outfitStock[it.first] += it.second - amountToTake;
 				}
 			ForgetGiftedShip(*it->get(), false);
 			ships.erase(it);
@@ -1590,7 +1591,7 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 
-	// Create whatever missions this planet has to offer.
+	// Create whatever missions and stock this planet has to offer.
 	if(!freshlyLoaded)
 	{
 		CreateMissions();
@@ -1655,7 +1656,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
-	stock.clear();
+	outfitStock.clear();
 	shipStock.clear();
 
 	// Special persons who appeared last time you left the planet, can appear again.
@@ -2851,31 +2852,31 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
-const map<const Outfit *, int> &PlayerInfo::GetStock() const
+const map<const Outfit *, int> &PlayerInfo::GetOutfitStock() const
 {
-	return stock;
+	return outfitStock;
 }
 
 
 
-int PlayerInfo::Stock(const Outfit *outfit) const
+int PlayerInfo::OutfitStock(const Outfit *outfit) const
 {
-	auto it = stock.find(outfit);
-	return (it == stock.end() ? 0 : it->second);
+	auto it = outfitStock.find(outfit);
+	return (it == outfitStock.end() ? 0 : it->second);
 }
 
 
 
 // Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, int count)
+void PlayerInfo::AddOutfitStock(const Outfit *outfit, int count)
 {
 	// If you sell an individual outfit that is not sold here and that you
 	// acquired by buying a ship here, have it appear as "in stock" in case you
 	// change your mind about selling it. (On the other hand, if you sell an
 	// entire ship right after buying it, its outfits will not be "in stock.")
-	if(count > 0 && stock[outfit] < 0)
-		stock[outfit] = 0;
-	stock[outfit] += count;
+	if(count > 0 && outfitStock[outfit] < 0)
+		outfitStock[outfit] = 0;
+	outfitStock[outfit] += count;
 
 	int day = date.DaysSinceEpoch();
 	if(count > 0)
@@ -4044,7 +4045,7 @@ void PlayerInfo::CreateRandomStock()
 		for(const auto &stockItem : *rStock)
 			if(!planet->Outfitter().Has(stockItem.item) && Random::Int(100) < stockItem.probability)
 			{
-				stock[stockItem.item] += stockItem.quantity;
+				outfitStock[stockItem.item] += stockItem.quantity;
 				for(unsigned int i = 0; i < stockItem.quantity; i++)
 					stockDepreciation.Buy(stockItem.item, day - stockItem.depreciation, nullptr);
 			}
@@ -4431,13 +4432,14 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.EndChild();
 	}
 
-	if(!stock.empty())
+	if(!outfitStock.empty())
 	{
+		// This node is called "stock" and not "outfit stock" for backwards compatibility.
 		out.Write("stock");
 		out.BeginChild();
 		{
 			using StockElement = pair<const Outfit *const, int>;
-			WriteSorted(stock,
+			WriteSorted(outfitStock,
 				[](const StockElement *lhs, const StockElement *rhs)
 					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const StockElement &it)
