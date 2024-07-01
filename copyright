@@ -2085,6 +2085,7 @@ Files:
  images/outfit/rock?4*
  images/scene/penguinscene*
  images/ship/hai?sea?scorpion*
+ images/ship/hai?anomalocaris*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -2097,6 +2098,7 @@ Files:
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
  images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
  images/thumbnail/merganser*
  images/thumbnail/penguin*
@@ -3499,6 +3501,18 @@ Files:
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
+
+Files:
+ images/scene/emerging?ladybug*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain works previously submitted to Endless Sky
+
+Files:
+ images/scene/cave?scene*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from work by Becca Tommaso (under the same license)
 
 Files:
  images/star/proto-planetary-disk*

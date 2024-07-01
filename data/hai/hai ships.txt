@@ -11,6 +11,87 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Anomalocaris"
+	plural "Anomalocarises"
+	sprite "ship/hai anomalocaris"
+	thumbnail "thumbnail/hai anomalocaris"
+	attributes
+		category "Medium Warship"
+		"cost" 7400000
+		"shields" 14200
+		"hull" 6800
+		"required crew" 20
+		"bunks" 26
+		"mass" 970
+		"drag" 9.3
+		"heat dissipation" .49
+		"fuel capacity" 400
+		"cargo space" 121
+		"outfit space" 533
+		"weapon capacity" 192
+		"engine capacity" 93
+		weapon
+			"blast radius" 210
+			"shield damage" 2100
+			"hull damage" 1050
+			"hit force" 3150
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Boulder Reactor"
+		"Chameleon Anti-Missile" 2
+		"Hai Diamond Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		Hyperdrive
+		"Ion Cannon"
+		"Pebble Core"
+		"Pulse Cannon"
+		"Pulse Rifle" 20
+		"Pulse Turret" 2
+		"Quantum Keystone"
+	gun -24 -89.5
+	gun 24 -89.5
+	turret -40 -28
+	turret 40 -28
+	turret 0 60
+	turret 0 -32.5
+	engine -50 15
+	engine 50 15
+	"steering engine" -50 15
+		zoom 0.5
+		right
+	"steering engine" 50.5 15
+		zoom 0.5
+		left
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, but it also found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage."
+
+ship "Anomalocaris" "Anomalocaris (Venerable)"
+	add attributes
+		# Disabled faster due to the ship's sea time.
+		"threshold percentage" 0.4
+	outfits
+		"Korath Detainer" 2
+		"Bullfrog Anti-Missile" 4
+		"Hai Williwaw Cooling"
+		"Boulder Reactor"
+		"Value Detector"
+		"Asteroid Scanner"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 20
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, but it also found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage, although this one has accrued damage after being submerged underwater for a long period of time."
+
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
@@ -514,6 +595,22 @@ ship "Lightning Bug"
 	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
+
+ship "Lightning Bug" "Lightning Bug (Ionic)"
+	outfits
+		"Ionic Blaster Prototype"
+		"Ionic Turret Prototype"
+		"Hai Corundum Regenerator"
+		"Hai Cuttlefish Jammer"
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		Hyperdrive
+		"Geode Reactor"
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Pulse Rifle" 10
+
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
 		"Hai Tracker Pod"
@@ -965,7 +1062,9 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
+# These variants don't spawn normally and have larger crew counts to represent experimentation with ionic weapons.
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -978,9 +1077,10 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`
@@ -991,7 +1091,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Hai Williwaw Cooling" 4
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
