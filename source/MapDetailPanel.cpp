@@ -800,11 +800,13 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				price += "(";
+				if(Preferences::Has("Show parenthesis on Job Board"))
+					price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				price += ")";
+				if(Preferences::Has("Show parenthesis on Job Board"))
+					price += ")";
 			}
 		}
 		else
