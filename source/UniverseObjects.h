@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define UNIVERSE_OBJECTS_H_
 
 #include "CategoryTypes.h"
+#include "RandomStock.h"
 #include "Sale.h"
 #include "Set.h"
 
@@ -124,6 +125,8 @@ private:
 	Set<TestData> testDataSets;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
+	Set<RandomStock<Ship>> shipRandomStock;
+	Set<RandomStock<Outfit>> outfitRandomStock;
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
