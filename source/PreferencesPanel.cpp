@@ -689,6 +689,7 @@ void PreferencesPanel::DrawSettings()
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
+		"Half speed",
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
