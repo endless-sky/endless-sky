@@ -52,7 +52,6 @@ public:
 	public:
 		// Functions to set the lambda functions for accessing the conditions.
 		void SetGetFunction(std::function<int64_t(const std::string &)> newGetFun);
-		void SetHasFunction(std::function<bool(const std::string &)> newHasFun);
 		void SetSetFunction(std::function<bool(const std::string &, int64_t)> newSetFun);
 		void SetEraseFunction(std::function<bool(const std::string &)> newEraseFun);
 
@@ -69,7 +68,6 @@ public:
 		// Lambda functions for accessing the derived conditions, with some sensible
 		// default implementations;
 		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name) { return 0; };
-		std::function<bool(const std::string &)> hasFunction = [](const std::string &name) { return true; };
 		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) {
 			return false; };
 		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name) { return false; };
@@ -116,8 +114,6 @@ public:
 	// Retrieve a "condition" flag from this store (directly or from the
 	// connected provider).
 	int64_t Get(const std::string &name) const;
-	bool Has(const std::string &name) const;
-	std::pair<bool, int64_t> HasGet(const std::string &name) const;
 
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.

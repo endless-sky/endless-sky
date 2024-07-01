@@ -167,14 +167,14 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				const auto temp = created.HasGet(str);
-				if(temp.first)
-					value = temp.second;
+				const auto temp = created.Get(str);
+				if(temp)
+					value = temp;
 				else
 				{
-					const auto perm = conditions.HasGet(str);
-					if(perm.first)
-						value = perm.second;
+					const auto perm = conditions.Get(str);
+					if(perm)
+						value = perm;
 				}
 			}
 			result.emplace_back(value);

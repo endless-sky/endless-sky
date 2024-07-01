@@ -40,13 +40,6 @@ void ConditionsStore::DerivedProvider::SetGetFunction(function<int64_t(const str
 
 
 
-void ConditionsStore::DerivedProvider::SetHasFunction(function<bool(const string &)> newHasFun)
-{
-	hasFunction = std::move(newHasFun);
-}
-
-
-
 void ConditionsStore::DerivedProvider::SetSetFunction(function<bool(const string &, int64_t)> newSetFun)
 {
 	setFunction = std::move(newSetFun);
@@ -212,41 +205,6 @@ int64_t ConditionsStore::Get(const string &name) const
 		return ce->value;
 
 	return ce->provider->getFunction(name);
-}
-
-
-
-bool ConditionsStore::Has(const string &name) const
-{
-	const ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return false;
-
-	if(!ce->provider)
-		return true;
-
-	return ce->provider->hasFunction(name);
-}
-
-
-
-// Returns a pair where the boolean indicates if the game has this condition set,
-// and an int64_t which contains the value if the condition was set.
-pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
-{
-	const ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return make_pair(false, 0);
-
-	if(!ce->provider)
-		return make_pair(true, ce->value);
-
-	bool has = ce->provider->hasFunction(name);
-	int64_t val = 0;
-	if(has)
-		val = ce->provider->getFunction(name);
-
-	return make_pair(has, val);
 }
 
 

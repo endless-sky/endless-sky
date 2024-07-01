@@ -3205,7 +3205,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 		return it->second;
 	};
-	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
@@ -3231,7 +3230,6 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		return it->second;
 	};
-	tributeProvider.SetHasFunction(tributeHasGetFun);
 	tributeProvider.SetGetFunction(tributeHasGetFun);
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value);
@@ -3241,9 +3239,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
-	licenseProvider.SetHasFunction([this](const string &name) -> bool {
-		return HasLicense(name.substr(strlen("license: ")));
-	});
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return HasLicense(name.substr(strlen("license: ")));
 	});
@@ -3283,7 +3278,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship model: " + flagship->TrueModelName();
 	};
-	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
 	auto &&flagshipDisabledProvider = conditions.GetProviderNamed("flagship disabled");
@@ -3291,7 +3285,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return flagship && flagship->IsDisabled();
 	};
-	flagshipDisabledProvider.SetHasFunction(flagshipDisabledFun);
 	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
 	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
@@ -3313,7 +3306,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
 	};
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
-	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
 
 	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
 	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
@@ -3321,7 +3313,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
-	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
 	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
 	auto flagshipBaysFun = [this](const string &name) -> int64_t
@@ -3332,14 +3323,12 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
-	flagshipBaysProvider.SetHasFunction(flagshipBaysFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
 		return name == "name: " + firstName + " " + lastName;
 	};
-	playerNameProvider.SetHasFunction(playerNameFun);
 	playerNameProvider.SetGetFunction(playerNameFun);
 
 	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("first name: ");
@@ -3347,7 +3336,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return name == "first name: " + firstName;
 	};
-	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
 	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
 
 	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("last name: ");
@@ -3355,7 +3343,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return name == "last name: " + lastName;
 	};
-	playerNameLastProvider.SetHasFunction(playerNameLastFun);
 	playerNameLastProvider.SetGetFunction(playerNameLastFun);
 
 
@@ -3398,7 +3385,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return round((1. - safeChance) * 1000.);
 	};
 	systemAttractionProvider.SetGetFunction(systemAttractionFun);
-	systemAttractionProvider.SetHasFunction(systemAttractionFun);
 
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
@@ -3715,7 +3701,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return name == "entered system by: " + EntryToString(entry);
 	};
-	systemEntryProvider.SetHasFunction(systemEntryFun);
 	systemEntryProvider.SetGetFunction(systemEntryFun);
 
 	// This condition corresponds to the last system the flagship was in.
@@ -3726,7 +3711,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "previous system: " + previousSystem->Name();
 	};
-	previousSystemProvider.SetHasFunction(previousSystemFun);
 	previousSystemProvider.SetGetFunction(previousSystemFun);
 
 	// Conditions to determine if flagship is in a system and on a planet.
@@ -3737,7 +3721,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship system: " + flagship->GetSystem()->Name();
 	};
-	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
 	auto &&flagshipLandedProvider = conditions.GetProviderNamed("flagship landed");
@@ -3745,7 +3728,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return (flagship && flagship->GetPlanet());
 	};
-	flagshipLandedProvider.SetHasFunction(flagshipLandedFun);
 	flagshipLandedProvider.SetGetFunction(flagshipLandedFun);
 
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
@@ -3755,7 +3737,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
 	};
-	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
 
 	auto &&flagshipPlanetAttributesProvider = conditions.GetProviderPrefixed("flagship planet attribute: ");
@@ -3767,7 +3748,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship->GetPlanet()->Attributes().count(attribute);
 	};
 	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
-	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
 
 	// Read only exploration conditions.
 	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
@@ -3777,7 +3757,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return planet ? HasVisited(*planet) : false;
 	};
 	visitedPlanetProvider.SetGetFunction(visitedPlanetFun);
-	visitedPlanetProvider.SetHasFunction(visitedPlanetFun);
 
 	auto &&visitedSystemProvider = conditions.GetProviderPrefixed("visited system: ");
 	auto visitedSystemFun = [this](const string &name) -> bool
@@ -3786,7 +3765,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return system ? HasVisited(*system) : false;
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
-	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	auto &&landingAccessProvider = conditions.GetProviderPrefixed("landing access: ");
 	auto landingAccessFun = [this](const string &name) -> bool
@@ -3795,7 +3773,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (planet && flagship) ? planet->CanLand(*flagship) : false;
 	};
 	landingAccessProvider.SetGetFunction(landingAccessFun);
-	landingAccessProvider.SetHasFunction(landingAccessFun);
 
 	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
 	auto pluginFun = [](const string &name) -> bool
@@ -3803,7 +3780,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
 		return plugin ? plugin->IsValid() && plugin->enabled : false;
 	};
-	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
 
 	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
@@ -3813,7 +3789,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return person ? person->IsDestroyed() : false;
 	};
 	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
-	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
 
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
@@ -3840,7 +3815,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
-	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
 
 	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
 	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
@@ -3862,16 +3836,10 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
-	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
-	reputationProvider.SetHasFunction([](const string &name) -> bool
-	{
-		string govName = name.substr(strlen("reputation: "));
-		return GameData::Governments().Has(govName);
-	});
 	reputationProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string govName = name.substr(strlen("reputation: "));
@@ -3908,16 +3876,10 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 		return Random::Int(value);
 	};
-	randomRollProvider.SetHasFunction(randomRollFun);
 	randomRollProvider.SetGetFunction(randomRollFun);
 
 	// Global conditions setters and getters:
 	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
-	globalProvider.SetHasFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Has(condition);
-	});
 	globalProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string condition = name.substr(strlen("global: "));
