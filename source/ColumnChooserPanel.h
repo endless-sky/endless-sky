@@ -18,13 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "ClickZone.h"
-#include "Color.h"
-#include "text/layout.hpp"
 #include "PlayerInfoPanel.h"
-#include "Point.h"
 
-#include <set>
 #include <vector>
 
 class PlayerInfo;

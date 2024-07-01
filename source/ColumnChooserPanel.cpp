@@ -15,37 +15,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ColumnChooserPanel.h"
 
-#include "text/alignment.hpp"
-#include "Command.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
-#include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
-#include "LogbookPanel.h"
-#include "MissionPanel.h"
-#include "Planet.h"
-#include "PlayerInfo.h"
 #include "Preferences.h"
-#include "Rectangle.h"
-#include "Screen.h"
-#include "Ship.h"
-#include "ShipInfoPanel.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "System.h"
-#include "text/Table.h"
-#include "text/truncate.hpp"
 #include "UI.h"
+#include "text/WrappedText.h"
 
-#include <algorithm>
-#include <cmath>
-#include <utility>
+#include <numeric>
 
 using namespace std;
 
