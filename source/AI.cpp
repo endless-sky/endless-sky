@@ -4291,6 +4291,53 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			}
 		}
 	}
+	else if(activeCommands.Has(Command::SELECT_PLANET) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
+	{
+		// Cycle through possible landing sites:
+		// Track all possible landable objects in the current system.
+		auto landables = vector<const StellarObject *>{};
+		for(const StellarObject &object : ship.GetSystem()->Objects())
+		{
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(&ship))
+				landables.emplace_back(&object);
+		}
+
+		// If the player has not selected a planet in this system, pick the first planet.
+		// Otherwise, cycle to the next landable planet from the selected one.
+		const StellarObject *target = ship.GetTargetStellar();
+		auto landIt = find(landables.cbegin(), landables.cend(), target);
+		if(landIt == landables.cend())
+			landIt = landables.cbegin();
+		else if(++landIt == landables.cend())
+			landIt = landables.cbegin();
+
+		string message;
+		Messages::Importance messageImportance = Messages::Importance::High;
+
+		if(landIt == landables.cend())
+		{
+			message = "There are no planets in this system that you can land on.";
+			messageImportance = Messages::Importance::Highest;
+			Audio::Play(Audio::Get("fail"));
+		}
+		else
+		{
+			const StellarObject *next = *landIt;
+			ship.SetTargetStellar(next);
+
+			if(!next->GetPlanet()->CanLand())
+			{
+				message = "The authorities on this " + next->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
+				messageImportance = Messages::Importance::Highest;
+				Audio::Play(Audio::Get("fail"));
+			}
+			else if(next != target)
+				message = "Landing target: " + next->Name() + ".";
+		}
+		if(!message.empty())
+			Messages::Add(message, messageImportance);
+	}
 	// Player cannot attempt to land while departing from a planet.
 	else if(activeCommands.Has(Command::LAND) && !ship.IsEnteringHyperspace() && ship.Zoom() == 1.)
 	{
@@ -4340,34 +4387,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 		Messages::Importance messageImportance = Messages::Importance::High;
 
-		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
+		if(message.empty())
 		{
-			// Special case: if there are two planets in system and you have one
-			// selected, then press "land" again, do not toggle to the other if
-			// you are within landing range of the one you have selected.
-		}
-		else if(message.empty() && target && activeCommands.Has(Command::WAIT))
-		{
-			// Select the next landable in the list after the currently selected object.
-			if(++landIt == landables.cend())
-				landIt = landables.cbegin();
-			const StellarObject *next = *landIt;
-			ship.SetTargetStellar(next);
-
-			if(!next->GetPlanet()->CanLand())
-			{
-				message = "The authorities on this " + next->GetPlanet()->Noun() +
-					" refuse to clear you to land here.";
-				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"));
-			}
-			else if(next != target)
-				message = "Switching landing targets. Now landing on " + next->Name() + ".";
-		}
-		else if(message.empty())
-		{
-			// This is the first press, or it has been long enough since the last press,
-			// so land on the nearest eligible planet. Prefer inhabited ones with fuel.
+			// Land on the nearest eligible planet. Prefer inhabited ones with fuel.
 			set<string> types;
 			if(!target && !landables.empty())
 			{
