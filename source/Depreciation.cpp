@@ -91,7 +91,8 @@ int Depreciation::AgeForDepreciation(double depreciation)
 	// Unfortunately, solving the depreciation function for age gives a horrible formula involving
 	// the Lambert W function. So instead, just increase age by 1 until the depreciation is right.
 	int age = -1;
-	while(Depreciate(++age) > depreciation);
+	while(Depreciate(++age) > depreciation)
+		continue;
 	return age;
 }
 

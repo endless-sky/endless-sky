@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RANDOMSTOCK_H_
-#define RANDOMSTOCK_H_
+#ifndef RANDOM_STOCK_H_
+#define RANDOM_STOCK_H_
 
 #include "DataNode.h"
 #include "Depreciation.h"

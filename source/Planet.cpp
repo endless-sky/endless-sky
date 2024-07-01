@@ -460,6 +460,7 @@ const Sale<Ship> &Planet::Shipyard() const
 }
 
 
+
 // Get ships that may be on sale.
 const set<const RandomStock<Ship> *> &Planet::ShipRandomStock() const
 {
