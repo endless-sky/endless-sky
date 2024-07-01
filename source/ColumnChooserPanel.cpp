@@ -68,7 +68,7 @@ void ColumnChooserPanel::Draw()
 		[&](int acc, PlayerInfoPanel::SortableColumn column) {
 			return acc + (isVisible(column.name) ? column.layout.width : 0);
 		});
-	for(PlayerInfoPanel::SortableColumn column : columns)
+	for(PlayerInfoPanel::SortableColumn &column : columns)
 	{
 		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(220., ROW_ADVANCE.Y()));
 

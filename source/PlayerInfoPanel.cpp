@@ -866,18 +866,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 					crewCount = min(crewCount, ship.RequiredCrew());
 				row.emplace_back(ship.IsParked() ? "parked" : to_string(crewCount));
 			}
-			else if(column.name == "combat")
-				row.emplace_back(to_string(lround(ship.Deterrence() * 100.)));
 			else if(column.name == "free cargo")
 				row.emplace_back(to_string(lround(ship.Attributes().Get("cargo space") - ship.Cargo().Used())));
-			else if(column.name == "cargo eff.")
-			{
-				int crew = ship.RequiredCrew();
-				double cargo = ship.Attributes().Get("cargo space");
-				double ratio = cargo / crew;
-				row.emplace_back(crew ? ratio == lround(ratio) ? Format::Number(ratio) : Format::Decimal(ratio, 2)
-					: cargo ? "infinite" : "n/a");
-			}
 			else
 				row.emplace_back("-");
 		}
