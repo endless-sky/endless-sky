@@ -462,11 +462,13 @@ int64_t Account::TotalDebt(const string &type) const
 	return total;
 }
 
+
 // Get how many credits the player paid
 int64_t Account::TotalPreviousPayment() const
 {
 	return totalPreviousPayment;
 }
+
 
 // Extrapolate from the player's current net worth history to determine how much
 // their net worth is expected to change over the course of the next year.

@@ -75,6 +75,7 @@ public:
 	// Get how many credits the player paid
 	int64_t TotalPreviousPayment() const;
 
+
 private:
 	int64_t YearlyRevenue() const;
 
