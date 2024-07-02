@@ -137,6 +137,8 @@ namespace {
 	const int HOVER_TIME = 60;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
+	// Length in frames of the zooming animation.
+	const int ZOOM_TIME = 10;
 
 	bool HasMultipleLandablePlanets(const System &system)
 	{
@@ -270,6 +272,14 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 
 void MapPanel::Step()
 {
+	// zoom smoothly
+	const double targetZoom = player.MapZoom();
+	if(zoom != targetZoom)
+		zoom += (targetZoom - zoom) / ZOOM_TIME;
+	// avoid accumulated floating-point differences after final zoom step
+	if(fabs(zoom - targetZoom) < (1 / ZOOM_TIME))
+		zoom = targetZoom;
+
 	if(recentering > 0)
 	{
 		double step = (recentering - .5) / RECENTER_TIME;
@@ -880,7 +890,7 @@ void MapPanel::Find(const string &name)
 
 double MapPanel::Zoom() const
 {
-	return pow(1.5, player.MapZoom());
+	return pow(1.5, zoom);
 }
 
 
@@ -1410,17 +1420,31 @@ void MapPanel::DrawSystems()
 
 void MapPanel::DrawNames()
 {
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	const double labelZoomLevel = mapInterface->GetValue("labels");
+	const double largeLabelZoomLevel = mapInterface->GetValue("large labels");
+
 	// Don't draw if too small.
+	double fade = 1.;
 	double zoom = Zoom();
-	if(zoom <= 0.5)
+	double labelZoom = pow(1.5, labelZoomLevel);
+	if(zoom < labelZoom)
+	{
+		double min = pow(1.5, labelZoomLevel - 1);
+		fade = (zoom - min) / (labelZoom - min);
+	}
+	if(fade <= 0.)
 		return;
 
 	// Draw names for all systems you have visited.
-	bool useBigFont = (zoom > 2.);
+	bool useBigFont = (zoom >= pow(1.5, largeLabelZoomLevel));
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
 	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
 	for(const Node &node : nodes)
-		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
+	{
+		Color color = node.nameColor.Transparent(fade);
+		font.Draw(node.name, zoom * (node.position + center) + offset, color);
+	}
 }
 
 

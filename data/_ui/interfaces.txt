@@ -1430,6 +1430,8 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+	value "labels" -1
+	value "large labels" 1.5
 
 
 
