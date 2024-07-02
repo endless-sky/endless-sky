@@ -72,6 +72,8 @@ public:
 	// mortgages if a blank string is provided.
 	int64_t TotalDebt(const std::string &type = "") const;
 
+	// Get how many credits the player paid
+	int64_t TotalLastPayment() const;
 
 private:
 	int64_t YearlyRevenue() const;
@@ -79,6 +81,8 @@ private:
 
 private:
 	int64_t credits = 0;
+	// Keep track of how much was paid by the player.
+	int64_t totalPreviousPayment = 0;
 	// Regular income from salaries paid to the player.
 	std::map<std::string, int64_t> salariesIncome;
 	// If back salaries and maintenance cannot be paid, they pile up rather

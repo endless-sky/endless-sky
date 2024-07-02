@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "PlayerInfo.h"
 #include "text/Format.h"
 
 #include <algorithm>
@@ -271,6 +272,12 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	if(debtPaid)
 		typesPaid["debt"] = debtPaid;
 
+	totalPreviousPayment = 0;
+	for (const auto& paid : typesPaid)
+	{
+		totalPreviousPayment += paid.second;
+	}
+
 	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
 	if(typesPaid.size() >= 3)
@@ -456,7 +463,11 @@ int64_t Account::TotalDebt(const string &type) const
 	return total;
 }
 
-
+// Get how many credits the player paid
+int64_t Account::TotalLastPayment() const
+{
+	return totalPreviousPayment;
+}
 
 // Extrapolate from the player's current net worth history to determine how much
 // their net worth is expected to change over the course of the next year.
