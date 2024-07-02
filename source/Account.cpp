@@ -272,7 +272,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		typesPaid["debt"] = debtPaid;
 
 	totalPreviousPayment = 0;
-	for( const auto& paid : typesPaid)
+	for(const auto &paid : typesPaid)
 	{
 		totalPreviousPayment += paid.second;
 	}
