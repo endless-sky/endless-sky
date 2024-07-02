@@ -72,7 +72,7 @@ public:
 	// mortgages if a blank string is provided.
 	int64_t TotalDebt(const std::string &type = "") const;
 
-	// Get how many credits the player paid
+	// Get how many credits the player paid.
 	int64_t TotalPreviousPayment() const;
 
 

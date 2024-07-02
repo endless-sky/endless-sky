@@ -273,9 +273,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	totalPreviousPayment = 0;
 	for(const auto &paid : typesPaid)
-	{
 		totalPreviousPayment += paid.second;
-	}
 
 	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
@@ -463,11 +461,13 @@ int64_t Account::TotalDebt(const string &type) const
 }
 
 
-// Get how many credits the player paid
+
+// Get how many credits the player paid.
 int64_t Account::TotalPreviousPayment() const
 {
 	return totalPreviousPayment;
 }
+
 
 
 // Extrapolate from the player's current net worth history to determine how much
