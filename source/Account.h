@@ -73,7 +73,7 @@ public:
 	int64_t TotalDebt(const std::string &type = "") const;
 
 	// Get how many credits the player paid
-	int64_t TotalLastPayment() const;
+	int64_t TotalPreviousPayment() const;
 
 private:
 	int64_t YearlyRevenue() const;

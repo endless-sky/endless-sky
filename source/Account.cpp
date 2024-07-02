@@ -463,7 +463,7 @@ int64_t Account::TotalDebt(const string &type) const
 }
 
 // Get how many credits the player paid
-int64_t Account::TotalLastPayment() const
+int64_t Account::TotalPreviousPayment() const
 {
 	return totalPreviousPayment;
 }
