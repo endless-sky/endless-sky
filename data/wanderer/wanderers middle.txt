@@ -2851,7 +2851,7 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 		government "Navy (Oathkeeper)"
 		personality escort
 		ship "Cruiser (Mark II)" "R.N.S. Dauntless"
-		ship "Combat Drone" "Alpha One" # them being Alpha is intentional
+		ship "Combat Drone" "Alpha One"
 		ship "Combat Drone" "Alpha Two"
 		ship "Combat Drone" "Alpha Three"
 		ship "Combat Drone" "Alpha Four"
