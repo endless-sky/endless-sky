@@ -142,9 +142,15 @@ protected:
 	int step = 0;
 	std::string buttonCondition;
 
-	// Distance from the screen center to the nearest owned system,
-	// for use in determining which governments are in the legend.
-	std::map<const Government *, double> closeGovernments;
+	// The number of systems owned by each government which are currently
+	// on the screen, for use in determining which governments are in the legend.
+	std::map<const Government *, unsigned int> governmentCounts;
+
+	// Uninhabited and Unexplored are handled differently, as those should always be on the map
+	// as long as there are Uninhabited and Unexplored systems visible.
+	bool hasUninhabited = false;
+	bool hasUnexplored = false;
+
 	// Systems in which your (active and parked) escorts and stored outfits are located.
 	std::map<const System *, SystemTooltipData> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
@@ -188,12 +194,14 @@ private:
 
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name,
+		Node(const Point &position, const Color &color, const bool isInhabited, const std::string &name,
 			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+			: position(position), color(color), isInhabited(isInhabited),
+			name(name), nameColor(nameColor), government(government) {}
 
 		Point position;
 		Color color;
+		bool isInhabited;
 		std::string name;
 		Color nameColor;
 		const Government *government;
