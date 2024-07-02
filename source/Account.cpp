@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "PlayerInfo.h"
 #include "text/Format.h"
 
 #include <algorithm>
