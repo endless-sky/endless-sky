@@ -4989,3 +4989,10 @@ double Ship::CalculateDeterrence() const
 		}
 	return tempDeterrence;
 }
+
+
+
+bool Ship::Immitates(const Ship &other) const
+{
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
+}
