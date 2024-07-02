@@ -785,7 +785,8 @@ void PlayerInfo::IncrementDate()
 		Messages::Add(message, Messages::Importance::High);
 
 	// Tell the player the total gain/loss of credits automatically paid.
-	Messages::Add("For a total change of " + Format::CreditString(salariesIncome + tributeIncome - accounts.TotalLastPayment()) + ".", Messages::Importance::High);
+	Messages::Add("For a total change of " + Format::CreditString(salariesIncome + tributeIncome - accounts.TotalLastPayment()) + ".",
+		Messages::Importance::High);
 
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
