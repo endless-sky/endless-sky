@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "BayType.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
@@ -221,6 +222,16 @@ namespace {
 
 
 
+// Determine if this bay can hold a ship of this category.
+bool Ship::Bay::CanContain(const std::string &category) const
+{
+	if(bayType)
+		return bayType->Contains(category);
+	return name == category;
+}
+
+
+
 // Construct and Load() at the same time.
 Ship::Ship(const DataNode &node)
 {
@@ -410,14 +421,14 @@ void Ship::Load(const DataNode &node)
 			(key == "bay" && child.Size() >= 4))
 		{
 			// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
-			// standard format is `bay <ship-category>`, with the same signature for other values.
-			string category = "Fighter";
+			// standard format is `bay <bay-type>`, with the same signature for other values.
+			string bayName = "Fighter";
 			int childOffset = 0;
 			if(key == "drone")
-				category = "Drone";
+				bayName = "Drone";
 			else if(key == "bay")
 			{
-				category = child.Token(1);
+				bayName = child.Token(1);
 				childOffset += 1;
 			}
 
@@ -426,8 +437,9 @@ void Ship::Load(const DataNode &node)
 				bays.clear();
 				hasBays = true;
 			}
-			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), category);
+			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), bayName);
 			Bay &bay = bays.back();
+			bay.bayType = GameData::BayTypes().Get(bayName);
 			for(int i = 3 + childOffset; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
@@ -831,14 +843,31 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
-		if(!bayCategories.Contains(bay.category))
+		if(bay.bayType && !bay.bayType->IsValid())
 		{
-			warning += "Invalid bay category: " + bay.category + "\n";
+			// No need to print a warning, as the bay type being invalid will
+			// already have created one.
 			it = bays.erase(it);
 			continue;
 		}
-		else
-			++it;
+		// If the bay type matching the name of this bay hasn't been loaded, then
+		// assume that the name of the bay is the category of ship that it stores
+		// for backwards compatibility.
+		if(!bay.bayType || !bay.bayType->IsLoaded())
+		{
+			// Set the bay type to nullptr to identify that the name of this bay
+			// is the category of ship that it stores.
+			bay.bayType = nullptr;
+			// Confirm that the name is a valid bay type.
+			if(!bayCategories.Contains(bay.name))
+			{
+				warning += "Invalid bay category: " + bay.name + "\n";
+				it = bays.erase(it);
+				continue;
+			}
+		}
+		++it;
+		++bayTypeCounts[bay.name];
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
@@ -1087,7 +1116,7 @@ void Ship::Save(DataWriter &out) const
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
 
-			out.Write("bay", bay.category, x, y);
+			out.Write("bay", bay.name, x, y);
 
 			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
@@ -3142,7 +3171,8 @@ int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.category == category) && !bay.ship;
+		if(bay.CanContain(category) && !bay.ship)
+			++count;
 	return count;
 }
 
@@ -3153,8 +3183,17 @@ int Ship::BaysTotal(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.category == category);
+		if(bay.CanContain(category))
+			++count;
 	return count;
+}
+
+
+
+// Get the types of bays that this ship has and the number of each.
+const map<string, int> &Ship::BayTypeCounts() const
+{
+	return bayTypeCounts;
 }
 
 
@@ -3209,44 +3248,59 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// transfer cargo if they set the AI preference.
 	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
 
+	// Find all bays that could hold this ship.
+	vector<Bay *> availableBays;
 	for(Bay &bay : bays)
-		if((bay.category == category) && !bay.ship)
-		{
-			bay.ship = ship;
-			ship->SetSystem(nullptr);
-			ship->SetPlanet(nullptr);
-			ship->SetTargetSystem(nullptr);
-			ship->SetTargetStellar(nullptr);
-			ship->SetParent(shared_from_this());
-			ship->isThrusting = false;
-			ship->isReversing = false;
-			ship->isSteering = false;
-			ship->commands.Clear();
+		if(bay.CanContain(category) && !bay.ship)
+			availableBays.push_back(&bay);
 
-			// If this fighter collected anything in space, try to store it.
-			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
-				ship->Cargo().TransferAll(cargo);
+	if(availableBays.empty())
+		return false;
 
-			// Return unused fuel and ammunition to the carrier, so they may
-			// be used by the carrier or other fighters.
-			ship->TransferFuel(ship->fuel, this);
+	// Find the best bay to place this ship into. The best bay is the
+	// bay that is the most restrictive, i.e. is able to hold the fewest
+	// ship categories. By using the most restrictive bay, we prevent
+	// ships from hogging bays from other ships.
+	Bay &bay = **min_element(availableBays.begin(), availableBays.end(),
+		[](const Bay *a, const Bay *b) -> bool {
+			int aSize = !a->bayType ? 1 : a->bayType->Categories().size();
+			int bSize = !b->bayType ? 1 : b->bayType->Categories().size();
+			return aSize < bSize;
+		});
 
-			// Determine the ammunition the fighter can supply.
-			auto restockable = ship->GetArmament().RestockableAmmo();
-			auto toRestock = map<const Outfit *, int>{};
-			for(auto &&ammo : restockable)
-			{
-				int count = ship->OutfitCount(ammo);
-				if(count > 0)
-					toRestock.emplace(ammo, count);
-			}
-			TransferAmmo(toRestock, *ship, *this);
+	bay.ship = ship;
+	ship->SetSystem(nullptr);
+	ship->SetPlanet(nullptr);
+	ship->SetTargetSystem(nullptr);
+	ship->SetTargetStellar(nullptr);
+	ship->SetParent(shared_from_this());
+	ship->isThrusting = false;
+	ship->isReversing = false;
+	ship->isSteering = false;
+	ship->commands.Clear();
 
-			// Update the cached mass of the mothership.
-			carriedMass += ship->Mass();
-			return true;
-		}
-	return false;
+	// If this fighter collected anything in space, try to store it.
+	if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
+		ship->Cargo().TransferAll(cargo);
+
+	// Return unused fuel and ammunition to the carrier, so they may
+	// be used by the carrier or other fighters.
+	ship->TransferFuel(ship->fuel, this);
+
+	// Determine the ammunition the fighter can supply.
+	auto restockable = ship->GetArmament().RestockableAmmo();
+	auto toRestock = map<const Outfit *, int>{};
+	for(auto &&ammo : restockable)
+	{
+		int count = ship->OutfitCount(ammo);
+		if(count > 0)
+			toRestock.emplace(ammo, count);
+	}
+	TransferAmmo(toRestock, *ship, *this);
+
+	// Update the cached mass of the mothership.
+	carriedMass += ship->Mass();
+	return true;
 }
 
 

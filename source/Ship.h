@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class BayType;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -65,19 +66,23 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
-		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(std::move(category)) {}
+		Bay(double x, double y, std::string name) : point(x * .5, y * .5), name(std::move(name)) {}
 		Bay(Bay &&) = default;
 		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
 
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side),
+		Bay(const Bay &b) : point(b.point), name(b.name), bayType(b.bayType), side(b.side),
 			facing(b.facing), launchEffects(b.launchEffects) {}
 		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 
+		// Determine if this bay can hold a ship of this category.
+		bool CanContain(const std::string &category) const;
+
 		Point point;
 		std::shared_ptr<Ship> ship;
-		std::string category;
+		std::string name;
+		const BayType *bayType = nullptr;
 
 		uint8_t side = 0;
 		static const uint8_t INSIDE = 0;
@@ -405,6 +410,8 @@ public:
 	int BaysFree(const std::string &category) const;
 	// Check how many bays this ship has of a given category.
 	int BaysTotal(const std::string &category) const;
+	// Get the types of bays this ship has and the number of each.
+	const std::map<std::string, int> &BayTypeCounts() const;
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
@@ -618,6 +625,8 @@ private:
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
 	double carriedMass = 0.;
+	// The count of each bay type that this ship has by the name of the bay.
+	std::map<std::string, int> bayTypeCounts;
 
 	std::vector<EnginePoint> enginePoints;
 	std::vector<EnginePoint> reverseEnginePoints;

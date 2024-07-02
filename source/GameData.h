@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class BayType;
 class CategoryList;
 class Color;
 class ConditionsStore;
@@ -116,6 +117,7 @@ public:
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
 
+	static const Set<BayType> &BayTypes();
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
