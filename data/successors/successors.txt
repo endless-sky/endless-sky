@@ -1,0 +1,570 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+government Predecessor
+	color .7 .7 .7
+
+government Successor
+	swizzle 4
+	color 0 .8 0.653
+	language "Successor"
+	"friendly hail" "successor friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "successor hostile hail"
+	"hostile disabled hail" "successor hostile disabled hail"
+	
+government "New Houses"
+	swizzle 3
+	color .8 0 0.4
+	language "Successor"
+	"friendly hail" "new houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"House Kaatrij" 1
+		"House Seineq" 1
+		"House Aqrabe" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "House Kaatrij"
+	swizzle 3
+	color .8 0 0.4
+	language "Successor"
+	"friendly hail" "kaatrij friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"New Houses" 1
+		"House Seineq" 1
+		"House Aqrabe" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "House Seineq"
+	swizzle 3
+	color .8 0 0.4
+	language "Successor"
+	"friendly hail" "seineq friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"New Houses" 1
+		"House Kaatrij" 1
+		"House Aqrabe" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "House Aqrabe"
+	swizzle 3
+	color .8 0 0.4
+	language "Successor"
+	"friendly hail" "aqrabe friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"New Houses" 1
+		"House Kaatrij" 1
+		"House Seineq" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "Old Houses"
+	swizzle 5
+	color 0.375 0.316 1
+	language "Successor"
+	"friendly hail" "old houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"House Chydiyi" 1
+		"House Myurej" 1
+		"House Sioeora" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "House Chydiyi"
+	swizzle 5
+	color 0.375 0.316 1
+	language "Successor"
+	"friendly hail" "chydiyi friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"Old Houses" 1
+		"House Myurej" 1
+		"House Sioeora" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "House Myurej"
+	swizzle 5
+	color 0.375 0.316 1
+	language "Successor"
+	"friendly hail" "myurej friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"House Chydiyi" 1
+		"Old Houses" 1
+		"House Sioeora" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "House Sioeora"
+	swizzle 5
+	color 0.375 0.316 1
+	language "Successor"
+	"friendly hail" "sioeora friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"House Chydiyi" 1
+		"House Myurej" 1
+		"Old Houses" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+
+government "People's Houses"
+	swizzle 6
+	color 0.92 0.29 0.20
+	language "Successor"
+	"friendly hail" "people's houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "people's houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+
+government "People's Houses (Hostile)"
+	"display name" "People's Houses"
+	swizzle 6
+	color 0.92 0.29 0.20
+	"player reputation" -999
+	"attitude toward"
+		Author -0.01
+		Successor -0.01
+		"People's Houses" 0.01
+	"friendly hail" "people's houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "people's houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	bribe 0.05
+	fine 0
+
+phrase "successor nouns"
+	word
+		"Saimiaqa"
+		"Jaasora"
+		"Nnesa"
+		"Uuoru"
+		"Ryuit"
+		"Staje"
+		"Aaura"
+		"Saqra"
+		"Stiiqa"
+		"Sjeja"
+		"Aasqa"
+		"Sasqa"
+		"Stiidej"
+		"Kiuqa"
+		"Maaj"
+		"Takqa"
+		"Muue"
+		"Jaase"
+		"Jorv"
+		"Linouq"
+		"Tanmii"
+		"Seoja"
+		"Tilija"
+		"Naoqa"
+		"Kinmi"
+		"Nuijoi"
+		"Nijlouo"
+		"Boud"
+		"Tojet"
+		"Sko"
+		"Sejrn"
+		"Hiid"
+		"Uondi"
+		"Sjolda"
+		"Sjeda"
+		"Jaara"
+		"Ryia"
+		"Nosola"
+		"Isjola"
+		"Kijet"
+		"Rajei"
+		"Kriqt"
+		"Aqasa"
+		"Kioaa"
+		"Uraata"
+		"Sjuri"
+		"Siiqa"
+		"Ryiia"
+		"Kijloa"
+		"Lijis"
+		"Ruuvat"
+		"Vuuia"
+		"Nirii"
+		"Ouiat"
+		"Jara"
+		"Viir"
+		"Vyyra"
+		"Uoret"
+		"Niis"
+		"Seqra"
+		"Byiaa"
+		"Ej"
+		"Aj"
+		"Giiq"
+		"Avasaa"
+		"Luue"
+		"Saqru"
+		"Myruet"
+		"Oublaa"
+		"Yejn"
+		"Kejn"
+		"Oj"
+		"Ret"
+		"Uij"
+		"Naaq"
+		"Kujst"
+		"Lijn"
+		"Aar"
+		"Drojm"
+		"Nejra"
+
+phrase "successor locations"
+	word
+		"aaura"
+		"nnesa"
+		"sou"
+		"viir"
+		"vyraa"
+		"kaska"
+		"novaa"
+		"osolaa"
+		"sola"
+		"uoasa"
+		"kvel"
+		"ketaa"
+	word
+		"n"
+		"" 2
+
+phrase "successor locations"
+	word
+		"ryuit"
+		"giiq"
+		"uoret"
+		"raaqa"
+		"kvelq"
+		"aasa"
+	word
+		"an"
+		"" 2
+
+phrase "successor adjectives"
+	word
+		"cavasaa"
+		"sossa"
+		"sora"
+		"raaqa"
+		"ijsola"
+		"myiara"
+		"ruuv"
+		"uurau"
+		"kaska"
+		"vasa"
+		"naaja"
+		"nag"
+		"caasa"
+		"stol"
+		"veusa"
+		"aqra"
+
+phrase "successor verb bases"
+	word
+		"t"
+		"ja"
+		"h"
+		"st"
+		"mya"
+		"h"
+		"ve"
+		"sti"
+		"yaa"
+		"po"
+		"va"
+		"staja"
+		"raqr"
+		"so"
+		"da"
+		"bru"
+		"saqr"
+		"di"
+		"qa"
+		"taja"
+		"taqa"
+		"jaas"
+		"sti"
+		"pru"
+		"ve"
+		"kl"
+		"p"
+
+phrase "successor verb tenses"
+	word
+		"e"
+		"u"
+		"i"
+
+phrase "successor intermediates"
+	word
+		"-o-"
+		"-sol-"
+		"-e-"
+		"-paag-"
+		"-ag"
+		"-ag-"
+		"-iis-"
+		"-i-"
+		"-" 8
+
+phrase "successor end"
+	word
+		"saqrade"
+		"de"
+		"saqra"
+		"taja"
+		"kaati"
+		"ket"
+		"tej"
+		"pua"
+		"kuj"
+		"stid"
+		"khita"
+		"oa"
+		"iora"
+		"nosaa"
+		"siiq"
+		"qaaq"
+		"vejr"
+		"khil"
+		"deq"
+		"iil"
+		"osaqa"
+		"mijti"
+		"kaj"
+		"niq"
+		"oqi"
+
+phrase "successor"
+	phrase 
+		"successor nouns"
+
+phrase "successor"
+	phrase
+		"successor nouns"
+	phrase
+		"successor intermediates"
+	phrase
+		"successor end"
+
+phrase "successor"
+	phrase 
+		"successor nouns"
+	phrase
+		"successor intermediates"
+	phrase
+		"successor verb bases"
+	phrase
+		"successor verb tenses"
+
+phrase "successor"
+	phrase 
+		"successor nouns"
+	word
+		"-"
+	phrase
+		"successor adjectives"
+
+phrase "successor"
+	phrase 
+		"successor nouns"
+	phrase
+		"successor intermediates"
+	phrase
+		"successor locations"
+
+phrase "successor"
+	phrase 
+		"successor nouns"
+	phrase
+		"successor intermediates"
+	phrase
+		"successor end"
+	
+
+phrase "high houses start"
+	word
+		"Stiidej-"
+		"Stiiqa-"
+		"Khosa-"
+		"Khora-"
+		"Jorv-"
+		"Val-"
+		"Valkkra-"
+		"Ruuv-"
+		"Aaul-"
+		"Myiara-"
+		"Myuret-"
+		"Chyyra-"
+		"Veusa-"
+		"Raaqa-"
+		"Nosola-"
+		"Iosola-"
+		"Khas-"
+		"Rej-"
+		"Sioe-"
+		"Iyiq-"
+		"Trij-"
+		"Seqra-"
+		"Tordu-"
+		"Ojet-"
+		"Seqa-"
+		"Aasqa-"
+		"Forel-"
+		"Kijet-"
+
+phrase "high houses end"
+	word
+		"khora"
+		"khosa"
+		"khorade"
+		"khosade"
+		"saqrade"
+		"saqra"
+		"sora"
+		"yaau"
+		"prua"
+		"qau"
+		"pe"
+		"de"
+		"brue"
+		"ha"
+		"naqrade"
+		"raaqade"
+		"deq"
+		"qhasae"
+		"isolade"
+		"isolaa"
+		"khasa"
+		"khisa"
+		"khesa"
+		"khera"
+		"casaraa"
+		"kaaquiq"
+		"vasq"
+		"rej"
+		"iis"
+		"ija"
+		"uoret"
+		"ryuit"
+		"nnesa"
+		"vijet"
+
+phrase "high houses"
+	phrase
+		"high houses start"
+	phrase
+		"high houses end"
+
+phrase "relations"
+	word
+		"child"
+		"parent"
+		"sibling"
+		"neighbor"
+		"lover"
+		"doctor"
+		"teacher"
+		"dearest"
+
+phrase "occupation"
+	word
+		"sculptor"
+		"trader"
+		"painter"
+		"singer"
+		"actor"
+		"dancer"
+		"doctor"
+		"scholar"
+		"captain"
+		"ranger"
+		"merchant"
+		"trader"
+		"writer"
+
+trade
+	commodity "Successor High Value"
+		`"Red Gold" armlets`
+		`"Red Gold" piercings`
+		`living metal sculptures`
+		`polychromatic canvases`
+		`transparent ceramic goblets`
+		`metallic-wood furniture`
+		`insulative silver chains`
+		`metallic-wood flooring`
+		`liquid gemstone jewellery`
+		`Kijra-pet skeletons`
+		`ossified flowers`
+		`phantasmic glass amulets`
+		`molten gold amulets`
+		`lightweight prosthetics`
+		`fossils`
+		`unfilled reliquaries`
+
+phrase "2-syllable commodities"
+	word
+		"armlets"
+		"bracelets"
+		"goblets"
+		"flooring"
+		"sculptures"
+		"paintings"
+		"fossils"
+		"glassware"
+		"fabrics"
+		"fish-cubes"

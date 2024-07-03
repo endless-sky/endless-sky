@@ -1,0 +1,238 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+news "high houses scion"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		attributes wealthy
+		not attributes uninhabited
+	name
+		word
+			"High Houses Scion"
+			"Child of the High Houses"
+			"Scion of the High Houses"
+	message
+		word
+			`"I hope thou has't enjoyed thy time amongst our people."`
+			`"The alien! Doth thou have news from far in this endless sky?"`
+			`"Fair traveler, I've heard of thee. How must thy voyage weigh upon thy mind."`
+			`"Welcome to our space, honored alien. A pleasure 'tis to meet thee."`
+
+news "high houses official"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		not attributes crime uninhabited
+	name
+		word
+			"High Houses official"
+			"High Houses officer"
+	message
+		word
+			`"The Houses welcome thee as 'guest' among our people; `
+			`"Please remain in concord with our people; `
+			`"Informed, I am of thy recent arrival; `
+			`"Can I provide assistance, honored traveler? `
+			`"Our noble house does greet thee full of joy; `
+		word
+			`I am at thy service if 'tis needed."`
+			`Today's been rather busy, please speak quickly."`
+	message
+		word
+			`"Please submit to scans if 'tis requested`
+			`"Taxes on transactions are collected`
+			`"Transactions in this area are surveilled`
+			`"If thou see'st something suspect, report't promptly`
+		word
+			`; port rules and regulations should be posted."`
+			` in accordance with our standard port procedure."`
+
+news "successor student"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		attributes education wealthy
+		not attributes uninhabited
+	name
+		word
+			"Successor student"
+	message
+		word
+			`"Exams, I think, shall never know their end, `
+			`"Hath I forgot my geographic terms? `
+			`"Hath I forgot my chemical reagents? `
+			`"Hyperspace Mechanics is a bore, `
+			`"Predecessors His'try is a drag, `
+			`"Plasma Flow Dynamics is a bore, `
+			`"Particle Kinetics is a bore, `
+		word
+			`I know not sleep nor food nor meager rest`
+			`I wish that I could learn while I'm asleep`
+			`I don't know how I even stay awake`
+			`I wish I knew some better study tricks`
+			`but I know that I'm the best one in my class`
+		word
+			`."`
+			`!"`
+
+news "successor merchant"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		not attributes uninhabited
+	name
+		word
+			"Independent merchant"
+	message
+		word
+			`"Interested in `
+		phrase
+			"2-syllable commodities"
+		word
+			`, noble traveler?"`
+			`, canny buyer?"`
+			`, noble captain?"`
+			`, clever buyer?"`
+			`, newest friend?"`
+			`, thoughtful buyer?"`
+			`, thoughtful captain?"`
+	message
+		word
+			"I miss the days when I had been a "
+			"I miss the times when I had been a "
+			"I still think back to when I was a "
+			"Thou remindeth me of when I was a "
+		word
+			"pilot, "
+			"captain, "
+			"ranger, "
+		word
+			"but alas "
+		word
+			"now's planetside I shall remain."
+			"'twas never brave enough to stay."
+			"I was a spacesick little knave."
+			"it's down at earth I feel at home."
+			"it's selling items that's for me."
+			"my family needed me return."
+			"possessed of talent I was not."
+	message
+		word
+			"A "
+		word
+			"pushy "
+			"unscrupulous "
+			"friendly-looking "
+			"anxious-looking "
+			"furtive "
+			"brightly-colored "
+			"vibrantly-dressed "
+			"dour-looking "
+		word
+			"merchant "
+			"trader "
+			"artisan "
+			"Successor "
+		word
+			"tries to get you to "
+		word
+			"purchase "
+			"buy "
+		word
+			"some "
+		phrase
+			"2-syllable commodities"
+		word
+			"."
+
+news "high houses propaganda"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		not attributes quiet uninhabited
+	name
+		word
+			"High Houses broadcast"
+	message
+		word
+			`An advertisement shows a Successor warship performing a variety of deftly-executed maneuvers before encouraging the viewer to enlist in the armed forces of one of the High Houses.` 
+			`An advertisement plays showing a group of Successors standing close together against a factory backdrop, their skins all tinted a happy green. It is followed by a voiceover noting that wages have been recently increased.`
+			`A short video plays showing the construction of a new spaceport on the surface of a prospering Successor planet. Several warships of the High Houses painted in ceremonial livery pass across the screen, showing clearly who is to be thanked.`
+			`A proud-looking Successor naval officer stands before an imposing-looking warship: "Enlist!" the caption reads, "See the stars today!"`
+			`Several short vignettes play: a group of Successors unearthing ruins, the inside of a laboratory, a calm pastoral scene. A voiceover speaks: "Uncovering our heritage; bettering our lives." Meticulously-dressed officials of the High Houses are present in each situation, presented as supportive overseers.`
+			`A advertisement plays showing the sleek lines of a Successor warship, its polished armor gleaming in the sunlight. It goes on for several minutes, showing the vessel from numberous angles while a sweeping soundtrack plays.`
+
+news "successor advertisements"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		not attributes quiet uninhabited
+	name
+		word
+			"Advertisement"
+	message
+		word
+			`A bowl of a stringy kelp-like food dances around a screen while various seasonings are applied to it. After about thirty seconds, a Successor is shown slurping some of the strands, and their skin turns a happy pink.`
+			`A cluster of small recreational sailing ships are shown on a pristine lake at sunset, their Succcessor crew either manning them or splashing happily in the water. A caption at the bottom encourages the viewer to purchase their own.`
+			`An advertisement plays for the Successor Pulse Laser: it is shown being constructed in a clean, bright factory, installed on a ship, and extracting minerals from asteroids. It is never shown in a combat situation.`
+			`An advertisment plays showing a variety of attractive and expensive-looking jewellery, made of gold, silver, and other stranger metals which you cannot recognize. A variety of models display it wrapped around their arms or other parts of their body, gently undulating as the camera moves.`
+			`A display shows an advertisement for one of the Successor universities, showing elegant, sculptural buildings emerging from the ground under a rain-soaked sky.`
+			`An field of large, floral plants are shown growing long strings of gleaming metal which are quickly harvested by agricultural robots.`
+			`A series of images displaying several models flash one after another so quickly that it is hard to tell what is actually being advertised.`
+			`A short video clip is shown advertising a performance in a local concert hall. The stage is divided into two sections: one is underwater and the other is dry.`
+			`Some sort of interactive game that you can't make sense of captivates the attention of a group of young Successors.`
+			`An eye covering vaguely resembling a contact lens is shown being applied to the eyes of several models, changing their color and shape when applied.`
+			`A shipbuilding organization advertises a members' discount on Kvelqde shuttles. They make sure to note that their operation is supported by one of the High Houses.`
+			`An independent pilot briefly advertises their courier services in a pre-recorded message, offering guaranteed fastest-possible-delivery on packages under ten tons.`
+
+news "local news quiet"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		attributes quiet
+		not attributes station uninhabited
+	name
+		word
+			"Local News Report"
+	message
+		word
+			`A broadcast quietly lists out the details of a recent weather control unit failure, which resulted in a brief evacuation but no injuries. A photo shows a few dozen Successors gathered together along a shoreline while several ships swarm in the distance.`
+			`A muted advertisement plays, showing architectural renders of several small underwater homes with walls that change color and texture from simulated wood, to simulated shell, to even a dark, amorphous metal resembling the hull of a starship.`
+			`A short broadcast discusses a recent thunderstorm, showing several colorful pictures of lightning and rain taken by locals during the event.`
+			`A text-only broadcast discusses a recent touch-based art performance. The script shimmers as you move your head around, the translation device doing its best to transcribe it.`
+			`A broadcast shows a brief interview with a local florist, who shows off a collection of their living-metal plants.`
+			`A formal document is shown with a column of text to the side of it. This describes it as a new trade ordinance, and lists its effects on independent merchants.`
+			`A brief program on erosion control and restoration plays for a duration.`
+			`The program is briefly interrupted to display a general-use map for the spaceport.`
+
+news "station report"
+	to show
+		has "language: Successor"
+	location
+		attributes successor
+		attributes station
+		not attributes uninhabited
+	name
+		word
+			"Station Report"
+	message
+		word
+			`A public announcement clarifies that an inefficiency in the station's atmosphere processing units was resolved overnight.`
+			`A schedule listing departure and arrival times for planetary shuttles is updated to account for a planetside delay.`
+			`A graphic displays an interactive map of the station for visitors to access.`
+			`A public announcement encourages residents to conserve water.`
