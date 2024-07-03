@@ -581,7 +581,7 @@ mission "Successor: Data Courier 1"
 	destination
 		attributes "successor"
 		not attributes "uninhabited" "crime"
-		not near "<system>" 1
+		distance 5 20
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete

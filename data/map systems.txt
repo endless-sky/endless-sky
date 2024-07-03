@@ -26586,7 +26586,8 @@ system Pelaa-Muora
 	trade Medical 472
 	trade Metal 338
 	trade Plastic 295
-	fleet "" 1200
+	fleet "Small Successor Transport" 1200
+	fleet "Light Successor Freight" 1200
 	fleet "Successor Miners" 600
 	fleet "Small New Houses" 1400
 	object

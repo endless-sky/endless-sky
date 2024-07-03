@@ -62,11 +62,10 @@ event "successors: trust 2"
 		remove `Kvelqde (Naive)`
 		remove `Stolsaqra (Naive)`
 		remove `Myaede (Naive)`
+		remove `Nnesaarau (Naive)`
 		add `Kvelqde`
 		add `Stolsaqra`
 		add `Myaede`
-	shipyard "Chydiyi"
-		remove `Nnesaarau (Naive)`
 		add `Nnesaarau`
 	shipyard "New Houses Light"
 		remove `Vujlet (Naive)`

@@ -416,28 +416,28 @@ ship "Ojde"
 		"Hyperdrive"
 	gun 28 -110
 	gun -28 -110
-	turret 34 37 
+	turret 34 37
 	turret -34 37
-	turret 0 32 
-	engine 15 93 
-	engine -15 93 
-	"reverse engine" -19 -117 
+	turret 0 32
+	engine 15 93
+	engine -15 93
+	"reverse engine" -19 -117
 		zoom .8
-	"reverse engine" 19 -117 
+	"reverse engine" 19 -117
 		zoom .8
 	"steering engine" 33 -99
 		zoom .5
 		angle 270
 		left
-	"steering engine" -33 -99 
+	"steering engine" -33 -99
 		zoom .5
 		angle 90
 		right
-	"steering engine" 43 63 
+	"steering engine" 43 63
 		zoom .5
 		angle 270
 		right
-	"steering engine" -43 63 
+	"steering engine" -43 63
 		zoom .5
 		angle 90
 		left
