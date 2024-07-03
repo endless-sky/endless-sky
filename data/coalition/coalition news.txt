@@ -27,6 +27,7 @@ news "heliarch news"
 			"During one of the more busy hours on the spaceport, the news details the crimes of a recently arrested terrorist group: arson, kidnapping, theft of government equipment, possession of weapons, conspiring against the Coalition, attacking both government and civilian properties, subversion... The list goes on for a few more minutes."
 			`After the latest report on how the Heliarchs arrested some terrorists on a nearby world, the news shows various short clips with the same message, asking the public to "stay vigilant" and report any and all suspicious activity.`
 
+
 news "heliarch propaganda"
 	location
 		government "Coalition" "Heliarch"
@@ -39,6 +40,7 @@ news "heliarch propaganda"
 			"A local screen shows a stressed Saryd working at a computer late at night. The door creaks, and she looks back to find her children peeking. She puts them to sleep and then goes to bed herself. After waking up, she finds nobody around the house. She goes outside, seeing the children, along with their father, admiring the sun rising."
 			"After a government broadcast, a timelapse plays on a spaceport monitor, showcasing Ring of Friendship gaining more and more solar panels on its exterior over the centuries."
 			"During a break, a recruitment advertisement plays. A recruit of each species is shown putting on their brand new uniforms, then training on some sort of obstacle track, and then the view switches to troops marching in unison in the Academy of Cadets of Belug's Plunge."
+
 
 news "longcow rancher"
 	location
@@ -56,6 +58,7 @@ news "longcow rancher"
 			`"Fresh steak here! First leg steak, second leg steak... a discount for tenth leg steak there is!"`
 			"You see a rancher walk out of a shop with a trolley full of bells. You wonder if they are for multiple longcows, or just a particularly long one."
 
+
 news "kimek farmer"
 	location
 		government "Coalition"
@@ -71,6 +74,7 @@ news "kimek farmer"
 			`"Some fresh produce would you like, Captain? If purchase these, you do, teach you a family recipe I could. I'm sure that love it, a human would. Probably."`
 			"After noticing you looking at the produce, the farmer asks if you would like some free samples, before grabbing an entire box with various fruits and vegetables and handing it to you."
 			`Dozens of farmers in different stands call out to you as you walk by the spaceport, asking you to take a look at the special prices of today's "food expo." You later look into it, and turns out yesterday there also was an expo, as well as the day before that. Tomorrow's starts the moment today's ends.`
+
 
 news "heliarch agent"
 	location
@@ -94,6 +98,7 @@ news "heliarch agent"
 			`"A pilot, I once was. Learned from an older sibling, I did."`
 			`"Seen those charity workers in blue on some of our worlds, have you? Noble intentions they may have, but understand it I do not. Why trouble themselves with it when taking care of everyone, we already are?"`
 
+
 news "heliarch candidate"
 	location
 		government "Heliarch"
@@ -105,6 +110,7 @@ news "heliarch candidate"
 			`"Laws, history, theory, too much of it I have read, and still behind I am..."`
 			`"As part of my trials, read the works of consul Aulori, I had to. Exceeded my expectations, his books have."`
 			`"Meant to prove our dedication and show our potential, the trials we candidates go through are. Though difficult, we're sure to be apt to serve once passed, we have."`
+
 
 news "coalition ad"
 	location
@@ -118,6 +124,7 @@ news "coalition ad"
 			"A commercial for House Debdo plays on a local monitor, with various scenes of tourist spots being accompanied by an upbeat, serene jingle."
 			"An ad shows various graphs of what you guess are stock values. An Arach leg swipes the view, and the graphs begin fluctuating a lot more to one side. At the end, the logo of House Plumtab flashes on the screen."
 			"An ad for an energy drink is on display on a local shop. A Kimek is down on the ground in the middle of the streets, struggling to move, as a crowd gathers around them. When they get the drink, they jump up and bolt past the crowd, and then proceed to climb up a skyscraper. At the end a disclaimer advises against Saryds consuming the drink."
+
 
 news "arach tourist"
 	location
@@ -133,6 +140,7 @@ news "arach tourist"
 			`"Much better than I expected, the food here is. Still, beat longcow steak, nothing here does."`
 			`"That the streets here were too narrow for us Arachi, I had heard, but no problem so far I've had."`
 
+
 news "kimek tourist"
 	location
 		government "Coalition"
@@ -147,6 +155,7 @@ news "kimek tourist"
 			`"Asked me to bring them some gifts from my trip, my family has, but fit them all in my luggage I cannot, and only half of the gifts purchased I have!"`
 			`"From an arcology I am, so to me twice the vacation, a trip to a planet without them is."`
 
+
 news "saryd tourist"
 	location
 		government "Coalition"
@@ -160,6 +169,7 @@ news "saryd tourist"
 			`"From far away I've come, and for weeks sleeping in a ship I was. My first time traveling to another planet, it is, so not used to being so far from nature, I was. No idea how other Saryds make it as pilots, I have."`
 			`"Truly breathtaking, the sights of this world are. The cuisine, too, greatly enjoyed I have. If only the locals had a more civil sense of attire."`
 			`"Climb up walls, the denizens of this world can. Otherworldly it is, to see them do so in the distinct architecture of some buildings here."`
+
 
 news "coalition researcher"
 	location
@@ -178,6 +188,7 @@ news "coalition researcher"
 			`"A lecture in nanotechnology, I am here to present. Unclear on whether I would be teaching faculty or students, the invitation was."`
 			`"Earned a degree in xenobiology, I did some time ago. Under a top researcher in the field, I work now."`
 
+
 news "coalition researcher yottrite"
 	to show
 		has "Coalition Yottrite 9: done"
@@ -192,6 +203,7 @@ news "coalition researcher yottrite"
 			`"Seems that interesting findings, the research on yottrite has yielded. Proud of having helped us learn more, you should be."`
 			`"Now that more information on yottrite we have, wonder if House Ablomab will ask for samples to experiment on, I do."`
 			`"Kill for the papers on the yottrite research, I would, but still confidential the information is."`
+
 
 news "coalition ringworld worker"
 	location
@@ -215,6 +227,7 @@ news "coalition ringworld worker"
 			"A small section of the area is roped off. An Arach has removed a floor panel and is busy reconfiguring circuitry below."
 			`"Friend, please step aside." A Kimek gestures to a large cart filled with tools and equipment, and you move to let them pass.`
 
+
 news "coalition spaceport worker"
 	location
 		government "Coalition" "Heliarch"
@@ -226,6 +239,7 @@ news "coalition spaceport worker"
 			`"Since with captains of other species, we deal, translation boxes, we are issued. Simple tools for us, but too expensive for many to purchase, they are, so to enjoy the opportunity to use them, we try."`
 			`"Three different styles of ships, we deal with daily, so never on autopilot we can be, or else refuel one incorrectly, we might."`
 			`"Inspect every crate before it is put on a ship, the Heliarchs do. A tedious process, it is."`
+
 
 news "coalition merchant"
 	location
@@ -249,6 +263,7 @@ news "coalition merchant"
 			"The spacefarer is assisting the rest of their crew in unloading cargo from a ship."
 			`"Used to fly with me, my brother did, but now become a Heliarch, he has."`
 
+
 news "arach civilian"
 	location
 		government "Coalition"
@@ -263,6 +278,7 @@ news "arach civilian"
 			`"To Ring of Wisdom, a researcher friend of mine has gone. Always there, our wisest mingle, but remain here, few do. Difficult for us, sometimes it is."`
 			`"Always mixing up our Houses, Kimek and Saryd tourists are. Mind it, I do not, but angry, sometimes my friends get."`
 			`"Learnt my language, some Kimek friends have, but so fast they speak, that difficult to understand them, it is."`
+
 
 news "kimek civilian"
 	location
@@ -279,6 +295,7 @@ news "kimek civilian"
 			`"Tired of dealing with faulty translation boxes, my sister got, so learning to speak Arachi, she is."`
 			`"Much more reserved than us, the Saryds are. So long do they live for, that difficult to understand their habits, it can be."`
 
+
 news "saryd civilian"
 	location
 		government "Coalition"
@@ -294,6 +311,7 @@ news "saryd civilian"
 			`"Troubling it is, when their children, Kimek and Arach tourists bring. Climb up everywhere, they try."`
 			`"Travel to new places, I used to, but infinite, our planets are not, so seen them all by now I have."`
 
+
 news "coalition vendor"
 	location
 		government "Coalition"
@@ -308,6 +326,7 @@ news "coalition vendor"
 			`"Interested in these ringworld keychains, are you? For you, only 30 credits!"`
 			`"Caught your eye, this necklace has? Real hedgelion quills, these are. Great luck, they bring, for those generous enough to make a purchase."`
 			`"Arcology miniatures? Arachi armor replicas? Multipurpose gardening tools? For all of those and more, the best prices I have!"`
+
 
 news "coalition civilian expeditions past"
 	to show
@@ -330,6 +349,7 @@ news "coalition civilian expeditions past"
 			`"The one that helped that Heliarch inspector in her expedition, you are. A very strong ship, you must have, if made it back, you two did."`
 			`"Helped that Heliarch inspector come back from the outside, you have. Always thought that impossible, I did."`
 
+
 news "heliarch expeditions past"
 	to show
 		has "Coalition: Expeditions Past 10: done"
@@ -346,6 +366,7 @@ news "heliarch expeditions past"
 			`"Our thanks for helping inspector Sedlitaris, you have. Finally found their way back, the last expedition's reports have."`
 			`"The one who helped inspector Sedlitaris on her expedition you are, correct? Read her report on it, I have. Disconcerting, the fate of the last expedition is, but at least recovered their findings, we now have."`
 
+
 news "coalition games broadcast"
 	to show
 		month == 7
@@ -361,6 +382,7 @@ news "coalition games broadcast"
 			"Some Arachi attentively wait for a game to start. The screen shows the competitors, who are also Arachi, putting on various layers of plate armor. They then all move to a metal cable, just thick enough for them to be gripped with all legs. They then stay there. For many minutes. Until they start falling one by one. Exhilarating."
 			"During a break from the games, some analysts go over spreadsheets with the statistics for the competitors of the past few games. You can't read any of it, but passerby workers and captains stay a while to glance at the results."
 			"One of the competitors from the last game, still catching their breath from the event, is giving an interview and gulping down water every time the interviewer talks. Given their excitement, you figure they must've performed very well."
+
 
 news "coalition games people"
 	to show
@@ -385,6 +407,7 @@ news "coalition games people"
 			`"Watching the Coalition Games transmissions lately, I have been. Tried to become an athlete myself, I once did, but too rigorous, their training routine is! Made me appreciate the sports more, it has."`
 			`"Just arrived from my first live viewing of the Coalition Games, I have. An incredible experience, it was. Go again next year, I for sure will!"`
 
+
 news "coalition games planet heliarch"
 	to show
 		month == 7
@@ -399,6 +422,7 @@ news "coalition games planet heliarch"
 			"You spot a few agents on their lunch break inside a local restaurant. They seem to be enjoying the Coalition Games broadcast more than the meals themselves."
 			`"Heading to the Coalition Games, are you? If so, forgive us you must. Some trouble with organizing the crowds this morning, there was, so delayed by five minutes, the whole line is."`
 			`"A former athlete myself, I am. Earned my rank by winning in the Games, I did, so always eager to help organize the event, I am."`
+
 
 news "coalition games planet people"
 	to show
@@ -422,6 +446,7 @@ news "coalition games planet people"
 			`"Here for the Games too, are you? The largest event in all the Coalition, it is. Come here to watch every year, I do!"`
 			`"Come to watch a relative of mine compete, I have. Training hard for many years, they have been, so sure I am that do well, they will."`
 
+
 news "coalition games crowd"
 	to show
 		month == 7
@@ -435,6 +460,7 @@ news "coalition games crowd"
 			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs and are being helped back to their feet one by one by both Heliarch agents and others from the crowd."
 			"This is a particularly crowded part of the spaceport today. The lines of people waiting for admission into the Games have started crossing and looping in on themselves. Some even head inside shops and restaurants while others stretch into docking areas. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
 			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle to get them to settle down while keeping their spots in the waiting lines."
+
 
 news "lunarium charity"
 	location
@@ -450,6 +476,7 @@ news "lunarium charity"
 			"The spaceport has a few flyers glued to the entrance walls. You ask one of the locals, and they tell you they're for promoting a charity organization."
 			"Coalition families have formed a line to a large cargo ship. Brought by their parents, the children are one by one giving away blankets, outdated electronics, and all sorts of toys, which are all carefully packed into cargo containers. It seems they are donating to a charity organization."
 			"Charity workers are meeting with a few wealthy-looking individuals in the spaceport. Apparently all the expenses of the endeavor are paid by donations, and they are trying to bring in some new patrons to expand the efforts."
+
 
 news "lunarium charity worker"
 	to show

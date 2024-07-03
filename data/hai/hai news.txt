@@ -38,6 +38,7 @@ news "food in Hai space"
 		word
 			`"`
 
+
 news "trading in Hai space"
 	location
 		government "Hai"
@@ -89,6 +90,7 @@ news "science in Hai space"
 		word
 			`"`
 
+
 news "cute story in Hai space"
 	location
 		government "Hai"
@@ -112,6 +114,7 @@ news "cute story in Hai space"
 		word
 			`"`
 
+
 news "cute hai story in Hai space"
 	location
 		government "Hai"
@@ -133,6 +136,7 @@ news "cute hai story in Hai space"
 			"I love participating in the festivities and traditions that humans bring with them into Hai space. They are so diverse and interesting!"
 		word
 			`"`
+
 
 news "business owner in Hai space"
 	location
@@ -175,6 +179,7 @@ news "business owner in Hai space"
 		word
 			`"`
 
+
 news "there might be riots on allhome Hai"
 	location
 		government "Hai"
@@ -198,6 +203,7 @@ news "there might be riots on allhome Hai"
 		word
 			`"`
 
+
 news "there might be riots on allhome human"
 	location
 		government "Hai"
@@ -218,6 +224,7 @@ news "there might be riots on allhome human"
 			"I thought I'd escaped that wretched music the kids were listening to when I came here, but it seems like it's been following me all this time!"
 		word
 			`"`
+
 
 news "concerned merchant in Hai space"
 	location
@@ -242,6 +249,7 @@ news "concerned merchant in Hai space"
 		word
 			`"`
 
+
 news "concerned hai in Hai space"
 	location
 		government "Hai"
@@ -260,6 +268,7 @@ news "concerned hai in Hai space"
 			"I feel so terrible for the many humans that attempt to reach our worlds and are destroyed by the Unfettered humans that block their passage."
 		word
 			`"`
+
 
 news "human citizen in Hai space"
 	location
@@ -280,6 +289,7 @@ news "human citizen in Hai space"
 			"Living here rather than back on Prime has its pros and cons. I don't have to worry about pirates showing up anymore, but now I can't find a single store that sells the latest hologame consoles that I'm used to!"
 		word
 			`"`
+
 
 news "human reaction to Greenwater outfitter"
 	location
@@ -303,6 +313,7 @@ news "human reaction to Greenwater outfitter"
 		word
 			`"`
 
+
 news "businessperson in hai space"
 	location
 		government "Hai"
@@ -322,6 +333,7 @@ news "businessperson in hai space"
 			"It seems that no amount of persuasion can make merchants fly through the north just to get to Hai space. Probably doesn't help that the promise of 'large squirrel customers' isn't very believable."
 		word
 			`"`
+
 
 news "reformed pirate in Hai space"
 	location
@@ -357,6 +369,7 @@ news "reformed pirate in Hai space"
 		word
 			`"`
 
+
 news "human advertisement in Hai space"
 	location
 		government "Hai"
@@ -376,6 +389,7 @@ news "human advertisement in Hai space"
 		word
 			`"`
 
+
 news "hai advertisement in Hai space"
 	location
 		government "Hai"
@@ -394,6 +408,7 @@ news "hai advertisement in Hai space"
 			"If you crave bizarre cuisine from beyond the wormhole, you must try the food at Duality Diner, featuring human chef Dibani Wilczek and her excellent dishes like 'broccoli,' 'oranges,' and 'cereal'!"
 		word
 			`"`
+
 
 news "hai attacked by pirates"
 	location
@@ -415,6 +430,7 @@ news "hai attacked by pirates"
 			"No wonder you have so many pirates in your space, with those fragile freighters you have. So much cargo with so little protection is pure madness! That is why I love humans." 3
 		word
 			`"`
+
 
 news "hai joining unfettered"
 	location
@@ -439,6 +455,7 @@ news "hai joining unfettered"
 			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed." 2
 		word
 			`"`
+
 
 news "hai joining unfettered"
 	location
@@ -480,6 +497,7 @@ news "unfettered hai no dialog"
 			"At a booth, you see a Hai selling stolen ship weaponry for outrageous prices."
 			"At a booth, you see a Hai selling various types of unpleasant-smelling substances. Judging by the effects it has on those who consume them, you guess that they're some type of drug."
 
+
 news "unfettered hai no dialog group"
 	location
 		government "Hai (Unfettered)"
@@ -495,6 +513,7 @@ news "unfettered hai no dialog group"
 			"You hear yelling in the Hai language. When you turn around, you see that two Hai are facing off against each other, as onlookers egg them on. You turn away before it gets ugly."
 			"A group of small Hai children run around playing some sort of game. More concerning, however, is the fact that they are carrying weapons while doing so."
 			"A group of Hai are camped around a bonfire just outside the spaceport. They sing songs and dance around the fire in an energetic, almost maniacal way."
+
 
 news "unfettered hai dialog"
 	location
@@ -528,6 +547,7 @@ news "unfettered hai dialog"
 		word
 			`"`
 
+
 news "Unfettered Regret"
 	location
 		government "Hai (Unfettered)"
@@ -549,6 +569,7 @@ news "Unfettered Regret"
 			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving." 2
 		word
 			`"`
+
 
 news "unfettered hai after wanderers invasion"
 	location
@@ -578,6 +599,7 @@ news "unfettered hai after wanderers invasion"
 			"The aliens to the north call themselves the Wanderers. Overgrown birds is more like it."
 		word
 			`"`
+
 
 news "unfettered hai after wanderers invasion regret"
 	location

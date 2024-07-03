@@ -59,6 +59,7 @@ news "artist on post-fw Deneb"
 		word
 			"!"
 
+
 news "tourist on post-fw Deneb"
 	location
 		government "Neutral"
@@ -112,6 +113,7 @@ news "tourist on post-fw Deneb"
 			"fascinating"
 		word
 			"!"
+
 
 news "conspiracy theorist on post-fw Deneb"
 	location
@@ -170,6 +172,7 @@ news "conspiracy theorist on post-fw Deneb"
 			"This is all just a stunt by the Republic and the Free Worlds"
 		word
 			"."
+
 
 news "reporter on post-fw Deneb"
 	location
@@ -230,6 +233,7 @@ news "reporter on post-fw Deneb"
 			"is going live in a minute"
 		word
 			"."
+
 
 news "merchant on post-fw Deneb"
 	location
@@ -296,6 +300,7 @@ news "merchant on post-fw Deneb"
 		word
 			"!"
 
+
 news "worker on pug-occupied planet after fw"
 	location
 		neighbor system "Deneb"
@@ -349,6 +354,7 @@ news "worker on pug-occupied planet after fw"
 			"we get these days"
 		word
 			"."
+
 
 news "pug on pug planets during fw"
 	location

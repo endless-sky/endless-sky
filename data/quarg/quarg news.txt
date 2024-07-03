@@ -65,6 +65,7 @@ news "anonymous quarg"
 		word
 			`"`
 
+
 news "linguist on quarg planets in human and hai space"
 	location
 		government "Quarg"
@@ -166,6 +167,7 @@ news "linguist on quarg planets in human and hai space"
 		word
 			`"`
 
+
 news "tourist on quarg planets in human and hai space"
 	location
 		government "Quarg"
@@ -221,6 +223,7 @@ news "tourist on quarg planets in human and hai space"
 		word
 			`"`
 
+
 news "engineer on quarg planets in human space"
 	location
 		government "Quarg"
@@ -237,6 +240,7 @@ news "engineer on quarg planets in human space"
 			"I'm working on a new spaceship for the Tarazed Corporation. Every once in a while I come here to take some inspiration from these magnificent designs."
 		word
 			`"`
+
 
 news "merchant on quarg planets in human and hai space"
 	location
@@ -288,6 +292,7 @@ news "merchant on quarg planets in human and hai space"
 			"."
 		word
 			`"`
+
 
 news "merchant on quarg planets in human space"
 	location
@@ -357,6 +362,7 @@ news "merchant on quarg planets in human space"
 		word
 			`"`
 
+
 news "reporter on quarg planets in human space"
 	location
 		government "Quarg"
@@ -387,6 +393,7 @@ news "reporter on quarg planets in human space"
 			"Secrets Humanity Learned from the Quarg!"
 		word
 			`"`
+
 
 news "student on quarg planets"
 	location
@@ -443,6 +450,7 @@ news "student on quarg planets"
 		word
 			`"`
 
+
 news "quarg anywhere"
 	location
 		attributes "quarg" "human quarg" "hai quarg"
@@ -464,6 +472,7 @@ news "quarg anywhere"
 			`An older Quarg is playing with a much younger Quarg, young enough that it's still shorter than yourself. The strange game consists of passing to one another a jar with some slimy, metallic substance inside. Every time the jar is passed, the substance meshes itself into a different shape, sometimes into shapes you know not the meaning of.`
 			`Dozens of Quarg children are being led around by a handful of adults, as if on a school trip. When they notice you, they continue taking glances and talking among themselves. It seems they've never seen a human before.`
 
+
 news "ringworld quarg"
 	location
 		attributes "quarg"
@@ -477,6 +486,7 @@ news "ringworld quarg"
 			"ringworld quarg phrases" 8
 			"quarg poems on species" 1
 
+
 phrase "ringworld quarg phrases"
 	word
 		`You see a shorter, younger Quarg, likely a child in Quarg years, being shown around the ringworld by an adult. It seems like the parent is teaching the child about the ring.`
@@ -489,6 +499,7 @@ phrase "ringworld quarg phrases"
 		`Two Quarg ships land at the same time a few hangar bays away from one another. They open their hatches, and what must be the ships' entire crews come out. Without a hitch the crew of each ship boards the other's ship and depart.`
 		`The Quarg seem to have set up some form of festival in the ring: endless stands stretch out as far as you can see, all displaying variations of the same orange-like fruit, ranging from impossibly smooth to unbelievably wrinkled, and also from sizes as small as a pea to as large as a watermelon. You can't figure what quality they like best.`
 		`You see one Quarg turn a sharp corner in what's a haste by their standards. When you look into the corridor it went to, you see it's a dead end, with the Quarg having inexplicably vanished.`
+
 
 phrase "quarg poems on species"
 	word

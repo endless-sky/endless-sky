@@ -12,6 +12,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+
 news "wanderer civilians, no dialog 1"
 	location
 		government "Wanderer"
@@ -23,6 +25,7 @@ news "wanderer civilians, no dialog 1"
 		word
 			"Outside the spaceport, you see someone performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
 			"A dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+
 
 news "wanderer civilians no dialog 2"
 	location
@@ -36,6 +39,7 @@ news "wanderer civilians no dialog 2"
 			"A crowd has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
 			"On a booth near the spaceport, a group is playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
 
+
 news "wanderer civilians, no dialog 1, post language"
 	to show
 		has "language: Wanderer"
@@ -48,6 +52,7 @@ news "wanderer civilians, no dialog 1, post language"
 	message
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
+
 
 news "wanderer civilians no dialog 2, post language"
 	to show
@@ -65,6 +70,7 @@ news "wanderer civilians no dialog 2, post language"
 			"A group of Wanderer children appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
 			"Two Wanderers are at a table. They appear to be playing some sort of board game using shell pieces."
 			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
+
 
 news "Wanderers and Aliens"
 	to show
@@ -95,6 +101,7 @@ news "Wanderers and Aliens"
 		word
 			`"`
 
+
 news "Wanderer Linguistics 2"
 	to show
 		has "language: Wanderer"
@@ -114,6 +121,7 @@ news "Wanderer Linguistics 2"
 			"I went to a [prison, jail] where some Unfettered Hai were being held, in order to [study, apprehend] their language on a more [in-depth, detailed] level. It was hard to get [information, data] out of them, to say the least."
 		word
 			`"`
+
 
 news "Wanderer civilians, dialog"
 	to show
@@ -141,6 +149,7 @@ news "Wanderer civilians, dialog"
 		word
 			`"`
 
+
 news "Wanderer scientists"
 	to show
 		has "language: Wanderer"
@@ -165,6 +174,7 @@ news "Wanderer scientists"
 		word
 			`"`
 
+
 news "Wanderer oil safety"
 	to show
 		has "language: Wanderer"
@@ -184,6 +194,7 @@ news "Wanderer oil safety"
 		word
 			`"`
 
+
 news "Wanderer oil drilling"
 	to show
 		has "language: Wanderer"
@@ -202,6 +213,7 @@ news "Wanderer oil drilling"
 			"What I do is [unfortunate, regrettable], but we have no other [option, choice]."
 		word
 			`"`
+
 
 news "wanderer farmer"
 	to show
@@ -223,6 +235,7 @@ news "wanderer farmer"
 			"You must not [override, dismiss] the natural [rhythms? balance?] of the land you work on. Doing otherwise would cause [harm, destruction] to that which [feeds, nurtures] you."
 		word
 			`"`
+
 
 news "Wanderer soldier"
 	to show
@@ -249,6 +262,7 @@ news "Wanderer soldier"
 		word
 			`"`
 
+
 news "Wanderer engineer"
 	to show
 		has "Wanderers Solifuge Recon 2: offered"
@@ -270,6 +284,7 @@ news "Wanderer engineer"
 			"I create weapons of [destruction, annihilation] so that we may survive and go on to [create, rebirth]."
 		word
 			`"`
+
 
 news "Wanderers and the Eye"
 	to show
@@ -300,6 +315,7 @@ news "Wanderers and the Eye"
 		word
 			`"`
 
+
 news "Wanderers and Korath"
 	to show
 		has "wanderers sestor done"
@@ -325,6 +341,7 @@ news "Wanderers and Korath"
 			"I am [excited, overjoyed] to be part of [healing, renewing] the Korath worlds. We are once again [transforming, altering] the old into the new."
 		word
 			`"`
+
 
 news "Wanderer Linguistics"
 	to show

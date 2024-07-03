@@ -25,7 +25,6 @@ phrase "00-07"
 		"07"
 
 
-
 phrase "0-F"
 	word
 		"0"
@@ -46,14 +45,12 @@ phrase "0-F"
 		"F"
 
 
-
 phrase "00-1F"
 	word
 		"0"
 		"1"
 	phrase
 		"0-F"
-
 
 
 phrase "A group of"
@@ -75,7 +72,6 @@ phrase "A group of"
 		" of "
 
 
-
 phrase "Indeterminate"
 	word
 		"A few"
@@ -85,7 +81,6 @@ phrase "Indeterminate"
 		"Many"
 	word
 		" "
-
 
 
 phrase "Amount of Remnant"
@@ -212,7 +207,6 @@ news "remnant security advisory"
 			`"`
 
 
-
 news "remnant incomprehensible"
 	location
 		government "Remnant"
@@ -280,7 +274,6 @@ news "remnant incomprehensible"
 			"."
 
 
-
 news "remnant cafeteria"
 	location
 		government "Remnant"
@@ -308,7 +301,6 @@ news "remnant cafeteria"
 			"are examining holo projections over a large meal"
 		word
 			"."
-
 
 
 news "remnant comprehensible"

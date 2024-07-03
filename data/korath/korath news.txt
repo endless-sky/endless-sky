@@ -29,6 +29,7 @@ news "kor efret merchant"
 			"One Korath seems to be auctioning off a strange device to a small crowd."
 			"You enter an unusually busy building and are greeted by a Korath who seems to work there. It's filled with monitors displaying natural flora and fauna. The Korath in here are captivated by them."
 
+
 news "kor efret worker"
 	location
 		government "Kor Efret"
@@ -43,6 +44,7 @@ news "kor efret worker"
 			"Two of the workers nearby are speaking to each other while gesturing to your ship. It looks like they aren't used to visitors here."
 			"A worker carries a crate containing several tools past you to several other Korath. They seem to be repairing an outfit - or maybe it's an air conditioning unit. You can't really tell."
 			"A Korath emerges from a nearby dilapidated building and begins sealing every possible entrance - windows, doors, large cracks - shut. It moves with such efficiency that you're sure it's done this plenty of times before."
+
 
 news "kor efret local"
 	location
@@ -60,6 +62,7 @@ news "kor efret local"
 			"A local Korath gestures toward a building you've never been inside before. Out of curiosity, you poke your head inside to see the reptilian aliens conversing and sharing drinks: it's a bar. Some things never change, no matter where you are in the galaxy."
 			"You pass by one of the abandoned buildings and hear a door open and close rapidly behind you. You turn back and see a Korath dressed in rags quickly walking the other direction."
 
+
 news "kor efret scientist"
 	location
 		government "Kor Efret"
@@ -74,7 +77,8 @@ news "kor efret scientist"
 		word
 			"A Kor Efret pushes a cart filled with strange chemicals and bits of technology past you."
 			"A Korath walks through the spaceport reading numbers off a device and inputting them onto another one. It looks like it's taking samples of the air quality."
-			
+
+
 news "kor efret station friendly"
 	location
 		government "Kor Efret"
@@ -90,7 +94,8 @@ news "kor efret station friendly"
 			"A Kor Efret near your ship is speaking with a worker, gradually increasing its volume until it's doing some strange mix of shouting and hissing. Suddenly, it turns and stalks away with its chest puffed out."
 			"A Korath is studying you intently from a distance. You guess it's never seen a human face to face before."
 			"A local greets you by holding its hands up with its palms facing toward you."
-			
+
+
 news "wanderer at kor efret spaceport"
 	to show
 		has "wanderers sestor done"

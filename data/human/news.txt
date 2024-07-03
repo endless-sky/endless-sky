@@ -64,7 +64,6 @@ news "merchant anywhere"
 			`"`
 
 
-
 news "merchant in human space"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
@@ -171,6 +170,7 @@ news "farmer"
 		word
 			`"`
 
+
 news "sailor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -221,7 +221,6 @@ news "textile worker"
 			`"`
 
 
-
 news "miner"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -244,7 +243,6 @@ news "miner"
 			"Mining really is something magical. Shovel goes in, money comes up!"
 		word
 			`"`
-
 
 
 news "factory worker"
@@ -272,7 +270,6 @@ news "factory worker"
 			"My boss is great. If we suffer, then he makes sure he takes the heat as well."
 		word
 			`"`
-
 
 
 news "street vendor"
@@ -303,7 +300,6 @@ news "street vendor"
 			`"`
 
 
-
 news "grifter"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -325,7 +321,6 @@ news "grifter"
 			"This laser razor never needs sharpening! Achieve a smoking hot look every time!"
 		word
 			`"`
-
 
 
 news "company psychologist"
@@ -350,7 +345,6 @@ news "company psychologist"
 			`"`
 
 
-
 news "genetic counselor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -372,7 +366,6 @@ news "genetic counselor"
 			`"`
 
 
-
 news "parent"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -391,7 +384,6 @@ news "parent"
 			"Don't you hate it when parents only talk about their kids and nothing else? I really try to avoid that... although I do have really nice kids. Do you want to hear about them?"
 		word
 			`"`
-
 
 
 news "unemployed youth"
@@ -423,7 +415,6 @@ news "unemployed youth"
 			`"`
 
 
-
 news "union organizer"
 	location
 		government "Syndicate"
@@ -446,7 +437,6 @@ news "union organizer"
 			"Here's a tip to know if you're being treated unfairly: 'Someone assigns you work, gives you a pizza, and then goes home.' The pizza is worth less than your time, and both your time and the pizza are valued much less than they value their time."
 		word
 			`"`
-
 
 
 phrase "small trash item"
@@ -484,7 +474,6 @@ news "waste collector"
 			`"`
 
 
-
 news "dock worker"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -519,7 +508,6 @@ news "dock worker"
 			`"`
 
 
-
 news "housekeeper"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -539,7 +527,6 @@ news "housekeeper"
 			"I just got fired. The dog of one of the kids died and the missus asked me to fly to Earth and buy a new identical one. When I returned she was screaming that she didn't need two dead dogs."
 		word
 			`"`
-
 
 
 news "groundskeeper"
@@ -563,7 +550,6 @@ news "groundskeeper"
 			`"`
 
 
-
 news "hair stylist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -582,7 +568,6 @@ news "hair stylist"
 			"A real challenge for my profession in this day and age is finding styles that work in both high and low gravity environments."
 		word
 			`"`
-
 
 
 news "tour guide"
@@ -614,7 +599,6 @@ news "tour guide"
 			`"`
 
 
-
 news "human resources worker"
 	location
 		government "Syndicate"
@@ -635,7 +619,6 @@ news "human resources worker"
 			"I should be dealing with employees that just hang around and don't do any useful work, but being here in the spaceport and talking to people like you is much more fun."
 		word
 			`"`
-
 
 
 news "loan officer"
@@ -662,7 +645,6 @@ news "loan officer"
 			`"`
 
 
-
 news "hyperspace relay engineer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
@@ -683,7 +665,6 @@ news "hyperspace relay engineer"
 			`"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I have. It's a little slow, but it works!"`
 			`"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space..." The engineer gives a long-winded and confusing explanation of hyperlanes.`
 			`"It might take hours to get a message a few systems away going through the hyperspace relays, but it sure beats taking multiple days to send a ship or multiple centuries to send a message at light speed."`
-
 
 
 news "hyperspace scientist"
@@ -710,7 +691,6 @@ news "hyperspace scientist"
 			`"`
 
 
-
 news "geological engineer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -729,7 +709,6 @@ news "geological engineer"
 			"I can't believe how annoying it must've been in the distant past to be a geological engineer, with you on one side, the thing you're trying to study on the other, and 15 kilometers of solid rock in between. Thankfully, technology and scanners have marched on since then, and those depressing days are long gone."
 		word
 			`"`
-
 
 
 news "agricultural scientist"
@@ -762,7 +741,6 @@ phrase "athlete competition location"
 		"Shangri-La in the Polaris system"
 
 
-
 news "athlete"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -784,7 +762,6 @@ news "athlete"
 			"I once went to a sports event on Dancer in the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
 		word
 			`"`
-
 
 
 news "dentist"
@@ -809,7 +786,6 @@ news "dentist"
 			`"`
 
 
-
 news "epidemiologist in human space"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -827,7 +803,6 @@ news "epidemiologist in human space"
 			"Don't listen to those conspiracy theories that say you can catch awful viruses from the Quarg. Their physiology is so alien that we're immune to all their diseases."
 		word
 			`"`
-
 
 
 news "epidemiologist on quarg world"
@@ -849,7 +824,6 @@ news "epidemiologist on quarg world"
 			`"`
 
 
-
 news "economist"
 	location
 		government "Syndicate"
@@ -867,7 +841,6 @@ news "economist"
 			"An economy is almost like a living organism, and if you're able to grasp its intricacy and scope, it's actually a very beautiful thing."
 		word
 			`"`
-
 
 
 news "mechanic"
@@ -893,6 +866,7 @@ news "mechanic"
 			"If it ain't broken, then don't come to me."
 		word
 			`"`
+
 
 news "mechanic on frozen world"
 	location
@@ -938,7 +912,6 @@ news "ship salesperson"
 			`"`
 
 
-
 news "nuclear technician"
 	location
 		government "Syndicate"
@@ -961,7 +934,6 @@ news "nuclear technician"
 			`"`
 
 
-
 news "substance abuse counselor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -980,7 +952,6 @@ news "substance abuse counselor"
 			"If someone ever offers you a drug running job, I beg you to deny it and direct them toward one of us. That person will thank you later."
 		word
 			`"`
-
 
 
 news "reporter"
@@ -1012,7 +983,6 @@ news "reporter"
 			`"`
 
 
-
 news "public relations worker"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
@@ -1032,7 +1002,6 @@ news "public relations worker"
 			"One of my clients crashed her shuttle into the Parliament building. Keeping that out of the news was horribly expensive, but it was still cheaper than the reputation hit if it were broadcast."
 		word
 			`"`
-
 
 
 news "museum curator"
@@ -1058,7 +1027,6 @@ news "museum curator"
 			`"`
 
 
-
 news "actor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1079,7 +1047,6 @@ news "actor"
 			"Don't be fooled by my jovial appearance onstage. I take my work very seriously."
 		word
 			`"`
-
 
 
 news "musician"
@@ -1107,7 +1074,6 @@ news "musician"
 			`"`
 
 
-
 news "technical writer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1129,7 +1095,6 @@ news "technical writer"
 			`"`
 
 
-
 news "dietitian"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1147,7 +1112,6 @@ news "dietitian"
 			"There are probably thousands of edible native plants on every world human beings have colonized, but people still prefer the plants we brought with us from ancient Earth."
 		word
 			`"`
-
 
 
 news "chef"
@@ -1178,7 +1142,6 @@ news "chef"
 			`"`
 
 
-
 news "insurance agent"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1200,7 +1163,6 @@ news "insurance agent"
 			"What keeps me up at night? Correlated risk."
 		word
 			`"`
-
 
 
 news "excavation specialist"
@@ -1227,7 +1189,6 @@ news "excavation specialist"
 			`"`
 
 
-
 news "chauffeur"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1250,7 +1211,6 @@ news "chauffeur"
 			"You're not in traffic, you're part of traffic."
 		word
 			`"`
-
 
 
 news "retiree"
@@ -1277,7 +1237,6 @@ news "retiree"
 			`"`
 
 
-
 news "financial analyst"
 	location
 		attributes "paradise" "near earth"
@@ -1301,7 +1260,6 @@ news "financial analyst"
 			"Nearly lost my shirt in the commodities market last week. If my boss ever found out, it'd be curtains for me!"
 		word
 			`"`
-
 
 
 news "syndicate manager"
@@ -1345,7 +1303,6 @@ news "syndicate manager"
 			`"`
 
 
-
 news "work coach"
 	location
 		government "Syndicate"
@@ -1362,7 +1319,6 @@ news "work coach"
 			"Working as the head of a company requires sound decision making abilities. Hiring an expensive consultant like me usually suggests a lack thereof, but I'm not complaining since I get paid well."
 		word
 			`"`
-
 
 
 news "scientist"
@@ -1385,7 +1341,6 @@ news "scientist"
 			"My research concerns force fields. No, not those kinds of force fields."
 		word
 			`"`
-
 
 
 news "student"
@@ -1414,7 +1369,6 @@ news "student"
 			`"`
 
 
-
 news "religious"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1441,7 +1395,6 @@ news "religious"
 			"Praise God! This day is a blessing."
 		word
 			`"`
-
 
 
 news "tourist"
@@ -1482,6 +1435,7 @@ news "tourist"
 		word
 			`"`
 
+
 news "tourist on frozen world"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
@@ -1502,6 +1456,7 @@ news "tourist on frozen world"
 		word
 			`"`
 
+
 news "protester"
 	location
 		government "Republic" "Free Worlds" "Syndicate"
@@ -1519,7 +1474,6 @@ news "protester"
 			"Give up your sinful life as spaceship captain and settle on this beautiful planet."
 		word
 			`"`
-
 
 
 news "diplomat"
@@ -1544,7 +1498,6 @@ news "diplomat"
 			`"`
 
 
-
 news "mercenary"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1566,7 +1519,6 @@ news "mercenary"
 			"As much as I'd like to dual-wield laser rifles, I'd probably just miss every shot."
 		word
 			`"`
-
 
 
 news "republic soldier"
@@ -1594,7 +1546,6 @@ news "republic soldier"
 			`"`
 
 
-
 news "lawyer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1614,7 +1565,6 @@ news "lawyer"
 			"I was involved in a case of an out-of-spec Syndicate nuclear reactor. Allegedly, the Syndicate threatened the inspector to prevent him from publishing his results, but he didn't give in."
 		word
 			`"`
-
 
 
 news "syndicate soldier"
@@ -1638,7 +1588,6 @@ news "syndicate soldier"
 			"If you ask me, I think that the Syndicate is far too soft on the pirates - almost as if they don't want to harm them more than they need to. Don't tell my employers that I said that, though."
 		word
 			`"`
-
 
 
 news "pirate"
@@ -1699,7 +1648,6 @@ news "pirate"
 			`"`
 
 
-
 news "merchant in pirate space"
 	location
 		government "Pirate"
@@ -1724,7 +1672,6 @@ news "merchant in pirate space"
 			"The optimist has the glass half full, the pessimist has the glass half empty, but here you are already lucky if the glass doesn't get shot, stolen, or broken before you take your first sip."
 		word
 			`"`
-
 
 
 news "farmer in pirate space"
@@ -1760,7 +1707,6 @@ news "farmer in pirate space"
 			`"`
 
 
-
 news "republic reporter in pirate space"
 	location
 		government "Pirate"
@@ -1782,7 +1728,6 @@ news "republic reporter in pirate space"
 			"Read my column on how to identify pirates in disguise! Or just look around this planet, that also works."
 		word
 			`"`
-
 
 
 news "conspiracy theorist"
@@ -1820,7 +1765,6 @@ news "conspiracy theorist"
 			`"`
 
 
-
 news "spaceport video advertisement"
 	location
 		government "Republic"
@@ -1833,7 +1777,6 @@ news "spaceport video advertisement"
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
 			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
-
 
 
 phrase "culinary venue"
@@ -1852,7 +1795,6 @@ phrase "restaurant names"
 		"civilian subphrase 4"
 		"civilian subphrase 5"
 		"civilian subphrase 10"
-
 
 
 news "syndicate pa system"
@@ -1877,11 +1819,11 @@ news "syndicate pa system"
 			`"`
 
 
-
 phrase "tourist names"
 	phrase
 		"male names"
 		"female names"
+
 
 phrase "platform number"
 	word
@@ -1925,6 +1867,8 @@ news "tourist pa system"
 			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
+
+
 phrase "pirate worlds"
 	word
 		"Albatross"
@@ -1940,6 +1884,7 @@ phrase "pirate worlds"
 		"Stormhold"
 		"Thule"
 		"Zenith"
+
 
 phrase "rnas travel advisory [1]"
 	word
@@ -1966,6 +1911,7 @@ phrase "rnas travel advisory [2]"
 		"to be extremely dangerous."
 		"to place Navy rescue personnel in unnecessary danger."
 
+
 phrase "rnas travel advisory [3]"
 	word
 		"Navigational hazard:"
@@ -1982,11 +1928,13 @@ phrase "rnas travel advisory [3]"
 	word
 		"."
 
+
 phrase "rnas travel advisory"
 	phrase
 		"rnas travel advisory [1]"
 		"rnas travel advisory [2]"
 		"rnas travel advisory [3]"
+
 
 phrase "rnas port emergency alert test"
 	word
@@ -2001,6 +1949,7 @@ phrase "rnas port emergency alert test"
 		"Fire. Evacuate immediately. Fire. Evacuate immediately. Fire. Evacuate immediately."
 		"Cryogenic fluid release. Evacuate immediately. Cryogenic fluid release. Evacuate immediately. Cryogenic fluid release. Evacuate immediately."
 		"Orbital bombardment. Evacuate immediately. Orbital bombardment. Evacuate immediately. Orbital bombardment. Evacuate immediately."
+
 
 news "republic navy advisory system"
 	location
@@ -2019,6 +1968,7 @@ news "republic navy advisory system"
 		word
 			`"`
 
+
 news "republic navy advisory system [wartime]"
 	location
 		government "Republic"
@@ -2036,6 +1986,7 @@ news "republic navy advisory system [wartime]"
 			"Attention: Dangerous combat conditions persist in the galactic South. Avoid all travel to affected systems unless strictly necessary."
 		word
 			`"`
+
 
 news "explorer on frozen world"
 	location
@@ -2076,12 +2027,14 @@ phrase "republic motto graffiti"
 		`Underneath are the words "POVERTY AMONG THE STARS."`
 		`Underneath are the words "PEACE AMONG THE PARADISE WORLDS."`
 
+
 phrase "deep motto graffiti"
 	word
 		`` 2
 		`Underneath are the words "Peace, Prosperity, Progress."` 2
 		`Underneath are the words "Power, Poverty, Pride."`
 		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky."`
+
 
 news "republic navy advisory system [alphas]"
 	location
@@ -2099,6 +2052,8 @@ news "republic navy advisory system [alphas]"
 			"For your safety, do not attempt to apprehend an Alpha. Instead, contact Republic Navy personnel at once."
 		word
 			`"`
+
+
 news "safety posters"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2127,6 +2082,7 @@ news "safety posters"
 			"PROTECTIVE EQUIPMENT REQUIRED WITHIN HAZARD ZONE"
 		word
 			`"`
+
 
 news "graffiti on spaceport wall"
 	location
