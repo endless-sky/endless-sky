@@ -22,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 
 #include <algorithm>
+#include <boost/dll.hpp>
+#include <filesystem>
 #include <map>
 
 using namespace std;
@@ -192,6 +194,38 @@ bool Plugin::IsValid() const
 
 
 
+// Load all scripts in the plugin.
+void Plugin::LoadScripts()
+{
+	if(filesystem::is_directory(path+"scripts"))
+		for(const auto &entry : filesystem::directory_iterator(path+"scripts"))
+			if(entry.is_regular_file())
+			{
+				#ifdef __unix__
+				if(entry.path().extension() == ".so")
+				#else
+				if(entry.path().extension() == ".dll")
+				#endif
+				{
+					boost::dll::shared_library library = boost::dll::shared_library(entry.path().string());
+					try
+					{
+						// Get the init function of the plugin
+						const auto &init = library.get<void(const Plugin *)>("Init");
+						init(this);
+						// Add to script list
+						scripts.emplace(library);
+					} catch (const std::exception &ex) {
+						Logger::LogError("Could not load script file " + entry.path().filename().string() + ": " + ex.what());
+						library.unload();
+					}
+				}
+
+			}
+}
+
+
+
 // Attempt to load a plugin at the given path.
 const Plugin *Plugins::Load(const string &path)
 {
@@ -278,6 +312,7 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->authors = std::move(authors);
 	plugin->tags = std::move(tags);
 	plugin->dependencies = std::move(dependencies);
+	plugin->LoadScripts();
 
 	return plugin;
 }

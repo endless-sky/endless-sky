@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Set.h"
 
+#include <boost/dll.hpp>
 #include <set>
 #include <string>
 
@@ -45,6 +46,8 @@ struct Plugin {
 	bool IsValid() const;
 	// Constructs a description of the plugin from its name, tags, dependencies, etc.
 	std::string CreateDescription() const;
+	// Load all scripts in the plugin.
+	void LoadScripts();
 
 	// The name that identifies this plugin.
 	std::string name;
@@ -67,6 +70,8 @@ struct Plugin {
 	bool enabled = true;
 	// The current state of the plugin.
 	bool currentState = true;
+	// Scripts loaded by the plugin.
+	std::set<boost::dll::shared_library> scripts;
 };
 
 
