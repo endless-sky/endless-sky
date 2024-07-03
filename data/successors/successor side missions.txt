@@ -78,9 +78,9 @@ mission "Successors: First Contact Exploration: Mavra-Sol-Kvel"
 			`	You hold up your hands and step away from the individual offering you the data-sphere, and they are quickly pushed back by one of the guards.`
 				decline
 
-mission "Successors: First Contact Exploration: Mosaa-Ooa-Wyrdd"
+mission "Successors: First Contact Exploration: Mosaa-Oa-Vyret"
 	minor
-	source "Mosaa-Ooa-Wyrdd"
+	source "Mosaa-Oa-Vyret"
 	to offer
 		or
 			and
