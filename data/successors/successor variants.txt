@@ -188,7 +188,7 @@ ship `Veusade` `Veusade (Surveillance)`
 		"Drag Cannon" 8
 		"Multimodal Armor: Heavy"
 		`"Veldt" Combat Scanner`
-		`Auxiliary Power Reserve` 
+		`Auxiliary Power Reserve`
 
 ship `Vujlet` `Vujlet (Surveillance)`
 	outfits

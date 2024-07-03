@@ -72,7 +72,7 @@ mission "Successors: First Contact Exploration: Mavra-Sol-Kvel"
 					goto refused
 			`	The Successor trills warmly when you take the sphere, though they are quickly pushed back by one of the guards. Like previously, the sphere expands into a small star map as soon as you touch it, though this one seems to contain some cultural data in addition to stellar coordinates.`
 				decline
-			action	
+			action
 				outfit "Local Map" 1
 			label refused
 			`	You hold up your hands and step away from the individual offering you the data-sphere, and they are quickly pushed back by one of the guards.`
@@ -312,7 +312,7 @@ mission "Successors: Buskers"
 			label hum
 			`	The Successors around you seem amused by your attempt to emulate the humming; some briefly display a bluish-green wave of color across their skin before quickly returning to their base shade. Nonetheless, no one here seems to take any significant offense at the gesture. The performers eventually emerge from the pool, gently tucking their instruments into equally oddly-shaped cases before chatting with some of the few remaining members of the crowd and then departing.`
 				decline
-			
+
 			label unappreciative
 			`	You return to your ship, gently extricating yourself from the throng of spellbound Successors, who continue to shimmer and sway in the distance until the performance eventually ends and they disperse to go their separate ways.`
 				decline
@@ -334,7 +334,7 @@ mission `Successors: Stargazing 1`
 	on offer
 		conversation
 			`While in the spaceport on <origin>, you notice a pair of tired-looking Successors lugging around a cart of a curious folded material, taking turns dragging their apparently heavy luggage over the floor. Both perk up substantially when they see you and your ship, however, and pull their equipment towards you with renewed vigor, finally getting close enough to speak.`
-			`	The larger of the two begins, "Oh! Thour't that recent alien, no? 'Tis a gorgeous ship thou commands---"` 
+			`	The larger of the two begins, "Oh! Thour't that recent alien, no? 'Tis a gorgeous ship thou commands---"`
 			`	"What we meant to say is---"`
 			`	"Sorry, 'tis just that---" `
 			`	"Do you take passenger missions?"`
@@ -382,7 +382,7 @@ mission `Successors: Stargazing 1`
 			`	The pair depart in their gliding tent, which manifests several transparent spots on its surface as it exits and as a bevy of telescopes are prodded around inside.`
 			choice
 				`	(Wait.)`
-			`	Nnesa and Jaasora return after a couple of hours, as promised, their tent gliding back into the <ship>'s cargo bay as smoothly as it exited. The pair unload several notebooks of photos and drawings and chatter excitedly about the various constellations and stellar phenomena that they observed. Nnesa is particularly excited, hurriedly extracting from the interleaved mess of papers a suprisingly accurate and well-constructed star map, which they press up in your face with pride. You cannot help but notice that several of the drawings in the stack are of Jaasora rather than of any stellar phenomena.`
+			`	Nnesa and Jaasora return after a couple of hours, as promised, their tent gliding back into the <ship>'s cargo bay as smoothly as it exited. The pair unload several notebooks of photos and drawings and chatter excitedly about the various constellations and stellar phenomena that they observed. Nnesa is particularly excited, hurriedly extracting from the interleaved mess of papers a surprisingly accurate and well-constructed star map, which they press up in your face with pride. You cannot help but notice that several of the drawings in the stack are of Jaasora rather than of any stellar phenomena.`
 			`	"From where on the map dost thou hail, captain?" Nnesa roughly gestures to an area of their map that you recognize as human space.`
 			choice
 				`	(Indicate Rutilicus.)`
@@ -446,7 +446,7 @@ mission "Successors: Graffiti"
 					goto how
 				`	"I'm sorry to interrupt in that case. Carry on."`
 					goto fooled
-			
+
 			label how
 			`	The group look around at each other before the same one replies again. "The ... ah ... solution seeps into the cracks and strains within the hull and when it dries it seals them. Beyond that, we do not know; we just apply it as directed by the port authority."`
 			`	One of the other ones pipes up, cheerfully adding, "We don't know anything!" before the others give them a dark look.`
@@ -455,7 +455,7 @@ mission "Successors: Graffiti"
 					goto colorful
 				`	"Fascinating. Carry on."`
 					goto fooled
-			
+
 			label colorful
 			`	"Oh, that's for ... ah ... safety. Yes, 'tis very dangerous to touch if thou'r'nt trained, so 'tis bright in color as a warning." None of the three are wearing any sort of protective equipment that you can see, and by now most of the group have changed color to what you might characterize as a mirthful shade of pink. This is something which one or two are clearly trying to suppress, their skin shifting in gradients in an effort to maintain their previous dull purple hue. One of the others is trying to hide a bag filled with more cans of "hull solution" behind their arms.`
 			choice
@@ -467,7 +467,7 @@ mission "Successors: Graffiti"
 					goto complicit
 				`	"Thanks for answering my questions. Please carry on."`
 					goto fooled
-				
+
 			label called
 			`	The trio seem rather deflated at hearing this, but after quite a bit of milling amongst themselves eventually relent and agree to remove the solution so long as you don't inform the port authority about their actions. While they put good effort into removing it---or at least act the part---they can't seem to scrub away the most dried-on parts, and you eventually let them go after it becomes apparent that some of the paint has permanently bonded to the hull.`
 				decline
@@ -479,7 +479,7 @@ mission "Successors: Graffiti"
 			label ignored
 			`	Upon returning from the spaceport some time later, you find that an area on the side of the <ship> has been covered in a thick, colorful solution with an incredibly noxious smell so potent you can hardly bear to approach it. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Ryiaa was here (and friends)." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
-			
+
 			label fooled
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Hai-Fool! Naked with no tail." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline

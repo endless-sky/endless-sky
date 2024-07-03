@@ -13,16 +13,16 @@ mission "Successors: Entering the Scar"
 	landing
 	destination
 		attributes "predecessor"
-	to fail 
+	to fail
 		has "Successors: Safe at Last: failed"
 	on enter
 		system
 			attributes "predecessor"
-		dialog 
+		dialog
 			`Shortly after the jump to this system finishes, your ship's sensors begin to register small but progressive damage to the hull and internal systems, despite there being no other ships in the system. Equally confusing, your jump drive seems to still be partially active despite the jump having been completed.`
 	on complete
-		dialog 		
-			`The mass of the planet seems to be shielding you from whatever is damaging your ship in space, offering you an opportunity to rest and repair.`		
+		dialog
+			`The mass of the planet seems to be shielding you from whatever is damaging your ship in space, offering you an opportunity to rest and repair.`
 
 mission "Successors: Safe at Last"
 	invisible
@@ -33,7 +33,7 @@ mission "Successors: Safe at Last"
 		has "Successors: First Contact 1: offered"
 	on enter "Myruet-Kvelq"
 		fail
-		dialog 		
+		dialog
 			`The system on the other side of the wormhole is the first one in days that your sensors do not respond to with alarms. Apart from the presence of the wormhole, the space here appears entirely normal.`
 
 mission "Successors: First Contact 1"
@@ -87,7 +87,7 @@ mission "Successors: First Contact 1"
 		dialog `At least one of your escorts have been destroyed. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 	on visit
-		conversation 
+		conversation
 			`You have reached <planet>, but without your escorts, you are refused landing permission at the spaceport and must return to orbit until they arrive.`
 				launch
 
@@ -202,7 +202,7 @@ mission "Successors: First Contact 2"
 				`	(Go with them.)`
 
 			`	Your escort relaxes as you move to walk towards the inner complex, and the group of eight follow you as you approach its outer doors.`
-			`	The inside of the complex is opulent and massive, with vaulted ceilings rising on columns out of the lake water. Some mimic the forms and textures of tree trunks, spreading out on the ceiling into a canopy filled with thin metallic leaves that slowly wave and occlude the lights embedded above them. Each successive hall you pass through is a unique and enormous sculpture: the arch of a wave moments before crashing; the spiral of an huge suckered arm. You eventually arrive at a large door; your escort reaches out to touch it and as soon as they do, it begins to liquify and flow into a trench on the floor. When it is finished, you step across the threshold into a final circular room where a group of Successors stand waiting. One you recognize as Sieasej wearing a new set of metallic-looking robes, but the rest are unfamiliar and especially richly dressed.`
+			`	The inside of the complex is opulent and massive, with vaulted ceilings rising on columns out of the lake water. Some mimic the forms and textures of tree trunks, spreading out on the ceiling into a canopy filled with thin metallic leaves that slowly wave and occlude the lights embedded above them. Each successive hall you pass through is a unique and enormous sculpture: the arch of a wave moments before crashing; the spiral of an huge suckered arm. You eventually arrive at a large door; your escort reaches out to touch it and as soon as they do, it begins to liquefy and flow into a trench on the floor. When it is finished, you step across the threshold into a final circular room where a group of Successors stand waiting. One you recognize as Sieasej wearing a new set of metallic-looking robes, but the rest are unfamiliar and especially richly dressed.`
 			`	One of the adorned individuals looks at you and speaks, and Sieasej translates a moment later.`
 			branch "tardy"
 				has "event: successors: tardy for sioeora"
@@ -265,12 +265,12 @@ mission "Successors: First Contact 2"
 			label rejected
 			action
 				set "rejected: Successors: First Contact 2"
-			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of generosity today shall be allowing thee to depart this noble place whilst still possessed of thy freedom and belongings. Thou shalt recieve no further aid nor comfort from this House, and thou shalt be banished at the pleasure of its scions from whatever worlds are held under its dominion."`
+			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of generosity today shall be allowing thee to depart this noble place whilst still possessed of thy freedom and belongings. Thou shalt receive no further aid nor comfort from this House, and thou shalt be banished at the pleasure of its scions from whatever worlds are held under its dominion."`
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 			label end
 
-substitutions 
+substitutions
 	"<tranq h2h>" "Pug staff"
 	"<tranq h2h>" "Heliarch staff"
 		has "outfit: Enforcer Riot Staff"
@@ -290,7 +290,7 @@ mission "Successors: First Contact 3"
 	passengers 1
 	blocked `You speak with Sieasej, who informs you that they require at least 1 free bunk to travel.`
 	on offer
-		conversation 
+		conversation
 			`You are met in House Sioeora's spaceport by Sieasej, who has shed the adorned metallic robes they wore in the presence of the scions for a more robust and rugged cocoon-like outfit. "Ah, captain <last>," they say, "Thou conducted thyself well with the scions of the House. Well enough for an alien, at least."`
 			choice
 				`	"Thank you. What can you tell me about our mission?"`
@@ -407,7 +407,7 @@ mission "Successors: First Contact 3"
 			`	You make your way along one of the walkways to the west, brushing aside the enormous leaves of the overgrowing plants. Sieasej continues to wave their triangulation device in the air and quietly relays your progress; as you get closer, you hear a gentle scuffling that you realize precedes every detection by the device. After making your way through one particularly-dense wall of flora, you spot your target: a glassy-winged animal perched in a plant over the walkway's edge, probing the branch it stands on with long feelers extending from its head.`
 			choice
 				`	(Try to tranquilize it.)`
-						goto tranq
+					goto tranq
 					to display
 						or
 							has "outfit: Enforcer Riot Staff"
@@ -437,7 +437,7 @@ mission "Successors: First Contact 3"
 			`	The animal remains stationary, examining you closely.`
 			choice
 				`	(Tranquilize it.)`
-						goto tranq
+					goto tranq
 					to display
 						or
 							has "outfit: Enforcer Riot Staff"
@@ -452,7 +452,7 @@ mission "Successors: First Contact 3"
 			`	The animal inspects your hand for a moment before darting away.`
 			label lured-failed
 				`	(Tranquilize it.)`
-						goto tranq
+					goto tranq
 					to display
 						or
 							has "outfit: Enforcer Riot Staff"
@@ -463,7 +463,7 @@ mission "Successors: First Contact 3"
 			`	The animal seems curious. It approaches your hand, sniffing it gently.`
 			choice
 				`	(Tranquilize it.)`
-						goto tranq
+					goto tranq
 					to display
 						or
 							has "outfit: Enforcer Riot Staff"
@@ -472,13 +472,13 @@ mission "Successors: First Contact 3"
 					goto net
 				`	(Offer it a morsel of food.)`
 					goto lure-3
-			
+
 			label lure-3
 			label lured
 			`	You retrieve a morsel of food and offer it to the animal, which sniffs it gently before starting to eat some.`
 			choice
 				`	(Tranquilize it now.)`
-						goto tranq-friends
+					goto tranq-friends
 					to display
 						or
 							has "outfit: Enforcer Riot Staff"
@@ -608,7 +608,7 @@ mission "Successors: First Contact 3"
 			`	A flash of black, ruffled skin passes over Riijaaora's body. Several of the other scions perform similar displays. "'Tis a shame, captain," they say. "If thou offers no utility to this House, then we see little point in retaining thee as an ally, much less rewarding thee for thy absent service. Trouble us no more, and begone." They turn around to face away from you, and the guards slowly peel away from the walls to escort you out. Sieasej remains watching until the door closes shut behind you.`
 			`	As you return to the landing pad, you notice that while your ship has been refueled, the pad itself is slowly being flooded in a none-too-subtle gesture that encourages you to leave.`
 				goto exit
-			
+
 			label capture
 			action
 				set "known to the successors"
@@ -687,7 +687,7 @@ mission "Successors: Kaatrij First Contact 1"
 			label hai
 			`Shortly after you set the <ship> down on <source>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize is that of the Hai. After running the text through your ship's Hai translator, you are able to decode the message:`
 				goto message-hai
-			
+
 			label was-monoglot
 			branch hai-monoglot
 				has "language: Hai"
@@ -723,7 +723,7 @@ mission "Successors: Kaatrij First Contact 1"
 			choice
 				`	(Wait.)`
 			`	A couple of animals swim in the water in the distance, making faint honking sounds every once in a while that linger in the starlit air.`
-			choice	
+			choice
 				`	(Wait.)`
 				`	(Leave.)`
 					goto premature
@@ -745,7 +745,7 @@ mission "Successors: Kaatrij First Contact 1"
 					goto communicate
 			label kijran
 			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran---Kiitaa and Khora alike---are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? It was the old House Kaatrij that strengthened their genomes against decay. That we were---had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another house to subject these children of ours to their whims.`
-			choice	
+			choice
 				`	"How is it that you can communicate with me?`
 					to display
 						not "language: Successor"
@@ -850,7 +850,7 @@ mission "Successors: Trusted"
 		"reputation: Old Houses" += 5
 		"reputation: New Houses" += 5
 		conversation
-			`Shortly after you set down in the spaceport here, you are approached by a group of Successors in naval uniforms, clearly and surprisingly in the employ of multiple various High Houses; there is some variance in the design of the uniforms of different members. Their leader addresses you in a calm tone with the unmistakable coolness that military officers seem to hold regardless of species, their skin remaining a flat grey throughout.`
+			`Shortly after you set down in the spaceport here, you are approached by a group of Successors in naval uniforms, clearly and surprisingly in the employ of multiple various High Houses; there is some variance in the design of the uniforms of different members. Their leader addresses you in a calm tone with the unmistakable coolness that military officers seem to hold regardless of species, their skin remaining a flat gray throughout.`
 			`	"Captain <last>. The High Houses have noted thy actions in their space, and wishing to make thee a stronger ally to their cause, have summoned thee to meet them in council. Thou art encouraged to make haste to the Uuoru-Kella system.`
 			choice
 				`	"Thank you for telling me. I'll prepare to travel there immediately."`
@@ -955,7 +955,7 @@ mission "Successors: Trusted"
 			`	With no further comments from any of the Successors, the representative from House <successor patron> calls for a vote from among the gathered representatives. Unsurprisingly, <successor patron> and Chydiyi vote for the proposition and <successor opponent> votes against it, and the representative from <successor patron> promptly produces another small box from within their outfit and presents it to you. You open it to reveal one of the pin insignias that you have seen throughout this meeting.`
 			label license
 			scene "outfit/successor license"
-			`	"This is the mark of our diplomats and our symbol of trust and cooperation," they say. "Our people may remain wary of an alien in their midst, but wherever thou displays this, it shall be known that thou hast recieved the blessing of the High Houses in council and that they may trade with you in amity and without fear."`
+			`	"This is the mark of our diplomats and our symbol of trust and cooperation," they say. "Our people may remain wary of an alien in their midst, but wherever thou displays this, it shall be known that thou hast received the blessing of the High Houses in council and that they may trade with you in amity and without fear."`
 			`	With this, Chydiyi then leaves the room, followed by most of the other representatives and gathered members, the remainder of whom begin to mingle amongst themselves and chat; the meeting is apparently over.`
 			`	Outside, you run into Sieasej again, who has recently come back from a meeting of their own. "Well, captain, how went thy meeting in council? 'Twas fruitful?"`
 			choice
@@ -1004,14 +1004,14 @@ mission "Successors: People's Houses, First Contact"
 				`	"Free?"`
 					goto free
 				`	"Thank you. I have no more questions."`
-			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back agaist thy new and treacherous 'friends.'`
+			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back against thy new and treacherous 'friends.'`
 			`	"Or don't. Another buried fool makes little difference."`
 			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
 				decline
 			label free
 			`	"Free, or freer than Old and New permit. The People's Houses stand not for the rich and those of noble blood, but for the true and honest heirs of that which was."`
 			`	The Successor looks over to the spaceport, before returning their attention to you for the last time.`
-			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back agaist thy new and treacherous 'friends.'`
+			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back against thy new and treacherous 'friends.'`
 			`	"Or don't. Another buried fool makes little difference."`
 			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
 				decline

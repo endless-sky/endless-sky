@@ -6316,7 +6316,7 @@ system Avasaa-Novaa
 	hazard "Predecessors Base Spatial Decay" 400
 	hazard "Predecessors Spatial Rift Weak" 10000
 	haze _menu/haze-tear
-	object 
+	object
 		sprite star/m0
 	object
 		sprite planet/titan
@@ -26028,7 +26028,7 @@ system Oublaa-Khora
 		sprite planet/rock13
 		distance 2480
 		period 2480
-	object 
+	object
 		sprite planet/gas14-b
 		distance 5289
 		period 5289
@@ -34215,11 +34215,11 @@ system Uuoru-Sossa
 	government Uninhabited
 	attributes predecessor
 	arrival 2700
-	habitable 2700	
+	habitable 2700
 	hazard "Predecessors Base Spatial Decay" 100
 	hazard "Predecessors Spatial Rift Intense" 8000
 	haze _menu/haze-tear
-	object 
+	object
 		sprite star/void-scar
 			scale 2.0
 		distance 2200
@@ -34233,7 +34233,7 @@ system Uuoru-Sossa
 		sprite star/k-dwarf
 		distance 200
 		period 80
-	object 
+	object
 		sprite planet/gas8
 		distance 2200
 		period 32

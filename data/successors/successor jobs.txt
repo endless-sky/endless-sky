@@ -38,9 +38,9 @@ phrase "successor delivery"
 
 phrase "successor data"
 	word
-		`You ` 
+		`You `
 	word
-		`deliver ` 
+		`deliver `
 		`hand over `
 		`transfer `
 	word
@@ -58,10 +58,10 @@ phrase "successor data"
 
 phrase "high houses delivery"
 	word
-		`You ` 
+		`You `
 	word
 		`offload `
-		`deliver ` 
+		`deliver `
 		`hand off `
 		`drop off `
 	word
@@ -71,7 +71,7 @@ phrase "high houses delivery"
 		`shipment `
 		`cargo `
 	word
-		`of <commodity> to several well-dressed Successor officers. ` 
+		`of <commodity> to several well-dressed Successor officers. `
 	word
 		`They give you your `
 		`They provide you with the agreed-upon `
@@ -234,7 +234,7 @@ mission "Successor: Tourist Expedition"
 	source
 		attributes "successor"
 	stopover
-		attributes "successor" 
+		attributes "successor"
 		attributes "uninhabited" "tourism" "wealthy"
 		not attributes "crime"
 	stopover
@@ -649,7 +649,7 @@ mission "Successor: Home Researchers Out 1"
 		attributes "successor"
 		attributes "education"
 	stopover
-		attributes "uninhabited" 
+		attributes "uninhabited"
 		attributes "successor"
 		not attributes "station"
 	on stopover

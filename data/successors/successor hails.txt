@@ -97,7 +97,7 @@ phrase "successor friendly hail" # Conspiracy hails
 		"The best trade routes are those that make thy money." 5
 		"The best trade routes are hidden from thy sensors." 2
 		"There are nightmares in the void the Houses fear."
-		"The empty systems here are prone to strangeness." 
+		"The empty systems here are prone to strangeness."
 
 phrase "successor hostile hail"
 	word
@@ -148,7 +148,7 @@ phrase "successor hostile disabled hail"
 
 phrase "high houses friendly hail"
 	word
-		"We welcome thee to join us in our space" 
+		"We welcome thee to join us in our space"
 		"Thy presence in our lovely space is welcome"
 		"We note thy visitation and accept"
 		"'Noble friend', thou art by our decree"
@@ -265,7 +265,7 @@ phrase "old houses friendly hail" # Boast hails
 		"A joy in word and action, purely said."
 
 phrase "old houses friendly hail"
-	phrase 
+	phrase
 		"high houses friendly hail"
 
 phrase "chydiyi friendly hail"

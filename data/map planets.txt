@@ -2385,7 +2385,7 @@ planet Ironfirth
 	security 0
 
 planet Iyra-Ijasa-Iret
-	attributes successor 
+	attributes successor
 	landscape land/sea10-sfiera
 	description `As far as you can tell, Iyra-Ijasa-Iret is a purely water world, with no solid land anywhere upon its surface. Despite this, it has several underwater settlements and cities. Most dot the shallows, but you notice that several pressure-resistant ships dive much deeper into the ocean, suggesting that some inhabitants may live at more significant depths.`
 		to display
@@ -2665,7 +2665,7 @@ planet Kua-Oa-Aava
 	description `The Old Houses have established several refueling and restock facilities on Aava-Aasa-Khora's moon to increase the speed at which they can service their warships by taking advantage of the additional space and low gravity the moon provides. While nominally open to the public, the vast majority of the facilities here are devoted entirely to military use, and the civilian areas are mostly intended to make sure that no ships without clearance will become stranded in this system.`
 		to display
 			has "known to the successors"
-	spaceport `The spaceport here is tiny and barebones, offering only minimal services. Most of the few Successors you see here are wearing military uniforms and while they do  not react to you with any discernable surprise, most keep a close eye on you as you walk through the facility.`
+	spaceport `The spaceport here is tiny and barebones, offering only minimal services. Most of the few Successors you see here are wearing military uniforms and while they do not react to you with any discernible surprise, most keep a close eye on you as you walk through the facility.`
 		to display
 			not "known to the successors"
 	spaceport `The spaceport here is tiny and barebones, offering only minimal services. The few Successors you see are wearing military uniforms and remain polite and courteous to you, even as an alien.`
@@ -3913,7 +3913,7 @@ planet Raaqa-Uur-Kaav
 	description `Unlike most of the planets in this area of space, this moon remains relatively habitable. Large forests have fluorished throughout it in the absence of sapient life, and the stark remains of abandoned cities are slowly being reclaimed by the nature that surrounds them. While the materials which compose the buildings have not decayed an iota over the eons, the tender shoots of green life nonetheless adhere to their twisting surfaces and flourish within their unmaintained interiors.`
 		to display
 			not "trusted by the successors"
-	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have fluorished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nontheless quietly demonstrate their supremacy over the unmaintained artificial.`
+	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have fluorished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nonetheless quietly demonstrate their supremacy over the unmaintained artificial.`
 		to display
 			has "trusted by the successors"
 	spaceport `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
@@ -4187,7 +4187,7 @@ planet Saska-Aa-Noorr
 	attributes station successor wealthy
 	landscape land/space7
 	description `Though the Successors invest in few truly massive constructions, this station is one of them. Originally built over three thousand years ago as a support platform for the Predecessors' early colonization efforts, Saska-Aa-Noorr has been a consistent fixture of the star cluster and one of House Myurej's most important assets.`
-	description `	In the present day it serves a primarily residental role, housing almost five million Successors in rotating cylindrical segments of its arms. The gentler gravity and tightly controlled climate these offer makes living stationside quite desirable to many Successors, but the limited space available combined with the high taxes that House Myurej levies here mean that usually only the wealthiest Successors can afford to take up residence.`
+	description `	In the present day it serves a primarily residential role, housing almost five million Successors in rotating cylindrical segments of its arms. The gentler gravity and tightly controlled climate these offer makes living stationside quite desirable to many Successors, but the limited space available combined with the high taxes that House Myurej levies here mean that usually only the wealthiest Successors can afford to take up residence.`
 	spaceport `The spaceport takes full advantage of its zero-gravity nature, with loading docks extending into the distance at all angles.`
 	government "House Myurej"
 	"required reputation" 15
@@ -4638,7 +4638,7 @@ planet Staja-Kella-Oa
 	description `Staja-Kella-Oa is widely recognized as the location of the best educational institutions in Successor space, most of which are funded by the Old Houses but accept applications from all Successors regardless of birthplace or family history.`
 		to display
 			has "known to the successors"
-	description `	The planet itself is densely forested with a few small cities. Part of the reason that it continues to be a center for education is that it has a rich archaelogical history: this planet was home to a now presumed-extinct sapient species roughly one hundred thousand years ago, and there is a great deal of interest in uncovering the details of their society.`
+	description `	The planet itself is densely forested with a few small cities. Part of the reason that it continues to be a center for education is that it has a rich archaeological history: this planet was home to a now presumed-extinct sapient species roughly one hundred thousand years ago, and there is a great deal of interest in uncovering the details of their society.`
 		to display
 			has "known to the successors"
 	spaceport `The dense tree cover shades the landing pads of the spaceport and casts the whole area in dappled light that reflects softly off the moving ships. Much of the traffic at the spaceport is small shuttles and transports carrying youthful-looking groups of Successors to and from the planet; the interiors of the buildings are clean and colorful.`

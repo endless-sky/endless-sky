@@ -19,7 +19,7 @@ government Successor
 	"friendly disabled hail" "successor friendly disabled hail"
 	"hostile hail" "successor hostile hail"
 	"hostile disabled hail" "successor hostile disabled hail"
-	
+
 government "New Houses"
 	swizzle 3
 	color .8 0 0.4
@@ -390,7 +390,7 @@ phrase "successor end"
 		"oqi"
 
 phrase "successor"
-	phrase 
+	phrase
 		"successor nouns"
 
 phrase "successor"
@@ -402,7 +402,7 @@ phrase "successor"
 		"successor end"
 
 phrase "successor"
-	phrase 
+	phrase
 		"successor nouns"
 	phrase
 		"successor intermediates"
@@ -412,7 +412,7 @@ phrase "successor"
 		"successor verb tenses"
 
 phrase "successor"
-	phrase 
+	phrase
 		"successor nouns"
 	word
 		"-"
@@ -420,7 +420,7 @@ phrase "successor"
 		"successor adjectives"
 
 phrase "successor"
-	phrase 
+	phrase
 		"successor nouns"
 	phrase
 		"successor intermediates"
@@ -428,13 +428,13 @@ phrase "successor"
 		"successor locations"
 
 phrase "successor"
-	phrase 
+	phrase
 		"successor nouns"
 	phrase
 		"successor intermediates"
 	phrase
 		"successor end"
-	
+
 
 phrase "high houses start"
 	word
