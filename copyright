@@ -3645,13 +3645,15 @@ Files:
  images/land/fog12*
 Copyright: US National Park Service
 License: public-domain
-Comment: From the US National Park Service, and therefore in the public domain because it was created by government employees while doing work for the government.
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
 
 Files:
  images/land/snow24*
 Copyright: NPS Photo / Kent Miller
 License: public-domain
-Comment: From the US National Park Service, and therefore in the public domain because it was created by government employees while doing work for the government.
+ From the US National Park Service, and therefore in the public domain 
+ because it was created by government employees while doing work for the government.
 
 Files:
  images/land/snow25*
@@ -3663,7 +3665,8 @@ Files:
  images/land/lava14*
 Copyright: USGS
 License: public-domain
-Comment: From the USGS, and therefore in the public domain because it was created by government employees while doing work for the government.
+ From the USGS, and therefore in the public domain because it was created by 
+ government employees while doing work for the government.
 
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and

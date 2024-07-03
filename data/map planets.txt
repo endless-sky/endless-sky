@@ -19,7 +19,6 @@ planet Aava-Aasa-Khora
 	spaceport `Surprisingly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildngs made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
 	spaceport `	The inside of the spaceport is very similar, with soft, rounded shapes, and flexible building materials. The floor seems to sink a little as you step on it, almost like it is actually a viscous liquid rather than a solid material.`
 	government "Old Houses"
-	shipyard "Chidiyi"
 	shipyard "High Houses Light"
 	shipyard "Successor Basics"
 	shipyard "Successor Civilian"
