@@ -82,8 +82,6 @@ private:
 
 private:
 	int64_t credits = 0;
-	// Keep track of how much was paid by the player.
-	int64_t totalPreviousPayment = 0;
 	// Regular income from salaries paid to the player.
 	std::map<std::string, int64_t> salariesIncome;
 	// If back salaries and maintenance cannot be paid, they pile up rather
@@ -92,6 +90,8 @@ private:
 	int64_t maintenanceDue = 0;
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;
+	// Keep track of how much was paid by the player.
+	int64_t totalPreviousPayment = 0;
 
 	std::vector<Mortgage> mortgages;
 
