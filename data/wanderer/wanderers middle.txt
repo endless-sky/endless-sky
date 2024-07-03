@@ -2858,18 +2858,18 @@ mission "Wanderers: Sestor Alt: Alnilam 2"
 		personality heroic
 		ship "Combat Drone" "Alpha One"
 		ship "Combat Drone" "Alpha Two"
-		ship "Combat Drone" "Alpha Three"
-		ship "Combat Drone" "Alpha Four"
+		ship "Combat Drone (Sidewinder Missiles)" "Alpha Three"
+		ship "Combat Drone (Sidewinder Missiles)" "Alpha Four"
 		ship "Combat Drone" "Alpha Five"
 		ship "Combat Drone" "Alpha Six"
-		ship "Combat Drone" "Alpha Seven"
-		ship "Combat Drone" "Alpha Eight"
+		ship "Combat Drone (Sidewinder Missiles)" "Alpha Seven"
+		ship "Combat Drone (Sidewinder Missiles)" "Alpha Eight"
 		ship "Combat Drone" "Alpha Nine"
 		ship "Combat Drone" "Alpha Ten"
-		ship "Combat Drone" "Alpha Eleven"
-		ship "Combat Drone" "Alpha Twelve"
+		ship "Combat Drone (Sidewinder Missiles)" "Alpha Eleven"
+		ship "Combat Drone (Sidewinder Missiles)" "Alpha Twelve"
 	on visit
-		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive, because there's no way you're going to assault the Alpha base without them.`
+		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive, because there's no way you're going to be able to assault the Alpha base without them.`
 
 
 
