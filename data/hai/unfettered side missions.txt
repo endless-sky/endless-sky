@@ -104,9 +104,9 @@ mission "Hai Legacy 1"
 				`	(Maybe another time.)`
 					defer
 			label go
-			`	While you're pondering whether or not there will be enough space to land your ship at the beach, a train ticket on the back, along with specific directions on how to get there, with a clear demand not to take your starship.`
-			`	To your surprise, the train station is located underground. At first, you can't begin to make sense of the enormity of it - it almost feels like you can reach the entire planet from here. You ask a Hai for directions, feeling embarrassed when you learn that all you had to do was scanning your ticket, and all relevant information would be displayed for you.`
-			`	You hike for a few hours until you reach your destination, and, upon arriving, you take a look around for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double check that these are the right coordinates and look around some more.`
+			`	While you're pondering whether or not there will be enough space to land your ship at the beach, you see a train ticket on the back of your paper, with specific directions on how to get there. At the bottom is a clear demand to not take your starship.`
+			`	To your surprise, the local train station is located underground. At first, you can't begin to make sense of the enormity of it - it almost feels like you can reach the entire planet from here. You ask a Hai for directions, feeling embarrassed when you learn that all you had to do was scan your ticket and all relevant information would be displayed for you.`
+			`	After departing the train station, you hike for a few hours until you reach your destination. Upon arriving, you look around for the stranger; except for a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double-check that these are the right coordinates and look around some more.`
 			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you, and you start to doubt whether or not this was a good idea. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for the secrecy, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
 				`	"Tell me more."`
@@ -119,7 +119,7 @@ mission "Hai Legacy 1"
 			`	Without any incidents, you return to the train station and buy a ticket back to the spaceport.`
 				decline
 			label know
-			`	The second one grins. "Any outsider landing on our homeworld must be well-known. We know you have provided various assistance to our kind."`
+			`	The second one grins. "Any outsider landing on our homeworld must be well-known. We know you have provided various assistances to our kind."`
 			`	"Though do not think we are unaware of your skirmishes with the Unfettered," the first adds with a serious tone.`
 				to display
 					"reputation: Hai (Unfettered)" < -1250
@@ -135,7 +135,7 @@ mission "Hai Legacy 1"
 				`	(Run!)`
 				`	(Wait.)`
 					goto wait
-				`	(Try to contact my fleet for help!)`
+				`	(Try to contact my fleet for help.)`
 					to display
 						"total ships" > 1
 				`	(Shoot it!)`
@@ -207,7 +207,7 @@ mission "Hai Legacy 1"
 			`	Unfortunately, you do not get a chance to ponder it, as the ship abruptly explodes, taking you and everyone else on the beach down with it.`
 				die
 			label miss
-			`	You miss your shot. Neither the ship nor the two Hai react, probably not viewing you as a threat. You still have time to do something else or try again. You feel like you heard a chuckle, but you're not sure where it came from.`
+			`	You miss your shot. Neither the ship nor the two Hai react. You feel like you heard a chuckle, but you're not sure where it came from.`
 				goto "try again"
 	on defer
 		set "Hai Legacy 1: deferred"
@@ -237,11 +237,11 @@ mission "Hai Legacy 2"
 		has "ship model: Anomalocaris"
 	on offer
 		conversation
-			`One could say that the cargo finds you, rather than you find it, as upon returning to the spaceport, a worker immediately greets you while others begin to fill your ship with crates. A quick check shows have already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
-			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel, from your "associates," probably:`
+			`Upon returning to the spaceport, a worker immediately greets you while others begin to fill your ship with crates. A quick check shows that this cargo has already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
+			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel:`
 			`	"Use the Anomalocaris as your flagship.`
-			`	"Do not bring any other ships, as they are not needed for the cargo and would only be a liability at best in Unfettered space, when they could easily provoke them at worst."`
-			`	Given the potential dangers of that area of space, it would be a good idea to familiarize yourself with the design of the Anomalocaris, or perhaps customize it more to your own liking, especially if you plan to deliver the cargo in only this single ship, as requested.`
+			`	"Do not bring any other ships into Unfettered space, as they are not needed for the cargo. They would only be a liability at best and a provocation at worst."`
+			`	Given the potential dangers of that area of space, it would be a good idea to familiarize yourself with the design of the Anomalocaris, or perhaps customize it more to your own liking, especially if you plan to deliver the cargo in only this single ship.`
 				accept
 	on enter
 		system
@@ -289,7 +289,8 @@ mission "Hai Legacy 3"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design of your ship. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use that ship to us. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
+			`As you land, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered.` 
+			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use that ship to us. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
 			`	"I even see technology from those savage Korath that we fought valiantly to obtain!"`
 				to display
 					has "outfit (flagship installed): Korath Detainer"
@@ -317,13 +318,13 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." says a third.`
 			label scare
-			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone knows them, but since you are an outsider I will explain them to you. Naturally, this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
+			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone knows them, but since you are an outsider I will explain them to you. Naturally, since this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
 			`	"Furthermore, we can understand some may die in glorious battle, and to the victor go the spoils, so looting is allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He suddenly looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you," he says with a sudden change of tone before leaving.`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	Mera comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!" You see the contestants have already begun their launching procedures, so you prepare for takeoff as soon as you can.`
+			`	Mera comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!" You see the Unfettered have already begun their launching procedures, so you prepare for takeoff as soon as you can.`
 			`	(Remember to park your other ships and make sure your flagship is the Anomalocaris.)`
 				accept
 			label headingout
@@ -338,7 +339,7 @@ mission "Hai Legacy 3"
 				has "unfettered: fled with the relic"
 			branch "too many ships"
 				"total ships" > 1
-			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warriors should. Prove to us that you have the strength to disable our ship, yet still have the restrain not to destroy them."`
+			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warriors should. Prove to us that you have the strength to disable our ship, yet still have the restraint not to destroy them."`
 				accept
 			label fleeing
 			action
@@ -352,7 +353,7 @@ mission "Hai Legacy 3"
 	on disabled
 		fail
 		conversation
-			`The enemy ships hail you. "Thought you could get away from us so easily? You better bribe us and then land on our worlds quick, before we value blowing you up higher than preserving that ship!"`
+			`The enemy ships hail you. "Thought you could get away from us so easily? You better bribe us and then land on our worlds quick, before we value blowing you up more than preserving that ship!"`
 				to display
 					has "unfettered: fled with the relic"
 				decline
@@ -416,7 +417,7 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance marked
 		on disable
-			dialog `Mera hails you: "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
+			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
 			fail "Hai Legacy 3"
 			set "unfettered: outcast"
@@ -445,7 +446,7 @@ mission "Hai Legacy 3"
 		clear "old reputation: Hai (Unfettered)"
 		log "Managed to use an old Anomalocaris to beat some Unfettered challengers, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 		conversation
-			`When you land in one piece, Mera approaches, looking quite surprised. "You really won! At least it was close, right? Or did the captains make stories to justify their incompetence already like the cowards they are?"`
+			`When you land in one piece, Mera approaches, looking quite surprised. "You really won! At least it was close, right? Or did the captains make stories to justify their incompetence, like the cowards they are?"`
 			choice
 				`	"It was fun."`
 					goto next
@@ -474,18 +475,18 @@ mission "Undeserved Anomalocaris"
 				to display
 					not "Hai Legacy 3: offered"
 			`	"We will give you another ship so you can leave, but you must surrender this one, and the savage Korath's weapons, if you did not already rob us of those," one of them explains to you in a menacing tone.`
-			`	Another one steps forward, "We will allow to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
+			`	Another one steps forward, "We will allow you to keep the outfits, provided you give the ship to us on Darkcloak."`
 				to display
 					not "flagship planet: Darkcloak"
-			`	Another one steps forward, "Since you so kindly came to Darkcloak to deliver the ship to us, we will allow you to buy back any outfits you may still desire, as a courtesy," they say in a somewhat diplomatic tone.`
+			`	Another one steps forward, "Since you so kindly came to Darkcloak to deliver the ship to us, we will allow you to buy back any outfits you may still desire, as a courtesy."`
 				to display
 					has "flagship planet: Darkcloak"
 			choice
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their rare dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. In exchange, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
-			`	"That relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight."`
+			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one - probably the leader judging by the amount of weaponry on their person. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. In exchange, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
+			`	"That relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will earn you favor, and prove you can fight."`
 				to display
 					not "Unfettered Jump Drive 1: offered"
 			branch "has detainers"
@@ -498,7 +499,7 @@ mission "Undeserved Anomalocaris"
 			action
 				outfit "Korath Detainer" -2
 			label nodetain
-			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. It may be wise to bribes to get out in one piece.`
+			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship.`
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
@@ -515,7 +516,7 @@ mission "Unfettered Anomalocaris Lost"
 	on offer
 		conversation
 			`You see the sun slowly disappear into the horizon as you land on this planet, indicating it is already night there. Shortly after exiting your ship, you see a group of Unfettered Hai sitting on the side of the path, eating corn around a campfire. One of them, probably the youngest judging by his size, tries to get your attention by calling you repeatedly. "Captain, Captain! Can you tell me stories about how you used great cunning to beat a swarm of Lightning Bugs?" Another one, probably their parent, then speaks up. "Come, sit with us. I am sure there is much to be said about that great relic from our past."`
-			`	You start to explain how the fight went, but before you can explain much, the young one interrupts you, speaking to the others, "See? There is no way they lost the ship, if they fought so well with it!" The parent speaks again, trying to console the child. "That great ship may be lost, but everything has to end at one point, and its time of glory was already behind it."`
+			`	You start to explain how the fight went, but before you can explain much, the young one interrupts you, speaking to the others. "See? There is no way they lost the ship, if they fought so well with it!" The parent speaks again, trying to console the child. "That great ship may be lost, but everything has to end at one point, and its time of glory was already behind it."`
 			choice
 				`	"How did you learn about the lost of the ship?"`
 				`	"Nonsense, I still have the ship."`
@@ -527,7 +528,7 @@ mission "Unfettered Anomalocaris Lost"
 			`	She seems proud, "At least it got the end it deserved!"`
 				goto leave
 			label sold
-			`	"You... what? One of the most important relics of my people, and you just sold it? At least you have the guts to own it, young human."`
+			`	"You... what? One of the most important relics of my people, and you just sold it? At least you had the courage to earn it, young human."`
 			label leave
 			`	She looks around, and as she does you notice more Unfettered Hai than before, talking in little groups and looking your way regularly. She gets up, and continue, in a stronger tone, "It would be wise for you to leave now, wait for things to calm down." You head back to your ship, and thankfully nobody seems be following you.`
 		log "The Unfettered were not pleased to learn about the loss of the Anomalocaris."

@@ -90,7 +90,7 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 		"Pulse Rifle" 20
-	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, but it also found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage, although this one has accrued damage after being submerged underwater for a long period of time."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, but it also found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
 
 ship "Aphid"
 	sprite "ship/hai aphid"
