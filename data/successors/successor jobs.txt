@@ -174,6 +174,7 @@ mission "Successor: Tourists Out 1"
 		dialog phrase "successor tourists out"
 		"successor jobs" ++
 
+
 mission "Successor: Tourists Out 2"
 	job
 	repeat
@@ -197,6 +198,7 @@ mission "Successor: Tourists Out 2"
 		payment 22000 200
 		dialog phrase "successor tourists out"
 		"successor jobs" ++
+
 
 mission "Successor: Bold Tourists Round Trip"
 	job
@@ -222,6 +224,7 @@ mission "Successor: Bold Tourists Round Trip"
 		payment 28000 220
 		dialog phrase "successor tourists in"
 		"successor jobs" ++
+
 
 mission "Successor: Tourist Expedition"
 	job
@@ -257,6 +260,7 @@ mission "Successor: Tourist Expedition"
 		dialog phrase "successor tourists in"
 		"successor jobs" ++
 
+
 mission "Successor: Students Out"
 	job
 	repeat
@@ -280,6 +284,7 @@ mission "Successor: Students Out"
 		payment 22000 200
 		dialog phrase "successor students out"
 		"successor jobs" ++
+
 
 mission "Successor: Students In"
 	job
@@ -306,6 +311,7 @@ mission "Successor: Students In"
 		dialog phrase "successor students out"
 		"successor jobs" ++
 
+
 mission "Successor: Workers Out 1"
 	job
 	repeat
@@ -328,6 +334,7 @@ mission "Successor: Workers Out 1"
 		payment 22000 200
 		dialog phrase "successor workers out"
 		"successor jobs" ++
+
 
 mission "Successor: Workers Out 2"
 	job
@@ -352,6 +359,7 @@ mission "Successor: Workers Out 2"
 		dialog phrase "successor workers out"
 		"successor jobs" ++
 
+
 mission "Successor: Delivery Out 1"
 	job
 	repeat
@@ -374,6 +382,7 @@ mission "Successor: Delivery Out 1"
 		payment 2000 200
 		dialog phrase "successor delivery"
 		"successor jobs" ++
+
 
 mission "Successor: Delivery Out 2"
 	job
@@ -398,12 +407,13 @@ mission "Successor: Delivery Out 2"
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
+
 mission "Successor: High Value Delivery Out"
 	job
 	repeat
 	name "High-value shipment to <planet>"
 	description "A courier is needed to transport <cargo> from <origin> to <planet>. You will be paid <payment> on delivery."
-	cargo `Successor High Value` 6 9 .2
+	cargo "Successor High Value" 6 9 .2
 	to offer
 		has "known to the successors"
 		random < 10
@@ -422,6 +432,7 @@ mission "Successor: High Value Delivery Out"
 		payment 3000 400
 		dialog phrase "successor delivery"
 		"successor jobs" ++
+
 
 mission "Successor: Aid Delivery Out 1"
 	job
@@ -449,6 +460,7 @@ mission "Successor: Aid Delivery Out 1"
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
+
 mission "Successor: Large Delivery Out 1"
 	job
 	repeat
@@ -472,6 +484,7 @@ mission "Successor: Large Delivery Out 1"
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
+
 mission "Successor: Large Delivery Out 2"
 	job
 	repeat
@@ -494,6 +507,7 @@ mission "Successor: Large Delivery Out 2"
 		payment 1900 200
 		dialog phrase "successor delivery"
 		"successor jobs" ++
+
 
 mission "Successor: Rush Delivery Out 1"
 	job
@@ -519,6 +533,7 @@ mission "Successor: Rush Delivery Out 1"
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
+
 mission "Successor: Large Rush Delivery Out 1"
 	job
 	repeat
@@ -542,6 +557,7 @@ mission "Successor: Large Rush Delivery Out 1"
 		payment 2600 200
 		dialog phrase "successor delivery"
 		"successor jobs" ++
+
 
 mission "Successor: Seismic Stabilizers"
 	job
@@ -568,6 +584,7 @@ mission "Successor: Seismic Stabilizers"
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
+
 mission "Successor: Data Courier 1"
 	job
 	repeat
@@ -593,6 +610,7 @@ mission "Successor: Data Courier 1"
 		dialog phrase "successor data"
 		"successor jobs" ++
 
+
 mission "Successor: Researchers Out 1"
 	job
 	repeat
@@ -616,6 +634,7 @@ mission "Successor: Researchers Out 1"
 		dialog phrase "successor researchers in"
 		"successor jobs" ++
 
+
 mission "Successor: Large Researchers Out 1"
 	job
 	repeat
@@ -638,6 +657,7 @@ mission "Successor: Large Researchers Out 1"
 		payment 34000 200
 		dialog phrase "successor researchers in"
 		"successor jobs" ++
+
 
 mission "Successor: Home Researchers Out 1"
 	job
@@ -664,6 +684,7 @@ mission "Successor: Home Researchers Out 1"
 		dialog phrase "successor researchers in"
 		"successor jobs" ++
 
+
 mission "Successor: Researchers Transfer"
 	job
 	repeat
@@ -689,6 +710,7 @@ mission "Successor: Researchers Transfer"
 		dialog phrase "successor researchers transfer"
 		"successor jobs" ++
 
+
 mission "Successor: Old Houses Rush Delivery"
 	job
 	repeat
@@ -712,6 +734,7 @@ mission "Successor: Old Houses Rush Delivery"
 		dialog phrase "high houses delivery"
 		"successor jobs" ++
 		"old houses jobs" ++
+
 
 mission "Successor: New Houses Rush Delivery"
 	job
@@ -737,6 +760,7 @@ mission "Successor: New Houses Rush Delivery"
 		"successor jobs" ++
 		"new houses jobs" ++
 
+
 mission "High Houses: Criminal Capture 1"
 	name "Disable criminal in <system>"
 	description "A criminal flying an unregistered ship named <npc> has been harassing the Successors near the <system> system. The High Houses want you to disable their ship by <day> so they can be arrested. You will be paid <payment>."
@@ -761,3 +785,4 @@ mission "High Houses: Criminal Capture 1"
 	on complete
 		payment 140000
 		dialog phrase "generic bounty hunting payment dialog"
+
