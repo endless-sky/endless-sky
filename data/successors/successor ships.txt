@@ -12,6 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Kvelqde"
+	plural "Kvelqden"
 	sprite "ship/kvelqde"
 	thumbnail "thumbnail/kvelqde"
 	attributes
@@ -89,6 +90,7 @@ ship "Kvelqde" "Kvelqde (Naive)"
 	description "This tiny shuttle is the smallest vessel operating in Successor space, and appears to fulfill much the same role as the human shuttles with which you are familiar, transporting small groups of passengers and quantities of cargo throughout their space. While it has enough space to equip weapons if necessary, its limited internal space and the low energy density of civilian Successor generators make these hardpoints most suitable to mining rather than combat."
 
 ship "Nnesaarau"
+	plural "Nnesaaraun"
 	sprite "ship/nnesaarau"
 	thumbnail "thumbnail/nnesaarau"
 	attributes
@@ -155,6 +157,7 @@ ship "Nnesaarau" "Nnesaarau (Naive)"
 	description "These very light vessels don't have much room for passengers or cargo, but move swiftly and elegantly through Successor space. These qualities, combined with their high price and uncommon presence, suggest that these may be luxury craft of some sort, too impractical for use by the majority of Successors."
 
 ship "Myaede"
+	plural "Myaeden"
 	sprite "ship/myaede"
 	thumbnail "thumbnail/myaede"
 	attributes
@@ -232,6 +235,7 @@ ship "Myaede" "Myaede (Naive)"
 	description `The "Myaede" is neither elegant nor fast, but has cemented itself as the backbone of Successor commerce with a spacious cargo hold, heavy armor, and a flexible enough weapons layout to let it fight back in a pinch. The design is robust and dependable; many of the ships you've seen appear old and worn but pass through the spaceport no less smoothly than their newer counterparts.`
 
 ship "Ejniisde"
+	plural "Ejniisden"
 	sprite "ship/ejniisde"
 	thumbnail "thumbnail/ejniisde"
 	attributes
@@ -304,6 +308,7 @@ ship "Ejniisde"
 	description "The Successors have a relatively small population and therefore are not in great need of large transport vessels. However, transporting passengers entirely by shuttle lacks a degree of comfort and security, so for longer journeys, the Successors use this dedicated transport ship. While unarmed by default, it is fast enough to escape most ships that might mean it harm."
 
 ship "Nnaatej"
+	plural "Nnaatejen"
 	sprite "ship/nnaatej"
 	thumbnail "thumbnail/nnaatej"
 	attributes
@@ -383,6 +388,7 @@ ship "Nnaatej"
 	description `	While not explicitly designed for it, the unique design of the "Nnaatej" also allows it to enter the atmospheres of gas giants without issue.`
 
 ship "Ojde"
+	plural "Ojden"
 	sprite "ship/ojde"
 	thumbnail "thumbnail/ojde"
 	attributes
@@ -455,6 +461,7 @@ ship "Ojde"
 	description `Rather than built-in cargo holds, the "Ojde" is designed to carry an expandable rack of standardized cargo containers, increasing delivery and loading speed in busy spaceports.`
 
 ship "Kvelqde-Khora"
+	plural "Kvelqden-Khora"
 	sprite "ship/kvelqde-khora"
 	thumbnail "thumbnail/kvelqde-khora"
 	attributes
@@ -530,6 +537,7 @@ ship "Kvelqde-Khora"
 	description `One of the more industrious members of the People's Houses has done their best to ruggedize this "Kvelqde": additional armor plating has been laid over most of the exposed hull, a second gun port has been attached to the underside, and the shield grid has had its capacity substantially increased. While not quite capable of standing toe-to-toe with a production interceptor of the High Houses, it bares enough teeth for a bit of light piracy, and its greater durability is quite welcome for navigating the decaying stations and hostile worlds of southwestern Successor space.`
 
 ship "Stolsaqra"
+	plural "Stolsaqran"
 	sprite "ship/stolsaqra"
 	thumbnail "thumbnail/stolsaqra"
 	attributes
@@ -610,6 +618,7 @@ ship "Stolsaqra" "Stolsaqra (Naive)"
 	description `The Successors' attempt at an interceptor is quite compact and sports a surprising amount of firepower for a ship of its size, though restrictive internal space leaves it plagued with power and propulsion issues if it is equipped to fully utilize its weapons capacity. While it is manufactured by the High Houses, the "Stolsaqra" is made available to the general Successor public, albeit with significantly downgraded systems compared to the military-exclusive model.`
 
 ship "Seiitej"
+	plural "Seiitejen"
 	sprite "ship/seiitej"
 	thumbnail "thumbnail/seiitej"
 	attributes
@@ -679,6 +688,7 @@ ship "Seiitej"
 	description "	Their lighter armor and smaller combat systems also make them significantly less expensive to manufacture than the High Houses' purpose-built warships, which contributes to their growing ubiquity."
 
 ship "Veusade"
+	plural "Veusaden"
 	sprite "ship/veusade"
 	thumbnail "thumbnail/veusade"
 	attributes
@@ -766,6 +776,7 @@ ship "Veusade" "Veusade (Naive)"
 	description `The "Veusade" bristles with gun ports but has a small overall weapons capacity; in fact, it is just enough to saturate its hardpoints with drag cannons. Such a narrowly-focused design makes these ships ill-suited for multipurpose use, but they are frequently seen as auxiliary or police craft, owing to their ability to rapidly catch and immobilize fleeing vessels.`
 
 ship "Vujlet"
+	plural "Vujleten"
 	sprite "ship/vujlet"
 	thumbnail "thumbnail/vujlet"
 	attributes
@@ -855,6 +866,7 @@ ship "Vujlet" "Vujlet (Naive)"
 	description `The compact "Vujlet" is a mass-produced High Houses warship flexible enough to serve in a variety of light-duty roles. Large enough to operate as a self-sufficient unit, these vessels serve as a useful bridge between short-ranged, relatively vulnerable interceptors, and larger, more resource-intensive warships that can be much more expensive to build and operate.`
 
 ship "Aaulqra"
+	plural "Aaulqran"
 	sprite "ship/aaulqra"
 	thumbnail "thumbnail/aaulqra"
 	attributes
@@ -939,6 +951,7 @@ ship "Aaulqra" "Aaulqra (Naive)"
 	description "This medium warship is among the most common designs employed by the High Houses of the Successors. It is compact, fast, and durable for a ship of its class, but limited internal space and fuel capacity restrict it mostly to short-range patrol service."
 
 ship "Kaskhorade"
+	plural "Kaskhoraden"
 	sprite "ship/kaskhorade"
 	thumbnail "thumbnail/kaskhorade"
 	attributes
