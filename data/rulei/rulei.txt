@@ -123,7 +123,7 @@ mission "Rulei: Antumbral Reach"
 		has "First Contact: Rulei: offered"
 		has "visited system: L-118"
 	on enter "Kanguwa"
-		event "atumbral reach label"
+		event "antumbral reach label"
 		log "Factions" "Rulei" `The Rulei seem to acknowledge the void of systems east of the core as the "Antumbral Reach", and appear to have some sort of emotional connection to the region. Other than stating to "beware" the area, they will not further comment on it.`
 		conversation
 			`Out of nowhere, the mysterious whispers of the Rulei seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direction of the ancient vessel, eventually coalescing into one spoken phrase.`
@@ -132,6 +132,11 @@ mission "Rulei: Antumbral Reach"
 			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once - sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence.`
 			`	The only thing you can think of is the nearby void of desolate systems. Considering your previous experience with the Rulei, they could have somehow psionically connected to the memories of your visit. However, much like those systems, they continue with their unabated silence.`
 				decline
+
+event "antumbral reach label"
+	galaxy "label antumbral"
+		sprite "label/antumbral"
+
 
 phrase "rulei hostile"
 	word
@@ -142,7 +147,3 @@ phrase "rulei hostile"
 
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
 			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
-
-event "atumbral reach label"
-	galaxy "label atumbral"
-		sprite "label/atumbral"
