@@ -71,12 +71,14 @@ mission "Successors: First Contact Exploration: Mavra-Sol-Kvel"
 			`Your ship draws a bit of a crowd when you land here, though most are kept at bay by a set of pre-arranged barriers set up around your landing pad and the occasional patrolling guard. While walking by the barrier, one Successor offers one of their data-spheres to you.`
 			choice
 				`	(Take it.)`
+					goto taken
 				`	(Refuse.)`
 					goto refused
-			`	The Successor trills warmly when you take the sphere, though they are quickly pushed back by one of the guards. Like previously, the sphere expands into a small star map as soon as you touch it, though this one seems to contain some cultural data in addition to stellar coordinates.`
-				decline
+			label taken
 			action
 				outfit "Local Map" 1
+			`	The Successor trills warmly when you take the sphere, though they are quickly pushed back by one of the guards. Like previously, the sphere expands into a small star map as soon as you touch it, though this one seems to contain some cultural data in addition to stellar coordinates.`
+				decline
 			label refused
 			`	You hold up your hands and step away from the individual offering you the data-sphere, and they are quickly pushed back by one of the guards.`
 				decline
@@ -215,18 +217,18 @@ mission "Successors: Biology Research 1"
 				`	"Sorry, but you'll have to find someone else to take you."`
 					decline
 			label accept
-			`	"Thou has my deep and certain thanks. Tell none, but the High Houses are beastly to us academics." The biologist, who introduces themselves as "Kaatiora", loads their collection of equipment into your ship---though not without almost dropping one particularly fragile-looking item---and is eventually ready to leave.`
+			`	"Thou has my deep and certain thanks. Tell none, but the High Houses are beastly to us academics." The biologist, who introduces themselves as "Kaatiora," loads their collection of equipment into your ship---though not without almost dropping one particularly fragile-looking item---and is eventually ready to leave.`
 				accept
 	on stopover
 		conversation
-			`On the way here, Kaatiora has been impressively inquisitive, continually asking you questions about human biology with a level of verve and excitement you though previously impossible. Once they exhausted your knowledge of every detail of human biology, they moved on without hesitation to every other Earth-related species they knew of from Predecessor records, from cattle to frogs to far more exotic ones that you've never heard of in your life but apparently are all the rage among the circles of Successor xenobiology.`
+			`On the way here, Kaatiora has been impressively inquisitive, continually asking you questions about human biology with a level of verve and excitement you had previously thought impossible. Once they exhausted your knowledge of every detail of human biology, they moved on without hesitation to every other Earth-related species they knew of from Predecessor records, from cattle to frogs to far more exotic ones that you've never heard of in your life but apparently are all the rage among the circles of Successor xenobiology.`
 			`	It is somewhat relieving when you finally arrive at the planet and Kaatiora momentarily departs, once again carrying their more-than-armful of equipment and excitedly but carefully scanning the volcanic hot-water pools and small lakes around your landing site, occasionally exclaiming with excitement.`
 			`	Eventually they return to your ship, satisfied with the amount of data they have collected, but still obviously energized by the experience.`
 			`	Before leaving, you realize this would be a good time to learn more about the Successors from an expert. Besides, since you spent the majority of the time on the way here answering Kaatiora's questions, you are probably entitled to ask a few of your own.`
 			choice
 				`	(Ask about the Successors and biology.)`
 					goto ask
-				`	(Don't ask them.)`
+				`	(Don't ask anything.)`
 					launch
 			label ask
 			`	As expected, Kaatiora is more than happy to share their biological knowledge, and asks if there is anything in particular you'd like to know about.`
@@ -241,8 +243,8 @@ mission "Successors: Biology Research 1"
 					launch
 			label successor
 			`	"Much of our evolutionary history, we spent beneath the waves of our home planet, and while now you clearly see we breathe the same air as you, we still retain our cold and water-loving tendencies. Our respiration works just as well submerged as on dry land, though we must retain some degree of moisture on our skin.`
-			`	Apart from that, we are a hermaphroditic species, like most from our home planet, and as we took to the stars, we learned that this is uncommon but not rare, and so there is some curiosity as to why our planet had such a diversity of such species while most do not. Perhaps, since we grew up under a harsh sun, the redundancy provided by our divorce from biological sex was beneficial to our evolution.`
-			`	And of course, thou hast surely noticed by now the natural camouflage of our skin. While today its use its for communication, it was long ago a useful tool for evading predators who hunted by sight, until, of course, we gained the wisdom to outsmart our predators rather than hide from them."`
+			`	"Apart from that, we are a hermaphroditic species, like most from our home planet, and as we took to the stars, we learned that this is uncommon but not rare, and so there is some curiosity as to why our planet had such a diversity of such species while most do not. Perhaps, since we grew up under a harsh sun, the redundancy provided by our divorce from biological sex was beneficial to our evolution.`
+			`	"And of course, thou hast surely noticed by now the natural camouflage of our skin. While today its use is for communication, it was long ago a useful tool for evading predators who hunted by sight, until, of course, we gained the wisdom to outsmart our predators rather than hide from them."`
 			choice
 				`	"Were the Predecessors any different, biologically speaking?"`
 					goto predecessor
@@ -253,7 +255,7 @@ mission "Successors: Biology Research 1"
 			label predecessor
 			`	"As brevity is the soul of wit, then no, our Predecessors did not differ greatly from us in their core biology. A scion of the High Houses from the time of the collapse would not stand out from the average one of us in the present day. That being said, their understanding of it was much superior: their medical science was much more advanced than our own, and much of their technology was genetically coded to function only for specific families."`
 			choice
-				`	"What can you tell me about modern Successors?"`
+				`	"What can you tell me about the modern Successors?"`
 					goto successor
 				`	"What about the native life in this star cluster?"`
 					goto cluster
@@ -290,9 +292,9 @@ mission "Successors: Buskers"
 				`	(Investigate the gathering.)`
 				`	(Ignore it.)`
 					decline
-			`	You walk through the water-covered floor to the group, and as you start to grow closer, you begin to hear music coming from the pool: a strange, lilting melody filled with notes that seem impossibly high or low or both at once. As you squeeze your way through the crowd, you see that in the pool there is a trio of submerged Successors, each of whom has their arms wrapped around one or several wildly distinct metal devices which protrude through the surface of the water. It is from these devices that the music emanates.`
+			`	You walk over the water-covered floor to the group, and as you start to grow closer, you begin to hear music coming from the pool: a strange, lilting melody, which is filled with notes that seem impossibly high or low or both at once. As you squeeze your way through the crowd, you see that in the pool there is a trio of submerged Successors, each of whom has their arms wrapped around one or several wildly distinct metal devices which protrude through the surface of the water. It is from these devices that the music emanates.`
 			`	One of the Successors in the pool begins to sing; at least, singing is the best way you could describe it: they press one of the longer and more cylindrical instruments up to their head and it begins producing an accompaniment to the other instruments' melody that your translation device occasionally recognizes as words:`
-			`	"... sweetest child ... never want ... not so ... somber current ... endure ..."`
+			`	"... sweetest child... never want... not so... somber current... endure..."`
 			`	It is not clear whether or not this represents the entire lyric content of the performance or simply if the translation device is unable to parse the more tonal phrases. The submerged singer displays a variety of colors and textures on their skin, changing with each successive phrase; green and rough on a splittingly high note, pink and smooth-looking on a strangely growl-like low section. Several in the crowd emulate this in their own skin patterning; the group pulses in color and pattern in time with the melody of the music.`
 			choice
 				`	(Continue listening.)`
@@ -320,10 +322,10 @@ mission "Successors: Buskers"
 			`	You return to your ship, gently extricating yourself from the throng of spellbound Successors, who continue to shimmer and sway in the distance until the performance eventually ends and they disperse to go their separate ways.`
 				decline
 
-mission `Successors: Stargazing 1`
+mission "Successors: Stargazing 1"
 	minor
 	name "Transport Successor stargazers"
-	description "Transport a pair of Successor stargazers to <stopovers> and return them home to <destination> by <date>."
+	description "Transport a pair of Successor stargazers to <planet stopovers> and return them home to <destination> by <date>."
 	source
 		government "Successor"
 		not attributes "crime" "tourism"
@@ -372,7 +374,7 @@ mission `Successors: Stargazing 1`
 			`	"Jaasora. Thank you, Captain. Most pilots here've no appetite to travel to the uninhabited systems."`
 			`	"Yes, you must tell us about all the places you've been---"`
 			choice
-				`	"How about we get you boarded first."`
+				`	"How about we get you onboard first."`
 			`	Nnesa flashes with embarrassment once again, but Jaasora offers a supportive arm, wrapping it around their body. The two enlist your help in loading their cart of equipment, which is much heavier than it looks, but together the three of you eventually manage to maneuver their luggage into the <ship>'s cargo bay and are ready for departure.`
 				accept
 	on stopover
@@ -404,7 +406,7 @@ mission `Successors: Stargazing 1`
 			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
 				goto interrupt
 			label sol
-			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the most-northern extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
+			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the northernmost extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
 				goto interrupt
 			label interrupt
 			`	The two of you are interrupted by Jaasora, who needs Nnesa's help to pack the now-deflating tent back in its cart, and once that is done they indicate that they are ready to return home.`
@@ -442,7 +444,7 @@ mission "Successors: Graffiti"
 					goto fooled
 
 			label what
-			`	The three Successors startle at the sound of your voice, their arms whipping around as they turn to face you. One makes a move to run away, but one of the others clamps onto their arm and reels them back alongside them. All three slowly turn a shade of dull purple and their skin seems to contract over the underlying musculature. One of them eventually replies. "We ... ah ... we're part of the repair crew! We've orders to apply this ... hull solution to repair a spot of damage here."`
+			`	The three Successors startle at the sound of your voice, their arms whipping around as they turn to face you. One makes a move to run away, but one of the others clamps onto their arm and reels them back alongside them. All three slowly turn a shade of dull purple and their skin seems to contract over the underlying musculature. One of them eventually replies. "We... ah... we're part of the repair crew! We've orders to apply this... hull solution to repair a spot of damage here."`
 			`	Waves of color run up the bodies of the others, and the tips of their arms undulate gently.`
 			choice
 				`	"I've never seen a solution like that before. How does it work?"`
@@ -451,7 +453,7 @@ mission "Successors: Graffiti"
 					goto fooled
 
 			label how
-			`	The group look around at each other before the same one replies again. "The ... ah ... solution seeps into the cracks and strains within the hull and when it dries it seals them. Beyond that, we do not know; we just apply it as directed by the port authority."`
+			`	The group look around at each other before the same one replies again. "The... ah... solution seeps into the cracks and strains within the hull and when it dries it seals them. Beyond that, we do not know; we just apply it as directed by the port authority."`
 			`	One of the other ones pipes up, cheerfully adding, "We don't know anything!" before the others give them a dark look.`
 			choice
 				`	"And it's so colorful too! Are you sure it's not a paint of some sort?"`
@@ -460,7 +462,7 @@ mission "Successors: Graffiti"
 					goto fooled
 
 			label colorful
-			`	"Oh, that's for ... ah ... safety. Yes, 'tis very dangerous to touch if thou'r'nt trained, so 'tis bright in color as a warning." None of the three are wearing any sort of protective equipment that you can see, and by now most of the group have changed color to what you might characterize as a mirthful shade of pink. This is something which one or two are clearly trying to suppress, their skin shifting in gradients in an effort to maintain their previous dull purple hue. One of the others is trying to hide a bag filled with more cans of "hull solution" behind their arms.`
+			`	"Oh, that's for... ah... safety. Yes, 'tis very dangerous to touch if thou'r'nt trained, so 'tis bright in color as a warning." None of the three are wearing any sort of protective equipment that you can see, and by now most of the group have changed color to what you might characterize as a mirthful shade of pink. This is something which one or two are clearly trying to suppress, their skin shifting in gradients in an effort to maintain their previous dull purple hue. One of the others is trying to hide a bag filled with more cans of "hull solution" behind their arms.`
 			choice
 				`	"Well, if you're working on behalf of the port, then surely I can ask you to remove it as well."`
 					goto called
@@ -480,9 +482,10 @@ mission "Successors: Graffiti"
 				decline
 
 			label ignored
-			`	Upon returning from the spaceport some time later, you find that an area on the side of the <ship> has been covered in a thick, colorful solution with an incredibly noxious smell so potent you can hardly bear to approach it. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Ryiaa was here (and friends)." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
+			`	Upon returning from the spaceport some time later, you find that an area on the side of the <ship> has been covered in a thick, colorful solution with an incredibly noxious smell so potent you can hardly bear to approach it. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Ryiaa was here (and friends.)" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
 
 			label fooled
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Hai-Fool! Naked with no tail." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
+
