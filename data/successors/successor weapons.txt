@@ -52,7 +52,7 @@ outfit `"Ojet" Bimodal Coilgun`
 		"cluster"
 		"submunition" "Bimodal Switch" 3
 	description `Precise and deadly, the "Ojet" Bimodal Coilgun has been the High Houses' armament of choice since long before humans ever took to the stars. It was designed quite simply as a perfect weapon; it is said that by the time the empire of the Predecessors fell, they had seen no need to install any other weapon on their ships for over a thousand years.`
-	description `The "Ojet" fires hyperdense packets of charged particles that disperse as they travel: up close the concentrated bolt pierces armor, while at a distance the ionic spray destabilizes shielding. Together, a ship equipped with these weapons can adjust its damage profile just by changing its engagement range, allowing it to be highly effective against any foe.`
+	description `	The "Ojet" fires hyperdense packets of charged particles that disperse as they travel: up close the concentrated bolt pierces armor, while at a distance the ionic spray destabilizes shielding. Together, a ship equipped with these weapons can adjust its damage profile just by changing its engagement range, allowing it to be highly effective against any foe.`
 
 outfit `Bimodal Coilgun Turret`
 	category "Turrets"
@@ -91,7 +91,7 @@ outfit `Bimodal Coilgun Turret`
 		"hit force" 120
 		"cluster"
 		"submunition" "Bimodal Switch" 3
-	description `Successor warships have traditionally relied on fixed weaponry to deal with their foes, but the High Houses do produce a turreted platform for the "Ojet" Coilgun so that their larger and slower vessels can maintain their combat effectiveness against more manuverable targets. It mounts two of the weapons side by side, rigged to fire double the amount of shots per burst to keep them in sync with the fixed hardpoints.`
+	description `Successor warships have traditionally relied on fixed weaponry to deal with their foes, but the High Houses do produce a turreted platform for the "Ojet" Coilgun so that their larger and slower vessels can maintain their combat effectiveness against more maneuverable targets. It mounts two of the weapons side by side, rigged to fire double the amount of shots per burst to keep them in sync with the fixed hardpoints.`
 
 outfit "Bimodal Switch"
 	weapon
@@ -132,7 +132,7 @@ outfit "Drag Cannon"
 		"cluster"
 		"submunition" "Drag Projectile" 3
 	description `The Successors have a historical affinity for projectile weaponry which persists to the modern day. The Drag Cannon fires a short-ranged, highly inaccurate blast of projectiles that not only deal substantial damage but also temporarily disrupt the target's engines.`
-	description `While it is an inelegant design in comparison to the time-tested "Ojet" Coilgun, and consequently less appreciated, the Drag Cannon has found a place on the Successors' fast attack craft primarily as a tool for slowing down enemy vessels so that they can be engaged by a larger fleet.`
+	description `	While it is an inelegant design in comparison to the time-tested "Ojet" Coilgun, and consequently less appreciated, the Drag Cannon has found a place on the Successors' fast attack craft primarily as a tool for slowing down enemy vessels so that they can be engaged by a larger fleet.`
 
 outfit "Drag Projectile"
 	weapon
@@ -246,7 +246,7 @@ outfit "Overcharged Pulse Laser"
 		"hull damage" 13.3
 		"piercing" 0.05
 		"cluster"
-	description `Unable to access large quantities of the high-quality weaponry produced by the High Houses, the People's Houses have had to work with what's available to them: mostly the relatively low-powered pulse lasers produced independently in Successor space. This pulse laser has had its safeties bypassed and its optics upgraded, allowing it to do more damage to shields at a lower power cost in exchange for producing substantially more heat.`
+	description `Unable to access large quantities of the high-quality weaponry produced by the High Houses, the People's Houses have had to work with what is available to them: mostly the relatively low-powered pulse lasers produced independently in Successor space. This pulse laser has had its safeties bypassed and its optics upgraded, allowing it to do more damage to shields at a lower power cost in exchange for producing substantially more heat.`
 
 outfit "Overcharged Laser Turret"
 	category "Turrets"
@@ -341,3 +341,4 @@ outfit `High-Velocity Spike Rack`
 	"energy capacity" 800
 	"spike capacity" 16
 	description `Though the built-in ammunition reserves of the "Sjeja" Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the "Sjeja."`
+
