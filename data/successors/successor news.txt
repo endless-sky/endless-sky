@@ -11,6 +11,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+
 news "high houses scion"
 	to show
 		has "language: Successor"
@@ -29,6 +31,7 @@ news "high houses scion"
 			`"The alien! Doth thou have news from far in this endless sky?"`
 			`"Fair traveler, I've heard of thee. How must thy voyage weigh upon thy mind."`
 			`"Welcome to our space, honored alien. A pleasure 'tis to meet thee."`
+
 
 news "high houses official"
 	to show
@@ -60,6 +63,7 @@ news "high houses official"
 			`; port rules and regulations should be posted."`
 			` in accordance with our standard port procedure."`
 
+
 news "successor student"
 	to show
 		has "language: Successor"
@@ -88,6 +92,7 @@ news "successor student"
 		word
 			`."`
 			`!"`
+
 
 news "successor merchant"
 	to show
@@ -160,6 +165,7 @@ news "successor merchant"
 		word
 			"."
 
+
 news "high houses propaganda"
 	to show
 		has "language: Successor"
@@ -174,7 +180,7 @@ news "high houses propaganda"
 			`An advertisement shows a Successor warship performing a variety of deftly-executed maneuvers before encouraging the viewer to enlist in the armed forces of one of the High Houses.`
 			`An advertisement plays showing a group of Successors standing close together against a factory backdrop, their skins all tinted a happy green. It is followed by a voiceover noting that wages have been recently increased.`
 			`A short video plays showing the construction of a new spaceport on the surface of a prospering Successor planet. Several warships of the High Houses painted in ceremonial livery pass across the screen, showing clearly who is to be thanked.`
-			`A proud-looking Successor naval officer stands before an imposing-looking warship: "Enlist!" the caption reads, "See the stars today!"`
+			`A proud-looking Successor naval officer stands before an imposing-looking warship: "Enlist!" the caption reads. "See the stars today!"`
 			`Several short vignettes play: a group of Successors unearthing ruins, the inside of a laboratory, a calm pastoral scene. A voiceover speaks: "Uncovering our heritage; bettering our lives." Meticulously-dressed officials of the High Houses are present in each situation, presented as supportive overseers.`
 			`A advertisement plays showing the sleek lines of a Successor warship, its polished armor gleaming in the sunlight. It goes on for several minutes, showing the vessel from numerous angles while a sweeping soundtrack plays.`
 
@@ -202,6 +208,7 @@ news "successor advertisements"
 			`A shipbuilding organization advertises a members' discount on Kvelqde shuttles. They make sure to note that their operation is supported by one of the High Houses.`
 			`An independent pilot briefly advertises their courier services in a pre-recorded message, offering guaranteed fastest-possible-delivery on packages under ten tons.`
 
+
 news "local news quiet"
 	to show
 		has "language: Successor"
@@ -223,6 +230,7 @@ news "local news quiet"
 			`A brief program on erosion control and restoration plays for a duration.`
 			`The program is briefly interrupted to display a general-use map for the spaceport.`
 
+
 news "station report"
 	to show
 		has "language: Successor"
@@ -239,3 +247,4 @@ news "station report"
 			`A schedule listing departure and arrival times for planetary shuttles is updated to account for a planetside delay.`
 			`A graphic displays an interactive map of the station for visitors to access.`
 			`A public announcement encourages residents to conserve water.`
+
