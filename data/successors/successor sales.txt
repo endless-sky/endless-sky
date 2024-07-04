@@ -48,7 +48,7 @@ shipyard "High Houses Heavy"
 	"Aaulqra (Naive)"
 	"Kaskhorade"
 
-shipyard "Peoples Houses"
+shipyard "People's Houses"
 	"Kvelqde-Khora"
 
 outfitter "Successor Basics"
@@ -126,7 +126,7 @@ outfitter "High Houses Heavy"
 	"Multimodal Armor: Resilient"
 	`"Jorv" Shield Cortex`
 
-outfitter "Peoples Houses"
+outfitter "People's Houses"
 	"Overcharged Pulse Laser"
 	"Overcharged Laser Turret"
 	`OC-"Mavra" Betavoltaic Cell`
