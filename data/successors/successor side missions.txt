@@ -145,8 +145,8 @@ mission "Successors: Predecessor Research 1"
 				accept
 	on stopover
 		conversation
-			`While relatively calm and subdued during the journey here, the researchers bolt out of the airlock almost the instant your ship's landing gear touch ground, arms loaded down with an innumerable array of booklets, catalogs, and strange devices that they waste no time in thrusting into the air or towards the rocks and soil.`
-			`	By the time night falls on the planet, they reluctantly return to your ship, dusty, tired, but abuzz with excitement at their discoveries.`
+			`While relatively calm and subdued during the journey here, the researchers bolt out of the airlock almost the instant your ship's landing gear touch the ground, their arms loaded down with an innumerable array of booklets, catalogs, and strange devices that they waste no time in thrusting into the air or towards the rocks and soil.`
+			`	As night begins to fall on the planet, the researchers reluctantly return to your ship, dusty and tired but abuzz with excitement at their discoveries.`
 			`	As you are making preparations to leave, you realize this would be a good moment to learn about the Predecessors from the experts, especially considering you're liable to be listening to them talk about their new data all the way back.`
 			choice
 				`	(Ask them about the Predecessors.)`
@@ -162,7 +162,7 @@ mission "Successors: Predecessor Research 1"
 				`	"Actually, I didn't have any questions after all."`
 					launch
 			label who
-			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we now as their Successors, call our home."`
+			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
 			choice
 				`	"What caused the collapse?"`
 					goto collapse
@@ -184,7 +184,7 @@ mission "Successors: Predecessor Research 1"
 				`	"I have no more questions."`
 					launch
 			label empire
-			`	"The translation device thou wears upon thy person speaks volumes to its scale. Sieasej tells me that at that empire's peak, our scholars had even laid eyes upon thy own world, far to the north! These dead systems that remain where once the core of their empire stood are but a small fraction of what was there. Some, it's sure, now belong to other races, and others, it would seem, have been obscured. We know not how nor why, only that the starcharts of our Predecessors do not mirror those we see today."`
+			`	"The translation device thou wears upon thy person speaks volumes to its scale. Sieasej tells me that at the empire's peak, our scholars had even laid eyes upon thy own world, so far to the north! These dead systems that remain where once the core of their empire stood are but a small fraction of what was there. Some, it's sure, now belong to other races, and others, it would seem, have been obscured. We know not how nor why, only that the starcharts of our Predecessors do not mirror those we see today."`
 			choice
 				`	"What caused the collapse?"`
 					goto collapse
@@ -193,7 +193,7 @@ mission "Successors: Predecessor Research 1"
 				`	"I have no more questions."`
 					launch
 			label tech
-			`	"Glorious and beautiful; as much art as science or engineering. At their peak, the works of our Predecessors were envied and respected even by the Quarg, whose mastery knows little equal. Twere exotic in their natures and unique in applications; living metal grown in stars, subtle points to pierce space itself. We have descriptions, enough to make rudimentary imitations of their processes, but even if we had a perfect understanding of wha'twas, the space of our new systems seems unsuitable to manifest that mastery. We fail even to replicate the heirlooms kept by the High Houses; the materials and techniques they use are always out of reach."`
+			`	"Glorious and beautiful, it was; as much a sort of art as of engineering. Our Predecessors' works were envied even by the Quarg, whose mastery of art and science only few may equal. T'were exotic in their natures and unique in applications; living metal grown in stars, subtle points to pierce space itself. We have descriptions, enough to make rudimentary imitations of their processes, but even if we had a perfect understanding of wha'twas, the space of our new systems seems unsuitable to manifest that mastery. We fail even to replicate the heirlooms kept by the High Houses; the materials and techniques they use are always out of reach."`
 			choice
 				`	"What caused the collapse?"`
 					goto collapse
@@ -250,7 +250,7 @@ mission "Successors: Biology Research 1"
 			choice
 				`	"What can you tell me about the Successors?"`
 					goto successor
-				`	"Were the Predecessors any different, biologically speaking, from the present Successors?"`
+				`	"Were the Predecessors any different from the present Successors, biologically speaking?"`
 					goto predecessor
 				`	"What is the life in this star cluster like?"`
 					goto cluster
@@ -261,7 +261,7 @@ mission "Successors: Biology Research 1"
 			`	"Apart from that, we are a hermaphroditic species, like most from our home planet, and as we took to the stars, we learned that this is uncommon but not rare, and so there is some curiosity as to why our planet had such a diversity of such species while most do not. Perhaps, since we grew up under a harsh sun, the redundancy provided by our divorce from biological sex was beneficial to our evolution.`
 			`	"And of course, thou hast surely noticed by now the natural camouflage of our skin. While today its use is for communication, it was long ago a useful tool for evading predators who hunted by sight, until, of course, we gained the wisdom to outsmart our predators rather than hide from them."`
 			choice
-				`	"Were the Predecessors any different, biologically speaking?"`
+				`	"Were the Predecessors any different from you, biologically speaking?"`
 					goto predecessor
 				`	"What about the other life in this star cluster?"`
 					goto cluster
