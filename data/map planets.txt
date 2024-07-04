@@ -2669,7 +2669,7 @@ planet Kua-Oa-Aava
 			not "known to the successors"
 	spaceport `The spaceport here is tiny and barebones, offering only minimal services. The few Successors you see are wearing military uniforms and remain polite and courteous to you, even as an alien.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	spaceport `	Several tunnels from this spaceport lead off into the distance, though they are guarded by military personnel and identification equipment. You presume that they lead to some of the facilities established elsewhere on the moon's surface.`
 	government Successor
 	"required reputation" 5
@@ -2941,10 +2941,10 @@ planet Mavra-Sol-Kvel
 	landscape land/fields14
 	description `This green and well-populated moon enjoys a temperate climate and spectacular vistas, both of its own surface and of the gas giant it orbits. The gravity here is quite low, and the Successors you see here tower over you even more noticeably than on other worlds. There are several several cities on the surface, most along the equator.`
 		to display
-			not "known the successors"
+			not "known to the successors"
 	description `Shielded by the persistent asteroid impacts of this system by its parent gas giant, Mavra-Sol-Kvel enjoys a temperate climate and spectacular vistas. The low gravity here is greatly appreciated by the Successors, and consequently the moon supports a sizable population despite its small size, most of whom live in several cities along the equator. It also allows for a number of towering mountain ranges, many containing cliffs and canyons several kilometers high that are frequently visited by tourists and thrill-seeker pilots alike.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	spaceport `The spaceport is large but efficient, and plastered in bright and friendly colors, much like the landscape surrounding it. Most of the buildings are organic in shape, arcing and bubbling from place to place like seafoam, and despite the fanciful design, they also appear to be servicing a large volume of travellers, merchants, and military personnel, with color-coded lines leading to different areas.`
 	"required reputation" 5
 	bribe 0
@@ -3127,25 +3127,24 @@ planet Mosaa-Oa-Vyret
 	landscape land/mountain14-sfiera
 	description `This small planet hosts a population of towering octopus-like aliens. They have built several cities across its surface that are highly symmetrical and filled with organic-looking curved buildings draped in colorful fabrics that shimmer in the light. The air is damp and chilly; rainstorms blanket a significant portion of the planet's surface and many of the sleek-looking vessels that set down in the spaceport discharge streams of water upon landing.`
 		to display
-			not "known the successors"
+			not "known to the successors"
 	description `Mosaa-Oa-Vyret's location in the only hyperspace link between the northern and southern parts of Successor territory has made it a hub for interstellar trade and the center of Successor commerce.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	description `	Unique among all Successor planets, its primary employer is not one of the High Houses but an independent corporation responsible for manufacturing, among other things, the Pulse Laser. The High Houses are understandably somewhat perturbed by this autonomy, but have allowed independent commerce to continue here in exchange for levying modest taxes on transactions that do not go through their official channels.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	spaceport `The spaceport is large and busy, and sits situated at the foot of a mountain. Small shops and tents sit abreast advertisements and large metallic statues of various sorts, many of which seem weather-worn and unmaintained.`
 		to display
-			not "known the successors"
+			not "known to the successors"
 	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
 		to display
-			not "known the successors"
 	spaceport `The spaceport is large and busy, situated at the foot of a mountain, and seems more haphazard than most Successor spaceports you've seen. Small shops and tents sit abreast advertisements for the latest generation of Pulse Laser and statues of important figures in the high houses, many of which seem weather-worn and unmaintained.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	government Successor
 	bribe 0
 
@@ -3213,10 +3212,10 @@ planet Naph-Naap-Kella
 	landscape land/lava1
 	description `This planet is deep in the throes of its early history, with a thick sulfurous atmosphere concealing an unstable and volcanically active surface. Mineral-rich pools simmer next to lava flows and crumbling ejecta, and the atmosphere is repeatedly lit up by enormous cloud-to-cloud lightning discharges that leave the hull of your ship crackling with static electricity.`
 		to display
-			not "known the successors"
+			not "known to the successors"
 	description `This planet is deep in the throes of its early history, with a thick sulfurous atmosphere concealing an unstable and volcanically active surface. Despite that, the Successors have discovered very simple life forms here, possibly the very first life that has developed on this planet. Consequently, it is of some interest to Successor biologists, or at least the ones willing to brave the toxic and destructive conditions on the surface.`
 		to display
-			has "known the successors"
+			has "known to the successors"
 	government Uninhabited
 
 planet Nasqueron
