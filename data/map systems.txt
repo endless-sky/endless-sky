@@ -11185,7 +11185,7 @@ system E-4183
 	fleet "Iije (Uninterested)" 1200
 	fleet "Iije (Swarming)" 600
 	fleet "Iije (Surveillance)" 600
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/a-giant
 		period 10
@@ -11242,7 +11242,7 @@ system E-9182
 	fleet "Iije (Uninterested)" 4000
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2000
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/o0
 		period 10
@@ -14694,14 +14694,10 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	asteroids "small rock" 17 5.5
-	asteroids "large metal" 11 3.4
-	minables neodymium 5 3.87
-	minables titanium 24 4.15
-	minables tungsten 16 2.37
+	minables neodymium 1 3.87
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
-	"star density" .2
+	"starfield density" .05
 	object
 		sprite star/coal-black-hole
 		period 1
@@ -14741,7 +14737,7 @@ system G-719
 	fleet "Iije (Uninterested)" 4000
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2000
-	"star density" .1
+	"starfield density" .1
 	object
 		sprite star/f3
 		distance 76.28
@@ -14787,7 +14783,7 @@ system G-819
 	fleet "Iije (Uninterested)" 6000
 	fleet "Iije (Swarming)" 3000
 	fleet "Iije (Surveillance)" 3000
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/g3
 		period 10
@@ -15960,7 +15956,7 @@ system H-8188
 	fleet "Iije (Uninterested)" 6000
 	fleet "Iije (Swarming)" 3000
 	fleet "Iije (Surveillance)" 3000
-	"star density" .1
+	"starfield density" .1
 	object
 		sprite star/a0
 		period 10
@@ -15991,7 +15987,7 @@ system H-9187
 	fleet "Iije (Uninterested)" 4000
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2000
-	"star density" .3
+	"starfield density" .3
 	object
 		sprite star/a3
 		period 10
@@ -20719,7 +20715,7 @@ system L-118
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
 	minables iron 3 5.3
-	"star density" .3
+	"starfield density" .3
 	object
 		sprite star/a8
 		period 10
@@ -20760,7 +20756,7 @@ system L-6181
 	fleet "Iije (Uninterested)" 2000
 	fleet "Iije (Swarming)" 1000
 	fleet "Iije (Surveillance)" 1000
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/m8
 		distance 16.78
@@ -21503,7 +21499,7 @@ system M-1188
 	fleet "Iije (Uninterested)" 800
 	fleet "Iije (Swarming)" 400
 	fleet "Iije (Surveillance)" 400
-	"star density" .1
+	"starfield density" .1
 	object
 		sprite star/a-dwarf
 		period 10
@@ -21540,7 +21536,7 @@ system MC-42
 	fleet "Iije (Uninterested)" 3000
 	fleet "Iije (Swarming)" 1500
 	fleet "Iije (Surveillance)" 1500
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/g5
 		period 10
@@ -21577,7 +21573,7 @@ system MS-219
 	fleet "Iije (Uninterested)" 200
 	fleet "Iije (Swarming)" 100
 	fleet "Iije (Surveillance)" 100
-	"star density" .1
+	"starfield density" .1
 	object
 		sprite star/o-dwarf
 		distance 33.38
@@ -24628,7 +24624,7 @@ system O-3184
 	fleet "Iije (Uninterested)" 500
 	fleet "Iije (Swarming)" 250
 	fleet "Iije (Surveillance)" 250
-	"star density" .1
+	"starfield density" .1
 	object
 		sprite star/m3
 		period 10
@@ -32395,7 +32391,7 @@ system U-5188
 	fleet "Iije (Uninterested)" 2000
 	fleet "Iije (Swarming)" 1000
 	fleet "Iije (Surveillance)" 1000
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/k5
 		period 10
@@ -33096,7 +33092,7 @@ system V-2189
 	asteroids "medium metal" 1 5.21
 	asteroids "large metal" 2 5.44
 	minables platinum 2 6.86
-	"star density" .1
+	"starfield density" .1
 	object
 		sprite star/o0
 		distance 77.281
@@ -33624,7 +33620,7 @@ system W-3197
 	fleet "Iije (Uninterested)" 4000
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2000
-	"star density" .2
+	"starfield density" .2
 	object
 		sprite star/b3
 		period 10
