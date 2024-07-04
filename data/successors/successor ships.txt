@@ -710,7 +710,10 @@ ship "Ojde"
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
 	description `Although it is the largest freighter employed by the Successors, the "Ojde" is still substantially smaller than large human freighters like the Bulk Freighter and Behemoth. While this limits the cargo capacity of any single ship, it also allows these vessels to be surprisingly fast and maneuverable and increases the number of facilities which can effectively tend to them.`
-	description `Rather than built-in cargo holds, the "Ojde" is designed to carry an expandable rack of standardized cargo containers, increasing delivery and loading speed in busy spaceports.`
+	description `	Though somewhat less popular among more traditional merchants than the time-tested "Myaede," the increased cargo capacity of the "Ojde" makes it a more or less mandatory choice for those hoping to assemble a large-scale transport operation.`
+
+ship "Ojde" "Ojde (Naive)"
+	description `Although it is the largest freighter employed by the Successors, the "Ojde" is still substantially smaller than large human freighters like the Bulk Freighter and Behemoth. While this limits the cargo capacity of any single ship, it also allows these vessels to be surprisingly fast and maneuverable and increases the number of facilities which can effectively tend to them.`
 
 ship "Seiitej"
 	plural "Seiitejen"

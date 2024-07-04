@@ -27,7 +27,7 @@ shipyard "Successor Heavy"
 	"Myaede (Naive)"
 	"Ejniisde"
 
-	"Ojde"
+	"Ojde (Naive)"
 	"Nnesaarau (Naive)"
 	"Nnaatej"
 
