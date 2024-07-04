@@ -2489,6 +2489,7 @@ planet Kasii-Tuur-Saqru
 	description `	The station, by now crowded and in disrepair, is technically the property of the Old Houses, but is far outside their jurisdiction, so it ends up as de facto stateless as its inhabitants. Without a claim to any other citizenship, those inhabitants have formed the so-called "People's Houses," semi-familial groups that they laud as effective democratic governments but which are denigrated by most in the High Houses as little more than gangs of populist outlaws shielded by stale treaties.`
 	spaceport `You wouldn't really call the landing area here a "spaceport:" it seems to be just an especially large cargo bay refitted to hold a handful of ships. In sharp contrast to most of the Successor facilities you've visited, it is grimy, dingy, and uncomfortably claustrophobic - throngs of Successors squeeze in between crowded starships, overflowing cargo containers, and strewn-about equipment, and most of these items display bullet holes, scorch marks, or other conditions not evocative of confidence.`
 	spaceport `	At the edges of the spaceport, several semi-obfuscated elevators and blast doors lead out into the rest of the station. While most of these, you presume, lead to residential areas, some seem to be servicing the seedier side of the population, and you can't help but wonder how much of the spaceport's operations are taking place behind closed doors.`
+	government "People's Houses"
 	shipyard "People's Houses"
 	shipyard "Successor Basics"
 	outfitter "People's Houses"

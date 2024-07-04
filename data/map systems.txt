@@ -19519,7 +19519,7 @@ system "Kaus Borealis"
 
 system Kella-Uoasa
 	pos -323.49 1525.52
-	government Successor
+	government "People's Houses"
 	attributes successor
 	arrival 5000
 	habitable 8650
