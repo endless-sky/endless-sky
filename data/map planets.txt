@@ -15,8 +15,8 @@ planet Aava-Aasa-Khora
 	attributes successor wealthy
 	landscape land/canyon15
 	description `This planet is the collective seat of what are known as the Old Houses, the noble families who held territorial claims to this region of space before the collapse of the Predecessors' empire and the arrival of the so-called New Houses fleeing their crumbling society.`
-	description `	While today the planet is geologically stable, it experienced major tectonic shifts in the past, folding the planet's surface into a number of visually spectacular canyons and mountain ranges. Since it serves such an important political role, tectonic activity on this planet is closely monitored, and even though there have been no major earthquakes since the Successors settled here, most of the buildings here are built to withstand even large and destructive geological shifts.`
-	spaceport `Surprisingly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildngs made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
+	description `	While today the planet is geologically stable, it has experienced major tectonic shifts in the past, folding the planet's surface into a number of visually spectacular canyons and mountain ranges. Since it serves such an important political role, tectonic activity on this planet is closely monitored, and even though there have been no major earthquakes since the Successors settled here, most of the buildings here are built to withstand even large and destructive geological shifts.`
+	spaceport `Surprisingly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildings made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
 	spaceport `	The inside of the spaceport is very similar, with soft, rounded shapes, and flexible building materials. The floor seems to sink a little as you step on it, almost like it is actually a viscous liquid rather than a solid material.`
 	government "Old Houses"
 	shipyard "High Houses Light"
@@ -2489,9 +2489,9 @@ planet Kasii-Tuur-Saqru
 	description `	The station, by now crowded and in disrepair, is technically the property of the Old Houses, but is far outside their jurisdiction, so it ends up as de facto stateless as its inhabitants. Without a claim to any other citizenship, those inhabitants have formed the so-called "People's Houses," semi-familial groups that they laud as effective democratic governments but which are denigrated by most in the High Houses as little more than gangs of populist outlaws shielded by stale treaties.`
 	spaceport `You wouldn't really call the landing area here a "spaceport:" it seems to be just an especially large cargo bay refitted to hold a handful of ships. In sharp contrast to most of the Successor facilities you've visited, it is grimy, dingy, and uncomfortably claustrophobic - throngs of Successors squeeze in between crowded starships, overflowing cargo containers, and strewn-about equipment, and most of these items display bullet holes, scorch marks, or other conditions not evocative of confidence.`
 	spaceport `	At the edges of the spaceport, several semi-obfuscated elevators and blast doors lead out into the rest of the station. While most of these, you presume, lead to residential areas, some seem to be servicing the seedier side of the population, and you can't help but wonder how much of the spaceport's operations are taking place behind closed doors.`
-	shipyard "Peoples Houses"
+	shipyard "People's Houses"
 	shipyard "Successor Basics"
-	outfitter "Peoples Houses"
+	outfitter "People's Houses"
 	outfitter "Successor Basics"
 	outfitter "Successor Civilian"
 	outfitter "Successor Weapons Heavy"
@@ -2520,7 +2520,7 @@ planet Kella-Uuoru-Sossa
 	spaceport `A massive spaceport on the surface stands proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters up above your ship, some scarred by weapons fire, others distorted by heat or radiation. A couple of small cleaning drones attempt to polish the weather-worn floors, while others wander aimlessly, devoid of purpose and direction.`
 		to display
 			not "trusted by the successors"
-	spaceport `The planet's main spaceport endures proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters above your ship, some scarred by weapons fire, others distorted by heat or radiation. One flock of small cleaning drones continually polish the sand-worn floors, while others wander about aimlessly, devoid of purpose or direction.`
+	spaceport `The planet's main spaceport endures proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters above your ship, some scarred by weapons fire, others distorted by heat or radiation. One flock of small cleaning drones continually polishes the sand-worn floors, while others wander about aimlessly, devoid of purpose or direction.`
 		to display
 			has "trusted by the successors"
 	government Predecessor
@@ -2939,7 +2939,7 @@ planet Maspa-Viir-Kella
 planet Mavra-Sol-Kvel
 	attributes wealthy successor
 	landscape land/fields14
-	description `This green and well-populated moon enjoys a temperate climate and spectacular vistas, both of its own surface and of the gas giant it orbits. The gravity here is quite low, and the Successors you see here tower over you even more noticeably than on other worlds. There are several several cities on the surface, most along the equator.`
+	description `This green and well-populated moon enjoys a temperate climate and spectacular vistas, both of its own surface and of the gas giant it orbits. The gravity here is quite low, and the Successors you see here tower over you even more noticeably than on other worlds. There are several cities on the surface, most along the equator.`
 		to display
 			not "known to the successors"
 	description `Shielded by the persistent asteroid impacts of this system by its parent gas giant, Mavra-Sol-Kvel enjoys a temperate climate and spectacular vistas. The low gravity here is greatly appreciated by the Successors, and consequently the moon supports a sizable population despite its small size, most of whom live in several cities along the equator. It also allows for a number of towering mountain ranges, many containing cliffs and canyons several kilometers high that are frequently visited by tourists and thrill-seeker pilots alike.`
@@ -3143,7 +3143,6 @@ planet Mosaa-Oa-Vyret
 		to display
 			has "known to the successors"
 	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
-		to display
 			has "known to the successors"
 	government Successor
 	bribe 0
@@ -3193,7 +3192,7 @@ planet Myiara-Sola-Tej
 planet Myiara-Aret-Iir
 	attributes predecessor uninhabited
 	landscape land/badlands4
-	description `In contrast to the pristine emptiness of the other formerly-inhabited planets in this area of space, this world teems with signs of chaos. The remnants of hastily-built weather-control towers dot much of its surface, and the cities upon it are neither majestic nor well-maintained; none are very large, but most are surrounded by vast expanses of fabric and radiation-bleached temporary constructions.`
+	description `In contrast to the pristine emptiness of the other formerly-inhabited planets in this area of space, this world teems with signs of chaos. The remains of hastily-built weather-control towers dot much of its surface, and the cities upon it are neither majestic nor well-maintained; none are very large, but most are surrounded by vast expanses of fabric and radiation-bleached temporary constructions.`
 		to display
 			not "trusted by the successors"
 	description `Once a minor colony world, what would come to be known as Myiara-Aret-Iir was the last stop of all those hoping to escape the decay of the Predecessors' space by traveling through the wormhole. Those with wealthy patrons who could afford passage on specially-modified vessels spent little time here, but those without often found the blossoming shanty towns of the planet to be their new homes. With the denouement of the Predecessors' last inter-Houses war and the final push to evacuate, most of those living here eventually made it through. The rest probably perished long ago.`
@@ -3208,7 +3207,7 @@ planet Mystery
 	"required reputation" 15
 
 planet Naph-Naap-Kella
-	attributes successor uninhabited boldtourism
+	attributes boldtourism successor uninhabited
 	landscape land/lava1
 	description `This planet is deep in the throes of its early history, with a thick sulfurous atmosphere concealing an unstable and volcanically active surface. Mineral-rich pools simmer next to lava flows and crumbling ejecta, and the atmosphere is repeatedly lit up by enormous cloud-to-cloud lightning discharges that leave the hull of your ship crackling with static electricity.`
 		to display
@@ -3877,7 +3876,7 @@ planet Quirinal
 planet Raaqa-Kvelq-Ryuit
 	attributes education successor urban
 	landscape land/fields6
-	description `This planet seems to host a larger population than any other you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, and both terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultral robots.`
+	description `This planet seems to host a larger population than any other you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, and both terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
 		to display
 			not "known to the successors"
 	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over one billion inhabitants, the largest of any planet in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
@@ -3908,16 +3907,16 @@ planet Raaqa-Puan-Uuoru
 planet Raaqa-Uur-Kaav
 	attributes predecessor uninhabited
 	landscape land/forest3
-	description `Unlike most of the planets in this area of space, this moon remains relatively habitable. Large forests have fluorished throughout it in the absence of sapient life, and the stark remains of abandoned cities are slowly being reclaimed by the nature that surrounds them. While the materials which compose the buildings have not decayed an iota over the eons, the tender shoots of green life nonetheless adhere to their twisting surfaces and flourish within their unmaintained interiors.`
+	description `Unlike most of the planets in this area of space, this moon remains relatively habitable. Large forests have flourished throughout it in the absence of sapient life, and the stark remains of abandoned cities are slowly being reclaimed by the nature that surrounds them. While the materials which compose the buildings have not decayed an iota over the eons, the tender shoots of green life nonetheless adhere to their twisting surfaces and flourish within their unmaintained interiors.`
 		to display
 			not "trusted by the successors"
-	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have fluorished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nonetheless quietly demonstrate their supremacy over the unmaintained artificial.`
+	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have flourished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nonetheless quietly demonstrate their supremacy over the unmaintained artificial.`
 		to display
 			has "trusted by the successors"
 	spaceport `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
 		to display
 			not "trusted by the successors"
-	spaceport `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies". Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
+	spaceport `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
 		to display
 			has "trusted by the successors"
 	government Predecessor
