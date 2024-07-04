@@ -645,7 +645,7 @@ planet Cavaasa-Vasa-Tej
 	description `This planet is hot and dry, and holds on to only a tenuous atmosphere. Several enormous alien installations are present on its surface; semicircular bubbles that smoothly emerge from the rock as if they were grown from it, dotted with small pores, which are each large enough for a starship. Inside them, the temperature is surprisingly quite habitable and you can observe the remains of what look like mines and industrial facilities within.`
 		to display
 			not "trusted by the successors"
-	description `Once an important industrial planet for the High Houses of the core systems, Cavasaa-Vasa-Tej was a hub for the mining of rare elements and for the growth of exotic metal in the superheated corona of the Kasii-Cavaasa star. Without maintenance, most of the stellar metallic gardens have long since fallen into Kasii-Cavaasa's outer layers, but the few that have survived by chance are now completely overgrown with threads of hyperdense alloy; enough to supply the facilities of Cavaasa-Vasa-Tej's industry for years, if they were still operational.`
+	description `Once an important industrial planet for the High Houses of the core systems, Cavasaa-Vasa-Tej was a hub for the mining of rare elements and for the growth of exotic metal in the superheated corona of the Kasii-Cavaasa star. Shipments from here continued even as the hyperspace links from it started to deteriorate, leaving many freighters stranded in deep space after they fell out mid-jump. Without maintenance, most of the stellar metallic gardens here have long since fallen into Kasii-Cavaasa's outer layers, but the few that have survived by chance are now completely overgrown with threads of hyperdense alloy; enough to supply the facilities of Cavaasa-Vasa-Tej's industry for years, if they were still operational.`
 		to display
 			has "trusted by the successors"
 	government Predecessor
@@ -4185,7 +4185,8 @@ planet Saska-Aa-Noorr
 	landscape land/space7
 	description `Though the Successors invest in few truly massive constructions, this station is one of them. Originally built over three thousand years ago as a support platform for the Predecessors' early colonization efforts, Saska-Aa-Noorr has been a consistent fixture of the star cluster and one of House Myurej's most important assets.`
 	description `	In the present day it serves a primarily residential role, housing almost five million Successors in rotating cylindrical segments of its arms. The gentler gravity and tightly controlled climate these offer makes living stationside quite desirable to many Successors, but the limited space available combined with the high taxes that House Myurej levies here mean that usually only the wealthiest Successors can afford to take up residence.`
-	spaceport `The spaceport takes full advantage of its zero-gravity nature, with loading docks extending into the distance at all angles.`
+	spaceport `The spaceport takes full advantage of its zero-gravity nature; loading docks extend into the distance at all angles and magnetic cargo trains circle and arch around the interior. Most of the walkable areas of the port are enclosed in a giant cylindrical shell rotating around the docks such that you can watch your docked ship pass by overhead every couple of minutes.`
+	spaceport `	There is no "dry" access to any of the residential areas of the station; instead of normal corridors or elevators, large tubes of gently circulating water carry the Successors to other sections. The station directory indicates that outfitting services are among those separated from the main port by one of these tubes; unfortunately, it doesn't seem like they're going to be accessible to you.`
 	government "House Myurej"
 	"required reputation" 15
 	bribe 0
