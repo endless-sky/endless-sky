@@ -1185,6 +1185,11 @@ government "People's Houses"
 	"friendly disabled hail" "successor friendly disabled hail"
 	"hostile hail" "people's houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
+	"attitude toward"
+		Successor 1
+		"People's Houses (Hostile)" 0.2
+	bribe 0.05
+	fine 0
 
 government "People's Houses (Hostile)"
 	"display name" "People's Houses"
