@@ -197,8 +197,8 @@ bool Plugin::IsValid() const
 // Load all scripts in the plugin.
 void Plugin::LoadScripts()
 {
-	if(filesystem::is_directory(path+"scripts"))
-		for(const auto &entry : filesystem::directory_iterator(path+"scripts"))
+	if(filesystem::is_directory(path+"include"))
+		for(const auto &entry : filesystem::directory_iterator(path+"include"))
 			if(entry.is_regular_file())
 			{
 				#ifdef __unix__
