@@ -18,6 +18,9 @@ galaxy "Milky Way"
 galaxy "label arachi"
 	pos -750 615
 
+galaxy "label antumbral"
+	pos 1150 -520
+
 galaxy "label core"
 	pos -136 130
 	sprite label/core
