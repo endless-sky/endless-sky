@@ -11182,9 +11182,9 @@ system E-4183
 	asteroids "medium metal" 9 1.232
 	minables silver 1 8.3
 	minables aluminum 1 9.0285
-	fleet "Iije (Uninterested)" 1200
-	fleet "Iije (Swarming)" 600
-	fleet "Iije (Surveillance)" 600
+	fleet "Iije (Uninterested)" 1500
+	fleet "Iije (Swarming)" 900
+	fleet "Iije (Surveillance)" 900
 	"starfield density" .2
 	object
 		sprite star/a-giant
@@ -11239,9 +11239,9 @@ system E-9182
 	minables copper 1 7.53
 	minables iron 1 7.36
 	minables aluminum 3 7.61
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 4000
+	fleet "Iije (Surveillance)" 3000
 	"starfield density" .2
 	object
 		sprite star/o0
@@ -14734,9 +14734,9 @@ system G-719
 	haze _menu/haze-coal
 	link W-3197
 	asteroids "large metal" 1 2.22
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 3900
+	fleet "Iije (Surveillance)" 2400
 	"starfield density" .1
 	object
 		sprite star/f3
@@ -14780,9 +14780,9 @@ system G-819
 	asteroids "large rock" 1 2.04
 	asteroids "large metal" 2 3
 	minables iron 2 2.4
-	fleet "Iije (Uninterested)" 6000
-	fleet "Iije (Swarming)" 3000
-	fleet "Iije (Surveillance)" 3000
+	fleet "Iije (Uninterested)" 3000
+	fleet "Iije (Swarming)" 6000
+	fleet "Iije (Surveillance)" 3500
 	"starfield density" .2
 	object
 		sprite star/g3
@@ -15953,8 +15953,8 @@ system H-8188
 	asteroids "large rock" 1 1.44
 	asteroids "medium metal" 3 1.3
 	asteroids "large metal" 2 0.81
-	fleet "Iije (Uninterested)" 6000
-	fleet "Iije (Swarming)" 3000
+	fleet "Iije (Uninterested)" 3400
+	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3000
 	"starfield density" .1
 	object
@@ -15984,8 +15984,8 @@ system H-9187
 	link L-118
 	link MC-42
 	asteroids "large metal" 1 4.9
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Uninterested)" 3000
+	fleet "Iije (Swarming)" 3200
 	fleet "Iije (Surveillance)" 2000
 	"starfield density" .3
 	object
@@ -20753,9 +20753,9 @@ system L-6181
 	asteroids "large metal" 1 1.5
 	minables titanium 2 2.32
 	minables copper 4 3.569
-	fleet "Iije (Uninterested)" 2000
-	fleet "Iije (Swarming)" 1000
-	fleet "Iije (Surveillance)" 1000
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 1800
 	"starfield density" .2
 	object
 		sprite star/m8
@@ -21496,9 +21496,9 @@ system M-1188
 	link MS-219
 	asteroids "large metal" 2 2.54
 	minables uranium 1 3.66
-	fleet "Iije (Uninterested)" 800
-	fleet "Iije (Swarming)" 400
-	fleet "Iije (Surveillance)" 400
+	fleet "Iije (Uninterested)" 1300
+	fleet "Iije (Swarming)" 1400
+	fleet "Iije (Surveillance)" 1500
 	"starfield density" .1
 	object
 		sprite star/a-dwarf
@@ -21533,9 +21533,9 @@ system MC-42
 	link H-9187
 	minables platinum 1 4.2
 	minables copper 6 7.91
-	fleet "Iije (Uninterested)" 3000
-	fleet "Iije (Swarming)" 1500
-	fleet "Iije (Surveillance)" 1500
+	fleet "Iije (Uninterested)" 2900
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 2400
 	"starfield density" .2
 	object
 		sprite star/g5
@@ -21570,9 +21570,9 @@ system MS-219
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
-	fleet "Iije (Uninterested)" 200
-	fleet "Iije (Swarming)" 100
-	fleet "Iije (Surveillance)" 100
+	fleet "Iije (Uninterested)" 400
+	fleet "Iije (Swarming)" 700
+	fleet "Iije (Surveillance)" 500
 	"starfield density" .1
 	object
 		sprite star/o-dwarf
@@ -24621,9 +24621,9 @@ system O-3184
 	asteroids "large metal" 1 6.84
 	minables iron 5 2.23
 	minables lead 2 3.43
-	fleet "Iije (Uninterested)" 500
-	fleet "Iije (Swarming)" 250
-	fleet "Iije (Surveillance)" 250
+	fleet "Iije (Uninterested)" 700
+	fleet "Iije (Swarming)" 900
+	fleet "Iije (Surveillance)" 700
 	"starfield density" .1
 	object
 		sprite star/m3
@@ -32388,9 +32388,9 @@ system U-5188
 	asteroids "medium rock" 2 1.91
 	asteroids "large rock" 1 2.87
 	minables iron 3 2.93
-	fleet "Iije (Uninterested)" 2000
-	fleet "Iije (Swarming)" 1000
-	fleet "Iije (Surveillance)" 1000
+	fleet "Iije (Uninterested)" 1600
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 1400
 	"starfield density" .2
 	object
 		sprite star/k5
@@ -33617,8 +33617,8 @@ system W-3197
 	asteroids "large rock" 2 1.71
 	minables titanium 6 3.4
 	minables neodymium 1 4.76
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Uninterested)" 2000
+	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 2000
 	"starfield density" .2
 	object
