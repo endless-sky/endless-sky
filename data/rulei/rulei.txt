@@ -144,6 +144,3 @@ phrase "rulei hostile"
 		"End."
 		"Join."
 		"Fall."
-
-		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
-			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
