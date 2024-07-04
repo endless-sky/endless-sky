@@ -11,7 +11,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship `Aaulqra` `Aaulqra (Sniper)`
+
+ship "Aaulqra" "Aaulqra (Sniper)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -19,13 +20,13 @@ ship `Aaulqra` `Aaulqra (Sniper)`
 		`"Uoret" Fusion Core`
 		`3-"Kaska" Betavoltaic Cell`
 		`"Jaase" Shield Cortex`
-		`Hyperdrive`
-		`Successor Cooling`
+		"Hyperdrive"
+		"Successor Cooling"
 		`"Sjeja" Kinetic Lance`
-		`High-Velocity Spike` 20
+		"High-Velocity Spike" 20
 		`"Ojet" Bimodal Coilgun` 4
 
-ship `Aaulqra` `Aaulqra (Brawler)`
+ship "Aaulqra" "Aaulqra (Brawler)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -33,13 +34,13 @@ ship `Aaulqra` `Aaulqra (Brawler)`
 		`"Uoret" Fusion Core`
 		`3-"Kaska" Betavoltaic Cell`
 		`"Jorv" Shield Cortex`
-		`Hyperdrive`
-		`Successor Cooling`
+		"Hyperdrive"
+		"Successor Cooling"
 		`"Ojet" Bimodal Coilgun` 2
-		`Bimodal Coilgun Turret` 2
-		`Drag Cannon` 3
+		"Bimodal Coilgun Turret" 2
+		"Drag Cannon" 3
 
-ship `Stolsaqra` `Stolsaqra (Short-Range)`
+ship "Stolsaqra" "Stolsaqra (Short-Range)"
 	outfits
 		`"Aqra" Inductive Thruster` 2
 		`"Aqra" Inductive Steering`
@@ -50,7 +51,7 @@ ship `Stolsaqra` `Stolsaqra (Short-Range)`
 		"Hyperdrive"
 		`"Veldt" Combat Scanner`
 
-ship `Stolsaqra` `Stolsaqra (Military)`
+ship "Stolsaqra" "Stolsaqra (Military)"
 	outfits
 		`"Aqra" Inductive Thruster`
 		`"Aqra" Inductive Steering`
@@ -61,7 +62,7 @@ ship `Stolsaqra` `Stolsaqra (Military)`
 		"Hyperdrive"
 		`"Veldt" Combat Scanner`
 
-ship `Stolsaqra` `Stolsaqra (Mission Escort)`
+ship "Stolsaqra" "Stolsaqra (Mission Escort)"
 	outfits
 		`"Aqra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -69,7 +70,7 @@ ship `Stolsaqra` `Stolsaqra (Mission Escort)`
 		`3-"Kaska" Betavoltaic Cell`
 		"Drag Cannon" 3
 		`"Byiaa" Shield Cortex`
-		`Fuel Pod` 3
+		"Fuel Pod" 3
 		"Hyperdrive"
 
 ship `Kvelqde` `Kvelqde (Violent)`
@@ -83,7 +84,7 @@ ship `Kvelqde` `Kvelqde (Violent)`
 		"Hyperdrive"
 		"Overcharged Laser Turret"
 
-ship `Kvelqde` `Kvelqde (Mining)`
+ship "Kvelqde" "Kvelqde (Mining)"
 	outfits
 		`"Niis" Inductive Engines`
 		`1-"Uurau" Betavoltaic Cell`
@@ -94,32 +95,32 @@ ship `Kvelqde` `Kvelqde (Mining)`
 		"Hyperdrive"
 		`"Tuur" Scanning Suite`
 
-ship `Kvelqde-Khora` `Kvelqde-Khora (Mining)`
+ship "Kvelqde-Khora" "Kvelqde-Khora (Mining)"
 	outfits
 		`"Aqra" Inductive Thruster`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		`3-"Kaska" Betavoltaic Cell`
 		"Successor Pulse Laser" 2
-		`Auxiliary Power Reserve` 1
-		`Cargo Expansion` 2
+		"Auxiliary Power Reserve"
+		"Cargo Expansion" 2
 		`"Tuur" Scanning Suite`
 		`"Byiaa" Shield Cortex`
 		"Hyperdrive"
 
-ship `Myaede` `Myaede (Violent)`
+ship "Myaede" "Myaede (Violent)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
 		`6-"Ruuv" Betavoltaic Cell`
 		`"Ej" Shield Cortex`
 		"Hyperdrive"
-		`Overcharged Laser Turret` 2
-		`Overcharged Pulse Laser` 2
-		`Auxiliary Power Reserve`
-		`Successor Cooling`
+		"Overcharged Laser Turret" 2
+		"Overcharged Pulse Laser" 2
+		"Auxiliary Power Reserve"
+		"Successor Cooling"
 
-ship `Myaede` `Myaede (Mining)`
+ship "Myaede" "Myaede (Mining)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -128,22 +129,22 @@ ship `Myaede` `Myaede (Mining)`
 		`1-"Uurau" Betavoltaic Cell` 2
 		`"Ej" Shield Cortex`
 		"Hyperdrive"
-		`Pulse Laser Turret` 2
-		`Cargo Expansion`
+		"Pulse Laser Turret" 2
+		"Cargo Expansion"
 		`"Tuur" Scanning Suite`
 
-ship `Myaede` `Myaede (Mining, Defensive)`
+ship "Myaede" "Myaede (Mining, Defensive)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
 		`6-"Ruuv" Betavoltaic Cell`
 		`"Ej" Shield Cortex`
 		"Hyperdrive"
-		`Pulse Laser Turret` 2
-		`Successor Pulse Laser` 2
+		"Pulse Laser Turret" 2
+		"Successor Pulse Laser" 2
 		`"Tuur" Scanning Suite`
 
-ship `Nnaatej` `Nnaatej (Defensive)`
+ship "Nnaatej" "Nnaatej (Defensive)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -152,8 +153,8 @@ ship `Nnaatej` `Nnaatej (Defensive)`
 		`OC-"Mavra" Betavoltaic Cell`
 		`"Ej" Shield Cortex`
 		"Hyperdrive"
-		`Pulse Laser Turret`
-		`Successor Cooling`
+		"Pulse Laser Turret"
+		"Successor Cooling"
 
 ship `Kaskhorade` `Kaskhorade (Sniper)`
 	outfits
@@ -165,10 +166,10 @@ ship `Kaskhorade` `Kaskhorade (Sniper)`
 		"Hyperdrive"
 		"Successor Cooling"
 		`"Sjeja" Kinetic Lance` 2
-		`High-Velocity Spike Rack`
-		`High-Velocity Spike` 60
+		"High-Velocity Spike Rack"
+		"High-Velocity Spike" 60
 
-ship `Kaskhorade` `Kaskhorade (Brawler)`
+ship "Kaskhorade" "Kaskhorade (Brawler)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -178,9 +179,9 @@ ship `Kaskhorade` `Kaskhorade (Brawler)`
 		`"Jorv" Shield Cortex`
 		"Hyperdrive"
 		"Successor Cooling"
-		`Bimodal Coilgun Turret` 4
+		"Bimodal Coilgun Turret" 4
 
-ship `Veusade` `Veusade (Surveillance)`
+ship "Veusade" "Veusade (Surveillance)"
 	outfits
 		`"Veusa" Inductive Thruster`
 		`"Veusa" Inductive Steering`
@@ -191,43 +192,44 @@ ship `Veusade` `Veusade (Surveillance)`
 		"Drag Cannon" 8
 		"Multimodal Armor: Heavy"
 		`"Veldt" Combat Scanner`
-		`Auxiliary Power Reserve`
+		"Auxiliary Power Reserve"
 
-ship `Vujlet` `Vujlet (Surveillance)`
+ship "Vujlet" "Vujlet (Surveillance)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		`"Nnesa" Fusion Core`
 		`"Veldt" Combat Scanner`
-		`Primary Power Reserve`
+		"Primary Power Reserve"
 		`"Jaase" Shield Cortex`
 		"Hyperdrive"
 		"Successor Cooling"
 		`"Ojet" Bimodal Coilgun` 2
 		"Multimodal Armor: Heavy"
 
-ship `Vujlet` `Vujlet (Aggressive)`
+ship "Vujlet" "Vujlet (Aggressive)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
 		`"Nnesa" Fusion Core`
-		`Auxiliary Power Reserve` 3
+		"Auxiliary Power Reserve" 3
 		`"Ej" Shield Cortex`
 		"Hyperdrive"
 		"Successor Cooling"
 		`"Ojet" Bimodal Coilgun` 4
 		"Multimodal Armor: Heavy"
 
-ship `Ojde` `Ojde (Mining)`
+ship "Ojde" "Ojde (Mining)"
 	outfits
 		`"Chyyra" Inductive Thruster`
 		`"Veusa" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		`6-"Ruuv" Betavoltaic Cell`
-		`Primary Power Reserve`
-		`Successor Cooling`
+		"Primary Power Reserve"
+		"Successor Cooling"
 		"Pulse Laser Turret" 2
 		`"Tuur" Scanning Suite` 2
 		`"Ej" Shield Cortex`
 		"Hyperdrive"
+
