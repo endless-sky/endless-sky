@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-### SUCCESSOR CIVILIAN
+# Successor civilian
 
 phrase "successor friendly hail" # Wary hails
 	word
@@ -32,6 +32,7 @@ phrase "successor friendly hail" # Wary hails
 		"To whom and what thou does thou lend thy own strength?"
 		"What is thy goal within these stars? To observe or interfere?"
 		"What is thy goal within these stars? Be a trader or a traitor?"
+
 
 phrase "successor friendly hail" # Brag hails 1
 	word
@@ -83,8 +84,8 @@ phrase "successor friendly hail" # Conspiracy hails
 	word
 		"I hope that thou will keep this thought between us:"
 		"A friend of mine had told me once in secret:"
-		"I have heard from good reputed, honest lips that"
-		"The High Houses try to hide it, but I know that"
+		"I have heard from well reputed, honest lips that:"
+		"The High Houses try to hide it, but I know that:"
 		"I've learned in many years of honest pil'ting:"
 		"If thou art willing to believe me:"
 		"Doubt my words if knave'ry is thy goal, but:"
@@ -101,6 +102,7 @@ phrase "successor friendly hail" # Conspiracy hails
 		"The best trade routes are hidden from thy sensors." 2
 		"There are nightmares in the void the Houses fear."
 		"The empty systems here are prone to strangeness."
+
 
 phrase "successor hostile hail"
 	word
@@ -119,11 +121,12 @@ phrase "successor hostile hail"
 		"The gentle hand of Death close up thy eye."
 		"No satisfaction lives in our reprisal."
 
+
 phrase "successor friendly disabled hail"
 	word
 		"Thy prompt assist t'would honor thee,"
 		"Alas, our vessel's lay'en low,"
-		"'Help!' we ask, fair visitor,"
+		`"Help!" we ask, fair visitor,`
 		"Our valiant craft's been stricken, friend,"
 	word
 		" / "
@@ -132,6 +135,7 @@ phrase "successor friendly disabled hail"
 		"Lend aid if 'tis in reach."
 		"Thy help would make us whole."
 		"'Tis noble to be kind and wise to help."
+
 
 phrase "successor hostile disabled hail"
 	word
@@ -147,7 +151,7 @@ phrase "successor hostile disabled hail"
 		"Thou art cursed, foolish, cruel, and sure to die."
 		"Our families shall avenge us, no matter how!"
 
-### HIGH HOUSES: GENERIC
+# High Houses: Generic
 
 phrase "high houses friendly hail"
 	word
@@ -166,6 +170,7 @@ phrase "high houses friendly hail"
 		"So that thou might find joy in our success."
 		"So that thou may bear witness to our joy."
 
+
 phrase "high houses friendly hail"
 	word
 		"By noble lineage do we exalt us all"
@@ -180,6 +185,7 @@ phrase "high houses friendly hail"
 		"To make for all a true and joyful peace."
 		"To keep us all secure and bright in peace."
 		"To promote the joy and welfare of us all."
+
 
 phrase "high houses hostile hail"
 	word
@@ -199,6 +205,7 @@ phrase "high houses hostile hail"
 		"May thy knavish and deceptive heart now cease."
 		"The valiant never taste of death but once."
 
+
 phrase "high houses hostile hail"
 	word
 		"We take no pleasure in this graven duty,"
@@ -212,12 +219,13 @@ phrase "high houses hostile hail"
 		"May thy death be valorous and quick."
 		"May thy pain be consuming and quick."
 
+
 phrase "high houses hostile disabled hail" 2
 	word
 		"Ruinous cur, our vengeance shall yet find thee!"
 		"Revenge is a dish best served cold,"
 		"Thou might break our ship but shall never break our spirit!"
-		"Putrefy and fester, knave deciever!"
+		"Putrefy and fester, knave deceiver!"
 		"Board us and we shall fight to the last!"
 	word
 		" / "
@@ -227,12 +235,13 @@ phrase "high houses hostile disabled hail" 2
 		"Our friends shall yet let thee know fear."
 		"Thy only noble act shall be to perish."
 
+
 phrase "high houses hostile disabled hail"
 	word
 		"From void's heart, we stab at thee! / For the good of hate, we spit our last breaths at thee!"
 		"Cowards die many times before their deaths, / But the valiant never taste of death but once!"
 
-### HIGH HOUSES: OLD HOUSES
+# High Houses: Old Houses
 
 phrase "old houses friendly hail" # Boast hails
 	word
@@ -267,23 +276,27 @@ phrase "old houses friendly hail" # Boast hails
 		"An honor that we never shall deny."
 		"A joy in word and action, purely said."
 
+
 phrase "old houses friendly hail"
 	phrase
 		"high houses friendly hail"
+
 
 phrase "chydiyi friendly hail"
 	phrase
 		"old houses friendly hail"
 
+
 phrase "myurej friendly hail"
 	phrase
 		"old houses friendly hail"
+
 
 phrase "sioeora friendly hail"
 	phrase
 		"old houses friendly hail"
 
-### HIGH HOUSES: NEW HOUSES
+# High Houses: New Houses
 
 phrase "new houses friendly hail" # Boast hails
 	word
@@ -310,41 +323,47 @@ phrase "new houses friendly hail" # Boast hails
 		"An honest fact 'tis plain for all to see."
 		"A simple truth in which we take our joy."
 
+
 phrase "new houses friendly hail" 2
 	phrase
 		"high houses friendly hail"
 
+
 phrase "kaatrij friendly hail"
 	word
-		`On gossamer wings with fang'ed claws / our noble house flies unhindered.`
-		`In our diversity we are united / and in our unity we find our strength.`
-		`Remember the fallen.`
-		`We endure, together.`
-		`Now and always.`
+		"On gossamer wings with fang'ed claws / our noble house flies unhindered."
+		"In our diversity we are united / and in our unity we find our strength."
+		"Remember the fallen."
+		"We endure, together."
+		"Now and always."
+
 
 phrase "kaatrij friendly hail"
 	phrase
 		"new houses friendly hail"
 
+
 phrase "seineq friendly hail"
 	word
-		`For ten thousand years / for ten thousand more!`
-		`Our alliance shall endure.`
+		"For ten thousand years / for ten thousand more!"
+		"Our alliance shall endure."
+
 
 phrase "seineq friendly hail"
 	phrase
 		"new houses friendly hail"
+
 
 phrase "aqrabe friendly hail"
 	phrase
 		"new houses friendly hail"
 
-### PEOPLE'S HOUSES
+# People's Houses
 
 phrase "people's houses friendly hail"
 	word
 		"Revel in thy freedom and endurance."
-		"I intend to thee no harm nor malefeasance."
+		"I intend to thee no harm nor malfeasance."
 		"We fly the flag of freedom from oppression."
 		"The People's Houses offer true equality."
 	word
@@ -371,3 +390,4 @@ phrase "people's houses hostile hail"
 		"Allow me to unburden thee of mortality."
 		"Prepare to shuffle off thy mortal coil."
 		"The sudden hand of Death close up thy eye."
+
