@@ -360,6 +360,9 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	scripting/Trigger.h
+	scripting/Triggers.h
+	scripting/TriggerType.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	text/DisplayText.cpp

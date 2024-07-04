@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 #include "Logger.h"
+#include "scripting/Triggers.h"
 
 #include <algorithm>
 #include <boost/dll.hpp>
@@ -220,7 +221,6 @@ void Plugin::LoadScripts()
 						library.unload();
 					}
 				}
-
 			}
 }
 
@@ -314,6 +314,7 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->dependencies = std::move(dependencies);
 	plugin->LoadScripts();
 
+	PluginLoadedTrigger::Call(plugin);
 	return plugin;
 }
 
