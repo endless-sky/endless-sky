@@ -21920,7 +21920,7 @@ system Luue-Saqru
 	government Successor
 	attributes successor
 	arrival 500
-	habitable 10
+	habitable 490
 	link Chyyra-Osolaa
 	link Kella-Uoasa
 	link Raaqa-Ryuit
@@ -21946,7 +21946,7 @@ system Luue-Saqru
 	fleet "Successor Miners" 9000
 	fleet "Successor Miners (Well-Defended)" 6000
 	object
-		sprite planet/browndwarf-l
+		sprite star/k0
 	object
 		sprite planet/dust4
 		distance 1250

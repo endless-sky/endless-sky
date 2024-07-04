@@ -738,10 +738,10 @@ planet "Chosen Nexus"
 planet Chyyra-Raaqa-Tuur
 	attributes successor uninhabited
 	landscape land/snow7
-	description `This snow-covered planet orbits a dim brown dwarf, making its surface dark and bitterly cold. Near the north pole, there are signs of large-scale excavation, possibly for materials to construct the station that orbits it.`
+	description `This snow-covered planet orbits a dim star, making its surface dark and bitterly cold. Near the north pole, there are signs of large-scale excavation, possibly for materials to construct the station that orbits it.`
 		to display
 			not "known to the successors"
-	description `During the arrival of the New Houses, this planet was briefly considered as a location for permanent habitation. However, the brown dwarf it orbits produces very little heat and makes the planet uncomfortably cold, even for the cold-tolerant Successors. Furthermore, its lack of substantial natural resources exempted it from use as an industrial or mining planet, and it continues to remain uninhabited.`
+	description `During the arrival of the New Houses, this planet was briefly considered as a location for permanent habitation. However, the dim star it orbits produces very little heat and makes the planet uncomfortably cold, even for the cold-tolerant Successors. Furthermore, its lack of substantial natural resources exempted it from use as an industrial or mining planet, and it continues to remain uninhabited.`
 		to display
 			has "known to the successors"
 	government Uninhabited
