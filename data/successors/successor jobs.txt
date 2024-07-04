@@ -265,7 +265,7 @@ mission "Successor: Students Out"
 	job
 	repeat
 	name "Students on break to <planet>"
-	description "These <bunks> students are off on break and will pay you <payment> to take them to <destination> by <date>."
+	description "These <bunks> students are on break and will pay you <payment> to take them to <destination> by <date>."
 	deadline
 	passengers 2 5 .5
 	to offer

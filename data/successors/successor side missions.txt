@@ -241,7 +241,7 @@ mission "Successors: Biology Research 1"
 			`	Eventually they return to your ship, satisfied with the amount of data they have collected, but still obviously energized by the experience.`
 			`	Before leaving, you realize this would be a good time to learn more about the Successors from an expert. Besides, since you spent the majority of the time on the way here answering Kaatiora's questions, you are probably entitled to ask a few of your own.`
 			choice
-				`	(Ask about the Successors and biology.)`
+				`	(Ask about Successor biology.)`
 					goto ask
 				`	(Don't ask anything.)`
 					launch

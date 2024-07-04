@@ -124,7 +124,7 @@ phrase "successor hostile hail"
 
 phrase "successor friendly disabled hail"
 	word
-		"Thy prompt assist t'would honor thee,"
+		"A prompt assist would honor thee,"
 		"Alas, our vessel's lay'en low,"
 		`"Help!" we ask, fair visitor,`
 		"Our valiant craft's been stricken, friend,"
