@@ -22,8 +22,8 @@ event "successors: tardy for sioeora"
 event "successors: released kijra-pet wait"
 
 event "successors: trust 1"
-	### Associated with getting the translation device.
-	### Add facilities to previously-available but limited planets.
+	# Associated with getting the translation device.
+	# Add facilities to previously-available but limited planets.
 	planet "Iyra-Ijasa-Iret"
 		add shipyard "Successor Basics"
 		add shipyard "Waterlining"
@@ -47,39 +47,40 @@ event "successors: trust 1"
 		add outfitter "Successor Basics"
 
 event "successors: trust 2"
-	### Associated with "Successors: Trusted" mission.
-	### Replace "naive" variants in shipyards.
+	# Associated with "Successors: Trusted" mission.
+	# Replace "naive" variants in shipyards.
 	shipyard "Successor Basics"
-		remove `Kvelqde (Naive)`
-		remove `Stolsaqra (Naive)`
-		add `Kvelqde`
-		add `Stolsaqra`
+		remove "Kvelqde (Naive)"
+		remove "Stolsaqra (Naive)"
+		add "Kvelqde"
+		add "Stolsaqra"
 	shipyard "Successor Civilian"
-		remove `Kvelqde (Naive)`
-		remove `Stolsaqra (Naive)`
-		remove `Myaede (Naive)`
-		add `Kvelqde`
-		add `Stolsaqra`
-		add `Myaede`
+		remove "Kvelqde (Naive)"
+		remove "Stolsaqra (Naive)"
+		remove "Myaede (Naive)"
+		add "Kvelqde"
+		add "Stolsaqra"
+		add "Myaede"
 	shipyard "Successor Heavy"
-		remove `Kvelqde (Naive)`
-		remove `Stolsaqra (Naive)`
-		remove `Myaede (Naive)`
-		remove `Nnesaarau (Naive)`
-		add `Kvelqde`
-		add `Stolsaqra`
-		add `Myaede`
-		add `Nnesaarau`
+		remove "Kvelqde (Naive)"
+		remove "Stolsaqra (Naive)"
+		remove "Myaede (Naive)"
+		remove "Nnesaarau (Naive)"
+		add "Kvelqde"
+		add "Stolsaqra"
+		add "Myaede"
+		add "Nnesaarau"
 	shipyard "New Houses Light"
-		remove `Vujlet (Naive)`
-		add `Vujlet`
+		remove "Vujlet (Naive)"
+		add "Vujlet"
 	shipyard "High Houses Light"
-		remove `Aaulqra (Naive)`
-		remove `Veusade (Naive)`
-		add `Aaulqra`
-		add `Veusade`
+		remove "Aaulqra (Naive)"
+		remove "Veusade (Naive)"
+		add "Aaulqra"
+		add "Veusade"
 	shipyard "High Houses Heavy"
-		remove `Aaulqra (Naive)`
-		remove `Veusade (Naive)`
-		add `Aaulqra`
-		add `Veusade`
+		remove "Aaulqra (Naive)"
+		remove "Veusade (Naive)"
+		add "Aaulqra"
+		add "Veusade"
+
