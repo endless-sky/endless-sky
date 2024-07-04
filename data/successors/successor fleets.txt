@@ -14,37 +14,37 @@
 fleet "Light Successor Freight"
 	government "Successor"
 	names "successor"
-	personality timid appeasing
+	personality appeasing timid
 	variant 100
-		`Kvelqde`
+		"Kvelqde"
 	variant 50
-		`Kvelqde` 2
+		"Kvelqde" 2
 	variant 30
-		`Kvelqde`
-		`Myaede`
+		"Kvelqde"
+		"Myaede"
 	variant 20
-		`Kvelqde` 2
-		`Myaede`
+		"Kvelqde" 2
+		"Myaede"
 	variant 50
-		`Myaede`
+		"Myaede"
 
 fleet "Medium Successor Freight"
 	government "Successor"
 	names "successor"
-	personality timid appeasing
+	personality appeasing timid
 	variant 100
-		`Ojde`
+		"Ojde"
 	variant 70
-		`Ojde`
-		`Stolsaqra` 2
+		"Ojde"
+		"Stolsaqra" 2
 	variant 40
-		`Ojde`
-		`Myaede` 2
-		`Stolsaqra` 2
+		"Ojde"
+		"Myaede" 2
+		"Stolsaqra" 2
 	variant 10
-		`Ojde` 2
-		`Myaede` 3
-		`Stolsaqra` 4
+		"Ojde" 2
+		"Myaede" 3
+		"Stolsaqra" 4
 
 fleet "Small Successor Transport"
 	government "Successor"
@@ -72,51 +72,50 @@ fleet "Small Successor Transport"
 fleet "People's Houses"
 	government "People's Houses"
 	names "successor"
-	personality harvests disables plunders mining
+	personality disables harvests mining plunders
 	variant 80
-		`Kvelqde (Violent)`
+		"Kvelqde (Violent)"
 	variant 100
-		`Kvelqde-Khora`
+		"Kvelqde-Khora"
 	variant 60
-		`Kvelqde-Khora (Mining)`
+		"Kvelqde-Khora (Mining)"
 	variant 60
-		`Kvelqde (Violent)` 2
+		"Kvelqde (Violent)" 2
 	variant 50
-		`Kvelqde (Violent)`
-		`Kvelqde-Khora`
+		"Kvelqde (Violent)"
+		"Kvelqde-Khora"
 	variant 60
-		`Kvelqde-Khora` 2
+		"Kvelqde-Khora" 2
 	variant 20
-		`Stolsaqra`
+		"Stolsaqra"
 	variant 20
-		`Kvelqde-Khora (Mining)`
-		`Stolsaqra`
+		"Kvelqde-Khora (Mining)"
+		"Stolsaqra"
 	variant 20
-		`Myaede (Violent)`
+		"Myaede (Violent)"
 	variant 15
-		`Myaede (Violent)`
-		`Kvelqde-Khora` 2
+		"Myaede (Violent)"
+		"Kvelqde-Khora" 2
 
 fleet "People's Houses Raiders"
 	government "People's Houses (Hostile)"
 	names "successor"
-	personality harvests disables plunders
+	personality disables harvests plunders
 	variant 100
-		`Kvelqde-Khora`
+		"Kvelqde-Khora"
 	variant 50
-		`Stolsaqra`
+		"Stolsaqra"
 	variant 25
-		`Kvelqde-Khora` 2
+		"Kvelqde-Khora" 2
 	variant 25
-		`Kvelqde-Khora`
-		`Kvelqde (Violent)`
+		"Kvelqde-Khora"
+		"Kvelqde (Violent)"
 	variant 15
-		`Myaede (Violent)`
-		`Kvelqde-Khora` 2
+		"Myaede (Violent)"
+		"Kvelqde-Khora" 2
 	
 fleet "Small Old Houses"
-	personality
-		heroic
+	personality heroic
 	government "Old Houses"
 	names "high houses"
 	variant 60
@@ -138,8 +137,7 @@ fleet "Small Old Houses"
 fleet "Large Old Houses"
 	government "Old Houses"
 	names "high houses"
-	personality
-		heroic
+	personality heroic
 	variant 50
 		"Kaskhorade" 2
 		"Aaulqra" 2
@@ -163,8 +161,7 @@ fleet "Old Houses Surveillance"
 		"Stolsaqra (Military)" 2
 
 fleet "Small New Houses"
-	personality
-		heroic
+	personality heroic
 	government "New Houses"
 	names "high houses"
 	variant 100
@@ -351,32 +348,33 @@ fleet "Successor Miners"
 	government "Successor"
 	names "successor"
 	personality
-		staying appeasing mining harvests frugal
+		appeasing frugal harvests mining staying
 	variant 50
-		`Kvelqde (Mining)`
+		"Kvelqde (Mining)"
 	variant 20
-		`Myaede (Mining)`
+		"Myaede (Mining)"
 	variant 30
-		`Kvelqde (Mining)` 2
+		"Kvelqde (Mining)" 2
 	variant 10
-		`Myaede (Mining)`
-		`Kvelqde (Mining)` 2
+		"Myaede (Mining)"
+		"Kvelqde (Mining)" 2
 	variant 10
-		`Ojde (Mining)`
+		"Ojde (Mining)"
 
 fleet "Successor Miners (Well-Defended)"
 	government "Successor"
 	names "successor"
 	personality
-		staying appeasing mining harvests frugal
+		appeasing frugal harvests mining staying
 	variant 50
-		`Myaede (Mining, Defensive)`
+		"Myaede (Mining, Defensive)"
 	variant 50
-		`Myaede (Mining)`
-		`Stolsaqra` 2
+		"Myaede (Mining)"
+		"Stolsaqra" 2
 	variant 50
-		`Myaede (Mining, Defensive)`
-		`Stolsaqra` 2
+		"Myaede (Mining, Defensive)"
+		"Stolsaqra" 2
 	variant 10
-		`Ojde (Mining)`
-		`Stolsaqra` 2
+		"Ojde (Mining)"
+		"Stolsaqra" 2
+
