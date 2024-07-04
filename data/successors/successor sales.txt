@@ -12,69 +12,69 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 shipyard "Successor Basics"
-	`Kvelqde (Naive)`
+	"Kvelqde (Naive)"
 
 shipyard "Successor Civilian"
-	`Kvelqde (Naive)`
+	"Kvelqde (Naive)"
 	
-	`Stolsaqra (Naive)`
-	`Myaede (Naive)`
-	`Ejniisde`
+	"Stolsaqra (Naive)"
+	"Myaede (Naive)"
+	"Ejniisde"
 
 shipyard "Successor Heavy"
-	`Kvelqde (Naive)`
-	`Stolsaqra (Naive)`
-	`Myaede (Naive)`
-	`Ejniisde`
+	"Kvelqde (Naive)"
+	"Stolsaqra (Naive)"
+	"Myaede (Naive)"
+	"Ejniisde"
 
-	`Ojde`
-	`Nnesaarau (Naive)`
-	`Nnaatej`
+	"Ojde"
+	"Nnesaarau (Naive)"
+	"Nnaatej"
 
-shipyard `Waterlining`
-	`Nnaatej`
+shipyard "Waterlining"
+	"Nnaatej"
 
 shipyard "New Houses Light"
-	`Vujlet (Naive)`
+	"Vujlet (Naive)"
 
 shipyard "High Houses Light"
-	`Seiitej`
-	`Veusade (Naive)`
+	"Seiitej"
+	"Veusade (Naive)"
 
 shipyard "High Houses Heavy"
-	`Seiitej`
-	`Veusade (Naive)`
+	"Seiitej"
+	"Veusade (Naive)"
 
-	`Aaulqra (Naive)`
-	`Kaskhorade`
+	"Aaulqra (Naive)"
+	"Kaskhorade"
 
 shipyard "Peoples Houses"
-	`Kvelqde-Khora`
+	"Kvelqde-Khora"
 
 outfitter "Successor Basics"
 	`"Aqra" Inductive Reverser`
 	`"Aqra" Inductive Steering`
 	`"Aqra" Inductive Thruster`
 	`1-"Uurau" Betavoltaic Cell`
-	`Auxiliary Power Reserve`
+	"Auxiliary Power Reserve"
 	`"Byiaa" Shield Cortex`
 	"Hyperdrive"
 
 outfitter "Successor Weapons Basics"
-	`Successor Pulse Laser`
+	"Successor Pulse Laser"
 
 outfitter "Successor Weapons Heavy"
-	`Successor Pulse Laser`
-	`Pulse Laser Turret`
+	"Successor Pulse Laser"
+	"Pulse Laser Turret"
 
 outfitter "Successor Civilian"
 	`"Aqra" Inductive Reverser`
 	`"Aqra" Inductive Steering`
 	`"Aqra" Inductive Thruster`
 	`1-"Uurau" Betavoltaic Cell`
-	`Auxiliary Power Reserve`
+	"Auxiliary Power Reserve"
 	`"Byiaa" Shield Cortex`
-	`Shield Cortex Interface`
+	"Shield Cortex Interface"
 	"Hyperdrive"
 
 	`"Chyyra" Inductive Reverser`
@@ -83,7 +83,7 @@ outfitter "Successor Civilian"
 
 	`3-"Kaska" Betavoltaic Cell`
 	`"Ej" Shield Cortex`
-	`Primary Power Reserve`
+	"Primary Power Reserve"
 	"Bunk Room"
 	"Small Bunk Room"
 	"Successor Fuel Sail"
@@ -104,22 +104,22 @@ outfitter "Successor High Tech"
 	`"Niis" Inductive Engines`
 
 outfitter "High Houses Light"
-	`Auxiliary Power Reserve`
+	"Auxiliary Power Reserve"
 	`"Nnesa" Fusion Core`
 	`"Ojet" Bimodal Coilgun`
-	`Drag Cannon`
+	"Drag Cannon"
 	`"Jaase" Shield Cortex`
-	`Shield Cortex Interface`
-	`Kinetic Rail Rifle`
+	"Shield Cortex Interface"
+	"Kinetic Rail Rifle"
 	`"Veldt" Combat Scanner`
 
 outfitter "High Houses Heavy"
-	`Primary Power Reserve`
+	"Primary Power Reserve"
 	`"Ryuit" Fusion Core`
 	`"Uoret" Fusion Core`
 	"High-Velocity Spike"
 	`"Sjeja" Kinetic Lance`
-	`Bimodal Coilgun Turret`
+	"Bimodal Coilgun Turret"
 	"Multimodal Armor: Heavy"
 	"Multimodal Armor: Keystone"
 	"Multimodal Armor: Regen"
