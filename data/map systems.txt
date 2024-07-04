@@ -15985,8 +15985,8 @@ system H-9187
 	link MC-42
 	asteroids "large metal" 1 4.9
 	fleet "Iije (Uninterested)" 3000
-	fleet "Iije (Swarming)" 3200
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Swarming)" 4000
+	fleet "Iije (Surveillance)" 4000
 	"starfield density" .3
 	object
 		sprite star/a3
