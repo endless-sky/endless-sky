@@ -67,7 +67,7 @@ mission "Successors: First Contact 1"
 			`	The alien shuffles their arms in place and leans their face towards yours, repeating their earlier statement, this time more slowly and at a lower pitch. When you once again fail to give a satisfactory response, they pull away.`
 				goto map
 			label map
-			`	After a few more moments of silence, the alien grunts in a gesture something like a sigh of disappointment and then turns away and says something to another uniformed individual waiting on the edges of the now-substantial crowd. The other's skin flashes a bright blue and then they leave, gliding towards one of the interceptors now parked alongside your ship at the spaceport.`
+			`	After a few more moments of silence, the alien grunts in a gesture something like a sigh of disappointment and then turns away and says something to another uniformed individual waiting on the edges of the now-substantial crowd. The other's skin flashes a bright blue and then they leave, gliding towards one of the interceptors now parked alongside your ship.`
 			`	When they return, they are holding in one of their arms a small spherical device which they hand to the alien who seems to be in charge, who then in turn offers it to you and burbles an unintelligible phrase with what you might have characterized as an encouraging tone. The individuals making up the crowd are by now stretching over each other to get a look at you, and you can see more of them in the distance gliding and swimming towards your landing site.`
 			choice
 				`	(Take the device.)`
@@ -91,7 +91,7 @@ mission "Successors: First Contact 1"
 
 	on visit
 		conversation
-			`You have reached <planet>, but, without your escorts, you are refused landing permission at the spaceport and must return to orbit until they arrive.`
+			`Without your Successor escorts, you are refused landing permission at the <planet> spaceport and must return to orbit until they arrive.`
 				launch
 
 	on complete
@@ -193,7 +193,7 @@ mission "Successors: First Contact 2"
 	on offer
 		conversation
 			`As you exit the <ship>, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
-			`	"Captain <first> <last>! I am instructed to inform thee of the desire by the honored scions of House Sioeora that thou woulds't appear before them to render thy service and aid. They, hm... demand thee make haste to fair Staja-Kella-Oa once more, and to prepare thyself as thou mights't for an audience. In confirmation of this message, I do attest myself: Vijaat Ojniis Seiasej, honored historian of the of third ichon in service to the noble academy of Staja-Kella-Oa and to our noble House."`
+			`	"Captain <first> <last>! I am instructed to inform thee of the desire by the honored scions of House Sioeora that thou woulds't appear before them to render thy service and aid. They, hm... demand thee make haste to fair Staja-Kella-Oa once more, and to prepare thyself as thou mights't for an audience. In confirmation of this message, I do attest myself: Vijaat Ojniis Sieasej, honored historian of the of third ichon in service to the noble academy of Staja-Kella-Oa and to our noble House."`
 			`	The recording ends there, and the sphere changes to display a star map as before.`
 				accept
 		event "successors: tardy for sioeora" 14
@@ -405,7 +405,7 @@ mission "Successors: First Contact 3"
 				`	(Approach the location.)`
 					goto encounter
 				`	"You know a lot about tracking for a scholar."`
-			`	"Ah," Sieasej says, pausing for a moment. "A product of some training I've not used in many years. Perhaps Sioeora is as forward-thinking as they would us believe."`
+			`	"Ah," Sieasej says, pausing for a moment. "A product of some training I've not used in many years. Perhaps Sioeora is as forward-thinking as they'd have us believe."`
 			label encounter
 			`	You make your way along one of the walkways to the west, brushing aside the enormous leaves of the overgrowing plants. Sieasej continues to wave their triangulation device in the air and quietly relays your progress; as you get closer, you hear a gentle scuffling that you realize precedes every detection by the device. After making your way through one particularly-dense wall of flora, you spot your target: a glassy-winged animal perched in a plant over the walkway's edge, probing the branch it stands on with long feelers extending from its head.`
 			choice
@@ -514,14 +514,14 @@ mission "Successors: First Contact 3"
 			label shoot-ambush
 			`	You draw your sidearm and look to see what's above you, but the shadow is suddenly gone and you are left staring up into the sunlight and leaves. The wailing has stopped as well; indeed, the whole area remains eerily quiet as you continue to run towards your ship.`
 			label ambush
-			`	When you arrive, however, you find that blocking your entry to the <ship> are two large creatures. Their glassy skin resembles that of the smaller creature you captured, but they are each several meters in size. Their feelers, rather than soft and downy, are whiplike and serrated and tipped with vicious-looking barbs that they thrust towards you and Sieasej upon seeing you. Their many eyes flick back and forth between you and the animal that you captured, and the two let out a loud wail in unison. Waves of red and blue run down Sieasej's body, probably an expression of fear.`
+			`	When you arrive, however, you find that blocking your entry to the <ship> are two large creatures. Their glassy skin resembles that of the smaller creature you captured, but they are each several meters in size. Their feelers, rather than soft and downy, are whiplike and serrated and tipped with vicious-looking barbs that they thrust towards you and Sieasej upon noticing your presence. Their many eyes flick back and forth between you and the animal that you captured, and the two let out a loud wail in unison. Waves of red and blue run down Sieasej's body, probably an expression of fear.`
 			choice
 				`	(Run for it!)`
 				`	(Shoot them with your sidearm.)`
 					goto shoot
 				`	(Order your crew to fire a turret at them.)`
 					to display
-						`flagship base attribute: turret mounts` > `flagship attribute: turret mounts`
+						"flagship base attribute: turret mounts" > "flagship attribute: turret mounts"
 						`flagship attribute: required crew` > 1
 					goto ship-shoot
 				`	(Release the animal that you captured.)`
@@ -535,7 +535,7 @@ mission "Successors: First Contact 3"
 			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and immediately after the other one charges at you. Just in time, you are able to shoot that one as well and it tumbles to the ground, kicking up dirt and leaf litter and wailing before going silent.`
 				goto successful
 			label shoot-failure
-			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and the other one suddenly vanishes before you can fire a second shot. In the time it takes your eyes to adapt to the creature's camouflage, it has already lodged the barb of its feeler deep in your chest.`
+			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and the other one suddenly vanishes before you can fire a second shot. In the time it takes your eyes to adapt to the creature's camouflage, it has already lodged the barbed tip of its feeler deep in your chest.`
 				die
 			label ship-shoot
 			`	You radio to the <ship> and order your crew to fire a turret at the creatures, vaporizing them both before they have the opportunity to attack you and leaving only two small scorched craters in the ground.`
@@ -571,9 +571,9 @@ mission "Successors: First Contact 3"
 				set "Successors FC3: captured kijra-pet"
 			`	With the animal stowed away, you make your preparations for takeoff.`
 				goto end
+			label betterlatethannever
 			action
 				set "Successors FC3: released kijra-pet"
-			label betterlatethannever
 			`	You open the container's door and coax the Kijra-riitaa out of your ship. It takes flight shortly after stepping outside, soon disappearing into a speck against the vast blue sky. With nothing left to do here, you make your preparations for takeoff so that you can at least return Sieasej to their people.`
 				goto end
 			label released
@@ -603,6 +603,7 @@ mission "Successors: First Contact 3"
 			`	"Hark, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast though brought the item of our desire?"`
 			choice
 				`	"No, I have not."`
+				`	"I was almost killed! I'm done doing your dirty work."`
 			`	A flash of black, ruffled skin passes over Riijaaora's body. Several of the other scions perform similar displays. "'Tis a shame, captain," they say. "If thou offers no utility to this House, then we see little point in retaining thee as an ally, much less rewarding thee for thy absent service. Trouble us no more, and begone." They turn around to face away from you, and the guards slowly peel away from the walls to escort you out. Sieasej remains watching until the door closes shut behind you.`
 			`	As you return to the landing pad, you notice that while your ship has been refueled, the pad itself is slowly being flooded in a none-too-subtle gesture that encourages you to leave.`
 				goto exit
@@ -715,6 +716,7 @@ mission "Successors: Kaatrij First Contact 1"
 			`		HOUSE KAATRIJ [REQUESTS/REQUIRES] AUDIENCE OF HUMAN CAPTAIN`
 			label end
 			`	The sphere slowly switches back and forth between displaying this message and a map to a system in western Successor space.`
+				accept
 	on complete
 		conversation
 			`Shortly after you enter the atmosphere of the planet, the data-sphere begins to trill again and projects a different map, this time highlighting a set of coordinates on the night side. You adjust your course to fly there, setting down the <ship> on a patch of land next to a large lake. The data-sphere offers no further guidance.`
