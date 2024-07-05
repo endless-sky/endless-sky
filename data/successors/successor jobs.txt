@@ -785,4 +785,3 @@ mission "High Houses: Criminal Capture 1"
 	on complete
 		payment 140000
 		dialog phrase "generic bounty hunting payment dialog"
-

@@ -241,10 +241,11 @@ news "station report"
 	name
 		word
 			"Station Report"
+			"Announcement System"
+			"Public Announcement System"
 	message
 		word
 			`A public announcement clarifies that an inefficiency in the station's atmosphere processing units was resolved overnight.`
 			`A schedule listing departure and arrival times for planetary shuttles is updated to account for a planetside delay.`
 			`A graphic displays an interactive map of the station for visitors to access.`
 			`A public announcement encourages residents to conserve water.`
-

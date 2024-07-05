@@ -54,7 +54,7 @@ outfit `"Ojet" Bimodal Coilgun`
 	description `Precise and deadly, the "Ojet" Bimodal Coilgun has been the High Houses' armament of choice since long before humans ever took to the stars. It was designed quite simply as a perfect weapon; it is said that by the time the empire of the Predecessors fell, they had seen no need to install any other weapon on their ships for over a thousand years.`
 	description `	The "Ojet" fires hyperdense packets of charged particles that disperse as they travel: up close the concentrated bolt pierces armor, while at a distance the ionic spray destabilizes shielding. Together, a ship equipped with these weapons can adjust its damage profile just by changing its engagement range, allowing it to be highly effective against any foe.`
 
-outfit `Bimodal Coilgun Turret`
+outfit "Bimodal Coilgun Turret"
 	category "Turrets"
 	cost 2950000
 	thumbnail "outfit/bimodal coilgun turret"
@@ -330,7 +330,7 @@ outfit "High-Velocity Spike"
 	"spike capacity" -1
 	description `The projectiles fired by the "Sjeja" Kinetic Lance are too large to be synthesized on-the-fly from the ship's reserves, and must be carried separately.`
 
-outfit `High-Velocity Spike Rack`
+outfit "High-Velocity Spike Rack"
 	category "Ammunition"
 	cost 350000
 	licenses
@@ -341,4 +341,3 @@ outfit `High-Velocity Spike Rack`
 	"energy capacity" 800
 	"spike capacity" 16
 	description `Though the built-in ammunition reserves of the "Sjeja" Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the "Sjeja."`
-

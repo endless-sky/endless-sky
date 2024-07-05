@@ -85,4 +85,3 @@ event "successors: trust 2"
 		remove "Veusade (Naive)"
 		add "Aaulqra"
 		add "Veusade"
-

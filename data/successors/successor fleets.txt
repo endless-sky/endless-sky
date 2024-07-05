@@ -377,4 +377,3 @@ fleet "Successor Miners (Well-Defended)"
 	variant 10
 		"Ojde (Mining)"
 		"Stolsaqra" 2
-

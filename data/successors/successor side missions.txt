@@ -503,4 +503,3 @@ mission "Successors: Graffiti"
 			label fooled
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Hai-Fool! Naked with no tail." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
-

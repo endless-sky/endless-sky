@@ -26,6 +26,7 @@ outfit "Heirloom License"
 	thumbnail "outfit/successor license"
 	description "To obtain one of these, you would have to become an honorary scion of one of the High Houses, which at this point in the story, you are most definitely not."
 
+
 outfit `"Byiaa" Shield Cortex`
 	category "Systems"
 	licenses
@@ -95,6 +96,7 @@ outfit "Shield Cortex Interface"
 	"shield connection point" -2
 	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields at the cost of slightly reducing efficiency. The effect scales poorly past two connected generators."
 
+
 outfit `1-"Uurau" Betavoltaic Cell`
 	category "Power"
 	licenses
@@ -147,6 +149,7 @@ outfit `6-"Ruuv" Betavoltaic Cell`
 	"energy capacity" 8500
 	description "This large modular betavoltaic generator is designed to be resilient and dependable: if one of its component cells fails, it can continue to operate at only a slightly reduced output. The Successors eschew its use on warships because of its low energy density, but it sees substantial use aboard their merchant, archaeological, and other civilian craft."
 
+
 outfit "Auxiliary Power Reserve"
 	category "Power"
 	cost 60000
@@ -172,6 +175,7 @@ outfit "Primary Power Reserve"
 	"shield energy" -1
 	"hull energy" -0.5
 	description "This larger Successor battery stores an impressive amount of energy, and can noticeably reduce the effective power draw of a ship's defensive systems while in combat. The High Houses use this in concert with their reactors' power distribution systems to keep their warships powered and functional even when equipped with their most energy-hungry equipment. Even so, they do not restrict the sale of this unit to the general public."
+
 
 outfit `"Nnesa" Fusion Core`
 	category "Power"
@@ -216,6 +220,7 @@ outfit `"Uoret" Fusion Core`
 	"hull energy multiplier" -0.22
 	description "Designed in the form of a flowering plant from the ancestral homeworld of the Successors, this largest and most powerful of the High Houses' stellarators demonstrates a mastery of nuclear fusion power far exceeding humanity's. In addition to being powerful and surprisingly efficient, it is also supported by a large and well-integrated power distribution network capable of massively reducing the draw of the Successors' energy-hungry defensive outfits."
 
+
 outfit "Successor Cooling"
 	category "Systems"
 	cost 94000
@@ -229,6 +234,7 @@ outfit "Successor Cooling"
 	"cooling energy" 1.1
 	description "Like much of their technology, Successor cooling is bimodal, running a constant low-flow coolant loop that can be increased in both volume and heat rejection when the situation demands it."
 
+
 outfit "Successor Fuel Sail"
 	category "Systems"
 	cost 112000
@@ -241,6 +247,7 @@ outfit "Successor Fuel Sail"
 	"solar heat" 6.0
 	"drag" 0.1
 	description "The Successors maintain a strong connection to their maritime tradition, exemplified in this strangely rustic fuel collector. The sail expands to a vast area when in the vicinity of a stellar corona, gently collecting hydrogen from it and condensing it into a ship's fuel storage in a fashion much more elegant than the comparatively brutish action of a traditional ramscoop. Pilots should note, however, that the large surface area of the deployed sail also absorbs a lot of heat."
+
 
 outfit `"Veldt" Combat Scanner`
 	category "Systems"
@@ -270,6 +277,7 @@ outfit `"Tuur" Scanning Suite`
 	"atmosphere scan" 100
 	description "This scanning system was developed during the first years after the Predecessors' collapse, when the newly emigrated High Houses needed to find new resource deposits to replace those that they had left behind. While less efficient than human scanners, it is compact and powerful, useful for identifying materials both in asteroids and planetside."
 	description "	In the modern day, with the territories of the High Houses more or less static, these scanners are primarily used either by researchers as tools for planetary analysis or by independent pilots supporting themselves via asteroid mining."
+
 
 outfit `"Niis" Inductive Engines`
 	plural `"Niis" Inductive Engines`
@@ -476,6 +484,7 @@ outfit `"Veusa" Inductive Reverser`
 	description "While the invertebrate Successors are relatively unaffected, human pilots must take care when using a reverse thruster this large to avoid dangerous g-force stress on the body."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
+
 outfit "Multimodal Armor: Heavy"
 	category "Systems"
 	thumbnail "outfit/successor armor heavy"
@@ -519,6 +528,7 @@ outfit "Multimodal Armor: Resilient"
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
 	description "	This configuration increases the armor's resilience against certain special types of damage."
 
+
 outfit "Kinetic Rail Rifle"
 	category "Hand to Hand"
 	thumbnail "outfit/railgun h2h"
@@ -528,6 +538,7 @@ outfit "Kinetic Rail Rifle"
 	"capture defense" 3.2
 	"unplunderable" 1
 	description "While projectile weapons of this scale are considered obsolete in human space, having been superseded by laser weaponry, the Successors' generations of experience with high-power kinetic weapons have allowed them to produce this particularly terrifying railgun rifle, firing projectiles capable of piercing body armor and even intervening bulkheads. Particularly effective at repelling boarders, it is capable of interfacing with a Successor ship's computer and surveillance systems, routing target information to a built-in display."
+
 
 effect "tiny successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
