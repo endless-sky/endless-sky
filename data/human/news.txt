@@ -62,7 +62,7 @@ news "merchant anywhere"
 			"For some reason, boring jobs almost never hang out in the spaceport. So, if you are looking for interesting or at least varied work..."
 			"If you can't stand the heat, stay out of the solar storms."
 			"Silence is golden, except when you are listening to the life support systems."
-			`Even in this day and age some people still say "the sun goes down", instead of the more appropriate "the sun goes behind the horizon".`
+			`Even in this day and age some people still say "the sun goes down," instead of the more appropriate "the sun goes behind the horizon."`
 			"Every transport problem has 3 solutions; take it, leave it or dump it. If you cannot take it, then leave it. If you are not allowed to leave it, then dump it."
 			"Better a Firebird in the sky, than two Firebirds in the hand. Firebirds are not supposed to be held in the hand."
 			"We have a great life; hit the sky thrusting!"
@@ -1573,7 +1573,7 @@ news "tourist"
 			"Can I speak to the manager? The landing on this planet was a bit rough and I'm seriously considering filing a complaint."
 			"Warn me if you see my partner or my secret lover. They learned about each other and now they're both trying to kill me."
 			"Get away from me! I already told twenty of your colleagues that I don't need a taxi service."
-			"You there, where are my bags! What do you mean by 'you don't know'? You look like one of those dockworkers."
+			"You there, where are my bags! What do you mean by 'you don't know?' You look like one of those dockworkers."
 			"We are not amused. The Star Queen Victoria is delayed by two minutes, and I need to wait here among the commoners, with no privacy whatsoever."
 			"Once more unto the beach planet, dear friends, once more."
 		word
