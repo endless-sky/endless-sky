@@ -107,7 +107,7 @@ news "successor merchant"
 		word
 			`"Interested in `
 		phrase
-			"2-syllable commodities"
+			"successor commodities (2-syllable)"
 		word
 			`, noble traveler?"`
 			`, canny buyer?"`
@@ -161,7 +161,7 @@ news "successor merchant"
 		word
 			"some "
 		phrase
-			"2-syllable commodities"
+			"successor commodities (2-syllable)"
 		word
 			"."
 

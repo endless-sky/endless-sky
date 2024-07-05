@@ -60,7 +60,7 @@ phrase "successor friendly hail" # Job hails
 	word
 		"My "
 	phrase
-		"relations"
+		"successor relation"
 	word
 		" always told me: be a "
 		" has just earned the title: "
@@ -70,7 +70,7 @@ phrase "successor friendly hail" # Job hails
 		" told me: never trust a "
 		" used to be a skillful "
 	phrase
-		"occupation"
+		"successor occupation"
 	word
 		" / "
 	word

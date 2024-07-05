@@ -340,7 +340,7 @@ phrase "high houses"
 	phrase
 		"high houses end"
 
-phrase "relations"
+phrase "successor relation"
 	word
 		"child"
 		"dearest"
@@ -351,7 +351,7 @@ phrase "relations"
 		"sibling"
 		"teacher"
 
-phrase "occupation"
+phrase "successor occupation"
 	word
 		"actor"
 		"captain"
@@ -365,6 +365,19 @@ phrase "occupation"
 		"singer"
 		"trader"
 		"writer"
+
+phrase "successor commodities (2-syllable)"
+	word
+		"armlets"
+		"bracelets"
+		"fabrics"
+		"fish-cubes"
+		"flooring"
+		"fossils"
+		"glassware"
+		"goblets"
+		"paintings"
+		"sculptures"
 
 trade
 	commodity "Successor High Value"
@@ -384,16 +397,3 @@ trade
 		`"Red Gold" piercings`
 		"transparent ceramic goblets"
 		"unfilled reliquaries"
-
-phrase "2-syllable commodities"
-	word
-		"armlets"
-		"bracelets"
-		"fabrics"
-		"fish-cubes"
-		"flooring"
-		"fossils"
-		"glassware"
-		"goblets"
-		"paintings"
-		"sculptures"
