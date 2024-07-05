@@ -163,15 +163,15 @@ hazard "Predecessors Spatial Rift Intense"
 
 hazard "Predecessors Void Scar Erosion"
 	"constant strength"
-	"period" 6
+	"period" 30
 	"duration" 60
 	"strength" 1
-	"range" 1500
+	"range" 1100
 	weapon
-		"corrosion damage" 0.02
-		"discharge damage" 0.2
-		"relative hull damage" 0.0006
-		"relative shield damage" 0.0001
+		"corrosion damage" 0.1
+		"discharge damage" 1.0
+		"relative hull damage" 0.0030
+		"relative shield damage" 0.0005
 		"piercing" 0.1
-		"damage dropoff" 1500
+		"damage dropoff" 1100
 		"target effect" "spatial hazard" 1

@@ -34222,7 +34222,7 @@ system Uuoru-Sossa
 	haze _menu/haze-tear
 	object
 		sprite star/void-scar
-			scale 2.0
+			scale 8.0
 		distance 2200
 		period 32
 		hazard "Predecessors Void Scar Erosion" 6
