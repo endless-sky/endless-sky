@@ -22,7 +22,7 @@ mission "Successors: Entering the Scar"
 		system
 			attributes "predecessor"
 		dialog
-			`Shortly after the jump to this system finishes, your ship's sensors begin to register small but progressive damage to the hull and internal systems, despite there being no other ships in the system. Equally confusing, your jump drive seems to still be partially active despite the jump having been completed.`
+			`Shortly after you enter this system, your ship's sensors begin to register small but progressive damage to the hull and internal systems, despite there being no other ships around. Equally confusing, your jump drive seems to still be partially active.`
 	on complete
 		dialog
 			`The mass of the planet seems to be shielding you from whatever is damaging your ship in space, offering you an opportunity to rest and repair.`
@@ -37,7 +37,7 @@ mission "Successors: Safe at Last"
 	on enter "Myruet-Kvelq"
 		fail
 		dialog
-			`The system on the other side of the wormhole is the first one in days that your sensors do not respond to with alarms. Apart from the presence of the wormhole, the space here appears entirely normal.`
+			`The system on the other side of the wormhole is the first one in days that your sensors have not responded to with alarms. Apart from the presence of the wormhole, the space here appears entirely normal.`
 
 mission "Successors: First Contact 1"
 	landing
@@ -91,7 +91,7 @@ mission "Successors: First Contact 1"
 
 	on visit
 		conversation
-			`You have reached <planet>, but without your escorts, you are refused landing permission at the spaceport and must return to orbit until they arrive.`
+			`You have reached <planet>, but, without your escorts, you are refused landing permission at the spaceport and must return to orbit until they arrive.`
 				launch
 
 	on complete
@@ -114,7 +114,7 @@ mission "Successors: First Contact 1"
 			choice
 				`	"Yes, I am."`
 				`	"Who else would I be?"`
-			`	This sparks a wave of color among the gathered members, most of all Sieasej, who spends several seconds in a vibrant shade of orange before returning to their resting hue. "Then i'tis confirmed. 'Tis a cause for much excitement, <last>, for thou'rt the first human met by us in fifteen hundred years, since the time before thy species had even left the bounds of thy own planet's gravity. House Sioeora is honored to be the one to make thy acquaintance, as am I." The members of the group splay their free arms towards you and glisten with ripples of blue across their skin. You perform a short bow in return.`
+			`	This sparks a wave of color among the gathered members, most of all Sieasej, who spends several seconds in a vibrant shade of orange before returning to their resting hue. "Then i'tis confirmed. 'Tis a cause for much excitement, <last>, for thou'rt the first human met by us in fifteen hundred years, since the time before thy species had even left the bounds of thy own planet's gravity. House Sioeora is honored to be the one to make thine acquaintance, as am I." The members of the group splay their free arms towards you and glisten with ripples of blue across their skin. You perform a short bow in return.`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -125,7 +125,7 @@ mission "Successors: First Contact 1"
 				`	"What is House Sioeora?"`
 					goto house
 			label language
-			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture---noble in reason, infinite in faculty---as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point.`
+			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point.`
 			`	I am a scholar of language, and of the worlds our Predecessors met so long ago. I am one of very few who learned thy language, among others, at least as 'twas fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
@@ -160,7 +160,7 @@ mission "Successors: First Contact 1"
 				`	"I see. What is House Sioeora?"`
 					goto house
 			label history
-			`	"Twas a time in which the domains of our Predecessors did extend far to the north, and the reach of their curiosity and exploration even farther so. Life is precious and rare, doubly so that which is possessed of sapience and culture---noble in reason, infinite in faculty---as thine was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point."`
+			`	"Twas a time in which the domains of our Predecessors did extend far to the north, and the reach of their curiosity and exploration even farther so. Life is precious and rare, doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as thine was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -192,7 +192,7 @@ mission "Successors: First Contact 2"
 		has "event: successors: first contact wait"
 	on offer
 		conversation
-			`As you exit the <ship> to go into the spaceport here, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
+			`As you exit the <ship>, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
 			`	"Captain <first> <last>! I am instructed to inform thee of the desire by the honored scions of House Sioeora that thou woulds't appear before them to render thy service and aid. They, hm... demand thee make haste to fair Staja-Kella-Oa once more, and to prepare thyself as thou mights't for an audience. In confirmation of this message, I do attest myself: Vijaat Ojniis Seiasej, honored historian of the of third ichon in service to the noble academy of Staja-Kella-Oa and to our noble House."`
 			`	The recording ends there, and the sphere changes to display a star map as before.`
 				accept
@@ -316,7 +316,7 @@ mission "Successors: First Contact 3"
 				`	"Is there anything I should watch out for?"`
 					goto watchout
 			label kijra-pet
-			`	Sieasej shivers a little, and choses their words slowly. "The Kijra feature heavily in the old culture. 'Twere popular pets and hunting companions among... some of our Predecessors during their time. The larva is the scale of a... hm, of thy head, approximately, with a delicate body and glassy skin. Once it mates and lays its eggs, they begin to molt several times into a larger and more fearsome form so that they may defend their nascent flock. The Kijra-Riitaa---the 'pet'---is the larva, and the Kijra-Khora is the adult. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't attempt to capture the larva and nothing else."`
+			`	Sieasej shivers a little, and choses their words slowly. "The Kijra feature heavily in the old culture. 'Twere popular pets and hunting companions among... some of our Predecessors during their time. The larva is the scale of a... hm, of thy head, approximately, with a delicate body and glassy skin. Once it mates and lays its eggs, they begin to molt several times into a larger and more fearsome form so that they may defend their nascent flock. The Kijra-Riitaa - the 'pet' - is the larva, and the Kijra-Khora is the adult. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't attempt to capture the larva and nothing else."`
 			choice
 				`	"We'd better get started then."`
 					goto embark
@@ -327,7 +327,7 @@ mission "Successors: First Contact 3"
 				`	"Is there anything else I should watch out for?"`
 					goto watchout
 			label knowledge
-			`	"'Tis a mix of things," Sieasej says. "The... pathways in space which connect those systems are ever-changing, on the span of years. A hazard of the space. Some years ago, there was a pathway leading to it through which the ships of all the High Houses could pass through and explore. Now, it has been many years since that system was easily accessible. The scions know that thou must possess a jump drive in order for thou to have reach'd us---this technology is quite familiar to us---and so they know that thou cans't acquire that what they desire."`
+			`	"'Tis a mix of things," Sieasej says. "The... pathways in space which connect those systems are ever-changing, on the span of years. A hazard of the space. Some years ago, there was a pathway leading to it through which the ships of all the High Houses could pass through and explore. Now, it has been many years since that system was easily accessible. The scions know that thou must possess a jump drive in order for thou to have reach'd us - this technology is quite familiar to us - and so they know that thou cans't acquire that what they desire."`
 			choice
 				`	"We'd better get started then."`
 					goto embark
@@ -391,7 +391,7 @@ mission "Successors: First Contact 3"
 	on stopover
 		conversation
 			`Shortly after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a location for one of the old breeding grounds. When last our ships visited here, 'twas this location 'twere they noted most of the Kijran."`
-			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown; vines cling to otherwise-spotless walls and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
+			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown, vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
 			branch retrieve-tranqs
 				or
 					has "outfit: Enforcer Riot Staff"
@@ -747,7 +747,7 @@ mission "Successors: Kaatrij First Contact 1"
 				`	"How is it that you can communicate with me?"`
 					goto communicate
 			label kijran
-			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran---Kiitaa and Khora alike---are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? It was the old House Kaatrij that strengthened their genomes against decay. That we were---had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another house to subject these children of ours to their whims.`
+			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran - Kiitaa and Khora alike - are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? It was the old House Kaatrij that strengthened their genomes against decay. That we were - had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another house to subject these children of ours to their whims.`
 			choice
 				`	"How is it that you can communicate with me?`
 					to display
@@ -766,7 +766,7 @@ mission "Successors: Kaatrij First Contact 1"
 						has "language: Successor"
 					goto saajret
 			label communicate
-			`	"Ah, there is that matter. Much as the High Houses might prefer to believe that they---we act all within the veil of secrecy, we are all too intertwined to keep our activities hidden for long. The details of thy arrangement with Sioeora and its consequences were apparent to us soon after its conclusion, as will the details of this meeting eventually be apparent to the other houses in time." Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own language: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thy own Shakespeare's Tempest so that our Predecessors could experience the work in its original language. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the language of another."`
+			`	"Ah, there is that matter. Much as the High Houses might prefer to believe that they - we act all within the veil of secrecy, we are all too intertwined to keep our activities hidden for long. The details of thy arrangement with Sioeora and its consequences were apparent to us soon after its conclusion, as will the details of this meeting eventually be apparent to the other houses in time." Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own language: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thy own Shakespeare's Tempest so that our Predecessors could experience the work in its original language. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the language of another."`
 			`	Saajret plucks the device from their outfit and offers it to you.`
 			choice
 				`	(Take it).`
@@ -941,7 +941,6 @@ mission "Successors: Trusted"
 				`	(Remain silent.)`
 					goto silent
 				`	"I don't intend to take sides in your conflicts."`
-					goto no
 			label no
 			branch no-kaatrij
 				has "completed: Successors: Kaatrij First Contact 1"
@@ -984,7 +983,7 @@ mission "Successors: People's Houses, First Contact"
 				`	(Yes.)`
 				`	(Not yet.)`
 					defer
-			`	You approach one of the crew members disembarking from one of the red-painted ships, which, as you draw closer, you see bears several large burns and scars.`
+			`	You approach one of the crew members disembarking from a red-painted ship which bears a spectacular number of burn marks and scars.`
 			`	"Excuse me, I was wondering if you could tell me about this place. It seems different to the rest of Successor space I've been through."`
 			`	The Successor looks over at the spaceport for a moment before grunting quietly and deciding to reply. Their voice is lower and darker than that of most Successors you have heard, and their skin changes color and texture rapidly, almost with every word.`
 			`	"Thou art the alien vis'tor brought by the Old Houses, art thou not? Their 'noble guest' whom they parade around with such delight?"`
