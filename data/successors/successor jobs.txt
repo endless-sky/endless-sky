@@ -58,6 +58,7 @@ phrase "successor data"
 		`are given `
 	word
 		`<payment> in payment.`
+		`a payment of <payment>.`
 
 phrase "high houses delivery"
 	word
@@ -513,7 +514,7 @@ mission "Successor: Rush Delivery Out 1"
 	job
 	repeat
 	name "Rush shipment to <planet>"
-	description "Due to a logistical error, <tons> of supplies were not carried on the last shipment and need to get from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
+	description "A courier is needed for a rush shipment of <tons> of supplies from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
 	cargo random 5 10 .2
 	deadline
 	to offer
@@ -538,7 +539,7 @@ mission "Successor: Large Rush Delivery Out 1"
 	job
 	repeat
 	name "Large rush shipment to <planet>"
-	description "Due to a logistical error, <tons> of supplies were not carried on the last shipment and need to get from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
+	description "A courier is needed for a rush shipment of <tons> of supplies from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
 	cargo random 30 80 .2
 	deadline
 	to offer
@@ -563,7 +564,7 @@ mission "Successor: Seismic Stabilizers"
 	job
 	repeat
 	name "Seismic stabilizers to <planet>"
-	description "Following an earthquake on <planet>, the local authorities have requested that <tons> of seismic stabilizers be delivered there by <date>. You will be paid <payment> on delivery."
+	description "A courier is needed for a rush shipment of <tons> of supplies from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
 	cargo "Seismic Stabilizers" 30 80 .2
 	deadline
 	deadline 2
@@ -589,8 +590,9 @@ mission "Successor: Data Courier 1"
 	job
 	repeat
 	name "Data courier to <planet>"
-	description "A large volume of confidential data needs to get from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
+	description "Confidential data stored on <tons> of databanks needs to get from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
 	deadline
+	cargo "Encrypted Databanks" 1 1
 	to offer
 		has "known to the successors"
 		random < 30
@@ -759,29 +761,3 @@ mission "Successor: New Houses Rush Delivery"
 		dialog phrase "high houses delivery"
 		"successor jobs" ++
 		"new houses jobs" ++
-
-
-mission "High Houses: Criminal Capture 1"
-	name "Disable criminal in <system>"
-	description "A criminal flying an unregistered ship named <npc> has been harassing the Successors near the <system> system. The High Houses want you to disable their ship by <day> so they can be arrested. You will be paid <payment>."
-	repeat
-	job
-	deadline 14
-	to offer
-		has "known to the successors"
-		random < 10
-	source
-		attributes "successor"
-		not attributes "crime"
-	npc disable
-		government "Bounty"
-		personality heroic staying nemesis target
-		system
-			distance 1 1
-		fleet "People's Houses Raiders"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 140000
-		dialog phrase "generic bounty hunting payment dialog"
