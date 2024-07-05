@@ -606,8 +606,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	string conditions;
 	for(const auto &it : RelevantConditions())
 	{
-		const auto &val = player.Conditions().HasGet(it);
-		conditions += "Condition: \"" + it + "\" = " + (val.first ? to_string(val.second) : "(not set)") + "\n";
+		const auto &val = player.Conditions().Get(it);
+		conditions += "Condition: \"" + it + "\" = " + to_string(val) + "\n";
 	}
 
 	if(!conditions.empty())
