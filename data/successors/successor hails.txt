@@ -15,7 +15,7 @@
 
 phrase "successor friendly hail" # Wary hails
 	word
-		"Art thou the 'noble visitor' of whom the Houses speak?"
+		`Art thou the "noble visitor" of whom the Houses speak?`
 		"Art thou the 'honored guest' the Houses do parade?"
 		"Art thou the fiendish creature that hails from distant lands?"
 		"Art thou the strange-ish traveler that hails from distant stars?"
@@ -51,7 +51,7 @@ phrase "successor friendly hail" # Brag hails 1
 	word
 		", / "
 	word
-		"I suggest you do the same if you have interest."
+		"I suggest thou dost the same in thine best interest."
 		"It makes the many hours pass by quickly."
 		"The dark of space is lightened by its presence."
 		"There's little point in taking off without it."
@@ -158,9 +158,9 @@ phrase "high houses friendly hail"
 		"We welcome thee to join us in our space"
 		"Thy presence in our lovely space is welcome"
 		"We note thy visitation and accept"
-		"'Noble friend', thou art by our decree"
-		"'Honored guest,' within our skies thou art"
-		"'Regal sojourner,' thy name shall be with us"
+		`"Noble friend," thou art by our decree`
+		`"Honored guest," within our skies thou art`
+		`"Regal sojourner," thy name shall be with us`
 	word
 		" / "
 	word
@@ -389,4 +389,4 @@ phrase "people's houses hostile hail"
 		"I hope thy pain is great and everlasting."
 		"Allow me to unburden thee of mortality."
 		"Prepare to shuffle off thy mortal coil."
-		"The sudden hand of Death close up thy eye."
+		"The sudden hand of Death close up thine eye."
