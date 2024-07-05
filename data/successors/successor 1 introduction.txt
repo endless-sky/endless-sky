@@ -169,7 +169,7 @@ mission "Successors: First Contact 1"
 				`	"What is House Sioeora?"`
 					goto house
 			label house
-			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose estate thou sees around thee. There are many such within the broader realm; the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its purpose. 'Twere thee apprehended by the arms of another..." Sieasej gestures towards an interceptor landed on another pad "...thou surely would have languished without recognition as a creature from so distant in our past."`
+			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose estate thou sees around thee. There are many such within the broader realm; the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its purpose. 'Twere thee apprehended by the arms of another - " Sieasej gestures towards an interceptor landed on another pad " - thou surely would have languished without recognition as a creature from so distant in our past."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -301,7 +301,7 @@ mission "Successors: First Contact 3"
 				`	"What do you mean, 'well enough for an alien?'"`
 			`	A ripple of a rough, greenish texture passes over Sieasej's skin before subsiding. "Audiences like that one are subject to a litany of social expectations. Were't thou one of us, thy ignorance of these would seem knavish at best and offensive at worst, but... the scions are not fools. They are more than willing to endure a little rudeness for the sake of achieving their aims."`
 			`	"I see," you say. "I suppose I am too."`
-			`	"Fret not," Sieasej says, "elegance of address was neither required nor anticipated from thee. All has a place and time where it is necessary, and a place and time where it is not."`
+			`	"Fret not," Sieasej says. "Elegance of address was neither required nor anticipated from thee. All has a place and time where it is necessary, and a place and time where it is not."`
 			label task
 			`	Sieasej shuffles their arms beneath them. "Ah. I must once again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall provide a map marker for the system we are to journey to. There, on the second moon of the second planet, we are to land and collect a specimen of a Kijra-Riitaa, a Kijra-'pet.'"`
 			choice
@@ -433,7 +433,7 @@ mission "Successors: First Contact 3"
 				goto escape
 			label lure-1
 			branch lure-1-success
-				( random + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 ) < 95
+				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
 			`	The animal remains stationary for a moment before darting away.`
 				goto lure-failed
 			label lure-1-success
@@ -451,7 +451,7 @@ mission "Successors: First Contact 3"
 					goto lure-2
 			label lure-2
 			branch lure-2-success
-				( random + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 ) < 95
+				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
 			`	The animal inspects your hand for a moment before darting away.`
 			label lure-failed
 				`	(Tranquilize it.)`
@@ -522,7 +522,7 @@ mission "Successors: First Contact 3"
 				`	(Order your crew to fire a turret at them.)`
 					to display
 						"flagship base attribute: turret mounts" > "flagship attribute: turret mounts"
-						`flagship attribute: required crew` > 1
+						"flagship crew" > ( "flagship required crew" - 1 )
 					goto ship-shoot
 				`	(Release the animal that you captured.)`
 					goto release
@@ -531,12 +531,11 @@ mission "Successors: First Contact 3"
 			label shoot
 			branch shoot-success
 				random < 50
+			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and the other one suddenly vanishes before you can fire a second shot. In the time it takes your eyes to adapt to the creature's camouflage, it has already lodged the barbed tip of its feeler deep in your chest.`
+				die
 			label shoot-success
 			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and immediately after the other one charges at you. Just in time, you are able to shoot that one as well and it tumbles to the ground, kicking up dirt and leaf litter and wailing before going silent.`
 				goto successful
-			label shoot-failure
-			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and the other one suddenly vanishes before you can fire a second shot. In the time it takes your eyes to adapt to the creature's camouflage, it has already lodged the barbed tip of its feeler deep in your chest.`
-				die
 			label ship-shoot
 			`	You radio to the <ship> and order your crew to fire a turret at the creatures, vaporizing them both before they have the opportunity to attack you and leaving only two small scorched craters in the ground.`
 				goto successful
@@ -658,7 +657,7 @@ mission "Successors: First Contact 3"
 			label exit
 
 substitutions
-	"<coalition ally>" "Heliarchs"
+	"<coalition ally>" "Heliarchy"
 	"<coalition ally>" "Lunarium"
 		has "joined the lunarium"
 
