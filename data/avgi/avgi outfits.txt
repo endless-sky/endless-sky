@@ -14,8 +14,8 @@
 
 # Systems:
 
-outfit "Radiative Scales"
-	plural "Radiative Scales"
+outfit "Radiative Lamina"
+	plural "Radiative Laminae"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -23,12 +23,12 @@ outfit "Radiative Scales"
 	"anchor point" -1
 	"heat dissipation" 0.3
 	"solar heat" 3
-	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, improving its ability to radiate away waste heat. The radiative power scales with the temperature of the waste heat being rejected, making Radiative Scales work better for hotter-running ships."
-	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, improving its ability to radiate away waste heat. The radiative power scales with the temperature of the waste heat being rejected, making Radiative Laminae work better for hotter-running ships."
+	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Concealment Scales"
-	plural "Concealment Scales"
+outfit "Concealment Lamina"
+	plural "Concealment Laminae"
 	category "Systems"
 	licenses
 		"Twilight Guard"
@@ -40,12 +40,12 @@ outfit "Concealment Scales"
 	"radar jamming" 12
 	"optical jamming" 12
 	"solar heat" 6
-	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with and jamming any attempts to scan or detect a ship. Working in aggregate, the phased array can be used to jam the sensors of missiles from further away, or even blind them with a low-power beam. However, the density of quantum dots required to produce these effects considerably increases the amount of sunlight absorbed by a ship using Concealment Scales, and such an advanced material does not come cheap."
-	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with and jamming any attempts to scan or detect a ship. Working in aggregate, the phased array can be used to jam the sensors of missiles from further away, or even blind them with a low-power beam. However, the density of quantum dots required to produce these effects considerably increases the amount of sunlight absorbed by a ship using Concealment Laminae, and such an advanced material does not come cheap."
+	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Nanoceramic Scales"
-	plural "Nanoceramic Scales"
+outfit "Nanoceramic Lamina"
+	plural "Nanoceramic Laminae"
 	category "Systems"
 	licenses
 		"Twilight Guard"
@@ -57,11 +57,11 @@ outfit "Nanoceramic Scales"
 	"shield generation multiplier" -0.33
 	"solar heat" 3
 	description "These extra armor plates can significantly reinforce a ship's hull, but are quite heavy. The added bulk in front of a ship's shield emitters also interferes with the rate at which they can be recharged, impairing a ship's shield generation."
-	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Adamant Scales"
-	plural "Adamant Scales"
+outfit "Adamant Lamina"
+	plural "Adamant Laminae"
 	category "Systems"
 	licenses
 		"Twilight Guard"
@@ -72,11 +72,11 @@ outfit "Adamant Scales"
 	"hull multiplier" 0.6
 	"solar heat" 3
 	description "Thanks to recent breakthroughs in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
-	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Warding Scales"
-	plural "Warding Scales"
+outfit "Warding Lamina"
+	plural "Warding Laminae"
 	category "Systems"
 	licenses
 		"Twilight Guard"
@@ -87,7 +87,7 @@ outfit "Warding Scales"
 	"shield multiplier" 2
 	"solar heat" 3
 	description "Breakthrough physics research has allowed the Avgi to create advanced shield emitters well in advance of their previous ones. While baked into the ships of most species, Avgi starship construction is sophisticated enough to allow their shield matrices to be retrofitted with relative ease."
-	description "Warding Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Warding Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Electrostatic Ramscoop"
@@ -248,17 +248,17 @@ outfit "Concentrating Solar Array"
 	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
 
 
-outfit "Photoelectric Scales"
-	plural "Photoelectric Scales"
+outfit "Photoelectric Lamina"
+	plural "Photoelectric Laminae"
 	category "Power"
 	cost 294000
-	thumbnail "outfit/photoelectric scales"
+	thumbnail "outfit/photoelectric lamina"
 	"mass" 24
 	"anchor point" -1
 	"solar collection" 6
 	"solar heat" 1.8
 	description "These concentrating solar panels can be mounted conformally to a ship's hull, efficiently collecting sunlight and turning it into usable energy."
-	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Photovoltaic Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Lantern Fission Core"

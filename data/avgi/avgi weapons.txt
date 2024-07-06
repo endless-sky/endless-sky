@@ -279,6 +279,7 @@ outfit "Electron Packet"
 		"hull damage" 1.2
 		"ion damage" 0.006
 		"piercing" 0.3
+		"penetration count" 3
 
 effect "bremsstrahlung"
 	sprite "effect/skylance impact"

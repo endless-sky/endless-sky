@@ -681,7 +681,7 @@ ship "Polari"
 		"Blue Optical Laser"
 		"Green Optical Laser"
 
-		"Photoelectric Scales"
+		"Photoelectric Lamina"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -1019,14 +1019,14 @@ ship "Modified Tachytia"
 		"Plasmadyne Ramscoop"
 
 		"Lantern Fission Core" 3
-		"Photoelectric Scales"
+		"Photoelectric Lamina"
 		"Ultracapacitor Bank" 6
 		"Specular Deflector" 2
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 9
 		"Electrostatic Ramscoop" 3
-		"Concealment Scales"
-		"Radiative Scales"
+		"Concealment Lamina"
+		"Radiative Lamina"
 		"Electromotive Rifle" 600
 		
 		`Z-1200 "Beam" Antimatter Torch`
@@ -1412,7 +1412,7 @@ ship "Diaspersi"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
-		"Concealment Scales"
+		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 36
@@ -1490,7 +1490,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
-		"Concealment Scales"
+		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		
@@ -1541,7 +1541,7 @@ ship "Difraktos"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
-		"Concealment Scales"
+		"Concealment Lamina"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 42
 
@@ -1607,7 +1607,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Multispectral Scanner" 2
-		"Concealment Scales"
+		"Concealment Lamina"
 		"Electrostatic Ramscoop"
 		
 		`Z-330 "Spark" Fusion Torch`
@@ -1628,7 +1628,7 @@ ship "Difraktos" "Difraktos (Kinetic)"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
-		"Concealment Scales"
+		"Concealment Lamina"
 		"Electrostatic Ramscoop"
 		
 		`Z-660 "Zap" Fusion Torch`
@@ -1651,7 +1651,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
-		"Concealment Scales"
+		"Concealment Lamina"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 42
 
@@ -1693,7 +1693,7 @@ ship "Refraktos"
 		"Blue Optical Laser" 4
 		"Green Optical Laser" 3
 
-		"Photoelectric Scales"
+		"Photoelectric Lamina"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 5

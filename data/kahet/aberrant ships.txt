@@ -12,11 +12,11 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-ship "Twilight Ka'sei 1A"
-	"display name" "Aberration Type I-A"
-	plural "Type I-A Aberrations"
-	sprite "ship/aberration 1-a"
-	thumbnail "thumbnail/aberration 1-a"
+ship "Aberrant Latte"
+	"display name" `K-IA "Latte"`
+	plural `Lattes`
+	sprite "ship/aberrant latte"
+	thumbnail "thumbnail/aberrant latte"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -74,16 +74,16 @@ ship "Twilight Ka'sei 1A"
 	description "This variant in particular seems to be as close to the baseline as can be expected from such a strange creature."
 
 
-ship "Twilight Ka'sei 1A" "Twilight Ka'sei 1A (Disable-able)"
-	"display name" "Aberration Type I-A"
+ship "Aberrant Latte" "Aberrant Latte (Disable-able)"
+	"display name" `K-IA "Latte"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 1B"
-	"display name" "Aberration Type I-B"
-	plural "Type I-B Aberrations"
-	sprite "ship/aberration 1-b"
-	thumbnail "thumbnail/aberration 1-b"
+ship "Aberrant Chomper"
+	"display name" `K-IB "Chomper"`
+	plural "Chompers"
+	sprite "ship/aberrant chomper"
+	thumbnail "thumbnail/aberrant chomper"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -148,16 +148,16 @@ ship "Twilight Ka'sei 1B"
 	description "This variant in particular seems to be much more heavily armed than most others of its kind."
 
 
-ship "Twilight Ka'sei 1B" "Twilight Ka'sei 1B (Disable-able)"
-	"display name" "Aberration Type I-B"
+ship "Aberrant Chomper" "Aberrant Chomper (Disable-able)"
+	"display name" `K-IB "Chomper"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 1C"
-	"display name" "Aberration Type I-C"
-	plural "Type I-C Aberrations"
-	sprite "ship/aberration 1-c"
-	thumbnail "thumbnail/aberration 1-c"
+ship "Aberrant Pileup"
+	"display name" "K-IC Pileup"
+	plural "Pileups"
+	sprite "ship/aberrant pileup"
+	thumbnail "thumbnail/aberrant pileup"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -216,85 +216,16 @@ ship "Twilight Ka'sei 1C"
 	description "This variant in particular seems to be somewhat larger and sturdier than others."
 
 
-ship "Twilight Ka'sei 1C" "Twilight Ka'sei 1C (Disable-able)"
-	"display name" "Aberration Type I-C"
+ship "Aberrant Pileup" "Aberrant Pileup (Disable-able)"
+	"display name" "K-IC Pileup"
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 1D"
-	"display name" "Aberration Type I-D"
-	plural "Type I-D Aberrations"
-	sprite "ship/aberration 1-d"
-	thumbnail "thumbnail/aberration 1-d"
-	"never disabled"
-	attributes
-		category "Interceptor"
-		"cost" 5700000
-		"shields" 9600
-		"hull" 14400
-		"required crew" 1
-		"bunks" 1
-		"mass" 289
-		"drag" 3.0
-		"heat dissipation" .91
-		"fuel capacity" 300
-		"ramscoop" 0.2
-		"cargo space" 82
-		"outfit space" 403
-		"weapon capacity" 194
-		"engine capacity" 96
-		"energy capacity" 12000
-		"inscrutable" 1
-		"energy generation" 39
-		"heat generation" 32
-		"shield heat" 3.4
-		"shield generation" 1.2
-		"hull repair rate" 0.6
-		"turn" 492
-		"turning heat" 0.9
-		"ka'sei" 1
-		weapon
-			"blast radius" 300
-			"shield damage" 6400
-			"hull damage" 4800
-			"hit force" 2800
-	outfits
-		"Ka'het Ravager Beam" 2
-
-		"Ka'het Primary Cooling"
-		"Ka'het Shield Restorer"
-		"Ka'het MHD Generator"
-		"Ka'het Reserve Accumulator"
-
-		"Ka'het Compact Engine" 2
-		"Hyperdrive"
-
-	gun -9 -23.5 "Ka'het Ravager Beam"
-	gun 9 -23.5 "Ka'het Ravager Beam"
-
-	engine -12.5 37.5
-	engine 12.5 37.5
-
-	explode "tiny explosion" 8
-	explode "small explosion" 14
-	explode "medium explosion" 26
-	explode "large explosion" 18
-	"final explode" "nuke explosion"
-	"final explode" "nuke residue fast" 50
-	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "This variant in particular appears to have vane-like structures behind its engines, allowing it to turn more quickly."
-
-
-ship "Twilight Ka'sei 1D" "Twilight Ka'sei 1D (Disable-able)"
-	"display name" "Aberration Type I-D"
-	"uncapturable"
-
-
-ship "Twilight Ka'sei 1E"
-	"display name" "Aberration Type I-E"
-	plural "Type I-E Aberrations"
-	sprite "ship/aberration 1-e"
-	thumbnail "thumbnail/aberration 1-e"
+ship "Aberrant Hugger"
+	"display name" `K-IE "Hugger"`
+	plural "Huggers"
+	sprite "ship/aberrant hugger"
+	thumbnail "thumbnail/aberrant hugger"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -355,16 +286,16 @@ ship "Twilight Ka'sei 1E"
 	description "This variant in particular seems to be lighter and capable of higher speeds while carrying an enlarged armament."
 
 
-ship "Twilight Ka'sei 1E" "Twilight Ka'sei 1E (Disable-able)"
-	"display name" "Aberration Type I-E"
+ship "Aberrant Hugger" "Aberrant Hugger (Disable-able)"
+	"display name" `K-IE "Hugger"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 1F"
-	"display name" "Aberration Type I-F"
-	plural "Type I-F Aberrations"
-	sprite "ship/aberration 1-f"
-	thumbnail "thumbnail/aberration 1-f"
+ship "Aberrant Longfellow"
+	"display name" `K-IF "Longfellow"`
+	plural "Longfellows"
+	sprite "ship/aberrant longfellow"
+	thumbnail "thumbnail/aberrant longfellow"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -431,16 +362,16 @@ ship "Twilight Ka'sei 1F"
 	description "This variant in particular seems to have grown extra thrusters around a lean, sleek fuselage."
 
 
-ship "Twilight Ka'sei 1F" "Twilight Ka'sei 1F (Disable-able)"
-	"display name" "Aberration Type I-F"
+ship "Aberrant Longfellow" "Aberrant Longfellow (Disable-able)"
+	"display name" `K-IF "Longfellow"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 1G"
-	"display name" "Aberration Type I-G"
-	plural "Type I-G Aberrations"
-	sprite "ship/aberration 1-g"
-	thumbnail "thumbnail/aberration 1-g"
+ship "Aberrant Dancer"
+	"display name" `K-IG "Dancer"`
+	plural "Dancers"
+	sprite "ship/aberrant dancer"
+	thumbnail "thumbnail/aberrant dancer"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -505,16 +436,16 @@ ship "Twilight Ka'sei 1G"
 	description "This variant in particular appears to have several hardpoints designed to mount turrets."
 
 
-ship "Twilight Ka'sei 1G" "Twilight Ka'sei 1G (Disable-able)"
-	"display name" "Aberration Type I-G"
+ship "Aberrant Dancer" "Aberrant Dancer (Disable-able)"
+	"display name" `K-IG "Dancer"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2A"
-	"display name" "Aberration Type II-A"
-	plural "Type II-A Aberrations"
-	sprite "ship/aberration 2-a"
-	thumbnail "thumbnail/aberration 2-a"
+ship "Aberrant Junior"
+	"display name" `K-IIA "Junior"`
+	plural "Juniors"
+	sprite "ship/aberrant junior"
+	thumbnail "thumbnail/aberrant junior"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -571,16 +502,16 @@ ship "Twilight Ka'sei 2A"
 	description "This variant in particular seems to be as close to the baseline as can be expected from such a strange creature."
 
 
-ship "Twilight Ka'sei 2A" "Twilight Ka'sei 2A (Disable-able)"
-	"display name" "Aberration Type II-A"
+ship "Aberrant Junior" "Aberrant Junior (Disable-able)"
+	"display name" `K-IIA "Junior"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2B"
-	"display name" "Aberration Type II-B"
-	plural "Type II-B Aberrations"
-	sprite "ship/aberration 2-b"
-	thumbnail "thumbnail/aberration 2-b"
+ship "Aberrant Traincar"
+	"display name" `K-IIB "Traincar"`
+	plural "Traincars"
+	sprite "ship/aberrant traincar"
+	thumbnail "thumbnail/aberrant traincar"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -638,16 +569,16 @@ ship "Twilight Ka'sei 2B"
 	description "This variant in particular seems to be in the process of growing more elongated, and has a tougher hull than usual."
 
 
-ship "Twilight Ka'sei 2B" "Twilight Ka'sei 2B (Disable-able)"
-	"display name" "Aberration Type II-B"
+ship "Aberrant Traincar" "Aberrant Traincar (Disable-able)"
+	"display name" `K-IIB "Traincar"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2C"
-	"display name" "Aberration Type II-C"
-	plural "Type II-C Aberrations"
-	sprite "ship/aberration 2-c"
-	thumbnail "thumbnail/aberration 2-c"
+ship "Aberrant Pike"
+	"display name" `K-IIC "Pike"`
+	plural "Pikes"
+	sprite "ship/aberrant pike"
+	thumbnail "thumbnail/aberrant pike"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -704,16 +635,16 @@ ship "Twilight Ka'sei 2C"
 	description "This variant in particular has grown into a sleek, elongated shape."
 
 
-ship "Twilight Ka'sei 2C" "Twilight Ka'sei 2C (Disable-able)"
-	"display name" "Aberration Type II-C"
+ship "Aberrant Pike" "Aberrant Pike (Disable-able)"
+	"display name" `K-IIC "Pike"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2D"
-	"display name" "Aberration Type II-D"
-	plural "Type II-D Aberrations"
-	sprite "ship/aberration 2-d"
-	thumbnail "thumbnail/aberration 2-d"
+ship "Aberrant Mole"
+	"display name" `K-IID "Mole"`
+	plural "Moles"
+	sprite "ship/aberrant mole"
+	thumbnail "thumbnail/aberrant mole"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -772,16 +703,16 @@ ship "Twilight Ka'sei 2D"
 	description "This variant has grown a sharp, bladed prow capable of fitting more forward weapons."
 
 
-ship "Twilight Ka'sei 2D" "Twilight Ka'sei 2D (Disable-able)"
-	"display name" "Aberration Type II-D"
+ship "Aberrant Mole" "Aberrant Mole (Disable-able)"
+	"display name" `K-IID "Mole"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2E"
-	"display name" "Aberration Type II-E"
-	plural "Type II-E Aberrations"
-	sprite "ship/aberration 2-e"
-	thumbnail "thumbnail/aberration 2-e"
+ship "Aberrant Whiskers"
+	"display name" `K-IIE "Whiskers"`
+	plural "Whiskers"
+	sprite "ship/aberrant whiskers"
+	thumbnail "thumbnail/aberrant whiskers"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -838,16 +769,16 @@ ship "Twilight Ka'sei 2E"
 	description "This variant in particular appears to be growing some sort of tail-like structure, increasing its agility."
 
 
-ship "Twilight Ka'sei 2E" "Twilight Ka'sei 2E (Disable-able)"
-	"display name" "Aberration Type II-E"
+ship "Aberrant Whiskers" "Aberrant Whiskers (Disable-able)"
+	"display name" `K-IIE "Whiskers"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2F"
-	"display name" "Aberration Type II-F"
-	plural "Type II-F Aberrations"
-	sprite "ship/aberration 2-f"
-	thumbnail "thumbnail/aberration 2-f"
+ship "Aberrant Trip"
+	"display name" `K-IIF "Trip"`
+	plural "Trips"
+	sprite "ship/aberrant trip"
+	thumbnail "thumbnail/aberrant trip"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -913,19 +844,18 @@ ship "Twilight Ka'sei 2F"
 	"final explode" "nuke explosion"
 	"final explode" "nuke residue fast" 50
 	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "This variant seems to be a composite of two or three individuals, fused together into a single mass."
+	description "Something appears to have gone terribly wrong in the germination of this variant. It is a lopsided, deformed mass of malformed material, which survives only through sheer luck."
 
-
-ship "Twilight Ka'sei 2F" "Twilight Ka'sei 2F (Disable-able)"
-	"display name" "Aberration Type II-F"
+ship "Aberrant Trip" "Aberrant Trip (Disable-able)"
+	"display name" `K-IIF "Trip"`
 	"uncapturable"
 
 
-ship "Twilight Ka'sei 2G"
-	"display name" "Aberration Type II-G"
-	plural "Type II-G Aberrations"
-	sprite "ship/aberration 2-g"
-	thumbnail "thumbnail/aberration 2-g"
+ship "Aberrant Triplet"
+	"display name" `K-IIG "Triplet"`
+	plural "Triplets"
+	sprite "ship/aberrant triplets"
+	thumbnail "thumbnail/aberrant triplets"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -987,9 +917,9 @@ ship "Twilight Ka'sei 2G"
 	"final explode" "nuke explosion"
 	"final explode" "nuke residue fast" 50
 	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "Something appears to have gone terribly wrong in the germination of this variant. It is a lopsided, deformed mass of malformed material, which survives only through sheer luck."
+	description "This variant seems to be a composite of two or three individuals, fused together into a single mass."
 
 
-ship "Twilight Ka'sei 2G" "Twilight Ka'sei 2G (Disable-able)"
-	"display name" "Aberration Type II-G"
+ship "Aberrant Triplet" "Aberrant Triplet (Disable-able)"
+	"display name" `K-IIG "Triplet"`
 	"uncapturable"

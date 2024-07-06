@@ -31,86 +31,77 @@ fleet "Small Aberrant"
 		confusion 60
 		hunting coward vindictive unconstrained harvests mining secretive
 	variant 20
-		"Twilight Ka'sei 1A"
+		"Aberrant Latte"
 	variant 5
-		"Twilight Ka'sei 1A (Disable-able)"
+		"Aberrant Latte (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 1B"
+		"Aberrant Chomper"
 	variant 5
-		"Twilight Ka'sei 1B (Disable-able)"
+		"Aberrant Chomper (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 1C"
+		"Aberrant Pileup"
 	variant 5
-		"Twilight Ka'sei 1C (Disable-able)"
+		"Aberrant Pileup (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 1D"
+		"Aberrant Junior"
 	variant 5
-		"Twilight Ka'sei 1D (Disable-able)"
+		"Aberrant Junior (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 2A"
+		"Aberrant Traincar"
 	variant 5
-		"Twilight Ka'sei 2A (Disable-able)"
+		"Aberrant Traincar (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 2B"
+		"Aberrant Pike"
 	variant 5
-		"Twilight Ka'sei 2B (Disable-able)"
+		"Aberrant Pike (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 2C"
+		"Aberrant Mole"
 	variant 5
-		"Twilight Ka'sei 2C (Disable-able)"
+		"Aberrant Mole (Disable-able)"
 	variant 20
-		"Twilight Ka'sei 2D"
+		"Aberrant Whiskers"
 	variant 5
-		"Twilight Ka'sei 2D (Disable-able)"
-	variant 20
-		"Twilight Ka'sei 2E"
-	variant 5
-		"Twilight Ka'sei 2E (Disable-able)"
+		"Aberrant Whiskers (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 1A" 2
+		"Aberrant Latte" 2
 	variant 3
-		"Twilight Ka'sei 1A"
-		"Twilight Ka'sei 1A (Disable-able)"
+		"Aberrant Latte"
+		"Aberrant Latte (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 1B" 2
+		"Aberrant Chomper" 2
 	variant 3
-		"Twilight Ka'sei 1B"
-		"Twilight Ka'sei 1B (Disable-able)"
+		"Aberrant Chomper"
+		"Aberrant Chomper (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 1C" 2
+		"Aberrant Pileup" 2
 	variant 3
-		"Twilight Ka'sei 1C"
-		"Twilight Ka'sei 1C (Disable-able)"
+		"Aberrant Pileup"
+		"Aberrant Pileup (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 1D" 2
+		"Aberrant Junior" 2
 	variant 3
-		"Twilight Ka'sei 1D"
-		"Twilight Ka'sei 1D (Disable-able)"
+		"Aberrant Junior"
+		"Aberrant Junior (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 2A" 2
+		"Aberrant Traincar" 2
 	variant 3
-		"Twilight Ka'sei 2A"
-		"Twilight Ka'sei 2A (Disable-able)"
+		"Aberrant Traincar"
+		"Aberrant Traincar (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 2B" 2
+		"Aberrant Pike" 2
 	variant 3
-		"Twilight Ka'sei 2B"
-		"Twilight Ka'sei 2B (Disable-able)"
+		"Aberrant Pike"
+		"Aberrant Pike (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 2C" 2
+		"Aberrant Mole" 2
 	variant 3
-		"Twilight Ka'sei 2C"
-		"Twilight Ka'sei 2C (Disable-able)"
+		"Aberrant Mole"
+		"Aberrant Mole (Disable-able)"
 	variant 10
-		"Twilight Ka'sei 2D" 2
+		"Aberrant Whiskers" 2
 	variant 3
-		"Twilight Ka'sei 2D"
-		"Twilight Ka'sei 2D (Disable-able)"
-	variant 10
-		"Twilight Ka'sei 2E" 2
-	variant 3
-		"Twilight Ka'sei 2E"
-		"Twilight Ka'sei 2E (Disable-able)"
+		"Aberrant Whiskers"
+		"Aberrant Whiskers (Disable-able)"
 
 fleet "Large Aberrant"
 	government "Aberrant"
@@ -121,18 +112,18 @@ fleet "Large Aberrant"
 		confusion 60
 		hunting coward vindictive unconstrained harvests mining secretive
 	variant 10
-		"Twilight Ka'sei 1E"
+		"Aberrant Hugger"
 	variant 5
-		"Twilight Ka'sei 1E (Disable-able)"
+		"Aberrant Hugger (Disable-able)"
 	variant 15
-		"Twilight Ka'sei 1F"
+		"Aberrant Longfellow"
 	variant 5
-		"Twilight Ka'sei 1F (Disable-able)"
+		"Aberrant Longfellow (Disable-able)"
+	variant 5
+		"Aberrant Trip"
 	variant 10
-		"Twilight Ka'sei 2F"
-	variant 5
-		"Twilight Ka'sei 2F (Disable-able)"
+		"Aberrant Trip (Disable-able)"
 	variant 2
-		"Twilight Ka'sei 2G"
+		"Aberrant Triplet"
 	variant 10
-		"Twilight Ka'sei 2G (Disable-able)"
+		"Aberrant Triplet (Disable-able)"
