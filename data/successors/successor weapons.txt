@@ -183,7 +183,7 @@ outfit "Successor Pulse Laser"
 			"random start frame"
 			"frame rate" 5
 		sound "slicer"
-		"hit effect" "electron impact"
+		"hit effect" "successor pulse laser impact"
 		"inaccuracy" 0.4
 		"velocity" 490
 		"lifetime" 1
@@ -213,7 +213,7 @@ outfit "Pulse Laser Turret"
 			"frame rate" 5
 		"hardpoint sprite" "hardpoint/heavy laser turret"
 		sound "slicer"
-		"hit effect" "electron impact"
+		"hit effect" "successor pulse laser impact"
 		"inaccuracy" 0.4
 		"velocity" 490
 		"turret turn" 2.5
@@ -227,6 +227,13 @@ outfit "Pulse Laser Turret"
 		"hull damage" 12
 		"piercing" 0.05
 	description "The introduction of the Pulse Laser was a wake-up call for the more astute in the High Houses, as it was the first time in hundreds of years that weapons were being manufactured by groups other than themselves. Most Successors see the turreted version as a continuation of this democratization of violence, while the more paranoid claim that the High Houses have infiltrated production and intentionally sabotaged the design."
+
+effect "successor pulse laser impact"
+	sprite "effect/successor pulse laser impact"
+		"frame rate" 30
+		"random start frame"
+	lifetime 3
+	"velocity scale" 0
 
 outfit "Overcharged Pulse Laser"
 	category "Guns"
@@ -245,7 +252,7 @@ outfit "Overcharged Pulse Laser"
 			"rewind"
 		sound "laser"
 		"fire effect" "moonbeam fleck" 3
-		"hit effect" "electron impact"
+		"hit effect" "overcharged pulse laser impact"
 		"inaccuracy" 5.5
 		"velocity" 490
 		"lifetime" 1
@@ -278,7 +285,7 @@ outfit "Overcharged Laser Turret"
 		"hardpoint sprite" "hardpoint/laser turret"
 		sound "laser"
 		"fire effect" "moonbeam fleck" 3
-		"hit effect" "electron impact"
+		"hit effect" "overcharged pulse laser impact"
 		"inaccuracy" 5.5
 		"velocity" 490
 		"lifetime" 1
@@ -293,6 +300,13 @@ outfit "Overcharged Laser Turret"
 		"piercing" 0.05
 		"cluster"
 	description `Hand-crafted by the more colorful members of the People's Houses, this bespoke overcharged Pulse Laser turret has had even more power pumped into its laser generator compared to the fixed version, producing a truly prodigious amount of heat for a weapon of its size. Despite its inelegant design, it is nonetheless a fearsome weapon, especially considering that it retains the ability to partially punch through shielding.`
+
+effect "overcharged pulse laser impact"
+	sprite "effect/overcharged pulse laser impact"
+		"frame rate" 30
+		"random start frame"
+	lifetime 6
+	"velocity scale" 0
 
 outfit `"Sjeja" Kinetic Lance`
 	category "Secondary Weapons"
