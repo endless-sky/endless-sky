@@ -230,28 +230,28 @@ void InfoPanelState::SetCurrentSort(ShipComparator *newSort)
 
 
 
-set<const string> InfoPanelState::VisibleColumns() const
+const set<const string> &InfoPanelState::VisibleColumns() const
 {
 	return visibleColumns;
 }
 
 
 
-void InfoPanelState::ShowColumn(const string key)
+void InfoPanelState::ShowColumn(const string &key)
 {
 	visibleColumns.insert(key);
 }
 
 
 
-void InfoPanelState::HideColumn(const string key)
+void InfoPanelState::HideColumn(const string &key)
 {
 	visibleColumns.erase(key);
 }
 
 
 
-void InfoPanelState::ToggleColumn(const string key)
+void InfoPanelState::ToggleColumn(const string &key)
 {
 	visibleColumns.find(key) == visibleColumns.end() ?
 		ShowColumn(key) : HideColumn(key);

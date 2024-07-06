@@ -22,8 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <vector>
 
-class PlayerInfo;
-
 
 
 // This panel represents a pop-up menu containing checkboxes to show/hide table columns.

@@ -59,10 +59,10 @@ public:
 	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);
 
-	std::set<const std::string> VisibleColumns() const;
-	void ShowColumn(const std::string key);
-	void HideColumn(const std::string key);
-	void ToggleColumn(const std::string key);
+	const std::set<const std::string> &VisibleColumns() const;
+	void ShowColumn(const std::string &key);
+	void HideColumn(const std::string &key);
+	void ToggleColumn(const std::string &key);
 
 
 private:
