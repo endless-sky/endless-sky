@@ -3152,11 +3152,10 @@ bool Ship::HasBays() const
 // one of your escorts plans to use that bay.
 int Ship::BaysFree(const string &category) const
 {
-	int count = 0;
-	for(const Bay &bay : bays)
-		if(bay.CanContain(category) && !bay.ship)
-			++count;
-	return count;
+	auto countFunc = [&category](const Bay &bay) -> bool {
+		return bay.CanContain(category) && !bay.ship;
+	};
+	return std::count_if(bays.begin(), bays.end(), countFunc);
 }
 
 
@@ -3164,11 +3163,10 @@ int Ship::BaysFree(const string &category) const
 // Check how many bays this ship has of a given category.
 int Ship::BaysTotal(const string &category) const
 {
-	int count = 0;
-	for(const Bay &bay : bays)
-		if(bay.CanContain(category))
-			++count;
-	return count;
+	auto countFunc = [&category](const Bay &bay) -> bool {
+		return bay.CanContain(category);
+	};
+	return std::count_if(bays.begin(), bays.end(), countFunc);
 }
 
 
