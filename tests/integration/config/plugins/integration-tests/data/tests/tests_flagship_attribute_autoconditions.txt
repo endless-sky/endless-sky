@@ -170,5 +170,3 @@ test "Flagship Attribute Autoconditions"
 			"flagship attribute: heat generation" == 32300
 			"flagship attribute: outfit space" == 0
 			"flagship attribute: weapon capacity" == 58000
-
-
