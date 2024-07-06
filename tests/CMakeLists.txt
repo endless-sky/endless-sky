@@ -26,6 +26,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
+	unit/src/test_datawriter.cpp
 	unit/src/test_dictionary.cpp
 	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
@@ -38,6 +39,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_scrollVar.cpp
 	unit/src/test_set.cpp
 	unit/src/test_ship.cpp
+	unit/src/test_stringInterner.cpp
 	unit/src/test_template.txt
 	unit/src/test_weightedList.cpp
 	unit/src/text/test_alignment.cpp
