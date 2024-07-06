@@ -356,7 +356,7 @@ mission "Avgi: Defend Ensemble 1"
 				`	"I took it from some angry space squirrels."`
 					goto unfettered
 					to display
-						has "visited system: Ehma Ti"
+						has "Wanderers: Translation Machine: done"
 				`	"I took it from the Quarg."`
 					goto quarg
 					to display
@@ -618,13 +618,13 @@ mission "Avgi: Scout Rescue"
 			choice
 				`	"There's no time for that. I'm here to rescue you."`
 					goto serious
-				`	"I'm a space alien here in my alien spaceship here to rescue you."`
+				`	"I'm a space alien here in my alien space ship here to rescue you."`
 			`	"Amusement. Very well, I suppose we have little choice but to accept your help, opportune jester. As you can see, the Albedo is in something of a predicament."`
 				goto next
 			label serious
 			`	"Consideration. I suppose we have little choice but to accept your help, stranger. As you can see, the Albedo is in something of a predicament."`
 			label next
-			`	You speak with the Avgi commander about treating the wounded as you dock your ship with the Silver Albedo. After everyone is safely transferred to the <ship>, you decouple from the derelict ship.`
+			`	You speak with the Avgi commander about treating the wounded as you dock your ship with the Silver Albedo. After everyone is safely transferred to the <ship>, clutching armfuls of recordings and logs, you decouple from the derelict ship.`
 
 	on complete
 		conversation
@@ -828,21 +828,3 @@ mission "Avgi: Twilight Escape"
 		conversation
 			`	You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. "I'll be in contact, <first>, but I have to tell someone that I'm still alive."`
 			`	Now that you know of a way both in and out of the Twilight, you can visit the Avgi without fear of being trapped again.`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
