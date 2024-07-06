@@ -44,6 +44,8 @@ public:
 	int Size() const noexcept;
 	// Get all the tokens in this node as an iterable vector.
 	const std::vector<std::string> &Tokens() const noexcept;
+	// Add tokens to the node.
+	void AddToken(const std::string &token);
 	// Get the token at the given index. No bounds checking is done internally.
 	// DataFile loading guarantees index 0 always exists.
 	const std::string &Token(int index) const;
@@ -64,6 +66,8 @@ public:
 	bool IsBool(int index) const;
 	static bool IsBool(const std::string &token);
 
+	// Add a new child. The child's parent must be this node.
+	void AddChild(const DataNode &child);
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
 	bool HasChildren() const noexcept;
