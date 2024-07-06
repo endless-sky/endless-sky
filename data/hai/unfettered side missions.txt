@@ -68,6 +68,7 @@ mission "Unfettered returning home"
 
 
 
+# This mission will offer but defer itself the first time if you lack money but have sufficient net worth.
 mission "Hai Legacy 1"
 	invisible
 	shipyard
@@ -78,7 +79,6 @@ mission "Hai Legacy 1"
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
-		# This mission will offer but defer itself the first time if you lack money but have sufficient net worth.
 		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) >= 10000000
 	on offer
 		conversation
@@ -93,8 +93,8 @@ mission "Hai Legacy 1"
 				`	(Never.)`
 					decline
 			label first
-			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and you cross-reference with the local maps; it appears to point towards a beach on the other side of the planet.`
-			`	However, it also mentions you need to have at least 10 million credits in cash! It may be a good idea to save up or take a loan and then come back another day to head to the specified location.`
+			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull on your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
+			`	However, the paper also mentions you need to have at least 10 million credits in cash! You'll have to save up or take a loan and then come back another day before heading to the specified location.`
 				to display
 					"credits" < 10000000
 				defer
@@ -104,10 +104,10 @@ mission "Hai Legacy 1"
 				`	(Maybe another time.)`
 					defer
 			label go
-			`	While you're pondering whether or not there will be enough space to land your ship at the beach, you see a train ticket on the back of your paper, with specific directions on how to get there. At the bottom is a clear demand to not take your starship.`
-			`	To your surprise, the local train station is located underground. At first, you can't begin to make sense of the enormity of it - it almost feels like you can reach the entire planet from here. You ask a Hai for directions, feeling embarrassed when you learn that all you had to do was scan your ticket and all relevant information would be displayed for you.`
-			`	After departing the train station, you hike for a few hours until you reach your destination. Upon arriving, you look around for the stranger; except for a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double-check that these are the right coordinates and look around some more.`
-			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you, and you start to doubt whether or not this was a good idea. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for the secrecy, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
+			`	While you're pondering whether or not there will be enough space to land your ship at the beach, you notice a train ticket attached to the back of the paper. A few more written notes give specific directions on how to get there, with a clear demand not to take your starship at the bottom.`
+			`	To your surprise, the local train station is located underground. You can't begin to make sense of the enormity of it - it almost feels like you can reach the entire planet from here. You ask a Hai for directions, feeling embarrassed when you learn that all you had to do was scan your ticket at a nearby terminal and all relevant information would be displayed for you.`
+			`	After departing the train station, you hike for a few hours until you reach your destination. Upon arriving, you look around for the stranger. Besides a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double-check that these are the right coordinates and look around some more.`
+			`	You wait for some time until you spot two hooded figures further down the beach, and you start to doubt whether or not this was a good idea as they make their way toward you. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for the secrecy, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
 				`	"Tell me more."`
 					goto "tell me"
@@ -127,8 +127,8 @@ mission "Hai Legacy 1"
 			`	Suddenly, you hear a loud roar coming from the sea behind you, and the ground begins to shake.`
 			choice
 				`	(Turn around.)`
-			`	You see the waves become agitated and the wind rise as a shape surrounded by fumes emerges out of the water, as if an ancient sea monster was rising from the depths.`
-			`	But it is no monster. It's a ship, and its guns are pointed straight at you!`
+			`	The waves become agitated and wind rushes past you as a shape surrounded by fumes emerges out of the water, as if an ancient sea monster was rising from the depths.`
+			`	But it is no monster. It is a ship, and its weapons are aimed straight at you!`
 			label "try again"
 			scene "scene/emerging ladybug"
 			choice
@@ -140,7 +140,7 @@ mission "Hai Legacy 1"
 						"total ships" > 1
 				`	(Shoot it!)`
 					goto foolish
-			`	As you try to react, the Hai closest to you firmly grabs your arm and shouts through the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
+			`	As you try to react, the Hai closest to you firmly grabs your arm and shouts through the noise. "If this ship wanted to kill you, <last>, you would already be dead!"`
 			label wait
 			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, one more at ease than the other. "This ship means you no harm."`
 			choice
@@ -150,13 +150,14 @@ mission "Hai Legacy 1"
 			`	The second one replies, "We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
 			`	"This ship is our guarantee that nothing goes wrong, should you attempt something against us. After all, we are still not sure if we can trust you."`
-			`	The two Hai then take you to a nearby cave, showing you another ship. The first one speaks again. "That ship outside is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
+			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks in the walls, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
 			scene "scene/cave scene"
-			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you: should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 10 million credits, including 2 weapons of the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. "These legendary weapons can interfere with nearly any enemy engine system! Worry not, you'll be able to recuperate the cost of this ship with ease by bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
+			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you. Should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of ten million credits - including two weapons belonging to the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. `
+			`	"These legendary weapons can interfere with nearly any engine system! Worry not, you'll be able to recuperate the cost of this ship with ease by assisting us. A load of medical supplies is needed on <destination>, and we lack the time and personnel to bring them ourselves on such short notice.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
 			label choice
 			choice
-				`	"I'll take the... Anomalocaris, was it?"`
+				`	"I will help you."`
 					goto take
 				`	"If you lack crew, who was piloting the ship from the ocean?"`
 					to display
@@ -167,7 +168,7 @@ mission "Hai Legacy 1"
 						not "unfettered: ocean dialog"
 					goto ocean
 				`	"No, thanks. I'm not looking to add another ship to my fleet."`
-			`	The two Hai look disappointed. "A shame. We will probably not meet again. Farewell," one says. They signal the ship from earlier to submerge into the ocean again and walk off along the beach.`
+			`	The two Hai look disappointed. "A shame. We will probably not meet again," one says. "It is best you forget we have met here," says the other. They signal the ship from earlier to submerge into the ocean again and walk off along the beach.`
 				goto "train back"
 			label pilot
 			action
@@ -179,19 +180,19 @@ mission "Hai Legacy 1"
 			action
 				set "unfettered: ocean dialog"
 			`	"We found it there," the first one answers.`
-			`	"It is hard to find a drop of rain in a storm, but the drop of rain may see all," the other one adds.`
+			`	"It is hard to find a drop of rain in a storm, but the drop of rain may see all as it falls," the other one adds.`
 				goto choice
 			label take
 			action
 				give ship "Anomalocaris (Venerable)" "Good Omen"
 					id "hai legacy"
 				fine 10000000
-			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying technology you had no idea was forbidden, and it will not go on your permanent record. These Korath weapons are suspicious-looking indeed."`
+			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying technology you had no idea was forbidden, as these Korath weapons are suspicious indeed. However, it will not go on your permanent record."`
 			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the fine before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
-			`	"Oh, I almost forgot: make sure you return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
+			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
 			choice
 				`	(Go back to the shipyard.)`
-			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of a surprisingly advanced navigation AI, you manage to bring it all the way there effortlessly despite the ship's multiple crew design. When you arrive, however, the AI shuts down without explanation, and you're forced to use a full crew complement.`
+			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of a surprisingly advanced navigation AI, you manage to bring it all the way there effortlessly despite the ship being designed for multiple crew members. When you arrive, however, the AI shuts down without explanation, and you're forced to use a full crew complement.`
 				accept
 			label foolish
 			`	You get your weapon out and proceed to shoot on the ship.`
@@ -199,11 +200,11 @@ mission "Hai Legacy 1"
 				random < 50
 			branch lucky?
 				random < 2
-			`	The shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state.`
-			`	The ship then shoots a warning shot on the ground with its Bullfrog Anti-Missiles, causing a geyser of sand to erupt on you and forcing you to drop your weapon. One of the two Hai approaches you, seemingly disappointed. "You're lucky to still be alive, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
+			`	Your shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even if it is somewhat worn. The ship then shoots back at you, barely missing and causing a geyser of sand to erupt at you and force you to drop your weapon. One of the two Hai then approaches you, seemingly disappointed.` 
+			`	"You're lucky to still be alive, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
 				decline
 			label lucky?
-			`	You manage to land a shot on the ship, although it seems to do nothing to the large spacecraft before you. Then you hear a small explosion. You aren't sure whether the damaged ship's systems failed on their own, or if by some stroke of luck, your shot did something to it.`
+			`	You manage to land a shot, although it seems to do nothing to the large spacecraft before you. Then you hear a small explosion. You aren't sure whether the damaged ship's systems failed on their own, or if by some stroke of luck, your shot did something to it.`
 			`	Unfortunately, you do not get a chance to ponder it, as the ship abruptly explodes, taking you and everyone else on the beach down with it.`
 				die
 			label miss
