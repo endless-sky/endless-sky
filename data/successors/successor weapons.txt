@@ -27,8 +27,7 @@ outfit `"Ojet" Bimodal Coilgun`
 			"start frame" 0
 			"no repeat"
 		sound "bimodal"
-		"hit effect" "seeker impact"
-		"hit effect" "electron impact" 3
+		"hit effect" "bimodal impact"
 		"fire effect" "moonbeam fleck" 4
 		"inaccuracy" 1
 		"velocity" 30
@@ -72,8 +71,7 @@ outfit "Bimodal Coilgun Turret"
 			"start frame" 0
 			"no repeat"
 		sound "bimodal"
-		"hit effect" "seeker impact"
-		"hit effect" "electron impact" 3
+		"hit effect" "bimodal impact"
 		"fire effect" "moonbeam fleck" 4
 		"inaccuracy" 1
 		"velocity" 30
@@ -93,18 +91,32 @@ outfit "Bimodal Coilgun Turret"
 		"submunition" "Bimodal Switch" 3
 	description `Successor warships have traditionally relied on fixed weaponry to deal with their foes, but the High Houses do produce a turreted platform for the "Ojet" Coilgun so that their larger and slower vessels can maintain their combat effectiveness against more maneuverable targets. It mounts two of the weapons side by side, rigged to fire double the amount of shots per burst to keep them in sync with the fixed hardpoints.`
 
+effect "bimodal impact"
+	sprite "effect/bimodal impact"
+		"frame rate" 30
+		"no repeat"
+	lifetime 8
+	"velocity scale" 0.2
+
 outfit "Bimodal Switch"
 	weapon
 		sprite "projectile/bimodal switch"
 			"random start frame"
 			"frame rate" 20
-		"hit effect" "ion rain impact" 3
+		"hit effect" "bimodal switch impact"
 		"inaccuracy" 10
 		"velocity" 30
 		"lifetime" 6
 		"random lifetime" 3
 		"shield damage" 48
 		"hull damage" 20
+
+effect "bimodal switch impact"
+	sprite "effect/bimodal switch impact"
+		"frame rate" 12
+		"no repeat"
+	lifetime 30
+	"velocity scale" 0.02
 
 outfit "Drag Cannon"
 	category "Guns"
