@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DataNode;
+class FormationPattern;
 class Government;
 class Outfit;
 class Phrase;
@@ -87,6 +88,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
+	const FormationPattern *formation = nullptr;
 	WeightedList<Variant> variants;
 	// The cargo ships in this fleet will carry.
 	FleetCargo cargo;

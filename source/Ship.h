@@ -43,6 +43,7 @@ class DataNode;
 class DataWriter;
 class Effect;
 class Flotsam;
+class FormationPattern;
 class Government;
 class Minable;
 class Phrase;
@@ -460,6 +461,8 @@ public:
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 	const std::set<const Flotsam *> &GetTractorFlotsam() const;
+	// Pattern to use when flying in a formation.
+	const FormationPattern *GetFormationPattern() const;
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -473,6 +476,8 @@ public:
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
+	// Pattern to use when flying in a formation (nullptr to clear formation).
+	void SetFormationPattern(const FormationPattern *formation);
 
 	bool CanPickUp(const Flotsam &flotsam) const;
 
@@ -698,6 +703,7 @@ private:
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	std::set<const Flotsam *> tractorFlotsam;
+	const FormationPattern *formationPattern = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

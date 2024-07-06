@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "FireCommand.h"
+#include "FormationPositioner.h"
 #include "concurrent/PartiallyGuarded.h"
 #include "Point.h"
 
@@ -58,9 +59,11 @@ template <class Type>
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
+	void IssueFormationChange(PlayerInfo &player);
 	void IssueShipTarget(const std::shared_ptr<Ship> &target);
 	void IssueAsteroidTarget(const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const Point &target, const System *moveToSystem);
+
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 
@@ -98,9 +101,10 @@ private:
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
-	bool FollowOrders(Ship &ship, Command &command, FireCommand &fireCommand) const;
+	bool FollowOrders(Ship &ship, Command &command, FireCommand &fireCommand);
+	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
-	void MoveEscort(Ship &ship, Command &command) const;
+	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	// Set the ship's target system or planet in order to reach the
@@ -260,8 +264,11 @@ private:
 	PartiallyGuardedMap<const Ship *, int> miningTime;
 	PartiallyGuardedMap<const Ship *, double> appeasementThreshold;
 
-	std::map<const Ship *, int64_t> shipStrength;
+	// Records for formations flying around leadships and other objects.
+	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
 
+	// Records that affect the combat behavior of various governments.
+	std::map<const Ship *, int64_t> shipStrength;
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
