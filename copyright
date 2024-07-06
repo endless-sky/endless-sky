@@ -3543,6 +3543,8 @@ License: public-domain
 
 Files:
  images/effect/successor?flare/*
+ images/effect/bimodal?impact*
+ images/effect/bimodal?switch?impact*
  images/effect/drag?cannon?impact*
  images/effect/void?spark*
  images/hardpoint/bimodal?turret*
