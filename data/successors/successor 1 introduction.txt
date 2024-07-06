@@ -125,7 +125,7 @@ mission "Successors: First Contact 1"
 				`	"What is House Sioeora?"`
 					goto house
 			label language
-			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point."` 
+			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point."`
 			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of language," they continue, "and of the worlds our Predecessors met so long ago. I am one of very few who learned thy tongue, among others, at least as 'twas fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
