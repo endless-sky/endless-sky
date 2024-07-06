@@ -152,7 +152,7 @@ mission "Avgi: First Contact"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1A" 4
+				"Aberrant Latte" 4
 
 	npc save accompany
 		government "Avgi (Twilight Guard)"
@@ -483,25 +483,25 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1A" 4
-				"Twilight Ka'sei 1B" 7
-				"Twilight Ka'sei 1C" 4
+				"Aberrant Latte" 4
+				"Aberrant Chomper" 7
+				"Aberrant Pileup" 4
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1A" 7
-				"Twilight Ka'sei 1B" 4
-				"Twilight Ka'sei 2E" 4
+				"Aberrant Latte" 7
+				"Aberrant Chomper" 4
+				"Aberrant Whiskers" 4
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 2B" 5
-				"Twilight Ka'sei 2D" 3
+				"Aberrant Traincar" 5
+				"Aberrant Mole" 3
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 2F" 3
-				"Twilight Ka'sei 2G (Disable-able)" 2
+				"Aberrant Trip" 3
+				"Aberrant Triplet (Disable-able)" 2
 	on complete
 		conversation
 			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to Napigeo Station. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
@@ -673,8 +673,8 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 2A"
-				"Twilight Ka'sei 2B"
+				"Aberrant Junior"
+				"Aberrant Traincar"
 	npc kill
 		government "Aberrant"
 		personality
@@ -684,8 +684,8 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1D"
-				"Twilight Ka'sei 1C"
+				"Aberrant Hugger"
+				"Aberrant Pileup"
 	npc kill
 		government "Aberrant"
 		personality
@@ -695,8 +695,8 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1E" 2
-				"Twilight Ka'sei 1F"
+				"Aberrant Longfellow" 2
+				"Aberrant Dancer"
 	npc kill
 		government "Aberrant"
 		personality
@@ -706,9 +706,9 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1A"
-				"Twilight Ka'sei 1B" 2
-				"Twilight Ka'sei 1C"
+				"Aberrant Latte"
+				"Aberrant Chomper" 2
+				"Aberrant Pileup"
 
 	on complete
 		conversation
