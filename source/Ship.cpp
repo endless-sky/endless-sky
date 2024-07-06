@@ -224,9 +224,7 @@ namespace {
 // Determine if this bay can hold a ship of this category.
 bool Ship::Bay::CanContain(const std::string &category) const
 {
-	if(bayType)
-		return bayType->Contains(category);
-	return name == category;
+	return bayType ? bayType->Contains(category) : name == category;
 }
 
 

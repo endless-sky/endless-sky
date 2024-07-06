@@ -1104,13 +1104,15 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 
-			auto &bays = ship->Bays();
+			const auto &bays = ship->Bays();
 			totalBays += bays.size();
-			for(auto &bay : bays)
+			for(const auto &bay : bays)
 			{
 				if(bay.bayType)
+				{
 					for(const string &category : bay.bayType->Categories())
 						++bayCount[category];
+				}
 				else
 					++bayCount[bay.name];
 				// The bays should always be empty. But if not, count that ship too.
