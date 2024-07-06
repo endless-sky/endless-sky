@@ -415,7 +415,7 @@ mission "Successor: Delivery Out 2"
 mission "Successor: High Value Delivery Out"
 	job
 	repeat
-	name "High-value shipment to <planet>"
+	name "Valuables to <planet>"
 	description "A courier is needed to transport <cargo> from <origin> to <planet>. You will be paid <payment> on delivery."
 	cargo "Successor High Value" 6 9 .2
 	to offer
