@@ -244,14 +244,17 @@ mission "Successor: Tourist Expedition"
 		attributes "successor"
 		attributes "uninhabited" "tourism" "wealthy"
 		not attributes "crime"
+		distance 3 20
 	stopover
 		attributes "successor"
 		attributes "tourism" "wealthy"
 		not attributes "crime"
+		distance 3 20
 	stopover
 		attributes "successor"
 		attributes "quiet" "tourism" "wealthy"
 		not attributes "crime"
+		distance 3 20
 	on stopover
 		dialog phrase "successor tourists stopover"
 	on visit
@@ -564,7 +567,7 @@ mission "Successor: Seismic Stabilizers"
 	job
 	repeat
 	name "Seismic stabilizers to <planet>"
-	description "A courier is needed for a rush shipment of <tons> of supplies from <origin> to <planet> by <date>. You will be paid <payment> on delivery."
+	description "After an minor earthquake on <planet>, <tons> of seismic stabilizers have been requested for delivery by <date>. You will be paid <payment>."
 	cargo "Seismic Stabilizers" 30 80 .2
 	deadline
 	deadline 2
