@@ -27,10 +27,14 @@ news "high houses scion"
 			"Scion of the High Houses"
 	message
 		word
-			`"I hope thou has't enjoyed thy time amongst our people."`
-			`"The alien! Doth thou have news from far in this endless sky?"`
-			`"Fair traveler, I've heard of thee. How must thy voyage weigh upon thy mind."`
-			`"Welcome to our space, honored alien. A pleasure 'tis to meet thee."`
+			`"`
+		word
+			"I hope thou has't enjoyed thy time amongst our people."
+			"The alien! Doth thou have news from far in this endless sky?"
+			"Fair traveler, I've heard of thee. How must thy voyage weigh upon thy mind."
+			"Welcome to our space, honored alien. A pleasure 'tis to meet thee."
+		word
+			`"`
 
 
 news "high houses official"
@@ -45,23 +49,31 @@ news "high houses official"
 			"High Houses officer"
 	message
 		word
-			`"The Houses welcome thee as 'guest' among our people; `
-			`"Please remain in concord with our people; `
-			`"Informed, I am of thy recent arrival; `
-			`"Can I provide assistance, honored traveler? `
-			`"Our noble house does greet thee full of joy; `
+			`"`
 		word
-			`I am at thy service if 'tis needed."`
-			`Today's been rather busy, please speak quickly."`
+			"The Houses welcome thee as 'guest' among our people; "
+			"Please remain in concord with our people; "
+			"Informed, I am, of thy recent arrival; "
+			"Can I provide assistance, honored traveler? "
+			"Our noble house does greet thee full of joy; "
+		word
+			"I am at thy service if 'tis needed."
+			"Today's been rather busy, please speak quickly."
+		word
+			`"`
 	message
 		word
-			`"Please submit to scans if 'tis requested`
-			`"Taxes on transactions are collected`
-			`"Transactions in this area are surveilled`
-			`"If thou see'st something suspect, report't promptly`
+			`"`
 		word
-			`; port rules and regulations should be posted."`
-			` in accordance with our standard port procedure."`
+			"Please submit to scans if 'tis requested"
+			"Taxes on transactions are collected"
+			"Transactions in this area are surveilled"
+			"If thou see'st something suspect, report't promptly"
+		word
+			"; port rules and regulations should be posted."
+			" in accordance with our standard port procedure."
+		word
+			`"`
 
 
 news "successor student"
@@ -76,22 +88,28 @@ news "successor student"
 			"Successor student"
 	message
 		word
-			`"Exams, I think, shall never know their end, `
-			`"Hath I forgot my geographic terms? `
-			`"Hath I forgot my chemical reagents? `
-			`"Hyperspace Mechanics is a bore, `
-			`"Predecessors His'try is a drag, `
-			`"Plasma Flow Dynamics is a bore, `
-			`"Particle Kinetics is a bore, `
+			`"`
 		word
-			`I know not sleep nor food nor meager rest`
-			`I wish that I could learn while I'm asleep`
-			`I don't know how I even stay awake`
-			`I wish I knew some better study tricks`
-			`but I know that I'm the best one in my class`
+			"Exams, I think, shall never know their end,"
+			"Hath I forgot my geographic terms?"
+			"Hath I forgot my chemical reagents?"
+			"Hyperspace Mechanics is a bore,"
+			"Predecessors His'try is a drag,"
+			"Plasma Flow Dynamics is a bore,"
+			"Particle Kinetics is a bore,"
 		word
-			`."`
-			`!"`
+			" "
+		word
+			"I know not sleep nor food nor meager rest"
+			"I wish that I could learn while I'm asleep"
+			"I don't know how I even stay awake"
+			"I wish I knew some better study tricks"
+			"but I know that I'm the best one in my class"
+		word
+			"."
+			"!"
+		word
+			`"`
 
 
 news "successor merchant"
@@ -105,18 +123,24 @@ news "successor merchant"
 			"Independent merchant"
 	message
 		word
-			`"Interested in `
+			`"`
+		word
+			"Interested in "
 		phrase
 			"successor commodities (2-syllable)"
 		word
-			`, noble traveler?"`
-			`, canny buyer?"`
-			`, noble captain?"`
-			`, clever buyer?"`
-			`, newest friend?"`
-			`, thoughtful buyer?"`
-			`, thoughtful captain?"`
+			", noble traveler?"
+			", canny buyer?"
+			", noble captain?"
+			", clever buyer?"
+			", newest friend?"
+			", thoughtful buyer?"
+			", thoughtful captain?"
+		word
+			`"`
 	message
+		word
+			`"`
 		word
 			"I miss the days when I had been a "
 			"I miss the times when I had been a "
@@ -136,6 +160,8 @@ news "successor merchant"
 			"it's selling items that's for me."
 			"my family needed me return."
 			"possessed of talent I was not."
+		word
+			`"`
 	message
 		word
 			"A "
@@ -177,12 +203,12 @@ news "high houses propaganda"
 			"High Houses broadcast"
 	message
 		word
-			`An advertisement shows a Successor warship performing a variety of deftly-executed maneuvers before encouraging the viewer to enlist in the armed forces of one of the High Houses.`
-			`An advertisement plays showing a group of Successors standing close together against a factory backdrop, their skins all tinted a happy green. It is followed by a voiceover noting that wages have been recently increased.`
-			`A short video plays showing the construction of a new spaceport on the surface of a prospering Successor planet. Several warships of the High Houses painted in ceremonial livery pass across the screen, showing clearly who is to be thanked.`
+			"An advertisement shows a Successor warship performing a variety of deftly-executed maneuvers before encouraging the viewer to enlist in the armed forces of one of the High Houses."
+			"An advertisement plays showing a group of Successors standing close together against a factory backdrop, their skins all tinted a happy green. It is followed by a voiceover noting that wages have been recently increased."
+			"A short video plays showing the construction of a new spaceport on the surface of a prospering Successor planet. Several warships of the High Houses painted in ceremonial livery pass across the screen, showing clearly who is to be thanked."
 			`A proud-looking Successor naval officer stands before an imposing-looking warship: "Enlist!" the caption reads. "See the stars today!"`
 			`Several short vignettes play: a group of Successors unearthing ruins, the inside of a laboratory, a calm pastoral scene. A voiceover speaks: "Uncovering our heritage; bettering our lives." Meticulously-dressed officials of the High Houses are present in each situation, presented as supportive overseers.`
-			`A advertisement plays showing the sleek lines of a Successor warship, its polished armor gleaming in the sunlight. It goes on for several minutes, showing the vessel from numerous angles while a sweeping soundtrack plays.`
+			"A advertisement plays showing the sleek lines of a Successor warship, its polished armor gleaming in the sunlight. It goes on for several minutes, showing the vessel from numerous angles while a sweeping soundtrack plays."
 
 news "successor advertisements"
 	to show
@@ -195,18 +221,18 @@ news "successor advertisements"
 			"Advertisement"
 	message
 		word
-			`A bowl of a stringy kelp-like food dances around a screen while various seasonings are applied to it. After about thirty seconds, a Successor is shown slurping some of the strands, and their skin turns a happy pink.`
-			`A cluster of small recreational sailing ships are shown on a pristine lake at sunset, their Successor crew either manning them or splashing happily in the water. A caption at the bottom encourages the viewer to purchase their own.`
-			`An advertisement plays for the Successor Pulse Laser: it is shown being constructed in a clean, bright factory, installed on a ship, and extracting minerals from asteroids. It is never shown in a combat situation.`
-			`An advertisement plays showing a variety of attractive and expensive-looking jewellery, made of gold, silver, and other stranger metals which you cannot recognize. A variety of models display it wrapped around their arms or other parts of their body, gently undulating as the camera moves.`
-			`A display shows an advertisement for one of the Successor universities, showing elegant, sculptural buildings emerging from the ground under a rain-soaked sky.`
-			`An field of large, floral plants are shown growing long strings of gleaming metal which are quickly harvested by agricultural robots.`
-			`A series of images displaying several models flash one after another so quickly that it is hard to tell what is actually being advertised.`
-			`A short video clip is shown advertising a performance in a local concert hall. The stage is divided into two sections: one is underwater and the other is dry.`
-			`Some sort of interactive game that you can't make sense of captivates the attention of a group of young Successors.`
-			`An eye covering vaguely resembling a contact lens is shown being applied to the eyes of several models, changing their color and shape when applied.`
-			`A shipbuilding organization advertises a members' discount on Kvelqde shuttles. They make sure to note that their operation is supported by one of the High Houses.`
-			`An independent pilot briefly advertises their courier services in a pre-recorded message, offering guaranteed fastest-possible-delivery on packages under ten tons.`
+			"A bowl of a stringy kelp-like food dances around a screen while various seasonings are applied to it. After about thirty seconds, a Successor is shown slurping some of the strands, and their skin turns a happy pink."
+			"A cluster of small recreational sailing ships are shown on a pristine lake at sunset, their Successor crew either manning them or splashing happily in the water. A caption at the bottom encourages the viewer to purchase their own."
+			"An advertisement plays for the Successor Pulse Laser: it is shown being constructed in a clean, bright factory, installed on a ship, and extracting minerals from asteroids. It is never shown in a combat situation."
+			"An advertisement plays showing a variety of attractive and expensive-looking jewellery, made of gold, silver, and other stranger metals which you cannot recognize. A variety of models display it wrapped around their arms or other parts of their body, gently undulating as the camera moves."
+			"A display shows an advertisement for one of the Successor universities, showing elegant, sculptural buildings emerging from the ground under a rain-soaked sky."
+			"An field of large, floral plants are shown growing long strings of gleaming metal which are quickly harvested by agricultural robots."
+			"A series of images displaying several models flash one after another so quickly that it is hard to tell what is actually being advertised."
+			"A short video clip is shown advertising a performance in a local concert hall. The stage is divided into two sections: one is underwater and the other is dry."
+			"Some sort of interactive game that you can't make sense of captivates the attention of a group of young Successors."
+			"An eye covering vaguely resembling a contact lens is shown being applied to the eyes of several models, changing their color and shape when applied."
+			"A shipbuilding organization advertises a members' discount on Kvelqde shuttles. They make sure to note that their operation is supported by one of the High Houses."
+			"An independent pilot briefly advertises their courier services in a pre-recorded message, offering guaranteed fastest-possible-delivery on packages under ten tons."
 
 
 news "local news quiet"
@@ -221,14 +247,14 @@ news "local news quiet"
 			"Local News Report"
 	message
 		word
-			`A broadcast quietly lists out the details of a recent weather control unit failure, which resulted in a brief evacuation but no injuries. A photo shows a few dozen Successors gathered together along a shoreline while several ships swarm in the distance.`
-			`A muted advertisement plays, showing architectural renders of several small underwater homes with walls that change color and texture from simulated wood, to simulated shell, to even a dark, amorphous metal resembling the hull of a starship.`
-			`A short broadcast discusses a recent thunderstorm, showing several colorful pictures of lightning and rain taken by locals during the event.`
-			`A text-only broadcast discusses a recent touch-based art performance. The script shimmers as you move your head around, the translation device doing its best to transcribe it.`
-			`A broadcast shows a brief interview with a local florist, who shows off a collection of their living-metal plants.`
-			`A formal document is shown with a column of text to the side of it. This describes it as a new trade ordinance, and lists its effects on independent merchants.`
-			`A brief program on erosion control and restoration plays for a duration.`
-			`The program is briefly interrupted to display a general-use map for the spaceport.`
+			"A broadcast quietly lists out the details of a recent weather control unit failure, which resulted in a brief evacuation but no injuries. A photo shows a few dozen Successors gathered together along a shoreline while several ships swarm in the distance."
+			"A muted advertisement plays, showing architectural renders of several small underwater homes with walls that change color and texture from simulated wood, to simulated shell, to even a dark, amorphous metal resembling the hull of a starship."
+			"A short broadcast discusses a recent thunderstorm, showing several colorful pictures of lightning and rain taken by locals during the event."
+			"A text-only broadcast discusses a recent touch-based art performance. The script shimmers as you move your head around, the translation device doing its best to transcribe it."
+			"A broadcast shows a brief interview with a local florist, who shows off a collection of their living-metal plants."
+			"A formal document is shown with a column of text to the side of it. This describes it as a new trade ordinance, and lists its effects on independent merchants."
+			"A brief program on erosion control and restoration plays for a duration."
+			"The program is briefly interrupted to display a general-use map for the spaceport."
 
 
 news "station report"
@@ -245,7 +271,7 @@ news "station report"
 			"Public Announcement System"
 	message
 		word
-			`A public announcement clarifies that an inefficiency in the station's atmosphere processing units was resolved overnight.`
-			`A schedule listing departure and arrival times for planetary shuttles is updated to account for a planetside delay.`
-			`A graphic displays an interactive map of the station for visitors to access.`
-			`A public announcement encourages residents to conserve water.`
+			"A public announcement clarifies that an inefficiency in the station's atmosphere processing units was resolved overnight."
+			"A schedule listing departure and arrival times for planetary shuttles is updated to account for a planetside delay."
+			"A graphic displays an interactive map of the station for visitors to access."
+			"A public announcement encourages residents to conserve water."

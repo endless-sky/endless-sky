@@ -125,7 +125,7 @@ mission "Successors: First Contact 1"
 				`	"What is House Sioeora?"`
 					goto house
 			label language
-			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture---noble in reason, infinite in faculty---as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point.`
+			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point.`
 			`	I am a scholar of language, and of the worlds our Predecessors met so long ago. I am one of very few who learned thy tongue, among others, at least as 'twas fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
@@ -169,7 +169,7 @@ mission "Successors: First Contact 1"
 				`	"What is House Sioeora?"`
 					goto house
 			label house
-			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose estate thou sees around thee. There are many such within the broader realm; the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its purpose. 'Twere thee apprehended by the arms of another - " Sieasej gestures towards an interceptor landed on another pad " - thou surely would have languished without recognition as a creature from so distant in our past."`
+			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose estate thou sees around thee. There are many such within the broader realm; the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its purpose. 'Twere thee apprehended by the arms of another - " Sieasej gestures towards an interceptor landed on another pad "- thou surely would have languished without recognition as a creature from so distant in our past."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow

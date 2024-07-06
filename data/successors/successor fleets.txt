@@ -45,7 +45,7 @@ fleet "Medium Successor Freight"
 		"Ojde"
 		"Myaede" 2
 		"Stolsaqra" 2
-	variant 1
+	variant
 		"Ojde" 2
 		"Myaede" 3
 		"Stolsaqra" 4
@@ -137,7 +137,7 @@ fleet "People's Houses"
 		"Stolsaqra"
 	variant 2
 		"Myaede (Violent)"
-	variant 1
+	variant
 		"Myaede (Violent)"
 		"Kvelqde-Khora" 2
 
@@ -265,9 +265,9 @@ fleet "Large New Houses"
 		"Aaulqra" 3
 		"Veusade" 2
 		"Vujlet" 4
-	variant 1
+	variant
 		"Vujlet" 5
-	variant 1
+	variant
 		"Seiitej" 3
 
 fleet "New Houses Surveillance"
@@ -281,7 +281,7 @@ fleet "New Houses Surveillance"
 		"Stolsaqra (Military)" 2
 	variant 2
 		"Vujlet (Surveillance)"
-	variant 1
+	variant
 		"Veusade (Surveillance)"
 
 fleet "Kaatrij Home"

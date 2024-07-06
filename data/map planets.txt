@@ -3162,6 +3162,7 @@ planet Mosaa-Oa-Vyret
 		to display
 			has "known to the successors"
 	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
+		to display
 			has "known to the successors"
 	government Successor
 	bribe 0

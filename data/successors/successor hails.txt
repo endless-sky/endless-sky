@@ -95,12 +95,12 @@ phrase "successor friendly hail" # Conspiracy hails
 		"It's the Drak who caused the end of the old empire."
 		"It's the Quarg who caused the end of the old empire."
 		"It's the Hai who caused the end of the old empire."
-		"It's the Korath caused the end of the old empire."
+		"It's the Korath who caused the end of the old empire."
 		"The High Houses by themselves destroyed the empire."
 		"The best trade routes are ones not prone to scanning." 5
 		"The best trade routes are those that make thy money." 5
 		"The best trade routes are hidden from thy sensors." 2
-		"There are nightmares in the void the Houses fear."
+		"There are nightmares in the void that the Houses fear."
 		"The empty systems here are prone to strangeness."
 
 
