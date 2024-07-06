@@ -5453,7 +5453,7 @@ planet Vyraa-Viir-Kella
 	description `This planet has a clear, oxygen-rich atmosphere, and a cool and watery surface with many large lakes. There appear to be no sites of permanent habitation, though a couple of landing pads and associated temporary shelters have been built on islands in the southern hemisphere.`
 		to display
 			not "known to the successors"
-	description `This planet is being surveyed to establish its potential as a new settlement location for the New Houses. Although its gravity is somewhat high for Successor tastes, it has a clear, oxygen-rich atmosphere, and a cool and watery surface. The first few settlers are scheduled to arrive here in a few years, once the planetary surveys are complete and have declared it safe and geologically stable.`
+	description `This planet is being surveyed to establish its potential as a new settlement location for the New Houses. Although its gravity is somewhat high for Successor tastes, it has a clear, oxygen-rich atmosphere, and a cool and watery surface. The first groups of settlers are scheduled to arrive here in a few years, once the planetary surveys are complete and have declared it safe and geologically stable.`
 		to display
 			has "known to the successors"
 	government Uninhabited

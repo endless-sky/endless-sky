@@ -396,13 +396,13 @@ mission "Successors: Stargazing 1"
 		conversation
 			`Nnesa and Jaasora have been simply enthralled on the journey here; the inseparable pair has spent seemingly every waking moment peering out the <ship>'s windows to watch the stars stream past. Upon arrival in the Maspa-Mavra system, however, their excitement dwindled to what you would call a subdued awe at the sight of the entire galaxy splayed out in the sky.`
 			`	Khosa-Kella-Oa itself is cold, dark and rocky, for all purposes functionally identical to any of the other innumerable uninhabited airless worlds in the galaxy. Your passengers seem pleased with it, though; Nnesa remarks that the local star "is so dim that there's hardly any glare!" and Jaasora energetically agrees. They activate their cart of folded equipment within the <ship>'s cargo bay, which slowly inflates and unfolds into something halfway between a tent and a repulsor lift. It skids over the floor like melting ice, gently bumping the inside walls a couple times before Jaasora manages to quiet its movement.`
-			`	"Our thanks again, captain, for transporting us," says Jaasora. They load a bundle of telescopes into the tent.`
+			`	"Our thanks again, captain, for transporting us," says Jaasora as they load a bundle of telescopes inside.`
 			`	"Oh! The planet's perfect; no air to muddy the view nor other ships to cloud the skies---"`
 			`	"We should be back in a couple hours. Please wait for us."`
 			`	The pair depart in their gliding tent, which manifests several transparent spots on its surface as it exits and as a bevy of telescopes are prodded around inside.`
 			choice
 				`	(Wait.)`
-			`	Nnesa and Jaasora return after a couple of hours, as promised, their tent gliding back into the <ship>'s cargo bay as smoothly as it exited. The pair unload several notebooks of photos and drawings and chatter excitedly about the various constellations and stellar phenomena that they observed. Nnesa is particularly excited, hurriedly extracting from the interleaved mess of papers a surprisingly accurate and well-constructed star map, which they press up in your face with pride. You cannot help but notice that several of the drawings in the stack are of Jaasora rather than of any stellar phenomena.`
+			`	Nnesa and Jaasora return after a couple of hours as promised, their strange tent gliding back into the <ship>'s cargo bay as smoothly as it exited. The pair unload several notebooks of photos and drawings and chatter excitedly about the various constellations and stellar phenomena that they observed. Nnesa is particularly excited, hurriedly extracting from the interleaved mess of papers a surprisingly accurate and well-constructed star map, which they press up in your face with pride. You cannot help but notice that several of the drawings in the stack are of Jaasora rather than of any stellar phenomena.`
 			`	"From where on the map dost thou hail, captain?" Nnesa roughly gestures to an area of their map that you recognize as human space.`
 			choice
 				`	(Indicate Rutilicus.)`
