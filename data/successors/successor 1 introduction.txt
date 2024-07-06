@@ -625,7 +625,7 @@ mission "Successors: First Contact 3"
 			choice
 				`	"Yes, I have."`
 				`	"Of course."`
-			`	Riijaaora wriggles their body in what might be an expression of joy before they and the other scions splay their arms before you. "Thou hast done this house great service, captain," they say. "We would be proud to call thee 'ally,' and reward thee for thy usefulness." One of the military officers standing beside the scions moves towards you and gently takes the caged animal from your hands. It chirps quietly as you hand it over and the officer takes it out of the room.`
+			`	Riijaaora wriggles their body in what might be an expression of joy before they and the other scions splay their arms before you. "Thou hast done this House great service, captain," they say. "We would be proud to call thee 'ally,' and reward thee for thy usefulness." One of the military officers standing beside the scions moves towards you and gently takes the caged animal from your hands. It chirps quietly as you hand it over and the officer takes it out of the room.`
 			`	Riijaaora gestures to a small wooden pin affixed to the outer layer of their clothing. "We keep a number of these ancient translation devices, but very few for thine own tongue. 'Tis an art piece, commissioned many years past for a performance of thy own Shakespeare's Tempest so that our noble Predecessors could experience the work in its original form. 'Tis thy promised gift."`
 			`	Riijaaora plucks the device from their outfit and offers it to you.`
 			choice
@@ -666,7 +666,7 @@ mission "Successors: Kaatrij First Contact 1"
 	landing
 	clearance
 	infiltrating
-	name "Go to Raaqa-Puan-Uuoru to meet with House Kaatrij"
+	name "Summons to <destination>"
 	description "A Successor data-sphere left in your ship appears to be issuing a summons from a House Kaatrij to <destination>."
 	destination "Raaqa-Puan-Uuoru"
 	to offer
@@ -681,10 +681,10 @@ mission "Successors: Kaatrij First Contact 1"
 				has "offered: Successors: Kaatrij Monoglot Prompt"
 			branch hai
 				has "language: Hai"
-			`Shortly after you set the <ship> down on <source>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize belongs to one of the species of the Coalition. After running the text through the translation box you acquired from the <coalition ally>, you are able to decode the message:`
+			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize belongs to one of the species of the Coalition. After running the text through the translation box you acquired from the <coalition ally>, you are able to decode the message:`
 				goto message-coalition
 			label hai
-			`Shortly after you set the <ship> down on <source>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize is that of the Hai. After running the text through your ship's Hai translator, you are able to decode the message:`
+			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize is that of the Hai. After running the text through your ship's Hai translator, you are able to decode the message:`
 				goto message-hai
 
 			label was-monoglot
@@ -737,14 +737,14 @@ mission "Successors: Kaatrij First Contact 1"
 			choice
 				`	"That's right."`
 				`	"Who are you?"`
-			`	"Hmm. Good. I am an envoy of the noble scions of House Kaatrij. I attest this myself as Saajret, of Somber Sejra." Saajret's skin erups with green splashes as they say this. "Thy patience has been much appreciated." They splay their arms in the same manner as when you were first greeted by the Successors, and the two others behind them do so as well. "Ah," they continue, "but thou surely must be curious as to why we've called thee here. Thy actions, knowing or not, have benefitted this noble house, and we would be craven fools to fail to recognize that. Prithee understand thee, Raaqa-Uur-Kaav was our world, not Sioeora's. So too, the Kijran were never theirs to hold or grasp for."`
+			`	"Hmm. Good. I am an envoy of the noble scions of House Kaatrij. I attest this myself as Saajret, of Somber Sejra." Saajret's skin erups with green splashes as they say this. "Thy patience has been much appreciated." They splay their arms in the same manner as when you were first greeted by the Successors, and the two others behind them do so as well. "Ah," they continue, "but thou surely must be curious as to why we've called thee here. Thy actions, knowing or not, have benefitted this noble House, and we would be craven fools to fail to recognize that. Prithee understand thee, Raaqa-Uur-Kaav was our world, not Sioeora's. So too, the Kijran were never theirs to hold or grasp for."`
 			choice
 				`	"So the Kijran belong to you?"`
 					goto kijran
 				`	"How is it that you can communicate with me?"`
 					goto communicate
 			label kijran
-			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran - Kiitaa and Khora alike - are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? It was the old House Kaatrij that strengthened their genomes against decay. That we were - had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another house to subject these children of ours to their whims.`
+			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran - Kiitaa and Khora alike - are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? 'Twas the old House Kaatrij that strengthened their genomes against decay. That we were - had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another House to subject these children of ours to their whims.`
 			choice
 				`	"How is it that you can communicate with me?`
 					to display
@@ -763,14 +763,15 @@ mission "Successors: Kaatrij First Contact 1"
 						has "language: Successor"
 					goto saajret
 			label communicate
-			`	"Ah, there is that matter. Much as the High Houses might prefer to believe that they - we act all within the veil of secrecy, we are all too intertwined to keep our activities hidden for long. The details of thy arrangement with Sioeora and its consequences were apparent to us soon after its conclusion, as will the details of this meeting eventually be apparent to the other houses in time." Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own tongue: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thy own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the words of another."`
+			`	"Ah, there is that matter. Much as the High Houses might prefer to believe that they - we act all within the veil of secrecy, we are all too intertwined to keep our activities hidden for long. The details of thy arrangement with Sioeora and its consequences were apparent to us soon after its conclusion, as will the details of this meeting eventually be apparent to the other Houses in time."`
+			`	Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own tongue: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thy own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the words of another."`
 			`	Saajret plucks the device from their outfit and offers it to you.`
 			choice
 				`	(Take it).`
 			action
 				set "language: Successor"
 			`	The device is made of carved wood, or at least something that appears like it, depicting in well-varnished grain a sailing ship washed against rocks. As you pin it on your jacket, the ship begins to gently rock in place.`
-			`	"This is a gift from House Kaatrij to thee, Captain," Saajret says. "Thou hast rendered service to this house, and in return this house shall render service to thee. So long as thou wear'st it, it shall translate our words to thee and thine to us. Pray thee treat it kindly, for while durable, it is something which we cannot replace if 'tis damaged." Saajret splays their arms again as if to emphasize the end of the statement.`
+			`	"This is a gift from House Kaatrij to thee, Captain," Saajret says. "Thou hast rendered service to this House, and in return this House shall render service to thee. So long as thou wear'st it, it shall translate our words to thee and thine to us. Pray thee treat it kindly, for while durable, it is something which we cannot replace if 'tis damaged." Saajret splays their arms again as if to emphasize the end of the statement.`
 			choice
 				`	"What is next?"`
 					goto end
@@ -781,7 +782,7 @@ mission "Successors: Kaatrij First Contact 1"
 				`	"You mentioned earlier that the Kijran 'belong' to you?"`
 					goto kijran
 			label sioeora
-			`	Saajret hums in a way you can't quite place. "Sioeora will no doubt be upset that one of the New Houses now patronizes the alien that they first met, but they are forced enough to swim in the water they salted. Thou shouldn'st fear any ire from them beyond their politicking, and that is something we are accustomed to handling."`
+			`	Saajret hums in a way you can't quite place. "Sioeora will no doubt be upset that one of the New Houses now patronizes the alien that they first met, but they are forced enough to swim in the water that they themselves have salted. Thou shouldn'st fear any ire from them beyond their politicking, and that is something we are accustomed to handling."`
 			choice
 				`	"What is next?"`
 					goto end
@@ -790,7 +791,7 @@ mission "Successors: Kaatrij First Contact 1"
 				`	"You mentioned earlier that the Kijran 'belong' to you?"`
 					goto kijran
 			label saajret
-			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij and member of the somber noble lineage of House Sejra, which no longer stands as any but a banner under Kaatrij. Ah. Not all our houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more. Kaatrij absorbed the citizens of some into itself; it is a patchwork that reminds us that we are all patchworks, metamorphic and composed. My roles are many, but first among them, I am an archivist of sorts. I am to preserve the old technology that we still have and to use it, when necessary, for the best possible purposes."`
+			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij and member of the somber noble lineage of House Sejra, which no longer stands as any but a banner under Kaatrij. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more. Kaatrij absorbed the citizens of some into itself; 'tis a patchwork that reminds us that we are all patchworks, metamorphic and composed. My roles are many, but first among them, I am an archivist, of sorts. I am to preserve the old technology that we still have and to use it, when necessary, for the best possible purposes."`
 			choice
 				`	"What is next?"`
 					goto end
@@ -802,7 +803,8 @@ mission "Successors: Kaatrij First Contact 1"
 			`	Deciding that you've waited long enough, you activate the <ship>'s repulsor thrusters and return to orbit.`
 				flee
 			label end
-			`	Saajret produces a data-sphere and hands that to you as well. "Within this," they say, "is historical data for most of the worlds in our space. Combined with thy newfound ability of our language, thou should'st find the navigation of our worlds and cities more revealing and fruitful. Officially, thou shalt be a patronized guest of House Kaatrij and shall proceed under our protection and with our blessings. Thou may'st be able to purchase a certain number of petty technologies without frustration, but most require some vetting that, as an alien, may take some time and effort to complete. Should'st the prospect interest thee, assisting with jobs and other tasks would doubtless benefit in proving thyself an ally to our people." Saajret pauses to adjust their clothing once again. "I bid thee farewell, Captain <first> <last>. Kaatrij will continue to apprise ourselves of your actions. I hope that next we speak we will be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissapated and the first glimmers of sunlight are creeping over the distant hills.`
+			`	Saajret produces a data-sphere and hands that to you as well. "Within this," they say, "is historical data for most of the worlds in our space. Combined with thy newfound ability of our language, thou should'st find the navigation of our worlds and cities more revealing and fruitful. Officially, thou shalt be a patronized guest of House Kaatrij and shall proceed under our protection and with our blessings. Thou may'st be able to purchase a certain number of petty technologies without frustration, but most require some vetting that, as an alien, may take some time and effort to complete. Should'st the prospect interest thee, assisting with jobs and other tasks would doubtless benefit in proving thyself an ally to our people."`
+			`	Saajret pauses to adjust their clothing once again. "I bid thee now farewell, Captain <first> <last>. Kaatrij will continue to apprise ourselves of thine actions. I hope that next we speak we will be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissapated and the first glimmers of sunlight are creeping over the distant hills.`
 			action
 				log "People" "Saajret, of Somber Sejra" `Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society.`
 				set "known to the successors"
@@ -826,7 +828,7 @@ mission "Successors: Kaatrij Monoglot Prompt"
 		random < 30
 	on offer
 		conversation
-			`Shortly after you set the <ship> down on <source>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
+			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
 			decline
 
 substitutions
