@@ -31,7 +31,7 @@
         "sdl2",
         {
           "name": "tbb",
-          "platform": "linux"
+          "platform": "!windows"
         }
       ]
     },
