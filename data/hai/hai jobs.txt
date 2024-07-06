@@ -2099,4 +2099,3 @@ mission "Superstitious Hai [12]"
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "generic passenger dropoff payment"
-
