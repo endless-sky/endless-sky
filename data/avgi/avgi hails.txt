@@ -463,8 +463,8 @@ phrase "dissonance warnings"
 		"tax collectors"
 		"taxes"
 		"war economy"
-    word
-        "."
+	word
+		"."
 
 phrase "avgi complaints"
 	word
