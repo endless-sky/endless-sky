@@ -1781,10 +1781,11 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
 		// Transfer some energy, if needed.
-		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200)
+		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
 		{
 			helped = true;
-			TransferEnergy(max(200., victim->Attributes().Get("energy capacity") * 0.2), victim.get());
+			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
+			TransferEnergy(max(200., toGive), victim.get());
 		}
 		if(helped)
 		{
@@ -2537,7 +2538,7 @@ bool Ship::CanRefuel(const Ship &other) const
 
 bool Ship::CanGiveEnergy(const Ship &other) const
 {
-	double toGive = max(200., other.attributes.Get("energy capacity") * 0.2);
+	double toGive = min(other.attributes.Get("energy capacity"), max(200., other.attributes.Get("energy capacity") * 0.2));
 	return energy >= 2 * toGive;
 }
 
