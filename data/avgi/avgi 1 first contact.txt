@@ -618,7 +618,7 @@ mission "Avgi: Scout Rescue"
 			choice
 				`	"There's no time for that. I'm here to rescue you."`
 					goto serious
-				`	"I'm a space alien here in my alien space ship here to rescue you."`
+				`	"I'm a space alien here in my alien spaceship here to rescue you."`
 			`	"Amusement. Very well, I suppose we have little choice but to accept your help, opportune jester. As you can see, the Albedo is in something of a predicament."`
 				goto next
 			label serious

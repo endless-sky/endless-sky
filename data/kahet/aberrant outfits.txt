@@ -44,6 +44,7 @@ outfit "Aberrant Spiker"
 		"drag" .09
 		"turn" 3
 		"homing" 3
+		"optical tracking" 0.8
 		"hit force" 300
 		"hull damage" 1000
 		"shield damage" 1000
