@@ -3589,10 +3589,7 @@ Files:
  images/outfit/small?successor?shield*
  images/outfit/small?successor?steering*
  images/outfit/small?successor?thruster*
- images/outfit/successor?armor?heavy*
- images/outfit/successor?armor?regen*
- images/outfit/successor?armor?resilient*
- images/outfit/successor?armor?stealth*
+ images/outfit/successor?armor*
  images/outfit/successor?cooling*
  images/outfit/successor?engines?tiny*
  images/outfit/successor?license*

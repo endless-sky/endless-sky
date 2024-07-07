@@ -496,7 +496,7 @@ outfit "Multimodal Armor: Heavy"
 
 outfit "Multimodal Armor: Keystone"
 	category "Systems"
-	thumbnail "outfit/successor armor stealth"
+	thumbnail "outfit/successor armor keystone"
 	cost 10000000
 	"quantum keystone" 1
 	"scan interference" 3
