@@ -337,7 +337,7 @@ mission "Gegno Suspicions"
 	to offer
 		"gegno: encounters" >= 3
 		"gegno: encounters" < 6
-		not "Gegno Apprehension: offered"
+		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
