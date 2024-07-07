@@ -1077,7 +1077,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 {
 	// The total number of bays in the active fleet.
-	int totalBays = 0;
+	size_t totalBays = 0;
 	// The total number of each category of ship that can be carried by the fleet.
 	auto bayCount = map<string, size_t>{};
 	// Classification of the present ships by category. Parked ships are ignored.
