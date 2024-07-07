@@ -128,6 +128,50 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 		CHECK( store.Get({RESISTANCE, SLOWING, HEAT}) == 40. );
 	}
 }
+
+	TEST_CASE( "AttributeStore::Save", "[AttributeStore][Save]" ) {
+		AttributeStore store;
+		DataNode node = AsDataNode("parent\n"
+								   "	attribute 1\n"
+								   "	thrust 100\n"
+								   "		energy 20\n"
+								   "		heat 10\n"
+								   "	turn 500\n"
+								   "		shields 100\n"
+								   "	\"scramble resistance\" 100\n"
+								   "		energy 20\n"
+								   "	\"other attribute\" 1\n"
+								   "	\"another attribute\" 0\n"
+								   "	\"shield generation\" 30\n"
+								   "	\"shield energy\" 50\n"
+								   "	\"slowing resistance\" 30\n"
+								   "		heat 40\n"
+								   "		energy 20");
+		for(const DataNode &child : node)
+			store.Load(child);
+		DataWriter writer;
+		store.Save(writer);
+		SECTION( "Check saved data" ) {
+			std::string data = writer.SaveToString();
+			std::string expected =
+R"(attribute 1
+"other attribute" 1
+"shield generation" 30
+	energy 50
+thrust 100
+	energy 20
+	heat 10
+turn 500
+	shields 100
+"scramble resistance" 100
+	energy 20
+"slowing resistance" 30
+	energy 20
+	heat 40
+)";
+			CHECK( data == expected );
+		}
+	}
 // #endregion unit tests
 
 
