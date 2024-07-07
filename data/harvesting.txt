@@ -451,7 +451,7 @@ minable "large droplet"
 	explode puff
 
 outfit "Boiled Voidfish"
-	category Minerals
+	category "Minerals"
 	plural "Boiled Fish"
 	cost 2400
 	thumbnail "outfit/unknown"
@@ -472,7 +472,7 @@ minable "integral tree"
 	explode puff
 
 outfit "Integral Wood"
-	category Minerals
+	category "Minerals"
 	plural "Integral Wood"
 	cost 12000
 	thumbnail "outfit/unknown"

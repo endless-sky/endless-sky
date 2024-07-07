@@ -167,7 +167,7 @@ mission "Avgi: First Contact"
 		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi."`
 
 	on fail
-		dialog `The alien ship has been destroyed. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `The alien ship has been destroyed. If you want to complete the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
 	on visit
 		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to to properly introduce you.`
@@ -206,7 +206,7 @@ mission "Avgi: First Contact"
 				`	"Will you tell me about your civilization?"`
 
 			`	"Reassurance. All of your questions will be answered in time, Captain <last>. Please, now follow."`
-			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. You exit through a ramp set in the floor, sloping downwards, then follow a long passageway that seems to perpetually curve upwards. You're reminded of older space stations, ones that relied on spin gravity before gravity plating became commonplace.`
+			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. After exiting through a downward sloping ramp set in the floor, you then follow a long passageway that seems to perpetually curve upwards. You're reminded of older space stations, ones that relied on spin gravity before gravity plating became commonplace.`
 			`	Eventually, after a number of turns and descents, you pass through an open archway into some kind of conference room. Large and circular, with a high ceiling, it is occupied by a trio of multicolored dragonfly aliens, each perched on a metal ring running around a circular table.`
 			choice
 				`	"Hello."`
@@ -341,6 +341,7 @@ mission "Avgi: Defend Ensemble 1"
 			`	The man blinks in surprise, then extends a hand, which you shake. "So, another one of us here in Fairyland. I don't know if I should be glad to see another friendly face, or feel bad that another soul is stranded here along with us." He shakes his head. "Let's find somewhere to talk. If you don't mind telling me, how'd you end up here anyway?"`
 			choice
 				`	"I have a jump drive."`
+				`	"I have a device that can bypass hyperlanes."`
 			`	He somehow manages to look even more astonished as you walk. "A jump drive? Where the hell did you get one of those?"`
 			choice
 				`	"I took it from some hostile aliens near the Core."`
