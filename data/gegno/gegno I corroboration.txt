@@ -557,6 +557,7 @@ mission "Return to Giaru Gegno"
 
 mission "Gegno Anticipation"
 	landing
+	name "Summons from the Gegno"
 	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
 	source "Giaru Gegno"
 	destination "Dueyu Eitch"
@@ -905,6 +906,7 @@ mission "Gegno Apprehension"
 mission "Gegno Intervention"
 	landing
 	clearance
+	name "Summons from the Gegno"
 	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
 	to offer
 		has "event: gegno: apprehension"
