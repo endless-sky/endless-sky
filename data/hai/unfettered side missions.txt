@@ -152,7 +152,7 @@ mission "Hai Legacy 1"
 			`	"This ship is our guarantee that nothing goes wrong, should you attempt something against us. After all, we are still not sure if we can trust you."`
 			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks in the walls, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
 			scene "scene/cave scene"
-			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you. Should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of ten million credits - including two weapons belonging to the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. `
+			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you. Should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of ten million credits - including two weapons belonging to the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up.`
 			`	"These legendary weapons can interfere with nearly any engine system! Worry not, you'll be able to recuperate the cost of this ship with ease by assisting us. A load of medical supplies is needed on <destination>, and we lack the time and personnel to bring them ourselves on such short notice.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
 			label choice
@@ -200,7 +200,7 @@ mission "Hai Legacy 1"
 				random < 50
 			branch lucky?
 				random < 2
-			`	Your shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even if it is somewhat worn. The ship then shoots back at you, barely missing and causing a geyser of sand to erupt at you and force you to drop your weapon. One of the two Hai then approaches you, seemingly disappointed.` 
+			`	Your shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even if it is somewhat worn. The ship then shoots back at you, barely missing and causing a geyser of sand to erupt at you and force you to drop your weapon. One of the two Hai then approaches you, seemingly disappointed.`
 			`	"You're lucky to still be alive, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
 				decline
 			label lucky?
@@ -378,8 +378,8 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
 		on kill
-				dialog `When you destroy the last dueling ship, you receive a hail from Mera, who sounds quite angry. "Destroying one or two ships in the middle of the action could be understood. But all of them? That's either incompetence or evil intent, and I will not have either."`
-					fail
+			dialog `When you destroy the last dueling ship, you receive a hail from Mera, who sounds quite angry. "Destroying one or two ships in the middle of the action could be understood. But all of them? That's either incompetence or evil intent, and I will not have either."`
+				fail
 		conversation
 			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward, so long as you do not capture our ships."`
 			branch "good or bad enough"
