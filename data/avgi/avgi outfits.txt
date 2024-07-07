@@ -150,8 +150,8 @@ outfit "Thermal Sink Partition"
 	"mass" 9
 	"outfit space" -3
 	"fuel capacity" -100
-	"heat capacity" 180
-	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing them to be partially filled with a nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at a safe temperature.`
+	"heat capacity" 240
+	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing a section filled with a lithium nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at a safe temperature.`
 
 
 outfit "Multispectral Scanner"
@@ -161,11 +161,10 @@ outfit "Multispectral Scanner"
 	"mass" 3
 	"outfit space" -6
 	"tactical scan power" 72
-	"asteroid scan power" 36
 	"energy consumption" 0.15
 	"heat generation" 0.3
-	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data. Additionally, analyzing the albedo of passive objects such as asteroids can reveal the composition of surface deposits at a low accuracy."
-	description "To increase the sensitivity of the instrument, certain component sensors require constant cooling to microkelvin scale temperatures. The heat pump system responsible for maintaining this requires a surprising amount of energy, while also producing a small amount of waste heat."
+	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data."
+	description "To increase the sensitivity of the instrument, certain components are cooled to microkelvin scale temperatures. The heat pump system responsible for maintaining this requires a surprisingly significant amount of power, while also producing a small amount of waste heat."
 
 
 outfit "Spectrometer Array"
@@ -178,8 +177,8 @@ outfit "Spectrometer Array"
 	"outfit scan efficiency" 12
 	"cargo scan power" 42
 	"cargo scan efficiency" 12
-	"asteroid scan power" 144
-	"energy consumption" 0.03
+	"asteroid scan power" 72
+	"energy consumption" 0.06
 	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visible, but is sadly useless against shielded ships and their internal systems."
 	description "Unfortunately, while Avgi sensors excel in reading basic physical and chemical information, such as the composition of an object, the amount of sensor data required to predict an outfit's functionality means this sensor can be quite slow when scanning a ship's complex systems or cargo."
 
@@ -267,7 +266,7 @@ outfit "Lantern Fission Core"
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 3.9
+	"energy generation" 3.6
 	"heat generation" 12
 	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size, at the cost of producing significant amounts of waste heat."
 
