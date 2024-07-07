@@ -199,7 +199,7 @@ void DataFile::LoadData(const string &data)
 			// range, but it appears that some libraries do not handle that case
 			// correctly. So:
 			if(tokenPos == endPos)
-				node.AddToken();
+				node.AddToken("");
 			else
 				node.AddToken(string(data, tokenPos, endPos - tokenPos));
 			// This is not a fatal error, but it may indicate a format mistake:

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
@@ -93,28 +94,19 @@ const vector<string> &DataNode::Tokens() const noexcept
 
 
 
-// Get the token with the given index. No bounds checking is done.
-// DataFile loading guarantees index 0 always exists.
-const string &DataNode::Token(int index) const
-{
-	return tokens[index];
-}
-
-
-
-// Add a new token to the end of this node.
-void DataNode::AddToken(string token)
+// Add tokens to the node.
+void DataNode::AddToken(const std::string &token)
 {
 	tokens.emplace_back(token);
 }
 
 
 
-// Adds a new node as a child of this node. The parent of the given node will be set to this node.
-void DataNode::AddChild(DataNode &node)
+// Get the token with the given index. No bounds checking is done.
+// DataFile loading guarantees index 0 always exists.
+const string &DataNode::Token(int index) const
 {
-	node.parent = this;
-	children.emplace_back(node);
+	return tokens[index];
 }
 
 
@@ -279,6 +271,14 @@ bool DataNode::IsBool(const string &token)
 
 
 
+// Add a new child. The child's parent must be this node.
+void DataNode::AddChild(const DataNode &child)
+{
+	children.emplace_back(child);
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const noexcept
 {
@@ -324,13 +324,7 @@ int DataNode::PrintTrace(const string &message) const
 	{
 		if(&token != &tokens.front())
 			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](unsigned char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
+		line += DataWriter::Quote(token);
 	}
 	Logger::LogError(line);
 
