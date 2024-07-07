@@ -122,7 +122,7 @@ mission "Avgi: First Contact"
 
 			label station
 			`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
-			`	Just as the <ship> pulls alongside the 'docking bay,' you spot what looks like a ship tucked away inside. It is like no ship you have ever seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster. What's more, its reactor is powered up and it seems to have an active shield matrix. It appears someone was indeed home.`
+			`	Just as the <ship> pulls alongside the "docking bay," you spot what looks like a ship tucked away inside. It is like no ship you have ever seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster. What's more, its reactor is powered up and it seems to have an active shield matrix. It appears someone is indeed home.`
 			choice
 				`	(Transmit a standard hail.)`
 					goto talk
@@ -137,7 +137,7 @@ mission "Avgi: First Contact"
 
 			label prime
 			`	You can't expect a new alien species to be able to decode your transmissions, let alone understand your language, so you transmit a short list of prime numbers via simple amplitude modulated signals, if only to assure the alien vessel that you're attempting to communicate.`
-			`	To your shock, however, the alien vessel interrupts you just as you send the number "37", with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
+			`	To your shock, however, the alien vessel interrupts you just as you send the number "37," with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
 			`The message is short and direct:`
 				goto transmission
 
@@ -156,7 +156,7 @@ mission "Avgi: First Contact"
 
 	npc save accompany
 		government "Avgi (Twilight Guard)"
-		personality fleeing timid launching escort
+		personality escort fleeing launching timid
 		ship "Polari" "Distant Shores"
 
 	on accept
@@ -164,7 +164,7 @@ mission "Avgi: First Contact"
 		"reputation: Avgi (Consonance)" >?= 5
 		"reputation: Avgi (Twilight Guard)" >?= 5
 		event "twilight label"
-		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi".`
+		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi."`
 
 	on fail
 		dialog `The alien ship has been destroyed. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -195,6 +195,7 @@ mission "Avgi: First Contact"
 				`	(Shoot them.)`
 			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off alien body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your short-lived victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
 			die
+
 			label next
 			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic, vaguely masculine voice.`
 			`	"Invitation. Welcome, visiting human. I am Kitrino of the Avgi, the one with whom you spoke earlier. I would show you to our leaders to discuss your arrival to our space."`
@@ -202,7 +203,7 @@ mission "Avgi: First Contact"
 			choice
 				`	"How can you speak my language?"`
 				`	"Who are those hostile aliens back toward the north?"`
-				`	"Tell me about your civilization."`
+				`	"Will you tell me about your civilization?"`
 
 			`	"Reassurance. All of your questions will be answered in time, Captain <last>. Please, now follow."`
 			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. You exit through a ramp set in the floor, sloping downwards, then follow a long passageway that seems to perpetually curve upwards. You're reminded of older space stations, ones that relied on spin gravity before gravity plating became commonplace.`
@@ -218,14 +219,14 @@ mission "Avgi: First Contact"
 					goto humans
 				`	"Who are those hostile aliens back toward the north?"`
 					goto aberrant
-				`	"Tell me about your civilization."`
+				`	"Will you tell me about your civilization?"`
 			label avgi
 			action
 				set "avgi: asked about avgi"
 			`	She twitches her wings slightly in what might be laughter. "Amusement. That would take a very long time to do in any detail, but I will make an attempt." Reverting back to her own language, she consults with the two other Avgi for a minute before turning back to you.`
 			`	"Pride, accomplishment. We are the Avgi. Our six systems, with seven worlds, and hundreds of orbitals each the size of a city, together a thousand polities united towards the betterment of civilization and progress-"`
 			`	Galano, interrupts, his translator's voice sounding somehow aged. "Remembrance. But before all that, before the hyperdrive, we still crossed the void between stars. I was a child when the last true starship launched, but I remember. Long before we learned to surpass light, we settled the worlds beyond our home star system, at great cost and effort. We first touched space four centuries ago, and-"`
-			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millennia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: Groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to- "`
+			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millennia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to- "`
 			`	Now both Asime and Galano make noises of dissent, and Galano, sounding rather hurried, interrupts. "Urgency. Perhaps we are not as united as you, the humans, and it is true that we have fought many wars among ourselves. Emphasis. But that time is long since past. We saw reason, and so the Consonance was created, governed by an Assembly of Polities to represent every division of the Avgi, small or large. From the nation-states to the ideolopoli, a consensus government of our species to resolve disputes, to prevent another Great War. And while there have still been wars fought by the foolish and shortsighted, there has not been a nuclear initiation on Aviskir's surface in more than a century. The Assembly, for all its faults, works."`
 			`	Asime adds, "Truth. And we are what the Avgi need, now that all of that could be lost to the Incursion, to the Aberrant it spawned. We need what humanity has, a united Republic to lead all of our people."`
 			choice
@@ -243,7 +244,7 @@ mission "Avgi: First Contact"
 			label humans
 			action
 				set "avgi: asked about humans"
-			`	"Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three-- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, 'the depths,' though I am not quite sure if that is a planet or a region of space."`
+			`	"Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, "the depths," though I am not quite sure if that is a planet or a region of space."`
 			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."`
 			label humanquestions
 			choice
@@ -289,7 +290,7 @@ mission "Avgi: First Contact"
 					goto conclusion
 
 			label conclusion
-			`	Prasinos says, "Assurance. Of course, we will introduce your fellow humans to you. But..." He trails off.`
+			`	Prasinos says, "Assurance. Of course, we will introduce your fellow humans to you. But..." he trails off.`
 			`	Asime continues for him. "Apprehension. The humans that came here before you, I must confess are still here for a reason. Perhaps they can give more details, but they have told us that when they first entered our space, they immediately attempted to leave. For whatever reason, they were unable to. I do not know the means by which you were able to travel to our space, but perhaps you will be able to return, and take these stranded humans with you."`
 			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
 			`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space," you say.`
@@ -297,6 +298,7 @@ mission "Avgi: First Contact"
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
+				`	"Don't. Do I get access to your outfits and ships?"`
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase items with your human credits, which we will back with our own currency with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have a small stockpile of currency available."`
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard. No military goods, at least not now."`
@@ -378,7 +380,7 @@ mission "Avgi: Defend Ensemble 1"
 				goto next
 
 			label quarg
-			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
+			`	"... what? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 				goto next
 
 			label next
@@ -396,7 +398,7 @@ mission "Avgi: Defend Ensemble 1"
 			label reassuring
 			`	"Sometimes I find it hard to believe that we'll ever make it home, but it helps to tell myself there's hope," he says.`
 			choice
-				`	"How'd you end up in Avgi space without a Jump Drive?"`
+				`	"How'd you end up in Avgi space without a jump drive?"`
 			label story
 			`	"Funny story, that," he says. "We were part of a big convoy from Valhalla, sponsored by one of the major universities there. I was working with Deep Security, after my stint in the Navy... ended." He trails off. "Anyway, we were in a Mule carrying some scanning equipment. To research the Quarg, you see. Officially we were there for cultural outreach and exchange, you know, the usual, but really we wanted some good scans of a Wardragon. The Quarg don't really approve of it, but they don't do much to discourage it either."`
 			`	"So, we were on our way back, just entering Dabih. Really successful trip and everything, with a big bonus waiting for me thanks to how long the trip across the entire Republic took. But then our scanners started picking up weird readings from particular hyperlanes, and we started hearing some pirates chattering about how something weird was happening in the Sadr system. A new hyperlane, pointing south, they said. It was just a few jumps away from our current location, and we were the only Deep ship in the area that could go off alone."`
@@ -478,7 +480,7 @@ mission "Avgi: Defend Ensemble 2"
 		government "Aberrant"
 		personality
 			confusion 60
-			hunting coward vindictive staying unconstrained secretive
+			coward hunting secretive staying unconstrained vindictive
 		system "Ensemble"
 		fleet
 			names "aberrant names"
@@ -602,18 +604,18 @@ mission "Avgi: Scout Rescue"
 			label exploration
 			`	He flicks his wings. "Regret. It is a sad truth, but those on the forefront of expanding our knowledge are often those who face the most danger from the unknown."`
 			label point
-			`	"But, to the point. A scout team, aboard the Polari-class scout 'Silver Albedo', was sent to survey the Twirl system two weeks ago, but has missed its check in by multiple days. To reach that star cluster and return would normally require a trip of weeks, all thorough perilous territory, and I am ashamed to say that we could be forced to consider writing off the scouts as lost. But I have heard that the visiting human, Captain <last>, is in possession of a new kind of faster-than-light drive, one that can travel without the need for starways. Tell me, is this true, question?"`
+			`	"But, to the point. A scout team, aboard the Polari-class scout 'Silver Albedo,' was sent to survey the Twirl system two weeks ago, but has missed its check-in by multiple days. To reach that star cluster and return would normally require a trip of weeks, all through perilous territory, and I am ashamed to say that we could be forced to consider writing off the scouts as lost. But I have heard that the visiting human, Captain <last>, is in possession of a new kind of faster-than-light drive, one that can travel without the need for starways. Tell me, is this true, question?"`
 			`	You nod.`
-			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mounting a rescue. I will mark the location of the Twirl system on your map, though it is probable that the Silver Albedo is elsewhere in the star cluster." The highest priority is of course the safe recovery of its crew, though if you could recover any data or samples they have managed to gather that would also be much appreciated.`
+			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mounting a rescue. I will mark the location of the Twirl system on your map, though it is probable that the Silver Albedo is elsewhere in the star cluster. The highest priority is of course the safe recovery of its crew, though if you could recover any data or samples they have managed to gather, that would also be much appreciated."`
 				accept
 
 	npc assist
-		government "Derelict"
-		personality derelict target pacifist mute
+		government "Avgi"
+		personality derelict mute pacifist target
 		system Whirlwind
 		ship "Polari (Derelict)" "Silver Albedo"
 		conversation
-			`You maneuver alongside with the Silver Albedo, which is covered in scorch marks and other signs of damage. After transmitting a code given to you by Captain Kokkino, you wait for any signs of life. After a few minutes you receive a response, which you pass through your translator.`
+			`You maneuver alongside the Silver Albedo, which is covered in scorch marks and other signs of damage. After transmitting a code given to you by Captain Kokkino, you wait for any signs of life. After a few minutes you receive a response, which you pass through your translator.`
 			`	"Caution. Unfamiliar vessel, how did you obtain Consonance identification codes?"`
 			choice
 				`	"There's no time for that. I'm here to rescue you."`
@@ -668,7 +670,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			coward vindictive staying unconstrained uninterested secretive target
+			coward secretive staying target unconstrained uninterested vindictive
 		system "Corporeal"
 		fleet
 			names "aberrant names"
@@ -679,7 +681,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			coward vindictive staying unconstrained uninterested secretive target
+			coward secretive staying target unconstrained uninterested vindictive
 		system "Empyrean"
 		fleet
 			names "aberrant names"
@@ -690,7 +692,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			coward vindictive staying unconstrained uninterested secretive target
+			coward secretive staying target unconstrained uninterested vindictive
 		system "Firmament"
 		fleet
 			names "aberrant names"
@@ -701,7 +703,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			coward vindictive staying unconstrained uninterested secretive target
+			coward secretive staying target unconstrained uninterested vindictive
 		system "Lumine"
 		fleet
 			names "aberrant names"
@@ -828,3 +830,4 @@ mission "Avgi: Twilight Escape"
 		conversation
 			`	You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. "I'll be in contact, <first>, but I have to tell someone that I'm still alive."`
 			`	Now that you know of a way both in and out of the Twilight, you can visit the Avgi without fear of being trapped again.`
+
