@@ -348,19 +348,19 @@ phrase "incipias friendly disabled"
 		", I am "
 		", we are "
 	word
-		"in a bad situation"
+		"in a dangerous-tense situation"
 		"in trouble"
-		"in need of repairs"
+		"in need of repair-assistance"
 		"unable to fly"
 		"on the brink of uselessness"
 	word
-		","
+		"."
 	word
-		" could you please "
+		" Could you please "
 	word
 		"assist me"
 		"save me"
-		"perform an outstanding deed"
+		"perform an outstanding action-accomplishment"
 	word
 		"?"
 

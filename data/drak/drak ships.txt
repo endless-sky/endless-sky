@@ -115,7 +115,7 @@ ship "Archon" "Archon (Cloaked)"
 		"cloak" .04
 	"final explode" "archon c teleport"
 
-ship "Archon" "Archon (Hyperdrive Only)"
+ship "Archon" "Archon (Hyperdrive Cloaked)"
 	sprite "ship/archon b"
 		"frame rate" 0.87
 	"never disabled"

@@ -34,7 +34,7 @@ outfit "Plasma Discharger"
 		"shield damage" 55
 		"hull damage" 65
 		"minable damage" 90
-	description "The Incipias started to mine asteroids long before they began intrasystem travel due to the proximity of their atmosphere to their home world's rings. As a result this mining tool seems to be more advanced than their general technology, yet it is still not comparable to the efficiency of human weapons."
+	description "The Incipias started to mine asteroids long before they began intrasystem travel due to the proximity of their home world's atmosphere to its rings. As a result this mining tool seems to be more advanced than their general technology, yet it is still not comparable to the efficiency of human weapons."
 	description "The weapon itself shoots bolts of high density plasma that split up into small particles after some time. Because of the plasma infuser the fire rate is exceptional, but the energy usage is severe."
 
 outfit "plasma particle"
@@ -119,7 +119,7 @@ outfit "Star Tail"
 
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
-	description "Little to no information about this weapon has ever reached the public. Rumors are that it shoots highly volatile plasma chunks."
+	description "Little to no information about this weapon has ever been made public. Rumors are that it shoots highly volatile plasma chunks."
 	description "Captains that used this weapon say that its projectiles could change direction mid-flight, and were able to follow their targets despite attempts by their victims to dodge the shots."
 
 outfit "Star Tail Projectile"
@@ -270,7 +270,7 @@ outfit "MH Red-Class Engine"
 	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
-	description "The Incipias burn metallic hydrogen to move their ships, allowing for very efficient engines. The abundance of the fuel source on their home planet is also a benefit."
+	description "The abundance of metallic hydrogen on the Incipias home planet has led to the development of engines that utilize this potent source of energy, allowing for more efficient engines than what might be expected given the Incipias' short history of spaceflight."
 
 outfit "MH Red-Class Steering"
 	category "Engines"
@@ -295,4 +295,4 @@ outfit "Cloud Piercer"
 	"capture attack" .55
 	"capture defense" 1.5
 	"unplunderable" 1
-	description "When it comes to close combat, the Incipias are serious enemies. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."
+	description "When it comes to close combat, the Incipias are formidable opponents. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."

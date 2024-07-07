@@ -1807,7 +1807,7 @@ planet Glaze
 planet Gliese
 	attributes "requires: gaslining"
 	landscape land/gliese
-	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving. The clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
+	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving; its clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
 	government Uninhabited
 
 planet "Glittering Ice"
@@ -4597,7 +4597,7 @@ planet Topkapi
 planet Treser
 	attributes "requires: gaslining"
 	landscape land/treser
-	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the incoming light, resulting in an enormous amount of heat in the atmosphere of this gas giant. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
+	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the light that hits this planet, resulting in an enormous amount of heat in the gas giant's atmosphere. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
 	government Uninhabited
 
 planet Trinket
@@ -4680,7 +4680,7 @@ planet Tundra
 planet "Turra"
 	attributes "requires: gaslining"
 	landscape land/turra
-	description `Turra's thick atmosphere make this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing all light that shines on them.`
+	description `Turra's thick atmosphere make this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing the little light that shines on them.`
 	government Uninhabited
 
 planet "Turquoise Four"
@@ -4716,7 +4716,7 @@ planet "Ut Divitas"
 	attributes "incipias quarg" quarg
 	landscape land/canyon13
 	description "The surface here is bare and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract, elegant, and unlike anything humans have ever built."
-	spaceport "The spaceport is a small one, consisting of only a few landing pads. Ships parked here appear to be mostly civilian. The Quarg working here seem to be confused by your presence."
+	spaceport "The spaceport is a small one, consisting of only a few landing pads. Ships parked here appear to be mostly civilian, and the few Quarg working here seem to be confused by your presence."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9

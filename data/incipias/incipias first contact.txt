@@ -35,7 +35,7 @@ mission "Incipias: Warning of the Guardian"
 			`"You have come to a dead end. Perhaps try another route," a voice with an uncertain origin says.`
 			`	Alarmed, you turn around but nobody is there. You check your scanners but there is nothing present in this system except a few indigenous lifeforms. You also notice that your mapping system found hyperlinks stretching out from this system.`
 			choice
-				`	(Ignore it. It was probably your imagination.)`
+				`	(Ignore it. It was probably my imagination.)`
 				`	"You can't fool me. This is no dead end."`
 					goto reason
 				`	"Why should I listen to you?"`
@@ -44,8 +44,6 @@ mission "Incipias: Warning of the Guardian"
 			choice
 				`	"You can't fool me. This is no dead end."`
 				`	"Why should I listen to you?"`
-				`	"Alright, thanks for the warning."`
-					goto agree
 			label reason
 			`	"Here lie the unborn flowers yet to come into full bloom. There is nothing here for you to find. Listen to my advice and turn back." The voice sounds more energetic this time and you feel as if it is coming out of your head.`
 			choice
@@ -53,7 +51,7 @@ mission "Incipias: Warning of the Guardian"
 				`	"I will see for myself."`
 				`	"Alright, thanks for the warning."`
 					goto agree
-			`	A sigh seems to drift through the continuum, "Human, these unborn flowers-" an impression of euphoria comes over you, "-would only be endangered by your presence. Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
+			`	A sigh seems to drift through the continuum, "Human, these unborn flowers would only be endangered by your presence." An impression of euphoria comes over you as you hear the words 'unborn flowers.' Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
 			choice
 				`	"Why do you care about these 'flowers'?"`
 					goto care
@@ -61,7 +59,7 @@ mission "Incipias: Warning of the Guardian"
 			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example."`
 			label care
 			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of species are like a painting that never stop being painted, but when they do stop it is a tragic thing to watch. That is why we try to protect these creations of life - so we can see what heights they reach."`
-			`	The voice pauses before continuing. "I see that you can not be convinced by me. Even though I could simply wipe you out here and now, I do not favor violence. I will let you pass, but I will be watching you as I am-" you can hear the ultimate resolution in the voice, "-the guardian of this space."`
+			`	There is a pause. "I see that you can not be convinced by me. Even though I could simply wipe you out here and now, I do not favor violence." The voice is now resolute in tone. "I will let you pass, but I will be watching you, as I am the guardian of this space."`
 			`	The voice fades out leaving nothing behind but the feeling of being watched.`
 				decline
 			label agree
@@ -168,13 +166,13 @@ mission "Incipias: The Derelict"
 			has "incipias: helped the derelict"
 		on assist
 			conversation
-				`The ship hails you as you approach it. Once you accept the hail, color gradients start moving over your screen in a dizzying fashion - curiously, your speakers remain silent. It soon becomes clear that you will not be able to understand whatever transmission you just witnessed without some sort of translator. You continue your boarding maneuver.`
+				`The derelict ship hails you as you approach it. Once you accept the hail, color gradients start moving over your screen in a dizzying fashion - curiously, your speakers remain silent. It soon becomes clear that you will not be able to understand whatever transmission you just witnessed without some sort of translator. You continue your boarding maneuver.`
 				scene "scene/incipias message"
-				`	You manage to dock to the disabled ship quite easily. The lock opens and a hallway opens up before you. It is immediately obvious that this ship was not designed for humans; the walls are strangely curved and the floor has nearly no grip at all. As you carry the necessary repair equipment into the ship, your view is caught by five giant aliens half octopode, half jellyfish in appearance. They pulsate in bright colors similar to the gradients that appeared on your screen earlier. One of them is floating behind a giant mounted gun, and the two barrels are pointed right at you. The gunner flashes in an orange light, and you can feel the tension in the room rising.`
+				`	You manage to dock to the disabled ship quite easily. The hatch opens and a hallway opens up before you. It is immediately obvious that this ship was not designed for humans; the walls are strangely curved and the floor has nearly no grip at all. As you carry the necessary repair equipment into the ship, your view is caught by five giant aliens half octopode, half jellyfish in appearance. They pulsate in bright colors similar to the gradients that appeared on your screen earlier. One of them is floating behind a giant mounted gun, and the two barrels are pointed right at you. The gunner flashes in an orange light, and you can feel the tension in the room rising.`
 				choice
-					`	(Try to convey that you intend no harm.)`
+					`	(Try to convey that I intend no harm.)`
 						goto peace
-					`	(Drop the repair equipment and run back into your ship.)`
+					`	(Drop the repair equipment and run back into my ship.)`
 						goto flee
 					`	(Try to make a non-lethal shot at the one behind the turret and run.)`
 				`	You hit the creature manning the turret, causing it to explode with a strident sound. Before you can enjoy your short-lived victory, you notice a motion further down the hallway. Turning your head you see a gunner flashing in a deep red, before shooting you down and avenging their fallen comrade.`
@@ -263,7 +261,7 @@ mission "Incipias: Help the stranded Part 1"
 				`	"I come in peace."`
 			`	You notice that your translator starts to flash a sequence of lights, and you point it towards your ship's camera. For a minute, nothing happens at all.`
 			`	After some time, a wave of movement passes through all ships in the system, and a communication channel opens from the space station. Colors rush over your display: a mix of yellow and green. You point your translator towards the flashing lights and hope it is able to pick up whatever these aliens are saying to you.`
-			`	"Welcome world-traveler. We greet you in our home-space."`
+			`	"Welcome world-traveler. We greet you in our home-space." The voice is smooth and synthetic, lacking in any discernible emotion.`
 			`	The colors stop before rushing over your screen again.`
 			`	"What is your intention-goal here?"`
 			choice
@@ -273,7 +271,7 @@ mission "Incipias: Help the stranded Part 1"
 			`	Along the message comes a small map of the station with the docking ports highlighted.`
 	on complete
 		conversation
-			`Thanks to the map you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no visible pathways, but instead foggy hallways, some of which even ascend vertically. A crowd of beings gathered in front of your airlock each flash a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
+			`Thanks to the map you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around the station. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
 			`	"Welcome, outer-being, to our capital. We are the Incipias."`
 			`	It stops as if awaiting an answer.`
 			choice
@@ -292,7 +290,7 @@ mission "Incipias: Help the stranded Part 1"
 			`	"We shall allow you to buy one, if that is all that it takes to make you a not-danger. If that is all please excuse us. We need to talk about what this new situation-opportunity means for us. I hope we can out-question you more another time."`
 				goto end
 			label stranded
-			`	Another wave goes through the crowd but this time you notice an overflow in green tones.`
+			`	Another wave goes through the crowd, but this time you notice an overflow in green tones.`
 			`	"So they are still alive. We shall give you access to our ship. Let us prepare the ship-seller. Do note though that they can not jump between system-places, not like your own ship. We hope to question you more on another future-time.`
 			label end
 			`	The five float away but the crowd continues staring at you, probably out of interest.`
@@ -309,7 +307,7 @@ mission "Incipias: No help for the stranded"
 		not "Incipias: Help the stranded Part 1: offered"
 	on offer
 		conversation
-			`You see the stranded ship on your scanners but with no way to communicate you have no way to help them and have no choice but to leave them to their doom on this stormy world.`
+			`You see the stranded ship on your scanners, but with no way to communicate you have no way to help them. You have no choice but to leave them to their doom on this stormy world.`
 
 mission "Incipias: Help the stranded Part 2"
 	landing
@@ -323,14 +321,14 @@ mission "Incipias: Help the stranded Part 2"
 		conversation
 			`Your ship dives into the clouds of the gas giant, an environment on a scale you never experienced before. Giant clouds tower like castles, sometimes opening to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
 			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen, and you maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull, and the shield generator must have broke when they ran out of fuel, because their shields are completely down.`
-			`	You receive no answer to your hail. Your scanners indicate that it ran out of energy.`
+			`	You receive no answer to your hail.`
 			`	You carefully maneuver your ship closer, until you can dock with the Incipias ship.`
-			`	When the lock opens five Incipias float in front of you. Noticing your presence they quickly back off; they were clearly not expecting a human in one of their kind's ships. It takes a moment for them to recognize you.`
+			`	When the lock opens five Incipias float in front of you. Noticing your presence they quickly back off; they were clearly not expecting a human in one of their species' ships. It takes a moment for them to recognize you.`
 			choice
 				`	"Hello, I have come to save you."`
 				`	"I have been sent by your people to get you home."`
 			`	They seem to switch from a tense state to a surprised one.`
-			`	One of them starts pulsating, "You light our language? How surprising. We would not have survived another day here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now."`
+			`	One of them starts pulsating, "You light our language? How surprising. We would not have survived another day here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now." The lack of emotion in the translator's voice is disconcerting given the content of the message.`
 			`	You tell them to come aboard, and you manage to launch your ship just before a storm hits the area.`
 				accept
 	on complete
@@ -340,20 +338,20 @@ mission "Incipias: Help the stranded Part 2"
 			`	They guide you through the hallways so that you avoid larger groups and move only through horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
 			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
 			choice
-				`	"Sorry but I have other stuff to do."`
+				`	"Sorry, but I have other stuff to do."`
 					goto endNoTime
 				`	"Sure, ask me something."`
-			`	A green glow comes from all of them. "Thank you for taking the time-patience. Can you tell us more about the deep space surrounding us?"`
+			`	A green glow comes from all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space surrounding us?"`
 			choice
 				`	(Give them an exhausting story of what you have seen so far.)`
 					goto detail
 				`	(Give a rough overview of what you have seen.)`
 			`	After seeing your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green and red.`
-			`	"Thank you for this insight. All we gathered until now was by observing-studying stars. To think that there is so much out there... it truly invokes a determination to explore.`
+			`	"Thank you for this insight. All we gathered until now was by observing-studying stars. To think that there is so much out there... it truly raise-strengthens a determination to explore.`
 				goto yours
 			label detail
 			`	After watching your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green.`
-			`	"Thank you for this exhaustive insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination to explore.`
+			`	"Thank you for this profound-depth insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination to explore.`
 			label yours
 			`	"But now to you. Is there anything you would like to know?"`
 			# might add to this list over time
@@ -364,10 +362,10 @@ mission "Incipias: Help the stranded Part 2"
 				`	"Why do you call this station your capital?"`
 					goto capital
 				`	"Why can I not land on your home planet?"`
-			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at some point in the future, but be careful of their lights. They have outdated values long laid off by us, who are progressing fast.`
+			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
 				goto choice
 			label capital
-			`	The one pulsating now takes on a bright green color, "This station is our greatest achievement, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
+			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
 			label end
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
