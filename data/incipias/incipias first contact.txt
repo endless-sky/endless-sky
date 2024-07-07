@@ -23,7 +23,7 @@ mission "Incipias: Guardian of Incipias Space"
 		government "Drak (Incipias)"
 		personality heroic vindictive frugal forbearing
 		system Il'le
-		ship "Archon (Hyperdrive Only)" "Guardian of Spring"
+		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
 
 mission "Incipias: Warning of the Guardian"
 	invisible
