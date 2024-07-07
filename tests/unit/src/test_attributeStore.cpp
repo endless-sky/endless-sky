@@ -132,21 +132,21 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 	TEST_CASE( "AttributeStore::Save", "[AttributeStore][Save]" ) {
 		AttributeStore store;
 		DataNode node = AsDataNode("parent\n"
-								   "	attribute 1\n"
-								   "	thrust 100\n"
-								   "		energy 20\n"
-								   "		heat 10\n"
-								   "	turn 500\n"
-								   "		shields 100\n"
-								   "	\"scramble resistance\" 100\n"
-								   "		energy 20\n"
-								   "	\"other attribute\" 1\n"
-								   "	\"another attribute\" 0\n"
-								   "	\"shield generation\" 30\n"
-								   "	\"shield energy\" 50\n"
-								   "	\"slowing resistance\" 30\n"
-								   "		heat 40\n"
-								   "		energy 20");
+								"	attribute 1\n"
+								"	thrust 100\n"
+								"		energy 20\n"
+								"		heat 10\n"
+								"	turn 500\n"
+								"		shields 100\n"
+								"	\"scramble resistance\" 100\n"
+								"		energy 20\n"
+								"	\"other attribute\" 1\n"
+								"	\"another attribute\" 0\n"
+								"	\"shield generation\" 30\n"
+								"	\"shield energy\" 50\n"
+								"	\"slowing resistance\" 30\n"
+								"		heat 40\n"
+								"		energy 20");
 		for(const DataNode &child : node)
 			store.Load(child);
 		DataWriter writer;
