@@ -1392,16 +1392,16 @@ void MapPanel::DrawSystems()
 		Point pos = zoom * (node.position + center);
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 
-		// Count the system for the government (to choose what government labels to display)
+		// Count the system for the government (to choose what government labels to display).
 		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
-		// before counting it
+		// before counting it.
 		if(commodity == SHOW_GOVERNMENT &&
 			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
 			hasUnexplored |= !(node.government);
 			hasUninhabited |= !(node.isInhabited);
 			// Count the number of occurences of each government.
-			// Exclude ones that are uninhabited, unexplored, or aren't their true color
+			// Exclude ones that are uninhabited, unexplored, or aren't their true color.
 			if(node.government && node.isInhabited && node.color == GovernmentColor(node.government))
 				governmentCounts[node.government]++;
 		}
