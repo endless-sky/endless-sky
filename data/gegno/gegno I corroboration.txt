@@ -19,6 +19,8 @@ mission "Passive-Aggressive Observations"
 	destination "Vigales"
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
 		"gegno: encounters" ++
@@ -118,6 +120,8 @@ mission "Foreign Spectator I"
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -173,6 +177,8 @@ mission "Brief Bystander"
 	destination "Esstch"
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
 		"gegno: encounters" ++
@@ -199,6 +205,8 @@ mission "Scin on Cyife"
 	source "Cyife"
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		"gegno: encounters" ++
@@ -228,6 +236,8 @@ mission "Battle over Zydee"
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -240,6 +250,7 @@ mission "Battle over Zydee"
 				accept
 	on enter "Kneirc"
 		fail
+		event "gegno: scin claim zydee" 3 7
 
 	npc
 		on provoke
@@ -303,6 +314,32 @@ mission "Battle over Zydee"
 				"Coesite" 4
 				"Halite" 6
 
+# Zydee becomes governed by the Scin even if the player doesn't find the above mission.
+mission "Scin Claim Zydee"
+	invisible
+	landing
+	to offer
+		or
+			has "Gegno Anticipation: offered"
+			has "Gegno Apprehension: offered"
+		not "event: gegno: scin claim zydee"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on offer
+		fail
+		event "gegno: scin claim zydee" 3 7		
+
+
+event "gegno: scin claim zydee"
+	system "Kneirc"
+		government "Gegno Scin"
+	planet "Zydee"
+		government "Gegno Scin"
+		description `Test.`
+		spaceport `Test.`
+
+
 
 mission "Curious Civilians"
 	invisible
@@ -327,6 +364,7 @@ mission "Gegno Suspicions"
 	to offer
 		"gegno: encounters" >= 3
 		"gegno: encounters" < 6
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -533,10 +571,11 @@ mission "Return to Giaru Gegno"
 		or
 			has "event: gegno: quarg talks"
 			"gegno: encounters" >= 6
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
-				accept
+			accept
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
@@ -545,7 +584,7 @@ mission "Return to Giaru Gegno"
 
 mission "Gegno Anticipation"
 	landing
-	description "Visit <destination>."
+	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
 	source "Giaru Gegno"
 	destination "Dueyu Eitch"
 	clearance
@@ -893,6 +932,7 @@ mission "Gegno Apprehension"
 mission "Gegno Intervention"
 	landing
 	clearance
+	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
 	to offer
 		has "event: gegno: apprehension"
 		not "Gegno Genocide Defense: offered"
