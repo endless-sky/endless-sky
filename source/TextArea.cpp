@@ -21,8 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "RenderBuffer.h"
 
-#include <cassert>
-
 
 
 TextArea::TextArea()
