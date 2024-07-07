@@ -113,7 +113,7 @@ mission "Rulei: You Are (Not) Alone"
 		system "L-6181"
 		ship "Jje" ""
 
-mission "Rulei: Antumbral Reach"
+mission "Rulei: Umbral Reach"
 	invisible
 	landing
 	to complete
@@ -122,19 +122,19 @@ mission "Rulei: Antumbral Reach"
 		has "First Contact: Rulei: offered"
 		has "visited system: L-118"
 	on enter "Kanguwa"
-		event "antumbral reach label"
-		log "Factions" "Rulei" `The Rulei seem to acknowledge the void of systems east of the core as the "Antumbral Reach", and appear to have some sort of emotional connection to the region. Other than stating to "beware" the area, they will not further comment on it.`
+		event "umbral reach label"
+		log "Factions" "Rulei" `The Rulei seem to acknowledge the void of systems east of the core as the "Umbral Reach", and appear to have some sort of emotional connection to the region. Other than stating to "beware" the area, they will not further comment on it.`
 		conversation
 			`Out of nowhere, the mysterious whispers of the Rulei seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direction of the ancient vessel, eventually coalescing into one spoken phrase.`
 			`	"Beware..."`
-			`	"...Antumbral Reach."`
+			`	"...Umbral Reach.."`
 			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once - sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence.`
 			`	The only thing you can think of is the nearby void of desolate systems. Considering your previous experience with the Rulei, they could have somehow psionically connected to the memories of your visit. However, much like those systems, they continue with their unabated silence.`
 				decline
 
-event "antumbral reach label"
-	galaxy "label antumbral"
-		sprite "label/antumbral"
+event "umbral reach label"
+	galaxy "label umbral"
+		sprite "label/umbral"
 
 
 phrase "rulei hostile"

@@ -18,8 +18,8 @@ galaxy "Milky Way"
 galaxy "label arachi"
 	pos -750 615
 
-galaxy "label antumbral"
-	pos 1150 -520
+galaxy "label umbral"
+	pos 1150 -500
 
 galaxy "label core"
 	pos -136 130
@@ -11170,7 +11170,7 @@ system E-4183
 	shrouded
 	pos 1042.97 -618.13
 	government Uninhabited
-	attributes "bright star" "giant star" "notable star" "antumbral reach"
+	attributes "bright star" "giant star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 7900
 	belt 1542
@@ -11226,7 +11226,7 @@ system E-9182
 	shrouded
 	pos 1167.2 -629
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 13720
 	belt 1387
@@ -14688,7 +14688,7 @@ system G-6183
 	shrouded
 	pos 1019.4 -590.18
 	government Uninhabited
-	attributes "black hole" "notable star" "antumbral reach"
+	attributes "black hole" "notable star" "umbral reach"
 	arrival 5000
 	habitable 10000
 	belt 1187
@@ -14727,7 +14727,7 @@ system G-719
 	shrouded
 	pos 1162.19 -417.18
 	government Uninhabited
-	attributes "antumbral reach"
+	attributes "umbral reach"
 	arrival 2900
 	habitable 2900
 	belt 1870
@@ -14768,7 +14768,7 @@ system G-819
 	shrouded
 	pos 1186.97 -477.17
 	government Uninhabited
-	attributes "antumbral reach"
+	attributes "umbral reach"
 	arrival 700
 	habitable 700
 	belt 1333
@@ -15943,7 +15943,7 @@ system H-8188
 	shrouded
 	pos 1206.6 -506.5
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3650
 	habitable 3650
 	belt 1254
@@ -15973,7 +15973,7 @@ system H-9187
 	shrouded
 	pos 1130.88 -455.97
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3400
 	habitable 3400
 	belt 1102
@@ -20700,7 +20700,7 @@ system L-118
 	shrouded
 	pos 1088.89 -408.306
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
@@ -20740,7 +20740,7 @@ system L-6181
 	shrouded
 	pos 1139.93 -522.87
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 885
 	habitable 885
 	belt 1758
@@ -21485,7 +21485,7 @@ system M-1188
 	shrouded
 	pos 1124.66 -607.233
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 750
 	habitable 750
 	belt 1676
@@ -21524,7 +21524,7 @@ system MC-42
 	shrouded
 	pos 1113.33 -500.68
 	government Uninhabited
-	attributes "iije" "antumbral reach"
+	attributes "iije" "umbral reach"
 	arrival 625
 	habitable 625
 	belt 1290
@@ -21561,7 +21561,7 @@ system MS-219
 	shrouded
 	pos 1075.13 -568.167
 	government Uninhabited
-	attributes "bright star" "iije" "notable star" "antumbral reach"
+	attributes "bright star" "iije" "notable star" "umbral reach"
 	arrival 2075
 	habitable 2075
 	belt 1404
@@ -24609,7 +24609,7 @@ system O-3184
 	shrouded
 	pos 1100.4 -646.047
 	government Uninhabited
-	attributes "antumbral reach"
+	attributes "umbral reach"
 	arrival 500
 	habitable 230
 	belt 1119
@@ -32376,7 +32376,7 @@ system U-5188
 	shrouded
 	pos 1084 -665.623
 	government Uninhabited
-	attributes "antumbral reach"
+	attributes "umbral reach"
 	arrival 500
 	habitable 425
 	belt 1330
@@ -33081,7 +33081,7 @@ system V-2189
 	shrouded
 	pos 1135.9 -711.667
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 17370
 	belt 1985
@@ -33605,7 +33605,7 @@ system W-3197
 	shrouded
 	pos 1204.5 -400
 	government Uninhabited
-	attributes "bright star" "notable star" "antumbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 6300
 	belt 1887
