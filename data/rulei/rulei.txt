@@ -105,11 +105,11 @@ mission "Rulei: You Are (Not) Alone"
 	on enter "L-6181"
 		fail
 		conversation
-			`As you continue through this space of emptiness, you come across nothing but planets of silence and diminished stars. However, upon entering this system, you are met with what appears to be a creature of some kind. Strangely, your scanners don't read it as any sort of lifeform, rather, it appears as some sort of "collection" of matter. It blends with space itself, as if it were simply a reflection of the darkness beyond.`
+			`As you continue through this space of emptiness, you come across nothing but planets of silence and diminished stars. However, upon entering this system, you are met with what appears to be a creature of some kind. Strangely, your scanners don't read it as any sort of lifeform, categorizing it only as a mere "collection" of matter. It blends with space itself, as if it were simply a reflection of the darkness beyond.`
 
 	npc
 		government "Indigenous Lifeform (Acheron)"
-		personality timid unconstrained uninterested mute
+		personality mute timid unconstrained uninterested
 		system "L-6181"
 		ship "Jje" ""
 
