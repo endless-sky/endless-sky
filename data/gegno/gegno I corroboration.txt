@@ -250,7 +250,6 @@ mission "Battle over Zydee"
 				accept
 	on enter "Kneirc"
 		fail
-		event "gegno: scin claim zydee" 3 7
 
 	npc
 		on provoke
@@ -313,32 +312,6 @@ mission "Battle over Zydee"
 				"Felsic" 3
 				"Coesite" 4
 				"Halite" 6
-
-# Zydee becomes governed by the Scin even if the player doesn't find the above mission.
-mission "Scin Claim Zydee"
-	invisible
-	landing
-	to offer
-		or
-			has "Gegno Anticipation: offered"
-			has "Gegno Apprehension: offered"
-		not "event: gegno: scin claim zydee"
-		not "Gegno Genocide Defense: offered"
-	to complete
-		never
-	on offer
-		fail
-		event "gegno: scin claim zydee" 3 7		
-
-
-event "gegno: scin claim zydee"
-	system "Kneirc"
-		government "Gegno Scin"
-	planet "Zydee"
-		government "Gegno Scin"
-		description `Test.`
-		spaceport `Test.`
-
 
 
 mission "Curious Civilians"
