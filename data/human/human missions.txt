@@ -7550,7 +7550,7 @@ conversation "Ice Queen"
 	label explore
 	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
 	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
-	`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
+	`	You work around the silent spaceport, where the half-buried hangars are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
 	`	The sun begins to set, and you can already feel the temperature beginning to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
 		goto building
 
