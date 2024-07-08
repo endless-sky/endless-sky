@@ -8065,7 +8065,7 @@ mission "Ice Queen 8"
 			`	Her small fist bumps against yours and then she gives you an easy grin and babbles something incoherent.`
 
 			label words
-			`	"She's not quite got the hang of words yet. But they'll come." Ildico says approvingly.`
+			`	"She's not quite got the hang of words yet. But they'll come," Ildico says approvingly.`
 			
 			label onlyyou
 			`	Ilidco puts a hand on Randalin's shoulder and draws her close. She turns her attention back to the battlefield.`
