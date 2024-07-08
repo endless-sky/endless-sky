@@ -7465,6 +7465,7 @@ mission "Timothy Radrickson 1: Stowaway"
 		near "Zeta Aquilae" 3 10
 		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
+	passengers 1
 	to offer
 		random < 10
 	on enter
@@ -7484,6 +7485,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				fail
 				event "timothy radrickson: mummy" 41
 			`	It's almost certainly nothing, and you have more important things to do than chase down every little sensor glitch on your ship.`
+				decline
 
 			label check
 			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a foodstuff crate you recently took on. It has yet to be opened, but you can tell its seal has already been tampered with.`
@@ -7498,13 +7500,13 @@ mission "Timothy Radrickson 1: Stowaway"
 				decline
 
 			label crate
-			`	You pry open the crate. It should be full of meals for you and your crew, but after removing the lid you discover a dirty, disheveled man.`
+			`	You pry open the crate. It should be full of meals for your journey, but after removing the lid you discover a dirty, disheveled man.`
 			`	Before you have a chance to say anything, the man looks up at you with narrowed, pained eyes, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
 			choice
 				`	"Who are you?"`
 				`	"Where's my food?"`
 
-			`	"T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owed money. I had nothing. Please. Any other Republic world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back I swear. I swear. I will. I swear."`
+			`	"T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owed money. I had nothing. Please. Any other world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back, I swear. I swear. I will. I swear."`
 			choice
 				`	"Fine. I'll drop you off at the next port."`
 					goto port
@@ -7514,17 +7516,19 @@ mission "Timothy Radrickson 1: Stowaway"
 
 			action
 				fail
-			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him past the bulkhead seals. He falls to his knees shuddering, and his scrunches up with terror. You close the airlock, silencing his shrill screams, and hit the button to open the outside airlock. The man is promptly sucked out into cold, cruel space and crystallizes before becoming this system's newest comet.`
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him past the bulkhead seals. He falls to his knees shuddering, and he scrunches up with terror. You close the airlock, silencing his shrill screams, and hit the button to open the outside airlock. The man is promptly sucked out into cold, cruel space and crystallizes before becoming this system's newest comet.`
+				decline
 
 			label port
 			action
 				fail
 				set "timothy radrickson: port"
-			`	Tears squeeze out the man's sad eyes. "Thank you", he whispers, "thank you."`
+			`	"Thank you," he whispers as tears squeeze out of his eyes. "Thank you."`
 			`	You get the man cleaned up and settled, and then go back to running your ship.`
+				decline
 
 			label somewhere
-			`	Timothy looks at you, his eyes wide and full of tears. "Rand", he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
+			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
 			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
 			`	You help him out of the crate and get him cleaned up.`
@@ -7541,7 +7545,7 @@ mission "Timothy Radrickson 1: Stowaway"
 mission "Timothy Radrickson 1a: Accepted"
 	landing
 	name "Stowaway to <planet>"
-	description "You have found Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He requests you to bring him to <destination>, where he can find work."
+	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
 	source
 		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
@@ -7609,7 +7613,7 @@ event "timothy radrickson: governor"
 
 
 mission "Timothy Radrickson 3: Governor Notification"
-	name "Visit the Governor on <planet>"
+	name "Visit the Governor of <planet>"
 	description "The governor of <planet> has invited you to speak with them."
 	to offer
 		has "event: timothy radrickson: governor"
@@ -7621,7 +7625,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 			`An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
 			choice
 				`	(Play the message.)`
-			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
+			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
 
 	on complete
 		conversation
@@ -7872,8 +7876,8 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	You hear a hearty laugh from the other end. "That fleet? Just a trifle. We've got the Sol Home Fleet behind these doors," the voice replies.`
 
 			label inside
-			`	A moment passes before it says, "We're just pulling your leg, <last>. We can see your tracking beacon reflecting our own, so we know it's you. Come on in." The turrets promptly depower and you gently put your ship down through the blast doors.`
-			`	Inside the bay's walls you can make out the moored and apparently intact freighter fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
+			`	A moment passes before it says, "We're just pulling your leg, <last>. We can see your tracking beacon reflecting our own, so we know it's you. Come on in." The turrets shortly depower and you gently put your ship down through the blast doors.`
+			`	Inside the bay's walls you can make out the moored and apparently intact freighter fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have been too busy going after you.`
 			`	As you exit your ship a woman wearing a captain's hat approaches you and then flashes a reluctant smile at you. "Name's Hrodny. Capt'n Hrodny of Hroar's Haulers. You probably heard Alan on the radio," she says, flicking her eyes to the control room.`
 			`	"Well, thanks for the distraction. Once you got the fleet out of here we overpowered what little detail they kept here and took control of the turrets." She looks around to the blast doors where the depowered turrets once guarded. "Been waitin' for the right moment to move outta this place."`
 			`	Hrodny turns her piercing green eyes back on you. "We got 'em in here easy, but we can't fight past whatever is out there. I'm presuming you're not just a lost mercenary and are in fact our cavalry?"`
