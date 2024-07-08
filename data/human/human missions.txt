@@ -8049,7 +8049,7 @@ mission "Ice Queen 8"
 				`	(Nod at the child.)`
 					goto onlyyou
 				`	"She was with you for the battle?"`
-			`	Ildico shrugs. "Who would I trust with her? Who could I trust with her. Only you, <first>, and you were elsewhere."`
+			`	Ildico shrugs. "Who would I trust with her? Who could I trust with her? Only you, <first>, and you were elsewhere."`
 				goto onlyyou
 
 			label hirand
