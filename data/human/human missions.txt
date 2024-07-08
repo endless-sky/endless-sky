@@ -7468,7 +7468,7 @@ mission "Stone to Hope"
 
 			label finish
 			`	Tosti suddenly stops, and takes a deep breath. His face is red, and beads of sweat glisten on his brow. "We're from Hope, ser. My family. We're refugees and we had to leave everything behind. But da, he never really left Hope."`
-			`	The young refugee pulls out a stone crisscrossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
+			`	The young refugee pulls out a stone criss-crossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
 			`	With the words out his eyes drop to the floor and he tenses up as though expecting a blow.`
 			choice
 				`	"I can take the stone to Hope."`
