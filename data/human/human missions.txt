@@ -7050,6 +7050,7 @@ mission "Adelita 1"
 							and
 								has "FW Katya 4: done"
 								has "visited planet: Hope"
+							has "Stone to Hope: done"
 				`	"I haven't been there myself, but I know people who have been affected by it."`
 					to display
 						has "FW Katya 4: done"
