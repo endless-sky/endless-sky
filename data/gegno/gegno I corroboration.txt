@@ -544,7 +544,7 @@ mission "Return to Giaru Gegno"
 		or
 			has "event: gegno: quarg talks"
 			"gegno: encounters" >= 6
-		not "Gegno Apprehension: offered"
+		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
