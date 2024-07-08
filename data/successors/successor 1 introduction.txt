@@ -121,78 +121,84 @@ mission "Successors: First Contact 1"
 					goto whatnow
 				`	"How do you know my language?"`
 					to display
-						not "Successors FC1 q: language"
+						not "Successors: language"
 					goto language
 				`	"How could you have met humans fifteen hundred years ago?"`
 					to display
-						not "Successors FC1 q: history"
+						not "Successors: history"
 					goto history
 				`	"What is House Sioeora?"`
 					to display
-						not "Successors FC1 q: house"
+						not "Successors: house"
 					goto house
 			label language
 			action
-				set "Successors FC1 q: language"
+				set "Successors: language"
 			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point."`
 			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of language," they continue, "and of the worlds our Predecessors met so long ago. I am one of very few who learned thy tongue, among others, at least as 'twas fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
-				`	"What do you mean that you were ripped from the galaxy?"`	# Define choices uniquely when they contain a follow-up question not in label `questions.`
+				`	"What do you mean that you were ripped from the galaxy?"`	# Define choices uniquely when they contain a follow-up question not in label "questions."
 					to display
-						not "Successors FC1 q: ripped"
+						not "Successors: ripped"
 					goto ripped
 				`	"What is House Sioeora?"`
 					to display
-						not "Successors FC1 q: house"
+						not "Successors: house"
 					goto house
 			label language-short
 			action
-				set "Successors FC1 q: language"
+				set "Successors: language"
 			`	"'Tis true. I am a scholar of language, and of the worlds our Predecessors met so long ago. I am one of very few who learned thy tongue, among others, at least as 'twas fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
 				`	"Humans have certainly changed a lot in the last fifteen hundred years."`
 					to display
-						not "Successors FC1 q: changed"
+						not "Successors: changed"
 					goto changed
 				`	"What is House Sioeora?"`
 					to display
-						not "Successors FC1 q: house"
+						not "Successors: house"
 					goto house
 			label changed
 			action
-				set "Successors FC1 q: changed"
+				set "Successors: changed"
 			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I had hoped as much," they say, "that thou were't still a young species with a long history before thee, that thou would'st one day take to the stars as it appears now thou hast. Alas, my noble House Sioeora does not permit me today the sort of interrogation of thy knowledge that I desire, for thy arrival portends much, and there is much to arrange."`
 				goto questions
 			label ripped
 			action
-				set "Successors FC1 q: ripped"
+				set "Successors: ripped"
 			`	Sieasej confirms their answer with the uniformed officer before answering your question. "Thou surely must have passed through the scarred and fractured systems to which our modern worlds remain affixed, however tenuously. 'Tis the inhabitants of those whose Successors we are."`
 				goto questions
 			label history
 			action
-				set "Successors FC1 q: history"
+				set "Successors: history"
 			`	"Twas a time in which the domains of our Predecessors did extend far to the north, and the reach of their curiosity and exploration even farther so. Life is precious and rare, doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as thine was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy kind advance to its present point."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
 				`	"Is that how you know my language?"`
 					to display
-						not "Successors FC1 q: language"
+						not "Successors: language"
 					goto language-short
 				`	"What is House Sioeora?"`
 					to display
-						not "Successors FC1 q: house"
+						not "Successors: house"
 					goto house
 			label house
 			action
-				set "Successors FC1 q: house"
+				set "Successors: house"
 			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose estate thou sees around thee. There are many such within the broader realm; the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its purpose. 'Twere thee apprehended by the arms of another - " Sieasej gestures towards an interceptor landed on another pad "- thou surely would have languished without recognition as a creature from so distant in our past."`
 				goto questions
 			label whatnow
+			action
+				clear "Successors: changed"
+				clear "Successors: history"
+				clear "Successors: house"
+				clear "Successors: language"
+				clear "Successors: ripped"
 			`	Sieasej translates this question to the uniformed officer, who conveys a detailed response accompanied by a series of color and texture displays on their skin. Overhead, a buzzing flock of interceptors fly past and land on a set of landing pads closer to the center of the spaceport complex. Eventually, Sieasej responds, and does so even more slowly and carefully than previously. "The scions of House Sioeora have made it known to the others in the High Houses that thou art a guest in their space and that thou shalt proceed under their protection. Thou may'st explore those of our worlds which thou may, and which permit thee access. Without the use of our tongue, though, thou shalt find few opportunities to do more than observe. As to that," Sieasej continues, "our noble scions are set to begin their convergence in five days. As thou hast aroused their attention, 'tis expected thou shalt receive a summons to their unity."`
 
 mission "Successors: First Contact 2"
@@ -337,28 +343,28 @@ mission "Successors: First Contact 3"
 					goto embark
 				`	"What more can you tell me about these Kijra-pets?"`
 					to display
-						not "Successors FC3 q: kijra-pet"
+						not "Successors: kijra-pet"
 					goto kijra-pet
 				`	"How does Sioeora even know that the Kijra-pets are on this moon?"`
 					to display
-						not "Successors FC3 q: knowledge"
+						not "Successors: knowledge"
 					goto knowledge
 				`	"Are you certain you're okay going with me?"`
 					to display
-						not "Successors FC3 q: youokay"
+						not "Successors: youokay"
 					goto youokay
 				`	"Is there anything I should watch out for?"`
 					to display
-						not "Successors FC3 q: watchout"
+						not "Successors: watchout"
 					goto watchout
 			label kijra-pet
 			action
-				set "Successors FC3 q: kijra-pet"
+				set "Successors: kijra-pet"
 			`	Sieasej shivers a little, and choses their words slowly. "The Kijra feature heavily in the old culture. 'Twere popular pets and hunting companions among... some of our Predecessors during their time. The larva is the scale of a... hm, of thy head, approximately, with a delicate body and glassy skin. Once it mates and lays its eggs, they begin to molt several times into a larger and more fearsome form so that they may defend their nascent flock. The Kijra-Riitaa - the 'pet' - is the larva, and the Kijra-Khora is the adult. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't attempt to capture the larva and nothing else."`
 				goto questions
 			label knowledge
 			action
-				set "Successors FC3 q: knowledge"
+				set "Successors: knowledge"
 			`	"'Tis a mix of things," Sieasej says. "The... pathways in space which connect those systems are ever-changing, on the span of years. A hazard of the space. Some years ago, there was a pathway leading to it through which the ships of all the High Houses could pass through and explore. Now, it has been many years since that system was easily accessible. The scions know that thou must possess a jump drive in order for thou to have reach'd us - this technology is quite familiar to us - and so they know that thou cans't acquire that what they desire."`
 			choice
 				`	"We'd better get started then."`
@@ -372,15 +378,15 @@ mission "Successors: First Contact 3"
 				`	"Is there anything I should watch out for?"`
 					goto watchout
 			label youokay
-				set "Successors FC3 q: youokay"
+				set "Successors: youokay"
 			`	Splotches of orange color emerge at the tips of Sieasej's arms. "I confess this is irregular, and know the prospect of this... journey instills within me some degree of trepidation. But to visit the lost worlds is a reward in and of itself, and to do so accompanying one of the very aliens that I have studied makes it doubly so. Thou must realize: thou'rt a historian's dream. Thou'rt a creature from a distant story-page made flesh."`
 				goto questions
 			label watchout
-				set "Successors FC3 q: watchout"
+				set "Successors: watchout"
 			`	"The House hast warned me of the dangers of the space there. Thy vessel must have been durable enough to make it here to our space intact, so I must trust that it shall be so again.`
 				goto questions
 			label jumpdrives
-				set "Successors FC3 q: jumpdrives"
+				set "Successors: jumpdrives"
 			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thy own race, who by then had only just discovered industry. Drives like the one within thy ship have been known to us for a long, long time."`
 			choice
 				`	"We'd better get going."`
@@ -394,10 +400,17 @@ mission "Successors: First Contact 3"
 				`	"Is there anything I should watch out for?"`
 					goto watchout
 			label warning
-				set "Successors FC3 q: warning"
+				set "Successors: warning"
 			`	"That is not for me to know, nor, I think, for thee."`
 				goto questions
 			label embark
+			action
+				clear "Successors: jumpdrives"
+				clear "Successors: kijra-pet"
+				clear "Successors: knowledge"
+				clear "Successors: warning"
+				clear "Successors: watchout"
+				clear "Successors: youokay"
 			`	"I agree," Sieasej says. "We have no time to squander."`
 				accept
 	on stopover
@@ -648,34 +661,37 @@ mission "Successors: First Contact 3"
 			choice
 				`	"I have no questions."`
 					to display
-						not "Successors FC3 q: others"
-						not "Successors FC3 q: animal"
+						not "Successors: others"
+						not "Successors: animal"
 					goto end
 				`	"I have no more questions."`
 					to display
 						or
-							has "Successors FC3 q: others"
-							has "Successors FC3 q: animal"
+							has "Successors: others"
+							has "Successors: animal"
 					goto end
 				`	"Will being your ally bring me into conflict with the other Houses?"`
 					to display
-						not "Successors FC3 q: others"
+						not "Successors: others"
 					goto others
 				`	"What are you going to do to the animal?"`
 					to display
-						not "Successors FC3 q: animal"
+						not "Successors: animal"
 					goto animal
 			label others
 			action
-				set "Successors FC3 q: others"
+				set "Successors: others"
 			`	Riijaaora's skin blotches with colors. "Surely not, we think. None would make so brazen an insult so as to endanger the vassal of another. Thou may'st travel 'tween our stars 'thout fear."`
 				goto questions
 			label animal
 			action
-				set "Successors FC3 q: animal"
+				set "Successors: animal"
 			`	"'Tis none of thy concern, captain. Though, if thou fear'st cruelty on our part, let it be well known to thee that it shall be well-kept and preserved. Thou may'st quell thy doubtful heart."`
 				goto questions
 			label end
+			action
+				clear "Successors: animal"
+				clear "Successors: others"
 			`	"Good. We bid thee farewell, then, and good tidings." Riijaaora and the other scions turn around to face their backs towards you and the officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
 			label exit
 
@@ -778,22 +794,22 @@ mission "Successors: Kaatrij First Contact 1"
 				`	"Will your supporting me cause conflict with House Sioeora?"`
 					to display
 						has "language: Successor"
-						not "Successors: Kaatrij FC1 q: sioeora"
+						not "Successors: sioeora"
 					goto sioeora
 				`	"Can you tell me more about yourself?"`
 					to display
 						has "language: Successor"
-						not "Successors: Kaatrij FC1 q: saajret"
+						not "Successors: saajret"
 					goto saajret
 				`	"You mentioned earlier that the Kijran 'belong' to you?"`
 					goto kijran
 				`	"Can you tell me more about yourself?"`
 					to display
 						has "language: Successor"
-						not "Successors: Kaatrij FC1 q: kijran"
+						not "Successors: kijran"
 			label kijran
 			action
-				set "Successors: Kaatrij FC1 q: kijran"
+				set "Successors: kijran"
 			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran - Kiitaa and Khora alike - are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? 'Twas the old House Kaatrij that strengthened their genomes against decay. That we were - had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another House to subject these children of ours to their whims.`
 				goto questions
 			label communicate
@@ -809,12 +825,12 @@ mission "Successors: Kaatrij First Contact 1"
 				goto questions
 			label sioeora
 			action
-				set "Successors: Kaatrij FC1 q: sioeora"
+				set "Successors: sioeora"
 			`	Saajret hums in a way you can't quite place. "Sioeora will no doubt be upset that one of the New Houses now patronizes the alien that they first met, but they are forced enough to swim in the water that they themselves have salted. Thou shouldn'st fear any ire from them beyond their politicking, and that is something we are accustomed to handling."`
 				goto questions
 			label saajret
 			action
-				set "Successors: Kaatrij FC1 q: saajret"
+				set "Successors: saajret"
 			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij and member of the somber noble lineage of House Sejra, which no longer stands as naught but a banner under Kaatrij. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more were lost forever. Kaatrij absorbed the citizens of some into itself; 'tis a patchwork that reminds us that we are all patchworks, metamorphic and composed. My roles are many, but first among them, I am an archivist, of sorts. I am to preserve the old technology that we still have and to use it, when necessary, for the best possible purposes."`
 				goto questions
 			label premature
@@ -824,6 +840,9 @@ mission "Successors: Kaatrij First Contact 1"
 			`	Saajret produces a data-sphere and hands that to you as well. "Within this," they say, "is historical data for most of the worlds in our space. Combined with thy newfound ability of our language, thou should'st find the navigation of our worlds and cities more revealing and fruitful. Officially, thou shalt be a patronized guest of House Kaatrij and shall proceed under our protection and with our blessings. Thou may'st be able to purchase a certain number of petty technologies without frustration, but most require some vetting that, as an alien, may take some time and effort to complete. Should'st the prospect interest thee, assisting with jobs and other tasks would doubtless benefit in proving thyself an ally to our people."`
 			`	Saajret pauses to adjust their clothing once again. "I bid thee now farewell, Captain <first> <last>. Kaatrij will continue to apprise ourselves of thine actions. I hope that next we speak we will be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissapated and the first glimmers of sunlight are creeping over the distant hills.`
 			action
+				clear "Successors: kijran"
+				clear "Successors: saajret"
+				clear "Successors: sioeora"
 				log "People" "Saajret, of Somber Sejra" `Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society.`
 				set "known to the successors"
 				event "successors: trust 1"
@@ -859,7 +878,7 @@ substitutions
 
 mission "Successors: Trusted"
 	landing
-	name "Go to the Uuoru-Kella system to meet with the High Houses"
+	name "Meet the High Houses"
 	description "The High Houses are pleased with how you've conducted yourself in Successor space, and wish to meet with you in council to strengthen your relationship."
 	source
 		attributes "successor"
@@ -896,24 +915,24 @@ mission "Successors: Trusted"
 					goto start
 				`	"Can you explain what's going on here?"`
 					to display
-						not "Successors Trusted q: explain"
+						not "Successors: explain"
 					goto explain
 				`	"How has House Sioeora been?"`
 					to display
-						not "Successors Trusted q: sioeora"
+						not "Successors: sioeora"
 					goto sioeora
 				`	"What are you doing here?"`
 					to display
-						not "Successors Trusted q: aboutyou"
+						not "Successors: aboutyou"
 					goto aboutyou
 			label explain
 			action
-				set "Successors Trusted q: explain"
+				set "Successors: explain"
 			`	"This is a diplomatic world for representatives of the High Houses to meet in council, resolve disputes, bicker over policy, and I suspect in as it shall be in thy own case, to offer special dispensation to citizens and patronized aliens."`
 				goto questions
 			label sioeora
 			action
-				set "Successors Trusted q: sioeora"
+				set "Successors: sioeora"
 			branch sioeora-opposed
 				has "completed: Successors: Kaatrij First Contact 1"
 			`	"Our mutual patrons remain their usual selves. Would'st though believe that Riijaaora themself informed me of thy invitation here? They've made themself a leader among the others for their fruitful advocacy towards thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee in council today, for thou art considered something of a successful investment on their part."`
@@ -926,22 +945,22 @@ mission "Successors: Trusted"
 					goto start
 				`	"Council?"`
 					to display
-						not "Successors Trusted q: explain"
+						not "Successors: explain"
 					goto explain
 				`	"What are you doing here?"`
 					to display
-						not "Successors Trusted q: aboutyou"
+						not "Successors: aboutyou"
 					goto aboutyou
 			label aboutyou
 			action
-				set "Successors Trusted q: aboutyou"
+				set "Successors: aboutyou"
 			`	Sieasej briefly turns a shade of green in a display you might almost characterize as blushing. "I was summoned as well. Thy arrival here has ignited much interest in our past dealings with humans, and I have been instructed to speak to several groups here as a so-called expert on the subject."`
 			choice
 				`	"Indeed. I'm ready to begin, then."`
 					goto start
 				`	"How has House Sioeora been?"`
 					to display
-						not "Successors Trusted q: sioeora"
+						not "Successors: sioeora"
 					goto sioeora
 			label start
 			`	"Good! We would be wise to be early to our respective events."`
@@ -1001,6 +1020,10 @@ mission "Successors: Trusted"
 			label yours
 			`	"I am pleased to hear of this, captain. I spoke at length about some of my human lingustic research, ah, thy tongues are fascinating items and make for truly interesting sounds... 'Twas also that I entertained a number of questions about thee thyself! Some young archivist from Kaatrij, I think? Truthfully, I sometimes confuse the New Houses with each other. Ah," they say, interrupting themself, "would that I could discuss it more, but my role here is yet to finish and I have another meeting still to entertain. Fair travels, captain, and may we meet again." They splay their arms wide in the same gesture you've seen many times before and you offer a short bow in return.`
 			label end
+			action
+				clear "Successors: aboutyou"
+				clear "Successors: explain"
+				clear "Successors: sioeora"
 			`	With your meeting resolved here, you head back to the monorail station and catch the next train back to the spaceport.`
 
 mission "Successors: People's Houses, First Contact"
