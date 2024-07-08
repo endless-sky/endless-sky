@@ -50,8 +50,8 @@ mission "Successors: First Contact 1"
 	clearance
 	on offer
 		conversation
-			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. After a brief delay, the lead ship transmits an unintelligible hail to you and slowly proceeds to a spaceport complex floating on a large structure on the planet's coast, where the group corrals you onto one of the few fully-dry landing pads. As the minutes wear on, a small crowd begins to form around your landing site.`
-			`	The predominant aliens here are enormous octopods that rise up off of the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them; those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
+			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure on the planet's coast. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around you and your ship.`
+			`	The predominant aliens here are enormous octopods that rise up off of the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them. Those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
 			`	After a couple of minutes of activity within the crowd, one uniformed and especially vibrant individual breaks away from the rest and begins to move towards you, gliding gently and silently over the ground. They say something in a strange sharply flowing language, shimmering with waves of color, and then wait expectantly for you to reply.`
 			choice
 				`	(Say nothing.)`
@@ -218,7 +218,17 @@ mission "Successors: First Contact 2"
 			`	As before, your landing site has been surrounded by a cadre of uniformed individuals, but here there must be nearly a hundred standing at attention on the pad's perimeter, of which most appear heavily armed. Once again upon disembarking, a lead officer approaches you, this time accompanied by a group of eight others who follow them in a tight formation. The leader motions with their arm towards the center of the complex as if to instruct you to go.`
 			choice
 				`	(Go with them.)`
-
+					goto inside
+				`	"What is this place?"`
+			`	The lead individual looks you over and shuffles their arms somewhat before repeating their motion towards the center of the complex.`
+			choice
+				`	(Go with them.)`
+					goto inside
+				`	"Is this where the scions are?"`
+			`	The leader says something to one of the others before returning their attention to you and gesturing again, this time with their weapon.`
+			choice
+				`	(Go).`
+			label inside
 			`	Your escort relaxes as you move to walk towards the inner complex, and the group of eight follow you as you approach its outer doors.`
 			`	The inside of the complex is opulent and massive, with vaulted ceilings rising on columns out of the lake water. Some mimic the forms and textures of tree trunks, spreading out on the ceiling into a canopy filled with thin metallic leaves that slowly wave and occlude the lights embedded above them. Each successive hall you pass through is a unique and enormous sculpture: the arch of a wave moments before crashing; the spiral of an huge suckered arm. You eventually arrive at a large door that your escort extends an arm to touch. As soon as they do, it begins to liquefy and flow into a trench on the floor. When it is finished, you step across the threshold into a final circular room where a group of Successors stand waiting. You recognize one as Sieasej, now wearing a new set of metallic-looking robes, but the rest are unfamiliar and especially richly dressed.`
 			`	One of the adorned individuals looks at you and speaks, and Sieasej translates a moment later.`
@@ -425,10 +435,10 @@ mission "Successors: First Contact 3"
 			branch tranqed
 				random < 70
 			label tranqed-alarmed
-			`	You take aim and fire a shot from the <tranq h2h> at the animal, but it darts away at the last moment so that the blast only just grazes its body. It plummets to the ground shrieking, and while it soon goes quiet as the tranquilizer takes effect, the shriek is echoed by other animals in the area. Soon after those quiet as well, your ears are pierced by a loud, warbling wail from the distance.`
+			`	You take aim and fire a blast from the <tranq h2h> at the animal, but it darts away at the last moment so that the blast only just grazes its body. It plummets to the ground shrieking, and while it soon goes quiet as the tranquilizer takes effect, the shriek is echoed by other animals in the area. Soon after those quiet as well, your ears are pierced by a loud, warbling wail from the distance.`
 				goto escape
 			label tranqed
-			`	You take aim and fire a shot from the <tranq h2h> at the center of the animal. It briefly jumps to escape but soon plummets to the ground in a puff of leaves and dusty feathers.`
+			`	You take aim and fire a blast from the <tranq h2h> at the center of the animal. It briefly jumps to escape but soon plummets to the ground in a puff of leaves and dusty feathers.`
 				goto bring-tranq
 			label net
 			`	You toss a net over the animal and it falls to the ground, where it shrieks for a duration before going quiet. The shriek is soon echoed by similar ones from other animals in the area, and once those go quiet as well, your ears are pierced by a loud, warbling wail in the distance.`
