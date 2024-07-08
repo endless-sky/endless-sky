@@ -1,0 +1,72 @@
+Language: Cpp
+Standard: c++17
+LineEnding: LF
+UseTab: Always
+IndentWidth: 8
+IndentCaseLabels: true
+
+PackConstructorInitializers: NextLineOnly
+AlwaysBreakAfterReturnType: None
+PointerAlignment: Right
+FixNamespaceComments: false
+NamespaceIndentation: All
+
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: Never
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpacesInAngles: Never
+
+# These can cause breaking changes if clang-format messed up
+QualifierAlignment: Left
+
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: None
+AllowShortLoopsOnASingleLine: false
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Always
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeLambdaBody: true
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: true
+
+BreakAfterAttributes: Leave
+BreakBeforeBinaryOperators: NonAssignment
+BreakConstructorInitializers: BeforeColon
+
+ColumnLimit: 120
+ReflowComments: false
+
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 3
+
+SortIncludes: CaseInsensitive
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex:           '<[:alnum:]+/[:alnum:]+>'
+    Priority:        2
+  - Regex:           '<[:alnum:]+>'
+    Priority:        3
+  - Regex:           '.*'
+    Priority:        1
+
