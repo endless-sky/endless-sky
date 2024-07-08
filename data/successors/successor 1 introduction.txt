@@ -868,7 +868,7 @@ substitutions
 
 mission "Successors: Trusted"
 	landing
-	name "Go to the Uuoru-Kella system to meet with the High Houses"
+	name "Meet the High Houses"
 	description "The High Houses are pleased with how you've conducted yourself in Successor space, and wish to meet with you in council to strengthen your relationship."
 	source
 		attributes "successor"
