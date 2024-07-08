@@ -7479,7 +7479,7 @@ mission "Stone to Hope"
 				`	"No."`
 
 			label hopeno
-			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame.	"Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
+			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame. "Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
 			`	Tosti is red and shaking, and mumbles some apologies before slinking away from you and Helm.`
 			`	Helm gives you a nod and says, "Thanks for listening, at least."`
 				decline
