@@ -7570,7 +7570,7 @@ conversation "Ice Queen"
 	label cairnsearch
 	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
 	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
-	`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you find the cliffs that Tosti spoke of, and the many dozens of Family-Cairns piled along side it. Silent watchers of the churning glaciers.`
+	`	You work around the silent spaceport, where the half-buried hangars are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you find the cliffs that Tosti spoke of, and the many dozens of Family-Cairns piled along side it. Silent watchers of the churning glaciers.`
 	`	You see a nearly toppled Family-Cairn with the name "Snaiwaz" at its base.`
 	choice
 		`	(Place Tosti's father's stone.)`
