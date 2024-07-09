@@ -1109,7 +1109,7 @@ ship "Vujlet"
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
 	description `Navigating the stars with the grace of a flitting bird, the compact "Vujlet" is a mass-produced High Houses warship flexible enough to serve in a variety of light-duty roles. Large enough to operate as a self-sufficient unit, these vessels serve as a useful bridge between short-ranged and relatively vulnerable interceptors, and larger, more resource-intensive warships that can be much more expensive to build and operate.`
-	description `	The design was originally employed by House Kaatrij as a stealth reconnaissance vessel that made use of their then-recently-developed cloaking technology. As the alliance between the New Houses strengthened, the plans for the "Vujlet" were distributed among them, and the light warship rapidly became a mainstay of their fleets.`
+	description `	The design was originally employed by House Kaatrij as a stealth reconnaissance vessel that made use of their then-recently-developed cloaking technology. As the alliance between the New Houses strengthened, the plans for the "Vujlet" were distributed among them, and the light warship rapidly became a mainstay of their fleets. Unfortunately, without the materials present in their Predecessors' domain, House Kaatrij has been unable to manufacture stealth equipment for the "Vujlet" in the modern era.`
 
 
 ship "Vujlet" "Vujlet (Naive)"
