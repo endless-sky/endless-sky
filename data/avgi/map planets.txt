@@ -15,7 +15,7 @@
 planet "Antivli Station"
 	attributes avgi station
 	landscape land/station25
-	description "This was once a particle accelerator several kilometers in diameter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts."
+	description `This was once a particle accelerator several kilometers in diameter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts.`
 	description "Combined, the amat farms around Anax produced only a few dozen kilograms of antimatter each year."
 	government Uninhabited
 
@@ -161,7 +161,7 @@ planet Saeketer
 planet Naphir
 	attributes avgi moon uninhabited
 	landscape land/snow27
-	description "Naphir was the chosen destination, and ultimately the final resting place, of an ill-fated early interstellar expedition. The Avgi pioneers who volunteered for the mission knew well in advance that the system lacked any garden planets, but were well prepared to spend the rest of their lives in orbital habitats, setting out regardless. Finding a cool, airless moon around a gas giant, the colonists settled down and began constructing habitats and gathering essential resources."
+	description "Naphir was the chosen destination, and ultimately the final resting place, of an ill-fated early interstellar expedition. The Avgi pioneers who volunteered for the mission knew well in advance that the system lacked any garden planets, but set out regardless; all of them were well prepared to spend the rest of their lives in orbital stations. Finding a cool, airless moon around a gas giant, the colonists settled down and began constructing habitats and gathering essential resources."
 	description "Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. Their precision machining equipment was still located on their orbiting starship, and was severely damaged; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day."
 	government Uninhabited
 
@@ -177,7 +177,7 @@ planet Uryyhr
 planet Stilacrest
 	attributes avgi "aberrant siege" fishing rich religious
 	landscape land/myrabella4
-	description "Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs would be an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
+	description "Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
 	description "The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality."
 	spaceport "The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling."
 	government Avgi
@@ -193,7 +193,7 @@ planet Stilacrest
 planet Cyreal
 	attributes avgi "aberrant siege" forest tourism
 	landscape land/hills13
-	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and, like all those near the Avgi homeworld, it was settled by numerous waves of slower than light starships. Once heavily settled, this low-gravity moon's sharp mountains and tall forests were used as a green space by nearby miners grown weary of the cramped confines of their vessels."
+	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and like all those near the Avgi homeworld, it was settled by numerous waves of slower-than-light starships. Once heavily settled, this low-gravity moon's sharp mountains and tall forests were used as a green space by nearby miners grown weary of the cramped confines of their vessels."
 	description "While somewhat metal-poor, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily."
 	spaceport "The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system."
 	government Avgi
@@ -210,7 +210,7 @@ planet Cyreal
 planet Amathil
 	attributes avgi "aberrant siege" desert
 	landscape land/canyon16
-	description "As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity, or at least that is the way the locals are perceived by outsiders."
+	description "As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendants of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here under a unified planetary government emphasizes a sense of community and generosity, or at least that is the way the locals are perceived by outsiders."
 	spaceport "The spaceport is spartan, with Amathil not receiving much traffic on a daily basis. Amathil's primary export is people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere."
 	government Avgi
 	outfitter "Avgi Basic Systems"
@@ -230,8 +230,8 @@ planet Araio
 	landscape land/canyon3
 	description "Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests."
 	description "Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an often romanticized historical era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns."
-	spaceport "Araio's spaceport was small, but well run, capable of efficiently moving small volume goods on and off the world. It was however razed from orbit by the Incursors shortly after the fall of Anax, and the few scouts that are able to sneak through the blockade are forced to use a variety of rocky plateaus instead."
-	spaceport "Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future, even if it means a slight regression in technology."
+	spaceport "Araio's spaceport was small but well run, capable of efficiently moving small volume goods on and off the world. It was however razed from orbit by the Incursors shortly after the fall of Anax, and the few scouts that are able to sneak through the blockade are forced to use a variety of rocky plateaus instead."
+	spaceport "Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future - even if it means a slight regression in technology."
 	government Avgi
 	security 0
 	shipyard "Avgi Civilian Basics"
@@ -278,7 +278,7 @@ planet Rolion
 planet Orodens
 	attributes moon mining
 	landscape land/mountain26
-	description "This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal rich core remains, serving as an alluring target abundant in heavy metals. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material to orbit, where it could be shipped to other system. Before the recent invention of the gravity repulsor, rows of mass drivers fired streams of raw material into orbit, where it would be collected by waiting ships."
+	description "This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy metals. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material to orbit, where it could be shipped to other systems. Before the recent invention of the gravity repulsor, rows of mass drivers fired streams of raw material into orbit, where it would be collected by waiting ships."
 	description "This was once the largest single source of fissile elements in Avgi space, but since the Incursion the mass drivers have gone quiet. Automated mining drones continue to watch over the last batch of excavated material."
 	government Uninhabited
 	security 0
@@ -294,7 +294,7 @@ planet Pil
 planet Noluc
 	attributes desert poisonous uninhabited
 	landscape land/desert13
-	description "Even if it was something other than a lifeless, metal poor desert planet, Noluc would have a hard time attracting settlers. The angry red-orange color that coats the planet's sandy wastes is actually created by a simple neurotoxin lethal to both humans and Avgi. While technically harmless in its dry state, any exposure to water will dissolve the dust into solution, rendering it into a potent poison capable of killing with even microscopic doses."
+	description "Even if it was something other than a lifeless, metal-poor desert planet, Noluc would have a hard time attracting settlers. The angry red-orange color that coats the planet's sandy wastes is actually created by a simple neurotoxin lethal to both humans and Avgi. While technically harmless in its dry state, any exposure to water will dissolve the dust into solution, rendering it into a potent poison capable of killing with even microscopic doses."
 	government Uninhabited
 
 
@@ -360,7 +360,7 @@ planet Yiddoi
 planet Katradol
 	attributes frozen research uninhabited
 	landscape land/snow30
-	description `Katradol is a large rocky world, what human scientists would call a "super-Earth." Far from the local primary, Katradol is extremely cold, and during the winter its atmosphere condenses in the higher latitudes, snowing frozen nitrogen. Many of Katradol's mountains are made mostly of ice, which is strong enough in the extreme cold to stretch upwards for kilometers, even under the high gravity. The roots of these mountains generated some interest in the Avgi scientific community due to the many exotic phases of ice that form under the intense pressures, but Katradol's deep gravity well made ice mining uncompetitive with cometary harvesting in the region.`
+	description `Katradol is a large rocky world, what human scientists would call a "super-Earth." Far from the local primary, Katradol is extremely cold; during the winter its atmosphere condenses in the higher latitudes, where it snows frozen nitrogen. Many of Katradol's mountains are made mostly of ice, which is strong enough in the extreme cold to stretch upwards for kilometers, even under the high gravity. The roots of these mountains generated some interest in the Avgi scientific community due to the many exotic phases of ice that form under the intense pressures, but Katradol's deep gravity well made ice mining uncompetitive with comet harvesting in the region.`
 	government Uninhabited
 
 
@@ -419,7 +419,7 @@ planet "Peripheria"
 	description "The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached."
 	description "The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species-wide government."
 	spaceport "An extensive set of docks and shipyards makes up the innermost portion of the station's disc, and you can see dozens of ships in various states of completion."
-	spaceport "The usual amenities often located around a spaceport fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense."
+	spaceport "The usual amenities often located on a station of this size fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense."
 	government "Avgi (Consonance)"
 	security 0.5
 	"required reputation" 10
@@ -438,8 +438,8 @@ planet "Napigeo Station"
 	attributes avgi "avgi diaspora" station military
 	landscape land/station57
 	description "Napigeo Station is a dedicated shipyard, with dozens of modular dry docks capable of quickly building and repairing ships. Overall, more than two thirds of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability."
-	description "	Due to its importance and nature as a directly government operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost."
-	spaceport "The spaceport is closer to being a giant array of dry docks than it is a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day."
+	description "	Due to its importance and nature as a directly government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost."
+	spaceport "The spaceport is closer to being a giant array of dry docks than a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day."
 	"required reputation" 100
 	government "Avgi (Twilight Guard)"
 	"required reputation" 10
@@ -516,7 +516,7 @@ planet "Outpost Tekis"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	landscape land/station25
 	description "Outpost Tekis is a station built into a huge asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens."
-	description "Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very rare in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, often the public face of negotiations with the Consonance's Assembly."
+	description "Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very rare in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly."
 	spaceport "The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar."
 	government "Avgi (Dissonance)"
 	"required reputation" 10

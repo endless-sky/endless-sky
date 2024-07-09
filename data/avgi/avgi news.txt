@@ -32,11 +32,11 @@ news "avgi siege civilian"
 			`"Remembrance. The Aberrations tried to bombard our cities early in the war, but our defense systems were able to shoot most of their projectiles down."`
 			`"Remembrance. Much of my family was lost when the Aberrant destroyed our cylinder habitats. In the Anax system, only the Nisos Cylinder survived."`
 			`"Guilt. Twelve million Avgi lived on each of the cylinder habitats. Less than one in six made it out alive."`
-			`"Worry. If not for our ground to orbit laser batteries, the Aberrant would surely have invaded the surface by now."`
+			`"Worry. If not for our ground-to-orbit laser batteries, the Aberrant would surely have invaded the surface by now."`
 			`"Sorrow. You can see the debris from our shattered skyhooks in orbit with the naked eye."`
 			`"Anger. Why did the Consonance have to abandon our space? The surface of our core planets could have sheltered our ships, but instead they ran to save themselves."`
 			`"Curiosity. I've never been to the Tangled Shroud, but I heard it is a safe place away from the Aberrant."`
-			`"Satisfaction. Every time an Aberration comes too close, we hit it with half a dozen surface to orbit nuclear missiles."`
+			`"Satisfaction. Every time an Aberration comes too close, we hit it with half a dozen surface-to-orbit nuclear missiles."`
 			`"Optimism. Despite the siege of our star systems, the surface of our inhabited planets remain quite safe from attack."`
 
 

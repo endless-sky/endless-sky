@@ -37,7 +37,7 @@ mission "Gossamer Activity"
 		fail "Gossamer Activity"
 	npc save
 		government "Indigenous Lifeform (Tree)"
-		personality surveillance fleeing
+		personality fleeing surveillance
 		system Gossamer
 		fleet
 			names tree
@@ -57,7 +57,7 @@ mission "Gossamer Activity"
 				"Sprout" 1
 	npc save
 		government "Indigenous Lifeform (Tree Two)"
-		personality surveillance fleeing
+		personality fleeing surveillance
 		system Gossamer
 		fleet
 			names tree2
@@ -445,3 +445,4 @@ ship "Sprout"
 
 	explode "pug tiny explosion" 2
 	description "Marginally tamer than a free floating pollen granule, this sprouting terror is not to be underestimated."
+

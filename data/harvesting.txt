@@ -459,7 +459,7 @@ outfit "Boiled Voidfish"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "Voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze dried, they are surprisingly appetizing."
+	description "These are Voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze-dried, they are surprisingly appetizing."
 
 
 minable "integral tree"
@@ -480,5 +480,5 @@ outfit "Integral Wood"
 	"mass" 0.3
 	"installable" -1
 	"minable" 1
-	description "Wood harvested from an integral tree. Exquisitely lightweight, strong, and radiation resistant, it fetches extraordinary prices on the market for exotic goods."
+	description "Wood harvested from an integral tree is exquisitely lightweight, strong, and radiation resistant - it also fetches extraordinary prices on the market for exotic goods."
 	description "Some claim it would even be the material of choice for a wooden starship, as ridiculous as that idea is."
