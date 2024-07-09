@@ -233,7 +233,7 @@ mission "Successors: First Contact 2"
 				`	"Is this where the scions are?"`
 			`	The leader says something to one of the others before returning their attention to you and gesturing again, this time with their weapon.`
 			choice
-				`	(Go).`
+				`	(Go.)`
 			label inside
 			`	Your escort relaxes as you move to walk towards the inner complex, and the group of eight follow you as you approach its outer doors.`
 			`	The inside of the complex is opulent and massive, with vaulted ceilings rising on columns out of the lake water. Some mimic the forms and textures of tree trunks, spreading out on the ceiling into a canopy filled with thin metallic leaves that slowly wave and occlude the lights embedded above them. Each successive hall you pass through is a unique and enormous sculpture: the arch of a wave moments before crashing; the spiral of an huge suckered arm. You eventually arrive at a large door that your escort extends an arm to touch. As soon as they do, it begins to liquefy and flow into a trench on the floor. When it is finished, you step across the threshold into a final circular room where a group of Successors stand waiting. You recognize one as Sieasej, now wearing a new set of metallic-looking robes, but the rest are unfamiliar and especially richly dressed.`
