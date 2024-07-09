@@ -49,8 +49,8 @@ outfit "Speckle Coilgun"
 		ammo "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
-		"velocity" 60
-		"lifetime" 0
+		"velocity" 42
+		"random velocity" 0.6
 		"reload" 20
 		"burst reload" 15
 		"burst count" 3
@@ -80,12 +80,13 @@ outfit "Speckle Turret"
 		"hardpoint offset" 6
 		"fire effect" "speckle fire"
 		"inaccuracy" 0.9
-		"velocity" 60
+		"velocity" 42
+		"random velocity" 0.6
 		"reload" 20
 		"burst reload" 15
 		"burst count" 3
 		"cluster"
-		"turret turn" 3
+		"turret turn" 2.4
 		"firing energy" 72
 		"firing heat" 60
 		"firing force" 24
@@ -100,7 +101,7 @@ outfit "Speckle Turret"
 outfit "Speck"
 	weapon
 		sprite "projectile/speck"
-			"frame rate" 60
+			"frame rate" 120
 			"no repeat"
 		"hit effect" "bullet impact"
 		"lifetime" 15
@@ -141,8 +142,8 @@ outfit "Green Optical Laser"
 		"anti-missile" 2
 		"velocity" 1800
 		"lifetime" 1
-		"firing energy" 9
-		"firing heat" 9
+		"firing energy" 6
+		"firing heat" 6
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret seems designed to hold a beam on target at an extreme distance for a longer period of time using its precise optics, making it better suited for defending and supporting other ships from afar."
 	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
 
@@ -172,10 +173,10 @@ outfit "Blue Optical Laser"
 		"lifetime" 1
 		"reload" 1
 		"turret turn" 6
-		"firing energy" 12
-		"firing heat" 12
-		"shield damage" 3
-		"hull damage" 4.2
+		"firing energy" 6
+		"firing heat" 6
+		"shield damage" 3.6
+		"hull damage" 4.8
 		"heat damage" 6
 		"damage dropoff" 0 2400
 		"dropoff modifier" 0
@@ -564,131 +565,6 @@ outfit "Orchid Active"
 		"hull damage" 6000
 		"hit force" 3600
 		"missile strength" 42
-
-
-outfit `"Snapdragon" Nuclear Shaped Charge`
-	category "Ammunition"
-	licenses
-		"Avgi Atomics"
-	cost 660000
-	thumbnail "outfit/casaba howitzer"
-	"mass" 1
-	"snapdragon capacity" -1
-	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
-
-
-outfit "Snapdragon Magazine"
-	category "Ammunition"
-	licenses
-		"Avgi Atomics"
-	cost 1440000
-	thumbnail "outfit/unknown"
-	"mass" 3
-	"outfit space" -18
-	"snapdragon capacity" 12
-	ammo `"Snapdragon" Nuclear Shaped Charge`
-	description "Snapdragon storage"
-
-
-outfit "Snapdragon Launcher"
-	category "Secondary Weapons"
-	licenses
-		"Avgi Atomics"
-	cost 1370000
-	thumbnail "outfit/casaba howitzer launcher"
-	"mass" 24
-	"outfit space" -24
-	"weapon capacity" -24
-	"gun ports" -1
-	"snapdragon capacity" 12
-	weapon
-		sprite "projectile/finisher activating"
-			"frame rate" 1
-			"no repeat"
-		sound "finisher"
-		ammo `"Snapdragon" Nuclear Shaped Charge`
-		icon "icon/finisher"
-		"fire effect" "finisher sparks" 8
-		"die effect" "finisher fragment" 6
-		"hit effect" "medium explosion"
-		"inaccuracy" 3
-		"velocity" 6
-		"lifetime" 30
-		"reload" 90
-		"firing energy" 6
-		"firing heat" 3
-		"optical tracking" 0.9
-		"radar tracking" 0.6
-		"missile strength" 36
-		"submunition" "Active Snapdragon"
-	description `Casaba Howitzer`
-
-
-outfit "Active Snapdragon"
-	weapon
-		sprite "projectile/thunderhead"
-			"frame rate" 2.4
-		"live effect" "finisher trail" 50
-		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 12
-		"hit effect" "fission fragments" 60
-		"die effect" "thermonuclear flash"
-		"lifetime" 1200
-		"acceleration" 0.6
-		"drag" .03
-		"turn" 6
-		"homing" 3
-		"optical tracking" 0.9
-		"radar tracking" 0.6
-		"split range" 900
-		"missile strength" 36
-		"submunition" "Snapfront" 120
-		"submunition" "Snapback" 90
-
-
-outfit "Snapfront"
-	weapon
-		sprite "effect/plasma impact"
-			"frame rate" 30
-			"no repeat"
-			"scale" 0.5
-		"hit effect" "nuclear spallation"
-		"live effect" "casaba trail" 60
-		"inaccuracy" 9
-			narrow
-		"lifetime" 30
-		"random lifetime" 30
-		"velocity" 60
-		"random velocity" -60
-		"shield damage" 120
-		"hull damage" 180
-		"hit force" 180
-
-
-outfit "Snapback"
-	weapon
-		sprite "effect/composed"
-			"frame rate" 60
-			"no repeat"
-		"hit effect" "nuclear spallation"
-		"live effect" "casaba trail" 60
-		"inaccuracy" 90
-			narrow
-			inverted
-		"random lifetime" 30
-		"random velocity" -60
-		"shield damage" 60
-		"hull damage" 90
-		"hit force" 90
-
-
-effect "casaba trail"
-	sprite "effect/flame"
-		"frame rate" 30
-		"no repeat"
-	"random angle" 30
-	"random lifetime" 12
-	"random velocity" -6
 
 
 outfit "Equinox Torpedo"

@@ -49,6 +49,7 @@ outfit "Aberrant Spiker"
 		"hull damage" 1000
 		"shield damage" 1000
 		"missile strength" 12
+	description "Spikes grow on the backs of many Aberrant variants, usually made of a variety of materials, both metallic and mineral and nature. This device appears to allow an Aberrant to launch these spikes as an offensive weapon, but just how they are able to guide and propel themselves through space is a mystery that a superficial examination of this outfit does not reveal."
 
 
 outfit "Nucleolysis Beam"
@@ -78,38 +79,6 @@ outfit "Nucleolysis Beam"
 		"heat damage" -9.1
 		"fuel damage" 0.9
 		"corrosion damage" 0.15
-	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
-	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
-
-
-outfit "Thicc Ravager"
-	category "Guns"
-	cost 1800000
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "outfit/unknown"
-	"mass" 29
-	"outfit space" -23
-	"weapon capacity" -23
-	"flotsam chance" 0.5
-	"unplunderable" 1
-	"gun ports" -1
-	weapon
-		sprite "projectile/ravager thicc"
-			"frame rate" 15
-		sound "fire-lance"
-		"hit effect" "acuit hit"
-		"inaccuracy" .2
-		"velocity" 225
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 4.2
-		"firing heat" 1.5
-		"shield damage" 0.8
-		"hull damage" 1.6
-		"heat damage" -9.1
-		"fuel damage" 0.9
-		"corrosion damage" 0.15
-		"penetration count" 100
 	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
 	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
 

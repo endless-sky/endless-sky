@@ -193,9 +193,9 @@ planet Stilacrest
 planet Cyreal
 	attributes avgi "aberrant siege" forest tourism
 	landscape land/hills13
-	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and, like all those near the Avgi homeworld, it was settled by numerous waves of slower than light starships. Once heavily settled, this low-gravity moon's sharp mountains and tall forests were used as a green space by nearby miners grown weary of the cramped confines of their vessels."
-	description "While somewhat metal-poor, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily."
-	spaceport "The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system."
+	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and, like all those near the Avgi homeworld, it was settled by numerous waves of slower than light starships. After a period of widespread scattered settlement, this low-gravity moon's sharp mountains and tall forests became favored for use as a green space by nearby miners grown weary of the cramped confines of their vessels. After the invention of the hyperdrive, with unprecedented waves of immigration arriving every day, conservation laws set aside large swathes of the moon as natural preserves, which concentrated much of the permanent population in a small group of heavily urbanized areas."
+	description "While somewhat metal-poor itself, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily."
+	spaceport "The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system. Situated along the side of one of the equatorial mountains, a set of short runways also service the moon's local aircraft."
 	government Avgi
 	shipyard "Avgi Civilian Basics"
 	shipyard "Avgi Civilian Advanced"
@@ -211,7 +211,7 @@ planet Amathil
 	attributes avgi "aberrant siege" desert
 	landscape land/canyon16
 	description "As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity, or at least that is the way the locals are perceived by outsiders."
-	spaceport "The spaceport is spartan, with Amathil not receiving much traffic on a daily basis. Amathil's primary export is people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere."
+	spaceport "The spaceport is spartan, with Amathil not receiving much traffic on a daily basis even before the Incursion. Amathil's primary export was people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere."
 	government Avgi
 	outfitter "Avgi Basic Systems"
 	outfitter "Avgi Basic Drives"
@@ -460,7 +460,7 @@ planet Weledos
 	attributes avgi "avgi diaspora" frontier
 	landscape land/water3
 	description "Weledos was colonized even before the Avgi evacuated their orbital assets to the Tangled Shroud. A few brave pioneers were willing to settle within the unpredictable systems of the Periphery, largely to escape the planetary governments of core Avgi space. In secret, they surveyed and colonized the planet before most explorers had even reached the Shroud, surprising early scouts with their presence."
-	description "	Unfortunately, Weledos and the Ensemble system in general are poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system has forced the Avgi diaspora to settle deeper into the Tangled Shroud, despite calls to settle more civilians here."
+	description "	Unfortunately, Weledos and the Ensemble system in general are poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system has forced the Avgi diaspora to settle deeper into the Tangled Shroud, despite calls to deposit more civilians here."
 	spaceport "The spaceport here is large but spartan, equipped as a midway point for convoys and warships transiting between the front lines of the war and the depths of the Tangled Shroud."
 	"required reputation" 10
 	government "Avgi"
