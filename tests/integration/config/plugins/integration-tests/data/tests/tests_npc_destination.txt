@@ -86,7 +86,7 @@ test-data "Npc Destination Mission"
 				government "Quarg"
 				destination Geminus
 				waypoint
-				personality uninterested waiting
+				personality waiting
 
 
 test "Npc Destination Test"
