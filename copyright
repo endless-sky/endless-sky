@@ -3553,6 +3553,8 @@ Files:
  images/effect/successor?pulse?laser?impact*
  images/effect/void?spark*
  images/hardpoint/bimodal?turret*
+ images/hardpoint/overcharged?pulse?laser?turret*
+ images/hardpoint/successor?pulse?laser?turret*
  images/icon/hv?spike*
  images/label/successors*
  images/outfit/bimodal?coilgun?turret*

@@ -65,7 +65,7 @@ outfit "Bimodal Coilgun Turret"
 	"turret mounts" -1
 	weapon
 		"hardpoint sprite" "hardpoint/bimodal turret"
-		"hardpoint offset" 9.
+		"hardpoint offset" 12
 		sprite "projectile/bimodal"
 			"frame rate" 5
 			"start frame" 0
@@ -211,7 +211,8 @@ outfit "Pulse Laser Turret"
 		sprite "projectile/successor pulse laser"
 			"random start frame"
 			"frame rate" 5
-		"hardpoint sprite" "hardpoint/heavy laser turret"
+		"hardpoint sprite" "hardpoint/successor pulse laser turret"
+		"hardpoint offset" 8
 		sound "slicer"
 		"hit effect" "successor pulse laser impact"
 		"inaccuracy" 0.4
@@ -282,7 +283,8 @@ outfit "Overcharged Laser Turret"
 			"start frame" 2
 			"frame rate" 8
 			"rewind"
-		"hardpoint sprite" "hardpoint/laser turret"
+		"hardpoint sprite" "hardpoint/overcharged pulse laser turret"
+		"hardpoint offset" 8
 		sound "laser"
 		"fire effect" "moonbeam fleck" 3
 		"hit effect" "overcharged pulse laser impact"
