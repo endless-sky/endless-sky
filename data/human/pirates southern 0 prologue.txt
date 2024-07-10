@@ -1,0 +1,115 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Southern Pirates 0"
+	minor
+	name "Scan the Northies"
+	description "Fly through the <waypoints> systems scanning the ships you find there, then report to <destination> so the Southern Council of War can decide what to do."
+	clearance "When you tell the pirates you're here on behalf of Sam McCoy, they immediately let you land without question."
+	source
+		attributes "south pirate"
+		government "Pirate"
+		not planet "Greenrock"
+	destination "Greenrock"
+	mark "Almaaz"
+	mark "Alnilam"
+	mark "Arneb"
+	mark "Hatysa"
+	to offer
+		random < 60
+		has "outfit (flagship installed): Jump Drive"
+		or
+			"reputation: Free Worlds" < 0
+			"reputation: Republic" < 0
+			"reputation: Syndicate" < 0
+	on offer
+		conversation
+			`You suddenly notice a movement to your right. On a pirate world like this, anything could happen.`
+			choice
+				`	(Duck now, ask questions later.)`
+					goto duck
+				`	(Confront the movement.)`
+					goto heresthedeal
+				`	(Act as if nothing happened.)`
+			`	That was a mistake. A dagger comes flying out of nowhere, immediately killing you. Someone laughs as you lose consciousness.`
+				die
+			label duck
+			`	It's a good thing you did that. A dagger goes whistling by where your head just was. You then hear someone call, "Captain! You be averse ta taking a job from the likes of us?"`
+			label heresthedeal
+			`	Someone appears from what seems like nowhere. "So, here's the deal," they say. "We need some alive captain to scan some ships of our northern comrades. We suspect they've got something we want. What do you say?"`
+			choice
+				`	"Tell me why, and I'll do it."`
+					goto why
+				`	"No."`
+					goto nono
+			label nono
+			`	"Shouldn't have said that, Captain," says the pirate, throwing a knife at you. Sadly, it hits.`
+				die
+			label why
+			`	"They may or may not have technology we want. Therefore, if you scan all Bactrians in the northern systems and go to <destination>, we'll give you <payment>. Do not capture or hurt them, because we are friendly with them. Tell the swabs on <planet> that Sam McCoy sent you, and they'll let you land. Though if they don't, tell me, and I'll deal with them," he says ominously. Apparently Sam McCoy is his name.`
+				accept
+	on accept
+		"reputation: Pirate (Southern)" >?= 0
+		log "People" "Sam McCoy" `A pirate leader who seemingly is rather important. He seems to love throwing knives, apparently with bad consequences for his targets.`
+	on visit
+		conversation
+			`Sam McCoy is seemingly not happy, and sends armadas to chase you off the planet while shouting through microphones, "Scan the Bactrians before returning again! No landing until you do!"`
+				launch
+	npc
+		government "Pirate (Southern)"
+		personality heroic timid nemesis
+		ship "Raven (Afterburner)" "Paster Blaster"
+	npc save "scan outfits"
+		government "Pirate"
+		personality staying secretive
+		system "Arneb"
+		ship "Bactrian (Hai Engines)" "Scourge of the North"
+	npc save "scan outfits"
+		government "Pirate"
+		personality staying secretive
+		system "Alnilam"
+		ship "Bactrian (Hai Weapons)" "Scourge of the Rim"
+	npc save "scan outfits"
+		government "Pirate"
+		personality staying secretive
+		system "Hatysa"
+		ship "Bactrian (Hired Gun)" "Scourge of the Core"
+	on fail
+		"reputation: Pirate (Southern)" <?= -10000
+		dialog "You destroyed one of the Bactrians you were supposed to scan. Sam won't be happy about this..."
+	on complete
+		dialog "You land and Sam messages for you to meet him in the spaceport."
+
+
+mission "Southern Pirates 1"
+	priority
+	name "Northern Equipment"
+	description "Get some of the technology of the Northern Pirates and bring it to <destination> so Sam can examine it. Especially get a D94-YV Shield Generator and a Heavy Laser Turret."
+	to offer
+		has "Southern Pirates 0: done"
+	on offer
+		conversation
+			`Sam meets you at the spaceport. He says, "Before you ask questions, ANY questions, go back north and get a Heavy Laser Turret and a D94-YV Shield Generator." You try to say something, but he cuts you off.`
+			`	It doesn't look as if you're going to be able to say no.`
+				accept
+	npc
+		government "Pirate (Southern)"
+		personality derelict launching timid
+		ship "Sparrow" "The Lost"
+	on complete
+		require "Heavy Laser Turret"
+		require "D94-YV Shield Generator"
+		outfit "Heavy Laser Turret" -1
+		outfit "D94-YV Shield Generator" -1
+		conversation
+			`Sam seems very pleased with this new technology. "While not normally a thankful man, I'm glad you brought this, <first>. I pity the poor... well, that's another story, for another time. See you later!" He promptly leaves, and you wonder what that was all about.`
