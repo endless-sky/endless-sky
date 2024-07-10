@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Logger.h"
 #if defined(_WIN32)
-#include "text/Utf8.h"
+#include "../text/Utf8.h"
 #endif
 
 
