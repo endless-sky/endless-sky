@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #if defined _WIN32
-#include "text/Utf8.h"
+#include "../text/Utf8.h"
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
