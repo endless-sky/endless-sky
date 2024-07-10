@@ -21,8 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "RenderBuffer.h"
 
-#include <cassert>
-
 
 
 TextArea::TextArea()
@@ -170,7 +168,6 @@ void TextArea::Draw()
 
 bool TextArea::Click(int x, int y, int clicks)
 {
-	assert(buffer);
 	if(!buffer)
 		return false;
 	Rectangle bounds(position, {buffer->Width(), buffer->Height()});
@@ -204,7 +201,6 @@ bool TextArea::Release(int x, int y)
 
 bool TextArea::Hover(int x, int y)
 {
-	assert(buffer);
 	if(!buffer)
 		return false;
 	Rectangle bounds(position, {buffer->Width(), buffer->Height()});
