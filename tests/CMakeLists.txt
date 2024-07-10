@@ -15,38 +15,38 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
 	unit/include/output-capture.hpp
-	unit/src/comparators/test_byGivenOrder.cpp
-	unit/src/comparators/test_byName.cpp
-	unit/src/helpers/datanode-factory.cpp
-	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
-	unit/src/test_categoryList.cpp
-	unit/src/test_conditionSet.cpp
-	unit/src/test_conditionsStore.cpp
-	unit/src/test_datafile.cpp
-	unit/src/test_datanode.cpp
-	unit/src/test_datawriter.cpp
 	unit/src/test_dictionary.cpp
-	unit/src/test_distance_calculation_settings.cpp
-	unit/src/test_esuuid.cpp
 	unit/src/test_exclusiveItem.cpp
-	unit/src/test_firecommand.cpp
-	unit/src/test_formationPattern.cpp
 	unit/src/test_main.cpp
 	unit/src/test_point.cpp
 	unit/src/test_random.cpp
-	unit/src/test_scrollVar.cpp
 	unit/src/test_set.cpp
-	unit/src/test_ship.cpp
 	unit/src/test_stringInterner.cpp
 	unit/src/test_template.txt
 	unit/src/test_weightedList.cpp
+	unit/src/body/test_ship.cpp
+	unit/src/comparators/test_byGivenOrder.cpp
+	unit/src/comparators/test_byName.cpp
+	unit/src/data/test_categoryList.cpp
+	unit/src/data/test_conditionSet.cpp
+	unit/src/data/test_conditionsStore.cpp
+	unit/src/data/test_datafile.cpp
+	unit/src/data/test_datanode.cpp
+	unit/src/data/test_datawriter.cpp
+	unit/src/engine/test_distance_calculation_settings.cpp
+	unit/src/engine/test_esuuid.cpp
+	unit/src/engine/test_firecommand.cpp
+	unit/src/engine/test_formationPattern.cpp
+	unit/src/helpers/datanode-factory.cpp
+	unit/src/player/test_account.cpp
 	unit/src/text/test_alignment.cpp
 	unit/src/text/test_displaytext.cpp
 	unit/src/text/test_format.cpp
 	unit/src/text/test_layout.cpp
 	unit/src/text/test_truncate.cpp
+	unit/src/ui/test_scrollVar.cpp
 )
 
 list(APPEND INTEGRATION_TESTS

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_TABLE_H_
 #define ES_TEXT_TABLE_H_
 
-#include "../Color.h"
+#include "../shader/Color.h"
 #include "DisplayText.h"
 #include "layout.hpp"
 #include "../Point.h"

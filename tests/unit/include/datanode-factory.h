@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEST_HELPER_DATANODE_FACTORY_H_
 #define ES_TEST_HELPER_DATANODE_FACTORY_H_
 
-#include "../../../source/DataNode.h"
+#include "../../../source/data/DataNode.h"
 
 #include <string>
 #include <vector>

@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef BY_SERIES_AND_INDEX_H_
 #define BY_SERIES_AND_INDEX_H_
 
-#include "../CategoryTypes.h"
-#include "../GameData.h"
-#include "../Outfit.h"
-#include "../Ship.h"
+#include "../data/CategoryTypes.h"
+#include "../data/GameData.h"
+#include "../engine/Outfit.h"
+#include "../body/Ship.h"
 
 namespace {
 	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)

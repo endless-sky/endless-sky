@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_FONT_H_
 #define ES_TEXT_FONT_H_
 
-#include "../Shader.h"
+#include "../shader/Shader.h"
 
 #include "../opengl.h"
 
