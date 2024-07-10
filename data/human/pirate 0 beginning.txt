@@ -89,3 +89,40 @@ mission "SoPi 0: Scanning"
 			dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock and give your logs to Carl GaSan.`
 		on encounter
 			dialog `Some of the ships you see are behaving strangely... maybe you should scan them and give Carl GaSan the data.`
+
+
+mission "SoPi 1: Engine Collection"
+	priority
+	name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <engines> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
+	source Greenrock
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		has "SoPi 0: Scanning: done"
+	on offer
+		conversation
+			`As you land in the spaceport and shut down the engine,`
+
+mission "SoPi 1: Weapons Collection"
+	minor
+	name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <weapons> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
+	source Greenrock
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		has "SoPi 0: Scanning: done"
+	on offer
+
+
+mission "Shield Collection"
+	minor
+	name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <shields> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
+	source Greenrock
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		has "SoPi 0: Scanning: done"
+	on offer
