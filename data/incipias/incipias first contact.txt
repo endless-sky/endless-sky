@@ -66,7 +66,7 @@ mission "Incipias: Warning of the Guardian"
 			label agree
 			action
 				set "Incipias: accepted the guardians warning"
-			`	"You are understanding, human, so I thank you in the name of this region." The voice fades away, leaving only the feeling of being watched."`
+			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
 				decline
 
 mission "Incipias: Presence of the Guardian"
