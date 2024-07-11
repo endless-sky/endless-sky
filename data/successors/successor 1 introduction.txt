@@ -114,7 +114,7 @@ mission "Successors: First Contact 1"
 			choice
 				`	"Yes, I am."`
 				`	"Who else would I be?"`
-			`	This sparks a wave of color among the gathered members, most of all Sieasej, who spends several seconds in a vibrant shade of orange before returning to their resting hue. "Then i'tis confirmed. 'Tis a cause for much excitement, <last>, for thou'rt the first human met by us in fifteen hundred years, since the time before thy species had even left the bounds o' thy own planet's gravity. House Sioeora is honored to make thy acquaintance, as am I." The members of the group splay their free arms towards you and glisten with ripples of blue across their skin. You perform a short bow in return.`
+			`	This sparks a wave of color among the gathered members, most of all Sieasej, who spends several seconds in a vibrant shade of orange before returning to their resting hue. "Then i'tis confirmed. 'Tis a cause for much excitement, <last>, for thou'rt the first human met by us in fifteen hundred years, since the time before thy species had even left the bounds o' thine own planet's gravity. House Sioeora is honored to make thine acquaintance, as am I." The members of the group splay their free arms towards you and glisten with ripples of blue across their skin. You perform a short bow in return.`
 			label questions
 			choice
 				`	"What should I do now?"`
@@ -165,7 +165,7 @@ mission "Successors: First Contact 1"
 			label changed
 			action
 				set "Successors: changed"
-			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I had hoped as much," they say, "that thou were't still a young species with a long history before thee, that thou would'st one day take to the stars as it appears now thou hast. Alas, my noble House Sioeora does not permit me today the sort of interrogation of thy knowledge that I desire, for thy arrival portends much, and there is much to arrange."`
+			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I had hoped as much," they say, "that thou were't still a young species with a long history before thee, that thou would'st one day take to the stars as it appears now thou hast. Alas, my noble House Sioeora does not permit me today the sort of interrogation of thy knowledge that I desire, for thine arrival portends much, and there is much to arrange."`
 				goto questions
 			label ripped
 			action
@@ -258,7 +258,7 @@ mission "Successors: First Contact 2"
 			`	"We are aware of this. The introduction of an alien such as thee is not expected or requested in this hall."`
 				goto request
 			label apologize-tardiness
-			`	"Thy apology is noted."`
+			`	"Thine apology is noted."`
 				goto request
 			label request
 			`	Riijaaora continues. "Thy presence has been demanded here so that thou might'st provide service to this House. We have a task for thee, and if thou completes't correctly, a gift for thee as a symbol of our patronage."`
@@ -286,15 +286,15 @@ mission "Successors: First Contact 2"
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label rude
-				`	"Thy appreciation or lack thereof is immaterial. Thou may'st be an alien, and yet that makes thee even more a guest within our space and even more a, hm... consumer of our hospitality. Thy compliance is expected in return for this generosity.`
+				`	"Thine appreciation or lack thereof is immaterial. Thou may'st be an alien, and yet that makes thee even more a guest within our space and even more a, hm... consumer of our hospitality. Thy compliance is expected in return for this generosity.`
 			choice
 				`	"I apologize."`
 				`	"I have no desire to be your servant."`
 					goto rejected
-			`	"Thy apology is noted."`
+			`	"Thine apology is noted."`
 				goto task
 			label accepted
-			`	"Thou show'st wisdom in thy choice. Even now, thy ship is prepared within the spaceport of this estate. Thou should'st go there when thy audience is finished, and begin thy task with haste." The scion pauses for a moment before continuing. "But note, Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not trust our citizen and servant to thee without consideration. If harm befalls the speaker of these words whilst they are under thy protection, or if thou fail'st to return them here in thirty days, we will consider thee an enemy of this House and levy upon thee every harm that we can offer."`
+			`	"Thou show'st wisdom in thy choice. Even now, thy ship is prepared within the spaceport of this estate. Thou should'st go there when thine audience is finished, and begin thy task with haste." The scion pauses for a moment before continuing. "But note, Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not trust our citizen and servant to thee without consideration. If harm befalls the speaker of these words whilst they are under thy protection, or if thou fail'st to return them here in thirty days, we will consider thee an enemy of this House and levy upon thee every harm that we can offer."`
 				goto end
 			label rejected
 			action
@@ -332,7 +332,7 @@ mission "Successors: First Contact 3"
 				`	"Thank you. What can you tell me about our mission?"`
 					goto task
 				`	"What do you mean, 'well enough for an alien?'"`
-			`	A ripple of a rough, greenish texture passes over Sieasej's skin before subsiding. "Audiences like that one are subject to a litany of social expectations. Were't thou one of us, thy ignorance of these would seem knavish at best and offensive at worst, but... the scions are not fools. They are more than willing to endure a little rudeness for the sake of achieving their aims."`
+			`	A ripple of a rough, greenish texture passes over Sieasej's skin before subsiding. "Audiences like that one are subject to a litany of social expectations. Were't thou one of us, thine ignorance of these would seem knavish at best and offensive at worst, but... the scions are not fools. They are more than willing to endure a little rudeness for the sake of achieving their aims."`
 			`	"I see," you say. "I suppose I am too."`
 			`	"Fret not," Sieasej says. "Elegance of address was neither required nor anticipated from thee. All has a place and time where it is necessary, and a place and time where it is not."`
 			label task
@@ -387,7 +387,7 @@ mission "Successors: First Contact 3"
 				goto questions
 			label jumpdrives
 				set "Successors: jumpdrives"
-			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thy own race, who by then had only just discovered industry. Drives like the one within thy ship have been known to us for a long, long time."`
+			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who by then had only just discovered industry. Drives like the one within thy ship have been known to us for a long, long time."`
 			choice
 				`	"We'd better get going."`
 					goto embark
@@ -611,7 +611,7 @@ mission "Successors: First Contact 3"
 			label backalive
 			`	"Ah," they say. "Well I, for one, shall thank thee for thy prudence." After a delay, they add, "Even if Sioeora will not."`
 			label released-2
-			`	Sieasej briefly waves their device in the air unsuccessfully. "Nonetheless," they say, "thy act of mercy entails us failure. Under threat, the adults shall surely shroud the larvae, and so it is now here. It seems we must return with empty arms." They briefly undulate in a manner similar to a laugh. "I do not think I'd take another chase like that again regardless."`
+			`	Sieasej briefly waves their device in the air unsuccessfully. "Nonetheless," they say, "thine act of mercy entails us failure. Under threat, the adults shall surely shroud the larvae, and so it is now here. It seems we must return with empty arms." They briefly undulate in a manner similar to a laugh. "I do not think I'd take another chase like that again regardless."`
 			`	The two of you return to the <ship> and make preparations for takeoff so that you can, at the very least, return Sieasej to their people.`
 			label end
 
@@ -650,8 +650,8 @@ mission "Successors: First Contact 3"
 			choice
 				`	"Yes, I have."`
 				`	"Of course."`
-			`	Riijaaora wriggles their body in what might be an expression of joy before they and the other scions splay their arms before you. "Thou hast done this House great service, captain," they say. "We would be proud to call thee 'ally,' and reward thee for thy usefulness." One of the military officers standing beside the scions moves towards you and gently takes the caged animal from your hands. It chirps quietly as you hand it over and the officer takes it out of the room.`
-			`	Riijaaora gestures to a small wooden pin affixed to the outer layer of their clothing. "We keep a number of these ancient translation devices, but very few for thine own tongue. 'Tis an art piece, commissioned many years past for a performance of thy own Shakespeare's Tempest so that our noble Predecessors could experience the work in its original form. 'Tis thy promised gift."`
+			`	Riijaaora wriggles their body in what might be an expression of joy before they and the other scions splay their arms before you. "Thou hast done this House great service, captain," they say. "We would be proud to call thee 'ally,' and reward thee for thine usefulness." One of the military officers standing beside the scions moves towards you and gently takes the caged animal from your hands. It chirps quietly as you hand it over and the officer takes it out of the room.`
+			`	Riijaaora gestures to a small wooden pin affixed to the outer layer of their clothing. "We keep a number of these ancient translation devices, but very few for thine own tongue. 'Tis an art piece, commissioned many years past for a performance of thine own Shakespeare's Tempest so that our noble Predecessors could experience the work in its original form. 'Tis thy promised gift."`
 			`	Riijaaora plucks the device from their outfit and offers it to you.`
 			choice
 				`	(Take it.)`
@@ -814,7 +814,7 @@ mission "Successors: Kaatrij First Contact 1"
 				goto questions
 			label communicate
 			`	"Ah, there is that matter. Much as the High Houses might prefer to believe that they - we act all within the veil of secrecy, we are all too intertwined to keep our activities hidden for long. The details of thy arrangement with Sioeora and its consequences were apparent to us soon after its conclusion, as will the details of this meeting eventually be apparent to the other Houses in time."`
-			`	Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own tongue: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thy own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the words of another."`
+			`	Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own tongue: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thine own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the words of another."`
 			`	Saajret plucks the device from their outfit and offers it to you.`
 			choice
 				`	(Take it).`
@@ -908,7 +908,7 @@ mission "Successors: Trusted"
 			`Once you have sat down at the spaceport, you are met by another group of Successor naval officers. You notice that this group appears even more diverse than the last, representing several different uniform styles and liveries. Unifying them all is a small white and blue pin attached to their outfits; one that does not correspond to the insignia of any of the High Houses. The officers guide you, politely but firmly, to one of the monorail trains snaking out from the spaceport to other installations on the planet, and you all shuffle together into one of the cars, which appears to have been completely cleared of normal passengers, if it even carried those in the first place.`
 			`	Several minutes later, the monorail deposits you at an especially large and well-decorated complex that swarms with both military and well-dressed civilians, some of whom appear so opulent and bejeweled that you suspect their personal effects are worth more than your ship. Each of them without exception wears the same white and blue insignia as your escorts, though many have incorporated it into their clothes' design or even display it as a pattern in skin coloration.`
 			`	As your escort peels off into the crowd, you see a familiar face in the distance: Sieasej, the Successor scholar, who visibly perks up when they see you and then approaches.`
-			`	"Captain! Thou hast arrived at a fortuitous time! There are still some minutes before this day's meetings, including thy own audience with the Houses, are scheduled to begin." `
+			`	"Captain! Thou hast arrived at a fortuitous time! There are still some minutes before this day's meetings, including thine own audience with the Houses, are scheduled to begin." `
 			label questions
 			choice
 				`	"We'd better start then.`
@@ -928,14 +928,14 @@ mission "Successors: Trusted"
 			label explain
 			action
 				set "Successors: explain"
-			`	"This is a diplomatic world for representatives of the High Houses to meet in council, resolve disputes, bicker over policy, and I suspect in as it shall be in thy own case, to offer special dispensation to citizens and patronized aliens."`
+			`	"This is a diplomatic world for representatives of the High Houses to meet in council, resolve disputes, bicker over policy, and I suspect in as it shall be in thine own case, to offer special dispensation to citizens and patronized aliens."`
 				goto questions
 			label sioeora
 			action
 				set "Successors: sioeora"
 			branch sioeora-opposed
 				has "completed: Successors: Kaatrij First Contact 1"
-			`	"Our mutual patrons remain their usual selves. Would'st though believe that Riijaaora themself informed me of thy invitation here? They've made themself a leader among the others for their fruitful advocacy towards thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee in council today, for thou art considered something of a successful investment on their part."`
+			`	"Our mutual patrons remain their usual selves. Would'st though believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader among the others for their fruitful advocacy towards thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee in council today, for thou art considered something of a successful investment on their part."`
 				goto sioeora-choice
 			label sioeora-opposed
 			`	"Ah, do they approve of thy presence here and that?" Sieasej briefly examines a suckered arm before leaning in a little closer. "'Tis true the scions of my honored House remain chilly towards thee, doubly so for thy finding another patron which, I confess, may be what angers them most. Thou remain'st a person of interest to them nonetheless; I suspect they would be quite pleased to know that I had encountered thee at this council. Let them brood, I say. If Sioeora requires thee again, they shall not be so knavish so as not to make contact."`

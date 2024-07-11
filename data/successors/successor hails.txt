@@ -189,7 +189,7 @@ phrase "high houses friendly hail"
 
 phrase "high houses hostile hail"
 	word
-		"Thy deception marks the apex of thy ill,"
+		"Thy deception marks the apex of thine ill,"
 		"Thy cowardice is the basis of thy fame,"
 		"Our foolishness it was, we see, to trust thee;"
 		"A knave and coward thou hast clearly proved thyself;"
@@ -233,7 +233,7 @@ phrase "high houses hostile disabled hail" 2
 		"Our friends shall avenge thy bitter cruelty!"
 		"Let thy rotten flesh be consumed in flame!"
 		"Our friends shall yet let thee know fear."
-		"Thy only noble act shall be to perish."
+		"Thine only noble act shall be to perish."
 
 
 phrase "high houses hostile disabled hail"
@@ -380,7 +380,7 @@ phrase "people's houses hostile hail"
 		"Art thou blind and deaf to suff'ring or just evil?"
 		"If thou wouldst drop thy cargo, we'll be going."
 		"No harm shall come to those who drop their cargo."
-		"Thou art knavish in thy friendships and thy action."
+		"Thou art knavish in thy friendships and thine action."
 	word
 		" / "
 	word

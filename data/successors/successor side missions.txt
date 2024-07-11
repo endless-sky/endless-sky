@@ -184,7 +184,7 @@ mission "Successors: Predecessor Research 1"
 				`	"I have no more questions."`
 					launch
 			label empire
-			`	"The translation device thou wears upon thy person speaks volumes to its scale. Sieasej tells me that at the empire's peak, our scholars had even laid eyes upon thy own world, so far to the north! These dead systems that remain where once the core of their empire stood are but a small fraction of what was there. Some, it's sure, now belong to other races, and others, it would seem, have been obscured. We know not how nor why, only that the starcharts of our Predecessors do not mirror those we see today."`
+			`	"The translation device thou wears upon thy person speaks volumes to its scale. Sieasej tells me that at the empire's peak, our scholars had even laid eyes upon thine own world, so far to the north! These dead systems that remain where once the core of their empire stood are but a small fraction of what was there. Some, it's sure, now belong to other races, and others, it would seem, have been obscured. We know not how nor why, only that the starcharts of our Predecessors do not mirror those we see today."`
 			choice
 				`	"What caused the collapse?"`
 					goto collapse
