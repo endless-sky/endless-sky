@@ -81,21 +81,22 @@ mission "The Silent Ones"
 		never
 	npc save
 		government "Silent Ones"
-		personality timid mute mining harvests
+		personality harvests mining mute timid
 		system Il'le
 		ship "Tace Mesa"
 	npc save
 		government "Silent Ones"
-		personality timid mute mining harvests
+		personality harvests mining mute timid
 		system Il'le
 		ship "Tace Mesa"
 	npc save
 		government "Silent Ones"
-		personality timid mute mining harvests
+		personality harvests mining mute timid
 		system Il'le
 		ship "Tace Mesa"
 	npc save
 		government "Silent Ones"
-		personality timid mute mining harvests
+		personality harvests mining mute timid
 		system Il'le
 		ship "Tace Mesa" "???"
+

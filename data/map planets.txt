@@ -2837,7 +2837,7 @@ planet Methuselah
 	attributes "requires: gaslining"
 	landscape land/methuselah
 	description `This world feels ancient, and the air is calm as if the last storm ended millennia ago. A continuous deep sound from below seems to tell a story from the early days of the universe - memories of hotter and faster times.`
-	description `From time to time giant creatures can be seen moving in total peace.`
+	description `From time to time giant creatures can be seen floating through the atmosphere in total peace.`
 	government Uninhabited
 
 planet "Miblulub's Plenty"

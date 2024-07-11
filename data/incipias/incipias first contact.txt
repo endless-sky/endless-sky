@@ -51,7 +51,8 @@ mission "Incipias: Warning of the Guardian"
 				`	"I will see for myself."`
 				`	"Alright, thanks for the warning."`
 					goto agree
-			`	A sigh seems to drift through the continuum, "Human, these unborn flowers would only be endangered by your presence." An impression of euphoria comes over you as you hear the words 'unborn flowers.' Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
+			`	A sigh seems to drift through the continuum, "Human, these unborn flowers would only be endangered by your presence." An impression of euphoria comes over you as you hear the words 'unborn flowers.'`
+			`"Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
 			choice
 				`	"Why do you care about these 'flowers'?"`
 					goto care
@@ -92,7 +93,7 @@ mission "Incipias: Presence of the Guardian"
 					has "Incipias: accepted the guardians warning"
 				decline
 
-mission "Incipias: First Contact I"
+mission "Incipias: First Contact"
 	invisible
 	landing
 	to complete
@@ -101,14 +102,14 @@ mission "Incipias: First Contact I"
 		conversation
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
 				to display
-					not "Incipias: Meet the Quarg: offered"
+					not "Visit Quarg in Incipias Space: offered"
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. This must be the species the Quarg talked about.`
 				to display
-					has "Incipias: Meet the Quarg: offered"
+					has "Visit Quarg in Incipias Space: offered"
 
 
 
-mission "Incipias: Meet the Quarg"
+mission "Visit Quarg in Incipias Space"
 	invisible
 	landing
 	source
@@ -157,7 +158,7 @@ mission "Incipias: The Derelict"
 	landing
 	invisible
 	to offer
-		has "Incipias: Meet the Quarg: offered"
+		has "Visit Quarg in Incipias Space: offered"
 	npc assist
 		government "Hicemus"
 		ship "Nimbus FTL" "HIC Veni #000001"
@@ -182,7 +183,7 @@ mission "Incipias: The Derelict"
 				`	With the repair equipment delivered, there is nothing else you can do, given the communication barrier. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that they almost look white.`
 					goto end
 				label flee
-				`	As the tension increases even further, you simply drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look on the alien: blue and yellow tones are mixing on their skin, but they are not taking any action.`
+				`	You drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look of one of the aliens: blue and yellow tones are mixing on their skin, but they are not taking any action.`
 				label end
 				`	As you fly away you see the engines of the ship slowly booting back up. Apparently they figured out how to use the repair equipment. Instead of leaving the system, however, the ship quietly disappears into the nearest gas giant.`
 				`	Back on the bridge your eyes fall on the scanner log that is still open on your screen. Notably this ship had no hyperdrive or anything similar installed; strange considering there is no inhabited planet in this system. Maybe you should talk to the Quarg and see if they can help.`
@@ -195,7 +196,7 @@ mission "Incipias: The Derelict"
 		conversation
 			`On entering the system you find an alien spaceship disabled and badly damaged. There do not appear to be any other ships or inhabited planets in the system.`
 
-mission "Incipias: Help the stranded Part 1"
+mission "Incipias: Help The Stranded 1"
 	landing
 	source
 		government "Quarg (Incipias)"
@@ -211,7 +212,7 @@ mission "Incipias: Help the stranded Part 1"
 					goto explanation
 				`	"I need advice regarding the species in this region."`
 			`	It looks at you curiously. "So you have held council with the young Incipias? This one is nonplussed that you ably formed correspondence. It took a prolonged period of time even for us to decipher their way of dissemination."`
-			`	You quickly explain what happened. The Quarg seems very relieved about the fact that you were not able to talk to them.`
+			`	You quickly explain what happened. From what you can tell, the Quarg seems relieved that you were not able to talk to them.`
 			label explanation
 			`	"You ran into a most peculiar situation. Surpassing the borders of their system is not yet a capability possessed by the Incipias." It tilts its head for a moment, considering what you just said. "It is our desire to help them, but it is yet premature for us to reveal ourselves to their species, and certainly premature for them to be interacting with independent interlopers such as yourself. I fear that we are impotent in this unfortunate turn of events."`
 			choice
@@ -271,14 +272,14 @@ mission "Incipias: Help the stranded Part 1"
 			`	Along the message comes a small map of the station with the docking ports highlighted.`
 	on complete
 		conversation
-			`Thanks to the map you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around the station. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
+			`Thanks to the map you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
 			`	"Welcome, outer-being, to our capital. We are the Incipias."`
 			`	It stops as if awaiting an answer.`
 			choice
 				`	"Greetings, Incipias. I am a human."`
 				`	"I thank you for your hospitality."`
 			`	Your translator begins rapidly flashing. The Incipias seem to respond to this - movement and colors begin to diffuse through the crowd like waves.`
-			`	The 'speaker' continues, "You are the first outer-being that ever communicated with us. Are you the only outer-being out there?"`
+			`	The 'speaker' continues. "You are the first outer-being that ever communicated with us. Are you the only outer-being out there?"`
 			choice
 				`	"No, there are others too."`
 				`	"The galaxy is full of other beings."`
@@ -287,15 +288,15 @@ mission "Incipias: Help the stranded Part 1"
 				`	(Tell them about the stranded ship and how I want to help them.)`
 					goto stranded
 				`	"I want one of your ships."`
-			`	"We shall allow you to buy one, if that is all that it takes to make you a not-danger. If that is all please excuse us. We need to talk about what this new situation-opportunity means for us. I hope we can out-question you more another time."`
+			`	"We shall allow you to buy one, if that is all that it takes to make you a not-danger. Please excuse us. We need to talk about what this new situation-opportunity means for our species. I hope we can out-question you more another time."`
 				goto end
 			label stranded
 			`	Another wave goes through the crowd, but this time you notice an overflow in green tones.`
-			`	"So they are still alive. We shall give you access to our ship. Let us prepare the ship-seller. Do note though that they can not jump between system-places, not like your own ship. We hope to question you more on another future-time.`
+			`	"So they are still alive. We shall give you access to our ships, so that you may enter the air-planet they have took refuge in. Do note though that they can not jump between system-places, not like your own ship. We hope to question you more on another future-time.`
 			label end
 			`	The five float away but the crowd continues staring at you, probably out of interest.`
 
-mission "Incipias: No help for the stranded"
+mission "Incipias: No Help For The Stranded"
 	landing
 	invisible
 	source
@@ -303,23 +304,23 @@ mission "Incipias: No help for the stranded"
 	destination "Pon'tes"
 	to offer
 		or
-			has "Incipias: Help the stranded Part 1: declined"
-		not "Incipias: Help the stranded Part 1: offered"
+			has "Incipias: Help The Stranded 1: declined"
+		not "Incipias: Help The Stranded 1: offered"
 	on offer
 		conversation
-			`You see the stranded ship on your scanners, but with no way to communicate you have no way to help them. You have no choice but to leave them to their doom on this stormy world.`
+			`You identify the stranded ship on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
 
-mission "Incipias: Help the stranded Part 2"
+mission "Incipias: Help The Stranded 2"
 	landing
 	passengers 5
 	source
 		planet Turra
 	destination "Pon'tes"
 	to offer
-		has "Incipias: Help the stranded Part 1: done"
+		has "Incipias: Help The Stranded 1: done"
 	on offer
 		conversation
-			`Your ship dives into the clouds of the gas giant, an environment on a scale you never experienced before. Giant clouds tower like castles, sometimes opening to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
+			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you never experienced before. Giant clouds tower like castles, sometimes opening to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
 			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen, and you maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull, and the shield generator must have broke when they ran out of fuel, because their shields are completely down.`
 			`	You receive no answer to your hail.`
 			`	You carefully maneuver your ship closer, until you can dock with the Incipias ship.`
