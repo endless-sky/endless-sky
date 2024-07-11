@@ -39,7 +39,7 @@ outfit "Internal Plasma Exhaust"
 	"turn" 1500
 	"flare sprite" "effect/plasma exhaust"
 		"frame rate" 16
-	description "The Tace Mesa move by exhausting heated gas, plasma, from the end of their body."
+	description "The Tace Mesa move by exhausting heated gas, which is also known as plasma, from the end of their body."
 
 ship "Tace Mesa"
 	sprite "ship/silent harvester"
