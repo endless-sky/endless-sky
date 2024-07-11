@@ -32,6 +32,8 @@ public:
 		GUI,
 		CTRL_GUI,
 	};
+
+
 public:
 	static std::string SDLVersions();
 	static bool Init(bool headless);

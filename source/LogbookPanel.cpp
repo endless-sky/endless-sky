@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -34,7 +35,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <set>
-#include "GameWindow.h"
 
 using namespace std;
 
