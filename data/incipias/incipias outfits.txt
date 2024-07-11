@@ -185,6 +185,7 @@ outfit "Gas-Class Shield"
 	"shield generation" .1
 	"energy generation" 4.2
 	"heat generation" 5
+	"shield fuel" .01
 	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different basis. In its core hydrogen is burned, providing energy for regeneration. This proved so effective that it became the main power source of all of their ships."
 
 outfit "Liquid-Class Shield"
@@ -195,6 +196,7 @@ outfit "Liquid-Class Shield"
 	"shield generation" .25
 	"energy generation" 6.1
 	"heat generation" 6
+	"shield fuel" .02
 	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency considerably but also requires more space, making this outfit popular only on larger ships."
 
 outfit "Metallic Hydrogen Cell"

@@ -1817,7 +1817,7 @@ planet Glaze
 planet Gliese
 	attributes "requires: gaslining"
 	landscape land/gliese
-	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving; its clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
+	description `A shine of magenta is coming from the depths below something down there has to be emitting very hot. While the color is pleasant to look at it gets nausiating over time. You notice creatures that look like very small jellyfish also emitting a soft glow. It seems like a peaceful world as the winds are calm and no storms are insight.`
 	government Uninhabited
 
 planet "Glittering Ice"
