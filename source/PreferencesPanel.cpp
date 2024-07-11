@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include "GameWindow.h"
 
 using namespace std;
 
@@ -178,7 +179,7 @@ void PreferencesPanel::Draw()
 
 
 
-bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool PreferencesPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
@@ -193,7 +194,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		HandleUp();
 	else if(key == SDLK_RETURN)
 		HandleConfirm();
-	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
 	{

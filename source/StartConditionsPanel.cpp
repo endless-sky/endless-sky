@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include "GameWindow.h"
 
 using namespace std;
 
@@ -132,9 +133,9 @@ void StartConditionsPanel::Draw()
 
 
 
-bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
+bool StartConditionsPanel::KeyDown(int32_t key, const Command &command, bool /* isNewPress */)
 {
-	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
 		GetUI()->Pop(this);
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{

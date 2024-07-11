@@ -19,9 +19,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 
 #include <string>
+#include <set>
 
 // This class is a collection of global functions for handling SDL_Windows.
 class GameWindow {
+public:
+	enum class Mods {
+		SHIFT,
+		CAPS,
+		ALT,
+		CTRL,
+		GUI,
+		CTRL_GUI,
+	};
 public:
 	static std::string SDLVersions();
 	static bool Init(bool headless);
@@ -46,6 +56,11 @@ public:
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
+
+	static const uint8_t *GetKeyboard();
+	static uint8_t GetScancode(int32_t key);
+	static bool GetMod(Mods mods);
+	static const char *GetKeyname(int32_t key);
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.

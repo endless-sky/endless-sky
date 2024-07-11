@@ -36,6 +36,8 @@ namespace {
 	int height = 0;
 	bool supportsAdaptiveVSync = false;
 
+	uint16_t sdlMod = 0;
+
 	// Logs SDL errors and returns true if found
 	bool checkSDLerror()
 	{
@@ -278,6 +280,7 @@ void GameWindow::Quit()
 void GameWindow::Step()
 {
 	SDL_GL_SwapWindow(mainWindow);
+	sdlMod = SDL_GetModState();
 }
 
 
@@ -423,6 +426,50 @@ void GameWindow::ToggleFullscreen()
 	}
 	else
 		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+}
+
+
+
+const uint8_t *GameWindow::GetKeyboard()
+{
+	return SDL_GetKeyboardState(nullptr);
+}
+
+
+
+uint8_t GameWindow::GetScancode(int32_t key)
+{
+	return SDL_GetScancodeFromKey(key);
+}
+
+
+
+bool GameWindow::GetMod(Mods mod)
+{
+	switch (mod)
+	{
+	case Mods::SHIFT:
+		return sdlMod & KMOD_SHIFT;
+	case Mods::CAPS:
+		return sdlMod & KMOD_CAPS;
+	case Mods::ALT:
+		return sdlMod & KMOD_ALT;
+	case Mods::CTRL:
+		return sdlMod & KMOD_CTRL;
+	case Mods::GUI:
+		return sdlMod & KMOD_GUI;
+	case Mods::CTRL_GUI:
+		return sdlMod & (KMOD_CTRL | KMOD_GUI);
+	default:
+		return false;
+	}
+}
+
+
+
+const char *GameWindow::GetKeyname(int32_t key)
+{
+	return SDL_GetKeyName(key);
 }
 
 
