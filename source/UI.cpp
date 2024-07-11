@@ -16,10 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include "Command.h"
+#include "GameWindow.h"
 #include "Panel.h"
 #include "Screen.h"
-
-#include <SDL2/SDL.h>
 
 #include <algorithm>
 
@@ -264,7 +263,7 @@ Point UI::GetMouse()
 {
 	int x = 0;
 	int y = 0;
-	SDL_GetMouseState(&x, &y);
+	GameWindow::GetMousePos(x, y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
 }
 

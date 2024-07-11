@@ -61,6 +61,10 @@ public:
 	static uint8_t GetScancode(int32_t key);
 	static bool GetMod(Mods mods);
 	static const char *GetKeyname(int32_t key);
+	static void GetMousePos(int &x, int &y);
+	static void SetMousePos(double x, double y);
+	static bool GetMouseButton(uint16_t button);
+	static void SetCursorVisibillity(bool visible);
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.

@@ -37,6 +37,9 @@ namespace {
 	bool supportsAdaptiveVSync = false;
 
 	uint16_t sdlMod = 0;
+	int mouseX;
+	int mouseY;
+	uint16_t mouseButtons;
 
 	// Logs SDL errors and returns true if found
 	bool checkSDLerror()
@@ -281,6 +284,7 @@ void GameWindow::Step()
 {
 	SDL_GL_SwapWindow(mainWindow);
 	sdlMod = SDL_GetModState();
+	mouseButtons = SDL_GetMouseState(&mouseX, &mouseY);
 }
 
 
@@ -470,6 +474,35 @@ bool GameWindow::GetMod(Mods mod)
 const char *GameWindow::GetKeyname(int32_t key)
 {
 	return SDL_GetKeyName(key);
+}
+
+
+
+void GameWindow::GetMousePos(int &x, int &y)
+{
+	x = mouseX;
+	y = mouseY;
+}
+
+
+
+void GameWindow::SetMousePos(double x, double y)
+{
+	SDL_WarpMouseInWindow(nullptr, x, y);
+}
+
+
+
+bool GameWindow::GetMouseButton(uint16_t button)
+{
+	return mouseButtons & button;
+}
+
+
+
+void GameWindow::SetCursorVisibillity(bool visible)
+{
+	SDL_ShowCursor(visible);
 }
 
 

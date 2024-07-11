@@ -60,6 +60,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <mmsystem.h>
 #endif
 
+#include <SDL2/SDL_events.h>
+
 
 using namespace std;
 
@@ -356,7 +358,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(shouldShowCursor != showCursor)
 			{
 				showCursor = shouldShowCursor;
-				SDL_ShowCursor(showCursor);
+				GameWindow::SetCursorVisibillity(showCursor);
 			}
 
 			// Switch off fast-forward if the player is not in flight or flight-related screen

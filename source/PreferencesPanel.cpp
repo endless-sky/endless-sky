@@ -345,7 +345,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			// Convert to raw window coordinates, at the new zoom level.
 			Point point = hoverPoint * (Screen::Zoom() / 100.);
 			point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-			SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+			GameWindow::SetMousePos(point.X(), point.Y());
 		}
 		else if(hoverItem == VIEW_ZOOM_FACTOR)
 		{
@@ -1180,7 +1180,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		// Convert to raw window coordinates, at the new zoom level.
 		cursorPosition *= Screen::Zoom() / 100.;
 		cursorPosition += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-		SDL_WarpMouseInWindow(nullptr, cursorPosition.X(), cursorPosition.Y());
+		GameWindow::SetMousePos(cursorPosition.X(), cursorPosition.Y());
 	}
 	else if(str == BOARDING_PRIORITY)
 		Preferences::ToggleBoarding();
