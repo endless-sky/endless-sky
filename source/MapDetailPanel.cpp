@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Interface.h"
 #include "text/layout.hpp"
@@ -59,7 +60,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <utility>
 #include <vector>
-#include "GameWindow.h"
 
 using namespace std;
 

@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -36,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <utility>
-#include "GameWindow.h"
 
 using namespace std;
 

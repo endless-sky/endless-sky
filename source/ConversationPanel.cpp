@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -44,7 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 
 #include <iterator>
-#include "GameWindow.h"
 
 using namespace std;
 

@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Gamerules.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -75,7 +76,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <string>
-#include "GameWindow.h"
 
 using namespace std;
 
