@@ -295,7 +295,8 @@ bool HailPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 
-	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
+	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN
+		|| (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
 	{
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);

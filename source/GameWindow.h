@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
-#include <string>
 #include <set>
+#include <string>
+
+
 
 // This class is a collection of global functions for handling SDL_Windows.
 class GameWindow {

@@ -225,7 +225,8 @@ void BoardingPanel::Draw()
 // Handle key presses or button clicks that were mapped to key presses.
 bool BoardingPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
-	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI))) && CanExit())
+	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE
+		|| (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI))) && CanExit())
 	{
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)

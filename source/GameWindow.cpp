@@ -450,7 +450,7 @@ uint8_t GameWindow::GetScancode(int32_t key)
 
 bool GameWindow::GetMod(Mods mod)
 {
-	switch (mod)
+	switch(mod)
 	{
 	case Mods::SHIFT:
 		return sdlMod & KMOD_SHIFT;

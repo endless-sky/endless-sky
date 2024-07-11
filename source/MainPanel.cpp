@@ -231,7 +231,8 @@ bool MainPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
-		engine.SelectGroup(key - '0', GameWindow::GetMod(GameWindow::Mods::SHIFT), GameWindow::GetMod(GameWindow::Mods::CTRL_GUI));
+		engine.SelectGroup(key - '0', GameWindow::GetMod(GameWindow::Mods::SHIFT),
+			GameWindow::GetMod(GameWindow::Mods::CTRL_GUI));
 	else
 		return false;
 
