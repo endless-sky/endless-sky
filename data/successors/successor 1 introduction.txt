@@ -104,8 +104,8 @@ mission "Successors: First Contact 1"
 		"reputation: House Myurej" += 5
 		"reputation: House Sioeora" += 5
 		conversation
-			`In a similar manner to the last time, you set down your ship on a landing pad at the spaceport of this planet, escorted by the interceptors. Differently to last time, however, you are shuttled to a small, out-of-the way area at a great distance from the main complex, where several uniformed individuals are gathered on the landing pad, standing at attention.`
-			`	After waiting for several minutes, a shuttle lands on the pad beside yours and several individuals emerge from it. Two of them are moving more quickly than the rest, and the guards allow them to pass and approach you. The one on the left is a uniformed officer wearing what appears to be heavy body armor, shimmering metallic plates that sparkle in the light. On the right is a smaller alien, wrapped up in a dark, cocoon-like outfit from which their head and arms emerge. The officer says something to the smaller one, who quietly replies and then pulls from a pocket on their outfit a smooth sheet which they inspect several times before haltingly addressing you.`
+			`Like last time, you are escorted by the interceptors to a landing pad on this planet's spaceport. Here, however, they guide you to a small, out-of-the way area at great distance from the main complex, where several uniformed aliens are gathered on the landing pad, standing at attention.`
+			`	After waiting for several minutes, a shuttle lands on the pad beside yours and several individuals emerge from it. Two of them move in front of the rest, where they are allowed to pass by the guards and approach you. The one on the left is a uniformed officer wearing what appears to be heavy body armor with shimmering metallic plates that sparkle in the light. On the right is a smaller alien who is wrapped up in a dark, cocoon-like outfit from which their head and arms emerge. The officer says something to the smaller one, who quietly replies and then pulls from a pocket on their outfit a smooth sheet which they inspect several times before haltingly addressing you.`
 			`	"Hark... noble visitor! We bid thee... welcome and good tidings." The two eye you closely as they wait for a response.`
 			choice
 				`	"Hello. I am Captain <first> <last>."`
@@ -113,8 +113,8 @@ mission "Successors: First Contact 1"
 			`	The two once again proceed slowly and carefully, the speaker briefly conversing with the military officer before each phrase. "I am Sieasej... of House Sioeora among the Successors. Thou'rt a human, art thou not?"`
 			choice
 				`	"Yes, I am."`
-				`	"Who else would I be?"`
-			`	This sparks a wave of color among the gathered members, most of all Sieasej, who spends several seconds in a vibrant shade of orange before returning to their resting hue. "Then i'tis confirmed. 'Tis a cause for much excitement, <last>, for thou'rt the first human met by us in fifteen hundred years, since the time before thy species had even left the bounds o' thine own planet's gravity. House Sioeora is honored to make thine acquaintance, as am I." The members of the group splay their free arms towards you and glisten with ripples of blue across their skin. You perform a short bow in return.`
+				`	"What else would I be?"`
+			`	This sparks a wave of color among the gathered members, most of all Sieasej, who spends several seconds in a vibrant shade of orange before returning to their resting hue. "Then i'tis confirmed. 'Tis a cause for much excitement, <last>, for thou'rt the first of humans that's been met by us in fifteen hundred years, since far before the time thy kind had even left the bounds of thine own planet's clouds. House Sioeora's honored t'be the one that gives thee greeting. So am I, Captain, for my part in it." The members of the group splay their free arms towards you and glisten with ripples of blue across their skin. You perform a short bow in return.`
 			label questions
 			choice
 				`	"What should I do now?"`
@@ -134,8 +134,9 @@ mission "Successors: First Contact 1"
 			label language
 			action
 				set "Successors: language"
-			`	"When once our Predecessors did explore and look upon the life of the galaxy beyond their borders, they were careful to record its details and its subtleties, for life is precious and rare. And doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as the nascent humanity was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy species advance to its present point."`
-			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of language," they continue, "and of the worlds our Predecessors met so long ago. I am one of very few who learned thy tongue, among others, at least as 'twas fifteen hundred years ago."`
+				set "Successors: history"
+			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
+			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I'm one of very few who's learned thy tongue, and others, at least as 'twas gone fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -150,7 +151,7 @@ mission "Successors: First Contact 1"
 			label language-short
 			action
 				set "Successors: language"
-			`	"'Tis true. I am a scholar of language, and of the worlds our Predecessors met so long ago. I am one of very few who learned thy tongue, among others, at least as 'twas fifteen hundred years ago."`
+			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I'm one of very few who's learned thy tongue, and others, at least as 'twas gone fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -165,17 +166,17 @@ mission "Successors: First Contact 1"
 			label changed
 			action
 				set "Successors: changed"
-			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I had hoped as much," they say, "that thou were't still a young species with a long history before thee, that thou would'st one day take to the stars as it appears now thou hast. Alas, my noble House Sioeora does not permit me today the sort of interrogation of thy knowledge that I desire, for thine arrival portends much, and there is much to arrange."`
+			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I'd hoped as much," they say, "that thou were't still young of species, t'with a long history before thee; that thou would'st one day take to the stars as it appears thou hast now done. Alas, mine noble House Sioeora does not permit me t'interrogate thy knowledge so deep as that which I desire, for thine arrival portends t'us much, and so t'is much we must arrange."`
 				goto questions
 			label ripped
 			action
 				set "Successors: ripped"
-			`	Sieasej confirms their answer with the uniformed officer before answering your question. "Thou surely must have passed through the scarred and fractured systems to which our modern worlds remain affixed, however tenuously. 'Tis the inhabitants of those whose Successors we are."`
+			`	Sieasej confirms their answer with the uniformed officer before answering your question. "Thou surely must have passed through that awry and fractured swathe of stars to which our modern worlds remain affixed, by however thin and fragile of a thread. 'Tis the citizens of these, long past, whose Successors now we are."`
 				goto questions
 			label history
 			action
 				set "Successors: history"
-			`	"Twas a time in which the domains of our Predecessors did extend far to the north, and the reach of their curiosity and exploration even farther so. Life is precious and rare, doubly so that which is possessed of sapience and culture - noble in reason, infinite in faculty - as thine was and, we pray, still remains. So then, our Predecessors waited under inky cloaks to silently observe thee in thy glimmering development. And if 'twere not from the rest of the galaxy untimely ripp'd, we surely would have had the pleasure of watching thy kind advance to its present point."`
+			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -190,7 +191,7 @@ mission "Successors: First Contact 1"
 			label house
 			action
 				set "Successors: house"
-			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose estate thou sees around thee. There are many such within the broader realm; the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its purpose. 'Twere thee apprehended by the arms of another - " Sieasej gestures towards an interceptor landed on another pad "- thou surely would have languished without recognition as a creature from so distant in our past."`
+			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose grand estate thou sees around thee. There are many such within the broader realm: the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its desire. 'Twere't thou apprehended by the arms of another," Sieasej says, gesturing towards an interceptor landed on another pad, "thou surely would have languished without recognition as a creature t'was so distant in our past."`
 				goto questions
 			label whatnow
 			action
@@ -199,7 +200,8 @@ mission "Successors: First Contact 1"
 				clear "Successors: house"
 				clear "Successors: language"
 				clear "Successors: ripped"
-			`	Sieasej translates this question to the uniformed officer, who conveys a detailed response accompanied by a series of color and texture displays on their skin. Overhead, a buzzing flock of interceptors fly past and land on a set of landing pads closer to the center of the spaceport complex. Eventually, Sieasej responds, and does so even more slowly and carefully than previously. "The scions of House Sioeora have made it known to the others in the High Houses that thou art a guest in their space and that thou shalt proceed under their protection. Thou may'st explore those of our worlds which thou may, and which permit thee access. Without the use of our tongue, though, thou shalt find few opportunities to do more than observe. As to that," Sieasej continues, "our noble scions are set to begin their convergence in five days. As thou hast aroused their attention, 'tis expected thou shalt receive a summons to their unity."`
+			`	Sieasej translates this question to the uniformed officer, who conveys a detailed response accompanied by a series of color and texture displays on their skin. Overhead, a buzzing flock of interceptors fly past and land on a set of landing pads closer to the center of the spaceport complex. Eventually, Sieasej responds, and does so even more slowly and carefully than previously. "The noble scions o'House Sioeora have made it known t'others of the High Houses that thou'rt guest within their space and shalt proceed with their protection. Thou may'st explore those of our worlds of ours which offer thee their grace. 'Thout our tongue, though, thou shalt find few but few chances to do more than to observe. As to that," Sieasej continues, "our noble scions're set to start their meeting here in five days time. And as it is that thou hast aroused their close attentions, 'tis expected that thou shalt receive a summons to their union."`
+			`	With that, Sieasej and some of the others depart, leaving you along on the pad with your ship and the ring of guards, who remain silent and at attention.`
 
 mission "Successors: First Contact 2"
 	landing
