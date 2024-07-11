@@ -182,7 +182,7 @@ outfit "Successor Pulse Laser"
 		sprite "projectile/successor pulse laser"
 			"random start frame"
 			"frame rate" 5
-		sound "slicer"
+		sound "successor pulse laser"
 		"hit effect" "successor pulse laser impact"
 		"inaccuracy" 0.4
 		"velocity" 490
@@ -213,7 +213,7 @@ outfit "Pulse Laser Turret"
 			"frame rate" 5
 		"hardpoint sprite" "hardpoint/successor pulse laser turret"
 		"hardpoint offset" 8
-		sound "slicer"
+		sound "successor pulse laser"
 		"hit effect" "successor pulse laser impact"
 		"inaccuracy" 0.4
 		"velocity" 490
@@ -251,7 +251,7 @@ outfit "Overcharged Pulse Laser"
 			"start frame" 2
 			"frame rate" 8
 			"rewind"
-		sound "laser"
+		sound "overcharged pulse laser"
 		"fire effect" "moonbeam fleck" 3
 		"hit effect" "overcharged pulse laser impact"
 		"inaccuracy" 5.5
@@ -285,7 +285,7 @@ outfit "Overcharged Laser Turret"
 			"rewind"
 		"hardpoint sprite" "hardpoint/overcharged pulse laser turret"
 		"hardpoint offset" 8
-		sound "laser"
+		sound "overcharged pulse laser"
 		"fire effect" "moonbeam fleck" 3
 		"hit effect" "overcharged pulse laser impact"
 		"inaccuracy" 5.5
