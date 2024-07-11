@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "engine/FrameTimer.h"
 #include "data/GameData.h"
 #include "ui/GameLoadingPanel.h"
-#include "data/GameWindow.h"
+#include "ui/GameWindow.h"
 #include "Logger.h"
 #include "ui/MainPanel.h"
 #include "ui/MenuPanel.h"

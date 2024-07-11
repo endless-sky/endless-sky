@@ -108,8 +108,6 @@ target_sources(EndlessSkyLib PRIVATE
 	data/GameEvent.h
 	data/Gamerules.cpp
 	data/Gamerules.h
-	data/GameWindow.cpp
-	data/GameWindow.h
 	data/Government.cpp
 	data/Government.h
 	data/Hardpoint.cpp
@@ -304,6 +302,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/EscortDisplay.h
 	ui/GameLoadingPanel.cpp
 	ui/GameLoadingPanel.h
+	ui/GameWindow.cpp
+	ui/GameWindow.h
 	ui/HailPanel.cpp
 	ui/HailPanel.h
 	ui/HiringPanel.cpp

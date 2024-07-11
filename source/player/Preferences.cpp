@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../data/DataWriter.h"
 #include "../data/Files.h"
 #include "../data/GameData.h"
-#include "../data/GameWindow.h"
+#include "../ui/GameWindow.h"
 #include "../ui/Interface.h"
 #include "../Logger.h"
 #include "../ui/Screen.h"

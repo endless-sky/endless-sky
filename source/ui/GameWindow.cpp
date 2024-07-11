@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "Files.h"
+#include "../data/Files.h"
 #include "../image/ImageBuffer.h"
 #include "../Logger.h"
-#include "../ui/Screen.h"
+#include "Screen.h"
 
 #include "../opengl.h"
 #include <SDL2/SDL.h>
