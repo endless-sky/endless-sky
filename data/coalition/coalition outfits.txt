@@ -371,7 +371,7 @@ outfit "Small Steering Module"
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
-	"turn" 214.2
+	"turn" 268.2
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
