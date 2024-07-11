@@ -29,7 +29,7 @@ outfit "Strange Ray"
 		"shield damage" 50
 		"hull damage" 43
 		"minable damage" 64
-	description "It should be impossible to heat up gas to this level for an organic being, this organ is the counter example."
+	description "It should be impossible to heat up gas to this level for an organic being, but this organ seems to be the counter example."
 
 outfit "Internal Plasma Exhaust"
 	"mass" 25
