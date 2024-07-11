@@ -29,6 +29,7 @@ outfit "Strange Ray"
 		"shield damage" 50
 		"hull damage" 43
 		"minable damage" 64
+	description "It should be impossible to heat up gas to this level for an organic being, this organ is the counter example."
 
 outfit "Internal Plasma Exhaust"
 	"mass" 25
@@ -38,6 +39,7 @@ outfit "Internal Plasma Exhaust"
 	"turn" 1500
 	"flare sprite" "effect/plasma exhaust"
 		"frame rate" 16
+	description "The Tace Mesa move by exhausting heated gas, plasma, from the end of their body."
 
 ship "Tace Mesa"
 	sprite "ship/silent harvester"
@@ -70,6 +72,7 @@ ship "Tace Mesa"
 	explode "large explosion" 40
 	explode "medium explosion" 50
 	"final explode" "final explosion large"
+	description "The Tace Mesa are creatures yet to be understood in their origins and how they work. They have been around for a long time and they will probably be around for an even longer time. Rumors (by whoever) tell of larger creatures further out in the rims of the system."
 
 mission "The Silent Ones"
 	invisible
