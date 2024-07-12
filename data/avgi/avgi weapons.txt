@@ -390,7 +390,7 @@ outfit "External Launch Tube"
 		"missile strength" 9
 		"stream"
 		"submunition" "Orchid Active"
-	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missile to be deployed with considerable initial velocity. "
+	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missile to be deployed with considerable initial velocity."
 
 
 outfit "Vertical Launch Array"
