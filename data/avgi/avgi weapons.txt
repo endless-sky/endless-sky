@@ -449,7 +449,7 @@ outfit "Nettle Magazine"
 	"mass" 3
 	"outfit space" -12
 	"nettle capacity" 60
-	ammo `"Nettle" Kinetic Missile`
+	ammo `"Nettle" KKV`
 	description "Nettle storage"
 
 
@@ -475,6 +475,7 @@ outfit "Nettle Active"
 
 
 outfit "Nettle Flecks"
+	plural "Nettle Flecks"
 	weapon
 		sprite "projectile/fleck"
 			"frame rate" 30

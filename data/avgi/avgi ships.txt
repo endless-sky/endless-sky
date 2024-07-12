@@ -783,7 +783,7 @@ ship "Entasi"
 	gun 36 9
 	turret -10 72 "Blue Optical Laser"
 	turret 10 72 "Blue Optical Laser"
-	turret 0 -4 "Vertical Launch Array"
+	turret 0 -4
 	bay "Fighter" 0 -30
 		over
 	bay "Fighter" 0 -30
