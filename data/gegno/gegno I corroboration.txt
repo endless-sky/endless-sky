@@ -19,6 +19,8 @@ mission "Passive-Aggressive Observations"
 	destination "Vigales"
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
 		"gegno: encounters" ++
@@ -118,6 +120,8 @@ mission "Foreign Spectator I"
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -173,6 +177,8 @@ mission "Brief Bystander"
 	destination "Esstch"
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
 		"gegno: encounters" ++
@@ -199,6 +205,8 @@ mission "Scin on Cyife"
 	source "Cyife"
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		"gegno: encounters" ++
@@ -228,6 +236,8 @@ mission "Battle over Zydee"
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -327,6 +337,7 @@ mission "Gegno Suspicions"
 	to offer
 		"gegno: encounters" >= 3
 		"gegno: encounters" < 6
+		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -533,10 +544,11 @@ mission "Return to Giaru Gegno"
 		or
 			has "event: gegno: quarg talks"
 			"gegno: encounters" >= 6
+		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
-				accept
+			accept
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
@@ -545,7 +557,8 @@ mission "Return to Giaru Gegno"
 
 mission "Gegno Anticipation"
 	landing
-	description "Visit <destination>."
+	name "Summons from the Gegno"
+	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
 	source "Giaru Gegno"
 	destination "Dueyu Eitch"
 	clearance
@@ -893,6 +906,8 @@ mission "Gegno Apprehension"
 mission "Gegno Intervention"
 	landing
 	clearance
+	name "Summons from the Gegno"
+	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
 	to offer
 		has "event: gegno: apprehension"
 		not "Gegno Genocide Defense: offered"
