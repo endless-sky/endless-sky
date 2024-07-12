@@ -31,7 +31,7 @@ void Paragraphs::Load(const DataNode &node)
 			text.emplace_back(child, node.Token(1) + "\n");
 			return;
 		}
-	text.emplace_back(ConditionSet(), node.Token(1) + "\n");
+	text.emplace_back(ConditionSet(), node.Token(node.Size() - 1) + "\n");
 }
 
 
