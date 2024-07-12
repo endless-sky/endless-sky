@@ -34,6 +34,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	template<class Container>
+	void LoadRandomIntervalConditions(Container &container, const DataNode &child)
+	{
+		if(container.empty())
+			return;
+		for(auto &grand : child)
+			if(grand.Size() == 2 && grand.Token(0) == "to" && grand.Token(1) == "spawn" && grand.HasChildren())
+				container.back().AddConditions(grand);
+	}
+
 	// Dynamic economy parameters: how much of its production each system keeps
 	// and exports each day:
 	const double KEEP = .89;
@@ -276,7 +286,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
+			{
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+				LoadRandomIntervalConditions(fleets, child);
+			}
 		}
 		else if(key == "raid")
 			RaidFleet::Load(raidFleets, child, remove, valueIndex);
@@ -293,7 +306,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
+			{
 				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
+				LoadRandomIntervalConditions(hazards, child);
+			}
 		}
 		else if(key == "belt")
 		{
@@ -1010,7 +1026,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "hazard" && child.Size() >= 3)
+		{
 			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
+			LoadRandomIntervalConditions(object.hazards, child);
+		}
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
 		else
