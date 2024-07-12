@@ -23,7 +23,7 @@ outfit "Radiative Lamina"
 	"anchor point" -1
 	"heat dissipation" 0.3
 	"solar heat" 3
-	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, improving its ability to radiate away waste heat. The radiative power scales with the temperature of the waste heat being rejected, making Radiative Laminae work better for hotter-running ships."
+	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, improving its ability to radiate away waste heat. The radiative power scales with the temperature of the waste heat being rejected, making Radiative Laminae work better in hotter-running ships."
 	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
@@ -151,7 +151,7 @@ outfit "Thermal Sink Partition"
 	"outfit space" -3
 	"fuel capacity" -100
 	"heat capacity" 240
-	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing a section filled with a lithium nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at a safe temperature.`
+	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane; this section can then be filled with a lithium nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at a safe temperature.`
 
 
 outfit "Multispectral Scanner"
@@ -164,7 +164,7 @@ outfit "Multispectral Scanner"
 	"energy consumption" 0.15
 	"heat generation" 0.3
 	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data."
-	description "To increase the sensitivity of the instrument, certain components are cooled to microkelvin scale temperatures. The heat pump system responsible for maintaining this requires a surprisingly significant amount of power, while also producing a small amount of waste heat."
+	description "To increase the sensitivity of the instrument, certain components are cooled to microkelvin-scale temperatures. The heat pump system responsible for maintaining this requires a surprisingly significant amount of power, while also producing a small amount of waste heat."
 
 
 outfit "Spectrometer Array"
@@ -231,7 +231,7 @@ outfit "Concentrating Solar Array"
 	"outfit space" -18
 	"solar collection" 2.4
 	"solar heat" 1.02
-	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient solar cells, reducing weight and improving efficiency."
+	description "This large set of concentrating solar cells collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient solar cells, reducing weight and improving its effectiveness."
 	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
 
 
@@ -256,7 +256,7 @@ outfit "Lantern Fission Core"
 	"outfit space" -24
 	"energy generation" 3.6
 	"heat generation" 12
-	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size, at the cost of producing significant amounts of waste heat."
+	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it surprisingly efficient for its size, at the cost of producing significant amounts of waste heat."
 
 
 outfit "Ultracapacitor Cell"
@@ -311,7 +311,7 @@ outfit "Magnetoplasma Drive"
 	"reverse flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
-	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry."
+	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy-hungry."
 	description "Designed to be clustered, this design is capable of full six-axis control."
 
 
@@ -554,7 +554,7 @@ outfit "Anomalous Mass"
 	thumbnail "outfit/unknown"
 	"flotsam chance" 0.5
 	"unplunderable" 1
-	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, resisting any attempts to probe its makeup."
+	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, and resists any attempts to probe its makeup."
 
 
 outfit "Electromotive Rifle"
