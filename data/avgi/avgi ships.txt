@@ -910,9 +910,9 @@ ship "Undsyni"
 
 	gun 0 -213
 		over
-	gun -42 -139 "Nettle Launcher"
+	gun -42 -139
 		angle -90
-	gun 42 -139 "Nettle Launcher"
+	gun 42 -139
 		angle 90
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
@@ -1503,7 +1503,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Green Optical Laser" 2
 		"Speckle Turret"
 		"Speck Round" 2400
-		"Orchid Launcher" 2
+		"External Launch Tube" 2
 		"Orchid Magazine" 2
 		`"Orchid" Nuclear Missile` 18
 		"Ophrys Stockpile" 3
@@ -1639,7 +1639,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Green Optical Laser" 2
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Nettle Launch Array" 4
+		"Vertical Launch Array" 4
 		"Nettle Magazine" 6
 		`"Nettle" KKV` 1320
 
@@ -1685,8 +1685,8 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Electromotive Rifle" 42
 
 		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 4
-		"Remass Injector" 2
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -2209,7 +2209,7 @@ ship "Undulon"
 			"hull damage" 120
 			"hit force" 90
 	outfits
-		"Orchid Launcher"
+		"External Launch Tube"
 		`"Orchid" Nuclear Missile` 6
 
 		"Concentrating Solar Cell" 3
@@ -2247,7 +2247,7 @@ ship "Undulon"
 		zoom 0.5
 		left
 
-	gun 0 -29 "Orchid Launcher"
+	gun 0 -29 "External Launch Tube"
 
 	explode "tiny explosion" 12
 
