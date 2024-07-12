@@ -2,7 +2,11 @@ Language: Cpp
 Standard: c++20
 LineEnding: LF
 UseTab: Always
+
 IndentWidth: 8
+ContinuationIndentWidth: 8
+ConstructorInitializerIndentWidth: 8
+
 IndentCaseLabels: true
 
 PackConstructorInitializers: NextLineOnly
@@ -10,25 +14,28 @@ AlwaysBreakAfterReturnType: None
 PointerAlignment: Right
 FixNamespaceComments: false
 NamespaceIndentation: All
+AlignAfterOpenBracket: DontAlign
+AccessModifierOffset: -8
+IndentAccessModifiers: false
 
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCaseColon: false
-SpaceBeforeCpp11BracedList: true
+SpaceBeforeCpp11BracedList: false
 SpaceBeforeInheritanceColon: true
 SpaceBeforeParens: Never
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceBeforeSquareBrackets: false
 SpacesInAngles: Never
 
-# These can cause breaking changes if clang-format messed up
+# This can cause breaking changes if clang-format messed up
 QualifierAlignment: Left
 
 AllowShortBlocksOnASingleLine: Never
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: None
 AllowShortLoopsOnASingleLine: false
@@ -48,7 +55,6 @@ BraceWrapping:
   BeforeLambdaBody: true
   BeforeWhile: false
   IndentBraces: false
-  SplitEmptyFunction: true
 
 BreakAfterAttributes: Leave
 BreakBeforeBinaryOperators: NonAssignment
@@ -63,10 +69,11 @@ MaxEmptyLinesToKeep: 3
 SortIncludes: CaseInsensitive
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex:           '<[:alnum:]+/[:alnum:]+>'
+  - Regex:           '<[:alnum:]+/.*>'
     Priority:        2
+    SortPriority:    2
   - Regex:           '<[:alnum:]+>'
     Priority:        3
-  - Regex:           '.*'
+  - Regex:           '".*"'
     Priority:        1
 
