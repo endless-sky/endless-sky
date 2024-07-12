@@ -82,8 +82,8 @@ outfit "Speckle Turret"
 		"inaccuracy" 0.9
 		"velocity" 42
 		"random velocity" 0.6
-		"reload" 20
-		"burst reload" 15
+		"reload" 18
+		"burst reload" 6
 		"burst count" 3
 		"cluster"
 		"turret turn" 2.4
@@ -121,6 +121,18 @@ effect "speckle fire"
 
 
 # Energy Weapons:
+
+
+outfit "Optical Lasing Generator"
+	category "Systems"
+	cost 120000
+	thumbnail "outfit/unknown"
+	"mass" 30
+	"outfit space" -30
+	"lasing power" 3
+	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
+	description "The wavelength of light produced in the coil can altered by swapping the diodes and fiber dopants, allowing the Optical Lasing Generator to support up to three Green Optical Lasers or a single Blue Optical Laser."
+
 
 outfit "Green Optical Laser"
 	category "Turrets"
@@ -262,9 +274,9 @@ outfit "Ultrarelativistic Electron Beam"
 			"narrow"
 		"velocity override" 300
 		"piercing" 0.3
-		"submunition" "Electron Packet" 180
+		"submunition" "Electron Bunch" 180
 
-outfit "Electron Packet"
+outfit "Electron Bunch"
 	weapon
 		sprite "effect/mhd spark"
 			"frame rate" 30
@@ -311,65 +323,77 @@ effect "electron flare"
 
 # Missiles:
 
-outfit `"Nettle" Kinetic Missile`
-	category "Ammunition"
-	licenses
-		"Twilight Guard"
-	cost 600
-	thumbnail "outfit/nettle missile"
-	"mass" 0.15
-	"nettle capacity" -1
-	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. This makes it difficult to shoot down without very long-ranged antimissile systems."
 
-
-outfit "Nettle Magazine"
-	category "Ammunition"
+outfit "External Launch Rail"
+	category "Secondary Weapons"
 	licenses
-		"Twilight Guard"
-	cost 1440000
+		"Avgi Atomics"
+	cost 80000
 	thumbnail "outfit/unknown"
-	"mass" 3
-	"outfit space" -12
-	"nettle capacity" 60
-	ammo `"Nettle" Kinetic Missile`
-	description "Nettle storage"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -9
+	"gun ports" -1
+	"ophrys capacity" 1
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		sound "torpedo"
+		ammo `"Ophrys" Nuclear Torpedo`
+		"stream"
+		icon "icon/nuke"
+		"fire effect" "torpedo fire"
+		"firing energy" 30
+		"firing heat" 15
+		"firing force" 600
+		"reload" 360
+		"velocity" 6
+		"lifetime" 3
+		"turn" 90
+		"homing" 2
+		"optical tracking" 0.72
+		"range override" 600
+		"stream"
+		"submunition" "Ophrys Active"
+	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling is payload towards a nearby target."
 
 
-outfit "Nettle Launcher"
+outfit "External Launch Tube"
 	category "Secondary Weapons"
 	licenses
 		"Twilight Guard"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 6
-	"outfit space" -15
-	"weapon capacity" -15
+	"outfit space" -24
+	"weapon capacity" -24
 	"gun ports" -1
-	"nettle capacity" 60
+	"orchid capacity" 6
 	weapon
 		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
 		sound "finisher"
-		ammo `"Nettle" Kinetic Missile`
+		ammo `"Orchid" Nuclear Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
 		"fire effect" "speckle fire"
-		"inaccuracy" 2.4
+		"inaccuracy" 1.2
 		"velocity" 6
-		"lifetime" 15
-		"reload" 45
-		"firing energy" 6
-		"firing heat" 3
-		"infrared tracking" 0.9
+		"lifetime" 30
+		"reload" 180
+		"firing energy" 60
+		"firing heat" 30
+		"drag" 3
+		"radar tracking" 0.9
+		"homing" 4
 		"missile strength" 9
-		"submunition" "Nettle Active"
-	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
-	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "This is a standard modular launcher designed for use on light to medium warships. A coilgun launch system allows the missiles to be deployed with considerable initial velocity, making up for the limited fuel supply on the missile itself."
+		"stream"
+		"submunition" "Orchid Active"
+	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missile to be deployed with considerable initial velocity. "
 
 
-outfit "Nettle Launch Array"
+outfit "Vertical Launch Array"
 	category "Secondary Weapons"
 	licenses
 		"Twilight Guard"
@@ -385,10 +409,10 @@ outfit "Nettle Launch Array"
 			"no repeat"
 			"frame rate" .25
 		sound "finisher"
-		ammo `"Nettle" Kinetic Missile`
+		ammo `"Nettle" KKV`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
-		"inaccuracy" 90
+		"inaccuracy" 360
 		"velocity" 3
 		"lifetime" 30
 		"reload" 15
@@ -396,13 +420,37 @@ outfit "Nettle Launch Array"
 		"burst count" 12
 		"turret turn" 9
 		"firing energy" 3
+		"firing heat" 1.5
 		"infrared tracking" 0.9
+		"optical tracking" 0.6
+		"homing" 4
 		"missile strength" 9
 		"submunition" "Nettle Active"
-		"stream"
-	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
-	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "This large Vertical Launch Cell array is made up of forty cells, each with Nettles stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
+	description "This large Vertical Launch System is made up independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
+
+
+outfit `"Nettle" KKV`
+	category "Ammunition"
+	licenses
+		"Twilight Guard"
+	cost 600
+	thumbnail "outfit/nettle missile"
+	"mass" 0.15
+	"nettle capacity" -1
+	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to reliably shoot down."
+
+
+outfit "Nettle Magazine"
+	category "Ammunition"
+	licenses
+		"Twilight Guard"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -12
+	"nettle capacity" 60
+	ammo `"Nettle" Kinetic Missile`
+	description "Nettle storage"
 
 
 outfit "Nettle Active"
@@ -411,32 +459,33 @@ outfit "Nettle Active"
 			"no repeat"
 			"frame rate" .25
 		"hit effect" "missile hit"
-		"live effect" "nettle exhaust" 1800
+		"live effect" "nettle exhaust" 18000
 		"die effect" "missile death"
-		"lifetime" 1800
+		"lifetime" 300
 		"split range" 240
 		"acceleration" 0.3
-		"drag" .009
-		"turn" 9
+		"drag" .03
+		"turn" 6
 		"homing" 4
 		"infrared tracking" 0.9
+		"optical tracking" 0.6
 		"hit force" 300
 		"missile strength" 12
-		"submunition" "Fleck Flack" 30
+		"submunition" "Nettle Flecks" 36
 
 
-outfit "Fleck Flack"
+outfit "Nettle Flecks"
 	weapon
 		sprite "projectile/fleck"
 			"frame rate" 30
 			"no repeat"
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 18
+		"inaccuracy" 30
 			narrow
-		"lifetime" 60
+		"lifetime" 120
 		"random lifetime" 30
-		"random velocity" -6
+		"random velocity" 6
 		"shield damage" 6
 		"hull damage" 9
 		"hit force" 90
@@ -446,7 +495,6 @@ effect "nettle exhaust"
 	sprite "effect/avgi flare/rcs"
 		"random start frame"
 		"scale" 0.5
-	"lifetime" 0
 
 
 outfit `"Orchid" Nuclear Missile`
@@ -455,10 +503,10 @@ outfit `"Orchid" Nuclear Missile`
 		"Avgi Atomics"
 	cost 660000
 	thumbnail "outfit/orchid missile"
-	"mass" 0.9
+	"mass" 9
 	"orchid capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
-	description "This particular missile carries a compact thermonuclear warhead, a geometrically complex staged device with a far higher yield density than anything humanity has developed. It seems to be the product of centuries of development of nuclear arms, as opposed to humanity's long abstentation from nuclear weapons research."
+	description "This particular missile carries a compact thermonuclear warhead, a staged device with a far higher yield density than anything humanity has developed. It seems to be the product of centuries of development of nuclear arms, as opposed to humanity's long abstentation from nuclear weapons research."
 
 
 outfit "Orchid Magazine"
@@ -467,172 +515,82 @@ outfit "Orchid Magazine"
 		"Avgi Atomics"
 	cost 1440000
 	thumbnail "outfit/unknown"
-	"mass" 1.2
+	"mass" 3
 	"outfit space" -12
-	"orchid capacity" 12
+	"orchid capacity" 3
 	ammo `"Orchid" Nuclear Missile`
 	description "Orchid storage"
 
 
-outfit "Orchid Launcher"
-	category "Secondary Weapons"
-	licenses
-		"Avgi Atomics"
-	cost 1370000
-	thumbnail "outfit/orchid missile launcher"
-	"mass" 4.5
-	"outfit space" -18
-	"weapon capacity" -18
-	"gun ports" -1
-	"orchid capacity" 12
-	weapon
-		sprite "projectile/thunderhead fragment"
-			"frame rate" 1
-			"no repeat"
-		sound "finisher"
-		ammo `"Orchid" Nuclear Missile`
-		icon "icon/finisher"
-		"fire effect" "sidewinder fire"
-		"fire effect" "speckle fire"
-		"inaccuracy" 2.4
-		"velocity" 9
-		"lifetime" 30
-		"reload" 60
-		"firing energy" 6
-		"firing heat" 3
-		"radar tracking" 0.6
-		"infrared tracking" 0.9
-		"missile strength" 36
-		"submunition" "Orchid Active"
-		stream
-	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
-	description "A standard modular launcher such as this one is designed to be easily installed on light to medium warships."
-
-
-outfit "Orchid Launch Array"
-	category "Secondary Weapons"
-	licenses
-		"Avgi Atomics"
-	cost 1370000
-	thumbnail "outfit/unknown"
-	"mass" 4.8
-	"outfit space" -48
-	"weapon capacity" -48
-	"turret mounts" -1
-	"orchid capacity" 48
-	weapon
-		sprite "projectile/thunderhead fragment"
-			"frame rate" 1
-			"no repeat"
-		sound "finisher"
-		ammo `"Orchid" Nuclear Missile`
-		icon "icon/finisher"
-		"fire effect" "sidewinder fire"
-		"inaccuracy" 45
-		"velocity" 3
-		"lifetime" 30
-		"reload" 30
-		"burst reload" 12
-		"burst count" 3
-		"turret turn" 9
-		"firing energy" 3
-		"radar tracking" 0.6
-		"infrared tracking" 0.9
-		"missile strength" 36
-		"submunition" "Orchid Active"
-		"stream"
-
-
 outfit "Orchid Active"
 	weapon
-		sprite "projectile/thunderhead fragment"
+		sprite "projectile/missile"
+			"frame rate" 2.4
+		"live effect" "nettle exhaust" 1800
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 240
+		"die effect" "missile death"
+		"lifetime" 120
+		"acceleration" 0.18
+		"drag" 0.009
+		"turn" 3
+		"homing" 2
+		"radar tracking" 0.9
+		"split range" 300
+		"submunition" "Orchid Coast"
+		"missile strength" 36
+
+outfit "Orchid Coast"
+	weapon
+		sprite "projectile/missile"
 			"frame rate" 2.4
 		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 9
+		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
-		"live effect" "nettle exhaust" 1800
 		"die effect" "missile death"
-		"lifetime" 1800
-		"acceleration" 0.6
-		"drag" .03
-		"turn" 9
+		"lifetime" 600
+		"acceleration" 0.03
+		"drag" 0.0015
+		"turn" 1.5
 		"homing" 4
 		"radar tracking" 0.9
-		"infrared tracking" 0.6
-		"trigger radius" 60
-		"blast radius" 180
-		"shield damage" 9000
-		"hull damage" 6000
-		"hit force" 3600
-		"missile strength" 42
+		"split range" 600
+		"submunition" "Orchid Terminal"
+		"missile strength" 24
+
+outfit "Orchid Terminal"
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2.4
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 240
+		"die effect" "missile death"
+		"lifetime" 120
+		"acceleration" 0.06
+		"drag" 0.003
+		"trigger radius" 150
+		"blast radius" 300
+		"shield damage" 18000
+		"hull damage" 12000
+		"hit force" 6000
+		"missile strength" 18
 
 
-outfit "Equinox Torpedo"
+outfit `"Ophrys" Nuclear Torpedo`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
 	cost 660000
-	thumbnail "outfit/equinox torpedo"
+	thumbnail "outfit/ophrys torpedo"
 	"mass" 3
-	"equinox capacity" -1
-	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox is essentially an unguided torpedo. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
-	description "A thin coating of ablative polymer designed to resist lasers was the only mass the Avgi were willing to allocate to armor, and as such the Equinox is easily shot down by most modern antimissile systems."
+	"ophrys capacity" -1
+	description "The Ophrys is a minimally-guided nuclear torpedo derived from the Orchid Nuclear Missile. Little more than the Ochrid's terminal stage with a layer of ablative armor added to the front, it allows even small drones to pose a credible threat to a capital warship."
+	description "Unlike the nuclear missiles employed by the Avgi, the Ophrys carries only enough propellant to make small adjustments to its trajectory. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for enough armor to improve the odds of surviving antimissile fire during its terminal path."
 
 
-outfit "Equinox Torpedo Pylon"
-	category "Secondary Weapons"
-	licenses
-		"Avgi Atomics"
-	cost 80000
-	thumbnail "outfit/equinox torpedo pylon"
-	"mass" 6
-	"outfit space" -6
-	"weapon capacity" -9
-	"gun ports" -1
-	"equinox capacity" 1
-	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 3
-		sound "torpedo"
-		ammo "Equinox Torpedo"
-		"stream"
-		icon "icon/nuke"
-		"fire effect" "torpedo fire"
-		"firing energy" 30
-		"reload" 360
-		"lifetime" 3
-		"velocity" 12
-		"range override" 600
-		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 30
-		"hit effect" "fission fragments" 900
-		"die effect" "missile death"
-		"missile strength" 24
-		"submunition" "Equinox Active"
-	description "Developed concurrently with the Photikon Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
-	description "Unlike the nuclear missiles employed by the Avgi, the Equinox carries only enough propellant to make small adjustments to its trajectory, and lacks the ability to accelerate entirely. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for an oversized warhead."
-	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling the torpedo towards its target."
-
-
-outfit "Equinox Active"
-	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 3
-		"lifetime" 600
-		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 30
-		"hit effect" "fission fragments" 900
-		"die effect" "missile death"
-		"shield damage" 14400
-		"hull damage" 9000
-		"heat damage" 7200
-		"hit force" 3600
-		"blast radius" 240
-		"trigger radius" 120
-		"missile strength" 24
-
-
-outfit "Equinox Torpedo Stockpile"
+outfit "Ophrys Stockpile"
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
@@ -642,22 +600,45 @@ outfit "Equinox Torpedo Stockpile"
 	"outfit space" -24
 	"cargo space" -18
 	"crew requirement" 3
-	"equinox capacity" 12
-	ammo "Equinox Torpedo"
-	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Equinox Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
+	"ophrys capacity" 12
+	ammo `"Ophrys" Nuclear Torpedo`
+	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Ophrys Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
 	description "The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
+
+
+outfit "Ophrys Active"
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2.4
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 240
+		"die effect" "missile death"
+		"lifetime" 240
+		"acceleration" 0.006
+		"drag" 0.0003
+		"turn" 6
+		"homing" 2
+		"optical tracking" 0.72
+		"trigger radius" 60
+		"blast radius" 300
+		"shield damage" 18000
+		"hull damage" 12000
+		"hit force" 6000
+		"missile strength" 36
 
 
 effect "thermonuclear flash"
 	sprite "effect/explosion/nuke"
 		"no repeat"
 		"frame rate" 30
+		"scale" 2
 	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
 	"random spin" 5
 	"random velocity" 1
-	"velocity scale" .4
+	"velocity scale" .3
 
 effect "prompt radiation"
 	sprite "effect/explosion/huge"
@@ -665,9 +646,9 @@ effect "prompt radiation"
 		"frame rate" 15
 	"lifetime" 36
 	"random angle" 360
-	"random spin" 5
-	"random velocity" 8
-	"velocity scale" 0.1
+	"random spin" 6
+	"random velocity" 12
+	"velocity scale" 0.3
 
 effect "fission fragments"
 	sprite "effect/finisher sparks"
@@ -675,6 +656,6 @@ effect "fission fragments"
 		"frame rate" 10
 	"lifetime" 60
 	"random angle" 360
-	"random spin" 5
-	"random velocity" 5
-	"velocity scale" 0.1
+	"random spin" 6
+	"random velocity" 6
+	"velocity scale" 0.3

@@ -209,18 +209,6 @@ outfit "Specular Deflector"
 	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their limited theory of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete understanding of the base physics behind shielding, and this generator approaches that limit."
 
 
-outfit "Optical Lasing Generator"
-	category "Systems"
-	cost 120000
-	thumbnail "outfit/unknown"
-	"mass" 30
-	"outfit space" -30
-	"lasing power" 3
-	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
-	description "The infrared light produced in the coil can either be passed through a frequency doubling crystal to support up to three Green Optical Lasers, or frequency tripled to support a single Blue Optical Laser."
-
-
-
 # Power:
 
 
@@ -313,7 +301,7 @@ outfit "Magnetoplasma Drive"
 	"turn" 270
 	"turning energy" 0.6
 	"turning heat" 0.3
-	"drag reduction" 1
+	"drag reduction" 0.15
 	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
@@ -422,7 +410,7 @@ outfit "Remass Injector"
 	"mass" 3
 	"outfit space" -3
 	"engine capacity" -3
-	"afterburner thrust" 90
+	"afterburner thrust" 72
 	"afterburner energy" 3
 	"afterburner heat" -12
 	"afterburner fuel" 0.3
@@ -460,7 +448,7 @@ outfit "XY-180 Radial Thrusters"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"turn" 810
+	"turn" 750
 	"turning energy" 1.5
 	"turning heat" -3
 	"reverse thrust" 9
@@ -514,7 +502,7 @@ outfit "XY-720 Radial Thrusters"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
-	"turn" 3600
+	"turn" 3690
 	"turning energy" 6
 	"turning heat" -9
 	"reverse thrust" 36

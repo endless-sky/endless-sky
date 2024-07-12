@@ -766,26 +766,24 @@ ship "Entasi"
 			"hit force" 1200
 	outfits
 		"Blue Optical Laser" 2
-		"Nettle Launcher" 2
-		`"Nettle" Kinetic Missile` 120
 
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
-		"Optical Lasing Generator"
-		"Multispectral Scanner" 3
-		"Spectrometer Array" 6
+		"Optical Lasing Generator" 2
+		"Multispectral Scanner" 6
+		"Spectrometer Array" 12
 		"Electromotive Rifle" 9
 
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
-	gun -36 9 "Nettle Launcher"
-	gun 36 9 "Nettle Launcher"
+	gun -36 9
+	gun 36 9
 	gun -36 9
 	gun 36 9
 	turret -10 72 "Blue Optical Laser"
 	turret 10 72 "Blue Optical Laser"
-	turret 0 -4
+	turret 0 -4 "Vertical Launch Array"
 	bay "Fighter" 0 -30
 		over
 	bay "Fighter" 0 -30
@@ -861,7 +859,8 @@ ship "Entasi"
 	explode "medium explosion" 9
 	"final explode" "final explosion large"
 
-	description "The Entasi is a mid-sized mining vessel powered by a pair of solar thermal generators. With the power and weapons capacity available to support laser mining weapons, the Entasi is able to quickly and efficiently cut through asteroids, whose mineral contents can then be collected by the swarm of Sonikis cargo drones it can carry into an asteroid field."
+	description "The Entasi is a mid-sized mining vessel, immediately recognizable by its pair of huge solar thermal generators. With the power and weapons capacity available to support laser mining weapons, the Entasi is able to quickly and efficiently cut through asteroids, whose mineral contents can then be collected by the swarm of Sonikis cargo drones it can carry into an asteroid field."
+	description "While somewhat fragile, the energy and space available to the Entasi can make it a potent warship with the right modifications. Rumors abound that certain Entasi captains sympathetic to the Dissonance movement maintain a stockpile of weapons for this very eventuality."
 
 
 ship "Undsyni"
@@ -892,17 +891,16 @@ ship "Undsyni"
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Nettle Launcher" 2
-		`"Nettle" Kinetic Missile` 120
 		"Electromotive Rifle" 24
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Electrostatic Ramscoop"
-		"Multispectral Scanner"
-		"Spectrometer Array"
+		"Electrostatic Ramscoop" 2
+		"Multispectral Scanner" 2
+		"Spectrometer Array" 2
+		"Cargo Expansion" 12
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -966,8 +964,6 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Nettle Launcher" 2
-		`"Nettle" Kinetic Missile` 120
 		"Electromotive Rifle" 24
 
 		"Lantern Fission Core"
@@ -976,9 +972,9 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Optical Lasing Generator"
 		"Electrostatic Ramscoop"
 		"Cryogenic Deuterium Tank" 18
-		"Deuterium Slush Tank" 9
-		"Multispectral Scanner"
-		"Spectrometer Array"
+		"Deuterium Slush Tank" 12
+		"Multispectral Scanner" 2
+		"Spectrometer Array" 2
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1203,7 +1199,7 @@ ship "Prismaios"
 		"fuel capacity" 1200
 		"cargo space" 36
 		"outfit space" 360
-		"weapon capacity" 96
+		"weapon capacity" 120
 		"engine capacity" 96
 		"anchor point" 1
 		weapon
@@ -1213,15 +1209,15 @@ ship "Prismaios"
 			"hit force" 1200
 	outfits
 		"Green Optical Laser"
+		"Speckle Coilgun" 2
 		"Speckle Turret" 2
-		"Speck Round" 4800
-		"Nettle Launcher" 2
-		`"Nettle" Kinetic Missile` 120
+		"Speck Round" 6600
+		"Vertical Launch Array"
+		`"Nettle" KKV` 240
 		"Electromotive Rifle" 6
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
-		"Optical Lasing Generator"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
@@ -1249,15 +1245,15 @@ ship "Prismaios"
 	"steering engine" 3 99
 		angle -90
 		right
-	gun -9 -48
-	gun 9 -48
-	gun -9 33 "Nettle Launcher"
+	gun -9 -48 "Speckle Coilgun"
+	gun 9 -48 "Speckle Coilgun"
+	gun -9 33
 		angle -90
-	gun 9 33 "Nettle Launcher"
+	gun 9 33
 		angle 90
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
-	turret 0 90 "Green Optical Laser"
+	turret 0 90 "Vertical Launch Array"
 
 	leak "leak" 30 60
 	leak "flame" 30 90
@@ -1274,9 +1270,9 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Green Optical Laser"
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Orchid Launcher" 2
+		"External Launch Tube" 2
 		"Orchid Magazine" 2
-		`"Orchid" Nuclear Missile` 60
+		`"Orchid" Nuclear Missile` 18
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1289,6 +1285,14 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
+
+	gun
+	gun
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	turret "Speckle Turret"
+	turret "Speckle Turret"
+	turret "Green Optical Laser"
 
 
 ship "Interferos"
@@ -1308,7 +1312,7 @@ ship "Interferos"
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 288
-		"weapon capacity" 84
+		"weapon capacity" 99
 		"engine capacity" 60
 		"anchor point" 1
 		weapon
@@ -1317,9 +1321,9 @@ ship "Interferos"
 			"hull damage" 450
 			"hit force" 900
 	outfits
-		"Green Optical Laser" 2
-		"Nettle Launcher" 4
-		`"Nettle" Kinetic Missile` 240
+		"Green Optical Laser"
+		"Vertical Launch Array" 2
+		`"Nettle" KKV` 480
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1332,17 +1336,17 @@ ship "Interferos"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
-	gun -33 -57 "Nettle Launcher"
+	gun -33 -57
 		angle -60
-	gun 33 -57 "Nettle Launcher"
+	gun 33 -57
 		angle 60
-	gun -33 -42 "Nettle Launcher"
+	gun -33 -42
 		angle -60
-	gun 33 -42 "Nettle Launcher"
+	gun 33 -42
 		angle 60
-	turret -21.5 -81 "Green Optical Laser"
-	turret 21.5 -81 "Green Optical Laser"
-	turret 0 -48
+	turret -21.5 -81
+	turret 21.5 -81
+	turret 0 -48 "Green Optical Laser"
 
 	engine 0 99
 		gimbal 6
@@ -1370,6 +1374,23 @@ ship "Interferos"
 	"final explode" "final explosion medium"
 
 	description "The Interferos-class Frigate is an autonomous support ship, designed to be easy to build and disposable enough for mass production. To free up frontline warships from having to escort merchant convoys in the Tangles, the Consonance commissioned this design with the intent of licensing its sale to independent merchant captains. It has since become popular due to its impressively large armament, though its attrition rates leave something to be desired."
+
+
+ship "Interferos" "Interferos (Atomic)"
+	outfits
+		"External Launch Tube" 4
+		"Orchid Magazine" 3
+		`"Orchid" Nuclear Missile` 33
+
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Electrostatic Ramscoop"
+		
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
 
 
 # Medium Warships
@@ -1404,9 +1425,9 @@ ship "Diaspersi"
 		"Green Optical Laser" 2
 		"Speckle Turret"
 		"Speck Round" 2400
-		"Nettle Launcher" 2
+		"Vertical Launch Array"
 		"Nettle Magazine" 6
-		`"Nettle" Kinetic Missile` 480
+		`"Nettle" KKV` 600
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1424,12 +1445,13 @@ ship "Diaspersi"
 		"Hyperdrive"
 
 	gun 0 -156
-	gun -18 -9 "Nettle Launcher"
+	gun -18 -9
 		angle -90
-	gun 18 -9 "Nettle Launcher"
+	gun 18 -9
 		angle 90
-	turret -9 12 "Green Optical Laser"
-	turret 9 12 "Green Optical Laser"
+	turret 0 -12 "Vertical Launch Array"
+	turret -9 9 "Green Optical Laser"
+	turret 9 9 "Green Optical Laser"
 	turret 0 51 "Speckle Turret"
 
 	bay "Fighter" 0 -63
@@ -1482,9 +1504,10 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Speckle Turret"
 		"Speck Round" 2400
 		"Orchid Launcher" 2
-		`"Orchid" Nuclear Missile` 36
-		"Equinox Torpedo Stockpile" 3
-		"Equinox Torpedo" 36
+		"Orchid Magazine" 2
+		`"Orchid" Nuclear Missile` 18
+		"Ophrys Stockpile" 3
+		`"Ophrys" Nuclear Torpedo` 36
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1493,12 +1516,21 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
+		"Electromotive Rifle" 36
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
+
+	gun
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Speckle Turret"
 
 
 ship "Difraktos"
@@ -1530,11 +1562,11 @@ ship "Difraktos"
 			"hit force" 3600
 	outfits
 		"Green Optical Laser" 2
-		"Speckle Turret" 2
-		"Speck Round" 4800
-		"Nettle Launch Array" 2
+		"Speckle Turret" 4
+		"Speck Round" 9600
+		"Vertical Launch Array" 2
 		"Nettle Magazine" 2
-		`"Nettle" Kinetic Missile` 600
+		`"Nettle" KKV` 600
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
@@ -1551,16 +1583,20 @@ ship "Difraktos"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
+	gun -21 -75
+		angle -90
+	gun 21 -75
+		angle 90
 	gun -21 -63
 		angle -90
 	gun 21 -63
 		angle 90
 	turret -9 -111 "Speckle Turret"
 	turret 9 -111 "Speckle Turret"
-	turret -9 -87 "Nettle Launch Array"
-	turret 9 -87 "Nettle Launch Array"
-	turret -9 -66
-	turret 9 -66
+	turret -9 -87 "Speckle Turret"
+	turret 9 -87 "Speckle Turret"
+	turret -9 -66 "Vertical Launch Array"
+	turret 9 -66 "Vertical Launch Array"
 	turret 0 36 "Green Optical Laser"
 	turret 0 90 "Green Optical Laser"
 
@@ -1600,54 +1636,47 @@ ship "Difraktos"
 
 ship "Difraktos" "Difraktos (Missile)"
 	outfits
+		"Green Optical Laser" 2
+		"Speckle Turret" 2
+		"Speck Round" 4800
 		"Nettle Launch Array" 4
-		"Nettle Magazine" 9
-		`"Nettle" Kinetic Missile` 1500
+		"Nettle Magazine" 6
+		`"Nettle" KKV` 1320
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
+		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Electrostatic Ramscoop"
+		"Electromotive Rifle" 42
 		
 		`Z-330 "Spark" Fusion Torch`
-		"Inductive Extractor" 2
-		"Remass Injector" 3
-		"XY-360 Radial Thrusters"
-		"Hyperdrive"
-
-
-ship "Difraktos" "Difraktos (Kinetic)"
-	outfits
-		"Green Optical Laser" 2
-		"Speckle Turret" 6
-		"Speck Magazine"
-		"Speck Round" 14400
-
-		"Ultracapacitor Cell" 3
-		"Diffuse Deflector"
-		"Optical Lasing Generator"
-		"Multispectral Scanner"
-		"Concealment Lamina"
-		"Electrostatic Ramscoop"
-		
-		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 4
+		"Inductive Extractor" 1
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
+
+	turret "Speckle Turret"
+	turret "Speckle Turret"
+	turret "Vertical Launch Array"
+	turret "Vertical Launch Array"
+	turret "Vertical Launch Array"
+	turret "Vertical Launch Array"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
 
 
 ship "Difraktos" "Difraktos (Atomic)"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
-		"Speck Round" 4800
-		"Orchid Launch Array" 3
-		`"Orchid" Nuclear Missile` 168
-		"Orchid Magazine" 2
+		"Speck Round" 9600
+		"External Launch Tube" 4
+		"Orchid Magazine" 8
+		`"Orchid" Nuclear Missile` 48
 
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
@@ -1660,6 +1689,15 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
+
+	turret "Speckle Turret"
+	turret "Speckle Turret"
+	turret
+	turret
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
 
 
 ship "Refraktos"
@@ -1790,9 +1828,9 @@ ship "Atenuatia"
 		"Speck Round" 2400
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
-		"Nettle Launch Array" 2
+		"Vertical Launch Array" 2
 		"Nettle Magazine" 6
-		`"Nettle" Kinetic Missile` 840
+		`"Nettle" KKV` 840
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
@@ -1826,22 +1864,22 @@ ship "Atenuatia"
 		angle -120
 		right
 
-	gun -18 -126
+	gun -18 -132
 		angle -90
-	gun 18 -126
+	gun 18 -132
 		angle 90
-	gun -15 -108
+	gun -15 -114
 		angle -90
-	gun 15 -108
+	gun 15 -114
 		angle 90
 	turret 0 -252 "Green Optical Laser"
 	turret 60 -174 "Blue Optical Laser"
 	turret -60 -174 "Blue Optical Laser"
-	turret 0 -96
-	turret 0 -36 "Nettle Launch Array"
-	turret 0 30 "Green Optical Laser"
+	turret 0 -96 "Vertical Launch Array"
+	turret 0 -36 "Vertical Launch Array"
+	turret 0 30 "Speckle Turret"
 	turret 0 96 "Green Optical Laser"
-	turret 0 160
+	turret 0 160 "Green Optical Laser"
 
 	bay "Drone" -24 -234
 	bay "Drone" 24 -234
@@ -1893,22 +1931,32 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Speck Round" 2400
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
-		"Orchid Launch Array"
-		"Equinox Torpedo Stockpile" 6
-		"Equinox Torpedo" 72
-		`"Orchid" Nuclear Missile` 48
+		"External Launch Tube" 2
+		`"Orchid" Nuclear Missile` 24
+		"Ophrys Stockpile" 6
+		`"Ophrys" Nuclear Torpedo` 72
 		
-		"Ultracapacitor Bank" 2
+		"Ultracapacitor Bank"
 		"Specular Deflector"
 		"Optical Lasing Generator" 3
 		"Electrostatic Ramscoop"
 		"Multispectral Scanner" 6
+		"Electromotive Rifle" 90
 		
 		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 4
-		"Remass Injector" 2
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
+
+	turret "Green Optical Laser"
+	turret "Blue Optical Laser"
+	turret "Blue Optical Laser"
+	turret
+	turret
+	turret "Speckle Turret"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
 
 
 # Fighters
@@ -2053,14 +2101,14 @@ ship "Photikon"
 	"final explode" "final explosion small"
 
 	description "The Photikon Torpedo Bomber is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Photikon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
-	description "Photikons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of two Equinox Torpedoes."
+	description "Photikons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of two Ophrys Torpedoes."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 ship "Photikon" "Photikon (Atomic)"
 	outfits
-		"Equinox Torpedo Pylon" 3
-		"Equinox Torpedo" 3
+		"External Launch Rail" 3
+		`"Ophrys" Nuclear Torpedo` 3
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
