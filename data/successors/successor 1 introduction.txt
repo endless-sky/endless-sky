@@ -136,7 +136,7 @@ mission "Successors: First Contact 1"
 				set "Successors: language"
 				set "Successors: history"
 			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
-			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I'm one of very few who's learned thy tongue, and others, at least as 'twas gone fifteen hundred years ago."`
+			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
@@ -151,7 +151,7 @@ mission "Successors: First Contact 1"
 			label language-short
 			action
 				set "Successors: language"
-			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I'm one of very few who's learned thy tongue, and others, at least as 'twas gone fifteen hundred years ago."`
+			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
 					goto whatnow
