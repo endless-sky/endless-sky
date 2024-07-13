@@ -1742,10 +1742,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 						localCarriers.push_back(carrier);
 
 				if(localCarriers.empty())
-				{
-					Logger::LogError("Ship " + ship->TrueModelName() + " has no dock space.");
 					continue;
-				}
 
 				// Among the available carriers, find the best one to dock this ship to.
 				// The best choice is the ship with the most restrictive available bay.
@@ -1754,18 +1751,9 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 					[&category](Ship *a, Ship *b) -> bool {
 						return a->CarryRestrictiveness(category) < b->CarryRestrictiveness(category);
 					});
-
-				Logger::LogError("Docking " + ship->TrueModelName() + " in " + bestCarrier->TrueModelName()  + " " + bestCarrier->Name()
-						+ " with restrictiveness " + Format::Number(bestCarrier->CarryRestrictiveness(category)));
 				bestCarrier->Carry(ship);
 				--uncarried;
 			}
-			for(Ship *carrier : carriers)
-				Logger::LogError(carrier->TrueModelName() + " " + carrier->Name() + " bays: "
-					+ Format::Number(carrier->BaysTotal("Fighter")) + "/"
-					+ Format::Number(carrier->BaysTotal("Drone")) + " "
-					+ Format::Number(carrier->CarryRestrictiveness("Fighter")) + "/"
-					+ Format::Number(carrier->CarryRestrictiveness("Drone")));
 		}
 
 		if(uncarried)
