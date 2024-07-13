@@ -189,7 +189,7 @@ fleet "Incipias Standard Trade"
 	variant 5
 		"Nimbo Cirrus"
 	variant 1
-		"Nimbus (Civil)"
+		"Nimbus (Civilian)"
 	variant 4
 		"Nimbo Cirrus" 2
 	variant 3
@@ -201,7 +201,7 @@ fleet "Incipias Standard Trade"
 		"Nimbo Cirrus"
 	variant 1
 		"Nimbo Cirrus" 2
-		"Nimbus (Civil)"
+		"Nimbus (Civilian)"
 
 outfitter "Hicemus"
 	"Plasma Discharger"
