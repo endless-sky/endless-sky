@@ -414,6 +414,10 @@ public:
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
+	// Returns a positive value denoting how restrictive the available bays on
+	// this ship are for the given category. Lower values are more restrictive,
+	// and carried ships prefer to dock with the most restrictive bays.
+	int CarryRestrictiveness(const std::string &category);
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.

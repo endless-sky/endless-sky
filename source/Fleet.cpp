@@ -538,6 +538,7 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 	if(!fighter->CanBeCarried())
 		return false;
 
+	// TODO: We need to change the load order of fighters here too.
 	for(const shared_ptr<Ship> &parent : placed)
 		if(parent->Carry(fighter))
 			return true;

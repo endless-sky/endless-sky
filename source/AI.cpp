@@ -888,19 +888,31 @@ void AI::Step(Command &activeCommands)
 			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
-				auto parentChoices = vector<shared_ptr<Ship>>{};
-				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
+				auto swarmParentChoices = vector<shared_ptr<Ship>>{};
+				swarmParentChoices.reserve(ships.size() * .1);
+				auto getParentFrom = [&it, &gov, &swarmParentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
+					auto dockParentChoices = vector<shared_ptr<Ship>>{};
+					dockParentChoices.reserve(otherShips.size() * .1);
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
 							if(!other->IsDisabled() && other->CanCarry(*it))
-								return other;
+								dockParentChoices.emplace_back(other);
 							else
-								parentChoices.emplace_back(other);
+								swarmParentChoices.emplace_back(other);
 						}
-					return shared_ptr<Ship>();
+
+					if(dockParentChoices.empty())
+						return shared_ptr<Ship>();
+
+					// Locate the best carrier among the possible choices to dock with.
+					// The best choice is the ship with the most restrictive available bay.
+					const string &category = it->Attributes().Category();
+					return *min_element(dockParentChoices.begin(), dockParentChoices.end(),
+						[&category](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b) -> bool {
+							return a->CarryRestrictiveness(category) < b->CarryRestrictiveness(category);
+						});
 				};
 				// Mission ships should only pick amongst ships from the same mission.
 				auto missionIt = it->IsSpecial() && !it->IsYours()
@@ -931,8 +943,8 @@ void AI::Step(Command &activeCommands)
 					parent = newParent;
 				// Otherwise, if one or more in-system ships of the same government were found,
 				// this carried ship should flock with one of them, even if they can't carry it.
-				else if(!parentChoices.empty())
-					parent = parentChoices[Random::Int(parentChoices.size())];
+				else if(!swarmParentChoices.empty())
+					parent = swarmParentChoices[Random::Int(swarmParentChoices.size())];
 				// Player-owned carriables that can't be carried and have no ships to flock with
 				// should keep their current parent, or if it is destroyed, their parent's parent.
 				else if(it->IsYours())

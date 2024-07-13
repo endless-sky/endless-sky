@@ -405,6 +405,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 		if(!npc.ShouldSpawn())
 			continue;
 
+		// TODO: We need to change the load order of fighters here too.
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{

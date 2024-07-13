@@ -217,6 +217,40 @@ namespace {
 		double scale = maxEnergy * 220.;
 		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
 	}
+
+	// Given a bay, return its restrictiveness. A bay's restrictiveness is a
+	// measure of how many categories of ship the bay can hold. Lower values
+	// mean that the bay is more restrictive. Ships prefer to dock with bays
+	// of a higher restrictiveness.
+	int BayRestrictiveness(const Ship::Bay *bay)
+	{
+		if(!bay)
+			return numeric_limits<int>::max();
+		return !bay->bayType ? 1 : bay->bayType->Categories().size();
+	}
+
+	// Given a ship category that can be carried, return the most restrictive
+	// bay that could fit that ship.
+	Ship::Bay *MostRestrictiveBay(const string &category, vector<Ship::Bay> &bays)
+	{
+		// Find all bays that could hold this ship.
+		vector<Ship::Bay *> availableBays;
+		for(Ship::Bay &bay : bays)
+			if(bay.CanContain(category) && !bay.ship)
+				availableBays.push_back(&bay);
+
+		if(availableBays.empty())
+			return nullptr;
+
+		// Find the best bay to place this ship into. The best bay is the
+		// bay that is the most restrictive, i.e. is able to hold the fewest
+		// ship categories. By using the most restrictive bay, we prevent
+		// ships from hogging bays from other ships.
+		return *min_element(availableBays.begin(), availableBays.end(),
+			[](const Ship::Bay *a, const Ship::Bay *b) -> bool {
+				return BayRestrictiveness(a) < BayRestrictiveness(b);
+			});
+	}
 }
 
 
@@ -3188,6 +3222,11 @@ bool Ship::CanCarry(const Ship &ship) const
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
 
+	// TODO: This won't work. If we have a ship with 4 fighter bays and 6 drone bays,
+	// this will return 10 if the input is "Drone." This means that even if this ship
+	// already has 4 fighters and 6 drones, this function will still believe that 4
+	// more drones can be fit. I think we effectively need proper bay reservations
+	// to address this.
 	int free = BaysTotal(category);
 	if(!free)
 		return false;
@@ -3210,6 +3249,16 @@ bool Ship::CanCarry(const Ship &ship) const
 
 
 
+// Returns a positive value denoting how restrictive the available bays on
+// this ship are for the given category. Lower values are more restrictive,
+// and carried ships prefer to dock with the most restrictive bays.
+int Ship::CarryRestrictiveness(const string &category)
+{
+	return BayRestrictiveness(MostRestrictiveBay(category, bays));
+}
+
+
+
 bool Ship::CanBeCarried() const
 {
 	return canBeCarried;
@@ -3224,32 +3273,11 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
-
-	// NPC ships should always transfer cargo. Player ships should only
-	// transfer cargo if they set the AI preference.
-	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
-
-	// Find all bays that could hold this ship.
-	vector<Bay *> availableBays;
-	for(Bay &bay : bays)
-		if(bay.CanContain(category) && !bay.ship)
-			availableBays.push_back(&bay);
-
-	if(availableBays.empty())
+	Bay *bay = MostRestrictiveBay(category, bays);
+	if(!bay)
 		return false;
 
-	// Find the best bay to place this ship into. The best bay is the
-	// bay that is the most restrictive, i.e. is able to hold the fewest
-	// ship categories. By using the most restrictive bay, we prevent
-	// ships from hogging bays from other ships.
-	Bay &bay = **min_element(availableBays.begin(), availableBays.end(),
-		[](const Bay *a, const Bay *b) -> bool {
-			int aSize = !a->bayType ? 1 : a->bayType->Categories().size();
-			int bSize = !b->bayType ? 1 : b->bayType->Categories().size();
-			return aSize < bSize;
-		});
-
-	bay.ship = ship;
+	bay->ship = ship;
 	ship->SetSystem(nullptr);
 	ship->SetPlanet(nullptr);
 	ship->SetTargetSystem(nullptr);
@@ -3259,6 +3287,10 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	ship->isReversing = false;
 	ship->isSteering = false;
 	ship->commands.Clear();
+
+	// NPC ships should always transfer cargo. Player ships should only
+	// transfer cargo if they set the AI preference.
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
 
 	// If this fighter collected anything in space, try to store it.
 	if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
