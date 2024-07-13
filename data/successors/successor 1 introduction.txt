@@ -166,7 +166,7 @@ mission "Successors: First Contact 1"
 			label changed
 			action
 				set "Successors: changed"
-			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I'd hoped as much," they say, "that thou were't still young of species, t'with a long history before thee; that thou would'st one day take to the stars as it appears thou hast now done. Alas, mine noble House Sioeora does not permit me t'interrogate thy knowledge so deep as that which I desire, for thine arrival portends t'us much, and so t'is much we must arrange."`
+			`	More waves of color, subtle but noticeable, pass over Sieasej's body. "I'd hoped as much," they say, "that thou were't still a younger kind, with a longer history before thee; that thou would'st one day take to the stars as it appears thou hast now done. Alas, mine noble House Sioeora does not permit me t'interrogate thy knowledge so deep as that which I desire, for thine arrival portends t'us much, and so t'is much we must arrange."`
 				goto questions
 			label ripped
 			action
@@ -216,7 +216,7 @@ mission "Successors: First Contact 2"
 	on offer
 		conversation
 			`As you exit the <ship>, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
-			`	"Captain <first> <last>! I am instructed to inform thee of the desire by the honored scions of House Sioeora that thou woulds't appear before them to render thy service and aid. They, hm... demand thee make haste to fair Staja-Kella-Oa once more, and to prepare thyself as thou mights't for an audience. In confirmation of this message, I do attest myself: Vijaat Ojniis Sieasej, honored historian of the of third ichon in service to the noble academy of Staja-Kella-Oa and to our noble House."`
+			`	"Captain <first> <last>! I've been instructed to inform thee that our most honored scions of noble House Sioeora want that thou woulds't before them appear to render 'them thy service and thine aid. They, hm... demand that thee make haste to our fair world once more, and prepare thyself as pleaseth thou for an audience before them. In confirmation of this message, I do myself attest: Vijaat Ojniis Sieasej, an honored scholar of the third iret in service to our noble House."`
 			`	The recording ends there, and the sphere changes to display a star map as before.`
 				accept
 		event "successors: tardy for sioeora" 14
@@ -242,28 +242,28 @@ mission "Successors: First Contact 2"
 			`	One of the adorned individuals looks at you and speaks, and Sieasej translates a moment later.`
 			branch "tardy"
 				has "event: successors: tardy for sioeora"
-			`	"Hail, captain! We appreciate thy promptness in complying with our request. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for the House today."`
+			`	"Hail, captain! We appreciate thy promptness in complying 'thour request. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
 				goto greet
 			label "tardy"
-				`	"Hail, captain! Thy tardiness does not reflect well upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for the House today."`
+				`	"Hail, captain! Thy tardiness reflects poorly upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
 			label greet
 			choice
 				`	(Say nothing.)`
 					goto request
 				`	"Hello. I am <first> <last>.`
 					goto introduce
-				`	"I apologize for my tardiness."`
+				`	"I apologize for being late."`
 					to display
 						has "event: successors: tardy for sioeora"
 					goto apologize-tardiness
 			label introduce
-			`	"We are aware of this. The introduction of an alien such as thee is not expected or requested in this hall."`
+			`	"We are aware of this. The introduction of an alien like thee is not expected or requested in this hall."`
 				goto request
 			label apologize-tardiness
 			`	"Thine apology is noted."`
 				goto request
 			label request
-			`	Riijaaora continues. "Thy presence has been demanded here so that thou might'st provide service to this House. We have a task for thee, and if thou completes't correctly, a gift for thee as a symbol of our patronage."`
+			`	Riijaaora continues. "Thy presence we've demanded here so that thou might'st give service to this House. We've a task for thee, and if thou can'st complete't ably, a gift as well: a symbol of our patronage."`
 			choice
 				`	(Say nothing.)`
 					goto task
@@ -274,21 +274,21 @@ mission "Successors: First Contact 2"
 				`	"I do not appreciate being demanded about."`
 					goto rude
 			label task
-			`	"There is a world within the scar of broken systems once called Raaqa-Uur-Kaav. We require thee to visit there, where upon its surface, thou shall'st find a specimen of a certain animal to return to us undamaged and whole. The scholar, Sieasej, will accompany thee as an envoy of this House to assist and monitor thee. If thou'rt successful in capturing thy quarry and returning it to us, we shall bestow upon thee the gift of our tongue, so that thou might'st not need to rely upon a translator such as this one.`
+			`	"'Tis a world within the scar of shrouded systems to the north 'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, we shall see fit to thee bestow the peerless gift of language, so that thou might'st not evermore require the use of a translator, as doth thou, here and now."`
 			choice
 				`	"I accept."`
 					goto accepted
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label gift
-			`	"The one who speaks this to thee knows very well the value of language, Captain, and we suspect that thou doth as well. There is a world within the scar of broken systems once called Raaqa-Uur-Kaav. We require thee to visit there, where upon its surface, thou shall'st find a specimen of a certain animal to return to us undamaged and whole. The scholar, Sieasej, will accompany thee as an envoy of this House to assist and monitor thee. If thou'rt successful in capturing thy quarry and returning it to us, thou shall'st have the reward of our tongue and all that it confers.`
+			`	"The one who speaks these words to thee know'th well the value language doth confer, and we suspect 'tis true that thee knoweth this as well. There's a world within the scar of shrouded systems to the north 'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, thou shall'st have our reward of language and all that it bestows.`
 			choice
 				`	"I accept."`
 					goto accepted
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label rude
-				`	"Thine appreciation or lack thereof is immaterial. Thou may'st be an alien, and yet that makes thee even more a guest within our space and even more a, hm... consumer of our hospitality. Thy compliance is expected in return for this generosity.`
+				`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, a hm... consumer of our grace. Thy compliance is expected; in return, our generosity.`
 			choice
 				`	"I apologize."`
 				`	"I have no desire to be your servant."`
@@ -296,12 +296,13 @@ mission "Successors: First Contact 2"
 			`	"Thine apology is noted."`
 				goto task
 			label accepted
-			`	"Thou show'st wisdom in thy choice. Even now, thy ship is prepared within the spaceport of this estate. Thou should'st go there when thine audience is finished, and begin thy task with haste." The scion pauses for a moment before continuing. "But note, Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not trust our citizen and servant to thee without consideration. If harm befalls the speaker of these words whilst they are under thy protection, or if thou fail'st to return them here in thirty days, we will consider thee an enemy of this House and levy upon thee every harm that we can offer."`
+			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st there visit when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But pray thee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee a enemy and levy upon thee every harm that we can muster."`
 				goto end
 			label rejected
 			action
 				set "rejected: Successors: First Contact 2"
-			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of generosity today shall be allowing thee to depart this noble place whilst still possessed of thy freedom and belongings. Thou shalt receive no further aid nor comfort from this House, and thou shalt be banished at the pleasure of its scions from whatever worlds are held under its dominion."`
+				"reputation: House Sioeora" = 0
+			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of grace today shall be t'allow thee to depart this noble place still possessed o'thy freedom and belongings. Thou shalt receive no further aid nor comfort from this House, and shalt be banished at the pleasure of its scions from whatever worlds lie under our dominion."`
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 			label end
@@ -616,6 +617,13 @@ mission "Successors: First Contact 3"
 			`	Sieasej briefly waves their device in the air unsuccessfully. "Nonetheless," they say, "thine act of mercy entails us failure. Under threat, the adults shall surely shroud the larvae, and so it is now here. It seems we must return with empty arms." They briefly undulate in a manner similar to a laugh. "I do not think I'd take another chase like that again regardless."`
 			`	The two of you return to the <ship> and make preparations for takeoff so that you can, at the very least, return Sieasej to their people.`
 			label end
+
+	on fail
+		dialog `You failed to return Sieasej to their people in time. If you wish to continue the Successors' story, revert to a prior save.`
+		"reputation: House Sioeora" = -999
+		"reputation: Successor" = 0
+		"reputation: House Chydiyi" = 0
+		"reputation: House Myurej" = 0
 
 	on complete
 		conversation
