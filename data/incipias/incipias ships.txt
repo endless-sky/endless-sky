@@ -21,8 +21,8 @@ ship "Venta"
 		licenses
 			"Hicemus Conflict"
 		"cost" 25000000
-		"hull" 12000
-		"shields" 16000
+		"hull" 9600
+		"shields" 12800
 		"required crew" 40
 		"bunks" 45
 		"mass" 2400
@@ -73,8 +73,8 @@ ship "Nimbus"
 		licenses
 			"Hicemus Conflict"
 		"cost" 3250000
-		"hull" 5000
-		"shields" 7500
+		"hull" 4000
+		"shields" 6000
 		"required crew" 20
 		"bunks" 40
 		"mass" 1640
