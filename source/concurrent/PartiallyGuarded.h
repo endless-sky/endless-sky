@@ -43,15 +43,15 @@ public:
 	void push_back(T &&value) = delete;
 	void push_front(const T &value) = delete;
 	void push_front(T &&value) = delete;
-	void insert(std::list<T, Allocator>::const_iterator pos, const T& value) = delete;
+	void insert(typename std::list<T, Allocator>::const_iterator pos, const T& value) = delete;
 	template<class InputIt>
-	void insert(std::list<T, Allocator>::const_iterator pos, InputIt first, InputIt last) = delete;
+	void insert(typename std::list<T, Allocator>::const_iterator pos, InputIt first, InputIt last) = delete;
 	template<class ...Args>
-	void emplace(std::list<T, Allocator>::const_iterator pos, Args &&...args) = delete;
+	void emplace(typename std::list<T, Allocator>::const_iterator pos, Args &&...args) = delete;
 	void pop_back() = delete;
 	void pop_front() = delete;
 	template<class ...Args>
-	void emplace_front( Args &&...args ) = delete;
+	void emplace_front(Args &&...args) = delete;
 
 
 
@@ -73,11 +73,11 @@ public:
 	// These can be implemented later, if necessary.
 	void push_back(const T &value) = delete;
 	void push_back(T &&value) = delete;
-	void insert(std::list<T, Allocator>::const_iterator pos, const T& value) = delete;
+	void insert(typename std::list<T, Allocator>::const_iterator pos, const T& value) = delete;
 	template<class InputIt>
-	void insert(std::list<T, Allocator>::const_iterator pos, InputIt first, InputIt last) = delete;
+	void insert(typename std::list<T, Allocator>::const_iterator pos, InputIt first, InputIt last) = delete;
 	template<class ...Args>
-	void emplace(std::list<T, Allocator>::const_iterator pos, Args &&...args) = delete;
+	void emplace(typename std::list<T, Allocator>::const_iterator pos, Args &&...args) = delete;
 	void pop_back() = delete;
 
 private:
@@ -111,8 +111,8 @@ public:
 	// These can be implemented later, if necessary.
 	void insert(const Value &value) = delete;
 	template<class P>
-	void insert(P&& value) = delete;
-	void insert(std::map<Key, Value, Compare, Allocator>::iterator pos, const Value &value) = delete;
+	void insert(P &&value) = delete;
+	void insert(typename std::map<Key, Value, Compare, Allocator>::iterator pos, const Value &value) = delete;
 
 private:
 	std::mutex write_mutex;
