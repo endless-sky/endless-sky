@@ -1234,11 +1234,11 @@ government "People's Houses (Hostile)"
 	"display name" "People's Houses"
 	swizzle 6
 	color 0.92 0.29 0.20
-	"player reputation" -999
+	"player reputation" -10
 	"attitude toward"
 		Author -0.01
 		Successor -0.01
-		"People's Houses" 0.01
+		"People's Houses" 0.2
 	bribe 0.05
 	fine 0
 	"friendly hail" "people's houses friendly hail"
