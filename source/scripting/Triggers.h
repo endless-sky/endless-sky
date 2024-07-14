@@ -18,8 +18,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Trigger.h"
 
+
+
 // Define all used trigger types here. This avoids having to fill out the template every time.
 struct Plugin;
-typedef Trigger<PLUGIN_LOADED, Plugin *> PluginLoadedTrigger;
+
+// Plugin::Load
+using LoadPluginTrigger = Trigger<TriggerType::LOAD_PLUGIN, Plugin *, const std::string &>;
+using PluginLoadedTrigger = Trigger<TriggerType::PLUGIN_LOADED, void, Plugin *>;
 
 #endif

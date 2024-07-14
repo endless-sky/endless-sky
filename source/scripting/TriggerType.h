@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef TRIGGER_TYPE_H_
 #define TRIGGER_TYPE_H_
 
-enum TriggerType {
-	PLUGIN_LOADED,
-	TRIGGER_TYPE_COUNT
+enum class TriggerType : int32_t {
+	LOAD_PLUGIN,
+	PLUGIN_LOADED
 };
 
 #endif
