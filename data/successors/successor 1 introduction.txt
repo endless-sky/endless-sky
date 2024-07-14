@@ -335,11 +335,11 @@ mission "Successors: First Contact 3"
 				`	"Thank you. What can you tell me about our mission?"`
 					goto task
 				`	"What do you mean, 'well enough for an alien?'"`
-			`	A ripple of a rough, greenish texture passes over Sieasej's skin before subsiding. "Audiences like that one are subject to a litany of social expectations. Were't thou one of us, thine ignorance of these would seem knavish at best and offensive at worst, but... the scions are not fools. They are more than willing to endure a little rudeness for the sake of achieving their aims."`
+			`	A ripple of a rough, greenish texture passes over Sieasej's skin before subsiding. "Audiences like that one are subject to a litany of social expectations. If thou were't one of us, then thine ignorance of these things would seem knavish at the least, but... the scions are not fools. They are more than willing to endure a little bit of rudeness for the sake of their aims."`
 			`	"I see," you say. "I suppose I am too."`
-			`	"Fret not," Sieasej says. "Elegance of address was neither required nor anticipated from thee. All has a place and time where it is necessary, and a place and time where it is not."`
+			`	"Fret not," Sieasej says, "for elegance of thine address was neither expected nor required. It's all that has a place and time where's needed, and a place and time where's not."`
 			label task
-			`	Sieasej shuffles their arms beneath them. "Ah. I must once again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall provide a map marker for the system we are to journey to. There, on the second moon of the second planet, we are to land and collect a specimen of a Kijra-Riitaa, a Kijra-'pet.'"`
+			`	Sieasej shuffles their arms beneath them. "Ah. I must again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall thee provide a marker for the system we are to journey to. On the second planet's second moon, we are to land and find a Kijra-Riitaa, a Kijra-'pet,' a beast of sorts, as the scions told thee prior."`
 			label questions
 			choice
 				`	"We'd better get started then."`
@@ -363,16 +363,16 @@ mission "Successors: First Contact 3"
 			label kijra-pet
 			action
 				set "Successors: kijra-pet"
-			`	Sieasej shivers a little, and choses their words slowly. "The Kijra feature heavily in the old culture. 'Twere popular pets and hunting companions among... some of our Predecessors during their time. The larva is the scale of a... hm, of thy head, approximately, with a delicate body and glassy skin. Once it mates and lays its eggs, they begin to molt several times into a larger and more fearsome form so that they may defend their nascent flock. The Kijra-Riitaa - the 'pet' - is the larva, and the Kijra-Khora is the adult. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't attempt to capture the larva and nothing else."`
+			`	Sieasej shivers a little, and choses their words slowly. "The Kijran are quite well-discussed in the history of our people. 'Twere favored pets and hunting beasts among... a few of our Predecessors in their time. The larva is the scale of a... hm, of thy head, though, give or take; with a delicate body and glassy skin, and wings of finest silk. But if it mates and lays its eggs, it gives itself some sundry molts till'ts larger and more fearsome to defend its nascent brood. The Kijran-Riitaa - the Kijra-'pets' - are the young of these, and the Kijran-Khora the dread adults. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't capture the young and nothing else."`
 				goto questions
 			label knowledge
 			action
 				set "Successors: knowledge"
-			`	"'Tis a mix of things," Sieasej says. "The... pathways in space which connect those systems are ever-changing, on the span of years. A hazard of the space. Some years ago, there was a pathway leading to it through which the ships of all the High Houses could pass through and explore. Now, it has been many years since that system was easily accessible. The scions know that thou must possess a jump drive in order for thou to have reach'd us - this technology is quite familiar to us - and so they know that thou cans't acquire that what they desire."`
+			`	"'Tis a mix of things," Sieasej says. "The... paths in space which connect those stars are ever-changing, year by year. A hazard of the space. Some years ago, t'was a pathway leading to it through which craft of all the Houses could find passage and explore. Now, it's been closed for many years and our vessels may not enter. The scions know thou must possess a jump drive in order for thou t'ave reach'd us here, for this technology's a familiar one to us. And so they know thou cans't retrieve that thing which they desire."`
 			choice
 				`	"We'd better get started then."`
 					goto embark
-				`	"What do you mean that jump drives are 'quite familiar?'"`
+				`	"What do you mean that jump drives are 'familiar?'"`
 					goto jumpdrives
 				`	"What more can you tell me about the Kijra-pets?"`
 					goto kijra-pet
@@ -382,15 +382,15 @@ mission "Successors: First Contact 3"
 					goto watchout
 			label youokay
 				set "Successors: youokay"
-			`	Splotches of orange color emerge at the tips of Sieasej's arms. "I confess this is irregular, and know the prospect of this... journey instills within me some degree of trepidation. But to visit the lost worlds is a reward in and of itself, and to do so accompanying one of the very aliens that I have studied makes it doubly so. Thou must realize: thou'rt a historian's dream. Thou'rt a creature from a distant story-page made flesh."`
+			`	Splotches of orange color emerge at the tips of Sieasej's arms. "I confess this is a little strange, and know the prospect of this... journey instills within me some thoughts of trepidation. But to visit these worlds is reward itself, and to do so in thy company, the very aliens who I have studied, makes it a reward that's doubly grand. Thou must realize that thou'rt a historian's dream. Thou'rt a creature from a distant story-page made flesh and blood in the modern age."`
 				goto questions
 			label watchout
 				set "Successors: watchout"
-			`	"The House hast warned me of the dangers of the space there. Thy vessel must have been durable enough to make it here to our space intact, so I must trust that it shall be so again.`
+			`	"The House hast warned me of the dangers which that space entails. Thy vessel must've endured enough to make it here intact, so I must trust that it shall be enduring once again.`
 				goto questions
 			label jumpdrives
 				set "Successors: jumpdrives"
-			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who by then had only just discovered industry. Drives like the one within thy ship have been known to us for a long, long time."`
+			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who then had only just discovered industry. Drives like the one within thy ship have been known to us for long into thy past."`
 			choice
 				`	"We'd better get going."`
 					goto embark
