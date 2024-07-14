@@ -215,7 +215,9 @@ void Plugin::LoadScripts()
 						init(this);
 						// Add to script list
 						scripts.emplace(library);
-					} catch(const std::exception &ex) {
+					}
+					catch(const std::exception &ex)
+					{
 						Logger::LogError("Could not load script file " + entry.path().filename().string() + ": " + ex.what());
 						library.unload();
 					}
