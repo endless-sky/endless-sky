@@ -296,7 +296,7 @@ mission "Successors: First Contact 2"
 			`	"Thine apology is noted."`
 				goto task
 			label accepted
-			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st there visit when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But pray thee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee a enemy and levy upon thee every harm that we can muster."`
+			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st travel there when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But prithee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee a enemy and levy upon thee every harm that we can muster."`
 				goto end
 			label rejected
 			action
