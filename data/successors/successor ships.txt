@@ -773,19 +773,19 @@ ship "Seiitej"
 		licenses
 			"High Houses"
 		category "Utility"
-		"cost" 14250000
-		"shields" 10000
-		"hull" 28000
+		"cost" 9250000
+		"shields" 8000
+		"hull" 19000
 		"required crew" 8
 		"bunks" 36
-		"mass" 400
+		"mass" 320
 		"drag" 3.1
 		"heat dissipation" .60
 		"fuel capacity" 800
 		"cargo space" 130
 		"outfit space" 370
-		"weapon capacity" 110
-		"engine capacity" 130
+		"weapon capacity" 90
+		"engine capacity" 110
 		"multimodal armor" 1
 		"hull repair rate" 1.2
 		"hull energy" 1.74
