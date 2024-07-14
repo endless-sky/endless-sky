@@ -274,14 +274,14 @@ mission "Successors: First Contact 2"
 				`	"I do not appreciate being demanded about."`
 					goto rude
 			label task
-			`	"'Tis a world within the scar of shrouded systems to the north 'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, we shall see fit to thee bestow the peerless gift of language, so that thou might'st not evermore require the use of a translator, as doth thou, here and now."`
+			`	"'Tis a world within the scar of shrouded systems to the north th'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, we shall see fit to thee bestow the peerless gift of language, so that thou might'st not evermore require the use of a translator, as doth thou, here and now."`
 			choice
 				`	"I accept."`
 					goto accepted
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label gift
-			`	"The one who speaks these words to thee know'th well the value language doth confer, and we suspect 'tis true that thee knoweth this as well. There's a world within the scar of shrouded systems to the north 'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, thou shall'st have our reward of language and all that it bestows.`
+			`	"The one who speaks these words to thee know'th well the value language doth confer, and we suspect 'tis true that thee knoweth this as well. There's a world within the scar of shrouded systems to the north th'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, thou shall'st have our reward of language and all that it bestows.`
 			choice
 				`	"I accept."`
 					goto accepted
@@ -619,7 +619,7 @@ mission "Successors: First Contact 3"
 			label end
 
 	on fail
-		dialog `You failed to return Sieasej to their people in time. If you wish to continue the Successors' story, revert to a prior save.`
+		dialog `You failed to return Sieasej to their people in time. If you wish to continue the Successors' story line, revert to a prior save.`
 		"reputation: House Sioeora" = -999
 		"reputation: Successor" = 0
 		"reputation: House Chydiyi" = 0
