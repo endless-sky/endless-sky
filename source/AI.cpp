@@ -1761,6 +1761,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	const FormationPattern *pattern = ship.GetFormationPattern();
 
 	// First we retrieve the patterns that are formed around the parent.
+	const lock_guard<mutex> guard = formationLead->Lock();
 	auto &patterns = formations[formationLead];
 
 	// Find the existing FormationPositioner for the pattern, or add one if none exists yet.
