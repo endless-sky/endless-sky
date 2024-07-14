@@ -90,7 +90,7 @@ namespace {
 		}
 		// Sort this list of choices ascending by mass, so it can be easily trimmed to just
 		// the outfits that fit as the ship's free space decreases.
-		sort(execution::par_unseq, outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
+		sort(parallel::par_unseq, outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
 			{ return a->Mass() < b->Mass(); });
 		return outfits;
 	}

@@ -1522,7 +1522,7 @@ void Engine::CalculateStep()
 	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
 
 	// Then, move the other ships.
-	for_each(execution::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
 			return;
@@ -1633,7 +1633,7 @@ void Engine::CalculateStep()
 	FillCollisionSets();
 
 	// Perform collision detection.
-	for_each(execution::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
+	for_each(parallel::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
 		DoCollisions(visualResourceProvider, projectile);
 	});
 
@@ -2293,7 +2293,7 @@ void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 	}
 
 	// Sort the Collisions by increasing range so that the closer collisions are evaluated first.
-	sort(execution::par_unseq, collisions.begin(), collisions.end());
+	sort(parallel::par_unseq, collisions.begin(), collisions.end());
 
 	// Run all collisions until either the projectile dies or there are no more collisions left.
 	for(Collision &collision : collisions)
