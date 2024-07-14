@@ -439,7 +439,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 				for(Ship *carrier : carriers)
 					if(carrier->CanCarry(*ship))
 						availableCarriers.emplace_back(carrier);
-				
+
 				if(!availableCarriers.empty())
 				{
 					// Among the available carriers, find the best one to dock this ship to.

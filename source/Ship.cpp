@@ -3219,7 +3219,7 @@ bool Ship::CanCarry(const Ship &ship) const
 {
 	if(!HasBays() || !ship.CanBeCarried() || (IsYours() && !ship.IsYours()))
 		return false;
-	
+
 	// Check only for the category that we are interested in. Find all bays
 	// on this ship that could carry the other ship.
 	const string &category = ship.attributes.Category();
