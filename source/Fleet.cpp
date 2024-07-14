@@ -538,10 +538,22 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 	if(!fighter->CanBeCarried())
 		return false;
 
-	// TODO: We need to change the load order of fighters here too.
-	for(const shared_ptr<Ship> &parent : placed)
-		if(parent->Carry(fighter))
-			return true;
+	auto carriers = vector<Ship *>{};
+	for(auto &ship : placed)
+		if(ship->CanCarry(*fighter))
+			carriers.emplace_back(ship.get());
+
+	if(!carriers.empty())
+	{
+		// Among the available carriers, find the best one to dock this ship to.
+		// The best choice is the ship with the most restrictive available bay.
+		const string &category = fighter->Attributes().Category();
+		Ship *bestCarrier = *min_element(carriers.begin(), carriers.end(),
+			[&category](Ship *a, Ship *b) -> bool {
+				return a->CarryRestrictiveness(category) < b->CarryRestrictiveness(category);
+			});
+		return bestCarrier->Carry(fighter);
+	}
 
 	return false;
 }

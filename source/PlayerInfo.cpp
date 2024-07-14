@@ -1739,7 +1739,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				vector<Ship *> localCarriers;
 				for(Ship *carrier : carriers)
 					if(carrier->GetSystem() == ship->GetSystem() && carrier->CanCarry(*ship))
-						localCarriers.push_back(carrier);
+						localCarriers.emplace_back(carrier);
 
 				if(localCarriers.empty())
 					continue;

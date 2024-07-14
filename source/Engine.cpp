@@ -405,8 +405,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 		if(!npc.ShouldSpawn())
 			continue;
 
-		// TODO: We need to change the load order of fighters here too.
-		map<string, map<Ship *, int>> carriers;
+		vector<Ship *> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
 			// Skip ships that have been destroyed.
@@ -417,13 +416,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const auto &cat : GameData::GetCategory(CategoryType::BAY))
-				{
-					const string &bayType = cat.Name();
-					int baysTotal = ship->BaysTotal(bayType);
-					if(baysTotal)
-						carriers[bayType][&*ship] = baysTotal;
-				}
+				carriers.push_back(ship.get());
 			}
 		}
 
@@ -442,17 +435,23 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 
 			if(ship->CanBeCarried())
 			{
-				bool docked = false;
-				const string &bayType = ship->Attributes().Category();
-				for(auto &it : carriers[bayType])
-					if(it.second && it.first->Carry(ship))
-					{
-						--it.second;
-						docked = true;
-						break;
-					}
-				if(docked)
-					continue;
+				vector<Ship *> availableCarriers;
+				for(Ship *carrier : carriers)
+					if(carrier->CanCarry(*ship))
+						availableCarriers.emplace_back(carrier);
+				
+				if(!availableCarriers.empty())
+				{
+					// Among the available carriers, find the best one to dock this ship to.
+					// The best choice is the ship with the most restrictive available bay.
+					const string &category = ship->Attributes().Category();
+					Ship *bestCarrier = *min_element(availableCarriers.begin(), availableCarriers.end(),
+						[&category](Ship *a, Ship *b) -> bool {
+							return a->CarryRestrictiveness(category) < b->CarryRestrictiveness(category);
+						});
+					if(bestCarrier->Carry(ship))
+						continue;
+				}
 			}
 
 			ships.push_back(ship);
