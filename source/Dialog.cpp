@@ -361,9 +361,9 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
-	// 5 pixels because it includes its own padding at the bottom. If there is a
+	// 6 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (textRectSize.Y() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
+	height = 10 + (textRectSize.Y() - 6) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;
@@ -382,9 +382,9 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	// Resize textRectSize to match the visual height of the dialog, which will
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
-	// The text height is over-reported by 5 pixels, but setting the rectangle size to an odd number causes blur,
+	// The text height is over-reported by 6 pixels, but setting the rectangle size to an odd number causes blur,
 	// so we only add 4 pixels to the height here.
-	textRectSize.Y() = 60 + height * 40 - 30 * (!isMission && (intFun || stringFun)) + 4;
+	textRectSize.Y() = 60 + height * 40 - 30 * (!isMission && (intFun || stringFun)) + 6;
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
