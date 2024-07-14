@@ -10,6 +10,7 @@ cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
+cmake_dependent_option(ES_PARALLEL_USE_TASK_QUEUE "Use the TaskQueue backend for parallel operations." OFF "UNIX" ON)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
@@ -50,6 +51,11 @@ if(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
 endif()
 
+# Tell the preprocessor to enable the TaskQueue backend.
+if(ES_PARALLEL_USE_TASK_QUEUE)
+	add_compile_definitions("ES_PARALLEL_USE_TASK_QUEUE=1")
+endif()
+
 # Various helpful options for IDEs.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
@@ -64,9 +70,11 @@ project("Endless Sky" VERSION 0.10.9
 find_package(SDL2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
-find_package(TBB REQUIRED)
 if(NOT APPLE)
 	find_package(GLEW REQUIRED)
+endif()
+if(NOT ES_PARALLEL_USE_TASK_QUEUE)
+	find_package(TBB REQUIRED)
 endif()
 
 # Only very new versions of OpenAL provide a config package, so try to find it manually.
@@ -116,7 +124,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL TBB::tbb
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
@@ -124,6 +132,9 @@ if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
+endif()
+if(NOT ES_PARALLEL_USE_TASK_QUEUE)
+	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 endif()
 
 # Link with the UUID library, which is different for each OS.
