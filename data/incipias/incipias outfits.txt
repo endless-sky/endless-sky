@@ -21,7 +21,7 @@ outfit "Plasma Discharger"
 	thumbnail "outfit/plasma discharger"
 	weapon
 		sprite "projectile/plasma discharge"
-		sound "blaster"
+		sound "plasma discharger"
 		"hit effect" "blaster impact"
 		"submunition" "plasma particle" 5
 		"inaccuracy" 8
@@ -59,9 +59,10 @@ outfit "Stagnation Beam"
 		"Hicemus Conflict"
 	weapon
 		sprite "projectile/stagnation beam"
+			"random start frame"
 			"frame rate" 6
 		"hardpoint sprite" "hardpoint/stagnation beam"
-		sound "laser"
+		sound "stagnation beam"
 		"hit effect" "stagnation beam impact"
 		"inaccuracy" .5
 		"turret turn" 7.5
@@ -100,7 +101,8 @@ outfit "Star Tail"
 		"Hicemus Conflict"
 	weapon
 		sprite "projectile/star tail upload"
-			"frame rate" 7
+			"frame rate" 10
+			"no repeat"
 		sound "star tail"
 		"hit effect" "blaster impact"
 		"velocity" 1
@@ -126,7 +128,6 @@ outfit "Star Tail Projectile"
 	weapon
 		sprite "projectile/star tail"
 			"frame rate" 12
-		sound "blaster"
 		"hit effect" "star tail hit"
 		"live effect" "star tail live" 120
 		"velocity" 1
@@ -216,7 +217,7 @@ outfit "MH Blue-Class Engine"
 	"engine capacity" -27
 	"flare sprite" "effect/incipias flare/metallic hydrogen small"
 		"frame rate" 24
-	"flare sound" "plasma huge"
+	"flare sound" "incip plasma small"
 	"thrust" 24
 	"thrusting energy" 2
 	"thrusting heat" 2.5
@@ -228,7 +229,6 @@ outfit "MH Blue-Class Steering"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"steering flare sound" "plasma huge"
 	"turn" 498
 	"turning energy" 1.
 	"turning heat" 3
@@ -242,7 +242,7 @@ outfit "MH Green-Class Engine"
 	"engine capacity" -32
 	"flare sprite" "effect/incipias flare/metallic hydrogen medium"
 		"frame rate" 24
-	"flare sound" "plasma huge"
+	"flare sound" "incip plasma med"
 	"thrust" 30
 	"thrusting energy" 2
 	"thrusting heat" 2.5
@@ -254,7 +254,6 @@ outfit "MH Green-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"steering flare sound" "plasma huge"
 	"turn" 618
 	"turning energy" 1.1
 	"turning heat" 3.1
@@ -268,7 +267,7 @@ outfit "MH Red-Class Engine"
 	"engine capacity" -41
 	"flare sprite" "effect/incipias flare/metallic hydrogen large"
 		"frame rate" 24
-	"flare sound" "plasma huge"
+	"flare sound" "incip plasma large"
 	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
@@ -277,7 +276,6 @@ outfit "MH Red-Class Engine"
 outfit "MH Red-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh red-class steering"
-	"steering flare sound" "plasma huge"
 	"mass" 41
 	"outfit space" -41
 	"engine capacity" -41

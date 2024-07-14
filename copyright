@@ -2899,14 +2899,18 @@ Files:
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
+ sounds/*incip?plasma*
  sounds/locust?blaster*
  sounds/mandible?cannon*
+ sounds/plasma?discharger*
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
  sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/stagnation?beam*
+ sounds/star?tail*
  sounds/swarm?missile*
  sounds/thorax?cannon*
  sounds/tractor?beam*
