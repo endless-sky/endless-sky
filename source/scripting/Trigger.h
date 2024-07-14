@@ -75,9 +75,9 @@ void Trigger<type, ReturnType, ParameterTypes...>::Register(const Plugin *plugin
 
 
 template<TriggerType type, class ReturnType, class ...ParameterTypes>
-void Trigger<type, ReturnType, ParameterTypes...>::Register(const Plugin *plugin, const ReplacementCallbackType function)
+void Trigger<type, ReturnType, ParameterTypes...>::Register(const Plugin *plugin, const ReplacementCallbackType func)
 {
-	replacementCallbacks.emplace_back(plugin, std::move(function));
+	replacementCallbacks.emplace_back(plugin, std::move(func));
 }
 
 
@@ -120,7 +120,7 @@ Trigger<type, ReturnType, ParameterTypes...>::Call(ParameterTypes... params)
 	for(auto it = replacementCallbacks.crbegin(); it != replacementCallbacks.crend(); ++it)
 		if constexpr(std::is_same_v<CallReturnType, bool>)
 		{
-			if (it->second(params...))
+			if(it->second(params...))
 				return true;
 		}
 		else

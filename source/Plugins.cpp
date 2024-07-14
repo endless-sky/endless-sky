@@ -209,14 +209,13 @@ void Plugin::LoadScripts()
 				#endif
 				{
 					boost::dll::shared_library library = boost::dll::shared_library(entry.path().string());
-					try
-					{
+					try {
 						// Get the init function of the plugin
 						const auto &init = library.get<void(const Plugin *)>("Init");
 						init(this);
 						// Add to script list
 						scripts.emplace(library);
-					} catch (const std::exception &ex) {
+					} catch(const std::exception &ex) {
 						Logger::LogError("Could not load script file " + entry.path().filename().string() + ": " + ex.what());
 						library.unload();
 					}
