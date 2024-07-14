@@ -237,7 +237,7 @@ namespace {
 		vector<Ship::Bay *> availableBays;
 		for(Ship::Bay &bay : bays)
 			if(bay.CanContain(category) && !bay.ship)
-				availableBays.push_back(&bay);
+				availableBays.emplace_back(&bay);
 
 		if(availableBays.empty())
 			return nullptr;
@@ -3219,18 +3219,20 @@ bool Ship::CanCarry(const Ship &ship) const
 {
 	if(!HasBays() || !ship.CanBeCarried() || (IsYours() && !ship.IsYours()))
 		return false;
-	// Check only for the category that we are interested in.
+	
+	// Check only for the category that we are interested in. Find all bays
+	// on this ship that could carry the other ship.
 	const string &category = ship.attributes.Category();
-
-	// TODO: This won't work. If we have a ship with 4 fighter bays and 6 drone bays,
-	// this will return 10 if the input is "Drone." This means that even if this ship
-	// already has 4 fighters and 6 drones, this function will still believe that 4
-	// more drones can be fit. I think we effectively need proper bay reservations
-	// to address this.
-	int free = BaysTotal(category);
-	if(!free)
+	vector<const Bay *> possibleBays;
+	for(const Bay &bay : bays)
+		if(bay.CanContain(category))
+			possibleBays.emplace_back(&bay);
+	if(possibleBays.empty())
 		return false;
 
+	// TODO: Since fighters don't become escorts of a carrier until they've docked,
+	// this can cause multiple fighters to try and dock on the same carrier but not
+	// have enough space by the time the fighters have actually docked.
 	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
@@ -3238,13 +3240,32 @@ bool Ship::CanCarry(const Ship &ship) const
 			continue;
 		if(escort == ship.shared_from_this())
 			break;
-		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
-				(!IsYours() || (IsYours() && escort->IsYours())))
-			--free;
-		if(!free)
+		if(!escort->IsDestroyed() && (!IsYours() || (IsYours() && escort->IsYours())))
+		{
+			// Find all bays that could carry both the other ship and this escort.
+			const string &escortCategory = escort->attributes.Category();
+			vector<const Bay *> availableBays;
+			for(const Bay *bay : possibleBays)
+				if(bay->CanContain(escortCategory))
+					availableBays.emplace_back(bay);
+
+			if(!availableBays.empty())
+			{
+				// Find the best bay to place this ship into. The best bay is the
+				// bay that is the most restrictive, i.e. is able to hold the fewest
+				// ship categories. By using the most restrictive bay, we prevent
+				// ships from hogging bays from other ships.
+				const Bay *bay = *min_element(availableBays.begin(), availableBays.end(),
+					[](const Bay *a, const Bay *b) -> bool {
+						return BayRestrictiveness(a) < BayRestrictiveness(b);
+					});
+				possibleBays.erase(std::find(possibleBays.begin(), possibleBays.end(), bay));
+			}
+		}
+		if(possibleBays.empty())
 			break;
 	}
-	return (free > 0);
+	return !possibleBays.empty();
 }
 
 
