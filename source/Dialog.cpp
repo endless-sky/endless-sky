@@ -382,7 +382,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	// Resize textRectSize to match the visual height of the dialog, which will
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
-	textRectSize.Y() = 60 + height * 40 - 30 * (!isMission && (intFun || stringFun)) + 1;
+	textRectSize.Y() = 60 + height * 40 - 30 * (!isMission && (intFun || stringFun)) + 4;
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
