@@ -1042,6 +1042,7 @@ ship "Vujlet"
 		"outfit space" 280
 		"weapon capacity" 105
 		"engine capacity" 85
+		"exclusive: Vujlet" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.875
 		"hull energy" 1.27
