@@ -19,8 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Scheduler.h"
 
 #include <version>
+#include <execution>
 
 
+
+namespace execution = std::execution;
 
 // Only use this header if the underlying system doesn't support the standard algorithms,
 // or if the ES_PARALLEL_USE_TASK_QUEUE flag is defined.
@@ -36,20 +39,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <utility>
-
-
-
-#if !defined(__cpp_lib_execution) || defined(ES_PARALLEL_USE_TASK_QUEUE)
-
-// Dummy for std::execution.
-namespace parallel
-{
-	constexpr int seq = 0;
-	constexpr int par = 1;
-	constexpr int par_unseq = 2;
-};
-
-#endif
 
 
 
@@ -87,7 +76,7 @@ void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 template<class ExecutionPolicy, class RandomIt, class Func>
 inline void for_each(ExecutionPolicy e, RandomIt begin, RandomIt end, Func &&f)
 {
-	if(e == parallel::seq)
+	if(e == execution::seq)
 		std::for_each(begin, end, f);
 	else
 		Parallel::RunBulk(begin, end, f);
@@ -124,12 +113,6 @@ inline void stable_sort(ExecutionPolicy, RandomIt first, RandomIt last)
 {
 	std::stable_sort(first, last);
 }
-
-#else
-
-#include <execution>
-
-namespace parallel = std::execution;
 
 #endif
 
