@@ -343,7 +343,7 @@ outfit `"Sjeja" Kinetic Lance`
 		"firing heat" 4000
 		"shield damage" 1336
 		"hull damage" 1920
-		"piercing" .25
+		"piercing" 0.15
 		"hit force" 3750
 		"penetration count" 5
 	description "The largest and most powerful of the Successors' modern weapons, this massive coilgun is elegant in its simplicity, cleanly perforating targets at extreme range. Because the bank of exotic electromagnets it employs requires an unusually high burst of power when firing, the weapon comes with integrated battery banks in order to supply it with a large enough reserve of electricity to function."
