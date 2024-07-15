@@ -664,7 +664,7 @@ ship "Polari"
 		"bunks" 12
 		"mass" 240
 		"drag" 3.6
-		"heat dissipation" 1.2
+		"heat dissipation" 0.9
 		"fuel capacity" 1800
 		"cargo space" 42
 		"outfit space" 294
@@ -993,7 +993,7 @@ ship "Modified Tachytia"
 		"shields" 6000
 		"hull" 36000
 		"required crew" 300
-		"bunks" 6000
+		"bunks" 900
 		"mass" 6000
 		"drag" 6
 		"heat dissipation" 0.66
@@ -1190,7 +1190,7 @@ ship "Prismaios"
 			"Twilight Guard"
 		"cost" 2640000
 		"shields" 1440
-		"hull" 7200
+		"hull" 6600
 		"required crew" 2
 		"bunks" 6
 		"mass" 270
@@ -1404,7 +1404,7 @@ ship "Diaspersi"
 			"Twilight Guard"
 		"cost" 3600000
 		"shields" 2400
-		"hull" 12000
+		"hull" 9000
 		"required crew" 15
 		"bunks" 36
 		"mass" 540
@@ -1546,7 +1546,7 @@ ship "Difraktos"
 		"hull" 12000
 		"required crew" 15
 		"bunks" 42
-		"mass" 900
+		"mass" 1200
 		"drag" 15
 		"heat dissipation" 1.5
 		"fuel capacity" 1800
@@ -1810,7 +1810,7 @@ ship "Atenuatia"
 		"required crew" 60
 		"bunks" 90
 		"mass" 1800
-		"drag" 12
+		"drag" 18
 		"heat dissipation" 1.5
 		"fuel capacity" 2400
 		"cargo space" 120
@@ -2120,6 +2120,7 @@ ship "Photikon" "Photikon (Atomic)"
 # Drones
 
 ship "Vibratia"
+	plural "Vibratia"
 	sprite "ship/avgi vibratia"
 	thumbnail "thumbnail/avgi vibratia"
 	attributes
@@ -2134,9 +2135,8 @@ ship "Vibratia"
 		"mass" 24
 		"drag" 0.3
 		"heat dissipation" 0.99
-		"fuel capacity" 60
 		"outfit space" 75
-		"weapon capacity" 24
+		"weapon capacity" 18
 		"engine capacity" 24
 		"radar jamming" 3
 		weapon

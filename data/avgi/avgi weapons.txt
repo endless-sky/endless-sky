@@ -27,7 +27,7 @@ outfit "Speck Round"
 outfit "Speck Magazine"
 	category "Ammunition"
 	cost 60000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/speck magazine"
 	"mass" 2.4
 	"outfit space" -6
 	"speck capacity" 1200

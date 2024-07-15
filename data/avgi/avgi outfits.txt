@@ -186,7 +186,7 @@ outfit "Spectrometer Array"
 outfit "Diffuse Deflector"
 	category "Systems"
 	cost 1200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/diffuse deflector"
 	"mass" 48
 	"outfit space" -48
 	"delayed shield generation" 0.6
@@ -199,7 +199,7 @@ outfit "Diffuse Deflector"
 outfit "Specular Deflector"
 	category "Systems"
 	cost 2100000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/specular deflector"
 	"mass" 72
 	"outfit space" -72
 	"delayed shield generation" 1.2
