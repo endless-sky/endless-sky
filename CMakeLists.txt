@@ -228,8 +228,13 @@ else()
 endif()
 
 # Expose functions to shared libraries
-target_link_options(EndlessSky PUBLIC "-Wl,--export-dynamic")
-target_link_options(EndlessSkyLib PUBLIC "-Wl,--export-dynamic")
+if(APPLE)
+	target_link_options(EndlessSky PUBLIC "-Wl,-export_dynamic")
+	target_link_options(EndlessSkyLib PUBLIC "-Wl,-export_dynamic")
+else()
+	target_link_options(EndlessSky PUBLIC "-Wl,--export-dynamic")
+	target_link_options(EndlessSkyLib PUBLIC "-Wl,--export-dynamic")
+endif()
 
 # Link with the library dependencies.
 target_link_libraries(EndlessSky PRIVATE ExternalLibraries EndlessSkyLib $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
