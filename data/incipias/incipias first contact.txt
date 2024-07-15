@@ -321,7 +321,7 @@ mission "Incipias: Help The Stranded 2"
 	on offer
 		conversation
 			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you never experienced before. Giant clouds tower like castles, sometimes opening to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
-			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen, and you maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull, and the shield generator must have broke when they ran out of fuel, because their shields are completely down.`
+			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen, and you maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull, and their shields are completely down - the shield generator must have gone offline when they ran out of fuel.`
 			`	You receive no answer to your hail.`
 			`	You carefully maneuver your ship closer, until you can dock with the Incipias ship.`
 			`	When the lock opens five Incipias float in front of you. Noticing your presence they quickly back off; they were clearly not expecting a human in one of their species' ships. It takes a moment for them to recognize you.`
