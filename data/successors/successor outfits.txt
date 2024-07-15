@@ -273,7 +273,7 @@ outfit `"Tuur" Scanning Suite`
 	"mass" 4
 	"outfit space" -4
 	"energy consumption" 0.10
-	"asteroid scan power" 50
+	"asteroid scan power" 35
 	"atmosphere scan" 100
 	description "This scanning system was developed during the first years after the Predecessors' collapse, when the newly emigrated High Houses needed to find new resource deposits to replace those that they had left behind. While less efficient than human scanners, it is compact and powerful, useful for identifying materials both in asteroids and planetside."
 	description "	In the modern day, with the territories of the High Houses more or less static, these scanners are primarily used either by researchers as tools for planetary analysis or by independent pilots supporting themselves via asteroid mining."
