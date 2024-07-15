@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BODY_H_
-#define BODY_H_
+#ifndef BODY_BODY_H_
+#define BODY_BODY_H_
 
 #include "../Angle.h"
 #include "../Point.h"

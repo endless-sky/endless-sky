@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ACCOUNT_H_
-#define ACCOUNT_H_
+#ifndef PLAYER_ACCOUNT_H_
+#define PLAYER_ACCOUNT_H_
 
 #include "../engine/Mortgage.h"
 

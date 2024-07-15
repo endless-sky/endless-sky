@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_H_
-#define SHIP_H_
+#ifndef BODY_SHIP_H_
+#define BODY_SHIP_H_
 
 #include "Body.h"
 

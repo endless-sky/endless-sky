@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_FILE_H_
-#define DATA_FILE_H_
+#ifndef DATA_DATA_FILE_H_
+#define DATA_DATA_FILE_H_
 
 #include "DataNode.h"
 

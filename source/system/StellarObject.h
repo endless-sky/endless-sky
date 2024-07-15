@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef STELLAR_OBJECT_H_
-#define STELLAR_OBJECT_H_
+#ifndef SYSTEM_STELLAR_OBJECT_H_
+#define SYSTEM_STELLAR_OBJECT_H_
 
 #include "../body/Body.h"
 #include "Hazard.h"

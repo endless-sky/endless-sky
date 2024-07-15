@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOCATION_FILTER_H_
-#define LOCATION_FILTER_H_
+#ifndef DATA_LOCATION_FILTER_H_
+#define DATA_LOCATION_FILTER_H_
 
 #include "../engine/DistanceCalculationSettings.h"
 

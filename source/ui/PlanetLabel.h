@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_LABEL_H_
-#define PLANET_LABEL_H_
+#ifndef UI_PLANET_LABEL_H_
+#define UI_PLANET_LABEL_H_
 
 #include "../shader/Color.h"
 #include "../Point.h"

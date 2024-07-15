@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DAMAGE_DEALT_H_
-#define DAMAGE_DEALT_H_
+#ifndef BODY_DAMAGE_DEALT_H_
+#define BODY_DAMAGE_DEALT_H_
 
 #include "../Point.h"
 

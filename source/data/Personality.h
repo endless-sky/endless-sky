@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSONALITY_H_
-#define PERSONALITY_H_
+#ifndef DATA_PERSONALITY_H_
+#define DATA_PERSONALITY_H_
 
 #include "../Angle.h"
 #include "../Point.h"

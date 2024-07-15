@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ALERT_LABEL_H_
-#define ALERT_LABEL_H_
+#ifndef UI_ALERT_LABEL_H_
+#define UI_ALERT_LABEL_H_
 
 #include "../shader/Color.h"
 #include "../Point.h"

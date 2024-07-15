@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WORMHOLE_STRATEGY_H_
-#define WORMHOLE_STRATEGY_H_
+#ifndef SYSTEM_WORMHOLE_STRATEGY_H_
+#define SYSTEM_WORMHOLE_STRATEGY_H_
 
 #include <cstdint>
 

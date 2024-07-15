@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENDLESS_SKY_AC_TESTDATA_H_
-#define ENDLESS_SKY_AC_TESTDATA_H_
+#ifndef TEST_TEST_DATA_H_
+#define TEST_TEST_DATA_H_
 
 #include <string>
 

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MINABLE_H_
-#define MINABLE_H_
+#ifndef BODY_MINABLE_H_
+#define BODY_MINABLE_H_
 
 #include "Body.h"
 

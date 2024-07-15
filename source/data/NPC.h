@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NPC_H_
-#define NPC_H_
+#ifndef DATA_NPC_H_
+#define DATA_NPC_H_
 
 #include "Conversation.h"
 #include "../engine/EsUuid.h"

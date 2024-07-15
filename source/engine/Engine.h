@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENGINE_H_
-#define ENGINE_H_
+#ifndef ENGINE_ENGINE_H_
+#define ENGINE_ENGINE_H_
 
 #include "AI.h"
 #include "../ui/AlertLabel.h"

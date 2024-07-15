@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_INFO_DISPLAY_H_
-#define OUTFIT_INFO_DISPLAY_H_
+#ifndef UI_OUTFIT_INFO_DISPLAY_H_
+#define UI_OUTFIT_INFO_DISPLAY_H_
 
 #include "ItemInfoDisplay.h"
 

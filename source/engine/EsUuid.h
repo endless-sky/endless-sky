@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_UUID_H_
-#define ES_UUID_H_
+#ifndef ENGINE_UUID_H_
+#define ENGINE_UUID_H_
 
 #include <memory>
 #include <string>

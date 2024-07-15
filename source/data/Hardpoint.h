@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef HARDPOINT_H_
-#define HARDPOINT_H_
+#ifndef DATA_HARDPOINT_H_
+#define DATA_HARDPOINT_H_
 
 #include "../Angle.h"
 #include "../Point.h"

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SCREEN_H_
-#define SCREEN_H_
+#ifndef UI_SCREEN_H_
+#define UI_SCREEN_H_
 
 #include "../Point.h"
 

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_NODE_H_
-#define DATA_NODE_H_
+#ifndef DATA_DATA_NODE_H_
+#define DATA_DATA_NODE_H_
 
 #include <cstdint>
 #include <list>

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITION_SET_H_
-#define CONDITION_SET_H_
+#ifndef DATA_CONDITION_SET_H_
+#define DATA_CONDITION_SET_H_
 
 #include <cstdint>
 #include <map>

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef HAZARD_H_
-#define HAZARD_H_
+#ifndef SYSTEM_HAZARD_H_
+#define SYSTEM_HAZARD_H_
 
 #include "../engine/Weapon.h"
 

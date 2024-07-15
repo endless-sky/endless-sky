@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_H_
-#define CONVERSATION_H_
+#ifndef DATA_CONVERSATION_H_
+#define DATA_CONVERSATION_H_
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"

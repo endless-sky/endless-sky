@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FIGHTER_HIT_POLICY_H_
-#define FIGHTER_HIT_POLICY_H_
+#ifndef BODY_FIGHTER_HIT_POLICY_H_
+#define BODY_FIGHTER_HIT_POLICY_H_
 
 #include "../data/GameData.h"
 #include "../data/Gamerules.h"

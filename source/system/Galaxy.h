@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GALAXY_H_
-#define GALAXY_H_
+#ifndef SYSTEM_GALAXY_H_
+#define SYSTEM_GALAXY_H_
 
 #include "../Point.h"
 

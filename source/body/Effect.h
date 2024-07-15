@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef EFFECT_H_
-#define EFFECT_H_
+#ifndef BODY_EFFECT_H_
+#define BODY_EFFECT_H_
 
 #include "../Angle.h"
 #include "Body.h"

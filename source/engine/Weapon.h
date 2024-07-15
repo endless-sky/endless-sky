@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEAPON_H_
-#define WEAPON_H_
+#ifndef ENGINE_WEAPON_H_
+#define ENGINE_WEAPON_H_
 
 #include "../Angle.h"
 #include "../body/Body.h"

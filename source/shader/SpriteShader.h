@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_SHADER_H_
-#define SPRITE_SHADER_H_
+#ifndef SHADER_SPRITE_SHADER_H_
+#define SHADER_SPRITE_SHADER_H_
 
 #include "../Point.h"
 

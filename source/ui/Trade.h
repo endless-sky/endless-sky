@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TRADE_H_
-#define TRADE_H_
+#ifndef UI_TRADE_H_
+#define UI_TRADE_H_
 
 #include <string>
 #include <vector>

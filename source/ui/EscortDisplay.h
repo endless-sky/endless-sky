@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ESCORT_DISPLAY_H_
-#define ESCORT_DISPLAY_H_
+#ifndef UI_ESCORT_DISPLAY_H_
+#define UI_ESCORT_DISPLAY_H_
 
 #include "Rectangle.h"
 

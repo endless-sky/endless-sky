@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MASK_H_
-#define MASK_H_
+#ifndef SHADER_MASK_H_
+#define SHADER_MASK_H_
 
 #include "../Angle.h"
 #include "../Point.h"

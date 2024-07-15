@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FILL_SHADER_H_
-#define FILL_SHADER_H_
+#ifndef SHADER_FILL_SHADER_H_
+#define SHADER_FILL_SHADER_H_
 
 class Point;
 class Color;

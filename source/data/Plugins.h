@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLUGINS_H_
-#define PLUGINS_H_
+#ifndef DATA_PLUGINS_H_
+#define DATA_PLUGINS_H_
 
 #include "../Set.h"
 

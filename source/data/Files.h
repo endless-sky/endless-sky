@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILES_H_
-#define ES_FILES_H_
+#ifndef DATA_FILES_H_
+#define DATA_FILES_H_
 
 #include <cstdio>
 #include <ctime>

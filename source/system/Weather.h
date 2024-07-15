@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEATHER_H_
-#define WEATHER_H_
+#ifndef SYSTEM_WEATHER_H_
+#define SYSTEM_WEATHER_H_
 
 #include "../Point.h"
 

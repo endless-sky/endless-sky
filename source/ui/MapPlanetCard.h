@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PLANET_CARD_H_
-#define MAP_PLANET_CARD_H_
+#ifndef UI_MAP_PLANET_CARD_H_
+#define UI_MAP_PLANET_CARD_H_
 
 #include "MapPanel.h"
 #include "../image/Sprite.h"

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SOUND_H_
-#define SOUND_H_
+#ifndef AUDIO_SOUND_H_
+#define AUDIO_SOUND_H_
 
 #include <string>
 

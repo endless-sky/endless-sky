@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SALE_H_
-#define SALE_H_
+#ifndef DATA_SALE_H_
+#define DATA_SALE_H_
 
 #include "DataNode.h"
 #include "../Set.h"

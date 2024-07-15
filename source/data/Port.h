@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PORT_H_
-#define PORT_H_
+#ifndef DATA_PORT_H_
+#define DATA_PORT_H_
 
 #include "Paragraphs.h"
 

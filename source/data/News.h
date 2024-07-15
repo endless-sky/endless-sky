@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NEWS_H_
-#define NEWS_H_
+#ifndef DATA_NEWS_H_
+#define DATA_NEWS_H_
 
 #include "ConditionSet.h"
 #include "LocationFilter.h"

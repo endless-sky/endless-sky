@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSON_H_
-#define PERSON_H_
+#ifndef DATA_PERSON_H_
+#define DATA_PERSON_H_
 
 #include "LocationFilter.h"
 #include "Personality.h"

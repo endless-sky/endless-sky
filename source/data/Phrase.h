@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PHRASE_H_
-#define PHRASE_H_
+#ifndef DATA_PHRASE_H_
+#define DATA_PHRASE_H_
 
 #include "../WeightedList.h"
 

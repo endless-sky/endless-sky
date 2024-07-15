@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FRAME_TIMER_H_
-#define FRAME_TIMER_H_
+#ifndef ENGINE_FRAME_TIMER_H_
+#define ENGINE_FRAME_TIMER_H_
 
 #include <chrono>
 

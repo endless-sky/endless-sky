@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMMAND_H_
-#define COMMAND_H_
+#ifndef ENGINE_COMMAND_H_
+#define ENGINE_COMMAND_H_
 
 #include <cstdint>
 #include <string>

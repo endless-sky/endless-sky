@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MUSIC_H_
-#define MUSIC_H_
+#ifndef AUDIO_MUSIC_H_
+#define AUDIO_MUSIC_H_
 
 #include <condition_variable>
 #include <cstdint>

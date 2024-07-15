@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_DATA_H_
-#define GAME_DATA_H_
+#ifndef DATA_GAME_DATA_H_
+#define DATA_GAME_DATA_H_
 
 #include "CategoryTypes.h"
 #include "Sale.h"

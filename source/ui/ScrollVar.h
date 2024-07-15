@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SCROLLVAR_H_INCLUDED
-#define SCROLLVAR_H_INCLUDED
+#ifndef UI_SCROLL_VAR_H_
+#define UI_SCROLL_VAR_H_
 
 #include "Animate.h"
 

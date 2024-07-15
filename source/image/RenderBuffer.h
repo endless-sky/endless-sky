@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RENDERBUFFER_H
-#define RENDERBUFFER_H
+#ifndef IMAGE_RENDER_BUFFER_H
+#define IMAGE_RENDER_BUFFER_H
 
 #include "../Point.h"
 #include "../ui/Screen.h"

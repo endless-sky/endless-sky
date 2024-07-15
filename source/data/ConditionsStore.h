@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITIONS_STORE_H_
-#define CONDITIONS_STORE_H_
+#ifndef DATA_CONDITIONS_STORE_H_
+#define DATA_CONDITIONS_STORE_H_
 
 #include <cstdint>
 #include <functional>

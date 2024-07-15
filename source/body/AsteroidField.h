@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ASTEROID_FIELD_H_
-#define ASTEROID_FIELD_H_
+#ifndef BODY_ASTEROID_FIELD_H_
+#define BODY_ASTEROID_FIELD_H_
 
 #include "../Angle.h"
 #include "Body.h"

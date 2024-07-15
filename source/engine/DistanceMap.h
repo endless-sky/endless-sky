@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DISTANCE_MAP_H_
-#define DISTANCE_MAP_H_
+#ifndef ENGINE_DISTANCE_MAP_H_
+#define ENGINE_DISTANCE_MAP_H_
 
 #include "../system/WormholeStrategy.h"
 

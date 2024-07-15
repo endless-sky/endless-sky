@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CATEGORY_LIST_H_
-#define CATEGORY_LIST_H_
+#ifndef DATA_CATEGORY_LIST_H_
+#define DATA_CATEGORY_LIST_H_
 
 #include <iterator>
 #include <map>

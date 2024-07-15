@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WORMHOLE_H_
-#define WORMHOLE_H_
+#ifndef SYSTEM_WORMHOLE_H_
+#define SYSTEM_WORMHOLE_H_
 
 #include "../shader/Color.h"
 #include "../ExclusiveItem.h"

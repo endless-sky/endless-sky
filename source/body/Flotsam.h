@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLOTSAM_H_
-#define FLOTSAM_H_
+#ifndef BODY_FLOTSAM_H_
+#define BODY_FLOTSAM_H_
 
 #include "../Angle.h"
 #include "Body.h"

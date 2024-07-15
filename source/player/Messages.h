@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MESSAGES_H_
-#define MESSAGES_H_
+#ifndef PLAYER_MESSAGES_H_
+#define PLAYER_MESSAGES_H_
 
 #include <cstdint>
 #include <deque>

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DEPRECIATION_H_
-#define DEPRECIATION_H_
+#ifndef ENGINE_DEPRECIATION_H_
+#define ENGINE_DEPRECIATION_H_
 
 #include <cstdint>
 #include <map>

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_H_
-#define PLANET_H_
+#ifndef SYSTEM_PLANET_H_
+#define SYSTEM_PLANET_H_
 
 #include "../data/Paragraphs.h"
 #include "../data/Port.h"

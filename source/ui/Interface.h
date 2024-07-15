@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INTERFACE_H_
-#define INTERFACE_H_
+#ifndef UI_INTERFACE_H_
+#define UI_INTERFACE_H_
 
 #include "../shader/Color.h"
 #include "../Point.h"

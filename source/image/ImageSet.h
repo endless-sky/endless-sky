@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGE_SET_H_
-#define IMAGE_SET_H_
+#ifndef IMAGE_IMAGE_SET_H_
+#define IMAGE_IMAGE_SET_H_
 
 #include "ImageBuffer.h"
 

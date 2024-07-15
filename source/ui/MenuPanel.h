@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MENU_PANEL_H_
-#define MENU_PANEL_H_
+#ifndef UI_MENU_PANEL_H_
+#define UI_MENU_PANEL_H_
 
 #include "Panel.h"
 

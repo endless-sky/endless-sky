@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FORMATION_PATTERN_H_
-#define FORMATION_PATTERN_H_
+#ifndef ENGINE_FORMATION_PATTERN_H_
+#define ENGINE_FORMATION_PATTERN_H_
 
 #include "../Point.h"
 

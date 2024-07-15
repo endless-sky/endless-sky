@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOGBOOK_PANEL_H_
-#define LOGBOOK_PANEL_H_
+#ifndef UI_LOGBOOK_PANEL_H_
+#define UI_LOGBOOK_PANEL_H_
 
 #include "Panel.h"
 

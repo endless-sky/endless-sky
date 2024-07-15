@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLAYER_INFO_H_
-#define PLAYER_INFO_H_
+#ifndef PLAYER_PLAYER_INFO_H_
+#define PLAYER_PLAYER_INFO_H_
 
 #include "Account.h"
 #include "../body/CargoHold.h"

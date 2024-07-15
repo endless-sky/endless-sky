@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHADER_H_
-#define SHADER_H_
+#ifndef SHADER_SHADER_H_
+#define SHADER_SHADER_H_
 
 #include "../opengl.h"
 

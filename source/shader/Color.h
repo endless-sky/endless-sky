@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_COLOR_H_
-#define ES_COLOR_H_
+#ifndef SHADER_COLOR_H_
+#define SHADER_COLOR_H_
 
 
 

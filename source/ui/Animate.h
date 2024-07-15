@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ANIMATE_H_INCLUDED
-#define ANIMATE_H_INCLUDED
+#ifndef UI_ANIMATE_H_INCLUDED
+#define UI_ANIMATE_H_INCLUDED
 
 
 

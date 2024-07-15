@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ARMAMENT_H_
-#define ARMAMENT_H_
+#ifndef BODY_ARMAMENT_H_
+#define BODY_ARMAMENT_H_
 
 #include "../data/Hardpoint.h"
 

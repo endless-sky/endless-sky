@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UI_H_
-#define UI_H_
+#ifndef UI_UI_H_
+#define UI_UI_H_
 
 #include "../Point.h"
 

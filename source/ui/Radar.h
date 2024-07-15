@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RADAR_H_
-#define RADAR_H_
+#ifndef UI_RADAR_H_
+#define UI_RADAR_H_
 
 #include "../shader/Color.h"
 #include "../Point.h"

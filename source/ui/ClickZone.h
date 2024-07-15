@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CLICK_ZONE_H_
-#define CLICK_ZONE_H_
+#ifndef UI_CLICK_ZONE_H_
+#define UI_CLICK_ZONE_H_
 
 #include "../Point.h"
 #include "Rectangle.h"

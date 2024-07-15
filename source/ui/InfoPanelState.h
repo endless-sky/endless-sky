@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INFO_PANEL_STATE_H_
-#define INFO_PANEL_STATE_H_
+#ifndef UI_INFO_PANEL_STATE_H_
+#define UI_INFO_PANEL_STATE_H_
 
 #include <memory>
 #include <set>

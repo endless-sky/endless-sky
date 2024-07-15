@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RAID_FLEET_H_
-#define RAID_FLEET_H_
+#ifndef ENGINE_RAID_FLEET_H_
+#define ENGINE_RAID_FLEET_H_
 
 #include <vector>
 

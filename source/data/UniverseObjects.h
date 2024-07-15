@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UNIVERSE_OBJECTS_H_
-#define UNIVERSE_OBJECTS_H_
+#ifndef DATA_UNIVERSE_OBJECTS_H_
+#define DATA_UNIVERSE_OBJECTS_H_
 
 #include "CategoryTypes.h"
 #include "Sale.h"

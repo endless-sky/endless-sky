@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NPC_ACTION_H_
-#define NPC_ACTION_H_
+#ifndef DATA_NPC_ACTION_H_
+#define DATA_NPC_ACTION_H_
 
 #include "MissionAction.h"
 

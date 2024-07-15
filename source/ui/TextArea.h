@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEXT_AREA_H
-#define TEXT_AREA_H
+#ifndef UI_TEXT_AREA_H
+#define UI_TEXT_AREA_H
 
 #include "../shader/Color.h"
 #include "Panel.h"

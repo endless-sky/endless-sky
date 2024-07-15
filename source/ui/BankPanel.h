@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BANK_PANEL_H_
-#define BANK_PANEL_H_
+#ifndef UI_BANK_PANEL_H_
+#define UI_BANK_PANEL_H_
 
 #include "Panel.h"
 

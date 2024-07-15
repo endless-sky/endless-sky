@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLEET_H_
-#define FLEET_H_
+#ifndef ENGINE_FLEET_H_
+#define ENGINE_FLEET_H_
 
 #include "FleetCargo.h"
 #include "../data/Personality.h"

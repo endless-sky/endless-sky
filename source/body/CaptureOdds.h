@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CAPTURE_ODDS_H_
-#define CAPTURE_ODDS_H_
+#ifndef BODY_CAPTURE_ODDS_H_
+#define BODY_CAPTURE_ODDS_H_
 
 #include <vector>
 

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_TABLE_H_
-#define ES_TEXT_TABLE_H_
+#ifndef TEXT_TABLE_H_
+#define TEXT_TABLE_H_
 
 #include "../shader/Color.h"
 #include "DisplayText.h"

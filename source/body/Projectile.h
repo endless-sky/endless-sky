@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
+#ifndef BODY_PROJECTILE_H_
+#define BODY_PROJECTILE_H_
 
 #include "Body.h"
 

@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_OPENGL_H_
-#define ES_OPENGL_H_
+#ifndef OPENGL_H_
+#define OPENGL_H_
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__

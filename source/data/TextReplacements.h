@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEXT_REPLACEMENTS_H_
-#define TEXT_REPLACEMENTS_H_
+#ifndef DATA_TEXT_REPLACEMENTS_H_
+#define DATA_TEXT_REPLACEMENTS_H_
 
 #include <map>
 #include <string>

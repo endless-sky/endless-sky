@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_CORE_START_DATA_H_
-#define ES_CORE_START_DATA_H_
+#ifndef DATA_CORE_START_DATA_H_
+#define DATA_CORE_START_DATA_H_
 
 #include "../player/Account.h"
 #include "../engine/Date.h"

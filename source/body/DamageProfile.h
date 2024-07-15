@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DAMAGE_PROFILE_H_
-#define DAMAGE_PROFILE_H_
+#ifndef BODY_DAMAGE_PROFILE_H_
+#define BODY_DAMAGE_PROFILE_H_
 
 #include "../Point.h"
 #include "Projectile.h"

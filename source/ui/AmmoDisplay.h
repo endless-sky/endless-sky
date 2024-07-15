@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef AMMO_DISPLAY_H_
-#define AMMO_DISPLAY_H_
+#ifndef UI_AMMO_DISPLAY_H_
+#define UI_AMMO_DISPLAY_H_
 
 #include "ClickZone.h"
 
