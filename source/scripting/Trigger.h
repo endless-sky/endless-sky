@@ -112,7 +112,7 @@ void Trigger<type, ReturnType, ParameterTypes...>::UnregisterAll(const Plugin *p
 // Regular callbacks are always executed, and in the order they were registered in.
 // Replacement callbacks are executed in reverse order, until the first one that returns a value.
 template <TriggerType type, class ReturnType, class ...ParameterTypes>
-Trigger<type, ReturnType, ParameterTypes...>::CallReturnType
+typename Trigger<type, ReturnType, ParameterTypes...>::CallReturnType
 Trigger<type, ReturnType, ParameterTypes...>::Call(ParameterTypes... params)
 {
 	for(const auto &pair : callbacks)
