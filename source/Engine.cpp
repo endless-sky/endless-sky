@@ -2327,11 +2327,13 @@ void Engine::DoWeather(Weather &weather)
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
 		vector<Body *> affectedShips;
-		affectedShips.reserve(ships.size());
 		if(hazard->SystemWide())
 			affectedShips = shipCollisions.All();
 		else
+		{
+			affectedShips.reserve(ships.size());
 			shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), affectedShips);
+		}
 		for(Body *body : affectedShips)
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
