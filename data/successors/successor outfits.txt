@@ -243,7 +243,7 @@ outfit "Successor Fuel Sail"
 		"Successor"
 	"mass" 4
 	"outfit space" -14
-	"ramscoop" 8.0
+	"ramscoop" 4.0
 	"solar heat" 6.0
 	"drag" 0.1
 	description "The Successors maintain a strong connection to their maritime tradition, exemplified in this strangely rustic fuel collector. The sail expands to a vast area when in the vicinity of a stellar corona, gently collecting hydrogen from it and condensing it into a ship's fuel storage in a fashion much more elegant than the comparatively brutish action of a traditional ramscoop. Pilots should note, however, that the large surface area of the deployed sail also absorbs a lot of heat."
