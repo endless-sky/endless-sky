@@ -137,7 +137,7 @@ void CollisionSet::Finish()
 
 // Get all possible collisions for the given projectile. Collisions are not necessarily
 // sorted by distance.
-vector<Collision> &CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
+void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -145,14 +145,14 @@ vector<Collision> &CollisionSet::Line(const Projectile &projectile, vector<Colli
 	// Convert the projectile to a line represented by its start and end points.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	return Line(from, to, result, pGov, projectile.Target());
+	Line(from, to, result, pGov, projectile.Target());
 }
 
 
 
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
-vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
+void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
 		const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
@@ -195,7 +195,7 @@ vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, vector
 				lineResult.emplace_back(it->body, collisionType, range);
 		}
 
-		return lineResult;
+		return;
 	}
 
 	const Point pVelocity = (to - from);
@@ -210,7 +210,7 @@ vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, vector
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
 		Line(from, newEnd, lineResult, pGov, target);
-		return lineResult;
+		return;
 	}
 
 	// When stepping from one grid cell to the next, we'll go in this direction.
@@ -304,23 +304,21 @@ vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, vector
 			gy += stepY;
 		}
 	}
-
-	return lineResult;
 }
 
 
 
 // Get all objects within the given range of the given point.
-vector<Body *> &CollisionSet::Circle(const Point &center, double radius, vector<Body *> &result) const
+void CollisionSet::Circle(const Point &center, double radius, vector<Body *> &result) const
 {
-	return Ring(center, 0., radius, result);
+	Ring(center, 0., radius, result);
 }
 
 
 
 // Get all objects touching a ring with a given inner and outer range
 // centered at the given point.
-vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer, vector<Body *> &circleResult) const
+void CollisionSet::Ring(const Point &center, double inner, double outer, vector<Body *> &circleResult) const
 {
 	// Calculate the range of (x, y) grid coordinates this ring covers.
 	const int minX = static_cast<int>(center.X() - outer) >> SHIFT;
@@ -361,7 +359,6 @@ vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double out
 			}
 		}
 	}
-	return circleResult;
 }
 
 

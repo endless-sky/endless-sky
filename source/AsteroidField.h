@@ -61,9 +61,9 @@ public:
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 
 	// Check if the given projectile collides with any asteroids. This excludes minables.
-	std::vector<Collision> &CollideAsteroids(const Projectile &projectile, std::vector<Collision> &result) const;
+	void CollideAsteroids(const Projectile &projectile, std::vector<Collision> &result) const;
 	// Check if the given projectile collides with any minables.
-	std::vector<Collision> &CollideMinables(const Projectile &projectile, std::vector<Collision> &result) const;
+	void CollideMinables(const Projectile &projectile, std::vector<Collision> &result) const;
 
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;

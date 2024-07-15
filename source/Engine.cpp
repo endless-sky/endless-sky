@@ -2196,7 +2196,8 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(triggerRadius)
 		{
 			vector<Body *> circleCollisions;
-			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius, circleCollisions))
+			shipCollisions.Circle(projectile.Position(), triggerRadius, circleCollisions);
+			for(const Body *body : circleCollisions)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
@@ -2260,7 +2261,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
 			vector<Body *> circleCollisions;
-			for(Body *body : shipCollisions.Circle(hitPos, blastRadius, circleCollisions))
+			shipCollisions.Circle(hitPos, blastRadius, circleCollisions);
+			for(Body *body : circleCollisions)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
@@ -2323,8 +2325,11 @@ void Engine::DoWeather(Weather &weather)
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
 		vector<Body *> collisions;
-		for(Body *body : (hazard->SystemWide() ? shipCollisions.All()
-			: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), collisions)))
+		if(hazard->SystemWide())
+			collisions = shipCollisions.All();
+		else
+			shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), collisions);
+		for(Body *body : collisions)
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
@@ -2340,7 +2345,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
 	vector<Body *> collisions;
-	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5., collisions))
+	shipCollisions.Circle(flotsam.Position(), 5., collisions);
+	for(Body *body : collisions)
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
 		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship->CanPickUp(flotsam))
