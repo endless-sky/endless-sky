@@ -7458,7 +7458,8 @@ mission "Adelita 5"
 
 
 
-mission "Tavish and Kormak"
+mission "Tavish and Kormak 1"
+	name "Tavish and Kormak"
 	source "New India"
 	destination "Clark"
 	passengers 2
@@ -7493,8 +7494,8 @@ mission "Tavish and Kormak"
 			choice
 				`	"I'll do it, but not for free."`
 				`	"Surely you have some money."`
-					goto cashmoney
 				`	"Fine, I'll do it for free."`
+					goto forscience
 				`	"For science!"`
 					goto forscience
 
@@ -7505,9 +7506,13 @@ mission "Tavish and Kormak"
 			`	"We asked everyone." Kormak says.`
 			`	"And yet we are not the least bit perturbed about our perilous predicament!" Tavish continues. "For such setbacks are to be expected in the pursuit of discovery. And now that we've found you the famous captain, Captain... Mayflower? We're sure our fortunes are about to change! So what do you say, my good fellow? Are you ready join us on our grand adventure and ferry us to hardscrabble world of Clark?"`
 			choice
-				`	"My name is <first> <last>, not Mayflower. You have no idea who I am do you?"`
+				`	"My name is <first> <last>, not Mayflower. You have no idea who I am, do you?"`
 				`	"I am not Mayflower. My name is Captain <last>."`
 				`	"You have mistaken me for someone else. I am Captain <last>, not Mayflower."`
+				`	"Uh, yes?"`
+					goto reluctantlyforscience
+					to display
+						has "last name: Mayflower"
 
 			`	"Oh, how mortifing! I..." Tavish's voice drops off as he appears to be, finally, at a loss for words."`
 			`	"Looked in wrong manifest." Kormak seems to be suffering none of Tavish's tongue-tied embarrassment.`
@@ -7570,21 +7575,22 @@ mission "Tavish and Kormak"
 
 	on complete
 		conversation
-			`	Clark's spaceport is overwhelmed with traffic, and you end up waiting an additional hour before they can finally find room for your ship on one of the outlying concrete pads.`
+			`Clark's spaceport is overwhelmed with traffic, and you end up waiting an additional hour before they can finally find room for your ship on one of the outlying concrete pads.`
 			`	Moments after touching down Tavish and Kormak - or Kormak and Tavish - are making their way toward your ship's exit.`
 			`	Tavish nods to you as they pass. "We're most apprehensive about the state of our equipment. We're headed to SpaceFork storage facility in the spaceport. Meet us there."`
 			`	"Apprehensive," Kormak echoes as he disappears out the hatch and onto Clark.`
 
 
 mission "Tavish and Kormak 2"
+	name "Tavish and Kormak"
 	source "Clark"
 	destination "Deadman's Cove"
 	passengers 2
 	to offer
-		has "Tavish and Kormak: done"
+		has "Tavish and Kormak 1: done"
 	on offer
 		conversation
-			`	The layout of the crowded spaceport is slipshod at best. It's robustly evident that it's growing needs have consistantly outpaced it's capacity and materials. Dead ends, unfinished pathways, incorrectly labeled buildings and maps all conspire to slow your progress.`
+			`The layout of the crowded spaceport is... slipshod, at best. It's robustly evident that its growing needs have consistantly outpaced its capacity and materials. Dead ends, unfinished pathways, incorrectly labeled buildings and maps all conspire to slow your progress.`
 			`	Despite the spaceport's best efforts you manage to successfully work your way to the SpaceFork storage facility, which has moved twice from it's earlier warehouses that each still bear it's name, and instead is now housed what is still being called the Pentacorps Mercentile Cooperative structure.`
 			`	You approach a clearly unhappy Tavish and Kormak arguing with a certified SpaceFork associate.`
 			`	"I am sorry, sirs. But without your SpaceFork Stop-N-Drop credentials there is no way I can provide you access to the facility. The employee handbook is very clear on the matter." The SpaceFork associate jabs a finger at the open manual in their hands.`
