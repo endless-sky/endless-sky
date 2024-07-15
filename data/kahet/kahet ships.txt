@@ -546,9 +546,9 @@ ship "Fetri'sei"
 		"fuel capacity" 100
 		"ramscoop" 0.13
 		"cargo space" 62
-		"outfit space" 383
-		"weapon capacity" 184
-		"engine capacity" 86
+		"outfit space" 173
+		"weapon capacity" 54
+		"engine capacity" 46
 		"energy capacity" 10000
 		"energy generation" 23.3
 		"heat generation" 32
