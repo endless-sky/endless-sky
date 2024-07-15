@@ -52,15 +52,17 @@ protected:
 
 private:
 	void SetBribe(double scale);
+	void SetMessage(const std::string &text);
 
 
 private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> ship = nullptr;
 	std::function<void(const Government *)> bribeCallback = nullptr;
+	const StellarObject *object = nullptr;
 	const Planet *planet = nullptr;
-	const Sprite *sprite = nullptr;
 	Angle facing;
+	int step = 0;
 
 	std::string header;
 	std::string message;
@@ -70,6 +72,7 @@ private:
 	bool playerNeedsHelp = false;
 	bool canAssistPlayer = true;
 	bool canGiveFuel = false;
+	bool canGiveEnergy = false;
 	bool canRepair = false;
 	bool hasLanguage = true;
 	bool requestedToBribeShip = false;

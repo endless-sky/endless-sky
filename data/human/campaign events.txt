@@ -208,6 +208,7 @@ event "initial deployment 1"
 		fleet "Large Republic" 400
 		fleet "Small Northern Pirates" 4000
 		fleet "Large Northern Pirates" 8000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Phecda"
 		fleet "Small Northern Merchants" 900
@@ -242,6 +243,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 2500
 		fleet "Large Republic" 4000
 		fleet "Small Southern Pirates" 5000
+		fleet "Derelict Northern" 10000
 		fleet "Navy Surveillance" 2000
 	system "Mizar"
 		fleet "Small Southern Merchants" 1400
@@ -249,6 +251,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1400
 		fleet "Small Southern Pirates" 9000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Muphrid"
 		fleet "Small Southern Merchants" 1200
@@ -256,6 +259,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 1900
 		fleet "Small Southern Pirates" 9000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Menkent"
 		fleet "Small Southern Merchants" 700
@@ -316,8 +320,7 @@ event "initial deployment 2"
 		fleet "Large Southern Merchants" 1800
 		fleet "Small Free Worlds" 2200
 		fleet "Large Free Worlds" 3600
-		fleet "Small Southern Pirates" 4000
-		fleet "Large Southern Pirates" 7000
+		fleet "Derelict Southern" 25000
 	
 	system "Mora"
 		fleet "Small Southern Merchants" 2800
@@ -326,6 +329,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Delta Velorum"
 		fleet "Small Southern Merchants" 1000
@@ -350,6 +354,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Cor Caroli"
 		fleet "Small Southern Merchants" 700
@@ -395,6 +400,7 @@ event "initial deployment 2"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Arcturus"
 		fleet "Small Southern Merchants" 700
@@ -423,6 +429,7 @@ event "initial deployment 2"
 		fleet "Small Southern Pirates" 1500
 		fleet "Small Republic" 7000
 		fleet "Large Republic" 12000
+		fleet "Derelict Southern" 10000
 		fleet "Navy Surveillance" 1600
 	system "Cebalrai"
 		fleet "Small Southern Merchants" 600
@@ -440,6 +447,21 @@ event "initial deployment 2"
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
 
+# Compatibility patch event in case the pirates were added by the second deployment, pre-0.10.7
+event "remove pirates from Ildaria"
+	system Ildaria
+		remove fleet "Small Southern Pirates"
+		remove fleet "Large Southern Pirates"
+
+mission "Ildaria Pirates Compatibility"
+	invisible
+	landing
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "remove pirates from Ildaria"
+		fail
+
 event "initial deployment 3"
 	date 29 8 3014
 	system "Zubenelgenubi"
@@ -449,6 +471,7 @@ event "initial deployment 3"
 		fleet "Large Free Worlds" 1000
 		fleet "Small Southern Pirates" 5000
 		fleet "Large Southern Pirates" 8000
+		fleet "Derelict Southern" 30000
 	system "Unukalhai"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 3000
@@ -481,6 +504,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 800
 		fleet "Large Republic" 700
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Seginus"
 		fleet "Small Southern Merchants" 1200
@@ -495,6 +519,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Eber"
 		fleet "Small Southern Merchants" 1900
@@ -502,6 +527,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 3000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1500
+		fleet "Derelict Southern" 10000
 		fleet "Navy Surveillance" 1200
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 2100
@@ -510,6 +536,7 @@ event "initial deployment 3"
 		fleet "Large Southern Pirates" 13000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Kaus Borealis"
 		fleet "Small Southern Merchants" 900
@@ -518,6 +545,68 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+
+
+
+mission "Central Outfitters Expansion Trigger"
+	landing
+	invisible
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "central outfitters expansion" 45
+		fail
+
+event "central outfitters expansion"
+	planet "Earth"
+		add outfitter "Central Outfits Expansion"
+	planet "Luna"
+		add outfitter "Central Outfits Expansion"
+	planet "New China"
+		add outfitter "Central Outfits Expansion"
+	planet "New Wales"
+		add outfitter "Central Outfits Expansion"
+	planet "Heartland"
+		add outfitter "Central Outfits Expansion"
+
+mission "Central Outfitters Expansion"
+	outfitter
+	source
+		planet "Earth" "Heartland" "Luna" "New China" "New Wales"
+	to offer
+		has "event: central outfitters expansion"
+		not "event: start of hostilities"
+	on offer
+		conversation
+			`When you walk into <origin>'s outfitter, you notice it has a raft of new outfits for sale; cooling equipment, afterburners, even new generators. Strangely, almost all the new stock appears to be from Kraz Cybernetics and Delta V - companies you'd usually see selling along the Southern Rim, not far up here so close to the center of the Republic. It is especially strange as those companies have been vocal supporters of the Free Worlds secessionists.`
+			choice
+				`	(Ask the proprietor about the new outfits.)`
+				`	(Move on.)`
+					decline
+
+			`	The proprietor's busy at his desk inside the outfitter's small office, but as you approach he gets up and acknowledges you. "Hi, how can I help you today?"`
+			choice
+				`	"How come you're selling Kraz and Delta V outfits up here?"`
+				`	"It looks like you've got new stock."`
+					goto "new stock"
+				`	(Move on.)`
+					decline
+
+			`	"You're not the first to ask!" the proprietor responds overly brightly. "With piracy on the rise, the increased tensions, and - what everybody's assuming but not saying - impending conflict with the nuke-happy secessionists down in the Southern Rim, we've had a lot of requests to stock some more... specialized equipment."`
+			`	He walks you over to a crate of Javelins. "A load of this stuff comes from the Syndicate, you know. Apparently they already had a load of these missiles in production, but now that Kraz and Delta V are no longer companies operating in the Republic, they've snapped up all the rights to manufacture their products!" He chuckles. "It's great for captains who rely on Delta V equipment but can't go down to the Southern Rim to restock their gear."`
+				goto end
+
+			label "new stock"
+			`	"Yes, yes we do!" He walks up to you. "Nitrogen coolers, Heavy Rockets, radar jammers to ward off those pesky Lovelace Sidewinders, high-power afterburners, you name it. We've had a lot of requests to stock equipment from the Southern Rim, now with all the tension down there making it hard to do business."`
+			`	The proprietor leans in towards you a little and says in a softer tone, "But you know, it's wrong to get supplies from the people who did those bombings and killed tens of thousands of people. It's simply wrong. Morally and commercially.`
+			`	"Courtesy of Syndicated Systems, however, you can get southern gear here without supporting those secessionists! They saw an opportunity to get the rights for Delta V and Kraz equipment, and they took it. And you get to benefit," he chuckles.`
+
+			label end
+			`	He produces a brochure from his vest jacket and hands it to you. "Now, if you're interested in any of our new stock, just flag down one of our workers and we'll have it prepared and installed on your ship promptly.`
+			`	"I wish you safe travels," he says, and returns to his office.`
+				decline
+
+
 
 mission "Southern Carriers Trigger"
 	landing
@@ -712,6 +801,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 7000
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 800
 	system "Atria"
 		fleet "Small Southern Merchants" 700
@@ -747,6 +837,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 1600
 		fleet "Small Free Worlds" 4000
 		fleet "Large Free Worlds" 8000
+		fleet "Derelict Southern" 30000
 	system "Yed Prior"
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 1100
@@ -941,6 +1032,7 @@ event "oathkeepers founded"
 		fleet "Republic Logistics" 5400
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
+		fleet "Derelict Northern" 30000
 	system "Alnitak"
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
@@ -959,6 +1051,7 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 2000
 		fleet "Large Oathkeeper" 2000
 		fleet "Small Northern Merchants" 4000
+		fleet "Derelict Pirate" 30000
 	system "Almaaz"
 		fleet "Small Northern Pirates" 500
 		fleet "Large Northern Pirates" 600
@@ -968,11 +1061,13 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 1000
 		fleet "Large Oathkeeper" 4000
 		fleet "Small Northern Merchants" 8000
+		fleet "Derelict Pirate" 10000
 	system "Tortor"
 		fleet "Small Northern Pirates" 1000
 		fleet "Large Northern Pirates" 1000
 		fleet "Large Oathkeeper" 6000
 		fleet "Small Northern Merchants" 6000
+		fleet "Derelict Pirate" 10000
 	planet "Farpoint"
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
 		description `	Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
@@ -993,6 +1088,12 @@ event "Tarazed neutrality"
 	system "Albireo"
 		government "Neutral"
 	system "Girtab"
+		government "Neutral"
+	system "Umbral"
+		government "Neutral"
+	system "Sadr"
+		government "Neutral"
+	system "Lurata"
 		government "Neutral"
 	planet "Wayfarer"
 		outfitter "Syndicate Assistance"
@@ -1142,6 +1243,13 @@ event "Greenrock recovered"
 		description `	The Free Worlds occupied this planet for a short while long ago, attempting to clean up the criminal hub, but almost all traces of the Free Worlds' influence on the planet is now long gone.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the slave markets, heavily guarded in case any visitors happen to find themselves in possession of a conscience. Nor are you shocked by the shady establishments catering to all manner of prurient interests. This is, after all, a pirate port, and everything is for sale here.`
 		spaceport `	Everything, in fact, including the very bizarre. You find one dark alley that has been completely fenced off from the rest of the spaceport, the howls of animals coming from behind the barrier. Beside the alley you see a sign for a shop called "Mike's Mustelids," promising the sale of "exotic animals from within Greenrock's urban spaceport jungle."`
+
+
+
+event "memorial on Deep"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The nine completed walls are already filled on both sides; it seems unlikely the other fourteen walls will last the war.`
 
 
 
@@ -1414,6 +1522,7 @@ event "normal in Alnasl"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Wei"
 		add fleet "Large Republic" 700
@@ -1428,6 +1537,7 @@ event "fw southern expansion"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 	system "Sargas"
 		fleet "Small Southern Merchants" 600
@@ -1473,6 +1583,8 @@ event "fw southern expansion"
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 3000
+	system "Eltanin"
+		government "Free Worlds"
 	system "Vega"
 		remove fleet "Republic Logistics"
 		add fleet "Republic Logistics" 2500
@@ -1490,7 +1602,15 @@ event "fw southern expansion"
 		fleet "Republic Logistics" 4000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
+		description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
+
+
+
+event "Deep memorial expansion 1"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The site has progressed from its original scale, with an outer ring being erected to hold fifty additional walls of names.`
 
 
 
@@ -1514,6 +1634,7 @@ event "fw occupying the north"
 		fleet "Large Northern Merchants" 8000
 		fleet "Small Free Worlds" 1500
 		fleet "Large Free Worlds" 3800
+		fleet "Derelict Southern" 10000
 	system "Seginus"
 		fleet "Small Southern Merchants" 1200
 		fleet "Large Southern Merchants" 2700
@@ -1527,6 +1648,7 @@ event "fw occupying the north"
 		fleet "Large Southern Merchants" 2500
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 
 
@@ -1541,6 +1663,12 @@ event "fw northern expansion"
 	system "Seginus"
 		government "Free Worlds"
 	system "Wei"
+		government "Free Worlds"
+	system "Alpha Arae"
+		government "Free Worlds"
+	system "Alnasl"
+		government "Free Worlds"
+	system "Eber"
 		government "Free Worlds"
 
 
@@ -1702,6 +1830,12 @@ event "fw expanded and cut"
 		government "Free Worlds"
 	system "Kaus Australis"
 		government "Free Worlds"
+	system "Orvala"
+		government "Free Worlds"
+	system "Tais"
+		government "Free Worlds"
+	system "Naper"
+		government "Free Worlds"
 	system "Delta Sagittarii"
 		government "Republic"
 		fleet "Small Southern Merchants" 2000
@@ -1729,12 +1863,14 @@ event "fw expanded and cut"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 800
+		fleet "Derelict Southern" 30000
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 5000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 3000
+		fleet "Derelict Southern" 30000
 
 
 
@@ -1812,6 +1948,7 @@ event "fw armistice"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Kaus Borealis"
 		remove fleet "Republic Logistics"
@@ -1825,6 +1962,12 @@ event "fw tarazed joins"
 		government "Free Worlds"
 	system "Albireo"
 		government "Free Worlds"
+	system "Umbral"
+		government "Free Worlds"
+	system "Sadr"
+		government "Free Worlds"
+	system "Lurata"
+		government "Free Worlds"
 
 
 
@@ -1834,6 +1977,12 @@ event "fw tarazed republic"
 	system "Dabih"
 		government "Republic"
 	system "Albireo"
+		government "Republic"
+	system "Umbral"
+		government "Republic"
+	system "Sadr"
+		government "Republic"
+	system "Lurata"
 		government "Republic"
 
 
@@ -1905,6 +2054,7 @@ event "navy out of rastaban"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 2100
@@ -1913,6 +2063,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 13000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 
 
@@ -2286,11 +2437,13 @@ event "pug flee"
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 7000
 		fleet "Small Northern Pirates" 2500
+		fleet "Derelict Northern" 10000
 	system "Orvala"
 		fleet "Small Southern Merchants" 3000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 3000
+		fleet "Derelict Southern" 10000
 	system "Deneb"
 		fleet "Small Core Merchants" 5000
 		add object "Pug Wormhole"
@@ -2347,8 +2500,10 @@ event "pug territory liberated"
 		fleet "Large Syndicate" 2000
 	planet "Pugglemug"
 		remove attributes
+		"bribe" 0.01
 	planet "Pugglequat"
 		remove attributes
+		"bribe" 0.01
 	planet "Rand"
 		security 0.05
 		tribute 500
@@ -2509,6 +2664,7 @@ event "fwc southern liberation"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 
 
@@ -2538,6 +2694,8 @@ event "fwc capture kaus borealis"
 		fleet "Large Republic" 2000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
+		description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
+		description `	The Navy had begun building a massive military base on New Iceland after they had been pushed out of the Southern Rim, but their defeat in this system by the Free Worlds has led to the base being abandoned prematurely.`
 
 
 
@@ -2664,8 +2822,9 @@ event "fwc capture menkent"
 		fleet "Human Miners" 2000
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight.`
-		description `The few settlements that have been built here were developed for mining sapphires and rubies. The sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
-		description `For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+		description `	The few settlements that have been built here were developed for mining sapphires and rubies. The sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
+		description `	For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+		description `	The Navy once had a military base here, but they vacated it when the Free Worlds captured this system as part of the "Checkmate" plan.`
 
 
 
@@ -2996,8 +3155,10 @@ event "fwc pug defeated"
 		government "Republic"
 	planet "Pugglemug"
 		remove attributes
+		"bribe" 0.01
 	planet "Pugglequat"
 		remove attributes
+		"bribe" 0.01
 	planet "Shiver"
 		security 0.1
 		tribute 300
@@ -3014,6 +3175,12 @@ event "fwc pug defeated"
 		tribute 1200
 			threshold 3500
 			fleet "Large Syndicate" 9
+
+
+
+event "fwc kaus borealis ceded back"
+	system "Kaus Borealis"
+		government "Republic"
 
 
 
@@ -3043,6 +3210,22 @@ event "syndicate tech available"
 		"Ionic Afterburner"
 		"S-270 Regenerator"
 		"S-970 Regenerator"
+
+
+
+event "Deep memorial completed"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. Two additional rings of walls have been constructed around both the first twenty-three walls and the fifty walls of the old outer ring.`
+
+mission "Deep Memorial Finished"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "Deep memorial completed"
+		fail
 
 
 

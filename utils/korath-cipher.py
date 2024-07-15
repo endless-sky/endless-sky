@@ -140,4 +140,3 @@ for line in sys.stdin:
     print("EXILE:    "+" ".join(exiles))
     print("EFRETI:   "+" ".join(efretis))
     print("")
-

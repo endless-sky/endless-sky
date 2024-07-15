@@ -44,8 +44,10 @@ class Visual;
 class Armament {
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
-	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr);
+	void AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
+		bool isUnder, const Outfit *outfit = nullptr);
+	void AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
+		bool isUnder, const Outfit *outfit = nullptr);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
@@ -60,7 +62,7 @@ public:
 	void UninstallAll();
 
 	// Swap the weapons in the given two hardpoints.
-	void Swap(int first, int second);
+	void Swap(unsigned first, unsigned second);
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
@@ -73,12 +75,12 @@ public:
 	void Aim(const FireCommand &command);
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
+	void Fire(unsigned index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
 	// Fire the given anti-missile system.
-	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
+	bool FireAntiMissile(unsigned index, Ship &ship, const Projectile &projectile,
 		std::vector<Visual> &visuals, bool jammed);
 	// Fire the given tractor beam.
-	bool FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam,
+	bool FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsam,
 		std::vector<Visual> &visuals, bool jammed);
 
 	// Update the reload counters.
@@ -88,7 +90,7 @@ public:
 private:
 	// Check if the given hardpoint index is valid. Jam the hardpoint if it needs jammed.
 	// Returns false if the index is invalid or the hardpoint jammed.
-	bool CheckHardpoint(int index, bool jammed = false);
+	bool CheckHardpoint(unsigned index, bool jammed = false);
 
 
 private:

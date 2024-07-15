@@ -15,7 +15,19 @@
 event "gegno space label"
 	galaxy "label gegno"
 		sprite label/gegno
-		
+
+
+event "gegno: civilian suspicion"
+	government "Gegno"
+		"send untranslated hails"
+		"friendly hail" "gegno untranslated"
+
+
+event "gegno: quarg talks"
+
+
+event "gegno: apprehension"
+
 
 event "gegno: unified defense"
 	government "Gegno Vi"
@@ -28,7 +40,7 @@ event "gegno: unified defense"
 		"attitude toward"
 			"Gegno Scin" 1
 			"Gegno Vi" 1
-	government "Quarg"
+	government "Quarg (Gegno)"
 		"attitude toward"
 			"Gegno" 1
 			"Gegno Vi" 1
@@ -39,14 +51,28 @@ event "gegno: unified defense"
 		add fleet "Gegno Miners" 1000
 	system "Zeinar"
 		add fleet "Scin Warfleet" 600
-		add fleet "Quarg" 1000
+		add fleet "Quarg (Gegno)" 1000
 	system "Scija"
 		add fleet "Vi Warfleet" 600
-		add fleet "Quarg" 1000
+		add fleet "Quarg (Gegno)" 1000
 	system "Heutesl"
 		add fleet "Scin Warfleet" 600
 		add fleet "Vi Warfleet" 600
-		add fleet "Quarg Large" 600
+		add fleet "Large Quarg (Gegno)" 600
+
+
+event "gegno leave quarg space"
+	system "Aleit"
+		remove fleet "Gegno Basic"
+		remove fleet "Gegno Cargo"
+	system "Elifennka"
+		remove fleet "Gegno Miners"
+	system "Yllke"
+		remove fleet "Gegno Basic"
+		remove fleet "Gegno Cargo"
+		remove fleet "Gegno Miners"
+	system "Heutesl"
+		remove fleet "Quarg (Gegno)"
 
 
 # Will be defined in the future.

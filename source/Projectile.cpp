@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "FighterHitHelper.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -60,7 +61,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
+	{
 		targetGovernment = cachedTarget->GetGovernment();
+		targetDisabled = cachedTarget->IsDisabled();
+	}
 
 	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 	velocity += dV;
@@ -79,6 +83,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
+	targetDisabled = parent.targetDisabled;
 	hitsRemaining = weapon->PenetrationCount();
 
 	cachedTarget = TargetPtr().get();
@@ -137,14 +142,15 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
+	// Also stop targeting fighters that have become disabled after this projectile was fired.
 	const Ship *target = cachedTarget;
 	if(target)
 	{
 		target = TargetPtr().get();
-		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment)
+		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
+				(!targetDisabled && !FighterHitHelper::IsValidTarget(target)))
 		{
-			targetShip.reset();
-			cachedTarget = nullptr;
+			BreakTarget();
 			target = nullptr;
 		}
 	}
@@ -380,6 +386,7 @@ void Projectile::BreakTarget()
 	targetShip.reset();
 	cachedTarget = nullptr;
 	targetGovernment = nullptr;
+	targetDisabled = false;
 }
 
 
@@ -459,7 +466,28 @@ double Projectile::DistanceTraveled() const
 
 
 
+bool Projectile::Phases(const Ship &ship) const
+{
+	return phasedShip == &ship;
+}
+
+
+
 uint16_t Projectile::HitsRemaining() const
 {
 	return hitsRemaining;
+}
+
+
+
+void Projectile::SetPhases(const Ship *ship)
+{
+	phasedShip = ship;
+}
+
+
+
+bool Projectile::ShouldExplode() const
+{
+	return !government || (weapon->IsFused() && lifetime == 1);
 }

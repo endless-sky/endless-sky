@@ -969,7 +969,7 @@ mission "Nanachi 1"
 			choice
 				`	"Let's see if anyone in the spaceport needs a lift off the planet."`
 				`	"Let's take another look at the job board, maybe a smaller job will pop up."`
-			`	Turns out this isn't as easy as you thought it'd be. The spaceport is almost empty, save for the occasional worker or drunken crewmember, and the job board is filled with massive hauls of minerals, aside from a few small but dangerous jobs to human space. Eventually, as you two begin scouting the edge of the docking area, you spot a troubled human merchant near several crates. You approach him and he explains that his ship had some malfunctions and he cannot deliver his cargo of advanced surgical equipment to <destination>. "This is the worst! One jump away from the planet and the navigation system suddenly decides to go on strike! There's no way I can make it before the deadline!"`
+			`	Turns out this isn't as easy as you thought it'd be. The spaceport is almost empty, save for the occasional worker or drunken crew member, and the job board is filled with massive hauls of minerals, aside from a few small but dangerous jobs to human space. Eventually, as you two begin scouting the edge of the docking area, you spot a troubled human merchant near several crates. You approach him and he explains that his ship had some malfunctions and he cannot deliver his cargo of advanced surgical equipment to <destination>. "This is the worst! One jump away from the planet and the navigation system suddenly decides to go on strike! There's no way I can make it before the deadline!"`
 			`	"My friend Nanachi here could deliver it for you. We were heading there anyway; a few extra crates won't make a difference," you say, trying to sound as convincing as possible.`
 			`	At first, he seems delighted that you two want to help him, but when Nanachi mentions that she's flying a Heavy Shuttle, he frowns, and looks back at the cargo. "Unfettered attacks make it so they need tons of medical supplies on <planet>, and quite frankly I'm not comfortable letting such a fragile ship go into dangerous territory carrying this equipment when it could be blasted to bits in an instant," he says. The captain glances around the deserted spaceport for a while, as if trying to find some other captain, before finally turning to Nanachi and saying, "but I guess beggars can't be choosers. Fine, I'll let you take the cargo there, but please be very careful."`
 				accept
@@ -1761,6 +1761,7 @@ mission "Hai Film Crew 3"
 	description "Take Likeet's film crew home to their studio on <destination>, so that they can process the film they shot on <origin>. Payment is <payment>."
 	cargo "film equipment" 30
 	passengers 80
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	source "Darkrest"
 	destination
 		attributes hai
@@ -1813,7 +1814,7 @@ mission "Station Exploration 1"
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 					decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... but we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
 					to display
@@ -1932,3 +1933,102 @@ mission "Station Exploration Abandon Ship"
 			label fine
 			`	"You are being fined <fine> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 
+mission "Hai Pilgrimage"
+	name "Hai spiritual leader to <planet>"
+	description "Bring a Hai spiritual leader to <destination>. He will pay you <payment>."
+	minor
+	clearance "You inform the authorities of the passenger you are transporting, and they quickly allow you to land."
+	source
+		government "Hai"
+		not attributes "uninhabited" "station"
+		not planet "Darkmetal" "Dustmaker" "Stonebreak" "Skyfarm"
+	destination
+		attributes "unfettered"
+	passengers 1
+	to offer
+		random < 10
+		or
+			has "outfit: Quantum Keystone"
+			has "outfit: Quantum Key Stone"
+			has "outfit: Shield Beetle Pendant"
+			has "outfit: Tree Skeleton Key Stone"
+		has "First Contact: Hai: offered"
+	on offer
+		conversation
+			`It is an unusually foggy day on <origin>; the air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that's why you're so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
+			branch pendant
+				has "outfit: Shield Beetle Pendant"
+			branch normal
+				has "outfit: Quantum Keystone"
+			branch remnant
+				has "outfit: Quantum Key Stone"
+			branch huh
+				has "outfit: Tree Skeleton Key Stone"
+			label normal
+			`	"I see that you are wiser than most humans here," he says, pointing toward your ship. Its hatch is open, prominently displaying your keystone to any potential travelers. "You carry a shield against the tempest of space. Let no one else tell you otherwise." He pauses to take a breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+				goto choice
+			label remnant
+			`	"The keystone you carry is a strange one, human," he says, pointing toward your ship. Its hatch is open, prominently displaying your Key Stone to any potential travelers. He walks up to it to get a closer look. "Very unusual. No proper mounting either - must be a human design." He sighs. "Well, at least the keystone itself looks authentic. It will have to do." He turns to you. "You carry a shield against the tempest of space. Let no one else tell you otherwise. If your people have access to keystones as well, then I hope they too become wise to its power and learn to treat them with more reverence. Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+				goto choice
+			label pendant
+			`	"A unique design you have here, Captain," he says, pointing toward your ship. Its hatch is open, prominently displaying Nanachi's pendant to any potential travelers. "A gift, I presume? You are lucky you have someone looking out for you. You carry a shield against the tempest of space. Let no one else tell you otherwise." He pauses to take a breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+				goto choice
+			label huh
+			`	"I've never seen anything like this... thing you have," he says, pointing toward your ship. Its hatch is open, prominently displaying the Tree Skeleton Key Stone to any potential travelers. The Hai sounds more than a little disgusted. "I hope you haven't done anything you'll regret."`
+			`	He takes a closer look. "It seems to be made out of the same material as a keystone, and yet it is entirely foreign to me. Where you got this, I have no idea. Well, at least the material itself looks authentic. It will have to do." He sighs and turns to you. "I suspect that whoever you got this from is not happy it is out of their hands. I would show more respect for keystones if I were you." He pauses to take a breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+			label choice
+			choice
+				`	"I can take you there."`
+					goto agree
+				`	"Why would you want to go to <destination>? Isn't that an Unfettered planet?"`
+					goto ask
+					to display
+						or
+							has "visited system: Wah Ki"
+							has "Wanderers: Translation Machine: offered"
+							has "First Contact: Unfettered: offered"
+				`	"I'm not going there. You'll have to ask someone else."`
+					decline
+			label ask
+			`	The Hai pauses for a moment, as if unsure of what to say. "My teachings and prophecies are more... appreciated among our northern brethren."`
+			choice
+				`	"Teachings?"`
+				`	"Alright, I'll take you there."`
+					goto agree
+				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
+					goto dangerous
+			label teachings
+			`	An unreadable expression appears on Hareek's face. "Ah, apologies for my rudeness - you probably do not know who I am. How do I explain this... You have your preachers and wise ones among the humans, yes? I am something similar. Now, will you take me to <destination>?"`
+			choice
+				`	"So you're going to preach to the Unfettered?"`
+				`	"I can take you."`
+					goto agree
+				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
+					goto dangerous
+			`	"That is an oversimplification, but it is not something I can explain adequately to a human." He turns away, looking into the fog. "There are portentous events occurring in the galaxy, and I must warn others of the turmoil I have foreseen. The Unfettered crave turmoil, so naturally they are more inclined to believe me." He gives a wry smile.`
+			choice
+				`	"Alright, I can take you there."`
+					goto agree
+				`	"Sorry, but this whole thing sounds a little too strange for me."`
+					goto strange
+				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
+			label dangerous
+			`	He snorts. "Dangerous? I am approaching 300 years of age, and yet I do not fear a trip to Unfettered space." He walks away, clearly disappointed.`
+				decline
+			label strange
+			`	He sighs. "That's alright. I would not expect you to understand." He walks away, disappearing into the mist.`
+				decline
+			label agree
+			`	"Excellent. Arriving in a human ship would be an auspicious start to my journey, but there are not many human captains who take proper precautions when traveling through space. I'm glad to see that you have some sense, at least." He lowers his voice.`
+			`	"Since you seem to be a trustworthy captain, I will tell you of some things I have seen. Many years ago, I defended our space against the Korath raids. One day, we were caught unprepared and hit by a massive fleet. Every single ship in my patrol group was destroyed, except for ours - the only one with a keystone. I learned two things in my time against the Korath: that the old legends are true, and that the stability we have enjoyed as a species is ending. Changes in the galaxy are inevitable, and those changes are arriving soon." He begins to move toward your ship. "But let us not speak of this now. I have business to attend to."`
+				accept
+
+	on visit
+		dialog `You look for Hareek, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 20000
+		"reputation: Hai (Unfettered)" += 100
+		conversation
+			`Hareek was quite tight-lipped about what he planned to do once on <planet>. The most you could get out of him was more stories about his past as a military pilot. Once you land, Hareek jumps off your ship, moving surprisingly fast for his age.`
+			`"Thank you, Captain, for making this journey. I apologize for not telling you more about me; the work I do is not something that I can reveal to any human who asks." He hands you <payment> and moves away. The surrounding Unfettered appear almost awed by his presence and consequentially give you a wide berth.`
+		log "Minor People" "Hareek" `An old Hai who claims to foresee the future. Dropped him off in Unfettered space so he could spread his message there. He appears to be well-respected amongst the Unfettered.`
