@@ -469,6 +469,8 @@ outfit "Nettle Active"
 		"homing" 4
 		"infrared tracking" 0.9
 		"optical tracking" 0.6
+		"shield damage" -108
+		"hull damage" -162
 		"hit force" 300
 		"missile strength" 12
 		"submunition" "Nettle Flecks" 36
