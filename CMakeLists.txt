@@ -231,9 +231,12 @@ endif()
 if(APPLE)
 	target_link_options(EndlessSky PUBLIC "-Wl,-export_dynamic")
 	target_link_options(EndlessSkyLib PUBLIC "-Wl,-export_dynamic")
-else()
+elseif(UNIX)
 	target_link_options(EndlessSky PUBLIC "-Wl,--export-dynamic")
 	target_link_options(EndlessSkyLib PUBLIC "-Wl,--export-dynamic")
+else()
+	target_link_options(EndlessSky PUBLIC "-Wl,--export-all-symbols")
+	target_link_options(EndlessSkyLib PUBLIC "-Wl,--export-all-symbols")
 endif()
 
 # Link with the library dependencies.
