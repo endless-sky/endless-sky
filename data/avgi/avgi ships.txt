@@ -1208,7 +1208,6 @@ ship "Prismaios"
 			"hull damage" 900
 			"hit force" 1200
 	outfits
-		"Green Optical Laser"
 		"Speckle Coilgun" 2
 		"Speckle Turret" 2
 		"Speck Round" 6600
