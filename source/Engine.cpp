@@ -2262,7 +2262,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
 			vector<Body *> blastCollisions;
-			blastCollisions.reserve(min(static_cast<vector<Body *>::size_type>(32), ships.size()));
+			blastCollisions.reserve(32);
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
