@@ -454,7 +454,7 @@ namespace {
 			cout << DataWriter::Quote("name") << ',' << DataWriter::Quote("cost") << ','
 				<< DataWriter::Quote("mass") << ',' << DataWriter::Quote("outfit space") << ','
 				<< DataWriter::Quote("engine capacity") << ',' << DataWriter::Quote("engine mod space") << ','
-				<< DataWriter::Quote("reverse thruster slot") << << DataWriter::Quote("steering slot") << ','
+				<< DataWriter::Quote("reverse thruster slot") << DataWriter::Quote("steering slot") << ','
 				<< DataWriter::Quote("thruster slot") << ',' ',' << DataWriter::Quote("thrust/s") << ','
 				<< DataWriter::Quote("thrust energy/s") << ',' << DataWriter::Quote("thrust heat/s") << ','
 				<< DataWriter::Quote("turn/s") << ',' << DataWriter::Quote("turn energy/s") << ','
