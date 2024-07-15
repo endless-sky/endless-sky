@@ -2196,7 +2196,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(triggerRadius)
 		{
 			vector<Body *> inRadius;
-			inRadius.reserve(min(triggerRadius, ships.size()));
+			inRadius.reserve(min(static_cast<vector<Body *>::size_type>(triggerRadius), ships.size()));
 			shipCollisions.Circle(projectile.Position(), triggerRadius, inRadius);
 			for(const Body *body : inRadius)
 			{
@@ -2262,7 +2262,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
 			vector<Body *> blastCollisions;
-			blastCollisions.reserve(min(32, ships.size()));
+			blastCollisions.reserve(min(static_cast<vector<Body *>::size_type>(32), ships.size()));
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
