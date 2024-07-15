@@ -911,9 +911,9 @@ ship "Merganser"
 		category "Interceptor"
 		licenses
 			Remnant
-		"cost" 4830000
-		"shields" 3500
-		"hull" 3000
+		"cost" 6830000
+		"shields" 3000
+		"hull" 5000
 		"required crew" 1
 		"bunks" 3
 		"cargo space" 11
@@ -923,15 +923,15 @@ ship "Merganser"
 		"drag" 1.5
 		"heat dissipation" .75
 		"gaslining" 1
-		"outfit space" 181
+		"outfit space" 219
 		"weapon capacity" 85
 		"engine capacity" 70
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
-		"shield generation" 1.4
+		"shield generation" 2.8
 		"shield energy" 1.2
-		"hull repair rate" 0.9
+		"hull repair rate" 1.8
 		"hull energy" 0.6
 		"cloak" .04
 		"cloaking energy" 2
@@ -942,8 +942,10 @@ ship "Merganser"
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
 		"tactical scan power" 26
-		"ion resistance" 0.06
-		"scramble resistance" 0.06
+		"ion resistance" 0.1
+		"ion resistance energy" -0.05
+		"scramble resistance" 0.1
+		"scramble resistance energy" -0.05
 		"thrust" 7.5
 		"turn" 90.0
 		"reverse thrust" 7.5
@@ -971,14 +973,14 @@ ship "Merganser"
 		"Inhibitor Cannon" 2
 		
 		"Millennium Cell" 2
-		"Crystal Capacitor"
+		"Crystal Capacitor" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
 		# "Crucible-Class Thruster" Extra thruster
 		"Anvil-Class Engine"
 		"Bellows-Class Afterburner"
-		"Hyperdrive"
+		"Scram Drive"
 		
 	gun 0 -48.5
 	gun -6 -41 "Inhibitor Cannon"
@@ -1000,14 +1002,14 @@ ship "Merganser" "Merganser (II)"
 		"Teciimach Canister" 3
 		
 		"Millennium Cell" 2
-		"Crystal Capacitor"
+		"Crystal Capacitor" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
 		# "Crucible-Class Thruster" Extra Thruster
 		"Anvil-Class Engine"
 		"Bellows-Class Afterburner"
-		"Hyperdrive"
+		"Scram Drive"
 		
 	gun 0 -48.5 "Teciimach Pod"
 	gun -6 -41 "Inhibitor Cannon"
@@ -1227,17 +1229,17 @@ ship "Peregrine"
 		licenses
 			"Remnant Capital"
 		"cost" 41627000
-		"shields" 15400
-		"hull" 8600
+		"shields" 16400
+		"hull" 10600
 		"required crew" 9
 		"bunks" 25
 		"mass" 1400
 		"drag" 6.0
 		"heat dissipation" 0.57
-		"fuel capacity" 900
+		"fuel capacity" 1100
 		"ramscoop" 3.25
 		"cargo space" 59
-		"outfit space" 522
+		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
 		"reverse thruster slot" 1
@@ -1245,7 +1247,7 @@ ship "Peregrine"
 		"thruster slot" 2
 		"shield generation" 4.9
 		"shield energy" 3.0
-		"hull repair rate" 1.5
+		"hull repair rate" 2.5
 		"hull energy" 0.90
 		"cloak" .04
 		"cloaking energy" 2.5
@@ -1256,8 +1258,11 @@ ship "Peregrine"
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
 		"tactical scan power" 50
-		"ion resistance" .15
+		"ion resistance" .25
+		"ion resistance energy" -0.125
 		"scrambling resistance" .15
+		"scrambling resistance energy" -0.125
+		"slowing protection" 0.25
 		"remnant node" 5
 		weapon
 			"blast radius" 240

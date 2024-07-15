@@ -676,8 +676,8 @@ outfit "Bellows-Class Afterburner"
 	thumbnail "outfit/remnant afterburner"
 	"engine mod space" -0.76
 	"mass" 8
-	"outfit space" -11
-	"engine capacity" -11
+	"outfit space" -7
+	"engine capacity" -7
 	"slowing resistance" 0.01
 	"afterburner thrust" 250
 	"afterburner fuel" 0.65
