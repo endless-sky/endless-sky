@@ -2196,7 +2196,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(triggerRadius)
 		{
 			vector<Body *> inRadius;
-			inRadius.reserve(ships.size());
+			inRadius.reserve(min(triggerRadius, ships.size()));
 			shipCollisions.Circle(projectile.Position(), triggerRadius, inRadius);
 			for(const Body *body : inRadius)
 			{
@@ -2262,7 +2262,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
 			vector<Body *> blastCollisions;
-			blastCollisions.reserve(ships.size());
+			blastCollisions.reserve(min(32, ships.size()));
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
@@ -2350,7 +2350,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
 	vector<Body *> pickupShips;
-	pickupShips.reserve(ships.size());
+	pickupShips.reserve(16);
 	shipCollisions.Circle(flotsam.Position(), 5., pickupShips);
 	for(Body *body : pickupShips)
 	{
