@@ -9,7 +9,7 @@
     "system-libs": {
       "description": "System libraries required to build ES.",
       "dependencies": [
-        "boost",
+        "boost-dll",
         {
           "name": "glew",
           "platform": "!osx"
