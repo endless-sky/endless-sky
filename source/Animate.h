@@ -41,6 +41,8 @@ public:
 	const T &Value() const;
 	// Synonym for Value().
 	operator const T &() const;
+	// Returns true if there are no more animation steps pending.
+	bool IsAnimationDone() const;
 
 	// Shortcut mathematical operators for convenience.
 	Animate &operator=(const T &v);
@@ -109,6 +111,14 @@ template <typename T>
 Animate<T>::operator const T &() const
 {
 	return Value();
+}
+
+
+
+template <typename T>
+bool Animate<T>::IsAnimationDone() const
+{
+	return steps == 0;
 }
 
 
