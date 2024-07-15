@@ -1817,7 +1817,7 @@ planet Glaze
 planet Gliese
 	attributes "requires: gaslining"
 	landscape land/gliese
-	description `A shine of magenta is coming from the depths below something down there has to be emitting very hot. While the color is pleasant to look at it gets nausiating over time. You notice creatures that look like very small jellyfish also emitting a soft glow. It seems like a peaceful world as the winds are calm and no storms are insight.`
+	description `A shine of magenta emanates from the depths of this planet, suggesting the presence of a strong heat source in the core of Gliese. While the color is pleasant at first, its brightness gets nauseating over time. The winds are calm and no storms are in sight, and if you look closely you can see creatures that look like very small jellyfish emitting a soft glow.`
 	government Uninhabited
 
 planet "Glittering Ice"
@@ -2272,7 +2272,7 @@ planet "Iemn Eitch"
 planet "Igna"
 	landscape land/igna
 	attributes "requires: gaslining"
-	description `This gas giant has an extremely hot atmosphere due to its proximity to the system's star. The clouds emit a warm, orange glow, enabling good visibility even into deeper layers. Occasional storms break the almost peaceful atmosphere, raging violently but disappearing as quickly as they appeared.`
+	description `This gas giant has an extremely hot atmosphere due to its proximity to the system's star. The clouds emit a warm, orange glow, enabling good visibility even in deeper layers. Occasional storms break the almost peaceful atmosphere, raging violently but disappearing as quickly as they appeared.`
 	government Uninhabited
 
 planet "Illbo Avo"
@@ -3359,7 +3359,7 @@ planet Ochrescoop
 planet "Occupas"
 	attributes "requires: gaslining"
 	landscape land/occupas
-	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time some strange giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
+	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
 	government Uninhabited
 
 planet "Ogmur's Siphon"
@@ -3545,7 +3545,7 @@ planet "Pon'tes"
 	description "Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
 	description "Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways."
 	spaceport "The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
-	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. Only a few seem to transport people."
+	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. In an small area separated from the rest there is a constant buzzing of small transport ships transporting civilians in both directions."
 
 planet Poseidos
 	attributes fishing rim
@@ -3648,7 +3648,7 @@ planet "Redias"
 	"required reputation" 10
 	description "The home planet of the Incipias is reigned over by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed."
 	description "The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds."
-	spaceport "Because of the size of their homeworld the Incipias built not one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong, but they still require a great deal of energy to be held in place."
+	spaceport "Because of the size of their homeworld the Incipias built not one but four spaceports. These spaceports are the only platforms on the planet with fixed positions. They were built at an atmospheric level where the planet's storms are not so strong, but they still require a great deal of energy to be held in place."
 	spaceport "The spaceports themselves are giant circular platforms with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land at each spaceport at a time."
 	government "Conlatio"
 
@@ -4306,7 +4306,7 @@ planet "Spec Inci"
 	attributes "incipias quarg" quarg
 	landscape land/sky7
 	description "This small moon seems to be used mainly as a shipment and processing base, run with the typical efficiency of the Quarg. You wouldn't have even noticed the freighters dropping off large amounts of raw ore for processing if it were not for their large size, as they are surprisingly silent when working. Other ships load the processed materials and fly away."
-	spaceport "The spaceport is fully automated, and you can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the moon's many hangars. One section of the spaceport is restricted, where a large amount of military ships can be seen."
+	spaceport "The spaceport is fully automated, and you can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the moon's many hangars. One section of the spaceport is restricted, where a large amount of warships are being lowered into what is presumably a Quarg military base."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9
@@ -5067,7 +5067,7 @@ planet "Vivid Aether"
 planet Vulpa
 	attributes "requires: gaslining"
 	landscape land/vulpa
-	description `At first sight this looks like a friendly gas giant. The blue tones invoke the feeling of an ocean world, but looks can be deceiving. The clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them but it is advisable not to stay here for too long.`
+	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving; its clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
 	government Uninhabited
 
 planet Warfeed
