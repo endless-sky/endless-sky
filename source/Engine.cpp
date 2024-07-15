@@ -2195,9 +2195,10 @@ void Engine::DoCollisions(Projectile &projectile)
 		double triggerRadius = weapon.TriggerRadius();
 		if(triggerRadius)
 		{
-			vector<Body *> circleCollisions;
-			shipCollisions.Circle(projectile.Position(), triggerRadius, circleCollisions);
-			for(const Body *body : circleCollisions)
+			vector<Body *> inRadius;
+			inRadius.reserve(ships.size());
+			shipCollisions.Circle(projectile.Position(), triggerRadius, inRadius);
+			for(const Body *body : inRadius)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
@@ -2260,9 +2261,10 @@ void Engine::DoCollisions(Projectile &projectile)
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
-			vector<Body *> circleCollisions;
-			shipCollisions.Circle(hitPos, blastRadius, circleCollisions);
-			for(Body *body : circleCollisions)
+			vector<Body *> blastCollisions;
+			blastCollisions.reserve(ships.size());
+			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
+			for(Body *body : blastCollisions)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
@@ -2324,12 +2326,13 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		vector<Body *> collisions;
+		vector<Body *> affectedShips;
+		affectedShips.reserve(ships.size());
 		if(hazard->SystemWide())
-			collisions = shipCollisions.All();
+			affectedShips = shipCollisions.All();
 		else
-			shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), collisions);
-		for(Body *body : collisions)
+			shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), affectedShips);
+		for(Body *body : affectedShips)
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
@@ -2344,9 +2347,10 @@ void Engine::DoCollection(Flotsam &flotsam)
 {
 	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
-	vector<Body *> collisions;
-	shipCollisions.Circle(flotsam.Position(), 5., collisions);
-	for(Body *body : collisions)
+	vector<Body *> pickupShips;
+	pickupShips.reserve(ships.size());
+	shipCollisions.Circle(flotsam.Position(), 5., pickupShips);
+	for(Body *body : pickupShips)
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
 		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship->CanPickUp(flotsam))
