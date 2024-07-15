@@ -205,7 +205,12 @@ mission "Incipias: Help The Stranded 1"
 		has "incipias: helped the derelict"
 	on offer
 		conversation
-			`Right after you arrive on the planet, you search for a Quarg who speaks your language so that you can tell them about the stranded ship you found. One of the Quarg seems to understand your intention and gestures for you to wait. It returns a few hours later accompanied by the same Quarg you talked to before.`
+			`Maybe the Quarg could help you with the stranded ship.`
+			choice
+				`Tell them about it.`
+				`Not right now.`
+					defer
+			`	Right after you arrive on the planet, you search for a Quarg who speaks your language so that you can tell them about the stranded ship you found. One of the Quarg seems to understand your intention and gestures for you to wait. It returns a few hours later accompanied by the same Quarg you talked to before.`
 			`	"Human, you seem to be in quite a haste. What could be such a pressing matter?" it asks.`
 			choice
 				`	(Explain the situation.)`
@@ -335,7 +340,7 @@ mission "Incipias: Help The Stranded 2"
 	on complete
 		conversation
 			`When you land on the station your passengers thank you again and leave, probably to get some well-earned rest.`
-			`	As you step out of the <ship> an Incipias approaches you. "Follow me outer-helper, before a crowd gathers. We would like to talk."`
+			`	As you step out of the <ship> an Incipias, its scales seem worn off and you notice intricate claw appendices around the end of its tentacles, approaches you. "Follow me outer-helper, before a crowd gathers. We would like to talk."`
 			`	They guide you through the hallways so that you avoid larger groups and move only through horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
 			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
 			choice
@@ -355,19 +360,22 @@ mission "Incipias: Help The Stranded 2"
 			`	"Thank you for this profound-depth insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination to explore.`
 			label yours
 			`	"But now to you. Is there anything you would like to know?"`
-			# might add to this list over time
 			label choice
 			choice
 				`	"I do not have any more questions."`
 					goto end
 				`	"Why do you call this station your capital?"`
 					goto capital
+				`	"How is life on a gas giant?"`
+					goto oddquestion
 				`	"Why can I not land on your home planet?"`
 			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
 				goto choice
 			label capital
 			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
+			label oddquestion
+			`	"What an odd-reasonable question," it turns into a swirl of purple and green, "We could ask the same in return, what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds between them are our cities, the most color-liveful places you will ever see. This is a bit poetic-gradient description but I do not know what else to say."`
 			label end
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
 			`	You say goodbye and as you leave the room you can see a rush of colors reflecting on the walls.`

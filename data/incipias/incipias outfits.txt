@@ -296,3 +296,8 @@ outfit "Cloud Piercer"
 	"capture defense" 1.5
 	"unplunderable" 1
 	description "When it comes to close combat, the Incipias are formidable opponents. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."
+
+# Special
+outfit "Hicemus Conflict License"
+	category "Special"
+	description "The Hicemus trust you enough to give you a glimpse at their most precious technology, technology reserved to give them advantage over other factions."
