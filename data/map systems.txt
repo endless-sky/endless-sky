@@ -18,6 +18,9 @@ galaxy "Milky Way"
 galaxy "label arachi"
 	pos -750 615
 
+galaxy "label umbral"
+	pos 1150 -500
+
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -11164,6 +11167,7 @@ system Durax
 			period 29.2266
 
 system E-4183
+	shrouded
 	pos 1042.97 -618.13
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" "umbral reach"
@@ -11173,16 +11177,15 @@ system E-4183
 	"jump range" 50
 	haze _menu/haze-coal
 	link M-1188
-	asteroids "medium rock" 32 1.12
-	asteroids "large rock" 5 1.32
-	asteroids "small metal" 85 1.076
-	asteroids "medium metal" 10 1.232
-	asteroids "large metal" 49 0.79
+	asteroids "large rock" 3 1.32
+	asteroids "small metal" 5 1.076
+	asteroids "medium metal" 9 1.232
 	minables silver 1 8.3
 	minables aluminum 1 9.0285
-	fleet "Iije (Uninterested)" 1200
-	fleet "Iije (Swarming)" 600
-	fleet "Iije (Surveillance)" 600
+	fleet "Iije (Uninterested)" 1500
+	fleet "Iije (Swarming)" 900
+	fleet "Iije (Surveillance)" 900
+	"starfield density" .2
 	object
 		sprite star/a-giant
 		period 10
@@ -11220,6 +11223,7 @@ system E-4183
 			offset 240
 
 system E-9182
+	shrouded
 	pos 1167.2 -629
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -11229,15 +11233,16 @@ system E-9182
 	haze _menu/haze-none
 	link O-3184
 	asteroids "large rock" 1 4.29
-	asteroids "small metal" 14 3.09
-	asteroids "medium metal" 27 4.2
+	asteroids "small metal" 3 3.09
+	asteroids "medium metal" 1 4.2
 	asteroids "large metal" 1 3.64
 	minables copper 1 7.53
-	minables iron 8 7.36
-	minables aluminum 8 7.61
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	minables iron 1 7.36
+	minables aluminum 3 7.61
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 4000
+	fleet "Iije (Surveillance)" 3000
+	"starfield density" .2
 	object
 		sprite star/o0
 		period 10
@@ -11253,14 +11258,6 @@ system E-9182
 			sprite planet/dust1
 			distance 383
 			period 233
-	object
-		sprite planet/lava0-b
-		distance 1420
-		period 182.732
-	object
-		sprite planet/gas10
-		distance 2516
-		period 430.971
 	object
 		sprite planet/gas10-hot
 		distance 3132
@@ -14650,7 +14647,7 @@ system Furmeliki
 system G-3191
 	pos 1039.23 -395
 	government Uninhabited
-	attributes "bright star" "notable star" "supergiant star" "umbral reach"
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 5000
 	departure 1000
 	habitable 20250
@@ -14688,6 +14685,7 @@ system G-3191
 		period 5084.55
 
 system G-6183
+	shrouded
 	pos 1019.4 -590.18
 	government Uninhabited
 	attributes "black hole" "notable star" "umbral reach"
@@ -14696,12 +14694,10 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	asteroids "large metal" 1 3.4
-	minables neodymium 6 3.87
-	minables titanium 44 4.15
-	minables tungsten 16 2.37
+	minables neodymium 1 3.87
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
+	"starfield density" .05
 	object
 		sprite star/coal-black-hole
 		period 1
@@ -14728,6 +14724,7 @@ system G-6183
 		offset 145
 
 system G-719
+	shrouded
 	pos 1162.19 -417.18
 	government Uninhabited
 	attributes "umbral reach"
@@ -14737,9 +14734,10 @@ system G-719
 	haze _menu/haze-coal
 	link W-3197
 	asteroids "large metal" 1 2.22
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 3900
+	fleet "Iije (Surveillance)" 2400
+	"starfield density" .1
 	object
 		sprite star/f3
 		distance 76.28
@@ -14758,18 +14756,6 @@ system G-719
 			distance 134
 			period 95.53
 	object
-		sprite planet/neptune
-		distance 1358
-		period 371.715
-	object
-		sprite planet/neptune-b
-		distance 2669.51
-		period 1024.49
-		object
-			sprite planet/callisto
-			distance 269.46
-			period 570.1
-	object
 		sprite planet/gas0-b
 		distance 5879
 		period 3348.23
@@ -14779,6 +14765,7 @@ system G-719
 			period 147.7
 
 system G-819
+	shrouded
 	pos 1186.97 -477.17
 	government Uninhabited
 	attributes "umbral reach"
@@ -14790,13 +14777,13 @@ system G-819
 	link H-9187
 	link W-3197
 	asteroids "small rock" 5 1.53
-	asteroids "medium rock" 5 2.4
 	asteroids "large rock" 1 2.04
 	asteroids "large metal" 2 3
 	minables iron 2 2.4
-	fleet "Iije (Uninterested)" 6000
-	fleet "Iije (Swarming)" 3000
-	fleet "Iije (Surveillance)" 3000
+	fleet "Iije (Uninterested)" 3000
+	fleet "Iije (Swarming)" 6000
+	fleet "Iije (Surveillance)" 3500
+	"starfield density" .2
 	object
 		sprite star/g3
 		period 10
@@ -15953,6 +15940,7 @@ system Gupta
 		period 1077.08
 
 system H-8188
+	shrouded
 	pos 1206.6 -506.5
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -15962,25 +15950,16 @@ system H-8188
 	haze _menu/haze-none
 	link H-9187
 	asteroids "small rock" 1 1.32
-	asteroids "medium rock" 3 1.36
 	asteroids "large rock" 1 1.44
-	asteroids "small metal" 1 1.48
 	asteroids "medium metal" 3 1.3
 	asteroids "large metal" 2 0.81
-	fleet "Iije (Uninterested)" 6000
-	fleet "Iije (Swarming)" 3000
+	fleet "Iije (Uninterested)" 3400
+	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3000
+	"starfield density" .1
 	object
 		sprite star/a0
 		period 10
-	object
-		sprite planet/rock4-b
-		distance 364
-		period 45.9796
-	object
-		sprite planet/rock16-b
-		distance 794
-		period 148.130
 	object
 		sprite planet/gas2-b
 		distance 2169
@@ -15991,6 +15970,7 @@ system H-8188
 		period 5620.03
 
 system H-9187
+	shrouded
 	pos 1130.88 -455.97
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -16004,9 +15984,10 @@ system H-9187
 	link L-118
 	link MC-42
 	asteroids "large metal" 1 4.9
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Uninterested)" 3000
+	fleet "Iije (Swarming)" 4000
+	fleet "Iije (Surveillance)" 4000
+	"starfield density" .3
 	object
 		sprite star/a3
 		period 10
@@ -19575,7 +19556,7 @@ system Kilema
 	minables iron 5 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
-	fleet "Scin Science" 14400
+	fleet "Scin Science" 12000
 	object
 		sprite star/g-dwarf
 		period 10
@@ -20716,6 +20697,7 @@ system Kursa
 		period 1517.13
 
 system L-118
+	shrouded
 	pos 1088.89 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -20733,6 +20715,7 @@ system L-118
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
 	minables iron 3 5.3
+	"starfield density" .3
 	object
 		sprite star/a8
 		period 10
@@ -20754,6 +20737,7 @@ system L-118
 			period 434
 
 system L-6181
+	shrouded
 	pos 1139.93 -522.87
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -20764,17 +20748,15 @@ system L-6181
 	haze _menu/haze-coal
 	link M-1188
 	link MS-219
-	asteroids "small rock" 11 1.8
-	asteroids "medium rock" 33 2.7
-	asteroids "large rock" 16 2.13
-	asteroids "small metal" 3 2.8
-	asteroids "medium metal" 153 1.6
+	asteroids "small rock" 1 1.8
+	asteroids "medium metal" 1 1.6
 	asteroids "large metal" 1 1.5
-	minables titanium 8 2.32
-	minables copper 11 3.569
-	fleet "Iije (Uninterested)" 2000
-	fleet "Iije (Swarming)" 1000
-	fleet "Iije (Surveillance)" 1000
+	minables titanium 2 2.32
+	minables copper 4 3.569
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 1800
+	"starfield density" .2
 	object
 		sprite star/m8
 		distance 16.78
@@ -21500,6 +21482,7 @@ system Lurata
 		period 1774.16
 
 system M-1188
+	shrouded
 	pos 1124.66 -607.233
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -21511,10 +21494,12 @@ system M-1188
 	link E-4183
 	link L-6181
 	link MS-219
-	asteroids "large metal" 1 2.54
-	fleet "Iije (Uninterested)" 800
-	fleet "Iije (Swarming)" 400
-	fleet "Iije (Surveillance)" 400
+	asteroids "large metal" 2 2.54
+	minables uranium 1 3.66
+	fleet "Iije (Uninterested)" 1300
+	fleet "Iije (Swarming)" 1400
+	fleet "Iije (Surveillance)" 1500
+	"starfield density" .1
 	object
 		sprite star/a-dwarf
 		period 10
@@ -21536,6 +21521,7 @@ system M-1188
 		period 38041.2
 
 system MC-42
+	shrouded
 	pos 1113.33 -500.68
 	government Uninhabited
 	attributes "iije" "umbral reach"
@@ -21545,11 +21531,12 @@ system MC-42
 	"jump range" 60
 	haze _menu/haze-coal
 	link H-9187
-	minables platinum 7 4.2
-	minables copper 32 7.91
-	fleet "Iije (Uninterested)" 3000
-	fleet "Iije (Swarming)" 1500
-	fleet "Iije (Surveillance)" 1500
+	minables platinum 1 4.2
+	minables copper 6 7.91
+	fleet "Iije (Uninterested)" 2900
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 2400
+	"starfield density" .2
 	object
 		sprite star/g5
 		period 10
@@ -21571,6 +21558,7 @@ system MC-42
 		period 3186.04
 
 system MS-219
+	shrouded
 	pos 1075.13 -568.167
 	government Uninhabited
 	attributes "bright star" "iije" "notable star" "umbral reach"
@@ -21582,9 +21570,10 @@ system MS-219
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
-	fleet "Iije (Uninterested)" 200
-	fleet "Iije (Swarming)" 100
-	fleet "Iije (Surveillance)" 100
+	fleet "Iije (Uninterested)" 400
+	fleet "Iije (Swarming)" 700
+	fleet "Iije (Surveillance)" 500
+	"starfield density" .1
 	object
 		sprite star/o-dwarf
 		distance 33.38
@@ -24617,6 +24606,7 @@ system Nunki
 			period 66.2404
 
 system O-3184
+	shrouded
 	pos 1100.4 -646.047
 	government Uninhabited
 	attributes "umbral reach"
@@ -24627,16 +24617,14 @@ system O-3184
 	haze _menu/haze-coal
 	link E-9182
 	link U-5188
-	asteroids "small rock" 28 5.85
 	asteroids "medium rock" 7 6.75
-	asteroids "large rock" 3 6.12
-	asteroids "medium metal" 10 6.93
 	asteroids "large metal" 1 6.84
 	minables iron 5 2.23
-	minables lead 42 3.43
-	fleet "Iije (Uninterested)" 500
-	fleet "Iije (Swarming)" 250
-	fleet "Iije (Surveillance)" 250
+	minables lead 2 3.43
+	fleet "Iije (Uninterested)" 700
+	fleet "Iije (Swarming)" 900
+	fleet "Iije (Surveillance)" 700
+	"starfield density" .1
 	object
 		sprite star/m3
 		period 10
@@ -24648,14 +24636,6 @@ system O-3184
 		sprite planet/lava0
 		distance 579.671
 		period 368.102
-	object
-		sprite planet/ocean9
-		distance 2143.07
-		period 2616.67
-		object
-			sprite planet/dust0
-			distance 155
-			period 118.84
 	object
 		sprite planet/gas17-b
 		distance 4306
@@ -32409,6 +32389,7 @@ system Turais
 		period 4109.01
 
 system U-5188
+	shrouded
 	pos 1084 -665.623
 	government Uninhabited
 	attributes "umbral reach"
@@ -32420,22 +32401,16 @@ system U-5188
 	link O-3184
 	link V-2189
 	asteroids "small rock" 2 2.24
-	asteroids "medium rock" 9 1.91
+	asteroids "medium rock" 2 1.91
 	asteroids "large rock" 1 2.87
-	asteroids "small metal" 37 2.8
-	asteroids "medium metal" 70 2.83
-	asteroids "large metal" 29 1.65
-	minables iron 22 2.93
-	fleet "Iije (Uninterested)" 2000
-	fleet "Iije (Swarming)" 1000
-	fleet "Iije (Surveillance)" 1000
+	minables iron 3 2.93
+	fleet "Iije (Uninterested)" 1600
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 1400
+	"starfield density" .2
 	object
 		sprite star/k5
 		period 10
-	object
-		sprite planet/rock19
-		distance 259
-		period 80.8751
 	object
 		sprite planet/dust5
 		distance 570
@@ -33119,6 +33094,7 @@ system "Uwo Seija"
 		period 2910.75
 
 system V-2189
+	shrouded
 	pos 1135.9 -711.667
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -33128,11 +33104,11 @@ system V-2189
 	haze _menu/haze-none
 	link U-5188
 	asteroids "small rock" 1 5.74
-	asteroids "large rock" 3 5.6
-	asteroids "small metal" 1 7.4
-	asteroids "medium metal" 12 5.21
+	asteroids "small metal" 6 7.4
+	asteroids "medium metal" 1 5.21
 	asteroids "large metal" 2 5.44
-	minables platinum 1 6.86
+	minables platinum 2 6.86
+	"starfield density" .1
 	object
 		sprite star/o0
 		distance 77.281
@@ -33642,6 +33618,7 @@ system Vulcuja
 		period 1989.22
 
 system W-3197
+	shrouded
 	pos 1204.5 -400
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -33651,17 +33628,15 @@ system W-3197
 	haze _menu/haze-coal
 	link G-719
 	link G-819
-	asteroids "small rock" 25 1
+	asteroids "small rock" 3 1
 	asteroids "medium rock" 5 0.91
-	asteroids "large rock" 27 1.71
-	asteroids "small metal" 3 1.27
-	asteroids "medium metal" 39 1.14
-	asteroids "large metal" 4 1.34
-	minables titanium 46 3.4
-	minables neodymium 101 4.76
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
+	asteroids "large rock" 2 1.71
+	minables titanium 6 3.4
+	minables neodymium 1 4.76
+	fleet "Iije (Uninterested)" 2000
+	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 2000
+	"starfield density" .2
 	object
 		sprite star/b3
 		period 10

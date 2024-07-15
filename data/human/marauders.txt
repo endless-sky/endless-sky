@@ -76,6 +76,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		"Supercapacitor" 2
 		"D14-RN Shield Generator"
 		"Laser Rifle" 5
+		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -268,6 +269,7 @@ ship "Marauder Falcon"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Laser Rifle" 80
+		"Nerve Gas" 15
 		"Security Station"
 		
 		"A520 Atomic Thruster"
@@ -346,6 +348,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Laser Rifle" 80
+		"Nerve Gas" 20
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -406,6 +409,7 @@ ship "Marauder Firebird"
 		"Liquid Helium Cooler"
 		"Outfits Expansion"
 		"Laser Rifle" 25
+		"Nerve Gas" 29
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -445,6 +449,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
+		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -472,6 +477,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"Outfits Expansion"
 		"Security Station"
 		"Laser Rifle" 24
+		"Nerve Gas" 13
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -527,6 +533,7 @@ ship "Marauder Leviathan"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
+		"Nerve Gas" 15
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -570,6 +577,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
+		"Nerve Gas" 8
 		
 		"A520 Atomic Thruster"
 		"A865 Atomic Steering"
@@ -600,6 +608,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
+		"Nerve Gas" 48
 
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -657,6 +666,7 @@ ship "Marauder Manta"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 3
 		"Laser Rifle" 8
+		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -731,6 +741,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"D14-RN Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 11
+		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -822,6 +833,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 2
 		"Laser Rifle" 5
+		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -955,6 +967,7 @@ ship "Marauder Raven"
 		"Volcano Afterburner"
 		"Hyperdrive"
 		"Laser Rifle" 14
+		"Nerve Gas" 3
 	
 	engine -9.5 63
 	engine 9.5 63
@@ -990,6 +1003,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
+		"Nerve Gas"
 	
 	engine -10.5 63.5
 	engine 10.5 63.5
@@ -1018,6 +1032,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
+		"Nerve Gas" 5
 	
 	gun -13.5 -35.5
 	gun 13.5 -35.5
@@ -1065,6 +1080,7 @@ ship "Marauder Splinter"
 		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 22
+		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -1132,6 +1148,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"Liquid Nitrogen Cooler"
 		"Security Station" 2
 		"Laser Rifle" 20
+		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
 		"A525 Atomic Steering"

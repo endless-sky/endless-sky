@@ -883,6 +883,7 @@ ship "Bulwark"
 		"Water Coolant System"
 		"Tactical Scanner"
 		"Laser Rifle" 19
+		"Nerve Gas" 3
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -2898,7 +2899,7 @@ ship "Modified Argosy"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		"Brig"
-		"Laser Rifle" 2
+		"Laser Rifle" 12
 		
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
@@ -4144,6 +4145,7 @@ ship "Valkyrie"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Laser Rifle" 18
+		"Nerve Gas" 3
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"

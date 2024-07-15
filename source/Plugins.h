@@ -37,7 +37,7 @@ struct Plugin {
 		std::set<std::string> required;
 		// The plugins, if any, which are designed to work with this plugin but aren't required.
 		std::set<std::string> optional;
-		// The plugins, if any, which can't be run along side this plugin.
+		// The plugins, if any, which can't be run alongside this plugin.
 		std::set<std::string> conflicted;
 	};
 

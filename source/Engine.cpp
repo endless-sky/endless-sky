@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "Effect.h"
+#include "FighterHitHelper.h"
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -1260,6 +1261,8 @@ void Engine::Draw() const
 
 	for(const auto &outline : outlines)
 	{
+		if(!outline.sprite)
+			continue;
 		Point size(outline.sprite->Width(), outline.sprite->Height());
 		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
 	}
@@ -2395,7 +2398,7 @@ void Engine::DoCollisions(Projectile &projectile)
 
 		// Don't collide with carried ships that are disabled and not directly targeted.
 		if(shipHit && hit != projectile.Target()
-				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
+				&& !FighterHitHelper::IsValidTarget(shipHit.get()))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).
@@ -2539,7 +2542,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// you'll be pushing the flotsam away from your ship, but the pull of the tractor beam
 			// will still slowly close the distance between the ship and the flotsam.
 			// When dealing with multiple ships, this causes a better appearance of a struggle between
-			// the ships all trying to get ahold of the flotsam should the ships all have similar velocities.
+			// the ships all trying to get a hold of the flotsam should the ships all have similar velocities.
 			// If the ships have differing velocities, then it can make it look like the quicker ship is
 			// yanking the flotsam away from the slower ship.
 			pullVector += avgShipVelocity / count;
@@ -2549,25 +2552,30 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Checks for player FlotsamCollection setting
+	bool collectorIsFlagship = collector == player.Flagship();
 	if(collector->IsYours())
 	{
 		const auto flotsamSetting = Preferences::GetFlotsamCollection();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
 			return;
-		if(collector == player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+		if(collectorIsFlagship && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return;
-		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(!collectorIsFlagship && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return;
 	}
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);
+
 	// If the collector is not one of the player's ships, we can bail out now.
 	if(!collector->IsYours())
 		return;
 
+	if(!collectorIsFlagship && !Preferences::Has("Extra fleet status messages"))
+		return;
+
 	// One of your ships picked up this flotsam. Describe who it was.
-	string name = (!collector->GetParent() ? "You" :
+	string name = (collectorIsFlagship ? "You" :
 			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;

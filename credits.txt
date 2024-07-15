@@ -1,6 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.8-delta
-
+version 0.10.9-delta
 
 The player's manual and other
 resources are available at:
@@ -248,6 +247,7 @@ contributed to Endless Sky:
   gunqqer
   Hacklin
   Hadron1776
+  Hannah-E-M
   har9862
   Hatrask
   Hecter94
@@ -326,6 +326,7 @@ contributed to Endless Sky:
   nathan-b
   Nescio0
   neurotrope
+  nickshanks
   nobodywasishere
   NomadicVolcano
   nothing-but-the-rain
@@ -413,6 +414,7 @@ contributed to Endless Sky:
   Terin
   The-Legendary-M
   thebigh2014
+  TheGiraffe3
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne

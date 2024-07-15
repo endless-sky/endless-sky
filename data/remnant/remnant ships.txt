@@ -924,13 +924,18 @@ ship "Merganser"
 		"heat dissipation" .75
 		"gaslining" 1
 		"outfit space" 219
+		"weapon capacity" 85
+		"engine capacity" 70
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 2.8
 		"shield energy" 1.2
 		"hull repair rate" 1.8
 		"hull energy" 0.6
 		"cloak" .04
 		"cloaking energy" 2
-		"cloaking fuel" .05
+		"cloaking fuel" .075
 		"cloaked communication" 1
 		"cloaked scanning" 1
 		"atmosphere scan" 100
@@ -944,6 +949,12 @@ ship "Merganser"
 		"thrust" 7.5
 		"turn" 90.0
 		"reverse thrust" 7.5
+		"thrusting energy" 0.75
+		"thrusting heat" 0.7
+		"turning energy" 0.15
+		"turning heat" 0.2
+		"reverse thrusting energy" 0.75
+		"reverse thrusting heat" 0.7
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
@@ -953,11 +964,6 @@ ship "Merganser"
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"
-		"weapon capacity" 85
-		"engine capacity" 70
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -1110,7 +1116,7 @@ ship "Penguin"
 		"bunks" 3
 		"mass" 89
 		"drag" 1.25
-		"heat dissipation" 0.82
+		"heat dissipation" 0.88
 		"fuel capacity" 800
 		"energy capacity" 300
 		"ramscoop" 1.25
@@ -1139,9 +1145,17 @@ ship "Penguin"
 		"scramble protection" 0.25
 		"ion resistance" 0.05
 		"scramble resistance" 0.05
-		"thrust" 4.2
-		"turn" 80.0
-		"reverse thrust" 4.2
+		"thrust" 6.3
+		"thrusting energy" 0.6
+		"thrusting heat" 0.55
+		"turn" 120.0
+		"turning energy" 0.22
+		"turning heat" 0.24
+		"reverse thrust" 6.3
+		"reverse thrusting energy" 0.55
+		"reverse thrusting heat" 0.55
+		"energy generation" 0.6
+		"heat generation" 1
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
@@ -1237,15 +1251,17 @@ ship "Peregrine"
 		"hull energy" 0.90
 		"cloak" .04
 		"cloaking energy" 2.5
-		"cloaking fuel" .05
+		"cloaking fuel" .075
 		"cloaked communication" 1
 		"cloaked scanning" 1
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
 		"tactical scan power" 50
-		"ion protection" 0.25
-		"scramble protection" 0.25
+		"ion resistance" .25
+		"ion resistance energy" -0.125
+		"scrambling resistance" .25
+		"scrambling resistance energy" -0.125
 		"slowing protection" 0.25
 		"remnant node" 5
 		weapon
@@ -1270,7 +1286,6 @@ ship "Peregrine"
 		
 		"Bellows-Class Afterburner"
 		"Smelter-Class Thruster"
-		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
@@ -1314,7 +1329,6 @@ ship "Peregrine" "Peregrine (II)"
 		
 		"Bellows-Class Afterburner"
 		"Smelter-Class Thruster"
-		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		

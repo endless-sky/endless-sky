@@ -18,7 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
+#include "FighterHitHelper.h"
 #include "Flotsam.h"
+#include "FormationPattern.h"
+#include "FormationPositioner.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Government.h"
@@ -61,10 +64,20 @@ namespace {
 		return cancelers;
 	}
 
-	bool IsStranded(const Ship &ship)
+	bool NeedsFuel(const Ship &ship)
 	{
 		return ship.GetSystem() && !ship.IsEnteringHyperspace() && !ship.GetSystem()->HasFuelFor(ship)
-			&& ship.NeedsFuel();
+				&& ship.NeedsFuel();
+	}
+
+	bool NeedsEnergy(const Ship &ship)
+	{
+		return ship.GetSystem() && !ship.IsEnteringHyperspace() && ship.NeedsEnergy();
+	}
+
+	bool IsStranded(const Ship &ship)
+	{
+		return NeedsFuel(ship) || NeedsEnergy(ship);
 	}
 
 	bool CanBoard(const Ship &ship, const Ship &target)
@@ -117,6 +130,25 @@ namespace {
 		return true;
 	}
 
+	bool EscortsReadyToLand(const Ship &ship)
+	{
+		bool shipIsYours = ship.IsYours();
+		const Government *gov = ship.GetGovernment();
+		for(const weak_ptr<Ship> &ptr : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> escort = ptr.lock();
+			// Skip escorts which are not player-owned and not escort mission NPCs.
+			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort()
+				|| gov->IsEnemy(escort->GetGovernment()))))
+				continue;
+			if(escort->IsDisabled())
+				continue;
+			if(escort->GetTargetStellar() == ship.GetTargetStellar() && !escort->CanLand())
+				return false;
+		}
+		return true;
+	}
+
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
@@ -139,6 +171,36 @@ namespace {
 			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
 					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
+	}
+
+	// Helper function for selecting the ships for formation commands.
+	vector<Ship *> GetShipsForFormationCommand(const PlayerInfo &player)
+	{
+		// Figure out what ships we are giving orders to.
+		vector<Ship *> targetShips;
+		auto &selectedShips = player.SelectedShips();
+		// If selectedShips is empty, this applies to the whole fleet.
+		if(selectedShips.empty())
+		{
+			auto &playerShips = player.Ships();
+			targetShips.reserve(playerShips.size() - 1);
+			for(const shared_ptr<Ship> &it : player.Ships())
+				if(it.get() != player.Flagship() && !it->IsParked()
+						&& !it->IsDestroyed() && !it->IsDisabled())
+					targetShips.push_back(it.get());
+		}
+		else
+		{
+			targetShips.reserve(selectedShips.size());
+			for(const weak_ptr<Ship> &it : selectedShips)
+			{
+				shared_ptr<Ship> ship = it.lock();
+				if(ship)
+					targetShips.push_back(ship.get());
+			}
+		}
+
+		return targetShips;
 	}
 
 	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
@@ -311,6 +373,72 @@ AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 
 
 // Fleet commands from the player.
+void AI::IssueFormationChange(PlayerInfo &player)
+{
+	// Figure out what ships we are giving orders to
+	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
+	if(targetShips.empty())
+		return;
+
+	const auto &formationPatterns = GameData::Formations();
+	if(formationPatterns.empty())
+	{
+		Messages::Add("No formations available.", Messages::Importance::High);
+		return;
+	}
+
+	// First check which and how many formation patterns we have in the current set of selected ships.
+	// If there is more than 1 pattern in the selection, then this command will change all selected
+	// ships to use the pattern that was found first. If there is only 1 pattern, then this command
+	// will change all selected ships to use the next pattern available.
+	const FormationPattern *toSet = nullptr;
+	bool multiplePatternsSet = false;
+	for(Ship *ship : targetShips)
+	{
+		const FormationPattern *shipsPattern = ship->GetFormationPattern();
+		if(shipsPattern)
+		{
+			if(!toSet)
+				toSet = shipsPattern;
+			else if(toSet != shipsPattern)
+			{
+				multiplePatternsSet = true;
+				break;
+			}
+		}
+	}
+
+	// Now determine what formation pattern to set.
+	if(!toSet)
+		// If no pattern was set at all, then we set the first one from the set of formationPatterns.
+		toSet = &(formationPatterns.begin()->second);
+	else if(!multiplePatternsSet)
+	{
+		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
+		auto it = formationPatterns.find(toSet->Name());
+		if(it != formationPatterns.end())
+			++it;
+		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
+	}
+	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
+	// No code is needed here for this option, since all variables are already set to just apply the change below.
+
+	// Now set the pattern on the selected ships, and tell them to gather.
+	for(Ship *ship : targetShips)
+	{
+		ship->SetFormationPattern(toSet);
+		orders[ship].type = Orders::GATHER;
+		orders[ship].target = player.FlagshipPtr();
+	}
+
+	unsigned int count = targetShips.size();
+	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
+	message += toSet ? ("assume \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
+	Messages::Add(message, Messages::Importance::Low);
+}
+
+
+
 void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 {
 	Orders newOrders;
@@ -396,23 +524,28 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(Command::DEPLOY))
 		IssueDeploy(player);
 
+	// The gather command controls formation flying when combined with shift.
+	const bool shift = activeCommands.Has(Command::SHIFT);
+	if(shift && activeCommands.Has(Command::GATHER))
+		IssueFormationChange(player);
+
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
+	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours() && !shift)
 	{
 		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
 		newOrders.target = target;
 		IssueOrders(newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
-	else if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
+	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
-	if(activeCommands.Has(Command::HOLD))
+	if(activeCommands.Has(Command::HOLD) && !shift)
 	{
 		newOrders.type = Orders::HOLD_POSITION;
 		IssueOrders(newOrders, "holding position.");
 	}
-	if(activeCommands.Has(Command::GATHER))
+	if(activeCommands.Has(Command::GATHER) && !shift)
 	{
 		newOrders.type = Orders::GATHER;
 		newOrders.target = player.FlagshipPtr();
@@ -491,6 +624,7 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 // the player has entered a new one.
 void AI::Clean()
 {
+	// Records of what various AI ships and factions have done.
 	actions.clear();
 	notoriety.clear();
 	governmentActions.clear();
@@ -505,6 +639,9 @@ void AI::Clean()
 	miningRadius.clear();
 	miningTime.clear();
 	appeasementThreshold.clear();
+	// Records for formations flying around lead ships and other objects.
+	formations.clear();
+	// Records that affect the combat behavior of various governments.
 	shipStrength.clear();
 	enemyStrength.clear();
 	allyStrength.clear();
@@ -550,6 +687,12 @@ void AI::Step(Command &activeCommands)
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
 	}
+
+	// Allow all formation-positioners to handle their internal administration to
+	// prepare for the next cycle.
+	for(auto &bodyIt : formations)
+		for(auto &positionerIt : bodyIt.second)
+			positionerIt.second.Step();
 
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -677,7 +820,7 @@ void AI::Step(Command &activeCommands)
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
-					(personality.Disables() || (target->CanBeCarried() && !personality.IsVindictive())))
+					(personality.Disables() || (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
@@ -758,7 +901,7 @@ void AI::Step(Command &activeCommands)
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
 					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
-					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel()))
+					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel() && !shipToAssist->NeedsEnergy()))
 			{
 				shipToAssist.reset();
 				it->SetShipToAssist(nullptr);
@@ -791,7 +934,7 @@ void AI::Step(Command &activeCommands)
 
 		// Stranded ships that have a helper need to stop and be assisted.
 		bool strandedWithHelper = isStranded &&
-			(HasHelper(*it, isStranded) || it->GetPersonality().IsDerelict() || it->IsYours());
+			(HasHelper(*it, NeedsFuel(*it), NeedsEnergy(*it)) || it->GetPersonality().IsDerelict() || it->IsYours());
 
 		// Behave in accordance with personality traits.
 		if(isPresent && personality.IsSwarming() && !strandedWithHelper)
@@ -1146,7 +1289,9 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 // Check if the ship is being helped, and if not, ask for help.
 void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 {
-	if(HasHelper(ship, isStranded))
+	bool needsFuel = NeedsFuel(ship);
+	bool needsEnergy = NeedsEnergy(ship);
+	if(HasHelper(ship, needsFuel, needsEnergy))
 		isStranded = true;
 	else if(!Random::Int(30))
 	{
@@ -1196,7 +1341,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			}
 
 			// Check if this ship is physically able to help.
-			if(!CanHelp(ship, *helper, isStranded))
+			if(!CanHelp(ship, *helper, needsFuel, needsEnergy))
 				continue;
 
 			// Prefer fast ships over slow ones.
@@ -1220,7 +1365,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 
 
 // Determine if the selected ship is physically able to render assistance.
-bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const
+bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, const bool needsEnergy) const
 {
 	// A ship being assisted cannot assist.
 	if(helperList.find(&helper) != helperList.end())
@@ -1237,8 +1382,8 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) con
 			|| (ship.IsDisabled() && helper.GetGovernment() != ship.GetGovernment()))
 		return false;
 
-	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
-	if(!ship.IsDisabled() && needsFuel && !helper.CanRefuel(ship))
+	// If the helper has insufficient fuel or energy, it cannot help this ship unless this ship is also disabled.
+	if(!ship.IsDisabled() && ((needsFuel && !helper.CanRefuel(ship)) || (needsEnergy && !helper.CanGiveEnergy(ship))))
 		return false;
 
 	return true;
@@ -1246,13 +1391,13 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) con
 
 
 
-bool AI::HasHelper(const Ship &ship, const bool needsFuel)
+bool AI::HasHelper(const Ship &ship, const bool needsFuel, const bool needsEnergy)
 {
 	// Do we have an existing ship that was asked to assist?
 	if(helperList.find(&ship) != helperList.end())
 	{
 		shared_ptr<Ship> helper = helperList[&ship].lock();
-		if(helper && helper->GetShipToAssist().get() == &ship && CanHelp(ship, *helper, needsFuel))
+		if(helper && helper->GetShipToAssist().get() == &ship && CanHelp(ship, *helper, needsFuel, needsEnergy))
 			return true;
 		else
 			helperList.erase(&ship);
@@ -1522,7 +1667,8 @@ vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double max
 
 
 
-bool AI::FollowOrders(Ship &ship, Command &command) const
+// TODO: This should be const when ships are not added and removed from formations in MoveInFormation
+bool AI::FollowOrders(Ship &ship, Command &command)
 {
 	auto it = orders.find(&ship);
 	if(it == orders.end())
@@ -1530,9 +1676,12 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 
 	int type = it->second.type;
 
+	// Ships without an (alive) parent don't follow orders.
+	shared_ptr<Ship> parent = ship.GetParent();
+	if(!parent)
+		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
-	shared_ptr<Ship> parent = ship.GetParent();
 	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && type != Orders::MOVE_TO)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
@@ -1596,11 +1745,54 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	else if(type == Orders::KEEP_STATION)
 		KeepStation(ship, command, *target);
 	else if(type == Orders::GATHER)
-		CircleAround(ship, command, *target);
+	{
+		if(ship.GetFormationPattern())
+			MoveInFormation(ship, command);
+		else
+			CircleAround(ship, command, *target);
+	}
 	else
 		MoveIndependent(ship, command);
 
 	return true;
+}
+
+
+
+void AI::MoveInFormation(Ship &ship, Command &command)
+{
+	shared_ptr<Ship> parent = ship.GetParent();
+	if(!parent)
+		return;
+
+	const Body *formationLead = parent.get();
+	const FormationPattern *pattern = ship.GetFormationPattern();
+
+	// First we retrieve the patterns that are formed around the parent.
+	auto &patterns = formations[formationLead];
+
+	// Find the existing FormationPositioner for the pattern, or add one if none exists yet.
+	auto insert = patterns.emplace(piecewise_construct,
+		forward_as_tuple(pattern),
+		forward_as_tuple(formationLead, pattern));
+
+	// Set an iterator to point to the just found or emplaced value.
+	auto it = insert.first;
+
+	// Aggressively try to match the position and velocity for the formation position.
+	const double POSITION_DEADBAND = ship.Radius() * 1.25;
+	constexpr double VELOCITY_DEADBAND = .1;
+	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), POSITION_DEADBAND,
+		VELOCITY_DEADBAND);
+
+	// If we match the position and velocity, then also match the facing angle within some limits.
+	constexpr double FACING_TOLERANCE_DEGREES = 3;
+	if(inPosition)
+	{
+		double facingDeltaDegrees = (formationLead->Facing() - ship.Facing()).Degrees();
+		if(abs(facingDeltaDegrees) > FACING_TOLERANCE_DEGREES)
+			command.SetTurn(facingDeltaDegrees);
+	}
 }
 
 
@@ -1822,7 +2014,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-void AI::MoveEscort(Ship &ship, Command &command) const
+// TODO: Function should be const, but formation flying needed write access to the FormationPositioner.
+void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();
 	const System *currentSystem = ship.GetSystem();
@@ -1960,11 +2153,15 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				// This ship has no route to the parent's destination system, so protect it until it jumps away.
 				KeepStation(ship, command, parent);
 		}
+		else if(ship.GetFormationPattern())
+			MoveInFormation(ship, command);
 		else
 			KeepStation(ship, command, parent);
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
+	else if(ship.GetFormationPattern())
+		MoveInFormation(ship, command);
 	else
 		KeepStation(ship, command, parent);
 }
@@ -3669,6 +3866,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			// Merciful ships let fleeing ships go.
 			if(target->IsFleeing() && person.IsMerciful())
 				continue;
+			// Don't hit ships that cannot be hit without targeting
+			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
+				continue;
 
 			Point p = target->Position() - start;
 			Point v = target->Velocity();
@@ -4441,6 +4641,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && isWormhole))
 	{
+		if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToLand(ship)))
+			command |= Command::WAIT;
+
 		if(ship.GetPlanet())
 			autoPilot.Clear(Command::LAND | Command::JUMP | Command::FLEET_JUMP);
 		else
@@ -4674,7 +4877,6 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 		}
 		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";
 	}
-	// This should never happen, but just in case:
 	if(ships.empty())
 		return;
 

@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "Flotsam.h"
 #include "text/Format.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Government.h"
@@ -575,6 +576,8 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "formation" && child.Size() >= 2)
+			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "remove" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "bays")
@@ -1005,6 +1008,12 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			for(const auto &it : baseAttributes.CargoScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("cargo scan sound", it.first->Name());
+			for(const auto &it : baseAttributes.OutfitScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("outfit scan sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1141,7 +1150,8 @@ void Ship::Save(DataWriter &out) const
 			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
 		});
-
+		if(formationPattern)
+			out.Write("formation", formationPattern->Name());
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
 		else
@@ -1327,7 +1337,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar && !consuming)
+		if(energy <= battery)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -1810,6 +1820,13 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
+		// Transfer some energy, if needed.
+		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
+		{
+			helped = true;
+			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
+			TransferEnergy(max(200., toGive), victim.get());
+		}
 		if(helped)
 		{
 			pilotError = 120;
@@ -1821,8 +1838,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		return shared_ptr<Ship>();
 
 	// If the boarding ship is the player, they will choose what to plunder.
-	// Always take fuel if you can.
+	// Always take fuel and energy if you can.
 	victim->TransferFuel(victim->fuel, this);
+	victim->TransferEnergy(victim->energy, this);
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -1887,8 +1905,8 @@ int Ship::Scan(const PlayerInfo &player)
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
-	bool activeScanning = false;
-	int result = 0;
+	int activeScanning = ShipEvent::NONE;
+	int result = ShipEvent::NONE;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
@@ -1900,7 +1918,7 @@ int Ship::Scan(const PlayerInfo &player)
 			return;
 
 		startedScanning |= !elapsed;
-		activeScanning = true;
+		activeScanning |= event;
 
 		// Total scan time is:
 		// Proportional to e^(0.5 * (distance / range)^2),
@@ -1933,8 +1951,21 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	if(isYours || (target->isYours && activeScanning))
-		Audio::Play(Audio::Get("scan"), Position());
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	{
+		if(sounds.empty())
+			Audio::Play(Audio::Get("scan"), position);
+		else
+			for(const auto &sound : sounds)
+				Audio::Play(sound.first, position);
+	};
+	if(isYours || (target->isYours))
+	{
+		if(activeScanning & ShipEvent::SCAN_CARGO)
+			playScanSounds(attributes.CargoScanSounds(), position);
+		if(activeScanning & ShipEvent::SCAN_OUTFITS)
+			playScanSounds(attributes.OutfitScanSounds(), position);
+	}
 
 	bool isImportant = false;
 	if(target->isYours)
@@ -2115,7 +2146,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return pullVector;
-		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(GetParent() && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return pullVector;
 	}
 
@@ -2230,6 +2261,9 @@ bool Ship::CanLand() const
 		return false;
 
 	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
+		return false;
+
+	if(commands.Has(Command::WAIT))
 		return false;
 
 	Point distance = GetTargetStellar()->Position() - position;
@@ -2583,6 +2617,14 @@ bool Ship::CanRefuel(const Ship &other) const
 
 
 
+bool Ship::CanGiveEnergy(const Ship &other) const
+{
+	double toGive = min(other.attributes.Get("energy capacity"), max(200., other.attributes.Get("energy capacity") * 0.2));
+	return energy >= 2 * toGive;
+}
+
+
+
 double Ship::TransferFuel(double amount, Ship *to)
 {
 	amount = max(fuel - attributes.Get("fuel capacity"), amount);
@@ -2592,6 +2634,20 @@ double Ship::TransferFuel(double amount, Ship *to)
 		to->fuel += amount;
 	}
 	fuel -= amount;
+	return amount;
+}
+
+
+
+double Ship::TransferEnergy(double amount, Ship *to)
+{
+	amount = max(energy - attributes.Get("energy capacity"), amount);
+	if(to)
+	{
+		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		to->energy += amount;
+	}
+	energy -= amount;
 	return amount;
 }
 
@@ -2872,6 +2928,14 @@ bool Ship::NeedsFuel(bool followParent) const
 	if(!jumpFuel)
 		jumpFuel = navigation.JumpFuel(targetSystem);
 	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
+}
+
+
+
+bool Ship::NeedsEnergy() const
+{
+	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
+			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
 }
 
 
@@ -3180,7 +3244,13 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
 	if(!wasDestroyed && IsDestroyed())
+	{
 		type |= ShipEvent::DESTROY;
+
+		if(IsYours())
+			Messages::Add("Your " + DisplayModelName() +
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
@@ -3700,6 +3770,13 @@ const set<const Flotsam *> &Ship::GetTractorFlotsam() const
 
 
 
+const FormationPattern *Ship::GetFormationPattern() const
+{
+	return formationPattern;
+}
+
+
+
 void Ship::SetFleeing(bool fleeing)
 {
 	isFleeing = fleeing;
@@ -3768,6 +3845,13 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 	parent = ship;
 	if(ship)
 		ship->AddEscort(*this);
+}
+
+
+
+void Ship::SetFormationPattern(const FormationPattern *formationToSet)
+{
+	formationPattern = formationToSet;
 }
 
 
@@ -3850,10 +3934,6 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	// Once we've created enough little explosions, die.
 	if(explosionCount == explosionTotal || forget)
 	{
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
-
 		if(!forget)
 		{
 			const Effect *effect = GameData::Effects().Get("smoke");
@@ -4600,13 +4680,13 @@ void Ship::StepPilot()
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
+		if(isYours || personality.IsEscort())
 		{
-			if(parent.lock())
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
-			else
+			if(!parent.lock())
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+					, Messages::Importance::Low);
+			else if(Preferences::Has("Extra fleet status messages"))
+				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}

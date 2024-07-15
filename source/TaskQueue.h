@@ -57,7 +57,7 @@ public:
 	TaskQueue &operator=(const TaskQueue &) = delete;
 	~TaskQueue();
 
-	// Queue a function to execute in parallel, with an another optional function that
+	// Queue a function to execute in parallel, with another optional function that
 	// will get executed on the main thread after the first function finishes.
 	// Returns a future representing the future result of the async call. Ignores
 	// any main thread task that still need to be executed!

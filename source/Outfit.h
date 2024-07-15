@@ -100,6 +100,9 @@ public:
 	const std::map<const Sound *, int> &JumpSounds() const;
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
+	// Get this outfit's scan sounds, if any.
+	const std::map<const Sound *, int> &CargoScanSounds() const;
+	const std::map<const Sound *, int> &OutfitScanSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
@@ -145,6 +148,8 @@ private:
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
+	std::map<const Sound *, int> cargoScanSounds;
+	std::map<const Sound *, int> outfitScanSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 

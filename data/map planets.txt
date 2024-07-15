@@ -80,6 +80,7 @@ planet Albatross
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -20
 	security 0
@@ -377,6 +378,7 @@ planet Bloodsea
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
@@ -504,6 +506,8 @@ planet "Buccaneer Bay"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	security 0
 	tribute 800
@@ -792,6 +796,8 @@ planet Covert
 	shipyard "Core Pirates"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	"required reputation" 10
 	bribe 0.1
@@ -901,6 +907,7 @@ planet "Deadman's Cove"
 	spaceport `Your ship is on a landing pad only a few meters above the pounding surf, and you can't help worrying about what might happen if the tide rises any higher. If nothing else, the salt water is bound to corrode your hull if you stay here too long. You make your way to a bar where a cage hanging from the ceiling holds an actual parrot. After trying for a while to get it to talk to you, you realize that it is dead, stuffed and nailed to its perch.`
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.03
 	security 0
@@ -1650,6 +1657,8 @@ planet Freedom
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
 	tribute 500
@@ -1687,6 +1696,7 @@ planet Gagarin
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.07
 	security 0
@@ -1706,7 +1716,7 @@ planet "Garden Empyreal"
 	attributes "coalition station" kimek shipping tourism wealthy
 	landscape land/clouds_03
 	description `Not including the trio of Quarg ringworlds, this is the largest megastructure in Coalition space. Arrays of gigantic metal pyramids lay at every angle, each nearly a dozen times larger than the average space station. Spread out over the planet's upper atmosphere, these so-called "hubs" are connected by long, inextensible, and extremely sturdy wires, ensuring no part of the structure is destabilized.`
-	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
+	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently, about two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
 	spaceport `When not in "harvest season," the hubs are relatively quiet, and serve mostly as a tourist destination. Many come for the unique, close-up view of a sea of clouds, swarming with furious storms and dotted with more of the silver pyramids in the distance.`
 	spaceport `	Each hub shares the same overall design in general, but the decoration pieces, services, and local amenities for each one have grown in their own way over the centuries. The only common thing they have between all of them is the signature restaurant, which serves a variety of dishes, drinks, and even desserts all based on the processed, scooped up produce.`
 	"required reputation" 20
@@ -1915,6 +1925,8 @@ planet Greenrock
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
 	bribe 0.05
@@ -2029,6 +2041,8 @@ planet Haven
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "Northern Explorers"
 	bribe 0.03
@@ -2342,6 +2356,8 @@ planet Jakobsen
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Ammo South"
 	security 0
 	tribute 300
@@ -2467,6 +2483,9 @@ planet "Kort Kehai"
 	spaceport `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
 	"required reputation" 2
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 3
 
 planet "Kort Vek'kri"
 	attributes wanderer
@@ -2475,6 +2494,9 @@ planet "Kort Vek'kri"
 	spaceport `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
 	"required reputation" 2
 	bribe 0
+	tribute 500
+		threshold 2000
+		fleet "Wanderer Defense" 4
 
 planet "Kraken Station"
 	attributes "near earth" station
@@ -2927,6 +2949,8 @@ planet Mordente-Bridi
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
 	bribe 0.08
@@ -3215,6 +3239,8 @@ planet "New Tortuga"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
@@ -3593,6 +3619,7 @@ planet Pugglemug
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
 	spaceport `The primary spaceport here is marked by an enormous collection of arches forming an open-air dome. Based on the power cables and devices attached to the sides of the arches, you suspect that the entire dome can be protected by an energy shield if necessary. Inside it, landing platforms jut out from the arches at many different levels.`
 	"required reputation" 2
+	"bribe" 0
 	security 1
 
 planet Pugglequat
@@ -3600,6 +3627,7 @@ planet Pugglequat
 	description `This planet has a handful of Pug cities on it, full of tall, graceful spires and arches. However, most of the land area is either left in its natural state, or in use for mining; it seems to abound in both oil reserves and metal ore. The climate is somewhat cold by human standards, but still quite livable. You are not sure if that is because the Pug were just lucky enough to have a star system with two hospitable planets, or whether they have employed some sort of terraforming.`
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
+	"bribe" 0
 	security 1
 
 planet Pyriphlegethon
@@ -4235,6 +4263,8 @@ planet "Smuggler's Den"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
 	bribe 0.06
@@ -4382,6 +4412,8 @@ planet Stormhold
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	bribe 0.03
 	security 0
@@ -4546,6 +4578,8 @@ planet Thule
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	bribe 0.05
 	security 0.6
@@ -4576,10 +4610,13 @@ planet "Tik Klai"
 	attributes research wanderer
 	landscape land/badlands2
 	description `This world is uncomfortably hot, even for the Wanderers, and so close to its star that the surface is bathed in dangerous levels of ultraviolet light. The few Wanderer installations here are buried underground, with only a few access hatches and storage buildings on the surface.`
-	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
+	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the Wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
 	spaceport `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
 	"required reputation" 35
 	bribe 0
+	tribute 600
+		threshold 3500
+		fleet "Wanderer Defense" 4
 
 planet Tinker
 	attributes factory mining "near earth"
@@ -4637,6 +4674,7 @@ planet Trinket
 	outfitter "Kraz Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.02
 	security 0.4
@@ -4801,6 +4839,9 @@ planet "Var' Kar'i'i"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 1700
+		threshold 5000
+		fleet "Wanderer Defense" 7
 
 planet "Var' Kayi"
 	attributes urban wanderer
@@ -4812,6 +4853,9 @@ planet "Var' Kayi"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 4500
+		threshold 12500
+		fleet "Wanderer Defense" 12
 
 planet "Var' Roi"
 	attributes frozen moon research wanderer
@@ -4820,6 +4864,9 @@ planet "Var' Roi"
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
 	"required reputation" 25
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 4
 
 planet "Vara K'chrai"
 	attributes urban wanderer
@@ -4830,6 +4877,9 @@ planet "Vara K'chrai"
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
 	bribe 0
+	tribute 8000
+		threshold 14000
+		fleet "Wanderer Defense" 17
 
 planet "Vara Ke'sok"
 	attributes fishing wanderer
@@ -4838,6 +4888,9 @@ planet "Vara Ke'sok"
 	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
 	"required reputation" 5
 	bribe 0
+	tribute 500
+		threshold 2500
+		fleet "Wanderer Defense" 4
 
 planet "Vara Ke'stai"
 	attributes farming wanderer
@@ -4847,6 +4900,9 @@ planet "Vara Ke'stai"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 650
+		threshold 4300
+		fleet "Wanderer Defense" 3
 
 planet "Vara Kehi'ki"
 	attributes farming research wanderer
@@ -4856,6 +4912,9 @@ planet "Vara Kehi'ki"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 900
+		threshold 3500
+		fleet "Wanderer Defense" 5
 
 planet "Vara Pug"
 	attributes pug
@@ -4876,6 +4935,9 @@ planet "Vara Rakak"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 2300
+		threshold 6500
+		fleet "Wanderer Defense" 5
 
 planet "Varu Ek'lak'lai"
 	attributes mining wanderer
@@ -4886,6 +4948,9 @@ planet "Varu Ek'lak'lai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 1300
+		threshold 3400
+		fleet "Wanderer Defense" 4
 
 planet "Varu K'est"
 	attributes military wanderer
@@ -4896,6 +4961,9 @@ planet "Varu K'est"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 5500
+		fleet "Wanderer Defense" 16
 
 planet "Varu K'prai"
 	attributes oil wanderer
@@ -4905,6 +4973,10 @@ planet "Varu K'prai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 800
+		threshold 1800
+		fleet "Wanderer Defense" 2
+		fleet "Wanderer Freight" 4
 
 planet "Varu Mer'ek"
 	attributes factory wanderer
@@ -4915,6 +4987,9 @@ planet "Varu Mer'ek"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 3200
+		fleet "Wanderer Defense" 3
 
 planet "Varu Tek'kai"
 	attributes factory moon wanderer
@@ -4924,6 +4999,9 @@ planet "Varu Tek'kai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 200
+		threshold 1700
+		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
 	attributes factory wanderer
@@ -4933,6 +5011,9 @@ planet "Varu Tev'kei"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 500
+		threshold 1950
+		fleet "Wanderer Defense" 5
 
 planet Vatican
 	attributes lava uninhabited
@@ -5216,6 +5297,8 @@ planet Zenith
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous concrete fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	bribe 0.04
 	security 0
 	tribute 400
