@@ -1260,7 +1260,7 @@ ship "Peregrine"
 		"tactical scan power" 50
 		"ion resistance" .25
 		"ion resistance energy" -0.125
-		"scrambling resistance" .15
+		"scrambling resistance" .25
 		"scrambling resistance energy" -0.125
 		"slowing protection" 0.25
 		"remnant node" 5
