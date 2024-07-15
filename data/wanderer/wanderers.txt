@@ -842,7 +842,7 @@ event "wanderers: unfettered invasion starts"
 	planet "Varu Mer'ek"
 		add attributes "evacuation"
 
-event "wanderers: unfettered invadion starts: facilities available"
+event "wanderers: unfettered invasion starts: facilities available"
 	planet "Varu Tev'kei"
 		add outfitter "Wanderer Basics"
 		spaceport "It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the buildings here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface."
