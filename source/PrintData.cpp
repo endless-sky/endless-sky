@@ -149,7 +149,7 @@ namespace {
 				<< DataWriter::Quote("cargo space") << ',' << "fuel" << ',' << DataWriter::Quote("outfit space") << ','
 				<< DataWriter::Quote("weapon capacity") << ',' << DataWriter::Quote("engine capacity") << ','
 				<< DataWriter::Quote("engine mod space") << ',' << DataWriter::Quote("reverse thruster slot") << ','
-				<< DataWriter::Quote("steering slot") << ',' << DataWriter::Quote("thruster slot") << ',' 
+				<< DataWriter::Quote("steering slot") << ',' << DataWriter::Quote("thruster slot") << ','
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << '\n';
 
@@ -208,9 +208,9 @@ namespace {
 			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ',' << "hull" << ',' << "mass" << ','
 				<< DataWriter::Quote("required crew") << ',' << "bunks" << ',' << DataWriter::Quote("cargo space") << ','
 				<< "fuel" << ',' << DataWriter::Quote("outfit space") << ',' << DataWriter::Quote("weapon capacity") << ','
-				<< DataWriter::Quote("engine capacity") << ',' << DataWriter:Quote("engine mod space") << ','
-				<< DataWriter:Quote("reverse thruster slot") << ',' << DataWriter:Quote("steering slot") << ','
-				<< DataWriter:Quote("thruster slot") << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
+				<< DataWriter::Quote("engine capacity") << ',' << DataWriter::Quote("engine mod space") << ','
+				<< DataWriter::Quote("reverse thruster slot") << ',' << DataWriter::Quote("steering slot") << ','
+				<< DataWriter::Quote("thruster slot") << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 				<< DataWriter::Quote("energy generation") << ',' << DataWriter::Quote("max energy usage") << ','
 				<< DataWriter::Quote("energy capacity") << ',' << DataWriter::Quote("idle/max heat") << ','
 				<< DataWriter::Quote("max heat generation") << ',' << DataWriter::Quote("max heat dissipation") << ','
