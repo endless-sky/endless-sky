@@ -3545,7 +3545,7 @@ planet "Pon'tes"
 	description "Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
 	description "Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways."
 	spaceport "The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
-	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. In an small area separated from the rest there is a constant buzzing of small transport ships transporting civilians in both directions."
+	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. In a small area separated from the rest there is a constant buzzing of small transport ships transporting civilians in both directions."
 
 planet Poseidos
 	attributes fishing rim
