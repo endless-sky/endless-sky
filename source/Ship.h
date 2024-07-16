@@ -301,7 +301,7 @@ public:
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 
-	// Make a ship disabled or destroyed, orVelocity bring back a destroyed ship.
+	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
 	void Destroy();
 	void SelfDestruct();
