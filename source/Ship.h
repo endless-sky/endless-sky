@@ -174,6 +174,7 @@ public:
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -300,7 +301,7 @@ public:
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 
-	// Make a ship disabled or destroyed, or bring back a destroyed ship.
+	// Make a ship disabled or destroyed, orVelocity bring back a destroyed ship.
 	void Disable();
 	void Destroy();
 	void SelfDestruct();

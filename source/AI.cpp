@@ -1792,6 +1792,16 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 		double facingDeltaDegrees = (formationLead->Facing() - ship.Facing()).Degrees();
 		if(abs(facingDeltaDegrees) > FACING_TOLERANCE_DEGREES)
 			command.SetTurn(facingDeltaDegrees);
+
+		// If the position and velocity matches, smoothly "snap" to position over multiple frames.
+		Point positionDelta = it->second.Position(&ship) - ship.Position();
+		Point snapMovement = positionDelta.LengthSquared() < 4. ? positionDelta : positionDelta.Unit() * 2;
+		ship.SetPosition(ship.Position() + snapMovement);
+
+		Point velocityDelta = formationLead->Velocity() - ship.Velocity();
+		Point snapAcceleration = velocityDelta.LengthSquared() < 4. ? velocityDelta : velocityDelta.Unit() * 2;
+		if((ship.Velocity() + snapAcceleration).LengthSquared() <= ship.MaxVelocity())
+			ship.SetVelocity(ship.Velocity() + snapAcceleration);
 	}
 }
 
