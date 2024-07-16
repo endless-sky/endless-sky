@@ -2720,6 +2720,8 @@ Files:
  images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/hardpoint/tractor?beam*
+ images/label/gegno*
+ images/label/umbral*
  images/outfit/acuit*
  images/outfit/acumen*
  images/outfit/ameliorate?cell*
