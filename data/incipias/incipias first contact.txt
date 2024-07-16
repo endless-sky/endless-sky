@@ -11,17 +11,17 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Incipias: Guardian of Incipias Space"
+mission "Drak guarding Incipias Space"
 	invisible
 	landing
 	repeat
 	to offer
-		not "Incipias: Guardian of Incipias Space: active"
+		not "Drak guarding Incipias space: active"
 	to complete
 		never
 	npc save
 		government "Drak (Incipias)"
-		personality heroic vindictive frugal forbearing
+		personality forbearing frugal heroic vindictive
 		system Il'le
 		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
 
@@ -130,19 +130,19 @@ mission "Visit Quarg in Incipias Space"
 			`	"Welcome, human. Your lengthy wanderings have brought forth you here, yet your kind has never set foot in this region of the stars. May we inquire as to your mission?"`
 			choice
 				`	"I am just exploring the galaxy."`
-					goto "explorer"
+					goto explorer
 				`	"I am looking for new species."`
 					goto "new species"
-			label "explorer"
+			label explorer
 			`	"It is an obvious pursuit for the young," it nods. "If I may advise you, do not perambulate across this quarter of space in a careless manner. The galaxy carries many perilous situations that your kind has yet to uncover or even to comprehend." It straightens up to its full height, towering over you.`
-				goto "end"
+				goto end
 			label "new species"
 			`	"What a peculiar task that is." It looks confused and tilts its head. "What do you hope to achieve by this? That an unfathomable amount of dangers come with encountering and treating with other species, did you not foresee? The boundaries of space are not idle accidents. I advise you to be scrupulous and ponder every last step."`
-			label "end"
+			label end
 			`	After a short pause it continues talking; you notice an almost-hidden frustration lurking beneath the Quarg's face. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon another kind has initiated their journey to the stars. Do not interrupt them for your own sake, as we will avenge any hostile actions against them."`
 			`	With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
 
-# TODO: Maybe add a version of the ships sprite that looks damaged/modded.
+# TODO: Maybe add a version of the ship's sprite that looks damaged/modded.
 ship "Nimbus" "Nimbus FTL"
 	add attributes
 		"bunks" -25
@@ -186,12 +186,12 @@ mission "Incipias: The Derelict"
 				`	You drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look of one of the aliens: blue and yellow tones are mixing on their skin, but they are not taking any action.`
 				label end
 				`	As you fly away you see the engines of the ship slowly booting back up. Apparently they figured out how to use the repair equipment. Instead of leaving the system, however, the ship quietly disappears into the nearest gas giant.`
-				`	Back on the bridge your eyes fall on the scanner log that is still open on your screen. Notably this ship had no hyperdrive or anything similar installed; strange considering there is no inhabited planet in this system. Maybe you should talk to the Quarg and see if they can help.`
+				`	Back on the bridge your eyes fall on the scanner log that is still open on your screen. Notably this ship had no hyperdrive or anything similar installed; strange, considering there is no inhabited planet in this system. Maybe you should talk to the Quarg and see if they can help.`
 				action
 					set "incipias: helped the derelict"
 		personality
 			confusion 50
-			derelict uninterested staying
+			derelict staying uninterested
 	on enter "Hui'uc"
 		conversation
 			`On entering the system you find an alien spaceship disabled and badly damaged. There do not appear to be any other ships or inhabited planets in the system.`
@@ -277,7 +277,7 @@ mission "Incipias: Help The Stranded 1"
 			`	Along the message comes a small map of the station with the docking ports highlighted.`
 	on complete
 		conversation
-			`Thanks to the map you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
+			`Thanks to the map, you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
 			`	"Welcome, outer-being, to our capital. We are the Incipias."`
 			`	It stops as if awaiting an answer.`
 			choice
@@ -297,7 +297,7 @@ mission "Incipias: Help The Stranded 1"
 				goto end
 			label stranded
 			`	Another wave goes through the crowd, but this time you notice an overflow in green tones.`
-			`	"So they are still alive. We shall give you access to our ships, so that you may enter the air-planet they have took refuge in. Do note though that they can not jump between system-places, not like your own ship. We hope to question you more on another future-time.`
+			`	"So they are still alive. We shall give you access to our ships, so that you may enter the air-planet they have taken refuge in. Do note though that they cannot jump between system-places, not like your own ship. We hope to question you more on another future-time.`
 			label end
 			`	The five float away but the crowd continues staring at you, probably out of interest.`
 
@@ -336,11 +336,11 @@ mission "Incipias: Help The Stranded 2"
 			`	They seem to switch from a tense state to a surprised one.`
 			`	One of them starts pulsating, "You light our language? How surprising. We would not have survived another day here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now." The lack of emotion in the translator's voice is disconcerting given the content of the message.`
 			`	You tell them to come aboard, and you manage to launch your ship just before a storm hits the area.`
-				accept
+				launch
 	on complete
 		conversation
 			`When you land on the station your passengers thank you again and leave, probably to get some well-earned rest.`
-			`	As you step out of the <ship> an Incipias, its scales seem worn off and you notice intricate claw appendices around the end of its tentacles, approaches you. "Follow me outer-helper, before a crowd gathers. We would like to talk."`
+			`	As you step out of the <ship> an Incipias approaches you. Its scales seem worn off and you notice intricate claw appendices around the end of its tentacles. "Follow me, outer-helper, before a crowd gathers. We would like to talk."`
 			`	They guide you through the hallways so that you avoid larger groups and move only through horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
 			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
 			choice
