@@ -171,12 +171,18 @@ private:
 	static const int bottomPadding = 10;
 	// The overall padding height of the dialog, in pixels.
 	static const int verticalPadding = topPadding + bottomPadding;
+	// The width of the padding at the beginning of an input field.
+	static const int inputLeftPadding = 5;
 	// The width of the padding at the end of an input field.
-	static const int inputPadding = 10;
+	static const int inputRightPadding = 5;
+	// The overall padding width of an input field, in pixels.
+	static const int inputHorizontalPadding = inputLeftPadding + inputRightPadding;
 	// The height of the padding at the top of an input field.
 	static const int inputTopPadding = 2;
 	// The height of the padding at the bottom of an input field.
 	static const int inputBottomPadding = 2;
+	// The overall padding height of an input field, in pixels.
+	static const int inputVerticalPadding = inputTopPadding + inputBottomPadding;
 	// The height of an input field in pixels.
 	static const int inputHeight = 20;
 };

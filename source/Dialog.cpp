@@ -177,13 +177,13 @@ void Dialog::Draw()
 		FillShader::Fill(inputPos, Point(Width() - horizontalPadding, inputHeight), back);
 
 		Point stringPos(
-			inputPos.X() - (Width() - horizontalPadding) * .5 + 5.,
+			inputPos.X() - (Width() - horizontalPadding) * .5 + inputLeftPadding,
 			inputPos.Y() - .5 * font.Height());
-		const auto inputText = DisplayText(input, {Width() - horizontalPadding - inputPadding, Truncate::FRONT});
+		const auto inputText = DisplayText(input, {Width() - horizontalPadding - inputHorizontalPadding, Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + inputTopPadding, inputPos.Y());
-		FillShader::Fill(barPos, Point(1., inputHeight - inputTopPadding - inputBottomPadding), dim);
+		FillShader::Fill(barPos, Point(1., inputHeight - inputVerticalPadding), dim);
 	}
 }
 
