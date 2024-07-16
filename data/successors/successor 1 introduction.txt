@@ -418,22 +418,22 @@ mission "Successors: First Contact 3"
 				accept
 	on stopover
 		conversation
-			`Shortly after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a location for one of the old breeding grounds. When last our ships visited here, 'twas this location 'twere they noted most of the Kijran."`
+			`Shortly after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a place where once the beasts were bred. When last our vessels traveled here, 'twas this location were they noted many Kijran-Riitaa."`
 			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown, vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
 			branch retrieve-tranqs
 				or
 					has "outfit: Enforcer Riot Staff"
 					has "outfit: Pug Peacekeeping Staff"
-			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears several calls of the creatures, gentler than our ears would notice. We are fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest one lies to the west, about a hundred meters."`
+			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 				goto approach
 			label retrieve-tranqs
-			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage, along with a <tranq h2h long> as an improvised tranquilizer weapon. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears several calls of the creatures, gentler than our ears would notice. We are fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest one lies to the west, about a hundred meters."`
+			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage, along with a <tranq h2h long> as an improvised tranquilizer weapon. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 			label approach
 			choice
 				`	(Approach the location.)`
 					goto encounter
 				`	"You know a lot about tracking for a scholar."`
-			`	"Ah," Sieasej says, pausing for a moment. "A product of some training I've not used in many years. Perhaps Sioeora is as forward-thinking as they'd have us believe."`
+			`	"Ah," Sieasej says, pausing for a moment. "A product of some training I've not used in many years. Perhaps Sioeora's forward-thinking as much as they'd have us believe."`
 			label encounter
 			`	You make your way along one of the walkways to the west, brushing aside the enormous leaves of the overgrowing plants. Sieasej continues to wave their triangulation device in the air and quietly relays your progress; as you get closer, you hear a gentle scuffling that you realize precedes every detection by the device. After making your way through one particularly-dense wall of flora, you spot your target: a glassy-winged animal perched in a plant over the walkway's edge, probing the branch it stands on with long feelers extending from its head.`
 			choice
@@ -576,12 +576,12 @@ mission "Successors: First Contact 3"
 				goto released
 			action
 				set "Successors FC3: released kijra-pet"
-				set "Successors FC3: friend to animals" # Nonviolent capture AND released at first opportunity; planned for as req. for offering a future mission on this planet
+				set "Successors FC3: friend to animals" # Nonviolent capture AND released at first opportunity
 			label release-friends
 			`	You gently coax the animal off your arm and onto the ground in front of you, backing away from it slowly and shuffling to the side. It runs towards the larger two creatures, touching the tips of its feelers against theirs and trilling softly as before. After some time, it wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes, a longer, lower trill almost like a cat's purr.`
 				goto released
 			label successful
-			`	With the larger animals dispatched, you and Sieasej dash into your ship with your quarry safe in tow. The waves of color running over Sieasej's body slowly fade. "Well done, captain," they eventually say. "I'm sure Sioeora will be pleased."`
+			`	With the larger animals dispatched, you and Sieasej dash into your ship with your quarry safe in tow. The waves of color running over Sieasej's body slowly fade. "Well done, captain," they eventually say. "I'm sure Sioeora will be pleased with thee."`
 			`	While Sieasej returns to their cabin, you store the captured Kijra-riitaa in a spare animal-transport cargo container in the <ship>'s hold. It seems to dislike being caged, growling gently and pacing the container, kicking up bits of the straw inside.`
 			choice
 				`	(Leave it be.)`
@@ -604,22 +604,22 @@ mission "Successors: First Contact 3"
 			`	You open the container's door and coax the Kijra-riitaa out of your ship. It takes flight shortly after stepping outside, soon disappearing into a speck against the vast blue sky. With nothing left to do here, you make your preparations for takeoff so that you can at least return Sieasej to their people.`
 				goto end
 			label released
-			`	The waves of color running over Sieasej's body slowly fade once the animals are gone. "I confess I hadn't picked thee for such a tender soul, captain," they eventually say.`
+			`	The waves of color running over Sieasej's body slowly fade once the animals are gone. "I confess I hadn't picked thee for such a tender soul," they eventually say.`
 			choice
 				`	"I only did what I thought would get us back alive."`
 					goto backalive
 				`	"It wasn't right to hurt them."`
-			`	"Ah," they say. "We are fortunate they thought the same of us."`
+			`	"Ah," they say. "We are fortunate, then, they thought the same of us."`
 				goto released-2
 			label backalive
-			`	"Ah," they say. "Well I, for one, shall thank thee for thy prudence." After a delay, they add, "Even if Sioeora will not."`
+			`	"Ah," they say. "Well I, for one, shall thank thee for thy prudence." After a delay, they add, "Even if my noble house shall not."`
 			label released-2
-			`	Sieasej briefly waves their device in the air unsuccessfully. "Nonetheless," they say, "thine act of mercy entails us failure. Under threat, the adults shall surely shroud the larvae, and so it is now here. It seems we must return with empty arms." They briefly undulate in a manner similar to a laugh. "I do not think I'd take another chase like that again regardless."`
+			`	Sieasej briefly waves their device in the air unsuccessfully. "Nonetheless," they say, "thine act of mercy here entails us failure. Under threat, the adults shall surely shroud their issues, and so it is now here. It seems we must return with empty arms." They briefly undulate in a manner similar to a laugh. "I do not think I'd take another chase like that again regardless."`
 			`	The two of you return to the <ship> and make preparations for takeoff so that you can, at the very least, return Sieasej to their people.`
 			label end
 
 	on fail
-		dialog `You failed to return Sieasej to their people in time. If you wish to continue the Successors' story line, revert to a prior save.`
+		dialog `You failed to return Sieasej to their people in time. If you wish to continue the Successors' storyline, revert to a prior save.`
 		"reputation: House Sioeora" = -999
 		"reputation: Successor" = 0
 		"reputation: House Chydiyi" = 0
@@ -634,11 +634,11 @@ mission "Successors: First Contact 3"
 				"reputation: House Sioeora" = 0
 				event "successors: released kijra-pet wait" 32
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. You and Sieasej are given fewer escorts than before, and you can't help but wonder if the absence of your quarry is particularly conspicuous to them. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
-			`	"Hark, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast though brought the item of our desire?"`
+			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast though brought that item of our desiring?"`
 			choice
 				`	"No, I have not."`
 				`	"I was almost killed! I'm done doing your dirty work."`
-			`	A flash of black, ruffled skin passes over Riijaaora's body. Several of the other scions perform similar displays. "'Tis a shame, captain," they say. "If thou offers no utility to this House, then we see little point in retaining thee as an ally, much less rewarding thee for thy absent service. Trouble us no more, and begone." They turn around to face away from you, and the guards slowly peel away from the walls to escort you out. Sieasej remains watching until the door closes shut behind you.`
+			`	A flash of black, ruffled skin passes over Riijaaora's body. Several of the other scions perform similar displays. "'Tis a shame, captain," they say. "If thou can'st offer no utility to this House, then we see little point in retaining thee as an ally, much less rewarding thee for thy absent service. Trouble us no more, and begone." They turn around to face away from you, and the guards slowly peel away from the walls to escort you out. Sieasej remains watching until the door closes shut behind you.`
 			`	As you return to the landing pad, you notice that while your ship has been refueled, the pad itself is slowly being flooded in a none-too-subtle gesture that encourages you to leave.`
 				goto exit
 
@@ -656,17 +656,17 @@ mission "Successors: First Contact 3"
 				"reputation: People's Houses" += 10
 				log "Factions" "Successors" `The Successors are governed by a group of six High Houses who operate mostly independently from each other. The Houses are organized into two large alliances called the Old and New Houses, and cooperate in council with their allies and the other Houses in general.`
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before, who direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
-			`	"Hark, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou hast returned from thy hunt successful!"`
+			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou returns from thy hunt successful!"`
 			choice
 				`	"Yes, I have."`
 				`	"Of course."`
-			`	Riijaaora wriggles their body in what might be an expression of joy before they and the other scions splay their arms before you. "Thou hast done this House great service, captain," they say. "We would be proud to call thee 'ally,' and reward thee for thine usefulness." One of the military officers standing beside the scions moves towards you and gently takes the caged animal from your hands. It chirps quietly as you hand it over and the officer takes it out of the room.`
-			`	Riijaaora gestures to a small wooden pin affixed to the outer layer of their clothing. "We keep a number of these ancient translation devices, but very few for thine own tongue. 'Tis an art piece, commissioned many years past for a performance of thine own Shakespeare's Tempest so that our noble Predecessors could experience the work in its original form. 'Tis thy promised gift."`
+			`	Riijaaora wriggles their body in what might be an expression of joy before they and the other scions splay their arms before you. "Thou hast done this House great service, captain," they say. "We would be proud to call thee 'ally,' and reward thee for thine usefulness." One of the military officers standing beside the scions moves towards you and gently takes the caged animal from your hands. It chirps quietly as you hand it over.`
+			`	Riijaaora gestures to a small wooden pin affixed to the outer layer of their clothing. "We keep a number of these devices, full of sound and language, but very few for thine own tongue. This one... 'tis an art piece, issued many years past for a performance of thine own Shakespeare's Tempest so that our noble Predecessors could experience the work in its truest form. It is now thy promised gift."`
 			`	Riijaaora plucks the device from their outfit and offers it to you.`
 			choice
 				`	(Take it.)`
-			`	The device is made of carved wood, or at least something that appears like it, depicting in well-varnished grain a sailing ship washed against rocks. As you pin it on your jacket, the ship begins to gently rock in place. Riijaaora turns away from you to speak to Sieasej. "And think not, our fair citizen, that thy contributions shall go unrecognized. Thou shalt be rewarded, too, for thy part in this." Riijaaora gestures for another officer to escort them away, though not before Sieasej offers you a short splay of the arms in goodbye.`
-			`	An officer approaches you to offer you a data-sphere. "Within this," Riijaaora says, "is historical data for most of the worlds in our space. Combined with thy newfound ability of our speech, thou should'st find the navigation of our worlds and cities more revealing and fruitful than before. Thou shall'st be permitted to gaze upon our technologies and vessels. Should'st the prospect interest thee, we are sure that the other Houses in council would be amenable to offering thee purchase rights, provided thou displays thy beneficence and utility to them as well. There are many minor tasks needing completion in our space; no doubt assisting with these would help thee ingratiate thyself with the others as thou hast with us." Riijaaora wiggles. "'Tis all, unless thou hast more questions thou needeth us to resolve?"`
+			`	The device is made of carved wood, or at least something that appears like it, depicting in well-varnished grain a sailing ship washed against rocks. As you pin it on your jacket, the ship begins to gently rock in place. Riijaaora turns away from you to speak to Sieasej. "And think not, fair citizen, that thine own contributions shall go without recognition. Thou shalt be rewarded, too, for thy part in this." Riijaaora gestures for another officer to escort them away, though not before Sieasej offers you a short splay of the arms in goodbye.`
+			`	An officer approaches you to offer you a data-sphere. "Within this," Riijaaora says, "lies knowledge of the history of most worlds within our space. Combined with thy newfound skill of tongues, thou should'st find our worlds and cities more revealing to thy gaze and more fruitful for thine efforts. Thou shall'st be permitted to looks upon our creations and our vessels. Should'st the prospect interest thee, we're sure that the other Houses in their council would agree to extend thee purchase rights, provided thou displays to them thy beneficence and utility. There're many minor tasks which need completion on our worlds; no doubt thy prompt assistance would help in such ingratiation to the others." Riijaaora wiggles. "'Tis all, unless thou hast more questions thou needeth us t'resolve?"`
 			label questions
 			choice
 				`	"I have no questions."`
@@ -691,18 +691,18 @@ mission "Successors: First Contact 3"
 			label others
 			action
 				set "Successors: others"
-			`	Riijaaora's skin blotches with colors. "Surely not, we think. None would make so brazen an insult so as to endanger the vassal of another. Thou may'st travel 'tween our stars 'thout fear."`
+			`	Riijaaora's skin blotches with colors. "Surely not, we think. For none would make so bold a slight as t'endanger the vassal of another. Thou may'st travel 'tween our stars 'thout fear."`
 				goto questions
 			label animal
 			action
 				set "Successors: animal"
-			`	"'Tis none of thy concern, captain. Though, if thou fear'st cruelty on our part, let it be well known to thee that it shall be well-kept and preserved. Thou may'st quell thy doubtful heart."`
+			`	"'Tis none of thy concern, fair captain. Though, if thou fear'st cruelty on our part, know well thy gift shall be by us well-kept and well-preserved. Fear not for it, and quell thy doubtful heart."`
 				goto questions
 			label end
 			action
 				clear "Successors: animal"
 				clear "Successors: others"
-			`	"Good. We bid thee farewell, then, and good tidings." Riijaaora and the other scions turn around to face their backs towards you and the officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
+			`	"Good. We bid thee good farewells, then, and good tidings in thy travels." Riijaaora and the other scions turn around to face their backs towards you and the officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
 			label exit
 
 substitutions
@@ -780,12 +780,17 @@ mission "Successors: Kaatrij First Contact 1"
 				`	(Wait.)`
 				`	(Leave.)`
 					goto premature
+			`	Inside, a light on the cockpit control panel flashes as if your ship were being scanned, but there's nothing on the sensors, and the alert disappears almost immediately after it began. Soft thunderclaps from a distant storm startle the animals on the lake and they leap up into the air before gliding back down onto the water's surface some distance away.`
+			choice
+				`	(Wait.)`
+				`	(Leave.)`
+					goto premature
 			`	The minutes of the night wear on and, curious, you step out on your ship's boarding ramp to get a better view of your surroundings, to no avail, but you continue to wait. Eventually, after the night has worn on a little more, you hear the sound of water rushing; a small vehicle emerges from the lake and parks itself alongside your ship. A couple of Successors get out, one of whom approaches you.`
 			`	"Captain <first> <last>," they say. Their voice sounds strange, like their words are being carried from a great distance on the wind; the sounds ripple and bend as they speak them.`
 			choice
 				`	"That's right."`
 				`	"Who are you?"`
-			`	"Hmm. Good. I am an envoy of the noble scions of House Kaatrij. I attest this myself as Saajret, of Somber Sejra." Saajret's skin erups with green splashes as they say this. "Thy patience has been much appreciated." They splay their arms in the same manner as when you were first greeted by the Successors, and the two others behind them do so as well. "Ah," they continue, "but thou surely must be curious as to why we've called thee here. Thy actions, knowing or not, have benefitted this noble House, and we would be craven fools to fail to recognize that. Prithee understand thee, Raaqa-Uur-Kaav was our world, not Sioeora's. So too, the Kijran were never theirs to hold or grasp for."`
+			`	"Hmm. Good. I'm an envoy of the noble scions of House Kaatrij. I attest this myself as Saajret, of Somber Sejra." Saajret's skin erups with green splashes as they say this. "Thy lib'ral patience is well-appreciated." They splay their arms in the same manner as when you were first greeted by the Successors, and the two others behind them do so as well. "Ah," they continue, "but thou surely must be curious as to why we've called thee here. Thine actions, knowing or not, have benefitted this noble House, and 'twould be craven fools to fail to recognize that fact. Prithee understand thee now that Raaqa-Uur-Kaav was our world and not Sioeora's. So too, the Kijran, ours, were never theirs to hold or grasp for."`
 			choice
 				`	"So the Kijran belong to you?"`
 					goto kijran
@@ -820,35 +825,35 @@ mission "Successors: Kaatrij First Contact 1"
 			label kijran
 			action
 				set "Successors: kijran"
-			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran - Kiitaa and Khora alike - are our creations, genetically engineered as the hybrids of a dozen precursor species. Why was it that the life of our world endured while the life of the rest perished through radiative erosion? 'Twas the old House Kaatrij that strengthened their genomes against decay. That we were - had to leave them behind was one among many sorrows, and it is much better that thy quarry flies free than for another House to subject these children of ours to their whims.`
+			`	Saajret shivers with texture. "More than just 'belong to us,' 'tis true. The Kijran - Kiitaa and Khora alike - are our creations, bred and shaped as the hybrids of a dozen strains. Why was it that the life of our world endured while the life of the rest has long since perished, eroded by the harshness of the gravid void 'tween blasted stars? 'Twas the old House Kaatrij that strengthened their children against this decay. That we were forced to leave them behind was one among many sorrows, and 'tis much better thy quarry flies free than for another House to subject our charges to their whims.`
 				goto questions
 			label communicate
-			`	"Ah, there is that matter. Much as the High Houses might prefer to believe that they - we act all within the veil of secrecy, we are all too intertwined to keep our activities hidden for long. The details of thy arrangement with Sioeora and its consequences were apparent to us soon after its conclusion, as will the details of this meeting eventually be apparent to the other Houses in time."`
-			`	Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these ancient translation devices, but very few for thine own tongue: this is the only one that we possess. I am told it is an art piece, commissioned for a performance of thine own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and unique to marry with our equipment; hence the need to contact thee in the words of another."`
+			`	"Ah, there's that matter. Much as the High Houses might prefer to believe that they, or rather we, act all within the veil of secrecy, we're all too intertwined to keep our projects hidden for too long. The details of thine arrangement with Sioeora and its repercussions were apparent t'us soon after its conclusion. And surely too, will the details of this meeting eventually become apparent to the other Houses and their scions."`
+			`	Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these devices, full of sound and language, but very few for thine own tongue: this is the only one for which that we possess. I'm told it is an art piece, commissioned for a performance of thine own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and rare for it t'marry with our equipment; and so the need to contact thee in the words of another."`
 			`	Saajret plucks the device from their outfit and offers it to you.`
 			choice
 				`	(Take it).`
 			action
 				set "language: Successor"
 			`	The device is made of carved wood, or at least something that appears like it, depicting in well-varnished grain a sailing ship washed against rocks. As you pin it on your jacket, the ship begins to gently rock in place.`
-			`	"This is a gift from House Kaatrij to thee, Captain," Saajret says. "Thou hast rendered service to this House, and in return this House shall render service to thee. So long as thou wear'st it, it shall translate our words to thee and thine to us. Pray thee treat it kindly, for while durable, it is something which we cannot replace if 'tis damaged." Saajret splays their arms again as if to emphasize the end of the statement.`
+			`	"'Tis a gift from House Kaatrij to thee, Captain," Saajret says. "Thou hast rendered service to this House, and in return we'll do the same for thee. So long as thou wear'st it, it shall translate our words to thee and thine to us. Pray treat it kindly, for it's unique enough that we cannot offer replacement." Saajret splays their arms again as if to emphasize the end of the statement.`
 				goto questions
 			label sioeora
 			action
 				set "Successors: sioeora"
-			`	Saajret hums in a way you can't quite place. "Sioeora will no doubt be upset that one of the New Houses now patronizes the alien that they first met, but they are forced enough to swim in the water that they themselves have salted. Thou shouldn'st fear any ire from them beyond their politicking, and that is something we are accustomed to handling."`
+			`	Saajret hums in a way you can't quite place. "Sioeora will no doubt be upset that one of the New Houses now patronizes the alien they first met, but they are forced enough to swim in the water that they themselves have salted. Thou shouldn'st fear their ire, beyond their politicking, and that is something we are used enough to living with."`
 				goto questions
 			label saajret
 			action
 				set "Successors: saajret"
-			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij and member of the somber noble lineage of House Sejra, which no longer stands as naught but a banner under Kaatrij. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more were lost forever. Kaatrij absorbed the citizens of some into itself; 'tis a patchwork that reminds us that we are all patchworks, metamorphic and composed. My roles are many, but first among them, I am an archivist, of sorts. I am to preserve the old technology that we still have and to use it, when necessary, for the best possible purposes."`
+			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij, member of the somber noble line of House Sejra, which no longer stands as naught but a banner under Kaatrij's watchful wings. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more were lost forever, their families splintered and histories broken. Kaatrij absorbed the citizens of some into itself, and now'ts a patchwork that reminds us that we're all patchworks, metamorphic and composed. My roles in it are many, but first among them, I am an archivist, of sorts. I am t'preserve the old technology that still remains in our posession and, when necessary, put it to use, as best as we can judge it can be."`
 				goto questions
 			label premature
 			`	Deciding that you've waited long enough, you activate the <ship>'s repulsor thrusters and return to orbit.`
 				flee
 			label end
-			`	Saajret produces a data-sphere and hands that to you as well. "Within this," they say, "is historical data for most of the worlds in our space. Combined with thy newfound ability of our language, thou should'st find the navigation of our worlds and cities more revealing and fruitful. Officially, thou shalt be a patronized guest of House Kaatrij and shall proceed under our protection and with our blessings. Thou may'st be able to purchase a certain number of petty technologies without frustration, but most require some vetting that, as an alien, may take some time and effort to complete. Should'st the prospect interest thee, assisting with jobs and other tasks would doubtless benefit in proving thyself an ally to our people."`
-			`	Saajret pauses to adjust their clothing once again. "I bid thee now farewell, Captain <first> <last>. Kaatrij will continue to apprise ourselves of thine actions. I hope that next we speak we will be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissapated and the first glimmers of sunlight are creeping over the distant hills.`
+			`	Saajret produces a data-sphere and hands that to you as well. "Within this," they say, "is historical data for most of the worlds within our space. Combined with thy newfound graces of our language, thou should'st find thine efforts of our worlds and cities t'be more revealing and fruitful. Officially, thou shalt be a patronized guest of House Kaatrij and shall proceed with our protection and our blessings. Thou may'st be able to purchase a certain set of petty works without frustration, but most of our technologies require vetting that, as an alien, may take thee time and effort to fulfill. Should'st the prospect interest thee, thine assistance with jobs and other tasks would doubtless help to prove thee t'be an ally to our people."`
+			`	Saajret pauses to adjust their clothing once again. "I must bid thee now farewell, Captain <first> <last>. Kaatrij will continue t'apprise ourselves of thine actions. I hope that next we speak shall be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissapated and the first glimmers of sunlight are creeping over the distant hills.`
 			action
 				clear "Successors: kijran"
 				clear "Successors: saajret"
