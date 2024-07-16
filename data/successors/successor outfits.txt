@@ -21,11 +21,6 @@ outfit "High Houses License"
 	thumbnail "outfit/successor license"
 	description "The High Houses produce most of the advanced technology present in Successor space, and restrict its purchase to only those individuals and groups who support their interests. By aligning yourself with one of the houses, you have earned the right to purchase this exclusive technology."
 
-outfit "Heirloom License"
-	category "Licenses"
-	thumbnail "outfit/successor license"
-	description "To obtain one of these, you would have to become an honorary scion of one of the High Houses, which at this point in the story, you are most definitely not."
-
 
 outfit `"Byiaa" Shield Cortex`
 	category "Systems"
