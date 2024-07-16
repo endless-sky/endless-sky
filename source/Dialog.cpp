@@ -85,37 +85,37 @@ namespace {
 
 	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
 	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
-	const int leftMargin = 20;
-	const int rightMargin = 20;
-	const int horizontalMargin = leftMargin + rightMargin;
+	const int LEFT_MARGIN = 20;
+	const int RIGHT_MARGIN = 20;
+	const int HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
 	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
 	// that uses the same value.
-	const int buttonLeftMargin = 10;
-	const int buttonRightMargin = 10;
-	const int buttonHorizontalMargin = buttonLeftMargin + buttonRightMargin;
+	const int BUTTON_LEFT_MARGIN = 10;
+	const int BUTTON_RIGHT_MARGIN = 10;
+	const int BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
 	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
 	// that uses the same value.
-	const int buttonTopMargin = 10;
-	const int buttonBottomMargin = 10;
-	const int buttonVerticalMargin = buttonTopMargin + buttonBottomMargin;
+	const int BUTTON_TOP_MARGIN = 10;
+	const int BUTTON_BOTTOM_MARGIN = 10;
+	const int BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
 	// The width of the padding used on the left/right sides of each segment, in pixels.
-	const int leftPadding = 10;
-	const int rightPadding = 10;
-	const int horizontalPadding = rightPadding + leftPadding;
+	const int LEFT_PADDING = 10;
+	const int RIGHT_PADDING = 10;
+	const int HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
 	// The height of the padding used by the top/bottom segment, in pixels.
-	const int topPadding = 10;
-	const int bottomPadding = 10;
-	const int verticalPadding = topPadding + bottomPadding;
+	const int TOP_PADDING = 10;
+	const int BOTTOM_PADDING = 10;
+	const int VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
 	// The width of the padding at the beginning/end of an input field.
-	const int inputLeftPadding = 5;
-	const int inputRightPadding = 5;
-	const int inputHorizontalPadding = inputLeftPadding + inputRightPadding;
+	const int INPUT_LEFT_PADDING = 5;
+	const int INPUT_RIGHT_PADDING = 5;
+	const int INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
 	// The height of the padding at the top/bottom of an input field.
-	const int inputTopPadding = 2;
-	const int inputBottomPadding = 2;
-	const int inputVerticalPadding = inputTopPadding + inputBottomPadding;
+	const int INPUT_TOP_PADDING = 2;
+	const int INPUT_BOTTOM_PADDING = 2;
+	const int INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
 	// The height of an input field in pixels.
-	const int inputHeight = 20;
+	const int INPUT_HEIGHT = 20;
 }
 
 
@@ -162,7 +162,7 @@ void Dialog::Draw()
 
 	// Get the position of the top of this dialog, and of the input.
 	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5);
-	Point inputPos = Point(0., -(cancel->Height() + inputHeight)) - pos;
+	Point inputPos = Point(0., -(cancel->Height() + INPUT_HEIGHT)) - pos;
 
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
@@ -189,7 +189,7 @@ void Dialog::Draw()
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &inactive = *GameData::Colors().Get("inactive");
 	const string okText = isMission ? "Accept" : "OK";
-	okPos = pos + Point((top->Width() - rightMargin - cancel->Width()) * .5, 0.);
+	okPos = pos + Point((top->Width() - RIGHT_MARGIN - cancel->Width()) * .5, 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
@@ -197,7 +197,7 @@ void Dialog::Draw()
 	if(canCancel)
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";
-		cancelPos = pos + Point(okPos.X() - cancel->Width() + buttonRightMargin, 0.);
+		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		labelPos = {
 				cancelPos.X() - .5 * font.Width(cancelText),
@@ -208,16 +208,16 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		FillShader::Fill(inputPos, Point(Width() - horizontalPadding, inputHeight), back);
+		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
 		Point stringPos(
-			inputPos.X() - (Width() - horizontalPadding) * .5 + inputLeftPadding,
+			inputPos.X() - (Width() - HORIZONTAL_PADDING) * .5 + INPUT_LEFT_PADDING,
 			inputPos.Y() - .5 * font.Height());
-		const auto inputText = DisplayText(input, {Width() - horizontalPadding - inputHorizontalPadding, Truncate::FRONT});
+		const auto inputText = DisplayText(input, {Width() - HORIZONTAL_PADDING - INPUT_HORIZONTAL_PADDING, Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 
-		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + inputTopPadding, inputPos.Y());
-		FillShader::Fill(barPos, Point(1., inputHeight - inputVerticalPadding), dim);
+		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + INPUT_TOP_PADDING, inputPos.Y());
+		FillShader::Fill(barPos, Point(1., INPUT_HEIGHT - INPUT_VERTICAL_PADDING), dim);
 	}
 }
 
@@ -327,8 +327,8 @@ bool Dialog::Click(int x, int y, int clicks)
 	Point clickPos(x, y);
 
 	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
-	const double toleranceX = (sprite->Width() - buttonHorizontalMargin) / 2.;
-	const double toleranceY = (sprite->Height() - buttonVerticalMargin) / 2.;
+	const double toleranceX = (sprite->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
+	const double toleranceY = (sprite->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
 
 	Point ok = clickPos - okPos;
 	if(fabs(ok.X()) < toleranceX && fabs(ok.Y()) < toleranceY)
@@ -362,7 +362,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	okIsActive = true;
 	isWide = false;
 
-	Point textRectSize(Width() - horizontalPadding, 0);
+	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
 	text = std::make_shared<TextArea>();
 	text->SetAlignment(Alignment::JUSTIFIED);
 	text->SetRect(Rectangle(Point(), textRectSize));
@@ -379,15 +379,15 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 		textRectSize.Y() = maxHeight;
 		isWide = true;
 		// Re-wrap with the new width
-		textRectSize.X() = Width() - horizontalPadding;
+		textRectSize.X() = Width() - HORIZONTAL_PADDING;
 		text->SetRect(Rectangle(Point{}, textRectSize));
 
-		if(text->GetLongestLineWidth() <= top->Width() - horizontalMargin - horizontalPadding)
+		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
 		{
 			// Formatted text is long and skinny (e.g. scan result dialog). Go back
 			// to using the default width, since the wide width doesn't help.
 			isWide = false;
-			textRectSize.X() = Width() - horizontalPadding;
+			textRectSize.X() = Width() - HORIZONTAL_PADDING;
 			text->SetRect(Rectangle(Point{}, textRectSize));
 		}
 	}
@@ -401,8 +401,8 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	// The height of the bottom sprite without the included button's height.
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
-	int height = topPadding + textRectSize.Y() + bottomPadding +
-			(realBottomHeight - bottomPadding) * (!isMission && (intFun || stringFun));
+	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
+			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
 	// Determine how many extension panels we need.
 	if(height <= realBottomHeight + top->Height())
 		extensionCount = 0;
@@ -414,12 +414,12 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	// Get the position of the top of this dialog, and of the text and input.
 	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
-	Point textPos(Width() * -.5 + leftPadding, pos.Y() + verticalPadding);
+	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
 	// Resize textRectSize to match the visual height of the dialog, which will
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
-	textRectSize.Y() = (top->Height() + realBottomHeight - verticalPadding) + extensionCount * middle->Height() -
-			(realBottomHeight - bottomPadding) * (!isMission && (intFun || stringFun));
+	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
+			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
@@ -464,5 +464,5 @@ void Dialog::DoCallback(const bool isOk) const
 int Dialog::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
-	return top->Width() - horizontalMargin;
+	return top->Width() - HORIZONTAL_MARGIN;
 }
