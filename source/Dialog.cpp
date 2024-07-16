@@ -82,6 +82,57 @@ namespace {
 		{SDLK_KP_SPACE, ' '},
 		{SDLK_KP_VERTICALBAR, '|'}
 	};
+
+	// The width of the margin on the left side of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	const int leftMargin = 20;
+	// The width of the margin on the right side of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	const int rightMargin = 20;
+	// The overall margin width of the dialog, in pixels.
+	const int horizontalMargin = leftMargin + rightMargin;
+	// The margin on the left side of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const int buttonLeftMargin = 10;
+	// The margin on the left side of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const int buttonRightMargin = 10;
+	// The overall margin width of the button, in pixels.
+	const int buttonHorizontalMargin = buttonLeftMargin + buttonRightMargin;
+	// The margin on the left side of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const int buttonTopMargin = 10;
+	// The margin on the left side of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const int buttonBottomMargin = 10;
+	// The overall margin height of the button, in pixels.
+	const int buttonVerticalMargin = buttonTopMargin + buttonBottomMargin;
+	// The width of the padding used on the left side of each segment, in pixels.
+	const int leftPadding = 10;
+	// The width of the padding used on the right side of each segment, in pixels.
+	const int rightPadding = 10;
+	// The overall padding width of the dialog, in pixels.
+	const int horizontalPadding = rightPadding + leftPadding;
+	// The height of the padding used by the top segment, in pixels.
+	const int topPadding = 10;
+	// The height of the padding used by the bottom segment, in pixels.
+	const int bottomPadding = 10;
+	// The overall padding height of the dialog, in pixels.
+	const int verticalPadding = topPadding + bottomPadding;
+	// The width of the padding at the beginning of an input field.
+	const int inputLeftPadding = 5;
+	// The width of the padding at the end of an input field.
+	const int inputRightPadding = 5;
+	// The overall padding width of an input field, in pixels.
+	const int inputHorizontalPadding = inputLeftPadding + inputRightPadding;
+	// The height of the padding at the top of an input field.
+	const int inputTopPadding = 2;
+	// The height of the padding at the bottom of an input field.
+	const int inputBottomPadding = 2;
+	// The overall padding height of an input field, in pixels.
+	const int inputVerticalPadding = inputTopPadding + inputBottomPadding;
+	// The height of an input field in pixels.
+	const int inputHeight = 20;
 }
 
 
