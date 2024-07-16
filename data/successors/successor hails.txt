@@ -238,8 +238,10 @@ phrase "high houses hostile disabled hail" 2
 
 phrase "high houses hostile disabled hail"
 	word
-		"From void's heart, we stab at thee! / For the good of hate, we spit our last breaths at thee!"
-		"Cowards die many times before their deaths, / But the valiant never taste of death but once!"
+		"From void's heart, we stab at thee! / For the good of hate, we spit our last breaths at thee!" # Moby-Dick
+		"Cowards die many times before their deaths, / But the valiant never taste of death but once!" # Julius Caesar, A2s2
+		"Woe, destruction, ruin and decay; / The worst is death, and death will have its day." # Richard II, A3s2
+		"Cur, keep back, or else embrace thy death; / Come not within the measure of my wrath." # The Two Gentlemen of Verona, A5s4
 
 # High Houses: Old Houses
 
