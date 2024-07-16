@@ -2288,6 +2288,7 @@ news "Careless Landing"
 			"A Fury"
 			"A Hawk"
 			"A Wasp"
+			"A Scrapper"
 		word
 			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${Pronoun} ship. The captain "
 		phrase
@@ -2362,7 +2363,7 @@ news "Clandestine"
 			" After some time of this "
 		word
 			"a silent alarm tells you that your should check on your ship. "
-			"it may be wise to make sure no one's tampering with your ship. "
+			"you feel it may be wise to make sure no one's tampering with your ship. "
 		word
 			"You find "
 		word
