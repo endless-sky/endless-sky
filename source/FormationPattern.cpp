@@ -369,7 +369,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		return endOrAnchorPx + Angle(positionAngle).Unit() * radius;
 	}
 
-	// This is not an arc, perform the line-based calculations.
+	// This is not an arc, so perform the line-based calculations.
 
 	// Calculate the step from each position between start and end.
 	Point positionPx = endOrAnchorPx - startPx;

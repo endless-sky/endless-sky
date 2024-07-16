@@ -94,7 +94,7 @@ formation "Delta (tailing)"
 			positions 1
 
 
-formation "Hegagon (wide)"
+formation "Hexagon (wide)"
 	flippable y
 	rotatable 60
 	# section lower-right
@@ -176,7 +176,7 @@ formation "Nabla (trailing)"
 
 # A sphere around the flagship
 # Built in six segment sections using the same layouting as the hexagon shape.
-formation "Sphere"
+formation "Circle"
 	flippable x y
 	rotatable 0
 	arc
