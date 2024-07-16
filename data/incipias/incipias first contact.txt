@@ -207,8 +207,8 @@ mission "Incipias: Help The Stranded 1"
 		conversation
 			`Maybe the Quarg could help you with the stranded ship.`
 			choice
-				`Tell them about it.`
-				`Not right now.`
+				`	(Tell them about it.)`
+				`	(Not right now.)`
 					defer
 			`	Right after you arrive on the planet, you search for a Quarg who speaks your language so that you can tell them about the stranded ship you found. One of the Quarg seems to understand your intention and gestures for you to wait. It returns a few hours later accompanied by the same Quarg you talked to before.`
 			`	"Human, you seem to be in quite a haste. What could be such a pressing matter?" it asks.`
