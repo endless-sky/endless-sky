@@ -13,9 +13,8 @@
 
 
 formation "Atomic"
-	flippable x
 	rotatable 0
-	# Section in front of the lead ship
+	# Section in front of the lead ship.
 	arc
 		start -75 -129.9
 		angle 60
@@ -23,7 +22,7 @@ formation "Atomic"
 		repeat
 			start -75 -129.9
 			positions 1
-	# Side sections
+	# Side sections.
 	arc
 		start 150 0
 		angle 60
@@ -43,7 +42,7 @@ formation "Atomic"
 formation "Diamond"
 	flippable x y
 	rotatable 90
-	# Segment below, right of lead ship. Growing in down/right direction
+	# Segment below, right of lead ship. Growing in down/right direction.
 	line
 		start 100 100
 		end 0 200
@@ -52,7 +51,7 @@ formation "Diamond"
 			start 200 0
 			end 0 200
 			positions 2
-	# Segment left, below, of lead ship. Growing in left/down direction
+	# Segment left, below of lead ship. Growing in left/down direction.
 	line
 		start -100 100
 		end -200 0
@@ -61,7 +60,7 @@ formation "Diamond"
 			start 0 200
 			end -200 0
 			positions 2
-	# Segment above, left of lead ship. Growing in above/left direction
+	# Segment above, left of lead ship. Growing in above/left direction.
 	line
 		start -100 -100
 		end 0 -200
@@ -70,7 +69,7 @@ formation "Diamond"
 			start -200 0
 			end 0 -200
 			positions 2
-	# Segment right, above of lead ship. Growing in right/above direction
+	# Segment right, above of lead ship. Growing in right/above direction.
 	line
 		start 100 -100
 		end 200 0
@@ -97,7 +96,7 @@ formation "Delta (tailing)"
 formation "Hexagon (wide)"
 	flippable y
 	rotatable 60
-	# section lower-right
+	# Section lower-right.
 	line
 		start 75 150
 		end 75 150
@@ -106,7 +105,7 @@ formation "Hexagon (wide)"
 			start 150 0
 			end 75 150
 			positions 1
-	# section lower-left
+	# Section lower-left.
 	line
 		start -75 150
 		end -75 150
@@ -115,7 +114,7 @@ formation "Hexagon (wide)"
 			start 75 150
 			end -75 150
 			positions 1
-	# section left
+	# Section left.
 	line
 		start -150 0
 		end -150 0
@@ -124,7 +123,7 @@ formation "Hexagon (wide)"
 			start -75 150
 			end -150 0
 			positions 1
-	# section upper-left
+	# Section upper-left.
 	line
 		start -75 -150
 		end -75 -150
@@ -133,7 +132,7 @@ formation "Hexagon (wide)"
 			start -150 0
 			end -75 -150
 			positions 1
-	# section upper-right
+	# Section upper-right.
 	line
 		start 75 -150
 		end 75 -150
@@ -142,7 +141,7 @@ formation "Hexagon (wide)"
 			start -75 -150
 			end 75 -150
 			positions 1
-	# section right
+	# Section right.
 	line
 		start 150 0
 		end 150 0
@@ -182,8 +181,8 @@ formation "Circle"
 	arc
 		start 200 0
 		angle 360
-		# start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
-		# no anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default)
+		# Start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
+		# No anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default).
 		skip last
 		positions 7
 		repeat
@@ -197,7 +196,7 @@ formation "Circle"
 formation "Square"
 	flippable x y
 	rotatable 90
-	# Segment ahead of the lead-ship, growing forward, a bit offset to right
+	# Segment ahead of the lead-ship, growing forward, a bit offset to right.
 	line
 		start 0 -200
 		end 200 -200
@@ -206,7 +205,7 @@ formation "Square"
 			start -200 -200
 			end 200 -200
 			positions 2
-	# Segment right of the lead-ship, growing right, a bit offset to the back
+	# Segment right of the lead-ship, growing right, a bit offset to the back.
 	line
 		start 200 0
 		end 200 200
@@ -215,7 +214,7 @@ formation "Square"
 			start 200 -200
 			end 200 200
 			positions 2
-	# Segment behind of the lead-ship, growing backward, a bit offset to left
+	# Segment behind of the lead-ship, growing backward, a bit offset to left.
 	line
 		start 0 200
 		end -200 200
@@ -224,7 +223,7 @@ formation "Square"
 			start 200 200
 			end -200 200
 			positions 2
-	# Segment left of the lead-ship, growing left, a bit offset to the front
+	# Segment left of the lead-ship, growing left, a bit offset to the front.
 	line
 		start -200 0
 		end -200 -200
