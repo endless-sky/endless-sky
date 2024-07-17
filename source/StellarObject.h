@@ -74,7 +74,7 @@ public:
 	// Find out how far this object is from its parent.
 	double Distance() const;
 
-	// Change the distances an object is visible from, based on ship attributes.
+	// Change the distances an object is visible from, based on flagship attributes.
 	void UpdateDistanceVisibility(const Ship *flagship);
 
 
