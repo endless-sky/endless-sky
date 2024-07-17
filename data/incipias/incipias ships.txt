@@ -132,7 +132,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"MH Red-Class Steering"
 
 ship "Nimbo Stratus"
-	"plural" "Strati"
+	"plural" "Nimbo Strati"
 	"sprite" ship/stratus
 	"thumbnail" thumbnail/stratus
 	"swizzle" 0
@@ -170,7 +170,7 @@ ship "Nimbo Stratus"
 	description "Mining has always been a big business in Incipias society, which is why the Stratus is the most common ship for beginning captains. Its cheap price tag and ability to bring money in quickly ensure its continuing popularity. While the Stratus could theoretically be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
 
 ship "Nimbo Cirrus"
-	"plural" "Cirri"
+	"plural" "Nimbo Cirri"
 	"sprite" ship/cirrus
 	"thumbnail" thumbnail/cirrus
 	"swizzle" 0

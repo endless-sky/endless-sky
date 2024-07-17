@@ -180,6 +180,20 @@ government "Coalition"
 	"hostile hail" "hostile coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
+government "Conlatio"
+	swizzle 0
+	color 0.5 0.0 0.9
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 0
+	"attitude toward"
+		"Hicemus" 1
+		"Incipias Civilian" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias friendly disabled"
+	"hostile disabled hail" "incipias hostile disabled"
+
 government "Deep"
 	"display name" "Deep Security"
 	swizzle 0
@@ -749,20 +763,6 @@ government "Hicemus"
 	"player reputation" 0
 	"attitude toward"
 		"Conlatio" 1
-		"Incipias Civilian" 1
-	"friendly hail" "incipias common"
-	"friendly disabled hail" "incipias friendly disabled"
-	"hostile disabled hail" "incipias hostile disabled"
-
-government "Conlatio"
-	swizzle 0
-	color 0.5 0.0 0.9
-	"crew attack" .2
-	"crew defense" 1
-	language "Incups"
-	"player reputation" 0
-	"attitude toward"
-		"Hicemus" 1
 		"Incipias Civilian" 1
 	"friendly hail" "incipias common"
 	"friendly disabled hail" "incipias friendly disabled"

@@ -9147,6 +9147,64 @@ system Cshudlye
 			distance 248
 			period 147.6
 
+system "Cura Dic"
+	pos 340.667 -859.667
+	government "Quarg (Incipias)"
+	attributes quarg
+	arrival 700
+	habitable 3459.393
+	belt 1144 4
+	haze _menu/haze-dark-nebula
+	asteroids "small rock" 9 4.576
+	asteroids "medium rock" 25 5.468
+	asteroids "large rock" 27 5.468
+	minables yottrite 9 7
+	link Clepsydra
+	link Supra
+	trade Clothing 362
+	trade Electronics 763
+	trade Equipment 644
+	trade Food 165
+	trade "Heavy Metals" 1280
+	trade Industrial 848
+	trade "Luxury Goods" 1055
+	trade Medical 509
+	trade Metal 457
+	trade Plastic 503
+	fleet Quarg 600
+	object
+		sprite star/k3
+		distance 130.677
+		period 47.155
+	object
+		sprite star/f5-old
+		distance 34.323
+		period 47.155
+		offset 180
+	object
+		sprite planet/forest4
+		distance 356
+		period 45.681
+	object
+		sprite planet/rock5-b
+		distance 677
+		period 119.796
+	object
+		sprite planet/rock10-b
+		distance 1108
+		period 250.824
+		object "Spec Inci"
+			sprite planet/rock3
+			distance 176
+			period 88.261
+	object
+		sprite planet/ocean7
+		distance 1638
+		period 450.849
+		object "Ut Divitas"
+			sprite planet/io
+			distance 200
+
 system Currus
 	pos 260.583 -987.75
 	habitable 10
@@ -32096,64 +32154,6 @@ system Supra
 			sprite planet/miranda
 			distance 404
 			period 384.135
-
-system "Cura Dic"
-	pos 340.667 -859.667
-	government "Quarg (Incipias)"
-	attributes quarg
-	arrival 700
-	habitable 3459.393
-	belt 1144 4
-	haze _menu/haze-dark-nebula
-	asteroids "small rock" 9 4.576
-	asteroids "medium rock" 25 5.468
-	asteroids "large rock" 27 5.468
-	minables yottrite 9 7
-	link Clepsydra
-	link Supra
-	trade Clothing 362
-	trade Electronics 763
-	trade Equipment 644
-	trade Food 165
-	trade "Heavy Metals" 1280
-	trade Industrial 848
-	trade "Luxury Goods" 1055
-	trade Medical 509
-	trade Metal 457
-	trade Plastic 503
-	fleet Quarg 600
-	object
-		sprite star/k3
-		distance 130.677
-		period 47.155
-	object
-		sprite star/f5-old
-		distance 34.323
-		period 47.155
-		offset 180
-	object
-		sprite planet/forest4
-		distance 356
-		period 45.681
-	object
-		sprite planet/rock5-b
-		distance 677
-		period 119.796
-	object
-		sprite planet/rock10-b
-		distance 1108
-		period 250.824
-		object "Spec Inci"
-			sprite planet/rock3
-			distance 176
-			period 88.261
-	object
-		sprite planet/ocean7
-		distance 1638
-		period 450.849
-		object "Ut Divitas"
-			sprite planet/io
-			distance 200
 
 system Tais
 	pos -346 381
