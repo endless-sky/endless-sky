@@ -483,6 +483,8 @@ outfit `"Veusa" Inductive Reverser`
 outfit "Multimodal Armor: Heavy"
 	category "Systems"
 	thumbnail "outfit/successor armor heavy"
+	licenses
+		"High Houses"
 	"hull protection" .20
 	"multimodal armor" -1
 	"unplunderable" 1
@@ -492,6 +494,8 @@ outfit "Multimodal Armor: Heavy"
 outfit "Multimodal Armor: Keystone"
 	category "Systems"
 	thumbnail "outfit/successor armor keystone"
+	licenses
+		"High Houses"
 	cost 10000000
 	"quantum keystone" 1
 	"scan interference" 3
@@ -503,6 +507,8 @@ outfit "Multimodal Armor: Keystone"
 outfit "Multimodal Armor: Regen"
 	category "Systems"
 	thumbnail "outfit/successor armor regen"
+	licenses
+		"High Houses"
 	"hull repair multiplier" 1.0
 	"multimodal armor" -1
 	"unplunderable" 1
@@ -512,6 +518,8 @@ outfit "Multimodal Armor: Regen"
 outfit "Multimodal Armor: Resilient"
 	category "Systems"
 	thumbnail "outfit/successor armor resilient"
+	licenses
+		"High Houses"
 	"slowing protection" 1.5
 	"corrosion protection" 1.5
 	"multimodal armor" -1
