@@ -267,7 +267,8 @@ ship "Stolsaqra" "Stolsaqra (Military)"
 		`"Ojet" Bimodal Coilgun` 3
 
 		`3-"Kaska" Betavoltaic Cell`
-		`"Ej" Shield Cortex`
+		`"Byiaa" Shield Cortex`
+		"Multimodal Armor: Heavy"
 		`"Veldt" Combat Scanner`
 
 		`"Aqra" Inductive Thruster`
@@ -286,6 +287,7 @@ ship "Stolsaqra" "Stolsaqra (Mission Escort)"
 		`3-"Kaska" Betavoltaic Cell`
 		`"Byiaa" Shield Cortex`
 		"Fuel Pod" 3
+		"Multimodal Armor: Heavy"
 
 		`"Aqra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -301,7 +303,8 @@ ship "Stolsaqra" "Stolsaqra (Short-Range)"
 		"Drag Cannon" 3
 
 		`OC-"Mavra" Betavoltaic Cell` 2
-		`"Ej" Shield Cortex`
+		`"Byiaa" Shield Cortex`
+		"Multimodal Armor: Heavy"
 		`"Veldt" Combat Scanner`
 
 		`"Aqra" Inductive Thruster` 2

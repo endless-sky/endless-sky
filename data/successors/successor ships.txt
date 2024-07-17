@@ -850,7 +850,7 @@ ship "Stolsaqra"
 		category "Interceptor"
 		"cost" 450000
 		"shields" 850
-		"hull" 7600
+		"hull" 6100
 		"required crew" 1
 		"bunks" 2
 		"mass" 120
@@ -858,9 +858,13 @@ ship "Stolsaqra"
 		"heat dissipation" 0.79
 		"fuel capacity" 300
 		"cargo space" 5
-		"outfit space" 220
+		"outfit space" 212
 		"weapon capacity" 90
 		"engine capacity" 80
+		"multimodal armor" 1
+		"hull repair rate" 0.3
+		"hull energy" 0.4
+		"hull heat" 0.4
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -872,7 +876,7 @@ ship "Stolsaqra"
 		`3-"Kaska" Betavoltaic Cell`
 		`1-"Uurau" Betavoltaic Cell` 2
 		"Auxiliary Power Reserve" 2
-		`"Ej" Shield Cortex`
+		`"Byiaa" Shield Cortex`
 
 		`"Aqra" Inductive Thruster` 2
 		`"Aqra" Inductive Steering`
