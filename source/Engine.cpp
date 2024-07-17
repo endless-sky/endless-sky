@@ -2665,6 +2665,12 @@ void Engine::FillRadar()
 					system->Position() - playerSystem->Position());
 	}
 
+	// Draws a green arrow indicating which direction the center of the system is.
+	// 0 is the color, -flagship0->Position() gest the inverse vector from 0 to the flagship,
+	// or in other words gets the vector from the flagship to 0.
+	if(flagship)
+		radar[currentCalcBuffer].AddPointer(2, -flagship->Position());
+
 	// Add viewport brackets.
 	if(!Preferences::Has("Disable viewport on radar"))
 	{

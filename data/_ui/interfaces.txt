@@ -935,6 +935,16 @@ interface "hud"
 
 interface "main view"
 	list "zooms"
+		.008
+		.009
+		.011
+		.013
+		.016
+		.019
+		.022
+		.026
+		.031
+		.037
 		.044
 		.053
 		.063
