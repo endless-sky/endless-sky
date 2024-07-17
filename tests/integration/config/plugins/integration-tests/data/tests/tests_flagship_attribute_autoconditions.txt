@@ -170,7 +170,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship attribute: cost" == 56534000
 			"flagship attribute: mass" == 882100
 			"flagship attribute: drag" == 4300
-			"flagship attribute: engine capacity" == 882100
+			"flagship attribute: engine capacity" == 13000
 			"flagship attribute: gun ports" == 0
 			"flagship attribute: heat generation" == 32300
 			"flagship attribute: outfit space" == 20000
