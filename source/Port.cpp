@@ -101,11 +101,7 @@ void Port::Load(const DataNode &node)
 			hasNews = true;
 		else if(key == "description" && child.Size() >= 2)
 		{
-			const string &value = child.Token(1);
-			if(!description.empty() && !value.empty() && value[0] > ' ')
-				description += '\t';
-			description += value;
-			description += '\n';
+			description.Load(child);
 
 			// If we have a description but no name then use the default spaceport name.
 			if(name.empty())
@@ -134,6 +130,13 @@ void Port::LoadUninhabitedSpaceport()
 	recharge = RechargeType::All;
 	services = ServicesType::OffersMissions;
 	hasNews = true;
+}
+
+
+
+void Port::LoadDescription(const DataNode &node)
+{
+	description.Load(node);
 }
 
 
@@ -168,14 +171,7 @@ const string &Port::Name() const
 
 
 
-string &Port::Description()
-{
-	return description;
-}
-
-
-
-const string &Port::Description() const
+const Paragraphs &Port::Description() const
 {
 	return description;
 }

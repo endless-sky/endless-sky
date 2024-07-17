@@ -53,7 +53,6 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
-class PlayerInfo;
 class Politics;
 class Ship;
 class Sprite;
@@ -110,6 +109,7 @@ public:
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems(const PlayerInfo *player);
 	static void UpdateSystem(const std::string &name, const Ship *flagship);
+
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are

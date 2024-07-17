@@ -33,6 +33,7 @@ class Ship;
 class AmmoDisplay {
 public:
 	explicit AmmoDisplay(PlayerInfo &player);
+	void Reset();
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
 	bool Click(const Point &clickPoint, bool control);
