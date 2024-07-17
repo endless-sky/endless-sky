@@ -345,7 +345,7 @@ mission "Incipias: Help The Stranded 2"
 			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
 			choice
 				`	"Sorry, but I have other stuff to do."`
-					goto endNoTime
+					goto "end no time"
 				`	"Sure, ask me something."`
 			`	A green glow comes from all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space surrounding us?"`
 			choice
@@ -380,5 +380,5 @@ mission "Incipias: Help The Stranded 2"
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
 			`	You say goodbye and as you leave the room you can see a rush of colors reflecting on the walls.`
 				decline
-			label endNoTime
+			label "end no time"
 			`	"We are understanding-sad. Safe travels, captain." You notice a slight blue tone in the representative's communication as one of the Incipias guides you back to your ship.`
