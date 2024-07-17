@@ -12740,7 +12740,7 @@ system Equus
 		sprite star/f-dwarf
 		distance 400
 		period 10
-	object "Methuselah"
+	object Methuselah
 		sprite planet/gas17
 		distance 1279
 		period 1800
