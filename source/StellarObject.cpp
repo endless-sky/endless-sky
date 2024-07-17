@@ -185,7 +185,7 @@ void StellarObject::UpdateDistanceVisibility(const Ship *flagship)
 		if(flagship->Attributes().Get(adder))
 			totalAdd += flagship->Attributes().Get(adder);
 
-	// Calculate ranges for the players flagship by first applying
+	// Calculate ranges for the player's flagship by first applying
 	// multipliers and then the adders.
 	distanceInvisible = trueDistanceInvisible * totalMultiplier + totalAdd;
 	distanceVisible = trueDistanceVisible * totalMultiplier + totalAdd;
