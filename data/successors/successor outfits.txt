@@ -420,7 +420,7 @@ outfit `"Chyyra" Inductive Reverser`
 
 outfit `"Veusa" Inductive Thruster`
 	category "Engines"
-	"cost" 9550000
+	"cost" 3550000
 	thumbnail "outfit/large successor thruster"
 	licenses
 		"Successor"
@@ -441,7 +441,7 @@ outfit `"Veusa" Inductive Thruster`
 
 outfit `"Veusa" Inductive Steering`
 	category "Engines"
-	"cost" 8030000
+	"cost" 2925000
 	thumbnail "outfit/large successor steering"
 	licenses
 		"Successor"
@@ -459,7 +459,7 @@ outfit `"Veusa" Inductive Steering`
 
 outfit `"Veusa" Inductive Reverser`
 	category "Engines"
-	"cost" 8125000
+	"cost" 3050000
 	thumbnail "outfit/large successor reverse"
 	licenses
 		"Successor"
