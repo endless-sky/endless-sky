@@ -72,7 +72,7 @@ galaxy "label south"
 	sprite label/south
 
 galaxy "label successors"
-	pos -122 1485
+	pos -122 1385
 
 galaxy "label wanderers"
 	pos -145 -753
@@ -1799,7 +1799,7 @@ system "9 Spring Above"
 			period 28.1138
 
 system Aaura-Kaska
-	pos -107.928 1431.18
+	pos -109 1296
 	government Successor
 	attributes successor
 	arrival 1313.28
@@ -8704,7 +8704,7 @@ system Chy'chra
 			period 80.0847
 
 system Chyyra-Osolaa
-	pos -249.15 1390.27
+	pos -241 1365
 	government Successor
 	attributes successor
 	arrival 2560
@@ -19499,7 +19499,7 @@ system "Kaus Borealis"
 			period 35.2227
 
 system Kella-Uoasa
-	pos -323.49 1525.52
+	pos -359 1511
 	government "People's Houses"
 	attributes successor
 	arrival 5000
@@ -19527,6 +19527,8 @@ system Kella-Uoasa
 	fleet "Small Successor Transport" 9000
 	fleet "People's Houses Raiders" 3000
 	fleet "Small New Houses" 15000
+	haze _menu/haze-none
+	"starfield density" 0.7
 	object
 		sprite star/o8
 	object
@@ -19579,7 +19581,7 @@ system Khasola-Ryuit
 			period 520
 
 system Khosa-Kaska
-	pos 246.742 1357.47
+	pos 250 1255
 	government Successor
 	attributes successor
 	arrival 500
@@ -21898,7 +21900,7 @@ system Lurata
 		period 1774.16
 
 system Luue-Saqru
-	pos -261.33 1460.73
+	pos -319 1432
 	government Successor
 	attributes successor
 	arrival 500
@@ -21927,6 +21929,8 @@ system Luue-Saqru
 	fleet "Small New Houses" 3000
 	fleet "Successor Miners" 9000
 	fleet "Successor Miners (Well-Defended)" 6000
+	haze _menu/haze-none
+	"starfield density" 0.7
 	object
 		sprite star/k0
 	object
@@ -22323,7 +22327,7 @@ system Markeb
 		period 2775.06
 
 system Maspa-Cavaasa
-	pos -515.32 1468.65
+	pos -534 1426
 	government Successor
 	attributes successor
 	arrival 2310
@@ -22346,6 +22350,8 @@ system Maspa-Cavaasa
 	fleet "Small Successor Transport" 3000
 	fleet "Successor Miners" 4000
 	fleet "Small New Houses" 8000
+	haze _menu/haze-none
+	"starfield density" 0.6
 	object
 		sprite star/g0-old
 		period 10
@@ -22375,7 +22381,7 @@ system Maspa-Cavaasa
 			period 173.691
 
 system Maspa-Mavra
-	pos -565.96 1626.95
+	pos -515 1569
 	government Uninhabited
 	attributes successor
 	arrival 500
@@ -22396,7 +22402,7 @@ system Maspa-Mavra
 		period 1000
 
 system Maspa-Raaqa
-	pos -258.69 1574.05
+	pos -334 1614
 	government Successor
 	attributes successor
 	arrival 500
@@ -24427,7 +24433,7 @@ system Mora
 			period 24.168
 
 system Mosaa-Iyra
-	pos 82.5699 1536.05
+	pos 98 1433
 	government Successor
 	attributes successor
 	arrival 2900
@@ -24454,6 +24460,8 @@ system Mosaa-Iyra
 	fleet "Small Successor Transport" 1500
 	fleet "Light Successor Freight" 1500
 	fleet "Small Old Houses" 2000
+	haze _menu/haze-none
+	"starfield density" 0.7
 	object
 		sprite star/m0
 	object
@@ -24618,7 +24626,7 @@ system Muphrid
 		period 1191.15
 
 system Myiara-Nnesa
-	pos -210.38 1322.34
+	pos -247 1273
 	government "New Houses"
 	attributes successor
 	arrival 3450
@@ -24697,7 +24705,7 @@ system Myiara-Nnesa
 			period 489.011
 
 system Myruet-Kvelq
-	pos -89.6802 1505.13
+	pos -138 1392
 	government Successor
 	attributes successor
 	arrival 1715
@@ -25535,7 +25543,7 @@ system Oihaug
 		period 23946.6
 
 system Ojstaan-Sola
-	pos 35.9748 1453.98
+	pos 66 1328
 	government Successor
 	attributes successor
 	arrival 625
@@ -25883,7 +25891,7 @@ system Orvala
 			period 14.1511
 
 system Osolaa-Uuoru
-	pos -482.63 1496.62
+	pos -440 1403
 	government Successor
 	attributes successor
 	arrival 5000
@@ -25903,6 +25911,8 @@ system Osolaa-Uuoru
 	trade Medical 443
 	trade Metal 386
 	trade Plastic 331
+	haze _menu/haze-none
+	"starfield density" 0.4
 	object
 		sprite star/o0
 	object Maspa-Viir-Kella
@@ -26536,7 +26546,7 @@ system Peacock
 			period 49.3926
 
 system Pelaa-Muora
-	pos -169.59 1380.83
+	pos -168 1322
 	government Successor
 	attributes successor
 	arrival 2895
@@ -28497,7 +28507,7 @@ system Queri
 		offset 335
 
 system Raaqa-Ryuit
-	pos -345.47 1421.55
+	pos -336 1335
 	government Successor
 	attributes successor
 	arrival 1080
@@ -32393,7 +32403,7 @@ system Stercutus
 		period 1305.80
 
 system Stiidej-Nnesa
-	pos -27.0278 1417.17
+	pos -13 1358
 	government Successor
 	attributes successor
 	arrival 4020
@@ -33485,7 +33495,7 @@ system Turais
 		period 4109.01
 
 system Tuur-Kella
-	pos -51.0929 1329.13
+	pos -5 1282
 	government Successor
 	attributes successor
 	arrival 5000
@@ -34127,7 +34137,7 @@ system Uttna
 			period 247.515
 
 system Uuoru-Kella
-	pos 68.2795 1369.06
+	pos 59 1248
 	government "Old Houses"
 	attributes successor
 	arrival 2300
@@ -34401,7 +34411,7 @@ system V-2189
 			period 299.64
 
 system Vade-Staja
-	pos 157.582 1340.24
+	pos 162 1314
 	government Successor
 	attributes successor
 	arrival 2560
@@ -34508,7 +34518,7 @@ system Vaiov
 		offset 180
 
 system Valkraa-Uuoru
-	pos 106.067 1291.65
+	pos 148 1224
 	government Successor
 	attributes successor
 	arrival 3651.37
