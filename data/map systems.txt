@@ -8680,7 +8680,7 @@ system Clepsydra
 	haze _menu/haze-dark-nebula
 	link "Pedita Pri"
 	link "Pedita Sec"
-	link "Supra"
+	link Supra
 	link "Cura Dic"
 	asteroids "small rock" 6 0.988
 	asteroids "medium rock" 2 0.832
@@ -32052,7 +32052,7 @@ system Sumprast
 			distance 464
 			period 29.291
 
-system "Supra"
+system Supra
 	pos 319 -820
 	habitable 11500.792
 	belt 1481 8
@@ -32100,7 +32100,7 @@ system "Supra"
 system "Cura Dic"
 	pos 340.667 -859.667
 	government "Quarg (Incipias)"
-	attributes ringworld
+	attributes quarg
 	arrival 700
 	habitable 3459.393
 	belt 1144 4
@@ -32110,7 +32110,7 @@ system "Cura Dic"
 	asteroids "large rock" 27 5.468
 	minables yottrite 9 7
 	link Clepsydra
-	link "Supra"
+	link Supra
 	trade Clothing 362
 	trade Electronics 763
 	trade Equipment 644
