@@ -311,9 +311,8 @@ outfit `"Aqra" Inductive Thruster`
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"energy capacity" 1200
 	"thrust" 27.0
-	"thrusting energy" 1.3
+	"thrusting energy" 2.6
 	"thrusting heat" 1.1
 	"afterburner thrust" 40.5
 	"afterburner shields" 4.5
@@ -333,14 +332,14 @@ outfit `"Aqra" Inductive Steering`
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"energy capacity" 1200
+	"thrusting energy" -0.9
 	"turn" 757.5
 	"turning energy" 1.1
 	"turning heat" 0.8
 	"steering flare sprite" "effect/successor flare/small"
 		"frame rate" 20
 	"steering flare sound" "ion small"
-	description "Since their steering thrusters lack the mode switch emblematic of their linear propulsion, the Successors have invested their efforts into making these thrusters both powerful for their size and relatively efficient. In addition, the capacitors used to power the engine can be tied into the larger power grid, allowing each engine to slightly increase the energy capacity of the ship."
+	description "Since their steering thrusters lack the mode switch emblematic of their linear propulsion, the Successors have invested their efforts into making these thrusters both powerful for their size and relatively efficient. In addition, recurrent power streams from the steering thrusters feed back into the ship's linear engines, somewhat reducing the energy cost associated with forward propulsion."
 
 outfit `"Aqra" Inductive Reverser`
 	category "Engines"
@@ -351,10 +350,10 @@ outfit `"Aqra" Inductive Reverser`
 	"mass" 15
 	"outfit space" -15
 	"weapon capacity" -15
-	"energy capacity" 1200
 	"reverse thrust" 21.3
 	"reverse thrusting energy" 0.9
 	"reverse thrusting heat" 0.7
+	"thrusting energy" -0.75
 	"reverse flare sprite" "effect/successor flare/small"
 		"frame rate" 20
 	"reverse flare sound" "ion small"
@@ -370,9 +369,8 @@ outfit `"Chyyra" Inductive Thruster`
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
-	"energy capacity" 2500
 	"thrust" 48.0
-	"thrusting energy" 2.0
+	"thrusting energy" 4.0
 	"thrusting heat" 1.8
 	"afterburner thrust" 72.0
 	"afterburner shields" 8.0
@@ -392,7 +390,7 @@ outfit `"Chyyra" Inductive Steering`
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"energy capacity" 2500
+	"thrusting energy" -1.4
 	"turn" 1357.5
 	"turning energy" 2.3
 	"turning heat" 1.7
@@ -410,10 +408,10 @@ outfit `"Chyyra" Inductive Reverser`
 	"mass" 24
 	"outfit space" -24
 	"weapon capacity" -24
-	"energy capacity" 2500
 	"reverse thrust" 33.0
 	"reverse thrusting energy" 2.1
 	"reverse thrusting heat" 1.6
+	"thrusting energy" -1.2
 	"reverse flare sprite" "effect/successor flare/medium"
 		"frame rate" 20
 	"reverse flare sound" "ion medium"
@@ -429,9 +427,8 @@ outfit `"Veusa" Inductive Thruster`
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"energy capacity" 4000
 	"thrust" 78.0
-	"thrusting energy" 3.4
+	"thrusting energy" 6.8
 	"thrusting heat" 3.0
 	"afterburner thrust" 117.0
 	"afterburner shields" 11.0
@@ -440,7 +437,7 @@ outfit `"Veusa" Inductive Thruster`
 	"flare sprite" "effect/successor flare/large"
 		"frame rate" 20
 	"flare sound" "ion large"
-	description `The largest of the Successors' pulsed inductive thrusters, the "Veusa" is used primarily to propel their large warships and freighters. While its high-performance mode is powerful indeed, it drains a ship's shielding remarkably quickly; this is clearly meant to be paired with one of the Successors' fast-recharging shield generators.`
+	description `The largest of the Successors' pulsed inductive thrusters, the "Veusa" is used primarily to propel their large warships and freighters. While its high-performance mode is powerful enough to accelerate even the largest vessels to high speeds, it also drains shield power remarkably quickly; this is clearly meant to be paired with one of the Successors' fast-recharging shield generators.`
 
 outfit `"Veusa" Inductive Steering`
 	category "Engines"
@@ -451,7 +448,7 @@ outfit `"Veusa" Inductive Steering`
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"energy capacity" 4000
+	"thrusting energy" -2.4
 	"turn" 2268
 	"turning energy" 3.8
 	"turning heat" 3.1
@@ -469,7 +466,7 @@ outfit `"Veusa" Inductive Reverser`
 	"mass" 35
 	"outfit space" -35
 	"weapon capacity" -35
-	"energy capacity" 4000
+	"thrusting energy" -2.1
 	"reverse thrust" 54.75
 	"reverse thrusting energy" 3.7
 	"reverse thrusting heat" 3.0
