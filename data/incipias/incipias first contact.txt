@@ -93,6 +93,19 @@ mission "Incipias: Presence of the Guardian"
 					has "Incipias: accepted the guardians warning"
 				decline
 
+mission "Discovered Incipias Space"
+	landing
+	invisible
+	source
+		government "Conlatio" "Hicemus" "Incipias Civilian" "Quarg (Incipias)"
+	on offer
+		event "label incipias space"
+		fail
+
+event "label incipias space"
+	galaxy "label incipias"
+		sprite "label/incipias"
+
 mission "Incipias: First Contact"
 	invisible
 	landing

@@ -48,7 +48,6 @@ galaxy "label hai"
 
 galaxy "label incipias"
 	pos 300 -870
-	sprite label/incipias
 
 galaxy "label kimek"
 	pos -1250 215
