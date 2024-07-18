@@ -173,7 +173,7 @@ formation "Nabla (trailing)"
 			positions 2
 
 
-# A sphere around the flagship
+# A filled circle around the flagship
 # Built in six segment sections using the same layouting as the hexagon shape.
 formation "Circle"
 	flippable x y
@@ -181,7 +181,7 @@ formation "Circle"
 	arc
 		start 200 0
 		angle 360
-		# Start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
+		# Start and end positions overlap, so we need to specify 7 instead of 6 and use skip first or skip last.
 		# No anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default).
 		skip last
 		positions 7
