@@ -12,6 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
+# Atomic formation that doesn't rotate with the lead ship.
 formation "Atomic"
 	rotatable 0
 	# Section in front of the lead ship.
@@ -36,6 +37,36 @@ formation "Atomic"
 		positions 2
 		repeat
 			start -150 0
+			positions 1
+
+
+# A filled circle around the lead ship.
+# Built in six segment sections using the same layouting as the hexagon shape.
+# Using rotatable 1 instead of 0 to avoid aligning circles perfectly with the screen direction.
+formation "Circle"
+	rotatable 1
+	arc
+		start 200 0
+		angle 360
+		# Start and end positions overlap, so we need to specify 7 instead of 6 and use skip first or skip last.
+		# No anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default).
+		skip last
+		positions 7
+		repeat
+			start 200 0
+			positions 6
+
+
+# Triangle forming behind the formation leader.
+formation "Delta (tailing)"
+	flippable y
+	line
+		start -75 129.9
+		end 75 129.9
+		positions 2
+		repeat
+			start -75 129.9
+			end 75 129.9
 			positions 1
 
 
@@ -80,17 +111,16 @@ formation "Diamond"
 			positions 2
 
 
-# Triangle forming behind the formation leader.
-formation "Delta (tailing)"
-	flippable y
-	line
-		start -75 129.9
-		end 75 129.9
-		positions 2
-		repeat
-			start -75 129.9
-			end 75 129.9
-			positions 1
+# Formation where ships fly in a diagonal line left behind the formation leader.
+formation "Echelon (left)"
+	position -150 150
+		repeat -150 150
+
+
+# Formation where ships fly in a diagonal line right behind the formation leader.
+formation "Echelon (right)"
+	position 150 150
+		repeat 150 150
 
 
 formation "Hexagon (wide)"
@@ -152,6 +182,23 @@ formation "Hexagon (wide)"
 			positions 1
 
 
+# Formation where ships form a line right and left of the formation leader.
+formation "Line (sides)"
+	flippable x y
+	rotatable 180
+	position -200 0
+		repeat -200 0
+	position 200 0
+		repeat 200 0
+
+
+# Formation where ships form a line behind the formation leader.
+formation "Line (trailing)"
+	flippable y
+	position 0 200
+		repeat 0 200
+
+
 # Regular triangle with the formation leader in the center at the front and the point of the triangle facing backwards.
 formation "Nabla (trailing)"
 	flippable y
@@ -173,24 +220,7 @@ formation "Nabla (trailing)"
 			positions 2
 
 
-# A filled circle around the flagship
-# Built in six segment sections using the same layouting as the hexagon shape.
-# Using rotatable 1 instead of 0 to avoid aligning circles perfectly with the screen direction.
-formation "Circle"
-	rotatable 1
-	arc
-		start 200 0
-		angle 360
-		# Start and end positions overlap, so we need to specify 7 instead of 6 and use skip first or skip last.
-		# No anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default).
-		skip last
-		positions 7
-		repeat
-			start 200 0
-			positions 6
-
-
-# Square with flagship in the center.
+# Square with lead ship in the center.
 # Order of the segments is important; to make it grow nicely line by line without gaps.
 # Direction of the lines (start and end) is also important to avoid gaps.
 formation "Square"
@@ -232,3 +262,39 @@ formation "Square"
 			start -200 200
 			end -200 -200
 			positions 2
+
+
+# Formation with two legs extending on a 30 degree angle behind the lead ship.
+formation "Vic"
+	flippable y
+	position -150 87
+		repeat -150 87
+	position 150 87
+		repeat 150 87
+
+
+# X shaped formation that rotates with the flagship.
+formation "X"
+	flippable x y
+	rotatable 90
+	position -150 150
+		repeat -150 150
+	position 150 150
+		repeat 150 150
+	position 150 -150
+		repeat 150 -150
+	position -150 -150
+		repeat -150 -150
+
+
+# Stable X or + shaped formation that doesn't rotate with the flagship.
+formation "X stable"
+	rotatable 0
+	position -150 150
+		repeat -150 150
+	position 150 150
+		repeat 150 150
+	position 150 -150
+		repeat 150 -150
+	position -150 -150
+		repeat -150 -150
