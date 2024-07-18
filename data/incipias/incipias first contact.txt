@@ -59,6 +59,8 @@ mission "Incipias: Warning of the Guardian"
 				`	"What I search for is not technology."`
 			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example."`
 			label care
+			action
+				event "label incipias space"
 			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of species are like a painting that never stop being painted, but when they do stop it is a tragic thing to watch. That is why we try to protect these creations of life - so we can see what heights they reach."`
 			`	There is a pause. "I see that you can not be convinced by me. Even though I could simply wipe you out here and now, I do not favor violence." The voice is now resolute in tone. "I will let you pass, but I will be watching you, as I am the guardian of this space."`
 			`	The voice fades out leaving nothing behind but the feeling of being watched.`
@@ -66,6 +68,7 @@ mission "Incipias: Warning of the Guardian"
 			label agree
 			action
 				set "Incipias: accepted the guardians warning"
+				event "label incipias space"
 			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
 				decline
 
@@ -75,6 +78,7 @@ mission "Incipias: Presence of the Guardian"
 	to complete
 		never
 	on enter Dom'us
+		fail
 		conversation
 			`As you enter the system you have a feeling of being watched. The presence from the previous system still lingers.`
 				to display
@@ -84,6 +88,7 @@ mission "Incipias: Presence of the Guardian"
 					has "Incipias: accepted the guardians warning"
 				decline
 	on enter Hui'uc
+		fail
 		conversation
 			`As you enter the system you have a feeling of being watched. The presence from the previous system still lingers.`
 				to display
@@ -93,14 +98,6 @@ mission "Incipias: Presence of the Guardian"
 					has "Incipias: accepted the guardians warning"
 				decline
 
-mission "Discovered Incipias Space"
-	landing
-	invisible
-	source
-		government "Conlatio" "Hicemus" "Incipias Civilian" "Quarg (Incipias)"
-	on offer
-		event "label incipias space"
-		fail
 
 event "label incipias space"
 	galaxy "label incipias"
