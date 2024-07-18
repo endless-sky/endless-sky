@@ -341,7 +341,7 @@ news "grifter"
 			"Can I offer you a lucky playing card deck? You're guaranteed to get perfect hands in every game you play! What? No! It's not just a pile of 52 aces!"
 			"This laser razor never needs sharpening! Achieve a smoking hot look every time!"
 			"All that glitters is not gold, but it still is valuable as long as we can sell it to some fool."
-			`'Something old, something new, something borrowed, something blue,' we sell it all at our nice shop near you.`
+			"'Something old, something new, something borrowed, something blue,' we sell it all at our nice shop near you."
 		word
 			`"`
 
@@ -464,7 +464,7 @@ news "unemployed youth"
 			"I will work for transport out of this place."
 			"I barely have any money today, but that will change; just wait until my ship comes in."
 			"Don't trust anyone over thirty. They are the ones that got us in this mess in the first place."
-			`People have been complaining about the 'kids these days' since 624 BC. Wonder how humanity survived this long.`
+			"People have been complaining about the 'kids these days' since 624 BC. Wonder how humanity survived this long."
 			"OK, boomer. Nice of you to visit us, now be on your way again."
 		word
 			`"`
@@ -587,7 +587,7 @@ news "housekeeper"
 			"The kids here are not spoiled at all; the kids in the family I work for typically don't get a new computer game until two days after it gets on the market."
 			"I just got fired. The dog of one of the kids died and the missus asked me to fly to Earth and buy a new identical one. When I returned she was screaming that she didn't need two dead dogs."
 			"There's one law for the rich and another law for the poor. One small mistake by me and I'm back to the horrible place I emigrated from."
-			`I don't know what part of 'no' those spoiled kids didn't understand, but I'm not cooking 5 course dinners every day when they eat almost nothing.`
+			"I don't know what part of 'no' those spoiled kids didn't understand, but I'm not cooking 5 course dinners every day when they eat almost nothing."
 		word
 			`"`
 
@@ -647,7 +647,7 @@ news "painter"
 			"Painter"
 	message
 		word
-			"He who can, creates; he who cannot, transports. Sorry, no offense meant to you."
+			`"He who can, creates; he who cannot, transports. Sorry, no offense meant to you."`
 
 
 
