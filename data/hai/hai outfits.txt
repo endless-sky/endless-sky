@@ -489,7 +489,10 @@ outfit "Value Detector"
 	"outfit space" -5
 	"cargo scan power" 75
 	"cargo scan efficiency" 10
-	"tactical scan power" 35
+	"acceleration scan power" 42
+	"energy scan power" 95
+	"fuel scan power" 42
+	"range finder power" 42
 	"heat generation" 2
 	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar and provide more detailed information about the tactical condition of enemy vessels. This dual function is useful when fielding experimental weaponry."
 

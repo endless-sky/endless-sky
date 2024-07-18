@@ -632,14 +632,22 @@ outfit "Research Laboratory"
 	thumbnail "outfit/research laboratory"
 	"mass" 11
 	"outfit space" -6
-	"asteroid scan power" 84
-	"cargo scan power" 20
-	"cargo scan efficiency" 6
 	"atmosphere scan" 100
+	"acceleration scan power" 100
+	"crew scan power" 100
+	"energy scan power" 100
+	"fuel scan power" 100
+	"maneuver scan power" 100
+	"range finder power" 100
+	"thermal scan power" 100
+	"velocity scan power" 100
+	"weapon scan power" 100
 	"required crew" 1
+	"energy consumption" 0.01
 	"unplunderable" 1
 	description "From the very beginning, the Remnant have relied on their ability to study everything they encounter. This knowledge has enabled them to survive and even prosper in the harsh environment of the Ember Waste. To enable this pursuit of knowledge, the Remnant designed this compact laboratory that is built onto the side of a cargo bay, mess hall, or other larger room. When the room isn't otherwise occupied, this module expands out to convert it into a fully fledged laboratory."
 	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a base of operations used to investigate alien and stellar phenomena on-site. For captains, having advanced equipment to support their sensor suites as well as a trained scientist to serve in their crew amount to a strong benefit."
+	description "	This laboratory requires a trained scientist to be permanently assigned to it, and as such increases your required crew by 1. It also continuously consumes a small amount of energy."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -660,10 +668,12 @@ outfit "Salvage Scanner"
 	thumbnail "outfit/salvage scanner"
 	"mass" 7
 	"outfit space" -7
-	"outfit scan power" 13
-	"outfit scan efficiency" 12
-	"tactical scan power" 84
-	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	"asteroid scan power" 84
+	"cargo scan power" 40
+	"cargo scan efficiency" 35
+	"outfit scan power" 40
+	"outfit scan efficiency" 35
+	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those identification systems into sophisticated scanning technology."
 	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 

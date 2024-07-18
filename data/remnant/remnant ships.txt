@@ -44,7 +44,15 @@ ship "Albatross"
 		"hull energy" 1.2
 		"outfit scan power" 18
 		"outfit scan efficiency" 24
-		"tactical scan power" 39
+		"acceleration scan power" 40
+		"crew scan power" 40
+		"energy scan power" 40
+		"fuel scan power" 40
+		"maneuver scan power" 40
+		"range finder power" 40
+		"thermal scan power" 40
+		"velocity scan power" 40
+		"weapon scan power" 40
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -299,7 +307,15 @@ ship "Modified Dromedary"
 		"solar collection" 1.1
 		"outfit scan power" 18
 		"outfit scan efficiency" 48
-		"tactical scan power" 39
+		"acceleration scan power" 40
+		"crew scan power" 40
+		"energy scan power" 40
+		"fuel scan power" 40
+		"maneuver scan power" 40
+		"range finder power" 40
+		"thermal scan power" 40
+		"velocity scan power" 40
+		"weapon scan power" 40
 		"asteroid scan power" 42
 		"atmosphere scan" 100
 		weapon
@@ -515,7 +531,15 @@ ship "Gull"
 		"cloaked scanning" 1
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -682,7 +706,15 @@ ship "Heron"
 		"atmosphere scan" 100
 		"outfit scan power" 175
 		"outfit scan efficiency" 120
-		"tactical scan power" 350
+		"acceleration scan power" 350
+		"crew scan power" 350
+		"energy scan power" 350
+		"fuel scan power" 350
+		"maneuver scan power" 350
+		"range finder power" 350
+		"thermal scan power" 350
+		"velocity scan power" 350
+		"weapon scan power" 350
 		"force protection" 1
 		"heat protection" 1.5
 		"ion resistance" 0.3
@@ -847,7 +879,15 @@ ship "Ibis"
 		"hull energy" 0.95
 		"outfit scan power" 18
 		"outfit scan efficiency" 20
-		"tactical scan power" 39
+		"acceleration scan power" 42
+		"crew scan power" 42
+		"energy scan power" 42
+		"fuel scan power" 42
+		"maneuver scan power" 42
+		"range finder power" 42
+		"thermal scan power" 42
+		"velocity scan power" 42
+		"weapon scan power" 42
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
@@ -941,7 +981,15 @@ ship "Merganser"
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		"ion resistance" 0.1
 		"ion resistance energy" -0.05
 		"scramble resistance" 0.1
@@ -1048,7 +1096,15 @@ ship "Pelican"
 		"hull energy" 0.75
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1139,7 +1195,15 @@ ship "Penguin"
 		"cloaked scanning" 1
 		"outfit scan power" 50
 		"outfit scan efficiency" 36
-		"tactical scan power" 50
+		"acceleration scan power" 55
+		"crew scan power" 55
+		"energy scan power" 55
+		"fuel scan power" 55
+		"maneuver scan power" 55
+		"range finder power" 55
+		"thermal scan power" 55
+		"velocity scan power" 55
+		"weapon scan power" 55
 		"atmosphere scan" 100
 		"ion protection" 0.25
 		"scramble protection" 0.25
@@ -1257,7 +1321,15 @@ ship "Peregrine"
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
-		"tactical scan power" 50
+		"acceleration scan power" 50
+		"crew scan power" 50
+		"energy scan power" 50
+		"fuel scan power" 50
+		"maneuver scan power" 50
+		"range finder power" 50
+		"thermal scan power" 50
+		"velocity scan power" 50
+		"weapon scan power" 50
 		"ion resistance" .25
 		"ion resistance energy" -0.125
 		"scrambling resistance" .25
@@ -1373,7 +1445,15 @@ ship "Petrel"
 		"gaslining" 1
 		"outfit scan power" 10
 		"outfit scan efficiency" 14
-		"tactical scan power" 20
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		"asteroid scan power" 30
 		weapon
 			"blast radius" 15
@@ -1438,7 +1518,15 @@ ship "Puffin"
 		"cooling energy" .4
 		"outfit scan power" 24
 		"outfit scan efficiency" 28
-		"tactical scan power" 52
+		"acceleration scan power" 52
+		"crew scan power" 52
+		"energy scan power" 52
+		"fuel scan power" 52
+		"maneuver scan power" 52
+		"range finder power" 52
+		"thermal scan power" 52
+		"velocity scan power" 52
+		"weapon scan power" 52
 		"atmosphere scan" 100
 		"ion protection" 0.25
 		"scramble protection" 0.25
@@ -1493,7 +1581,15 @@ ship "Smew"
 		"hull energy" 0.58
 		"outfit scan power" 14
 		"outfit scan efficiency" 20
-		"tactical scan power" 28
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		"asteroid scan power" 50
 		weapon
 			"blast radius" 24
@@ -1583,7 +1679,15 @@ ship "Starling"
 		"cloaked scanning" 1
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -1743,7 +1847,15 @@ ship "Tern"
 		"gaslining" 1
 		"outfit scan power" 10
 		"outfit scan efficiency" 12
-		"tactical scan power" 20
+		"acceleration scan power" 20
+		"crew scan power" 20
+		"energy scan power" 20
+		"fuel scan power" 20
+		"maneuver scan power" 20
+		"range finder power" 20
+		"thermal scan power" 20
+		"velocity scan power" 20
+		"weapon scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
 		weapon
