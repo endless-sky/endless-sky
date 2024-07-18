@@ -175,9 +175,9 @@ formation "Nabla (trailing)"
 
 # A filled circle around the flagship
 # Built in six segment sections using the same layouting as the hexagon shape.
+# Using rotatable 1 instead of 0 to avoid aligning circles perfectly with the screen direction.
 formation "Circle"
-	flippable x y
-	rotatable 0
+	rotatable 1
 	arc
 		start 200 0
 		angle 360
