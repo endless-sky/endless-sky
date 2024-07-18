@@ -14,7 +14,7 @@
 
 # Atomic formation that doesn't rotate with the lead ship.
 formation "Atomic"
-	rotatable 0
+	rotatable 120
 	# Section in front of the lead ship.
 	arc
 		start -75 -129.9
