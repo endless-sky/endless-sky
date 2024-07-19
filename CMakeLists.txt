@@ -109,6 +109,12 @@ add_subdirectory(source)
 add_library(ExternalLibraries INTERFACE)
 target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
 
+set(SANITIZER_OPTS "-g" "-fno-omit-frame-pointer" "-fsanitize=address,pointer-compare,pointer-subtract,leak,undefined,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,vptr,pointer-overflow,builtin")
+if(NOT MSVC)
+	target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+	target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+endif()
+
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
 	target_link_libraries(ExternalLibraries INTERFACE mingw32)
