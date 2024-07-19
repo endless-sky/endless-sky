@@ -30,7 +30,7 @@ news "high houses scion"
 			`"`
 		word
 			"I hope thou has't enjoyed thy time amongst our people."
-			"The alien! Doth thou have news from far in this endless sky?"
+			"The alien! Hath thou news from far in this endless sky?"
 			"Fair traveler, I've heard of thee. How must thy voyage weigh upon thy mind."
 			"Welcome to our space, honored alien. A pleasure 'tis to meet thee."
 		word
@@ -253,8 +253,8 @@ news "local news quiet"
 			"A text-only broadcast discusses a recent touch-based art performance. The script shimmers as you move your head around, the translation device doing its best to transcribe it."
 			"A broadcast shows a brief interview with a local florist, who shows off a collection of their living-metal plants."
 			"A formal document is shown with a column of text to the side of it. This describes it as a new trade ordinance, and lists its effects on independent merchants."
-			"A brief program on erosion control and restoration plays for a duration."
-			"The program is briefly interrupted to display a general-use map for the spaceport."
+			"A brief program on erosion control and restoration plays."
+			"The news report playing on the video screen is briefly interrupted to display a general-use map for the spaceport."
 
 
 news "station report"
@@ -268,7 +268,7 @@ news "station report"
 		word
 			"Station Report"
 			"Announcement System"
-			"Public Announcement System"
+			"Public Address System"
 	message
 		word
 			"A public announcement clarifies that an inefficiency in the station's atmosphere processing units was resolved overnight."
