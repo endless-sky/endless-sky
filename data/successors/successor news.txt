@@ -22,9 +22,9 @@ news "high houses scion"
 		not attributes uninhabited
 	name
 		word
-			"High Houses Scion"
-			"Child of the High Houses"
-			"Scion of the High Houses"
+			"Emissary of a High House"
+			"Official of a High House"
+			"Agent of a High House"
 	message
 		word
 			`"`
