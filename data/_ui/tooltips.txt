@@ -211,7 +211,7 @@ tip "discharge resistance heat:"
 	`Heat generated per second when resisting discharge damage.`
 
 tip "dispersion protection:"
-	`Protection provided against dispersion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in burn damage, while a total value of 11 only results in a 10 percent reduction.`
+	`Protection provided against dispersion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in dispersion damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "dispersion resistance:"
 	`Dispersion damage resisted per second.`
