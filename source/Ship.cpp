@@ -1376,6 +1376,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	corrosion = 0.;
 	leakage = 0.;
 	burning = 0.;
+	dispersion = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -2545,6 +2546,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	corrosion = 0.;
 	leakage = 0.;
 	burning = 0.;
+	dispersion = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -3096,6 +3098,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	scrambling += damage.Scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
+	dispersion += damage.Dispersion();
 
 	disruption += damage.Disruption();
 	slowness += damage.Slowing();
@@ -4056,6 +4059,7 @@ void Ship::DoGeneration()
 	energy -= ionization;
 	fuel -= leakage;
 	heat += burning;
+	cloak -= dispersion;
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
@@ -4135,6 +4139,12 @@ void Ship::DoGeneration()
 		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
 		DoStatusEffect(isDisabled, burning, burnResistance,
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
+	}
+
+	if(dispersion)
+	{
+		DoStatusEffect(isDisabled, dispersion, 0.,
+			energy, 0., fuel, 0., heat, 0.);
 	}
 
 	// When ships recharge, what actually happens is that they can exceed their
@@ -4243,6 +4253,8 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
+	if(dispersion)
+		CreateSparks(visuals, "slowing spark", dispersion * 50.);
 }
 
 

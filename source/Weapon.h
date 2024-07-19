@@ -183,6 +183,7 @@ public:
 	double CorrosionDamage() const;
 	double LeakDamage() const;
 	double BurnDamage() const;
+	double DispersionDamage() const;
 	// Relative damage types:
 	double RelativeShieldDamage() const;
 	double RelativeHullDamage() const;
@@ -322,7 +323,7 @@ private:
 	double blastRadius = 0.;
 	double safeRange = 0.;
 
-	static const int DAMAGE_TYPES = 24;
+	static const int DAMAGE_TYPES = 25;
 	static const int HIT_FORCE = 0;
 	// Normal damage types:
 	static const int SHIELD_DAMAGE = 1;
@@ -342,14 +343,15 @@ private:
 	static const int CORROSION_DAMAGE = 14;
 	static const int LEAK_DAMAGE = 15;
 	static const int BURN_DAMAGE = 16;
+	static const int DISPERSION_DAMAGE = 17;
 	// Relative damage types:
-	static const int RELATIVE_SHIELD_DAMAGE = 17;
-	static const int RELATIVE_HULL_DAMAGE = 18;
-	static const int RELATIVE_DISABLED_DAMAGE = 19;
-	static const int RELATIVE_MINABLE_DAMAGE = 20;
-	static const int RELATIVE_FUEL_DAMAGE = 21;
-	static const int RELATIVE_HEAT_DAMAGE = 22;
-	static const int RELATIVE_ENERGY_DAMAGE = 23;
+	static const int RELATIVE_SHIELD_DAMAGE = 18;
+	static const int RELATIVE_HULL_DAMAGE = 19;
+	static const int RELATIVE_DISABLED_DAMAGE = 20;
+	static const int RELATIVE_MINABLE_DAMAGE = 21;
+	static const int RELATIVE_FUEL_DAMAGE = 22;
+	static const int RELATIVE_HEAT_DAMAGE = 23;
+	static const int RELATIVE_ENERGY_DAMAGE = 24;
 	mutable double damage[DAMAGE_TYPES] = {};
 
 	double piercing = 0.;
@@ -459,6 +461,7 @@ inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE_DAM
 inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION_DAMAGE); }
 inline double Weapon::LeakDamage() const { return TotalDamage(LEAK_DAMAGE); }
 inline double Weapon::BurnDamage() const { return TotalDamage(BURN_DAMAGE); }
+inline double Weapon::DispersionDamage() const { return TotalDamage(DISPERSION_DAMAGE); }
 
 inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
 inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }

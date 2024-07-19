@@ -921,6 +921,9 @@ tip "leak damage / second:"
 tip "burn damage / second:"
 	`Heat damage dealt over time by this weapon per second.`
 
+tip "dispersion damage / second:"
+	`Anti-cloak damage dealt over time by this weapon per second.`
+
 tip "% shield damage / second:"
 	`Shield damage dealt per second, as a percentage of the target's total shield strength.`
 
@@ -1061,6 +1064,9 @@ tip "leak damage / shot:"
 
 tip "burn damage / shot:"
 	`Heat damage dealt over time by this weapon per shot.`
+
+tip "dispersion damage / shot:"
+	`Anti-cloak damage dealt over time by this weapon per shot.`
 
 tip "% shield damage / shot:"
 	`Shield damage dealt per shot, as a percentage of your target's total shield strength.`

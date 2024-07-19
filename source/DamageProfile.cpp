@@ -152,6 +152,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Energy, heat, and fuel damage are blocked 50% by shields.
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
+	// Cloak damage is unaffected by shields.
 	damage.shieldDamage *= shieldFraction;
 	double totalHullProtection = (ScaleType(1., 0., attributes.Get("hull protection") +
 		(ship.IsCloaked() ? attributes.Get("cloak hull protection") : 0.)));
@@ -183,11 +184,13 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
 	// Discharge damage is blocked 50% by the absence of shields.
+	// Dispersion damage is unaffected by shields.
 	damage.dischargeDamage = weapon.DischargeDamage() * ScaleType(0., .5, attributes.Get("discharge protection"));
 	damage.corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., 0., attributes.Get("corrosion protection"));
 	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, 0., attributes.Get("ion protection"));
 	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, 0., attributes.Get("burn protection"));
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., 0., attributes.Get("leak protection"));
+	damage.dispersionDamage = (weapon.DispersionDamage());
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.

@@ -422,10 +422,12 @@ namespace {
 				cout << fuelDmg << ',';
 				double leakDmg = outfit.LeakDamage() * 100. * fireRate;
 				cout << leakDmg << ',';
-				double hitforce = outfit.HitForce() * fireRate;
-				cout << hitforce << ',';
 				double cloakDamage = outfit.CloakDamage() * fireRate;
 				cout << cloakDamage << ',';
+				double dispersionDamage = outfit.DispersionDamage() * 100. * fireRate;
+				cout << dispersionDamage << ',';
+				double hitforce = outfit.HitForce() * fireRate;
+				cout << hitforce << ',';
 
 				cout << outfit.Homing() << ',';
 				double strength = outfit.MissileStrength() + outfit.AntiMissile();
