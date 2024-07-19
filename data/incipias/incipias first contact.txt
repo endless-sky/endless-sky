@@ -80,20 +80,20 @@ mission "Incipias: Presence of the Guardian"
 	on enter Dom'us
 		fail
 		conversation
-			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched. `
+			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
 				to display
 					not "Incipias: accepted the guardians warning"
-			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on attempts to deceive me, human. Know that you will be watched." The voice fades away, but the strong presence remains.`
+			`As you enter the system, the same voice from before echoes through your mind, though this time, there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
 				to display
 					has "Incipias: accepted the guardians warning"
 				decline
 	on enter Hui'uc
 		fail
 		conversation
-			`As you enter the system you have a feeling of being watched. The presence from the previous system still lingers.`
+			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched. `
 				to display
 					not "Incipias: accepted the guardians warning"
-			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on attempts to deceive me, human. Know that you will be watched." The voice fades away, but the strong presence remains.`
+			`As you enter the system, the same voice from before echoes through your mind, though this time, there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
 				to display
 					has "Incipias: accepted the guardians warning"
 				decline
@@ -148,7 +148,7 @@ mission "Visit Quarg in Incipias Space"
 			label "new species"
 			`	"What a peculiar task that is." It looks confused and tilts its head. "What do you hope to achieve by this? That an unfathomable amount of dangers come with encountering and treating with other species, did you not foresee? The boundaries of space are not idle accidents. I advise you to be scrupulous and ponder every last step."`
 			label end
-			`	After a short pause it continues talking; you notice an almost-hidden frustration lurking beneath the Quarg's face. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon another kind has initiated their journey to the stars. Do not interrupt them for your own sake, as we will avenge any hostile actions against them."`
+			`	After a short pause, you notice an almost-hidden frustration lurking beneath the Quarg's face before it continues speaking. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon the neighboring kind has initiated their journey to the stars. Do not interrupt them for yours, or sake of their own."`
 			`	With these words the Quarg turn around and leave. It seems like you are free to use the local facilities now.`
 
 # TODO: Maybe add a version of the ship's sprite that looks damaged/modded.
