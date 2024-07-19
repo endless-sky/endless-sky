@@ -4143,8 +4143,12 @@ void Ship::DoGeneration()
 
 	if(dispersion)
 	{
-		DoStatusEffect(isDisabled, dispersion, 0.,
-			energy, 0., fuel, 0., heat, 0.);
+		double dispersionResistance = attributes.Get("dispersion resistance");
+		double dispersionEnergy = attributes.Get("dispersion resistance energy") / dispersionResistance;
+		double dispersionFuel = attributes.Get("dispersion resistance fuel") / dispersionResistance;
+		double dispersionHeat = attributes.Get("dispersion resistance heat") / dispersionResistance;
+		DoStatusEffect(isDisabled, dispersion, dispersionResistance,
+			energy, dispersionEnergy, fuel, dispersionFuel, heat, dispersionHeat);
 	}
 
 	// When ships recharge, what actually happens is that they can exceed their

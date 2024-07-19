@@ -178,7 +178,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.fuelDamage = (weapon.FuelDamage()
 		+ weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
 		* ScaleType(.5, 0., attributes.Get("fuel protection"));
-	damage.cloakDamage = (weapon.CloakDamage());
+	damage.cloakDamage = (weapon.CloakDamage()
+		* ScaleType(.5, 0., attributes.Get("cloak protection")));
 
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
@@ -190,7 +191,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, 0., attributes.Get("ion protection"));
 	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, 0., attributes.Get("burn protection"));
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., 0., attributes.Get("leak protection"));
-	damage.dispersionDamage = (weapon.DispersionDamage());
+	damage.dispersionDamage = (weapon.DispersionDamage() * ScaleType(0., 0., attributes.Get("dispersion protection")));
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.

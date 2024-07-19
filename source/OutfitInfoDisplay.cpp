@@ -63,6 +63,9 @@ namespace {
 		{"discharge resistance energy", 0},
 		{"discharge resistance fuel", 0},
 		{"discharge resistance heat", 0},
+		{"dispersion resistance energy", 0},
+		{"dispersion resistance fuel", 0},
+		{"dispersion resistance heat", 0},
 		{"disruption resistance energy", 0},
 		{"disruption resistance fuel", 0},
 		{"disruption resistance heat", 0},
@@ -166,6 +169,7 @@ namespace {
 
 		{"ion resistance", 2},
 		{"scramble resistance", 2},
+		{"dispersion resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
 		{"discharge resistance", 2},
@@ -193,8 +197,10 @@ namespace {
 		{"turn multiplier", 3},
 
 		{"burn protection", 4},
+		{"cloak protection", 4},
 		{"corrosion protection", 4},
 		{"discharge protection", 4},
+		{"dispersion protection", 4},
 		{"disruption protection", 4},
 		{"drag reduction", 4},
 		{"energy protection", 4},
