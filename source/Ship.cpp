@@ -4254,7 +4254,7 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
 	if(dispersion)
-		CreateSparks(visuals, "slowing spark", dispersion * 50.);
+		CreateSparks(visuals, "dispersion spark", dispersion * 50.);
 }
 
 
