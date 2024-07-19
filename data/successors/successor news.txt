@@ -45,15 +45,15 @@ news "high houses official"
 		not attributes crime uninhabited
 	name
 		word
-			"High Houses official"
-			"High Houses officer"
+			"Port official"
+			"Port officer"
 	message
 		word
 			`"`
 		word
 			"The Houses welcome thee as 'guest' among our people; "
 			"Please remain in concord with our people; "
-			"Informed, I am, of thy recent arrival; "
+			"Informed, am I, of thy recent arrival; "
 			"Can I provide assistance, honored traveler? "
 			"Our noble house does greet thee full of joy; "
 		word
@@ -167,9 +167,8 @@ news "successor merchant"
 			"A "
 		word
 			"pushy "
-			"unscrupulous "
 			"friendly-looking "
-			"anxious-looking "
+			"nervous-looking "
 			"furtive "
 			"brightly-colored "
 			"vibrantly-dressed "
@@ -200,7 +199,10 @@ news "high houses propaganda"
 		not attributes quiet uninhabited
 	name
 		word
-			"High Houses broadcast"
+			"High House broadcast"
+			"Government broadcast"
+			"Spaceport video screen"
+			"Official broadcast"
 	message
 		word
 			"An advertisement shows a Successor warship performing a variety of deftly-executed maneuvers before encouraging the viewer to enlist in the armed forces of one of the High Houses."
@@ -218,7 +220,9 @@ news "successor advertisements"
 		not attributes quiet uninhabited
 	name
 		word
-			"Advertisement"
+			"Advertisement" 2
+			"Spaceport video screen"
+			"Commercial advertisement"
 	message
 		word
 			"A bowl of a stringy kelp-like food dances around a screen while various seasonings are applied to it. After about thirty seconds, a Successor is shown slurping some of the strands, and their skin turns a happy pink."
@@ -229,7 +233,7 @@ news "successor advertisements"
 			"An field of large, floral plants are shown growing long strings of gleaming metal which are quickly harvested by agricultural robots."
 			"A series of images displaying several models flash one after another so quickly that it is hard to tell what is actually being advertised."
 			"A short video clip is shown advertising a performance in a local concert hall. The stage is divided into two sections: one is underwater and the other is dry."
-			"Some sort of interactive game that you can't make sense of captivates the attention of a group of young Successors."
+			"A bright and colorful interactive game is displayed on one of the port video screens. It accrues a small group of young Successors; they appear captivated by it."
 			"An eye covering vaguely resembling a contact lens is shown being applied to the eyes of several models, changing their color and shape when applied."
 			"A shipbuilding organization advertises a members' discount on Kvelqde shuttles. They make sure to note that their operation is supported by one of the High Houses."
 			"An independent pilot briefly advertises their courier services in a pre-recorded message, offering guaranteed fastest-possible-delivery on packages under ten tons."
@@ -253,7 +257,7 @@ news "local news quiet"
 			"A text-only broadcast discusses a recent touch-based art performance. The script shimmers as you move your head around, the translation device doing its best to transcribe it."
 			"A broadcast shows a brief interview with a local florist, who shows off a collection of their living-metal plants."
 			"A formal document is shown with a column of text to the side of it. This describes it as a new trade ordinance, and lists its effects on independent merchants."
-			"A brief program on erosion control and restoration plays."
+			"A brief program on erosion control and restoration is narrated, in monotone, by a tired-looking Successor in an equally drab outfit."
 			"The news report playing on the video screen is briefly interrupted to display a general-use map for the spaceport."
 
 
