@@ -192,7 +192,7 @@ mission "Hai Legacy 1"
 			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
 			choice
 				`	(Go back to the shipyard.)`
-			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of a surprisingly advanced navigation AI, you manage to bring it all the way there effortlessly despite the ship being designed for multiple crew members. When you arrive, however, the AI shuts down without explanation, and you're forced to use a full crew complement.`
+			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of a surprisingly advanced navigation AI, you manage to bring it all the way there effortlessly, despite the ship clearly being designed to be flown by many crew members. When you arrive, however, the AI shuts down without explanation, and you're forced to use a full crew complement.`
 				accept
 			label foolish
 			`	You get your weapon out and proceed to shoot on the ship.`
@@ -259,7 +259,7 @@ mission "Hai Legacy 2"
 				accept
 			label "not single ship"
 			`You enter the system, and, for a brief moment, nobody is shooting you.`
-			`	The Unfettered quickly change their mind, however, as soon as your escorts enter the system. They happily head your way, weapons ready to loot your cargo.`
+			`	The Unfettered quickly change their minds, however, as soon as your escorts enter the system. They happily head your way, weapons ready to loot your cargo.`
 				decline
 			label "wrong flagship"
 			`You enter the system, and the Unfettered open fire as usual. Perhaps they would have acted differently if you had used the Anomalocaris as a flagship, but it is too late to find out now.`
@@ -299,7 +299,7 @@ mission "Hai Legacy 3"
 				`	"What do I get if I win?"`
 					goto win
 				`	"Can't I just sell it to you?"`
-				`	"I bought this ship. It's mine and I shall do what I please with it." (Leave.)`
+				`	"I bought this ship. It's mine and I shall do what I please with it. I'm leaving now."`
 					goto headingout
 			`	"No, because in the eyes of my brethren that would mean I, too, did not deserve this ship. They would then challenge me for it."`
 			label win
@@ -316,7 +316,7 @@ mission "Hai Legacy 3"
 				`	(Say nothing.)`
 				`	"Are you trying to scare me out of the fight?"`
 					goto scare
-			`	"I guess we'll find out." says a third.`
+			`	"I guess we'll find out," says a third.`
 			label scare
 			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone knows them, but since you are an outsider I will explain them to you. Naturally, since this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
 			`	"Furthermore, we can understand some may die in glorious battle, and to the victor go the spoils, so looting is allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
@@ -347,7 +347,7 @@ mission "Hai Legacy 3"
 			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and hail you. "Where do you think you're going, monkey?"`
 				decline
 			label "too many ships"
-			`As you take to join your fleet in orbit, You receive a hail from the Unfettered, "If you can't even count how many ships you have you're not worthy of our time, monkey!"`
+			`As you take to join your fleet in orbit, You receive a hail from the Unfettered. "If you can't even count how many ships you have you're not worthy of our time, monkey!"`
 			action
 				fail
 	on disabled
@@ -357,7 +357,7 @@ mission "Hai Legacy 3"
 				to display
 					has "unfettered: fled with the relic"
 				decline
-			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
+			`One of the enemy ships hails you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. Today, you've failed us, but maybe someday you will prove yourself otherwise."`
 	to fail
 		not "flagship landed"
@@ -372,7 +372,7 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
-		personality unconstrained launching plunders staying target heroic disables marked
+		personality disables heroic marked launching plunders staying target unconstrained
 		ship "Lightning Bug (Ionic)" "Eraser"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
@@ -397,7 +397,7 @@ mission "Hai Legacy 3"
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
 			"old reputation: Hai (Unfettered)" < -2000
-		personality unconstrained entering plunders target heroic mute marked
+		personality entering heroic mute marked plunders target unconstrained
 		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
 		conversation
@@ -414,12 +414,12 @@ mission "Hai Legacy 3"
 		government "Hai (Unfettered)"
 		to spawn
 			not "unfettered: fled with the relic"
-		ship "Lightning Bug (Unfettered Shipyards)"
-		personality launching staying surveillance marked
+		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
+		personality launching marked staying surveillance
 		on disable
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
-			fail "Hai Legacy 3"
+			fail
 			set "unfettered: outcast"
 			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities. "You completely disrespected the rules of the duel and killed our most prominent researcher. You will not be welcome here anymore!"`
 	npc
