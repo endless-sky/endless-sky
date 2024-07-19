@@ -282,6 +282,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HEAT_DAMAGE] = value;
 			else if(key == "energy damage")
 				damage[ENERGY_DAMAGE] = value;
+			else if(key == "cloak damage")
+				damage[CLOAK_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "scrambling damage")

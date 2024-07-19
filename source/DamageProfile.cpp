@@ -177,6 +177,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.fuelDamage = (weapon.FuelDamage()
 		+ weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
 		* ScaleType(.5, 0., attributes.Get("fuel protection"));
+	damage.cloakDamage = (weapon.CloakDamage());
 
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.

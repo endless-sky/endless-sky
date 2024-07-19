@@ -424,6 +424,8 @@ namespace {
 				cout << leakDmg << ',';
 				double hitforce = outfit.HitForce() * fireRate;
 				cout << hitforce << ',';
+				double cloakDamage = outfit.CloakDamage() * fireRate;
+				cout << cloakDamage << ',';
 
 				cout << outfit.Homing() << ',';
 				double strength = outfit.MissileStrength() + outfit.AntiMissile();

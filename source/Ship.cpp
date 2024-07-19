@@ -3100,6 +3100,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	disruption += damage.Disruption();
 	slowness += damage.Slowing();
 
+	cloak -= damage.Cloak();
+
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 

@@ -894,6 +894,9 @@ tip "heat damage / second:"
 tip "energy damage / second:"
 	`Reduces the target's energy by this amount per second. Only half as effective when the target's shields are up.`
 
+tip "cloak damage / second:"
+	`Reduces the target's cloaking value by this amount per second.`
+
 tip "ion damage / second:"
 	`Reduces the target's energy. Only half as effective when the target's shields are up. Ionization slowly wears off over time.`
 
@@ -1031,6 +1034,9 @@ tip "heat damage / shot:"
 
 tip "energy damage / shot:"
 	`Reduces the target ship's energy by this amount per shot. Only half as effective when the target's shields are up.`
+
+tip "cloak damage / shot:"
+	`Reduces the target ship's cloaking value by this amount per shot.`
 
 tip "ion damage / shot:"
 	`Increases the target's ionization by this amount per shot. Only half as effective when the target's shields are up. Ionization reduces the target's energy, and slowly wears off over time.`
