@@ -218,7 +218,7 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 {
 	if(HasMine() && orderedShip->Cargo().Free() && targetAsteroid.expired())
 		SetHarvest();
-	else if((type & REQUIRES_TARGET).any())
+	else if((activeOrders & REQUIRES_TARGET).any())
 	{
 		shared_ptr<Ship> ship = GetTargetShip();
 		shared_ptr<Minable> asteroid = GetTargetAsteroid();
@@ -240,7 +240,7 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 
 		// Cancel any orders that required a target.
 		if(invalidTarget || targetOutOfReach)
-			type &= ~REQUIRES_TARGET;
+			activeOrders &= ~REQUIRES_TARGET;
 	}
 }
 
@@ -296,7 +296,7 @@ bool Orders::ApplyOrder(OrderType newOrder, int operation)
 
 	if(operation > 0)
 		if(activeOrders.any() && !activeOrders.test(newOrder))
-			type &= ORDER_MASKS.find(newOrder)->second;
+			activeOrders &= ORDER_MASKS.find(newOrder)->second;
 
 	if(operation == 0)
 		activeOrders.reset(newOrder);
