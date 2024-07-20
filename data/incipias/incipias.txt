@@ -55,11 +55,11 @@ phrase "vocal consonant"
 	phrase
 		"vocal"
 	phrase
-		"consonant"
+		"incipias consonant"
 
 phrase "consonant vocal"
 	phrase
-		"consonant"
+		"incipias consonant"
 	phrase
 		"vocal"
 
@@ -67,11 +67,11 @@ phrase "vocal consonant (capitalized)"
 	phrase
 		"vocal (capitalized)"
 	phrase
-		"consonant"
+		"incipias consonant"
 
 phrase "consonant vocal (capitalized)"
 	phrase
-		"consonant (capitalized)"
+		"incipias consonant (capitalized)"
 	phrase
 		"vocal"
 
@@ -91,7 +91,7 @@ phrase "vocal (capitalized)"
 		"O"
 		"U"
 
-phrase "consonant"
+phrase "incipias consonant"
 	word
 		"b"
 		"d"
@@ -104,7 +104,7 @@ phrase "consonant"
 		"s"
 		"t"
 
-phrase "consonant (capitalized)"
+phrase "incipias consonant (capitalized)"
 	word
 		"B"
 		"D"

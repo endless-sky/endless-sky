@@ -132,7 +132,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"MH Red-Class Steering"
 
 ship "Nimbo Stratus"
-	"plural" "Strati"
+	"plural" "Nimbo Strati"
 	"sprite" ship/stratus
 	"thumbnail" thumbnail/stratus
 	"swizzle" 0
@@ -167,10 +167,10 @@ ship "Nimbo Stratus"
 	explode "medium explosion" 10
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "Mining has always been a big business in Incipias society, which is why the Stratus is the most common ship for beginning captains. Its cheap price tag and ability to bring money in quickly ensure its continuing popularity. While the Stratus could theoretically be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
+	description "Mining has always been a big business in Incipias society, which is why the Nimbo Stratus is the most common ship for beginning captains. Its cheap price tag and ability to bring money in quickly ensure its continuing popularity. While the Stratus could theoretically be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
 
 ship "Nimbo Cirrus"
-	"plural" "Cirri"
+	"plural" "Nimbo Cirri"
 	"sprite" ship/cirrus
 	"thumbnail" thumbnail/cirrus
 	"swizzle" 0
@@ -202,7 +202,7 @@ ship "Nimbo Cirrus"
 	explode "medium explosion" 20
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "When Pon'tes was built, the need arose for a ship that could carry large amounts of material and supplies into orbit. When the Nimbus proved insufficient at this task, the Cirrus, a specialized cargo ship, was built. The inhabitants of Pon'tes rely on its regular deliveries for basic goods and equipment."
+	description "When Pon'tes was built, the need arose for a ship that could carry large amounts of material and supplies into orbit. When the Nimbus proved insufficient at this task, the Nimbo Cirrus, a specialized cargo ship, was built. The inhabitants of Pon'tes rely on its regular deliveries for basic goods and equipment."
 
 ship "Gero"
 	"sprite" ship/gero
