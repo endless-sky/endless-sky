@@ -132,7 +132,7 @@ jobs:
     - name: Install tbb
       run: |
         mkdir tbb
-        wget -O tbb.zip https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip
+        Invoke-WebRequest -Uri https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip -OutFile tbb.zip
         unzip tbb.zip -d tbb
       shell: bash
     - uses: lukka/get-cmake@latest
