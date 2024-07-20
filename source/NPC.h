@@ -60,8 +60,9 @@ public:
 		BOARD,
 		CAPTURE,
 		DESTROY,
+		ENCOUNTER,
 		// Can be triggered by either the CAPTURE or DESTROY events.
-		KILL
+		KILL,
 	};
 
 
@@ -109,8 +110,8 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
-			int jumps, int64_t payload) const;
+	NPC Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
+			const System *origin, const System *destination, int jumps, int64_t payload) const;
 
 
 private:
