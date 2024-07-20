@@ -133,6 +133,7 @@ else()
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 	if(APPLE)
 		target_link_options(ExternalLibraries INTERFACE "-fexperimental-library")
+		target_compile_options(ExternalLibraries INTERFACE "-fexperimental-library")
 	endif()
 endif()
 
