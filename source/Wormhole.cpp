@@ -239,7 +239,8 @@ void Wormhole::GenerateLinks()
 		int next = i == planet->Systems().size() - 1 ? 0 : i + 1;
 		// But check whether the wormhole in the given system has a sprite.
 		// If not, this is a one way wormhole that shouldn't be linked.
-		if(planet->Systems()[i]->FindStellar(planet)->GetSprite())
+		const StellarObject *object = planet->Systems()[i]->FindStellar(planet);
+		if(object && object->GetSprite())
 			links[planet->Systems()[i]] = planet->Systems()[next];
 	}
 }
