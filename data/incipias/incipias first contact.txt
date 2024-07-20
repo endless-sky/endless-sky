@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Drak guarding Incipias Space"
+mission "Drak guarding Incipias space"
 	invisible
 	landing
 	repeat
@@ -90,7 +90,7 @@ mission "Incipias: Presence of the Guardian"
 	on enter Hui'uc
 		fail
 		conversation
-			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched. `
+			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
 				to display
 					not "Incipias: accepted the guardians warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time, there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
@@ -329,10 +329,9 @@ mission "Incipias: Help The Stranded 2"
 		has "Incipias: Help The Stranded 1: done"
 	on offer
 		conversation
-			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you never experienced before. Giant clouds tower like castles, sometimes opening to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
-			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen, and you maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull, and their shields are completely down - the shield generator must have gone offline when they ran out of fuel.`
-			`	You receive no answer to your hail.`
-			`	You carefully maneuver your ship closer, until you can dock with the Incipias ship.`
+			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you have never experienced before. Giant clouds tower like castles, sometimes opening to similarly large caverns of air. Whirlwinds brush through the atmosphere like pillars holding the sky. Though the winds are brutal, your ship glides through them as if they had no effect on it at all.`
+			`	Activating your scanners, you look for the stranded ship from before. Soon, a small blip appears on your radar, and you maneuver your ship to its location. The stranded ship appears, looking even worse off than the first time. The storms seem to have damaged some of the hull, and its shields are completely down; the shield generator could have gone offline when they ran out of fuel.
+			`	Any attempt to hail the Incipias ship results in no answer. Carefully, you maneuver your own ship closer until you are able to dock with it.`
 			branch hasinciship
 				or
 					has "flagship model: Nimbus"
@@ -340,17 +339,16 @@ mission "Incipias: Help The Stranded 2"
 					has "flagship model: Nimbo Stratus"
 					has "flagship model: Venta"
 					has "flagship model: Gero"
-			`	When the lock opens five Incipias float in front of you. They seem on guard at first. It takes a moment for them to recognize you.`
+			`	When the airlock opens, you see five Incipias floating in front of you. They seem on guard at first, and it takes them a moment to recognize you from the previous encounter as you prepare your translation device to speak with them.`
 				goto initchoice
 			label hasinciship
-			`	When the lock opens five Incipias float in front of you. Noticing your presence they quickly back off; they were clearly not expecting a human in one of their species' ships. It takes a moment for them to recognize you.`
+			`	When the airlock opens, you see five Incipias floating in front of you. Noticing your presence, they quickly back off; they were clearly not expecting a human piloting one of their own ships. It takes them a moment to recognize you from the previous encounter as you prepare your translation device to speak with them.`
 			label initchoice
 			choice
 				`	"Hello, I have come to save you."`
 				`	"I have been sent by your people to get you home."`
-			`	They seem to switch from a tense state to a surprised one.`
-			`	One of them starts pulsating, "You light our language? How surprising. We would not have survived another day here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now." The lack of emotion in the translator's voice is disconcerting given the content of the message.`
-			`	You tell them to come aboard, and you manage to launch your ship just before a storm hits the area.`
+			`	The Incipias seem to switch from a tense state to a surprised one, and one of them starts pulsating. "You light our language? How surprising. We would not have survived another day-moment here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now." The lack of emotion in the translation is concerning, given the content of the message.`
+			`	You tell them to board your ship, and shortly after, you take off. Luckily, you leave just in time to avoid a powerful windstorm approaching the area.
 				launch
 	on complete
 		conversation
@@ -359,12 +357,12 @@ mission "Incipias: Help The Stranded 2"
 			`	They guide you through the hallways so that you avoid larger groups and move only through horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
 			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
 			choice
+				`	"Sure, ask me something."`
 				`	"Sorry, but I have other stuff to do."`
 					goto "end no time"
-				`	"Sure, ask me something."`
-			`	A green glow comes from all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space surrounding us?"`
+			`	A green glow appears on all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space-void surrounding us?"`
 			choice
-				`	(Give them an exhausting story of what you have seen so far.)`
+				`	(Give them an exhaustive story of what you have seen so far.)`
 					goto detail
 				`	(Give a rough overview of what you have seen.)`
 			`	After seeing your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green and red.`
@@ -377,23 +375,23 @@ mission "Incipias: Help The Stranded 2"
 			`	"But now to you. Is there anything you would like to know?"`
 			label choice
 			choice
-				`	"I do not have any more questions."`
-					goto end
+				`	"Why can I not land on your home planet?"`
 				`	"Why do you call this station your capital?"`
 					goto capital
 				`	"How is life on a gas giant?"`
 					goto oddquestion
-				`	"Why can I not land on your home planet?"`
+				`	"I do not have any more questions."`
+					goto end
 			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
 				goto choice
 			label capital
 			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
 			label oddquestion
-			`	"What an odd-reasonable question," it turns into a swirl of purple and green, "We could ask the same in return, what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds between them are our cities, the most color-liveful places you will ever see. This is a bit poetic-gradient description but I do not know what else to say."`
+			`	"What an odd-reasonable question." It's glow turns into a swirl of purple and green. "We could ask the same in return, what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds between them are our cities, the most color-lifeful places you will ever see. This is a bit poetic-gradient description but I do not know what else to say."`
 			label end
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
-			`	You say goodbye and as you leave the room you can see a rush of colors reflecting on the walls.`
+			`	You say goodbye, and as you leave the room, you can see a rush of colors reflecting onto the walls.`
 				decline
 			label "end no time"
 			`	"We are understanding-sad. Safe travels, captain." You notice a slight blue tone in the representative's communication as one of the Incipias guides you back to your ship.`
