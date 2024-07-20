@@ -71,7 +71,8 @@ jobs:
       - name: Install tbb
         run: |
           mkdir tbb
-          curl -sS https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip | tar -xz --directory tbb -
+          wget -O tbb.zip https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip
+          unzip tbb.zip -d tbb
         shell: bash
       - uses: lukka/run-cmake@v10
         with:
