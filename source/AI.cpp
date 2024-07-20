@@ -628,17 +628,17 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	for(auto &it : orders)
 	{
 		const Ship *ship = it.first;
-		Orders &orders = it.second;
-		if(orders.type.test(MINE) && ship->Cargo().Free() && orders.targetAsteroid.expired())
-			ApplyOrder(orders.type, HARVEST);
-		else if((orders.type & REQUIRES_TARGET).any())
+		Orders &shipOrders = it.second;
+		if(shipOrders.type.test(MINE) && ship->Cargo().Free() && shipOrders.targetAsteroid.expired())
+			ApplyOrder(shipOrders.type, HARVEST);
+		else if((shipOrders.type & REQUIRES_TARGET).any())
 		{
-			shared_ptr<Ship> targetShip = orders.target.lock();
-			shared_ptr<Minable> targetAsteroid = orders.targetAsteroid.lock();
+			shared_ptr<Ship> targetShip = shipOrders.target.lock();
+			shared_ptr<Minable> targetAsteroid = shipOrders.targetAsteroid.lock();
 			// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
 			bool invalidTarget = !targetShip
 					|| (!targetShip->IsTargetable() && ship->GetGovernment() != targetShip->GetGovernment())
-					|| (targetShip->IsDisabled() && orders.type.test(ATTACK));
+					|| (targetShip->IsDisabled() && shipOrders.type.test(ATTACK));
 			// Alternately, if an asteroid is targeted, then not an invalid target.
 			invalidTarget &= !targetAsteroid;
 			// Check if the target ship is in a system where we can target.
@@ -649,7 +649,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			targetOutOfReach &= !targetAsteroid;
 
 			if(invalidTarget || targetOutOfReach)
-				orders.type &= ~REQUIRES_TARGET;
+				shipOrders.type &= ~REQUIRES_TARGET;
 		}
 	}
 }
