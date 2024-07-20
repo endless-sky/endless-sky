@@ -11,20 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Drak guarding Incipias space"
-	invisible
-	landing
-	repeat
-	to offer
-		not "Drak guarding Incipias space: active"
-	to complete
-		never
-	npc save
-		government "Drak (Incipias)"
-		personality forbearing frugal heroic vindictive
-		system Il'le
-		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
-
 mission "Incipias: Warning of the Guardian"
 	invisible
 	landing
