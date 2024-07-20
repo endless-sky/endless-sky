@@ -110,10 +110,10 @@ add_library(ExternalLibraries INTERFACE)
 target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
 
 # Enable sanitizers on debug builds, depending on platform support.
-if(NOT MINGW)
-	set(SANITIZER_OPTS "-g" "-fsanitize=unreachable,builtin,integer-divide-by-zero,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow")
+if(NOT WIN32)
+	set(SANITIZER_OPTS "-g" "-fsanitize=address,undefined,pointer-compare,pointer-subtract,unreachable,builtin,integer-divide-by-zero,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow")
 	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr,address,undefined,pointer-compare,pointer-subtract")
+		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr")
 	endif()
 endif()
 target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
