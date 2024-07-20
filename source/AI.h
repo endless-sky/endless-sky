@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "Orders.h"
 #include "Point.h"
 
-#include <bitset>
 #include <cstdint>
 #include <list>
 #include <map>
@@ -178,24 +178,6 @@ private:
 	// Functions to classify ships based on government and system.
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
-
-
-private:
-	class Orders {
-	public:
-		// Make sure this matches the number of items in OrderTypes,
-		// or the build will fail.
-		static const int ORDER_COUNT = 9;
-
-		// The bitset of all active orders.
-		std::bitset<ORDER_COUNT> type;
-		// The order bit to change for new orders.
-		int newType;
-		std::weak_ptr<Ship> target;
-		std::weak_ptr<Minable> targetAsteroid;
-		Point point;
-		const System *targetSystem = nullptr;
-	};
 
 
 private:

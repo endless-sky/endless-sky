@@ -54,75 +54,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	enum OrderTypes {
-		HOLD_POSITION,
-		// Hold active is the same command as hold position, but it is given when a ship
-		// actively needs to move back to the position it was holding.
-		HOLD_ACTIVE,
-		MOVE_TO,
-		// HARVEST is related to MINE and is for picking up flotsam after
-		// ATTACK.
-		HARVEST,
-		KEEP_STATION,
-		GATHER,
-		ATTACK,
-		FINISH_OFF,
-		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
-		// to chase and attack the asteroid.
-		MINE,
-
-		// This must be last so it can be used for bounds checking.
-		LAST_ITEM_IN_ORDER_TYPES_ENUM
-	};
-
-	// Make sure this matches the number of items in OrderTypes,
-	// or the build will fail.
-	static const int ORDER_COUNT = 9;
-
-	// Bit masks that determine which orders may be given in conjunction with
-	// the key order. If an order isn't present in the mask of the key order
-	// then it will be set to false when the key order is given to a ship.
-	const map<OrderTypes, bitset<ORDER_COUNT>> ORDER_MASKS = {
-		{HOLD_POSITION, bitset<ORDER_COUNT>(0)},
-		{HOLD_ACTIVE, bitset<ORDER_COUNT>(0)},
-		{MOVE_TO, bitset<ORDER_COUNT>(0)},
-		{HARVEST, bitset<ORDER_COUNT>(0)},
-		{KEEP_STATION, bitset<ORDER_COUNT>(0)},
-		{GATHER, bitset<ORDER_COUNT>(0)},
-		{ATTACK, bitset<ORDER_COUNT>(0)},
-		{FINISH_OFF, bitset<ORDER_COUNT>(0)},
-		{MINE, bitset<ORDER_COUNT>(0)},
-	};
-
-	// Bit mask to figure out which orders are canceled if their target
-	// ceases to be targetable or present.
-	const bitset<ORDER_COUNT> REQUIRES_TARGET(
-		(1 << KEEP_STATION) +
-		(1 << GATHER) +
-		(1 << ATTACK) +
-		(1 << FINISH_OFF) +
-		(1 << MINE));
-
-	// Apply the new order type to the existing orders. The operation parameter
-	// determines if the new order bit should be reset, set, or flipped based on whether
-	// the parameter value is 0, 1, or 2.
-	// If the order bit is being changed to true, a bitmask is applied to cancel any
-	// conflicting orders.
-	// Returns the status of the changed order bit.
-	bool ApplyOrder(bitset<ORDER_COUNT> &orders, OrderTypes newOrder, int operation = 1)
-	{
-		if(operation > 0)
-			if(orders.any() && !orders.test(newOrder))
-				orders &= ORDER_MASKS.find(newOrder)->second;
-		if(operation == 0)
-			orders.reset(newOrder);
-		if(operation == 1)
-			orders.set(newOrder);
-		if(operation == 2)
-			orders.flip(newOrder);
-		return orders.test(newOrder);
-	}
-
 	// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
 	const Command &AutopilotCancelCommands()
 	{
@@ -435,10 +366,8 @@ AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 		const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
-	static_assert(LAST_ITEM_IN_ORDER_TYPES_ENUM == ORDER_COUNT,
-		"ORDER_COUNT must match the length of OrderTypes");
-	static_assert(LAST_ITEM_IN_ORDER_TYPES_ENUM == Orders::ORDER_COUNT,
-		"Orders::ORDER_COUNT must match the length of OrderTypes");
+	static_assert(Orders::OrderType::TYPES_COUNT == Orders::ORDER_COUNT,
+		"Orders::ORDER_COUNT must match the length of Orders::Types");
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
 }
@@ -500,8 +429,8 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	for(Ship *ship : targetShips)
 	{
 		ship->SetFormationPattern(toSet);
-		ApplyOrder(orders[ship].type, GATHER);
-		orders[ship].target = player.FlagshipPtr();
+		orders[ship].SetGather();
+		orders[ship].SetTargetShip(player.FlagshipPtr());
 	}
 
 	unsigned int count = targetShips.size();
@@ -516,8 +445,13 @@ void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 {
 	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();
-	newOrders.newType = (!isEnemy ? KEEP_STATION : (target->IsDisabled() ? FINISH_OFF : ATTACK));
-	newOrders.target = target;
+	if(!isEnemy)
+		newOrders.SetKeepStation();
+	else if(target->IsDisabled())
+		newOrders.SetFinishOff();
+	else
+		newOrders.SetAttack();
+	newOrders.SetTargetShip(target);
 	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
 	IssueOrders(newOrders, description);
 }
@@ -527,8 +461,8 @@ void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 void AI::IssueAsteroidTarget(const shared_ptr<Minable> &targetAsteroid)
 {
 	Orders newOrders;
-	newOrders.newType = MINE;
-	newOrders.targetAsteroid = targetAsteroid;
+	newOrders.SetMine();
+	newOrders.SetTargetAsteroid(targetAsteroid);
 	IssueOrders(newOrders,
 			"focusing fire on " + targetAsteroid->DisplayName() + " " + targetAsteroid->Noun() + ".");
 }
@@ -538,9 +472,9 @@ void AI::IssueAsteroidTarget(const shared_ptr<Minable> &targetAsteroid)
 void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 {
 	Orders newOrders;
-	newOrders.newType = MOVE_TO;
-	newOrders.point = target;
-	newOrders.targetSystem = moveToSystem;
+	newOrders.SetMoveTo();
+	newOrders.SetTargetPoint(target);
+	newOrders.SetTargetSystem(moveToSystem);
 	string description = "moving to the given location";
 	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->Name() + " system.");
 	IssueOrders(newOrders, description);
@@ -606,52 +540,30 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	Orders newOrders;
 	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours() && !shift)
 	{
-		newOrders.newType = (target->IsDisabled() ? FINISH_OFF : ATTACK);
-		newOrders.target = target;
+		if(target->IsDisabled())
+			newOrders.SetFinishOff();
+		else
+			newOrders.SetAttack();
+		newOrders.SetTargetShip(target);
 		IssueOrders(newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
 	if(activeCommands.Has(Command::HOLD) && !shift)
 	{
-		newOrders.newType = HOLD_POSITION;
+		newOrders.SetHoldPosition();
 		IssueOrders(newOrders, "holding position.");
 	}
 	if(activeCommands.Has(Command::GATHER) && !shift)
 	{
-		newOrders.newType = GATHER;
-		newOrders.target = player.FlagshipPtr();
+		newOrders.SetGather();
+		newOrders.SetTargetShip(player.FlagshipPtr());
 		IssueOrders(newOrders, "gathering around your flagship.");
 	}
 
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto &it : orders)
-	{
-		const Ship *ship = it.first;
-		Orders &shipOrders = it.second;
-		if(shipOrders.type.test(MINE) && ship->Cargo().Free() && shipOrders.targetAsteroid.expired())
-			ApplyOrder(shipOrders.type, HARVEST);
-		else if((shipOrders.type & REQUIRES_TARGET).any())
-		{
-			shared_ptr<Ship> targetShip = shipOrders.target.lock();
-			shared_ptr<Minable> targetAsteroid = shipOrders.targetAsteroid.lock();
-			// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
-			bool invalidTarget = !targetShip
-					|| (!targetShip->IsTargetable() && ship->GetGovernment() != targetShip->GetGovernment())
-					|| (targetShip->IsDisabled() && shipOrders.type.test(ATTACK));
-			// Alternately, if an asteroid is targeted, then not an invalid target.
-			invalidTarget &= !targetAsteroid;
-			// Check if the target ship is in a system where we can target.
-			// This check only checks for undocked ships (that have a current system).
-			bool targetOutOfReach = !targetShip || (ship->GetSystem() && targetShip->GetSystem() != ship->GetSystem()
-					&& targetShip->GetSystem() != flagship->GetSystem());
-			// Asteroids are never out of reach since they're in the same system as flagship.
-			targetOutOfReach &= !targetAsteroid;
-
-			if(invalidTarget || targetOutOfReach)
-				shipOrders.type &= ~REQUIRES_TARGET;
-		}
-	}
+		it.second.UpdateOrder(it.first, flagship->GetSystem());
 }
 
 
@@ -1403,11 +1315,11 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			auto foundOrders = orders.find(helper.get());
 			if(foundOrders != orders.end())
 			{
-				auto helperOrders = foundOrders->second.type;
+				auto helperOrders = foundOrders->second;
 				// If your own escorts become disabled, then your mining fleet
 				// should prioritize repairing escorts instead of mining or
 				// harvesting flotsam.
-				if(helper->IsYours() && ship.IsYours() && !helperOrders.test(MINE) && !helperOrders.test(HARVEST))
+				if(helper->IsYours() && ship.IsYours() && !helperOrders.HasMine() && !helperOrders.HasHarvest())
 					continue;
 			}
 
@@ -1492,8 +1404,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.type.test(ATTACK) || it->second.type.test(FINISH_OFF)))
-			return it->second.target.lock();
+		if(it != orders.end() && (it->second.HasAttack() || it->second.HasFinishOff()))
+			return it->second.GetTargetShip();
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -1745,7 +1657,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	if(it == orders.end())
 		return false;
 
-	auto type = it->second.type;
+	Orders order = it->second;
 
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
@@ -1753,7 +1665,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
-	if(parent && !type.test(HOLD_POSITION) && !type.test(HOLD_ACTIVE) && !type.test(MOVE_TO))
+	if(parent && !order.HasHoldPosition() && !order.HasHoldActive() && !order.HasMoveTo())
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1761,20 +1673,22 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 			return false;
 	}
 	// Do not keep chasing flotsam because another order was given.
-	if(ship.GetTargetFlotsam() && (!type.test(HARVEST) || (ship.CanBeCarried() && !ship.HasDeployOrder())))
+	if(ship.GetTargetFlotsam() && (!order.HasHarvest() || (ship.CanBeCarried() && !ship.HasDeployOrder())))
 	{
 		ship.SetTargetFlotsam(nullptr);
 		return false;
 	}
 
-	shared_ptr<Ship> target = it->second.target.lock();
-	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();
-	if(type.test(MOVE_TO) && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	shared_ptr<Ship> target = order.GetTargetShip();
+	shared_ptr<Minable> targetAsteroid = order.GetTargetAsteroid();
+	const System *targetSystem = order.GetTargetSystem();
+	const Point &targetPoint = order.GetTargetPoint();
+	if(order.HasMoveTo() && targetSystem && ship.GetSystem() != targetSystem)
 	{
 		// The desired position is in a different system. Find the best
 		// way to reach that system (via wormhole or jumping). This may
 		// result in the ship landing to refuel.
-		SelectRoute(ship, it->second.targetSystem);
+		SelectRoute(ship, targetSystem);
 
 		// Travel there even if your parent is not planning to travel.
 		if((ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar())
@@ -1782,22 +1696,22 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		else
 			return false;
 	}
-	else if((type.test(MOVE_TO) || type.test(HOLD_ACTIVE)) && ship.Position().Distance(it->second.point) > 20.)
-		MoveTo(ship, command, it->second.point, Point(), 10., .1);
-	else if(type.test(HOLD_POSITION) || type.test(HOLD_ACTIVE) || type.test(MOVE_TO))
+	else if((order.HasMoveTo() || order.HasHoldActive()) && ship.Position().Distance(targetPoint) > 20.)
+		MoveTo(ship, command, targetPoint, Point(), 10., .1);
+	else if(order.HasHoldPosition() || order.HasHoldActive() || order.HasMoveTo())
 	{
 		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
-	else if(type.test(MINE) && targetAsteroid)
+	else if(order.HasMine() && targetAsteroid)
 	{
 		ship.SetTargetAsteroid(targetAsteroid);
 		// Escorts should chase the player-targeted asteroid.
 		MoveToAttack(ship, command, *targetAsteroid);
 	}
-	else if(type.test(HARVEST))
+	else if(order.HasHarvest())
 	{
 		if(DoHarvesting(ship, command))
 		{
@@ -1813,9 +1727,9 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		// has a target, the target is in-system and targetable. But, to be sure:
 		return false;
 	}
-	else if(type.test(KEEP_STATION))
+	else if(order.HasKeepStation())
 		KeepStation(ship, command, *target);
-	else if(type.test(GATHER))
+	else if(order.HasGather())
 	{
 		if(ship.GetFormationPattern())
 			MoveInFormation(ship, command);
@@ -1903,10 +1817,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		auto it = orders.find(&ship);
 		if(it != orders.end())
 		{
-			if(it->second.type.test(MOVE_TO))
+			if(it->second.HasMoveTo())
 				ignoreTargetShip = (ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar();
-			else if(it->second.type.test(ATTACK) || it->second.type.test(FINISH_OFF))
-				friendlyOverride = it->second.target.lock() == target;
+			else if(it->second.HasAttack() || it->second.HasFinishOff())
+				friendlyOverride = it->second.GetTargetShip() == target;
 		}
 	}
 	const Government *gov = ship.GetGovernment();
@@ -3797,10 +3711,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.target.lock() == currentTarget)
+		if(it != orders.end() && it->second.GetTargetShip() == currentTarget)
 		{
-			disabledOverride = (it->second.type.test(FINISH_OFF));
-			friendlyOverride = disabledOverride | (it->second.type.test(ATTACK));
+			disabledOverride = (it->second.HasFinishOff());
+			friendlyOverride = disabledOverride | (it->second.HasAttack());
 		}
 	}
 	bool currentIsEnemy = currentTarget
@@ -4560,7 +4474,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	else if(activeCommands.Has(Command::HARVEST))
 	{
 		Orders newOrders;
-		newOrders.newType = HARVEST;
+		newOrders.SetHarvest();
 		IssueOrders(newOrders, "preparing to harvest.");
 	}
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
@@ -4889,10 +4803,6 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 {
 	string who;
 
-	// Find out what the target of these orders is.
-	const Ship *targetShip = newOrders.target.lock().get();
-	const Minable *targetAsteroid = newOrders.targetAsteroid.lock().get();
-
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
 	if(player.SelectedShips().empty())
@@ -4916,7 +4826,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 		return;
 
 	Point centerOfGravity;
-	bool isMoveOrder = (newOrders.newType == MOVE_TO);
+	bool isMoveOrder = (newOrders.HasMoveTo());
 	int squadCount = 0;
 	if(isMoveOrder)
 	{
@@ -4935,6 +4845,8 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
+	const Ship *targetShip = newOrders.GetTargetShip().get();
+	const Minable *targetAsteroid = newOrders.GetTargetAsteroid().get();
 	bool isValidTarget = !targetShip || targetAsteroid
 		|| (targetShip && player.Flagship() && targetShip->GetSystem() == player.Flagship()->GetSystem());
 
@@ -4942,7 +4854,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 	// orders. Flip the bit for the new order of the first ship. All subsequent ships
 	// will then set their order bit to match the first ship. The only command
 	// that does not toggle is a move command; it always counts as a new command.
-	int orderOperation = isMoveOrder ? 1 : 2;
+	int orderOperation = newOrders.HasMoveTo() ? 1 : 2;
 	bool hasMismatch = isMoveOrder;
 	bool gaveOrder = false;
 	bool alreadyHarvesting = false;
@@ -4958,25 +4870,8 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 			hasMismatch |= !orders.count(ship);
 
 			Orders &existing = orders[ship];
-			// HOLD_ACTIVE cannot be given as a manual order, but we make sure here
-			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
-			// command is given.
-			if(existing.type.test(HOLD_ACTIVE))
-				ApplyOrder(existing.type, HOLD_POSITION);
-
-			hasMismatch |= !existing.type.test(newOrders.newType);
-			hasMismatch |= (existing.target.lock().get() != targetShip);
-			hasMismatch |= (existing.targetAsteroid.lock().get() != targetAsteroid);
-			// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
-			// asteroid.
-			if(hasMismatch && targetAsteroid)
-				alreadyHarvesting = (existing.type.test(HARVEST) && (newOrders.newType == HARVEST));
-
-			orderOperation = ApplyOrder(existing.type, static_cast<OrderTypes>(newOrders.newType), orderOperation);
-			existing.target = newOrders.target;
-			existing.targetAsteroid = newOrders.targetAsteroid;
-			existing.point = newOrders.point;
-			existing.targetSystem = newOrders.targetSystem;
+			existing.MergeOrders(newOrders, hasMismatch, alreadyHarvesting,
+					orderOperation);
 
 			if(isMoveOrder)
 			{
@@ -4986,14 +4881,14 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 				Point offset = ship->Position() - centerOfGravity;
 				if(offset.Length() > maxSquadOffset)
 					offset = offset.Unit() * maxSquadOffset;
-				existing.point += offset;
+				existing.SetTargetPoint(existing.GetTargetPoint() + offset);
 			}
-			else if(existing.type.test(HOLD_POSITION))
+			else if(existing.HasHoldPosition())
 			{
 				bool shouldReverse = false;
 				// Set the point this ship will "guard," so it can return
 				// to it if knocked away by projectiles / explosions.
-				existing.point = StoppingPoint(*ship, Point(), shouldReverse);
+				existing.SetTargetPoint(StoppingPoint(*ship, Point(), shouldReverse));
 			}
 		}
 		if(!gaveOrder)
@@ -5024,17 +4919,18 @@ void AI::UpdateOrders(const Ship &ship)
 		return;
 
 	Orders &order = it->second;
-	if((order.type.test(MOVE_TO) || order.type.test(HOLD_ACTIVE)) && ship.GetSystem() == order.targetSystem)
+	const Point &targetPoint = order.GetTargetPoint();
+	if((order.HasMoveTo() || order.HasHoldActive()) && ship.GetSystem() == order.GetTargetSystem())
 	{
-		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
-		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < .001)
-			ApplyOrder(order.type, HOLD_POSITION);
+		// If nearly stopped on the desired point, switch to a hold position order.
+		if(ship.Position().Distance(targetPoint) < 20. && ship.Velocity().Length() < .001)
+			order.SetHoldPosition();
 	}
-	else if(order.type.test(HOLD_POSITION) && ship.Position().Distance(order.point) > 20.)
+	else if(order.HasHoldPosition() && ship.Position().Distance(targetPoint) > 20.)
 	{
-		// If far from the defined target point, return via a HOLD_ACTIVE order.
-		ApplyOrder(order.type, HOLD_ACTIVE);
+		// If far from the defined target point, return via a hold active order.
+		order.SetHoldActive();
 		// Ensure the system reference is maintained.
-		order.targetSystem = ship.GetSystem();
+		order.SetTargetSystem(ship.GetSystem());
 	}
 }
