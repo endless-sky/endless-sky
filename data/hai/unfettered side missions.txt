@@ -173,7 +173,6 @@ mission "Hai Legacy 1"
 			label pilot
 			action
 				set "unfettered: pilot dialog"
-			`	"Actually, it's a 'what,' not a-" starts the first one, but they are again interrupted by the second.`
 			`	"The less you know, the better for all of us, Captain."`
 				goto choice
 			label ocean
@@ -192,7 +191,7 @@ mission "Hai Legacy 1"
 			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
 			choice
 				`	(Go back to the shipyard.)`
-			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of a surprisingly advanced navigation AI, you manage to bring it all the way there effortlessly, despite the ship clearly being designed to be flown by many crew members. When you arrive, however, the AI shuts down without explanation, and you're forced to use a full crew complement.`
+			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to bring it all the way there effortlessly.`
 				accept
 			label foolish
 			`	You get your weapon out and proceed to shoot on the ship.`
@@ -216,6 +215,8 @@ mission "Hai Legacy 1"
 		clear "unfettered: ocean dialog"
 		clear "unfettered: pilot dialog"
 		log "Accepted a somewhat shady deal for an old Hai ship, an Anomalocaris, that seems to still be in good functioning state."
+
+
 
 mission "Hai Legacy 2"
 	autosave
@@ -457,6 +458,7 @@ mission "Hai Legacy 3"
 			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some sort of respect for you, so long as you have the Anomalocaris.`
 
 
+
 mission "Undeserved Anomalocaris"
 	minor
 	invisible
@@ -504,6 +506,8 @@ mission "Undeserved Anomalocaris"
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
 					id "hai legacy"
+
+
 
 mission "Unfettered Anomalocaris Lost"
 	landing
