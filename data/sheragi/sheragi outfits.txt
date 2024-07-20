@@ -150,7 +150,13 @@ outfit "Electronic Warfare System"
 	"outfit space" -6
 	"unique" 1
 	"radar jamming" 10
-	"tactical scan power" 25
+	"crew scan power" 25
+	"energy scan power" 20
+	"fuel scan power" 20
+	"range finder power" 1
+	"thermal scan power" 27
+	"velocity scan power" 34
+	"weapon scan power" 34
 	"scan interference" 2
 	"energy consumption" .2
 	description "This device provides radar jamming and a whole suite of electronic warfare, gathering data about the battlefield in real time and enhancing a ship's combat capabilities. It was an essential item for every Sheragi warship, and the technique it uses is still difficult to counter to this very day."
