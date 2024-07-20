@@ -125,6 +125,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
 	target_include_directories(ExternalLibraries INTERFACE "tbb/oneapi-tbb-2021.13.0/include")
+	target_link_libraries(ExternalLibraries INTERFACE "tbb/oneapi-tbb-2021.13.0/lib/intel64/vc14/tbb.lib")
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
