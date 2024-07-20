@@ -841,7 +841,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 		}
 
 	stable_sort(
-		execution::par_unseq,
+		std::execution::par_unseq,
 		panelState.Ships().begin() + 1,
 		panelState.Ships().end(),
 		shipComparator

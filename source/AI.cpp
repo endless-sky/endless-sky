@@ -678,7 +678,7 @@ void AI::Step(Command &activeCommands)
 			++it;
 	}
 	mutex lock;
-	for_each(execution::par, ships.begin(), ships.end(), [&](const auto &it)
+	for_each(std::execution::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())
@@ -704,7 +704,7 @@ void AI::Step(Command &activeCommands)
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 
-	for_each(execution::par, ships.begin(), ships.end(), [&](auto &it)
+	for_each(std::execution::par, ships.begin(), ships.end(), [&](auto &it)
 	{
 		// A destroyed ship can't do anything.
 		if(it->IsDestroyed())
@@ -4285,7 +4285,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands, FireCommand &firingComm
 			else
 			{
 				// Sort the list of options in increasing order of desirability.
-				sort(execution::par_unseq, options.begin(), options.end(),
+				sort(std::execution::par_unseq, options.begin(), options.end(),
 					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
 						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)
@@ -4778,7 +4778,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 
 	// Ships with nearby allies consider their allies' strength as well as their own.
 	mutex lock;
-	for_each(execution::par, ships.begin(), ships.end(), [&](const auto &it)
+	for_each(std::execution::par, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const Government *gov = it->GetGovernment();
 
