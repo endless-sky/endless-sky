@@ -134,7 +134,6 @@ jobs:
         mkdir tbb
         Invoke-WebRequest -Uri https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip -OutFile tbb.zip
         unzip tbb.zip -d tbb
-      shell: bash
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
