@@ -93,7 +93,7 @@ jobs:
       with:
         vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
     - name: Install tbb
-      run:
+      run: |
         mkdir tbb
         curl -sS https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip > tar -xz --directory tbb
       shell: bash
@@ -130,7 +130,7 @@ jobs:
     - name: Setup sccache
       uses: ./.github/sccache
     - name: Install tbb
-      run:
+      run: |
         mkdir tbb
         curl -sS https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip > tar -xz --directory tbb
       shell: bash
