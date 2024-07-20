@@ -213,7 +213,7 @@ mission "Avgi: First Contact"
 				`	"Who are you?"`
 			`	The alien directly across from you, gray-white in color, begins speaking with the aid of another of the translator devices, this time taking on a feminine voice.`
 			`	"Invitation. I apologize for the inconvenience of traveling so far from your ship to meet us, but I was advised against being present for your arrival for fear of any unexpected hostilities, as small as such chances were estimated. My name, for lack of a direct translation, is 'Asime,' and with me are Speakers Prasinos and Galano. Together, we represent the Avgi Consonance as the First Speakers of the Assembly of Polities."`
-			`	Prasinos, in grass-green, and Galano, a milky-white Avgi that looks vaguely aged somehow, both wave at you with their forelimbs in a surreal imitation of the human gesture.`
+			`	Prasinos, grass-green in color, and Galano, a milky-white Avgi that looks vaguely aged somehow, both wave at you with their forelimbs in a surreal imitation of the human gesture.`
 			choice
 				`	"How can you speak my language?"`
 					goto humans
@@ -332,8 +332,8 @@ mission "Avgi: Defend Ensemble 1"
 		has "Avgi: Humans From the Deep: done"
 	on offer
 		conversation
-			`From afar, Aktina station is a titanic skeleton, with graphene ribs and a metallic backbone. Reminiscent of the human concept of an O'Neil Cylinder, it will be able to house millions of Avgi once completed. For now though, its construction has been hampered by the constant demand for new warships and mining stations throughout the Tangled Shroud, to the point that many are skeptical of its projected completion time within another few years.`
-			`	Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews. You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting in the hangar, a look of pure astonishment on his face as your ship settles into a free hangar. You disembark from the <ship> to find Darius waiting right outside the hatch.`
+			`From afar, Aktina station looks like a titanic skeletal cylinder, with ribs of graphene and a metallic spine. Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews.`
+			`	You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting in the hangar, a look of pure astonishment on his face as your ship settles into a free hangar. You disembark from the <ship> to find Darius waiting right outside the hatch.`
 			choice
 				`	"Hello."`
 				`	"Hey there."`
@@ -627,7 +627,8 @@ mission "Avgi: Scout Rescue"
 			label serious
 			`	"Consideration. I suppose we have little choice but to accept your help, stranger. As you can see, the Albedo is in something of a predicament."`
 			label next
-			`	You speak with the Avgi commander about treating the wounded as you dock your ship with the Silver Albedo. After everyone is safely transferred to the <ship>, clutching armfuls of recordings and logs, you decouple from the derelict ship.`
+			`	You speak with the Avgi commander about treating the wounded as you dock your ship with the Silver Albedo. Any Avgi that are able to are clutching armfuls of recordings and logs as they come aboard. After everyone is safely transferred to the <ship>, you decouple from the derelict ship.`
+				depart
 
 	on complete
 		conversation
