@@ -1799,7 +1799,7 @@ system "9 Spring Above"
 			period 28.1138
 
 system Aaura-Kaska
-	pos -109 1296
+	pos -86 1298
 	government Successor
 	attributes successor
 	arrival 1313.28
@@ -19581,7 +19581,7 @@ system Khasola-Ryuit
 			period 520
 
 system Khosa-Kaska
-	pos 250 1255
+	pos 201 1279
 	government Successor
 	attributes successor
 	arrival 500
@@ -22381,7 +22381,7 @@ system Maspa-Cavaasa
 			period 173.691
 
 system Maspa-Mavra
-	pos -515 1569
+	pos -514 1571
 	government Uninhabited
 	attributes successor
 	arrival 500
@@ -24433,7 +24433,7 @@ system Mora
 			period 24.168
 
 system Mosaa-Iyra
-	pos 98 1433
+	pos 121 1459
 	government Successor
 	attributes successor
 	arrival 2900
@@ -24705,7 +24705,7 @@ system Myiara-Nnesa
 			period 489.011
 
 system Myruet-Kvelq
-	pos -138 1392
+	pos -104 1378
 	government Successor
 	attributes successor
 	arrival 1715
@@ -25543,7 +25543,7 @@ system Oihaug
 		period 23946.6
 
 system Ojstaan-Sola
-	pos 66 1328
+	pos 72 1379
 	government Successor
 	attributes successor
 	arrival 625
@@ -25891,7 +25891,7 @@ system Orvala
 			period 14.1511
 
 system Osolaa-Uuoru
-	pos -440 1403
+	pos -446 1453
 	government Successor
 	attributes successor
 	arrival 5000
@@ -28507,7 +28507,7 @@ system Queri
 		offset 335
 
 system Raaqa-Ryuit
-	pos -336 1335
+	pos -338 1354
 	government Successor
 	attributes successor
 	arrival 1080
@@ -33495,7 +33495,7 @@ system Turais
 		period 4109.01
 
 system Tuur-Kella
-	pos -5 1282
+	pos -5 1269
 	government Successor
 	attributes successor
 	arrival 5000
@@ -34137,7 +34137,7 @@ system Uttna
 			period 247.515
 
 system Uuoru-Kella
-	pos 59 1248
+	pos 63 1317
 	government "Old Houses"
 	attributes successor
 	arrival 2300
@@ -34411,7 +34411,7 @@ system V-2189
 			period 299.64
 
 system Vade-Staja
-	pos 162 1314
+	pos 152 1341
 	government Successor
 	attributes successor
 	arrival 2560
@@ -34518,7 +34518,7 @@ system Vaiov
 		offset 180
 
 system Valkraa-Uuoru
-	pos 148 1224
+	pos 114 1257
 	government Successor
 	attributes successor
 	arrival 3651.37
