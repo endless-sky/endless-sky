@@ -119,6 +119,8 @@ mission "Avgi: First Contact"
 					goto talk
 				`	(Transmit a series of prime numbers.)`
 					goto prime
+				`	(Remain silent.)`
+					goto silent
 
 			label station
 			`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
@@ -128,6 +130,8 @@ mission "Avgi: First Contact"
 					goto talk
 				`	(Transmit a series of prime numbers.)`
 					goto prime
+				`	(Remain silent.)`
+					goto silent
 
 			label talk
 			`	You aren't quite sure how to proceed in communicating with a completely unknown species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
@@ -139,6 +143,10 @@ mission "Avgi: First Contact"
 			`	You can't expect a new alien species to be able to decode your transmissions, let alone understand your language, so you transmit a short list of prime numbers via simple amplitude modulated signals, if only to assure the alien vessel that you're attempting to communicate.`
 			`	To your shock, however, the alien vessel interrupts you just as you send the number "37," with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
 			`The message is short and direct:`
+				goto transmission
+
+			label silent
+			`	Unsure of the intentions of the alien vessel, you remain silent. However, it seems the aliens have other intentions, as you shortly recieve a transmission with an encoding your ship's computer is able to interpret, in a standard human data format. Perhaps these aliens have encountered humans before? The message is short and direct:`
 				goto transmission
 
 			label transmission
@@ -213,7 +221,7 @@ mission "Avgi: First Contact"
 				`	"Who are you?"`
 			`	The alien directly across from you, gray-white in color, begins speaking with the aid of another of the translator devices, this time taking on a feminine voice.`
 			`	"Invitation. I apologize for the inconvenience of traveling so far from your ship to meet us, but I was advised against being present for your arrival for fear of any unexpected hostilities, as small as such chances were estimated. My name, for lack of a direct translation, is 'Asime,' and with me are Speakers Prasinos and Galano. Together, we represent the Avgi Consonance as the First Speakers of the Assembly of Polities."`
-			`	Prasinos, grass-green in color, and Galano, a milky-white Avgi that looks vaguely aged somehow, both wave at you with their forelimbs in a surreal imitation of the human gesture.`
+			`	Prasinos, grass-green in color, and Galano, a frail-looking milky-white Avgi, both wave at you with their forelimbs in a somewhat surreal imitation of the human gesture.`
 			choice
 				`	"How can you speak my language?"`
 					goto humans
@@ -298,7 +306,10 @@ mission "Avgi: First Contact"
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
-				`	"Don't. Do I get access to your outfits and ships?"`
+					goto buystuff
+				`	"Is there anything I can do to help in the meantime?"`
+			`	Consideration. As an alien, you will inevitably be a novelty to most of us, but the existence of humans is well-known among the public enough for you to walk among us without issue. I will speak to others about a more formal role, but until then I am unsure if we can ask anything of you beyond keeping the peace.`
+			label buystuff
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase items with your human credits, which we will back with our own currency with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have a small stockpile of currency available."`
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard. No military goods, at least not now."`
@@ -335,9 +346,8 @@ mission "Avgi: Defend Ensemble 1"
 			`From afar, Aktina station looks like a titanic skeletal cylinder, with ribs of graphene and a metallic spine. Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews.`
 			`	You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting in the hangar, a look of pure astonishment on his face as your ship settles into a free hangar. You disembark from the <ship> to find Darius waiting right outside the hatch.`
 			choice
-				`	"Hello."`
-				`	"Hey there."`
-				`	"I come in peace."`
+				`	"Hello there."`
+				`	"Greetings, human. I come in peace."`
 			`	The man blinks in surprise, then extends a hand, which you shake. "So, another one of us here in Fairyland. I don't know if I should be glad to see another friendly face, or feel bad that another soul is stranded here along with us." He shakes his head. "Let's find somewhere to talk. If you don't mind telling me, how'd you end up here anyway?"`
 			choice
 				`	"I have a jump drive."`
@@ -419,7 +429,7 @@ mission "Avgi: Defend Ensemble 1"
 
 			label end
 			`	You sit together in silence for a few more minutes, when Darius seems to receive a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "There's a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight into the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
-			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around Napigeo Station, their big shipyard near here. Please, join us."`
+			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around Napigeo Station, their big shipyard not too far from here. Come on, let's join it."`
 				accept
 
 

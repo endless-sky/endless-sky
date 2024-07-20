@@ -781,7 +781,7 @@ ship "Aberrant Trip"
 	thumbnail "thumbnail/aberrant trip"
 	"never disabled"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 5700000
 		"shields" 34600
 		"hull" 33800
@@ -854,11 +854,11 @@ ship "Aberrant Trip" "Aberrant Trip (Disable-able)"
 ship "Aberrant Triplet"
 	"display name" `K-IIG "Triplet"`
 	plural "Triplets"
-	sprite "ship/aberrant triplets"
-	thumbnail "thumbnail/aberrant triplets"
+	sprite "ship/aberrant triplet"
+	thumbnail "thumbnail/aberrant triplet"
 	"never disabled"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 5700000
 		"shields" 14200
 		"hull" 16600

@@ -426,7 +426,7 @@ outfit "Vertical Launch Array"
 		"homing" 4
 		"missile strength" 9
 		"submunition" "Nettle Active"
-	description "This large Vertical Launch System is made up independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
+	description "This large Vertical Launch System is made up of independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
 
 
 outfit `"Nettle" KKV`
