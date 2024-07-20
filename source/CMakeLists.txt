@@ -13,6 +13,7 @@ endif()
 if(APPLE)
 	target_link_options(EndlessSkyLib PUBLIC "-fexperimental-library")
 	target_compile_options(EndlessSkyLib PUBLIC "-fexperimental-library")
+	target_compile_definitions(EndlessSkyLib PUBLIC "_LIBCPP_HAS_PARALLEL_ALGORITHMS")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
