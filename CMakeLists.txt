@@ -110,11 +110,15 @@ add_library(ExternalLibraries INTERFACE)
 target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
 
 # Enable sanitizers on debug builds, depending on platform support.
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT MINGW)
-	set(SANITIZER_OPTS "-g" "-fno-omit-frame-pointer" "-fsanitize=address,pointer-compare,pointer-subtract,leak,undefined,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,vptr,pointer-overflow,builtin")
-	target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
-	target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+set(SANITIZER_OPTS "-g" "-fno-omit-frame-pointer" "-fsanitize=address,pointer-compare,pointer-subtract,undefined,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow,builtin")
+if(NOT APPLE)
+	list(APPEND SANITIZER_OPTS "-fsanitize=leak,vptr")
 endif()
+if(MINGW)
+	list(APPEND SANITIZER_OPTS "-fsanitize-trap=address,undefined")
+endif()
+target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
