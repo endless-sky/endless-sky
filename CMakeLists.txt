@@ -124,7 +124,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
-	target_include_directories(ExternalLibraries PUBLIC "tbb/oneapi-tbb-2021.13.0/include")
+	target_include_directories(ExternalLibraries INTERFACE "tbb/oneapi-tbb-2021.13.0/include")
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
