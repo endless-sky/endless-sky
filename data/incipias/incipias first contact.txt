@@ -330,7 +330,7 @@ mission "Incipias: Help The Stranded 2"
 	on offer
 		conversation
 			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you have never experienced before. Giant clouds tower like castles, sometimes opening to similarly large caverns of air. Whirlwinds brush through the atmosphere like pillars holding the sky. Though the winds are brutal, your ship glides through them as if they had no effect on it at all.`
-			`	Activating your scanners, you look for the stranded ship from before. Soon, a small blip appears on your radar, and you maneuver your ship to its location. The stranded ship appears, looking even worse off than the first time. The storms seem to have damaged some of the hull, and its shields are completely down; the shield generator could have gone offline when they ran out of fuel.
+			`	Activating your scanners, you look for the stranded ship from before. Soon, a small blip appears on your radar, and you maneuver your ship to its location. The stranded ship appears, looking even worse off than the first time. The storms seem to have damaged some of the hull, and its shields are completely down; the shield generator could have gone offline when they ran out of fuel.`
 			`	Any attempt to hail the Incipias ship results in no answer. Carefully, you maneuver your own ship closer until you are able to dock with it.`
 			branch hasinciship
 				or
@@ -348,7 +348,7 @@ mission "Incipias: Help The Stranded 2"
 				`	"Hello, I have come to save you."`
 				`	"I have been sent by your people to get you home."`
 			`	The Incipias seem to switch from a tense state to a surprised one, and one of them starts pulsating. "You light our language? How surprising. We would not have survived another day-moment here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now." The lack of emotion in the translation is concerning, given the content of the message.`
-			`	You tell them to board your ship, and shortly after, you take off. Luckily, you leave just in time to avoid a powerful windstorm approaching the area.
+			`	You tell them to board your ship, and shortly after, you take off. Luckily, you leave just in time to avoid a powerful windstorm approaching the area.`
 				launch
 	on complete
 		conversation
