@@ -9191,7 +9191,7 @@ system "Cura Dic"
 		period 113.116
 	object
 		sprite planet/rock10-b
-		distance 1108
+		distance 3408
 		period 236.839
 		object "Spec Inci"
 			sprite planet/rock3
@@ -9199,7 +9199,7 @@ system "Cura Dic"
 			period 88.261
 	object
 		sprite planet/ocean7
-		distance 1638
+		distance 3838
 		period 425.711
 		object "Ut Divitas"
 			sprite planet/io
