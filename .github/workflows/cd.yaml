@@ -104,7 +104,7 @@ jobs:
       - name: Install threading libraries
         uses: actions/checkout@v4
         with:
-          repository: https://github.com/llvm/llvm-project
+          repository: llvm/llvm-project
           show-progress: false
           sparse-checkout: llvm-project/pstl/include/
           path: pstl
