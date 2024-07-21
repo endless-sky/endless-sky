@@ -143,7 +143,7 @@ ship "Nimbus" "Nimbus FTL"
 		"Metallic Hydrogen Cell"
 		"Cloud Piercer" 20
 
-		"MH Red-Class Engine"
+		"MH Red-Class Thruster"
 		"MH Red-Class Steering"
 
 mission "Incipias: The Derelict"
