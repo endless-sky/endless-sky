@@ -44,7 +44,7 @@ ship "Venta"
 		"Star Tail Storage" 2
 		"Cloud Piercer" 40
 
-		"MH Red-Class Engine"
+		"MH Red-Class Thruster"
 		"MH Red-Class Steering"
 
 	engine -90.5 42
@@ -93,7 +93,7 @@ ship "Nimbus"
 		"Stagnation Beam"
 		"Cloud Piercer" 20
 
-		"MH Red-Class Engine"
+		"MH Red-Class Thruster"
 		"MH Red-Class Steering"
 
 	engine 0 120
@@ -117,7 +117,7 @@ ship "Nimbus" "Nimbus (Civilian)"
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
 
-		"MH Red-Class Engine"
+		"MH Red-Class Thruster"
 		"MH Red-Class Steering"
 
 ship "Nimbus" "Nimbus (Mining)"
@@ -128,7 +128,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Stagnation Beam" # to be replaced with a flotsam tractor beam
 		"Cloud Piercer" 20
 
-		"MH Red-Class Engine"
+		"MH Red-Class Thruster"
 		"MH Red-Class Steering"
 
 ship "Nimbo Stratus"
@@ -158,7 +158,7 @@ ship "Nimbo Stratus"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 2
 
-		"MH Blue-Class Engine"
+		"MH Blue-Class Thruster"
 		"MH Blue-Class Steering"
 
 	gun -13 -48.5
@@ -193,7 +193,7 @@ ship "Nimbo Cirrus"
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
 
-		"MH Green-Class Engine"
+		"MH Green-Class Thruster"
 		"MH Green-Class Steering"
 
 	engine -32 80
@@ -227,7 +227,7 @@ ship "Gero"
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
 
-		"MH Blue-Class Engine"
+		"MH Blue-Class Thruster"
 		"MH Blue-Class Steering"
 
 	engine -41 76.5
