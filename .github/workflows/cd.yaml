@@ -101,8 +101,6 @@ jobs:
         uses: ./.github/sccache
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
-      - name: Install parallelization libraries
-        run: brew install intel-psxe-ce-c-plus-plus tbb
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
