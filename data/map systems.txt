@@ -12771,7 +12771,7 @@ system Equus
 		period 10
 	object Methuselah
 		sprite planet/gas17
-		distance 1279
+		distance 700
 		period 971.072
 
 system "Era Natta"
@@ -17229,11 +17229,11 @@ system Hui'uc
 		period 261.765
 	object
 		sprite planet/ice0
-		distance 1345.09
+		distance 1100.09
 		period 508.649
 	object Turra
 		sprite planet/gas3
-		distance 2880.25
+		distance 1700.25
 		period 1593.81
 		object
 			sprite planet/dust3
@@ -17780,7 +17780,7 @@ system Il'le
 			period 20.7352
 	object Occupas
 		sprite planet/gas17
-		distance 1286.91
+		distance 1786.91
 		period 445.913
 		object
 			sprite planet/dust0
@@ -26042,14 +26042,14 @@ system "Pedita Sec"
 		sprite planet/desert8-b
 		distance 285
 		period 58.5619
-	object
-		sprite planet/mercury-b
-		distance 963
-		period 363.737
 	object Treser
 		sprite planet/treser
-		distance 2193
+		distance 870
 		period 1249.98
+	object
+		sprite planet/mercury-b
+		distance 2193
+		period 363.737
 
 system Pelubta
 	pos -757.587 575.051
@@ -27113,7 +27113,7 @@ system "Porta Terra"
 		period 10
 	object Aera
 		sprite planet/aera
-		distance 900
+		distance 3450
 		period 178.762
 		object
 			sprite planet/desert4
@@ -27121,7 +27121,7 @@ system "Porta Terra"
 			period 188.115
 	object Igna
 		sprite planet/gas1-b
-		distance 1449
+		distance 3847
 		period 365.187
 		object
 			sprite planet/ice8
@@ -28769,7 +28769,7 @@ system Rota
 		period 119.012
 	object Vulpa
 		sprite planet/vulpa
-		distance 1978
+		distance 6978
 		period 415.855
 		object
 			sprite planet/oberon
@@ -32137,7 +32137,7 @@ system Supra
 			period 133.953
 	object Humo
 		sprite planet/gas7-b
-		distance 1592
+		distance 12092
 		period 235.554
 		object
 			sprite planet/rock7-b
