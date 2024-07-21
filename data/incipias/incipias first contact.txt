@@ -53,7 +53,7 @@ mission "Incipias: Warning of the Guardian"
 				decline
 			label agree
 			action
-				set "Incipias: accepted the guardians warning"
+				set "Incipias: accepted the guardian's warning"
 				event "label incipias space"
 			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
 				decline
@@ -65,24 +65,22 @@ mission "Incipias: Presence of the Guardian"
 		never
 	on enter Dom'us
 		fail
-		conversation
+		dialog
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
 				to display
-					not "Incipias: accepted the guardians warning"
+					not "Incipias: accepted the guardian's warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
 				to display
-					has "Incipias: accepted the guardians warning"
-				decline
+					has "Incipias: accepted the guardian's warning"
 	on enter Hui'uc
 		fail
-		conversation
+		dialog
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
 				to display
-					not "Incipias: accepted the guardians warning"
+					not "Incipias: accepted the guardian's warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
 				to display
-					has "Incipias: accepted the guardians warning"
-				decline
+					has "Incipias: accepted the guardian's warning"
 
 
 event "label incipias space"
@@ -95,7 +93,7 @@ mission "Incipias: First Contact"
 	to complete
 		never
 	on enter Dom'us
-		conversation
+		dialog
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
 				to display
 					not "Visit Quarg in Incipias Space: offered"
