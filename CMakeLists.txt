@@ -132,7 +132,7 @@ else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 	if(APPLE)
-		target_include_directories(ExternalLibraries INTERFACE "pstl/")
+		target_include_directories(ExternalLibraries INTERFACE "pstl/pstl/include")
 	endif()
 endif()
 
