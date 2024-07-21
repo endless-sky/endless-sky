@@ -17232,7 +17232,7 @@ system Hui'uc
 		period 508.649
 	object Turra
 		sprite planet/gas3
-		distance 1700.25
+		distance 1900.25
 		period 1593.81
 		object
 			sprite planet/dust3
@@ -17779,7 +17779,7 @@ system Il'le
 			period 20.7352
 	object Occupas
 		sprite planet/gas17
-		distance 1786.91
+		distance 1686.91
 		period 445.913
 		object
 			sprite planet/dust0
@@ -27112,7 +27112,7 @@ system "Porta Terra"
 		period 10
 	object Aera
 		sprite planet/aera
-		distance 3450
+		distance 3050
 		period 178.762
 		object
 			sprite planet/desert4
