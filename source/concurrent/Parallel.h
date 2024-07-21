@@ -16,23 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARALLEL_H_
 #define PARALLEL_H_
 
-#ifdef __APPLE__
-
-#include <algorithm>
-#include <execution>
-
-namespace parallel = std::execution;
-
-#else
-
 #include <execution>
 #include <functional>
 #include <thread>
 #include <vector>
 
 namespace parallel = std::execution;
-
-#endif
 
 namespace {
 	// A forced multithreaded for_each implementation where the executing threads are guaranteed
