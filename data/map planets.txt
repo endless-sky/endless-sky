@@ -5190,8 +5190,8 @@ planet Uo-Oraa-Vayya
 	government Successor
 	"required reputation" 10
 	bribe 0
-  
-  planet "Ut Divitas"
+
+planet "Ut Divitas"
 	attributes "incipias quarg" quarg
 	landscape land/canyon13
 	description `The surface here is bare, and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract, elegant, and unlike anything humans have ever built.`
