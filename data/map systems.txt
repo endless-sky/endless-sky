@@ -9161,7 +9161,6 @@ system "Cura Dic"
 	asteroids "small rock" 9 4.576
 	asteroids "medium rock" 25 5.468
 	asteroids "large rock" 27 5.468
-	minables yottrite 9 7
 	trade Clothing 362
 	trade Electronics 763
 	trade Equipment 644
