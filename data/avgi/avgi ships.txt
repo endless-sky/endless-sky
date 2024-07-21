@@ -882,6 +882,7 @@ ship "Undsyni"
 		"engine capacity" 168
 		"spinal mount" 1
 		"anchor point" 1
+		weapon
 			"blast radius" 540
 			"shield damage" 3600
 			"hull damage" 2400
