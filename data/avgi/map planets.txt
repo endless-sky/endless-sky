@@ -374,7 +374,7 @@ planet "Alonis Observatory"
 
 planet Anatrefo
 	attributes station uninhabited
-	landscape land/station19
+	landscape land/station1q
 	description "Anatrefo was discovered mere years after the Avgi discovered the hyperdrive, and was soon considered the most momentous discovery in Avgi history. An intact alien station, albeit one stripped of any advanced technologies, proved once and for all that the Avgi were not alone in the universe. Even more significant was a long, slender megastructure near the station, appearing as though construction on it had barely been started."
 	description "While study of the station's structure was hoped to provide insights into advanced alien technologies, it has so far proven stubbornly difficult to understand or reverse engineer, with some Avgi scientists remarking that even the station's materials appear to intelligently circumvent attempts to probe their internal structure."
 	government Uninhabited

@@ -146,7 +146,7 @@ mission "Avgi: First Contact"
 				goto transmission
 
 			label silent
-			`	Unsure of the intentions of the alien vessel, you remain silent. However, it seems the aliens have other intentions, as you shortly recieve a transmission with an encoding your ship's computer is able to interpret, in a standard human data format. Perhaps these aliens have encountered humans before? The message is short and direct:`
+			`	Unsure of the intentions of the alien vessel, you remain silent. However, it seems the aliens have other intentions, as you shortly receive a transmission with an encoding your ship's computer is able to interpret, in a standard human data format. Perhaps these aliens have encountered humans before? The message is short and direct:`
 				goto transmission
 
 			label transmission
@@ -557,8 +557,6 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"Yes, of course."`
 				`	"I'll hear you out."`
-				`	"I'd rather not."`
-					decline
 			`	"Approval. That is very good, for your unique capabilities may help us save the lives of some very brave people. Come, meet me in the spaceport in an hour." He gives you a set of directions to a small building in Ensemble's main spaceport before leaving. "We will have much to discuss."`
 				goto end
 
@@ -569,8 +567,6 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"Yes, of course."`
 				`	"I'll hear you out."`
-				`	"I'd rather not."`
-					decline
 			`	"Enthusiasm. Your help will save many lives. Then, if you would, meet me in the spaceport in an hour." He gives you a set of directions to a small building in Ensemble's main spaceport before leaving. "We will have much to discuss."`
 
 			label end
@@ -766,6 +762,7 @@ mission "Avgi: Dissonance Outreach"
 		conversation
 			`	Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."`
 			choice
+				`	"Pleased to meet you."`
 				`	"Who are you negotiating with exactly? Aren't the Avgi united under the Consonance?"`
 			`	He thrums in laughter. "One can only wish our species was that unified. No, membership in the Consonance is purely at-will, and many polities have chosen to go it alone even with the current crisis. Regret. The initial evacuation into the Tangled Shroud was haphazard to say the least, as much of it was, and still is, unmapped. Many captains took their ships down differing paths, meeting up with each other and forming alliances just to survive. In a way, it's a miracle that the Consonance was even able to reconstitute itself at all."`
 			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."`
@@ -808,7 +805,7 @@ mission "Avgi: Dissonance Outreach"
 			`	You open your mouth to reply, but Darius beats you to the punch. "Of course, Leon."`
 
 			label agreed
-			`	"Good. Well, it more or less comes down to this: the Incursion didn't come out of nowhere. Everyone says they came from beyond the furthest reaches of Avgi exploration, but that's not quite true. The first to encounter them was a Polari scout ship, which went down within minutes against their weapons. But not before they sent out a single transmission, garbled and not making a lot of sense."`
+			`	"Good. Well, it more or less comes down to this: the Incursion didn't come out of nowhere. Everyone says they came from beyond the furthest reaches of Avgi exploration, but that's not quite true. The first to encounter them was a scout ship, which went down within minutes against their weapons. But not before they sent out a single transmission, garbled and not making a lot of sense."`
 			`	He pauses, taking a drink of what looks like water. "They said they had found a gateway of sorts, an ancient alien artifact built by an unknown Predecessor species. Somehow, they had activated it, and that's where the first Aberrant came from."`
 			choice
 				`	"And you want to use this gateway as a way out?"`
