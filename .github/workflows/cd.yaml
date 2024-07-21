@@ -93,10 +93,10 @@ jobs:
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CC: /usr/local/opt/llvm/bin/clang
-      CXX: /usr/local/opt/llvm/bin/clang++
-      LDFLAGS: -L/usr/local/opt/llvm/lib/libc++ -Wl,-rpath,/usr/local/opt/llvm/lib/libc++
-      CPPFLAGS: -I/usr/local/opt/llvm/include
+      CC: /usr/local/opt/gcc/bin/gcc-14
+      CXX: /usr/local/opt/gcc/bin/g++-14
+      LDFLAGS: -L/usr/local/opt/gcc/lib/libc++ -Wl,-rpath,/usr/local/opt/gcc/lib/libc++
+      CPPFLAGS: -I/usr/local/opt/gcc/include
     steps:
       - uses: actions/checkout@v4
         with:

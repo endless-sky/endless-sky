@@ -15,10 +15,7 @@
         },
         "libpng",
         "libjpeg-turbo",
-        {
-          "name": "libmad",
-          "platform": "!osx"
-        },
+        "libmad",
         {
           "name": "libuuid",
           "platform": "linux"
