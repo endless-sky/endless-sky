@@ -24,7 +24,7 @@ planet Omanet
 	attributes avgi mining uninhabited
 	landscape land/mars0
 	description "Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense planet made almost entirely out of metal."
-	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as the first step towards a Dyson swarm, but the current rate of mirror assembly will take millennia to exploit a meaningful fraction of Anax's output."
+	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as the first step towards a Dyson swarm, but at the current rate of mirror assembly it will take millennia to exploit a meaningful fraction of Anax's output."
 	government Uninhabited
 	
 
@@ -114,7 +114,7 @@ planet Entantel
 	landscape land/snow25
 	description "Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size."
 	description "Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system."
-	spaceport "The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel to fill a few large tankers."
+	spaceport "The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel here to fill a few large tankers."
 	government Uninhabited
 
 
@@ -317,7 +317,7 @@ planet Hespair
 planet Delodir
 	attributes frozen moon "ice moon" uninhabited
 	landscape land/snow29
-	description "Delodir is proof that life can exist in the most unlikely of places. Despite the moon's lack of sunlight, given that the Jamaga system lacks a proper star entirely, life has managed to thrive at the bottom of Delodir's subsurface oceans, buried deep beneath a thick layer of ice. Energy is trickled into the biosphere from hydrothermal vents, which are in turn powered by tidal heating produced by the gravitational influence of both the brown dwarf and gas giant within the system."
+	description "Delodir is proof that life can exist in the most unlikely of places. Despite the moon's lack of sunlight, given that the Jamaga system has no bright, luminescent star, life has managed to thrive at the bottom of Delodir's subsurface oceans, buried deep beneath a thick layer of ice. Energy is trickled into the biosphere from hydrothermal vents, which are in turn powered by tidal heating produced by the gravitational influence of both the brown dwarf and gas giant within the system."
 	government Uninhabited
 
 
@@ -473,7 +473,7 @@ planet Weledos
 planet Aspar
 	attributes avgi "avgi diaspora" poisonous uninhabited
 	landscape land/forest11
-	description "A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Settlement has been light, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir. As a result, the native flora and fauna are mostly inedible, sometimes even being poisonous, and the composition of the soil is such that the plants brought by the Avgi are stunted even if they manage to survive."
+	description "A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Settlement has been light, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir. As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that the plants brought by the Avgi are stunted even if they manage to survive."
 	government Uninhabited
 
 

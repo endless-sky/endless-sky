@@ -205,8 +205,9 @@ news "avgi missing advisory"
 		word
 			" "
 		word
-			"Missing convoy"
-			"Missing fleet"
+			"Convoy"
+			"Fleet"
+			"Independent ship"
 		word
 			" "
 		word

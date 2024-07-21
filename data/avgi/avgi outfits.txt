@@ -93,7 +93,7 @@ outfit "Deuterium Slush Tank"
 	"fuel capacity" 300
 	"energy consumption" 0.6
 	"heat generation" 0.6
-	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system requires a small amount of energy, however.`
+	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush - a slurry of liquid deuterium and deuterium ice. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero-boiloff system requires a small amount of energy, however.`
 
 outfit "Cryogenic Deuterium Tank"
 	series "Avgi: Fuel"
