@@ -109,7 +109,7 @@ jobs:
           sparse-checkout: pstl/include/
           path: pstl
       - name: Adjust threading configuration
-        run: echo -e "#ifndef __PSTL_CONFIG_SITE\n#define __PSTL_CONFIG_SITE\n#endif" > pstl/pstl/include/__pstl_config_site.h
+        run: echo -e "#ifndef __PSTL_CONFIG_SITE\n#define __PSTL_CONFIG_SITE\n#endif" > pstl/pstl/include/__pstl_config_site
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
