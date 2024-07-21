@@ -29,7 +29,7 @@ ship "Anomalocaris"
 		"cargo space" 121
 		"outfit space" 533
 		"weapon capacity" 192
-		"engine capacity" 93
+		"engine capacity" 98
 		weapon
 			"blast radius" 210
 			"shield damage" 2100
@@ -79,15 +79,16 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 		"threshold percentage" 0.4
 	outfits
 		"Korath Detainer" 2
-		"Bullfrog Anti-Missile" 4
+		"Bullfrog Anti-Missile" 2
 		"Hai Williwaw Cooling"
 		"Boulder Reactor"
 		"Value Detector"
-		"Asteroid Scanner"
 		"Hai Valley Batteries"
+		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
+		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
 		"Pulse Rifle" 20
 	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."

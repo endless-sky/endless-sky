@@ -150,7 +150,7 @@ mission "Hai Legacy 1"
 			`	The second one replies, "We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
 			`	"This ship is our guarantee that nothing goes wrong, should you attempt something against us. After all, we are still not sure if we can trust you."`
-			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks in the walls, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
+			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks in the walls, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This one, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
 			scene "scene/cave scene"
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you. Should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of ten million credits - including two weapons belonging to the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up.`
 			`	"These legendary weapons can interfere with nearly any engine system! Worry not, you'll be able to recuperate the cost of this ship with ease by assisting us. A load of medical supplies is needed on <destination>, and we lack the time and personnel to bring them ourselves on such short notice.`
@@ -191,7 +191,7 @@ mission "Hai Legacy 1"
 			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
 			choice
 				`	(Go back to the shipyard.)`
-			`	They walk away far enough so that you cannot hear them, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to bring it all the way there effortlessly.`
+			`	They walk away until that you cannot hear them speak anymore, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to bring it without any complications.`
 				accept
 			label foolish
 			`	You get your weapon out and proceed to shoot on the ship.`
@@ -242,7 +242,7 @@ mission "Hai Legacy 2"
 			`Upon returning to the spaceport, a worker immediately greets you while others begin to fill your ship with crates. A quick check shows that this cargo has already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
 			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel:`
 			`	"Use the Anomalocaris as your flagship.`
-			`	"Do not bring any other ships into Unfettered space, as they are not needed for the cargo. They would only be a liability at best and a provocation at worst."`
+			`	"Do not bring any other ships into Unfettered space, as they are not needed for the cargo. They would only be a liability at best, and a provocation at worst."`
 			`	Given the potential dangers of that area of space, it would be a good idea to familiarize yourself with the design of the Anomalocaris, or perhaps customize it more to your own liking, especially if you plan to deliver the cargo in only this single ship.`
 				accept
 	on enter
@@ -290,7 +290,7 @@ mission "Hai Legacy 3"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered.`
+			`As you land, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, warmer than usual compared to your previous experiences with the Unfettered.`
 			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use that ship to us. Luckily for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
 			`	"I even see technology from those savage Korath that we fought valiantly to obtain!"`
 				to display
@@ -304,7 +304,7 @@ mission "Hai Legacy 3"
 					goto headingout
 			`	"No, because in the eyes of my brethren that would mean I, too, did not deserve this ship. They would then challenge me for it."`
 			label win
-			`	"You will win the right to access our worlds for just a meager daily fee of 600 credits. In order to keep our respect, this Anomalocaris may not be destroyed or sold, until you prove yourself another way. This is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here without paying a fee.`
+			`	"You will win the right to access our worlds. In order to keep our respect, this Anomalocaris may not be destroyed or sold, until you prove yourself another way. This is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here without paying a fee.`
 			`	"Beware, for there are no official rules, other than the fact that you may only use this one ship. So, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
@@ -319,7 +319,7 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out," says a third.`
 			label scare
-			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone knows them, but since you are an outsider I will explain them to you. Naturally, since this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
+			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules. We would assume everyone knows them, but since you are an outsider I will explain them to you. Naturally, since this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all.`
 			`	"Furthermore, we can understand some may die in glorious battle, and to the victor go the spoils, so looting is allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He suddenly looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you," he says with a sudden change of tone before leaving.`
