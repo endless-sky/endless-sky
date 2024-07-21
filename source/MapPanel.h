@@ -193,7 +193,7 @@ private:
 	class Node {
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon)
+			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcon)
 			: position(position), color(color), name(name), nameColor(nameColor),
 			government(government), mapIcon(mapIcon) {}
 
@@ -202,7 +202,7 @@ private:
 		std::string name;
 		Color nameColor;
 		const Government *government;
-		std::vector<std::string> mapIcon;
+		std::vector<const Sprite *> mapIcon;
 	};
 	std::vector<Node> nodes;
 

@@ -1103,7 +1103,7 @@ void MapPanel::UpdateCache()
 			}
 		}
 
-		static const vector<string> unmappedSystem = {"map/unexplored-star"};
+		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
 
 
 		const bool canViewSystem = player.CanView(system);
@@ -1415,11 +1415,11 @@ void MapPanel::DrawSystems()
 			Point starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : node.mapIcon.size() * Point(2, 2);
 
 			// Draw the star sprites
-			for(string star : node.mapIcon)
+			for(const Sprite *star : node.mapIcon)
 			{
 				starAngle = starAngle + spin;
 				Point starRotate(cos(starAngle), sin(starAngle));
-				const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate,
+				const Body starBody = Body(star, pos + zoom * starOffset * starRotate,
 					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
 				batchDraw.Add(starBody);
 			}

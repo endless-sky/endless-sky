@@ -88,7 +88,7 @@ public:
 	// Get this system's government.
 	const Government *GetGovernment() const;
 	// Get this system's map icons.
-	const std::vector<std::string> &GetMapIcon() const;
+	const std::vector<const Sprite *> &GetMapIcon() const;
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 
@@ -213,7 +213,7 @@ private:
 	std::string name;
 	Point position;
 	const Government *government = nullptr;
-	std::vector<std::string> mapIcon;
+	std::vector<const Sprite *> mapIcon;
 	std::string music;
 
 	// Hyperspace links to other systems and their conditions to exist.
