@@ -8744,8 +8744,8 @@ system Citadelle
 system Clepsydra
 	pos 264 -874
 	attributes "bright star" "notable star"
-	arrival 750
-	habitable 750
+	arrival 4050
+	habitable 4050
 	belt 1134
 	haze _menu/haze-dark-nebula
 	link "Cura Dic"
