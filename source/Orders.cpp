@@ -233,7 +233,7 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 		bool invalidTarget = !ship
 				|| (!ship->IsTargetable() && orderedShip->GetGovernment() != ship->GetGovernment())
 				|| (ship->IsDisabled() && HasAttack());
-		// Alternately, if an asteroid is targeted, then it is not an invalid target.
+		// Alternatively, if an asteroid is targeted, then it is not an invalid target.
 		invalidTarget &= !asteroid;
 
 		// Check if the target ship is in a system where we can target.

@@ -562,8 +562,16 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	}
 
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
-	for(auto &it : orders)
-		it.second.UpdateOrder(it.first, flagship->GetSystem());
+	for(auto it = orders.begin(); it != orders.end(); )
+	{
+		it->second.UpdateOrder(it->first, flagship->GetSystem());
+		if(it->second.IsEmpty())
+		{
+			it = orders.erase(it);
+			continue;
+		}
+		++it;
+	}
 }
 
 

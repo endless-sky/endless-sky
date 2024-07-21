@@ -27,7 +27,7 @@ class Ship;
 class System;
 
 
-//
+// Orders represent commands that have been given to the player's escorts.
 class Orders {
 public:
 	enum OrderType : int {
