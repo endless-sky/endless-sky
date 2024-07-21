@@ -16,6 +16,8 @@
 
 outfit "Radiative Lamina"
 	plural "Radiative Laminae"
+	series "Avgi: Laminae"
+	index 10
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -29,6 +31,8 @@ outfit "Radiative Lamina"
 
 outfit "Concealment Lamina"
 	plural "Concealment Laminae"
+	series "Avgi: Laminae"
+	index 20
 	category "Systems"
 	licenses
 		"Twilight Guard"
@@ -44,53 +48,9 @@ outfit "Concealment Lamina"
 	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Nanoceramic Lamina"
-	plural "Nanoceramic Laminae"
-	category "Systems"
-	licenses
-		"Twilight Guard"
-	cost 200000
-	thumbnail "outfit/unknown"
-	"mass" 36
-	"anchor point" -1
-	"hull multiplier" 0.33
-	"shield generation multiplier" -0.33
-	"solar heat" 3
-	description "These extra armor plates can significantly reinforce a ship's hull, but are quite heavy. The added bulk in front of a ship's shield emitters also interferes with the rate at which they can be recharged, impairing a ship's shield generation."
-	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
-
-
-outfit "Adamant Lamina"
-	plural "Adamant Laminae"
-	category "Systems"
-	licenses
-		"Twilight Guard"
-	cost 200000
-	thumbnail "outfit/unknown"
-	"mass" 36
-	"anchor point" -1
-	"hull multiplier" 0.6
-	"solar heat" 3
-	description "Thanks to recent breakthroughs in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
-	description "Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
-
-
-outfit "Warding Lamina"
-	plural "Warding Laminae"
-	category "Systems"
-	licenses
-		"Twilight Guard"
-	cost 200000
-	thumbnail "outfit/unknown"
-	"mass" 42
-	"anchor point" -1
-	"shield multiplier" 2
-	"solar heat" 3
-	description "Breakthrough physics research has allowed the Avgi to create advanced shield emitters well in advance of their previous ones. While baked into the ships of most species, Avgi starship construction is sophisticated enough to allow their shield matrices to be retrofitted with relative ease."
-	description "Warding Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
-
-
 outfit "Electrostatic Ramscoop"
+	series "Avgi: Fuel"
+	index 10
 	category "Systems"
 	cost 720000
 	thumbnail "outfit/unknown"
@@ -103,8 +63,9 @@ outfit "Electrostatic Ramscoop"
 	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a more predictable supply of fuel, even around stars with solar winds poor in deuterium. Of course, the power required for the lasers can be quite considerable."
 
 
-
 outfit "Plasmadyne Ramscoop"
+	series "Avgi: Fuel"
+	index 20
 	category "Systems"
 	cost 60000000
 	thumbnail "outfit/unknown"
@@ -122,6 +83,8 @@ outfit "Plasmadyne Ramscoop"
 
 
 outfit "Deuterium Slush Tank"
+	series "Avgi: Fuel"
+	index 30
 	category "Systems"
 	cost 90000
 	thumbnail "outfit/deuterium slush tank"
@@ -133,6 +96,8 @@ outfit "Deuterium Slush Tank"
 	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system requires a small amount of energy, however.`
 
 outfit "Cryogenic Deuterium Tank"
+	series "Avgi: Fuel"
+	index 40
 	category "Systems"
 	cost 30000
 	thumbnail "outfit/unknown"
@@ -143,10 +108,12 @@ outfit "Cryogenic Deuterium Tank"
 	description `This insulated pressure vessel is designed to store hyperspace fuel under cryogenic temperatures for bulk transport. While not quite as efficient as a deuterium slush tank, this outfit is designed to work with a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for deep cryocoolers.`
 
 
-outfit "Thermal Sink Partition"
+outfit "Heatsink Partition"
+	series "Avgi: Fuel"
+	index 50
 	category "Systems"
 	cost 84000
-	thumbnail "outfit/densified fuel tank"
+	thumbnail "outfit/unknown"
 	"mass" 9
 	"outfit space" -3
 	"fuel capacity" -100
@@ -155,6 +122,8 @@ outfit "Thermal Sink Partition"
 
 
 outfit "Multispectral Scanner"
+	series "Avgi: Sensors"
+	index 10
 	category "Systems"
 	cost 24000
 	thumbnail "outfit/multispectral scanner"
@@ -168,6 +137,8 @@ outfit "Multispectral Scanner"
 
 
 outfit "Spectrometer Array"
+	series "Avgi: Sensors"
+	index 20
 	category "Systems"
 	cost 24000
 	thumbnail "outfit/spectrometer array"
@@ -184,6 +155,8 @@ outfit "Spectrometer Array"
 
 
 outfit "Diffuse Deflector"
+	series "Avgi: Shields"
+	index 10
 	category "Systems"
 	cost 1200000
 	thumbnail "outfit/diffuse deflector"
@@ -197,6 +170,8 @@ outfit "Diffuse Deflector"
 
 
 outfit "Specular Deflector"
+	series "Avgi: Shields"
+	index 20
 	category "Systems"
 	cost 2100000
 	thumbnail "outfit/specular deflector"
@@ -237,6 +212,8 @@ outfit "Concentrating Solar Array"
 
 outfit "Photoelectric Lamina"
 	plural "Photoelectric Laminae"
+	series "Avgi: Laminae"
+	index 30
 	category "Power"
 	cost 294000
 	thumbnail "outfit/photoelectric lamina"
@@ -286,6 +263,8 @@ outfit "Ultracapacitor Bank"
 # Engines:
 
 outfit "Magnetoplasma Drive"
+	series "Avgi: Engines"
+	index 40
 	category "Engines"
 	"cost" 30000
 	thumbnail "outfit/magnetoplasma drive"
@@ -317,6 +296,8 @@ outfit "Magnetoplasma Drive"
 
 outfit `Z-330 "Spark" Fusion Torch`
 	category "Engines"
+	series "Avgi: Engines"
+	index 50
 	licenses
 		"Twilight Guard"
 	"cost" 660000
@@ -340,6 +321,8 @@ outfit `Z-330 "Spark" Fusion Torch`
 
 outfit `Z-660 "Zap" Fusion Torch`
 	category "Engines"
+	series "Avgi: Engines"
+	index 60
 	licenses
 		"Twilight Guard"
 	"cost" 1440000
@@ -362,6 +345,8 @@ outfit `Z-660 "Zap" Fusion Torch`
 
 outfit `Z-990 "Arc" Fusion Torch`
 	category "Engines"
+	series "Avgi: Engines"
+	index 70
 	licenses
 		"Twilight Guard"
 	"cost" 2760000
@@ -402,6 +387,8 @@ effect "large remass injection"
 
 
 outfit "Remass Injector"
+	series "Avgi: Engines"
+	index 100
 	category "Engines"
 	licenses
 		"Twilight Guard"
@@ -420,6 +407,8 @@ outfit "Remass Injector"
 
 
 outfit "Inductive Extractor"
+	series "Avgi: Engines"
+	index 90
 	category "Engines"
 	licenses
 		"Twilight Guard"
@@ -440,6 +429,8 @@ outfit "Inductive Extractor"
 
 outfit "XY-180 Radial Thrusters"
 	plural "XY-180 Radial Thrusters"
+	series "Avgi: Engines"
+	index 10
 	category "Engines"
 	licenses
 		"Twilight Guard"
@@ -467,6 +458,8 @@ outfit "XY-180 Radial Thrusters"
 
 outfit "XY-360 Radial Thrusters"
 	plural "XY-360 Radial Thrusters"
+	series "Avgi: Engines"
+	index 20
 	category "Engines"
 	licenses
 		"Twilight Guard"
@@ -494,6 +487,8 @@ outfit "XY-360 Radial Thrusters"
 
 outfit "XY-720 Radial Thrusters"
 	plural "XY-720 Radial Thrusters"
+	series "Avgi: Engines"
+	index 30
 	category "Engines"
 	licenses
 		"Twilight Guard"
@@ -521,6 +516,8 @@ outfit "XY-720 Radial Thrusters"
 
 outfit `Z-1200 "Beam" Antimatter Torch`
 	category "Engines"
+	series "Avgi: Engines"
+	index 80
 	"cost" 900000000
 	thumbnail "outfit/unknown"
 	"mass" 360

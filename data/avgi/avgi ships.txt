@@ -678,8 +678,7 @@ ship "Polari"
 			"hull damage" 360
 			"hit force" 480
 	outfits
-		"Blue Optical Laser"
-		"Green Optical Laser"
+		"Green Optical Laser" 2
 
 		"Photoelectric Lamina"
 		"Ultracapacitor Cell" 3
@@ -687,7 +686,7 @@ ship "Polari"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 3
 		"Spectrometer Array" 3
-		"Thermal Sink Partition"
+		"Heatsink Partition"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 9
@@ -699,7 +698,7 @@ ship "Polari"
 		"Hyperdrive"
 
 	turret -14 27 "Green Optical Laser"
-	turret 14 27 "Blue Optical Laser"
+	turret 14 27 "Green Optical Laser"
 
 	bay "Drone" -9 -25
 	bay "Drone" 9 -25
@@ -882,7 +881,7 @@ ship "Undsyni"
 		"weapon capacity" 153
 		"engine capacity" 168
 		"spinal mount" 1
-		"anchor point" 2
+		"anchor point" 1
 			"blast radius" 540
 			"shield damage" 3600
 			"hull damage" 2400
@@ -1003,7 +1002,7 @@ ship "Modified Tachytia"
 		"weapon capacity" 180
 		"engine capacity" 420
 		"spinal mount" 1
-		"anchor point" 3
+		"anchor point" 1
 		weapon
 			"blast radius" 900
 			"shield damage" 14400
@@ -1736,7 +1735,7 @@ ship "Refraktos"
 		"Optical Lasing Generator" 5
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
-		"Thermal Sink Partition"
+		"Heatsink Partition"
 		"Electromotive Rifle" 24
 		
 		`Z-660 "Zap" Fusion Torch`
@@ -1816,7 +1815,7 @@ ship "Atenuatia"
 		"outfit space" 690
 		"weapon capacity" 180
 		"engine capacity" 174
-		"anchor point" 2
+		"anchor point" 1
 		weapon
 			"blast radius" 540
 			"shield damage" 6400

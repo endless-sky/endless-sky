@@ -12,8 +12,17 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 category "series"
+	# Weapons
+	"Avgi: Beams" 300
+	"Avgi: Missiles" 310
+	# Systems
+	"Avgi: Shields" 320
+	"Avgi: Fuel" 330
+	"Avgi: Laminae" 340
+	"Avgi: Sensors" 350
 	# Engines
 	"Human: Ion" 110
 	"Human: Plasma" 120
 	"Human: Atomic" 130
 	"Human: Afterburners" 140
+	"Avgi: Engines" 360
