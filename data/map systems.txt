@@ -8672,44 +8672,6 @@ system Cinxia
 			distance 270
 			period 16.6355
 
-system Clepsydra
-	pos 264 -874
-	habitable 150
-	belt 1134 9
-	haze _menu/haze-dark-nebula
-	link "Pedita Pri"
-	link "Pedita Sec"
-	link Supra
-	link "Cura Dic"
-	asteroids "small rock" 6 0.988
-	asteroids "medium rock" 2 0.832
-	asteroids "large rock" 3 1.209
-	asteroids "small metal" 5 0.832
-	asteroids "medium metal" 3 1.261
-	asteroids "large metal" 1 1.287
-	minables aluminum 3 1.513
-	minables yottrite 9 7
-	object
-		sprite star/a-eater
-		period 10
-	object
-		sprite star/a-dwarf
-		period 10
-		distance 55
-	object
-		sprite planet/ganymede-b
-		distance 999.815
-		period 186.08
-	object
-		sprite planet/desert9
-		distance 1728.265
-		period 563.87
-	object
-		sprite planet/rock7-b
-		distance 1391.088
-		period 30
-		offset 25
-
 system Citadelle
 	pos -980.667 225.917
 	government Pirate
@@ -8778,6 +8740,46 @@ system Citadelle
 			sprite planet/desert9-b
 			distance 540.643
 			period 269
+
+system Clepsydra
+	pos 264 -874
+	attributes "bright star" "notable star"
+	arrival 750
+	habitable 750
+	belt 1134
+	haze _menu/haze-dark-nebula
+	link "Cura Dic"
+	link "Pedita Pri"
+	link "Pedita Sec"
+	link Supra
+	asteroids "small rock" 6 0.988
+	asteroids "medium rock" 2 0.832
+	asteroids "large rock" 3 1.209
+	asteroids "small metal" 5 0.832
+	asteroids "medium metal" 3 1.261
+	asteroids "large metal" 1 1.287
+	minables aluminum 3 1.513
+	minables yottrite 9 7
+	object
+		sprite star/a-eater
+		period 10
+	object
+		sprite star/a-dwarf
+		distance 55
+		period 10
+	object
+		sprite planet/ganymede-b
+		distance 999.815
+		period 461.752
+	object
+		sprite planet/rock7-b
+		distance 1391.08
+		period 757.811
+		offset 25
+	object
+		sprite planet/desert9
+		distance 1728.26
+		period 1049.40
 
 system Coluber
 	pos 149.504 197.389
@@ -9149,17 +9151,17 @@ system Cshudlye
 system "Cura Dic"
 	pos 340.667 -859.667
 	government "Quarg (Incipias)"
-	attributes quarg
-	arrival 700
-	habitable 3459.393
-	belt 1144 4
+	attributes "quarg"
+	arrival 3880
+	habitable 3880
+	belt 1144
 	haze _menu/haze-dark-nebula
+	link Clepsydra
+	link Supra
 	asteroids "small rock" 9 4.576
 	asteroids "medium rock" 25 5.468
 	asteroids "large rock" 27 5.468
 	minables yottrite 9 7
-	link Clepsydra
-	link Supra
 	trade Clothing 362
 	trade Electronics 763
 	trade Equipment 644
@@ -9172,26 +9174,26 @@ system "Cura Dic"
 	trade Plastic 503
 	fleet Quarg 600
 	object
-		sprite star/k3
-		distance 130.677
-		period 47.155
-	object
 		sprite star/f5-old
 		distance 34.323
 		period 47.155
 		offset 180
 	object
+		sprite star/k3
+		distance 130.677
+		period 47.155
+	object
 		sprite planet/forest4
 		distance 356
-		period 45.681
+		period 43.1339
 	object
 		sprite planet/rock5-b
 		distance 677
-		period 119.796
+		period 113.116
 	object
 		sprite planet/rock10-b
 		distance 1108
-		period 250.824
+		period 236.839
 		object "Spec Inci"
 			sprite planet/rock3
 			distance 176
@@ -9199,57 +9201,55 @@ system "Cura Dic"
 	object
 		sprite planet/ocean7
 		distance 1638
-		period 450.849
+		period 425.711
 		object "Ut Divitas"
 			sprite planet/io
 			distance 200
 
 system Currus
 	pos 260.583 -987.75
-	habitable 10
+	arrival 500
+	habitable 100
 	belt 1198 4
 	belt 2284 3
-	link Rota
 	link Equus
-	link Sedes
 	link Ianua
+	link Rota
+	link Sedes
 	asteroids "small rock" 22 0.968
 	asteroids "medium rock" 18 1.408
 	asteroids "large rock" 3 1.038
 	asteroids "large metal" 2 1.056
 	minables titanium 14 1.751
 	object
-		sprite planet/browndwarf-y-rouge
-		period 10
+		sprite planet/browndwarf-y-rogue
+	object
+		sprite planet/rock20
+		distance 273
+		period 180.428
+	object
+		sprite planet/dust1-b
+		distance 393
+		period 311.636
 	object
 		sprite planet/forest0
 		distance 468
-		period 1280.645
+		period 404.975
+	object
+		sprite planet/io-b
+		distance 543
+		period 506.127
 	object
 		sprite planet/gas13-b
 		distance 999
-		period 3994.002
-	object
-		sprite planet/luna-b
-		distance 2838
-		period 19123.993
-		object
-			sprite planet/rock20
-			distance 273
-			period 170.508
-		object
-			sprite planet/dust1-b
-			distance 393
-			period 242.308
-		object
-			sprite planet/io-b
-			distance 543
-			period 478.3
+		period 1263.01
 
 system "Porta Terra"
 	pos 202.6 -825.506
+	attributes "bright star" "notable star"
+	arrival 3650
 	habitable 3650
-	belt 1291 5
+	belt 1291
 	link Hui'uc
 	asteroids "large metal" 1 2.611
 	object
@@ -9258,7 +9258,7 @@ system "Porta Terra"
 	object Aera
 		sprite planet/aera
 		distance 900
-		period 1097.177
+		period 178.762
 		object
 			sprite planet/desert4
 			distance 300
@@ -9266,7 +9266,7 @@ system "Porta Terra"
 	object Igna
 		sprite planet/gas1-b
 		distance 1449
-		period 365.188
+		period 365.187
 		object
 			sprite planet/ice8
 			distance 504
@@ -11058,8 +11058,10 @@ system Dokdobaru
 
 system Dom'us
 	pos 180.716 -760.552
-	government "Hicemus"
-	habitable 560.92
+	government Hicemus
+	attributes "bright star" "giant star" "notable star"
+	arrival 5000
+	habitable 13910
 	belt 1259
 	link Hui'uc
 	link Il'le
@@ -11083,23 +11085,23 @@ system Dom'us
 	fleet "Incipias Standard Trade" 1500
 	fleet "Incipias Standard Mining" 900
 	object
-		sprite star/f0
-		distance 500.6777
-		period 20.8284
-	object
 		sprite star/b-giant
-		distance 103.3223
+		distance 103.322
 		period 20.8284
 		offset 180
 	object
+		sprite star/f0
+		distance 500.677
+		period 20.8284
+	object
 		sprite planet/cloud6
 		distance 707.022
-		period 317.511
+		period 63.7596
 	object Redias
 		sprite planet/redias
 		distance 1536.91
-		period 1017.61
-		object "Pon'tes"
+		period 204.347
+		object Pon'tes
 			sprite planet/pontes
 				scale 0.5
 			distance 600
@@ -12773,8 +12775,10 @@ system "Epsilon Leonis"
 			period 37.9234
 
 system Equus
-	pos 313.25 -1051.083
-	habitable 1125
+	pos 313.25 -1051.08
+	attributes "neutron" "notable star"
+	arrival 500
+	habitable 355
 	belt 1157 6
 	belt 2400 5
 	link Currus
@@ -12787,11 +12791,12 @@ system Equus
 	asteroids "large metal" 73 2.599
 	minables silicon 9 4.092
 	minables aluminum 28 3.354
+	hazard "Neutron Star Magnetic Field" 1
 	object
-		sprite "star/neutron-small-core"
+		sprite star/neutron-small-core
 		period 10
 		object
-			sprite "star/neutron-small"
+			sprite star/neutron-small
 			period 10
 	object
 		sprite star/f-dwarf
@@ -12800,7 +12805,7 @@ system Equus
 	object Methuselah
 		sprite planet/gas17
 		distance 1279
-		period 1800
+		period 971.072
 
 system "Era Natta"
 	pos 129.2 -134.8
@@ -17205,7 +17210,8 @@ system Host
 
 system Hui'uc
 	pos 248.933 -792.506
-	habitable 1505.92
+	arrival 1505
+	habitable 1505
 	belt 1246
 	link Dom'us
 	link Il'le
@@ -17241,7 +17247,7 @@ system Hui'uc
 	object
 		sprite planet/rock4
 		distance 391.392
-		period 79.8136
+		period 79.8380
 		object
 			sprite planet/lava0
 			distance 157
@@ -17249,19 +17255,19 @@ system Hui'uc
 	object
 		sprite planet/desert4
 		distance 683.802
-		period 184.312
+		period 184.368
 	object
 		sprite planet/desert2
 		distance 863.802
-		period 261.686
+		period 261.765
 	object
 		sprite planet/ice0
 		distance 1345.09
-		period 508.495
+		period 508.649
 	object Turra
 		sprite planet/gas3
 		distance 2880.25
-		period 1593.33
+		period 1593.81
 		object
 			sprite planet/dust3
 			distance 305
@@ -17380,8 +17386,9 @@ system Huud
 
 system Ianua
 	pos 371.917 -995.75
+	arrival 500
 	habitable 35
-	belt 1472 5
+	belt 1472
 	link Currus
 	link Tectum
 	asteroids "small rock" 5 2.736
@@ -17398,19 +17405,19 @@ system Ianua
 	object
 		sprite planet/rock13
 		distance 228
-		period 232.771
+		period 232.770
 	object
 		sprite planet/uranus
 		distance 802
-		period 1535.633
+		period 1535.63
 	object
 		sprite planet/tethys
 		distance 1247
-		period 2977.321
+		period 2977.32
 	object
 		sprite planet/rock17-b
 		distance 2451
-		period 8204.289
+		period 8204.28
 
 system Iigen
 	pos 928.4 -615.7
@@ -17765,8 +17772,8 @@ system Ilirco
 system Il'le
 	pos 255.933 -716.506
 	government Uninhabited
-	arrival 1300
-	habitable 1200
+	arrival 1715
+	habitable 1715
 	belt 1165
 	link Dom'us
 	link Hui'uc
@@ -17778,7 +17785,7 @@ system Il'le
 	minables aluminum 7 1.96731
 	minables platinum 2 1.43013
 	minables titanium 5 1.78627
-	minables silicon 27 0.740133
+	minables silicon 27 0.74013
 	minables iron 18 1.55307
 	minables silver 4 1.274
 	trade Clothing 354
@@ -17797,11 +17804,11 @@ system Il'le
 	object
 		sprite planet/rock11
 		distance 142.89
-		period 16.498
+		period 16.4979
 	object
 		sprite planet/cloud2
 		distance 492.3
-		period 105.505
+		period 105.504
 		object
 			sprite planet/lava0
 			distance 188
@@ -17817,7 +17824,7 @@ system Il'le
 	object
 		sprite planet/dust4
 		distance 2030.4
-		period 883.691
+		period 883.690
 
 system "Imo Dep"
 	pos -56.2764 -600.1
@@ -26009,8 +26016,9 @@ system Peacock
 
 system "Pedita Pri"
 	pos 207.333 -936
-	habitable 10000.045
-	belt 1909 6
+	arrival 5000
+	habitable 10030
+	belt 1909
 	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Pedita Sec"
@@ -26023,38 +26031,30 @@ system "Pedita Pri"
 	minables iron 15 3.025
 	minables yottrite 9 7
 	object
+		sprite star/o5
+		distance 1.485
+		period 45.7
+	object
 		sprite star/l-dwarf
 		distance 148.515
 		period 45.7
 		offset 180
 	object
-		sprite star/o5
-		distance 1.485
-		period 45.7
-	object
 		sprite planet/desert1-b
 		distance 339
-		period 24.967
+		period 24.9292
 	object
 		sprite planet/rock11
 		distance 725
-		period 78.085
-	object
-		sprite planet/forest4
-		distance 1186
-		period 163.375
-		object
-			sprite planet/rock14
-			distance 184
-			period 65.32
+		period 77.9680
 	object
 		sprite planet/luna-b
 		distance 1943
-		period 342.585
+		period 342.072
 	object Gliese
 		sprite planet/gliese
 		distance 6037
-		period 1876.25
+		period 1873.44
 		object
 			sprite planet/europa-b
 			distance 236
@@ -26062,8 +26062,9 @@ system "Pedita Pri"
 
 system "Pedita Sec"
 	pos 185.333 -888
+	arrival 1080
 	habitable 1080
-	belt 1554 9
+	belt 1554
 	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Pedita Pri"
@@ -26075,7 +26076,7 @@ system "Pedita Sec"
 	object
 		sprite planet/desert8-b
 		distance 285
-		period 58.562
+		period 58.5619
 	object
 		sprite planet/mercury-b
 		distance 963
@@ -26083,7 +26084,7 @@ system "Pedita Sec"
 	object Treser
 		sprite planet/treser
 		distance 2193
-		period 1249.989
+		period 1249.98
 
 system Pelubta
 	pos -757.587 575.051
@@ -28741,8 +28742,10 @@ system Ritilas
 
 system Rota
 	pos 193.25 -1029.75
-	habitable 5446.614
-	belt 1387 9
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 7160
+	belt 1387
 	link Currus
 	link Equus
 	asteroids "small rock" 3 2.256
@@ -28754,30 +28757,26 @@ system Rota
 	minables iron 1 3.541
 	minables lead 5 3.398
 	object
+		sprite star/g0-old
+		distance 66.6
+		period 50.325
+	object
 		sprite star/b8
 		distance 118.4
 		period 50.325
 		offset 180
 	object
-		sprite star/g0-old
-		distance 66.6
-		period 50.325
-	object
 		sprite planet/desert10-b
 		distance 403
-		period 43.848
+		period 38.2438
 	object
 		sprite planet/ocean8
 		distance 859
-		period 136.454
-		object
-			sprite planet/rock14
-			distance 172
-			period 59.035
+		period 119.012
 	object Vulpa
 		sprite planet/vulpa
 		distance 1978
-		period 476.8
+		period 415.855
 		object
 			sprite planet/oberon
 			distance 244
@@ -28793,7 +28792,7 @@ system Rota
 	object
 		sprite planet/browndwarf-y
 		distance 3466
-		period 1105.96
+		period 964.597
 
 system Rouseu
 	pos 566.7 -404.133
@@ -29813,8 +29812,10 @@ system Scija
 
 system Sedes
 	pos 301.917 -948.417
+	attributes "bright star" "giant star" "notable star"
+	arrival 500
 	habitable 100
-	belt 1651 4
+	belt 1651
 	link Currus
 	link Tectum
 	asteroids "medium rock" 4 3.595
@@ -29830,7 +29831,7 @@ system Sedes
 	object
 		sprite planet/rock11
 		distance 303
-		period 210.972
+		period 210.971
 	object
 		sprite planet/rock0
 		distance 691
@@ -29838,7 +29839,7 @@ system Sedes
 	object
 		sprite planet/gas16-b
 		distance 2250
-		period 4269.075
+		period 4269.07
 		object
 			sprite planet/dust7
 			distance 231
@@ -32111,8 +32112,9 @@ system Sumprast
 
 system Supra
 	pos 319 -820
-	habitable 11500.792
-	belt 1481 8
+	arrival 5000
+	habitable 11635
+	belt 1481
 	haze _menu/haze-dark-nebula
 	link Clepsydra
 	link "Cura Dic"
@@ -32125,18 +32127,18 @@ system Supra
 	minables lead 32 3.752
 	minables yottrite 9 7
 	object
-		sprite star/m8
-		distance 152.482
-		period 52.635
-	object
 		sprite star/o3
 		distance 18.018
 		period 52.635
 		offset 180
 	object
+		sprite star/m8
+		distance 152.482
+		period 52.635
+	object
 		sprite planet/browndwarf-l
 		distance 611
-		period 56.332
+		period 56.0065
 		object
 			sprite planet/callisto-b
 			distance 297
@@ -32144,7 +32146,7 @@ system Supra
 	object Humo
 		sprite planet/gas7-b
 		distance 1592
-		period 236.925
+		period 235.554
 		object
 			sprite planet/rock7-b
 			distance 253
@@ -32488,11 +32490,12 @@ system Tebuteb
 
 system Tectum
 	pos 399.25 -933.083
-	habitable 23372.847
+	arrival 5000
+	habitable 29300
 	belt 1350 7
-	belt 2133
-	link Sedes
+	belt 2133 1
 	link Ianua
+	link Sedes
 	asteroids "small rock" 20 2.036
 	asteroids "medium rock" 86 2.176
 	asteroids "large rock" 14 1.591
@@ -32512,7 +32515,7 @@ system Tectum
 	object
 		sprite planet/neptune
 		distance 907
-		period 71.469
+		period 63.8318
 		object
 			sprite planet/dust0
 			distance 222
@@ -32520,7 +32523,7 @@ system Tectum
 	object
 		sprite planet/browndwarf-t
 		distance 2550
-		period 336.91
+		period 300.909
 		object
 			sprite planet/ice7-b
 			distance 300

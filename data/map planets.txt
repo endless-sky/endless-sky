@@ -3346,6 +3346,12 @@ planet Oblivion
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet "Occupas"
+	attributes "requires: gaslining"
+	landscape land/occupas
+	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
+	government Uninhabited
+
 planet Ochrescoop
 	attributes hai station
 	landscape land/station43
@@ -3355,12 +3361,6 @@ planet Ochrescoop
 	spaceport `	A holographic sign floating next to the stairs proudly states that over 7,000 years have elapsed since the last fatal safety accident.`
 	bribe 0.1
 	security 0.5
-
-planet "Occupas"
-	attributes "requires: gaslining"
-	landscape land/occupas
-	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
-	government Uninhabited
 
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
@@ -3537,15 +3537,15 @@ planet Poisonwood
 		fleet "Large Militia" 7
 
 planet "Pon'tes"
-	government "Hicemus"
 	landscape land/station16
-	"required reputation" 10
-	outfitter "Hicemus"
-	shipyard "Hicemus"
 	description `Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping.`
 	description `	Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways.`
 	spaceport `The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains.`
 	spaceport `	Most of the ships are delivering minerals, but some also deliver supplies from Redias. In a small area separated from the rest there is a constant buzzing of small transport ships transporting civilians in both directions.`
+	outfitter "Hicemus"
+	shipyard "Hicemus"
+	"required reputation" 10
+	government "Hicemus"
 
 planet Poseidos
 	attributes fishing rim
@@ -3643,13 +3643,13 @@ planet Rand
 		fleet "Large Militia" 8
 
 planet "Redias"
-	landscape land/redias
 	attributes "requires: gaslining"
-	"required reputation" 10
+	landscape land/redias
 	description `The home planet of the Incipias is ruled by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed.`
 	description `	The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds.`
 	spaceport `Because of the size of their homeworld, the Incipias have built not one but four spaceports. These spaceports are the only platforms on the planet with fixed positions. They were built at an atmospheric level where the planet's storms are not so strong, but they still require a great deal of energy to be held in place.`
 	spaceport `	The spaceports themselves are giant circular platforms with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land at each spaceport at a time.`
+	"required reputation" 10
 	government "Conlatio"
 
 planet Redwatch
@@ -4715,18 +4715,18 @@ planet Tundra
 		threshold 3000
 		fleet "Large Militia" 6
 
-planet "Turra"
-	attributes "requires: gaslining"
-	landscape land/turra
-	description `Turra's thick atmosphere makes this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing the little light that shines on them.`
-	government Uninhabited
-
 planet "Turquoise Four"
 	attributes farming kimek
 	landscape land/beach14
 	description `The offshore kelp farms on Turquoise Four produce not only nutritional food, but also an ultra-strong fiber that is used for creating durable textiles. Farther from shore, the Kimek operate fish farms as well. Viewed from above, the ocean surface is divided into patches of deep blue or green or rusty brown depending on what sort of product is being farmed in each patch.`
 	spaceport `The boats docked in this spaceport city are more numerous than the space ships, and some of them are considerably larger, as well. Almost half of the city is built on piers that extend out into the harbor with broad canals between them, but the largest and fanciest dwellings are on land, built along a ridge of hills that overlook the ocean. The air is full of the cries of gulls and the smell of fish and salt and drying seaweed.`
 	"required reputation" 15
+
+planet "Turra"
+	attributes "requires: gaslining"
+	landscape land/turra
+	description `Turra's thick atmosphere makes this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing the little light that shines on them.`
+	government Uninhabited
 
 planet Twinstar
 	attributes frontier moon south tourism
