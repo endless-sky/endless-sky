@@ -135,7 +135,7 @@ else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 	if(APPLE)
-		target_link_libraries(ExternalLibraries INTERFACE parallelstl::pstl)
+		target_link_libraries(ExternalLibraries INTERFACE ParallelSTL::ParallelSTL)
 	endif()
 endif()
 
