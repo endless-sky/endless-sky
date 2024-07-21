@@ -193,7 +193,7 @@ mission "Hai Legacy 1"
 				`	(Go back to the shipyard.)`
 					goto leave
 				`	"Why would they mind a fleet or a different ship?"`
-			`	"Coming from a human, arriving with a fleet would be nothing less than an invitation to fight. However, as this ship is ancient they will try to preserve it."`
+			`	"Coming from a human, arriving with a fleet would be nothing less than an invitation to fight," says the first. "However, as this ship is ancient they will try to preserve it," the other one adds.`
 			label leave
 			`	They walk away until that you cannot hear them speak anymore, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to bring it without any complications.`
 				accept
