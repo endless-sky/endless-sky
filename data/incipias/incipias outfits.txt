@@ -65,7 +65,7 @@ outfit "Stagnation Beam"
 		sound "stagnation beam"
 		"hit effect" "stagnation beam impact"
 		"inaccuracy" .5
-		"turret turn" 7.5
+		"turret turn" 3
 		"velocity" 600
 		"lifetime" 1
 		"reload" 1
