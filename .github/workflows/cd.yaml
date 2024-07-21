@@ -106,7 +106,7 @@ jobs:
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - name: Install dependencies
-        run: brew install llvm libmad
+        run: brew install llvm libmad zlib
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
