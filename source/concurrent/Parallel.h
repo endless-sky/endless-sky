@@ -18,8 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef __APPLE__
 
-#include <tbb/task.h>
-
 #include <pstl/algorithm>
 #include <pstl/execution>
 
