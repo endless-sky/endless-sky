@@ -187,7 +187,7 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 			power.insert(power.end(), it.second, value);
 	}
 	// Use the best weapons first.
-	sort(std::execution::par_unseq, power.begin(), power.end(), greater<double>());
+	sort(parallel::par_unseq, power.begin(), power.end(), greater<double>());
 
 	// Resize the vector to have exactly one entry per crew member.
 	power.resize(ship.Crew(), 0.);
