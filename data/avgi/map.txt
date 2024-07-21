@@ -2798,7 +2798,7 @@ system Corporeal
 		sprite star/g3
 		period 10
 	object Anatrefo
-		sprite planet/station0
+		sprite planet/station1q
 			scale 0.5
 		distance 960
 		period 349.82

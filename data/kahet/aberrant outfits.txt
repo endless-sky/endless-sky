@@ -119,7 +119,7 @@ outfit "Anomalous Shield Restorer"
 	"shield energy" 6
 	"flotsam chance" 0.1
 	"unplunderable" 1
-	description "This emitter produces no detectable fields of any kind, but a shield springs into existence whenever something that could damage it comes near enough."
+	description "This emitter produces no detectable fields of any kind, but a shield springs into existence whenever any danger comes near."
 
 
 # Power:

@@ -1018,7 +1018,7 @@ ship "Modified Tachytia"
 		"Photoelectric Lamina"
 		"Ultracapacitor Bank" 6
 		"Specular Deflector" 2
-		"Optical Lasing Generator" 4
+		"Optical Lasing Generator" 7
 		"Multispectral Scanner" 9
 		"Electrostatic Ramscoop" 3
 		"Concealment Lamina"

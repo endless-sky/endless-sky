@@ -80,7 +80,6 @@ news "avgi siege hatchling"
 			`"Hurt. Why do the aliens attack us? We never did anything to them."`
 
 
-
 news "avgi merchant"
 	location
 		government "Avgi" "Avgi (Consonance)" "Avgi (Dissonance)"
@@ -141,7 +140,6 @@ news "avgi politician"
 			"An Avgi clothed in dark tassels flits overhead, tailed by half a dozen journalists buzzing with questions and demands for answers."
 
 
-
 news "avgi military"
 	location
 		government "Avgi (Consonance)"
@@ -162,7 +160,6 @@ news "avgi military"
 			`"Pensive. Sometimes I wonder at the future of our species, and whether we are up to the task of defending it."`
 			`"Resolve. The Guard is the only thing standing between our people and the Aberrant, and I intend to do my duty or die trying."`
 			`"Pride. Once I was a mere page on a courier ship, moving stacks of memory sheets between star systems. Look at me now!"`
-
 
 
 news "avgi safety advisory"
@@ -211,7 +208,9 @@ news "avgi missing advisory"
 		word
 			" "
 		word
-			"reported"
+			"reported lost"
+			"reported missing"
+			"reported absent"
 			"failed check-in"
 			"missed check-in"
 		word
@@ -220,6 +219,7 @@ news "avgi missing advisory"
 			"last sighted"
 			"last spotted"
 			"last reported"
+			"last determined"
 		word
 			" "
 		word
@@ -238,7 +238,7 @@ news "avgi missing advisory"
 			"Outpost Enka"
 			"Outpost Tekis"
 		word
-			`"`
+			`.`
 
 
 news "avgi scientist"
@@ -248,9 +248,14 @@ news "avgi scientist"
 	name
 		word
 			"Avgi"
+			"Respected"
+			"Accredited"
+		word
+			" "
 		word
 			"Scientist"
 			"Researcher"
+			"Student"
 	message
 		word
 			`"Gratitude. It is fortunate that the sum of our knowledge has been preserved, even in the most remote depths of space."`
@@ -259,7 +264,7 @@ news "avgi scientist"
 			`"Pride. I did my thesis on a new type of solar cell junction. Now I see them on half the ships in the sky!"`
 			`"Amusement. You always see bright up-and-coming students claim to have invented a new kind of faster than light drive. Eighty years ago, one of them was actually right!"`
 			`"Curiosity. It's a wonder that once wormholes were considered the most likely option for traveling faster than light. I wonder how the hyperdrive was invented first?"`
-			`"Information. We have a type of coating that can greatly reduce a ship's atmospheric drag by causing shed vortices to destructively interfere with each other."`
+			`"Information. Our engineers created a type of coating that can greatly reduce a ship's atmospheric drag by causing shed vortices to destructively interfere with each other."`
 			`"Amazement. The simulations say that a memory diamond can retain its information for millions of years, if stored in stable conditions. That might outlast our entire civilization!"`
 
 
