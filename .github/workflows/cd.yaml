@@ -104,11 +104,11 @@ jobs:
       - name: Install clang
         run: |
           brew install llvm
-          export CC="$(brew --prefix clang)/bin/clang"
-          export CXX="$(brew --prefix clang)/bin/clang++"
-          export PATH="$(brew --prefix clang)/bin:$PATH"
-          export LDFLAGS="-L$(brew --prefix clang)/lib"
-          export CPPFLAGS="-I$(brew --prefix clang)/include"
+          export CC="$(brew --prefix llvm)/bin/clang"
+          export CXX="$(brew --prefix llvm)/bin/clang++"
+          export PATH="$(brew --prefix llvm)/bin:$PATH"
+          export LDFLAGS="-L$(brew --prefix llvm)/lib"
+          export CPPFLAGS="-I$(brew --prefix llvm)/include"
           which clang
           which clang++
           clang --version
