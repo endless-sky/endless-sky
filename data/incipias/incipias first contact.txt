@@ -18,7 +18,7 @@ mission "Incipias: Warning of the Guardian"
 		never
 	on enter Il'le
 		conversation
-			`A voice begins to speak from somewhere. "Your path brings you to a dead end, traveler. Nothing for you lies further," a voice with an uncertain origin says.`
+			`A voice begins to speak from somewhere. "Your path brings you to a dead end, traveler. Nothing for you lies further."`
 			`	Alarmed, you look around but nobody is there. You check your scanners but there is nothing present in this system except a few indigenous lifeforms. However, your navigation system displays hyperspace routes that lead beyond it.`
 			choice
 				`	(Ignore it.)`
@@ -69,7 +69,7 @@ mission "Incipias: Presence of the Guardian"
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
 				to display
 					not "Incipias: accepted the guardians warning"
-			`As you enter the system, the same voice from before echoes through your mind, though this time, there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
 				to display
 					has "Incipias: accepted the guardians warning"
 				decline
@@ -79,7 +79,7 @@ mission "Incipias: Presence of the Guardian"
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
 				to display
 					not "Incipias: accepted the guardians warning"
-			`As you enter the system, the same voice from before echoes through your mind, though this time, there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
 				to display
 					has "Incipias: accepted the guardians warning"
 				decline
@@ -163,7 +163,7 @@ mission "Incipias: The Derelict"
 		on assist
 			conversation
 				scene "scene/incipias message"
-				`As you approach the derelict ship, it sends you a hail request. Once you accept the hail, color gradients suddenly start moving over your screen in a dizzying fashion, while curiously, there is no audio. It's clear that unless you have some sort of translation device, you will not be able to understand whatever transmission you just witnessed. You continue your attempt to assist the ship, preparing to bring some repair supplies on board.`
+				`As you approach the derelict ship, it sends you a hail request. Once you accept the hail, color gradients suddenly start moving over your screen in a dizzying fashion, but curiously there is no audio. It's clear that unless you have some sort of translation device, you will not be able to understand whatever transmission you just witnessed. You continue your attempt to assist the ship, preparing to bring some repair supplies on board.`
 				`	You manage to dock to the disabled ship quite easily. The hatch opens and as a hallway opens up before you, it is immediately obvious that this ship was not designed for humans. The walls are strangely curved, and the floor has nearly no grip at all. As you carry the repair equipment into the ship, your view is caught by five giant aliens - half octopod, half jellyfish in appearance. They pulsate in bright colors similar to the gradients that appeared on your screen earlier. One of them is floating behind what's clearly a giant mounted weapon, and the two barrels are pointed right at you. The alien gunner flashes in an orange light, and you can feel the tension in the room rising.`
 				choice
 					`	(Try to convey that I intend no harm.)`
@@ -338,9 +338,8 @@ mission "Incipias: Help The Stranded 2"
 				launch
 	on complete
 		conversation
-			`When you land on the station your passengers thank you again and leave, probably to get some well-earned rest.`
-			`	As you step out of the <ship> an Incipias approaches you. Its scales seem worn off and you notice intricate claw appendices around the end of its tentacles. "Follow me, outer-helper, before a crowd gathers. We would like to talk."`
-			`	They guide you through the hallways so that you avoid larger groups and move only through horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
+			`Once you land on the station, your passengers thank you again and leave, probably to get some well-earned rest. As you step out of the <ship>, another Incipias approaches you. Its scales seem worn down, and you notice intricate claw-like attachments around the end of its tentacles. "Follow me, outer-helper, before a crowd gathers. We would like to talk."`
+			`	They guide you through the hallways so that you avoid larger groups, though they choose only horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
 			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
 			choice
 				`	"Sure, ask me something."`
@@ -351,11 +350,11 @@ mission "Incipias: Help The Stranded 2"
 				`	(Give them an exhaustive story of what you have seen so far.)`
 					goto detail
 				`	(Give a rough overview of what you have seen.)`
-			`	After seeing your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green and red.`
+			`	After "seeing" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what end up being yellow tones mixed with green and red.`
 			`	"Thank you for this insight. All we gathered until now was by observing-studying stars. To think that there is so much out there... it truly raise-strengthens a determination to explore.`
 				goto yours
 			label detail
-			`	After watching your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green.`
+			`	After "watching" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what ends up being yellow tones mixed with green.`
 			`	"Thank you for this profound-depth insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination to explore.`
 			label yours
 			`	"But now to you. Is there anything you would like to know?"`
@@ -374,7 +373,7 @@ mission "Incipias: Help The Stranded 2"
 			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
 			label oddquestion
-			`	"What an odd-reasonable question." It's glow turns into a swirl of purple and green. "We could ask the same in return, what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds between them are our cities, the most color-lifeful places you will ever see. This is a bit poetic-gradient description but I do not know what else to say."`
+			`	"What an odd-reasonable question." It's glow turns into a swirl of purple and green. "We could ask the same in return - what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds. Between them are our cities, the most color-lifeful places you will ever see. This is a bit of a poetic-gradient description, but I do not know what else to say."`
 			label end
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
 			`	You say goodbye, and as you leave the room, you can see a rush of colors reflecting onto the walls.`

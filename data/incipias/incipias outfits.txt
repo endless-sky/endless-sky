@@ -31,8 +31,8 @@ outfit "Plasma Discharger"
 		"reload" 40
 		"firing energy" 60
 		"firing heat" 30
-		"shield damage" 55
-		"hull damage" 65
+		"shield damage" 33
+		"hull damage" 39
 		"minable damage" 90
 	description "The Incipias started to mine asteroids long before they began intrasystem travel due to the proximity of their home world's atmosphere to its rings. As a result this mining tool seems to be more advanced than their general technology, yet it is still not comparable to the efficiency of human weapons."
 	description "	The weapon itself shoots bolts of high density plasma that split up into small particles after some time. Because of the plasma infuser the fire rate is exceptional, but the energy usage is severe."
@@ -44,8 +44,8 @@ outfit "plasma particle"
 		"lifetime" 60
 		"random velocity" 2
 		"inaccuracy" 20
-		"shield damage" 11
-		"hull damage" 13
+		"shield damage" 6.6
+		"hull damage" 7.8
 		"minable damage" 18
 
 outfit "Stagnation Beam"
