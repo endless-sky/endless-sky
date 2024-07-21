@@ -101,17 +101,8 @@ jobs:
         uses: ./.github/sccache
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
-      - name: Install threading libraries
-        uses: actions/checkout@v4
-        with:
-          repository: swiftlang/llvm-project
-          show-progress: false
-          sparse-checkout: pstl/
-          path: pstl
-      - name: Adjust threading configuration
-        run: |
-          find pstl/pstl/include/ -type f -exec sed -i 's/^_PSTL_HIDE_FROM_ABI_.*$//g' {} \;
-          echo -e "#ifndef __PSTL_CONFIG_SITE\n#define __PSTL_CONFIG_SITE\n#define _PSTL_PAR_BACKEND_TBB\n#define _PSTL_HIDE_FROM_ABI_PER_TU\n#include <functional>\n#endif" > pstl/pstl/include/__pstl_config_site
+      - name: Install clang
+        run: brew install llvm
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:

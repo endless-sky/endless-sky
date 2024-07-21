@@ -131,9 +131,6 @@ if(WIN32)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
-	if(APPLE AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		target_include_directories(ExternalLibraries INTERFACE "pstl/pstl/include")
-	endif()
 endif()
 
 # Link with the UUID library, which is different for each OS.
