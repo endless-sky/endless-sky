@@ -9231,10 +9231,6 @@ system Currus
 		distance 393
 		period 311.636
 	object
-		sprite planet/forest0
-		distance 468
-		period 404.975
-	object
 		sprite planet/io-b
 		distance 543
 		period 506.127
@@ -9242,34 +9238,6 @@ system Currus
 		sprite planet/gas13-b
 		distance 999
 		period 1263.01
-
-system "Porta Terra"
-	pos 202.6 -825.506
-	attributes "bright star" "notable star"
-	arrival 3650
-	habitable 3650
-	belt 1291
-	link Hui'uc
-	asteroids "large metal" 1 2.611
-	object
-		sprite star/a0
-		period 10
-	object Aera
-		sprite planet/aera
-		distance 900
-		period 178.762
-		object
-			sprite planet/desert4
-			distance 300
-			period 188.115
-	object Igna
-		sprite planet/gas1-b
-		distance 1449
-		period 365.187
-		object
-			sprite planet/ice8
-			distance 504
-			period 427.707
 
 system "Da Ent"
 	pos -6.22391 -462.536
@@ -27131,6 +27099,34 @@ system Porrima
 			sprite planet/dust0
 			distance 294
 			period 11.4255
+
+system "Porta Terra"
+	pos 202.6 -825.506
+	attributes "bright star" "notable star"
+	arrival 3650
+	habitable 3650
+	belt 1291
+	link Hui'uc
+	asteroids "large metal" 1 2.611
+	object
+		sprite star/a0
+		period 10
+	object Aera
+		sprite planet/aera
+		distance 900
+		period 178.762
+		object
+			sprite planet/desert4
+			distance 300
+			period 188.115
+	object Igna
+		sprite planet/gas1-b
+		distance 1449
+		period 365.187
+		object
+			sprite planet/ice8
+			distance 504
+			period 427.707
 
 system Postverta
 	hidden
