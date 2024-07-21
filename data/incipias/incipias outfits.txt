@@ -14,6 +14,7 @@
 # Weapons:
 outfit "Plasma Discharger"
 	category "Guns"
+	cost 140000
 	mass 25
 	"outfit space" -20
 	"weapon capacity" -20
@@ -50,6 +51,7 @@ outfit "plasma particle"
 
 outfit "Stagnation Beam"
 	category "Turrets"
+	cost 180000
 	mass 30
 	"outfit space" -30
 	"weapon capacity" -30
@@ -91,6 +93,7 @@ effect "stagnation beam impact"
 
 outfit "Star Tail"
 	category "Secondary Weapons"
+	cost 320000
 	mass 48
 	"outfit space" -50
 	"weapon capacity" -50
@@ -157,7 +160,7 @@ effect "star tail live"
 
 outfit "Star Tail Cell"
 	category "Ammunition"
-	cost 500
+	cost 1500
 	thumbnail "outfit/star tail cell"
 	"mass" .1
 	"star tail capacity" -1
@@ -167,7 +170,7 @@ outfit "Star Tail Cell"
 
 outfit "Star Tail Storage"
 	category "Ammunition"
-	cost 500
+	cost 6000
 	thumbnail "outfit/star tail cell storage"
 	"mass" 10
 	"outfit space" -10
@@ -181,6 +184,7 @@ outfit "Star Tail Storage"
 outfit "Gas-Class Shield"
 	category "Systems"
 	thumbnail "outfit/gas class shield"
+	cost 136000
 	mass 60
 	"outfit space" -60
 	"shield generation" .1
@@ -192,6 +196,7 @@ outfit "Gas-Class Shield"
 outfit "Liquid-Class Shield"
 	category "Systems"
 	thumbnail "outfit/liquid class shield"
+	cost 216000
 	mass 80
 	"outfit space" -90
 	"shield generation" .25
@@ -203,6 +208,7 @@ outfit "Liquid-Class Shield"
 outfit "Metallic Hydrogen Cell"
 	category "Power"
 	thumbnail "outfit/metallic hydrogen cell"
+	cost 2500
 	mass 20
 	"outfit space" -20
 	"energy capacity" 500
@@ -212,7 +218,8 @@ outfit "Metallic Hydrogen Cell"
 outfit "MH Blue-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh blue-class engine"
-	"mass" 27
+	cost 32000
+	mass 27
 	"outfit space" -27
 	"engine capacity" -27
 	"flare sprite" "effect/incipias flare/metallic hydrogen small"
@@ -226,7 +233,8 @@ outfit "MH Blue-Class Engine"
 outfit "MH Blue-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh blue-class steering"
-	"mass" 24
+	cost 28000
+	mass 24
 	"outfit space" -24
 	"engine capacity" -24
 	"turn" 498
@@ -237,15 +245,16 @@ outfit "MH Blue-Class Steering"
 outfit "MH Green-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh green-class engine"
-	"mass" 32
+	cost 44000
+	mass 32
 	"outfit space" -32
 	"engine capacity" -32
 	"flare sprite" "effect/incipias flare/metallic hydrogen medium"
 		"frame rate" 24
 	"flare sound" "incip plasma med"
 	"thrust" 30
-	"thrusting energy" 2
-	"thrusting heat" 2.5
+	"thrusting energy" 2.2
+	"thrusting heat" 2.8
 	description "Green is a color of balance for the Incipias. This engine balances the need for space with the need for powerful thrusters."
 
 outfit "MH Green-Class Steering"
@@ -262,7 +271,8 @@ outfit "MH Green-Class Steering"
 outfit "MH Red-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh red-class engine"
-	"mass" 41
+	cost 50000
+	mass 41
 	"outfit space" -41
 	"engine capacity" -41
 	"flare sprite" "effect/incipias flare/metallic hydrogen large"
@@ -276,7 +286,8 @@ outfit "MH Red-Class Engine"
 outfit "MH Red-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh red-class steering"
-	"mass" 41
+	cost 49000
+	mass 41
 	"outfit space" -41
 	"engine capacity" -41
 	"turn" 1134
