@@ -191,6 +191,10 @@ mission "Hai Legacy 1"
 			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
 			choice
 				`	(Go back to the shipyard.)`
+					goto leave
+				`	"Why would they mind a fleet or a different ship?"`
+			`	"Coming from a human, arriving with a fleet would be nothing less than an invitation to fight. However, as this ship is ancient they will try to preserve it."`
+			label leave
 			`	They walk away until that you cannot hear them speak anymore, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to bring it without any complications.`
 				accept
 			label foolish
@@ -447,12 +451,17 @@ mission "Hai Legacy 3"
 		clear "old reputation: Hai (Unfettered)"
 		log "Managed to use an old Anomalocaris to beat some Unfettered challengers, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 		conversation
-			`When you land in one piece, Mera approaches, looking quite surprised. "You really won! At least it was close, right? Or did the captains make stories to justify their incompetence, like the cowards they are?"`
+			`When you land in one piece, Mera approaches, looking quite surprised. "You really won! I saw everything, and the scans of the effects of these exotic weapons will be quite useful for my research. Was it hard for you?"`
 			choice
 				`	"It was fun."`
 					goto next
-				`	"What are you talking about? This was easy!"`
+				`	"This was easy!"`
+				`	"It was a challenge."`
+					goto challenge
 			`	"Don't get overconfident, Captain," she muses. "I am sure you know what happens to such people.`
+				goto next
+			label challenge
+			`	"Oh, so we almost got that ship back then? Maybe I should have participated in the fight after all.`
 			label next
 			`	"Well, congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. Remember, your reputation with us is solely due to to that ship. If you somehow lose it because of incompetence on your own end, it would look pretty bad to us!"`
 			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some sort of respect for you, so long as you have the Anomalocaris.`
