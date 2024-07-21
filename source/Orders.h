@@ -81,6 +81,8 @@ public:
 	bool HasMine() const;
 	bool HasHarvest() const;
 
+	bool IsEmpty() const;
+
 	// Set and get targeting information for this order.
 	void SetTargetShip(std::shared_ptr<Ship> ship);
 	void SetTargetAsteroid(std::shared_ptr<Minable> asteroid);

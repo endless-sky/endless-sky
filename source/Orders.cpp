@@ -158,6 +158,13 @@ bool Orders::HasHarvest() const
 
 
 
+bool Orders::IsEmpty() const
+{
+	return activeOrders.none();
+}
+
+
+
 void Orders::SetTargetShip(shared_ptr<Ship> ship)
 {
 	targetShip = ship;
@@ -222,7 +229,7 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 	{
 		shared_ptr<Ship> ship = GetTargetShip();
 		shared_ptr<Minable> asteroid = GetTargetAsteroid();
-		// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
+		// Check if the target ship itself is targetable, or if it is one of your ships that you targeted.
 		bool invalidTarget = !ship
 				|| (!ship->IsTargetable() && orderedShip->GetGovernment() != ship->GetGovernment())
 				|| (ship->IsDisabled() && HasAttack());
@@ -249,7 +256,7 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 void Orders::MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHarvesting, int &orderOperation)
 {
 	// HOLD_ACTIVE cannot be given as a manual order, but we make sure here
-	// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
+	// that any HOLD_ACTIVE order also matches when a HOLD_POSITION
 	// command is given.
 	if(HasHoldActive())
 		ApplyOrder(HOLD_POSITION);

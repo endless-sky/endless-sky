@@ -4905,6 +4905,11 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 			Messages::Add(who + "unable to and no longer " + description, Messages::Importance::High);
 		else
 			Messages::Add(who + "no longer " + description, Messages::Importance::High);
+
+		// Clear any orders that are now empty.
+		for(const Ship *ship : ships)
+			if(orders.count(ship) && orders[ship].IsEmpty())
+				orders.erase(ship);
 	}
 }
 
