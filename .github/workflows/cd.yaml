@@ -93,6 +93,10 @@ jobs:
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CC: /usr/local/opt/bin/clang
+      CXX: /usr/local/opt/bin/clang++
+      LDFLAGS: -L/usr/local/opt/lib/libc++ -Wl,-rpath,/usr/local/opt/lib/libc++
+      CPPFLAGS: -I/usr/local/opt/include
     steps:
       - uses: actions/checkout@v4
         with:
@@ -102,13 +106,7 @@ jobs:
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - name: Install clang
-        run: |
-          brew install llvm
-          export CC="$(brew --prefix llvm)/bin/clang"
-          export CXX="$(brew --prefix llvm)/bin/clang++"
-          export PATH="$(brew --prefix llvm)/bin:$PATH"
-          export LDFLAGS="-L$(brew --prefix llvm)/lib/libc++ -Wl,-rpath,$(brew --prefix llvm)/lib/libc++"
-          export CPPFLAGS="-I$(brew --prefix llvm)/include"
+        run: brew install llvm
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
