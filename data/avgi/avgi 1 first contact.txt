@@ -314,8 +314,6 @@ mission "Avgi: First Contact"
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard. No military goods, at least not now."`
 			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the Consonance, but anywhere else, you should find no issues."`
-			action
-				set "license: Avgi Civilian"
 			`	"Conclusion. For now, we will leave you with some time and space to think. The former captain of the ship that brought the other humans, one Darius Calwell, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him."`
 			`	You are dismissed, and on the way out you are given a black hairpin-sized translator device, a smaller cousin of the one the Avgi have been using to communicate with you.`
 			action
