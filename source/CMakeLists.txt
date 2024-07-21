@@ -10,11 +10,6 @@ else()
 	target_compile_options(EndlessSkyLib PUBLIC
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
-if(APPLE)
-	target_link_options(EndlessSkyLib PUBLIC "-fexperimental-library")
-	target_compile_options(EndlessSkyLib PUBLIC "-fexperimental-library")
-	target_compile_definitions(EndlessSkyLib PUBLIC "_LIBCPP_HAS_PARALLEL_ALGORITHMS" "_PSTL_PAR_BACKEND_TBB")
-endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
 # If you add a new file, add it to this list.
