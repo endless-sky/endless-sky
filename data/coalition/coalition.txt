@@ -1695,4 +1695,3 @@ phrase "hostile disabled lunarium"
 	word
 		"."
 		"!"
-
