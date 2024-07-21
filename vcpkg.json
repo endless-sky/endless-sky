@@ -32,6 +32,10 @@
         {
           "name": "tbb",
           "platform": "!windows"
+        },
+        {
+          "name": "parallelstl",
+          "platfrom": "osx"
         }
       ]
     },

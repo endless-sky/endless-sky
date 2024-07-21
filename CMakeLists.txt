@@ -72,6 +72,9 @@ if(WIN32)
 	set_target_properties(tbb PROPERTIES LINKER_LANGUAGE CXX)
 else()
 	find_package(TBB REQUIRED)
+	if(APPLE)
+		find_package(pstl CONFIG REQUIRED)
+	endif()
 endif()
 
 # Only very new versions of OpenAL provide a config package, so try to find it manually.
@@ -131,6 +134,9 @@ if(WIN32)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
+	if(APPLE)
+		target_link_libraries(ExternalLibraries INTERFACE pstl::pstl)
+	endif()
 endif()
 
 # Link with the UUID library, which is different for each OS.
