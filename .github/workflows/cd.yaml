@@ -106,7 +106,7 @@ jobs:
         with:
           repository: llvm/llvm-project
           show-progress: false
-          sparse-checkout: llvm-project/pstl/include/
+          sparse-checkout: pstl/include/
           path: pstl
       - run: ls -R
       - uses: lukka/get-cmake@latest
