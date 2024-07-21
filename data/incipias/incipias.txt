@@ -217,6 +217,7 @@ outfitter "Hicemus"
 	"MH Green-Class Steering"
 	"MH Red-Class Thruster"
 	"MH Red-Class Steering"
+	"Local Map"
 
 shipyard "Hicemus"
 	"Nimbo Cirrus"
