@@ -260,7 +260,8 @@ outfit "MH Green-Class Engine"
 outfit "MH Green-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh green-class steering"
-	"mass" 28
+	cost 35000
+	mass 28
 	"outfit space" -28
 	"engine capacity" -28
 	"turn" 618
