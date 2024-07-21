@@ -86,20 +86,19 @@ mission "The Silent Ones"
 		government "Silent Ones"
 		personality harvests mining mute timid
 		system Il'le
-		ship "Tace Mesa"
+		ship "Tace Mesa" ""
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
 		system Il'le
-		ship "Tace Mesa"
+		ship "Tace Mesa" ""
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
 		system Il'le
-		ship "Tace Mesa"
+		ship "Tace Mesa" ""
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
 		system Il'le
-		ship "Tace Mesa" "???"
-
+		ship "Tace Mesa" ""
