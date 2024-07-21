@@ -33,6 +33,8 @@ using namespace pstl;
 
 namespace parallel = std::execution;
 
+#endif
+
 namespace {
 	// A forced multithreaded for_each implementation where the executing threads are guaranteed
 	// to terminate before leaving the function. Unlike the standard implementation, this does not
@@ -70,7 +72,5 @@ namespace {
 			thread.join();
 	}
 }
-
-#endif
 
 #endif
