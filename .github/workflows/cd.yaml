@@ -101,6 +101,13 @@ jobs:
         uses: ./.github/sccache
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
+      - name: Install threading libraries
+        uses: actions/checkout@v4
+        with:
+          repository: https://github.com/llvm/llvm-project
+          show-progress: false
+          sparse-checkout: llvm-project/pstl/include/
+          path: pstl
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
