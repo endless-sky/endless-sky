@@ -11084,12 +11084,12 @@ system Dom'us
 	fleet "Incipias Standard Trade" 1500
 	fleet "Incipias Standard Mining" 900
 	object
-		sprite star/b-giant
+		sprite star/g5
 		distance 103.322
 		period 20.8284
 		offset 180
 	object
-		sprite star/f0
+		sprite star/g3
 		distance 500.677
 		period 20.8284
 	object
