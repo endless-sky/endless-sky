@@ -132,7 +132,7 @@ else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 	if(APPLE AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		target_link_libraries(ExternalLibraries INTERFACE ParallelSTL)
+		target_include_directories(ExternalLibraries INTERFACE "pstl/pstl/include")
 	endif()
 endif()
 
