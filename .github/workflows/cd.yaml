@@ -106,10 +106,10 @@ jobs:
         with:
           repository: llvm/llvm-project
           show-progress: false
-          sparse-checkout: pstl/include/
+          sparse-checkout: pstl/
           path: pstl
-      - name: Adjust threading configuration
-        run: echo -e "#ifndef __PSTL_CONFIG_SITE\n#define __PSTL_CONFIG_SITE\n#include <functional>\n#endif" > pstl/pstl/include/__pstl_config_site
+      #- name: Adjust threading configuration
+      #  run: echo -e "#ifndef __PSTL_CONFIG_SITE\n#define __PSTL_CONFIG_SITE\n#include <functional>\n#endif" > pstl/pstl/include/__pstl_config_site
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
