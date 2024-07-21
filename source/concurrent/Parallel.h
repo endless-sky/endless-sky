@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef __APPLE__
 
-#include "pstl/execution"
 #include "pstl/algorithm"
+#include "pstl/execution"
 
 namespace parallel = pstl::execution;
 using namespace pstl;
