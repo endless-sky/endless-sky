@@ -8759,7 +8759,7 @@ system Clepsydra
 	asteroids "medium metal" 3 1.261
 	asteroids "large metal" 1 1.287
 	minables aluminum 3 1.513
-	minables yottrite 9 7
+	minables yottrite 4 7
 	object
 		sprite star/a-eater
 		period 10
@@ -17398,7 +17398,7 @@ system Ianua
 	asteroids "medium metal" 1 1.836
 	asteroids "large metal" 1 3.06
 	minables uranium 4 3.906
-	minables gold 6 2.471
+	minables silver 6 2.471
 	object
 		sprite star/m-dwarf
 		period 10
@@ -17782,12 +17782,10 @@ system Il'le
 	asteroids "large rock" 3 2.0608
 	asteroids "small metal" 2 2.3
 	asteroids "large metal" 3 1.2328
-	minables aluminum 7 1.96731
 	minables platinum 2 1.43013
 	minables titanium 5 1.78627
 	minables silicon 27 0.74013
 	minables iron 18 1.55307
-	minables silver 4 1.274
 	trade Clothing 354
 	trade Electronics 673
 	trade Equipment 614
@@ -26029,7 +26027,7 @@ system "Pedita Pri"
 	asteroids "medium metal" 4 2.55
 	asteroids "large metal" 6 2.67
 	minables iron 15 3.025
-	minables yottrite 9 7
+	minables yottrite 2 7
 	object
 		sprite star/o5
 		distance 1.485
@@ -26069,7 +26067,7 @@ system "Pedita Sec"
 	link Clepsydra
 	link "Pedita Pri"
 	asteroids "large metal" 1 4.638
-	minables yottrite 9 7
+	minables yottrite 4 7
 	object
 		sprite star/g0
 		period 10
@@ -28754,6 +28752,7 @@ system Rota
 	asteroids "small metal" 1 2.112
 	asteroids "medium metal" 8 1.728
 	asteroids "large metal" 9 1.392
+	minables copper 4 4.121
 	minables iron 1 3.541
 	minables lead 5 3.398
 	object
@@ -29823,8 +29822,6 @@ system Sedes
 	asteroids "small metal" 1 3.511
 	asteroids "medium metal" 2 2.424
 	asteroids "large metal" 1 3.929
-	minables copper 2 5.579
-	minables titanium 3 3.611
 	object
 		sprite star/k-dwarf
 		period 10
@@ -32125,7 +32122,7 @@ system Supra
 	asteroids "medium metal" 174 2.352
 	asteroids "large metal" 8 1.296
 	minables lead 32 3.752
-	minables yottrite 9 7
+	minables yottrite 1 3
 	object
 		sprite star/o3
 		distance 18.018
@@ -32500,7 +32497,7 @@ system Tectum
 	asteroids "medium rock" 86 2.176
 	asteroids "large rock" 14 1.591
 	asteroids "large metal" 1 1.638
-	minables gold 2 2.485
+	minables gold 4 2.485
 	minables aluminum 3 3.003
 	minables iron 6 2.125
 	object
