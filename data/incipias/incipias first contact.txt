@@ -135,7 +135,6 @@ mission "Visit Quarg in Incipias Space"
 			`	After a short pause, you notice an almost-hidden frustration lurking beneath the Quarg's face before it continues speaking. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon the neighboring kind has initiated their journey to the stars. Do not interrupt them for yours, or sake of their own."`
 			`	With these words the Quarg turn around and leave. It seems like you are free to use the local facilities now.`
 
-# TODO: Maybe add a version of the ship's sprite that looks damaged/modded.
 ship "Nimbus" "Nimbus FTL"
 	add attributes
 		"bunks" -25
@@ -294,14 +293,15 @@ mission "Incipias: No Help For The Stranded"
 	invisible
 	source
 		planet Turra
-	destination "Pon'tes"
 	to offer
+		has "Incipias: The Derelict: done"
 		or
 			has "Incipias: Help The Stranded 1: declined"
-		not "Incipias: Help The Stranded 1: offered"
+			not "Incipias: Help The Stranded 1: offered"
 	on offer
-		conversation
-			`You identify the stranded ship on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
+		fail
+		dialog
+			`You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
 
 mission "Incipias: Help The Stranded 2"
 	landing
