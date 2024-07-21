@@ -11026,9 +11026,8 @@ system Dokdobaru
 system Dom'us
 	pos 180.716 -760.552
 	government Hicemus
-	attributes "bright star" "giant star" "notable star"
-	arrival 5000
-	habitable 13910
+	arrival 1325
+	habitable 1325
 	belt 1259
 	link Hui'uc
 	link Il'le
