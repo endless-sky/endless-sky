@@ -95,8 +95,6 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CC: /usr/local/opt/gcc/bin/gcc-14
       CXX: /usr/local/opt/gcc/bin/g++-14
-      LDFLAGS: -L/usr/local/opt/gcc/lib/libc++ -Wl,-rpath,/usr/local/opt/gcc/lib/libc++
-      CPPFLAGS: -I/usr/local/opt/gcc/include
     steps:
       - uses: actions/checkout@v4
         with:
@@ -107,6 +105,7 @@ jobs:
         run: type -P pkg-config || brew install pkg-config
       - name: Install dependencies
         run: brew install gcc
+      - run: where gcc
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
