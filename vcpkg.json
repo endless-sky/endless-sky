@@ -35,7 +35,7 @@
         },
         {
           "name": "parallelstl",
-          "platfrom": "osx"
+          "platform": "osx"
         }
       ]
     },
