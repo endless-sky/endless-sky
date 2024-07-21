@@ -48,7 +48,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
@@ -532,9 +531,9 @@ void GameData::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // This must be done any time that a change creates or moves a system.
-void GameData::UpdateSystems(const PlayerInfo *player)
+void GameData::UpdateSystems()
 {
-	objects.UpdateSystems(player);
+	objects.UpdateSystems();
 }
 
 

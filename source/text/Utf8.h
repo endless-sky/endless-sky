@@ -25,6 +25,9 @@ namespace Utf8 {
 	std::string ToUTF8(const wchar_t *str);
 #endif
 
+	// Check if this character is the byte order mark (BOM) sequence.
+	bool IsBOM(char32_t c);
+
 	// Skip to the next unicode code point after pos in utf8.
 	// Return string::npos when there are no more code points.
 	std::size_t NextCodePoint(const std::string &str, std::size_t pos);

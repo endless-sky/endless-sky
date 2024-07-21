@@ -213,6 +213,9 @@ star "star/m-supergiant"
 	icon map/m-supergiant-star
 
 # Special stars.
+star "star/a-eater"
+	power 1.84
+	wind 0.45
 star "star/carbon"
 	power 0.1
 	wind 10
@@ -256,6 +259,10 @@ star "star/black-hole"
 	power 0
 	wind 0
 	icon map/supermassive-black-hole-star
+
+star "star/neutron-small"
+	power 2
+	wind 0.2
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
