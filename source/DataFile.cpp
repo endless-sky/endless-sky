@@ -50,8 +50,8 @@ void DataFile::Load(const string &path)
 		data.push_back('\n');
 
 	// Note what file this node is in, so it will show up in error traces.
-	root.AddToken("file");
-	root.AddToken(path);
+	root.tokens.push_back("file");
+	root.tokens.push_back(path);
 
 	LoadData(data);
 }
@@ -199,9 +199,9 @@ void DataFile::LoadData(const string &data)
 			// range, but it appears that some libraries do not handle that case
 			// correctly. So:
 			if(tokenPos == endPos)
-				node.AddToken("");
+				node.tokens.emplace_back();
 			else
-				node.AddToken(string(data, tokenPos, endPos - tokenPos));
+				node.tokens.emplace_back(data, tokenPos, endPos - tokenPos);
 			// This is not a fatal error, but it may indicate a format mistake:
 			if(isQuoted && c == '\n')
 				node.PrintTrace("Warning: Closing quotation mark is missing:");
