@@ -103,7 +103,7 @@ jobs:
         run: type -P pkg-config || brew install pkg-config
       - name: Install parallelization libraries
         run: |
-          brew search '/^tbb$|^tbb&/'
+          brew search '/^tbb$|^tbb@/'
           brew install intel-psxe-ce-c-plus-plus tbb@2020
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
