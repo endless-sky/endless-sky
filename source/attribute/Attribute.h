@@ -33,7 +33,7 @@ public:
 	explicit Attribute(AttributeCategory category);
 	// Copies an attribute and multiplies all of its values.
 	Attribute(const Attribute &other, double multiplier = 1.);
-	// Creates an attribute with a single initial effect
+	// Creates an attribute with a single initial effect.
 	Attribute(const AttributeAccess access, double value = 1.);
 	// Gets the attribute for the specified token, if any.
 	static Attribute *Parse(const std::string &token);
@@ -66,26 +66,26 @@ public:
 	const AttributeEffect *GetEffect(const AttributeEffectType type) const;
 	AttributeEffect *GetEffect(const AttributeEffectType type);
 
-	// Category-based comparators
+	// Category-based comparators.
 	template <class A>
 	bool operator==(const A &other) const;
 	bool operator<(const Attribute &other) const;
 	bool operator<(const AttributeCategory &other) const;
 
 private:
-	// The name of each effect as used in the data files
+	// The name of each effect as used in the data files.
 	static const std::string effectNames[];
 	// The name of each category as used in the data files. Some are linked to the name of the effect which they expand on.
 	static const std::string categoryNames[];
 
-	// The category and effects of this attribute
+	// The category and effects of this attribute.
 	AttributeCategory category;
 	std::map<AttributeEffectType, AttributeEffect> effects;
 };
 
 
 
-// Compare two variants
+// Compare two variants.
 inline bool operator<(const AnyAttribute &first, const AnyAttribute &second)
 {
 	if(first.index() == second.index())

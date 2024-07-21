@@ -76,7 +76,7 @@ private:
 	static bool IsAlwaysComposite(const AttributeCategory category);
 
 private:
-	// The category and effect type of the described attribute
+	// The category and effect type of the described attribute.
 	AttributeCategory category;
 	AttributeEffectType effect;
 };

@@ -37,7 +37,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	calculatedDamage = false;
 	doesDamage = false;
 	bool safeRangeOverriden = false;
-	// using infinity to keep track of whether these values have been parsed
+	// We're using infinity to keep track of whether these values have been parsed.
 	attributes.Set(AttributeAccess(DAMAGE, DISABLED), numeric_limits<double>::infinity());
 	attributes.Set(AttributeAccess(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
 	attributes.Set(AttributeAccess(DAMAGE, MINABLE), numeric_limits<double>::infinity());

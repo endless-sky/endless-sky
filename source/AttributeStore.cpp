@@ -81,7 +81,7 @@ const Attribute *AttributeStore::GetAttribute(const AttributeCategory category) 
 
 Attribute *AttributeStore::GetAttribute(const AttributeCategory category)
 {
-	// const_cast is fine because the object isn't const originally
+	// Using const_cast is fine because the object isn't const originally.
 	return const_cast<Attribute*>(const_cast<const AttributeStore*>(this)->GetAttribute(category));
 }
 
@@ -99,13 +99,13 @@ const AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access) c
 
 AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access)
 {
-	// const_cast is fine because the object isn't const originally
+	// Using const_cast is fine because the object isn't const originally.
 	return const_cast<AttributeEffect*>(const_cast<const AttributeStore*>(this)->GetEffect(access));
 }
 
 
 
-// Setting attribute values
+// Setting attribute values.
 void AttributeStore::Set(const char *attribute, double value)
 {
 	std::string s = std::string(attribute);
@@ -167,7 +167,7 @@ double AttributeStore::GetMinimum(const char *attribute) const
 
 
 
-// Loads data from the data node. This function can be called multiple times on an instance.
+// Loads data from the data node. This function can be called multiple times on the same instance.
 void AttributeStore::Load(const DataNode &node) {
 	const string &key = node.Token(0);
 	Attribute *parsed = Attribute::Parse(key);
@@ -195,10 +195,10 @@ void AttributeStore::Save(DataWriter &writer) const
 			writer.Write(it.first, it.second);
 	for(auto &it : categorizedAttributes)
 	{
-		// The node containing every effect of this attribute category
+		// The node containing every effect of this attribute category.
 		DataNode node;
 		node.AddToken(Attribute::GetCategoryName(it.first));
-		// The base effect of the attribute that is put on the category's line
+		// The base effect of the attribute that is put on the category's line.
 		optional<AttributeEffectType> baseEffect = AttributeAccess::GetBaseEffect(it.first);
 		for(auto &entry : it.second.Effects())
 		{
@@ -208,7 +208,7 @@ void AttributeStore::Save(DataWriter &writer) const
 			ostringstream temp;
 			temp << entry.second.Value();
 
-			// Add the value to the category of as a new effect.
+			// Add the value to the category as a new effect.
 			if(baseEffect.has_value() && baseEffect.value() == entry.first)
 				node.AddToken(temp.str());
 			else

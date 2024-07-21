@@ -225,7 +225,7 @@ namespace {
 	map<AttributeAccess, string> newToOld = [](){
 		map<AttributeAccess, string> m;
 		for(const auto &it : oldToNew)
-			for(const auto &effect : it.second.Effects()) // There should only be a single effect
+			for(const auto &effect : it.second.Effects()) // There should only be a single effect.
 				m[{it.second.Category(), effect.second.Type()}] = it.first;
 		return m;
 	}();
@@ -275,7 +275,7 @@ Attribute::Attribute(const Attribute &other, double multiplier) : category(other
 
 
 
-// Creates an attribute with a single initial effect
+// Creates an attribute with a single initial effect.
 Attribute::Attribute(const AttributeAccess access, double value) : category(access.Category())
 {
 	effects.emplace(access.Effect(), AttributeEffect(access.Effect(), value, access.GetDefaultMinimum()));
@@ -318,7 +318,7 @@ string Attribute::GetLegacyName(const AttributeAccess access)
 	if(it == newToOld.end())
 	{
 		// TODO: find a better solution, or resort to manually mapping all supported attributes.
-		// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon
+		// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon.
 		auto baseType = static_cast<AttributeEffectType>(access.Effect() % static_cast<int>(ATTRIBUTE_EFFECT_COUNT));
 		string prefix = access.Effect() >= 2 * ATTRIBUTE_EFFECT_COUNT ? "relative " : "";
 		string suffix = (access.Effect() >= ATTRIBUTE_EFFECT_COUNT && prefix.empty()) ? " multiplier" : "";

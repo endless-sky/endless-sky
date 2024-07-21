@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // The different effects of an attribute. Each one has multiple variants,
 // each offset by ATTRIBUTE_EFFECT_COUNT. The variants are:
-// base (not offset), multiplier, relative, relative multiplier.
+// base (not offset), multiplier, relative, and relative multiplier.
 enum AttributeEffectType : int {
 	SHIELDS,
 	HULL,

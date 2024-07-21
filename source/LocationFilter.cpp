@@ -58,7 +58,7 @@ namespace {
 	{
 		auto ait = a.begin();
 		auto bit = b.begin();
-		// The stored values can be directly compared; if they are pointers, they point to the same GameData array
+		// The stored values can be directly compared; if they are pointers, they point to the same GameData array.
 		while(ait != a.end() && bit != b.end())
 		{
 			if(*ait == *bit)
@@ -75,7 +75,7 @@ namespace {
 	{
 		auto ait = a.begin();
 		auto bit = b.begin();
-		// The stored values can be directly compared; if they are pointers, they point into the same GameData array
+		// The stored values can be directly compared; if they are pointers, they point into the same GameData array.
 		while(ait != a.end() && bit != b.end())
 		{
 			const T value = get<T>(*ait);
