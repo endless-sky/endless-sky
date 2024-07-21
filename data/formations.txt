@@ -123,7 +123,7 @@ formation "Echelon (right)"
 		repeat 150 150
 
 
-formation "Hexagon (wide)"
+formation "Hexagon"
 	flippable y
 	rotatable 60
 	# Section lower-right.
