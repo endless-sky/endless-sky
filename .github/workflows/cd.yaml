@@ -104,7 +104,7 @@ jobs:
       - name: Install threading libraries
         uses: actions/checkout@v4
         with:
-          repository: llvm/llvm-project
+          repository: swiftlang/llvm-project
           show-progress: false
           sparse-checkout: pstl/
           path: pstl
