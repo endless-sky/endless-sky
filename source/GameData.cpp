@@ -810,10 +810,10 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 // Get the map icon of the given stellar object sprite.
-string GameData::StarIcon(const Sprite *sprite)
+const Sprite * GameData::StarIcon(const Sprite *sprite)
 {
 	auto it = objects.starIcon.find(sprite);
-	return (it == objects.starIcon.end() ? "null" : it->second);
+	return (it == objects.starIcon.end() ? nullptr : it->second);
 }
 
 

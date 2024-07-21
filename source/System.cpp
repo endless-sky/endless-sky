@@ -529,7 +529,7 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
-		if(GameData::StarIcon(object.GetSprite()) != "null")
+		if(GameData::StarIcon(object.GetSprite()))
 			mapIcon.emplace_back(GameData::StarIcon(object.GetSprite()));
 	}
 
@@ -608,7 +608,7 @@ const Government *System::GetGovernment() const
 }
 
 
-const vector<string> &System::GetMapIcon() const
+const vector<const Sprite *> &System::GetMapIcon() const
 {
 	return mapIcon;
 }
