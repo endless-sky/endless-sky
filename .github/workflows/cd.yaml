@@ -106,7 +106,7 @@ jobs:
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - name: Install clang
-        run: brew install llvm
+        run: brew install llvm ninja
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
