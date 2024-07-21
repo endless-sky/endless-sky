@@ -32,7 +32,7 @@ using namespace std;
 FormationPositioner::FormationPositioner(const Body *formationLead, const FormationPattern *pattern)
 	: formationLead(formationLead), pattern(pattern)
 {
-	if(pattern->Rotatable() == 0)
+	if(!pattern->Rotatable())
 		direction = 0;
 	else
 		direction = formationLead->Facing();
@@ -156,7 +156,7 @@ void FormationPositioner::CalculatePositions()
 void FormationPositioner::CalculateDirection()
 {
 	// Any direction is fine, just keep initial direction.
-	if(pattern->Rotatable() == 0.)
+	if(!pattern->Rotatable())
 		return;
 
 	// Calculate new direction. If the formationLead is moving, then we use the movement vector,
