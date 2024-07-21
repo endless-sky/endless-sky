@@ -355,7 +355,7 @@ mission "Incipias: Help The Stranded 2"
 				goto yours
 			label detail
 			`	After "watching" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what ends up being yellow tones mixed with green.`
-			`	"Thank you for this profound-depth insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination to explore.`
+			`	"Thank you for this profound-depth insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination-will to explore.`
 			label yours
 			`	"But now to you. Is there anything you would like to know?"`
 			label choice

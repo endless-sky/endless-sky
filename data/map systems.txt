@@ -9208,7 +9208,7 @@ system "Cura Dic"
 system Currus
 	pos 260.583 -987.75
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1198 4
 	belt 2284 3
 	link Equus
@@ -12777,7 +12777,7 @@ system Equus
 	pos 313.25 -1051.08
 	attributes "neutron" "notable star"
 	arrival 500
-	habitable 355
+	habitable 405
 	belt 1157 6
 	belt 2400 5
 	link Currus
