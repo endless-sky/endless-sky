@@ -102,7 +102,10 @@ jobs:
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - name: Install clang
-        run: brew install llvm
+        run: |
+          brew install llvm
+          export CC="$(brew --prefix clang)/bin/clang"
+          export CXX="$(brew --prefix clang)/bin/clang++"
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
