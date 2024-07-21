@@ -17,7 +17,7 @@
         "libjpeg-turbo",
         {
           "name": "libmad",
-          "platform": "!macos"
+          "platform": "!osx"
         },
         {
           "name": "libuuid",
