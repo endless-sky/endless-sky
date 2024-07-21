@@ -107,12 +107,8 @@ jobs:
           export CC="$(brew --prefix llvm)/bin/clang"
           export CXX="$(brew --prefix llvm)/bin/clang++"
           export PATH="$(brew --prefix llvm)/bin:$PATH"
-          export LDFLAGS="-L$(brew --prefix llvm)/lib"
+          export LDFLAGS="-L$(brew --prefix llvm)/lib/libc++ -Wl,-rpath,$(brew --prefix llvm)/lib/libc++"
           export CPPFLAGS="-I$(brew --prefix llvm)/include"
-          which clang
-          which clang++
-          clang --version
-          clang++ --version
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
