@@ -106,6 +106,13 @@ jobs:
           brew install llvm
           export CC="$(brew --prefix clang)/bin/clang"
           export CXX="$(brew --prefix clang)/bin/clang++"
+          export PATH="$(brew --prefix clang)/bin:$PATH"
+          export LDFLAGS="-L$(brew --prefix clang)/lib"
+          export CPPFLAGS="-I$(brew --prefix clang)/include"
+          which clang
+          which clang++
+          clang --version
+          clang++ --version
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
