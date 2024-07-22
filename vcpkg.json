@@ -31,7 +31,6 @@
         "sdl2",
         {
           "name": "tbb",
-          "features": ["hwloc"],
           "platform": "!windows"
         }
       ]

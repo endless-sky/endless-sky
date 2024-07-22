@@ -18,6 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <version>
 
+// Silence warnings about unimplemented vectorized algorithms.
+// TODO: Replace with 'PSTL_USAGE_WARNINGS=0' definition in the cmake config
+// when upstream fixes the bug that causes it to be ignored.
+#ifdef _PSTL_PRAGMA_MESSAGE
+#undef _PSTL_PRAGMA_MESSAGE
+#define _PSTL_PRAGMA_MESSAGE(x)
+#endif
+
 #ifndef __cpp_lib_execution
 
 #include <algorithm>

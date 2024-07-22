@@ -132,7 +132,6 @@ else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 endif()
-target_compile_definitions(ExternalLibraries INTERFACE "PSTL_USAGE_WARNINGS=0")
 
 # Link with the UUID library, which is different for each OS.
 if(UNIX)
