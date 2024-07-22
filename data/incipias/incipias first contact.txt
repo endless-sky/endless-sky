@@ -359,20 +359,38 @@ mission "Incipias: Help The Stranded 2"
 			label choice
 			choice
 				`	"Why can I not land on your home planet?"`
+					goto homeplanet
+					to display
+						not "incipias first contact: no home"
 				`	"Why do you call this station your capital?"`
 					goto capital
+					to display
+						not "incipias first contact: why capital"
 				`	"How is life on a gas giant?"`
 					goto oddquestion
+					to display
+						not "incipias first contact: how life"
 				`	"I do not have any more questions."`
 					goto end
+			label homeplanet
+			action
+				set "incipias first contact: no home"
 			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
 				goto choice
 			label capital
+			action
+				set "incipias first contact: why capital"
 			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
 			label oddquestion
+			action
+				set "incipias first contact: how life"
 			`	"What an odd-reasonable question." It's glow turns into a swirl of purple and green. "We could ask the same in return - what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds. Between them are our cities, the most color-lifeful places you will ever see. This is a bit of a poetic-gradient description, but I do not know what else to say."`
 			label end
+			action
+				clear "incipias first contact: how life"
+				clear "incipias first contact: no home"
+				clear "incipias first contact: why capital"
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
 			`	You say goodbye, and as you leave the room, you can see a rush of colors reflecting onto the walls.`
 				decline
