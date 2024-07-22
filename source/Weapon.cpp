@@ -400,6 +400,7 @@ void Weapon::SetExplosion(double blastRadius, double shieldDamage, double hullDa
 	this->blastRadius = blastRadius;
 	damage[SHIELD_DAMAGE] = shieldDamage;
 	damage[HULL_DAMAGE] = hullDamage;
+	damage[DISABLED_DAMAGE] = hullDamage;
 	damage[HIT_FORCE] = hitForce;
 }
 
