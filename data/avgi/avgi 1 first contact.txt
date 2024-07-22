@@ -318,6 +318,9 @@ mission "Avgi: First Contact"
 			`	You are dismissed, and on the way out you are given a black hairpin-sized translator device, a smaller cousin of the one the Avgi have been using to communicate with you.`
 			action
 				set "language: Avgi"
+				clear "avgi: asked about avgi"
+				clear "avgi: asked about humans"
+				clear "avgi: asked about aberrant"
 
 mission "Avgi: Humans From the Deep"
 	name "Humans among the Avgi"

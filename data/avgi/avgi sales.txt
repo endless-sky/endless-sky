@@ -98,7 +98,6 @@ outfitter "Avgi Advanced Systems"
 	"Spectrometer Array"
 	"Heatsink Partition"
 	"Plasmadyne Ramscoop"
-	"Nanoceramic Lamina"
 	"Concealment Lamina"
 
 outfitter "Avgi Basic Drives"

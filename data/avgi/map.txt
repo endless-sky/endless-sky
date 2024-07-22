@@ -885,8 +885,8 @@ system Octet
 	asteroids "large metal" 6 2.542
 	minables neodymium 4 1.818
 	minables lead 4 1.206
-	fleet "Small Aberrant" 1500
-	fleet "Large Aberrant" 3000
+	fleet "Small Aberrant" 600
+	fleet "Large Aberrant" 1500
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -1149,8 +1149,8 @@ system Quintet
 	asteroids "large metal" 2 1.43
 	minables lead 7 1.923
 	minables copper 8 1.471
-	fleet "Small Aberrant" 1500
-	fleet "Large Aberrant" 3900
+	fleet "Small Aberrant" 600
+	fleet "Large Aberrant" 1200
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -1218,7 +1218,8 @@ system Septet
 	minables silver 18 1.041
 	minables uranium 8 1.055
 	minables iron 23 3.31
-	fleet "Large Aberrant" 2100
+	fleet "Small Aberrant" 200
+	fleet "Large Aberrant" 500
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -1520,8 +1521,8 @@ system Gust
 	minables lead 24 1.661
 	minables aluminum 21 1.742
 	fleet "Avgi Scouts" 24000
-	fleet "Small Aberrant" 3600
-	fleet "Large Aberrant" 7200
+	fleet "Small Aberrant" 6300
+	fleet "Large Aberrant" 12000
 	object
 		sprite star/k3
 		period 10
@@ -1923,6 +1924,8 @@ system Interlude
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 9000
 	fleet "Avgi Patrol" 42000
+	fleet "Small Aberrant" 15000
+	fleet "Large Aberrant" 21000
 	object
 		sprite star/a-giant
 		distance 80.61
@@ -2492,6 +2495,8 @@ system Whirlwind
 	asteroids "large rock" 1 3.168
 	asteroids "medium metal" 2 3.456
 	asteroids "large metal" 1 4.368
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite star/g8
 		distance 67.394
@@ -3030,6 +3035,7 @@ system Twirl
 	minables uranium 3 4.255
 	minables gold 6 1.872
 	fleet "Avgi Scouts" 18000
+	fleet "Small Aberrant" 36000
 	object
 		sprite star/neutron-core
 		period 1
@@ -3487,8 +3493,8 @@ system Torrent
 	minables copper 2 2.608
 	minables iron 14 2.67
 	fleet "Avgi Scouts" 24000
-	fleet "Small Aberrant" 3300
-	fleet "Large Aberrant" 6900
+	fleet "Small Aberrant" 7300
+	fleet "Large Aberrant" 9500
 	object
 		sprite star/m-giant
 		distance 46.571
@@ -3623,8 +3629,8 @@ system Current
 	asteroids "large metal" 8 2.312
 	minables lead 16 3.533
 	fleet "Avgi Scouts" 21000
-	fleet "Small Aberrant" 4200
-	fleet "Large Aberrant" 7800
+	fleet "Small Aberrant" 6200
+	fleet "Large Aberrant" 9800
 	object
 		sprite star/g5-old
 		period 10
@@ -5268,6 +5274,8 @@ system Axiom
 	asteroids "small metal" 3 3.438
 	asteroids "medium metal" 1 5.688
 	asteroids "large metal" 4 6.062
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 6000
 	object
 		sprite star/a0
 		distance 82.007
