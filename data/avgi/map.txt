@@ -28,6 +28,8 @@ system Anax
 	pos -462.815 698.074
 	government Avgi
 	attributes avgi twilight
+	ramscoop
+		multiplier 1.5
 	habitable 2200
 	belt 6000 10
 	haze _menu/haze-twilight
@@ -540,6 +542,8 @@ system Clip
 	pos -508.501 711.522
 	government Avgi
 	attributes avgi twilight
+	ramscoop
+		multiplier 1.5
 	habitable 625
 	belt 1750 4
 	haze _menu/haze-twilight
@@ -605,6 +609,8 @@ system Empyrean
 	pos -368.134 814.778
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 7900
 	belt 1027 5
 	haze _menu/haze-twilight-thin
@@ -650,6 +656,8 @@ system Tumble
 	pos -308.471 655.498
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 980
 	belt 2632 10
 	haze _menu/haze-twilight
@@ -715,6 +723,8 @@ system Firmament
 	pos -312.679 788.63
 	government Uninhabited
 	attributes "bright star" "giant star" multi-star "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 11374.753
 	belt 1176 5
 	belt 1701 6
@@ -808,6 +818,8 @@ system Decet
 	pos -148.822 603.448
 	government Uninhabited
 	attributes magnetar neutron twilight
+	ramscoop
+		multiplier 1.5
 	habitable 100
 	belt 8211
 	"jump range" 180
@@ -827,6 +839,8 @@ system Mote
 	pos -492.244 905.843
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 10
 	belt 1416 5
 	belt 1829 6
@@ -858,6 +872,8 @@ system Octet
 	pos -202.794 645.906
 	government Uninhabited
 	attributes "ember waste" "giant star" "notable star" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 3000
 	belt 1559 10
 	haze _menu/haze-twilit-embers
@@ -913,6 +929,8 @@ system Frenzy
 	pos -397.597 677.299
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 695.072
 	belt 1840 6
 	belt 1892 7
@@ -972,6 +990,8 @@ system Trio
 	pos -222.867 740.912
 	government Uninhabited
 	attributes "ember waste" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 950
 	belt 1813 4
 	belt 2160 10
@@ -1048,6 +1068,8 @@ system Sextet
 	pos -217.766 704.609
 	government Uninhabited
 	attributes "ember waste" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 532.001
 	belt 1934 6
 	belt 2313 6
@@ -1113,6 +1135,10 @@ system Quintet
 	pos -186.285 757.655
 	government Uninhabited
 	attributes "ember waste" twilight
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 490
 	belt 1669 5
 	haze _menu/haze-red
@@ -1175,6 +1201,10 @@ system Septet
 	pos -169.482 721.182
 	government Uninhabited
 	attributes carbon "ember waste" "notable star" twilight
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 3100
 	belt 2640 6
 	"jump range" 60
@@ -1228,6 +1258,8 @@ system Nonet
 	pos -158.609 630.05
 	government Uninhabited
 	attributes "ember waste" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 138.293
 	belt 1293 2
 	haze _menu/haze-twilit-embers
@@ -1295,6 +1327,8 @@ system Stream
 	pos -491.146 793.263
 	government Uninhabited
 	attributes "bright star" "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 3403.763
 	belt 1004 8
 	belt 1501 5
@@ -1421,6 +1455,10 @@ system Quartet
 	pos -208.534 818.541
 	government Uninhabited
 	attributes "ember waste" "notable star" nova
+	ramscoop
+		universal 0
+		addend -0.02
+		multiplier 1.5
 	habitable 100
 	belt 1217 8
 	belt 1952 10
@@ -1466,6 +1504,8 @@ system Gust
 	pos -648.246 805.151
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 450
 	belt 1116 8
 	"jump range" 30
@@ -1509,7 +1549,9 @@ system Gust
 system Headwind
 	pos -283.34 767.324
 	government Uninhabited
-	attributes "ember waste" twilight
+	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 320
 	belt 1856 6
 	belt 2092 7
@@ -1570,6 +1612,8 @@ system Duet
 	pos -248.609 778.168
 	government Uninhabited
 	attributes "ember waste" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 280.179
 	belt 1869 10
 	belt 2347 6
@@ -1622,6 +1666,8 @@ system Soar
 	pos -449.741 655.204
 	government Avgi
 	attributes avgi twilight
+	ramscoop
+		multiplier 1.5
 	habitable 490
 	belt 2200 10
 	"jump range" 90
@@ -1706,6 +1752,8 @@ system Thread
 	pos -417.054 737.075
 	government Avgi
 	attributes avgi twilight
+	ramscoop
+		multiplier 1.5
 	habitable 1088.405
 	belt 2100 10
 	haze _menu/haze-twilight
@@ -1766,6 +1814,8 @@ system Sail
 	pos -543.979 666.89
 	government Avgi
 	attributes avgi twilight
+	ramscoop
+		multiplier 1.8
 	habitable 1310
 	belt 1110 3
 	belt 1903 8
@@ -1916,6 +1966,8 @@ system Lumine
 	pos -348.286 760.64
 	government Uninhabited
 	attributes "notable star" "supergiant star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 8400
 	belt 1206
 	belt 2358 7
@@ -1973,6 +2025,8 @@ system Span
 	pos -513.167 654.44
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 450
 	belt 1754 10
 	belt 2266 9
@@ -2043,6 +2097,8 @@ system Vorpal
 	pos -437.711 789.074
 	government Uninhabited
 	attributes neutron "notable star" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 100
 	belt 2108 7
 	haze _menu/haze-twilight
@@ -2175,6 +2231,8 @@ system Cusp
 	pos -523.618 589.626
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 320
 	belt 1825 10
 	"jump range" 30
@@ -2226,6 +2284,8 @@ system Gossamer
 	pos -755.943 796.685
 	government Uninhabited
 	attributes "smoke ring" twilight
+	ramscoop
+		multiplier 3
 	habitable 2560
 	belt 2100 10
 	"jump range" 30
@@ -2274,6 +2334,8 @@ system Prelude
 	pos -494.73 952.391
 	government "Avgi (Dissonance)"
 	attributes avgi dissonance "giant star" "notable star" "tangled shroud"
+	ramscoop
+		multiplier 1.2
 	habitable 2300
 	belt 1664 5
 	"jump range" 30
@@ -2417,6 +2479,8 @@ system Whirlwind
 	pos -671.292 848.347
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 2267.708
 	belt 1653 6
 	belt 2177 7
@@ -2482,6 +2546,8 @@ system Vivace
 	pos -540.542 699.806
 	government Uninhabited
 	attributes neutron "notable star" twilight
+	ramscoop
+		multiplier 1.8
 	habitable 100
 	belt 1074 5
 	belt 2129 4
@@ -2561,6 +2627,8 @@ system Pinnacle
 	pos -250.748 693.704
 	government Uninhabited
 	attributes "bright star" "notable star" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 3650
 	belt 1764 6
 	haze _menu/haze-twilight
@@ -2603,6 +2671,8 @@ system Flutter
 	pos -254.444 636.675
 	government Uninhabited
 	attributes "notable star" nova twilight
+	ramscoop
+		multiplier 1.8
 	habitable 100
 	belt 1874
 	"jump range" 90
@@ -2647,6 +2717,8 @@ system Tap
 	pos -347.857 581.21
 	government Uninhabited
 	attributes neutron "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 100
 	belt 1482 4
 	belt 1983
@@ -2690,6 +2762,8 @@ system Mellow
 	pos -384.748 645.559
 	government Avgi
 	attributes avgi twilight
+	ramscoop
+		multiplier 1.8
 	habitable 832.541
 	belt 1521 6
 	haze _menu/haze-twilight-thick
@@ -2777,6 +2851,8 @@ system Corporeal
 	pos -402.126 772.934
 	government Uninhabited
 	attributes ringworld twilight
+	ramscoop
+		multiplier 1.5
 	habitable 700
 	belt 1263 4
 	belt 1635 3
@@ -2848,6 +2924,8 @@ system Caesura
 	pos -721.694 865.126
 	government Uninhabited
 	attributes "black hole" "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 3450
 	haze _menu/haze-twilight-thin
 	object
@@ -2861,6 +2939,8 @@ system Arche
 	pos -407.454 926.462
 	government "Avgi (Twilight Guard)"
 	attributes avgi "bright star" consonance multi-star "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
@@ -2985,6 +3065,8 @@ system Peak
 	pos -295.081 629.87
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 490
 	belt 1833 10
 	"jump range" 60
@@ -3029,6 +3111,8 @@ system Tailwind
 	pos -335.364 724.609
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 585.235
 	belt 1973 5
 	belt 2047 7
@@ -3137,6 +3221,8 @@ system Tide
 	pos -468.313 603.86
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" twilight
+	ramscoop
+		multiplier 1.5
 	habitable 7900
 	belt 1927 3
 	"jump range" 30
@@ -3189,6 +3275,8 @@ system Lift
 	pos -543.19 913.669
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 230
 	belt 1192 6
 	haze _menu/haze-twilight-thin
@@ -3242,6 +3330,8 @@ system Apeiron
 	pos -446.338 868.864
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 2267.708
 	belt 1990 7
 	belt 2362 9
@@ -3311,6 +3401,8 @@ system Evanescence
 	pos -457.765 826.347
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 2160
 	belt 1990 7
 	belt 2362 9
@@ -3377,6 +3469,8 @@ system Torrent
 	pos -597.481 873.853
 	government Uninhabited
 	attributes "bright star" "giant star" multi-star "notable star" twilight
+	ramscoop
+		multiplier 1.2
 	habitable 2654.36
 	belt 1483 5
 	belt 2387 4
@@ -3421,6 +3515,8 @@ system Rivulet
 	pos -539.841 805.136
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 2200
 	belt 1600 5
 	belt 2227 10
@@ -3469,6 +3565,8 @@ system Gale
 	pos -637.393 901.601
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 1080
 	belt 1707 5
 	belt 2124 3
@@ -3508,6 +3606,9 @@ system Gale
 system Current
 	pos -609.744 827.788
 	government Uninhabited
+	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 1250
 	belt 1923 9
 	haze _menu/haze-twilit-embers
@@ -3561,6 +3662,8 @@ system Glide
 	pos -549.07 887.777
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.2
 	habitable 1328.533
 	belt 1057 10
 	haze _menu/haze-twilight-thin
@@ -3625,6 +3728,8 @@ system Aileron
 	pos -576.745 771.883
 	government Uninhabited
 	attributes twilight
+	ramscoop
+		multiplier 1.5
 	habitable 1320.275
 	belt 1094 6
 	belt 1907 7
@@ -3711,6 +3816,9 @@ system Pearl
 system Wake
 	pos -526.272 757.754
 	government Avgi
+	attributes avgi twilight
+	ramscoop
+		multiplier 1.5
 	habitable 490
 	belt 1052 3
 	belt 1608 5

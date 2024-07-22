@@ -488,7 +488,6 @@ outfit "Nettle Active"
 		"optical tracking" 0.6
 		"shield damage" -108
 		"hull damage" -162
-		"hit force" 300
 		"missile strength" 12
 		"submunition" "Nettle Flecks" 36
 
@@ -508,7 +507,7 @@ outfit "Nettle Flecks"
 		"random velocity" 6
 		"shield damage" 6
 		"hull damage" 9
-		"hit force" 90
+		"hit force" 45
 		"missile strength" 3
 
 effect "nettle exhaust"
