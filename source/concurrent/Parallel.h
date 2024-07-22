@@ -16,7 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARALLEL_H_
 #define PARALLEL_H_
 
-#ifdef __APPLE__
+#include <version>
+
+#ifndef __cpp_lib_execution
 
 #include <algorithm>
 #include <utility>
