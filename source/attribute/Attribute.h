@@ -23,9 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <map>
 #include <string>
-#include <variant>
-
-using AnyAttribute = std::variant<std::string, AttributeAccessor>;
 
 class Attribute {
 public:
@@ -34,7 +31,7 @@ public:
 	// Copies an attribute and multiplies all of its values.
 	Attribute(const Attribute &other, double multiplier = 1.);
 	// Creates an attribute with a single initial effect.
-	Attribute(const AttributeAccessor access, double value = 1.);
+	Attribute(AttributeAccessor access, double value = 1.);
 	// Gets the attribute for the specified token, if any.
 	static Attribute *Parse(const std::string &token);
 
@@ -48,12 +45,11 @@ public:
 	// Gets the data format name of the effect, as used in the new syntax. This also supports
 	// variants, so for any effect E, passing E + ATTRIBUTE_EFFECT_COUNT will produce the name of the
 	// multiplier effect.
-	static std::string GetEffectName(const AttributeEffectType effect);
+	static std::string GetEffectName(AttributeEffectType effect);
 	// Gets the data format name of the category, as used in the new syntax. This also supports
 	// variants.
-	static std::string GetCategoryName(const AttributeCategory category);
+	static std::string GetCategoryName(AttributeCategory category);
 	// Gets the old-style name of the attribute.
-	static std::string GetLegacyName(const AttributeAccessor access);
 	static std::string GetLegacyName(const AnyAttribute &attribute);
 
 	// Gets the category of this attribute.
@@ -61,16 +57,16 @@ public:
 	// Gets the effect of this attribute.
 	const std::map<AttributeEffectType, AttributeEffect> &Effects() const;
 	// Adds a new effect to this attribute.
-	void AddEffect(const AttributeEffect effect);
+	void AddEffect(AttributeEffect effect);
 	// Gets an existing effect, or nullptr.
-	const AttributeEffect *GetEffect(const AttributeEffectType type) const;
-	AttributeEffect *GetEffect(const AttributeEffectType type);
+	const AttributeEffect *GetEffect(AttributeEffectType type) const;
+	AttributeEffect *GetEffect(AttributeEffectType type);
+
+	void Add(const Attribute &other, double multiplier = 1.);
 
 	// Category-based comparators.
-	template <class A>
-	bool operator==(const A &other) const;
+	bool operator==(const Attribute &other) const;
 	bool operator<(const Attribute &other) const;
-	bool operator<(const AttributeCategory &other) const;
 
 private:
 	// The name of each effect as used in the data files.
@@ -86,7 +82,7 @@ private:
 
 
 // Compare two variants.
-inline bool operator<(const AnyAttribute &first, const AnyAttribute &second)
+/*inline bool operator<(const AnyAttribute &first, const AnyAttribute &second)
 {
 	if(first.index() == second.index())
 	{
@@ -95,31 +91,7 @@ inline bool operator<(const AnyAttribute &first, const AnyAttribute &second)
 		return std::get<0>(first) < std::get<0>(second);
 	}
 	return first.index() < second.index();
-}
-
-
-
-template <>
-inline bool Attribute::operator==(const Attribute &other) const
-{
-	return category == other.category;
-}
-
-
-
-template <>
-inline bool Attribute::operator==(const AttributeCategory &other) const
-{
-	return category == other;
-}
-
-
-
-template <class A>
-inline bool Attribute::operator==(const A &other) const
-{
-	return false;
-}
+}*/
 
 
 

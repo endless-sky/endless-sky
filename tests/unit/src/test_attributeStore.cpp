@@ -60,7 +60,7 @@ TEST_CASE( "AttributeStore::Set", "[AttributeStore][Set]" ) {
 	AttributeStore a;
 	a.Set("solar heat", 0.);
 	SECTION( "Empty when only contains 0" ) {
-		CHECK( a.empty() );
+		CHECK(a.Empty() );
 	}
 	a.Set(AttributeAccessor(PROTECTION, SCRAMBLE), -2.);
 	SECTION( "Respecting minimum values" ) {
@@ -70,7 +70,7 @@ TEST_CASE( "AttributeStore::Set", "[AttributeStore][Set]" ) {
 		CHECK( a.Get("scramble protection") == 0. );
 	}
 	SECTION( "Not empty when contains data" ) {
-		CHECK( !a.empty() );
+		CHECK( !a.Empty() );
 	}
 }
 
@@ -95,20 +95,16 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 	for(const DataNode &child : node)
 		store.Load(child);
 	SECTION( "Check loaded attributes" ) {
-		CHECK( !store.empty() );
-		CHECK( !store.IsPresent("some attribute") );
-		CHECK( store.IsPresent("attribute") );
+		CHECK( !store.Empty() );
+		CHECK( !store.Get("some attribute") );
 		CHECK( store.Get("attribute") == 1. );
 		CHECK( store.Get("thrust") == 0. );
-		CHECK( store.IsPresent({THRUSTING, THRUST}) );
 		CHECK( store.Get({THRUSTING, THRUST}) == 100. );
 		CHECK( store.Get("thrusting energy") == 0. );
 		CHECK( store.Get({THRUSTING, ENERGY}) == 20. );
 		CHECK( store.Get("thrusting heat") == 0. );
 		CHECK( store.Get({THRUSTING, HEAT}) == 10. );
-		CHECK( store.IsPresent("other attribute") );
 		CHECK( store.Get("other attribute") == 1. );
-		CHECK( !store.IsPresent("another attribute") );
 		CHECK( store.Get("another attribute") == 0. );
 		CHECK( store.Get("shield generation") == 0. );
 		CHECK( store.Get({SHIELD_GENERATION, SHIELDS}) == 30. );

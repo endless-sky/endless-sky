@@ -21,50 +21,35 @@ using namespace std;
 
 
 
-const map<string, double> AttributeStore::MINIMUM_OVERRIDES = {
-	{"hull threshold", numeric_limits<double>::lowest()},
-	{"energy generation", numeric_limits<double>::lowest()},
-	{"energy consumption", numeric_limits<double>::lowest()},
-	{"fuel generation", numeric_limits<double>::lowest()},
-	{"fuel consumption", numeric_limits<double>::lowest()},
-	{"fuel energy", numeric_limits<double>::lowest()},
-	{"fuel heat", numeric_limits<double>::lowest()},
-	{"heat generation", numeric_limits<double>::lowest()},
-	{"flotsam chance", numeric_limits<double>::lowest()},
-	{"crew equivalent", numeric_limits<double>::lowest()}
-};
-
-
-
-// Checking if an attribute is present.
-bool AttributeStore::IsPresent(const AttributeAccessor attribute) const
-{
-	return Get(attribute) != 0.;
-}
-
-
-
-bool AttributeStore::IsPresent(const char *attribute) const
-{
-	return Get(attribute) != 0.;
+namespace {
+	const map<string, double> MINIMUM_OVERRIDES = {
+		{"hull threshold", numeric_limits<double>::lowest()},
+		{"energy generation", numeric_limits<double>::lowest()},
+		{"energy consumption", numeric_limits<double>::lowest()},
+		{"fuel generation", numeric_limits<double>::lowest()},
+		{"fuel consumption", numeric_limits<double>::lowest()},
+		{"fuel energy", numeric_limits<double>::lowest()},
+		{"fuel heat", numeric_limits<double>::lowest()},
+		{"heat generation", numeric_limits<double>::lowest()},
+		{"flotsam chance", numeric_limits<double>::lowest()},
+		{"crew equivalent", numeric_limits<double>::lowest()}
+	};
 }
 
 
 
 // Getting the value of an attribute, or a default.
-double AttributeStore::Get(const AttributeAccessor attribute) const
+double AttributeStore::Get(const AnyAttribute &attribute) const
 {
-	const AttributeEffect *e = GetEffect(attribute);
-	if(e == nullptr)
-		return 0.;
-	return e->Value();
-}
-
-
-
-double AttributeStore::Get(const char *attribute) const
-{
-	return textAttributes.Get(attribute);
+	if(attribute.IsCategorized())
+	{
+		const AttributeEffect *e = GetEffect(attribute.Categorized());
+		if(e == nullptr)
+			return 0.;
+		return e->Value();
+	}
+	else
+		return textAttributes.Get(attribute.String());
 }
 
 
@@ -106,34 +91,33 @@ AttributeEffect *AttributeStore::GetEffect(const AttributeAccessor access)
 
 
 // Setting attribute values.
-void AttributeStore::Set(const char *attribute, double value)
+void AttributeStore::Set(const AnyAttribute &attribute, double value)
 {
-	std::string s = std::string(attribute);
-	Set(s, value);
-}
-
-
-
-void AttributeStore::Set(const AttributeAccessor access, double value)
-{
-	Attribute *a = GetAttribute(access.Category());
-	if(!a)
+	if(attribute.IsCategorized())
 	{
-		Attribute attr = Attribute(access.Category());
-		categorizedAttributes.insert({access.Category(), attr});
-		a = GetAttribute(access.Category());
+		const AttributeAccessor &attr = attribute.Categorized();
+		auto it = categorizedAttributes.find(attr.Category());
+		if(it == categorizedAttributes.end())
+			categorizedAttributes.emplace(attr.Category(), Attribute(attr, value));
+		else
+			it->second.AddEffect({attr.Effect(), value, attr.GetDefaultMinimum()});
 	}
-	AttributeEffect *e = a->GetEffect(access.Effect());
-	if(!e)
-		a->AddEffect(AttributeEffect(access.Effect(), value, access.GetDefaultMinimum()));
 	else
-		e->Set(value);
+	{
+		const std::string &attr = attribute.String();
+		auto it = MINIMUM_OVERRIDES.find(attr);
+		if(it != MINIMUM_OVERRIDES.end())
+			value = std::max(value, it->second);
+		if(value && fabs(value) < AttributeEffect::EPS)
+			value = 0.;
+		textAttributes[attr] = value;
+	}
 }
 
 
 
 // Checks whether there are any attributes stored here.
-bool AttributeStore::empty() const
+bool AttributeStore::Empty() const
 {
 	if(textAttributes.empty() && categorizedAttributes.empty())
 		return true;
@@ -150,19 +134,24 @@ bool AttributeStore::empty() const
 
 
 // Gets the minimum allowed value of the attribute.
-double AttributeStore::GetMinimum(const AttributeAccessor attribute) const
+double AttributeStore::GetMinimum(const AnyAttribute &attribute) const
 {
-	const AttributeEffect *e = GetEffect(attribute);
-	if(e == nullptr)
-		return attribute.GetDefaultMinimum();
-	return e->Minimum();
-}
-
-
-
-double AttributeStore::GetMinimum(const char *attribute) const
-{
-	return GetMinimum(std::string(attribute));
+	if(attribute.IsCategorized())
+	{
+		const AttributeAccessor &attr = attribute.Categorized();
+		const AttributeEffect *effect = GetEffect(attr);
+		if(effect)
+			return effect->Minimum();
+		else
+			return attr.GetDefaultMinimum();
+	}
+	else
+	{
+		auto it = MINIMUM_OVERRIDES.find(attribute.String());
+		if(it != MINIMUM_OVERRIDES.end())
+			return it->second;
+		return 0.;
+	}
 }
 
 
@@ -253,6 +242,20 @@ void AttributeStore::Add(const AttributeStore &other, const int count)
 
 
 
+void AttributeStore::Add(const AnyAttribute &attribute, const AttributeStore &other, int count)
+{
+	Set(attribute, Get(attribute) + other.Get(attribute) * count);
+}
+
+
+
+void AttributeStore::Add(const AnyAttribute &attribute, double amount)
+{
+	Set(attribute, Get(attribute) + amount);
+}
+
+
+
 void AttributeStore::ForEach(const std::function<void(const AnyAttribute &, double)> &function) const
 {
 	for(auto &it : textAttributes)
@@ -260,4 +263,36 @@ void AttributeStore::ForEach(const std::function<void(const AnyAttribute &, doub
 	for(auto &it : categorizedAttributes)
 		for(const auto &item : it.second.Effects())
 			function({AttributeAccessor(it.first, item.first)}, item.second.Value());
+}
+
+
+
+// Determine whether the attribute can be added to this instance 'count' times.
+// If not, return the maximum number that can be added.
+int AttributeStore::CanAdd(const AnyAttribute &attribute, const AttributeStore &other, int count) const
+{
+	if(count)
+	{
+		double minimum = GetMinimum(attribute);
+		if(attribute.IsString() && attribute.String() == "required crew")
+			minimum = !(Get("automaton") || other.Get("automaton"));
+
+		double value = Get(attribute);
+		double amount = other.Get(attribute);
+		// Allow for rounding errors:
+		if(value + amount * count < minimum - AttributeEffect::EPS)
+			return (value - minimum) / -amount + AttributeEffect::EPS;
+	}
+	return count;
+}
+
+
+
+inline void AttributeStore::Add(const Attribute &attribute, const double amount)
+{
+	Attribute *current = GetAttribute(attribute.Category());
+	if(current == nullptr)
+		categorizedAttributes.emplace(attribute.Category(), attribute);
+	else
+		current->Add(attribute, amount);
 }

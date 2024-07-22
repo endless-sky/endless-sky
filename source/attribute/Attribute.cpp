@@ -294,6 +294,35 @@ string Attribute::GetCategoryName(const AttributeCategory category)
 
 
 
+// Gets the old-style name of the attribute. Returns an empty string if the attribute is not supported
+// in the old format.
+string Attribute::GetLegacyName(const AnyAttribute &attribute)
+{
+	if(attribute.IsString())
+		return attribute.String();
+	else
+	{
+		const AttributeAccessor &access = attribute.Categorized();
+		auto it = newToOld.find(access);
+		if(it == newToOld.end())
+		{
+			// TODO: find a better solution, or resort to manually mapping all supported attributes.
+			// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon.
+			auto baseType = static_cast<AttributeEffectType>(access.Effect() % static_cast<int>(ATTRIBUTE_EFFECT_COUNT));
+			string prefix = access.Effect() >= 2 * ATTRIBUTE_EFFECT_COUNT ? "relative " : "";
+			string suffix = (access.Effect() >= ATTRIBUTE_EFFECT_COUNT && prefix.empty()) ? " multiplier" : "";
+			string category = GetCategoryName(access.Category()) + " ";
+			string effect = GetEffectName(baseType);
+			string final = prefix + category + effect + suffix;
+			newToOld.insert(it, {access, final});
+			return final;
+		}
+		return it->second;
+	}
+}
+
+
+
 // Gets the data format name of the effect, as used in the new syntax. This also supports
 // multipliers, so for any effect E, passing E + ATTRIBUTE_EFFECT_COUNT will produce the name of the
 // multiplier effect.
@@ -306,36 +335,6 @@ string Attribute::GetEffectName(const AttributeEffectType effect)
 	if(effect < 0)
 		return "";
 	return effectNames[effect];
-}
-
-
-
-// Gets the old-style name of the attribute. Returns an empty string if the attribute is not supported
-// in the old format.
-string Attribute::GetLegacyName(const AttributeAccessor access)
-{
-	auto it = newToOld.find(access);
-	if(it == newToOld.end())
-	{
-		// TODO: find a better solution, or resort to manually mapping all supported attributes.
-		// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon.
-		auto baseType = static_cast<AttributeEffectType>(access.Effect() % static_cast<int>(ATTRIBUTE_EFFECT_COUNT));
-		string prefix = access.Effect() >= 2 * ATTRIBUTE_EFFECT_COUNT ? "relative " : "";
-		string suffix = (access.Effect() >= ATTRIBUTE_EFFECT_COUNT && prefix.empty()) ? " multiplier" : "";
-		string category = GetCategoryName(access.Category()) + " ";
-		string effect = GetEffectName(baseType);
-		string final = prefix + category + effect + suffix;
-		newToOld.insert(it, {access, final});
-		return final;
-	}
-	return it->second;
-}
-
-
-
-string Attribute::GetLegacyName(const AnyAttribute &attribute)
-{
-	return attribute.index() ? Attribute::GetLegacyName(get<1>(attribute)) : get<0>(attribute);
 }
 
 
@@ -410,6 +409,18 @@ const std::map<AttributeEffectType, AttributeEffect> &Attribute::Effects() const
 
 
 
+// Adds a new effect to this attribute.
+void Attribute::AddEffect(const AttributeEffect effect)
+{
+	auto it = effects.find(effect.Type());
+	if(it == effects.end())
+		effects.insert({effect.Type(), effect});
+	else
+		it->second.Add(effect.Value());
+}
+
+
+
 // Gets an existing effect, or nullptr.
 const AttributeEffect *Attribute::GetEffect(const AttributeEffectType type) const
 {
@@ -431,14 +442,37 @@ AttributeEffect *Attribute::GetEffect(const AttributeEffectType type)
 
 
 
-// Adds a new effect to this attribute.
-void Attribute::AddEffect(const AttributeEffect effect)
+void Attribute::Add(const Attribute &other, double multiplier)
 {
-	auto it = effects.find(effect.Type());
-	if(it == effects.end())
-		effects.insert({effect.Type(), effect});
-	else
-		it->second.Add(effect.Value());
+	if(other.effects.empty())
+		return;
+
+	auto otherIt = other.effects.begin();
+	auto myIt = effects.begin();
+	while(otherIt != other.effects.end() && myIt != effects.end())
+	{
+		if(otherIt->first > myIt->first)
+			myIt++;
+		else if(otherIt->first == myIt->first)
+		{
+			myIt->second.Add(otherIt->second.Value() * multiplier);
+			++otherIt;
+			++myIt;
+		}
+		else
+		{
+			effects.emplace_hint(myIt, otherIt->first, otherIt->second)->second.Set(otherIt->second.Value() * multiplier);
+			otherIt++;
+		}
+	}
+	effects.insert(otherIt, other.effects.end());
+}
+
+
+
+bool Attribute::operator==(const Attribute &other) const
+{
+	return category == other.category;
 }
 
 
@@ -446,11 +480,4 @@ void Attribute::AddEffect(const AttributeEffect effect)
 bool Attribute::operator<(const Attribute &other) const
 {
 	return category < other.category;
-}
-
-
-
-bool Attribute::operator<(const AttributeCategory &other) const
-{
-	return category < other;
 }

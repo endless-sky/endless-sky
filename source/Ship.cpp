@@ -630,7 +630,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			reinterpret_cast<Body &>(*this) = *base;
 		if(customSwizzle == -1)
 			customSwizzle = base->CustomSwizzle();
-		if(baseAttributes.Attributes().empty())
+		if(baseAttributes.Attributes().Empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;

@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AttributeEffectType.h"
 
 #include <optional>
+#include <string>
+#include <variant>
 
 class AttributeAccessor {
 public:
@@ -65,15 +67,14 @@ public:
 	// Gets the default minimum value for this attribute.
 	double GetDefaultMinimum() const;
 
-	template <typename A>
-	bool operator==(const A &other) const;
+	bool operator==(AttributeAccessor other) const;
 
-	bool operator<(const AttributeAccessor other) const;
+	bool operator<(AttributeAccessor other) const;
 
 private:
 	// Checks if the given attribute category is always composite. These categories are always merged with their effect
 	// in the constructor.
-	static bool IsAlwaysComposite(const AttributeCategory category);
+	static bool IsAlwaysComposite(AttributeCategory category);
 
 private:
 	// The category and effect type of the described attribute.
@@ -81,20 +82,24 @@ private:
 	AttributeEffectType effect;
 };
 
-
-
-template<class T>
-inline bool AttributeAccessor::operator==(const T &other) const
+// Helper class for using string and AttributeAccessor
+class AnyAttribute : public std::variant<std::string, AttributeAccessor>
 {
-	return false;
-}
+public:
+	AnyAttribute(const char *str) : std::variant<std::string, AttributeAccessor>(str) {}
+	AnyAttribute(const std::string &str) : std::variant<std::string, AttributeAccessor>(str) {}
+	AnyAttribute(const std::string &&str) : std::variant<std::string, AttributeAccessor>(str) {}
+	AnyAttribute(const AttributeAccessor &str) : std::variant<std::string, AttributeAccessor>(str) {}
+	AnyAttribute(const AttributeAccessor &&str) : std::variant<std::string, AttributeAccessor>(str) {}
+	AnyAttribute(AttributeCategory category, AttributeEffectType effect)
+		: AnyAttribute(AttributeAccessor{category, effect}) {}
+	AnyAttribute(AttributeCategory category, AttributeEffectType categoryEffect, AttributeEffectType effect)
+			: AnyAttribute(AttributeAccessor{category, categoryEffect, effect}) {}
 
-
-
-template<>
-inline bool AttributeAccessor::operator==(const AttributeAccessor &other) const
-{
-	return category == other.category && effect == other.effect;
-}
+	bool IsCategorized() const;
+	bool IsString() const;
+	const AttributeAccessor &Categorized() const;
+	const std::string &String() const;
+};
 
 #endif

@@ -206,14 +206,51 @@ double AttributeAccessor::GetDefaultMinimum() const
 
 
 
-bool AttributeAccessor::operator<(const AttributeAccessor other) const
+bool AttributeAccessor::operator==(AttributeAccessor other) const
+{
+	return category == other.category && effect == other.effect;
+}
+
+
+
+bool AttributeAccessor::operator<(AttributeAccessor other) const
 {
 	if(category == other.category)
 		return effect < other.effect;
 	return category < other.category;
 }
 
-bool AttributeAccessor::IsAlwaysComposite(const AttributeCategory category)
+
+
+bool AttributeAccessor::IsAlwaysComposite(AttributeCategory category)
 {
 	return category == RESISTANCE || category == PROTECTION;
+}
+
+
+
+bool AnyAttribute::IsCategorized() const
+{
+	return std::variant<string, AttributeAccessor>::index();
+}
+
+
+
+bool AnyAttribute::IsString() const
+{
+	return !std::variant<string, AttributeAccessor>::index();
+}
+
+
+
+const AttributeAccessor &AnyAttribute::Categorized() const
+{
+	return std::get<1>(*this);
+}
+
+
+
+const string &AnyAttribute::String() const
+{
+	return std::get<0>(*this);
 }
