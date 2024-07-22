@@ -300,6 +300,7 @@ mission "Deep Archaeology 5"
 
 ship "Timer Ship"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001

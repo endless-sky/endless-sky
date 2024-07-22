@@ -1256,6 +1256,7 @@ event "memorial on Deep"
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
+		"Thermal Scanner"
 
 
 

@@ -21,7 +21,7 @@ ship "Quarg Skylark"
 		"hull" 70000
 		"required crew" 120
 		"bunks" 210
-		"mass" 990
+		"mass" 3680
 		"drag" 18.5
 		"heat dissipation" .47
 		"fuel capacity" 1000
@@ -29,6 +29,9 @@ ship "Quarg Skylark"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"hull repair rate" 5
 		"hull energy" 5
 		"ramscoop" 10
@@ -75,7 +78,7 @@ ship "Quarg Wardragon"
 		"hull" 50000
 		"required crew" 160
 		"bunks" 185
-		"mass" 840
+		"mass" 2880
 		"drag" 14
 		"heat dissipation" .34
 		"fuel capacity" 800
@@ -83,6 +86,9 @@ ship "Quarg Wardragon"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"hull repair rate" 5
 		"hull energy" 5
 		"ramscoop" 10
