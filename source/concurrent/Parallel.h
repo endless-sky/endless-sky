@@ -16,12 +16,76 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARALLEL_H_
 #define PARALLEL_H_
 
+#ifdef __APPLE__
+
+#include <algorithm>
+#include <utility>
+
+#include <oneapi/tbb.h>
+
+// Dummy for std::execution.
+namespace parallel
+{
+	constexpr int seq = 0;
+	constexpr int par = 1;
+	constexpr int par_unseq = 2;
+	constexpr int unseq = 3;
+};
+
+// Dummies for parallel stl functions.
+template<class ExecutionPolicy, class RandomIt, class Func>
+inline void for_each(const ExecutionPolicy e, RandomIt begin, RandomIt end, Func &&f)
+{
+	if(e == parallel::seq || e == parallel::unseq)
+		std::for_each(begin, end, f);
+	else
+		oneapi::tbb::parallel_for_each(begin, end, f);
+}
+
+
+
+template<class ExecutionPolicy, class RandomIt, class Compare>
+inline void sort(ExecutionPolicy e, RandomIt begin, RandomIt end, Compare comp)
+{
+	if(e == parallel::seq || e == parallel::unseq)
+		std::sort(begin, end, comp);
+	else
+		oneapi::tbb::parallel_sort(begin, end, comp);
+}
+
+
+template<class ExecutionPolicy, class RandomIt>
+inline void sort(ExecutionPolicy e, RandomIt begin, RandomIt end)
+{
+	sort(e, begin, end, std::less<decltype(*begin)>());
+}
+
+
+
+template<class ExecutionPolicy, class RandomIt, class Compare>
+inline void stable_sort(ExecutionPolicy, RandomIt begin, RandomIt end, Compare comp)
+{
+	std::stable_sort(begin, end, comp);
+}
+
+
+
+template<class ExecutionPolicy, class RandomIt>
+inline void stable_sort(ExecutionPolicy, RandomIt begin, RandomIt end)
+{
+	std::stable_sort(begin, end);
+}
+
+#else
+
 #include <execution>
 #include <functional>
 #include <thread>
 #include <vector>
 
 namespace parallel = std::execution;
+
+#endif
 
 namespace {
 	// A forced multithreaded for_each implementation where the executing threads are guaranteed
