@@ -93,8 +93,6 @@ jobs:
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CC: /usr/local/opt/gcc/bin/gcc-14
-      CXX: /usr/local/opt/gcc/bin/g++-14
     steps:
       - uses: actions/checkout@v4
         with:
@@ -103,8 +101,6 @@ jobs:
         uses: ./.github/sccache
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
-      - name: Install dependencies
-        run: brew install gcc
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
