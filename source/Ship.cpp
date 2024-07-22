@@ -1347,6 +1347,13 @@ void Ship::SetPosition(Point position)
 
 
 
+void Ship::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
+}
+
+
+
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
@@ -1788,6 +1795,13 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
+		// Transfer some energy, if needed.
+		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
+		{
+			helped = true;
+			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
+			TransferEnergy(max(200., toGive), victim.get());
+		}
 		if(helped)
 		{
 			pilotError = 120;
@@ -1799,8 +1813,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		return shared_ptr<Ship>();
 
 	// If the boarding ship is the player, they will choose what to plunder.
-	// Always take fuel if you can.
+	// Always take fuel and energy if you can.
 	victim->TransferFuel(victim->fuel, this);
+	victim->TransferEnergy(victim->energy, this);
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -2549,6 +2564,14 @@ bool Ship::CanRefuel(const Ship &other) const
 
 
 
+bool Ship::CanGiveEnergy(const Ship &other) const
+{
+	double toGive = min(other.attributes.Get("energy capacity"), max(200., other.attributes.Get("energy capacity") * 0.2));
+	return energy >= 2 * toGive;
+}
+
+
+
 double Ship::TransferFuel(double amount, Ship *to)
 {
 	amount = max(fuel - attributes.Get({PASSIVE, FUEL}), amount);
@@ -2558,6 +2581,20 @@ double Ship::TransferFuel(double amount, Ship *to)
 		to->fuel += amount;
 	}
 	fuel -= amount;
+	return amount;
+}
+
+
+
+double Ship::TransferEnergy(double amount, Ship *to)
+{
+	amount = max(energy - attributes.Get("energy capacity"), amount);
+	if(to)
+	{
+		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		to->energy += amount;
+	}
+	energy -= amount;
 	return amount;
 }
 
@@ -2797,6 +2834,14 @@ bool Ship::NeedsFuel(bool followParent) const
 	if(!jumpFuel)
 		jumpFuel = navigation.JumpFuel(targetSystem);
 	return (fuel < jumpFuel) && (attributes.Get({PASSIVE, FUEL}) >= jumpFuel);
+}
+
+
+
+bool Ship::NeedsEnergy() const
+{
+	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
+			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
 }
 
 
