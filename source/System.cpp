@@ -167,7 +167,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				// that they are no longer here.
 				for(StellarObject &object : objects)
 					if(object.GetPlanet())
-						planets.Get(object.GetPlanet()->TrueName())->RemoveSystem(this);
+						object.GetPlanet()->RemoveSystem(this);
 
 				objects.clear();
 			}
