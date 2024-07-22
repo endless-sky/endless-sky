@@ -359,14 +359,12 @@ mission "Incipias: Help The Stranded 2"
 			label choice
 			choice
 				`	"Why can I not land on your home planet?"`
-					goto homeplanet
 				`	"Why do you call this station your capital?"`
 					goto capital
 				`	"How is life on a gas giant?"`
 					goto oddquestion
 				`	"I do not have any more questions."`
 					goto end
-			label homeplanet
 			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
 				goto choice
 			label capital
