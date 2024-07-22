@@ -955,20 +955,17 @@ void Ship::Save(DataWriter &out) const
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
 			for(const auto &it : baseAttributes.FlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("flare sound", it.first->Name());
+				out.Write("flare sound", it->Name());
 			for(const auto &it : baseAttributes.ReverseFlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "reverse flare sprite");
 			for(const auto &it : baseAttributes.ReverseFlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("reverse flare sound", it.first->Name());
+				out.Write("reverse flare sound", it->Name());
 			for(const auto &it : baseAttributes.SteeringFlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "steering flare sprite");
 			for(const auto &it : baseAttributes.SteeringFlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("steering flare sound", it.first->Name());
+				out.Write("steering flare sound", it->Name());
 			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->Name());
@@ -976,29 +973,21 @@ void Ship::Save(DataWriter &out) const
 				for(int i = 0; i < it.second; ++i)
 					out.Write("jump effect", it.first->Name());
 			for(const auto &it : baseAttributes.JumpSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump sound", it.first->Name());
+				out.Write("jump sound", it->Name());
 			for(const auto &it : baseAttributes.JumpInSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump in sound", it.first->Name());
+				out.Write("jump in sound", it->Name());
 			for(const auto &it : baseAttributes.JumpOutSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump out sound", it.first->Name());
+				out.Write("jump out sound", it->Name());
 			for(const auto &it : baseAttributes.HyperSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("hyperdrive sound", it.first->Name());
+				out.Write("hyperdrive sound", it->Name());
 			for(const auto &it : baseAttributes.HyperInSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("hyperdrive in sound", it.first->Name());
+				out.Write("hyperdrive in sound", it->Name());
 			for(const auto &it : baseAttributes.HyperOutSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("hyperdrive out sound", it.first->Name());
+				out.Write("hyperdrive out sound", it->Name());
 			for(const auto &it : baseAttributes.CargoScanSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("cargo scan sound", it.first->Name());
+				out.Write("cargo scan sound", it->Name());
 			for(const auto &it : baseAttributes.OutfitScanSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("outfit scan sound", it.first->Name());
+				out.Write("outfit scan sound", it->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1928,13 +1917,13 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	auto playScanSounds = [](const set<const Sound *> &sounds, Point &position)
 	{
 		if(sounds.empty())
 			Audio::Play(Audio::Get("scan"), position);
 		else
 			for(const auto &sound : sounds)
-				Audio::Play(sound.first, position);
+				Audio::Play(sound, position);
 	};
 	if(isYours || (target->isYours))
 	{

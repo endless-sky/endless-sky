@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dictionary.h"
 
 #include <map>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -86,22 +87,22 @@ public:
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
 	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
 	const std::vector<std::pair<Body, int>> &SteeringFlareSprites() const;
-	const std::map<const Sound *, int> &FlareSounds() const;
-	const std::map<const Sound *, int> &ReverseFlareSounds() const;
-	const std::map<const Sound *, int> &SteeringFlareSounds() const;
+	const std::set<const Sound *> &FlareSounds() const;
+	const std::set<const Sound *> &ReverseFlareSounds() const;
+	const std::set<const Sound *> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
 	// Get this outfit's jump effects and sounds, if any.
 	const std::map<const Effect *, int> &JumpEffects() const;
-	const std::map<const Sound *, int> &HyperSounds() const;
-	const std::map<const Sound *, int> &HyperInSounds() const;
-	const std::map<const Sound *, int> &HyperOutSounds() const;
-	const std::map<const Sound *, int> &JumpSounds() const;
-	const std::map<const Sound *, int> &JumpInSounds() const;
-	const std::map<const Sound *, int> &JumpOutSounds() const;
+	const std::set<const Sound *> &HyperSounds() const;
+	const std::set<const Sound *> &HyperInSounds() const;
+	const std::set<const Sound *> &HyperOutSounds() const;
+	const std::set<const Sound *> &JumpSounds() const;
+	const std::set<const Sound *> &JumpInSounds() const;
+	const std::set<const Sound *> &JumpOutSounds() const;
 	// Get this outfit's scan sounds, if any.
-	const std::map<const Sound *, int> &CargoScanSounds() const;
-	const std::map<const Sound *, int> &OutfitScanSounds() const;
+	const std::set<const Sound *> &CargoScanSounds() const;
+	const std::set<const Sound *> &OutfitScanSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
@@ -135,19 +136,19 @@ private:
 	std::vector<std::pair<Body, int>> flareSprites;
 	std::vector<std::pair<Body, int>> reverseFlareSprites;
 	std::vector<std::pair<Body, int>> steeringFlareSprites;
-	std::map<const Sound *, int> flareSounds;
-	std::map<const Sound *, int> reverseFlareSounds;
-	std::map<const Sound *, int> steeringFlareSounds;
+	std::set<const Sound *> flareSounds;
+	std::set<const Sound *> reverseFlareSounds;
+	std::set<const Sound *> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
 	std::map<const Effect *, int> jumpEffects;
-	std::map<const Sound *, int> hyperSounds;
-	std::map<const Sound *, int> hyperInSounds;
-	std::map<const Sound *, int> hyperOutSounds;
-	std::map<const Sound *, int> jumpSounds;
-	std::map<const Sound *, int> jumpInSounds;
-	std::map<const Sound *, int> jumpOutSounds;
-	std::map<const Sound *, int> cargoScanSounds;
-	std::map<const Sound *, int> outfitScanSounds;
+	std::set<const Sound *> hyperSounds;
+	std::set<const Sound *> hyperInSounds;
+	std::set<const Sound *> hyperOutSounds;
+	std::set<const Sound *> jumpSounds;
+	std::set<const Sound *> jumpInSounds;
+	std::set<const Sound *> jumpOutSounds;
+	std::set<const Sound *> cargoScanSounds;
+	std::set<const Sound *> outfitScanSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 
