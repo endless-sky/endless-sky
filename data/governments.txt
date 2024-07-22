@@ -186,7 +186,6 @@ government "Conlatio"
 	"crew attack" .2
 	"crew defense" 1
 	language "Incups"
-	"player reputation" 0
 	"attitude toward"
 		"Hicemus" 1
 		"Incipias Civilian" 1
@@ -351,7 +350,6 @@ government "Gegno"
 	language "Gegno"
 	color .75 .59 .27
 
-	"player reputation" 0
 	"crew attack" 1.1
 	"crew defense" 1.2
 	"attitude toward"
@@ -370,7 +368,6 @@ government "Gegno Scin"
 	language "Gegno"
 	color "governments: Gegno Scin"
 
-	"player reputation" 0
 	"crew attack" 1.2
 	"crew defense" 1.4
 	"attitude toward"
@@ -389,7 +386,6 @@ government "Gegno Vi"
 	language "Gegno"
 	color "governments: Gegno Vi"
 
-	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
 	"attitude toward"
@@ -410,7 +406,6 @@ government "Gegno Scin (Neutral)"
 	language "Gegno"
 	color "governments: Gegno Scin"
 
-	"player reputation" 0
 	"crew attack" 1.2
 	"crew defense" 1.4
 	"attitude toward"
@@ -429,7 +424,6 @@ government "Gegno Vi (Neutral)"
 	language "Gegno"
 	color "governments: Gegno Vi"
 
-	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
 	"attitude toward"
@@ -449,7 +443,6 @@ government "Gegno Vi (Duelist A)"
 	language "Gegno"
 	color "governments: Gegno Vi"
 
-	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
 	"attitude toward"
@@ -469,7 +462,6 @@ government "Gegno Vi (Duelist B)"
 	language "Gegno"
 	color "governments: Gegno Vi"
 
-	"player reputation" 0
 	"crew attack" 1.3
 	"crew defense" 1.5
 	"attitude toward"
@@ -520,7 +512,6 @@ government "Hai"
 	swizzle 0
 	color "governments: Hai"
 	
-	"player reputation" 0
 	"attitude toward"
 		"Hai (Wormhole Access)" 1
 		"Hai Merchant" 1
@@ -547,7 +538,6 @@ government "Hai (Wormhole Access)"
 	swizzle 0
 	color "governments: Hai"
 	
-	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
 		"Hai Merchant" 1
@@ -571,7 +561,6 @@ government "Hai Merchant"
 	swizzle 0
 	color "governments: Hai"
 	
-	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
 		"Hai (Wormhole Access)" 1
@@ -599,7 +588,6 @@ government "Hai Merchant (Sympathizers)"
 	swizzle 0
 	color "governments: Hai"
 	
-	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
 		"Hai (Wormhole Access)" 1
@@ -622,7 +610,6 @@ government "Hai Merchant (Human)"
 	swizzle 0
 	color "governments: Hai"
 	
-	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
 		"Hai (Wormhole Access)" 1
@@ -683,7 +670,6 @@ government "Hai (Unfettered Wanderer Tribute)"
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
-	"player reputation" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
@@ -1046,7 +1032,6 @@ government "Militia"
 	swizzle 2
 	color "governments: Free"
 	
-	"player reputation" 0
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
@@ -1532,7 +1517,6 @@ government "Republic (Friendly)"
 
 government "Rulei"
 	swizzle 0
-	"player reputation" 0
 	"bribe" 0
 	"fine" 0
 	"hostile hail" "rulei hostile"
