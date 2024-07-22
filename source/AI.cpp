@@ -367,7 +367,7 @@ AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	static_assert(Orders::OrderType::TYPES_COUNT == Orders::ORDER_COUNT,
-		"Orders::ORDER_COUNT must match the length of Orders::Types");
+		"Orders::ORDER_COUNT must match the length of Orders::OrderType");
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
 }
@@ -1665,7 +1665,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	if(it == orders.end())
 		return false;
 
-	Orders order = it->second;
+	Orders &order = it->second;
 
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();

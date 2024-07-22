@@ -239,7 +239,7 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 		// Check if the target ship is in a system where we can target.
 		// This check only checks for undocked ships (that have a current system).
 		const System *orderSystem = orderedShip->GetSystem();
-		const System *shipSystem = ship->GetSystem();
+		const System *shipSystem = ship ? ship->GetSystem() : nullptr;
 		bool targetOutOfReach = !ship || (orderSystem && shipSystem != orderSystem
 				&& shipSystem != flagshipSystem);
 		// Asteroids are never out of reach since they're in the same system as the flagship.
@@ -274,7 +274,7 @@ void Orders::MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHa
 	// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
 	// asteroid.
 	if(hasMismatch && other.GetTargetAsteroid())
-		alreadyHarvesting = (HasHarvest() && (other.HasHarvest()));
+		alreadyHarvesting = (HasHarvest() && other.HasHarvest());
 
 	targetShip = other.targetShip;
 	targetAsteroid = other.targetAsteroid;
