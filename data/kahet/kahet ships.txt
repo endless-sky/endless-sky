@@ -549,9 +549,9 @@ ship "Fetri'sei"
 		"outfit space" 173
 		"weapon capacity" 54
 		"engine capacity" 46
-		"energy capacity" 10000
-		"energy generation" 23.3
-		"heat generation" 32
+		"energy capacity" 6000
+		"energy generation" 8.3
+		"heat generation" 12
 		"shield heat" 3.4
 		"hull repair rate" 0.3
 		"ka'sei" 1
