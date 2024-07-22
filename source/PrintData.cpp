@@ -243,7 +243,8 @@ namespace {
 					+ attributes.Get({TURNING, ENERGY})
 					+ attributes.Get({AFTERBURNING, ENERGY})
 					+ attributes.Get("fuel energy")
-					+ (attributes.Get({HULL_REPAIR, ENERGY}) * (1 + attributes.Get(AttributeAccessor(HULL_REPAIR, ENERGY).Multiplier())))
+					+ (attributes.Get({HULL_REPAIR, ENERGY}) *
+							(1 + attributes.Get(AttributeAccessor(HULL_REPAIR, ENERGY).Multiplier())))
 					+ (attributes.Get({SHIELD_GENERATION, ENERGY}) *
 							(1 + attributes.Get(AttributeAccessor(SHIELD_GENERATION, ENERGY).Multiplier())))
 					+ attributes.Get({ACTIVE_COOL, ENERGY})

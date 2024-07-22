@@ -252,7 +252,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
 		attributes.Set(AttributeAccessor(DAMAGE, MINABLE), attributes.Get(AttributeAccessor(DAMAGE, HULL)));
 	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccessor(DAMAGE, MINABLE).Relative(), attributes.Get(AttributeAccessor(DAMAGE, HULL).Relative()));
+		attributes.Set(AttributeAccessor(DAMAGE, MINABLE).Relative(),
+				attributes.Get(AttributeAccessor(DAMAGE, HULL).Relative()));
 
 	// Sanity checks:
 	if(burstReload > reload)

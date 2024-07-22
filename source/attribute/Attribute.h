@@ -79,20 +79,4 @@ private:
 	std::map<AttributeEffectType, AttributeEffect> effects;
 };
 
-
-
-// Compare two variants.
-/*inline bool operator<(const AnyAttribute &first, const AnyAttribute &second)
-{
-	if(first.index() == second.index())
-	{
-		if(first.index())
-			return std::get<1>(first) < std::get<1>(second);
-		return std::get<0>(first) < std::get<0>(second);
-	}
-	return first.index() < second.index();
-}*/
-
-
-
 #endif

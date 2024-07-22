@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <variant>
 
+// An attribute accessor describes a categorized attribute. It contains the category
+// and effect type of the attribute, and provides conversion functions for various modifiers.
 class AttributeAccessor {
 public:
 	AttributeAccessor(const AttributeCategory category, const AttributeEffectType effect);

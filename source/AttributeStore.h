@@ -69,7 +69,8 @@ private:
 	void Add(const Attribute &attribute, double amount);
 
 private:
-	// Regular attributes are stored in text form. These can be arbitrarily defined by users, and generally aren't used in flight.
+	// Regular attributes are stored in text form. These can be arbitrarily defined by users,
+	// and generally aren't used in flight.
 	Dictionary textAttributes;
 	// The attributes that describe various flight effects, i.e. what happens during shield generation, thrusting etc.
 	std::map<AttributeCategory, Attribute> categorizedAttributes;
