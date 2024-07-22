@@ -180,6 +180,56 @@ void FormationPattern::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(child.Token(0) == "line" || child.Token(0) == "arc")
+		{
+			Line &line = lines.emplace_back();
+
+			if(child.Token(0) == "arc")
+				line.isArc = true;
+
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "start" && grand.Size() >= 3)
+					line.start.Set(grand.Value(1), grand.Value(2));
+				else if(grand.Token(0) == "end" && grand.Size() >= 3 && !line.isArc)
+					line.endOrAnchor.Set(grand.Value(1), grand.Value(2));
+				else if(grand.Token(0) == "anchor" && grand.Size() >= 3 && line.isArc)
+					line.endOrAnchor.Set(grand.Value(1), grand.Value(2));
+				else if(grand.Token(0) == "angle" && grand.Size() >= 2 && line.isArc)
+					line.angle = grand.Value(1);
+				else if(grand.Token(0) == "positions" && grand.Size() >= 2)
+					line.positions = static_cast<int>(grand.Value(1) + 0.5);
+				else if(grand.Token(0) == "skip")
+					for(int i = 1; i < grand.Size(); ++i)
+					{
+						if(grand.Token(i) == "first")
+							line.skipFirst = true;
+						else if(grand.Token(i) == "last")
+							line.skipLast = true;
+						else
+							grand.PrintTrace("Skipping unrecognized attribute:");
+					}
+				else if(grand.Token(0) == "repeat")
+				{
+					LineRepeat &repeat = line.repeats.emplace_back();
+					for(const DataNode &grandGrand : grand)
+						if(grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
+							repeat.repeatStart.Set(grandGrand.Value(1), grandGrand.Value(2));
+						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3 && !line.isArc)
+							repeat.repeatEndOrAnchor.Set(grandGrand.Value(1), grandGrand.Value(2));
+						else if(grandGrand.Token(0) == "anchor" && grandGrand.Size() >= 3 && line.isArc)
+							repeat.repeatEndOrAnchor.Set(grandGrand.Value(1), grandGrand.Value(2));
+						else if(grandGrand.Token(0) == "angle" && grandGrand.Size() >= 2 && line.isArc)
+							repeat.repeatAngle = grandGrand.Value(1);
+						else if(grandGrand.Token(0) == "positions" && grandGrand.Size() >= 2)
+							repeat.repeatPositions = static_cast<int>(grandGrand.Value(1) + 0.5);
+						else
+							grandGrand.PrintTrace("Skipping unrecognized attribute:");
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 }
@@ -246,6 +296,12 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 		lineRepeatPositions += line.repeats[repeatNr].repeatPositions * ring;
 	}
 
+	// If we skip positions, then remove them from the counting.
+	if(line.skipFirst && lineRepeatPositions > 0)
+		--lineRepeatPositions;
+	if(line.skipLast && lineRepeatPositions > 0)
+		--lineRepeatPositions;
+
 	// If we are in a later ring, then skip lines that don't repeat.
 	if(lineRepeatPositions < 0)
 		return 0;
@@ -255,11 +311,11 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 
 
 
-// Get a formation position based on ring, line-number and position on the line.
+// Get a formation position based on ring, line (or arc)-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
 	unsigned int linePosition) const
 {
-	// First check if the inputs result in a valid line position.
+	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
 		return Point();
 	const Line &line = lines[lineNr];
@@ -270,7 +326,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	Point startPx = line.start;
 	Point endOrAnchorPx = line.endOrAnchor;
 
-	// Get the number of positions for this line.
+	// Get the number of positions for this line or arc.
 	int positions = line.positions;
 
 	// Check if we have a valid repeat section and apply it to the common calculations if we have it.
@@ -282,6 +338,38 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		endOrAnchorPx += repeat->repeatEndOrAnchor * ring;
 		positions += repeat->repeatPositions * ring;
 	}
+
+	if(line.skipFirst)
+		++linePosition;
+
+	// Switch to arc-specific calculations if this line is an arc.
+	if(line.isArc)
+	{
+		// Calculate angles and radius from anchor to start.
+		double startAngle = Angle(startPx).Degrees();
+		double endAngle = line.angle;
+		double radius = startPx.Length();
+
+		// Apply repeat section for endAngle, startAngle and anchor were already done before.
+		if(repeat)
+			endAngle += repeat->repeatAngle * ring;
+
+		// Apply positions to get the correct position-angle.
+		if(positions > 1)
+			endAngle /= positions - 1;
+		double positionAngle = startAngle + endAngle * linePosition;
+
+		// Get into the range of 0 to 360 for conversion to angle.
+		if(positionAngle < 0)
+			positionAngle = -fmod(-positionAngle, 360) + 360;
+		else
+			positionAngle = fmod(positionAngle, 360);
+
+		// Combine anchor with the position and return the result.
+		return endOrAnchorPx + Angle(positionAngle).Unit() * radius;
+	}
+
+	// This is not an arc, so perform the line-based calculations.
 
 	// Calculate the step from each position between start and end.
 	Point positionPx = endOrAnchorPx - startPx;
