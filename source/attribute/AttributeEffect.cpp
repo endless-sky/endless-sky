@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AttributeEffect.h"
 
-#include "AttributeAccess.h"
+#include "AttributeAccessor.h"
 
 
 
@@ -34,7 +34,7 @@ AttributeEffect::AttributeEffect(const AttributeEffectType type, const double va
 // Checks whether this effect is a multiplier.
 bool AttributeEffect::IsMultiplier() const
 {
-	return AttributeAccess::IsMultiplier(type);
+	return AttributeAccessor::IsMultiplier(type);
 }
 
 
@@ -42,7 +42,7 @@ bool AttributeEffect::IsMultiplier() const
 // Checks whether this effect is relative.
 bool AttributeEffect::IsRelative() const
 {
-	return AttributeAccess::IsRelative(type);
+	return AttributeAccessor::IsRelative(type);
 }
 
 
@@ -51,7 +51,7 @@ bool AttributeEffect::IsRelative() const
 // Required effects mark resource consumption when an action is taken.
 bool AttributeEffect::IsRequirement(const AttributeCategory category) const
 {
-	return AttributeAccess::IsRequirement(category, type);
+	return AttributeAccessor::IsRequirement(category, type);
 }
 
 
@@ -60,7 +60,7 @@ bool AttributeEffect::IsRequirement(const AttributeCategory category) const
 // passively applied effect.
 bool AttributeEffect::IsCapacity() const
 {
-	return AttributeAccess::IsCapacity(type);
+	return AttributeAccessor::IsCapacity(type);
 }
 
 

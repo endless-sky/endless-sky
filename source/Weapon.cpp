@@ -38,10 +38,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	doesDamage = false;
 	bool safeRangeOverriden = false;
 	// We're using infinity to keep track of whether these values have been parsed.
-	attributes.Set(AttributeAccess(DAMAGE, DISABLED), numeric_limits<double>::infinity());
-	attributes.Set(AttributeAccess(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
-	attributes.Set(AttributeAccess(DAMAGE, MINABLE), numeric_limits<double>::infinity());
-	attributes.Set(AttributeAccess(DAMAGE, MINABLE).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccessor(DAMAGE, DISABLED), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccessor(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccessor(DAMAGE, MINABLE), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccessor(DAMAGE, MINABLE).Relative(), numeric_limits<double>::infinity());
 
 	for(const DataNode &child : node)
 	{
@@ -243,16 +243,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 	}
 	// Disabled damage defaults to hull damage if not specified.
-	if(attributes.Get(AttributeAccess(DAMAGE, DISABLED)) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccess(DAMAGE, DISABLED), attributes.Get(AttributeAccess(DAMAGE, HULL)));
-	if(attributes.Get(AttributeAccess(DAMAGE, DISABLED).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccess(DAMAGE, DISABLED).Relative(),
-			attributes.Get(AttributeAccess(DAMAGE, HULL).Relative()));
+	if(attributes.Get(AttributeAccessor(DAMAGE, DISABLED)) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccessor(DAMAGE, DISABLED), attributes.Get(AttributeAccessor(DAMAGE, HULL)));
+	if(attributes.Get(AttributeAccessor(DAMAGE, DISABLED).Relative()) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccessor(DAMAGE, DISABLED).Relative(),
+			attributes.Get(AttributeAccessor(DAMAGE, HULL).Relative()));
 	// Minable damage defaults to hull damage if not specified.
-	if(attributes.Get(AttributeAccess(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccess(DAMAGE, MINABLE), attributes.Get(AttributeAccess(DAMAGE, HULL)));
-	if(attributes.Get(AttributeAccess(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccess(DAMAGE, MINABLE).Relative(), attributes.Get(AttributeAccess(DAMAGE, HULL).Relative()));
+	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccessor(DAMAGE, MINABLE), attributes.Get(AttributeAccessor(DAMAGE, HULL)));
+	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccessor(DAMAGE, MINABLE).Relative(), attributes.Get(AttributeAccessor(DAMAGE, HULL).Relative()));
 
 	// Sanity checks:
 	if(burstReload > reload)
@@ -361,7 +361,7 @@ double Weapon::Get(const char *attribute) const
 
 
 
-double Weapon::Get(const AttributeAccess attribute) const
+double Weapon::Get(const AttributeAccessor attribute) const
 {
 	return attributes.Get(attribute);
 }
@@ -491,13 +491,13 @@ double Weapon::TotalDamage(const AttributeEffectType effect) const
 		calculatedDamage = true;
 		for(int i = 0; i < ATTRIBUTE_EFFECT_COUNT; ++i)
 		{
-			AttributeAccess a(DAMAGE, static_cast<AttributeEffectType>(i));
+			AttributeAccessor a(DAMAGE, static_cast<AttributeEffectType>(i));
 			for(const auto &it : submunitions)
 				attributes.Add(a, it.weapon->attributes, it.count);
 			doesDamage |= (attributes.Get(a) > 0.);
 		}
 	}
-	return attributes.Get(AttributeAccess(DAMAGE, effect));
+	return attributes.Get(AttributeAccessor(DAMAGE, effect));
 }
 
 

@@ -1,4 +1,4 @@
-/* AttributeAccess.h
+/* AttributeAccessor.h
 Copyright (c) 2023 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -21,10 +21,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <optional>
 
-class AttributeAccess {
+class AttributeAccessor {
 public:
-	AttributeAccess(const AttributeCategory category, const AttributeEffectType effect);
-	AttributeAccess(const AttributeCategory category, const AttributeEffectType categoryEffect,
+	AttributeAccessor(const AttributeCategory category, const AttributeEffectType effect);
+	AttributeAccessor(const AttributeCategory category, const AttributeEffectType categoryEffect,
 			const AttributeEffectType effect);
 
 	// Accessors
@@ -35,20 +35,20 @@ public:
 	bool IsMultiplier() const;
 	static bool IsMultiplier(const AttributeEffectType effect);
 	// Creates a multiplier for this attribute, if not already a multiplier.
-	AttributeAccess Multiplier() const;
+	AttributeAccessor Multiplier() const;
 	static AttributeEffectType Multiplier(const AttributeEffectType effect);
 	// Checks whether this attribute is relative.
 	bool IsRelative() const;
 	static bool IsRelative(const AttributeEffectType effect);
 	// Creates a relative version of this attribute, if not already relative.
-	AttributeAccess Relative() const;
+	AttributeAccessor Relative() const;
 	static AttributeEffectType Relative(const AttributeEffectType effect);
 
 	// Gets the attribute's category effect (variant), or -1 if none.
 	AttributeEffectType GetCategoryEffect() const;
 	static AttributeEffectType GetCategoryEffect(const AttributeCategory category);
 	// Creates a version of this attribute that has the specified effect in its category.
-	AttributeAccess WithCategoryEffect(const AttributeEffectType type) const;
+	AttributeAccessor WithCategoryEffect(const AttributeEffectType type) const;
 	static AttributeCategory WithCategoryEffect(const AttributeCategory category, const AttributeEffectType effect);
 
 	// Checks whether this effect is a requirement for its category.
@@ -68,7 +68,7 @@ public:
 	template <typename A>
 	bool operator==(const A &other) const;
 
-	bool operator<(const AttributeAccess other) const;
+	bool operator<(const AttributeAccessor other) const;
 
 private:
 	// Checks if the given attribute category is always composite. These categories are always merged with their effect
@@ -84,7 +84,7 @@ private:
 
 
 template<class T>
-inline bool AttributeAccess::operator==(const T &other) const
+inline bool AttributeAccessor::operator==(const T &other) const
 {
 	return false;
 }
@@ -92,7 +92,7 @@ inline bool AttributeAccess::operator==(const T &other) const
 
 
 template<>
-inline bool AttributeAccess::operator==(const AttributeAccess &other) const
+inline bool AttributeAccessor::operator==(const AttributeAccessor &other) const
 {
 	return category == other.category && effect == other.effect;
 }

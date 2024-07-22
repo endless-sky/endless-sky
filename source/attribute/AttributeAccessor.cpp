@@ -1,4 +1,4 @@
-/* AttributeAccess.cpp
+/* AttributeAccessor.cpp
 Copyright (c) 2023 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "AttributeAccess.h"
+#include "AttributeAccessor.h"
 
 #include <limits>
 
@@ -21,15 +21,15 @@ using namespace std;
 
 
 
-AttributeAccess::AttributeAccess(const AttributeCategory category, const AttributeEffectType effect)
+AttributeAccessor::AttributeAccessor(const AttributeCategory category, const AttributeEffectType effect)
 		: category(IsAlwaysComposite(category) ? WithCategoryEffect(category, effect) : category), effect(effect)
 {
 }
 
 
 
-AttributeAccess::AttributeAccess(const AttributeCategory category, const AttributeEffectType categoryEffect,
-		const AttributeEffectType effect) : category(AttributeAccess::WithCategoryEffect(category, categoryEffect)),
+AttributeAccessor::AttributeAccessor(const AttributeCategory category, const AttributeEffectType categoryEffect,
+		const AttributeEffectType effect) : category(AttributeAccessor::WithCategoryEffect(category, categoryEffect)),
 		effect(effect)
 {
 }
@@ -37,14 +37,14 @@ AttributeAccess::AttributeAccess(const AttributeCategory category, const Attribu
 
 
 // Accessors.
-AttributeCategory AttributeAccess::Category() const
+AttributeCategory AttributeAccessor::Category() const
 {
 	return category;
 }
 
 
 
-AttributeEffectType AttributeAccess::Effect() const
+AttributeEffectType AttributeAccessor::Effect() const
 {
 	return effect;
 }
@@ -52,14 +52,14 @@ AttributeEffectType AttributeAccess::Effect() const
 
 
 // Checks whether this attribute is a multiplier.
-bool AttributeAccess::IsMultiplier() const
+bool AttributeAccessor::IsMultiplier() const
 {
 	return IsMultiplier(effect);
 }
 
 
 
-bool AttributeAccess::IsMultiplier(const AttributeEffectType effect)
+bool AttributeAccessor::IsMultiplier(const AttributeEffectType effect)
 {
 	return effect >= ATTRIBUTE_EFFECT_COUNT && (effect < ATTRIBUTE_EFFECT_COUNT * 2
 		|| effect >= ATTRIBUTE_EFFECT_COUNT * 3);
@@ -68,7 +68,7 @@ bool AttributeAccess::IsMultiplier(const AttributeEffectType effect)
 
 
 // Creates a multiplier for this attribute, if not already a multiplier.
-AttributeAccess AttributeAccess::Multiplier() const
+AttributeAccessor AttributeAccessor::Multiplier() const
 {
 	if(IsMultiplier())
 		return *this;
@@ -77,7 +77,7 @@ AttributeAccess AttributeAccess::Multiplier() const
 
 
 
-AttributeEffectType AttributeAccess::Multiplier(AttributeEffectType effect)
+AttributeEffectType AttributeAccessor::Multiplier(AttributeEffectType effect)
 {
 	return static_cast<AttributeEffectType>(effect + ATTRIBUTE_EFFECT_COUNT);
 }
@@ -85,30 +85,30 @@ AttributeEffectType AttributeAccess::Multiplier(AttributeEffectType effect)
 
 
 // Checks whether this attribute is relative.
-bool AttributeAccess::IsRelative() const
+bool AttributeAccessor::IsRelative() const
 {
 	return IsRelative(effect);
 }
 
 
 
-bool AttributeAccess::IsRelative(const AttributeEffectType effect)
+bool AttributeAccessor::IsRelative(const AttributeEffectType effect)
 {
 	return effect >= ATTRIBUTE_EFFECT_COUNT * 2;
 }
 
 
 // Creates a relative version of this attribute, if not already relative.
-AttributeAccess AttributeAccess::Relative() const
+AttributeAccessor AttributeAccessor::Relative() const
 {
 	if(IsRelative())
 		return *this;
-	return AttributeAccess(category, Relative(effect));
+	return AttributeAccessor(category, Relative(effect));
 }
 
 
 
-AttributeEffectType AttributeAccess::Relative(const AttributeEffectType effect)
+AttributeEffectType AttributeAccessor::Relative(const AttributeEffectType effect)
 {
 	return static_cast<AttributeEffectType>(effect + 2 * ATTRIBUTE_EFFECT_COUNT);
 }
@@ -116,14 +116,14 @@ AttributeEffectType AttributeAccess::Relative(const AttributeEffectType effect)
 
 
 // Gets the attribute's category effect (variant), or -1 if none.
-AttributeEffectType AttributeAccess::GetCategoryEffect() const
+AttributeEffectType AttributeAccessor::GetCategoryEffect() const
 {
 	return GetCategoryEffect(category);
 }
 
 
 
-AttributeEffectType AttributeAccess::GetCategoryEffect(const AttributeCategory category)
+AttributeEffectType AttributeAccessor::GetCategoryEffect(const AttributeCategory category)
 {
 	return static_cast<AttributeEffectType>((category / ATTRIBUTE_CATEGORY_COUNT) - 1);
 }
@@ -131,14 +131,14 @@ AttributeEffectType AttributeAccess::GetCategoryEffect(const AttributeCategory c
 
 
 // Creates a version of this attribute that has the specified effect in its category.
-AttributeAccess AttributeAccess::WithCategoryEffect(const AttributeEffectType type) const
+AttributeAccessor AttributeAccessor::WithCategoryEffect(const AttributeEffectType type) const
 {
-	return AttributeAccess(WithCategoryEffect(category, type), effect);
+	return AttributeAccessor(WithCategoryEffect(category, type), effect);
 }
 
 
 
-AttributeCategory AttributeAccess::WithCategoryEffect(const AttributeCategory category,
+AttributeCategory AttributeAccessor::WithCategoryEffect(const AttributeCategory category,
 		const AttributeEffectType effect)
 {
 	return static_cast<AttributeCategory>((category % ATTRIBUTE_CATEGORY_COUNT) +
@@ -149,14 +149,14 @@ AttributeCategory AttributeAccess::WithCategoryEffect(const AttributeCategory ca
 
 // Checks whether this effect is a requirement for its category.
 // Required effects mark resource consumption when an action is taken.
-bool AttributeAccess::IsRequirement() const
+bool AttributeAccessor::IsRequirement() const
 {
 	return IsRequirement(category, effect);
 }
 
 
 
-bool AttributeAccess::IsRequirement(const AttributeCategory category, const AttributeEffectType effect)
+bool AttributeAccessor::IsRequirement(const AttributeCategory category, const AttributeEffectType effect)
 {
 	if(category == PASSIVE || category == DAMAGE || category == PROTECTION)
 		return false;
@@ -171,7 +171,7 @@ bool AttributeAccess::IsRequirement(const AttributeCategory category, const Attr
 
 // Checks if this effect, when used with the PASSIVE category, denotes a capacity or a
 // passively applied effect.
-bool AttributeAccess::IsCapacity(const AttributeEffectType effect)
+bool AttributeAccessor::IsCapacity(const AttributeEffectType effect)
 {
 	return effect != COOLING;
 }
@@ -180,7 +180,7 @@ bool AttributeAccess::IsCapacity(const AttributeEffectType effect)
 
 // Gets the basic effect of an attribute category. This is the effect used when
 // the category is used in a node with a value directly applied to it.
-optional<AttributeEffectType> AttributeAccess::GetBaseEffect(const AttributeCategory category)
+optional<AttributeEffectType> AttributeAccessor::GetBaseEffect(const AttributeCategory category)
 {
 	// Categories until CLOAKING correspond to their effects.
 	if(category <= CLOAKING)
@@ -195,7 +195,7 @@ optional<AttributeEffectType> AttributeAccess::GetBaseEffect(const AttributeCate
 
 
 // Gets the default minimum value for this attribute.
-double AttributeAccess::GetDefaultMinimum() const
+double AttributeAccessor::GetDefaultMinimum() const
 {
 	if(IsMultiplier())
 		return -1.;
@@ -206,14 +206,14 @@ double AttributeAccess::GetDefaultMinimum() const
 
 
 
-bool AttributeAccess::operator<(const AttributeAccess other) const
+bool AttributeAccessor::operator<(const AttributeAccessor other) const
 {
 	if(category == other.category)
 		return effect < other.effect;
 	return category < other.category;
 }
 
-bool AttributeAccess::IsAlwaysComposite(const AttributeCategory category)
+bool AttributeAccessor::IsAlwaysComposite(const AttributeCategory category)
 {
 	return category == RESISTANCE || category == PROTECTION;
 }

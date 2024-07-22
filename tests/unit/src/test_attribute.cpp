@@ -27,91 +27,91 @@ namespace { // test namespace
 
 
 // #region unit tests
-TEST_CASE( "AttributeAccess::IsMultiplier", "[AttributeAccess][IsMultiplier]" ) {
+TEST_CASE( "AttributeAccessor::IsMultiplier", "[AttributeAccessor][IsMultiplier]" ) {
 	SECTION( "Base effect" ) {
-		CHECK( !AttributeAccess(PASSIVE, SHIELDS).IsMultiplier() );
-		CHECK( !AttributeAccess(PASSIVE, ENERGY).IsMultiplier() );
-		CHECK( !AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1)).IsMultiplier() );
+		CHECK( !AttributeAccessor(PASSIVE, SHIELDS).IsMultiplier() );
+		CHECK( !AttributeAccessor(PASSIVE, ENERGY).IsMultiplier() );
+		CHECK( !AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1)).IsMultiplier() );
 	}
 	SECTION( "Multiplier effect" ) {
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Multiplier().IsMultiplier() );
-		CHECK( AttributeAccess(PASSIVE, ENERGY).Multiplier().IsMultiplier() );
-		CHECK( AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Multiplier().IsMultiplier() );
+		CHECK( AttributeAccessor(PASSIVE, ENERGY).Multiplier().IsMultiplier() );
+		CHECK( AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
 				.Multiplier().IsMultiplier());
 	}
 	SECTION( "Relative effect" ) {
-		CHECK( !AttributeAccess(PASSIVE, SHIELDS).Relative().IsMultiplier() );
-		CHECK( !AttributeAccess(PASSIVE, ENERGY).Relative().IsMultiplier() );
-		CHECK( !AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
+		CHECK( !AttributeAccessor(PASSIVE, SHIELDS).Relative().IsMultiplier() );
+		CHECK( !AttributeAccessor(PASSIVE, ENERGY).Relative().IsMultiplier() );
+		CHECK( !AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
 				.Relative().IsMultiplier());
 	}
 	SECTION( "Relative multiplier effect" ) {
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Multiplier().Relative().IsMultiplier() );
-		CHECK( AttributeAccess(PASSIVE, ENERGY).Multiplier().Relative().IsMultiplier() );
-		CHECK( AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Multiplier().Relative().IsMultiplier() );
+		CHECK( AttributeAccessor(PASSIVE, ENERGY).Multiplier().Relative().IsMultiplier() );
+		CHECK( AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
 				.Multiplier().Relative().IsMultiplier());
 	}
 }
 
-TEST_CASE( "AttributeAccess::IsRelative", "[AttributeAccess][IsRelative]" ) {
+TEST_CASE( "AttributeAccessor::IsRelative", "[AttributeAccessor][IsRelative]" ) {
 	SECTION( "Base effect" ) {
-		CHECK( !AttributeAccess(PASSIVE, SHIELDS).IsRelative() );
-		CHECK( !AttributeAccess(PASSIVE, ENERGY).IsRelative() );
-		CHECK( !AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1)).IsRelative() );
+		CHECK( !AttributeAccessor(PASSIVE, SHIELDS).IsRelative() );
+		CHECK( !AttributeAccessor(PASSIVE, ENERGY).IsRelative() );
+		CHECK( !AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1)).IsRelative() );
 	}
 	SECTION( "Multiplier effect" ) {
-		CHECK( !AttributeAccess(PASSIVE, SHIELDS).Multiplier().IsRelative() );
-		CHECK( !AttributeAccess(PASSIVE, ENERGY).Multiplier().IsRelative() );
-		CHECK( !AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
+		CHECK( !AttributeAccessor(PASSIVE, SHIELDS).Multiplier().IsRelative() );
+		CHECK( !AttributeAccessor(PASSIVE, ENERGY).Multiplier().IsRelative() );
+		CHECK( !AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
 				.Multiplier().IsRelative());
 	}
 	SECTION( "Relative effect" ) {
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Relative().IsRelative() );
-		CHECK( AttributeAccess(PASSIVE, ENERGY).Relative().IsRelative() );
-		CHECK( AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Relative().IsRelative() );
+		CHECK( AttributeAccessor(PASSIVE, ENERGY).Relative().IsRelative() );
+		CHECK( AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
 				.Relative().IsRelative());
 	}
 	SECTION( "Relative multiplier effect" ) {
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Multiplier().Relative().IsRelative() );
-		CHECK( AttributeAccess(PASSIVE, ENERGY).Multiplier().Relative().IsRelative() );
-		CHECK( AttributeAccess(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Multiplier().Relative().IsRelative() );
+		CHECK( AttributeAccessor(PASSIVE, ENERGY).Multiplier().Relative().IsRelative() );
+		CHECK( AttributeAccessor(PASSIVE, static_cast<AttributeEffectType>(ATTRIBUTE_EFFECT_COUNT - 1))
 				.Multiplier().Relative().IsRelative());
 	}
 }
 
-TEST_CASE( "AttributeAccess::Relative", "[AttributeAccess][Relative]" ) {
+TEST_CASE( "AttributeAccessor::Relative", "[AttributeAccessor][Relative]" ) {
 	SECTION( "Equality" ) {
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Relative() == AttributeAccess(PASSIVE, SHIELDS).Relative().Relative() );
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Relative().Multiplier() ==
-				AttributeAccess(PASSIVE, SHIELDS).Multiplier().Relative() );
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Relative() == AttributeAccessor(PASSIVE, SHIELDS).Relative().Relative() );
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Relative().Multiplier() ==
+				AttributeAccessor(PASSIVE, SHIELDS).Multiplier().Relative() );
 	}
 }
 
-TEST_CASE( "AttributeAccess::Multiplier", "[AttributeAccess][Multiplier]" ) {
+TEST_CASE( "AttributeAccessor::Multiplier", "[AttributeAccessor][Multiplier]" ) {
 	SECTION( "Equality" ) {
-		CHECK( AttributeAccess(PASSIVE, SHIELDS).Multiplier() ==
-				AttributeAccess(PASSIVE, SHIELDS).Multiplier().Multiplier() );
+		CHECK( AttributeAccessor(PASSIVE, SHIELDS).Multiplier() ==
+				AttributeAccessor(PASSIVE, SHIELDS).Multiplier().Multiplier() );
 	}
 }
 
-TEST_CASE( "AttributeAccess::IsRequirement", "[AttributeAccess][IsRequirement]" ) {
+TEST_CASE( "AttributeAccessor::IsRequirement", "[AttributeAccessor][IsRequirement]" ) {
 	SECTION( "Passive effects" ) {
-		CHECK( !AttributeAccess(PASSIVE, SHIELDS).IsRequirement() );
-		CHECK( !AttributeAccess(PASSIVE, ENERGY).IsRequirement() );
+		CHECK( !AttributeAccessor(PASSIVE, SHIELDS).IsRequirement() );
+		CHECK( !AttributeAccessor(PASSIVE, ENERGY).IsRequirement() );
 	}
 	SECTION( "Matching action and effect" ) {
-		CHECK( !AttributeAccess(SHIELD_GENERATION, SHIELDS).IsRequirement() );
+		CHECK( !AttributeAccessor(SHIELD_GENERATION, SHIELDS).IsRequirement() );
 	}
 	SECTION( "Requirements" ) {
-		CHECK( AttributeAccess(SHIELD_GENERATION, ENERGY).IsRequirement() );
-		CHECK( AttributeAccess(THRUSTING, FUEL).IsRequirement() );
-		CHECK( AttributeAccess(THRUSTING, HULL).IsRequirement() );
-		CHECK( AttributeAccess(ACTIVE_COOL, ENERGY).IsRequirement() );
+		CHECK( AttributeAccessor(SHIELD_GENERATION, ENERGY).IsRequirement() );
+		CHECK( AttributeAccessor(THRUSTING, FUEL).IsRequirement() );
+		CHECK( AttributeAccessor(THRUSTING, HULL).IsRequirement() );
+		CHECK( AttributeAccessor(ACTIVE_COOL, ENERGY).IsRequirement() );
 	}
 	SECTION( "Other effects" ) {
-		CHECK( !AttributeAccess(SHIELD_GENERATION, HEAT).IsRequirement() );
-		CHECK( !AttributeAccess(THRUSTING, COOLING).IsRequirement() );
-		CHECK( !AttributeAccess(AFTERBURNING, ION).IsRequirement() );
+		CHECK( !AttributeAccessor(SHIELD_GENERATION, HEAT).IsRequirement() );
+		CHECK( !AttributeAccessor(THRUSTING, COOLING).IsRequirement() );
+		CHECK( !AttributeAccessor(AFTERBURNING, ION).IsRequirement() );
 	}
 }
 

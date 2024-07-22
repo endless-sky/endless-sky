@@ -37,7 +37,7 @@ const map<string, double> AttributeStore::MINIMUM_OVERRIDES = {
 
 
 // Checking if an attribute is present.
-bool AttributeStore::IsPresent(const AttributeAccess attribute) const
+bool AttributeStore::IsPresent(const AttributeAccessor attribute) const
 {
 	return Get(attribute) != 0.;
 }
@@ -52,7 +52,7 @@ bool AttributeStore::IsPresent(const char *attribute) const
 
 
 // Getting the value of an attribute, or a default.
-double AttributeStore::Get(const AttributeAccess attribute) const
+double AttributeStore::Get(const AttributeAccessor attribute) const
 {
 	const AttributeEffect *e = GetEffect(attribute);
 	if(e == nullptr)
@@ -87,7 +87,7 @@ Attribute *AttributeStore::GetAttribute(const AttributeCategory category)
 
 
 
-const AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access) const
+const AttributeEffect *AttributeStore::GetEffect(const AttributeAccessor access) const
 {
 	const Attribute *a = GetAttribute(access.Category());
 	if(a == nullptr)
@@ -97,7 +97,7 @@ const AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access) c
 
 
 
-AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access)
+AttributeEffect *AttributeStore::GetEffect(const AttributeAccessor access)
 {
 	// Using const_cast is fine because the object isn't const originally.
 	return const_cast<AttributeEffect*>(const_cast<const AttributeStore*>(this)->GetEffect(access));
@@ -114,7 +114,7 @@ void AttributeStore::Set(const char *attribute, double value)
 
 
 
-void AttributeStore::Set(const AttributeAccess access, double value)
+void AttributeStore::Set(const AttributeAccessor access, double value)
 {
 	Attribute *a = GetAttribute(access.Category());
 	if(!a)
@@ -150,7 +150,7 @@ bool AttributeStore::empty() const
 
 
 // Gets the minimum allowed value of the attribute.
-double AttributeStore::GetMinimum(const AttributeAccess attribute) const
+double AttributeStore::GetMinimum(const AttributeAccessor attribute) const
 {
 	const AttributeEffect *e = GetEffect(attribute);
 	if(e == nullptr)
@@ -199,7 +199,7 @@ void AttributeStore::Save(DataWriter &writer) const
 		DataNode node;
 		node.AddToken(Attribute::GetCategoryName(it.first));
 		// The base effect of the attribute that is put on the category's line.
-		optional<AttributeEffectType> baseEffect = AttributeAccess::GetBaseEffect(it.first);
+		optional<AttributeEffectType> baseEffect = AttributeAccessor::GetBaseEffect(it.first);
 		for(auto &entry : it.second.Effects())
 		{
 			if(!entry.second.Value())
@@ -235,7 +235,7 @@ int AttributeStore::CanAdd(const AttributeStore &other, int count) const
 		count = min(count, CanAdd(string(it.first), other, count));
 	for(auto &it : other.categorizedAttributes)
 		for(const auto &item : it.second.Effects())
-			count = min(count, CanAdd(AttributeAccess(it.first, item.first), other, count));
+			count = min(count, CanAdd(AttributeAccessor(it.first, item.first), other, count));
 
 	return count;
 }
@@ -259,5 +259,5 @@ void AttributeStore::ForEach(const std::function<void(const AnyAttribute &, doub
 		function({it.first}, it.second);
 	for(auto &it : categorizedAttributes)
 		for(const auto &item : it.second.Effects())
-			function({AttributeAccess(it.first, item.first)}, item.second.Value());
+			function({AttributeAccessor(it.first, item.first)}, item.second.Value());
 }

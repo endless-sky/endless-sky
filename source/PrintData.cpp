@@ -243,9 +243,9 @@ namespace {
 					+ attributes.Get({TURNING, ENERGY})
 					+ attributes.Get({AFTERBURNING, ENERGY})
 					+ attributes.Get("fuel energy")
-					+ (attributes.Get({HULL_REPAIR, ENERGY}) * (1 + attributes.Get(AttributeAccess(HULL_REPAIR, ENERGY).Multiplier())))
+					+ (attributes.Get({HULL_REPAIR, ENERGY}) * (1 + attributes.Get(AttributeAccessor(HULL_REPAIR, ENERGY).Multiplier())))
 					+ (attributes.Get({SHIELD_GENERATION, ENERGY}) *
-							(1 + attributes.Get(AttributeAccess(SHIELD_GENERATION, ENERGY).Multiplier())))
+							(1 + attributes.Get(AttributeAccessor(SHIELD_GENERATION, ENERGY).Multiplier())))
 					+ attributes.Get({ACTIVE_COOL, ENERGY})
 					+ attributes.Get({CLOAKING, ENERGY});
 
@@ -254,9 +254,9 @@ namespace {
 					+ attributes.Get({TURNING, HEAT})
 					+ attributes.Get({AFTERBURNING, HEAT})
 					+ attributes.Get("fuel heat")
-					+ (attributes.Get({HULL_REPAIR, HEAT}) * (1. + attributes.Get(AttributeAccess(HULL_REPAIR, HEAT).Multiplier())))
+					+ (attributes.Get({HULL_REPAIR, HEAT}) * (1. + attributes.Get(AttributeAccessor(HULL_REPAIR, HEAT).Multiplier())))
 					+ (attributes.Get({SHIELD_GENERATION, HEAT}) *
-							(1. + attributes.Get(AttributeAccess(SHIELD_GENERATION, HEAT).Multiplier())))
+							(1. + attributes.Get(AttributeAccessor(SHIELD_GENERATION, HEAT).Multiplier())))
 					+ attributes.Get("solar heat")
 					+ attributes.Get({CLOAKING, HEAT});
 

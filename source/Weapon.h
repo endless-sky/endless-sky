@@ -215,7 +215,7 @@ public:
 	double Get(const char *attribute) const;
 	template <class T>
 	double Get(const T &attribute) const;
-	double Get(const AttributeAccess attribute) const;
+	double Get(const AttributeAccessor attribute) const;
 	const AttributeStore &Attributes() const;
 
 protected:
@@ -378,11 +378,11 @@ inline double Weapon::FiringCorrosion() const{ return Get({FIRING, CORROSION}); 
 inline double Weapon::FiringLeak() const{ return Get({FIRING, LEAK}); }
 inline double Weapon::FiringBurn() const{ return Get({FIRING, BURN}); }
 
-inline double Weapon::RelativeFiringEnergy() const{ return Get(AttributeAccess(FIRING, ENERGY).Relative()); }
-inline double Weapon::RelativeFiringHeat() const{ return Get(AttributeAccess(FIRING, HEAT).Relative()); }
-inline double Weapon::RelativeFiringFuel() const{ return Get(AttributeAccess(FIRING, FUEL).Relative()); }
-inline double Weapon::RelativeFiringHull() const{ return Get(AttributeAccess(FIRING, HULL).Relative()); }
-inline double Weapon::RelativeFiringShields() const{ return Get(AttributeAccess(FIRING, SHIELDS).Relative()); }
+inline double Weapon::RelativeFiringEnergy() const{ return Get(AttributeAccessor(FIRING, ENERGY).Relative()); }
+inline double Weapon::RelativeFiringHeat() const{ return Get(AttributeAccessor(FIRING, HEAT).Relative()); }
+inline double Weapon::RelativeFiringFuel() const{ return Get(AttributeAccessor(FIRING, FUEL).Relative()); }
+inline double Weapon::RelativeFiringHull() const{ return Get(AttributeAccessor(FIRING, HULL).Relative()); }
+inline double Weapon::RelativeFiringShields() const{ return Get(AttributeAccessor(FIRING, SHIELDS).Relative()); }
 
 inline double Weapon::Piercing() const { return Get({DAMAGE, PIERCING}); }
 
@@ -421,19 +421,19 @@ inline double Weapon::LeakDamage() const { return TotalDamage(LEAK); }
 inline double Weapon::BurnDamage() const { return TotalDamage(BURN); }
 
 inline double Weapon::RelativeShieldDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, SHIELDS).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, SHIELDS).Relative().Effect()); }
 inline double Weapon::RelativeHullDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, HULL).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, HULL).Relative().Effect()); }
 inline double Weapon::RelativeDisabledDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, DISABLED).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, DISABLED).Relative().Effect()); }
 inline double Weapon::RelativeMinableDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, MINABLE).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, MINABLE).Relative().Effect()); }
 inline double Weapon::RelativeFuelDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, FUEL).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, FUEL).Relative().Effect()); }
 inline double Weapon::RelativeHeatDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, HEAT).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, HEAT).Relative().Effect()); }
 inline double Weapon::RelativeEnergyDamage() const {
-		return TotalDamage(AttributeAccess(DAMAGE, ENERGY).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, ENERGY).Relative().Effect()); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(SHIELDS); return doesDamage; }
 

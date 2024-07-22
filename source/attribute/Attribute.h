@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ATTRIBUTE_H_
 #define ATTRIBUTE_H_
 
-#include "AttributeAccess.h"
+#include "AttributeAccessor.h"
 #include "AttributeCategory.h"
 #include "AttributeEffect.h"
 #include "../DataNode.h"
@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <variant>
 
-using AnyAttribute = std::variant<std::string, AttributeAccess>;
+using AnyAttribute = std::variant<std::string, AttributeAccessor>;
 
 class Attribute {
 public:
@@ -34,7 +34,7 @@ public:
 	// Copies an attribute and multiplies all of its values.
 	Attribute(const Attribute &other, double multiplier = 1.);
 	// Creates an attribute with a single initial effect.
-	Attribute(const AttributeAccess access, double value = 1.);
+	Attribute(const AttributeAccessor access, double value = 1.);
 	// Gets the attribute for the specified token, if any.
 	static Attribute *Parse(const std::string &token);
 
@@ -42,7 +42,7 @@ public:
 	// The node is a single attribute effect within an attribute category node.
 	void Parse(const DataNode &node);
 
-	// Parses an attribute into an AttributeAccess or the original string.
+	// Parses an attribute into an AttributeAccessor or the original string.
 	static AnyAttribute ParseAny(const std::string &attribute);
 
 	// Gets the data format name of the effect, as used in the new syntax. This also supports
@@ -53,7 +53,7 @@ public:
 	// variants.
 	static std::string GetCategoryName(const AttributeCategory category);
 	// Gets the old-style name of the attribute.
-	static std::string GetLegacyName(const AttributeAccess access);
+	static std::string GetLegacyName(const AttributeAccessor access);
 	static std::string GetLegacyName(const AnyAttribute &attribute);
 
 	// Gets the category of this attribute.

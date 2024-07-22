@@ -2708,13 +2708,13 @@ double Ship::DisabledHull() const
 // Get the maximum shield and hull values of the ship, accounting for multipliers.
 double Ship::MaxShields() const
 {
-	return attributes.Get({PASSIVE, SHIELDS}) * (1 + attributes.Get(AttributeAccess(PASSIVE, SHIELDS).Multiplier()));
+	return attributes.Get({PASSIVE, SHIELDS}) * (1 + attributes.Get(AttributeAccessor(PASSIVE, SHIELDS).Multiplier()));
 }
 
 
 double Ship::MaxHull() const
 {
-	return attributes.Get({PASSIVE, HULL}) * (1 + attributes.Get(AttributeAccess(PASSIVE, HULL).Multiplier()));
+	return attributes.Get({PASSIVE, HULL}) * (1 + attributes.Get(AttributeAccessor(PASSIVE, HULL).Multiplier()));
 }
 
 
@@ -2983,7 +2983,7 @@ double Ship::InertialMass() const
 double Ship::TurnRate() const
 {
 	return attributes.Get({TURNING, TURN}) / InertialMass()
-		* (1. + attributes.Get(AttributeAccess(TURNING, TURN).Multiplier()));
+		* (1. + attributes.Get(AttributeAccessor(TURNING, TURN).Multiplier()));
 }
 
 
@@ -3891,32 +3891,32 @@ void Ship::DoGeneration()
 
 		const double hullAvailable = (attributes.Get({HULL_REPAIR, HULL})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, HULL}.Multiplier()));
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, HULL}.Multiplier()));
 		const double hullEnergy = (attributes.Get({HULL_REPAIR, ENERGY})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
-			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, ENERGY}.Multiplier())) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, ENERGY}.Multiplier())) / hullAvailable;
 		const double hullFuel = (attributes.Get({HULL_REPAIR, FUEL})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull fuel")))
-			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, FUEL}.Multiplier())) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, FUEL}.Multiplier())) / hullAvailable;
 		const double hullHeat = (attributes.Get({HULL_REPAIR, HEAT})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull heat")))
-			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, HEAT}.Multiplier())) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, HEAT}.Multiplier())) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		DoRepair(hull, hullRemaining, MaxHull(),
 			energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
 		const double shieldsAvailable = (attributes.Get({SHIELD_GENERATION, SHIELDS})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, SHIELDS}.Multiplier()));
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, SHIELDS}.Multiplier()));
 		const double shieldsEnergy = (attributes.Get({SHIELD_GENERATION, ENERGY})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
-			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, ENERGY}.Multiplier())) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, ENERGY}.Multiplier())) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get({SHIELD_GENERATION, FUEL})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield fuel")))
-			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, FUEL}.Multiplier())) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, FUEL}.Multiplier())) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get({SHIELD_GENERATION, HEAT})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield heat")))
-			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, HEAT}.Multiplier())) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, HEAT}.Multiplier())) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		DoRepair(shields, shieldsRemaining, MaxShields(),
 			energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);

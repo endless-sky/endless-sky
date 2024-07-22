@@ -44,15 +44,15 @@ TEST_CASE( "AttributeStore::GetMinimum", "[AttributeStore][GetMinimum]" ) {
 		CHECK( a.GetMinimum("fuel consumption") == std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Multipliers" ) {
-		CHECK( a.GetMinimum(AttributeAccess(SHIELD_GENERATION, SHIELDS).Multiplier()) == -1. );
-		CHECK( a.GetMinimum(AttributeAccess(THRUSTING, ENERGY).Relative().Multiplier()) == -1. );
+		CHECK( a.GetMinimum(AttributeAccessor(SHIELD_GENERATION, SHIELDS).Multiplier()) == -1. );
+		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, ENERGY).Relative().Multiplier()) == -1. );
 	}
 	SECTION( "Protection" ) {
-		CHECK( a.GetMinimum(AttributeAccess(PROTECTION, SCRAMBLE)) == -0.99 );
-		CHECK( a.GetMinimum(AttributeAccess(PROTECTION, SCRAMBLE, ENERGY)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccessor(PROTECTION, SCRAMBLE)) == -0.99 );
+		CHECK( a.GetMinimum(AttributeAccessor(PROTECTION, SCRAMBLE, ENERGY)) == std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Others" ) {
-		CHECK( a.GetMinimum(AttributeAccess(THRUSTING, SCRAMBLE)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, SCRAMBLE)) == std::numeric_limits<double>::lowest() );
 	}
 }
 
@@ -62,9 +62,9 @@ TEST_CASE( "AttributeStore::Set", "[AttributeStore][Set]" ) {
 	SECTION( "Empty when only contains 0" ) {
 		CHECK( a.empty() );
 	}
-	a.Set(AttributeAccess(PROTECTION, SCRAMBLE), -2.);
+	a.Set(AttributeAccessor(PROTECTION, SCRAMBLE), -2.);
 	SECTION( "Respecting minimum values" ) {
-		CHECK( a.Get(AttributeAccess(PROTECTION, SCRAMBLE)) == -0.99 );
+		CHECK( a.Get(AttributeAccessor(PROTECTION, SCRAMBLE)) == -0.99 );
 	}
 	SECTION( "Doesn't update legacy values" ) {
 		CHECK( a.Get("scramble protection") == 0. );

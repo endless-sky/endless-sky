@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ATTRIBUTE_STORE_H_
 
 #include "attribute/Attribute.h"
-#include "attribute/AttributeAccess.h"
+#include "attribute/AttributeAccessor.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dictionary.h"
@@ -31,23 +31,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class AttributeStore {
 public:
 	// Checks whether the specified attribute is defined here.
-	bool IsPresent(const AttributeAccess attribute) const;
+	bool IsPresent(const AttributeAccessor attribute) const;
 	template <class T>
 	bool IsPresent(const T &attribute) const;
 	bool IsPresent(const char *attribute) const;
 	// Gets the value of the specified attribute, or 0 if not present.
-	double Get(const AttributeAccess attribute) const;
+	double Get(const AttributeAccessor attribute) const;
 	template <class T>
 	double Get(const T &attribute) const;
 	double Get(const char *attribute) const;
 	// Gets the attribute for the specified category, or nullptr.
 	const Attribute *GetAttribute(const AttributeCategory category) const;
 	Attribute *GetAttribute(const AttributeCategory category);
-	const AttributeEffect *GetEffect(const AttributeAccess access) const;
-	AttributeEffect *GetEffect(const AttributeAccess access);
+	const AttributeEffect *GetEffect(const AttributeAccessor access) const;
+	AttributeEffect *GetEffect(const AttributeAccessor access);
 	// Sets the value of the specified attribute. If the attribute is not present, it is added to this collection
 	// with this value.
-	void Set(const AttributeAccess attribute, double value);
+	void Set(const AttributeAccessor attribute, double value);
 	template <class T>
 	void Set(const T &attribute, double value);
 	void Set(const char *attribute, double value);
@@ -56,7 +56,7 @@ public:
 	bool empty() const;
 
 	// Gets the minimum allowed value of the attribute.
-	double GetMinimum(const AttributeAccess attribute) const;
+	double GetMinimum(const AttributeAccessor attribute) const;
 	template <class T>
 	double GetMinimum(const T &attribute) const;
 	double GetMinimum(const char *attribute) const;

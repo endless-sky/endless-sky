@@ -365,8 +365,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shift.h
 	attribute/Attribute.cpp
 	attribute/Attribute.h
-	attribute/AttributeAccess.cpp
-	attribute/AttributeAccess.h
+	attribute/AttributeAccessor.cpp
+	attribute/AttributeAccessor.h
 	attribute/AttributeCategory.h
 	attribute/AttributeEffect.cpp
 	attribute/AttributeEffect.h
