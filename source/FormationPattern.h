@@ -126,11 +126,19 @@ private:
 		Point start;
 		Point endOrAnchor;
 
+		// Angle in case this line is an arc.
+		double angle = 0;
+
 		// Sections of the line that repeat.
 		std::vector<LineRepeat> repeats;
 
 		// The number of initial positions for this line.
 		int positions = 1;
+
+		// Properties of how the line behaves.
+		bool isArc = false;
+		bool skipFirst = false;
+		bool skipLast = false;
 	};
 
 
