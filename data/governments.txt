@@ -760,7 +760,6 @@ government "Hicemus"
 	"crew attack" .2
 	"crew defense" 1
 	language "Incups"
-	"player reputation" 0
 	"attitude toward"
 		"Conlatio" 1
 		"Incipias Civilian" 1
@@ -774,7 +773,6 @@ government "Incipias Civilian"
 	"crew attack" .2
 	"crew defense" 1
 	language "Incups"
-	"player reputation" 0
 	"attitude toward"
 		"Hicemus" 1
 		"Conlatio" 1
