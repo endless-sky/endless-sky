@@ -51,7 +51,6 @@ public:
 	bool HasValidPlanet() const;
 	// Get this object's planet, if any. It may or may not be fully defined.
 	const Planet *GetPlanet() const;
-	Planet *GetPlanet();
 
 	// Only planets that you can land on have names.
 	const std::string &Name() const;

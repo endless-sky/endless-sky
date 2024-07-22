@@ -71,13 +71,6 @@ const Planet *StellarObject::GetPlanet() const
 
 
 
-Planet *StellarObject::GetPlanet()
-{
-	return planet;
-}
-
-
-
 // Only planets that you can land on have names.
 const string &StellarObject::Name() const
 {
