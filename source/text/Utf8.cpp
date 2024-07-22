@@ -23,6 +23,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	constexpr char32_t BOM = 0x0000FEFF;
+}
+
+
+
 namespace Utf8 {
 #if defined(_WIN32)
 	wstring ToUTF16(const string &input, bool isPath)
@@ -57,6 +63,14 @@ namespace Utf8 {
 		return result;
 	}
 #endif
+
+
+
+	// Check if this character is the byte order mark (BOM) sequence.
+	bool IsBOM(char32_t c)
+	{
+		return c == BOM;
+	}
 
 
 

@@ -257,7 +257,7 @@ mission "Remnant: Cognizance 5"
 				"Petrel" 4
 				"Tern" 8
 	on enter "Aescolanus"
-		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
+		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... quickly.`
 	on enter "Nenia"
 		dialog `You have found the Korath fleet. Time to destroy them all as Prefect Chilia requested.`
 	on complete
@@ -819,7 +819,7 @@ mission "Remnant: Cognizance 21"
 			label missiontransition
 			`	Dusk smiles and signs apologetically. "My apologies for being overly detailed. I found the study of our ancestors to be an intriguing one, so I have spent much time searching out my families' history. That, in turn, has led to a detailed interest in the early years of our society." Dusk gestures towards the holographic projection of Ssil Vida. "But enough of history, the present calls to us."`
 			label missiondescription
-			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: we go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... Well, we will see what the data says and decide from there."`
+			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: we go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... well, we will see what the data says and decide from there."`
 				accept
 	on accept
 		set "remnant: dusk busy"
@@ -1029,7 +1029,7 @@ mission "Remnant: Cognizance 23"
 				`	"They are beautiful."`
 			`	Taely nods in agreement. "I am glad you can appreciate some of the things we have achieved here. It makes me think that you will appreciate some of my other projects too.`
 			label turndown
-			`	"Historically, we have relied on Starlings to fill multiple light combat roles here in the Ember Waste. Reconnaissance, sentry duty, escort, picket, patrol... They have filled so many roles." She pauses, glancing at a departing Starling. "Of course, we could just make more Starlings, but our pool of specialized crew is not infinite either. The solution I have is these Mergansers. They are sufficiently advanced that they only require a single person to operate and have significant range, enough to patrol large portions of the Ember Waste. This makes them ideal for escorting Gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
+			`	"Historically, we have relied on Starlings to fill multiple light combat roles here in the Ember Waste. Reconnaissance, sentry duty, escort, picket, patrol... they have filled so many roles." She pauses, glancing at a departing Starling. "Of course, we could just make more Starlings, but our pool of specialized crew is not infinite either. The solution I have is these Mergansers. They are sufficiently advanced that they only require a single person to operate and have significant range, enough to patrol large portions of the Ember Waste. This makes them ideal for escorting Gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
 			`	She frowns a bit at that. "Unfortunately, the weapons program is not moving as quickly as I would like, so the Merganser does not have the tackling ability that I was originally envisioning for it. But at least it is an adept hunter we can use to pursue our enemies."`
 			choice
 				`	"Interesting."`
@@ -1374,7 +1374,7 @@ mission "Remnant: Cognizance 31"
 
 mission "Remnant: Cognizance 32"
 	name "Pick Up Refined Fuel"
-	description "Chilia has asked you to pick up 58 tons of refined fuel from <planet> by <date>."
+	description "Chilia has asked you to pick up <tons> of refined fuel from <planet> by <date>."
 	source "Viminal"
 	destination "Clink"
 	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."

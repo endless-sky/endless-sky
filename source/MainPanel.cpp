@@ -71,6 +71,10 @@ void MainPanel::Step()
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 
+	// If the player is dead, don't show anything.
+	if(player.IsDead())
+		show = Command::NONE;
+
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
@@ -203,6 +207,9 @@ Engine &MainPanel::GetEngine()
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(player.IsDead())
+		return true;
+
 	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
