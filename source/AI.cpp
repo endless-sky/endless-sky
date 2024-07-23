@@ -4862,7 +4862,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 	// orders. Flip the bit for the new order of the first ship. All subsequent ships
 	// will then set their order bit to match the first ship. The only command
 	// that does not toggle is a move command; it always counts as a new command.
-	int orderOperation = newOrders.HasMoveTo() ? 1 : 2;
+	int orderOperation = isMoveOrder ? 1 : 2;
 	bool hasMismatch = isMoveOrder;
 	bool gaveOrder = false;
 	bool alreadyHarvesting = false;

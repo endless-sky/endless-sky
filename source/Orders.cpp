@@ -261,16 +261,34 @@ void Orders::MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHa
 	if(HasHoldActive())
 		ApplyOrder(HOLD_POSITION);
 
+	bool newTargetShip = (GetTargetShip() != other.GetTargetShip());
+	bool newTargetAsteroid = (GetTargetAsteroid() != other.GetTargetAsteroid());
+	hasMismatch |= newTargetShip || newTargetAsteroid;
+
 	// For each bit of the other order that is flipped, apply the flip to this order.
 	for(size_t i = 0; i < other.activeOrders.size(); ++i)
 		if(other.activeOrders.test(i))
 		{
 			hasMismatch |= !activeOrders.test(i);
-			orderOperation = ApplyOrder(static_cast<OrderType>(i), orderOperation);
+			// If the existing order had a target and the new order is of the same type
+			// but with a different target, then no change needs to be made to this bit.
+			// Only run this check if the order operation is 2, as that means that this
+			// is the first order that is being evaluated and will set the order
+			// operation for all subsequent orders.
+			OrderType type = static_cast<OrderType>(i);
+			if(orderOperation == 2)
+			{
+				if(((type == OrderType::ATTACK && HasAttack())
+						|| (type == OrderType::FINISH_OFF && HasFinishOff())
+						|| (type == OrderType::KEEP_STATION && HasKeepStation()))
+						&& newTargetShip)
+					continue;
+				if(type == OrderType::MINE && HasMine() && newTargetAsteroid)
+					continue;
+			}
+			orderOperation = ApplyOrder(type, orderOperation);
 		}
 
-	hasMismatch |= (GetTargetShip() != other.GetTargetShip());
-	hasMismatch |= (GetTargetAsteroid() != other.GetTargetAsteroid());
 	// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
 	// asteroid.
 	if(hasMismatch && other.GetTargetAsteroid())
