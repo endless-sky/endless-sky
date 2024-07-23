@@ -214,20 +214,10 @@ mission "Incipias: Help The Stranded 1"
 			`	"You ran into a most peculiar situation. Surpassing the borders of their system is not yet a capability possessed by the Incipias." It tilts its head for a moment, considering what you just said. "It is our desire to help them, but it is yet premature for us to reveal ourselves to their species, and certainly premature for them to be interacting with independent interlopers such as yourself. I fear that we are impotent in this unfortunate turn of events."`
 			choice
 				`	"I could help them."`
-					goto initiative
 				`	"How can you make such a cold-hearted decision?"`
+					goto cold
 				`	"I understand. I'll leave them alone."`
 					goto declined
-			`	"It is perhaps a laborious task for an adolescent species such as yourself to comprehend our ways, but we must place the continuation of species above the existence of individuals. If we reveal ourselves to them at this inopportune moment, the shock of such an advanced species appearing in their space will fan the flames of chaos."`
-			choice
-				`	"Then let me help them."`
-					goto initiative
-				`	"You can deal with the consequences later. Help them now!"`
-			`	The Quarg takes on a sour look. "Insisting you are. Understand that our own intervention is out of the question." It sighs. "However, this one can foresee the likelihood of you making a rash and impetuous decision to contact these Incipias further."`
-			choice
-				`	"Sure. Let me do the work."`
-				`	"If you insist on not helping..."`
-			`	The Quarg rapidly clicks its teeth before continuing.`
 			label initiative
 			`	"You lack the tools for such a mission. To this one's knowledge, no vessels capable of landing on gas giants have ever been developed by your kind. And you are certainly not able to make your intentions known to them in any meaningful sense." The Quarg stares at you for a moment, pondering a little.`
 			`	"But for the sake of the Incipias, this one will assist you on this last point. If you cannot be dissuaded from your course of action, then it is best you are supplied a means of communication, so that your interactions may be on amicable terms. This one can produce you with a single one of our translators, which will allow you to relate your intentions to the species. Request that they sell you one of their ships, so that you are made capable to land on their tumultuous planets."`
@@ -249,6 +239,18 @@ mission "Incipias: Help The Stranded 1"
 			`	As you stow it away, the Quarg speaks once more. "To satisfactorily utilize this device, you must direct it towards the source of the communication, so that it is made able to discern the relevant emissions. Given the complexity of their language, the translator might not be able to adequately translate some aspects of their obscure speech."`
 			`	It then looks you directly in the eyes. "Remember what has been told, human. The stars have no place for those who would act foolishly and thoughtlessly towards their fellow beings." The Quarg then walks away, leaving you alone.`
 				accept
+			label cold
+			`	"It is perhaps a laborious task for an adolescent species such as yourself to comprehend our ways, but we must place the continuation of species above the existence of individuals. If we reveal ourselves to them at this inopportune moment, the shock of such an advanced species appearing in their space will fan the flames of chaos."`
+			choice
+				`	"Then let me help them."`
+					goto initiative
+				`	"You can deal with the consequences later. Help them now!"`
+			`	The Quarg takes on a sour look. "Insisting you are. Understand that our own intervention is out of the question." It sighs. "However, this one can foresee the likelihood of you making a rash and impetuous decision to contact these Incipias further."`
+			choice
+				`	"Sure. Let me do the work."`
+				`	"If you insist on not helping..."`
+			`	The Quarg rapidly clicks its teeth before continuing.`
+				goto initiative
 			label declined
 			`	"We are gracious for your understanding, but remember thus: the Incipias are under our watch and care. None shall come to harm them without incurring our wrath." With these words the Quarg turns away.`
 				decline
