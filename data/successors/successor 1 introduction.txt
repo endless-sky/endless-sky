@@ -719,6 +719,7 @@ mission "Successors: Kaatrij First Contact 1"
 	destination "Raaqa-Puan-Uuoru"
 	to offer
 		has "event: successors: released kijra-pet wait"
+		not "failed: Successors: First Contact 3"
 		or
 			has "language: Hai"
 			has "language: Coalition"
@@ -874,6 +875,7 @@ mission "Successors: Kaatrij Monoglot Prompt"
 	invisible
 	to offer
 		has "event: successors: released kijra-pet wait"
+		not "failed: Successors: First Contact 3"
 		and
 			not "language: Hai"
 			not "language: Coalition"
@@ -900,6 +902,7 @@ mission "Successors: Trusted"
 		not attributes "quiet" "crime" "uninhabited"
 	destination "Aava-Aasa-Khora"
 	to offer
+		has "language: Successor"
 		has "successor jobs" >= 10
 	on offer
 		"reputation: Old Houses" += 5
