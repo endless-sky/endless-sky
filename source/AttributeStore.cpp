@@ -189,25 +189,40 @@ void AttributeStore::Save(DataWriter &writer) const
 		node.AddToken(Attribute::GetCategoryName(it.first));
 		// The base effect of the attribute that is put on the category's line.
 		optional<AttributeEffectType> baseEffect = AttributeAccessor::GetBaseEffect(it.first);
-		for(auto &[type, effect] : it.second.Effects())
+		map<Modifier, DataNode> modifierNodes{{Modifier::MULTIPLIER, DataNode(&node)}, {Modifier::RELATIVE, DataNode(&node)}};
+		modifierNodes[Modifier::MULTIPLIER].AddToken("multiplier");
+		modifierNodes[Modifier::RELATIVE].AddToken("relative");
+		for(auto &effect : it.second.Effects())
 		{
-			if(!effect.Value())
+			if(!effect.second.Value())
 				continue;
 
 			ostringstream temp;
-			temp << effect.Value();
+			temp << effect.second.Value();
 
+			DataNode *modified = &node;
+			AttributeEffectType type = effect.first;
+			for(auto &[modifier, modifierNode] : modifierNodes)
+				if(effect.second.HasModifier(modifier))
+				{
+					modified = &modifierNode;
+					type = AttributeAccessor::WithModifier(type, Modifier::NONE);
+					break;
+				}
 			// Add the value to the category as a new effect.
 			if(baseEffect.has_value() && baseEffect.value() == type)
-				node.AddToken(temp.str());
+				modified->AddToken(temp.str());
 			else
 			{
-				DataNode child(&node);
+				DataNode child(modified);
 				child.AddToken(Attribute::GetEffectName(type));
 				child.AddToken(temp.str());
-				node.AddChild(child);
+				modified->AddChild(child);
 			}
 		}
+		for(const auto &[_, modifierNode] : modifierNodes)
+			if(modifierNode.HasChildren())
+				node.AddChild(modifierNode);
 		// If the category has a base effect but it is 0, declare it.
 		if(node.Size() == 1 && baseEffect.has_value() && node.HasChildren())
 			node.AddToken("0");

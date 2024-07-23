@@ -84,10 +84,14 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 							"		heat 10\n"
 							"	turn 500\n"
 							"		shields 100\n"
+							"		multiplier\n"
+							"			hull 2\n"
 							"	\"scramble resistance\" 100\n"
 							"		energy 20\n"
+							"		ion 10\n"
 							"	\"other attribute\" 1\n"
 							"	\"another attribute\" 0\n"
+							"	\"active cooling\" 10\n"
 							"	\"shield generation\" 30\n"
 							"		\"energy\" 50\n"
 							"	\"slowing resistance\" 30\n"
@@ -115,8 +119,11 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 		CHECK( store.Get({TURNING, TURN}) == 500. );
 		CHECK( store.Get("turning shields") == 0. );
 		CHECK( store.Get({TURNING, SHIELDS}) == 100. );
+		CHECK( store.Get({TURNING, HULL, Modifier::MULTIPLIER}) == 2. );
 		CHECK( store.Get("scramble resistance") == 0. );
 		CHECK( store.Get({RESISTANCE, JAM, Modifier::OVER_TIME}) == 100. );
+		CHECK( store.Get({RESISTANCE, AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), ENERGY,
+				Modifier::OVER_TIME}) == 10. );
 		CHECK( store.Get("scramble resistance energy") == 0. );
 		CHECK( store.Get({RESISTANCE, AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), ENERGY}) == 20. );
 		CHECK( store.Get("slowing resistance") == 0. );
@@ -135,8 +142,11 @@ TEST_CASE( "AttributeStore::Save", "[AttributeStore][Save]" ) {
 							"		heat 10\n"
 							"	turn 500\n"
 							"		shields 100\n"
+							"		multiplier\n"
+							"			hull 2\n"
 							"	\"scramble resistance\" 100\n"
 							"		energy 20\n"
+							"		ion 10\n"
 							"	\"other attribute\" 1\n"
 							"	\"another attribute\" 0\n"
 							"	\"active cooling\" 10\n"
@@ -161,12 +171,15 @@ thrust 100
 	heat 10
 turn 500
 	shields 100
+	multiplier
+		hull 2
 "active cooling" 10
 "slowing resistance" 30
 	energy 20
 	heat 40
 "scramble resistance" 100
 	energy 20
+	ion 10
 )";
 		CHECK( data == expected );
 	}

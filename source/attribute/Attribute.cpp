@@ -21,12 +21,12 @@ using namespace std;
 
 namespace {
 	// The names of effects and categories, as used in the new data format.
-	const map<AttributeEffectType, string> effectNames{{SHIELDS, "shields"}, {HULL, "hull"}, {THRUST, "thrust"},
+	const map<AttributeEffectType, string> EFFECT_NAMES{{SHIELDS, "shields"}, {HULL, "hull"}, {THRUST, "thrust"},
 			{REVERSE_THRUST, "reverse thrust"}, {TURN, "turn"}, {ACTIVE_COOLING, "active cooling"},
 			{RAMSCOOP, "ramscoop"}, {CLOAK, "cloak"}, {COOLING, "cooling"}, {FORCE, "force"}, {ENERGY, "energy"},
 			{FUEL, "fuel"}, {HEAT, "heat"}, {JAM, "jam"}, {DISABLED, "disabled"}, {MINABLE, "minable"}, {PIERCING, "piercing"}};
 
-	const map<AttributeCategory, string> categoryNames{{SHIELD_GENERATION,"shield generation"},
+	const map<AttributeCategory, string> CATEGORY_NAMES{{SHIELD_GENERATION,"shield generation"},
 			{HULL_REPAIR, "hull repair"}, {THRUSTING, "thrust"}, {REVERSE_THRUSTING, "reverse thrust"}, {TURNING, "turn"},
 			{ACTIVE_COOL, "active cooling"}, {RAMSCOOPING, "ramscoop"}, {CLOAKING, "cloak"},
 			{AFTERBURNING, "afterburner thrust"}, {FIRING, "firing"}, {PROTECTION, "protection"}, {RESISTANCE, "resistance"},
@@ -34,11 +34,11 @@ namespace {
 
 	// The names of various "over time" effects, that are modified variants of other effects but can be parsed individually.
 	// Slowing is special, since that affects both thrust, reverse thrust and turn.
-	const map<AttributeEffectType, string> overTimeEffectNames{{SHIELDS, "discharge"}, {HULL, "corrosion"}, {THRUST, "slowing"},
+	const map<AttributeEffectType, string> OVER_TIME_EFFECT_NAMES{{SHIELDS, "discharge"}, {HULL, "corrosion"}, {THRUST, "slowing"},
 			{ENERGY, "ion"}, {FUEL, "leak"}, {HEAT, "burn"}, {JAM, "scramble"}, {PIERCING, "disruption"}};
 	// Cached mappings between the old and new format.
-	// Any attribute without an effect will not be present in newToOld, as those have no legacy names.
-	map<string, Attribute> oldToNew = {
+	// Any attribute without an effect will not be present in NEW_TO_OLD, as those have no legacy names.
+	map<string, Attribute> OLD_TO_NEW = {
 			{"capacity", Attribute(PASSIVE)},
 			{"energy capacity", AttributeAccessor(PASSIVE, ENERGY)},
 			{"shields", AttributeAccessor(PASSIVE, SHIELDS)},
@@ -248,16 +248,16 @@ namespace {
 	};
 
 	// Mapping of new-style AttributeAccessor to legacy names.
-	map<AttributeAccessor, string> newToOld = [](){
+	map<AttributeAccessor, string> NEW_TO_OLD = [](){
 		map<AttributeAccessor, string> m;
-		for(const auto &it : oldToNew)
+		for(const auto &it : OLD_TO_NEW)
 			for(const auto &effect : it.second.Effects()) // There should only be a single effect.
 				m[{it.second.Category(), effect.second.Type()}] = it.first;
 		return m;
 	}();
 
 	// The name of every individual effect, as used within category nodes.
-	map<string, AttributeEffectType> allEffects = [](){
+	map<string, AttributeEffectType> ALL_EFFECTS = [](){
 		map<string, AttributeEffectType> names;
 		for(int i = 0; i < static_cast<int>(Modifier::MODIFIER_COUNT) * ATTRIBUTE_EFFECT_COUNT; i++)
 		{
@@ -269,7 +269,7 @@ namespace {
 
 	// The name of every category that has a base attribute. These categories can have a value defined in their node,
 	// while others have to define all their effects in their children.
-	map<string, Attribute> allBaseAttributes = [](){
+	map<string, Attribute> ALL_BASE_ATTRIBUTES = [](){
 		map<string, Attribute> names;
 		for(int i = 0; i < static_cast<int>(Modifier::MODIFIER_COUNT) * ATTRIBUTE_CATEGORY_COUNT; i++)
 		{
@@ -280,6 +280,8 @@ namespace {
 		}
 		return names;
 	}();
+
+	const map<string, Modifier> MODIFIER_NAMES{{"multiplier", Modifier::MULTIPLIER}, {"relative", Modifier::RELATIVE}};
 }
 
 
@@ -315,7 +317,7 @@ string Attribute::GetCategoryName(const AttributeCategory category)
 	if(category >= ATTRIBUTE_CATEGORY_COUNT)
 		return GetEffectName(static_cast<AttributeEffectType>(category / ATTRIBUTE_CATEGORY_COUNT - 1)) + " " +
 				GetCategoryName(static_cast<AttributeCategory>(category % ATTRIBUTE_CATEGORY_COUNT));
-	return category >= 0 ? categoryNames.at(category) : "";
+	return category >= 0 ? CATEGORY_NAMES.at(category) : "";
 }
 
 
@@ -328,10 +330,10 @@ string Attribute::GetLegacyName(const AnyAttribute &attribute)
 		return attribute.String();
 	else
 	{
-		// newToOld contains all supported attributes.
+		// NEW_TO_OLD contains all supported attributes.
 		const AttributeAccessor &access = attribute.Categorized();
-		auto it = newToOld.find(access);
-		if(it == newToOld.end())
+		auto it = NEW_TO_OLD.find(access);
+		if(it == NEW_TO_OLD.end())
 		{
 			// TODO: find a better solution, or resort to manually mapping all supported attributes.
 			// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon.
@@ -359,12 +361,12 @@ string Attribute::GetEffectName(const AttributeEffectType effect)
 		return GetEffectName(static_cast<AttributeEffectType>(effect % ATTRIBUTE_EFFECT_COUNT)) + " multiplier";
 	else if(AttributeAccessor::HasModifier(effect, Modifier::OVER_TIME))
 	{
-		const auto it = overTimeEffectNames.find(static_cast<AttributeEffectType>(effect % ATTRIBUTE_EFFECT_COUNT));
-		if(it == overTimeEffectNames.end())
+		const auto it = OVER_TIME_EFFECT_NAMES.find(static_cast<AttributeEffectType>(effect % ATTRIBUTE_EFFECT_COUNT));
+		if(it == OVER_TIME_EFFECT_NAMES.end())
 			return "";
 		return it->second;
 	}
-	return effectNames.at(effect);
+	return EFFECT_NAMES.at(effect);
 }
 
 
@@ -373,12 +375,12 @@ string Attribute::GetEffectName(const AttributeEffectType effect)
 Attribute *Attribute::Parse(const string &token)
 {
 	// Check if it's a legacy attribute name.
-	auto it = oldToNew.find(token);
-	if(it == oldToNew.end())
+	auto it = OLD_TO_NEW.find(token);
+	if(it == OLD_TO_NEW.end())
 	{
 		// Check if it's a category name.
-		auto it = allBaseAttributes.find(token);
-		if(it == allBaseAttributes.end())
+		auto it = ALL_BASE_ATTRIBUTES.find(token);
+		if(it == ALL_BASE_ATTRIBUTES.end())
 			return nullptr;
 		return &(it->second);
 	}
@@ -389,19 +391,30 @@ Attribute *Attribute::Parse(const string &token)
 
 // Applies the effect from the token to this attribute.
 // The node is a single attribute effect within an attribute category node.
-void Attribute::Parse(const DataNode &node)
+void Attribute::Parse(const DataNode &node, const Modifier *modifier)
 {
 	const string &text = node.Token(0);
 	if(node.Size() >= 2)
 	{
-		auto it = allEffects.find(text);
-		if(it == allEffects.end())
+		auto it = ALL_EFFECTS.find(text);
+		if(it == ALL_EFFECTS.end())
 			node.PrintTrace("Skipping unrecognized attribute effect:");
 		else
 		{
-			AttributeAccessor access{category, it->second};
+			AttributeEffectType effect = it->second;
+			if(modifier && !AttributeAccessor::HasModifier(effect, Modifier::NONE))
+				node.PrintTrace("Attribute has multiple modifiers defined; it will be reverted to its base form.");
+			AttributeAccessor access{category, effect};
+			if(modifier)
+				access = access.WithModifier(*modifier);
 			AddEffect({access.Effect(), node.Value(1), access.GetDefaultMinimum()});
 		}
+	}
+	else if(MODIFIER_NAMES.contains(text))
+	{
+		const Modifier *m = &MODIFIER_NAMES.at(text);
+		for(const auto &child : node)
+			Parse(child, m);
 	}
 	else
 		node.PrintTrace("Skipping attribute effect without value:");
@@ -412,8 +425,8 @@ void Attribute::Parse(const DataNode &node)
 // Parses an attribute into an AttributeAccessor or the original string.
 AnyAttribute Attribute::ParseAny(const std::string &attribute)
 {
-	auto it = oldToNew.find(attribute);
-	if(it == oldToNew.end())
+	auto it = OLD_TO_NEW.find(attribute);
+	if(it == OLD_TO_NEW.end())
 		return attribute;
 	for(const auto &item : it->second.Effects())
 		if(item.second.Value() != 0.)
