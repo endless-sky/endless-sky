@@ -69,11 +69,6 @@ public:
 	bool operator<(const Attribute &other) const;
 
 private:
-	// The name of each effect as used in the data files.
-	static const std::string effectNames[];
-	// The name of each category as used in the data files. Some are linked to the name of the effect which they expand on.
-	static const std::string categoryNames[];
-
 	// The category and effects of this attribute.
 	AttributeCategory category;
 	std::map<AttributeEffectType, AttributeEffect> effects;

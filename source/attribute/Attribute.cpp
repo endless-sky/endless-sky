@@ -15,28 +15,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Attribute.h"
 
-#include <algorithm>
-#include <limits>
 #include <map>
 
 using namespace std;
 
-const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse thrust", "turn", "active cooling",
-										"ramscoop", "cloak", "cooling", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
-										"ion", "scramble", "slowing", "disruption", "disabled", "minable", "piercing"};
-
-// Some category names are always the same as the corresponding effect names.
-const string Attribute::categoryNames[] = {"shield generation", "hull repair",
-										GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(ACTIVE_COOLING),
-										GetEffectName(RAMSCOOP), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
-										"resistance", "damage", "capacity"};
-
-
-
-
 namespace {
-	// Cached mappings between the two formats.
-	// Any attribute without an effect will not be present in newToOld.
+	// The names of effects and categories, as used in the new data format.
+	const map<AttributeEffectType, string> effectNames{{SHIELDS, "shields"}, {HULL, "hull"}, {THRUST, "thrust"},
+			{REVERSE_THRUST, "reverse thrust"}, {TURN, "turn"}, {ACTIVE_COOLING, "active cooling"},
+			{RAMSCOOP, "ramscoop"}, {CLOAK, "cloak"}, {COOLING, "cooling"}, {FORCE, "force"}, {ENERGY, "energy"},
+			{FUEL, "fuel"}, {HEAT, "heat"}, {DISCHARGE, "discharge"}, {CORROSION, "corrosion"}, {LEAK, "leak"}, {BURN, "burn"},
+			{ION, "ion"}, {SCRAMBLE, "scramble"}, {SLOWING, "slowing"}, {DISRUPTION, "disruption"}, {DISABLED, "disabled"},
+			{MINABLE, "minable"}, {PIERCING, "piercing"}};
+
+	const map<AttributeCategory, string> categoryNames{{SHIELD_GENERATION,"shield generation"}, {HULL_REPAIR, "hull repair"},
+			{THRUSTING, "thrust"}, {REVERSE_THRUSTING, "reverse thrust"}, {TURNING, "turn"}, {ACTIVE_COOL, "active cooling"},
+			{RAMSCOOPING, "ramscoop"}, {CLOAKING, "cloak"}, {AFTERBURNING, "afterburner thrust"}, {FIRING, "firing"},
+			{PROTECTION, "protection"}, {RESISTANCE, "resistance"}, {DAMAGE, "damage"}, {PASSIVE, "capacity"}};
+	// Cached mappings between the old and new format.
+	// Any attribute without an effect will not be present in newToOld, as those have no legacy names.
 	map<string, Attribute> oldToNew = {
 			{"capacity", Attribute(PASSIVE)},
 			{"energy capacity", AttributeAccessor(PASSIVE, ENERGY)},
@@ -289,7 +286,7 @@ string Attribute::GetCategoryName(const AttributeCategory category)
 	if(category >= ATTRIBUTE_CATEGORY_COUNT)
 		return GetEffectName(static_cast<AttributeEffectType>(category / ATTRIBUTE_CATEGORY_COUNT - 1)) + " " +
 				GetCategoryName(static_cast<AttributeCategory>(category % ATTRIBUTE_CATEGORY_COUNT));
-	return category >= 0 ? categoryNames[category] : "";
+	return category >= 0 ? categoryNames.at(category) : "";
 }
 
 
@@ -334,7 +331,7 @@ string Attribute::GetEffectName(const AttributeEffectType effect)
 		return GetEffectName(static_cast<AttributeEffectType>(effect - ATTRIBUTE_EFFECT_COUNT)) + " multiplier";
 	if(effect < 0)
 		return "";
-	return effectNames[effect];
+	return effectNames.at(effect);
 }
 
 
