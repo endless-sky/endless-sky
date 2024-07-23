@@ -900,7 +900,7 @@ mission "Successors: Trusted"
 		not attributes "quiet" "crime" "uninhabited"
 	destination "Aava-Aasa-Khora"
 	to offer
-		has "successor jobs" >= 20
+		has "successor jobs" >= 10
 	on offer
 		"reputation: Old Houses" += 5
 		"reputation: New Houses" += 5
