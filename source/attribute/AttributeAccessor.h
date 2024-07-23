@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AttributeCategory.h"
 #include "AttributeEffectType.h"
+#include "Modifier.h"
 
 #include <optional>
 #include <string>
@@ -27,44 +28,41 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // and effect type of the attribute, and provides conversion functions for various modifiers.
 class AttributeAccessor {
 public:
-	AttributeAccessor(const AttributeCategory category, const AttributeEffectType effect);
-	AttributeAccessor(const AttributeCategory category, const AttributeEffectType categoryEffect,
-			const AttributeEffectType effect);
+	AttributeAccessor(AttributeCategory category, AttributeEffectType effect);
+	AttributeAccessor(AttributeCategory category, AttributeEffectType effect, Modifier modifier);
+	AttributeAccessor(AttributeCategory category, AttributeEffectType categoryEffect,
+			AttributeEffectType effect, Modifier modifier);
+	AttributeAccessor(AttributeCategory category, AttributeEffectType categoryEffect,
+			AttributeEffectType effect);
 
 	// Accessors
 	AttributeCategory Category() const;
 	AttributeEffectType Effect() const;
 
-	// Checks whether this attribute is a multiplier.
-	bool IsMultiplier() const;
-	static bool IsMultiplier(const AttributeEffectType effect);
-	// Creates a multiplier for this attribute, if not already a multiplier.
-	AttributeAccessor Multiplier() const;
-	static AttributeEffectType Multiplier(const AttributeEffectType effect);
-	// Checks whether this attribute is relative.
-	bool IsRelative() const;
-	static bool IsRelative(const AttributeEffectType effect);
-	// Creates a relative version of this attribute, if not already relative.
-	AttributeAccessor Relative() const;
-	static AttributeEffectType Relative(const AttributeEffectType effect);
+	// Checks whether this attribute has a specific modifier. Attribute effects have exactly one modifier.
+	bool HasModifier(Modifier modifier) const;
+	static bool HasModifier(AttributeEffectType effect, Modifier modifier);
+	// Creates a new accessor with the effect's modifier set to the given value.
+	AttributeAccessor WithModifier(Modifier modifier) const;
+	static AttributeEffectType WithModifier(AttributeEffectType effect, Modifier modifier);
 
 	// Gets the attribute's category effect (variant), or -1 if none.
 	AttributeEffectType GetCategoryEffect() const;
-	static AttributeEffectType GetCategoryEffect(const AttributeCategory category);
+	static AttributeEffectType GetCategoryEffect(AttributeCategory category);
 	// Creates a version of this attribute that has the specified effect in its category.
-	AttributeAccessor WithCategoryEffect(const AttributeEffectType type) const;
-	static AttributeCategory WithCategoryEffect(const AttributeCategory category, const AttributeEffectType effect);
+	AttributeAccessor WithCategoryEffect(AttributeEffectType type) const;
+	static AttributeCategory WithCategoryEffect(AttributeCategory category, AttributeEffectType effect);
 
 	// Checks whether this effect is a requirement for its category.
 	// Required effects mark resource consumption when an action is taken.
 	bool IsRequirement() const;
-	static bool IsRequirement(const AttributeCategory category, const AttributeEffectType effect);
+	static bool IsRequirement(AttributeCategory category, AttributeEffectType effect);
 	// Checks if this effect, when used with the PASSIVE category, denotes a capacity or a
 	// passively applied effect.
-	static bool IsCapacity(const AttributeEffectType type);
+	static bool IsCapacity(AttributeEffectType type);
 	// Gets the basic effect of an attribute category. This is the effect used when
 	// the category is used in a node with a value directly applied to it.
-	static std::optional<AttributeEffectType> GetBaseEffect(const AttributeCategory category);
+	static std::optional<AttributeEffectType> GetBaseEffect(AttributeCategory category);
 
 	// Gets the default minimum value for this attribute.
 	double GetDefaultMinimum() const;
@@ -88,13 +86,18 @@ private:
 class AnyAttribute : public std::variant<std::string, AttributeAccessor>
 {
 public:
+	// Allow easy conversion from any related type. These constructors are not marked 'explicit' on purpose.
 	AnyAttribute(const char *str) : std::variant<std::string, AttributeAccessor>(str) {}
 	AnyAttribute(const std::string &str) : std::variant<std::string, AttributeAccessor>(str) {}
 	AnyAttribute(const std::string &&str) : std::variant<std::string, AttributeAccessor>(str) {}
 	AnyAttribute(const AttributeAccessor &str) : std::variant<std::string, AttributeAccessor>(str) {}
 	AnyAttribute(const AttributeAccessor &&str) : std::variant<std::string, AttributeAccessor>(str) {}
 	AnyAttribute(AttributeCategory category, AttributeEffectType effect)
-		: AnyAttribute(AttributeAccessor{category, effect}) {}
+			: AnyAttribute(AttributeAccessor{category, effect}) {}
+	AnyAttribute(AttributeCategory category, AttributeEffectType categoryEffect, AttributeEffectType effect,
+			Modifier modifier) : AnyAttribute(AttributeAccessor{category, categoryEffect, effect, modifier}) {}
+	AnyAttribute(AttributeCategory category, AttributeEffectType effect, Modifier modifier)
+			: AnyAttribute(AttributeAccessor{category, effect, modifier}) {}
 	AnyAttribute(AttributeCategory category, AttributeEffectType categoryEffect, AttributeEffectType effect)
 			: AnyAttribute(AttributeAccessor{category, categoryEffect, effect}) {}
 

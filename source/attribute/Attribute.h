@@ -53,7 +53,7 @@ public:
 	static std::string GetLegacyName(const AnyAttribute &attribute);
 
 	// Gets the category of this attribute.
-	const AttributeCategory Category() const;
+	AttributeCategory Category() const;
 	// Gets the effect of this attribute.
 	const std::map<AttributeEffectType, AttributeEffect> &Effects() const;
 	// Adds a new effect to this attribute.

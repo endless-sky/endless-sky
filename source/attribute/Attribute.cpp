@@ -24,40 +24,43 @@ namespace {
 	const map<AttributeEffectType, string> effectNames{{SHIELDS, "shields"}, {HULL, "hull"}, {THRUST, "thrust"},
 			{REVERSE_THRUST, "reverse thrust"}, {TURN, "turn"}, {ACTIVE_COOLING, "active cooling"},
 			{RAMSCOOP, "ramscoop"}, {CLOAK, "cloak"}, {COOLING, "cooling"}, {FORCE, "force"}, {ENERGY, "energy"},
-			{FUEL, "fuel"}, {HEAT, "heat"}, {DISCHARGE, "discharge"}, {CORROSION, "corrosion"}, {LEAK, "leak"}, {BURN, "burn"},
-			{ION, "ion"}, {SCRAMBLE, "scramble"}, {SLOWING, "slowing"}, {DISRUPTION, "disruption"}, {DISABLED, "disabled"},
-			{MINABLE, "minable"}, {PIERCING, "piercing"}};
+			{FUEL, "fuel"}, {HEAT, "heat"}, {JAM, "jam"}, {DISABLED, "disabled"}, {MINABLE, "minable"}, {PIERCING, "piercing"}};
 
 	const map<AttributeCategory, string> categoryNames{{SHIELD_GENERATION,"shield generation"},
 			{HULL_REPAIR, "hull repair"}, {THRUSTING, "thrust"}, {REVERSE_THRUSTING, "reverse thrust"}, {TURNING, "turn"},
 			{ACTIVE_COOL, "active cooling"}, {RAMSCOOPING, "ramscoop"}, {CLOAKING, "cloak"},
 			{AFTERBURNING, "afterburner thrust"}, {FIRING, "firing"}, {PROTECTION, "protection"}, {RESISTANCE, "resistance"},
 			{DAMAGE, "damage"}, {PASSIVE, "capacity"}};
+
+	// The names of various "over time" effects, that are modified variants of other effects but can be parsed individually.
+	// Slowing is special, since that affects both thrust, reverse thrust and turn.
+	const map<AttributeEffectType, string> overTimeEffectNames{{SHIELDS, "discharge"}, {HULL, "corrosion"}, {THRUST, "slowing"},
+			{ENERGY, "ion"}, {FUEL, "leak"}, {HEAT, "burn"}, {JAM, "scramble"}, {PIERCING, "disruption"}};
 	// Cached mappings between the old and new format.
 	// Any attribute without an effect will not be present in newToOld, as those have no legacy names.
 	map<string, Attribute> oldToNew = {
 			{"capacity", Attribute(PASSIVE)},
 			{"energy capacity", AttributeAccessor(PASSIVE, ENERGY)},
 			{"shields", AttributeAccessor(PASSIVE, SHIELDS)},
-			{"shield multiplier", AttributeAccessor(PASSIVE, SHIELDS).Multiplier()},
+			{"shield multiplier", AttributeAccessor(PASSIVE, SHIELDS, Modifier::MULTIPLIER)},
 			{"shield generation", AttributeAccessor(SHIELD_GENERATION, SHIELDS)},
 			{"shield energy", AttributeAccessor(SHIELD_GENERATION, ENERGY)},
 			{"shield heat", AttributeAccessor(SHIELD_GENERATION, HEAT)},
 			{"shield fuel", AttributeAccessor(SHIELD_GENERATION, FUEL)},
 			{"hull", AttributeAccessor(PASSIVE, HULL)},
-			{"hull multiplier", AttributeAccessor(PASSIVE, HULL).Multiplier()},
+			{"hull multiplier", AttributeAccessor(PASSIVE, HULL, Modifier::MULTIPLIER)},
 			{"hull repair rate", AttributeAccessor(HULL_REPAIR, HULL)},
 			{"hull energy", AttributeAccessor(HULL_REPAIR, ENERGY)},
 			{"hull heat", AttributeAccessor(HULL_REPAIR, HEAT)},
 			{"hull fuel", AttributeAccessor(HULL_REPAIR, FUEL)},
-			{"shield generation multiplier", AttributeAccessor(SHIELD_GENERATION, SHIELDS).Multiplier()},
-			{"shield energy multiplier", AttributeAccessor(SHIELD_GENERATION, ENERGY).Multiplier()},
-			{"shield heat multiplier", AttributeAccessor(SHIELD_GENERATION, HEAT).Multiplier()},
-			{"shield fuel multiplier", AttributeAccessor(SHIELD_GENERATION, FUEL).Multiplier()},
-			{"hull repair multiplier", AttributeAccessor(HULL_REPAIR, HULL).Multiplier()},
-			{"hull energy multiplier", AttributeAccessor(HULL_REPAIR, ENERGY).Multiplier()},
-			{"hull heat multiplier", AttributeAccessor(HULL_REPAIR, HEAT).Multiplier()},
-			{"hull fuel multiplier", AttributeAccessor(HULL_REPAIR, FUEL).Multiplier()},
+			{"shield generation multiplier", AttributeAccessor(SHIELD_GENERATION, SHIELDS, Modifier::MULTIPLIER)},
+			{"shield energy multiplier", AttributeAccessor(SHIELD_GENERATION, ENERGY, Modifier::MULTIPLIER)},
+			{"shield heat multiplier", AttributeAccessor(SHIELD_GENERATION, HEAT, Modifier::MULTIPLIER)},
+			{"shield fuel multiplier", AttributeAccessor(SHIELD_GENERATION, FUEL, Modifier::MULTIPLIER)},
+			{"hull repair multiplier", AttributeAccessor(HULL_REPAIR, HULL, Modifier::MULTIPLIER)},
+			{"hull energy multiplier", AttributeAccessor(HULL_REPAIR, ENERGY, Modifier::MULTIPLIER)},
+			{"hull heat multiplier", AttributeAccessor(HULL_REPAIR, HEAT, Modifier::MULTIPLIER)},
+			{"hull fuel multiplier", AttributeAccessor(HULL_REPAIR, FUEL, Modifier::MULTIPLIER)},
 			{"ramscoop", AttributeAccessor(RAMSCOOPING, RAMSCOOP)},
 			{"fuel capacity", AttributeAccessor(PASSIVE, FUEL)},
 			{"thrust", AttributeAccessor(THRUSTING, THRUST)},
@@ -66,56 +69,56 @@ namespace {
 			{"thrusting shields", AttributeAccessor(THRUSTING, SHIELDS)},
 			{"thrusting hull", AttributeAccessor(THRUSTING, HULL)},
 			{"thrusting fuel", AttributeAccessor(THRUSTING, FUEL)},
-			{"thrusting discharge", AttributeAccessor(THRUSTING, DISCHARGE)},
-			{"thrusting corrosion", AttributeAccessor(THRUSTING, CORROSION)},
-			{"thrusting ion", AttributeAccessor(THRUSTING, ION)},
-			{"thrusting scramble", AttributeAccessor(THRUSTING, SCRAMBLE)},
-			{"thrusting leakage", AttributeAccessor(THRUSTING, LEAK)},
-			{"thrusting burn", AttributeAccessor(THRUSTING, BURN)},
-			{"thrusting slowing", AttributeAccessor(THRUSTING, SLOWING)},
-			{"thrusting disruption", AttributeAccessor(THRUSTING, DISRUPTION)},
+			{"thrusting discharge", AttributeAccessor(THRUSTING, SHIELDS, Modifier::OVER_TIME)},
+			{"thrusting corrosion", AttributeAccessor(THRUSTING, HULL, Modifier::OVER_TIME)},
+			{"thrusting ion", AttributeAccessor(THRUSTING, ENERGY, Modifier::OVER_TIME)},
+			{"thrusting scramble", AttributeAccessor(THRUSTING, JAM, Modifier::OVER_TIME)},
+			{"thrusting leakage", AttributeAccessor(THRUSTING, FUEL, Modifier::OVER_TIME)},
+			{"thrusting burn", AttributeAccessor(THRUSTING, HEAT, Modifier::OVER_TIME)},
+			{"thrusting slowing", AttributeAccessor(THRUSTING, THRUST, Modifier::OVER_TIME)},
+			{"thrusting disruption", AttributeAccessor(THRUSTING, PIERCING, Modifier::OVER_TIME)},
 			{"turn", AttributeAccessor(TURNING, TURN)},
 			{"turning energy", AttributeAccessor(TURNING, ENERGY)},
 			{"turning heat", AttributeAccessor(TURNING, HEAT)},
 			{"turning shields", AttributeAccessor(TURNING, SHIELDS)},
 			{"turning hull", AttributeAccessor(TURNING, HULL)},
 			{"turning fuel", AttributeAccessor(TURNING, FUEL)},
-			{"turning discharge", AttributeAccessor(TURNING, DISCHARGE)},
-			{"turning corrosion", AttributeAccessor(TURNING, CORROSION)},
-			{"turning ion", AttributeAccessor(TURNING, ION)},
-			{"turning scramble", AttributeAccessor(TURNING, SCRAMBLE)},
-			{"turning leakage", AttributeAccessor(TURNING, LEAK)},
-			{"turning burn", AttributeAccessor(TURNING, BURN)},
-			{"turning slowing", AttributeAccessor(TURNING, SLOWING)},
-			{"turning disruption", AttributeAccessor(TURNING, DISRUPTION)},
+			{"turning discharge", AttributeAccessor(TURNING, SHIELDS, Modifier::OVER_TIME)},
+			{"turning corrosion", AttributeAccessor(TURNING, HULL, Modifier::OVER_TIME)},
+			{"turning ion", AttributeAccessor(TURNING, ENERGY, Modifier::OVER_TIME)},
+			{"turning scramble", AttributeAccessor(TURNING, JAM, Modifier::OVER_TIME)},
+			{"turning leakage", AttributeAccessor(TURNING, FUEL, Modifier::OVER_TIME)},
+			{"turning burn", AttributeAccessor(TURNING, HEAT, Modifier::OVER_TIME)},
+			{"turning slowing", AttributeAccessor(TURNING, THRUST, Modifier::OVER_TIME)},
+			{"turning disruption", AttributeAccessor(TURNING, PIERCING, Modifier::OVER_TIME)},
 			{"reverse thrust", AttributeAccessor(REVERSE_THRUSTING, REVERSE_THRUST)},
 			{"reverse thrusting energy", AttributeAccessor(REVERSE_THRUSTING, ENERGY)},
 			{"reverse thrusting heat", AttributeAccessor(REVERSE_THRUSTING, HEAT)},
 			{"reverse thrusting shields", AttributeAccessor(REVERSE_THRUSTING, SHIELDS)},
 			{"reverse thrusting hull", AttributeAccessor(REVERSE_THRUSTING, HULL)},
 			{"reverse thrusting fuel", AttributeAccessor(REVERSE_THRUSTING, FUEL)},
-			{"reverse thrusting discharge", AttributeAccessor(REVERSE_THRUSTING, DISCHARGE)},
-			{"reverse thrusting corrosion", AttributeAccessor(REVERSE_THRUSTING, CORROSION)},
-			{"reverse thrusting ion", AttributeAccessor(REVERSE_THRUSTING, ION)},
-			{"reverse thrusting scramble", AttributeAccessor(REVERSE_THRUSTING, SCRAMBLE)},
-			{"reverse thrusting leakage", AttributeAccessor(REVERSE_THRUSTING, LEAK)},
-			{"reverse thrusting burn", AttributeAccessor(REVERSE_THRUSTING, BURN)},
-			{"reverse thrusting slowing", AttributeAccessor(REVERSE_THRUSTING, SLOWING)},
-			{"reverse thrusting disruption", AttributeAccessor(REVERSE_THRUSTING, DISRUPTION)},
+			{"reverse thrusting discharge", AttributeAccessor(REVERSE_THRUSTING, SHIELDS, Modifier::OVER_TIME)},
+			{"reverse thrusting corrosion", AttributeAccessor(REVERSE_THRUSTING, HULL, Modifier::OVER_TIME)},
+			{"reverse thrusting ion", AttributeAccessor(REVERSE_THRUSTING, ENERGY, Modifier::OVER_TIME)},
+			{"reverse thrusting scramble", AttributeAccessor(REVERSE_THRUSTING, JAM, Modifier::OVER_TIME)},
+			{"reverse thrusting leakage", AttributeAccessor(REVERSE_THRUSTING, FUEL, Modifier::OVER_TIME)},
+			{"reverse thrusting burn", AttributeAccessor(REVERSE_THRUSTING, HEAT, Modifier::OVER_TIME)},
+			{"reverse thrusting slowing", AttributeAccessor(REVERSE_THRUSTING, THRUST, Modifier::OVER_TIME)},
+			{"reverse thrusting disruption", AttributeAccessor(REVERSE_THRUSTING, PIERCING, Modifier::OVER_TIME)},
 			{"afterburner thrust", AttributeAccessor(AFTERBURNING, THRUST)},
 			{"afterburner energy", AttributeAccessor(AFTERBURNING, ENERGY)},
 			{"afterburner heat", AttributeAccessor(AFTERBURNING, HEAT)},
 			{"afterburner shields", AttributeAccessor(AFTERBURNING, SHIELDS)},
 			{"afterburner hull", AttributeAccessor(AFTERBURNING, HULL)},
 			{"afterburner fuel", AttributeAccessor(AFTERBURNING, FUEL)},
-			{"afterburner discharge", AttributeAccessor(AFTERBURNING, DISCHARGE)},
-			{"afterburner corrosion", AttributeAccessor(AFTERBURNING, CORROSION)},
-			{"afterburner ion", AttributeAccessor(AFTERBURNING, ION)},
-			{"afterburner scramble", AttributeAccessor(AFTERBURNING, SCRAMBLE)},
-			{"afterburner leakage", AttributeAccessor(AFTERBURNING, LEAK)},
-			{"afterburner burn", AttributeAccessor(AFTERBURNING, BURN)},
-			{"afterburner slowing", AttributeAccessor(AFTERBURNING, SLOWING)},
-			{"afterburner disruption", AttributeAccessor(AFTERBURNING, DISRUPTION)},
+			{"afterburner discharge", AttributeAccessor(AFTERBURNING, SHIELDS, Modifier::OVER_TIME)},
+			{"afterburner corrosion", AttributeAccessor(AFTERBURNING, HULL, Modifier::OVER_TIME)},
+			{"afterburner ion", AttributeAccessor(AFTERBURNING, ENERGY, Modifier::OVER_TIME)},
+			{"afterburner scramble", AttributeAccessor(AFTERBURNING, JAM, Modifier::OVER_TIME)},
+			{"afterburner leakage", AttributeAccessor(AFTERBURNING, FUEL, Modifier::OVER_TIME)},
+			{"afterburner burn", AttributeAccessor(AFTERBURNING, HEAT, Modifier::OVER_TIME)},
+			{"afterburner slowing", AttributeAccessor(AFTERBURNING, THRUST, Modifier::OVER_TIME)},
+			{"afterburner disruption", AttributeAccessor(AFTERBURNING, PIERCING, Modifier::OVER_TIME)},
 			{"cooling", AttributeAccessor(PASSIVE, COOLING)},
 			{"active cooling", AttributeAccessor(ACTIVE_COOL, ACTIVE_COOLING)},
 			{"cooling energy", AttributeAccessor(ACTIVE_COOL, ENERGY)},
@@ -126,73 +129,98 @@ namespace {
 			{"cloaking heat", AttributeAccessor(CLOAKING, HEAT)},
 			{"cloak shield protection", AttributeAccessor(PROTECTION, CLOAK, SHIELDS)},
 			{"cloak hull protection", AttributeAccessor(PROTECTION, CLOAK, HULL)},
-			{"disruption resistance", AttributeAccessor(RESISTANCE, DISRUPTION)},
-			{"disruption resistance energy", AttributeAccessor(RESISTANCE, DISRUPTION, ENERGY)},
-			{"disruption resistance heat", AttributeAccessor(RESISTANCE, DISRUPTION, HEAT)},
-			{"disruption resistance fuel", AttributeAccessor(RESISTANCE, DISRUPTION, FUEL)},
-			{"ion resistance", AttributeAccessor(RESISTANCE, ION)},
-			{"ion resistance energy", AttributeAccessor(RESISTANCE, ION, ENERGY)},
-			{"ion resistance heat", AttributeAccessor(RESISTANCE, ION, HEAT)},
-			{"ion resistance fuel", AttributeAccessor(RESISTANCE, ION, FUEL)},
-			{"scramble resistance", AttributeAccessor(RESISTANCE, SCRAMBLE)},
-			{"scramble resistance energy", AttributeAccessor(RESISTANCE, SCRAMBLE, ENERGY)},
-			{"scramble resistance heat", AttributeAccessor(RESISTANCE, SCRAMBLE, HEAT)},
-			{"scramble resistance fuel", AttributeAccessor(RESISTANCE, SCRAMBLE, FUEL)},
-			{"slowing resistance", AttributeAccessor(RESISTANCE, SLOWING)},
-			{"slowing resistance energy", AttributeAccessor(RESISTANCE, SLOWING, ENERGY)},
-			{"slowing resistance heat", AttributeAccessor(RESISTANCE, SLOWING, HEAT)},
-			{"slowing resistance fuel", AttributeAccessor(RESISTANCE, SLOWING, FUEL)},
-			{"discharge resistance", AttributeAccessor(RESISTANCE, DISCHARGE)},
-			{"discharge resistance energy", AttributeAccessor(RESISTANCE, DISCHARGE, ENERGY)},
-			{"discharge resistance heat", AttributeAccessor(RESISTANCE, DISCHARGE, HEAT)},
-			{"discharge resistance fuel", AttributeAccessor(RESISTANCE, DISCHARGE, FUEL)},
-			{"corrosion resistance", AttributeAccessor(RESISTANCE, CORROSION)},
-			{"corrosion resistance energy", AttributeAccessor(RESISTANCE, CORROSION, ENERGY)},
-			{"corrosion resistance heat", AttributeAccessor(RESISTANCE, CORROSION, HEAT)},
-			{"corrosion resistance fuel", AttributeAccessor(RESISTANCE, CORROSION, FUEL)},
-			{"leak resistance", AttributeAccessor(RESISTANCE, LEAK)},
-			{"leak resistance energy", AttributeAccessor(RESISTANCE, LEAK, ENERGY)},
-			{"leak resistance heat", AttributeAccessor(RESISTANCE, LEAK, HEAT)},
-			{"leak resistance fuel", AttributeAccessor(RESISTANCE, LEAK, FUEL)},
-			{"burn resistance", AttributeAccessor(RESISTANCE, BURN)},
-			{"burn resistance energy", AttributeAccessor(RESISTANCE, BURN, ENERGY)},
-			{"burn resistance heat", AttributeAccessor(RESISTANCE, BURN, HEAT)},
-			{"burn resistance fuel", AttributeAccessor(RESISTANCE, BURN, FUEL)},
+			{"disruption resistance", AttributeAccessor(RESISTANCE, PIERCING, Modifier::OVER_TIME)},
+			{"disruption resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME), ENERGY)},
+			{"disruption resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME), HEAT)},
+			{"disruption resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME), FUEL)},
+			{"ion resistance", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME))},
+			{"ion resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), ENERGY)},
+			{"ion resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), HEAT)},
+			{"ion resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), FUEL)},
+			{"scramble resistance", AttributeAccessor(RESISTANCE, JAM, Modifier::OVER_TIME)},
+			{"scramble resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), ENERGY)},
+			{"scramble resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), HEAT)},
+			{"scramble resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), FUEL)},
+			{"slowing resistance", AttributeAccessor(RESISTANCE, THRUST, Modifier::OVER_TIME)},
+			{"slowing resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), ENERGY)},
+			{"slowing resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), HEAT)},
+			{"slowing resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), FUEL)},
+			{"discharge resistance", AttributeAccessor(RESISTANCE, SHIELDS, Modifier::OVER_TIME)},
+			{"discharge resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME), ENERGY)},
+			{"discharge resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME), HEAT)},
+			{"discharge resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME), FUEL)},
+			{"corrosion resistance", AttributeAccessor(RESISTANCE, HULL, Modifier::OVER_TIME)},
+			{"corrosion resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME), ENERGY)},
+			{"corrosion resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME), HEAT)},
+			{"corrosion resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME), FUEL)},
+			{"leak resistance", AttributeAccessor(RESISTANCE, FUEL, Modifier::OVER_TIME)},
+			{"leak resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME), ENERGY)},
+			{"leak resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME), HEAT)},
+			{"leak resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME), FUEL)},
+			{"burn resistance", AttributeAccessor(RESISTANCE, HEAT, Modifier::OVER_TIME)},
+			{"burn resistance energy", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME), ENERGY)},
+			{"burn resistance heat", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME), HEAT)},
+			{"burn resistance fuel", AttributeAccessor(RESISTANCE,
+					AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME), FUEL)},
 			{"piercing resistance", AttributeAccessor(RESISTANCE, PIERCING)},
-			{"disruption protection", AttributeAccessor(PROTECTION, DISRUPTION)},
+			{"disruption protection", AttributeAccessor(PROTECTION, PIERCING, Modifier::OVER_TIME)},
 			{"energy protection", AttributeAccessor(PROTECTION, ENERGY)},
 			{"force protection", AttributeAccessor(PROTECTION, FORCE)},
 			{"fuel protection", AttributeAccessor(PROTECTION, FUEL)},
 			{"heat protection", AttributeAccessor(PROTECTION, HEAT)},
 			{"hull protection", AttributeAccessor(PROTECTION, HULL)},
-			{"ion protection", AttributeAccessor(PROTECTION, ION)},
-			{"scramble protection", AttributeAccessor(PROTECTION, SCRAMBLE)},
+			{"ion protection", AttributeAccessor(PROTECTION, ENERGY, Modifier::OVER_TIME)},
+			{"scramble protection", AttributeAccessor(PROTECTION, JAM, Modifier::OVER_TIME)},
 			{"piercing protection", AttributeAccessor(PROTECTION, PIERCING)},
 			{"shield protection", AttributeAccessor(PROTECTION, SHIELDS)},
-			{"slowing protection", AttributeAccessor(PROTECTION, SLOWING)},
-			{"discharge protection", AttributeAccessor(PROTECTION, DISCHARGE)},
-			{"corrosion protection", AttributeAccessor(PROTECTION, CORROSION)},
-			{"leak protection", AttributeAccessor(PROTECTION, LEAK)},
-			{"burn protection", AttributeAccessor(PROTECTION, BURN)},
+			{"slowing protection", AttributeAccessor(PROTECTION, THRUST, Modifier::OVER_TIME)},
+			{"discharge protection", AttributeAccessor(PROTECTION, SHIELDS, Modifier::OVER_TIME)},
+			{"corrosion protection", AttributeAccessor(PROTECTION, HULL, Modifier::OVER_TIME)},
+			{"leak protection", AttributeAccessor(PROTECTION, FUEL, Modifier::OVER_TIME)},
+			{"burn protection", AttributeAccessor(PROTECTION, HEAT, Modifier::OVER_TIME)},
 			{"firing energy", AttributeAccessor(FIRING, ENERGY)},
 			{"firing force", AttributeAccessor(FIRING, FORCE)},
 			{"firing fuel", AttributeAccessor(FIRING, FUEL)},
 			{"firing heat", AttributeAccessor(FIRING, HEAT)},
 			{"firing hull", AttributeAccessor(FIRING, HULL)},
 			{"firing shields", AttributeAccessor(FIRING, SHIELDS)},
-			{"firing ion", AttributeAccessor(FIRING, ION)},
-			{"firing scramble", AttributeAccessor(FIRING, SCRAMBLE)},
-			{"firing slowing", AttributeAccessor(FIRING, SLOWING)},
-			{"firing disruption", AttributeAccessor(FIRING, DISRUPTION)},
-			{"firing discharge", AttributeAccessor(FIRING, DISCHARGE)},
-			{"firing corrosion", AttributeAccessor(FIRING, CORROSION)},
-			{"firing leak", AttributeAccessor(FIRING, LEAK)},
-			{"firing burn", AttributeAccessor(FIRING, BURN)},
-			{"relative firing energy", AttributeAccessor(FIRING, ENERGY).Relative()},
-			{"relative firing fuel", AttributeAccessor(FIRING, FUEL).Relative()},
-			{"relative firing heat", AttributeAccessor(FIRING, HEAT).Relative()},
-			{"relative firing hull", AttributeAccessor(FIRING, HULL).Relative()},
-			{"relative firing shields", AttributeAccessor(FIRING, SHIELDS).Relative()},
+			{"firing ion", AttributeAccessor(FIRING, ENERGY, Modifier::OVER_TIME)},
+			{"firing scramble", AttributeAccessor(FIRING, JAM, Modifier::OVER_TIME)},
+			{"firing slowing", AttributeAccessor(FIRING, THRUST, Modifier::OVER_TIME)},
+			{"firing disruption", AttributeAccessor(FIRING, PIERCING, Modifier::OVER_TIME)},
+			{"firing discharge", AttributeAccessor(FIRING, SHIELDS, Modifier::OVER_TIME)},
+			{"firing corrosion", AttributeAccessor(FIRING, HULL, Modifier::OVER_TIME)},
+			{"firing leak", AttributeAccessor(FIRING, FUEL, Modifier::OVER_TIME)},
+			{"firing burn", AttributeAccessor(FIRING, HEAT, Modifier::OVER_TIME)},
+			{"relative firing energy", AttributeAccessor(FIRING, ENERGY, Modifier::RELATIVE)},
+			{"relative firing fuel", AttributeAccessor(FIRING, FUEL, Modifier::RELATIVE)},
+			{"relative firing heat", AttributeAccessor(FIRING, HEAT, Modifier::RELATIVE)},
+			{"relative firing hull", AttributeAccessor(FIRING, HULL, Modifier::RELATIVE)},
+			{"relative firing shields", AttributeAccessor(FIRING, SHIELDS, Modifier::RELATIVE)},
 			{"hit force", AttributeAccessor(DAMAGE, FORCE)},
 			{"piercing", AttributeAccessor(DAMAGE, PIERCING)},
 			{"shield damage", AttributeAccessor(DAMAGE, SHIELDS)},
@@ -202,21 +230,21 @@ namespace {
 			{"heat damage", AttributeAccessor(DAMAGE, HEAT)},
 			{"fuel damage", AttributeAccessor(DAMAGE, FUEL)},
 			{"energy damage", AttributeAccessor(DAMAGE, ENERGY)},
-			{"relative shield damage", AttributeAccessor(DAMAGE, SHIELDS).Relative()},
-			{"relative hull damage", AttributeAccessor(DAMAGE, HULL).Relative()},
-			{"relative disabled damage", AttributeAccessor(DAMAGE, DISABLED).Relative()},
-			{"relative minable damage", AttributeAccessor(DAMAGE, MINABLE).Relative()},
-			{"relative heat damage", AttributeAccessor(DAMAGE, HEAT).Relative()},
-			{"relative fuel damage", AttributeAccessor(DAMAGE, FUEL).Relative()},
-			{"relative energy damage", AttributeAccessor(DAMAGE, ENERGY).Relative()},
-			{"ion damage", AttributeAccessor(DAMAGE, ION)},
-			{"scrambling damage", AttributeAccessor(DAMAGE, SCRAMBLE)},
-			{"disruption damage", AttributeAccessor(DAMAGE, DISRUPTION)},
-			{"slowing damage", AttributeAccessor(DAMAGE, SLOWING)},
-			{"discharge damage", AttributeAccessor(DAMAGE, DISCHARGE)},
-			{"corrosion damage", AttributeAccessor(DAMAGE, CORROSION)},
-			{"leak damage", AttributeAccessor(DAMAGE, LEAK)},
-			{"burn damage", AttributeAccessor(DAMAGE, BURN)}
+			{"relative shield damage", AttributeAccessor(DAMAGE, SHIELDS, Modifier::RELATIVE)},
+			{"relative hull damage", AttributeAccessor(DAMAGE, HULL, Modifier::RELATIVE)},
+			{"relative disabled damage", AttributeAccessor(DAMAGE, DISABLED, Modifier::RELATIVE)},
+			{"relative minable damage", AttributeAccessor(DAMAGE, MINABLE, Modifier::RELATIVE)},
+			{"relative heat damage", AttributeAccessor(DAMAGE, HEAT, Modifier::RELATIVE)},
+			{"relative fuel damage", AttributeAccessor(DAMAGE, FUEL, Modifier::RELATIVE)},
+			{"relative energy damage", AttributeAccessor(DAMAGE, ENERGY, Modifier::RELATIVE)},
+			{"ion damage", AttributeAccessor(DAMAGE, ENERGY, Modifier::OVER_TIME)},
+			{"scrambling damage", AttributeAccessor(DAMAGE, JAM, Modifier::OVER_TIME)},
+			{"disruption damage", AttributeAccessor(DAMAGE, PIERCING, Modifier::OVER_TIME)},
+			{"slowing damage", AttributeAccessor(DAMAGE, THRUST, Modifier::OVER_TIME)},
+			{"discharge damage", AttributeAccessor(DAMAGE, SHIELDS, Modifier::OVER_TIME)},
+			{"corrosion damage", AttributeAccessor(DAMAGE, HULL, Modifier::OVER_TIME)},
+			{"leak damage", AttributeAccessor(DAMAGE, FUEL, Modifier::OVER_TIME)},
+			{"burn damage", AttributeAccessor(DAMAGE, HEAT, Modifier::OVER_TIME)}
 	};
 
 	// Mapping of new-style AttributeAccessor to legacy names.
@@ -231,7 +259,7 @@ namespace {
 	// The name of every individual effect, as used within category nodes.
 	map<string, AttributeEffectType> allEffects = [](){
 		map<string, AttributeEffectType> names;
-		for(int i = 0; i < 4 * ATTRIBUTE_EFFECT_COUNT; i++)
+		for(int i = 0; i < static_cast<int>(Modifier::MODIFIER_COUNT) * ATTRIBUTE_EFFECT_COUNT; i++)
 		{
 			AttributeEffectType type = static_cast<AttributeEffectType>(i);
 			names.emplace(Attribute::GetEffectName(type), type);
@@ -243,7 +271,7 @@ namespace {
 	// while others have to define all their effects in their children.
 	map<string, Attribute> allBaseAttributes = [](){
 		map<string, Attribute> names;
-		for(int i = 0; i < 4 * ATTRIBUTE_CATEGORY_COUNT; i++)
+		for(int i = 0; i < static_cast<int>(Modifier::MODIFIER_COUNT) * ATTRIBUTE_CATEGORY_COUNT; i++)
 		{
 			AttributeCategory category = static_cast<AttributeCategory>(i);
 			optional<AttributeEffectType> effect = AttributeAccessor::GetBaseEffect(category);
@@ -300,6 +328,7 @@ string Attribute::GetLegacyName(const AnyAttribute &attribute)
 		return attribute.String();
 	else
 	{
+		// newToOld contains all supported attributes.
 		const AttributeAccessor &access = attribute.Categorized();
 		auto it = newToOld.find(access);
 		if(it == newToOld.end())
@@ -307,13 +336,11 @@ string Attribute::GetLegacyName(const AnyAttribute &attribute)
 			// TODO: find a better solution, or resort to manually mapping all supported attributes.
 			// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon.
 			auto baseType = static_cast<AttributeEffectType>(access.Effect() % static_cast<int>(ATTRIBUTE_EFFECT_COUNT));
-			string prefix = access.Effect() >= 2 * ATTRIBUTE_EFFECT_COUNT ? "relative " : "";
-			string suffix = (access.Effect() >= ATTRIBUTE_EFFECT_COUNT && prefix.empty()) ? " multiplier" : "";
-			string category = GetCategoryName(access.Category()) + " ";
-			string effect = GetEffectName(baseType);
-			string final = prefix + category + effect + suffix;
-			newToOld.insert(it, {access, final});
-			return final;
+			string category = GetCategoryName(access.Category());
+			if(access.HasModifier(Modifier::RELATIVE))
+				return "relative " + category + " " + GetEffectName(baseType);
+			else
+				return category + " " + GetEffectName(access.Effect());
 		}
 		return it->second;
 	}
@@ -326,12 +353,17 @@ string Attribute::GetLegacyName(const AnyAttribute &attribute)
 // multiplier effect.
 string Attribute::GetEffectName(const AttributeEffectType effect)
 {
-	if(effect >= ATTRIBUTE_EFFECT_COUNT * 2)
-		return "relative " + GetEffectName(static_cast<AttributeEffectType>(effect - 2 * ATTRIBUTE_EFFECT_COUNT));
-	if(effect >= ATTRIBUTE_EFFECT_COUNT)
-		return GetEffectName(static_cast<AttributeEffectType>(effect - ATTRIBUTE_EFFECT_COUNT)) + " multiplier";
-	if(effect < 0)
-		return "";
+	if(AttributeAccessor::HasModifier(effect, Modifier::RELATIVE))
+		return "relative " + GetEffectName(static_cast<AttributeEffectType>(effect % ATTRIBUTE_EFFECT_COUNT));
+	else if(AttributeAccessor::HasModifier(effect, Modifier::MULTIPLIER))
+		return GetEffectName(static_cast<AttributeEffectType>(effect % ATTRIBUTE_EFFECT_COUNT)) + " multiplier";
+	else if(AttributeAccessor::HasModifier(effect, Modifier::OVER_TIME))
+	{
+		const auto it = overTimeEffectNames.find(static_cast<AttributeEffectType>(effect % ATTRIBUTE_EFFECT_COUNT));
+		if(it == overTimeEffectNames.end())
+			return "";
+		return it->second;
+	}
 	return effectNames.at(effect);
 }
 
@@ -392,7 +424,7 @@ AnyAttribute Attribute::ParseAny(const std::string &attribute)
 
 
 // Gets the category of this attribute.
-const AttributeCategory Attribute::Category() const
+AttributeCategory Attribute::Category() const
 {
 	return category;
 }

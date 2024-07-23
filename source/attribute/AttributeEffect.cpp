@@ -24,25 +24,17 @@ const double AttributeEffect::EPS = 0.0000000001;
 
 
 // Creates a new effect of a specified type and value, with optional sub-effects.
-AttributeEffect::AttributeEffect(const AttributeEffectType type, const double value, const double minimum)
+AttributeEffect::AttributeEffect(AttributeEffectType type, double value, double minimum)
 		: type(type), value(std::fmax(value, minimum)), min(minimum)
 {
 }
 
 
 
-// Checks whether this effect is a multiplier.
-bool AttributeEffect::IsMultiplier() const
+// Checks whether this effect has the given modifier.
+bool AttributeEffect::HasModifier(Modifier modifier) const
 {
-	return AttributeAccessor::IsMultiplier(type);
-}
-
-
-
-// Checks whether this effect is relative.
-bool AttributeEffect::IsRelative() const
-{
-	return AttributeAccessor::IsRelative(type);
+	return AttributeAccessor::HasModifier(type, modifier);
 }
 
 
@@ -88,7 +80,7 @@ double AttributeEffect::Minimum() const
 
 
 // Adds the specified amount to this effect's value.
-void AttributeEffect::Add(const double amount)
+void AttributeEffect::Add(double amount)
 {
 	Set(value + amount);
 }
@@ -96,7 +88,7 @@ void AttributeEffect::Add(const double amount)
 
 
 // Sets the effect's value to the specified amount.
-void AttributeEffect::Set(const double amount)
+void AttributeEffect::Set(double amount)
 {
 	value = std::fmax(min, amount);
 	if(value && fabs(value) < EPS)

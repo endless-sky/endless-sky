@@ -21,16 +21,32 @@ using namespace std;
 
 
 
-AttributeAccessor::AttributeAccessor(const AttributeCategory category, const AttributeEffectType effect)
+AttributeAccessor::AttributeAccessor(AttributeCategory category, AttributeEffectType effect)
 		: category(IsAlwaysComposite(category) ? WithCategoryEffect(category, effect) : category), effect(effect)
 {
 }
 
 
 
-AttributeAccessor::AttributeAccessor(const AttributeCategory category, const AttributeEffectType categoryEffect,
-		const AttributeEffectType effect) : category(AttributeAccessor::WithCategoryEffect(category, categoryEffect)),
-		effect(effect)
+AttributeAccessor::AttributeAccessor(AttributeCategory category, AttributeEffectType effect, Modifier modifier)
+		: category(IsAlwaysComposite(category) ? WithCategoryEffect(category, WithModifier(effect, modifier)) : category),
+		effect(WithModifier(effect, modifier))
+{
+}
+
+
+
+AttributeAccessor::AttributeAccessor(AttributeCategory category, AttributeEffectType categoryEffect,
+		AttributeEffectType effect)
+		: category(AttributeAccessor::WithCategoryEffect(category, categoryEffect)), effect(effect)
+{
+}
+
+
+
+AttributeAccessor::AttributeAccessor(AttributeCategory category, AttributeEffectType categoryEffect,
+		AttributeEffectType effect, Modifier modifier)
+		: category(AttributeAccessor::WithCategoryEffect(category, categoryEffect)), effect(WithModifier(effect, modifier))
 {
 }
 
@@ -51,66 +67,33 @@ AttributeEffectType AttributeAccessor::Effect() const
 
 
 
-// Checks whether this attribute is a multiplier.
-bool AttributeAccessor::IsMultiplier() const
+// Checks whether this attribute has a specific modifier. Attribute effects have exactly one modifier.
+bool AttributeAccessor::HasModifier(Modifier modifier) const
 {
-	return IsMultiplier(effect);
+	return HasModifier(effect, modifier);
 }
 
 
 
-bool AttributeAccessor::IsMultiplier(const AttributeEffectType effect)
+bool AttributeAccessor::HasModifier(AttributeEffectType effect, Modifier modifier)
 {
-	return effect >= ATTRIBUTE_EFFECT_COUNT && (effect < ATTRIBUTE_EFFECT_COUNT * 2
-		|| effect >= ATTRIBUTE_EFFECT_COUNT * 3);
+	return effect / ATTRIBUTE_EFFECT_COUNT == static_cast<int>(modifier);
 }
 
 
 
-// Creates a multiplier for this attribute, if not already a multiplier.
-AttributeAccessor AttributeAccessor::Multiplier() const
+// Creates a new accessor with the effect's modifier set to the given value.
+AttributeAccessor AttributeAccessor::WithModifier(Modifier modifier) const
 {
-	if(IsMultiplier())
-		return *this;
-	return {category, Multiplier(effect)};
+	return {category, effect, modifier};
 }
 
 
 
-AttributeEffectType AttributeAccessor::Multiplier(AttributeEffectType effect)
+AttributeEffectType AttributeAccessor::WithModifier(AttributeEffectType effect, Modifier modifier)
 {
-	return static_cast<AttributeEffectType>(effect + ATTRIBUTE_EFFECT_COUNT);
-}
-
-
-
-// Checks whether this attribute is relative.
-bool AttributeAccessor::IsRelative() const
-{
-	return IsRelative(effect);
-}
-
-
-
-bool AttributeAccessor::IsRelative(const AttributeEffectType effect)
-{
-	return effect >= ATTRIBUTE_EFFECT_COUNT * 2;
-}
-
-
-// Creates a relative version of this attribute, if not already relative.
-AttributeAccessor AttributeAccessor::Relative() const
-{
-	if(IsRelative())
-		return *this;
-	return AttributeAccessor(category, Relative(effect));
-}
-
-
-
-AttributeEffectType AttributeAccessor::Relative(const AttributeEffectType effect)
-{
-	return static_cast<AttributeEffectType>(effect + 2 * ATTRIBUTE_EFFECT_COUNT);
+	int newEffect = effect % ATTRIBUTE_EFFECT_COUNT + static_cast<int>(modifier) * ATTRIBUTE_EFFECT_COUNT;
+	return static_cast<AttributeEffectType>(newEffect);
 }
 
 
@@ -160,6 +143,8 @@ bool AttributeAccessor::IsRequirement(const AttributeCategory category, const At
 {
 	if(category == PASSIVE || category == DAMAGE || category == PROTECTION)
 		return false;
+	if(HasModifier(effect, Modifier::OVER_TIME))
+		return false;
 	if(static_cast<int>(category) == static_cast<int>(effect) && category <= CLOAKING)
 		return false;
 	if(effect <= HULL || effect == ENERGY || effect == FUEL)
@@ -197,7 +182,7 @@ optional<AttributeEffectType> AttributeAccessor::GetBaseEffect(const AttributeCa
 // Gets the default minimum value for this attribute.
 double AttributeAccessor::GetDefaultMinimum() const
 {
-	if(IsMultiplier())
+	if(HasModifier(Modifier::MULTIPLIER))
 		return -1.;
 	if(category % ATTRIBUTE_CATEGORY_COUNT == PROTECTION && GetCategoryEffect() == effect)
 		return -0.99;

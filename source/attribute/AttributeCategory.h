@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // denotes a special category that is combined with the effect. This is primarily used for RESISTANCE, where
 // categories such as "burn resistance" are created this way.
 enum AttributeCategory : int {
+	// These categories have matching default effects.
 	SHIELD_GENERATION,
 	HULL_REPAIR,
 	THRUSTING,
@@ -32,6 +33,7 @@ enum AttributeCategory : int {
 	ACTIVE_COOL,
 	RAMSCOOPING,
 	CLOAKING,
+	// These don't have default effects.
 	AFTERBURNING,
 	FIRING,
 	PROTECTION,

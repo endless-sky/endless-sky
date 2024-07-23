@@ -44,15 +44,16 @@ TEST_CASE( "AttributeStore::GetMinimum", "[AttributeStore][GetMinimum]" ) {
 		CHECK( a.GetMinimum("fuel consumption") == std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Multipliers" ) {
-		CHECK( a.GetMinimum(AttributeAccessor(SHIELD_GENERATION, SHIELDS).Multiplier()) == -1. );
-		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, ENERGY).Relative().Multiplier()) == -1. );
+		CHECK( a.GetMinimum(AttributeAccessor(SHIELD_GENERATION, SHIELDS, Modifier::MULTIPLIER)) == -1. );
+		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, ENERGY, Modifier::MULTIPLIER)) == -1. );
 	}
 	SECTION( "Protection" ) {
-		CHECK( a.GetMinimum(AttributeAccessor(PROTECTION, SCRAMBLE)) == -0.99 );
-		CHECK( a.GetMinimum(AttributeAccessor(PROTECTION, SCRAMBLE, ENERGY)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccessor(PROTECTION, JAM, Modifier::OVER_TIME)) == -0.99 );
+		CHECK( a.GetMinimum(AttributeAccessor(PROTECTION, AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), ENERGY))
+				== std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Others" ) {
-		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, SCRAMBLE)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, JAM, Modifier::OVER_TIME)) == std::numeric_limits<double>::lowest() );
 	}
 }
 
@@ -62,9 +63,9 @@ TEST_CASE( "AttributeStore::Set", "[AttributeStore][Set]" ) {
 	SECTION( "Empty when only contains 0" ) {
 		CHECK(a.Empty() );
 	}
-	a.Set(AttributeAccessor(PROTECTION, SCRAMBLE), -2.);
+	a.Set(AttributeAccessor(PROTECTION, JAM, Modifier::OVER_TIME), -2.);
 	SECTION( "Respecting minimum values" ) {
-		CHECK( a.Get(AttributeAccessor(PROTECTION, SCRAMBLE)) == -0.99 );
+		CHECK( a.Get(AttributeAccessor(PROTECTION, JAM, Modifier::OVER_TIME)) == -0.99 );
 	}
 	SECTION( "Doesn't update legacy values" ) {
 		CHECK( a.Get("scramble protection") == 0. );
@@ -115,41 +116,42 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 		CHECK( store.Get("turning shields") == 0. );
 		CHECK( store.Get({TURNING, SHIELDS}) == 100. );
 		CHECK( store.Get("scramble resistance") == 0. );
-		CHECK( store.Get({RESISTANCE, SCRAMBLE}) == 100. );
+		CHECK( store.Get({RESISTANCE, JAM, Modifier::OVER_TIME}) == 100. );
 		CHECK( store.Get("scramble resistance energy") == 0. );
-		CHECK( store.Get({RESISTANCE, SCRAMBLE, ENERGY}) == 20. );
+		CHECK( store.Get({RESISTANCE, AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), ENERGY}) == 20. );
 		CHECK( store.Get("slowing resistance") == 0. );
-		CHECK( store.Get({RESISTANCE, SLOWING}) == 30. );
+		CHECK( store.Get({RESISTANCE, THRUST, Modifier::OVER_TIME}) == 30. );
 		CHECK( store.Get("slowing resistance heat") == 0. );
-		CHECK( store.Get({RESISTANCE, SLOWING, HEAT}) == 40. );
+		CHECK( store.Get({RESISTANCE, AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), HEAT}) == 40. );
 	}
 }
 
-	TEST_CASE( "AttributeStore::Save", "[AttributeStore][Save]" ) {
-		AttributeStore store;
-		DataNode node = AsDataNode("parent\n"
-								"	attribute 1\n"
-								"	thrust 100\n"
-								"		energy 20\n"
-								"		heat 10\n"
-								"	turn 500\n"
-								"		shields 100\n"
-								"	\"scramble resistance\" 100\n"
-								"		energy 20\n"
-								"	\"other attribute\" 1\n"
-								"	\"another attribute\" 0\n"
-								"	\"shield generation\" 30\n"
-								"	\"shield energy\" 50\n"
-								"	\"slowing resistance\" 30\n"
-								"		heat 40\n"
-								"		energy 20");
-		for(const DataNode &child : node)
-			store.Load(child);
-		DataWriter writer;
-		store.Save(writer);
-		SECTION( "Check saved data" ) {
-			std::string data = writer.SaveToString();
-			std::string expected =
+TEST_CASE( "AttributeStore::Save", "[AttributeStore][Save]" ) {
+	AttributeStore store;
+	DataNode node = AsDataNode("parent\n"
+							"	attribute 1\n"
+							"	thrust 100\n"
+							"		energy 20\n"
+							"		heat 10\n"
+							"	turn 500\n"
+							"		shields 100\n"
+							"	\"scramble resistance\" 100\n"
+							"		energy 20\n"
+							"	\"other attribute\" 1\n"
+							"	\"another attribute\" 0\n"
+							"	\"active cooling\" 10\n"
+							"	\"shield generation\" 30\n"
+							"	\"shield energy\" 50\n"
+							"	\"slowing resistance\" 30\n"
+							"		heat 40\n"
+							"		energy 20");
+	for(const DataNode &child : node)
+		store.Load(child);
+	DataWriter writer;
+	store.Save(writer);
+	SECTION( "Check saved data" ) {
+		std::string data = writer.SaveToString();
+		std::string expected =
 R"(attribute 1
 "other attribute" 1
 "shield generation" 30
@@ -159,15 +161,16 @@ thrust 100
 	heat 10
 turn 500
 	shields 100
-"scramble resistance" 100
-	energy 20
+"active cooling" 10
 "slowing resistance" 30
 	energy 20
 	heat 40
+"scramble resistance" 100
+	energy 20
 )";
-			CHECK( data == expected );
-		}
+		CHECK( data == expected );
 	}
+}
 // #endregion unit tests
 
 

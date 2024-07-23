@@ -2745,13 +2745,13 @@ double Ship::DisabledHull() const
 // Get the maximum shield and hull values of the ship, accounting for multipliers.
 double Ship::MaxShields() const
 {
-	return attributes.Get({PASSIVE, SHIELDS}) * (1 + attributes.Get(AttributeAccessor(PASSIVE, SHIELDS).Multiplier()));
+	return attributes.Get({PASSIVE, SHIELDS}) * (1 + attributes.Get(AttributeAccessor(PASSIVE, SHIELDS, Modifier::MULTIPLIER)));
 }
 
 
 double Ship::MaxHull() const
 {
-	return attributes.Get({PASSIVE, HULL}) * (1 + attributes.Get(AttributeAccessor(PASSIVE, HULL).Multiplier()));
+	return attributes.Get({PASSIVE, HULL}) * (1 + attributes.Get(AttributeAccessor(PASSIVE, HULL, Modifier::MULTIPLIER)));
 }
 
 
@@ -3028,7 +3028,7 @@ double Ship::InertialMass() const
 double Ship::TurnRate() const
 {
 	return attributes.Get({TURNING, TURN}) / InertialMass()
-		* (1. + attributes.Get(AttributeAccessor(TURNING, TURN).Multiplier()));
+		* (1. + attributes.Get(AttributeAccessor(TURNING, TURN, Modifier::MULTIPLIER)));
 }
 
 
@@ -3936,32 +3936,32 @@ void Ship::DoGeneration()
 
 		const double hullAvailable = (attributes.Get({HULL_REPAIR, HULL})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, HULL}.Multiplier()));
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, HULL, Modifier::MULTIPLIER}));
 		const double hullEnergy = (attributes.Get({HULL_REPAIR, ENERGY})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
-			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, ENERGY}.Multiplier())) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, ENERGY, Modifier::MULTIPLIER})) / hullAvailable;
 		const double hullFuel = (attributes.Get({HULL_REPAIR, FUEL})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull fuel")))
-			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, FUEL}.Multiplier())) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, FUEL, Modifier::MULTIPLIER})) / hullAvailable;
 		const double hullHeat = (attributes.Get({HULL_REPAIR, HEAT})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull heat")))
-			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, HEAT}.Multiplier())) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccessor{HULL_REPAIR, HEAT, Modifier::MULTIPLIER})) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		DoRepair(hull, hullRemaining, MaxHull(),
 			energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
 		const double shieldsAvailable = (attributes.Get({SHIELD_GENERATION, SHIELDS})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, SHIELDS}.Multiplier()));
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, SHIELDS, Modifier::MULTIPLIER}));
 		const double shieldsEnergy = (attributes.Get({SHIELD_GENERATION, ENERGY})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
-			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, ENERGY}.Multiplier())) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, ENERGY, Modifier::MULTIPLIER})) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get({SHIELD_GENERATION, FUEL})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield fuel")))
-			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, FUEL}.Multiplier())) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, FUEL, Modifier::MULTIPLIER})) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get({SHIELD_GENERATION, HEAT})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield heat")))
-			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, HEAT}.Multiplier())) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccessor{SHIELD_GENERATION, HEAT, Modifier::MULTIPLIER})) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		DoRepair(shields, shieldsRemaining, MaxShields(),
 			energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
@@ -4062,80 +4062,104 @@ void Ship::DoGeneration()
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
-		double ionResistance = attributes.Get({RESISTANCE, ION});
-		double ionEnergy = attributes.Get({RESISTANCE, ION, ENERGY}) / ionResistance;
-		double ionFuel = attributes.Get({RESISTANCE, ION, FUEL}) / ionResistance;
-		double ionHeat = attributes.Get({RESISTANCE, ION, HEAT}) / ionResistance;
+		double ionResistance = attributes.Get({RESISTANCE, ENERGY, Modifier::OVER_TIME});
+		double ionEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), ENERGY}) / ionResistance;
+		double ionFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), FUEL}) / ionResistance;
+		double ionHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), HEAT}) / ionResistance;
 		DoStatusEffect(isDisabled, ionization, ionResistance,
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
 	if(scrambling)
 	{
-		double scramblingResistance = attributes.Get({RESISTANCE, SCRAMBLE});
-		double scramblingEnergy = attributes.Get({RESISTANCE, SCRAMBLE, ENERGY}) / scramblingResistance;
-		double scramblingFuel = attributes.Get({RESISTANCE, SCRAMBLE, FUEL}) / scramblingResistance;
-		double scramblingHeat = attributes.Get({RESISTANCE, SCRAMBLE, HEAT}) / scramblingResistance;
+		double scramblingResistance = attributes.Get({RESISTANCE, JAM, Modifier::OVER_TIME});
+		double scramblingEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), ENERGY}) / scramblingResistance;
+		double scramblingFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), FUEL}) / scramblingResistance;
+		double scramblingHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME), HEAT}) / scramblingResistance;
 		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
 			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
 	}
 
 	if(disruption)
 	{
-		double disruptionResistance = attributes.Get({RESISTANCE, DISRUPTION});
-		double disruptionEnergy = attributes.Get({RESISTANCE, DISRUPTION, ENERGY}) / disruptionResistance;
-		double disruptionFuel = attributes.Get({RESISTANCE, DISRUPTION, FUEL}) / disruptionResistance;
-		double disruptionHeat = attributes.Get({RESISTANCE, DISRUPTION, HEAT}) / disruptionResistance;
+		double disruptionResistance = attributes.Get({RESISTANCE, PIERCING, Modifier::OVER_TIME});
+		double disruptionEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME), ENERGY}) / disruptionResistance;
+		double disruptionFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME), FUEL}) / disruptionResistance;
+		double disruptionHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME), HEAT}) / disruptionResistance;
 		DoStatusEffect(isDisabled, disruption, disruptionResistance,
 			energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
 	}
 
 	if(slowness)
 	{
-		double slowingResistance = attributes.Get({RESISTANCE, SLOWING});
-		double slowingEnergy = attributes.Get({RESISTANCE, SLOWING, ENERGY}) / slowingResistance;
-		double slowingFuel = attributes.Get({RESISTANCE, SLOWING, FUEL}) / slowingResistance;
-		double slowingHeat = attributes.Get({RESISTANCE, SLOWING, HEAT}) / slowingResistance;
+		double slowingResistance = attributes.Get({RESISTANCE, THRUST, Modifier::OVER_TIME});
+		double slowingEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), ENERGY}) / slowingResistance;
+		double slowingFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), FUEL}) / slowingResistance;
+		double slowingHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME), HEAT}) / slowingResistance;
 		DoStatusEffect(isDisabled, slowness, slowingResistance,
 			energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	}
 
 	if(discharge)
 	{
-		double dischargeResistance = attributes.Get({RESISTANCE, DISCHARGE});
-		double dischargeEnergy = attributes.Get({RESISTANCE, DISCHARGE, ENERGY}) / dischargeResistance;
-		double dischargeFuel = attributes.Get({RESISTANCE, DISCHARGE, FUEL}) / dischargeResistance;
-		double dischargeHeat = attributes.Get({RESISTANCE, DISCHARGE, HEAT}) / dischargeResistance;
+		double dischargeResistance = attributes.Get({RESISTANCE, SHIELDS, Modifier::OVER_TIME});
+		double dischargeEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME), ENERGY}) / dischargeResistance;
+		double dischargeFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME), FUEL}) / dischargeResistance;
+		double dischargeHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME), HEAT}) / dischargeResistance;
 		DoStatusEffect(isDisabled, discharge, dischargeResistance,
 			energy, dischargeEnergy, fuel, dischargeFuel, heat, dischargeHeat);
 	}
 
 	if(corrosion)
 	{
-		double corrosionResistance = attributes.Get({RESISTANCE, CORROSION});
-		double corrosionEnergy = attributes.Get({RESISTANCE, CORROSION, ENERGY}) / corrosionResistance;
-		double corrosionFuel = attributes.Get({RESISTANCE, CORROSION, FUEL}) / corrosionResistance;
-		double corrosionHeat = attributes.Get({RESISTANCE, CORROSION, HEAT}) / corrosionResistance;
+		double corrosionResistance = attributes.Get({RESISTANCE, HULL, Modifier::OVER_TIME});
+		double corrosionEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME), ENERGY}) / corrosionResistance;
+		double corrosionFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME), FUEL}) / corrosionResistance;
+		double corrosionHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME), HEAT}) / corrosionResistance;
 		DoStatusEffect(isDisabled, corrosion, corrosionResistance,
 			energy, corrosionEnergy, fuel, corrosionFuel, heat, corrosionHeat);
 	}
 
 	if(leakage)
 	{
-		double leakResistance = attributes.Get({RESISTANCE, LEAK});
-		double leakEnergy = attributes.Get({RESISTANCE, LEAK, ENERGY}) / leakResistance;
-		double leakFuel = attributes.Get({RESISTANCE, LEAK, FUEL}) / leakResistance;
-		double leakHeat = attributes.Get({RESISTANCE, LEAK, HEAT}) / leakResistance;
+		double leakResistance = attributes.Get({RESISTANCE, FUEL, Modifier::OVER_TIME});
+		double leakEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME), ENERGY}) / leakResistance;
+		double leakFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME), FUEL}) / leakResistance;
+		double leakHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME), HEAT}) / leakResistance;
 		DoStatusEffect(isDisabled, leakage, leakResistance,
 			energy, leakEnergy, fuel, leakFuel, heat, leakHeat);
 	}
 
 	if(burning)
 	{
-		double burnResistance = attributes.Get({RESISTANCE, BURN});
-		double burnEnergy = attributes.Get({RESISTANCE, BURN, ENERGY}) / burnResistance;
-		double burnFuel = attributes.Get({RESISTANCE, BURN, FUEL}) / burnResistance;
-		double burnHeat = attributes.Get({RESISTANCE, BURN, HEAT}) / burnResistance;
+		double burnResistance = attributes.Get({RESISTANCE, HEAT, Modifier::OVER_TIME});
+		double burnEnergy = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME), ENERGY}) / burnResistance;
+		double burnFuel = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME), FUEL}) / burnResistance;
+		double burnHeat = attributes.Get({RESISTANCE,
+				AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME), HEAT}) / burnResistance;
 		DoStatusEffect(isDisabled, burning, burnResistance,
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
 	}
@@ -4629,14 +4653,14 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				energy -= scale * attributes.Get({TURNING, ENERGY});
 				fuel -= scale * attributes.Get({TURNING, FUEL});
 				heat += scale * attributes.Get({TURNING, HEAT});
-				discharge += scale * attributes.Get({TURNING, DISCHARGE});
-				corrosion += scale * attributes.Get({TURNING, CORROSION});
-				ionization += scale * attributes.Get({TURNING, ION});
-				scrambling += scale * attributes.Get({TURNING, SCRAMBLE});
-				leakage += scale * attributes.Get({TURNING, LEAK});
-				burning += scale * attributes.Get({TURNING, BURN});
-				slowness += scale * attributes.Get({TURNING, SLOWING});
-				disruption += scale * attributes.Get({TURNING, DISRUPTION});
+				discharge += scale * attributes.Get({TURNING, SHIELDS, Modifier::OVER_TIME});
+				corrosion += scale * attributes.Get({TURNING, HULL, Modifier::OVER_TIME});
+				ionization += scale * attributes.Get({TURNING, ENERGY, Modifier::OVER_TIME});
+				scrambling += scale * attributes.Get({TURNING, JAM, Modifier::OVER_TIME});
+				leakage += scale * attributes.Get({TURNING, FUEL, Modifier::OVER_TIME});
+				burning += scale * attributes.Get({TURNING, HEAT, Modifier::OVER_TIME});
+				slowness += scale * attributes.Get({TURNING, THRUST, Modifier::OVER_TIME});
+				disruption += scale * attributes.Get({TURNING, PIERCING, Modifier::OVER_TIME});
 
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
@@ -4683,14 +4707,14 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 					energy -= scale * attributes.Get({direction, ENERGY});
 					fuel -= scale * attributes.Get({direction, FUEL});
 					heat += scale * attributes.Get({direction, HEAT});
-					discharge += scale * attributes.Get({direction, DISCHARGE});
-					corrosion += scale * attributes.Get({direction, CORROSION});
-					ionization += scale * attributes.Get({direction, ION});
-					scrambling += scale * attributes.Get({direction, SCRAMBLE});
-					burning += scale * attributes.Get({direction, BURN});
-					leakage += scale * attributes.Get({direction, LEAK});
-					slowness += scale * attributes.Get({direction, SLOWING});
-					disruption += scale * attributes.Get({direction, DISRUPTION});
+					discharge += scale * attributes.Get({direction, SHIELDS, Modifier::OVER_TIME});
+					corrosion += scale * attributes.Get({direction, HULL, Modifier::OVER_TIME});
+					ionization += scale * attributes.Get({direction, ENERGY, Modifier::OVER_TIME});
+					scrambling += scale * attributes.Get({direction, JAM, Modifier::OVER_TIME});
+					burning += scale * attributes.Get({direction, HEAT, Modifier::OVER_TIME});
+					leakage += scale * attributes.Get({direction, FUEL, Modifier::OVER_TIME});
+					slowness += scale * attributes.Get({direction, THRUST, Modifier::OVER_TIME});
+					disruption += scale * attributes.Get({direction, PIERCING, Modifier::OVER_TIME});
 
 					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
@@ -4707,15 +4731,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			double fuelCost = attributes.Get({AFTERBURNING, FUEL});
 			double heatCost = -attributes.Get({AFTERBURNING, HEAT});
 
-			double dischargeCost = attributes.Get({AFTERBURNING, DISCHARGE});
-			double corrosionCost = attributes.Get({AFTERBURNING, CORROSION});
-			double ionCost = attributes.Get({AFTERBURNING, ION});
-			double scramblingCost = attributes.Get({AFTERBURNING, SCRAMBLE});
-			double leakageCost = attributes.Get({AFTERBURNING, LEAK});
-			double burningCost = attributes.Get({AFTERBURNING, BURN});
+			double dischargeCost = attributes.Get({AFTERBURNING, SHIELDS, Modifier::OVER_TIME});
+			double corrosionCost = attributes.Get({AFTERBURNING, HULL, Modifier::OVER_TIME});
+			double ionCost = attributes.Get({AFTERBURNING, ENERGY, Modifier::OVER_TIME});
+			double scramblingCost = attributes.Get({AFTERBURNING, JAM, Modifier::OVER_TIME});
+			double leakageCost = attributes.Get({AFTERBURNING, FUEL, Modifier::OVER_TIME});
+			double burningCost = attributes.Get({AFTERBURNING, HEAT, Modifier::OVER_TIME});
 
-			double slownessCost = attributes.Get({AFTERBURNING, SLOWING});
-			double disruptionCost = attributes.Get({AFTERBURNING, DISRUPTION});
+			double slownessCost = attributes.Get({AFTERBURNING, THRUST, Modifier::OVER_TIME});
+			double disruptionCost = attributes.Get({AFTERBURNING, PIERCING, Modifier::OVER_TIME});
 
 			if(thrust && shields >= shieldCost && hull >= hullCost
 				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)

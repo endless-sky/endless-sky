@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AttributeCategory.h"
 #include "AttributeEffectType.h"
+#include "Modifier.h"
 
 #include <cmath>
 #include <limits>
@@ -25,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class AttributeEffect {
 public:
 	// Creates a new effect of a specified type, value and minimum.
-	AttributeEffect(const AttributeEffectType type, const double value, const double minimum =
+	AttributeEffect(AttributeEffectType type, double value, double minimum =
 			std::numeric_limits<double>::lowest());
 
 	// Gets the type of the effect, its value, and its sub-effects.
@@ -34,19 +35,17 @@ public:
 	double Minimum() const;
 
 
-	// Checks whether this effect is a multiplier.
-	bool IsMultiplier() const;
-	// Checks whether this effect is relative.
-	bool IsRelative() const;
+	// Checks whether this effect has the given modifier.
+	bool HasModifier(Modifier modifier) const;
 
 	// Adds the specified amount to this effect's value.
-	void Add(const double amount);
+	void Add(double amount);
 	// Sets the effect's value to the specified amount.
-	void Set(const double amount);
+	void Set(double amount);
 
 	// Checks whether this effect is a requirement for its category.
 	// Required effects mark resource consumption when an action is taken.
-	bool IsRequirement(const AttributeCategory category) const;
+	bool IsRequirement(AttributeCategory category) const;
 
 	// Checks if this effect, when used with the PASSIVE category, denotes a capacity or a
 	// passively applied effect.

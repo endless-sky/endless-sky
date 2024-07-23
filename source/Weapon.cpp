@@ -39,9 +39,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool safeRangeOverriden = false;
 	// We're using infinity to keep track of whether these values have been parsed.
 	attributes.Set(AttributeAccessor(DAMAGE, DISABLED), numeric_limits<double>::infinity());
-	attributes.Set(AttributeAccessor(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccessor(DAMAGE, DISABLED, Modifier::RELATIVE), numeric_limits<double>::infinity());
 	attributes.Set(AttributeAccessor(DAMAGE, MINABLE), numeric_limits<double>::infinity());
-	attributes.Set(AttributeAccessor(DAMAGE, MINABLE).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccessor(DAMAGE, MINABLE, Modifier::RELATIVE), numeric_limits<double>::infinity());
 
 	for(const DataNode &child : node)
 	{
@@ -245,15 +245,15 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Disabled damage defaults to hull damage if not specified.
 	if(attributes.Get(AttributeAccessor(DAMAGE, DISABLED)) == numeric_limits<double>::infinity())
 		attributes.Set(AttributeAccessor(DAMAGE, DISABLED), attributes.Get(AttributeAccessor(DAMAGE, HULL)));
-	if(attributes.Get(AttributeAccessor(DAMAGE, DISABLED).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccessor(DAMAGE, DISABLED).Relative(),
-			attributes.Get(AttributeAccessor(DAMAGE, HULL).Relative()));
+	if(attributes.Get(AttributeAccessor(DAMAGE, DISABLED, Modifier::RELATIVE)) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccessor(DAMAGE, DISABLED, Modifier::RELATIVE),
+			attributes.Get(AttributeAccessor(DAMAGE, HULL, Modifier::RELATIVE)));
 	// Minable damage defaults to hull damage if not specified.
 	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
 		attributes.Set(AttributeAccessor(DAMAGE, MINABLE), attributes.Get(AttributeAccessor(DAMAGE, HULL)));
-	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(AttributeAccessor(DAMAGE, MINABLE).Relative(),
-				attributes.Get(AttributeAccessor(DAMAGE, HULL).Relative()));
+	if(attributes.Get(AttributeAccessor(DAMAGE, MINABLE, Modifier::RELATIVE)) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccessor(DAMAGE, MINABLE, Modifier::RELATIVE),
+				attributes.Get(AttributeAccessor(DAMAGE, HULL, Modifier::RELATIVE)));
 
 	// Sanity checks:
 	if(burstReload > reload)

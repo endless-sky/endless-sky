@@ -182,18 +182,26 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
 	// Discharge damage is blocked 50% by the absence of shields.
-	damage.dischargeDamage = weapon.DischargeDamage() * ScaleType(0., .5, attributes.Get({PROTECTION, DISCHARGE}));
-	damage.corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., 0., attributes.Get({PROTECTION, CORROSION}));
-	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, 0., attributes.Get({PROTECTION, ION}));
-	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, 0., attributes.Get({PROTECTION, BURN}));
-	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., 0., attributes.Get({PROTECTION, LEAK}));
+	damage.dischargeDamage = weapon.DischargeDamage() * ScaleType(0., .5,
+			attributes.Get({PROTECTION, SHIELDS, Modifier::OVER_TIME}));
+	damage.corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., 0.,
+			attributes.Get({PROTECTION, HULL, Modifier::OVER_TIME}));
+	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, 0.,
+			attributes.Get({PROTECTION, ENERGY, Modifier::OVER_TIME}));
+	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, 0.,
+			attributes.Get({PROTECTION, HEAT, Modifier::OVER_TIME}));
+	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., 0.,
+			attributes.Get({PROTECTION, FUEL, Modifier::OVER_TIME}));
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.
 	// Disruption is blocked 50% by the absence of shields.
-	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, 0., attributes.Get({PROTECTION, SLOWING}));
-	damage.scramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, 0., attributes.Get({PROTECTION, SCRAMBLE}));
-	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(0., .5, attributes.Get({PROTECTION, DISRUPTION}));
+	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, 0.,
+			attributes.Get({PROTECTION, THRUST, Modifier::OVER_TIME}));
+	damage.scramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, 0.,
+			attributes.Get({PROTECTION, JAM, Modifier::OVER_TIME}));
+	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(0., .5,
+			attributes.Get({PROTECTION, PIERCING, Modifier::OVER_TIME}));
 
 	// Hit force is unaffected by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., 0., attributes.Get({PROTECTION, FORCE}));

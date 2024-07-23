@@ -371,6 +371,7 @@ target_sources(EndlessSkyLib PRIVATE
 	attribute/AttributeEffect.cpp
 	attribute/AttributeEffect.h
 	attribute/AttributeEffectType.h
+	attribute/Modifier.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h

@@ -369,20 +369,25 @@ inline double Weapon::FiringFuel() const { return Get({FIRING, FUEL}); }
 inline double Weapon::FiringHeat() const { return Get({FIRING, HEAT}); }
 inline double Weapon::FiringHull() const { return Get({FIRING, HULL}); }
 inline double Weapon::FiringShields() const { return Get({FIRING, SHIELDS}); }
-inline double Weapon::FiringIon() const{ return Get({FIRING, ION}); }
-inline double Weapon::FiringScramble() const { return Get({FIRING, SCRAMBLE}); }
-inline double Weapon::FiringSlowing() const{ return Get({FIRING, SLOWING}); }
-inline double Weapon::FiringDisruption() const{ return Get({FIRING, DISRUPTION}); }
-inline double Weapon::FiringDischarge() const{ return Get({FIRING, DISCHARGE}); }
-inline double Weapon::FiringCorrosion() const{ return Get({FIRING, CORROSION}); }
-inline double Weapon::FiringLeak() const{ return Get({FIRING, LEAK}); }
-inline double Weapon::FiringBurn() const{ return Get({FIRING, BURN}); }
+inline double Weapon::FiringIon() const{ return Get({FIRING, ENERGY, Modifier::OVER_TIME}); }
+inline double Weapon::FiringScramble() const { return Get({FIRING, JAM, Modifier::OVER_TIME}); }
+inline double Weapon::FiringSlowing() const{ return Get({FIRING, THRUST, Modifier::OVER_TIME}); }
+inline double Weapon::FiringDisruption() const{ return Get({FIRING, PIERCING, Modifier::OVER_TIME}); }
+inline double Weapon::FiringDischarge() const{ return Get({FIRING, SHIELDS, Modifier::OVER_TIME}); }
+inline double Weapon::FiringCorrosion() const{ return Get({FIRING, HULL, Modifier::OVER_TIME}); }
+inline double Weapon::FiringLeak() const{ return Get({FIRING, FUEL, Modifier::OVER_TIME}); }
+inline double Weapon::FiringBurn() const{ return Get({FIRING, HEAT, Modifier::OVER_TIME}); }
 
-inline double Weapon::RelativeFiringEnergy() const{ return Get(AttributeAccessor(FIRING, ENERGY).Relative()); }
-inline double Weapon::RelativeFiringHeat() const{ return Get(AttributeAccessor(FIRING, HEAT).Relative()); }
-inline double Weapon::RelativeFiringFuel() const{ return Get(AttributeAccessor(FIRING, FUEL).Relative()); }
-inline double Weapon::RelativeFiringHull() const{ return Get(AttributeAccessor(FIRING, HULL).Relative()); }
-inline double Weapon::RelativeFiringShields() const{ return Get(AttributeAccessor(FIRING, SHIELDS).Relative()); }
+inline double Weapon::RelativeFiringEnergy() const{ return Get(
+		AttributeAccessor(FIRING, ENERGY, Modifier::RELATIVE)); }
+inline double Weapon::RelativeFiringHeat() const{ return Get(
+		AttributeAccessor(FIRING, HEAT, Modifier::RELATIVE)); }
+inline double Weapon::RelativeFiringFuel() const{ return Get(
+		AttributeAccessor(FIRING, FUEL, Modifier::RELATIVE)); }
+inline double Weapon::RelativeFiringHull() const{ return Get(
+		AttributeAccessor(FIRING, HULL, Modifier::RELATIVE)); }
+inline double Weapon::RelativeFiringShields() const{ return Get(
+		AttributeAccessor(FIRING, SHIELDS, Modifier::RELATIVE)); }
 
 inline double Weapon::Piercing() const { return Get({DAMAGE, PIERCING}); }
 
@@ -411,29 +416,37 @@ inline double Weapon::FuelDamage() const { return TotalDamage(FUEL); }
 inline double Weapon::HeatDamage() const { return TotalDamage(HEAT); }
 inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY); }
 
-inline double Weapon::IonDamage() const { return TotalDamage(ION); }
-inline double Weapon::ScramblingDamage() const { return TotalDamage(SCRAMBLE); }
-inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION); }
-inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING); }
-inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE); }
-inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION); }
-inline double Weapon::LeakDamage() const { return TotalDamage(LEAK); }
-inline double Weapon::BurnDamage() const { return TotalDamage(BURN); }
+inline double Weapon::IonDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME)); }
+inline double Weapon::ScramblingDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(JAM, Modifier::OVER_TIME)); }
+inline double Weapon::DisruptionDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(PIERCING, Modifier::OVER_TIME)); }
+inline double Weapon::SlowingDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(THRUST, Modifier::OVER_TIME)); }
+inline double Weapon::DischargeDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(SHIELDS, Modifier::OVER_TIME)); }
+inline double Weapon::CorrosionDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(HULL, Modifier::OVER_TIME)); }
+inline double Weapon::LeakDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(FUEL, Modifier::OVER_TIME)); }
+inline double Weapon::BurnDamage() const { return TotalDamage(
+		AttributeAccessor::WithModifier(HEAT, Modifier::OVER_TIME)); }
 
 inline double Weapon::RelativeShieldDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, SHIELDS).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, SHIELDS, Modifier::RELATIVE).Effect()); }
 inline double Weapon::RelativeHullDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, HULL).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, HULL, Modifier::RELATIVE).Effect()); }
 inline double Weapon::RelativeDisabledDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, DISABLED).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, DISABLED, Modifier::RELATIVE).Effect()); }
 inline double Weapon::RelativeMinableDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, MINABLE).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, MINABLE, Modifier::RELATIVE).Effect()); }
 inline double Weapon::RelativeFuelDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, FUEL).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, FUEL, Modifier::RELATIVE).Effect()); }
 inline double Weapon::RelativeHeatDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, HEAT).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, HEAT, Modifier::RELATIVE).Effect()); }
 inline double Weapon::RelativeEnergyDamage() const {
-		return TotalDamage(AttributeAccessor(DAMAGE, ENERGY).Relative().Effect()); }
+		return TotalDamage(AttributeAccessor(DAMAGE, ENERGY, Modifier::RELATIVE).Effect()); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(SHIELDS); return doesDamage; }
 

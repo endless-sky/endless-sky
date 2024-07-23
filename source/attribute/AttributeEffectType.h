@@ -17,9 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ATTRIBUTE_EFFECT_TYPE_H_
 
 // The different effects of an attribute. Each one has multiple variants,
-// each offset by ATTRIBUTE_EFFECT_COUNT. The variants are:
-// base (not offset), multiplier, relative, and relative multiplier.
+// each offset by ATTRIBUTE_EFFECT_COUNT. The variants are defined by their Modifier;
+// for instance, with a modifier of RELATIVE, the effect's value is offset by 2 * ATTRIBUTE_EFFECT_COUNT.
 enum AttributeEffectType : int {
+	// These attributes have matching categories (e.g. SHIELD_GENERATION -> SHIELDS).
+	// Those categories have these effects as their default effect.
 	SHIELDS,
 	HULL,
 	THRUST,
@@ -28,19 +30,13 @@ enum AttributeEffectType : int {
 	ACTIVE_COOLING,
 	RAMSCOOP,
 	CLOAK,
+	// These attributes don't have matching categories
 	COOLING,
 	FORCE,
 	ENERGY,
 	FUEL,
 	HEAT,
-	DISCHARGE,
-	CORROSION,
-	LEAK,
-	BURN,
-	ION,
-	SCRAMBLE,
-	SLOWING,
-	DISRUPTION,
+	JAM,
 	DISABLED,
 	MINABLE,
 	PIERCING,
