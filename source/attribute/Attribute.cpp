@@ -28,10 +28,11 @@ namespace {
 			{ION, "ion"}, {SCRAMBLE, "scramble"}, {SLOWING, "slowing"}, {DISRUPTION, "disruption"}, {DISABLED, "disabled"},
 			{MINABLE, "minable"}, {PIERCING, "piercing"}};
 
-	const map<AttributeCategory, string> categoryNames{{SHIELD_GENERATION,"shield generation"}, {HULL_REPAIR, "hull repair"},
-			{THRUSTING, "thrust"}, {REVERSE_THRUSTING, "reverse thrust"}, {TURNING, "turn"}, {ACTIVE_COOL, "active cooling"},
-			{RAMSCOOPING, "ramscoop"}, {CLOAKING, "cloak"}, {AFTERBURNING, "afterburner thrust"}, {FIRING, "firing"},
-			{PROTECTION, "protection"}, {RESISTANCE, "resistance"}, {DAMAGE, "damage"}, {PASSIVE, "capacity"}};
+	const map<AttributeCategory, string> categoryNames{{SHIELD_GENERATION,"shield generation"},
+			{HULL_REPAIR, "hull repair"}, {THRUSTING, "thrust"}, {REVERSE_THRUSTING, "reverse thrust"}, {TURNING, "turn"},
+			{ACTIVE_COOL, "active cooling"}, {RAMSCOOPING, "ramscoop"}, {CLOAKING, "cloak"},
+			{AFTERBURNING, "afterburner thrust"}, {FIRING, "firing"}, {PROTECTION, "protection"}, {RESISTANCE, "resistance"},
+			{DAMAGE, "damage"}, {PASSIVE, "capacity"}};
 	// Cached mappings between the old and new format.
 	// Any attribute without an effect will not be present in newToOld, as those have no legacy names.
 	map<string, Attribute> oldToNew = {
