@@ -13,7 +13,7 @@
 
 
 
-news "high houses scion"
+news "high houses emissary"
 	to show
 		has "language: Successor"
 	location
@@ -37,7 +37,7 @@ news "high houses scion"
 			`"`
 
 
-news "high houses official"
+news "port official"
 	to show
 		has "language: Successor"
 	location
