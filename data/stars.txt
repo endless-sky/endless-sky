@@ -166,6 +166,9 @@ star "star/m-supergiant"
 	wind 3.1
 
 # Special stars.
+star "star/a-eater"
+	power 1.84
+	wind 0.45
 star "star/carbon"
 	power 0.1
 	wind 10
@@ -200,6 +203,10 @@ star "star/neutron"
 star "star/magnetar"
 	power 4
 	wind 0.8
+
+star "star/neutron-small"
+	power 2
+	wind 0.2
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
