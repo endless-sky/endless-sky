@@ -84,7 +84,7 @@ namespace {
 	// The maximum size of a plugin in bytes, this will be 1 GB.
 	const int MAX_DOWNLOAD_SIZE = 1000000000;
 
-	// Copy an entry from one archive to the other
+	// Copy an entry from one archive to the other.
 	bool CopyData(struct archive *ar, struct archive *aw)
 	{
 		int retVal;
@@ -112,7 +112,7 @@ namespace {
 		flags |= ARCHIVE_EXTRACT_ACL;
 		flags |= ARCHIVE_EXTRACT_FFLAGS;
 
-		// Create the handles for reading/writing
+		// Create the handles for reading/writing.
 		archive *read = archive_read_new();
 		archive *ext = archive_write_disk_new();
 		archive_write_disk_set_options(ext, flags);
@@ -122,7 +122,7 @@ namespace {
 		if(archive_read_open_filename(read, filename.c_str(), 10240))
 			return false;
 
-		// Check if this plugin has the right head folder name
+		// Check if this plugin has the right head folder name.
 		archive_entry *entry;
 		archive_read_next_header(read, &entry);
 		string firstEntry = archive_entry_pathname(entry);
@@ -130,7 +130,7 @@ namespace {
 		bool fitsExpected = firstEntry == (expectedName);
 		archive_read_data_skip(read);
 
-		// Check if this plugin has a head folder, if not create one in the destination
+		// Check if this plugin has a head folder, if not, create one in the destination.
 		archive_read_next_header(read, &entry);
 		string secondEntry = archive_entry_pathname(entry);
 		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
@@ -141,7 +141,7 @@ namespace {
 			mkdir((destination + expectedName).c_str(), 0777);
 #endif
 
-		// Close the archive so we can start again from the beginning
+		// Close the archive so we can start again from the beginning.
 		archive_read_close(read);
 		archive_read_free(read);
 
@@ -629,15 +629,15 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 	if(!out)
 		return false;
 
-	// Set the url that gets downloaded
+	// Set the url that gets downloaded.
 	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-	// Follow redirects
+	// Follow redirects.
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
-	// How long we will wait
+	// How long we will wait.
 	curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
 	// What is the maximum filesize in bytes.
 	curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_DOWNLOAD_SIZE);
-	// Set the write function and the output file used in the write function
+	// Set the write function and the output file used in the write function.
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
 

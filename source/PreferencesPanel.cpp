@@ -1551,7 +1551,7 @@ void PreferencesPanel::ProcessPluginIndex()
 		{
 			GetUI()->Pop(GetUI()->Top().get());
 			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex,
-				"Failed to download plugin index, try again?"));
+				"The plugin index failed to download. Would you like to try again?"));
 			return;
 		}
 		ifstream pluginlistFile(Files::Config() + "plugins.json");
