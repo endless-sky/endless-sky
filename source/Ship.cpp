@@ -1349,6 +1349,13 @@ void Ship::SetPosition(Point position)
 
 
 
+void Ship::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
+}
+
+
+
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
