@@ -184,7 +184,7 @@ outfit "Auxiliary Power Reserve"
 
 outfit "Primary Power Reserve"
 	category "Power"
-	series "Batteries: Successors"
+	series "Power: Successors"
 	index 110
 	cost 320000
 	thumbnail "outfit/large successor battery"
