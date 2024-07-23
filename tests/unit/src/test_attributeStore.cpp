@@ -53,7 +53,8 @@ TEST_CASE( "AttributeStore::GetMinimum", "[AttributeStore][GetMinimum]" ) {
 				== std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Others" ) {
-		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, JAM, Modifier::OVER_TIME)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccessor(THRUSTING, JAM, Modifier::OVER_TIME))
+				== std::numeric_limits<double>::lowest() );
 	}
 }
 

@@ -97,7 +97,7 @@ TEST_CASE( "Attribute::GetLegacyName", "[Attribute][GetLegacyName]" ) {
 	SECTION( "Legacy names" ) {
 		CHECK( Attribute::GetLegacyName({DAMAGE, JAM, Modifier::OVER_TIME}) == "scrambling damage" );
 		CHECK( Attribute::GetLegacyName({RESISTANCE, AttributeAccessor::WithModifier(ENERGY, Modifier::OVER_TIME), HEAT}) ==
-				"ion resistance heat" );
+				"ion resistance heat");
 		CHECK( Attribute::GetLegacyName({THRUSTING, THRUST}) == "thrust" );
 	}
 }

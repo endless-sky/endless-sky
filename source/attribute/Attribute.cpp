@@ -32,10 +32,12 @@ namespace {
 			{AFTERBURNING, "afterburner thrust"}, {FIRING, "firing"}, {PROTECTION, "protection"}, {RESISTANCE, "resistance"},
 			{DAMAGE, "damage"}, {PASSIVE, "capacity"}};
 
-	// The names of various "over time" effects, that are modified variants of other effects but can be parsed individually.
+	// The names of various "over time" effects, that are modified variants of other effects
+	// but can be parsed individually.
 	// Slowing is special, since that affects both thrust, reverse thrust and turn.
-	const map<AttributeEffectType, string> OVER_TIME_EFFECT_NAMES{{SHIELDS, "discharge"}, {HULL, "corrosion"}, {THRUST, "slowing"},
-			{ENERGY, "ion"}, {FUEL, "leak"}, {HEAT, "burn"}, {JAM, "scramble"}, {PIERCING, "disruption"}};
+	const map<AttributeEffectType, string> OVER_TIME_EFFECT_NAMES{{SHIELDS, "discharge"}, {HULL, "corrosion"},
+			{THRUST, "slowing"}, {ENERGY, "ion"}, {FUEL, "leak"}, {HEAT, "burn"}, {JAM, "scramble"},
+			{PIERCING, "disruption"}};
 	// Cached mappings between the old and new format.
 	// Any attribute without an effect will not be present in NEW_TO_OLD, as those have no legacy names.
 	map<string, Attribute> OLD_TO_NEW = {
@@ -410,7 +412,7 @@ void Attribute::Parse(const DataNode &node, const Modifier *modifier)
 			AddEffect({access.Effect(), node.Value(1), access.GetDefaultMinimum()});
 		}
 	}
-	else if(MODIFIER_NAMES.contains(text))
+	else if(MODIFIER_NAMES.count(text))
 	{
 		const Modifier *m = &MODIFIER_NAMES.at(text);
 		for(const auto &child : node)

@@ -255,7 +255,8 @@ namespace {
 					+ attributes.Get({TURNING, HEAT})
 					+ attributes.Get({AFTERBURNING, HEAT})
 					+ attributes.Get("fuel heat")
-					+ (attributes.Get({HULL_REPAIR, HEAT}) * (1. + attributes.Get(AttributeAccessor(HULL_REPAIR, HEAT, Modifier::MULTIPLIER))))
+					+ (attributes.Get({HULL_REPAIR, HEAT}) *
+							(1. + attributes.Get(AttributeAccessor(HULL_REPAIR, HEAT, Modifier::MULTIPLIER))))
 					+ (attributes.Get({SHIELD_GENERATION, HEAT}) *
 							(1. + attributes.Get(AttributeAccessor(SHIELD_GENERATION, HEAT, Modifier::MULTIPLIER))))
 					+ attributes.Get("solar heat")
