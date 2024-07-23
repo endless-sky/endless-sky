@@ -1676,7 +1676,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	if(!parent)
 		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
-	// your orders are to hold position, or a travel directive.
+	// Your orders are to hold position, or a travel directive.
 	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && !hasTravelOrder)
 	{
 		if(parent->GetSystem() != ship.GetSystem())

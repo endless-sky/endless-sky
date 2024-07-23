@@ -1726,7 +1726,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		}
 		else if(ship->HasLanded() && ship->IsSpecial())
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::LAND);
-		// No additional actions can occur for this ship.
 		return;
 	}
 

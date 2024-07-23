@@ -19,7 +19,7 @@ test-data "Npc Destination Save"
 		system Sol
 		planet Earth
 		clearance
-		# Set some reputations to positive to avoid combat
+		# Set some reputations to positive to avoid combat.
 		"reputation with"
 			Bounty 1
 			"Bounty Hunter" 1
@@ -104,7 +104,7 @@ test "Npc Destination Test"
 			travel Sirius
 			"travel destination" Geminus
 		call "Depart"
-		# trigger the mission
+		# Trigger the mission.
 		call "Land"
 		call "Depart"
 		input
