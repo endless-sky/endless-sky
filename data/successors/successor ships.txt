@@ -30,7 +30,7 @@ ship "Aaulqra"
 		"drag" 5.8
 		"heat dissipation" 0.49
 		"fuel capacity" 600
-		"cargo space" 19
+		"cargo space" 15
 		"outfit space" 550
 		"weapon capacity" 240
 		"engine capacity" 120
