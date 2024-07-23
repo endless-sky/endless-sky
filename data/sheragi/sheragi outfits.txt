@@ -389,3 +389,29 @@ outfit "Heavy Ion Fragment"
 		"hit force" 4.5
 		"shield damage" 1.79
 		"hull damage" 1.47
+
+# Currently just a copy of the Caldera Afterburner
+outfit "Sheragi Afterburner"
+	category "Engines"
+	"cost" 390000
+	thumbnail "outfit/unknown"
+	"mass" 37
+	"outfit space" -37
+	"engine capacity" -37
+	"afterburner thrust" 180.0
+	"afterburner fuel" .5
+	"afterburner heat" 42.0
+	"afterburner effect" "sheragi afterburner" 5
+	description "Placeholder"
+
+effect "sheragi afterburner"
+	sprite "effect/afterburner"
+		"no repeat"
+		"frame rate" 15
+	sound "afterburner"
+	"lifetime" 20
+	"random angle" 30
+	"random spin" 10
+	"random velocity" 4.
+	"velocity scale" 1.
+
