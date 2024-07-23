@@ -19014,7 +19014,7 @@ system Jyelio
 	object
 		sprite star/g8
 		period 10
-	object "Gye Mpi"
+	object "Uye Mpi"
 		sprite planet/rock5
 		distance 307
 		period 91.7458
