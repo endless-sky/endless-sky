@@ -36,9 +36,9 @@ event "gegno: vi occupy zydee"
 	system "Kneirc"
 		government "Gegno Vi"
 		attributes "gegno" "vi"
-		fleet "Small Vi" 2000
-		fleet "Large Vi" 5000
-		fleet "Small Scin" 3000
+		fleet "Small Vi" 1800
+		fleet "Large Vi" 4600
+		fleet "Small Scin" 2900
 		fleet "Large Scin" 4000
 	planet "Zydee"
 		attributes "gegno" "vi" "moon"

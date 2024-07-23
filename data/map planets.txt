@@ -4759,6 +4759,12 @@ planet "Ut Divitas"
 	bribe 0
 	security 0.9
 
+planet "Uye Mpi"
+	attributes uninhabited
+	landscape land/
+	description `Placeholder.`
+	government Uninhabited
+
 planet Vail
 	attributes farming paradise tourism
 	landscape land/snow4

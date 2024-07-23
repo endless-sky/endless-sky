@@ -18997,6 +18997,16 @@ system Jyelio
 	link Wreoul
 	minables tungsten 2 4.15
 	minables copper 2 6.62
+	trade Clothing 145
+	trade Electronics 825
+	trade Equipment 524
+	trade Food 540
+	trade "Heavy Metals" 959
+	trade Industrial 833
+	trade "Luxury Goods" 984
+	trade Medical 522
+	trade Metal 288
+	trade Plastic 527
 	fleet "Large Vi" 1800
 	fleet "Large Scin" 2700
 	fleet "Small Vi II" 3600
@@ -19004,8 +19014,8 @@ system Jyelio
 	object
 		sprite star/g8
 		period 10
-	object
-		sprite planet/ice3
+	object "Gye Mpi"
+		sprite planet/rock5
 		distance 307
 		period 91.7458
 	object
