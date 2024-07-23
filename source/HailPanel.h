@@ -72,6 +72,7 @@ private:
 	bool playerNeedsHelp = false;
 	bool canAssistPlayer = true;
 	bool canGiveFuel = false;
+	bool canGiveEnergy = false;
 	bool canRepair = false;
 	bool hasLanguage = true;
 	bool requestedToBribeShip = false;
