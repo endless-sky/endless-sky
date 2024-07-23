@@ -239,7 +239,7 @@ mission "Battle over Zydee"
 			`	However, a few moments later, the Scin suddenly start scurrying to their ships. Based on your experiences so far, you haven't gotten close enough to alarm them. They begin taking off one by one in a hurried fashion, but not toward you - the <ship>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
 				accept
 	on enter "Kneirc"
-	event "gegno: scin claim zydee" 3 7
+		event "gegno: vi occupy zydee" 3 7
 		fail
 
 	npc
@@ -304,31 +304,21 @@ mission "Battle over Zydee"
 				"Coesite" 4
 				"Halite" 6
 
-# Zydee becomes governed by the Scin even if the player doesn't find the above mission.
-mission "Scin Claim Zydee"
+# Zydee becomes occupied by the Vi even if the player doesn't find the above mission.
+mission "Vi Occupy Zydee"
 	invisible
 	landing
 	to offer
 		or
 			has "Gegno Anticipation: offered"
 			has "Gegno Apprehension: offered"
-		not "event: gegno: scin claim zydee"
+		not "event: gegno: vi occupy zydee"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
 	on offer
 		fail
-		event "gegno: scin claim zydee" 3 7		
-
-
-event "gegno: scin claim zydee"
-	system "Kneirc"
-		government "Gegno Scin"
-	planet "Zydee"
-		government "Gegno Scin"
-		description `Test.`
-		spaceport `Test.`
-
+		event "gegno: vi occupy zydee" 3 7
 
 mission "Curious Civilians"
 	invisible

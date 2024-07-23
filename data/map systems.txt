@@ -13093,8 +13093,8 @@ system Eteron
 
 system Evrae
 	pos 884.49 -475.35
-	government Gegno
-	attributes "bright star" "gegno" "notable star"
+	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1985
@@ -14483,8 +14483,8 @@ system "Four Pillars"
 
 system Fscher
 	pos 725.47 -418.2
-	government Gegno
-	attributes "bright star" "gegno" "notable star"
+	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 6300
 	belt 1048
@@ -19797,8 +19797,7 @@ system Kiru'kichi
 
 system Kneirc
 	pos 856.6 -511.36
-	government "Gegno Scin"
-	attributes "gegno" "scin"
+	government Uninhabited
 	arrival 1430
 	habitable 1430
 	belt 1163
@@ -19815,6 +19814,16 @@ system Kneirc
 	minables aluminum 1 7.04
 	minables tungsten 12 6.8
 	minables uranium 1 9.7
+	trade Clothing 145
+	trade Electronics 825
+	trade Equipment 524
+	trade Food 540
+	trade "Heavy Metals" 959
+	trade Industrial 833
+	trade "Luxury Goods" 984
+	trade Medical 522
+	trade Metal 288
+	trade Plastic 527
 	fleet "Small Vi" 3800
 	fleet "Small Scin" 2400
 	object
