@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "BatchShader.h"
+#include "BayType.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
@@ -560,6 +561,13 @@ void GameData::DestroyPersons(vector<string> &names)
 {
 	for(const string &name : names)
 		objects.persons.Get(name)->Destroy();
+}
+
+
+
+const Set<BayType> &GameData::BayTypes()
+{
+	return objects.bayTypes;
 }
 
 

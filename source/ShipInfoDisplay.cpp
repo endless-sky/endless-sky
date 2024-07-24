@@ -312,21 +312,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributesHeight += 20;
 	}
 
-	// Print the number of bays for each bay-type we have
-	for(const auto &category : GameData::GetCategory(CategoryType::BAY))
+	// Print the number of bays for each bay-type we have.
+	for(const auto &category : ship.BayTypeCounts())
 	{
-		const string &bayType = category.Name();
-		int totalBays = ship.BaysTotal(bayType);
-		if(totalBays)
-		{
-			// make sure the label is printed in lower case
-			string bayLabel = bayType;
-			transform(bayLabel.begin(), bayLabel.end(), bayLabel.begin(), ::tolower);
+		// Make sure the label is printed in lower case.
+		string bayLabel = category.first;
+		transform(bayLabel.begin(), bayLabel.end(), bayLabel.begin(), ::tolower);
 
-			attributeLabels.emplace_back(bayLabel + " bays:");
-			attributeValues.emplace_back(to_string(totalBays));
-			attributesHeight += 20;
-		}
+		attributeLabels.emplace_back(bayLabel + " bays:");
+		attributeValues.emplace_back(to_string(category.second));
+		attributesHeight += 20;
 	}
 
 	tableLabels.clear();

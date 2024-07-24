@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "Audio.h"
+#include "BayType.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -1096,7 +1097,9 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 // Returns a mapping of ships to the reason their flight check failed.
 map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 {
-	// Count of all bay types in the active fleet.
+	// The total number of bays in the active fleet.
+	size_t totalBays = 0;
+	// The total number of each category of ship that can be carried by the fleet.
 	auto bayCount = map<string, size_t>{};
 	// Classification of the present ships by category. Parked ships are ignored.
 	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
@@ -1122,9 +1125,17 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 
-			for(auto &bay : ship->Bays())
+			const auto &bays = ship->Bays();
+			totalBays += bays.size();
+			for(const auto &bay : bays)
 			{
-				++bayCount[bay.category];
+				if(bay.bayType)
+				{
+					for(const string &category : bay.bayType->Categories())
+						++bayCount[category];
+				}
+				else
+					++bayCount[bay.name];
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
@@ -1147,8 +1158,11 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// This ship can travel between systems and does not require a bay.
 			}
 			// This ship requires a bay to travel between systems.
-			else if(bayType.second > 0)
+			else if(bayType.second > 0 && totalBays > 0)
+			{
 				--bayType.second;
+				--totalBays;
+			}
 			else
 			{
 				// Include the lack of bay availability amongst any other
@@ -1750,12 +1764,26 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			// We are guaranteed that each carried `ship` is not parked and not disabled, and that
 			// all possible parents are also not parked, not disabled, and not `ship`.
 			for(auto &ship : toLoad)
-				for(auto &parent : carriers)
-					if(parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
-					{
-						--uncarried;
-						break;
-					}
+			{
+				// Locate the carriers that are able to carry this ship.
+				vector<Ship *> localCarriers;
+				for(Ship *carrier : carriers)
+					if(carrier->GetSystem() == ship->GetSystem() && carrier->CanCarry(*ship))
+						localCarriers.emplace_back(carrier);
+
+				if(localCarriers.empty())
+					continue;
+
+				// Among the available carriers, find the best one to dock this ship to.
+				// The best choice is the ship with the most restrictive available bay.
+				const string &category = ship->Attributes().Category();
+				Ship *bestCarrier = *min_element(localCarriers.begin(), localCarriers.end(),
+					[&category](Ship *a, Ship *b) -> bool {
+						return a->CarryRestrictiveness(category) < b->CarryRestrictiveness(category);
+					});
+				bestCarrier->Carry(ship);
+				--uncarried;
+			}
 		}
 
 		if(uncarried)
