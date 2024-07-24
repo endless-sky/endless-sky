@@ -34,6 +34,8 @@ namespace {
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
+	int drawWidth = 0;
+	int drawHeight = 0;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -330,7 +332,6 @@ void GameWindow::AdjustViewport()
 
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.
-	int drawWidth, drawHeight;
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
 	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
@@ -394,6 +395,20 @@ int GameWindow::Width()
 int GameWindow::Height()
 {
 	return height;
+}
+
+
+
+int GameWindow::DrawWidth()
+{
+	return drawWidth;
+}
+
+
+
+int GameWindow::DrawHeight()
+{
+	return drawHeight;
 }
 
 

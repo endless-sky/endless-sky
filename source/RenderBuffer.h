@@ -88,6 +88,9 @@ private:
 	int lastViewport[4] = {};
 
 	float fadePadding[4] = {};
+
+	double widthMultiplier = 0;
+	double heightMultiplier = 0;
 };
 
 
