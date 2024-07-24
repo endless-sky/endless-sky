@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
+#include "ConditionsStore.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -80,6 +81,10 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+
+	const map<Command, string> UNLOCKABLE_CONTROLS = {
+		{Command::CLOAK, "found cloaking"}
+	};
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -581,7 +586,11 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			table.Draw(command.Description(), medium);
+			auto it = UNLOCKABLE_CONTROLS.find(command);
+			if(it != UNLOCKABLE_CONTROLS.end() && !GameData::GlobalConditions().Has(it->second))
+				table.Draw("unknown command", medium);
+			else
+				table.Draw(command.Description(), medium);
 			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
