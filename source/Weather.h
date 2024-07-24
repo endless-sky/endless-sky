@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Point.h"
 
-#include <vector>
+#include <list>
 
 class Hazard;
 class Visual;
@@ -53,7 +53,7 @@ public:
 	// The origin of the hazard.
 	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
-	void Step(std::vector<Visual> &newVisuals, const Point &center);
+	void Step(std::list<Visual> &newVisuals, const Point &center);
 	// Calculate this weather's strength for the current frame, to be used to find
 	// out what the current period and damage multipliers are.
 	void CalculateStrength();

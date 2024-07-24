@@ -77,7 +77,7 @@ public:
 	// Move the object forward one step. If it has been reduced to zero hull, it
 	// will "explode" instead of moving, creating flotsam and explosion effects.
 	// In that case it will return false, meaning it should be deleted.
-	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	bool Move(std::list<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
 	// Damage this object (because a projectile collided with it).
 	void TakeDamage(const Projectile &projectile);

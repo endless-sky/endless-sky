@@ -75,13 +75,13 @@ public:
 	void Aim(const FireCommand &command);
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(unsigned index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
+	void Fire(unsigned index, Ship &ship, std::vector<Projectile> &projectiles, std::list<Visual> &visuals, bool jammed);
 	// Fire the given anti-missile system.
 	bool FireAntiMissile(unsigned index, Ship &ship, const Projectile &projectile,
-		std::vector<Visual> &visuals, bool jammed);
+		std::list<Visual> &visuals, bool jammed);
 	// Fire the given tractor beam.
 	bool FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsam,
-		std::vector<Visual> &visuals, bool jammed);
+		std::list<Visual> &visuals, bool jammed);
 
 	// Update the reload counters.
 	void Step(const Ship &ship);

@@ -67,6 +67,12 @@ find_package(JPEG REQUIRED)
 if(NOT APPLE)
 	find_package(GLEW REQUIRED)
 endif()
+if(WIN32)
+	add_library(tbb STATIC "tbb/oneapi-tbb-2021.13.0/lib/intel64/vc14/tbb.lib")
+	set_target_properties(tbb PROPERTIES LINKER_LANGUAGE CXX)
+else()
+	find_package(TBB REQUIRED)
+endif()
 
 # Only very new versions of OpenAL provide a config package, so try to find it manually.
 find_package(OpenAL CONFIG QUIET)
@@ -121,8 +127,10 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+	target_include_directories(ExternalLibraries INTERFACE tbb)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
+	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 endif()
 
 # Link with the UUID library, which is different for each OS.

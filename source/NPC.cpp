@@ -447,7 +447,7 @@ bool NPC::ShouldSpawn() const
 
 
 // Get the ships associated with this set of NPCs.
-const list<shared_ptr<Ship>> NPC::Ships() const
+const vector<shared_ptr<Ship>> NPC::Ships() const
 {
 	return ships;
 }

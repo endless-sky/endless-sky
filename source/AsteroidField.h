@@ -56,7 +56,7 @@ public:
 	void Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts);
 
 	// Move all the asteroids forward one time step, and populate the asteroid and minable collision sets.
-	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
+	void Step(std::list<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
 	// Draw the asteroid field, with the field of view centered on the given point.
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 

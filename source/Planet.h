@@ -152,7 +152,7 @@ public:
 
 	// Demand tribute, and get the planet's response.
 	std::string DemandTribute(PlayerInfo &player) const;
-	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
+	void DeployDefense(std::vector<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
 	bool IsDefending() const;
 
@@ -193,7 +193,7 @@ private:
 	// How many fleets have been spawned, and the index of the next to be spawned.
 	mutable size_t defenseDeployed = 0;
 	// Ships that have been created by instantiating its defense fleets.
-	mutable std::list<std::shared_ptr<Ship>> defenders;
+	mutable std::vector<std::shared_ptr<Ship>> defenders;
 
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;

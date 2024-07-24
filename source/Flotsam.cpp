@@ -95,7 +95,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 
 
 // Move the object one time-step forward.
-void Flotsam::Move(vector<Visual> &visuals)
+void Flotsam::Move(list<Visual> &visuals)
 {
 	position += velocity;
 	velocity *= drag;

@@ -92,6 +92,11 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+    - name: Install tbb
+      run: |
+        mkdir tbb
+        Invoke-WebRequest -Uri https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip -OutFile tbb.zip
+        unzip tbb.zip -d tbb
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -128,6 +133,11 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+    - name: Install tbb
+      run: |
+        mkdir tbb
+        Invoke-WebRequest -Uri https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip -OutFile tbb.zip
+        unzip tbb.zip -d tbb
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'clang-cl-ci'
