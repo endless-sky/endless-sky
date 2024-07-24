@@ -48,15 +48,9 @@ public:
 		// ATTACK.
 		HARVEST,
 
-		// This must be last so it can be used for bounds checking.
+		// This must be last to define the size of the bitset.
 		TYPES_COUNT
 	};
-
-
-public:
-	// Make sure this matches the number of items in OrderType,
-	// or the build will fail.
-	static const int ORDER_COUNT = 9;
 
 
 public:
@@ -111,7 +105,7 @@ private:
 
 
 private:
-	std::bitset<ORDER_COUNT> activeOrders;
+	std::bitset<OrderType::TYPES_COUNT> activeOrders;
 	std::weak_ptr<Ship> targetShip;
 	std::weak_ptr<Minable> targetAsteroid;
 	Point targetPoint;

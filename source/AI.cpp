@@ -366,8 +366,6 @@ AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 		const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
-	static_assert(Orders::OrderType::TYPES_COUNT == Orders::ORDER_COUNT,
-		"Orders::ORDER_COUNT must match the length of Orders::OrderType");
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
 }

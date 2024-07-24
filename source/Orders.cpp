@@ -20,14 +20,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	using OrderSet = std::bitset<Orders::OrderType::TYPES_COUNT>;
+
 	// Bit mask to figure out which orders are canceled if their target
 	// ceases to be targetable or present.
-	const bitset<Orders::ORDER_COUNT> REQUIRES_TARGET(
+	const OrderSet REQUIRES_TARGET_SHIP(
 		(1 << Orders::OrderType::KEEP_STATION) +
 		(1 << Orders::OrderType::GATHER) +
 		(1 << Orders::OrderType::ATTACK) +
-		(1 << Orders::OrderType::FINISH_OFF) +
+		(1 << Orders::OrderType::FINISH_OFF));
+
+	const OrderSet REQUIRES_TARGET_ASTEROID(
 		(1 << Orders::OrderType::MINE));
+
+	// Bit masks that determine which orders may be given in conjunction with
+	// the key order. If an order isn't present in the mask of the key order
+	// then it will be set to false when the key order is given to a ship.
+	const map<Orders::OrderType, OrderSet> ORDER_MASKS = {
+		{Orders::HOLD_POSITION, OrderSet(0)},
+		{Orders::HOLD_ACTIVE, OrderSet(0)},
+		{Orders::MOVE_TO, OrderSet(0)},
+		{Orders::KEEP_STATION, OrderSet(0)},
+		{Orders::GATHER, OrderSet(0)},
+		{Orders::ATTACK, OrderSet(0)},
+		{Orders::FINISH_OFF, OrderSet(0)},
+		{Orders::MINE, OrderSet(0)},
+		{Orders::HARVEST, OrderSet(0)},
+	};
 }
 
 
@@ -225,16 +244,13 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 {
 	if(HasMine() && orderedShip->Cargo().Free() && targetAsteroid.expired())
 		SetHarvest();
-	else if((activeOrders & REQUIRES_TARGET).any())
+	else if((activeOrders & REQUIRES_TARGET_SHIP).any())
 	{
-		shared_ptr<Ship> ship = GetTargetShip();
-		shared_ptr<Minable> asteroid = GetTargetAsteroid();
 		// Check if the target ship itself is targetable, or if it is one of your ships that you targeted.
+		shared_ptr<Ship> ship = GetTargetShip();
 		bool invalidTarget = !ship
 				|| (!ship->IsTargetable() && orderedShip->GetGovernment() != ship->GetGovernment())
 				|| (ship->IsDisabled() && HasAttack());
-		// Alternatively, if an asteroid is targeted, then it is not an invalid target.
-		invalidTarget &= !asteroid;
 
 		// Check if the target ship is in a system where we can target.
 		// This check only checks for undocked ships (that have a current system).
@@ -242,12 +258,14 @@ void Orders::UpdateOrder(const Ship *orderedShip, const System *flagshipSystem)
 		const System *shipSystem = ship ? ship->GetSystem() : nullptr;
 		bool targetOutOfReach = !ship || (orderSystem && shipSystem != orderSystem
 				&& shipSystem != flagshipSystem);
-		// Asteroids are never out of reach since they're in the same system as the flagship.
-		targetOutOfReach &= !asteroid;
 
 		// Cancel any orders that required a target.
 		if(invalidTarget || targetOutOfReach)
-			activeOrders &= ~REQUIRES_TARGET;
+			activeOrders &= ~REQUIRES_TARGET_SHIP;
+	}
+	else if((activeOrders & REQUIRES_TARGET_ASTEROID).any() && !GetTargetAsteroid())
+	{
+		activeOrders &= ~REQUIRES_TARGET_ASTEROID;
 	}
 }
 
@@ -269,24 +287,21 @@ void Orders::MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHa
 	for(size_t i = 0; i < other.activeOrders.size(); ++i)
 		if(other.activeOrders.test(i))
 		{
-			hasMismatch |= !activeOrders.test(i);
+			bool alreadyActive = activeOrders.test(i);
+			hasMismatch |= !alreadyActive;
 			// If the existing order had a target and the new order is of the same type
 			// but with a different target, then no change needs to be made to this bit.
 			// Only run this check if the order operation is 2, as that means that this
 			// is the first order that is being evaluated and will set the order
 			// operation for all subsequent orders.
-			OrderType type = static_cast<OrderType>(i);
-			if(orderOperation == 2)
+			if(orderOperation == 2 && alreadyActive)
 			{
-				if(((type == OrderType::ATTACK && HasAttack())
-						|| (type == OrderType::FINISH_OFF && HasFinishOff())
-						|| (type == OrderType::KEEP_STATION && HasKeepStation()))
-						&& newTargetShip)
+				if(REQUIRES_TARGET_SHIP.test(i) && newTargetShip)
 					continue;
-				if(type == OrderType::MINE && HasMine() && newTargetAsteroid)
+				if(REQUIRES_TARGET_ASTEROID.test(i) && newTargetAsteroid)
 					continue;
 			}
-			orderOperation = ApplyOrder(type, orderOperation);
+			orderOperation = ApplyOrder(static_cast<OrderType>(i), orderOperation);
 		}
 
 	// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
@@ -304,21 +319,6 @@ void Orders::MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHa
 
 bool Orders::ApplyOrder(OrderType newOrder, int operation)
 {
-	// Bit masks that determine which orders may be given in conjunction with
-	// the key order. If an order isn't present in the mask of the key order
-	// then it will be set to false when the key order is given to a ship.
-	static const map<OrderType, bitset<ORDER_COUNT>> ORDER_MASKS = {
-		{HOLD_POSITION, bitset<ORDER_COUNT>(0)},
-		{HOLD_ACTIVE, bitset<ORDER_COUNT>(0)},
-		{MOVE_TO, bitset<ORDER_COUNT>(0)},
-		{KEEP_STATION, bitset<ORDER_COUNT>(0)},
-		{GATHER, bitset<ORDER_COUNT>(0)},
-		{ATTACK, bitset<ORDER_COUNT>(0)},
-		{FINISH_OFF, bitset<ORDER_COUNT>(0)},
-		{MINE, bitset<ORDER_COUNT>(0)},
-		{HARVEST, bitset<ORDER_COUNT>(0)},
-	};
-
 	if(operation > 0)
 		if(activeOrders.any() && !activeOrders.test(newOrder))
 			activeOrders &= ORDER_MASKS.find(newOrder)->second;
