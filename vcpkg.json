@@ -28,7 +28,11 @@
           ],
           "platform": "linux"
         },
-        "sdl2"
+        "sdl2",
+        {
+          "name": "tbb",
+          "platform": "!windows"
+        }
       ]
     },
     "steam-libs": {

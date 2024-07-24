@@ -34,7 +34,7 @@ namespace {
 	struct WorkerThreads {
 		WorkerThreads() noexcept
 		{
-			threads.resize(max(4u, thread::hardware_concurrency()));
+			threads.resize(max(4u, thread::hardware_concurrency() * 2));
 			for(thread &t : threads)
 				t = thread(&TaskQueue::ThreadLoop);
 		}
@@ -51,14 +51,6 @@ namespace {
 
 		vector<thread> threads;
 	} threads;
-}
-
-
-
-TaskQueue::~TaskQueue()
-{
-	// Make sure every task that belongs to this queue is finished.
-	Wait();
 }
 
 

@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "NPC.h"
 #include "OutlineShader.h"
+#include "concurrent/Parallel.h"
 #include "Person.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
@@ -101,6 +102,25 @@ namespace {
 	}
 
 	template <class Type>
+	void Prune(vector<shared_ptr<Type>> &objects)
+	{
+		// First, erase any of the old objects that should be removed.
+		auto in = objects.begin();
+		while(in != objects.end() && !(*in)->ShouldBeRemoved())
+			++in;
+
+		auto out = in;
+		while(in != objects.end())
+		{
+			if(!(*in)->ShouldBeRemoved())
+				*out++ = std::move(*in);
+			++in;
+		}
+		if(out != objects.end())
+			objects.erase(out, objects.end());
+	}
+
+	template <class Type>
 	void Prune(vector<Type> &objects)
 	{
 		// First, erase any of the old objects that should be removed.
@@ -132,10 +152,35 @@ namespace {
 	}
 
 	template <class Type>
+	void Prune(list<Type> &objects)
+	{
+		for(auto it = objects.begin(); it != objects.end(); )
+		{
+			if(it->ShouldBeRemoved())
+				it = objects.erase(it);
+			else
+				++it;
+		}
+	}
+
+	template <class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
 	{
-		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
-		added.clear();
+		if(added.empty())
+			return;
+		if(objects.empty())
+			objects.swap(added);
+		else if(objects.size() <= added.size())
+		{
+			objects.swap(added);
+			objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
+			added.clear();
+		}
+		else
+		{
+			objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
+			added.clear();
+		}
 	}
 
 	// Author the given message from the given ship.
@@ -274,7 +319,9 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
-	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP)
+	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP),
+	shipResourceProvider(newVisuals, newFlotsam, newShips, newProjectiles),
+	visualResourceProvider(visuals)
 {
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
@@ -416,7 +463,7 @@ void Engine::Place()
 	}
 	// Move any ships that were randomly spawned into the main list, now
 	// that all special ships have been repositioned.
-	ships.splice(ships.end(), newShips);
+	Append(ships, newShips);
 
 	center = flagship->Center();
 	centerVelocity = flagship->Velocity();
@@ -589,7 +636,7 @@ void Engine::Step(bool isActive)
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)
-		zoom = std::exchange(nextZoom, {});
+		zoom = exchange(nextZoom, {});
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
@@ -1466,25 +1513,40 @@ void Engine::CalculateStep()
 	const Ship *flagship = player.Flagship();
 	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
+
 	// First, move the player's flagship.
 	if(flagship)
-		MoveShip(player.FlagshipPtr());
+		MoveShip(player.FlagshipPtr(), newVisuals, newFlotsam, newShips, newProjectiles);
 	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
 	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
 	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
+
 	// Then, move the other ships.
-	for(const shared_ptr<Ship> &it : ships)
+	for_each(parallel::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
-			continue;
+			return;
 		bool wasUntargetable = !it->IsTargetable();
-		MoveShip(it);
+		MoveShip(it, shipResourceProvider);
 		bool isTargetable = it->IsTargetable();
 		if(flagshipSystem == it->GetSystem()
 			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
 			&& isTargetable && flagshipIsTargetable)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
-	}
+	});
+	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
+	// Track which ships have at least one such system ready to fire.
+	hasAntiMissile.reserve(ships.size());
+	hasTractorBeam.reserve(ships.size());
+	copy_if(ships.begin(), ships.end(), back_inserter(hasAntiMissile), [&](const auto &ship)
+	{
+		return ship->HasAntiMissile();
+	});
+	copy_if(ships.begin(), ships.end(), back_inserter(hasTractorBeam), [&](const auto &ship)
+	{
+		return ship->HasTractorBeam();
+	});
+
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
@@ -1558,10 +1620,10 @@ void Engine::CalculateStep()
 	// be drawn this step (and the projectiles will participate in collision
 	// detection) but they should not be moved, which is why we put off adding
 	// them to the lists until now.
-	ships.splice(ships.end(), newShips);
+	Append(ships, newShips);
 	Append(projectiles, newProjectiles);
 	flotsam.splice(flotsam.end(), newFlotsam);
-	Append(visuals, newVisuals);
+	visuals.splice(visuals.end(), newVisuals);
 
 	// Decrement the count of how long it's been since a ship last asked for help.
 	if(grudgeTime)
@@ -1571,8 +1633,10 @@ void Engine::CalculateStep()
 	FillCollisionSets();
 
 	// Perform collision detection.
-	for(Projectile &projectile : projectiles)
-		DoCollisions(projectile);
+	for_each(parallel::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
+		DoCollisions(visualResourceProvider, projectile);
+	});
+
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
@@ -1582,8 +1646,9 @@ void Engine::CalculateStep()
 		DoWeather(weather);
 
 	// Check for flotsam collection (collisions with ships).
-	for(const shared_ptr<Flotsam> &it : flotsam)
+	for_each_mt(flotsam.begin(), flotsam.end(), [&](const auto &it) {
 		DoCollection(*it);
+	});
 
 	// Now that flotsam collection is done, clear the cache of ships with
 	// tractor beam systems ready to fire.
@@ -1677,11 +1742,9 @@ void Engine::CalculateStep()
 		}
 	}
 	// Draw the projectiles.
-	for(const Projectile &projectile : projectiles)
-		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());
+	batchDraw[currentCalcBuffer].AddBatch(projectiles);
 	// Draw the visuals.
-	for(const Visual &visual : visuals)
-		batchDraw[currentCalcBuffer].AddVisual(visual);
+	batchDraw[currentCalcBuffer].AddBatch(visuals);
 
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -1695,9 +1758,19 @@ void Engine::CalculateStep()
 
 
 
+// Move a ship. Can be called concurrently.
+void Engine::MoveShip(const shared_ptr<Ship> &ship, ShipResourceProvider &provider)
+{
+	const auto lock = provider.Lock();
+	MoveShip(ship, lock.get<0>(), lock.get<1>(), lock.get<2>(), lock.get<3>());
+}
+
+
+
 // Move a ship. Also determine if the ship should generate hyperspace sounds or
 // boarding events, fire weapons, and launch fighters.
-void Engine::MoveShip(const shared_ptr<Ship> &ship)
+void Engine::MoveShip(const shared_ptr<Ship> &ship, list<Visual> &newVisuals, list<shared_ptr<Flotsam>> &newFlotsam,
+		vector<shared_ptr<Ship>> &newShips, vector<Projectile> &newProjectiles)
 {
 	// Various actions a ship could have taken last frame may have impacted the accuracy of cached values.
 	// Therefore, determine with any information needs recalculated and cache it.
@@ -1780,13 +1853,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Fire weapons.
 	ship->Fire(newProjectiles, newVisuals);
-
-	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
-	// Track which ships have at least one such system ready to fire.
-	if(ship->HasAntiMissile())
-		hasAntiMissile.push_back(ship.get());
-	if(ship->HasTractorBeam())
-		hasTractorBeam.push_back(ship.get());
 }
 
 
@@ -2164,10 +2230,16 @@ void Engine::HandleMouseInput(Command &activeCommands)
 
 
 
-// Perform collision detection. Note that unlike the preceding functions, this
-// one adds any visuals that are created directly to the main visuals list. If
-// this is multi-threaded in the future, that will need to change.
-void Engine::DoCollisions(Projectile &projectile)
+// Perform collision detection.
+void Engine::DoCollisions(ResourceProvider<list<Visual>> &provider, Projectile &projectile)
+{
+	const auto lock = provider.Lock();
+	DoCollisions(lock.get<0>(), projectile);
+}
+
+
+
+void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
@@ -2226,7 +2298,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	}
 
 	// Sort the Collisions by increasing range so that the closer collisions are evaluated first.
-	sort(collisions.begin(), collisions.end());
+	sort(parallel::par_unseq, collisions.begin(), collisions.end());
 
 	// Run all collisions until either the projectile dies or there are no more collisions left.
 	for(Collision &collision : collisions)
@@ -2277,7 +2349,7 @@ void Engine::DoCollisions(Projectile &projectile)
 
 				// Only directly targeted ships get provoked by blast weapons.
 				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
-					targeted ? gov : nullptr);
+							targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
@@ -2291,7 +2363,10 @@ void Engine::DoCollisions(Projectile &projectile)
 					eventQueue.emplace_back(gov, shipHit, eventType);
 			}
 			else if(collisionType == CollisionType::MINABLE)
+			{
+				lock_guard<mutex> lock = hit->Lock();
 				reinterpret_cast<Minable *>(hit)->TakeDamage(projectile);
+			}
 		}
 
 		if(shipHit)
@@ -2303,13 +2378,15 @@ void Engine::DoCollisions(Projectile &projectile)
 	// If the projectile is still alive, give the anti-missile systems a chance to shoot it down.
 	if(!projectile.IsDead() && projectile.MissileStrength())
 	{
-		for(Ship *ship : hasAntiMissile)
-			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+		for(const auto &ship : hasAntiMissile)
+			if(ship.get() == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+			{
 				if(ship->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
 					break;
 				}
+			}
 	}
 }
 
@@ -2374,7 +2451,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		// Also determine the average velocity of the ships pulling on this flotsam.
 		Point avgShipVelocity;
 		int count = 0;
-		for(Ship *ship : hasTractorBeam)
+		for(const auto &ship : hasTractorBeam)
 		{
 			Point shipPull = ship->FireTractorBeam(flotsam, visuals);
 			if(shipPull)
@@ -2649,8 +2726,10 @@ void Engine::DrawShipSprites(const Ship &ship)
 // player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
+
 	if(attacker->IsPlayer())
 	{
+		const lock_guard<mutex> lock(grudgeMutex);
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
 		if(previous && previous->CanSendHail(player))
 		{
@@ -2663,6 +2742,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(grudgeTime)
 		return;
 
+	const lock_guard<mutex> lock(grudgeMutex);
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
 	if(grudge.count(attacker))

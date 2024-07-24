@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "concurrent/PartiallyGuarded.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -54,7 +55,7 @@ public:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
+	AI(const PlayerInfo &player, const std::vector<std::shared_ptr<Ship>> &ships,
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
@@ -100,7 +101,7 @@ private:
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
-	bool FollowOrders(Ship &ship, Command &command);
+	bool FollowOrders(Ship &ship, Command &command, FireCommand &fireCommand);
 	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command);
@@ -136,7 +137,7 @@ private:
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
-	void DoMining(Ship &ship, Command &command);
+	void DoMining(Ship &ship, Command &command, FireCommand &fireCommand);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
 	void DoPatrol(Ship &ship, Command &command) const;
@@ -163,7 +164,7 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	void MovePlayer(Ship &ship, Command &activeCommands);
+	void MovePlayer(Ship &ship, Command &activeCommands, FireCommand &fireCommand);
 
 	// True if found asteroid.
 	bool TargetMinable(Ship &ship) const;
@@ -219,7 +220,7 @@ private:
 	// TODO: Figure out a way to remove the player dependency.
 	const PlayerInfo &player;
 	// Data from the game engine.
-	const List<Ship> &ships;
+	const std::vector<std::shared_ptr<Ship>> &ships;
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 
@@ -231,10 +232,6 @@ private:
 	Command autoPilot;
 	// Position of the cursor, for when the player is using mouse turning.
 	Point mousePosition;
-	// General firing command for ships. This is a data member to avoid
-	// thrashing the heap, since we can reuse the storage for
-	// each ship.
-	FireCommand firingCommands;
 
 	bool isCloaking = false;
 
@@ -256,16 +253,16 @@ private:
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<const Government *, bool> scanPermissions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
-	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
-	std::map<const Ship *, int> swarmCount;
+	PartiallyGuardedMap<const Ship *, std::weak_ptr<Ship>> helperList;
+	PartiallyGuardedMap<const Ship *, int> swarmCount;
 	std::map<const Ship *, int> fenceCount;
-	std::map<const Ship *, std::set<const Ship *>> cargoScans;
-	std::map<const Ship *, std::set<const Ship *>> outfitScans;
-	std::map<const Ship *, int> scanTime;
-	std::map<const Ship *, Angle> miningAngle;
-	std::map<const Ship *, double> miningRadius;
-	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, double> appeasementThreshold;
+	PartiallyGuardedMap<const Ship *, std::set<const Ship *>> cargoScans;
+	PartiallyGuardedMap<const Ship *, std::set<const Ship *>> outfitScans;
+	PartiallyGuardedMap<const Ship *, int> scanTime;
+	PartiallyGuardedMap<const Ship *, Angle> miningAngle;
+	PartiallyGuardedMap<const Ship *, double> miningRadius;
+	PartiallyGuardedMap<const Ship *, int> miningTime;
+	PartiallyGuardedMap<const Ship *, double> appeasementThreshold;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;

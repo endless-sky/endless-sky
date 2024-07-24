@@ -84,7 +84,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 
 
 // Move all the asteroids forward one step.
-void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
+void AsteroidField::Step(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
 {
 	asteroidCollisions.Clear(step);
 	for(Asteroid &asteroid : asteroids)
@@ -127,6 +127,7 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 // Check if the given projectile collides with any asteroids. This excludes minables.
 void AsteroidField::CollideAsteroids(const Projectile &projectile, vector<Collision> &result) const
 {
+
 	// Check for collisions with ordinary asteroids, which are tiled.
 	// Rather than tiling the collision set, tile the projectile.
 	Point from = projectile.Position();

@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "concurrent/Parallel.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -1622,7 +1623,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Do nothing with ships that are being forgotten.
 	if(StepFlags())
@@ -1683,7 +1684,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Launch any ships that are ready to launch.
-void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
+void Ship::Launch(vector<shared_ptr<Ship>> &ships, list<Visual> &visuals)
 {
 	// Allow carried ships to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
@@ -1693,6 +1694,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			(cloak && !attributes.Get("cloaked deployment"))))
 		return;
 
+	ships.reserve(ships.size() + bays.size());
 	for(Bay &bay : bays)
 		if(bay.ship
 			&& ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
@@ -2018,7 +2020,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Ship::Fire(vector<Projectile> &projectiles, list<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2081,13 +2083,14 @@ bool Ship::HasTractorBeam() const
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals)
+bool Ship::FireAntiMissile(const Projectile &projectile, list<Visual> &visuals)
 {
 	if(projectile.Position().Distance(position) > antiMissileRange)
 		return false;
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
+	const lock_guard<std::mutex> lock = Lock();
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -2106,7 +2109,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 // Fire tractor beams at the given flotsam. Returns a Point representing the net
 // pull on the flotsam from this ship's tractor beams.
-Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
+Point Ship::FireTractorBeam(const Flotsam &flotsam, list<Visual> &visuals)
 {
 	Point pullVector;
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
@@ -2131,6 +2134,8 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const vector<Hardpoint> &hardpoints = armament.Get();
+
+	lock_guard<std::mutex> lock(GetMutex());
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
@@ -2143,7 +2148,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 				// Remember that this flotsam is being pulled by a tractor beam so that this ship
 				// doesn't try to manually collect it.
 				tractorFlotsam.insert(&flotsam);
-				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
+				// If this ship is opportunistic, then only fire one tractor beam at each flotsam.
 				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
 					break;
 			}
@@ -3075,68 +3080,75 @@ double Ship::MaxReverseVelocity() const
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 // Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
+int Ship::TakeDamage(list<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
-	bool wasDisabled = IsDisabled();
-	bool wasDestroyed = IsDestroyed();
-
-	shields -= damage.Shield();
-	if(damage.Shield() && !isDisabled)
-	{
-		int disabledDelay = attributes.Get("depleted shield delay");
-		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay)
-			? disabledDelay : attributes.Get("shield delay"));
-	}
-	hull -= damage.Hull();
-	if(damage.Hull() && !isDisabled)
-		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
-
-	energy -= damage.Energy();
-	heat += damage.Heat();
-	fuel -= damage.Fuel();
-
-	discharge += damage.Discharge();
-	corrosion += damage.Corrosion();
-	ionization += damage.Ion();
-	scrambling += damage.Scrambling();
-	burning += damage.Burn();
-	leakage += damage.Leak();
-
-	disruption += damage.Disruption();
-	slowness += damage.Slowing();
-
-	if(damage.HitForce())
-		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
-
-	// Prevent various stats from reaching unallowable values.
-	hull = min(hull, MaxHull());
-	shields = min(shields, MaxShields());
-	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
-	// will clamp it to a maximum value at the beginning of the next frame.
-	energy = max(0., energy);
-	fuel = max(0., fuel);
-	heat = max(0., heat);
-
-	// Recalculate the disabled ship check.
-	isDisabled = true;
-	isDisabled = IsDisabled();
-
-	// Report what happened to this ship from this weapon.
+	// Keep track of what happened to this ship from this weapon.
 	int type = 0;
-	if(!wasDisabled && isDisabled)
+	// Calculate damage
 	{
-		type |= ShipEvent::DISABLE;
-		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
-	}
-	if(!wasDestroyed && IsDestroyed())
-	{
-		type |= ShipEvent::DESTROY;
+		// Don't modify these attributes concurrently.
+		const lock_guard<std::mutex> lock = Lock();
 
-		if(IsYours())
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+		bool wasDisabled = IsDisabled();
+		bool wasDestroyed = IsDestroyed();
+
+		shields -= damage.Shield();
+		if(damage.Shield() && !isDisabled)
+		{
+			int disabledDelay = attributes.Get("depleted shield delay");
+			shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay)
+					? disabledDelay : attributes.Get("shield delay"));
+		}
+		hull -= damage.Hull();
+		if(damage.Hull() && !isDisabled)
+			hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
+
+		energy -= damage.Energy();
+		heat += damage.Heat();
+		fuel -= damage.Fuel();
+
+		discharge += damage.Discharge();
+		corrosion += damage.Corrosion();
+		ionization += damage.Ion();
+		scrambling += damage.Scrambling();
+		burning += damage.Burn();
+		leakage += damage.Leak();
+
+		disruption += damage.Disruption();
+		slowness += damage.Slowing();
+
+		if(damage.HitForce())
+			ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
+
+		// Prevent various stats from reaching unallowable values.
+		hull = min(hull, MaxHull());
+		shields = min(shields, MaxShields());
+		// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
+		// will clamp it to a maximum value at the beginning of the next frame.
+		energy = max(0., energy);
+		fuel = max(0., fuel);
+		heat = max(0., heat);
+
+		// Recalculate the disabled ship check.
+		isDisabled = true;
+		isDisabled = IsDisabled();
+
+		// Report what happened to this ship from this weapon.
+		if(!wasDisabled && isDisabled)
+		{
+			type |= ShipEvent::DISABLE;
+			hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
+		}
+		if(!wasDestroyed && IsDestroyed())
+		{
+			type |= ShipEvent::DESTROY;
+
+			if(IsYours())
+				Messages::Add("Your " + DisplayModelName() +
+						" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+		}
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -3807,7 +3819,7 @@ bool Ship::StepFlags()
 
 // Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 // destroyed, or 0 otherwise.
-int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+int Ship::StepDestroyed(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	if(!IsDestroyed())
 		return 0;
@@ -3825,9 +3837,6 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			double scale = .03 * size + .5;
 			double radius = .2 * size;
 			int debrisCount = attributes.Mass() * .07;
-
-			// Estimate how many new visuals will be added during destruction.
-			visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
 
 			for(int i = 0; i < debrisCount; ++i)
 			{
@@ -3975,7 +3984,7 @@ void Ship::DoGeneration()
 			for(const Bay &bay : bays)
 				if(bay.ship)
 					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
-			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
+			sort(parallel::par_unseq, carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
 					{ return lhs.first > rhs.first; }
@@ -4226,7 +4235,7 @@ void Ship::DoGeneration()
 
 
 
-void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoPassiveEffects(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Adjust the error in the pilot's targeting.
 	personality.UpdateConfusion(firingCommands.IsFiring());
@@ -4319,7 +4328,7 @@ void Ship::DoCloakDecision()
 
 
 
-bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
+bool Ship::DoHyperspaceLogic(list<Visual> &visuals)
 {
 	if(!hyperspaceSystem && !hyperspaceCount)
 		return false;
@@ -4864,7 +4873,7 @@ void Ship::StepTargeting()
 
 
 // Finally, move the ship and create any movement visuals.
-void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
+void Ship::DoEngineVisuals(list<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 	{
@@ -4891,6 +4900,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
+	lock_guard<std::mutex> lock = Lock();
 	escorts.push_back(ship.shared_from_this());
 }
 
@@ -4898,6 +4908,7 @@ void Ship::AddEscort(Ship &ship)
 
 void Ship::RemoveEscort(const Ship &ship)
 {
+	lock_guard<std::mutex> lock = Lock();
 	auto it = escorts.begin();
 	for( ; it != escorts.end(); ++it)
 		if(it->lock().get() == &ship)
@@ -4929,7 +4940,7 @@ double Ship::MinimumHull() const
 
 
 
-void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
+void Ship::CreateExplosion(list<Visual> &visuals, bool spread)
 {
 	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
 		return;
@@ -4966,22 +4977,20 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 
 
 // Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
+void Ship::CreateSparks(list<Visual> &visuals, const string &name, double amount)
 {
 	CreateSparks(visuals, GameData::Effects().Get(name), amount);
 }
 
 
 
-void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+void Ship::CreateSparks(list<Visual> &visuals, const Effect *effect, double amount)
 {
 	if(forget)
 		return;
 
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
-	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<int>(amount));
 
 	while(true)
 	{

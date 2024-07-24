@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "concurrent/Parallel.h"
 #include "Person.h"
 #include "Planet.h"
 #include "Plugins.h"
@@ -1742,7 +1743,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			// Order carried ships such that those requiring bays are loaded first. For
 			// jump-capable carried ships, prefer loading those with a shorter range.
-			stable_sort(toLoad.begin(), toLoad.end(),
+			stable_sort(parallel::par_unseq, toLoad.begin(), toLoad.end(),
 				[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b)
 				{
 					return a->JumpsRemaining() < b->JumpsRemaining();
