@@ -361,7 +361,6 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
-	concurrent/Parallel.cpp
 	concurrent/Parallel.h
 	concurrent/PartiallyGuarded.h
 	concurrent/ResourceProvider.h
