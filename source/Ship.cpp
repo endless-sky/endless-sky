@@ -4098,7 +4098,10 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(ship.HasDeployOrder())
+				{
 					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
+					ship.SetState(Body::BodyState::LAUNCHING);
+				}
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -4897,13 +4900,14 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 void Ship::StepTargeting()
 {
 	static const double weaponsRangeMultiplier = 1.25;
-	bool hasPrimary = commands.Has(Command::PRIMARY);
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
+	bool hasPrimary = commands.Has(Command::PRIMARY);
+	bool canBeCarriedNow = CanBeCarried() && !(target && (target == GetShipToAssist() || isYours));
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
 	// Unless the player uses a fighter as their flagship and is boarding an enemy ship.
-	if(CanBeCarried() && !(target && (target == GetShipToAssist() || isYours)))
+	if(canBeCarriedNow)
 		target = GetParent();
 	if(!isDisabled)
 	{
@@ -4930,7 +4934,11 @@ void Ship::StepTargeting()
 			}
 			else if(hasPrimary)
 				this->SetState(Body::BodyState::FIRING);
-
+			// Fighter/Drone is boarding/landing
+			if(isBoarding && canBeCarriedNow)
+			{
+				this->SetState(Body::BodyState::LANDING);
+			}
 			if(isBoarding && !CanBeCarried())
 			{
 				if(!target->IsDisabled() && government->IsEnemy(target->government))
