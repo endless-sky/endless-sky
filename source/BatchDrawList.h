@@ -75,9 +75,9 @@ private:
 	// vertices has six attributes: (x, y) position in pixels, (s, t) texture
 	// coordinates, the index of the sprite frame, and the alpha value.
 	// We keep multiple vectors for each sprite for better concurrent access.
-	using data_type = std::map<const Sprite *, std::vector<std::vector<float>>>;
-	data_type data;
-	ResourceProvider<data_type> resourceProvider;
+	using DataType = std::map<const Sprite *, std::vector<std::vector<float>>>;
+	DataType data;
+	ResourceProvider<DataType> resourceProvider;
 };
 
 
