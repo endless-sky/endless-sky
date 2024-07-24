@@ -101,6 +101,7 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
+	// TODO (C++20): Replace with erase_if.
 	template <class Type>
 	void Prune(vector<shared_ptr<Type>> &objects)
 	{
