@@ -1,5 +1,5 @@
 /* SpriteParameters.cpp
-Copyright (c) 2022 by XessWaffle
+Copyright (c) 2024 by XessWaffle
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sprite.h"
 
+
+
 SpriteParameters::SpriteParameters()
 {
 }
@@ -26,28 +28,27 @@ SpriteParameters::SpriteParameters()
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
-	static ConditionSet empty;
-	auto tuple = SpriteParameters::SpriteDetails{sprite, initDefault, empty};
-	this->sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(0, tuple));
-	this->exposed = initDefault;
-	this->exposedIndex = 0;
-	this->defaultDetails = tuple;
-	this->exposedDetails = tuple;
+	auto tuple = SpriteParameters::SpriteDetails{sprite, initDefault, {}};
+	sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(0, tuple));
+	exposed = initDefault;
+	exposedIndex = 0;
+	defaultDetails = tuple;
+	exposedDetails = tuple;
 }
 
 
 
-void SpriteParameters::SetSprite(int index, const Sprite *sprite,
-									SpriteParameters::AnimationParameters params, ConditionSet triggerConditions)
+void SpriteParameters::SetSprite(int index, const Sprite *sprite, SpriteParameters::AnimationParameters data,
+		ConditionSet triggerConditions)
 {
-	auto tuple = SpriteParameters::SpriteDetails{sprite, params, triggerConditions};
-	this->sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(index, tuple));
+	auto tuple = SpriteParameters::SpriteDetails{sprite, data, triggerConditions};
+	sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(index, tuple));
 	if(index == DEFAULT)
 	{
-		this->exposed = params;
-		this->exposedIndex = 0;
-		this->defaultDetails = tuple;
-		this->exposedDetails = tuple;
+		exposed = data;
+		exposedIndex = 0;
+		defaultDetails = tuple;
+		exposedDetails = tuple;
 	}
 }
 
@@ -56,13 +57,12 @@ void SpriteParameters::SetSprite(int index, const Sprite *sprite,
 const Sprite *SpriteParameters::GetSprite(int index) const
 {
 	if(index < 0)
-		return std::get<0>(this->exposedDetails);
-	else
-	{
-		auto it = this->sprites.find(index);
-		if(it != this->sprites.end())
-			return std::get<0>(it->second);
-	}
+		return std::get<0>(exposedDetails);
+
+	auto it = sprites.find(index);
+	if(it != sprites.end())
+		return std::get<0>(it->second);
+
 	return NULL;
 }
 
@@ -72,13 +72,12 @@ ConditionSet SpriteParameters::GetConditions(int index) const
 {
 	static ConditionSet empty;
 	if(index < 0)
-		return std::get<2>(this->exposedDetails);
-	else
-	{
-		auto it = this->sprites.find(index);
-		if(it != this->sprites.end())
-			return std::get<2>(it->second);
-	}
+		return std::get<2>(exposedDetails);
+
+	auto it = sprites.find(index);
+	if(it != sprites.end())
+		return std::get<2>(it->second);
+
 	return empty;
 }
 
@@ -88,13 +87,12 @@ SpriteParameters::AnimationParameters SpriteParameters::GetParameters(int index)
 {
 	SpriteParameters::AnimationParameters def;
 	if(index < 0)
-		return std::get<1>(this->exposedDetails);
-	else
-	{
-		auto it = this->sprites.find(index);
-		if(it != this->sprites.end())
-			return std::get<1>(it->second);
-	}
+		return std::get<1>(exposedDetails);
+
+	auto it = sprites.find(index);
+	if(it != sprites.end())
+		return std::get<1>(it->second);
+
 	return def;
 }
 
@@ -102,27 +100,29 @@ SpriteParameters::AnimationParameters SpriteParameters::GetParameters(int index)
 
 const int SpriteParameters::GetExposedID() const
 {
-	return this->exposedIndex;
+	return exposedIndex;
 }
 
 
 
 const int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
 {
-	for(auto it = this->sprites.begin(); it != this->sprites.end(); it++)
-		if(it->first != DEFAULT)
+	for(auto it : sprites)
+		if(it.first != DEFAULT)
 		{
-			ConditionSet conditions = std::get<2>(it->second);
+			ConditionSet conditions = std::get<2>(it.second);
 			if(conditions.Test(store))
 			{
-				this->requestedIndex = it->first;
-				return it->first;
+				requestedIndex = it.first;
+				return it.first;
 			}
-
 		}
-	// Return to default
-	if(this->exposedIndex != DEFAULT)
-		this->requestedIndex = DEFAULT;
+
+
+
+	// Return to default.
+	if(exposedIndex != DEFAULT)
+		requestedIndex = DEFAULT;
 	return DEFAULT;
 }
 
@@ -130,22 +130,29 @@ const int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
 
 void SpriteParameters::CompleteTriggerRequest()
 {
-	this->Expose(this->requestedIndex);
+	Expose(requestedIndex);
 }
 
 
 
 const SpriteParameters::SpriteMap *SpriteParameters::GetAllSprites() const
 {
-	return &this->sprites;
+	return &sprites;
+}
+
+
+
+SpriteParameters::AnimationParameters *SpriteParameters::GetExposedParameters()
+{
+	return &exposed;
 }
 
 
 
 void SpriteParameters::Expose(int index)
 {
-	this->exposedIndex = index;
-	auto it = this->sprites.find(index);
-	this->exposed = std::get<1>(it->second);
-	this->exposedDetails = it->second;
+	exposedIndex = index;
+	auto it = sprites.find(index);
+	exposed = std::get<1>(it->second);
+	exposedDetails = it->second;
 }

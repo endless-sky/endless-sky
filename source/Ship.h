@@ -527,7 +527,7 @@ private:
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
 
-	// Register ship level conditions
+	// Register ship level conditions.
 	void RegisterDerivedConditions();
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);

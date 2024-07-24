@@ -4531,7 +4531,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(activeCommands.Has(Command::PRIMARY))
 		{
 			int index = 0;
-			// Used for animating when a ship "wants to fire"
+			// Used for animating when a ship "wants to fire".
 			command |= Command::PRIMARY;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{

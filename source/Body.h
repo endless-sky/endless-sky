@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "ConditionsStore.h"
-#include "Point.h"
 #include "SpriteParameters.h"
 
 #include <cstdint>
@@ -37,10 +36,13 @@ class Sprite;
 // facing direction and usually also has a sprite.
 class Body {
 public:
-	// States for animation purposes
+	// States for animation purposes.
 	enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT, TRIGGER};
-	// Minimum/Default frame rate of animations
+	// Minimum/Default frame rate of animations.
 	static constexpr float MIN_FRAME_RATE = 2. / 60.;
+
+
+
 public:
 	// Constructors.
 	Body() = default;
@@ -80,10 +82,10 @@ public:
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
 
-	// Sprite serialization. Return true if sprite is successfully loaded
+	// Sprite serialization. Return true if sprite is successfully loaded.
 	bool LoadSprite(const DataNode &node);
 	void LoadTriggerSprite(const DataNode &node, Body::BodyState state,
-						   SpriteParameters::AnimationParameters params, int index);
+							SpriteParameters::AnimationParameters params, int index);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int index) const;
 	// Set the sprite.
@@ -100,11 +102,11 @@ protected:
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 	void ShowDefaultSprite(bool defaultSprite);
-	// Check if any triggers should be activated in this state
+	// Check if any triggers should be activated in this state.
 	void CheckTriggers();
-	// Ready to perform the desired action
+	// Ready to perform the desired action.
 	bool ReadyForAction() const;
-	// Finish transitioning between states
+	// Finish transitioning between states.
 	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
@@ -120,7 +122,6 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
-	Point center;
 	Point rotatedCenter;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
@@ -133,7 +134,7 @@ protected:
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
 
-	// Conditions registered from bodies
+	// Conditions registered from bodies.
 	ConditionsStore conditions;
 
 private:
