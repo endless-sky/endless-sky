@@ -181,6 +181,7 @@ public:
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
+	void SetIsPlayerFlagship(bool isFlagship = true);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 
@@ -526,7 +527,8 @@ private:
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
 
-
+	// Register ship level conditions
+	void RegisterDerivedConditions();
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
@@ -589,6 +591,7 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	bool isPlayerFlagship = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
@@ -596,6 +599,7 @@ private:
 	double antiMissileRange = 0.;
 	double tractorBeamRange = 0.;
 	double weaponRadius = 0.;
+	double weaponRange = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;

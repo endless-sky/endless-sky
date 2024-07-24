@@ -308,6 +308,8 @@ target_sources(EndlessSkyLib PRIVATE
 	SpaceportPanel.h
 	Sprite.cpp
 	Sprite.h
+	SpriteParameters.cpp
+	SpriteParameters.h
 	SpriteSet.cpp
 	SpriteSet.h
 	SpriteShader.cpp
