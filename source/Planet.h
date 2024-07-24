@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Sale.h"
 
-#include <list>
 #include <memory>
 #include <set>
 #include <string>
