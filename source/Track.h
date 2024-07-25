@@ -26,7 +26,7 @@ class DataNode;
 // Class to store a track of music that can be used in a playlist.
 class Track {
 public:
-	enum class GameState : int_fast8_t
+	enum GameState
 	{
 		IDLE = 0,
 		COMBAT,
