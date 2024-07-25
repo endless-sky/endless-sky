@@ -3057,11 +3057,11 @@ system Arche
 	trade Electronics 840
 	trade Equipment 660
 	trade Food 555
-	trade "Heavy Metals" 1200
+	trade "Heavy Metals" 900
 	trade Industrial 720
 	trade "Luxury Goods" 1410
 	trade Medical 900
-	trade Metal 570
+	trade Metal 360
 	trade Plastic 480
 	fleet "Small Avgi Merchants" 8400
 	fleet "Large Avgi Merchants" 6000

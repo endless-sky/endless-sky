@@ -90,6 +90,7 @@ outfitter "Avgi Basic Systems"
 	"Small Bunk Room"
 	"Bunk Room"
 	"Cargo Expansion"
+	"Outfits Expansion"
 	"Luxury Accommodations"
 	"Ultrarelativistic Electron Beam"
 

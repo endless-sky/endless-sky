@@ -1025,7 +1025,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Electromotive Rifle" 600
 		
-		`Z-1200 "Beam" Antimatter Torch`
+		`Z-3600 "Beam" Antimatter Torch`
 		"Inductive Extractor" 6
 		"Hyperdrive"
 

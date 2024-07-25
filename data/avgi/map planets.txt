@@ -317,7 +317,7 @@ planet Hespair
 planet Delodir
 	attributes frozen moon "ice moon" uninhabited
 	landscape land/snow29
-	description "Delodir is proof that life can exist in the most unlikely of places. Despite the moon's lack of sunlight, given that the Jamaga system has no bright, luminescent star, life has managed to thrive at the bottom of Delodir's subsurface oceans, buried deep beneath a thick layer of ice. Energy is trickled into the biosphere from hydrothermal vents, which are in turn powered by tidal heating produced by the gravitational influence of both the brown dwarf and gas giant within the system."
+	description "Delodir is proof that life can exist in the most unlikely of places. Despite the moon's lack of sunlight, given that the Mote system has no bright, luminescent star, life has managed to thrive at the bottom of Delodir's subsurface oceans, buried deep beneath a thick layer of ice. Energy is trickled into the biosphere from hydrothermal vents, which are in turn powered by tidal heating produced by the gravitational influence of both the brown dwarf and gas giant within the system."
 	government Uninhabited
 
 

@@ -40,7 +40,6 @@ mission "Avgi: Spawn Wandering Fleet"
 		system Kr-84
 		ship "Modified Tachytia" "Voyager"
 		ship "Undsyni (Tanker)" "Vitrified Carbon"
-		ship "Frequentia" "Blue Argon"
 		ship "Polari" "Forward Waves"
 		ship "Prismaios (Atomic)" "Serene Spin"
 		ship "Refraktos" "Penitent Albedo"
