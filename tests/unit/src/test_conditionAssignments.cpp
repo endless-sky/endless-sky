@@ -44,7 +44,7 @@ using Conditions = std::map<std::string, int64_t>;
 // #region unit tests
 SCENARIO( "Creating ConditionAssignments" , "[ConditionAssignments][Creation]" ) {
 	GIVEN( "no arguments" ) {
-		const auto set = ConditionSet{};
+		const auto set = ConditionAssignments{};
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
 		}
@@ -56,7 +56,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 	REQUIRE( store.PrimariesSize() == 0 );
 
 	GIVEN( "empty ConditionAssignments" ) {
-		const auto emptySet = ConditionSet{};
+		const auto emptySet = ConditionAssignments{};
 		REQUIRE( emptySet.IsEmpty() );
 
 		THEN( "no conditions are added via Apply" ) {
@@ -70,7 +70,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 		}
 	}
 	GIVEN( "ConditionAssignments with an assignable expression" ) {
-		const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
+		const auto applySet = ConditionAssignments{AsDataNode("and\n\tyear = 3013")};
 		REQUIRE_FALSE( applySet.IsEmpty() );
 
 		THEN( "the condition list is updated via Apply" ) {

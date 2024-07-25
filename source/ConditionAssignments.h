@@ -42,6 +42,9 @@ public:
 	// Save a set of assignment expressions.
 	void Save(DataWriter &out) const;
 
+	// Check if there are any entries in this set.
+	bool IsEmpty() const;
+
 	// Modify the given set of conditions with the assignments in this class.
 	// Order of operations is the order of specification: assignments are applied in the order given.
 	void Apply(ConditionsStore &conditions) const;

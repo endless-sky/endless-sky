@@ -45,6 +45,14 @@ void ConditionAssignments::Save(DataWriter &out) const
 
 
 
+// Check if there are any entries in this set.
+bool ConditionAssignments::IsEmpty() const
+{
+	return setToEvaluate.IsEmpty();
+}
+
+
+
 // Modify the given set of conditions.
 void ConditionAssignments::Apply(ConditionsStore &conditions) const
 {
