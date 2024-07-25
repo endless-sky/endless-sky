@@ -94,6 +94,7 @@ outfitter "Successor Civilian"
 
 outfitter "Successor Heavy"
 	`6-"Ruuv" Betavoltaic Cell`
+	`"Tuur" Scanning Suite`
 	`"Veusa" Inductive Reverser`
 	`"Veusa" Inductive Steering`
 	`"Veusa" Inductive Thruster`
@@ -108,6 +109,8 @@ outfitter "High Houses Light"
 	`"Nnesa" Fusion Core`
 	`"Ojet" Bimodal Coilgun`
 	"Drag Cannon"
+	"High-Velocity Spike"
+	"High-Velocity Spike Rack"
 	`"Jaase" Shield Cortex`
 	"Shield Cortex Interface"
 	"Kinetic Rail Rifle"
@@ -118,6 +121,7 @@ outfitter "High Houses Heavy"
 	`"Ryuit" Fusion Core`
 	`"Uoret" Fusion Core`
 	"High-Velocity Spike"
+	"High-Velocity Spike Rack"
 	`"Sjeja" Kinetic Lance`
 	"Bimodal Coilgun Turret"
 	"Multimodal Armor: Heavy"
