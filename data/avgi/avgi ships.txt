@@ -999,7 +999,7 @@ ship "Modified Tachytia"
 		"heat dissipation" 0.66
 		"fuel capacity" 60000
 		"cargo space" 1200
-		"outfit space" 1200
+		"outfit space" 1440
 		"weapon capacity" 180
 		"engine capacity" 420
 		"spinal mount" 1
@@ -1133,7 +1133,7 @@ ship "Tremoros"
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
 		
-		"Ultracapacitor Cell" 4
+		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
