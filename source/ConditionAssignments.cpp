@@ -14,6 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ConditionAssignments.h"
+
 #include "ConditionsStore.h"
 
 using namespace std;

@@ -1,4 +1,4 @@
-/* ConditionAssignment.h
+/* ConditionAssignments.h
 Copyright (c) 2024 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

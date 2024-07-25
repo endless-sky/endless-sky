@@ -78,17 +78,17 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		THEN( "no expressions are added from empty nodes" ) {
 			set.Load(DataNode{});
 			REQUIRE( set.IsEmpty() );
-			//AND_THEN( "a log message is printed to assist the user" ) {
-			//	REQUIRE( warnings.Flush() == validationWarning );
-			//}
+			// AND_THEN( "a log message is printed to assist the user" ) {
+			// 	REQUIRE( warnings.Flush() == validationWarning );
+			// }
 		}
 		THEN( "no expressions are added from invalid nodes" ) {
 			const std::string invalidNodeText = "has";
 			set.Load(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
-			//AND_THEN( "a log message is printed to assist the user" ) {
-			//	REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
-			//}
+			// AND_THEN( "a log message is printed to assist the user" ) {
+			// 	REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
+			// }
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
 			set.Load(AsDataNode("and\n\tnever"));
