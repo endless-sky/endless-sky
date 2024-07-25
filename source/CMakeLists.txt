@@ -366,8 +366,6 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/BySeriesAndIndex.h
 	concurrent/Parallel.h
 	concurrent/PartiallyGuardedList.h
-	concurrent/PartiallyGuardedMap.h
-	concurrent/PartiallyGuardedVector.h
 	concurrent/ResourceProvider.h
 	concurrent/WithMutex.cpp
 	concurrent/WithMutex.h
