@@ -1122,7 +1122,7 @@ ship "Tremoros"
 		"cargo space" 12
 		"outfit space" 210
 		"weapon capacity" 60
-		"engine capacity" 60
+		"engine capacity" 63
 		"anchor point" 1
 		weapon
 			"blast radius" 90
@@ -1133,7 +1133,7 @@ ship "Tremoros"
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
 		
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Cell" 4
 		"Diffuse Deflector"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
