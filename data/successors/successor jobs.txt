@@ -215,7 +215,7 @@ mission "Successor: Bold Tourists Round Trip"
 	source
 		attributes "successor"
 	stopover
-		attributes "boldtourism"
+		attributes "bold tourism"
 		distance 5 20
 	on visit
 		dialog phrase "generic passenger on visit"

@@ -1836,7 +1836,7 @@ planet "Giaru Gegno"
 	security 1
 
 planet Giiq-Oj-Sol
-	attributes boldtourism successor uninhabited
+	attributes "bold tourism" successor uninhabited
 	landscape land/lava14
 	description `The specific atmosphere of this planet combined with its volcanic activity have combined to make the perfect conditions for the geological production of strands of natural glass, which are thrown into the atmosphere by volcanoes and then carried by high winds all over the planet. This makes stepping outside of one's ship without some sort of protection a very bad idea, as the ground is littered with sharp fragments and the air is filled with microscopic glass particles, both capable of rapidly destroying living tissue.`
 	government Uninhabited
@@ -2717,7 +2717,7 @@ planet Kua-Oa-Aava
 	bribe 0
 
 planet Kuj-Sol-Nnesa
-	attributes boldtourism successor uninhabited
+	attributes "bold tourism" successor uninhabited
 	landscape land/desert13
 	description `This hot and arid world hosts giant millipede-like creatures that roam the sand during the twilight hours, hunting anything that moves.`
 		to display
@@ -3258,7 +3258,7 @@ planet Mystery
 	"required reputation" 15
 
 planet Naph-Naap-Kella
-	attributes boldtourism successor uninhabited
+	attributes "bold tourism" successor uninhabited
 	landscape land/lava1
 	description `This planet is deep in the throes of its early history, with a thick sulfurous atmosphere concealing an unstable and volcanically active surface. Mineral-rich pools simmer next to lava flows and crumbling ejecta, and the atmosphere is repeatedly lit up by enormous cloud-to-cloud lightning discharges that leave the hull of your ship crackling with static electricity.`
 		to display
@@ -5154,7 +5154,7 @@ planet Tuur-Aasa-Kaska
 	"required reputation" 15
 
 planet Tuur-Oa-Sola
-	attributes boldtourism successor uninhabited
+	attributes "bold tourism" successor uninhabited
 	landscape land/mars2
 	description `The atmosphere of this moon is thin but toxic, and its surface is riddled with fissures that spew hot gases kilometers up into space. It appears to be falling below the Roche limit of the gas giant it orbits, and will probably be torn apart into a ring system within a few thousand years.`
 	government Uninhabited
@@ -5529,7 +5529,7 @@ planet Vulpa
 	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving; its clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
 
 planet Vyraa-Giiq-Sora
-	attributes boldtourism successor uninhabited
+	attributes "bold tourism" successor uninhabited
 	landscape land/myrabella0
 	description `It's not clear why this planet remains uninhabited, as it possesses a breathable atmosphere and temperate climate; the surface is covered in indigenous lifeforms, many of which exhibit some degree of bioluminescence.`
 		to display
