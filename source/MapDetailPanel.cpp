@@ -819,7 +819,7 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
-	if(selectedPlanet && !selectedPlanet->Description().empty()
+	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		static const int X_OFFSET = 240;
@@ -832,7 +832,7 @@ void MapDetailPanel::DrawInfo()
 		WrappedText text(font);
 		text.SetAlignment(Alignment::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
-		text.Wrap(selectedPlanet->Description());
+		text.Wrap(selectedPlanet->Description().ToString(player.Conditions()));
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 
 		selectedSystemOffset = -150;

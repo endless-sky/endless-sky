@@ -304,7 +304,6 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : wormholes)
 		if(it.second.Name().empty())
 			Warn("wormhole", it.first);
-
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
 		if(it.second.Name().empty())

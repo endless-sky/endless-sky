@@ -376,8 +376,8 @@ mission "FW Flamethrower 2"
 			`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
 				accept
 	
-	npc save disable
-		personality disables staying heroic
+	npc disable save
+		personality disables heroic staying
 		government "Test Dummy"
 		ship "Doombat" "Doombat"
 	
