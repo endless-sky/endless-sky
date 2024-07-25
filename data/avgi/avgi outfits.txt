@@ -104,7 +104,7 @@ outfit "Cryogenic Deuterium Tank"
 	index 40
 	category "Systems"
 	cost 30000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/cryogenic deuterium tank"
 	"mass" 12
 	"outfit space" -6
 	"cargo space" -30

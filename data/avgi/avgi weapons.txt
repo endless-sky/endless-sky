@@ -126,7 +126,7 @@ effect "speckle fire"
 outfit "Optical Lasing Generator"
 	category "Systems"
 	cost 120000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/optical lasing generator"
 	"mass" 30
 	"outfit space" -30
 	"lasing power" 3
