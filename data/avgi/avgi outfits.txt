@@ -299,7 +299,7 @@ outfit "Magnetoplasma Drive"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
 	description "For speed-agnostic, bulk transportation of people and goods, electric thrusters have long been used by the Avgi for their versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy-hungry. Being propellant agnostic, it is common to see magnetoplasmadynamic drives run with water or ammonia propellants, adding to their renowned flexibility."
-	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing a it to translate and rotate in any direction at will."
+	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction at will."
 
 
 outfit `Z-330 "Spark" Fusion Torch`
