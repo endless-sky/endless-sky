@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	using OrderSet = std::bitset<Orders::OrderType::TYPES_COUNT>;
+	using OrderSet = bitset<Orders::OrderType::TYPES_COUNT>;
 
 	// Bit mask to figure out which orders are canceled if their target
 	// ceases to be targetable or present.
