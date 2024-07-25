@@ -1532,6 +1532,7 @@ void Engine::CalculateStep()
 			&& isTargetable && flagshipIsTargetable)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	});
+
 	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
 	// Track which ships have at least one such system ready to fire.
 	hasAntiMissile.reserve(ships.size());
