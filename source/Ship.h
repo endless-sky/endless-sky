@@ -174,6 +174,7 @@ public:
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -312,8 +313,12 @@ public:
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
+	// Check if this ship can transfer sufficient energy to the other ship.
+	bool CanGiveEnergy(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
+	// Give the other ship some energy.
+	double TransferEnergy(double amount, Ship *to);
 	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
@@ -354,6 +359,8 @@ public:
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
 	bool NeedsFuel(bool followParent = true) const;
+	// Checks whether this ship needs energy to function.
+	bool NeedsEnergy() const;
 	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
