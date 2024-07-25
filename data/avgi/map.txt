@@ -50,16 +50,16 @@ system Anax
 	minables silver 36 12.312
 	minables titanium 18 6.213
 	minables tungsten 12 8.132
-	trade Clothing 214
-	trade Electronics 688
-	trade Equipment 680
-	trade Food 204
-	trade "Heavy Metals" 1107
-	trade Industrial 818
-	trade "Luxury Goods" 1270
-	trade Medical 473
-	trade Metal 494
-	trade Plastic 258
+	trade Clothing 162
+	trade Electronics 630
+	trade Equipment 420
+	trade Food 180
+	trade "Heavy Metals" 600
+	trade Industrial 720
+	trade "Luxury Goods" 1080
+	trade Medical 750
+	trade Metal 255
+	trade Plastic 330
 	fleet "Avgi Scouts" 24000
 	fleet "Small Aberrant" 1800
 	fleet "Large Aberrant" 3400
@@ -464,7 +464,7 @@ system Anax
 			distance 140
 			period 42
 			offset 290
-	object
+	object Oura
 		sprite planet/gas3-b
 		distance 7258.824
 		period 5274.096
@@ -549,6 +549,16 @@ system Clip
 	haze _menu/haze-twilight
 	link Anax
 	asteroids "large metal" 1 3.181
+	trade Clothing 156
+	trade Electronics 660
+	trade Equipment 432
+	trade Food 150
+	trade "Heavy Metals" 660
+	trade Industrial 750
+	trade "Luxury Goods" 1200
+	trade Medical 795
+	trade Metal 270
+	trade Plastic 390
 	fleet "Avgi Scouts" 36000
 	fleet "Small Aberrant" 2300
 	fleet "Large Aberrant" 3900
@@ -1404,6 +1414,16 @@ system Ensemble
 	"jump range" 30
 	link K-39
 	asteroids "large metal" 1 6.84
+	trade Clothing 240
+	trade Electronics 810
+	trade Equipment 690
+	trade Food 360
+	trade "Heavy Metals" 1200
+	trade Industrial 870
+	trade "Luxury Goods" 1440
+	trade Medical 840
+	trade Metal 480
+	trade Plastic 405
 	fleet "Avgi Orbital Defense" 1200
 	fleet "Avgi Patrol" 2400
 	fleet "Avgi Core Defense" 6000
@@ -1685,6 +1705,16 @@ system Soar
 	minables iron 9 2.954
 	minables uranium 14 4.265
 	minables silicon 33 4.238
+	trade Clothing 180
+	trade Electronics 600
+	trade Equipment 390
+	trade Food 144
+	trade "Heavy Metals" 690
+	trade Industrial 762
+	trade "Luxury Goods" 1200
+	trade Medical 780
+	trade Metal 258
+	trade Plastic 300
 	fleet "Avgi Scouts" 36000
 	fleet "Small Aberrant" 2100
 	fleet "Large Aberrant" 4500
@@ -1769,6 +1799,16 @@ system Thread
 	minables lead 11 2.077
 	minables tungsten 12 1.312
 	minables iron 14 2.332
+	trade Clothing 174
+	trade Electronics 654
+	trade Equipment 480
+	trade Food 120
+	trade "Heavy Metals" 660
+	trade Industrial 780
+	trade "Luxury Goods" 1230
+	trade Medical 750
+	trade Metal 210
+	trade Plastic 420
 	fleet "Avgi Scouts" 9000
 	fleet "Small Aberrant" 2200
 	fleet "Large Aberrant" 4700
@@ -1832,16 +1872,16 @@ system Sail
 	minables platinum 12 4.801
 	minables iron 9 2.899
 	minables aluminum 18 1.231
-	trade Clothing 298
-	trade Electronics 653
-	trade Equipment 339
-	trade Food 116
-	trade "Heavy Metals" 651
-	trade Industrial 794
-	trade "Luxury Goods" 1416
-	trade Medical 842
-	trade Metal 554
-	trade Plastic 457
+	trade Clothing 360
+	trade Electronics 690
+	trade Equipment 600
+	trade Food 105
+	trade "Heavy Metals" 720
+	trade Industrial 840
+	trade "Luxury Goods" 990
+	trade Medical 840
+	trade Metal 240
+	trade Plastic 435
 	fleet "Avgi Scouts" 42000
 	fleet "Small Aberrant" 2400
 	fleet "Large Aberrant" 4200
@@ -1914,10 +1954,18 @@ system Interlude
 	minables aluminum 13 3.772
 	minables iron 22 8.231
 	minables silicon 17 3.512
-	minables gold 3 12.831
-	minables titanium 14 3.517
-	minables platinum 4 18.241
-	minables uranium 2 20.512
+	minables titanium 6 3.517
+	minables silver 2 18.241
+	trade Clothing 420
+	trade Electronics 870
+	trade Equipment 720
+	trade Food 570
+	trade "Heavy Metals" 1020
+	trade Industrial 600
+	trade "Luxury Goods" 1470
+	trade Medical 900
+	trade Metal 420
+	trade Plastic 390
 	fleet "Small Dissonance Merchants" 1800
 	fleet "Large Dissonance Merchants" 2700
 	fleet "Dissonance Miners" 2400
@@ -2151,6 +2199,16 @@ system Concerto
 	asteroids "large rock" 3 1.191
 	asteroids "large metal" 1 1.714
 	minables iron 24 2.437
+	trade Clothing 390
+	trade Electronics 810
+	trade Equipment 630
+	trade Food 540
+	trade "Heavy Metals" 1290
+	trade Industrial 690
+	trade "Luxury Goods" 1410
+	trade Medical 750
+	trade Metal 540
+	trade Plastic 480
 	fleet "Avgi Orbital Defense" 1200
 	fleet "Avgi Core Defense" 2700
 	fleet "Avgi Patrol" 4200
@@ -2351,8 +2409,21 @@ system Prelude
 	asteroids "medium metal" 2 4.005
 	asteroids "large metal" 1 4.005
 	minables iron 12 7.462
-	minables gold 1 6.375
+	minables gold 4 6.375
 	minables lead 5 7.644
+	minables titanium 12 3.517
+	minables platinum 8 18.241
+	minables uranium 3 20.512
+	trade Clothing 390
+	trade Electronics 900
+	trade Equipment 750
+	trade Food 540
+	trade "Heavy Metals" 900
+	trade Industrial 660
+	trade "Luxury Goods" 1470
+	trade Medical 930
+	trade Metal 300
+	trade Plastic 330
 	fleet "Small Dissonance Merchants" 1800
 	fleet "Large Dissonance Merchants" 4200
 	fleet "Dissonance Miners" 3600
@@ -2407,6 +2478,16 @@ system Symphony
 	asteroids "small metal" 2 5.39
 	asteroids "medium metal" 3 4.2
 	minables aluminum 5 9.3
+	trade Clothing 360
+	trade Electronics 870
+	trade Equipment 720
+	trade Food 570
+	trade "Heavy Metals" 1320
+	trade Industrial 750
+	trade "Luxury Goods" 1440
+	trade Medical 780
+	trade Metal 600
+	trade Plastic 540
 	fleet "Avgi Orbital Defense" 2400
 	fleet "Avgi Core Defense" 3600
 	fleet "Avgi Patrol" 6000
@@ -2780,6 +2861,16 @@ system Mellow
 	asteroids "medium metal" 18 0.858
 	asteroids "large metal" 22 1.301
 	minables neodymium 9 1.587
+	trade Clothing 390
+	trade Electronics 720
+	trade Equipment 540
+	trade Food 150
+	trade "Heavy Metals" 750
+	trade Industrial 810
+	trade "Luxury Goods" 1110
+	trade Medical 720
+	trade Metal 330
+	trade Plastic 450
 	fleet "Avgi Scouts" 42000
 	fleet "Small Aberrant" 480
 	fleet "Large Aberrant" 900
@@ -2962,6 +3053,16 @@ system Arche
 	minables silver 6 3.606
 	minables gold 6 8.493
 	minables platinum 6 6.303
+	trade Clothing 390
+	trade Electronics 840
+	trade Equipment 660
+	trade Food 555
+	trade "Heavy Metals" 1200
+	trade Industrial 720
+	trade "Luxury Goods" 1410
+	trade Medical 900
+	trade Metal 570
+	trade Plastic 480
 	fleet "Small Avgi Merchants" 8400
 	fleet "Large Avgi Merchants" 6000
 	fleet "Avgi Scouts" 9000
@@ -3035,7 +3136,6 @@ system Twirl
 	minables uranium 3 4.255
 	minables gold 6 1.872
 	fleet "Avgi Scouts" 18000
-	fleet "Small Aberrant" 36000
 	object
 		sprite star/neutron-core
 		period 1
@@ -3218,10 +3318,6 @@ system Wave
 		sprite planet/gas10-hot
 		distance 5919
 		period 7766.962
-	object
-		sprite planet/station-solar-a2
-		distance 18840
-		period 44106.236
 
 system Tide
 	pos -468.313 603.86
@@ -3838,6 +3934,16 @@ system Wake
 	asteroids "small metal" 29 2.688
 	asteroids "medium metal" 81 2.688
 	asteroids "large metal" 18 2.33
+	trade Clothing 186
+	trade Electronics 660
+	trade Equipment 600
+	trade Food 240
+	trade "Heavy Metals" 705
+	trade Industrial 840
+	trade "Luxury Goods" 1260
+	trade Medical 840
+	trade Metal 270
+	trade Plastic 435
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 24000
 	fleet "Small Aberrant" 2100
