@@ -4407,8 +4407,6 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	if(!hyperspaceSystem && !hyperspaceCount)
 		return false;
 
-	SetState(BodyState::JUMPING);
-
 	// Don't apply external acceleration while jumping.
 	acceleration = Point();
 
@@ -4918,20 +4916,23 @@ void Ship::StepTargeting()
 			isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 
 			bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
-			if(!commands.Has(Command::JUMP) && !hasPrimary)
+			if(!commands.Has(Command::JUMP))
 			{
-				bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
-					|| !weaponRange;
-
-				if(activeEnemyTarget && target->isInSystem && targetInRange)
+				if(!hasPrimary)
 				{
-					SetState(BodyState::FIRING);
+					bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
+						|| !weaponRange;
+
+					if(activeEnemyTarget && target->isInSystem && targetInRange)
+					{
+						SetState(BodyState::FIRING);
+					}
+					else
+						SetState(BodyState::FLYING);
 				}
 				else
-					SetState(BodyState::FLYING);
+					SetState(BodyState::FIRING);
 			}
-			else if(hasPrimary)
-				SetState(BodyState::FIRING);
 			// Fighter/Drone is boarding/landing.
 			if(isBoarding && canBeCarriedNow)
 			{
@@ -4992,22 +4993,25 @@ void Ship::StepTargeting()
 		{
 			shared_ptr<Minable> target = GetTargetAsteroid();
 
-			if(!commands.Has(Command::JUMP) && !hasPrimary)
+			if(!commands.Has(Command::JUMP))
 			{
-				if(target && !isDisabled)
+				if(!hasPrimary)
 				{
-					bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
-										|| !weaponRange;
-					// If in range, or the weapon range hasn't been calculated yet.
-					if(targetInRange)
-						SetState(BodyState::FIRING);
+					if(target && !isDisabled)
+					{
+						bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
+											|| !weaponRange;
+						// If in range, or the weapon range hasn't been calculated yet.
+						if(targetInRange)
+							SetState(BodyState::FIRING);
+					}
+					// If the ship has no target but is still flying around and doesn't want to jump.
+					else
+						SetState(BodyState::FLYING);
 				}
-				// If the ship has no target but is still flying around and doesn't want to jump.
 				else
-					SetState(BodyState::FLYING);
+					SetState(BodyState::FIRING);
 			}
-			else if(hasPrimary)
-				SetState(BodyState::FIRING);
 		}
 	}
 
