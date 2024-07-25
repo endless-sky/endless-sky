@@ -1834,6 +1834,7 @@ system Aaura-Kaska
 	fleet "Large New Houses" 7000
 	fleet "Old Houses Surveillance" 6000
 	fleet "New Houses Surveillance" 6000
+	haze _menu/haze-67
 	object
 		sprite star/g0
 		distance 21.316
@@ -8735,6 +8736,7 @@ system Chyyra-Osolaa
 	fleet "People's Houses" 8000
 	fleet "People's Houses Raiders" 12000
 	fleet "Aqrabe Home" 1200
+	haze _menu/haze-67
 	object
 		sprite star/f0
 	object
@@ -19985,6 +19987,7 @@ system Khosa-Kaska
 	fleet "Successor Miners" 2000
 	fleet "Medium Successor Freight" 4000
 	fleet "Small Successor Transport" 2000
+	haze _menu/haze-67
 	object
 		sprite star/nova-small
 	object
@@ -25032,6 +25035,7 @@ system Myiara-Nnesa
 	fleet "Medium Successor Freight" 1000
 	fleet "Successor Miners" 6000
 	fleet "Seineq Home" 1000
+	haze _menu/haze-67
 	object
 		sprite star/m-giant
 		period 10
@@ -25105,6 +25109,7 @@ system Myruet-Kvelq
 	trade Medical 480
 	trade Metal 402
 	trade Plastic 272
+	haze _menu/haze-33
 	object
 		sprite star/f5
 		period 10
@@ -25956,6 +25961,7 @@ system Ojstaan-Sola
 	fleet "Medium Successor Freight" 1200
 	fleet "Small Successor Transport" 1200
 	fleet "Myurej Home" 1000
+	haze _menu/haze-33
 	object
 		sprite star/g5
 		period 10
@@ -27032,6 +27038,7 @@ system Pelaa-Muora
 	fleet "Light Successor Freight" 1200
 	fleet "Successor Miners" 600
 	fleet "Small New Houses" 1400
+	haze _menu/haze-33
 	object
 		sprite star/f-dwarf
 		distance 161.974
@@ -29012,6 +29019,7 @@ system Raaqa-Ryuit
 	fleet "Small Successor Transport" 1100
 	fleet "Large New Houses" 5000
 	fleet "Kaatrij Home" 1500
+	haze _menu/haze-33
 	object
 		sprite star/g0
 	object Raaqa-Puan-Uuoru
@@ -34183,6 +34191,7 @@ system Tuur-Kella
 	fleet "Large Old Houses" 1400
 	fleet "Old Houses Surveillance" 2000
 	fleet "Chydiyi Home" 2500
+	haze _menu/haze-67
 	object
 		sprite star/b3
 	object
@@ -34830,6 +34839,7 @@ system Uuoru-Kella
 	fleet "Small Old Houses" 1000
 	fleet "Large Old Houses" 2000
 	fleet "Old Houses Surveillance" 1000
+	haze _menu/haze-67
 	object
 		sprite star/f3
 	object Aava-Aasa-Khora
@@ -35106,6 +35116,7 @@ system Vade-Staja
 	fleet "Small Old Houses" 4000
 	fleet "Old Houses Surveillance" 7500
 	fleet "Sioeora Home" 2000
+	haze _menu/haze-67
 	object
 		sprite star/f0
 		period 10
@@ -35203,6 +35214,7 @@ system Valkraa-Uuoru
 	fleet "Medium Successor Freight" 1400
 	fleet "Small Successor Transport" 2000
 	fleet "Chydiyi Home" 800
+	haze _menu/haze-67
 	object
 		sprite star/k0
 		distance 155.228
