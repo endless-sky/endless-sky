@@ -297,7 +297,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 	if(!isInitialized)
 		return;
 
-	// Music defined by planet
+	// Music defined by planet or system.
 	if(state == Track::GameState::LANDED)
 	{
 		if(!player.GetPlanet()->MusicName().empty())
