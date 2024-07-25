@@ -217,8 +217,10 @@ void Test::LoadSequence(const DataNode &node)
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
+				step.assignConditions.Load(child);
+				break;
 			case TestStep::Type::ASSERT:
-				step.conditions.Load(child);
+				step.checkConditions.Load(child);
 				break;
 			case TestStep::Type::BRANCH:
 				if(child.Size() < 2)
@@ -230,7 +232,7 @@ void Test::LoadSequence(const DataNode &node)
 				step.jumpOnTrueTarget = child.Token(1);
 				if(child.Size() > 2)
 					step.jumpOnFalseTarget = child.Token(2);
-				step.conditions.Load(child);
+				step.checkConditions.Load(child);
 				break;
 			case TestStep::Type::CALL:
 				if(child.Size() < 2)
@@ -433,11 +435,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
-				stepToRun.conditions.Apply(player.Conditions());
+				stepToRun.assignConditions.Apply(player.Conditions());
 				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
-				if(!stepToRun.conditions.Test(player.Conditions()))
+				if(!stepToRun.checkConditions.Test(player.Conditions()))
 					Fail(context, player, "asserted false");
 				++(context.callstack.back().step);
 				break;
@@ -451,7 +453,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					break;
 				}
 				context.branchesSinceGameStep.emplace(context.callstack.back());
-				if(stepToRun.conditions.Test(player.Conditions()))
+				if(stepToRun.checkConditions.Test(player.Conditions()))
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
@@ -528,10 +530,14 @@ std::set<std::string> Test::RelevantConditions() const
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
+				{
+					for(const auto &name : step.assignConditions.RelevantConditions())
+						conditionNames.emplace(name);
+				}
 			case TestStep::Type::ASSERT:
 			case TestStep::Type::BRANCH:
 				{
-					for(const auto &name : step.conditions.RelevantConditions())
+					for(const auto &name : step.checkConditions.RelevantConditions())
 						conditionNames.emplace(name);
 				}
 				break;

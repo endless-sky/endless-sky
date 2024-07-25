@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef GAME_ACTION_H_
 #define GAME_ACTION_H_
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "ShipManager.h"
 
 #include <cstdint>
@@ -110,7 +110,7 @@ private:
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
 
-	ConditionSet conditions;
+	ConditionAssignments conditions;
 };
 
 

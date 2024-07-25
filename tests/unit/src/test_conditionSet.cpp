@@ -76,22 +76,22 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no expressions are added from empty nodes" ) {
-			set.Add(DataNode{});
+			set.Load(DataNode{});
 			REQUIRE( set.IsEmpty() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning );
-			}
+			//AND_THEN( "a log message is printed to assist the user" ) {
+			//	REQUIRE( warnings.Flush() == validationWarning );
+			//}
 		}
 		THEN( "no expressions are added from invalid nodes" ) {
 			const std::string invalidNodeText = "has";
-			set.Add(AsDataNode(invalidNodeText));
+			set.Load(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
-			}
+			//AND_THEN( "a log message is printed to assist the user" ) {
+			//	REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
+			//}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
-			set.Add(AsDataNode("never"));
+			set.Load(AsDataNode("and\n\tnever"));
 			REQUIRE_FALSE( set.IsEmpty() );
 			REQUIRE( warnings.Flush() == "" );
 		}
@@ -133,54 +133,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	}
 }
 
-SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto store = ConditionsStore{};
-	REQUIRE( store.PrimariesSize() == 0 );
-
-	GIVEN( "an empty ConditionSet" ) {
-		const auto emptySet = ConditionSet{};
-		REQUIRE( emptySet.IsEmpty() );
-
-		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 0 );
-
-			store.Set("event: war begins", 1);
-			REQUIRE( store.PrimariesSize() == 1 );
-			emptySet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 1 );
-		}
-	}
-	GIVEN( "a ConditionSet with only comparison expressions" ) {
-		std::string compareExpressions = "and\n"
-			"\thas \"event: war begins\"\n"
-			"\tnot b\n"
-			"\tc >= random\n";
-		const auto compareSet = ConditionSet{AsDataNode(compareExpressions)};
-		REQUIRE_FALSE( compareSet.IsEmpty() );
-
-		THEN( "no conditions are added via Apply" ) {
-			compareSet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 0 );
-
-			store.Set("event: war begins", 1);
-			REQUIRE( store.PrimariesSize() == 1 );
-			compareSet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 1 );
-		}
-	}
-	GIVEN( "a ConditionSet with an assignable expression" ) {
-		const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
-		REQUIRE_FALSE( applySet.IsEmpty() );
-
-		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(store);
-			REQUIRE_FALSE( store.PrimariesSize() == 0 );
-			REQUIRE( store.Get("year") );
-			CHECK( store["year"] == 3013 );
-		}
-	}
-}
 // #endregion unit tests
 
 

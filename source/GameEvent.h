@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef GAME_EVENT_H_
 #define GAME_EVENT_H_
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "DataNode.h"
 #include "Date.h"
 
@@ -80,7 +80,7 @@ private:
 	bool isDisabled = false;
 	bool isDefined = false;
 
-	ConditionSet conditionsToApply;
+	ConditionAssignments conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToVisit;
 	std::vector<const Planet *> planetsToVisit;

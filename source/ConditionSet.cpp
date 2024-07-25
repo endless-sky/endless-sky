@@ -272,6 +272,14 @@ void ConditionSet::Save(DataWriter &out) const
 
 
 
+void ConditionSet::MakeNever()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	Add("has", "'");
+}
+
+
+
 // Check if there are any entries in this set.
 bool ConditionSet::IsEmpty() const
 {
