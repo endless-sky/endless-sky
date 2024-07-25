@@ -267,7 +267,7 @@ void Ship::Load(const DataNode &node)
 					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
-		if(key.find("sprite") != std::string::npos)
+		if(key.find("sprite") != string::npos)
 			LoadSprite(child);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
@@ -1454,7 +1454,7 @@ void Ship::SetGovernment(const Government *government)
 
 void Ship::SetIsPlayerFlagship(bool isFlagship)
 {
-	this->isPlayerFlagship = isFlagship;
+	isPlayerFlagship = isFlagship;
 }
 
 
@@ -2429,8 +2429,8 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 	// For any ship that is not the player flagship,
 	// jumps should not be restricted by animation if they are not in the system.
-	return (GetState() == Body::BodyState::JUMPING && ReadyForAction()) ||
-			!(isPlayerFlagship || isInSystem);
+	return (GetState() == BodyState::JUMPING && ReadyForAction()) ||
+		!(isPlayerFlagship || isInSystem);
 }
 
 
@@ -3812,18 +3812,15 @@ void Ship::RegisterDerivedConditions()
 		return OutfitCount(outfit);
 	});
 
-	auto &&jumpUsingProvider = conditions.GetProviderPrefixed("jump (using): ");
+	auto &&jumpUsingProvider = conditions.GetProviderPrefixed("jump (type): ");
 	jumpUsingProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("jump (using): ")));
-		if(!outfit)
-			return 0;
+		string jumpType = name.substr(strlen("jump (type): "));
 		if(targetSystem)
 		{
 			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
-			bool jumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE) && outfit->TrueName() == "Jump Drive";
-			bool hyperDrive = (jumpUsed.first == JumpType::HYPERDRIVE) &&
-								(outfit->TrueName() == "Hyperdrive" || outfit->TrueName() == "Scram Drive");
+			bool jumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE) && jumpType == "jump";
+			bool hyperDrive = (jumpUsed.first == JumpType::HYPERDRIVE) && jumpType == "hyper";
 			return jumpDrive || hyperDrive ? 1 : 0;
 		}
 		return 0;
@@ -3839,7 +3836,7 @@ void Ship::RegisterDerivedConditions()
 		for(unsigned i = 0; i < hardpoints.size(); ++i)
 		{
 			const Weapon *weapon = hardpoints[i].GetOutfit();
-			std::string weaponName = hardpoints[i].GetOutfit()->TrueName();
+			string weaponName = hardpoints[i].GetOutfit()->TrueName();
 			if(weaponName == outfit->TrueName() && CanFire(weapon) && firingCommands.HasFire(i))
 				return 1;
 		}
@@ -4100,7 +4097,8 @@ void Ship::DoGeneration()
 				if(ship.HasDeployOrder())
 				{
 					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
-					ship.SetState(Body::BodyState::LAUNCHING);
+					// Fighters enter the launching state here.
+					ship.SetState(BodyState::LAUNCHING);
 				}
 			}
 		}
@@ -4299,7 +4297,7 @@ void Ship::DoGeneration()
 				heat -= activeCooling * min(1., Heat());
 		}
 	}
-	else if(!HasSpriteFor(Body::BodyState::DISABLED))
+	else if(!HasSpriteFor(BodyState::DISABLED))
 		PauseAnimation();
 
 	// Don't allow any levels to drop below zero.
@@ -4409,7 +4407,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	if(!hyperspaceSystem && !hyperspaceCount)
 		return false;
 
-	SetState(Body::BodyState::JUMPING);
+	SetState(BodyState::JUMPING);
 
 	// Don't apply external acceleration while jumping.
 	acceleration = Point();
@@ -4554,7 +4552,7 @@ bool Ship::DoLandingLogic()
 	if(!landingPlanet && zoom >= 1.f)
 		return false;
 
-	static const double zoomTriggerStart = 0.03f;
+	static const double ZOOM_TRIGGER_START = .03f;
 
 	// Don't apply external acceleration while landing.
 	acceleration = Point();
@@ -4570,7 +4568,7 @@ bool Ship::DoLandingLogic()
 	// just slowly refuel.
 	if(landingPlanet && zoom)
 	{
-		SetState(Body::BodyState::LANDING);
+		SetState(BodyState::LANDING);
 
 		// Move the ship toward the center of the planet while landing.
 		if(GetTargetStellar())
@@ -4601,7 +4599,7 @@ bool Ship::DoLandingLogic()
 			zoom = 0.f;
 		}
 		// Ship should be small enough to not notice any sprite changes.
-		else if(zoom <= zoomTriggerStart)
+		else if(zoom <= ZOOM_TRIGGER_START)
 			ShowDefaultSprite(true);
 	}
 	// Only refuel if this planet has a spaceport.
@@ -4609,14 +4607,14 @@ bool Ship::DoLandingLogic()
 			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 	{
 		// Ship is moving upwards to space.
-		if(zoom <= zoomTriggerStart)
+		if(zoom <= ZOOM_TRIGGER_START)
 		{
 			// If the ship was transitioning states while landing, finish any animation transitions.
 			FinishStateTransition();
 		}
-		else if(zoom >= zoomTriggerStart)
+		else if(zoom >= ZOOM_TRIGGER_START)
 			ShowDefaultSprite(false);
-		SetState(Body::BodyState::LAUNCHING);
+		SetState(BodyState::LAUNCHING);
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
 		landingPlanet = nullptr;
@@ -4639,7 +4637,7 @@ void Ship::DoInitializeMovement()
 	// If you're disabled, you can't initiate landing or jumping.
 	if(isDisabled)
 	{
-		SetState(Body::BodyState::DISABLED);
+		SetState(BodyState::DISABLED);
 		return;
 	}
 
@@ -4647,7 +4645,7 @@ void Ship::DoInitializeMovement()
 		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP))
 	{
-		SetState(Body::BodyState::JUMPING);
+		SetState(BodyState::JUMPING);
 		if(IsReadyToJump())
 		{
 			hyperspaceSystem = GetTargetSystem();
@@ -4923,21 +4921,21 @@ void Ship::StepTargeting()
 			if(!commands.Has(Command::JUMP) && !hasPrimary)
 			{
 				bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
-									|| !weaponRange;
+					|| !weaponRange;
 
 				if(activeEnemyTarget && target->isInSystem && targetInRange)
 				{
-					SetState(Body::BodyState::FIRING);
+					SetState(BodyState::FIRING);
 				}
 				else
-					SetState(Body::BodyState::FLYING);
+					SetState(BodyState::FLYING);
 			}
 			else if(hasPrimary)
-				SetState(Body::BodyState::FIRING);
+				SetState(BodyState::FIRING);
 			// Fighter/Drone is boarding/landing.
 			if(isBoarding && canBeCarriedNow)
 			{
-				SetState(Body::BodyState::LANDING);
+				SetState(BodyState::LANDING);
 			}
 			if(isBoarding && !CanBeCarried())
 			{
@@ -4999,17 +4997,17 @@ void Ship::StepTargeting()
 				if(target && !isDisabled)
 				{
 					bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
-										|| weaponRange == 0.0;
+										|| !weaponRange;
 					// If in range, or the weapon range hasn't been calculated yet.
 					if(targetInRange)
-						SetState(Body::BodyState::FIRING);
+						SetState(BodyState::FIRING);
 				}
 				// If the ship has no target but is still flying around and doesn't want to jump.
 				else
-					SetState(Body::BodyState::FLYING);
+					SetState(BodyState::FLYING);
 			}
 			else if(hasPrimary)
-				SetState(Body::BodyState::FIRING);
+				SetState(BodyState::FIRING);
 		}
 	}
 

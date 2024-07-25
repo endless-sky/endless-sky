@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_PARAMETERS_H
-#define SPRITE_PARAMETERS_H
+#ifndef SPRITE_PARAMETERS_H_
+#define SPRITE_PARAMETERS_H_
 
 #include "ConditionSet.h"
 #include "Point.h"
@@ -30,6 +30,11 @@ class Sprite;
 // Class holding all of the animation parameters required to animate a sprite.
 class SpriteParameters {
 public:
+
+	// Supported animation transition types from one state to another.
+	enum TransitionType{IMMEDIATE, FINISH, REWIND, NUM_TRANSITIONS};
+
+
 	// A node defining the parameters for a certain trigger sprite.
 	class AnimationParameters {
 	public:
@@ -50,6 +55,8 @@ public:
 		// Delay in the transition of one anim to another (e.g FIRING anim to FLYING anim).
 		// In number of frames.
 		int transitionDelay = 0;
+		// The type of transition to perform.
+		TransitionType transitionType = TransitionType::IMMEDIATE;
 		// Used to indicate whether the animation should start at startFrame.
 		bool startAtZero = false;
 		// Used to indicate whether we should randomize the next frame to be played.
@@ -62,20 +69,16 @@ public:
 		bool rewind = false;
 		// Used to indicate whether the animation should be entirely played in reverse.
 		bool reverse = false;
-		// Defines what to do when a state transition is requested (eg. FLYING to LANDING).
-		bool transitionFinish = false;
-		bool transitionRewind = false;
+		// Defines whether an animation has to complete in order for a ship to perform an action
 		bool indicateReady = false;
 		// Center of the body.
 		Point center;
 	};
 
 
-
 public:
 	typedef std::tuple<const Sprite*, SpriteParameters::AnimationParameters, ConditionSet> SpriteDetails;
 	typedef std::map<int, SpriteParameters::SpriteDetails> SpriteMap;
-
 
 
 public:
@@ -89,9 +92,9 @@ public:
 	ConditionSet GetConditions(int index = -1) const;
 	AnimationParameters GetParameters(int index = -1) const;
 	// Used to verify trigger transitions.
-	const int GetExposedID() const;
+	int GetExposedID() const;
 	// Check all conditions and return if one is true.
-	const int RequestTriggerUpdate(ConditionsStore &store);
+	int RequestTriggerUpdate(ConditionsStore &store);
 	// Complete the switch to a new sprite.
 	void CompleteTriggerRequest();
 	// Used for saving the sprites.
@@ -100,19 +103,16 @@ public:
 	AnimationParameters *GetExposedParameters();
 
 
-public:
-	// ID For default sprite.
-	const static int DEFAULT = 0;
-
 private:
 	void Expose(int index);
 
 private:
 	// Sprites to be animated.
-	SpriteParameters::SpriteMap sprites;
-	SpriteParameters::SpriteDetails exposedDetails, defaultDetails;
+	SpriteMap sprites;
+	SpriteDetails exposedDetails;
+	SpriteDetails defaultDetails;
 	// Animation parameters exposed to Body.
-	SpriteParameters::AnimationParameters exposed;
+	AnimationParameters exposed;
 	int exposedIndex = 0, requestedIndex = 0;
 };
 

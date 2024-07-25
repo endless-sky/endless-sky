@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteParameters.h"
 
 #include "Sprite.h"
-
+using namespace std;
 
 
 SpriteParameters::SpriteParameters()
@@ -28,27 +28,27 @@ SpriteParameters::SpriteParameters()
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
-	auto tuple = SpriteParameters::SpriteDetails{sprite, initDefault, {}};
-	sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(0, tuple));
+	auto spriteDetails = SpriteParameters::SpriteDetails{sprite, initDefault, {}};
+	sprites.insert(pair<int, SpriteParameters::SpriteDetails>(0, spriteDetails));
 	exposed = initDefault;
 	exposedIndex = 0;
-	defaultDetails = tuple;
-	exposedDetails = tuple;
+	defaultDetails = spriteDetails;
+	exposedDetails = spriteDetails;
 }
 
 
 
 void SpriteParameters::SetSprite(int index, const Sprite *sprite, SpriteParameters::AnimationParameters data,
-		ConditionSet triggerConditions)
+	ConditionSet triggerConditions)
 {
-	auto tuple = SpriteParameters::SpriteDetails{sprite, data, triggerConditions};
-	sprites.insert(std::pair<int, SpriteParameters::SpriteDetails>(index, tuple));
-	if(index == DEFAULT)
+	auto spriteDetails = SpriteParameters::SpriteDetails{sprite, data, triggerConditions};
+	sprites.insert(pair<int, SpriteParameters::SpriteDetails>(index, spriteDetails));
+	if(index == 0)
 	{
 		exposed = data;
 		exposedIndex = 0;
-		defaultDetails = tuple;
-		exposedDetails = tuple;
+		defaultDetails = spriteDetails;
+		exposedDetails = spriteDetails;
 	}
 }
 
@@ -63,14 +63,13 @@ const Sprite *SpriteParameters::GetSprite(int index) const
 	if(it != sprites.end())
 		return std::get<0>(it->second);
 
-	return NULL;
+	return nullptr;
 }
 
 
 
 ConditionSet SpriteParameters::GetConditions(int index) const
 {
-	static ConditionSet empty;
 	if(index < 0)
 		return std::get<2>(exposedDetails);
 
@@ -78,14 +77,13 @@ ConditionSet SpriteParameters::GetConditions(int index) const
 	if(it != sprites.end())
 		return std::get<2>(it->second);
 
-	return empty;
+	return {};
 }
 
 
 
 SpriteParameters::AnimationParameters SpriteParameters::GetParameters(int index) const
 {
-	SpriteParameters::AnimationParameters def;
 	if(index < 0)
 		return std::get<1>(exposedDetails);
 
@@ -93,22 +91,23 @@ SpriteParameters::AnimationParameters SpriteParameters::GetParameters(int index)
 	if(it != sprites.end())
 		return std::get<1>(it->second);
 
-	return def;
+	return {};
 }
 
 
 
-const int SpriteParameters::GetExposedID() const
+int SpriteParameters::GetExposedID() const
 {
 	return exposedIndex;
 }
 
 
 
-const int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
+int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
 {
+	// 0 is the index of the default fallback sprite.
 	for(auto it : sprites)
-		if(it.first != DEFAULT)
+		if(it.first != 0)
 		{
 			ConditionSet conditions = std::get<2>(it.second);
 			if(conditions.Test(store))
@@ -121,9 +120,9 @@ const int SpriteParameters::RequestTriggerUpdate(ConditionsStore &store)
 
 
 	// Return to default.
-	if(exposedIndex != DEFAULT)
-		requestedIndex = DEFAULT;
-	return DEFAULT;
+	if(exposedIndex != 0)
+		requestedIndex = 0;
+	return 0;
 }
 
 

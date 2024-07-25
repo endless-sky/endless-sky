@@ -42,7 +42,6 @@ public:
 	static constexpr float MIN_FRAME_RATE = 2. / 60.;
 
 
-
 public:
 	// Constructors.
 	Body() = default;
@@ -53,8 +52,8 @@ public:
 	bool HasSprite() const;
 	bool HasSpriteFor(BodyState state) const;
 	// Access the underlying Sprite object.
-	const Sprite *GetSprite(Body::BodyState state = Body::BodyState::CURRENT) const;
-	Body::BodyState GetState() const;
+	const Sprite *GetSprite(BodyState state = BodyState::CURRENT) const;
+	BodyState GetState() const;
 	// Get the dimensions of the sprite.
 	double Width() const;
 	double Height() const;
@@ -84,13 +83,13 @@ public:
 
 	// Sprite serialization. Return true if sprite is successfully loaded.
 	bool LoadSprite(const DataNode &node);
-	void LoadTriggerSprite(const DataNode &node, Body::BodyState state,
-							SpriteParameters::AnimationParameters params, int index);
+	void LoadTriggerSprite(const DataNode &node, BodyState state,
+		SpriteParameters::AnimationParameters params, int index);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int index) const;
 	// Set the sprite.
-	void SetSprite(const Sprite *sprite, Body::BodyState state = BodyState::FLYING);
-	void SetState(Body::BodyState state);
+	void SetSprite(const Sprite *sprite, BodyState state = BodyState::FLYING);
+	void SetState(BodyState state);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
@@ -127,7 +126,6 @@ protected:
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
 	mutable float scale = 1.f;
-	mutable bool debug = false;
 
 	double alpha = 1.;
 
@@ -145,11 +143,9 @@ private:
 
 private:
 	// Animation parameters.
-	mutable SpriteParameters sprites[Body::BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(),
-																SpriteParameters(), SpriteParameters(),
-																SpriteParameters(), SpriteParameters()};
-	mutable Body::BodyState currentState = Body::BodyState::FLYING,
-							transitionState = Body::BodyState::FLYING;
+	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {};
+	mutable BodyState currentState = BodyState::FLYING;
+	mutable BodyState transitionState = BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
 	bool returnDefaultSprite = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
