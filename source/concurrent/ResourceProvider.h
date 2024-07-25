@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOCK_PROVIDER_H_
-#define LOCK_PROVIDER_H_
+#ifndef RESOURCE_PROVIDER_H_
+#define RESOURCE_PROVIDER_H_
 
 #include <array>
 #include <list>
@@ -110,6 +110,7 @@ private:
 	template<size_t Index = 0>
 	typename std::enable_if_t<Index == sizeof...(Types), void>
 	inline initialize_vectors(size_t size);
+
 
 private:
 	// The remote resources. This class provides facades that support addition of new items,
