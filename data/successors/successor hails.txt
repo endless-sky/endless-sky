@@ -83,7 +83,7 @@ phrase "successor friendly hail" # Job hails
 phrase "successor friendly hail" # Conspiracy hails
 	word
 		"I hope that thou will keep this thought between us:"
-		"A friend of mine had told me once in secret:"
+		"A friend of mine hath told me once in secret:"
 		"I have heard from well reputed, honest lips that:"
 		"The High Houses try to hide it, but I know that:"
 		"I've learned in many years of honest pil'ting:"
@@ -92,13 +92,13 @@ phrase "successor friendly hail" # Conspiracy hails
 	word
 		" / "
 	word
-		"It's the Drak who caused the end of the old empire."
-		"It's the Quarg who caused the end of the old empire."
-		"It's the Hai who caused the end of the old empire."
-		"It's the Korath who caused the end of the old empire."
-		"The High Houses by themselves destroyed the empire."
+		"T'was the scheming Drak who brought ruin to our empire."
+		"The treach'rous Quarg's who caused the end of the old empire."
+		"That jealous Coalition brought the end of the old empire."
+		"The canny Korath caused the end of the old empire."
+		"The High Houses by themselves destroyed our empire."
 		"The best trade routes are ones not prone to scanning." 5
-		"The best trade routes are those that make thy money." 5
+		"The best trade routes are those that make thee money." 5
 		"The best trade routes are hidden from thy sensors." 2
 		"There are nightmares in the void that the Houses fear."
 		"The empty systems here are prone to strangeness."
