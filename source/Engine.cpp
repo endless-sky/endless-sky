@@ -125,11 +125,11 @@ namespace {
 	void Prune(vector<Type> &objects)
 	{
 		// First, erase any of the old objects that should be removed.
-		typename vector<Type>::iterator in = objects.begin();
+		auto in = objects.begin();
 		while(in != objects.end() && !in->ShouldBeRemoved())
 			++in;
 
-		typename vector<Type>::iterator out = in;
+		auto out = in;
 		while(in != objects.end())
 		{
 			if(!in->ShouldBeRemoved())
