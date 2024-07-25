@@ -241,7 +241,7 @@ outfit "Lantern Fission Core"
 	"outfit space" -24
 	"energy generation" 3.6
 	"heat generation" 12
-	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desireable. The Lantern is a compact dusty plasma fission reactor designed to fill this role, providing a stable, reliable flow of power while fitting on even smaller ships. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it surprisingly efficient for its size, at the cost of producing significant amounts of waste heat."
+	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact dusty plasma fission reactor designed to fill this role, providing a stable, reliable flow of power while fitting on even smaller ships. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it surprisingly efficient for its size, at the cost of producing significant amounts of waste heat."
 
 
 outfit "Ultracapacitor Cell"
@@ -438,7 +438,7 @@ outfit "Inductive Extractor"
 	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
 
 
-outfit "Superconducting Magnozzle Loop"
+outfit "Magnozzle Storage Loop"
 	series "Avgi: Engines"
 	index 95
 	category "Engines"

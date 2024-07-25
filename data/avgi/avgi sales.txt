@@ -93,6 +93,7 @@ outfitter "Avgi Basic Systems"
 	"Outfits Expansion"
 	"Luxury Accommodations"
 	"Ultrarelativistic Electron Beam"
+	"Magnozzle Storage Loop"
 
 outfitter "Avgi Advanced Systems"
 	"Diffuse Deflector"
