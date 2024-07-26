@@ -1438,6 +1438,9 @@ tip "Fighters transfer cargo"
 tip "Rehire extra crew when lost"
 	`Rehires extra crew whenever you land if you lost additional (non-required) crew while in flight.`
 
+tip "Automatically unpark flagship"
+	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 
