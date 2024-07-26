@@ -1,5 +1,5 @@
 /* ConditionSet.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2024 by Michael Zahniser and others
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -288,6 +288,38 @@ bool ConditionSet::IsEmpty() const
 
 
 
+// Check if the given condition values satisfy this set of conditions. Performs any assignments
+// on a temporary condition map, if this set mixes comparisons and modifications.
+bool ConditionSet::Test(const ConditionsStore &conditions) const
+{
+	// If this ConditionSet contains any expressions with operators that
+	// modify the condition map, then they must be applied before testing,
+	// to generate any temporary conditions needed.
+	ConditionsStore created;
+	if(hasAssign)
+		TestApply(conditions, created);
+	return TestSet(conditions, created);
+}
+
+
+
+// Get the names of the conditions that are relevant for this ConditionSet.
+set<string> ConditionSet::RelevantConditions() const
+{
+	set<std::string> result;
+	// Add the names from the expressions.
+	// TODO: also sub-expressions?
+	for(const auto &expr : expressions)
+		result.emplace(expr.Name());
+	// Add the names from the children.
+	for(const auto &child : children)
+		for(const auto &rc : child.RelevantConditions())
+			result.emplace(rc);
+	return result;
+}
+
+
+
 // Read a single condition from a data node.
 void ConditionSet::Add(const DataNode &node)
 {
@@ -422,21 +454,6 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 
 
 
-// Check if the given condition values satisfy this set of conditions. Performs any assignments
-// on a temporary condition map, if this set mixes comparisons and modifications.
-bool ConditionSet::Test(const ConditionsStore &conditions) const
-{
-	// If this ConditionSet contains any expressions with operators that
-	// modify the condition map, then they must be applied before testing,
-	// to generate any temporary conditions needed.
-	ConditionsStore created;
-	if(hasAssign)
-		TestApply(conditions, created);
-	return TestSet(conditions, created);
-}
-
-
-
 // Modify the given set of conditions.
 void ConditionSet::Apply(ConditionsStore &conditions) const
 {
@@ -447,23 +464,6 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
-}
-
-
-
-// Get the names of the conditions that are relevant for this ConditionSet.
-set<string> ConditionSet::RelevantConditions() const
-{
-	set<std::string> result;
-	// Add the names from the expressions.
-	// TODO: also sub-expressions?
-	for(const auto &expr : expressions)
-		result.emplace(expr.Name());
-	// Add the names from the children.
-	for(const auto &child : children)
-		for(const auto &rc : child.RelevantConditions())
-			result.emplace(rc);
-	return result;
 }
 
 
