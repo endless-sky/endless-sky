@@ -2690,9 +2690,9 @@ ship "Mining Barge"
 		"hull" 11600
 		"required crew" 47
 		"bunks" 82
-		"mass" 1760
-		"drag" 19.1
-		"heat dissipation" .36
+		"mass" 3670
+		"drag" 35.3
+		"heat dissipation" .2
 		"fuel capacity" 400
 		"cargo space" 760
 		"outfit space" 490
