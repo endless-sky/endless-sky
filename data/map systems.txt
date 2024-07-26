@@ -20198,7 +20198,7 @@ system Kneirc
 	trade Clothing 240
 	trade Electronics 800
 	trade Equipment 730
-	trade Food 160
+	trade Food 260
 	trade "Heavy Metals" 790
 	trade Industrial 680
 	trade "Luxury Goods" 950
@@ -25243,7 +25243,7 @@ system Oosuoro
 	trade Clothing 230
 	trade Electronics 655
 	trade Equipment 675
-	trade Food 480
+	trade Food 460
 	trade "Heavy Metals" 780
 	trade Industrial 640
 	trade "Luxury Goods" 1260
