@@ -227,12 +227,11 @@ mission "Incipias: Help The Stranded 1"
 				`	"If that's how I can help them, sure."`
 					goto yes
 				`	"Why do you not want me to give them my tech?"`
-					to display
-						not "incipias: quarg tech dialog"
-			action
-				set "incipias: quarg tech dialog"
 			`	"Halting the natural increase of a species is unpredictable at the best of times. Your species lacks the wisdom to understand this, as you are young, and have not seen what we have seen." The Quarg pauses for a moment, lost in thought. "The foreseeable risks of even letting you contact them are monumental, and not something you should consider trivial."`
-				goto choice
+			choice
+				`	"I will accept your conditions to help them."`
+				`	"The risks sound concerning. I will leave them alone after all."`
+					goto decline
 			label yes
 			`	"Happy this one is that you agree to that condition. Bear in mind, Captain, that the slightest misstep may have grave consequences." The Quarg stares you down. "We will be watching your actions, to verify that they are peaceful and without ill or unwise intent. Please for a moment remain here," it says, and walks away.`
 			`	The Quarg only takes a moment to come back, now carrying a sleek silver box with a display on one side. "This is our translator, our link to the Incipias. It is able to translate their unusual language into your speech as well. Be aware of the honor of this one gifting this to you," it says.`
@@ -270,7 +269,6 @@ mission "Incipias: Help The Stranded 1"
 				`	"I want to help one of your stranded ships."`
 			`	Again a long pause. "Your intention-goals are welcome. Please dock to the capital-station." Along the message comes a small map of the station with the docking ports highlighted.`
 	on complete
-		clear "incipias: quarg tech dialog"
 		conversation
 			`Thanks to the map, you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you've ever seen before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
 			`	"Welcome, outer-being, to our capital. We are the Incipias." It stops as if awaiting an answer.`
