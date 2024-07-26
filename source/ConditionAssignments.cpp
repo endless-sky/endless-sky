@@ -89,7 +89,7 @@ bool ConditionAssignments::Add(const string &name, const string &op, const strin
 
 
 
-bool ConditionAssignments::Add(const vector<string> &lhs, const string &op, const vector<std::string> &rhs)
+bool ConditionAssignments::Add(const vector<string> &lhs, const string &op, const vector<string> &rhs)
 {
 	return setToEvaluate.Add(lhs, op, rhs);
 }

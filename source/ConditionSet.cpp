@@ -306,7 +306,7 @@ bool ConditionSet::Test(const ConditionsStore &conditions) const
 // Get the names of the conditions that are relevant for this ConditionSet.
 set<string> ConditionSet::RelevantConditions() const
 {
-	set<std::string> result;
+	set<string> result;
 	// Add the names from the expressions.
 	// TODO: also sub-expressions?
 	for(const auto &expr : expressions)
