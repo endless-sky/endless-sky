@@ -78,6 +78,8 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
+	// Whether the player paused the game.
+	bool IsPaused() const;
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);
@@ -248,6 +250,7 @@ private:
 	double hyperspacePercentage = 0.;
 
 	int step = 0;
+	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
