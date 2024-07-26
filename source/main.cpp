@@ -60,6 +60,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <mmsystem.h>
 #endif
 
+#include <SDL2/SDL_events.h>
+
 
 using namespace std;
 
@@ -332,7 +334,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 		// Special case: If fastforward is on capslock, update on mod state and not
 		// on keypress.
 		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
-			isFastForward = SDL_GetModState() & KMOD_CAPS;
+			isFastForward = GameWindow::GetMod(GameWindow::Mods::CAPS);
 	};
 
 	// Game loop when running the game normally.
@@ -346,8 +348,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			ProcessEvents();
 
-			SDL_Keymod mod = SDL_GetModState();
-			Font::ShowUnderlines(mod & KMOD_ALT);
+			Font::ShowUnderlines(GameWindow::GetMod(GameWindow::Mods::ALT));
 
 			// In full-screen mode, hide the cursor if inactive for ten seconds,
 			// but only if the player is flying around in the main view.
@@ -357,7 +358,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(shouldShowCursor != showCursor)
 			{
 				showCursor = shouldShowCursor;
-				SDL_ShowCursor(showCursor);
+				GameWindow::SetCursorVisibillity(showCursor);
 			}
 
 			// Switch off fast-forward if the player is not in flight or flight-related screen
@@ -372,7 +373,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			// Caps lock slows the frame rate in debug mode.
 			// Slowing eases in and out over a couple of frames.
-			if((mod & KMOD_CAPS) && inFlight && debugMode)
+			if(GameWindow::GetMod(GameWindow::Mods::CAPS) && inFlight && debugMode)
 			{
 				if(frameRate > 10)
 				{

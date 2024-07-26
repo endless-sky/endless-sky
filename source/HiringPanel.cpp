@@ -107,7 +107,7 @@ void HiringPanel::Draw()
 
 
 
-bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool HiringPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::HELP))
 	{

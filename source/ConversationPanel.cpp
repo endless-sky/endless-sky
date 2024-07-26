@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -228,7 +229,7 @@ void ConversationPanel::Draw()
 
 
 // Handle key presses.
-bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool ConversationPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active. The name text entry fields are active if
@@ -255,9 +256,9 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		if(key >= ' ' && key <= '~')
 		{
 			// Apply the shift or caps lock key.
-			char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
+			char c = (GameWindow::GetMod(GameWindow::Mods::SHIFT) ? SHIFT[key] : key);
 			// Caps lock should shift letters, but not any other keys.
-			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
+			if(GameWindow::GetMod(GameWindow::Mods::CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
 			// Don't allow characters that can't be used in a file name.
 			static const string FORBIDDEN = "/\\?*:|\"<>~";
@@ -304,9 +305,9 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
 		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
-	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
+	else if(key >= '1' && key < static_cast<int32_t>('1' + choices.size()))
 		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
-	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
+	else if(key >= SDLK_KP_1 && key < static_cast<int32_t>(SDLK_KP_1 + choices.size()))
 		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
 	else
 		return false;

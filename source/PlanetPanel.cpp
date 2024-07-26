@@ -157,7 +157,7 @@ void PlanetPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool PlanetPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(player.IsDead())
 		return true;

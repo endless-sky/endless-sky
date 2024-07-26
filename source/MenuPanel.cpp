@@ -158,7 +158,7 @@ void MenuPanel::Draw()
 
 
 
-bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool MenuPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{

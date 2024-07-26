@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
@@ -277,7 +278,7 @@ void MissionPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool MissionPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::HELP))
 	{
@@ -286,10 +287,10 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == 'a' && CanAccept())
 	{
-		Accept((mod & KMOD_CTRL));
+		Accept(GameWindow::GetMod(GameWindow::Mods::CTRL));
 		return true;
 	}
-	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
+	else if(key == 'A' || (key == 'a' && GameWindow::GetMod(GameWindow::Mods::SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
@@ -353,7 +354,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		}
 	}
 	else
-		return MapPanel::KeyDown(key, mod, command, isNewPress);
+		return MapPanel::KeyDown(key, command, isNewPress);
 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.

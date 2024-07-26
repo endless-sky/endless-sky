@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "HailPanel.h"
 #include "LineShader.h"
@@ -205,7 +206,7 @@ Engine &MainPanel::GetEngine()
 
 
 // Only override the ones you need; the default action is to return false.
-bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool MainPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(player.IsDead())
 		return true;
@@ -230,7 +231,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
-		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
+		engine.SelectGroup(key - '0', GameWindow::GetMod(GameWindow::Mods::SHIFT),
+			GameWindow::GetMod(GameWindow::Mods::CTRL_GUI));
 	else
 		return false;
 
@@ -250,9 +252,8 @@ bool MainPanel::Click(int x, int y, int clicks)
 	dragSource = Point(x, y);
 	dragPoint = dragSource;
 
-	SDL_Keymod mod = SDL_GetModState();
-	hasShift = (mod & KMOD_SHIFT);
-	hasControl = (mod & KMOD_CTRL);
+	hasShift = GameWindow::GetMod(GameWindow::Mods::SHIFT);
+	hasControl = GameWindow::GetMod(GameWindow::Mods::CTRL);
 
 	engine.Click(dragSource, dragSource, hasShift, hasControl);
 
@@ -426,7 +427,7 @@ bool MainPanel::ShowHailPanel()
 		return false;
 
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
+	if(GameWindow::GetMod(GameWindow::Mods::SHIFT) && flagship->GetTargetStellar())
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())

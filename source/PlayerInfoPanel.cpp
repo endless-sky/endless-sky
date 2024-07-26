@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
@@ -274,10 +275,10 @@ bool PlayerInfoPanel::AllowsFastForward() const noexcept
 
 
 
-bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool PlayerInfoPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
-	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
-	bool shift = (mod & KMOD_SHIFT);
+	bool control = GameWindow::GetMod(GameWindow::Mods::CTRL_GUI);
+	bool shift = GameWindow::GetMod(GameWindow::Mods::SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
 			|| key == 'i' || command.Has(Command::INFO))
 	{
@@ -517,8 +518,8 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	if(hoverIndex < 0)
 		return true;
 
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+	bool shift = GameWindow::GetMod(GameWindow::Mods::SHIFT);
+	bool control = GameWindow::GetMod(GameWindow::Mods::CTRL_GUI);
 	if(panelState.CanEdit() && (shift || control || clicks < 2))
 	{
 		// If the control+click was on an already selected ship, deselect it.
