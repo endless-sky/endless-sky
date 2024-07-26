@@ -25,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // For most purposes, this can be treated and passed around like any stl container,
 // but any function modifying it inside a concurrent context MUST receive it as a PartiallyGuarded object
 // to ensure proper handling.
+// Iterators, clear(), swap() and some other functions are left unguarded, as they are generally not used
+// for concurrent modifications.
 template<class T, class Allocator = std::allocator<T>>
 class PartiallyGuardedList : public std::list<T, Allocator> {
 public:
