@@ -284,7 +284,7 @@ mission "Incipias: Help The Stranded 1"
 				goto end
 			label stranded
 			`	Another wave goes through the crowd, but this time you notice an overflow in green tones.`
-			`	"So they are still alive. We shall give you access to our ships, so that you may enter the air-planet they have taken refuge in. Do note though that they cannot jump between system-places, not like your own ship. We hope to question you more on another future-time.`
+			`	"So they are still alive. We shall give you access to our ships, so that you may enter the air-planet they have taken refuge in. Do note though that they cannot jump between system-places, not like your own ship. We hope to question you more on another future-time."`
 			label end
 			`	The five float away but the crowd continues staring at you, probably out of interest.`
 

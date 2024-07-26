@@ -536,7 +536,7 @@ void Engine::Step(bool isActive)
 		if(isActive)
 		{
 			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
 				flagship->IsHyperspacing());
 
 			center = newCenter;
@@ -1599,9 +1599,12 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
+		bool isHyperspacing = flagship->IsHyperspacing();
+		if(isHyperspacing)
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
-			flagship->IsHyperspacing());
+			flagship->Center(), flagship->Velocity(), hyperspacePercentage,
+			isHyperspacing);
 		newCenter = newCameraCenter;
 		newCenterVelocity = newCameraVelocity;
 	}
