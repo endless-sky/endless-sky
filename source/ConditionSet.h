@@ -28,10 +28,11 @@ class DataWriter;
 
 
 
-// A condition set is a collection of operations on the player's set of named
-// "conditions". This includes "test" operations that just check the values of
-// those conditions, and other operations that can be "applied" to change the
-// values.
+// A condition set is a collection of operations on the player's set of named "conditions"; "test" operations that just
+// check the values of those conditions, and in the future "evaluation" operations that can calculate an int64_t value
+// based on the conditions.
+// Operations that can be "applied" to change the values were historically also here, but are being moved to
+// ConditionAssignments.
 class ConditionSet {
 public:
 	ConditionSet() = default;
