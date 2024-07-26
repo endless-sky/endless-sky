@@ -282,12 +282,11 @@ const typename ResourceProvider<Types...>::ResourceGuard ResourceProvider<Types.
 	const size_t index = id % Size();
 	if(locks[index].try_lock())
 		return ResourceGuard(index, *this);
-	else
-	{
-		for(unsigned newIndex = 0; newIndex < Size(); newIndex++)
-			if(locks[newIndex].try_lock())
-				return ResourceGuard(newIndex, *this);
-	}
+
+	for(unsigned newIndex = 0; newIndex < Size(); newIndex++)
+		if(locks[newIndex].try_lock())
+			return ResourceGuard(newIndex, *this);
+
 	// If there is no free lock, fall back to the original guess.
 	locks[index].lock();
 	return ResourceGuard(index, *this);
