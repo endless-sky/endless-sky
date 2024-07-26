@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_WRAPPEDTEXT_H_
-#define ES_TEXT_WRAPPEDTEXT_H_
+#ifndef TEXT_WRAPPED_TEXT_H_
+#define TEXT_WRAPPED_TEXT_H_
 
 #include "alignment.hpp"
 #include "DisplayText.h"

@@ -16,12 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Font.h"
 
 #include "alignment.hpp"
-#include "../Color.h"
+#include "../shader/Color.h"
 #include "DisplayText.h"
-#include "../ImageBuffer.h"
+#include "../image/ImageBuffer.h"
 #include "../Point.h"
-#include "../Preferences.h"
-#include "../Screen.h"
+#include "../player/Preferences.h"
+#include "../ui/Screen.h"
 #include "truncate.hpp"
 
 #include <algorithm>
