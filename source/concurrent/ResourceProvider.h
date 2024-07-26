@@ -126,7 +126,7 @@ private:
 
 template <class ...Types>
 ResourceProvider<Types...>::ResourceGuard::ResourceGuard(size_t index, ResourceProvider<Types...> &provider)
-		: index(index), provider(provider)
+	: index(index), provider(provider)
 {
 }
 
