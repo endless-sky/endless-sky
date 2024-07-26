@@ -966,7 +966,7 @@ phrase "friendly heliarch"
 		" "
 	word
 		"to enrich ourselves"
-		"for our own wellbeing"
+		"for our own well-being"
 		"for our own benefit"
 		"for our own glory"
 		"for glory or power"
@@ -1695,4 +1695,3 @@ phrase "hostile disabled lunarium"
 	word
 		"."
 		"!"
-

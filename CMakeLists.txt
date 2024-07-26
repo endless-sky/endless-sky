@@ -1,11 +1,14 @@
-cmake_minimum_required(VERSION 3.21..3.25)
+cmake_minimum_required(VERSION 3.16...3.29)
 
 include(CMakeDependentOption)
-option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
+if(UNIX AND NOT APPLE AND NOT ES_STEAM)
+	option(ES_USE_VCPKG "Use vcpkg to get dependencies." OFF)
+else()
+	option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
+endif()
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
-cmake_dependent_option(ES_FLATPAK "Build the game inside the Flatpak runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
-cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
+cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
 
 # Support Debug and Release configurations.
@@ -42,13 +45,9 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 endif()
 
-# Tell vcpkg to use system libraries that are missing on the respective platform.
-if(ES_FLATPAK)
-	list(APPEND VCPKG_MANIFEST_FEATURES "flatpak-libs")
-elseif(ES_STEAM)
+# Tell vcpkg to use system libraries that are missing in the Steam runtime.
+if(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
-elseif(APPLE)
-	list(APPEND VCPKG_MANIFEST_FEATURES "macos-libs")
 endif()
 
 # Various helpful options for IDEs.
@@ -56,7 +55,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.7
+project("Endless Sky" VERSION 0.10.9
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -133,7 +132,7 @@ if(UNIX)
 		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
 		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
 		target_include_directories(ExternalLibraries INTERFACE "${UUID_INCLUDE}")
-	elseif(ES_USE_SYSTEM_LIBRARIES)
+	elseif(NOT ES_USE_VCPKG OR ES_USE_SYSTEM_LIBRARIES)
 		find_library(UUID_LIB uuid)
 		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
 	else()
@@ -161,7 +160,7 @@ else()
 		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
 	else()
 		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(ExternalLibraries INTERFACE GLEW::GLEW)
+		target_link_libraries(ExternalLibraries INTERFACE GLEW::glew)
 	endif()
 endif()
 
