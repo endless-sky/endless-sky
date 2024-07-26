@@ -161,10 +161,12 @@ private:
 
 	void CalculateStep();
 
-	// Thread-safe wrapper for MoveShip.
 	using ShipResourceProvider = ResourceProvider<std::list<Visual>, std::list<std::shared_ptr<Flotsam>>,
 			std::vector<std::shared_ptr<Ship>>, std::vector<Projectile>>;
+	// Thread-safe wrapper for MoveShip.
 	void MoveShip(const std::shared_ptr<Ship> &ship, ShipResourceProvider &provider);
+	// Move a ship. Also determine if the ship should generate hyperspace sounds or
+	// boarding events, fire weapons, and launch fighters.
 	void MoveShip(const std::shared_ptr<Ship> &ship, std::list<Visual> &visuals,
 			std::list<std::shared_ptr<Flotsam>> &flotsam, std::vector<std::shared_ptr<Ship>> &newShips,
 			std::vector<Projectile> &projectiles);

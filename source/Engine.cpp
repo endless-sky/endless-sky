@@ -1756,7 +1756,7 @@ void Engine::CalculateStep()
 
 
 
-// Move a ship. Can be called concurrently.
+// Thread-safe wrapper for MoveShip.
 void Engine::MoveShip(const shared_ptr<Ship> &ship, ShipResourceProvider &provider)
 {
 	const auto lock = provider.Lock();

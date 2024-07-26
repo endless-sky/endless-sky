@@ -707,9 +707,9 @@ void Planet::DeployDefense(vector<shared_ptr<Ship>> &ships) const
 	{
 		it->SetPersonality(defenderPersonality);
 		if(it->HasBays())
-			for(auto bay = it->Bays().begin(); bay != it->Bays().end(); ++bay)
-				if(bay->ship)
-					bay->ship->SetPersonality(fighterPersonality);
+			for(auto &bay : it->Bays())
+				if(bay.ship)
+					bay.ship->SetPersonality(fighterPersonality);
 	}
 
 	++defenseDeployed;
