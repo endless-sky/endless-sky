@@ -93,9 +93,9 @@ phrase "assist merchant 1-1"
 
 phrase "assist merchant 1-2"
 	word
-		`you altered course`
-		`you went out of your way`
-		`you may have altered your own flight plans`
+		`you altered course `
+		`you went out of your way `
+		`you may have altered your own flight plans `
 
 phrase "assist merchant 1-2 hazardous"
 	word
@@ -703,3 +703,258 @@ mission "Turn in Tarquin"
 		conversation
 			"You haul captain Tarquin out of your brig and bring him to the portside police station, presenting evidence from your suit cameras and notarized witness statements compiled from your crew members attesting to his crimes of being involved in slavery. The officer on duty thanks you for the service you've rendered, and takes Tarquin into custody. He shoots one final black look at you that sends a shiver up your spine."
 				decline
+
+mission "Boarding Derelict"
+	boarding
+	repeat
+	invisible
+	deadline 3
+	to complete
+		never
+	source
+		government "Derelict (Boardable)"
+	destination "Earth"
+	npc
+		government "Pirate"
+		personality entering nemesis vindictive staying
+		fleet "pirate raid" 2
+	on offer
+		conversation
+			`You board the <origin> and look around its derelict hull, which appears to be in fairly stable condition. You could risk repairing it for a greater profit, or you could salvage what you can from the ship and leave the rest.`
+			choice
+				`	(Salvage the ship.)`
+					goto salvage
+				`	(Attempt to repair the ship.)`
+			`	Deciding to go for the bigger score you attempt to repair the ship.`
+			choice
+				`	(Repair the engines first.)`
+					goto engines
+				`	(Repair the hull first.)`
+					goto hull
+				`	(Repair the power first.)`
+			branch powersurge
+				random < 80
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
+			choice
+				`	(Repair the engines next.)`
+					goto engines(p)
+				`	(Repair the hull next.)`
+					goto hull(p)
+			label hull
+			branch crumple
+				random < 15
+			`	It takes a while but you manage to stabilize the ship's hull. While doing so you managed to find and fix some broken wiring embedded in the hull, which could have caused a powersurge.`
+			choice
+				`	(Repair the engines next.)`
+					goto engines(h)
+				`	(Repair the power next.)`
+					goto power(h)
+			label hull(e)
+			branch crumple
+				random < 45
+			`	It takes a while but you manage to stabilize the ship's hull. While doing so you managed to find and fix some broken wiring embedded in the hull, which could have caused a powersurge.`
+			choice
+				`	(Repair the power.)`
+					goto power(eh)
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
+					goto flee
+			label hull(p)
+			branch crumple
+				random < 25
+			`	It takes a while but you manage to stabilize the ship's hull. While doing so you managed to find and fix some broken wiring embedded in the hull, which could have caused a powersurge.`
+			choice
+				`	(Repair the engines.)`
+					goto engines(hp)
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
+					goto flee
+			label hull(ep)
+			branch crumple
+				random < 75
+			`	It takes a while but you manage to stabilize the ship's hull. While doing so you managed to find and fix some broken wiring embedded in the hull, which could have caused a powersurge.`
+			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
+			branch fail
+				random < 40
+			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
+				goto success
+			label engines
+			branch misfire
+				random < 60
+			`	As you are fixing the engine systems a valve bursts open. Luckily the secondary valve is mechanical and doesn't need power, allowing it to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
+			choice
+				`	(Repair the hull next.)`
+					goto hull(e)
+				`	(Repair the power next.)`
+					goto power(e)
+			label engines(h)
+			branch misfire
+				random < 60
+			`	As you are fixing the engine systems a valve bursts open. Luckily the secondary valve is mechanical and doesn't need power, allowing it to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
+			choice
+				`	(Repair the power.)`
+					goto power(eh)
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
+					goto flee
+			label engines(p)
+			`	As you are fixing the engine systems a valve bursts open. Luckily you restored power, allowing the secondary valve to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
+			choice
+				`	(Repair the hull.)`
+					goto hull(ep)
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
+					goto flee
+			label engines(hp)
+			`	As you are fixing the engine systems a valve bursts open. Luckily you restored power, allowing the secondary valve to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
+			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
+			branch fail
+				random < 5
+			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
+				goto success
+			label power(h)
+			branch powersurge
+				random < 5
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
+			choice
+				`	(Repair the engines.)`
+					goto engines(hp)
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
+					goto flee
+			label power(e)
+			branch powersurge
+				random < 55
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
+			choice
+				`	(Repair the hull.)`
+					goto hull(ep)
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
+					goto flee
+			label power(eh)
+			branch powersurge
+				random < 15
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
+			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
+			branch fail
+				random < 25
+			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
+				goto success
+			label powersurge
+			`	With a few simple repairs you manage to get the ship's power systems operational. Briefly. The power shuts down again with a violent vibration shuddering through the ship. You quickly run back to your ship before the <origin> breaks apart.`
+				depart
+			label crumple
+			`	As you are patching up a segment of hull you notice that a deformation in it is slowly expanding. To make matters worse, this is a structurally essential part of the hull. You quickly run back to your ship before the <origin> breaks apart.`
+				depart
+			label misfire
+			`	As you are fixing the engine systems a valve bursts open. With no power the secondary valve cannot close itself off, letting coolant uncontrollably fly into the hull. The force of the liquid sends a violent vibration shuddering through the ship. You quickly run back to your ship before the <origin> breaks apart.`
+				depart
+			label flee
+			action
+				payment 7500
+			`	Wary of your own foolish repairs you decide to leave the ship alone. However, you did manage to hang onto a little bit of scrap worth <payment> you found during your repairs.`
+			`	Your fears seem to be warranted as the <origin> begins to falls apart the moment you detach.`
+				depart
+			label fail
+			`	As it begins to thrum to life, a loud explosion rocks the ship!`
+			choice
+				`	(Run.)`
+			`	You start running through the tight corridors of the ship. Objects are tumbling everywhere, and more explosions threaten to sweep you off your feet.`
+			choice
+				`	(Run into the airlock.)`
+					goto run
+				`	(Dive for the airlock.)`
+					goto dive
+				`	(Slide into the airlock.)`
+			`	As you slide across the floor, explosions erupt on both sides of you, and you're sure that you look like an action hero as you careen through the airlock to safety. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
+				depart
+			label run
+			`	As you run towards the airlock, explosions erupt on both sides of you, and you're sure that you look like an action hero as you barge through the airlock to safety. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
+				depart
+			label dive
+			`	As you dive towards the airlock, explosions erupt on both sides of you, and you're sure that you look like an action hero as you tuck and roll through the airlock to safety. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
+				depart
+			label success
+			branch beacon
+				random < 15
+			branch virus
+				random < 5
+				"credits" > 1000000
+			action
+				payment 65000
+			`	Despite your best efforts to make the ship actually fly, it just won't. On the upside, now you have time to loot and pilfer some outfits from the ship as you please. Before leaving the cockpit you find a credit chip sitting on the controls worth <payment>.`
+				decline
+			label beacon
+			`	However, you notice a blinking light on the controls of the ship. You wonder what it could signal as you approach it, and once you get close enough you realize that it warns of the arrival of "hostile spacecraft" entering the system. The derelict must have been a pirate trap, and to make matters worse, the ship appears to be rigged to blow! You now have a pretty good guess at what you're dealing with as you race back to your ship.`
+				launch
+			label virus
+			action
+				payment -200000
+			`	However, moments later a screen lights up in the cockpit displaying something strange. Upon closer inspection you realize it's some form of malicious software, and it's attempting to hack into your ship!`
+			`	You race back to your ship, quickly launching and destroying the <origin>, but by the time you manage to destroy the virus it has already hacked into your bank account; your account reports a change in balance of <payment>.`
+				depart
+			label salvage
+			`	Deciding not to risk it you quickly scour the ship for valuable scrap and outfits.`
+			branch valuable
+				random < 40
+			action
+				payment 10000
+			`	Upon a brief inspection of the ship you find few valuables, only managing to salvage a meager <payment> from the <origin>.`
+				goto detonate
+			label valuable
+			branch rare
+				or
+					and
+						random < 25
+						or
+							not "derelict treasure map: ion cannons"
+							not "derelict family investment"
+					random < 5
+			action
+				payment 63000
+			`	Searching through the ship you find that it is quite valuable; you manage to salvage a substantial amount from the <origin>, worth <payment>.`
+				goto detonate
+			label rare
+			branch quest
+				or
+					not "derelict treasure map: ion cannons"
+					not "derelict family investment"
+			action
+				payment 475000
+			`	Hidden away under a panel you find a small box. Opening it reveals it is filled with <payment>.`
+				goto detonate
+			label quest
+			branch treasure
+				not "derelict treasure map: ion cannons"
+				or
+					random < 50
+					has "derelict family investment"
+			action
+				set "derelict family investment"
+			`	As you search the ship for anything valuable you find a large black case filled with 325,000 credits. Investigating further you find a text log next to the case, and you decide to take both of them with you.`
+				goto detonate
+			label treasure
+			action
+				set "derelict treasure map: ion cannons"
+				payment 26500
+			`	As you search the ship for anything valuable you find some kind of map tucked into a panel. It's easy to carry, allowing you time to further salvage a meager <payment> from the <origin>.`
+				goto detonate
+			label detonate
+			choice
+				`	(Detonate the ship and leave so that others can't loot it.)`
+				`	(Try and find a bit more salvage.)`
+					goto continued
+			`	Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
+				depart
+			label continued
+			branch unlucky
+				random < 75
+			action
+				payment 35000
+			`	You attempt to search the ship for more valuables and luckily find some extra salvage worth <payment>. However, the hull begins to creak and groan, prompting a hasty return to your ship.`
+			`	Not a moment too soon, as the <origin> begins to violently fall apart the moment your ship detaches.`
+				depart
+			label unlucky
+			branch pirate
+				random < 20
+			`	You attempt to search the ship for more valuables but to no avail. However, the hull begins to creak and groan, prompting a hasty return to your ship.`
+			`	Not a moment too soon, as the <origin> begins to violently fall apart the moment your ship detaches.`
+				depart
+			label pirate
+			`	You make your way to the cockpit in the hopes of finding any valuables. Initially finding nothing, you turn to leave and search more of the ship.`
+				goto beacon

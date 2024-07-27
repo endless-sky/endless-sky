@@ -278,7 +278,7 @@ outfit "Thunderhead"
 		"radar tracking" .6
 		"shield damage" 110
 		"hull damage" 80
-		"hit force" 150
+		"hit force" 225
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
@@ -301,8 +301,8 @@ outfit "Small Biochemical Cell"
 	thumbnail "outfit/small biochemical"
 	"mass" 17
 	"outfit space" -17
-	"energy generation" 1.6
-	"heat generation" 1.4
+	"energy generation" 1.28
+	"heat generation" 1.12
 	"energy capacity" 7500
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
@@ -314,8 +314,8 @@ outfit "Large Biochemical Cell"
 	thumbnail "outfit/large biochemical"
 	"mass" 63
 	"outfit space" -63
-	"energy generation" 6.2
-	"heat generation" 4.9
+	"energy generation" 4.96
+	"heat generation" 3.92
 	"energy capacity" 30000
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
@@ -329,7 +329,7 @@ outfit "Red Sun Reactor"
 	"outfit space" -47
 	"energy generation" 8.3
 	"heat generation" 13
-	"energy capacity" 2200
+	"energy capacity" 1100
 	description "The Wanderers have recently begun producing this tiny reactor as a way to squeeze a bit more energy production into their warships."
 
 outfit "Yellow Sun Reactor"
@@ -342,7 +342,7 @@ outfit "Yellow Sun Reactor"
 	"outfit space" -82
 	"energy generation" 15.2
 	"heat generation" 21
-	"energy capacity" 5200
+	"energy capacity" 2600
 	description "This is a compact nuclear reactor designed by the Wanderers. In addition to generating power, it is able to store a small amount of energy."
 
 outfit "White Sun Reactor"
@@ -355,7 +355,7 @@ outfit "White Sun Reactor"
 	"outfit space" -127
 	"energy generation" 24.85
 	"heat generation" 32
-	"energy capacity" 13400
+	"energy capacity" 6700
 	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
 
 outfit "Blue Sun Reactor"
@@ -368,7 +368,7 @@ outfit "Blue Sun Reactor"
 	"outfit space" -152
 	"energy generation" 31.3
 	"heat generation" 39
-	"energy capacity" 17800
+	"energy capacity" 8900
 	description "As the Wanderers have begun producing heavy warships, a need has arisen for larger and larger reactor cores to power them."
 
 
@@ -429,7 +429,7 @@ outfit "Type 1 Radiant Thruster"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 8.8
+	"thrust" 13.2
 	"thrusting energy" 0.55
 	"thrusting heat" 0.85
 	"cooling" 1.5
@@ -447,7 +447,7 @@ outfit "Type 2 Radiant Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 21.3
+	"thrust" 31.95
 	"thrusting energy" 1.3
 	"thrusting heat" 2.4
 	"cooling" 3.6
@@ -465,7 +465,7 @@ outfit "Type 3 Radiant Thruster"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"thrust" 35.28
+	"thrust" 52.92
 	"thrusting energy" 2.2
 	"thrusting heat" 4.3
 	"cooling" 6.5
@@ -483,7 +483,7 @@ outfit "Type 4 Radiant Thruster"
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"thrust" 58
+	"thrust" 87
 	"thrusting energy" 3.7
 	"thrusting heat" 7.6
 	"cooling" 11.7
@@ -501,7 +501,7 @@ outfit "Type 1 Radiant Steering"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"turn" 181
+	"turn" 271.5
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
@@ -519,7 +519,7 @@ outfit "Type 2 Radiant Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 476
+	"turn" 714
 	"turning energy" .7
 	"turning heat" 1.5
 	"cooling" 2.1
@@ -537,7 +537,7 @@ outfit "Type 3 Radiant Steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 825
+	"turn" 1237.5
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
@@ -555,7 +555,7 @@ outfit "Type 4 Radiant Steering"
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47
-	"turn" 1466
+	"turn" 2199
 	"turning energy" 2.0
 	"turning heat" 4.5
 	"cooling" 6.7
