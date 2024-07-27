@@ -4876,8 +4876,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 			hasMismatch |= !orders.count(ship);
 
 			Orders &existing = orders[ship];
-			existing.MergeOrders(newOrders, hasMismatch, alreadyHarvesting,
-					orderOperation);
+			existing.MergeOrders(newOrders, hasMismatch, alreadyHarvesting, orderOperation);
 
 			if(isMoveOrder)
 			{
