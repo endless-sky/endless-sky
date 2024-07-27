@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
-#include "Sound.h"
+#include "audio/Sound.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "StellarObject.h"
