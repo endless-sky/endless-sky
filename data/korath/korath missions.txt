@@ -419,6 +419,7 @@ mission "Efreti: Distress Call 4"
 				to display
 					"flagship crew" <= 1
 			branch accept
+				1 == 1
 	npc
 		government "Kor Mereti"
 		personality staying
