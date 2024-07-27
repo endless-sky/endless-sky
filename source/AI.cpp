@@ -549,10 +549,10 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		IssueAsteroidTarget(targetAsteroid);
 	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
 	{
-		newOrders.type = Orders::HOLD_FIRE;
+		newOrders.SetHoldFire();
 		IssueOrders(newOrders, "holding fire.");
 	}
-	if(activeCommands.Has(Command::HOLD) && !shift)
+	if(activeCommands.Has(Command::HOLD_POSITION) && !shift)
 	{
 		newOrders.SetHoldPosition();
 		IssueOrders(newOrders, "holding position.");
@@ -3733,12 +3733,17 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.GetTargetShip() == currentTarget)
+		if(it != orders.end())
 		{
-			disabledOverride = (it->second.HasFinishOff());
-			friendlyOverride = disabledOverride || (it->second.HasAttack());
+			if(it->second.HasHoldFire())
+				return;
+			if(it->second.GetTargetShip() == currentTarget)
+			{
+				disabledOverride = (it->second.HasFinishOff());
+				friendlyOverride = disabledOverride || (it->second.HasAttack());
+			}
 		}
-		if(!disabledOverride && !friendlyOverride && (it == orders.end() || it->second.HasHoldFire()))
+		if(!disabledOverride && !friendlyOverride)
 			return;
 	}
 	bool currentIsEnemy = currentTarget
