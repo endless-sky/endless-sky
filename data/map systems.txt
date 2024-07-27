@@ -11671,6 +11671,7 @@ system Eebu
 	minables titanium 16 6.9
 	fleet "Small Vi" 3600
 	fleet "Small Scin" 3500
+	fleet "Scin Warfleet" 3500
 	object
 		sprite star/g5-old
 		period 10
@@ -13334,6 +13335,7 @@ system Evrae
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
 	fleet "Scin Cargo" 2700
+	fleet "Scin Warfleet" 3000
 	object
 		sprite star/a5
 		distance 1.24
@@ -17670,6 +17672,7 @@ system Iliniza
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 600
 	fleet "Scin Cargo" 1200
+	fleet "Scin Warfleet" 4000
 	object
 		sprite star/g5
 		distance 30.19
@@ -19005,8 +19008,8 @@ system Jyelio
 	link Wreoul
 	minables copper 2 6.62
 	minables tungsten 1 4.15
-	fleet "Large Vi" 2400
-	fleet "Large Scin" 2800
+	fleet "Vi Warfleet" 2400
+	fleet "Scin Warfleet" 2800
 	fleet "Small Vi II" 3600
 	fleet "Small Scin" 3200
 	object
@@ -29768,6 +29771,7 @@ system Scija
 	fleet "Large Vi" 1500
 	fleet "Vi Transport" 600
 	fleet "Vi Cargo" 1200
+	fleet "Vi Warfleet" 3000
 	fleet "Gegno Basic" 3200
 	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 2500
@@ -33164,8 +33168,9 @@ system Uhebe
 	minables aluminum 9 8.8
 	minables neodymium 6 3.28
 	minables tungsten 3 2.11
-	fleet "Small Vi" 4200
+	fleet "Small Vi" 4000
 	fleet "Vi Transport" 6000
+	fleet "Vi Warfleet" 4200
 	object
 		sprite star/o5
 		period 10
@@ -34970,6 +34975,7 @@ system Wreoul
 	fleet "Vi Transport" 4400
 	fleet "Vi Cargo" 5600
 	fleet "Small Vi II" 5600
+	fleet "Vi Warfleet" 4000
 	object
 		sprite star/g-dwarf
 		period 10
@@ -35269,6 +35275,7 @@ system Yerser
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
 	minables copper 3 6.19
+	fleet "Small Scin" 4600
 	object
 		sprite star/a0
 		period 10
@@ -35531,6 +35538,7 @@ system Zeinar
 	fleet "Large Scin" 2000
 	fleet "Scin Transport" 500
 	fleet "Scin Cargo" 1200
+	fleet "Scin Warfleet" 3000
 	fleet "Gegno Basic" 3400
 	fleet "Gegno Cargo" 3600
 	fleet "Gegno Miners" 2500
