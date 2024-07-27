@@ -63,7 +63,9 @@ void TextReplacements::Load(const DataNode &node)
 			continue;
 		}
 
-		ConditionSet toSubstitute(child);
+		ConditionSet toSubstitute;
+		if(child.HasChildren())
+			toSubstitute.Load(child);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}
 }
