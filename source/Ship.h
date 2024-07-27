@@ -380,11 +380,10 @@ public:
 	double MaxVelocity() const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// This is their potential acceleration right now
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
 	double TrueAcceleration() const;
-	// This is their potential turn right now
 	double TrueTurnRate() const;
-	// This is their current speed right now
+	// The ship's current speed right now
 	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
