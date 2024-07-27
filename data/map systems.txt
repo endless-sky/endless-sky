@@ -29022,18 +29022,26 @@ system Raaqa-Ryuit
 	haze _menu/haze-33
 	object
 		sprite star/g0
+	object
+		sprite planet/callisto
+		distance 600
+		period 500
 	object Raaqa-Puan-Uuoru
 		sprite planet/cloud0-b
 		distance 1000
 		period 1000
 	object
-		sprite planet/callisto
-		distance 600
-		period 500
-	object
-		sprite planet/gas0-b
-		distance 1500
-		period 1500
+		sprite planet/gas2-b
+		distance 2200
+		period 2200
+		object Qasa-Sija-Iri
+			sprite planet/dust0-b
+			distance 250
+			period 250
+		object
+			sprite planet/rock17-b
+			distance 410
+			period 410
 	object Aqra-Kvel-Taaq
 		sprite planet/ice1
 		distance 3420
