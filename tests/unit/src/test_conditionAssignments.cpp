@@ -51,6 +51,42 @@ SCENARIO( "Creating ConditionAssignments" , "[ConditionAssignments][Creation]" )
 	}
 }
 
+SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" ) {
+
+	OutputSink warnings(std::cerr);
+
+	GIVEN( "empty ConditionAssignments" ) {
+		auto set = ConditionAssignments{};
+		REQUIRE( set.IsEmpty() );
+
+		THEN( "no assignments are added from empty nodes" ) {
+			const std::string validationWarning = "Error: Loading empty (sub)condition:\n";
+			set.Load(DataNode{});
+			REQUIRE( set.IsEmpty() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() == validationWarning );
+			}
+		}
+		THEN( "no assignments are added from invalid nodes" ) {
+			const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+			const std::string invalidNodeText = "apply\n\thas";
+			const std::string invalidNodeTextInWarning = "apply\nL2:   has";
+			set.Load(AsDataNode(invalidNodeText));
+			REQUIRE( set.IsEmpty() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() == "" + validationWarning + invalidNodeTextInWarning + '\n' + '\n');
+			}
+		}
+		THEN( "new assignments can be added from valid nodes" ) {
+			set.Load(AsDataNode("apply\n\tsomeCondition = 5"));
+			REQUIRE_FALSE( set.IsEmpty() );
+			REQUIRE( warnings.Flush() == "" );
+		}
+	}
+}
+
+
+
 SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 	auto store = ConditionsStore{};
 	REQUIRE( store.PrimariesSize() == 0 );
