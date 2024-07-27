@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
 #include "FighterHitHelper.h"
