@@ -119,7 +119,7 @@ namespace {
 	vector<int16_t> fadeBuffer;
 	double musicVolume = 1.;
 	// The volume modifier of the current track.
-	double playlistVolumeModifier = 0.;
+	double trackVolumeModifier = 0.;
 
 	const Playlist *currentPlaylist = nullptr;
 	const Track *currentPlaylistTrack = nullptr;
@@ -261,7 +261,7 @@ void Audio::SetMusicVolume(double level)
 {
 	musicVolume = clamp(level, 0., 1.);
 	if(isInitialized)
-		alSourcef(musicSource, AL_GAIN, min(1., musicVolume + playlistVolumeModifier));
+		alSourcef(musicSource, AL_GAIN, min(1., musicVolume + trackVolumeModifier));
 }
 
 
@@ -337,46 +337,44 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 
 	// If the current playlist's conditions are not matching anymore, search for a new playlist.
 	bool currentPlaylistValid = currentPlaylist ?
-		currentPlaylist->MatchingConditions(player) : false;
+		currentPlaylist->MatchesConditions(player) : false;
 	// The track has to be updated if the current track is finished or the playlist is not matching
 	// anymore.
-	if(currentTrack->IsFinished() || !currentPlaylistValid)
+	if(!currentPlaylistValid)
 	{
-		if(!currentPlaylistValid)
-		{
-			// If the current playlist is not valid, find a new one based on priority and weight.
-			WeightedList<const Playlist *> validPlaylists;
-			unsigned priority = 0;
-			for(auto &playlist : GameData::Playlists())
-				if(playlist.second.MatchingConditions(player))
-				{
-					// Higher priorities always win.
-					if(playlist.second.Priority() == priority)
-						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-					else if(playlist.second.Priority() > priority)
-					{
-						priority = playlist.second.Priority();
-						validPlaylists.clear();
-						validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
-					}
-				}
-			if(!validPlaylists.empty())
+		// If the current playlist is not valid, find a new one based on priority and weight.
+		WeightedList<const Playlist *> validPlaylists;
+		unsigned priority = 0;
+		for(auto &playlist : GameData::Playlists())
+			if(playlist.second.MatchesConditions(player))
 			{
-				// This will return a random playlist, with playlist with a higher weight being more
-				// probable to be returned.
-				currentPlaylist = validPlaylists.Get();
-				currentPlaylist->Activate();
+				// Higher priorities always win.
+				if(playlist.second.Priority() == priority)
+					validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+				else if(playlist.second.Priority() > priority)
+				{
+					priority = playlist.second.Priority();
+					validPlaylists.clear();
+					validPlaylists.emplace_back(playlist.second.Weight(), &playlist.second);
+				}
 			}
-			else
-				currentPlaylist = nullptr;
+		if(!validPlaylists.empty())
+		{
+			// This will return a random playlist, with playlist with a higher weight being more
+			// probable to be returned.
+			currentPlaylist = validPlaylists.Get();
+			currentPlaylist->Activate();
 		}
+		else
+			currentPlaylist = nullptr;
+
 		// Only switch to a new track if a playlist is set.
 		if(currentPlaylist)
 		{
-			currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
+			currentPlaylistTrack = currentPlaylist->GetNextTrack();
 			if(currentPlaylistTrack)
 			{
-				playlistVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
+				trackVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
 				SetMusicVolume(musicVolume);
 				PlayMusic(currentPlaylistTrack->GetTitle(state));
 				finishedWaiting = false;
@@ -388,6 +386,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		else
 			PlayMusic("");
 	}
+
 	if(oldState != state)
 	{
 		oldState = state;

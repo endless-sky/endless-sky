@@ -55,9 +55,17 @@ void Playlist::Load(const DataNode &node)
 		else if(key == "location")
 			location.Load(child);
 		else if(key == "priority" && hasValue)
+		{
 			priority = max<unsigned>(0, child.Value(1));
+			if(child.Value(1) < 0)
+				child.PrintTrace("Warning: Negative weight sepcified for priority.");
+		}
 		else if(key == "weight" && hasValue)
+		{
 			weight = max<unsigned>(1, child.Value(1));
+			if(child.Value(1) < 0)
+				child.PrintTrace("Warning: Negative weight sepcified for priority.");
+		}
 		else if(key == "tracks")
 		{
 			if(child.Token(1) == "linear")
@@ -96,11 +104,12 @@ void Playlist::Activate() const
 
 
 
-const Track *Playlist::GetCurrentTrack() const
+// Get the next track as defined by progression style.
+const Track *Playlist::GetNextTrack() const
 {
 	switch(progressionStyle)
 	{
-	case ProgressionStyle::LINEAR:
+		case ProgressionStyle::LINEAR:
 		{
 			const Track *tmpTrack = currentTrack;
 			auto it = find(tracks.begin(), tracks.end(), tmpTrack);
@@ -110,17 +119,17 @@ const Track *Playlist::GetCurrentTrack() const
 			currentTrack = *it;
 			return tmpTrack;
 		}
-	case ProgressionStyle::PICK:
-		return currentTrack;
-	case ProgressionStyle::RANDOM:
-	default:
-		return tracks.Get();
+		case ProgressionStyle::PICK:
+			return currentTrack;
+		case ProgressionStyle::RANDOM:
+		default:
+			return tracks.Get();
 	}
 }
 
 
 
-bool Playlist::MatchingConditions(const PlayerInfo &player) const
+bool Playlist::MatchesConditions(const PlayerInfo &player) const
 {
 	if(player.GetPlanet() && !location.Matches(player.GetPlanet()))
 		return false;

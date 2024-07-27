@@ -49,7 +49,8 @@ public:
 	void Load(const DataNode &node);
 
 	void Activate() const;
-	const Track *GetCurrentTrack() const;
+	// Get the next track as defined by progression style.
+	const Track *GetNextTrack() const;
 
 	bool MatchesConditions(const PlayerInfo &player) const;
 
