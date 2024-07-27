@@ -45,6 +45,7 @@ public:
 	static const Command SECONDARY;
 	static const Command SELECT;
 	static const Command LAND;
+	static const Command SELECT_PLANET;
 	static const Command BOARD;
 	static const Command HAIL;
 	static const Command SCAN;

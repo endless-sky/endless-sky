@@ -8,6 +8,7 @@
 "Fire secondary weapon" 113
 "Select secondary weapon" 119
 "Land on planet / station" 108
+"Select planet / station" 107
 "Board selected ship" 98
 "Talk to selected ship" 116
 "Scan selected ship" 115
