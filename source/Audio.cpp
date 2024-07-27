@@ -118,6 +118,7 @@ namespace {
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
 	double musicVolume = 1.;
+	// The volume modifier of the current track.
 	double playlistVolumeModifier = 0.;
 
 	const Playlist *currentPlaylist = nullptr;
@@ -321,7 +322,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			currentWait = currentPlaylistTrack->Wait();
 			onEnd = chrono::high_resolution_clock::now();
 		}
-		if(isWaiting)
+		else if(isWaiting)
 		{
 			chrono::duration<double> elapsed = chrono::high_resolution_clock::now() - onEnd;
 			if(elapsed.count() >= currentWait)
@@ -334,7 +335,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		}
 	}
 
-	// If the current playlists conditions are not matching anymore, search a new one.
+	// If the current playlist's conditions are not matching anymore, search for a new playlist.
 	bool currentPlaylistValid = currentPlaylist ?
 		currentPlaylist->MatchingConditions(player) : false;
 	// The track has to be updated if the current track is finished or the playlist is not matching

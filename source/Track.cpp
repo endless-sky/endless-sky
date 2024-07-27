@@ -35,7 +35,7 @@ void Track::Load(const DataNode &node)
 {
 	if(!name.empty())
 	{
-		node.PrintTrace("Error: Duplicate definition of track:");
+		node.PrintTrace("Skipping duplicate definition of track:");
 		return;
 	}
 	name = node.Token(1);

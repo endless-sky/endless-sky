@@ -51,7 +51,7 @@ public:
 	void Activate() const;
 	const Track *GetCurrentTrack() const;
 
-	bool MatchingConditions(const PlayerInfo &player) const;
+	bool MatchesConditions(const PlayerInfo &player) const;
 
 	unsigned Priority() const;
 	unsigned Weight() const;
