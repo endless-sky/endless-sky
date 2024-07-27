@@ -31,15 +31,28 @@ class Mask;
 class Sprite;
 
 
-
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
 class Body {
 public:
 	// States for animation purposes.
-	enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT, TRIGGER};
+	enum BodyState {
+		FLYING,
+		FIRING,
+		LAUNCHING,
+		LANDING,
+		JUMPING,
+		DISABLED,
+		NUM_STATES,
+		CURRENT,
+		TRIGGER
+	};
 	// Minimum/Default frame rate of animations.
 	static constexpr float MIN_FRAME_RATE = 2. / 60.;
+
+
+	using AnimationParameters = SpriteParameters::AnimationParameters;
+	using TransitionType = SpriteParameters::TransitionType;
 
 
 public:
@@ -52,6 +65,7 @@ public:
 	bool HasSprite() const;
 	bool HasSpriteFor(BodyState state) const;
 	// Access the underlying Sprite object.
+	const SpriteParameters *GetSpriteParameters(BodyState state = BodyState::CURRENT) const;
 	const Sprite *GetSprite(BodyState state = BodyState::CURRENT) const;
 	BodyState GetState() const;
 	// Get the dimensions of the sprite.
@@ -83,8 +97,7 @@ public:
 
 	// Sprite serialization. Return true if sprite is successfully loaded.
 	bool LoadSprite(const DataNode &node);
-	void LoadTriggerSprite(const DataNode &node, BodyState state,
-		SpriteParameters::AnimationParameters params, int index);
+	void LoadTriggerSprite(const DataNode &node, BodyState state, int index);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int index) const;
 	// Set the sprite.
@@ -151,7 +164,7 @@ private:
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 
-	mutable SpriteParameters::AnimationParameters anim;
+	mutable AnimationParameters anim;
 
 	mutable int pause = 0;
 
@@ -167,7 +180,6 @@ private:
 	mutable float reversedFrame = 0.f;
 	mutable float rewindFrame = 0.f;
 	mutable float randomFrame = 0.f;
-	mutable float framePercentage = 0.f;
 	mutable float delayed = 0.f;
 	mutable bool stateReady = false;
 };

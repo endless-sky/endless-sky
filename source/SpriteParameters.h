@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sprite;
 
+using namespace std;
 
 
 // Class holding all of the animation parameters required to animate a sprite.
@@ -32,7 +33,12 @@ class SpriteParameters {
 public:
 
 	// Supported animation transition types from one state to another.
-	enum TransitionType{IMMEDIATE, FINISH, REWIND, NUM_TRANSITIONS};
+	enum TransitionType {
+		IMMEDIATE,
+		FINISH,
+		REWIND,
+		NUM_TRANSITIONS
+	};
 
 
 	// A node defining the parameters for a certain trigger sprite.
@@ -42,14 +48,14 @@ public:
 		// Frames per second.
 		float frameRate = 2. / 60.;
 		// FPS per second, used to increase (or decrease) rate at which animation plays.
-		float rampUpRate = 0.0f;
-		float rampDownRate = 0.0f;
+		float rampUpRate = 0.f;
+		float rampDownRate = 0.f;
 		// Frame number used to track at which frame the animation starts.
 		float startFrame = 0.f;
 		// Scale of the frame, typically set to 1.
 		float scale = 1.f;
-		// Percentage of animation that needs to play in order for an action to complete.
-		float indicatePercentage = -1.0f;
+		// Frame of animation that needs to be played in order for an action to complete.
+		float indicateFrame = 0.f;
 		// Delay in the animation starting in number of frames.
 		int delay = 0;
 		// Delay in the transition of one anim to another (e.g FIRING anim to FLYING anim).
@@ -75,17 +81,15 @@ public:
 		Point center;
 	};
 
-
-public:
-	typedef std::tuple<const Sprite*, SpriteParameters::AnimationParameters, ConditionSet> SpriteDetails;
-	typedef std::map<int, SpriteParameters::SpriteDetails> SpriteMap;
+	using SpriteDetails = tuple<const Sprite*, AnimationParameters, ConditionSet>;
+	using SpriteMap = map<int, SpriteDetails>;
 
 
 public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);
 	// Add a sprite-trigger mapping.
-	void SetSprite(int index, const Sprite *sprite, SpriteParameters::AnimationParameters data,
+	void SetSprite(int index, const Sprite *sprite, AnimationParameters data,
 		ConditionSet triggerConditions);
 	// Get the data associated with the current trigger.
 	const Sprite *GetSprite(int index = -1) const;
@@ -113,7 +117,8 @@ private:
 	SpriteDetails defaultDetails;
 	// Animation parameters exposed to Body.
 	AnimationParameters exposed;
-	int exposedIndex = 0, requestedIndex = 0;
+	int exposedIndex = 0;
+	int requestedIndex = 0;
 };
 
 

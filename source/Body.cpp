@@ -37,7 +37,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 	: position(position), velocity(velocity), angle(facing), zoom(zoom)
 {
 	SpriteParameters *spriteState = &sprites[BodyState::FLYING];
-	SpriteParameters::AnimationParameters spriteAnimationParameters;
+	AnimationParameters spriteAnimationParameters;
 	spriteAnimationParameters.randomizeStart = true;
 	spriteState->SetSprite(0, sprite, spriteAnimationParameters, {});
 	anim.randomize = true;
@@ -75,12 +75,19 @@ bool Body::HasSpriteFor(BodyState state) const
 
 
 
+const SpriteParameters *Body::GetSpriteParameters(BodyState state) const
+{
+	BodyState selected = state != BodyState::CURRENT ? state : currentState;
+	return &sprites[selected];
+}
+
+
+
 // Access the underlying Sprite object.
 const Sprite *Body::GetSprite(BodyState state) const
 {
 	BodyState selected = state != BodyState::CURRENT ? state : currentState;
-
-	SpriteParameters *spriteState = &sprites[selected];
+	const SpriteParameters *spriteState = GetSpriteParameters(selected);
 
 	// Return flying sprite if the requested state's sprite does not exist.
 	const Sprite *sprite = spriteState->GetSprite();
@@ -88,7 +95,6 @@ const Sprite *Body::GetSprite(BodyState state) const
 		return sprite;
 	else
 		return sprites[BodyState::FLYING].GetSprite();
-
 }
 
 
@@ -255,7 +261,7 @@ bool Body::LoadSprite(const DataNode &node)
 		return false;
 
 	// Static map for loading sprites.
-	static const std::map<const std::string, BodyState> SPRITE_LOAD_PARAMS = {
+	static const map<const string, BodyState> SPRITE_LOAD_PARAMS = {
 		{"sprite", BodyState::FLYING},
 		{"sprite-flying", BodyState::FLYING},
 		{"sprite-firing", BodyState::FIRING},
@@ -269,6 +275,13 @@ bool Body::LoadSprite(const DataNode &node)
 		{"steering flare sprite", BodyState::FLYING}
 	};
 
+	// Static map for loading transitions
+	static const map<const string, TransitionType> TRANSITION_TYPE_PARAMS = {
+		{"immediate", TransitionType::IMMEDIATE},
+		{"finish", TransitionType::FINISH},
+		{"rewind", TransitionType::REWIND}
+	};
+
 	// Default to flying state sprite.
 	BodyState state = BodyState::FLYING;
 	auto flyingPair = SPRITE_LOAD_PARAMS.find(node.Token(0));
@@ -277,7 +290,7 @@ bool Body::LoadSprite(const DataNode &node)
 
 	const Sprite *sprite = SpriteSet::Get(node.Token(1));
 	SpriteParameters *spriteData = &sprites[state];
-	SpriteParameters::AnimationParameters spriteAnimationParameters;
+	AnimationParameters spriteAnimationParameters;
 	vector<DataNode> triggerSpriteDefer;
 
 	// The only time the animation does not start on a specific frame is if no
@@ -322,17 +335,12 @@ bool Body::LoadSprite(const DataNode &node)
 				spriteAnimationParameters.rampDownRate = child.Value(2) / 3600.;
 			}
 		}
-		else if(child.Token(0) == "indicate percentage" && child.Size() >= 2 && child.Value(1) > 0. && child.Value(1) < 1.)
+		else if(child.Token(0) == "transition type" && child.Size() >= 2)
 		{
-			spriteAnimationParameters.indicateReady = true;
-			spriteAnimationParameters.repeat = false;
-			spriteAnimationParameters.startAtZero = true;
-			spriteAnimationParameters.indicatePercentage = static_cast<float>(child.Value(1)) / 100.;
-		}
-		else if(child.Token(0) == "transition type" && child.Value(1) >= 0. &&
-			child.Value(1) < SpriteParameters::TransitionType::NUM_TRANSITIONS)
-		{
-			spriteAnimationParameters.transitionType = static_cast<SpriteParameters::TransitionType>(child.Value(1));
+			spriteAnimationParameters.transitionType = TransitionType::IMMEDIATE;
+			auto transitionPair = TRANSITION_TYPE_PARAMS.find(child.Token(1));
+			if(transitionPair != TRANSITION_TYPE_PARAMS.end())
+				spriteAnimationParameters.transitionType = transitionPair->second;
 		}
 		else if(child.Token(0) == "no indicate")
 			spriteAnimationParameters.indicateReady = false;
@@ -341,7 +349,9 @@ bool Body::LoadSprite(const DataNode &node)
 			spriteAnimationParameters.indicateReady = true;
 			spriteAnimationParameters.repeat = false;
 			spriteAnimationParameters.startAtZero = true;
-			spriteAnimationParameters.indicatePercentage = 1.f;
+			spriteAnimationParameters.indicateFrame = 0.f;
+			if(child.Size() >= 2 && child.Value(1) > 0.f)
+				spriteAnimationParameters.indicateFrame = static_cast<float>(child.Value(1));
 		}
 		else if(child.Token(0) == "random")
 			spriteAnimationParameters.randomize = true;
@@ -364,7 +374,7 @@ bool Body::LoadSprite(const DataNode &node)
 	for(size_t i = 0; i < triggerSpriteDefer.size(); ++i)
 	{
 		DataNode node = triggerSpriteDefer[i];
-		LoadTriggerSprite(node, state, spriteAnimationParameters, i + 1);
+		LoadTriggerSprite(node, state, i + 1);
 	}
 	spriteData->SetSprite(0, sprite, spriteAnimationParameters, {});
 
@@ -377,16 +387,22 @@ bool Body::LoadSprite(const DataNode &node)
 
 
 // Returns whether the trigger sprite is based on the outfit being used.
-void Body::LoadTriggerSprite(const DataNode &node, BodyState state,
-	SpriteParameters::AnimationParameters params, int index)
+void Body::LoadTriggerSprite(const DataNode &node, BodyState state, int index)
 {
 	if(node.Size() < 2)
 		return;
 
+	// Static map for loading transitions
+	static const map<const string, TransitionType> TRANSITION_TYPE_PARAMS = {
+		{"immediate", TransitionType::IMMEDIATE},
+		{"finish", TransitionType::FINISH},
+		{"rewind", TransitionType::REWIND}
+	};
+
 	const Sprite *sprite = SpriteSet::Get(node.Token(1));
 
 	SpriteParameters *spriteData = &sprites[state];
-	SpriteParameters::AnimationParameters spriteAnimationParameters = params;
+	AnimationParameters spriteAnimationParameters;
 	ConditionSet conditions;
 
 	// The only time the animation does not start on a specific frame is if no
@@ -430,29 +446,26 @@ void Body::LoadTriggerSprite(const DataNode &node, BodyState state,
 				spriteAnimationParameters.rampDownRate = child.Value(2) / 3600.;
 			}
 		}
-		else if(child.Token(0) == "indicate percentage" && child.Size() >= 2 && child.Value(1) > 0. && child.Value(1) < 1.)
+		else if(child.Token(0) == "transition type" && child.Size() >= 2)
 		{
-			spriteAnimationParameters.indicateReady = true;
-			spriteAnimationParameters.repeat = false;
-			spriteAnimationParameters.startAtZero = true;
-			spriteAnimationParameters.indicatePercentage = static_cast<float>(child.Value(1));
-		}
-		else if(child.Token(0) == "transition type" && child.Value(1) >= 0. &&
-			child.Value(1) < SpriteParameters::TransitionType::NUM_TRANSITIONS)
-		{
-			spriteAnimationParameters.transitionType = static_cast<SpriteParameters::TransitionType>(child.Value(1));
+			spriteAnimationParameters.transitionType = TransitionType::IMMEDIATE;
+			auto transitionPair = TRANSITION_TYPE_PARAMS.find(child.Token(1));
+			if(transitionPair != TRANSITION_TYPE_PARAMS.end())
+				spriteAnimationParameters.transitionType = transitionPair->second;
 		}
 		else if(child.Token(0) == "no indicate")
 		{
 			spriteAnimationParameters.indicateReady = false;
-			spriteAnimationParameters.indicatePercentage = -1.0f;
+			spriteAnimationParameters.indicateFrame = 0.f;
 		}
 		else if(child.Token(0) == "indicate")
 		{
 			spriteAnimationParameters.indicateReady = true;
 			spriteAnimationParameters.repeat = false;
 			spriteAnimationParameters.startAtZero = true;
-			spriteAnimationParameters.indicatePercentage = 1.0f;
+			spriteAnimationParameters.indicateFrame = 0.f;
+			if(child.Size() >= 2 && child.Value(1) > 0.f)
+				spriteAnimationParameters.indicateFrame = static_cast<float>(child.Value(1));
 		}
 		else if(child.Token(0) == "random")
 			spriteAnimationParameters.randomize = true;
@@ -528,7 +541,14 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 
 void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int index) const
 {
-	SpriteParameters::AnimationParameters exposed = state->GetParameters(index);
+	// Static map for saving transitions
+	static const map<TransitionType, const string> TRANSITION_TYPE_PARAMS = {
+		{TransitionType::IMMEDIATE, "immediate"},
+		{TransitionType::FINISH, "finish"},
+		{TransitionType::REWIND, "rewind"}
+	};
+
+	AnimationParameters exposed = state->GetParameters(index);
 	if(exposed.frameRate != static_cast<float>(MIN_FRAME_RATE))
 		out.Write("frame rate", exposed.frameRate * 60.);
 	if(exposed.delay)
@@ -551,17 +571,14 @@ void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int in
 		out.Write("ramp", exposed.rampUpRate * 3600., exposed.rampDownRate * 3600.);
 	if(exposed.indicateReady)
 	{
-		if(exposed.indicatePercentage == 1.f)
-			out.Write("indicate");
+		if(exposed.indicateFrame)
+			out.Write("indicate", exposed.indicateFrame);
 		else
-			out.Write("indicate percentage", exposed.indicatePercentage);
+			out.Write("indicate");
 	}
 	else
-	{
 		out.Write("no indicate");
-	}
-	if(exposed.transitionType)
-		out.Write("transition type", static_cast<int>(exposed.transitionType));
+	out.Write("transition type", TRANSITION_TYPE_PARAMS.find(exposed.transitionType)->second);
 	if(exposed.transitionDelay)
 		out.Write("transition delay", exposed.transitionDelay);
 }
@@ -571,7 +588,7 @@ void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state, int in
 // Set the sprite.
 void Body::SetSprite(const Sprite *sprite, BodyState state)
 {
-	SpriteParameters::AnimationParameters init;
+	AnimationParameters init;
 	sprites[state].SetSprite(0, sprite, init, {});
 	currentStep = -1;
 }
@@ -608,7 +625,7 @@ void Body::SetState(BodyState state)
 		// Set the current frame to be the rewindFrame upon first request to state transition.
 		if(!stateTransitionRequested)
 		{
-			if(anim.transitionType == SpriteParameters::TransitionType::REWIND)
+			if(anim.transitionType == TransitionType::REWIND)
 			{
 				rewindFrame = frame;
 				// Ensures that rewinding starts from correct frame.
@@ -621,7 +638,7 @@ void Body::SetState(BodyState state)
 	transitionState = transitionState != BodyState::TRIGGER ? state : BodyState::TRIGGER;
 
 	// If state transition has no animation needed, then immediately transition.
-	if(anim.transitionType == SpriteParameters::TransitionType::IMMEDIATE && stateTransitionRequested)
+	if(anim.transitionType == TransitionType::IMMEDIATE && stateTransitionRequested)
 		FinishStateTransition();
 }
 
@@ -720,6 +737,7 @@ void Body::FinishStateTransition() const
 		BodyState trueTransitionState = sprites[requestedTransitionState].GetSprite() ?
 			requestedTransitionState : BodyState::FLYING;
 		SpriteParameters *transitionedState = &sprites[trueTransitionState];
+		float frames = transitionedState->GetSprite()->Frames();
 		// Handle hanging trigger requests, ensuring that no ongoing trigger transitions are occurring.
 		if(triggerTransition)
 			transitionedState->CompleteTriggerRequest();
@@ -731,6 +749,9 @@ void Body::FinishStateTransition() const
 			frameRate = MIN_FRAME_RATE;
 		else
 			frameRate = anim.frameRate;
+
+		if(anim.indicateReady && (anim.indicateFrame == 0.f || anim.indicateFrame > frames))
+			anim.indicateFrame = frames;
 		// No longer need to change states.
 		stateTransitionRequested = false;
 		transitionState = currentState;
@@ -870,8 +891,7 @@ bool Body::SetStep(int step) const
 			if(!anim.repeat)
 			{
 				frame = min(frame, lastFrame);
-				framePercentage = (frame + 1) / frames;
-				if(framePercentage >= anim.indicatePercentage)
+				if(frame + 1 >= anim.indicateFrame)
 					stateReady = anim.indicateReady;
 				else
 					stateReady = false;
@@ -915,7 +935,7 @@ bool Body::SetStep(int step) const
 			else
 				frameRate = anim.frameRate;
 			// Handle transitions.
-			if(anim.transitionType == SpriteParameters::TransitionType::FINISH)
+			if(anim.transitionType == TransitionType::FINISH)
 			{
 				// Finish the ongoing state's animation, then transition.
 				frame = min(frame, lastFrame);
@@ -923,7 +943,7 @@ bool Body::SetStep(int step) const
 				if(frame >= lastFrame)
 					stateTransitionCompleted = true;
 			}
-			else if(anim.transitionType == SpriteParameters::TransitionType::REWIND)
+			else if(anim.transitionType == TransitionType::REWIND)
 			{
 				// Rewind the ongoing state's animation, then transition.
 				frame = max(0.f, rewindFrame * 2.f - frame);

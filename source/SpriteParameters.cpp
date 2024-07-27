@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteParameters.h"
 
 #include "Sprite.h"
-using namespace std;
 
 
 SpriteParameters::SpriteParameters()
@@ -27,10 +26,9 @@ SpriteParameters::SpriteParameters()
 
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
-	AnimationParameters initDefault;
-	auto spriteDetails = SpriteParameters::SpriteDetails{sprite, initDefault, {}};
-	sprites.insert(pair<int, SpriteParameters::SpriteDetails>(0, spriteDetails));
-	exposed = initDefault;
+	auto spriteDetails = SpriteDetails{sprite, {}, {}};
+	sprites.insert(pair<int, SpriteDetails>(0, spriteDetails));
+	exposed = {};
 	exposedIndex = 0;
 	defaultDetails = spriteDetails;
 	exposedDetails = spriteDetails;
@@ -38,11 +36,11 @@ SpriteParameters::SpriteParameters(const Sprite *sprite)
 
 
 
-void SpriteParameters::SetSprite(int index, const Sprite *sprite, SpriteParameters::AnimationParameters data,
+void SpriteParameters::SetSprite(int index, const Sprite *sprite, AnimationParameters data,
 	ConditionSet triggerConditions)
 {
-	auto spriteDetails = SpriteParameters::SpriteDetails{sprite, data, triggerConditions};
-	sprites.insert(pair<int, SpriteParameters::SpriteDetails>(index, spriteDetails));
+	auto spriteDetails = SpriteDetails{sprite, data, triggerConditions};
+	sprites.insert(pair<int, SpriteDetails>(index, spriteDetails));
 	if(index == 0)
 	{
 		exposed = data;

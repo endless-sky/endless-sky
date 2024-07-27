@@ -3582,6 +3582,11 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(slowness < -weapon->FiringSlowing())
 		return false;
 
+	// Prevent ships that need to indicate to fire from firing their primary weapon outside of the FIRING state.
+	const SpriteParameters* firingSprite = GetSpriteParameters(BodyState::FIRING);
+	if(firingSprite->GetParameters().indicateReady && GetState() != BodyState::FIRING)
+		return false;
+
 	return true;
 }
 
