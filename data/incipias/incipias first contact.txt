@@ -54,7 +54,7 @@ mission "Incipias: Warning of the Guardian"
 				decline
 			label agree
 			action
-				log `Entered a region of space northeast of the Hai. Was warned by a disembodied voice to not disturb the 'unborn flowers' that inhabit that region.`
+				log `Entered a region of space northeast of the Hai. Was warned by a disembodied voice to not disturb the 'unborn flowers' that inhabit that region. Agreed to stay away from there.`
 				set "Incipias: accepted the guardian's warning"
 				event "label incipias space"
 			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
