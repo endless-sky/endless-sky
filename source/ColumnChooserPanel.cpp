@@ -119,7 +119,10 @@ bool ColumnChooserPanel::Click(int x, int y, int /* clicks */)
 	Point mouse(x, y);
 	for(auto &zone : zones)
 		if(zone.Contains(mouse))
-			return panelState->ToggleColumn(zone.Value()), true;
+		{
+			panelState->ToggleColumn(zone.Value());
+			return true;
+		}
 
 	return false;
 }
