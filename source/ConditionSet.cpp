@@ -275,8 +275,8 @@ void ConditionSet::Save(DataWriter &out) const
 void ConditionSet::MakeNever()
 {
 	// Add the equivalent "never" condition, `"'" != 0`.
-	// TODO: just change the full ConditionSet to contain a "false" literal, instead of a comparison that should return "false".
-	// TODO: We should validate if condition-names are valid. (The "'" character by itself should not pass as a valid condition.)
+	// TODO: change the ConditionSet to contain "false" literal, instead of a comparison that should return "false".
+	// TODO: Validate if condition-names are valid. (The "'" character by itself should not pass as a valid condition.)
 	Add("has", "'");
 }
 
