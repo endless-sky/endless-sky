@@ -68,7 +68,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 }
 
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
-	const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+
 	OutputSink warnings(std::cerr);
 
 	GIVEN( "an empty ConditionSet" ) {
@@ -76,13 +76,15 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no expressions are added from empty nodes" ) {
+			const std::string validationWarning = "Error: Loading empty (sub)condition:\n";
 			set.Load(DataNode{});
 			REQUIRE( set.IsEmpty() );
-			// AND_THEN( "a log message is printed to assist the user" ) {
-			// 	REQUIRE( warnings.Flush() == validationWarning );
-			// }
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() == validationWarning );
+			}
 		}
 		THEN( "no expressions are added from invalid nodes" ) {
+			const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
 			const std::string invalidNodeText = "and\n\thas";
 			const std::string invalidNodeTextInWarning = "and\nL2:   has";
 			set.Load(AsDataNode(invalidNodeText));

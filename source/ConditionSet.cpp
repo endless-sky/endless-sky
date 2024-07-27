@@ -247,6 +247,8 @@ ConditionSet::ConditionSet(const DataNode &node)
 void ConditionSet::Load(const DataNode &node)
 {
 	isOr = (node.Token(0) == "or");
+	if(! node.HasChildren())
+		node.PrintTrace("Error: Loading empty (sub)condition:");
 	for(const DataNode &child : node)
 		Add(child);
 }
