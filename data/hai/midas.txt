@@ -18,7 +18,7 @@ outfit "Gold Bars"
 	thumbnail "outfit/gold bars"
 	mass 2.1
 	"installable" -1
-	description `At first it seems that these gold bars shine, as one would expect, but you can't help but feel like they also absorb light. The text "Nemo Me Impune Lacessit" is written on the gold bars. Most outfitters do not truly understand the value these hold, however, and would not give you any more than the price of brute gold for it.`
+	description `At first it seems that these gold bars shine as one would expect, but you can't help but feel like they also somehow absorb light. The text "Nemo Me Impune Lacessit" is written on the gold bars. Most outfitters do not truly understand the value these bars hold, and would not give you any more than the price of brute gold for it.`
 
 ship "Sea Scorpion" "Si-Ra' Scorpion"
 	outfits

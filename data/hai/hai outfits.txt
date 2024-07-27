@@ -490,7 +490,7 @@ outfit "Hai Zephyr Cooling"
 	"outfit space" -14
 	"cooling" 24
 	description `This modern cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused that the Williwaw had such a "primitive" design yet simultaneously shared many similarities with a Korath heat shunt.`
-	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with "proper" heat shunt theory and design.`
+	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with proper heat shunt theory and design.`
 
 
 outfit "Value Detector"
