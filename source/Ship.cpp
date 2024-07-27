@@ -3583,7 +3583,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 
 	// Prevent ships that need to indicate to fire from firing their primary weapon outside of the FIRING state.
-	const SpriteParameters* firingSprite = GetSpriteParameters(BodyState::FIRING);
+	const SpriteParameters *firingSprite = GetSpriteParameters(BodyState::FIRING);
 	if(firingSprite->GetParameters().indicateReady && GetState() != BodyState::FIRING)
 		return false;
 
