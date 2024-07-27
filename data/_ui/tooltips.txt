@@ -619,19 +619,8 @@ tip "velocity scan power:"
 	`Mobility scanners allow you to view your current target's current speed when it is within range. The range is proportional to the square root of this value.`
 
 tip "weapon scan power:"
-	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scaner range is proportional to the square root of this value.`
+	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scanner range is proportional to the square root of this value.`
 
-tip "max speed:"
-	`The fastest this ship can travel when using ordinary thrusters (that is, without afterburner).`
-
-tip "acceleration:"
-	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
-
-tip "movement:"
-	`How quickly this ship can accelerate and turn.`
-
-tip "movement (full - no cargo):"
-	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
 
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
