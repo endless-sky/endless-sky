@@ -3743,8 +3743,6 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				friendlyOverride = disabledOverride || (it->second.HasAttack());
 			}
 		}
-		if(!disabledOverride && !friendlyOverride)
-			return;
 	}
 	bool currentIsEnemy = currentTarget
 		&& currentTarget->GetGovernment()->IsEnemy(gov)
