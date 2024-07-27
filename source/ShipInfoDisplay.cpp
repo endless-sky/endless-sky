@@ -160,7 +160,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributesHeight += 20;
 
 	const Outfit &attributes = ship.Attributes();
-	const Dictionary &derived = ship.DerivedAttributes();
 
 	if(!ship.IsYours())
 		for(const string &license : attributes.Licenses())
@@ -194,7 +193,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	double shieldRegen = derived.Get("shield regen");
+	double shieldRegen = ship.GetAttribute("shield regen");
 	bool hasShieldRegen = shieldRegen > 0.;
 	if(hasShieldRegen)
 	{
@@ -208,7 +207,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.MaxShields()));
 	}
 	attributesHeight += 20;
-	double hullRepair = derived.Get("hull repair");
+	double hullRepair = ship.GetAttribute("hull repair");
 	bool hasHullRepair = hullRepair > 0.;
 	if(hasHullRepair)
 	{
@@ -332,54 +331,54 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	// Skip a spacer and the table header.
 	attributesHeight += 30;
 
-	const double idleEnergyPerFrame = derived.Get("idle energy per frame");
-	const double idleHeatPerFrame = derived.Get("idle heat per frame");
+	const double idleEnergyPerFrame = ship.GetAttribute("idle energy per frame");
+	const double idleHeatPerFrame = ship.GetAttribute("idle heat per frame");
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
 
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
-	const double movingEnergyPerFrame = derived.Get("moving energy per frame");
-	const double movingHeatPerFrame = derived.Get("moving heat per frame");
+	const double movingEnergyPerFrame = ship.GetAttribute("moving energy per frame");
+	const double movingHeatPerFrame = ship.GetAttribute("moving heat per frame");
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
 
 	// Add energy and heat while firing to the table.
 	attributesHeight += 20;
-	const double firingEnergy = derived.Get("firing energy");
-	const double firingHeat = derived.Get("firing heat");
+	const double firingEnergy = ship.GetAttribute("firing energy");
+	const double firingHeat = ship.GetAttribute("firing heat");
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
 
 	// Add energy and heat when doing shield and hull repair to the table.
 	attributesHeight += 20;
-	double shieldEnergy = derived.Get("total shield energy cost");
-	double hullEnergy = derived.Get("total hull energy cost");
-	double shieldHeat = derived.Get("total shield heat cost");
-	double hullHeat = derived.Get("total hull heat cost");
+	double shieldEnergy = ship.GetAttribute("total shield energy cost");
+	double hullEnergy = ship.GetAttribute("total hull energy cost");
+	double shieldHeat = ship.GetAttribute("total shield heat cost");
+	double hullHeat = ship.GetAttribute("total hull heat cost");
 	bool hasShieldRepairCost = shieldEnergy || shieldHeat;
 	bool hasHullRepairCost = hullEnergy || hullHeat;
 	tableLabels.push_back((hasShieldRepairCost && hasHullRepairCost) ? "shields / hull:" :
 		hasHullRepairCost ? "repairing hull:" : "charging shields:");
-	energyTable.push_back(Format::Number(-60. * derived.Get("total shield & hull energy cost")));
-	heatTable.push_back(Format::Number(60. * derived.Get("total shield & hull heat cost")));
+	energyTable.push_back(Format::Number(-60. * ship.GetAttribute("total shield & hull energy cost")));
+	heatTable.push_back(Format::Number(60. * ship.GetAttribute("total shield & hull heat cost")));
 
 	if(scrollingPanel)
 	{
 		// Add up the maximum possible changes and add the total to the table.
 		attributesHeight += 20;
 		tableLabels.push_back("net change:");
-		energyTable.push_back(Format::Number(60. * derived.Get("net energy")));
-		heatTable.push_back(Format::Number(60. * derived.Get("net heat")));
+		energyTable.push_back(Format::Number(60. * ship.GetAttribute("net energy")));
+		heatTable.push_back(Format::Number(60. * ship.GetAttribute("net heat")));
 	}
 
 	// Add maximum values of energy and heat to the table.
 	attributesHeight += 20;
-	const double maxEnergy = derived.Get("max energy");
-	const double maxHeat = derived.Get("max heat");
+	const double maxEnergy = ship.GetAttribute("max energy");
+	const double maxHeat = ship.GetAttribute("max heat");
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(60. * maxHeat));
