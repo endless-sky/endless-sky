@@ -228,7 +228,7 @@ outfit "Outfit Scanner"
 
 outfit "Asteroid Scanner"
 	category "Systems"
-	cost 122000
+	cost 61000
 	thumbnail "outfit/asteroid scanner"
 	"mass" 6
 	"outfit space" -6
@@ -280,7 +280,7 @@ outfit "Outfits Expansion"
 	"outfit space" 15
 	"cargo space" -20
 	"cooling inefficiency" 1
-	"heat dissipation" -.01
+	"heat dissipation" -.0065
 	"unplunderable" 1
 	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
 	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
@@ -398,12 +398,22 @@ outfit "Nerve Gas"
 outfit "Mug"
 	category "Hand to Hand"
 	cost 50
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/mug"
 	"capture attack" .1
 	"unique" 1
 	"unplunderable" 1
 	description "You can throw it in a pinch, you guess."
 
+outfit "Antigrav Glass"
+	category "Hand to Hand"
+	plural "Antigrav Glasses"
+	cost 25
+	thumbnail "outfit/unknown"
+	"capture attack" .2
+	"unique" 1
+	"unplunderable" 1
+	description "This glass has had a miniature repulsor attached to it, similar to those found on drones, anti-grav trolleys, and spaceships. When it is activated it allows you to drink your beverage without holding it by way of levitation."
+	description "	The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you suspect this one will be marginally more effective than anything else you've got."
 
 outfit "Puny"
 	category "Unique"

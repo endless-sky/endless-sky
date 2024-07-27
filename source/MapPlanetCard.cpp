@@ -101,8 +101,6 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 		double relativeY = (y - yCoordinate);
 		if(relativeY > 0. && relativeY < AvailableSpace())
 		{
-			isSelected = true;
-
 			// The first category is the planet name and is not selectable.
 			if(x > Screen::Left() + planetIconMaxSize &&
 					relativeY > textStart + categorySize && relativeY < textStart + categorySize * (categories + hasGovernments))

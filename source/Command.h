@@ -41,6 +41,7 @@ public:
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
 	static const Command PRIMARY;
+	static const Command TURRET_TRACKING;
 	static const Command SECONDARY;
 	static const Command SELECT;
 	static const Command LAND;
@@ -58,6 +59,7 @@ public:
 	// UI controls:
 	static const Command MAP;
 	static const Command INFO;
+	static const Command MESSAGE_LOG;
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
 	static const Command HELP;

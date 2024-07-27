@@ -70,15 +70,12 @@ public:
 			LABEL,
 			// Instructs the game to set navigation / travel plan to a target system
 			NAVIGATE,
-			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
-			// a watchdog in number of frames/steps.
-			WATCHDOG,
 		};
 
 
 
 	public:
-		TestStep(Type stepType);
+		explicit TestStep(Type stepType);
 		void LoadInput(const DataNode &node);
 
 
@@ -92,13 +89,11 @@ public:
 		// checking asserts (similar to Conversations).
 		ConditionSet conditions;
 		// Labels to jump to in case of branches. We could optimize during
-		// load to lookup the step numbers (and provide integer stepnumbers
+		// load to look up the step numbers (and provide integer step numbers
 		// here), but we can also use the textual information during error/
 		// debug printing, so keeping the strings for now.
 		std::string jumpOnTrueTarget;
 		std::string jumpOnFalseTarget;
-
-		unsigned int watchdog = 0;
 
 		// Input variables.
 		Command command;

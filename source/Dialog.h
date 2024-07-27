@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Point.h"
+#include "TextArea.h"
 #include "text/truncate.hpp"
-#include "text/WrappedText.h"
 
 #include <functional>
 #include <string>
@@ -103,10 +103,11 @@ private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
+	int Width() const;
 
 
 protected:
-	WrappedText text;
+	std::shared_ptr<TextArea> text;
 	int height;
 
 	std::function<void(int)> intFun;
@@ -120,6 +121,7 @@ protected:
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
+	bool isWide = false;
 
 	std::string input;
 

@@ -59,6 +59,8 @@ namespace {
 				return "on destroy";
 			case NPC::Trigger::KILL:
 				return "on kill";
+			case NPC::Trigger::ENCOUNTER:
+				return "on encounter";
 			default:
 				return "unknown trigger";
 		}
@@ -197,7 +199,8 @@ void NPC::Load(const DataNode &node)
 				{"board", Trigger::BOARD},
 				{"capture", Trigger::CAPTURE},
 				{"destroy", Trigger::DESTROY},
-				{"kill", Trigger::KILL}
+				{"kill", Trigger::KILL},
+				{"encounter", Trigger::ENCOUNTER},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -512,7 +515,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed.", Messages::Importance::Highest);
+		Messages::Add("Mission failed" + (caller ? ": \"" + caller->Name() + "\"" : "") + ".",
+			Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
@@ -561,7 +565,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 				isImmobile |= ship->GetPersonality().IsDerelict()
 					&& !(it->second & ShipEvent::ASSIST);
 			}
-			bool isHere = false;
+			bool isHere;
 			// If this ship is being carried, check the parent's system.
 			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
@@ -628,8 +632,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		int jumps, int64_t payload) const
+NPC NPC::Instantiate(const ConditionsStore &conditions, map<string, string> &subs, const System *origin,
+		const System *destination, int jumps, int64_t payload) const
 {
 	NPC result;
 	result.government = government;
@@ -661,7 +665,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		return result;
 	}
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+		result.npcActions[it.first] = it.second.Instantiate(conditions, subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -712,7 +716,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
 	if(overrideFleetCargo)
-		for(auto ship : result.ships)
+		for(const auto &ship : result.ships)
 			cargo.SetCargo(&*ship);
 
 	// String replacement:
@@ -747,6 +751,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		{ShipEvent::BOARD, {Trigger::BOARD}},
 		{ShipEvent::CAPTURE, {Trigger::CAPTURE, Trigger::KILL}},
 		{ShipEvent::DESTROY, {Trigger::DESTROY, Trigger::KILL}},
+		{ShipEvent::ENCOUNTER, {Trigger::ENCOUNTER}},
 	};
 
 	int type = event.Type();
@@ -778,7 +783,8 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			{Trigger::BOARD, ShipEvent::BOARD},
 			{Trigger::CAPTURE, ShipEvent::CAPTURE},
 			{Trigger::DESTROY, ShipEvent::DESTROY},
-			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
+			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
+			{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
 		};
 
 		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
@@ -792,10 +798,10 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		const auto excludedIt = triggerExclusions.find(trigger);
 		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
 
-		// The PROVOKE Trigger only requires a single ship to receive the
+		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
