@@ -23,11 +23,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // A generic flat map providing fast lookup and slower insertion.
-template <class Key, class Value, class ThreeWayComp = std::compare_three_way,
-		class Alloc = std::allocator<std::pair<Key, Value>>>
+template <class Key, class Value, class ThreeWayComp = std::compare_three_way, class Alloc =
+		std::allocator<std::pair<Key, Value>>>
 class FlatMap : private std::vector<std::pair<Key, Value>, Alloc> {
 private:
-	// Use references or copies for passing keys, depending on what's more efficient.
+	// Use references or copies for passing keys and values, depending on what's more efficient.
 	typedef std::conditional_t<std::is_fundamental_v<Key> || std::is_pointer_v<Key> || std::is_enum_v<Key>,
 			Key, Key &> KeyRef;
 
@@ -35,7 +35,7 @@ private:
 public:
 	// Access a key for modifying it:
 	inline Value &operator[](KeyRef key);
-	// Get the value of a key, or 0 if it does not exist:
+	// Get the value of a key, or a default-constructed value if it does not exist:
 	inline Value Get(KeyRef key) const;
 
 	// Expose certain functions from the underlying vector:
@@ -71,12 +71,12 @@ Value &FlatMap<Key, Value, ThreeWayComp, Alloc>::operator[](KeyRef key)
 
 
 
-// Get the value of a key, or 0 if it does not exist:
+// Get the value of a key, or a default-constructed value if it does not exist:
 template <class Key, class Value, class ThreeWayComp, class Alloc>
 Value FlatMap<Key, Value, ThreeWayComp, Alloc>::Get(KeyRef key) const
 {
 	std::pair<size_t, bool> pos = Search(key);
-	return (pos.second ? data()[pos.first].second : 0.);
+	return (pos.second ? data()[pos.first].second : Value());
 }
 
 
