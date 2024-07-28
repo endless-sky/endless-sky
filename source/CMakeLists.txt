@@ -244,8 +244,6 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
-	Playlist.cpp
-	Playlist.h
 	Plugins.cpp
 	Plugins.h
 	Point.cpp
@@ -335,8 +333,6 @@ target_sources(EndlessSkyLib PRIVATE
 	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
-	Track.cpp
-	Track.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
@@ -365,8 +361,12 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Audio.h
 	audio/Music.cpp
 	audio/Music.h
+	audio/Playlist.cpp
+	audio/Playlist.h
 	audio/Sound.cpp
 	audio/Sound.h
+	audio/Track.cpp
+	audio/Track.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
