@@ -107,9 +107,9 @@ namespace {
 	}
 
 	template <template<class, class> class Container, class Type, class Alloc>
-	enable_if_t<is_base_of_v<Body, Type> || is_base_of_v<Weather, Type>, void> Prune(Container<Type, Alloc> &objects)
+	void Prune(Container<Type, Alloc> &objects)
 	{
-		erase_if(objects, &Type::ShouldBeRemoved);
+		erase_if(objects, [](const auto &object){return object.ShouldBeRemoved();});
 	}
 
 	template <class Type>
