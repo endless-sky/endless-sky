@@ -367,25 +367,25 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		}
 		else
 			currentPlaylist = nullptr;
-
-		// Only switch to a new track if a playlist is set.
-		if(currentPlaylist)
-		{
-			currentPlaylistTrack = currentPlaylist->GetNextTrack();
-			if(currentPlaylistTrack)
-			{
-				trackVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
-				SetMusicVolume(musicVolume);
-				PlayMusic(currentPlaylistTrack->GetTitle(state));
-				finishedWaiting = false;
-			}
-			oldState = state;
-		}
-		// If no playlist is set this means nothing should be played, so stop
-		// everything and fade out.
-		else
-			PlayMusic("");
 	}
+
+	// Only switch to a new track if a playlist is set.
+	if(currentPlaylist && (currentTrack->IsFinished() || !currentPlaylistValid))
+	{
+		currentPlaylistTrack = currentPlaylist->GetNextTrack();
+		if(currentPlaylistTrack)
+		{
+			trackVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
+			SetMusicVolume(musicVolume);
+			PlayMusic(currentPlaylistTrack->GetTitle(state));
+			finishedWaiting = false;
+		}
+		oldState = state;
+	}
+	// If no playlist is set this means nothing should be played, so stop
+	// everything and fade out.
+	else
+		PlayMusic("");
 
 	if(oldState != state)
 	{
