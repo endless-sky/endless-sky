@@ -188,12 +188,12 @@ mission "Hai Legacy 1"
 				fine 10000000
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying technology you had no idea was forbidden, as these Korath weapons are suspicious indeed. However, it will not go on your permanent record."`
 			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the fine before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
-			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
+			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries."`
 			choice
 				`	(Go back to the shipyard.)`
 					goto leave
-				`	"Why would they mind a fleet or a different ship?"`
-			`	"Coming from a human, arriving with a fleet would be nothing less than an invitation to fight," says the first. "However, as this ship is ancient they will try to preserve it," the other one adds.`
+				`	"Why would they mind a different ship?"`
+			`	"As this ship is ancient they will try to preserve it."`
 			label leave
 			`	They walk away until that you cannot hear them speak anymore, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to bring it without any complications.`
 				accept
@@ -226,10 +226,9 @@ mission "Hai Legacy 2"
 	autosave
 	landing
 	name "Heritage Reclaimed"
-	description "Use the newly acquired Anomalocaris to bring aid to the Unfettered Hai on <planet> by <date>, with it as your flagship and preferably without any other ships."
+	description "Use the newly acquired Anomalocaris to bring aid to the Unfettered Hai on <planet> by <date>."
 	clearance
-	# Deadline to make sure the player doesn't gain rep for free.
-	deadline 30
+	deadline 7
 	cargo "food (aid)" 121
 	source "Hai-home"
 	destination "Firelode"
@@ -243,40 +242,25 @@ mission "Hai Legacy 2"
 		has "ship model: Anomalocaris"
 	on offer
 		conversation
-			`Upon returning to the spaceport, a worker immediately greets you while others begin to fill your ship with crates. A quick check shows that this cargo has already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
+			`Upon returning to the spaceport, a worker immediately greets you while others begin to fill your ship with crates. A quick check of the shipment data shows that the cargo has already been allocated in your name. All that's left is to deliver it to <destination> by <date> for a promised sum of <payment>.`
 			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel:`
-			`	"Use the Anomalocaris as your flagship.`
-			`	"Do not bring any other ships into Unfettered space, as they are not needed for the cargo. They would only be a liability at best, and a provocation at worst."`
-			`	Given the potential dangers of that area of space, it would be a good idea to familiarize yourself with the design of the Anomalocaris, or perhaps customize it more to your own liking, especially if you plan to deliver the cargo in only this single ship.`
+			`	"You would be wise to use the Anomalocaris as your flagship."`
 				accept
 	on enter
 		system
 			attributes "unfettered"
 		conversation
-			branch "wrong flagship"
-				not "flagship model: Anomalocaris"
-			branch "not single ship"
-				"total ships" != 1
 			action
 				"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 				"reputation: Hai (Unfettered)" >?= 0
 			`As you enter the system, you prepare for a fight to get the cargo through, but it is surprisingly quiet. For the first time, entering Unfettered space does not mean getting shot at by missiles from all sides.`
-				accept
-			label "not single ship"
-			`You enter the system, and, for a brief moment, nobody is shooting you.`
-			`	The Unfettered quickly change their minds, however, as soon as your escorts enter the system. They happily head your way, weapons ready to loot your cargo.`
-				decline
-			label "wrong flagship"
-			`You enter the system, and the Unfettered open fire as usual. Perhaps they would have acted differently if you had used the Anomalocaris as a flagship, but it is too late to find out now.`
-				decline
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are clearly not happy when they somehow find out you didn't deliver the cargo in time. You receive a short message from them: "You will not prove yourself by failing our requests."`
 	on visit
-		dialog `You have reached <planet>, but you either did not bring the Anomalocaris, some of the cargo was on another ship, or you are not using the Anomalocaris as your flagship. You should park your fleet and only use the Anomalocaris.`
+		dialog `You have reached <planet>, but you either did not bring the Anomalocaris, or some of the cargo was on another ship.`
 	to complete
-		has "flagship model: Anomalocaris"
-		"total ships" == 1
+		has "ship model: Anomalocaris"
 	on complete
 		dialog `You receive a message from the associates you bought the ship from: "Thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment>."`
 		payment 1500000
@@ -292,13 +276,14 @@ mission "Hai Legacy 3"
 	deadline 2
 	to offer
 		has "Hai Legacy 2: done"
+		has "ship model: Anomalocaris"
 	on offer
 		conversation
 			`As you land, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, warmer than usual compared to your previous experiences with the Unfettered.`
 			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use that ship to us. Luckily for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
 			`	"I even see technology from those savage Korath that we fought valiantly to obtain!"`
 				to display
-					has "outfit (flagship installed): Korath Detainer"
+					has "outfit: Korath Detainer"
 			`	Her tone suddenly changes as she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
 			choice
 				`	"What do I get if I win?"`
@@ -352,9 +337,9 @@ mission "Hai Legacy 3"
 			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and hail you. "Where do you think you're going, monkey?"`
 				decline
 			label "too many ships"
-			`As you take to join your fleet in orbit, You receive a hail from the Unfettered. "If you can't even count how many ships you have you're not worthy of our time, monkey!"`
 			action
 				fail
+			`As you take to join your fleet in orbit, You receive a hail from the Unfettered. "If you can't even count how many ships you have you're not worthy of our time, monkey!"`
 	on disabled
 		fail
 		conversation
@@ -420,7 +405,7 @@ mission "Hai Legacy 3"
 		to spawn
 			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
-		personality launching marked staying surveillance
+		personality launching marked staying surveillance uninterested
 		on disable
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
