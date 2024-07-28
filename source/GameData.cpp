@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"
@@ -41,7 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
-#include "Music.h"
+#include "audio/Music.h"
 #include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
