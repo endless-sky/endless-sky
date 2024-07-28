@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // A generic flat map providing fast lookup and slower insertion.
-template <class Key, class Value, class ThreeWayComp = std::compare_three_way, class Alloc =
+template<class Key, class Value, class ThreeWayComp = std::compare_three_way, class Alloc =
 		std::allocator<std::pair<Key, Value>>>
 class FlatMap : private std::vector<std::pair<Key, Value>, Alloc> {
 private:
