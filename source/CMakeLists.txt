@@ -323,12 +323,6 @@ target_sources(EndlessSkyLib PRIVATE
 	SystemEntry.h
 	TaskQueue.cpp
 	TaskQueue.h
-	test/Test.cpp
-	test/Test.h
-	test/TestContext.cpp
-	test/TestContext.h
-	test/TestData.cpp
-	test/TestData.h
 	TextArea.cpp
 	TextArea.h
 	TextReplacements.cpp
@@ -368,6 +362,12 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/BySeriesAndIndex.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	test/Test.cpp
+	test/Test.h
+	test/TestContext.cpp
+	test/TestContext.h
+	test/TestData.cpp
+	test/TestData.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp
