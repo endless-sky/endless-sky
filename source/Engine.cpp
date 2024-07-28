@@ -103,11 +103,11 @@ namespace {
 	template <template<class, class> class Container, class Alloc, class Inner>
 	void Prune(Container<shared_ptr<Inner>, Alloc> &objects)
 	{
-		erase_if(objects, [&](const auto &ptr){return ptr->ShouldBeRemoved();});
+		erase_if(objects, [](const auto &ptr){return ptr->ShouldBeRemoved();});
 	}
 
 	template <template<class, class> class Container, class Type, class Alloc>
-	void Prune(Container<Type, Alloc> &objects)
+	enable_if_t<is_base_of_v<Body, Type> || is_base_of_v<Weather, Type>, void> Prune(Container<Type, Alloc> &objects)
 	{
 		erase_if(objects, &Type::ShouldBeRemoved);
 	}
