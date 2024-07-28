@@ -100,14 +100,14 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	template <template<class> class Container, class Type>
-	void Prune(Container<Type> &objects)
+	template <template<class, class> class Container, class Type, class Alloc>
+	void Prune(Container<Type, Alloc> &objects)
 	{
 		erase_if(objects, &Type::ShouldBeRemoved);
 	}
 
-	template <template<class> class Container, template<class> class PtrType, class Inner>
-	void Prune(Container<PtrType<Inner>> &objects)
+	template <template<class, class> class Container, template<class> class PtrType, class Alloc, class Inner>
+	void Prune(Container<PtrType<Inner>, Alloc> &objects)
 	{
 		erase_if(objects, [&](const auto &ptr){return ptr->ShouldBeRemoved();});
 	}
