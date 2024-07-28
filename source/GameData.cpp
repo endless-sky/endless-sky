@@ -61,8 +61,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 #include "System.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
