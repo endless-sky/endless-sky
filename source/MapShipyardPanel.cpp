@@ -266,7 +266,7 @@ void MapShipyardPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				if(!seen.count(ship))
+				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
@@ -278,7 +278,7 @@ void MapShipyardPanel::Init()
 		{
 			const Ship *model = GameData::Ships().Get(it->TrueModelName());
 			++parkedShips[it->GetSystem()][model];
-			if(!seen.count(model))
+			if(!seen.contains(model))
 			{
 				catalog[model->Attributes().Category()].push_back(model);
 				seen.insert(model);

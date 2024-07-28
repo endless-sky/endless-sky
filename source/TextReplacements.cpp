@@ -57,7 +57,7 @@ void TextReplacements::Load(const DataNode &node)
 			key += ">";
 			child.PrintTrace("Warning: text replacements must be suffixed by \">\":");
 		}
-		if(reserved.count(key))
+		if(reserved.contains(key))
 		{
 			child.PrintTrace("Skipping reserved substitution key:");
 			continue;
