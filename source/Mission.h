@@ -103,8 +103,8 @@ public:
 	void Unmark(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int IllegalCargoFine() const;
-	std::string IllegalCargoMessage() const;
+	int Fine() const;
+	std::string FineMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
 	int64_t DisplayedPayment() const;
@@ -224,8 +224,8 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	int illegalCargoFine = 0;
-	std::string illegalCargoMessage;
+	int fine = 0;
+	std::string fineMessage;
 	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:

@@ -14,8 +14,8 @@ cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executabl
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 
-# Use C++17 without any compiler specific extensions.
-set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
+# Use C++20 without any compiler specific extensions.
+set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # Use LTO for Release builds only.
@@ -55,7 +55,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.8
+project("Endless Sky" VERSION 0.10.9
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
