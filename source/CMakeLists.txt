@@ -361,8 +361,12 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Audio.h
 	audio/Music.cpp
 	audio/Music.h
+	audio/Playlist.cpp
+	audio/Playlist.h
 	audio/Sound.cpp
 	audio/Sound.h
+	audio/Track.cpp
+	audio/Track.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h

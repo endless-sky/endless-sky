@@ -63,6 +63,8 @@ public:
 	void reserve(std::size_t n) { choices.reserve(n); weights.reserve(n); }
 	std::size_t size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
+	Type &front() noexcept { return choices.front(); }
+	const Type &front() const noexcept { return choices.front(); }
 	Type &back() noexcept { return choices.back(); }
 	const Type &back() const noexcept { return choices.back(); }
 
