@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLAYLIST_H_
 #define PLAYLIST_H_
 
-#include "ConditionSet.h"
-#include "LocationFilter.h"
+#include "../ConditionSet.h"
+#include "../LocationFilter.h"
 #include "Track.h"
-#include "WeightedList.h"
+#include "../WeightedList.h"
 
 #include <map>
 #include <string>

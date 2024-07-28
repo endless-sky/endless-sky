@@ -21,11 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Music.h"
 #include "../Planet.h"
 #include "../PlayerInfo.h"
-#include "../Playlist.h"
+#include "Playlist.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Random.h"
-#include "../Sound.h"
+#include "Sound.h"
 #include "../System.h"
 
 #include <AL/al.h>

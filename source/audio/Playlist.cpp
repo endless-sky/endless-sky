@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Playlist.h"
 
-#include "DataNode.h"
-#include "GameData.h"
-#include "PlayerInfo.h"
-#include "System.h"
+#include "../DataNode.h"
+#include "../GameData.h"
+#include "../PlayerInfo.h"
+#include "../System.h"
 
 #include <algorithm>
 

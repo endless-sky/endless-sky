@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Track.h"
 
-#include "DataNode.h"
+#include "../DataNode.h"
 
 #include <algorithm>
 #include <iostream>
