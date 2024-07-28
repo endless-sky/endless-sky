@@ -76,6 +76,8 @@ mission "Successors: First Contact 1"
 			`	You take the device from the alien. It liquifies the moment it touches your skin before freezing in mid-splash to project a small but detailed holographic star map of the surrounding systems. A star system a few jumps east of here is highlighted amidst a sea of alien lettering. The individual standing opposite you grunts energetically as the trio of interceptors begins to hover in preparation for takeoff: it would appear that these people, whoever they are, want you to travel there.`
 				accept
 			label refused
+			action
+				log "Made contact with a group of aliens to the far south of the Graveyard. Refused to take a device from them and was forced to return to orbit."
 			`	You back away from the alien offering you the strange device and into the safety of the <ship>'s hatch. Though none of the aliens make any move to harm you, you notice from inside that after a couple of minutes, water slowly begins to flow onto the landing pad. As your ship's landing gear begin to submerge, you are forced to take off while you still can.`
 				flee
 
@@ -97,8 +99,9 @@ mission "Successors: First Contact 1"
 	on complete
 		event "label successor space"
 		event "successors: first contact wait" 8
-		log "Factions" "Successors" `The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are the heirs of a large interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled to much of the galaxy, at least as far north as Sol.`
-		log "People" "Sieasej" `Sieasej is a Successor scholar of historical linguistics and member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand you without the benefit of a translation device.`
+		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to this plant in eight days, when their government will decide what to do about my arrival.`
+		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are amphibious octopods at least three meters tall. They are the heirs of a large and advanced interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled to much of the galaxy, at least as far north as Sol."
+		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
 		"reputation: Successor" += 5
 		"reputation: House Chydiyi" += 5
 		"reputation: House Myurej" += 5
@@ -296,10 +299,13 @@ mission "Successors: First Contact 2"
 			`	"Thine apology is noted."`
 				goto task
 			label accepted
+			action
+				log "Met with the leaders of Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Accepted their offer."
 			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st travel there when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But prithee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee an enemy and levy upon thee every harm that we can muster."`
 				goto end
 			label rejected
 			action
+				log "Met with the leaders of Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Did not accept."
 				set "rejected: Successors: First Contact 2"
 				"reputation: House Sioeora" = 0
 			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of grace today shall be t'allow thee to depart this noble place still possessed o'thy freedom and belongings. Thou shalt receive no further aid nor comfort from this House, and shalt be banished at the pleasure of its scions from whatever worlds lie under our dominion."`
@@ -633,6 +639,7 @@ mission "Successors: First Contact 3"
 			action
 				"reputation: House Sioeora" = 0
 				event "successors: released kijra-pet wait" 32
+				log "Released the animal House Sioeora requested I bring to them. Returned their citizen, but was barred from further dealings with the House."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. You and Sieasej are given fewer escorts than before, and you can't help but wonder if the absence of your quarry is particularly conspicuous to them. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
 			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast though brought that item of our desiring?"`
 			choice
@@ -654,7 +661,8 @@ mission "Successors: First Contact 3"
 				"reputation: House Aqrabe" += 10
 				"reputation: House Seineq" += 10
 				"reputation: People's Houses" += 10
-				log "Factions" "Successors" `The Successors are governed by a group of six High Houses who operate mostly independently from each other. The Houses are organized into two large alliances called the Old and New Houses, and cooperate in council with their allies and the other Houses in general.`
+				log "Captured and returned the animal House Sioeora requested that I bring to them. Was rewarded with a translation device and historical data that allows me to land on most Successor worlds. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
+				log "Factions" "Successors" "The Successors are governed by a group of six High Houses who operate mostly independently from each other. The Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before, who direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
 			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou returns from thy hunt successful!"`
 			choice
@@ -859,7 +867,8 @@ mission "Successors: Kaatrij First Contact 1"
 				clear "Successors: kijran"
 				clear "Successors: saajret"
 				clear "Successors: sioeora"
-				log "People" "Saajret, of Somber Sejra" `Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society.`
+				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral caretakers of the animals I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
+				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society."
 				set "known to the successors"
 				event "successors: trust 1"
 				"reputation: Successor" += 5
@@ -922,6 +931,7 @@ mission "Successors: Trusted"
 		"reputation: House Chydiyi" += 5
 		set "trusted by the successors"
 		event "successors: trust 2"
+		log "Summoned to meet with the Successor High Houses in council, where I was given the right to purchase their civilian technology."
 		conversation
 			`Once you have sat down at the spaceport, you are met by another group of Successor naval officers. You notice that this group appears even more diverse than the last, representing several different uniform styles and liveries. Unifying them all is a small white and blue pin attached to their outfits; one that does not correspond to the insignia of any of the High Houses. The officers guide you, politely but firmly, to one of the monorail trains snaking out from the spaceport to other installations on the planet, and you all shuffle together into one of the cars, which appears to have been completely cleared of normal passengers, if it even carried those in the first place.`
 			`	Several minutes later, the monorail deposits you at an especially large and well-decorated complex that swarms with both military and well-dressed civilians, some of whom appear so opulent and bejeweled that you suspect their personal effects are worth more than your ship. Each of them without exception wears the same white and blue insignia as your escorts, though many have incorporated it into their clothes' design or even display it as a pattern in skin coloration.`
