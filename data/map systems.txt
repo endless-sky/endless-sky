@@ -13404,12 +13404,15 @@ system "Eta Carinae"
 	asteroids "large metal" 1 2.55
 	haze _menu/haze-tear
 	object
-		sprite star/nova
-	object
 		sprite star/o-supergiant
+		distance 200
+		period 300
+		offset 180
+		object
+			sprite star/nova
 	object
-		sprite star/g0
-		distance 5000
+		sprite star/o-giant
+		distance 1200
 		period 300
 
 system Eteron
@@ -19633,7 +19636,7 @@ system Kasii-Cavaasa
 	habitable 17025
 	link Mavra-Ijsola
 	hazard "Predecessors Base Spatial Decay" 400
-	asteroids "small rock" 4 1
+	asteroids "small rock" 1 1
 	asteroids "small metal" 3 1
 	haze _menu/haze-tear
 	object
@@ -19656,39 +19659,32 @@ system Kasii-Sola
 	habitable 320
 	link Vasa-Oorua
 	hazard "Predecessors Base Spatial Decay" 600
-	asteroids "medium rock" 39 1.005
-	asteroids "large rock" 2 1.11
-	asteroids "small metal" 11 1.17
-	asteroids "medium metal" 207 1.65
-	asteroids "large metal" 22 1.155
+	asteroids "small rock" 1 1.005
+	asteroids "small metal" 1 1.17
 	haze _menu/haze-tear
 	object
 		sprite star/m0
 		period 10
 	object
-		sprite planet/cloud0
-		distance 182
-		period 54.903
-	object
-		sprite planet/rock13
-		distance 384
-		period 168.26
-	object
-		sprite planet/desert10
-		distance 614.36
-		period 340.502
-	object
-		sprite planet/gas14
+		sprite planet/gas14-b
 		distance 1186.32
 		period 913.667
 		object
-			sprite planet/lava0
+			sprite planet/luna-b
 			distance 266
 			period 17.668
 		object Raaqa-Uur-Kaav
-			sprite planet/desert4-b
-			distance 392
+			sprite planet/ocean0-b
+			distance 422
 			period 31.607
+	object
+		sprite planet/cloud0
+		distance 2600
+		period 2600
+		object
+			sprite planet/desert4
+			distance 235.36
+			period 32
 	object
 		sprite planet/gas2
 		distance 3991.81
@@ -19701,6 +19697,10 @@ system Kasii-Sola
 			sprite planet/dust3
 			distance 322
 			period 35.011
+	object
+		sprite planet/rock13
+		distance 5600
+		period 10000
 
 system Kasi-Vasa-Novaa
 	shrouded
@@ -19951,7 +19951,7 @@ system Khasola-Ryuit
 	arrival 5000
 	habitable 12000
 	hazard "Predecessors Base Spatial Decay" 600
-	asteroids "small metal" 4 1.5
+	asteroids "small metal" 2 1.5
 	asteroids "large metal" 1 1.3
 	haze _menu/haze-tear
 	object
@@ -26401,9 +26401,8 @@ system Oublaa-Khora
 	attributes predecessor
 	arrival 2160
 	habitable 2160
-	asteroids "small rock" 4 16
-	asteroids "large rock" 2 12
-	asteroids "small metal" 3 14
+	asteroids "small rock" 1 2
+	asteroids "small metal" 2 3
 	hazard "Predecessors Base Spatial Decay" 600
 	haze _menu/haze-tear
 	object
@@ -34915,12 +34914,12 @@ system Uuoru-Sossa
 		distance 200
 		period 80
 	object
-		sprite planet/gas8
+		sprite planet/gas5
 		distance 2200
-		period 32
+		period 2000
 		object Kella-Uuoru-Sossa
 			sprite planet/dust6-b
-			distance 520
+			distance 380
 			period 60
 		object
 			sprite planet/ice0
@@ -34928,12 +34927,12 @@ system Uuoru-Sossa
 			period 72
 	object
 		sprite planet/gas12
-		distance 3000
-		period 700
-	object
-		sprite planet/ice5
 		distance 5000
 		period 5000
+	object
+		sprite planet/ice5
+		distance 8000
+		period 12000
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
@@ -35328,11 +35327,9 @@ system Vasa-Oorua
 	hazard "Predecessors Base Spatial Decay" 400
 	hazard "Predecessors Spatial Rift Weak" 10000
 	haze _menu/haze-tear
-	asteroids "small rock" 32 5
-	asteroids "small metal" 31 5.5
-	asteroids "large rock" 16 2
-	asteroids "large metal" 18 7.5
-	minables copper 12 6.5
+	asteroids "small rock" 2 5
+	asteroids "small metal" 1 5.5
+	minables tungsten 3 6.5
 	object
 		sprite star/g0
 	object
@@ -35340,8 +35337,8 @@ system Vasa-Oorua
 		distance 1800
 		period 2000
 	object Osolaa-Val-Mavra
-		sprite planet/ice0
-		distance 2290
+		sprite planet/ice7
+		distance 2390
 		period 2000
 
 system Vaticanus
