@@ -29,8 +29,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
-	Audio.cpp
-	Audio.h
 	BankPanel.cpp
 	BankPanel.h
 	BatchDrawList.cpp
@@ -210,8 +208,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
-	Music.cpp
-	Music.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
@@ -304,8 +300,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipyardPanel.h
 	ShopPanel.cpp
 	ShopPanel.h
-	Sound.cpp
-	Sound.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
 	Sprite.cpp
@@ -329,12 +323,6 @@ target_sources(EndlessSkyLib PRIVATE
 	SystemEntry.h
 	TaskQueue.cpp
 	TaskQueue.h
-	Test.cpp
-	Test.h
-	TestContext.cpp
-	TestContext.h
-	TestData.cpp
-	TestData.h
 	TextArea.cpp
 	TextArea.h
 	TextReplacements.cpp
@@ -363,11 +351,23 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	audio/Audio.cpp
+	audio/Audio.h
+	audio/Music.cpp
+	audio/Music.h
+	audio/Sound.cpp
+	audio/Sound.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	test/Test.cpp
+	test/Test.h
+	test/TestContext.cpp
+	test/TestContext.h
+	test/TestData.cpp
+	test/TestData.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp
