@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define DICTIONARY_H_
 
 #include "FlatMap.h"
-#include "StringInterner.h"
 
 #include <cstring>
 #include <string>
