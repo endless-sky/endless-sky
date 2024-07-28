@@ -66,7 +66,7 @@ Value &FlatMap<Key, Value, ThreeWayComp, Alloc>::operator[](KeyRef key)
 	if(pos.second)
 		return data()[pos.first].second;
 
-	return insert(begin() + pos.first, std::make_pair(key, 0.))->second;
+	return insert(begin() + pos.first, std::make_pair(key, Value()))->second;
 }
 
 
