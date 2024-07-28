@@ -46,7 +46,7 @@ mission "Incipias: Warning of the Guardian"
 			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example."`
 			label care
 			action
-				log `Entered a region of space northeast of the Hai and was warned by a disembodied voice to not disturb the 'unborn flowers' that inhabit the region.`
+				log `Entered a region of space northeast of the Hai and was warned by a disembodied voice to not disturb the "unborn flowers" that inhabit the region.`
 				event "label incipias space"
 			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of others are like a painting that never stops being painted, but is a tragic thing to watch the painting stop. That is why we try to protect these creations of life - so we can see what heights they reach."`
 			`	There is a pause. "I see that you can not be convinced by me. Though I could intervene in your journey, I do not favor unsavory confrontation." The voice is now resolute in tone. "I will let you pass, but I will be watching you, as I am the guardian of this space."`
@@ -54,7 +54,7 @@ mission "Incipias: Warning of the Guardian"
 				decline
 			label agree
 			action
-				log `Entered a region of space northeast of the Hai and was warned by a disembodied voice to not disturb the 'unborn flowers' that inhabit the region. Agreed to stay away from there.`
+				log `Entered a region of space northeast of the Hai and was warned by a disembodied voice to not disturb the "unborn flowers" that inhabit the region. Agreed to stay away from there.`
 				set "Incipias: accepted the guardian's warning"
 				event "label incipias space"
 			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
@@ -160,7 +160,7 @@ mission "Incipias: The Derelict"
 		to despawn
 			has "incipias: helped the derelict"
 		on assist
-			log `Assisted a stranded alien vessel in an uninhabited system with crew members that appear similar to floating octopi or jellyfish. Could not communicate with them due to the language barrier, but managed to give them the repair equipment they needed to repair their ship. However, they lacked a hyperdrive and so were unable to travel back to their home system.`
+			log `Assisted a stranded alien vessel in an uninhabited system whose crew members appeared similar to floating octopi or jellyfish. Could not communicate with them due to the language barrier, but managed to give them the equipment they needed to repair their ship. Unfortunately, they lacked a hyperdrive and so were unable to travel back to their home system.`
 			conversation
 				scene "scene/incipias message"
 				`As you approach the derelict ship, it sends you a hail request. Once you accept the hail, color gradients suddenly start moving over your screen in a dizzying fashion, but curiously there is no audio. It's clear that unless you have some sort of translation device, you will not be able to understand whatever transmission you just witnessed. You continue your attempt to assist the ship, preparing to bring some repair supplies on board.`
@@ -347,7 +347,7 @@ mission "Incipias: Help The Stranded 2"
 			`	You tell them to board your ship, and shortly after, you take off. Luckily, you leave just in time to avoid a powerful windstorm approaching the area.`
 				launch
 	on complete
-		log "Factions" "Incipias" `The Incipias appear to be split into two groups called the Hicemus and the Conlatio; the former occupies a space station, while the latter occupies the Incipias homeworld. The Conlatio do not appear to allow outsiders on their home planet.`
+		log "Factions" "Incipias" `The Incipias seem to be split into two groups called the Hicemus and the Conlatio; the former occupies a space station, while the latter occupies the Incipias homeworld. The Conlatio do not appear to allow outsiders on their home planet.`
 		conversation
 			`Once you land on the station, your passengers thank you again and leave, probably to get some well-earned rest. As you step out of the <ship>, another Incipias approaches you. Its scales seem worn down, and you notice intricate claw-like attachments around the end of its tentacles. "Follow me, outer-helper, before a crowd gathers. We would like to talk."`
 			`	They guide you through the hallways so that you avoid larger groups, though they choose only horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
