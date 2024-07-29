@@ -52,17 +52,17 @@ void AmmoDisplay::Update(const Ship &flagship)
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon() || ammo.find(secWeapon) != ammo.end())
+		if(!secWeapon || !secWeapon->GetWeapon().Icon() || ammo.find(secWeapon) != ammo.end())
 			continue;
 
 		double ammoCount = -1.;
-		if(secWeapon->Ammo())
-			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
-		if(secWeapon->FiringFuel())
+		if(secWeapon->GetWeapon().Ammo())
+			ammoCount = flagship.OutfitCount(secWeapon->GetWeapon().Ammo());
+		if(secWeapon->GetWeapon().FiringFuel())
 		{
 			double remaining = flagship.Fuel()
 				* flagship.Attributes().Get("fuel capacity");
-			double fuelAmmoCount = remaining / secWeapon->FiringFuel();
+			double fuelAmmoCount = remaining / secWeapon->GetWeapon().FiringFuel();
 			// Decide what remaining ammunition value to display.
 			ammoCount = (ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount));
 		}
@@ -102,7 +102,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 
-		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::Draw(it.first->GetWeapon().Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);

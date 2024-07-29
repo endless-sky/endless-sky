@@ -52,14 +52,14 @@ namespace {
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
 		auto toRefill = set<const Outfit *>{};
-		auto armed = set<const Outfit *>{};
+		auto armed = set<const Weapon *>{};
 		for(auto &&it : ship.Weapons())
 			if(it.GetOutfit())
 			{
-				const Outfit *weapon = it.GetOutfit();
-				armed.emplace(weapon);
-				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
-					toRefill.emplace(weapon->Ammo());
+				const Weapon &weapon = it.GetOutfit()->GetWeapon();
+				armed.emplace(&weapon);
+				if(weapon.Ammo() && weapon.AmmoUsage() > 0)
+					toRefill.emplace(weapon.Ammo());
 			}
 
 		// Carriers may be configured to supply ammunition for carried ships found
@@ -68,9 +68,9 @@ namespace {
 		// only require it be installed), we always want to restock these outfits.
 		for(auto &&it : ship.Outfits())
 		{
-			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
-				toRefill.emplace(outfit->Ammo());
+			const Weapon *weapon = &it.first->GetWeapon();
+			if(weapon->Ammo() && !weapon->IsWeapon() && !armed.count(weapon))
+				toRefill.emplace(weapon->Ammo());
 		}
 		return toRefill;
 	}
@@ -632,7 +632,7 @@ void OutfitterPanel::Sell(bool toStorage)
 				player.AddStock(selectedOutfit, 1);
 			}
 
-			const Outfit *ammo = selectedOutfit->Ammo();
+			const Outfit *ammo = selectedOutfit->GetWeapon().Ammo();
 			if(ammo && ship->OutfitCount(ammo))
 			{
 				// Determine how many of this ammo I must sell to also sell the launcher.
@@ -813,7 +813,7 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 
 	// If this outfit requires ammo, check if we could sell it if we sold all
 	// the ammo for it first.
-	const Outfit *ammo = outfit->Ammo();
+	const Outfit *ammo = outfit->GetWeapon().Ammo();
 	if(ammo && ship->OutfitCount(ammo))
 	{
 		Outfit attributes = ship->Attributes();

@@ -1330,7 +1330,7 @@ vector<string> Ship::FlightCheck() const
 				checks.emplace_back("no fuel?");
 		}
 		for(const auto &it : outfits)
-			if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
+			if(it.first->IsWeapon() && it.first->GetWeapon().FiringEnergy() > energy)
 			{
 				checks.emplace_back("insufficient energy to fire?");
 				break;
@@ -2026,7 +2026,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
-		projectiles.emplace_back(position, explosionWeapon);
+		projectiles.emplace_back(position, &explosionWeapon->GetWeapon());
 
 	if(CannotAct(Ship::ActionType::FIRE))
 		return;
@@ -2040,7 +2040,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
+		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(weapon && CanFire(weapon))
 		{
 			if(weapon->AntiMissile())
@@ -2093,7 +2093,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
+		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(weapon && CanFire(weapon))
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
@@ -2133,7 +2133,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
+		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(weapon && CanFire(weapon))
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
@@ -3581,7 +3581,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Recalculate the AI to account for the loss of this weapon.
-		if(!OutfitCount(ammo) && ammo->AmmoUsage())
+		if(!OutfitCount(ammo) && ammo->GetWeapon().AmmoUsage())
 			aiCache.Calibrate(*this);
 	}
 
@@ -5011,7 +5011,7 @@ double Ship::CalculateDeterrence() const
 	for(const Hardpoint &hardpoint : Weapons())
 		if(hardpoint.GetOutfit())
 		{
-			const Outfit *weapon = hardpoint.GetOutfit();
+			const Weapon *weapon = hardpoint.GetWeapon();
 			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
 			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
 			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an

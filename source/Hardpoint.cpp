@@ -49,6 +49,8 @@ Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
 	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
 {
+	weapon = outfit ? &outfit->GetWeapon() : nullptr;
+
 	UpdateArc();
 }
 
@@ -58,6 +60,13 @@ Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
 const Outfit *Hardpoint::GetOutfit() const
 {
 	return outfit;
+}
+
+
+
+const Weapon *Hardpoint::GetWeapon() const
+{
+	return weapon;
 }
 
 
@@ -117,7 +126,7 @@ Angle Hardpoint::HarmonizedAngle() const
 	// Find the point of convergence of shots fired from this gun. That is,
 	// find the angle where the projectile's X offset will be zero when it
 	// reaches the very end of its range.
-	double d = outfit->Range();
+	double d = weapon->Range();
 	// Projectiles with a range of zero should fire straight forward. A
 	// special check is needed to avoid divide by zero errors.
 	return Angle(d <= 0. ? 0. : -asin(refPoint.X() / d) * TO_DEG);
@@ -157,7 +166,7 @@ bool Hardpoint::IsUnder() const
 // Find out if this hardpoint has a homing weapon installed.
 bool Hardpoint::IsHoming() const
 {
-	return outfit && outfit->Homing();
+	return weapon && weapon->Homing();
 }
 
 
@@ -166,14 +175,14 @@ bool Hardpoint::IsHoming() const
 // (e.g. anti-missile, tractor beam).
 bool Hardpoint::IsSpecial() const
 {
-	return outfit && (outfit->AntiMissile() || outfit->TractorBeam());
+	return weapon && (weapon->AntiMissile() || weapon->TractorBeam());
 }
 
 
 
 bool Hardpoint::CanAim() const
 {
-	return outfit && outfit->TurretTurn();
+	return weapon && weapon->TurretTurn();
 }
 
 
@@ -214,7 +223,7 @@ void Hardpoint::Step()
 		--reload;
 	// If the full reload time is elapsed, reset the burst counter.
 	if(reload <= 0.)
-		burstCount = outfit->BurstCount();
+		burstCount = weapon->BurstCount();
 	if(burstReload > 0.)
 		--burstReload;
 	// If the burst reload time has elapsed, this weapon will not count as firing
@@ -229,10 +238,11 @@ void Hardpoint::Step()
 // "turret turn" rate. Up to its angle limit.
 void Hardpoint::Aim(double amount)
 {
-	if(!outfit)
+	if(!weapon)
 		return;
 
-	const double add = outfit->TurretTurn() * amount;
+
+	const double add = weapon->TurretTurn() * amount;
 	if(isOmnidirectional)
 		angle += add;
 	else
@@ -261,19 +271,19 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 
 	// Apply the aim and hardpoint offset.
 	aim += angle;
-	start += aim.Rotate(outfit->HardpointOffset());
+	start += aim.Rotate(weapon->HardpointOffset());
 
 	// Apply the weapon's inaccuracy to the aim. This allows firing effects
 	// to share the same inaccuracy as the projectile.
-	aim += Distribution::GenerateInaccuracy(outfit->Inaccuracy(), outfit->InaccuracyDistribution());
+	aim += Distribution::GenerateInaccuracy(weapon->Inaccuracy(), weapon->InaccuracyDistribution());
 
 	// Create a new projectile, originating from this hardpoint.
 	// In order to get projectiles to start at the right position they are drawn
 	// at an offset of (.5 * velocity). See BatchDrawList.cpp for more details.
-	projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, outfit);
+	projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, weapon);
 
 	// Create any effects this weapon creates when it is fired.
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
+	CreateEffects(weapon->FireEffects(), start, ship.Velocity(), aim, visuals);
 
 	// Update the reload and burst counters, and expend ammunition if applicable.
 	Fire(ship, start, aim);
@@ -285,7 +295,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector<Visual> &visuals)
 {
 	// Make sure this hardpoint really is an anti-missile.
-	int strength = outfit->AntiMissile();
+	int strength = weapon->AntiMissile();
 	if(!strength)
 		return false;
 
@@ -303,7 +313,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
 {
 	// Make sure this hardpoint really is a tractor beam.
-	double strength = outfit->TractorBeam();
+	double strength = weapon->TractorBeam();
 	if(!strength)
 		return false;
 
@@ -323,8 +333,8 @@ void Hardpoint::Jam()
 	// const access), assume Armament checked that this is a valid call.
 
 	// Reset the reload count.
-	reload += outfit->Reload();
-	burstReload += outfit->BurstReload();
+	reload += weapon->Reload();
+	burstReload += weapon->BurstReload();
 }
 
 
@@ -341,6 +351,7 @@ void Hardpoint::Install(const Outfit *outfit)
 	{
 		// Reset all the reload counters.
 		this->outfit = outfit;
+		weapon = &outfit->GetWeapon();
 		Reload();
 
 		// Update the arc of fire because of changing an outfit.
@@ -370,7 +381,7 @@ void Hardpoint::Reload()
 {
 	reload = 0.;
 	burstReload = 0.;
-	burstCount = outfit ? outfit->BurstCount() : 0;
+	burstCount = weapon ? weapon->BurstCount() : 0;
 }
 
 
@@ -379,6 +390,7 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+	weapon = nullptr;
 
 	// Update the arc of fire because of changing an outfit.
 	UpdateArc();
@@ -400,7 +412,8 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 {
 	// Get the weapon range. Anti-missile and tractor beam shots always last a
 	// single frame, so their range is equal to their velocity.
-	double range = outfit->Velocity();
+
+	double range = weapon->Velocity();
 	Angle facing = ship.Facing();
 
 	// Check if the body is within range of this hardpoint.
@@ -420,19 +433,19 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	}
 
 	// Precompute the number of visuals that will be added.
-	visuals.reserve(visuals.size() + outfit->FireEffects().size()
-		+ outfit->HitEffects().size() + outfit->DieEffects().size());
+	visuals.reserve(visuals.size() + weapon->FireEffects().size()
+		+ weapon->HitEffects().size() + weapon->DieEffects().size());
 
 	angle = aim - facing;
-	start += aim.Rotate(outfit->HardpointOffset());
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
+	start += aim.Rotate(weapon->HardpointOffset());
+	CreateEffects(weapon->FireEffects(), start, ship.Velocity(), aim, visuals);
 
 	// Figure out where the hit effect should be placed. Anti-missile and tractor
 	// beam systems do not create projectiles; they just create a blast animation.
-	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
+	CreateEffects(weapon->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
 
 	// Die effects are displayed at the body, whether or not it actually "dies."
-	CreateEffects(outfit->DieEffects(), body.Position(), body.Velocity(), aim, visuals);
+	CreateEffects(weapon->DieEffects(), body.Position(), body.Velocity(), aim, visuals);
 
 	// Update the reload and burst counters, and expend ammunition if applicable.
 	Fire(ship, start, aim);
@@ -449,23 +462,23 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// outfit pointer is not null.
 
 	// Reset the reload count.
-	reload += outfit->Reload();
-	burstReload += outfit->BurstReload();
+	reload += weapon->Reload();
+	burstReload += weapon->BurstReload();
 	--burstCount;
 	isFiring = true;
 
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.
-	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start);
+	if(weapon->WeaponSound())
+		Audio::Play(weapon->WeaponSound(), start);
 	// Apply any "kick" from firing this weapon.
-	double force = outfit->FiringForce();
+	double force = weapon->FiringForce();
 	if(force)
 		ship.ApplyForce(aim.Unit() * -force);
 
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
-	ship.ExpendAmmo(*outfit);
+	ship.ExpendAmmo(*weapon);
 }
 
 
