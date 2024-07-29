@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DICTIONARY_H_
-#define DICTIONARY_H_
+#pragma once
 
 #include <string>
 #include <utility>
@@ -40,7 +39,3 @@ public:
 	using std::vector<std::pair<const char *, double>>::begin;
 	using std::vector<std::pair<const char *, double>>::end;
 };
-
-
-
-#endif

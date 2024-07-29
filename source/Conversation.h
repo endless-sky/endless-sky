@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_H_
-#define CONVERSATION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
@@ -195,7 +194,3 @@ private:
 	// The actual conversation data:
 	std::vector<Node> nodes;
 };
-
-
-
-#endif

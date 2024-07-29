@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_EVENT_H_
-#define GAME_EVENT_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "DataNode.h"
@@ -87,7 +86,3 @@ private:
 	std::vector<const System *> systemsToUnvisit;
 	std::vector<const Planet *> planetsToUnvisit;
 };
-
-
-
-#endif
