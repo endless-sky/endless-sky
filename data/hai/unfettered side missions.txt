@@ -244,7 +244,7 @@ mission "Hai Legacy 2"
 		conversation
 			`Upon returning to the spaceport, a worker immediately greets you while others begin to fill your ship with crates. A quick check of the shipment data shows that the cargo has already been allocated in your name. All that's left is to deliver it to <destination> by <date> for a promised sum of <payment>.`
 			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel:`
-			`	"You would be wise to use the Anomalocaris as your flagship."`
+			`	"You would be wise to use the Anomalocaris as your flagship for this delivery."`
 				accept
 	on enter
 		system
@@ -256,13 +256,13 @@ mission "Hai Legacy 2"
 			`As you enter the system, you prepare for a fight to get the cargo through, but it is surprisingly quiet. For the first time, entering Unfettered space does not mean getting shot at by missiles from all sides.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
-		dialog `The Unfettered and their associates are clearly not happy when they somehow find out you didn't deliver the cargo in time. You receive a short message from them: "You will not prove yourself by failing our requests."`
+		dialog `The Unfettered and their associates are clearly not happy when they somehow find out you didn't deliver the cargo in time, leaving you a brief message on your command panel: "You will not prove yourself to us by failing our requests."`
 	on visit
 		dialog `You have reached <planet>, but you either did not bring the Anomalocaris, or some of the cargo was on another ship.`
 	to complete
 		has "ship model: Anomalocaris"
 	on complete
-		dialog `You receive a message from the associates you bought the ship from: "Thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment>."`
+		dialog `After landing, a group of Unfettered gather around your ship and begin unloading the medical supplies, though strangely they don't seem to be in any hurry. Shortly after they've finished, you receive a rather brief message from the Unfettered you bought the ship from. "Thank you for helping our brethren, <last>. Please accept these <payment>."`
 		payment 1500000
 		log "Delivered a pressing food shipment to the Unfettered Hai using an Anomalocaris, which seems to have pleased them."
 
