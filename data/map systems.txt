@@ -19931,7 +19931,7 @@ system Kella-Uoasa
 		distance 5000
 		period 5000
 		object Kasii-Tuur-Saqru
-			sprite planet/station17
+			sprite "planet/station successor 2"
 			distance 180
 			period 64
 		object
@@ -25986,7 +25986,7 @@ system Ojstaan-Sola
 		distance 1000.41
 		period 400.255
 		object Saska-Aa-Noorr
-			sprite planet/"station successor 1"
+			sprite "planet/station successor 1"
 			distance 300
 			period 30
 			offset 2
