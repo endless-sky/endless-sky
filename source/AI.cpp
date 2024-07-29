@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
 #include "FighterHitHelper.h"
@@ -547,7 +547,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
-	if(activeCommands.Has(Command::HOLD) && !shift)
+	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
+	{
+		newOrders.SetHoldFire();
+		IssueOrders(newOrders, "holding fire.");
+	}
+	if(activeCommands.Has(Command::HOLD_POSITION) && !shift)
 	{
 		newOrders.SetHoldPosition();
 		IssueOrders(newOrders, "holding position.");
@@ -1410,8 +1415,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.HasAttack() || it->second.HasFinishOff()))
-			return it->second.GetTargetShip();
+		if(it != orders.end())
+		{
+			if(it->second.HasAttack() || it->second.HasFinishOff())
+				return it->second.GetTargetShip();
+			else if(it->second.HasHoldFire())
+				return target;
+		}
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -3723,10 +3733,15 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.GetTargetShip() == currentTarget)
+		if(it != orders.end())
 		{
-			disabledOverride = (it->second.HasFinishOff());
-			friendlyOverride = disabledOverride | (it->second.HasAttack());
+			if(it->second.HasHoldFire())
+				return;
+			if(it->second.GetTargetShip() == currentTarget)
+			{
+				disabledOverride = (it->second.HasFinishOff());
+				friendlyOverride = disabledOverride || (it->second.HasAttack());
+			}
 		}
 	}
 	bool currentIsEnemy = currentTarget
