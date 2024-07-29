@@ -153,7 +153,7 @@ void Minable::Place(double energy, double beltRadius)
 
 	// Generate random orbital parameters. Limit eccentricity so that the
 	// objects do not spend too much time far away and moving slowly.
-	eccentricity = Random::Real() * .6;
+	eccentricity = Random::Real() * .1;
 
 	// Since an object is moving slower at apoapsis than at periapsis, it is
 	// more likely to start out there. So, rather than a uniform distribution of
@@ -168,9 +168,11 @@ void Minable::Place(double energy, double beltRadius)
 	// apoapsis distance (scale / (1 - e)) is no farther than 4.: scale <= 4. * (1 - e)
 	// periapsis distance is no farther than 1.3: scale <= 1.3 * (1 + e)
 	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
-	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
-	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
-	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
+	// These two formula lines removed as they added too much spread
+	// and prevented formation of actual belts.
+	// double sMin = max(.8 * (1. + eccentricity), .9 * (1. - eccentricity));
+	// double sMax = min(1.5 * (1. - eccentricity), 1.1 * (1. + eccentricity));
+	orbitScale = beltRadius;
 
 	// At periapsis, the object should have this velocity:
 	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;
