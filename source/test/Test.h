@@ -135,5 +135,3 @@ private:
 	std::map<std::string, unsigned int> jumpTable;
 	std::vector<TestStep> steps;
 };
-
-#endif

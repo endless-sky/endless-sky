@@ -85,5 +85,3 @@ private:
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 };
-
-#endif

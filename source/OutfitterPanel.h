@@ -96,6 +96,3 @@ private:
 
 	int shipsHere = 0;
 };
-
-
-#endif

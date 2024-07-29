@@ -22,5 +22,3 @@ public:
 	static void Print(const char *const *argv);
 	static void Help();
 };
-
-#endif

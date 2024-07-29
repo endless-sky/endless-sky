@@ -38,5 +38,3 @@ private:
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
 };
-
-#endif

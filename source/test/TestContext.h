@@ -49,5 +49,3 @@ private:
 
 	std::set<ActiveTestStep> branchesSinceGameStep;
 };
-
-#endif

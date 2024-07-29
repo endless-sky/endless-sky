@@ -65,5 +65,3 @@ private:
 
 	std::map<const Effect *, float> environmentalEffects;
 };
-
-#endif

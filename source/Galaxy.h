@@ -37,5 +37,3 @@ private:
 	Point position;
 	const Sprite *sprite = nullptr;
 };
-
-#endif

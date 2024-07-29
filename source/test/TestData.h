@@ -54,5 +54,3 @@ private:
 	// File containing the test-data
 	std::string sourceDataFile;
 };
-
-#endif

@@ -67,5 +67,3 @@ private:
 	double k = 0.;
 	double rSquared = 0.;
 };
-
-#endif

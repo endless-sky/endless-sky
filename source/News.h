@@ -55,5 +55,3 @@ private:
 	std::vector<const Sprite *> portraits;
 	Phrase messages;
 };
-
-#endif

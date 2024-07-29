@@ -66,6 +66,3 @@ private:
 
 	Sale<Ship> shipyard;
 };
-
-
-#endif
