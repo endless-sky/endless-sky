@@ -225,7 +225,6 @@ mission "Incipias: Help The Stranded 1"
 			`	"You lack the tools for such a mission. To this one's knowledge, no vessels capable of landing on gas giants have ever been developed by your kind. And you are certainly not able to make your intentions known to them in any meaningful sense." The Quarg stares at you for a moment, pondering a little.`
 			`	"But for the sake of the Incipias, this one will assist you on this last point. If you cannot be dissuaded from your course of action, then it is best you are supplied a means of communication, so that your interactions may be on amicable terms. This one can produce you with a single one of our translators, which will allow you to relate your intentions to the species. Request that they sell you one of their ships, so that you are made capable to land on their tumultuous planets."`
 			`	It pauses before taking on a more serious tone. "However, you are forbidden from granting the young species any advanced technology of yours. If you concur with us on that point, we shall furnish you with a translator."`
-			label choice
 			choice
 				`	"If that's how I can help them, sure."`
 					goto yes
