@@ -31,11 +31,7 @@ template<class T, class Allocator = std::allocator<T>>
 class PartiallyGuardedList : public std::list<T, Allocator> {
 public:
 	template<class... Args>
-	inline T &emplace_back(Args &&... args)
-	{
-		const std::lock_guard<std::mutex> lock(write_mutex);
-		return std::list<T, Allocator>::emplace_back(args...);
-	}
+	inline T &emplace_back(Args &&... args);
 
 	// Prevent accidental unsafe operations.
 	// These can be implemented later, if necessary.
@@ -57,5 +53,15 @@ public:
 private:
 	std::mutex write_mutex;
 };
+
+
+
+template<class T, class Allocator>
+template<class... Args>
+inline T &PartiallyGuardedList<T, Allocator>::emplace_back(Args &&...args)
+{
+	const std::lock_guard<std::mutex> lock(write_mutex);
+	return std::list<T, Allocator>::emplace_back(args...);
+}
 
 #endif
