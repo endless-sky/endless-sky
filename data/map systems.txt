@@ -22832,7 +22832,7 @@ system Maspa-Raaqa
 			distance 300
 			period 300
 		object Myiara-Sola-Tej
-			sprite planet/station4bd
+			sprite "planet/station successor 4"
 			distance 510
 			period 510
 
