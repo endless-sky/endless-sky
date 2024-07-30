@@ -298,11 +298,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			RenderPluginDescription(SpriteSet::Get(pluginInstallData.front().name + "-libicon"),
 				pluginInstallData.front().aboutText);
 	}
-	else if(key == 'i' && page == 'i' && latestPlugin && latestPlugin->url.size()
+	else if(key == 'i' && page == 'i' && latestPlugin && !latestPlugin->url.empty()
 		&& !latestPlugin->installed)
-		installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
-	else if(key == 'u' && page == 'i' && latestPlugin && latestPlugin->url.size()
-		&& latestPlugin->outdated)
+			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+	else if(key == 'u' && page == 'i' && latestPlugin && !latestPlugin->url.empty()
+			&& latestPlugin->outdated)
 		installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
 	else if(key == 'r' && page == 'i')
 	{
@@ -1067,7 +1067,6 @@ void PreferencesPanel::DrawPlugins()
 
 		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
-
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
@@ -1179,7 +1178,7 @@ void PreferencesPanel::DrawPluginInstalls()
 
 	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
 	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
-	for(int x = currentPageIndex; x < maxIndex; x++)
+	for(int x = currentPageIndex; x < maxIndex; ++x)
 	{
 		Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(installData.name.empty())
@@ -1188,10 +1187,10 @@ void PreferencesPanel::DrawPluginInstalls()
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 
 		// Use url as that is more unique, just in case.
-		bool isHover = (hoverPluginInstall ? installData.url == hoverPluginInstall->url : false);
-		bool isClick = (clickedPluginInstall ? installData.url == clickedPluginInstall->url : false);
-		bool isSelec = (selecPluginInstall ? installData.url == selecPluginInstall->url : false);
-		bool isLatest = (latestPlugin ? installData.url == latestPlugin->url : false);
+		bool isHover = (hoverPluginInstall && installData.url == hoeverPluginInstall->url);
+		bool isClick = (clickedPluginInstall && installData.url == clickedPluginInstall->url);
+		bool isSelec = (selecPluginInstall && installData.url == selecPluginInstall->url);
+		bool isLatest = (latestPlugin && installData.url == latestPlugin->url);
 		if(isHover || isClick)
 			table.DrawHighlight(back);
 		else if(isSelec)
@@ -1215,9 +1214,9 @@ void PreferencesPanel::DrawPluginInstalls()
 		selecPluginInstall = pluginInstallZones.at(0).Value();
 
 
-	const Point UP{0, -1};
-	const Point DOWN{0, 1};
-	const Point POINTER_OFFSET{0, 5};
+	const Point UP(0, -1);
+	const Point DOWN(0, 1);
+	const Point POINTER_OFFSET(0, 5);
 	if(pluginDescriptionBuffer)
 	{
 		pluginDescriptionScroll.Step();
@@ -1531,9 +1530,9 @@ void PreferencesPanel::HandleConfirm()
 		Plugins::TogglePlugin(selectedPlugin);
 		break;
 	case 'i':
-		if(latestPlugin && latestPlugin->url.size() && !latestPlugin->installed)
+		if(latestPlugin && !latestPlugin->url.empty() && !latestPlugin->installed)
 			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
-		else if(latestPlugin && latestPlugin->url.size() && latestPlugin->outdated)
+		else if(latestPlugin && !latestPlugin->url.empty() && latestPlugin->outdated)
 			installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
 		break;
 	default:
@@ -1563,7 +1562,7 @@ void PreferencesPanel::ProcessPluginIndex()
 			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
 			bool isInstalled = installedVersion && !installedVersion->removed;
 			string pluginName = pluginInstall["name"];
-			Plugins::InstallData installData(
+			pluginInstallData.emplace_back(
 				pluginName,
 				pluginInstall["url"],
 				pluginInstall["version"],
@@ -1571,7 +1570,6 @@ void PreferencesPanel::ProcessPluginIndex()
 				isInstalled,
 				isInstalled && installedVersion->version != pluginInstall["version"]
 			);
-			pluginInstallData.emplace_back(installData);
 
 			Files::CreateFolder(Files::Config() + "icons/");
 			string iconPath = Files::Config() + "icons/" + pluginName + ".png";

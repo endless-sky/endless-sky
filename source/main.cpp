@@ -133,7 +133,6 @@ int main(int argc, char *argv[])
 
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
-	// Init curl.
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 
 	try {

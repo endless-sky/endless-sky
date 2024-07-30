@@ -131,7 +131,7 @@ private:
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
-	std::vector<ClickZone<Plugins::InstallData*>> pluginInstallZones;
+	std::vector<ClickZone<Plugins::InstallData *>> pluginInstallZones;
 
 	std::unique_ptr<RenderBuffer> pluginListClip;
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;

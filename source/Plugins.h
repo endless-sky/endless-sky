@@ -78,18 +78,19 @@ struct Plugin {
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-	struct InstallData
-	{
+	class InstallData {
+		InstallData() = default;
+		InstallData(std::string name, std::string url, std::string version,
+				std::string aboutText, bool installed, bool outdated)
+			: name(name), url(url), version(version), aboutText(aboutText),
+				installed(installed), outdated(outdated) {}
+
 		std::string name;
 		std::string url;
 		std::string version;
 		std::string aboutText;
 		bool installed = false;
 		bool outdated = false;
-		InstallData(std::string name = "", std::string url = "", std::string version = "",
-			std::string aboutText = "", bool installed = false, bool outdated = false)
-		: name(name), url(url), version(version), aboutText(aboutText), installed(installed),
-			outdated(outdated) {}
 	};
 
 

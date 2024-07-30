@@ -105,7 +105,7 @@ namespace {
 		return true;
 	}
 
-	bool ExtractZIP(std::string &filename, const std::string &destination, const std::string &expectedName)
+	bool ExtractZIP(string &filename, const string &destination, const string &expectedName)
 	{
 		int flags = ARCHIVE_EXTRACT_TIME;
 		flags |= ARCHIVE_EXTRACT_PERM;
@@ -127,7 +127,7 @@ namespace {
 		archive_read_next_header(read, &entry);
 		string firstEntry = archive_entry_pathname(entry);
 		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
-		bool fitsExpected = firstEntry == (expectedName);
+		bool fitsExpected = firstEntry == expectedName;
 		archive_read_data_skip(read);
 
 		// Check if this plugin has a head folder, if not, create one in the destination.

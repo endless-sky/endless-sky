@@ -614,11 +614,11 @@ interface "install plugins"
 		color bright
 
 	active if "next install plugin"
-	button e "n_ext>"
+	button e "N_ext"
 		center -30 170
 		dimensions 120 30
 	active if "previous install plugin"
-	button r "<p_revious"
+	button r "P_revious"
 		center -215 170
 		dimensions 120 30
 
