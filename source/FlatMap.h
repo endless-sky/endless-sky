@@ -29,7 +29,7 @@ class FlatMap : private std::vector<std::pair<Key, Value>, Alloc> {
 private:
 	// Use references or copies for passing keys and values, depending on what's more efficient.
 	typedef std::conditional_t<std::is_fundamental_v<Key> || std::is_pointer_v<Key> || std::is_enum_v<Key>,
-			Key, Key &> KeyRef;
+			Key, const Key &> KeyRef;
 
 
 public:
@@ -94,14 +94,14 @@ std::pair<size_t, bool> FlatMap<Key, Value, ThreeWayComp, Alloc>::Search(KeyRef 
 	while(low != high)
 	{
 		size_t mid = (low + high) / 2;
-		int cmp = ThreeWayComp{}(key, at(mid).first);
-		if(!cmp)
-			return std::make_pair(mid, true);
+		const auto cmp = ThreeWayComp{}(key, at(mid).first);
 
 		if(cmp < 0)
 			high = mid;
-		else
+		else if(cmp > 0)
 			low = mid + 1;
+		else
+			return std::make_pair(mid, true);
 	}
 	return std::make_pair(low, false);
 }
