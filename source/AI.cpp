@@ -1680,7 +1680,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 
 	Orders &order = it->second;
-  const bool hasTravelOrder = order.HasMoveTo() || order.HasTravelTo() || order.HasLandOn();
+	const bool hasTravelOrder = order.HasMoveTo() || order.HasTravelTo() || order.HasLandOn();
 
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
