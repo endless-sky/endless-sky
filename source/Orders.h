@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ORDERS_H_
-#define ORDERS_H_
+#pragma once
 
 #include <bitset>
 #include <map>
@@ -35,6 +34,7 @@ public:
 		// HOLD_ACTIVE is the same command as HOLD_POSITION, but it is given when a ship
 		// actively needs to move back to the position it was holding.
 		HOLD_ACTIVE,
+		HOLD_FIRE,
 		MOVE_TO,
 		KEEP_STATION,
 		GATHER,
@@ -57,6 +57,7 @@ public:
 	// Set and get the active order types on this order.
 	void SetHoldPosition();
 	void SetHoldActive();
+	void SetHoldFire();
 	void SetMoveTo();
 	void SetKeepStation();
 	void SetGather();
@@ -67,6 +68,7 @@ public:
 
 	bool HasHoldPosition() const;
 	bool HasHoldActive() const;
+	bool HasHoldFire() const;
 	bool HasMoveTo() const;
 	bool HasKeepStation() const;
 	bool HasGather() const;
@@ -111,7 +113,3 @@ private:
 	Point targetPoint;
 	const System *targetSystem = nullptr;
 };
-
-
-
-#endif

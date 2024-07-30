@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BODY_H_
-#define BODY_H_
+#pragma once
 
 #include "Angle.h"
 #include "ConditionsStore.h"
@@ -183,7 +182,3 @@ private:
 	mutable float delayed = 0.f;
 	mutable bool stateReady = false;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_WRAPPEDTEXT_H_
-#define ES_TEXT_WRAPPEDTEXT_H_
+#pragma once
 
 #include "alignment.hpp"
 #include "DisplayText.h"
@@ -120,7 +119,3 @@ private:
 
 	int longestLineWidth = 0;
 };
-
-
-
-#endif

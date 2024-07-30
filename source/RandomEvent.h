@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RANDOMEVENT_H_
-#define RANDOMEVENT_H_
+#pragma once
 
 
 
@@ -52,7 +51,3 @@ constexpr int RandomEvent<T>::Period() const noexcept
 {
 	return period;
 }
-
-
-
-#endif
