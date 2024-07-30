@@ -19975,38 +19975,43 @@ system Khosa-Kaska
 	pos 201 1279
 	government Successor
 	attributes successor
-	arrival 500
-	habitable 100
+	arrival 5000
+	habitable 5000
 	link Vade-Staja
 	asteroids "small metal" 8 1.5
 	asteroids "small rock" 9 1.8
 	asteroids "large metal" 1 1.2
 	minables lead 3 2.2
-	trade Clothing 333
-	trade Electronics 672
-	trade Equipment 428
-	trade Food 408
-	trade "Heavy Metals" 932
-	trade Industrial 644
-	trade "Luxury Goods" 1284
-	trade Medical 576
-	trade Metal 532
-	trade Plastic 348
 	fleet "Small Old Houses" 2500
 	fleet "Successor Miners" 2000
 	fleet "Medium Successor Freight" 4000
 	fleet "Small Successor Transport" 2000
 	haze _menu/haze-67
 	object
-		sprite star/nova-small
+		sprite star/a0
+		distance 75
+		period 30
+	object
+		sprite star/o-dwarf
+		distance 120
+		period 30
+		offset 180
 	object
 		sprite planet/lava3
 		distance 1500
 		period 1500
 	object
 		sprite planet/lava0
-		distance 3210
-		period 3000
+		distance 1732
+		period 2000
+	object Kuj-Sol-Nnesa
+		sprite planet/desert0-b
+		distance 4972
+		period 6000
+		object
+			sprite planet/rock0-b
+			distance 182
+			period 71
 
 system Kiiraj-Luue
 	shrouded
