@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITIONS_STORE_H_
-#define CONDITIONS_STORE_H_
+#pragma once
 
 #include <cstdint>
 #include <functional>
@@ -150,7 +149,3 @@ private:
 	std::map<std::string, ConditionEntry> storage;
 	std::map<std::string, DerivedProvider> providers;
 };
-
-
-
-#endif

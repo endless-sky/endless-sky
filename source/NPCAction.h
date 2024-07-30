@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NPC_ACTION_H_
-#define NPC_ACTION_H_
+#pragma once
 
 #include "MissionAction.h"
 
@@ -61,7 +60,3 @@ private:
 	// Tasks this NPC action performs, such as modifying accounts, inventory, or conditions.
 	MissionAction action;
 };
-
-
-
-#endif

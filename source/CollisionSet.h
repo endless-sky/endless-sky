@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COLLISION_SET_H_
-#define COLLISION_SET_H_
+#pragma once
 
 #include "Collision.h"
 #include "CollisionType.h"
@@ -100,7 +99,3 @@ private:
 	// After Finish(), counts[index] is where a certain bin begins.
 	std::vector<unsigned> counts;
 };
-
-
-
-#endif
