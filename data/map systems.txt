@@ -22338,7 +22338,7 @@ system Luue-Saqru
 		distance 3220
 		period 3000
 		object Vade-Osolaa-Kaska
-			sprite planet/station6c
+			sprite "planet/station successor 3"
 			distance 450
 			period 32
 
