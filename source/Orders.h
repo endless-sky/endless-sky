@@ -36,6 +36,8 @@ public:
 		HOLD_ACTIVE,
 		HOLD_FIRE,
 		MOVE_TO,
+		TRAVEL_TO,
+		LAND_ON,
 		KEEP_STATION,
 		GATHER,
 		ATTACK,
@@ -59,6 +61,8 @@ public:
 	void SetHoldActive();
 	void SetHoldFire();
 	void SetMoveTo();
+	void SetTravelTo();
+	void SetLandOn();
 	void SetKeepStation();
 	void SetGather();
 	void SetAttack();
@@ -70,6 +74,8 @@ public:
 	bool HasHoldActive() const;
 	bool HasHoldFire() const;
 	bool HasMoveTo() const;
+	bool HasTravelTo() const;
+	bool HasLandOn() const;
 	bool HasKeepStation() const;
 	bool HasGather() const;
 	bool HasAttack() const;
@@ -84,10 +90,12 @@ public:
 	void SetTargetAsteroid(std::shared_ptr<Minable> asteroid);
 	void SetTargetPoint(const Point &point);
 	void SetTargetSystem(const System *system);
+	void SetTargetPlanet(const Planet *planet);
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	const Point &GetTargetPoint() const;
 	const System *GetTargetSystem() const;
+	const Planet *GetTargetPlanet() const;
 
 	// Determine if this order must update itself in any way
 	// given changes that have occurred to its targets.
@@ -112,4 +120,5 @@ private:
 	std::weak_ptr<Minable> targetAsteroid;
 	Point targetPoint;
 	const System *targetSystem = nullptr;
+	const Planet *targetPlanet = nullptr;
 };

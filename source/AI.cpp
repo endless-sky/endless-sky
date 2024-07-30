@@ -1705,8 +1705,9 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	shared_ptr<Ship> target = order.GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = order.GetTargetAsteroid();
 	const System *targetSystem = order.GetTargetSystem();
+	const Planet *targetPlanet = order.GetTargetPlanet();
 	const Point &targetPoint = order.GetTargetPoint();
-	if(type == Orders::LAND_ON && it->second.targetPlanet)
+	if(order.HasLandOn() && targetPlanet)
 	{
 		// LAND_ON would not be issued unless the planet was in this system.
 		ship.SetTargetStellar(ship.GetSystem()->FindStellar(order.GetTargetPlanet()));
@@ -4998,17 +4999,17 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
 			ship.EraseWaypoint(targetSystem);
 		else
 		{
-			newOrders.type = Orders::TRAVEL_TO;
-			newOrders.targetSystem = targetSystem;
+			newOrders.SetTravelTo();
+			newOrders.SetTargetSystem(targetSystem);
 			if(from == targetSystem)
 			{
-				// Travel to the next destination, if it exists.
+				// Travel to the next waypoint, if it exists.
 				ship.SetTargetStellar(nullptr);
 				const System *nextSystem = ship.NextWaypoint();
 				if(nextSystem)
-					newOrders.targetSystem = nextSystem;
+					newOrders.SetTargetSystem(nextSystem);
 				else
-					newOrders.type = 0;
+					newOrders.SetTargetSystem(nullptr);
 			}
 		}
 	}
@@ -5017,21 +5018,21 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
 	// supercedes the order to travel to the next waypoint (unless already visited).
 	if(destination && destination->IsInSystem(from))
 	{
-		newOrders.type = Orders::LAND_ON;
-		newOrders.targetPlanet = destination;
+		newOrders.SetLandOn();
+		newOrders.SetTargetPlanet(destination);
 	}
 
 	for(const auto &it : stopovers)
 		if(!it.second && it.first->IsInSystem(from))
 		{
-			newOrders.type = Orders::LAND_ON;
-			newOrders.targetPlanet = it.first;
+			newOrders.SetLandOn();
+			newOrders.SetTargetPlanet(it.first);
 			break;
 		}
 
 	// Update the NPC's orders.
 	Orders &existing = orders[&ship];
-	if(newOrders.type == 0)
+	if(!newOrders.GetTargetSystem() && !newOrders.HasLandOn())
 		orders.erase(&ship);
 	else
 		existing = newOrders;
