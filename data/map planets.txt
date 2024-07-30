@@ -2597,7 +2597,7 @@ planet Khora-Uurau-Uuoru
 planet Khora-Vasa-Reyyaa
 	attributes manufacturing military mining successor wealthy
 	landscape land/nasa2
-	description `Much of Successor technology relies on advanced composite materials, from their extremely durable ship hulls to their high-performance railguns. This planet contains rich natural deposits of the raw materials required for the manufacturing of their composites, and consequently, it serves as both a center for the mining of these materials and as the industrial core of Successor space.`
+	description `Much of Successor technology relies on advanced composite materials, from their extremely durable ship hulls to their high-performance kinetic weapons. This planet contains rich natural deposits of the raw materials required for the manufacturing of their composites, and consequently, it serves as both a center for the mining of these materials and as the industrial core of Successor space.`
 	description `	Because Khora-Vasa-Reyyaa falls within the sphere of influence of the Old Houses, many in the New Houses are very concerned about the power imbalance this creates, and several treaties are in place ensuring fair and open exports from the planet.`
 	spaceport `The spaceport here is perhaps the most militarized of any you have visited in Successor space. Large industrial buildings rise up around the landing pads, casting them into deep shadow, and several small Successor warships stand ready on fast-launch pads, ready to enter orbit at a moment's notice. You pass through a security checkpoint on your way into the spaceport proper, and while the security officers have clearly been briefed to expect alien visitors, they still regard you with some degree of scrutiny.`
 	spaceport `	The trading posts, outfitters, and shipyard inside are all quite impressive, and the Successors you meet are all very curt and professional, including the merchant captains.`
@@ -3235,7 +3235,7 @@ planet Myiara-Sola-Tej
 	description `This abandoned station appears to remain technically habitable, if one doesn't mind breathing the poorly-recycled and dusty air.`
 		to display
 			not "known to the successors"
-	description `This industrial station was constructed during the arrival of the New Houses to exploit the mineral wealth of this system, but was abandoned when richer and more accessible mineral deposits were found planetside. It still remains technically habitable, but none of the High Houses have had an interest in refurbishing it since cheaper and easier industrial and habitation projects are constantly available.`
+	description `This industrial station was constructed during the arrival of the New Houses to exploit the mineral wealth of this system, but was abandoned when richer and more accessible mineral deposits were found planetside. It still remains technically habitable, but none of the High Houses have had an interest in refurbishing it since cheaper and easier industrial and habitation projects are consistently available.`
 		to display
 			has "known to the successors"
 	government Uninhabited
@@ -3957,7 +3957,7 @@ planet Raaqa-Kvelq-Ryuit
 	description `This planet seems to host a larger population than any other you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, and both terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
 		to display
 			not "known to the successors"
-	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over one billion inhabitants, the largest of any planet in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
+	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over five hundred million inhabitants, the largest of any planet in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
 		to display
 			has "known to the successors"
 	spaceport `The spaceport is located right on the equator and is a massive, sprawling affair with several enormous racks of cargo containers stretching out into the distance, clearly awaiting transport on soon-arriving freighters. The ground is wet from a sprinkler system that maintains a constant thin film of water all throughout the spaceport's exterior. The Successors, lacking shoes, must appreciate this for reducing friction between their arms and the relatively rough and uncomfortable concrete.`
@@ -3968,7 +3968,7 @@ planet Raaqa-Kvelq-Ryuit
 planet Raaqa-Puan-Uuoru
 	attributes quiet successor wealthy
 	landscape land/beach3
-	description `After the collapse, many Successors found themselves without a family, or without the knowledge of unbroken lineage that others took comfort in. House Kaatrij, which had lost many of its scions in the collapse, took the previously unprecedented step of welcoming these otherwise-outcasts into its familial order, earning its reputation as perhaps the most diverse of the Houses. Many of its members still pledge a ceremonial allegiance to their defunct Houses under Kaatrij, which remains small but well-supported and a key member of the New Houses alliance.`
+	description `After the collapse, many Successors found themselves without a family, or without the knowledge of unbroken lineage that others took comfort in. House Kaatrij, which had lost many of its scions in the collapse, took the previously unprecedented step of welcoming these otherwise-outcasts into its familial order, earning a reputation as the most diverse of the various Houses. Many of its members still pledge a ceremonial allegiance to their defunct Houses under Kaatrij, which remains small but well-supported and a key member of the New Houses alliance.`
 	description `	This, its home planet, is small, rainy, and mostly covered by ocean. Widely regarded as one of the most beautiful planets in Successor space, settlement here is tightly regulated by House Kaatrij.`
 	spaceport `Upon setting down, the landing pad releases a billowing sheet of clear water-repellant material that covers your ship, presumably as some sort of protection against the rain. The spaceport itself is low and small and decorated with strips of the same material that gently ruffle in the wind, almost like the sails of an ancient ocean-going ship. The water collects in carefully-sculpted channels that run all over the surface of the building, occasionally collecting in small pools or spreading out into delicate branch-like networks built into the ground.`
 	shipyard "High Houses Light"
@@ -5218,7 +5218,7 @@ planet Vade-Osolaa-Kaska
 	description `This station appears abandoned; it is old and decaying, and while the automated systems maintain a breathable atmosphere in some areas, there are no signs of permanent habitation.`
 		to display
 			not "known to the successors"
-	description `Although briefly used as a small-scale shipyard several hundred years ago, this station was eventually abandoned by the High Houses because of its inconvenient location and altogether poor construction. There are occasional rumors about criminals using it as a bolt-hole or a place to hide contraband, but few Successors have the desire to go and check.`
+	description `Although briefly used as a small-scale shipyard several hundred years ago, this station was eventually abandoned by the High Houses because of its inconvenient location and altogether poor construction. There are occasional rumors about criminals using it as a bolt-hole or a place to hide contraband, but few among the Successors have the desire to go and check.`
 		to display
 			has "known to the successors"
 	spaceport `The spaceport here is cavernous but empty, riddled with voids where vast pieces of machinery have been removed. A layer of dust covers the ground; it is disturbed in some locations with what look like trails, suggesting that this place may not be entirely unused.`
