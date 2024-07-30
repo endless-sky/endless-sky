@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DRAW_LIST_H_
-#define DRAW_LIST_H_
+#pragma once
 
 #include "Point.h"
 #include "SpriteShader.h"
@@ -68,7 +67,3 @@ private:
 	Point center;
 	Point centerVelocity;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ORDERS_H_
-#define ORDERS_H_
+#pragma once
 
 #include <bitset>
 #include <map>
@@ -114,7 +113,3 @@ private:
 	Point targetPoint;
 	const System *targetSystem = nullptr;
 };
-
-
-
-#endif

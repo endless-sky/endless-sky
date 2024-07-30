@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLEET_H_
-#define FLEET_H_
+#pragma once
 
 #include "FleetCargo.h"
 #include "Personality.h"
@@ -96,7 +95,3 @@ private:
 	Personality personality;
 	Personality fighterPersonality;
 };
-
-
-
-#endif

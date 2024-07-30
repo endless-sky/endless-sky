@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SOUND_H_
-#define SOUND_H_
+#pragma once
 
 #include <string>
 
@@ -37,7 +36,3 @@ private:
 	unsigned buffer = 0;
 	bool isLooped = false;
 };
-
-
-
-#endif

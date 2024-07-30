@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef STAR_FIELD_H_
-#define STAR_FIELD_H_
+#pragma once
 
 #include "Shader.h"
 
@@ -72,7 +71,3 @@ private:
 	GLuint translateI;
 	GLuint brightnessI;
 };
-
-
-
-#endif
