@@ -76,8 +76,8 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no expressions are added from empty nodes" ) {
-			const std::string validationWarning = "Error: Loading empty (sub)condition:\n";
-			set.Load(DataNode{});
+			const std::string validationWarning = "Error: Loading empty (sub)condition:\ntoplevel\n\n";
+			set.Load(AsDataNode("toplevel"));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
 				REQUIRE( warnings.Flush() == validationWarning );
