@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMPARATORS_BY_GIVEN_ORDER_H_
-#define COMPARATORS_BY_GIVEN_ORDER_H_
+#pragma once
 
 #include <algorithm>
 #include <vector>
@@ -51,7 +50,3 @@ public:
 private:
 	const std::vector<T>& order;
 };
-
-
-
-#endif

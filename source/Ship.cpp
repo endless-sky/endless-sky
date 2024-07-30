@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
-#include "Sound.h"
+#include "audio/Sound.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "StellarObject.h"
@@ -995,6 +995,12 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			for(const auto &it : baseAttributes.CargoScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("cargo scan sound", it.first->Name());
+			for(const auto &it : baseAttributes.OutfitScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("outfit scan sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1343,6 +1349,13 @@ vector<string> Ship::FlightCheck() const
 void Ship::SetPosition(Point position)
 {
 	this->position = position;
+}
+
+
+
+void Ship::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
 }
 
 
@@ -1788,6 +1801,13 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
+		// Transfer some energy, if needed.
+		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
+		{
+			helped = true;
+			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
+			TransferEnergy(max(200., toGive), victim.get());
+		}
 		if(helped)
 		{
 			pilotError = 120;
@@ -1799,8 +1819,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		return shared_ptr<Ship>();
 
 	// If the boarding ship is the player, they will choose what to plunder.
-	// Always take fuel if you can.
+	// Always take fuel and energy if you can.
 	victim->TransferFuel(victim->fuel, this);
+	victim->TransferEnergy(victim->energy, this);
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -1865,8 +1886,8 @@ int Ship::Scan(const PlayerInfo &player)
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
-	bool activeScanning = false;
-	int result = 0;
+	int activeScanning = ShipEvent::NONE;
+	int result = ShipEvent::NONE;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
@@ -1878,7 +1899,7 @@ int Ship::Scan(const PlayerInfo &player)
 			return;
 
 		startedScanning |= !elapsed;
-		activeScanning = true;
+		activeScanning |= event;
 
 		// Total scan time is:
 		// Proportional to e^(0.5 * (distance / range)^2),
@@ -1911,8 +1932,21 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	if(isYours || (target->isYours && activeScanning))
-		Audio::Play(Audio::Get("scan"), Position());
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	{
+		if(sounds.empty())
+			Audio::Play(Audio::Get("scan"), position);
+		else
+			for(const auto &sound : sounds)
+				Audio::Play(sound.first, position);
+	};
+	if(isYours || (target->isYours))
+	{
+		if(activeScanning & ShipEvent::SCAN_CARGO)
+			playScanSounds(attributes.CargoScanSounds(), position);
+		if(activeScanning & ShipEvent::SCAN_OUTFITS)
+			playScanSounds(attributes.OutfitScanSounds(), position);
+	}
 
 	bool isImportant = false;
 	if(target->isYours)
@@ -2559,6 +2593,14 @@ bool Ship::CanRefuel(const Ship &other) const
 
 
 
+bool Ship::CanGiveEnergy(const Ship &other) const
+{
+	double toGive = min(other.attributes.Get("energy capacity"), max(200., other.attributes.Get("energy capacity") * 0.2));
+	return energy >= 2 * toGive;
+}
+
+
+
 double Ship::TransferFuel(double amount, Ship *to)
 {
 	amount = max(fuel - attributes.Get("fuel capacity"), amount);
@@ -2568,6 +2610,20 @@ double Ship::TransferFuel(double amount, Ship *to)
 		to->fuel += amount;
 	}
 	fuel -= amount;
+	return amount;
+}
+
+
+
+double Ship::TransferEnergy(double amount, Ship *to)
+{
+	amount = max(energy - attributes.Get("energy capacity"), amount);
+	if(to)
+	{
+		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		to->energy += amount;
+	}
+	energy -= amount;
 	return amount;
 }
 
@@ -2811,6 +2867,14 @@ bool Ship::NeedsFuel(bool followParent) const
 	if(!jumpFuel)
 		jumpFuel = navigation.JumpFuel(targetSystem);
 	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
+}
+
+
+
+bool Ship::NeedsEnergy() const
+{
+	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
+			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
 }
 
 
@@ -3101,7 +3165,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	{
 		type |= ShipEvent::DESTROY;
 
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
+		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
 				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
 	}
@@ -4649,13 +4713,13 @@ void Ship::StepPilot()
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
+		if(isYours || personality.IsEscort())
 		{
-			if(parent.lock())
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
-			else
+			if(!parent.lock())
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+					, Messages::Importance::Low);
+			else if(Preferences::Has("Extra fleet status messages"))
+				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}

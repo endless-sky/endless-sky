@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef HIRING_PANEL_H_
-#define HIRING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -44,7 +43,3 @@ private:
 	int maxHire;
 	int maxFire;
 };
-
-
-
-#endif

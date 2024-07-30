@@ -26,5 +26,4 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // #define CATCH_CONFIG_WINDOWS_CRTDBG
 #endif
 
-#define CATCH_CONFIG_NO_CPP17_UNCAUGHT_EXCEPTIONS
-#include "catch.hpp"
+#include <catch2/catch_all.hpp>

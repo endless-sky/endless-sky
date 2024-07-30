@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FORMATION_PATTERN_H_
-#define FORMATION_PATTERN_H_
+#pragma once
 
 #include "Point.h"
 
@@ -126,11 +125,19 @@ private:
 		Point start;
 		Point endOrAnchor;
 
+		// Angle in case this line is an arc.
+		double angle = 0;
+
 		// Sections of the line that repeat.
 		std::vector<LineRepeat> repeats;
 
 		// The number of initial positions for this line.
 		int positions = 1;
+
+		// Properties of how the line behaves.
+		bool isArc = false;
+		bool skipFirst = false;
+		bool skipLast = false;
 	};
 
 
@@ -155,7 +162,3 @@ private:
 	// The lines that define the formation.
 	std::vector<Line> lines;
 };
-
-
-
-#endif
