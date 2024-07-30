@@ -1761,7 +1761,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsRemoved() || victim->GetSystem() != GetSystem())
+	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->LandedOrDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -2509,7 +2509,7 @@ bool Ship::HasLanded() const
 
 
 // Check if this ship has permanently landed or been destroyed.
-bool Ship::IsRemoved() const
+bool Ship::LandedOrDestroyed() const
 {
 	return (hull < 0. || hasLanded);
 }
@@ -2519,7 +2519,7 @@ bool Ship::IsRemoved() const
 // Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
-	if(IsRemoved())
+	if(LandedOrDestroyed())
 		return;
 
 	if(hireCrew)

@@ -312,7 +312,7 @@ public:
 	void LandForever();
 	bool HasLanded() const;
 	// Check if this ship has permanently landed or been destroyed.
-	bool IsRemoved() const;
+	bool LandedOrDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
