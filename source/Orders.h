@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 class Minable;
+class Planet;
 class Ship;
 class System;
 
