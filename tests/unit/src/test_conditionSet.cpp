@@ -90,7 +90,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			set.Load(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == "" + validationWarning + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeTextInWarning + '\n' + '\n');
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
