@@ -364,17 +364,17 @@ void ConditionSet::Add(const DataNode &node)
 bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 {
 	// Each "unary" operator can be mapped to an equivalent binary expression.
-	if(firstToken == "not")
+	if(firstToken == "not" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "==", "0");
-	else if(firstToken == "has")
+	else if(firstToken == "has" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "!=", "0");
-	else if(firstToken == "set")
+	else if(firstToken == "set" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "=", "1");
-	else if(firstToken == "clear")
+	else if(firstToken == "clear" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "=", "0");
-	else if(secondToken == "++")
+	else if(secondToken == "++" && DataNode::IsConditionName(firstToken))
 		expressions.emplace_back(firstToken, "+=", "1");
-	else if(secondToken == "--")
+	else if(secondToken == "--" && DataNode::IsConditionName(firstToken))
 		expressions.emplace_back(firstToken, "-=", "1");
 	else
 		return false;
@@ -390,7 +390,8 @@ bool ConditionSet::Add(const string &name, const string &op, const string &value
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun)
+	if(!fun || !DataNode::IsConditionName(name) ||
+			(!DataNode::IsConditionName(value) && !DataNode::IsNumber(value)))
 		return false;
 
 	hasAssign |= !IsComparison(op);

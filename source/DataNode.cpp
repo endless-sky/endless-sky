@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cctype>
 #include <cmath>
+#include <regex>
 
 using namespace std;
 
@@ -267,6 +268,21 @@ bool DataNode::IsBool(int index) const
 bool DataNode::IsBool(const string &token)
 {
 	return token == "true" || token == "1" || token == "false" || token == "0";
+}
+
+
+
+bool DataNode::IsConditionName(const std::string &token)
+{
+	// Condition names start with an alphabetic character, and can be followed by spaces, colons, all kinds of brackets,
+	// dashes, single-quotes, alphabetic and numeric characters.
+	static auto validConditionRegex = regex("[[:alpha:]]([-:.\\(\\)\\[\\]<>'\\?,/ [:alnum:]])*");
+
+	// Required for backwards compatibility (used for illegal tokens).
+	if(token == "'")
+		return true;
+
+	return regex_match(token, validConditionRegex) && !IsBool(token);
 }
 
 

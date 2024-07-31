@@ -88,7 +88,10 @@ void GameEvent::Load(const DataNode &node)
 	if(node.Size() >= 2)
 	{
 		name = node.Token(1);
-		conditionsToApply.Add("set", "event: " + name);
+		string conditionToApplyName = "event: " + name;
+		if(!DataNode::IsConditionName(conditionToApplyName))
+			node.PrintTrace("Invalid event/condition name:");
+		conditionsToApply.Add("set", conditionToApplyName);
 	}
 	isDefined = true;
 
