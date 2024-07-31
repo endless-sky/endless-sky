@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COLLISION_TYPE_H_
-#define COLLISION_TYPE_H_
+#pragma once
 
 // Types of objects that projectiles are able to collide with.
 // Each CollisionSet has a CollisionType that it keeps track of.
@@ -26,7 +25,3 @@ enum class CollisionType : int {
 	MINABLE,
 	ASTEROID,
 };
-
-
-
-#endif
