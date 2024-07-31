@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NEWS_H_
-#define NEWS_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "LocationFilter.h"
@@ -56,5 +55,3 @@ private:
 	std::vector<const Sprite *> portraits;
 	Phrase messages;
 };
-
-#endif

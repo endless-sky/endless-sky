@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CARGO_HOLD_H_
-#define CARGO_HOLD_H_
+#pragma once
 
 #include <cstdint>
 #include <map>
@@ -108,9 +107,10 @@ public:
 
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged for any illegal outfits plus the sum of the fines for all
-	// missions. If the returned value is negative, you are carrying something so
-	// bad that it warrants a death sentence.
+	// missions. If the returned value is negative, you are carrying something
+	// or someone that warrants a death sentence for you.
 	int IllegalCargoFine(const Government *government, const PlayerInfo &player) const;
+	int IllegalPassengersFine(const Government *government, const PlayerInfo &player) const;
 
 	// Returns the amount tons of illegal cargo.
 	int IllegalCargoAmount() const;
@@ -127,7 +127,3 @@ private:
 	std::map<const Mission *, int> missionCargo;
 	std::map<const Mission *, int> passengers;
 };
-
-
-
-#endif

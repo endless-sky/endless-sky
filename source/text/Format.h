@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_FORMAT_H_
-#define ES_TEXT_FORMAT_H_
+#pragma once
 
 #include <cstdint>
 #include <functional>
@@ -66,6 +65,9 @@ public:
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys);
+	// Recursively expand substitutions in all key/value pairs. Will detect
+	// infinite recursion; offending substitutions will not be expanded.
+	static void Expand(std::map<std::string, std::string> &keys);
 	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
 
@@ -82,7 +84,3 @@ public:
 	// Function for the "find" dialogs:
 	static int Search(const std::string &str, const std::string &sub);
 };
-
-
-
-#endif
