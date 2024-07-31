@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_AI_CACHE_H_
-#define SHIP_AI_CACHE_H_
+#pragma once
 
 class Ship;
 
@@ -65,7 +64,3 @@ inline double ShipAICache::GunRange() const { return gunRange; }
 inline double ShipAICache::TurretRange() const { return turretRange; }
 inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }
 inline bool ShipAICache::NeedsAmmo() const { return hasWeapons != canFight; }
-
-
-
-#endif

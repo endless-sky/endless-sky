@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
+#pragma once
 
 #include "Body.h"
 
@@ -136,7 +135,3 @@ private:
 	// we just compare this pointer to other ship pointers.
 	const Ship *phasedShip;
 };
-
-
-
-#endif

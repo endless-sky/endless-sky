@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_SHADER_H_
-#define SPRITE_SHADER_H_
+#pragma once
 
 #include "Point.h"
 
@@ -60,7 +59,3 @@ public:
 	static void Add(const Item &item, bool withBlur = false);
 	static void Unbind();
 };
-
-
-
-#endif

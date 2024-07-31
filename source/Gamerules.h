@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAMERULES_H_
-#define GAMERULES_H_
+#pragma once
 
 class DataNode;
 
@@ -61,7 +60,3 @@ private:
 	int depreciationMaxAge = 1000;
 	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
 };
-
-
-
-#endif

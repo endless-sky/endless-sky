@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_DETAIL_PANEL_H_
-#define MAP_DETAIL_PANEL_H_
+#pragma once
 
 #include "MapPanel.h"
 
@@ -95,7 +94,3 @@ private:
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
 };
-
-
-
-#endif
