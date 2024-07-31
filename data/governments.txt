@@ -964,10 +964,6 @@ government "Magic Asteroid"
 		"Uninhabited" -.01
 
 	"player reputation" 10
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
 
 government "Marauder"
 	swizzle 6

@@ -43,6 +43,7 @@ fleet "Magic Asteroid"
 		"Asteroid Young 4"
 
 ship "???"
+	"noun" "asteroid"
 	sprite "ship/asteroid adult"
 	attributes
 		category "Transport"
@@ -96,6 +97,7 @@ ship "???"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Large 2"
+	"noun" "asteroid"
 	sprite "ship/asteroid adult 2"
 	attributes
 		category "Transport"
@@ -151,6 +153,7 @@ ship "???" "Asteroid Large 2"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Large 3"
+	"noun" "asteroid"
 	sprite "ship/asteroid adult 3"
 	attributes
 		category "Transport"
@@ -204,6 +207,7 @@ ship "???" "Asteroid Large 3"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Large 4"
+	"noun" "asteroid"
 	sprite "ship/asteroid adult 4"
 	attributes
 		category "Transport"
@@ -257,6 +261,7 @@ ship "???" "Asteroid Large 4"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Large 5"
+	"noun" "asteroid"
 	sprite "ship/asteroid adult 5"
 	attributes
 		category "Transport"
@@ -310,6 +315,7 @@ ship "???" "Asteroid Large 5"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Medium"
+	"noun" "asteroid"
 	sprite "ship/asteroid medium"
 	attributes
 		category "Transport"
@@ -362,6 +368,7 @@ ship "???" "Asteroid Medium"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Young"
+	"noun" "asteroid"
 	sprite "ship/asteroid young"
 	attributes
 		category "Transport"
@@ -414,6 +421,7 @@ ship "???" "Asteroid Young"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Young 2"
+	"noun" "asteroid"
 	sprite "ship/asteroid young 2"
 	attributes
 		category "Transport"
@@ -466,6 +474,7 @@ ship "???" "Asteroid Young 2"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Young 3"
+	"noun" "asteroid"
 	sprite "ship/asteroid young 3"
 	attributes
 		category "Transport"
@@ -518,6 +527,7 @@ ship "???" "Asteroid Young 3"
 	"final explode" "final explosion medium"
 
 ship "???" "Asteroid Young 4"
+	"noun" "asteroid"
 	sprite "ship/asteroid young 4"
 	attributes
 		category "Transport"
