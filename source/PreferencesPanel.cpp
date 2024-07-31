@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
+#include "Logger.h"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Preferences.h"
@@ -51,7 +52,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <thread>
 #include <utility>
 
-#include "Logger.h"
 
 using namespace std;
 
@@ -185,8 +185,9 @@ void PreferencesPanel::Draw()
 		info.SetCondition("next install plugin");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" :
-		(page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins"));
+	string pageName = page == 'c' ? "controls" :
+		(page == 's' ? "settings" 
+		(page == 'p' ? "plugins" : "install plugins"));
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -481,7 +482,7 @@ bool PreferencesPanel::Drag(double dx, double dy)
 {
 	if(page == 'p' || page == 'i')
 	{
-		auto ui = GameData::Interfaces().Get("plugins");
+		const Interface *ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
@@ -1177,8 +1178,8 @@ void PreferencesPanel::DrawPluginInstalls()
 	oldClickedPluginInstall = clickedPluginInstall;
 
 	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
-	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
-	for(int x = currentPageIndex; x < maxIndex; ++x)
+	const size_t maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
+	for(size_t x = currentPageIndex; x < maxIndex; ++x)
 	{
 		Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(installData.name.empty())

@@ -79,6 +79,7 @@ struct Plugin {
 class Plugins {
 public:
 	class InstallData {
+	public:
 		InstallData() = default;
 		InstallData(std::string name, std::string url, std::string version,
 				std::string aboutText, bool installed, bool outdated)

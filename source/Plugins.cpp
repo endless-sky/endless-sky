@@ -25,14 +25,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WIN32_LEAN_AND_MEAN
 #endif
 
-#include <algorithm>
 #include <archive.h>
 #include <archive_entry.h>
+#include <curl/curl.h>
+
+#include <algorithm>
 #include <atomic>
 #include <cassert>
 #include <cstdio>
 #include <cstring>
-#include <curl/curl.h>
 #include <filesystem>
 #include <future>
 #include <map>
@@ -65,13 +66,13 @@ namespace {
 				continue;
 
 			for(const DataNode &child : node)
-				if(child.Size() == 3)
+				if(child.Size() >= 2)
 				{
 					lock_guard<mutex> guard(pluginsMutex);
 					auto *plugin = plugins.Get(child.Token(0));
 					plugin->enabled = child.Value(1);
 					plugin->currentState = child.Value(1);
-					plugin->version = child.Token(2);
+					plugin->version = child.Size() > 2 ? child.Token(2) : "???";
 				}
 		}
 	}
@@ -85,7 +86,7 @@ namespace {
 	const int MAX_DOWNLOAD_SIZE = 1000000000;
 
 	// Copy an entry from one archive to the other.
-	bool CopyData(struct archive *ar, struct archive *aw)
+	bool CopyData(struct archive *inputArchive, struct archive *outputArchive)
 	{
 		int retVal;
 		const void *buff;
@@ -94,12 +95,12 @@ namespace {
 
 		while(true)
 		{
-			retVal = archive_read_data_block(ar, &buff, &size, &offset);
+			retVal = archive_read_data_block(inputArchive, &buff, &size, &offset);
 			if(retVal == ARCHIVE_EOF)
 				return false;
 			if(retVal != ARCHIVE_OK)
 				return false;
-			if(archive_write_data_block(aw, buff, size, offset) != ARCHIVE_OK)
+			if(archive_write_data_block(outputArchive, buff, size, offset) != ARCHIVE_OK)
 				return false;
 		}
 		return true;
@@ -161,7 +162,7 @@ namespace {
 
 			size += archive_entry_size(entry);
 			// The extracted size may be 4 times the maximum download size.
-			if(size > MAX_DOWNLOAD_SIZE)
+			if(size > MAX_DOWNLOAD_SIZE * 4)
 				return false;
 
 			// Adjust root folder name if neccessary.
@@ -641,11 +642,11 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
 
-	CURLcode res = curl_easy_perform(curl);
-	if(res != CURLE_OK)
-		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+	CURLcode result = curl_easy_perform(curl);
+	if(result != CURLE_OK)
+		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(result ));
 
 	curl_easy_cleanup(curl);
 	fclose(out);
-	return res == CURLE_OK;
+	return result == CURLE_OK;
 }
