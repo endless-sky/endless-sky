@@ -212,7 +212,7 @@ outfit "Cargo Scanner"
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
 	"outfit space" -1
-	"cargo scan power" 9
+	"cargo scan power" 12
 	"cargo scan efficiency" 5
 	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
@@ -222,7 +222,7 @@ outfit "Outfit Scanner"
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
 	"outfit space" -2
-	"outfit scan power" 25
+	"outfit scan power" 28
 	"outfit scan efficiency" 15
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
@@ -230,19 +230,57 @@ outfit "Asteroid Scanner"
 	category "Systems"
 	cost 61000
 	thumbnail "outfit/asteroid scanner"
-	"mass" 6
-	"outfit space" -6
-	"asteroid scan power" 40
+	"mass" 5
+	"outfit space" -5
+	"asteroid scan power" 43
 	description "This highly specialized scanning system can analyze the mineral composition of nearby asteroids and identify the ones that contain valuable materials."
+
+outfit "Fuel Scanner"
+	category "Systems"
+	cost 64000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"fuel scan power" 35
+	description "Knowing how much fuel your target has available is useless to most ship captains, but can be very valuable to both law enforcement and pirates. Sometimes the occasional merchant uses one to determine if they are likely to be able to outlast someone in a long pursuit."
+
+outfit "Patrol Scanner"
+	category "Systems"
+	cost 64000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"crew scan power" 35
+	"weapon scan power" 35
+	description "Patrol ships, law enforcement, and immigration officials in the current stellar environment are generally concerned with two things: how many people are on board, and how far away does one need to be in order to stay safe. As such, these scanners are primarily found on ships who are responsible for tracking the flow of people and occasionally conducting arrests or inspections."
+
+outfit "Rangefinder Scanner"
+	category "Systems"
+	cost 24000
+	thumbnail "outfit/tactical scanner"
+	"mass" 1
+	"outfit space" -1
+	"range finder power" 1
+	description "While named a scanner for simplicity, this is more of an analysis and display module that utilizes standard system detection equipment to determine exact ranges to target ships. Once installed, the distance to the currently targeted ship will be displayed in the panel next to it."
 
 outfit "Tactical Scanner"
 	category "Systems"
 	cost 144000
 	thumbnail "outfit/tactical scanner"
-	"mass" 4
-	"outfit space" -4
-	"tactical scan power" 32
-	description "A tactical scanner allows your ship to determine the fuel, energy, heat, and crew complement of nearby targets. For centuries tactical scanners were only employed by the Navy, but recently Kraz Cybernetics has begun manufacturing them for use by militia ships."
+	"mass" 2
+	"outfit space" -2
+	"velocity scan power" 35
+	"energy scan power" 35
+	description "A tactical scanner allows your ship to analyze the current velocity and energy levels of nearby targets, giving commanders useful information on the target's current movement. For centuries tactical scanners were only employed by the Navy, but recently Kraz Cybernetics has begun manufacturing them for use by militia ships."
+
+outfit "Thermal Scanner"
+	category "Systems"
+	cost 64000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"thermal scan power" 35
+	description "While thermal signatures have always been useful as a means of identifying and tracking ships, determining a ship's effective average thermal load was functionally useless until recently. With the development of the plasma cannon and then the flamethrower, attempting to overheat a ship has become a viable combat technique. As such, engineers with the Free World have begun assembling these sensor packages to support the daring captains who choose to use this tactic."
 
 outfit "Surveillance Pod"
 	category "Systems"
@@ -250,12 +288,14 @@ outfit "Surveillance Pod"
 	thumbnail "outfit/surveillance pod"
 	"mass" 5
 	"outfit space" -5
-	"outfit scan power" 16
+	"outfit scan power" 19
 	"outfit scan efficiency" 20
-	"cargo scan power" 4
+	"cargo scan power" 7
 	"cargo scan efficiency" 10
+	"crew scan power" 12
+	"energy scan power" 12
+	"fuel scan power" 12
 	"atmosphere scan" 100
-	"tactical scan power" 9
 	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 

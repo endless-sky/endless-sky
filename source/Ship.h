@@ -99,6 +99,7 @@ public:
 		static const uint8_t OVER = 1;
 
 		uint8_t steering = 0;
+		uint8_t lateral = 0;
 		static const uint8_t NONE = 0;
 		static const uint8_t LEFT = 1;
 		static const uint8_t RIGHT = 2;
@@ -204,8 +205,8 @@ public:
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
-	ShipAICache &GetAICache();
-	void UpdateCaches();
+	const ShipAICache &GetAICache() const;
+	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -290,15 +291,20 @@ public:
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
+	bool IsLatThrusting() const;
 	bool IsReversing() const;
 	bool IsSteering() const;
+	double ThrustMagnitude() const;
 	// The direction that the ship is steering. If positive, the ship is steering right.
 	// If negative, the ship is steering left.
 	double SteeringDirection() const;
+	// If negative, the ship is thrusting left, if positive, the ship is thrusting right.
+	double LateralDirection() const;
 	// Get the points from which engine flares should be drawn.
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
+	const std::vector<EnginePoint>& LateralEnginePoints() const;
 
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -328,6 +334,12 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
+	double DisplaySolar() const;
+	double DisplayRamScoop() const;
+	// These are for the thruster activity bars
+	double DisplayThrust() const;
+	double DisplayTurn() const;
+	double DisplayLateralThrust() const;
 	// A ship's heat is generally between 0 and 1, but if it receives
 	// heat damage the value can increase above 1.
 	double Heat() const;
@@ -394,6 +406,12 @@ public:
 	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
+	// This is their potential acceleration right now
+	double TrueAcceleration() const;
+	// This is their potential turn right now
+	double TrueTurnRate() const;
+	// This is their current speed right now
+	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -582,9 +600,12 @@ private:
 	bool hasBoarded = false;
 	bool isFleeing = false;
 	bool isThrusting = false;
+	bool isLatThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
+	double thrustMagnitude = 0.;
 	double steeringDirection = 0.;
+	double lateralDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
@@ -628,6 +649,7 @@ private:
 	std::vector<EnginePoint> enginePoints;
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
+	std::vector<EnginePoint> lateralEnginePoints;
 	Armament armament;
 
 	// Various energy levels:
