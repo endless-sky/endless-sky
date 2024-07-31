@@ -332,8 +332,8 @@ public:
 	int MapColoring() const;
 	void SetMapColoring(int index);
 	// Get or set the map zoom level.
-	float MapZoom() const;
-	void SetMapZoom(float level);
+	int MapZoom() const;
+	void SetMapZoom(int level);
 	// Get or set the map display mode.
 	bool StarryMap() const;
 	void SetStarryMap(bool state);
@@ -460,7 +460,7 @@ private:
 	std::pair<const System *, Point> interstellarEscortDestination;
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
-	float mapZoom = 0;
+	int mapZoom = 0;
 	bool isStarry = false;
 
 	// Currently collapsed categories for various panels.

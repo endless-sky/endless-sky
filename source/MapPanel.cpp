@@ -45,7 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "SpriteSet.h"
-#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -587,9 +586,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == '[' && isStarry)
 		player.SetStarryMap(false);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 	else
 		return false;
 
@@ -673,9 +672,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
+		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(dy < 0.)
-		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
+		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -1451,7 +1450,7 @@ void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	double zoom = Zoom();
-	if(zoom <= 0.66)
+	if(zoom <= 0.5)
 		return;
 
 	// Draw names for all systems you have visited.
