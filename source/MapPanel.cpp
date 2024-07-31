@@ -1113,8 +1113,8 @@ void MapPanel::UpdateCache()
 
 		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
 
-
 		const bool canViewSystem = player.CanView(system);
+
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
@@ -1401,8 +1401,6 @@ void MapPanel::DrawSystems()
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 
-
-
 	// Draw the circles for the systems.
 	double zoom = Zoom();
 
@@ -1411,7 +1409,7 @@ void MapPanel::DrawSystems()
 	{
 		Point pos = zoom * (node.position + center);
 
-		// System rings fade as you zoom in.
+		// System rings fade as you zoom in if starry map is enabled.
 		RingShader::Draw(pos, OUTER, INNER, node.color.Additive(max(ringFade,
 			node.mapIcon.size() == 0 ? .9f : 0)));
 
@@ -1419,7 +1417,7 @@ void MapPanel::DrawSystems()
 		{
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
 			float starAngle = node.name.length() + node.position.Length();
-			float spin = 4 * acos(0.0) / node.mapIcon.size();
+			float spin = 4 * acos(0.) / node.mapIcon.size();
 			Point starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : node.mapIcon.size() * Point(2, 2);
 
 			// Draw the star sprites
@@ -1427,7 +1425,7 @@ void MapPanel::DrawSystems()
 			{
 				starAngle = starAngle + spin;
 				Point starRotate(cos(starAngle), sin(starAngle));
-				const Body starBody = Body(star, pos + zoom * starOffset * starRotate,
+				const Body starBody(star, pos + zoom * starOffset * starRotate,
 					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
 				batchDraw.Add(starBody);
 			}
@@ -1466,7 +1464,6 @@ void MapPanel::DrawNames()
 	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
 	for(const Node &node : nodes)
 		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
-
 }
 
 
