@@ -1710,7 +1710,7 @@ ship "???" "Asteroid Adult (Patir 12A)"
 mission "Ka'het: Patir Mystery 13A"
 	landing
 	name "Return to <planet>"
-	description  "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
+	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
 	source "Builder Settlement"
 	destination "Aventine"
 	to offer
@@ -1751,7 +1751,7 @@ mission "Ka'het: Patir Mystery 13A"
 				launch
 	on enter
 		conversation "end of Patir 2 - on enter"
-			
+
 	on complete
 		payment 370000
 		event "patir mystery 2 timer" 45
