@@ -100,17 +100,10 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	template <template<class, class> class Container, class Alloc, class Inner>
-	void Prune(Container<shared_ptr<Inner>, Alloc> &objects)
-	{
-		erase_if(objects, [](const auto &ptr){return ptr->ShouldBeRemoved();});
-	}
-
-	template <template<class, class> class Container, class Type, class Alloc>
-	void Prune(Container<Type, Alloc> &objects)
-	{
-		erase_if(objects, [](const auto &object){return object.ShouldBeRemoved();});
-	}
+	constexpr auto PrunePointers = [](auto &objects) { erase_if(objects,
+			[](const auto &obj) { return obj->ShouldBeRemoved(); }); };
+	constexpr auto Prune = [](auto &objects) { erase_if(objects,
+			[](const auto &obj) { return obj.ShouldBeRemoved(); }); };
 
 	template <class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
@@ -1500,7 +1493,7 @@ void Engine::CalculateStep()
 		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
-	Prune(ships);
+	PrunePointers(ships);
 
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
@@ -1510,7 +1503,7 @@ void Engine::CalculateStep()
 	// checks if any ship has picked it up.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		it->Move(newVisuals);
-	Prune(flotsam);
+	PrunePointers(flotsam);
 
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
