@@ -169,7 +169,7 @@ void NPC::Load(const DataNode &node)
 				else
 					finalDestination = GameData::Planets().Get(child.Token(1));
 			}
-			// Given "destination" and child nodes. These get processed during NPC instantiation.
+			// Given "destination" and a location filter. These get processed during NPC instantiation.
 			else
 				destinationFilter.Load(child);
 		}
