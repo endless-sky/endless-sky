@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_ACTION_H_
-#define MISSION_ACTION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
@@ -120,7 +119,3 @@ private:
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef EFFECT_H_
-#define EFFECT_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -72,7 +71,3 @@ private:
 	// Allow the Visual class to access all these private members.
 	friend class Visual;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_H_
-#define PLANET_H_
+#pragma once
 
 #include "Paragraphs.h"
 #include "Port.h"
@@ -198,7 +197,3 @@ private:
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;
 };
-
-
-
-#endif
