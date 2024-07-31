@@ -436,7 +436,7 @@ mission "Gegno Suspicions"
 				decline
 
 	on decline
-		event "gegno: quarg talks" 6
+		event "gegno: quarg talks" 8
 
 
 mission "Under the Nose"
