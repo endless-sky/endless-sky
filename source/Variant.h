@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef VARIANT_H_
-#define VARIANT_H_
+#pragma once
 
 #include <cstdint>
 #include <vector>
@@ -50,7 +49,3 @@ private:
 	int weight = 1;
 	std::vector<const Ship *> ships;
 };
-
-
-
-#endif

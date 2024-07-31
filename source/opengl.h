@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_OPENGL_H_
-#define ES_OPENGL_H_
+#pragma once
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
@@ -33,7 +32,3 @@ class OpenGL
 public:
 	static bool HasAdaptiveVSyncSupport();
 };
-
-
-
-#endif

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 
 #include "AI.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
