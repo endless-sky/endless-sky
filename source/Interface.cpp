@@ -126,7 +126,11 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new ImageElement(child, anchor));
 			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button"
 					|| child.Token(0) == "dynamic button")
-				elements.push_back(new TextElement(child, anchor));
+				elements.push_back(new BasicTextElement(child, anchor));
+			else if(child.Token(0) == "wrapped label" || child.Token(0) == "wrapped string"
+					|| child.Token(0) == "wrapped button"
+					|| child.Token(0) == "wrapped dynamic button")
+				elements.push_back(new WrappedTextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
 			else if(child.Token(0) == "pointer")
@@ -517,26 +521,20 @@ const Sprite *Interface::ImageElement::GetSprite(const Information &info, int st
 
 // Members of the TextElement class:
 
-// Constructor.
-Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnchor)
+// Add any click handlers needed for this element. This will only be
+// called if the element is visible and active.
+void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 {
-	if(node.Size() < 2)
-		return;
+	if(buttonKey && panel)
+		panel->AddZone(bounds, buttonKey);
+}
 
-	isDynamic = (node.Token(0) == "string" || node.Token(0) == "dynamic button");
-	if(node.Token(0) == "button" || node.Token(0) == "dynamic button")
-	{
-		buttonKey = node.Token(1).front();
-		if(node.Size() >= 3)
-			str = node.Token(2);
-	}
-	else
-		str = node.Token(1);
 
-	// This function will call ParseLine() for any line it does not recognize.
-	Load(node, globalAnchor);
 
-	// Fill in any undefined state colors. By default, labels are "medium", strings
+// Fill in any undefined state colors.
+void Interface::TextElement::FinishLoadingColors()
+{
+	// By default, labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
 	if(!color[Element::ACTIVE] && !buttonKey)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
@@ -562,9 +560,43 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 
 
 
+// Get text contents of this element.
+string Interface::TextElement::GetString(const Information &info) const
+{
+	return isDynamic ? info.GetString(str) : str;
+}
+
+
+
+// Members of the BasicTextElement class:
+
+// Constructor.
+Interface::BasicTextElement::BasicTextElement(const DataNode &node, const Point &globalAnchor)
+{
+	if(node.Size() < 2)
+		return;
+
+	isDynamic = (node.Token(0) == "string" || node.Token(0) == "dynamic button");
+	if(node.Token(0) == "button" || node.Token(0) == "dynamic button")
+	{
+		buttonKey = node.Token(1).front();
+		if(node.Size() >= 3)
+			str = node.Token(2);
+	}
+	else
+		str = node.Token(1);
+
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	FinishLoadingColors();
+}
+
+
+
 // Parse the given data line: one that is not recognized by Element
 // itself. This returns false if it does not recognize the line, either.
-bool Interface::TextElement::ParseLine(const DataNode &node)
+bool Interface::BasicTextElement::ParseLine(const DataNode &node)
 {
 	if(node.Token(0) == "size" && node.Size() >= 2)
 		fontSize = node.Value(1);
@@ -596,7 +628,7 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 
 
 // Report the actual dimensions of the object that will be drawn.
-Point Interface::TextElement::NativeDimensions(const Information &info, int state) const
+Point Interface::BasicTextElement::NativeDimensions(const Information &info, int state) const
 {
 	const Font &font = FontSet::Get(fontSize);
 	const auto layout = Layout(static_cast<int>(Bounds().Width() - padding.X()), truncate);
@@ -606,7 +638,7 @@ Point Interface::TextElement::NativeDimensions(const Information &info, int stat
 
 
 // Draw this element in the given rectangle.
-void Interface::TextElement::Draw(const Rectangle &rect, const Information &info, int state) const
+void Interface::BasicTextElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!color[state])
@@ -618,19 +650,98 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 
 
 
-// Add any click handlers needed for this element. This will only be
-// called if the element is visible and active.
-void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
+// Members of the WrappedElement class:
+
+// Constructor.
+Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Point &globalAnchor)
 {
-	if(buttonKey && panel)
-		panel->AddZone(bounds, buttonKey);
+	if(node.Size() < 2)
+		return;
+
+	isDynamic = (node.Token(0) == "wrapped string" || node.Token(0) == "wrapped dynamic button");
+	if(node.Token(0) == "wrapped button" || node.Token(0) == "wrapped dynamic button")
+	{
+		buttonKey = node.Token(1).front();
+		if(node.Size() >= 3)
+			str = node.Token(2);
+	}
+	else
+		str = node.Token(1);
+
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Initialize the WrappedText.
+	text.SetFont(FontSet::Get(fontSize));
+	text.SetAlignment(alignment);
+	text.SetTruncate(truncate);
+	text.SetWrapWidth(Bounds().Width());
+
+	FinishLoadingColors();
 }
 
 
 
-string Interface::TextElement::GetString(const Information &info) const
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::WrappedTextElement::ParseLine(const DataNode &node)
 {
-	return isDynamic ? info.GetString(str) : str;
+	if(node.Token(0) == "size" && node.Size() >= 2)
+		fontSize = node.Value(1);
+	else if(node.Token(0) == "color" && node.Size() >= 2)
+		color[Element::ACTIVE] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "inactive" && node.Size() >= 2)
+		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "hover" && node.Size() >= 2)
+		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "truncate" && node.Size() >= 2)
+	{
+		if(node.Token(1) == "none")
+			truncate = Truncate::NONE;
+		else if(node.Token(1) == "front")
+			truncate = Truncate::FRONT;
+		else if(node.Token(1) == "middle")
+			truncate = Truncate::MIDDLE;
+		else if(node.Token(1) == "back")
+			truncate = Truncate::BACK;
+		else
+			return false;
+	}
+	else if(node.Token(0) == "alignment")
+	{
+		if(node.Token(1) == "left")
+			alignment = Alignment::LEFT;
+		else if(node.Token(1) == "center")
+			alignment = Alignment::CENTER;
+		else if(node.Token(1) == "right")
+			alignment = Alignment::RIGHT;
+		else if(node.Token(1) == "justified")
+			alignment = Alignment::JUSTIFIED;
+		else
+			return false;
+	}
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Report the actual dimensions of the object that will be drawn.
+Point Interface::WrappedTextElement::NativeDimensions(const Information &info, int state) const
+{
+	text.Wrap(GetString(info));
+	return Point(text.WrapWidth(), text.Height());
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::WrappedTextElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// The text has already been wrapped in NativeDimensions called by Element::Draw.
+	text.Draw(rect.TopLeft(), *color[state]);
 }
 
 
