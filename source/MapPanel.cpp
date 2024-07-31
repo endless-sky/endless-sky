@@ -341,13 +341,9 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	if(player.StarryMap())
-	{
+	isStarry = player.StarryMap();
+	if(isStarry)
 		info.SetCondition("is starry");
-		isStarry = true;
-	}
-	else
-		isStarry = false;
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
