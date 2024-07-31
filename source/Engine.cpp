@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 
 #include "AlertLabel.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Collision.h"
@@ -66,7 +66,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "SystemEntry.h"
-#include "Test.h"
+#include "test/Test.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -536,7 +536,7 @@ void Engine::Step(bool isActive)
 		if(isActive)
 		{
 			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
 				flagship->IsHyperspacing());
 
 			center = newCenter;
@@ -1598,9 +1598,12 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
+		bool isHyperspacing = flagship->IsHyperspacing();
+		if(isHyperspacing)
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
-			flagship->IsHyperspacing());
+			flagship->Center(), flagship->Velocity(), hyperspacePercentage,
+			isHyperspacing);
 		newCenter = newCameraCenter;
 		newCenterVelocity = newCameraVelocity;
 	}

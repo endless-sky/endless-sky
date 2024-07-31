@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_H_
-#define OUTFIT_H_
+#pragma once
 
 #include "Weapon.h"
 
@@ -156,7 +155,3 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
-
-
-
-#endif

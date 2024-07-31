@@ -9,6 +9,7 @@
     "system-libs": {
       "description": "System libraries required to build ES.",
       "dependencies": [
+        "catch2",
         {
           "name": "glew",
           "platform": "!osx"

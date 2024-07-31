@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COLLISION_H_
-#define COLLISION_H_
+#pragma once
 
 #include "Body.h"
 #include "CollisionType.h"
@@ -44,7 +43,3 @@ private:
 	CollisionType collisionType = CollisionType::NONE;
 	double range;
 };
-
-
-
-#endif
