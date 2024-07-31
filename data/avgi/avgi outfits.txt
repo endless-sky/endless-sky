@@ -451,7 +451,7 @@ outfit "Magnozzle Storage Loop"
 	"energy capacity" 10800
 	"thrusting heat" 3
 	"magnozzle rings" -1
-	description "As the rings of Avgi magnetic nozzles are made of diamond-backed high temperature superconductors, they are capable of holding large circulating currents within them, storing energy in the resulting magnetic field. This same magnetic field is also responsible for confining, and eventually expanding, the fusion plasma to produce thrust, but with this engine modification, consisting of a power conditioning unit and superconducting conduits, it can be exploited for use as a general energy storage of unprecedented density."
+	description "As the rings of Avgi magnetic nozzles are made of diamond-backed high temperature superconductors, they are capable of holding large circulating currents within them, storing energy in the resulting magnetic field. This same magnetic field is also responsible for confining, and eventually expanding, the fusion plasma to produce thrust, but with this popular aftermarket engine modification, consisting of a power conditioning unit and superconducting conduits, it can be exploited for use as a general energy storage of unprecedented density."
 
 
 outfit "XY-180 Radial Thrusters"

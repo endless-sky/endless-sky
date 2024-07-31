@@ -1838,6 +1838,10 @@ system Thread
 				scale 0.5
 			distance 335.695
 			period 72
+	object Palos
+		sprite planet/desert3
+		distance 3104.7
+		period 2097.462
 	object Uryyhr
 		sprite planet/gas2-b
 		distance 4724.185
