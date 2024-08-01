@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_H_
-#define MISSION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "Date.h"
@@ -103,8 +102,8 @@ public:
 	void Unmark(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int IllegalCargoFine() const;
-	std::string IllegalCargoMessage() const;
+	int Fine() const;
+	std::string FineMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
 	int64_t DisplayedPayment() const;
@@ -224,8 +223,8 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	int illegalCargoFine = 0;
-	std::string illegalCargoMessage;
+	int fine = 0;
+	std::string fineMessage;
 	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
@@ -271,7 +270,3 @@ private:
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
 };
-
-
-
-#endif

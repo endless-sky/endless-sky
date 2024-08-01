@@ -13,11 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_AI_H_
-#define ES_AI_H_
+#pragma once
 
 #include "Command.h"
 #include "FireCommand.h"
+#include "FormationPositioner.h"
+#include "Orders.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -57,9 +58,11 @@ template <class Type>
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
+	void IssueFormationChange(PlayerInfo &player);
 	void IssueShipTarget(const std::shared_ptr<Ship> &target);
 	void IssueAsteroidTarget(const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const Point &target, const System *moveToSystem);
+
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 
@@ -89,17 +92,18 @@ private:
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
-	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const;
-	bool HasHelper(const Ship &ship, const bool needsFuel);
+	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, const bool needsEnergy) const;
+	bool HasHelper(const Ship &ship, const bool needsFuel, const bool needsEnergy);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	std::shared_ptr<Ship> FindNonHostileTarget(const Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
-	bool FollowOrders(Ship &ship, Command &command) const;
+	bool FollowOrders(Ship &ship, Command &command);
+	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
-	void MoveEscort(Ship &ship, Command &command) const;
+	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
 	// Set the ship's target system or planet in order to reach the
@@ -176,36 +180,6 @@ private:
 
 
 private:
-	class Orders {
-	public:
-		static const int HOLD_POSITION = 0x000;
-		// Hold active is the same command as hold position, but it is given when a ship
-		// actively needs to move back to the position it was holding.
-		static const int HOLD_ACTIVE = 0x001;
-		static const int MOVE_TO = 0x002;
-		// HARVEST is related to MINE and is for picking up flotsam after
-		// ATTACK.
-		static const int HARVEST = 0x003;
-		static const int KEEP_STATION = 0x100;
-		static const int GATHER = 0x101;
-		static const int ATTACK = 0x102;
-		static const int FINISH_OFF = 0x103;
-		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
-		// to chase and attack the asteroid.
-		static const int MINE = 0x104;
-		// Bit mask to figure out which orders are canceled if their target
-		// ceases to be targetable or present.
-		static const int REQUIRES_TARGET = 0x100;
-
-		int type = 0;
-		std::weak_ptr<Ship> target;
-		std::weak_ptr<Minable> targetAsteroid;
-		Point point;
-		const System *targetSystem = nullptr;
-	};
-
-
-private:
 	void IssueOrders(const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
@@ -263,15 +237,14 @@ private:
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
 
-	std::map<const Ship *, int64_t> shipStrength;
+	// Records for formations flying around leadships and other objects.
+	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
 
+	// Records that affect the combat behavior of various governments.
+	std::map<const Ship *, int64_t> shipStrength;
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
 };
-
-
-
-#endif

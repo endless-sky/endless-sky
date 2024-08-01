@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOAD_PANEL_H_
-#define LOAD_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -86,7 +85,3 @@ private:
 	double sideScroll = 0;
 	double centerScroll = 0;
 };
-
-
-
-#endif

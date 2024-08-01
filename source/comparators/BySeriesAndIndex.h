@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BY_SERIES_AND_INDEX_H_
-#define BY_SERIES_AND_INDEX_H_
+#pragma once
 
 #include "../CategoryTypes.h"
 #include "../GameData.h"
@@ -61,5 +60,3 @@ public:
 		return Helper(*outfitA, *outfitB, nameA, nameB);
 	}
 };
-
-#endif

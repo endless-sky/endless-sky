@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MASK_MANAGER_H_
-#define MASK_MANAGER_H_
+#pragma once
 
 #include "Mask.h"
 
@@ -51,7 +50,3 @@ private:
 	// Mutex to make sure different threads don't modify the masks at the same time.
 	std::mutex spriteMutex;
 };
-
-
-
-#endif
