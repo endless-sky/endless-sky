@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Planet;
 class PlayerInfo;
 class System;
+class TextArea;
 
 
 
@@ -93,4 +94,7 @@ private:
 	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
+
+	std::shared_ptr<TextArea> description = nullptr;
+	bool descriptionVisible = false;
 };

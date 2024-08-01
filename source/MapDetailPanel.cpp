@@ -47,11 +47,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "TextArea.h"
 #include "Trade.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "Wormhole.h"
-#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -824,18 +824,37 @@ void MapDetailPanel::DrawInfo()
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
+		static const int HEIGHT = 240;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
-		WrappedText text(font);
-		text.SetAlignment(Alignment::JUSTIFIED);
-		text.SetWrapWidth(WIDTH - 20);
-		text.Wrap(selectedPlanet->Description().ToString(player.Conditions()));
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
+		if(!description)
+		{
+			// Initialize the description TextArea.
+			description = make_shared<TextArea>();
+			description->SetFont(font);
+			description->SetColor(medium);
+			description->SetAlignment(Alignment::JUSTIFIED);
+			description->SetRect(Rectangle::FromCorner(
+				Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20),
+				Point(WIDTH - 20, HEIGHT)
+			));
+		}
+		description->SetText(selectedPlanet->Description().ToString(player.Conditions()));
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
 
 		selectedSystemOffset = -150;
+	}
+	else
+	{
+		RemoveChild(description.get());
+		descriptionVisible = false;
 	}
 }
 
