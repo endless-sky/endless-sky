@@ -672,7 +672,6 @@ Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Po
 	Load(node, globalAnchor);
 
 	// Initialize the WrappedText.
-	text.SetFont(FontSet::Get(fontSize));
 	text.SetAlignment(alignment);
 	text.SetTruncate(truncate);
 	text.SetWrapWidth(Bounds().Width());
@@ -731,6 +730,7 @@ bool Interface::WrappedTextElement::ParseLine(const DataNode &node)
 // Report the actual dimensions of the object that will be drawn.
 Point Interface::WrappedTextElement::NativeDimensions(const Information &info, int state) const
 {
+	text.SetFont(FontSet::Get(fontSize));
 	text.Wrap(GetString(info));
 	return Point(text.WrapWidth(), text.Height());
 }
