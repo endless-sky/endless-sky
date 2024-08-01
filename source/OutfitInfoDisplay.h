@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_INFO_DISPLAY_H_
-#define OUTFIT_INFO_DISPLAY_H_
+#pragma once
 
 #include "ItemInfoDisplay.h"
 
@@ -63,7 +62,3 @@ private:
 	std::vector<std::string> requirementValues;
 	int requirementsHeight = 0;
 };
-
-
-
-#endif

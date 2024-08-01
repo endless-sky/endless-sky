@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef STRING_INTERNER_H_
-#define STRING_INTERNER_H_
+#pragma once
 
 #include <string>
 
@@ -29,7 +28,3 @@ public:
 	static const char *Intern(const char *key);
 	static const char *Intern(const std::string key);
 };
-
-
-
-#endif
