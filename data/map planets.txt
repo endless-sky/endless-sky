@@ -4759,6 +4759,13 @@ planet "Ut Divitas"
 	bribe 0
 	security 0.9
 
+planet "Uye Mpi"
+	attributes uninhabited
+	landscape land/bwerner6
+	description `Spanning lands of dust and bulky rock formations make up a majority of this world's details. However, unlike many other desert worlds, there are many basins of spring water and surprisingly calm weather patterns. The clear blue skies and tame wildlife commonly found on the planet give it a sense of serenity and beauty.`
+	description `	Nearby conflict between the warring Gegno factions often results in engagements within this system, though neither group has yet to commit to any large-scale foundation on the surface of this planet. A majority of skirmishes either occur in orbit above or follow the Gegno to neighboring systems.`
+	government Uninhabited
+
 planet Vail
 	attributes farming paradise tourism
 	landscape land/snow4
