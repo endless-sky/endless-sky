@@ -272,7 +272,7 @@ bool DataNode::IsBool(const string &token)
 
 
 
-bool DataNode::IsConditionName(const std::string &token)
+bool DataNode::IsConditionName(const string &token)
 {
 	// Condition names start with an alphabetic character, and can be followed by spaces, colons, all kinds of brackets,
 	// dashes, single-quotes, alphabetic and numeric characters.
