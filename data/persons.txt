@@ -2141,8 +2141,8 @@ person "Danau"
 	ship "Hauler III" ""
 	ship "Hauler II" ""
 	ship "Hauler II" ""
-	ship "Hauler I" ""
-	ship "Hauler I" ""
+	ship "Hauler" ""
+	ship "Hauler" ""
 
 ship "Hauler VI"
 	sprite "ship/hauler vi"
@@ -2160,7 +2160,7 @@ ship "Hauler VI"
 		"fuel capacity" 800
 		"cargo space" 780
 		"outfit space" 900
-		"weapon capacity" 420
+		"weapon capacity" 430
 		"engine capacity" 160
 		weapon
 			"blast radius" 100
