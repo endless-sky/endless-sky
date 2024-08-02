@@ -2900,6 +2900,7 @@ Files:
  images/ship/arch-carrack*
  images/ship/charm-shallop*
  images/ship/echo-galleon*
+ images/ship/hauler?vi*
  images/ship/heavy?gust*
  images/ship/mining?drone*
  images/ship/mule*
@@ -2912,6 +2913,7 @@ Files:
  images/thumbnail/arch-carrack*
  images/thumbnail/charm-shallop*
  images/thumbnail/echo-galleon*
+ images/thumbnail/hauler?vi*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
  images/thumbnail/mule*
