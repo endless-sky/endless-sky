@@ -2092,7 +2092,7 @@ person "Danau"
 		word
 			"The Hauler VI is a nice ship, "
 		word
-			"as long as you don't activate the cargo refridgeration systems."
+			"as long as you don't activate the cargo refrigeration systems."
 			"but it didn't get beyond the prototype stage yet."
 			"but it is not for sale on the regular market."
 			"but using two Hauler IIIs is probably more economical."
