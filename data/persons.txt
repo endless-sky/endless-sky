@@ -2188,12 +2188,10 @@ ship "Hauler VI"
 	engine -83.5 196.5
 	engine 83.5 196.5
 	engine 0 196.5
-
 	gun -14.5 -168
 	gun 14.5 -168
 	gun -35 -128
 	gun 35 -128
-
 	turret -21 -124.5
 	turret 21 -124.5 "Point Defense Turret"
 	turret -32.5 -102.5
@@ -2202,7 +2200,6 @@ ship "Hauler VI"
 	turret 22 154
 	turret -60 154
 	turret 60 154
-
 	leak "leak" 70 50
 	leak "flame" 40 80
 	leak "big leak" 90 40
