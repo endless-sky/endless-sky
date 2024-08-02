@@ -2035,3 +2035,181 @@ outfit "Emotional Baggage"
 	thumbnail "outfit/unknown"
 	description `The physical embodiment of everything that makes the Reviewers who they are today.`
 	description `	Unfortunately, it's not for sale.`
+
+
+
+person "Danau"
+	government "Author"
+	frequency 100
+	personality
+		heroic unconstrained opportunistic
+	phrase
+		word
+			"When you want to stop your ship, then press shift and back."
+			"Your hyperdrive doesn't work? Have you tried turning it off and on again?"
+	phrase
+		word
+			"Change the orientation of your"
+		word
+			" "
+		word
+			"drone"
+			"interceptor"
+			"fighter"
+		word
+			" "
+		word
+			"bays"
+			"docking ports"
+		word
+			" "
+		word
+			"just for the fun of it."
+			"for faster deployments."
+			"on your new Marauder ship."
+			"to improve atmospheric handling."
+	phrase
+		word
+			"I have a delivery for"
+			"I'm looking for"
+		word
+			" "
+		word
+			"Arrakis"
+			"Caladan"
+			"the Eaxaw"
+			"the Gyisache"
+			"the Happy Birthday"
+			"the Laenfa"
+			"the Muursh"
+			"the Ourbools"
+			"Tycho Magnetic Anomaly 2"
+		word
+			"; "
+		word
+			"is this the correct game?"
+	phrase
+		word
+			"The Hauler VI is a nice ship, "
+		word
+			"as long as you don't activate the cargo refridgeration systems."
+			"but it didn't get beyond the prototype stage yet."
+			"but it is not for sale on the regular market."
+			"but using two Hauler IIIs is probably more economical."
+	phrase
+		word
+			"Automate"
+			"Extend"
+			"Improve"
+			"Streamline"
+		word
+			" "
+		word
+			"our"
+			"the ES"
+			"your"
+		word
+			" "
+		word
+			"builds"
+			"builds and tests"
+			"ci jobs"
+			"coding style checks"
+			"integration processes"
+			"merge process"
+			"software tests"
+			"test and integration processes"
+			"test processes"
+			"tests"
+		word
+			"."
+			"!"
+		word
+			"So that we"
+			"So that you"
+			"To"
+		word
+			" avoid crashes of the game."
+			" improve the quality of our codebase."
+			" get new features into the game faster."
+			" have more time for good reviews."
+			" have more time for playing the game."
+			" prevent bugs."
+
+	ship "Hauler VI" "PTR - HVI 42"
+	ship "Hauler III" ""
+	ship "Hauler III" ""
+	ship "Hauler II" ""
+	ship "Hauler II" ""
+	ship "Hauler I" ""
+	ship "Hauler I" ""
+
+# Note to be removed after PR review - Most stats reflect the hauler iteration changes, except some x2 of the Hauler iii. Shields and hull are double that of the Hauler III, doubled again (to match other pers ships). Required crew and bunks remain the same as other Haulers (it's never disabled anyways). Cargo engine weapon space is double the iii. Fuel capacity is double the iii (same value as the pers bactrian). Head dissip, mass and drag use the same increment for haulers i-iii, x2 for the iv since it has double the pods.
+ship "Hauler VI"
+	sprite "ship/hauler vi"
+	thumbnail "thumbnail/hauler vi"
+	"never disabled"
+	attributes
+		category "Heavy Freighter"
+		"shields" 13200
+		"hull" 26800
+		"required crew" 3
+		"bunks" 12
+		"mass" 1240
+		"drag" 21.7
+		"heat dissipation" .43
+		"fuel capacity" 800
+		"cargo space" 780
+		"outfit space" 900
+		"weapon capacity" 420
+		"engine capacity" 160
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 180
+		"Point Defense Turret" 2
+		"Bombardment Turret" 6
+
+		"Fusion Reactor"
+		"S3 Thermionic"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
+		"Hyperdrive"
+
+	engine -83.5 196.5
+	engine 83.5 196.5
+	engine 0 196.5
+
+	gun -14.5 -168
+	gun 14.5 -168
+	gun -35 -128
+	gun 35 -128
+
+	turret -21 -124.5
+	turret 21 -124.5 "Point Defense Turret"
+	turret -32.5 -102.5
+	turret 32.5 -102.5
+	turret -22 154 "Point Defense Turret"
+	turret 22 154
+	turret -60 154
+	turret 60 154
+
+	leak "leak" 70 50
+	leak "flame" 40 80
+	leak "big leak" 90 40
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "."
