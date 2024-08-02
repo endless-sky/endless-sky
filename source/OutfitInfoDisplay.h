@@ -20,9 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class Outfit;
 class PlayerInfo;
 class Point;
-class Outfit;
 
 
 
