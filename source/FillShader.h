@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-class Point;
 class Color;
+class Point;
 
 
 
