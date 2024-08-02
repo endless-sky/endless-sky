@@ -2290,7 +2290,7 @@ news "Careless Landing"
 			"A Wasp"
 			"A Scrapper"
 		word
-			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${Pronoun} ship. The captain "
+			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${Pronoun} vessel, but the captain "
 		phrase
 			"Careless Ends Well"
 			"Careless Ends Poorly"
