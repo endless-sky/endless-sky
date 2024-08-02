@@ -2144,7 +2144,6 @@ person "Danau"
 	ship "Hauler I" ""
 	ship "Hauler I" ""
 
-# Note to be removed after PR review - Most stats reflect the hauler iteration changes, except some x2 of the Hauler iii. Shields and hull are double that of the Hauler III, doubled again (to match other pers ships). Required crew and bunks remain the same as other Haulers (it's never disabled anyways). Cargo engine weapon space is double the iii. Fuel capacity is double the iii (same value as the pers bactrian). Head dissip, mass and drag use the same increment for haulers i-iii, x2 for the iv since it has double the pods.
 ship "Hauler VI"
 	sprite "ship/hauler vi"
 	thumbnail "thumbnail/hauler vi"
