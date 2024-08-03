@@ -49,7 +49,7 @@ void CoreStartData::Save(DataWriter &out) const
 	out.Write("start", identifier);
 	out.BeginChild();
 	{
-		out.Write("system", system->Name());
+		out.Write("system", system->TrueName());
 		out.Write("planet", planet->TrueName());
 		if(date)
 			out.Write("date", date.Day(), date.Month(), date.Year());

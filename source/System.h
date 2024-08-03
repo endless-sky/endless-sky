@@ -68,6 +68,7 @@ public:
 public:
 	// Load a system's description.
 	void Load(const DataNode &node, Set<Planet> &planets);
+	void FinishLoading();
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
@@ -77,9 +78,11 @@ public:
 	void Unlink(System *other);
 
 	bool IsValid() const;
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 	// Get this system's name and position (in the star map).
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &DisplayName() const;
+	void SetDisplayName(const std::string &name);
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
@@ -203,8 +206,9 @@ private:
 private:
 	bool isDefined = false;
 	bool hasPosition = false;
+	std::string trueName;
 	// Name and position (within the star map) of this system.
-	std::string name;
+	std::string displayName;
 	Point position;
 	const Government *government = nullptr;
 	std::string music;

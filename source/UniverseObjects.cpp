@@ -83,6 +83,8 @@ double UniverseObjects::GetProgress() const
 
 void UniverseObjects::FinishLoading()
 {
+	for(auto &&it : systems)
+		it.second.FinishLoading();
 	for(auto &&it : planets)
 		it.second.FinishLoading(wormholes);
 
@@ -173,7 +175,7 @@ void UniverseObjects::UpdateSystems()
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
-		if(it.first.empty() || it.second.Name().empty())
+		if(it.first.empty() || it.second.TrueName().empty())
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
 
@@ -201,7 +203,7 @@ void UniverseObjects::CheckReferences()
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
 	{
 		if(deferred.count(it.first))
-			it.second.SetName(it.first);
+			it.second.SetTrueName(it.first);
 		else
 			return false;
 
@@ -210,7 +212,7 @@ void UniverseObjects::CheckReferences()
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	auto NameAndWarn = [=](const string &noun, auto &it)
 	{
-		it.second.SetName(it.first);
+		it.second.SetTrueName(it.first);
 		Warn(noun, it.first);
 	};
 	// Parse all GameEvents for object definitions.
@@ -294,7 +296,7 @@ void UniverseObjects::CheckReferences()
 			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
-		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
 	// Hazards are never serialized.
 	for(const auto &it : hazards)
@@ -302,7 +304,7 @@ void UniverseObjects::CheckReferences()
 			Warn("hazard", it.first);
 	// Wormholes are never serialized.
 	for(const auto &it : wormholes)
-		if(it.second.Name().empty())
+		if(it.second.DisplayName().empty())
 			Warn("wormhole", it.first);
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)

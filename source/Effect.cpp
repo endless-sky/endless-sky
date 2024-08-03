@@ -29,7 +29,7 @@ const string &Effect::Name() const
 
 
 
-void Effect::SetName(const string &name)
+void Effect::SetTrueName(const string &name)
 {
 	this->name = name;
 }

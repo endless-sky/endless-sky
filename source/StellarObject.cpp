@@ -75,7 +75,7 @@ const Planet *StellarObject::GetPlanet() const
 const string &StellarObject::Name() const
 {
 	static const string UNKNOWN = "???";
-	return (planet && !planet->Name().empty()) ? planet->Name() : UNKNOWN;
+	return (planet && !planet->DisplayName().empty()) ? planet->DisplayName() : UNKNOWN;
 }
 
 

@@ -138,12 +138,12 @@ void GameEvent::Save(DataWriter &out) const
 		conditionsToApply.Save(out);
 
 		for(auto &&system : systemsToUnvisit)
-			out.Write("unvisit", system->Name());
+			out.Write("unvisit", system->TrueName());
 		for(auto &&planet : planetsToUnvisit)
 			out.Write("unvisit planet", planet->TrueName());
 
 		for(auto &&system : systemsToVisit)
-			out.Write("visit", system->Name());
+			out.Write("visit", system->TrueName());
 		for(auto &&planet : planetsToVisit)
 			out.Write("visit planet", planet->TrueName());
 
@@ -173,7 +173,7 @@ const string &GameEvent::Name() const
 
 
 // "Stock" GameEvents require a name to be serialized with an accepted mission.
-void GameEvent::SetName(const string &name)
+void GameEvent::SetTrueName(const string &name)
 {
 	this->name = name;
 }
@@ -199,8 +199,8 @@ string GameEvent::IsValid() const
 
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
-			if(!system->IsValid() && !deferred["system"].count(system->Name()))
-				return "contains invalid system \"" + system->Name() + "\".";
+			if(!system->IsValid() && !deferred["system"].count(system->TrueName()))
+				return "contains invalid system \"" + system->TrueName() + "\".";
 	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
 		for(auto &&planet : planets)
 			if(!planet->IsValid() && !deferred["planet"].count(planet->TrueName()))
