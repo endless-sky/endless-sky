@@ -2125,6 +2125,8 @@ person "Danau"
 			"."
 			"!"
 		word
+			" "
+		word
 			"So that we"
 			"So that you"
 			"To"
