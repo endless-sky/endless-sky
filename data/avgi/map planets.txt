@@ -349,8 +349,8 @@ planet Kalakil
 planet Janalos
 	attributes forest uninhabited
 	landscape land/forest14
-	description `From orbit, Janalos is a lush, forested world with a thriving ecosystem, ripe for colonization. It is only from the surface that one realizes this thriving ecosystem is in fact dominated by a mind-boggling variety of insects, large and small. The bugs are everywhere, permeating every part of the planet, and recent colonization efforts were thrwarted by just how inconvenient they make life on this planet. Insecticides are quickly adapted to, eggs and larvae can lie dormant for years before re-emerging, and the swarms of insects devour anything they can sink their chitinous teeth into.`
-	description `Even an unsanctioned atomic sterilization of a small valley, a desperate attempt to clear a foothold for settlers, proved ineffective after only a few months - something Avgi xenologists could have told the rather reckless settlers who tried it.`
+	description `From orbit, Janalos is a lush, forested world with a thriving ecosystem, ripe for colonization. It is only from the surface that it becomes apparent that this thriving ecosystem is in fact dominated by a mind-boggling variety of insects, large and small. The bugs are everywhere, permeating every part of the planet, and recent colonization efforts were thrwarted by just how inconvenient they make life on this planet. Insecticides are quickly adapted to, eggs and larvae can lie dormant for years before re-emerging, and the swarms of insects devour anything they can sink their chitinous teeth into.`
+	description `Even an unsanctioned atomic sterilization of a small valley, in a desperate attempt to clear a foothold for settlers, proved ineffective after only a few short months.`
 	government Uninhabited
 
 

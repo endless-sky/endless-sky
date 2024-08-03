@@ -3543,13 +3543,13 @@ system Evanescence
 		object
 			sprite planet/dust1-b
 				scale 0.5
-			distance 327
-			period 183.908
+			distance 217
+			period 33
 		object
 			sprite planet/dust5-b
 				scale 0.5
-			distance 455
-			period 254.001
+			distance 365
+			period 48
 	object
 		sprite planet/gas9
 		distance 3459.691
