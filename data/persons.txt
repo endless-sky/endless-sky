@@ -2127,16 +2127,12 @@ person "Danau"
 		word
 			" "
 		word
-			"So that we"
-			"So that you"
-			"To"
-		word
-			" avoid crashes of the game."
-			" improve the quality of our codebase."
-			" get new features into the game faster."
-			" have more time for good reviews."
-			" have more time for playing the game."
-			" prevent bugs."
+			"Avoid crashes of the game!"
+			"Improve the quality of our codebase!"
+			"Get new features into the game faster!"
+			"Have more time for good reviews!"
+			"Have more time for playing the game!"
+			"Prevent bugs!"
 
 	ship "Modified Hauler VI" "PTR - HVI 42"
 	ship "Hauler III" "PTR - Cliff"
