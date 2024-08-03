@@ -4503,7 +4503,7 @@ bool Ship::DoLandingLogic()
 			else if(!isSpecial || personality.IsFleeing())
 			{
 				bool escortsLanded = true;
-				for(const auto &it: escorts)
+				for(const auto &it : escorts)
 				{
 					const auto escort = it.lock();
 					// Check if escorts are also landed, or destroyed.
