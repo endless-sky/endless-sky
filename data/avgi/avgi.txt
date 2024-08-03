@@ -609,6 +609,7 @@ trade
 		"keratin broth"
 		"luxury water"
 		"meat"
+		"nectar"
 		"nutrient slurry"
 		"pickled quis"
 		"protein concentrate"
@@ -625,8 +626,6 @@ trade
 		"synthetic meat"
 		"vegetables"
 		"vitamins"
-
-		
 		
 	commodity "Avgi Consumer Goods"
 		"wirecloth"

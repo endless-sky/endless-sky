@@ -25,7 +25,7 @@ galaxy "label outer limits"
 	sprite "label/outer limits"
 
 system Anax
-	pos -462.815 698.074
+	pos -463 699
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -539,7 +539,7 @@ system Anax
 			period 430.255
 
 system Clip
-	pos -508.501 711.522
+	pos -509 712
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -616,7 +616,7 @@ system Clip
 		offset 90
 
 system Empyrean
-	pos -368.134 814.778
+	pos -368 815
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" twilight
 	ramscoop
@@ -662,7 +662,7 @@ system Empyrean
 		period 1483.999
 
 system Tumble
-	pos -308.471 655.498
+	pos -308 655
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -729,7 +729,7 @@ system Tumble
 			period 94.882
 
 system Firmament
-	pos -312.679 788.63
+	pos -312 788
 	government Uninhabited
 	attributes "bright star" "giant star" multi-star "notable star" twilight
 	ramscoop
@@ -779,7 +779,7 @@ system Firmament
 		period 9555.788
 
 system Quintessence
-	pos -361.747 851.175
+	pos -361 851
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" twilight
 	habitable 22300
@@ -824,7 +824,7 @@ system Quintessence
 			period 226.069
 
 system Decet
-	pos -148.822 603.448
+	pos -149 603
 	government Uninhabited
 	attributes magnetar neutron twilight
 	ramscoop
@@ -845,7 +845,7 @@ system Decet
 		period 1
 
 system Mote
-	pos -492.244 905.843
+	pos -492 906
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -878,7 +878,7 @@ system Mote
 			period 96.091
 
 system Octet
-	pos -202.794 645.906
+	pos -203 646
 	government Uninhabited
 	attributes "ember waste" "giant star" "notable star" twilight
 	ramscoop
@@ -935,7 +935,7 @@ system Octet
 		period 5702.866
 
 system Frenzy
-	pos -397.597 677.299
+	pos -397 677
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -996,7 +996,7 @@ system Frenzy
 		period 6706.091
 
 system Trio
-	pos -222.867 740.912
+	pos -223 741
 	government Uninhabited
 	attributes "ember waste" twilight
 	ramscoop
@@ -1074,7 +1074,7 @@ system Trio
 			period 113.538
 
 system Sextet
-	pos -217.766 704.609
+	pos -218 704
 	government Uninhabited
 	attributes "ember waste" twilight
 	ramscoop
@@ -1141,7 +1141,7 @@ system Sextet
 			period 234.736
 
 system Quintet
-	pos -186.285 757.655
+	pos -186 757
 	government Uninhabited
 	attributes "ember waste" twilight
 	ramscoop
@@ -1207,7 +1207,7 @@ system Quintet
 		period 12570.409
 
 system Septet
-	pos -169.482 721.182
+	pos -169 721
 	government Uninhabited
 	attributes carbon "ember waste" "notable star" twilight
 	ramscoop
@@ -1265,7 +1265,7 @@ system Septet
 			period 42
 
 system Nonet
-	pos -158.609 630.05
+	pos -158 630
 	government Uninhabited
 	attributes "ember waste" twilight
 	ramscoop
@@ -1334,7 +1334,7 @@ system Nonet
 			period 517.124
 
 system Stream
-	pos -491.146 793.263
+	pos -491 793
 	government Uninhabited
 	attributes "bright star" "notable star" twilight
 	ramscoop
@@ -1405,7 +1405,7 @@ system Stream
 system Ensemble
 	hidden
 	shrouded
-	pos -522.936 1154.157
+	pos -523 1154
 	government "Avgi (Consonance)"
 	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3250
@@ -1472,7 +1472,7 @@ system Ensemble
 			period 24
 
 system Quartet
-	pos -208.534 818.541
+	pos -208 818
 	government Uninhabited
 	attributes "ember waste" "notable star" nova
 	ramscoop
@@ -1521,7 +1521,7 @@ system Quartet
 		period 30689.117
 
 system Gust
-	pos -648.246 805.151
+	pos -648 805
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -1567,7 +1567,7 @@ system Gust
 		period 7672.549
 
 system Headwind
-	pos -283.34 767.324
+	pos -283 767
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -1629,7 +1629,7 @@ system Headwind
 			period 263.212
 
 system Duet
-	pos -248.609 778.168
+	pos -249 778
 	government Uninhabited
 	attributes "ember waste" twilight
 	ramscoop
@@ -1683,7 +1683,7 @@ system Duet
 			period 223.523
 
 system Soar
-	pos -449.741 655.204
+	pos -449 655
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -1779,7 +1779,7 @@ system Soar
 			period 605.638
 
 system Thread
-	pos -417.054 737.075
+	pos -417 737
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -1855,7 +1855,7 @@ system Thread
 			period 209.323
 
 system Sail
-	pos -543.979 666.89
+	pos -544 666
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -1944,7 +1944,7 @@ system Sail
 		period 14367.268
 
 system Interlude
-	pos -684.045 1245.357
+	pos -684 1245
 	government "Avgi (Dissonance)"
 	attributes avgi "bright star" dissonance "giant star" multi-star "notable star" "tangled shroud"
 	habitable 7906.478
@@ -2017,7 +2017,7 @@ system Interlude
 		period 2954.279
 
 system Lumine
-	pos -348.286 760.64
+	pos -348 760
 	government Uninhabited
 	attributes "notable star" "supergiant star" twilight
 	ramscoop
@@ -2076,7 +2076,7 @@ system Lumine
 		period 13594.902
 
 system Span
-	pos -513.167 654.44
+	pos -513 654
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -2148,7 +2148,7 @@ system Span
 			period 222.855
 
 system Vorpal
-	pos -437.711 789.074
+	pos -438 789
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	ramscoop
@@ -2188,7 +2188,7 @@ system Vorpal
 			period 449.031
 
 system Concerto
-	pos -486.457 1231.183
+	pos -486 1231
 	government Avgi
 	attributes avgi "bright star" consonance "notable star" "outer limits"
 	habitable 3650
@@ -2292,7 +2292,7 @@ system Concerto
 		offset 10
 
 system Cusp
-	pos -523.618 589.626
+	pos -523 589
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -2345,7 +2345,7 @@ system Cusp
 			period 244.909
 
 system Gossamer
-	pos -755.943 796.685
+	pos -756 796
 	government Uninhabited
 	attributes "smoke ring" twilight
 	ramscoop
@@ -2395,7 +2395,7 @@ system Gossamer
 system Prelude
 	hidden
 	shrouded
-	pos -494.73 952.391
+	pos -495 952
 	government "Avgi (Dissonance)"
 	attributes avgi dissonance "giant star" "notable star" "tangled shroud"
 	ramscoop
@@ -2467,7 +2467,7 @@ system Prelude
 			period 178.034
 
 system Symphony
-	pos -423.014 1260.277
+	pos -423 1260
 	government "Avgi (Consonance)"
 	attributes avgi consonance "outer limits"
 	habitable 450
@@ -2563,7 +2563,7 @@ system Symphony
 		period 21526.164
 
 system Whirlwind
-	pos -671.292 848.347
+	pos -671 848
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -2632,7 +2632,7 @@ system Whirlwind
 			period 212.515
 
 system Vivace
-	pos -540.542 699.806
+	pos -540 700
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	ramscoop
@@ -2667,7 +2667,7 @@ system Vivace
 		period 8129.049
 
 system Billow
-	pos -419.562 615.608
+	pos -419 615
 	government Uninhabited
 	attributes twilight
 	habitable 320
@@ -2713,7 +2713,7 @@ system Billow
 			period 864.727
 
 system Pinnacle
-	pos -250.748 693.704
+	pos -251 694
 	government Uninhabited
 	attributes "bright star" "notable star" twilight
 	ramscoop
@@ -2757,7 +2757,7 @@ system Pinnacle
 			period 36
 
 system Flutter
-	pos -254.444 636.675
+	pos -254 637
 	government Uninhabited
 	attributes "notable star" nova twilight
 	ramscoop
@@ -2803,7 +2803,7 @@ system Flutter
 			period 432.186
 
 system Tap
-	pos -347.857 581.21
+	pos -348 581
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	ramscoop
@@ -2848,7 +2848,7 @@ system Tap
 		period 34884.076
 
 system Mellow
-	pos -384.748 645.559
+	pos -384 645
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -2917,7 +2917,7 @@ system Mellow
 
 system Postlude
 	shrouded
-	pos -276.012 966.9
+	pos -276 967
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 1330.038
@@ -2947,7 +2947,7 @@ system Postlude
 			period 174.787
 
 system Corporeal
-	pos -402.126 772.934
+	pos -402 773
 	government Uninhabited
 	attributes ringworld twilight
 	ramscoop
@@ -3020,7 +3020,7 @@ system Corporeal
 			period 255.225
 
 system Caesura
-	pos -721.694 865.126
+	pos -721 865
 	government Uninhabited
 	attributes "black hole" "notable star" twilight
 	ramscoop
@@ -3035,7 +3035,7 @@ system Caesura
 		period 10
 
 system Arche
-	pos -407.454 926.462
+	pos -407 926
 	government "Avgi (Twilight Guard)"
 	attributes avgi "bright star" consonance multi-star "notable star" twilight
 	ramscoop
@@ -3122,7 +3122,7 @@ system Arche
 			period 237.628
 
 system Twirl
-	pos -586.459 966.98
+	pos -586 967
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	habitable 100
@@ -3171,7 +3171,7 @@ system Twirl
 			period 109.718
 
 system Peak
-	pos -295.081 629.87
+	pos -295 630
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3217,7 +3217,7 @@ system Peak
 			period 178.869
 
 system Tailwind
-	pos -335.364 724.609
+	pos -335 724
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3263,7 +3263,7 @@ system Tailwind
 		period 1494.459
 
 system Wave
-	pos -559.693 832.475
+	pos -560 835
 	government Uninhabited
 	attributes twilight
 	habitable 550
@@ -3323,7 +3323,7 @@ system Wave
 		period 7766.962
 
 system Tide
-	pos -468.313 603.86
+	pos -468 604
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" twilight
 	ramscoop
@@ -3377,7 +3377,7 @@ system Tide
 			period 221.64
 
 system Lift
-	pos -543.19 913.669
+	pos -543 914
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3432,7 +3432,7 @@ system Lift
 			period 210.152
 
 system Apeiron
-	pos -446.338 868.864
+	pos -446 869
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3503,7 +3503,7 @@ system Apeiron
 		period 1747.482
 
 system Evanescence
-	pos -457.765 826.347
+	pos -458 826
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3568,7 +3568,7 @@ system Evanescence
 		period 2949.062
 
 system Torrent
-	pos -597.481 873.853
+	pos -597 874
 	government Uninhabited
 	attributes "bright star" "giant star" multi-star "notable star" twilight
 	ramscoop
@@ -3614,7 +3614,7 @@ system Torrent
 		period 1765.289
 
 system Rivulet
-	pos -539.841 805.136
+	pos -539 805
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3664,7 +3664,7 @@ system Rivulet
 		period 7194.41
 
 system Gale
-	pos -637.393 901.601
+	pos -637 901
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3706,7 +3706,7 @@ system Gale
 		period 2307.861
 
 system Current
-	pos -609.744 827.788
+	pos -610 824
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3761,7 +3761,7 @@ system Current
 			period 299.01
 
 system Glide
-	pos -549.07 887.777
+	pos -549 888
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3832,7 +3832,7 @@ system Glide
 			period 370.509
 
 system Aileron
-	pos -576.745 771.883
+	pos -577 772
 	government Uninhabited
 	attributes twilight
 	ramscoop
@@ -3887,7 +3887,7 @@ system Aileron
 			period 124.417
 
 system Pearl
-	pos -517.737 857.458
+	pos -518 857
 	government Uninhabited
 	attributes twilight
 	habitable 1250
@@ -3921,7 +3921,7 @@ system Pearl
 		period 1229.502
 
 system Wake
-	pos -526.272 757.754
+	pos -526 758
 	government Avgi
 	attributes avgi twilight
 	ramscoop
@@ -3972,7 +3972,7 @@ system Wake
 system O-16
 	hidden
 	shrouded
-	pos -356.272 1098.517
+	pos -356 1098
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4004,7 +4004,7 @@ system O-16
 system Li-7
 	hidden
 	shrouded
-	pos -348.338 1045.531
+	pos -348 1045
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 14.142
@@ -4065,7 +4065,7 @@ system Li-7
 system Ne-20
 	hidden
 	shrouded
-	pos -433.455 1017.834
+	pos -433 1018
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 230
@@ -4116,7 +4116,7 @@ system Ne-20
 system S-32
 	hidden
 	shrouded
-	pos -560.192 1021.674
+	pos -560 1021
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4151,7 +4151,7 @@ system S-32
 system Be-9
 	hidden
 	shrouded
-	pos -265.8 994.743
+	pos -265 994
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3400
@@ -4205,7 +4205,7 @@ system Be-9
 system Br-80
 	hidden
 	shrouded
-	pos -635.099 1116.134
+	pos -635 1116
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4263,7 +4263,7 @@ system Br-80
 system H-1
 	hidden
 	shrouded
-	pos -346.308 999.578
+	pos -346 999
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 135
@@ -4333,7 +4333,7 @@ system H-1
 system B-11
 	hidden
 	shrouded
-	pos -277.007 1089.439
+	pos -277 1089
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4366,7 +4366,7 @@ system B-11
 system Ge-73
 	hidden
 	shrouded
-	pos -572.654 1100.597
+	pos -572 1100
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4402,7 +4402,7 @@ system Ge-73
 system Mg-24
 	hidden
 	shrouded
-	pos -522.025 1041.909
+	pos -522 1041
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3000
@@ -4452,7 +4452,7 @@ system Mg-24
 system As-75
 	hidden
 	shrouded
-	pos -706.15 962.552
+	pos -706 962
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4497,7 +4497,7 @@ system As-75
 system Na-23
 	hidden
 	shrouded
-	pos -484.285 1074.756
+	pos -484 1074
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 135
@@ -4548,7 +4548,7 @@ system Na-23
 system Ca-40
 	hidden
 	shrouded
-	pos -637.242 1017.521
+	pos -637 1017
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4590,7 +4590,7 @@ system Ca-40
 system F-19
 	hidden
 	shrouded
-	pos -361.277 1136.45
+	pos -361 1136
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 450
@@ -4630,7 +4630,7 @@ system F-19
 system P-31
 	hidden
 	shrouded
-	pos -655.049 1070.939
+	pos -655 1070
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4659,7 +4659,7 @@ system P-31
 system Cl-35
 	hidden
 	shrouded
-	pos -454.772 1100.79
+	pos -454 1100
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 500.1
@@ -4690,7 +4690,7 @@ system Cl-35
 system K-39
 	hidden
 	shrouded
-	pos -452.966 1131.947
+	pos -452 1131
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4721,7 +4721,7 @@ system K-39
 system C-12
 	hidden
 	shrouded
-	pos -396.193 1075.83
+	pos -396 1075
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4751,7 +4751,7 @@ system C-12
 system He-4
 	hidden
 	shrouded
-	pos -450.476 965.671
+	pos -450 965
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4793,7 +4793,7 @@ system He-4
 system Si-28
 	hidden
 	shrouded
-	pos -470.042 984.748
+	pos -470 984
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4861,7 +4861,7 @@ system Si-28
 system Kr-84
 	hidden
 	shrouded
-	pos -709.277 920.586
+	pos -709 920
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 2160
@@ -4903,7 +4903,7 @@ system Kr-84
 system Ar-40
 	hidden
 	shrouded
-	pos -598.144 1049.772
+	pos -598 1049
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 160.312
@@ -4956,7 +4956,7 @@ system Ar-40
 system N-14
 	hidden
 	shrouded
-	pos -222.303 1081.177
+	pos -222 1081
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4986,7 +4986,7 @@ system N-14
 			period 178.034
 
 system Rhapsody
-	pos -366.928 1237.746
+	pos -367 1237
 	government Uninhabited
 	attributes "outer limits"
 	habitable 1080
@@ -5037,7 +5037,7 @@ system Rhapsody
 			period 264.681
 
 system Acapella
-	pos -475.594 1336.079
+	pos -475 1336
 	government Uninhabited
 	attributes "outer limits"
 	habitable 1080
@@ -5094,7 +5094,7 @@ system Acapella
 		period 17218.976
 
 system Anthem
-	pos -614.927 1207.412
+	pos -615 1207
 	government Uninhabited
 	attributes "outer limits"
 	habitable 425
@@ -5154,7 +5154,7 @@ system Anthem
 		period 6785.99
 
 system Madrigal
-	pos -715.4 1172.579
+	pos -715 1172
 	government Uninhabited
 	attributes "outer limits"
 	habitable 425
@@ -5204,7 +5204,7 @@ system Madrigal
 		period 14637.319
 
 system Ballad
-	pos -556.594 1184.412
+	pos -556 1184
 	government Uninhabited
 	attributes "outer limits"
 	habitable 1047.521
@@ -5264,7 +5264,7 @@ system Ballad
 		period 13333.382
 
 system Cantata
-	pos -550.927 1268.412
+	pos -551 1268
 	government Uninhabited
 	attributes "outer limits"
 	habitable 450
@@ -5317,7 +5317,7 @@ system Cantata
 			period 733.833
 
 system Sonata
-	pos -635.594 1153.079
+	pos -635 1153
 	government Uninhabited
 	attributes "outer limits"
 	habitable 980
@@ -5372,7 +5372,7 @@ system Sonata
 		period 7018.421
 
 system Axiom
-	pos -313.913 863.623
+	pos -314 863
 	government Uninhabited
 	attributes "bright star" multi-star "notable star" twilight
 	habitable 4854.122
@@ -5410,7 +5410,7 @@ system Axiom
 			period 195.437
 
 system Serenade
-	pos -602.094 1253.564
+	pos -602 1253
 	government Uninhabited
 	attributes "outer limits"
 	habitable 2160
@@ -5462,7 +5462,7 @@ system Serenade
 		period 7519.364
 
 system Chorale
-	pos -670.471 1190.69
+	pos -670 1190
 	government Uninhabited
 	attributes "outer limits"
 	habitable 230
