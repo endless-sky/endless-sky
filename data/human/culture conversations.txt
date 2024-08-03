@@ -752,3 +752,33 @@ mission "Burthen Triathlon"
 			label "end"
 			`	Abernathy doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`
 				decline
+
+mission "CCOR Guerrilla Standoff"
+	minor
+	source "Gagarin"
+	to offer
+		random < 1
+		has "event: war begins"
+	on offer
+		conversation
+			`Although every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars, by comparison Gagarin appears much more like any old, slightly run-down port a captain would find around the South, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
+			`	But as you make your way into the central hall you notice that, where you'd expect the greatest activity, everything has stopped. Even the ever-roving antigrav trolleys of cargo and supplies are backed up and motionless, and everybody's attention is directed at some sort of commotion in the very center of the spaceport.`
+			choice
+				`	(Take a look.)`
+				`	(Go back to your ship.)`
+					decline
+			`	Stepping through the gaps within the established crowd you end up next to a spaceport gendarme, who appears as if he's meant to be on patrol duty but is too busy looking at what everybody else is looking at to do his job at the moment. You look over the bannisters with him and see, at first, the enormous, odd empty space in the middle of the hall; then a team of overalls-wearing men armed with drills and brushes. Surrounding them is a cordon of guerillas in their rosy CCOR uniforms, sizing up the public and the spaceport security around them with their rifles and pistols.`
+			`	The painting guerrillas are busily finishing off the touches of what appears to be a statue of the burgundy-and-white emblem of the Confederated Councils, while a pile of rubble beside it suggests that a symbol of the local government once stood in its place. As they step away from the statue, a lone man in a much better-kept uniform than the others steps forward in front of their work. You can feel the air chilling as he raises his head to speak.`
+			choice
+				`	(Listen in.)`
+				`	(Step away before he makes his speech.)`
+					decline
+			`	You don't see any amplification equipment, yet his voice fills up the room without effort.`
+			`	"Gagarians and offworlders. Captains and travellers. Servicemen and farmers.`
+			`	"The worlds of the Outer Rim, and indeed, those of the Republic and the entirety of humanity, have and continue to be despoiled and devastated by ruthless profiteering.`
+			`	"The executives of the Syndicate and the landed gentry of the Paradise Worlds steal the efforts of tens of billions of men, woman, and children, from Prime to Foundry; from Valhalla to Earth; from Bourne to Hestia, and beyond. And for near a century they have colluded to impose their designs on our worlds! The corporate insurrection in Novo Minho and the gang wars in the northern Outer Rim which are only an obvious extension of the arm of people like Alastair Korban, who threaten to plunge our worlds into further suffering and bitter destruction!`
+			`	"But there is still hope. We can bring about the independence of Gagarin and unify this world that has been lost to the Syndicate-sponsored oligarchs and their cronies and puppet officials. We can reunite the Outer Rim and restore the prosperity stolen from us. We can form a new Confederated Councils and once again shine the light of Belenos across the entire galaxy!"`
+			`	There's a beat as the man finishes his speech to scattered applause, as the white-uniformed gendarmes look around and consider the response of the crowd around them. The speaker steps down and orders his guerrillas to formation before marching them out of the still crowd and into the back of a dusty, burgundy-colored army van you hadn't noticed before, leaving the remains of the old statue scattered around the empty space.`
+			`	You turn around and see the gendarme you ended up next to. He meets your eyes and recognizes your off-world air.`
+			`	"Just an everyday interruption, Captain," he says. "Only nostalgists for the old cause. We get a dozen of these incidents a month." He seems to be interrupted by a buzz from the radio receiver at his hip and strides off into the crowd, leaving you on the ledge.`
+			`	Slowly but surely, the spaceport snaps out of its shock and picks up its previous momentum, although as you turn around you pass two government-branded trucks mounted with cranes, almost certainly there to carry off the statue that was just installed and to clean up the mess left behind by the guerrillas.`
