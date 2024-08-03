@@ -196,8 +196,8 @@ outfit "Horizon Grappler"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.9
-		"firing heat" .6
+		"firing energy" 3.2
+		"firing heat" 1.1
 	description `The pinacle of Incipian technology sees itself represented in this mining utility, perfected over centuries this tractor beam is far beyond anything they have developed so far. Its name originates from the first prototypes that pulled asteroids from the "horizon".`
 
 effect "horizon grappler"
