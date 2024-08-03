@@ -575,7 +575,7 @@ outfit "Multimodal Armor: Regen"
 	thumbnail "outfit/successor armor regen"
 	licenses
 		"High Houses"
-	"hull repair multiplier" 1.0
+	"hull repair multiplier" 0.75
 	"multimodal armor" -1
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
