@@ -586,8 +586,8 @@ outfit "Multimodal Armor: Resilient"
 	thumbnail "outfit/successor armor resilient"
 	licenses
 		"High Houses"
-	"slowing protection" 1.5
-	"corrosion protection" 1.5
+	"slowing protection" 0.5
+	"corrosion protection" 0.5
 	"multimodal armor" -1
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
