@@ -1406,7 +1406,7 @@ void MapPanel::DrawSystems()
 
 		// System rings fade as you zoom in if starry map is enabled.
 		RingShader::Draw(pos, OUTER, INNER, node.color.Additive(max(ringFade,
-			node.mapIcon.size() == 0 ? .9f : 0)));
+			node.mapIcon.empty() ? .9f : 0)));
 
 		if(isStarry)
 		{

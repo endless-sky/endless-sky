@@ -134,7 +134,7 @@ private:
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
-	std::map<const Sprite *, const Sprite *> starIcon;
+	std::map<const Sprite *, const Sprite *> starIcons;
 	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;
