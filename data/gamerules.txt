@@ -24,7 +24,7 @@ gamerules
 	"universal ramscoop" true
 	
 	# An attempt to spawn a person ship happens on average every this many frames.
-	# DEFAULT: 36000 frames (ten minutes)
+	# DEFAULT: 72000 frames (twenty minutes)
 	# ALLOWABLE VALUES: any integer >= 1
 	"person spawn period" 72000
 	
