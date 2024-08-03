@@ -198,7 +198,7 @@ outfit "Horizon Grappler"
 		"reload" 1
 		"firing energy" 1.9
 		"firing heat" .6
-	description `The pinacle of Incipian technology sees itself represented in this mining utility, perfected over centuries this tractor beam is far beyond anything they have developed so far. Its name originates from the first prototypes that pulled asteroids from the "horizon".`
+	description `The pinnacle of Incipian technology sees itself represented in this mining utility. Perfected over centuries, this tractor beam is far beyond anything they have developed so far. Its name originates from the first prototypes that pulled asteroids from the "horizon".`
 
 effect "horizon grappler"
 	sprite "effect/horizon grappler"
