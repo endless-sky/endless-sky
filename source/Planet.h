@@ -68,7 +68,7 @@ public:
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &DisplayName() const;
-	void SetDisplayName(const std::string &name);	
+	void SetDisplayName(const std::string &name);
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
