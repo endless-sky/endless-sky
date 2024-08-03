@@ -2045,7 +2045,7 @@ person "Danau"
 		heroic unconstrained opportunistic
 	phrase
 		word
-			"When you want to stop your ship, then press shift and back."
+			"When you want to stop your ship, press shift and reverse."
 			"Your hyperdrive doesn't work? Have you tried turning it off and on again?"
 	phrase
 		word
@@ -2087,13 +2087,13 @@ person "Danau"
 		word
 			"; "
 		word
-			"is this the correct game?"
+			"is this the right game?"
 	phrase
 		word
 			"The Hauler VI is a nice ship, "
 		word
 			"as long as you don't activate the cargo refrigeration systems."
-			"but it didn't get beyond the prototype stage yet."
+			"but it hasn't gotten beyond the prototype stage yet."
 			"but it is not for sale on the regular market."
 			"but using two Hauler IIIs is probably more economical."
 	phrase
@@ -2113,7 +2113,7 @@ person "Danau"
 		word
 			"builds"
 			"builds and tests"
-			"ci jobs"
+			"CI jobs"
 			"coding style checks"
 			"integration processes"
 			"merge process"
