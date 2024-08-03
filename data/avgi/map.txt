@@ -625,7 +625,6 @@ system Empyrean
 	belt 1027 5
 	haze _menu/haze-twilight-thin
 	link Corporeal
-	link Evanescence
 	link Firmament
 	link Lumine
 	link Quintessence
@@ -636,8 +635,8 @@ system Empyrean
 	fleet "Avgi Scouts" 6000
 	fleet "Avgi Patrol" 2300
 	fleet "Avgi Strike Group" 9800
-	fleet "Small Aberrant" 2400
-	fleet "Large Aberrant" 4200
+	fleet "Small Aberrant" 5600
+	fleet "Large Aberrant" 9400
 	object
 		sprite star/a-giant
 		period 10
@@ -2968,8 +2967,8 @@ system Corporeal
 	fleet "Avgi Scouts" 9300
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 12000
-	fleet "Small Aberrant" 5400
-	fleet "Large Aberrant" 8600
+	fleet "Small Aberrant" 7400
+	fleet "Large Aberrant" 12600
 	object
 		sprite star/g3
 		period 10
@@ -3514,7 +3513,6 @@ system Evanescence
 	belt 2362 9
 	haze _menu/haze-twilight-thin
 	link Apeiron
-	link Empyrean
 	link Quintessence
 	link Stream
 	asteroids "small rock" 46 3.848
@@ -3535,23 +3533,21 @@ system Evanescence
 		sprite star/g0-old
 		period 10
 	object
-		sprite planet/rock14-b
-		distance 401.829
-		period 69.326
-	object
 		sprite planet/mercury
 		distance 823.283
 		period 203.309
-	object
-		sprite planet/gas8-b
+	object Janalos
+		sprite planet/forest0-b
 		distance 1695.37
 		period 600.8
 		object
 			sprite planet/dust1-b
+				scale 0.5
 			distance 327
 			period 183.908
 		object
 			sprite planet/dust5-b
+				scale 0.5
 			distance 455
 			period 254.001
 	object
@@ -3742,7 +3738,7 @@ system Current
 		sprite planet/gas5
 		distance 1399.641
 		period 592.42
-		object Kalakil
+		object
 			sprite planet/cloud8-b
 				scale 0.5
 			distance 342.442
@@ -3801,6 +3797,11 @@ system Glide
 		sprite planet/rock13-b
 		distance 1209.304
 		period 461.506
+		object Kalakil
+			sprite planet/cloud7-b
+				scale 0.5
+			distance 142
+			period 24
 	object
 		sprite planet/gas13
 		distance 2296
@@ -5132,7 +5133,7 @@ system Anthem
 			distance 250
 			period 122.939
 		object
-			sprite planet/forest7
+			sprite planet/desert3
 			distance 362
 			period 0
 	object
@@ -5178,7 +5179,7 @@ system Madrigal
 		sprite star/k5
 		period 10
 	object
-		sprite planet/forest7
+		sprite planet/cloud0
 		distance 255
 		period 79.009
 	object

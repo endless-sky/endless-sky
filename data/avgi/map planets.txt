@@ -318,7 +318,7 @@ planet Hespair
 planet Delodir
 	attributes frozen moon "ice moon" uninhabited
 	landscape land/snow29
-	description `Delodir is proof that life can exist in the most unlikely of places. Despite the moon's lack of sunlight, given that the Mote system has no bright, luminescent star, life has managed to thrive at the bottom of Delodir's subsurface oceans, buried deep beneath a thick layer of ice. Energy is trickled into the biosphere from hydrothermal vents, which are in turn powered by tidal heating produced by the gravitational influence of both the brown dwarf and gas giant within the system.`
+	description `Delodir is proof that life can exist even in the most unlikely of places. Despite the moon's lack of sunlight, given that the Mote system has no bright, luminescent star, life has managed to thrive at the bottom of Delodir's subsurface oceans, buried deep beneath a thick layer of ice. Energy is trickled into the biosphere from hydrothermal vents, which are in turn powered by tidal heating produced by the gravitational influence of both the brown dwarf and gas giant within the system.`
 	government Uninhabited
 
 
@@ -334,20 +334,23 @@ planet Kapnos
 planet Vanikos
 	attributes ocean uninhabited
 	landscape land/beach18
-	description `Vanikos is an uninhabited cold watery moon. That is all. WIP`
+	description `A young, primordial world, Vanikos is a cold and watery moon still freshly formed, with freshwater oceans dominated by strong tides and volcanism. Hydrothermal vents, fueled by the powerful tidal forces acting on the moon, bleed warmth into what are otherwise frigid seas. Life has yet to develop around these temperate islands of heat, but the abundance of water and organic compounds means it is only a matter of time before it takes hold.`
+	description `Of course, with Avgi exploration having taken note Vanikos years ago for its liquid water and relatively hospitable temperatures, life may first emerge here as a result of eventual terraforming efforts before it can naturally evolve.`
 	government Uninhabited
 
 
 planet Kalakil
 	attributes forest uninhabited
 	landscape land/mountain38
-	description `Kalakil is an uninhabited misty forest moon. That is all. WIP`
+	description `The view from the surface of this pristine forest moon is nothing short of breathtaking, in equal parts from its natural beauty and the chill of its misty air. Cold glacier streams flow from a chain of tall, jagged mountains that round the entire moon, running through sunset-colored forests that meet the sun each morning tinged with frost.`
+	description `Aside from scientific expeditions that have left campsites scattered across the moon, Kalakil is untouched, a wilderness on the edge of what the Avgi managed to explore before the Incursion.`
 	government Uninhabited
 
 planet Janalos
 	attributes forest uninhabited
 	landscape land/forest14
-	description `Janalos is an uninhabited lush forest planet covered in insects. That is all. WIP`
+	description `From orbit, Janalos is a lush, forested world with a thriving ecosystem, ripe for colonization. It is only from the surface that one realizes this thriving ecosystem is in fact dominated by a mind-boggling variety of insects, large and small. The bugs are everywhere, permeating every part of the planet, and recent colonization efforts were thrwarted by just how inconvenient they make life on this planet. Insecticides are quickly adapted to, eggs and larvae can lie dormant for years before re-emerging, and the swarms of insects devour anything they can sink their chitinous teeth into.`
+	description `Even an unsanctioned atomic sterilization of a small valley, a desperate attempt to clear a foothold for settlers, proved ineffective after only a few months - something Avgi xenologists could have told the rather reckless settlers who tried it.`
 	government Uninhabited
 
 
@@ -414,7 +417,7 @@ planet Ashkelon
 
 
 planet "Feo Platform"
-	attributes avgi station military
+	attributes avgi station "twilight guard" military
 	landscape land/station53
 	description `Hastily assembled from the parts of a mothballed interstellar laser driver, the Feo Platform is an enormous excimer laser intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines.`
 	spaceport `The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with dry docks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud.`
@@ -455,7 +458,7 @@ planet "Peripheria"
 
 
 planet "Napigeo Station"
-	attributes avgi "avgi diaspora" station military
+	attributes avgi "avgi diaspora" station "twilight guard" military
 	landscape land/station57
 	description `Napigeo Station is a dedicated shipyard, with dozens of modular dry docks capable of quickly building and repairing ships. Overall, more than two thirds of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability.`
 	description `	Due to its importance and nature as a directly government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost.`
