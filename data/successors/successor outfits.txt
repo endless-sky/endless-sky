@@ -379,8 +379,8 @@ outfit `"Aqra" Inductive Steering`
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"afterburner energy" -0.9
-	"turn" 757.5
+	"afterburner energy" -0.7
+	"turn" 684
 	"turning energy" 1.1
 	"turning heat" 0.8
 	"steering flare sprite" "effect/successor flare/small"
@@ -399,10 +399,10 @@ outfit `"Aqra" Inductive Reverser`
 	"mass" 15
 	"outfit space" -15
 	"weapon capacity" -15
-	"reverse thrust" 21.3
+	"reverse thrust" 15.8
 	"reverse thrusting energy" 0.9
 	"reverse thrusting heat" 0.7
-	"afterburner energy" -0.75
+	"afterburner energy" -0.52
 	"reverse flare sprite" "effect/successor flare/small"
 		"frame rate" 20
 	"reverse flare sound" "ion small"
@@ -485,13 +485,13 @@ outfit `"Veusa" Inductive Thruster`
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"thrust" 78.0
-	"thrusting energy" 4.6
-	"thrusting heat" 3.0
-	"afterburner thrust" 117.0
-	"afterburner shields" 11.0
-	"afterburner heat" 7.5
-	"afterburner energy" 4.6
+	"thrust" 82.0
+	"thrusting energy" 4.8
+	"thrusting heat" 3.15
+	"afterburner thrust" 123.0
+	"afterburner shields" 12.2
+	"afterburner heat" 8.3
+	"afterburner energy" 4.8
 	"afterburner effect" "large successor afterburner"
 	"flare sprite" "effect/successor flare/large"
 		"frame rate" 20
@@ -510,9 +510,9 @@ outfit `"Veusa" Inductive Steering`
 	"outfit space" -42
 	"engine capacity" -42
 	"afterburner energy" -2.4
-	"turn" 2268
-	"turning energy" 3.8
-	"turning heat" 3.1
+	"turn" 1850
+	"turning energy" 3.15
+	"turning heat" 2.54
 	"steering flare sprite" "effect/successor flare/large"
 		"frame rate" 20
 	"steering flare sound" "ion large"
@@ -530,9 +530,9 @@ outfit `"Veusa" Inductive Reverser`
 	"outfit space" -35
 	"weapon capacity" -35
 	"afterburner energy" -2.1
-	"reverse thrust" 54.75
-	"reverse thrusting energy" 3.7
-	"reverse thrusting heat" 3.0
+	"reverse thrust" 51.0
+	"reverse thrusting energy" 3.5
+	"reverse thrusting heat" 2.8
 	"reverse flare sprite" "effect/successor flare/large"
 		"frame rate" 20
 	"reverse flare sound" "ion large"
