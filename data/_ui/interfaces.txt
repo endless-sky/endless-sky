@@ -11,6 +11,10 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# Raw color terms
+color black 0. 0. 0. 1.
+color red 1. 0. 0. 1.
+
 # Colors used to reflect the active or hovered interface button.
 color "hover" 1. 1. 1. 0.
 color "active" .75 .75 .75 0.
@@ -1430,6 +1434,16 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+
+	anchor top
+	string "route error"
+		center 1 59
+		size 18
+		color "black"
+	string "route error"
+		center 0 58
+		size 18
+		color "red"
 
 
 
