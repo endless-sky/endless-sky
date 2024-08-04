@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PreferencesPanel.h"
 
 #include "text/alignment.hpp"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
@@ -57,6 +57,8 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CAMERA_ACCELERATION = "Camera acceleration";
+	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -355,9 +357,9 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		{
 			int speed = Preferences::ScrollSpeed();
 			if(dy < 0.)
-				speed = max(20, speed - 20);
+				speed = max(10, speed - 10);
 			else
-				speed = min(60, speed + 20);
+				speed = min(60, speed + 10);
 			Preferences::SetScrollSpeed(speed);
 		}
 		return true;
@@ -478,7 +480,8 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD,
+		Command::HOLD_FIRE,
+		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -633,6 +636,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		CAMERA_ACCELERATION,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -645,6 +649,7 @@ void PreferencesPanel::DrawSettings()
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
 		HUD_SHIP_OUTLINES,
+		CLOAK_OUTLINE,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -674,6 +679,7 @@ void PreferencesPanel::DrawSettings()
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
 		"",
 		"Map",
 		"Deadline blink by distance",
@@ -764,6 +770,11 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
 			isOn = text != "off";
 		}
+		else if(setting == CAMERA_ACCELERATION)
+		{
+			text = Preferences::CameraAccelerationSetting();
+			isOn = text != "off";
+		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
@@ -783,6 +794,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
+		}
+		else if(setting == CLOAK_OUTLINE)
+		{
+			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
+			isOn = true;
 		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
@@ -1068,7 +1084,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
 	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
+	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
 
 	descriptionHeight += wrap.Height();
 
@@ -1188,6 +1204,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			GetUI()->Push(new Dialog(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
+	else if(str == CAMERA_ACCELERATION)
+		Preferences::ToggleCameraAcceleration();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	else if(str == STATUS_OVERLAYS_FLAGSHIP)
@@ -1215,10 +1233,10 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == SCROLL_SPEED)
 	{
-		// Toggle between three different speeds.
-		int speed = Preferences::ScrollSpeed() + 20;
+		// Toggle between six different speeds.
+		int speed = Preferences::ScrollSpeed() + 10;
 		if(speed > 60)
-			speed = 20;
+			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
 	else if(str == DATE_FORMAT)

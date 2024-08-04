@@ -639,6 +639,20 @@ fleet "Large Hai Merchant (Human)"
 		"Container Transport (Hai)"
 		"Headhunter (Hai)" 2
 
+fleet "Hai Miners"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		confusion 25
+		timid frugal appeasing mining harvests
+	variant 3
+		"Aphid (Armed)" 2
+		"Lightning Bug (Pulse)"
+	variant 2
+		"Aphid (Armed)" 3
+		"Lightning Bug (Pulse)" 2
+
 
 fleet "Unfettered Logistics"
 	government "Hai (Unfettered Civilians)"

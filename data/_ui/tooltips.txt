@@ -11,6 +11,12 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# Fleet management:
+tip "parked"
+	`(parked)`
+
+
+
 # Outfit and ship attributes:
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
@@ -1295,9 +1301,13 @@ tip "Fleet: Fight my target"
 
 tip "Fleet: Gather around me"
 	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
+	`With <shift>, change the formation pattern in your fleet.`
+
+tip "Fleet: Toggle hold fire"
+	`Command your fleet to stop firing except if they are given a specific target to shoot at afterwards. If only some escorts are selected, only sends the command to those escorts.`
 
 tip "Fleet: Hold position"
-	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
+	`Command your fleet to hold its current position. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
 
 tip "Fleet: Toggle ammo usage"
 	`Toggle the "Escorts expend ammo" setting.`
@@ -1319,6 +1329,9 @@ tip "Screen mode"
 
 tip "VSync"
 	`Toggle vsync between off, on, and adaptive (should your computer support it).`
+
+tip "Camera acceleration"
+	`Determines whether the screen center is fixed on, trails behind, or speeds ahead of the flagship while accelerating.`
 
 tip "Show CPU / GPU load"
 	`Display the CPU and GPU load at the top of the screen while in flight. Loads are presented as a percentage of a frame (1/60th of a second) that it takes to calculate or draw each frame. >100% load (or >33% when fast-forward is active) means the game will run slower.`
@@ -1349,6 +1362,9 @@ tip "Ship outlines in shops"
 
 tip "Ship outlines in HUD"
 	`Controls the display of your flagship and target ship icons in the HUD. When fancy, applies a sobel filter to the sprites. (This can result in high GPU load for some ships on very old or low performance computers.) When fast, just uses the ship's sprite.`
+
+tip "Cloaked ship outlines"
+	`Controls the display of cloaked escorts. When fancy, causes the ship to become transparent and applies a red outline. When fast, simply shifts the ship to being red.`
 
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull. If the damaged option is chosen, overlays only appear on ships that have taken damage.`
@@ -1390,7 +1406,7 @@ tip "Alert indicator"
 	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
 
 tip "Extra fleet status messages"
-	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
+	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
 
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
@@ -1425,6 +1441,9 @@ tip "Fighters transfer cargo"
 tip "Rehire extra crew when lost"
 	`Rehires extra crew whenever you land if you lost additional (non-required) crew while in flight.`
 
+tip "Automatically unpark flagship"
+	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hardpoint.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Body.h"
 #include "Effect.h"
 #include "Flotsam.h"
@@ -130,7 +130,6 @@ bool Hardpoint::IsTurret() const
 {
 	return isTurret;
 }
-
 
 
 

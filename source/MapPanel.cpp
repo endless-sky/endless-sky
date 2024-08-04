@@ -429,7 +429,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
 	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
 	set<const System *> drawnSystems = { jump[0], jump[1] };
-	bool isLink = jump[0]->Links().count(jump[1]);
+	bool isLink = jump[0]->Links().contains(jump[1]);
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
@@ -465,7 +465,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			Point unit = (from - to).Unit() * LINK_OFFSET;
 			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
 
-			if(drawnSystems.count(link))
+			if(drawnSystems.contains(link))
 				continue;
 			drawnSystems.insert(link);
 
@@ -509,6 +509,14 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
 					break;
 				if(stopover->IsInSystem(&system))
+					DrawPointer(from, missionCounter, waypointColor, false);
+			}
+
+			for(const System *mark : mission.MarkedSystems())
+			{
+				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+					break;
+				if(mark == &system)
 					DrawPointer(from, missionCounter, waypointColor, false);
 			}
 		}
@@ -888,7 +896,7 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
-	return mission.IsSatisfied(player) && !mission.HasFailed(player);
+	return mission.IsSatisfied(player) && !mission.IsFailed(player);
 }
 
 
@@ -896,7 +904,7 @@ bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
 	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
 {
-	const bool isHyper = previous->Links().count(next);
+	const bool isHyper = previous->Links().contains(next);
 	isWormhole = false;
 	isMappable = false;
 	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
@@ -917,7 +925,7 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 					break;
 				}
 			}
-	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).contains(next);
 	return isHyper || isWormhole || isJump;
 }
 
@@ -1473,6 +1481,8 @@ void MapPanel::DrawMissions()
 			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
 			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		for(const System *mark : mission.MarkedSystems())
+			DrawPointer(mark, missionCount[mark].drawn, waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)

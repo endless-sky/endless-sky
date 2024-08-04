@@ -51,6 +51,11 @@ gamerules
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"universal frugal threshold" 0.75
 
+	# Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeting.
+	# DEFAULT: all
+	# ALLOWABLE VALUES: all, none, only player
+	"disabled fighters avoid projectiles" "all"
+
 	# Depreciation related game rules:
 
 	# The depreciated value of an item that is "age" days old is calculated with the following equation:

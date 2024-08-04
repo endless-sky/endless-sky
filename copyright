@@ -1090,7 +1090,7 @@ Files:
 Copyright: Clement Rothen
 License: Unsplash
 Comment:
- Taken fromhttps://archive.is/gBEOk. This image was uploaded to
+ Taken from https://archive.is/gBEOk. This image was uploaded to
  unsplash.com after June 2017, so it is subject to the
  Unsplash License. It was also uploaded on February 20, 2018,
  so it is subject to an additional restriction limiting the
@@ -1259,7 +1259,7 @@ Comment:
  it is subject to an additional restriction limiting the sale of
  unaltered copies. The link to the image on the archive is broken
  and the published date can't be seen if you just look at the
- site. If you click iew source and search `"id":"b-FRIPfxcj4",`
+ site. If you click view source and search `"id":"b-FRIPfxcj4",`
  you will see it was published in May 2019. You will also see
  in the source that the image is
  https://images.unsplash.com/photo-1557153334-3480a560a36e,
@@ -2539,6 +2539,7 @@ Files:
  images/outfit/*efreti?thruster*
  images/outfit/fusion?cannon*
  images/outfit/nuke*
+ images/planet/pontes*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
@@ -2546,6 +2547,17 @@ Files:
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/battleship*
+ images/ship/cirrus*
+ images/ship/gero*
+ images/ship/nimbus*
+ images/ship/silent?harvester*
+ images/ship/stratus*
+ images/ship/venta*
+ images/thumbnail/cirrus*
+ images/thumbnail/gero*
+ images/thumbnail/nimbus*
+ images/thumbnail/stratus*
+ images/thumbnail/venta*
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
@@ -2686,15 +2698,47 @@ Comment: Derived from works by Evan Fluharty (under the same license).
 Files:
  images/outfit/gat?turret?hardpoint*
  images/outfit/gat?turret*
-Copyright: bene_dictator <benstaples8068@gmail.com>
+Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
 
 Files:
  images/planet/station19*
-Copyright: bene_dictator <benstaples8068@gmail.com>
+Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/_menu/haze-dark-nebula*
+ images/effect/incipias?flare/*
+ images/effect/plasma?exhaust*
+ images/effect/plasma?particle*
+ images/effect/stagnation?beam?impact*
+ images/effect/star?tail*
+ images/hardpoint/stagnation?beam*
+ images/outfit/gas?class?shield*
+ images/outfit/liquid?class?shield*
+ images/outfit/metallic?hydrogen?cell*
+ images/outfit/mh?*
+ images/outfit/plasma?discharger*
+ images/outfit/stagnation?beamx*
+ images/outfit/star?tail?*
+ images/planet/aera*
+ images/planet/gliese*
+ images/planet/redias*
+ images/planet/treser*
+ images/planet/vulpa*
+ images/projectile/ionic?turret*
+ images/projectile/plasma?discharge*
+ images/projectile/stagnation?beam*
+ images/projectile/star?tail*
+ images/projectile/strange?ray*
+ images/scene/incipias?message*
+ images/star/a-eater*
+ images/star/neutron-small*
+ images/star/proto-planetary-disk*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/*bioroid*
@@ -2720,6 +2764,8 @@ Files:
  images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/hardpoint/tractor?beam*
+ images/label/gegno*
+ images/label/umbral*
  images/outfit/acuit*
  images/outfit/acumen*
  images/outfit/ameliorate?cell*
@@ -2799,6 +2845,7 @@ Files:
  images/ship/gegno?kyanite*
  images/ship/gegno?mica*
  images/ship/gegno?protolith*
+ images/ship/gegno?rhyolite*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -2826,6 +2873,8 @@ Files:
  images/thumbnail/gegno?halite*
  images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
+ images/thumbnail/gegno?protolith*
+ images/thumbnail/gegno?rhyolite*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
@@ -2896,14 +2945,18 @@ Files:
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
+ sounds/*incip?plasma*
  sounds/locust?blaster*
  sounds/mandible?cannon*
+ sounds/plasma?discharger*
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
  sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/stagnation?beam*
+ sounds/star?tail*
  sounds/swarm?missile*
  sounds/thorax?cannon*
  sounds/tractor?beam*
@@ -3246,6 +3299,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/outfit/anti-materiel?gun*
+ images/outfit/cloud?piercer*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 
@@ -3499,12 +3553,6 @@ Files:
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
-
-Files:
- images/star/proto-planetary-disk*
- images/projectile/ionic?turret*
-Copyright: RisingLeaf (https://github.com/RisingLeaf)
-License: CC-BY-SA-4.0
 
 Files:
  images/effect/ionic?impact*

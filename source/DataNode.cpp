@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
@@ -89,6 +90,14 @@ int DataNode::Size() const noexcept
 const vector<string> &DataNode::Tokens() const noexcept
 {
 	return tokens;
+}
+
+
+
+// Add tokens to the node.
+void DataNode::AddToken(const std::string &token)
+{
+	tokens.emplace_back(token);
 }
 
 
@@ -262,6 +271,14 @@ bool DataNode::IsBool(const string &token)
 
 
 
+// Add a new child. The child's parent must be this node.
+void DataNode::AddChild(const DataNode &child)
+{
+	children.emplace_back(child);
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const noexcept
 {
@@ -307,13 +324,7 @@ int DataNode::PrintTrace(const string &message) const
 	{
 		if(&token != &tokens.front())
 			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
+		line += DataWriter::Quote(token);
 	}
 	Logger::LogError(line);
 

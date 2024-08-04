@@ -280,7 +280,7 @@ mission "Pookie, Part 2"
 			label response
 			`	"Thank heavens," she says. "She's all yours." She hands you the leash and a large bag that appears to be full of chew toys. "Here are her toys, her food, and her... outfits. Which she hates. Feed her twice a day, or she will go berserk. Do not feed her more than twice a day, or she will throw up..."`
 			`	As she continues rattling off instructions, you ask, "Wait, Pookie is the dog?"`
-			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
+			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately squats against the landing strut.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
@@ -883,7 +883,7 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
-		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
+		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
 
 
 
@@ -1195,6 +1195,7 @@ mission "Drug Running 1"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1230,6 +1231,7 @@ mission "Drug Running 2"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1260,6 +1262,7 @@ mission "Drug Running 3"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1374,6 +1377,7 @@ mission "Shady passenger transport 1"
 	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "core" "urban"
 	destination
@@ -1410,6 +1414,7 @@ mission "Shady passenger transport 2"
 	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" core urban
 	destination
@@ -1456,6 +1461,7 @@ mission "Shady passenger transport 3"
 	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
 	destination
@@ -3566,9 +3572,8 @@ mission "Pirate Duel"
 	source
 		near "Tarazed" 1 5
 		government "Republic" "Free Worlds"
-	waypoint "Umbral"
+	mark "Umbral"
 	destination "Wayfarer"
-	
 	to offer
 		"combat rating" > 20
 		"combat rating" < 400
@@ -3625,18 +3630,64 @@ mission "Pirate Duel"
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
 	on enter "Umbral"
+		unmark "Umbral"
 		"reputation: Independent (Killable)" = -1000
 		conversation
+			branch "killed anglerfish"
+				has "anglerfish dead"
+			branch "disabled anglerfish"
+				has "anglerfish disabled"
+			branch "caught anglerfish"
+				has "anglerfish caught"
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
 			`	The Vanguard powers up its weapons.`
+				decline
+			label "killed anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was killed. You should head back to Wayfarer to see if you can claim some sort of reward.`
+				decline
+			label "disabled anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was on the ship you disabled. You should head back to make sure the Anglerfish has been fully destroyed.`
+				decline
+			label "caught anglerfish"
+			action
+				clear "anglerfish caught"
+			`As you enter Umbral, the Anglerfish follows behind you, and opens a hail.`
+			`	"Did you think that if you went to Umbral, I would switch to a smaller ship? Ha!"`
+			`	The Anglerfish once again powers up its weapons.`
+				decline
 	
 	npc kill
 		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
 			confusion 20
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
-		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
+		on provoke
+			unmark "Umbral"
+			"reputation: Independent (Killable)" = -1000
+			set "anglerfish caught"
+			conversation
+				`As soon as you open fire, the Anglerfish hails you.`
+				`	A voice you recognize as the "captain of the Esca" says, "How did you know that was me? Well, it doesn't matter, because I've paid off the militia. Get ready to die, small-fry."`
+				`	The Anglerfish powers up its weapons.`
+					decline
+		on disable
+			set "anglerfish disabled"
+		on kill
+			clear "anglerfish disabled"
+			set "anglerfish dead"
+			conversation
+				branch "orbiting tarazed"
+					has "flagship system: Tarazed"
+				branch "passed tarazed"
+					not "anglerfish caught"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should continue on to Wayfarer to see if you can claim some sort of reward for your effort.`
+					decline
+				label "passed tarazed"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should head back to Wayfarer to see if you can claim some sort of reward for your effort.`
+					decline
+				label "orbiting tarazed"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should land on Wayfarer to see if you can claim some sort of reward for your effort.`
 	
 	on complete
 		"reputation: Independent (Killable)" = 10
@@ -5920,7 +5971,7 @@ mission "Argosy Hijacking"
 			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
 				decline
 	
-	npc save disable
+	npc disable save
 		personality launching daring uninterested target
 			confusion 80
 		government "Bounty (Disguised)"
@@ -5963,7 +6014,7 @@ mission "Argosy Hijacking"
 			`	He sighs and says, "Man, I don't have time for this. Tell me what actually happened."`
 			choice
 				`	"I blew it up, didn't you hear me?"`
-				`	"You ship got away. That's what happened."`
+				`	"Your ship got away. That's what happened."`
 			`	"If you're going to waste my time, get out of here." Before you can react, he storms off towards the Syndicated Security offices.`
 				decline
 
@@ -5998,7 +6049,7 @@ mission "Argosy Hijacking"
 			choice
 				`	"Well, yeah."`
 				`	"No, that's not what I meant."`
-			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
+			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, and I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
 			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
 				decline
 
@@ -6673,6 +6724,91 @@ mission "FW Refugees to Humanika"
 		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
+mission "Derelict Treasure Map: Ion Cannons"
+	landing
+	name "Derelict Treasure Map"
+	description "Follow the treasure map you found in a derelict ship to <destination>."
+	destination "New Argentina"
+	to offer
+		has "derelict treasure map: ion cannons"
+	on offer
+		conversation
+			`Upon landing on <origin> you take out the treasure map you recovered from the derelict ship. The map gives detailed instructions about where the treasure was buried on the sparsely populated world of <destination>. However, the map's creator claims to have obtained some kind of alien weapons that disrupts a ship's electrical systems. The outlandish claim seems to bring doubt to the validity of the map.`
+			choice
+				`	(Follow the map.)`
+					accept
+				`	(Throw the map away, it's probably fake.)`
+					decline
+	on complete
+		payment 386000
+		outfit "Ion Cannon" 2
+		conversation
+			`Flying low over <planet> you follow the instructions to an isolated valley where you promptly land and get to digging. After hours of shoveling the hard soil you're met with a thunk as you strike metal.`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	Opening the cache reveals a large store of credits along with the alien weapons the map's owner wrote about. You marvel at their strange design and wonder at their power.`
+			choice
+				`	(Loot the treasure.)`
+					goto end
+			label hai
+			`	Opening the cache reveals a large store of credits along with two Hai Ion Cannons. These must be the alien weapons the map's owner wrote about.`
+			choice
+				`	(Loot the treasure.)`
+					goto end
+			label end
+			`	You grab the <payment> credits, and with the assistance of some machinery you bring the weapons back to your ship.`
+
+mission "Derelict Family Investment 1"
+	landing
+	name "Lost Family Investment"
+	description "Return the credits you found in a derelict ship to the family it belongs to by traveling to <destination>."
+	destination "Sundive"
+	to offer
+		has "derelict family investment"
+	"apparent payment" 325000
+	on offer
+		conversation
+			`Upon landing on <origin> you take out the text log you recovered alongside the case of <payment> from the derelict ship. The log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
+			`	Perhaps the family still lives there.`
+			choice
+				`	(Attempt to return the credits.)`
+					accept
+				`	(Keep the credits to myself.)`
+			action
+				payment 325000
+			`	You decide to keep the money. After all, it's not every day that you find a score worth <payment>.`
+				decline
+
+mission "Derelict Family Investment 2"
+	landing
+	name "Lost Family Investment"
+	description "Return the credits you found in a derelict ship to the family it belongs to by traveling to <destination>."
+	destination "Foundry"
+	to offer
+		has "Derelict Family Investment 1: done"
+	on offer
+		conversation
+			`Upon landing on <origin> you take a transport out to the small farm indicated in the log as the home of Captain Sawyer's family. After knocking on the door of the farmhouse a man opens the door and asks, "Can I help you?"`
+			choice
+				`	"Do you know a Colin Sawyer?"`
+				`	"Do the Sawyers live here?"`
+			`	"Sawyer? Yeah, that's the family that sold me this here farm. If you're looking for them I believe they moved to a more populated planet, own some big corporation now." The man gives you the Sawyers' new place of residence on <destination> and bids you farewell.`
+				accept
+			
+	on complete
+		payment 500000
+		conversation
+			`It doesn't take long to find the Sawyers' home on <planet>. The building makes it clear that the family has done well for themselves. After a quick explanation to the desk clerk that you have something important to give, you take an elevator ride to the penthouse. You ring the buzzer and are greeted by a woman in her late fifties. "A delivery?" she asks.`
+			choice
+				`	"Do you know a Colin Sawyer?"`
+			`	A scowl appears on her face as she spits out a response. "What do you know of my Da? That deadbeat left me and my family with next to nothing."`
+			choice
+				`	"I don't know what happened to him personally, but I found this case of credits and a log explaining how he was trying to invest in a better life for his family."`
+				`	"I believe he died before he was able to bring back his business investment to your family. Here's his personal log, it explains everything."`
+			`	She takes the log from you and quickly scrolls through it, emotion washing over her features as she reads. Eventually she looks up, and with all the anger towards her father gone, she speaks. "Thank you for this. All these years I had believed he had just taken our money and run off. But knowing he had been trying to help is worth more than all the credits in the galaxy. Take them and then some as a reward for bringing me this last piece of him."`
+			`	You leave the building with a total of <payment> credits from both the case and Ms. Sawyer.`
+
+
 mission "Returning to Paradise"
 	name "Transport family home to <planet>"
 	description `A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>. They promise to "pay you very well."`
@@ -6717,6 +6853,8 @@ mission "Returning to Paradise"
 			action
 				payment 120000
 			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even tell you their names. Nonetheless, you're happy to be rid of them.`
+
+
 
 mission "Hogshead's Dilemma"
 	minor
@@ -6779,7 +6917,7 @@ mission "Lost Dog"
 		random < 15
 	on offer
 		conversation
-			`Your walk from the <ship> takes you out of <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
+			`Your walk from the <ship> takes you out of <origin>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
 			`	As you walk, you eventually come across a perfectly manicured garden park named "Parc Manifold." You approach the gates to discover a ticket office, with signs advertising a free entry promotion this week only, crossing out the 3,400 credit regular admission fee.`
 			choice
 				`	(Go to the park.)`
@@ -6873,7 +7011,7 @@ mission "Lost Dog"
 			`	She snatches up the dog and draws it to her bosom. "Oh my darling See-See! It has been most dreadful waiting for news of you!"`
 			`	After a moment she turns her attention back to you, looking slightly softer than before. "See-See tires of the parks here, and so every Tuesday I send him to Calda for a change of pace. It's good for his constitution, you know. Anyway, the horrid man who normally ferries our dogs on these little excursions had some sort of episode. A stroke, or a heart attack - you get the idea. He had an assistant return the dogs, but in the confusion, they forgot my little See-See. I was sure some gauche tourist would have snatched him up and eaten him by now."`
 			`	She turns her attention back to the dog and speaks to him in baby talk. "But, instead, this gallant captain saved you!"`
-			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be perceived as owing favors to vagabonds. Imagine the talk!`
+			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be perceived as owing favors to vagabonds. Imagine the talk!"`
 			`	The butler quickly procures a credit chip and shows it to her, accepting a curt nod for approval. "I realize that this is probably a fortune to you," she says. "I recommend you find a financial advisor and invest it well."`
 			`	With that, she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
 			`	You look down at the credit chip in your hand and read its value: <payment>.`
@@ -6893,3 +7031,427 @@ mission "Lost Dog: Homeward Bound"
 		conversation
 			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that Caesar, the little lost dog you ran into on Calda, has become something of a minor celebrity after it managed to get back home to Glory all by itself. The newsfeed scrolls down to show images of the dog skiing, sneaking onto transports, and riding automatic farming equipment.`
 				decline
+
+
+
+mission "Adelita 1"
+	minor
+	name "Exhibition installations to <planet>"
+	description `Transport <tons> of exhibition installations to <destination> for the Adelita collective. Payment is <payment>.`
+	cargo "exhibition installations" 5
+	source "Follower"
+	destination "Moonshake"
+	to offer
+		or
+			random < 10
+			and
+				random < 60
+				or
+					has "Expedition to Hope 2: done"
+					has "FW Katya 4: done"
+					has "visited planet: Hope"
+		"combat rating" > 40
+
+	on offer
+		conversation
+			branch "know about disaster"
+				has "FW Katya 4: done"
+
+			branch "has visited"
+				has "visited planet: Hope"
+
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you vaguely remember it as being a planet in a system southwest of New Boston. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+				goto directions
+
+			label "has visited"
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember having been there once before on an excursion. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+				goto directions
+
+			label "know about disaster"
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijes while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+
+			label directions
+			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
+			choice
+				`	(Check it out.)`
+				`	(Not interested.)`
+					decline
+
+			`	Following the signage, you notice a substantial group of people gathered in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue, a young woman lines up behind you with a readily apparent exuberance and asks you, "Just out of curiosity, how much do you know about Hope and its history?"`
+			choice
+				`	"Not much at all."`
+				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
+				`	"I've been there myself and know what happened, but other than that I don't know."`
+					goto "been to hope"
+					to display
+						has "visited planet: Hope"
+						not "Expedition to Hope 2: done"
+						not "FW Katya 4: done"
+				`	"I've been there myself, actually, and met some people affected by it."`
+					goto "been to hope"
+					to display
+						or
+							has "Expedition to Hope 2: done"
+							and
+								has "FW Katya 4: done"
+								has "visited planet: Hope"
+				`	"I haven't been there myself, but I know people who have been affected by it."`
+					to display
+						has "FW Katya 4: done"
+						not "visited planet: Hope"
+
+			`	"Well then it's a good thing you're seeing Adelita's exhibition on Hope. It's really moving. You'll learn a lot about the tragedy and what Parliament and the Paradise Worlds did to everybody who tried to help," she adds somewhat sullenly. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it, so today's their final day. I had to see it one more time before they went."`
+				goto questions
+
+			label "been to hope"
+			`	"Oh, wow! It must have been a harrowing experience. Adelita does a powerful job of giving you the whole story, though, and I bet you'll still learn a lot. You might even feel as if you've been transported back there yourself," she says. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it and today's their final day. I had to see it one more time before they went."`
+
+			label questions
+			choice
+				`	"Who's Adelita?"`
+				`	"Why did they have to close it?"`
+					goto signage
+
+			`	"They're an independent journalistic collective all about the injustices of human civilization. No one knows who they really are, but Adelita's work is what inspired me to study journalism. Their use of mixed media, their eye for story telling... I just love it. I know you're going to love it too," she says.`
+				goto exhibition
+
+			label signage
+			`	"Well, this exhibition used to be permanent, but the planetary government was pressured by the Paradise Planets to force Adelita to leave. What Parliament and the Paradise Planets did to the people of Hope was abhorrent. Now Adelita's bringing light to it, and they're being silenced. It's wrong."`
+
+			label exhibition
+			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the warehouse, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them are quite crude and tasteless. It's a strong rebuke to see those displayed here, so close to the Paradise Planets.`
+			`	There are many, many photos, but one in particular catches your eye. It's of a woman standing in line to board a ship, a baby held at her hip and a look of sadness and determination on her face. The mother and child's cheeks, rosy and chapped, stand out in contrast with the cold blues in the background.`
+			`	You head toward the exit, but as the automatic doors open, an arctic blast pummels into you from out of nowhere. Instead of <origin>'s spaceport, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries in a snowy field near a small town gradually being covered by ash as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
+			`	"It's more of a collage than an exact rendering," says the young woman you met in line, having followed you all this way. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet, for example. The magic of editing. What do you think?"`
+			choice
+				`	"Impressive."`
+				`	"It's alright."`
+				`	"Isn't that a bit deceptive?"`
+					goto deceptive
+
+			`	"I've been here ten times and I always manage to be awestruck," the woman replies. "Enjoy the exhibition while you still can!" She heads for the exit.`
+			choice
+				`	(Continue wandering around the exhibit.)`
+					goto wander
+				`	(Go to the exit.)`
+					goto exit
+
+			label deceptive
+			`	"Deceptive?! No," the woman responds in a ruffled manner. "If you call this deception you must have a distaste for the media," she chuckles. "This form of journalism is as authentic as journalism gets! Now, of course Adelita takes creative liberties, but it's all in the pursuit of education and justice.`
+			`	"Well, for what it's worth, I've been here ten times and I always manage to be awestruck," the woman says. "Enjoy the exhibition while you still can." She heads for the exit.`
+			choice
+				`	(Continue wandering around the exhibit.)`
+				`	(Go to the exit.)`
+					goto exit
+
+			label wander
+			branch katya
+				has "FW Katya 4: done"
+
+			`	Inside houses, you see families frantically gathering their belongings and running for the Navy ships. You walk down one of the lines of refugees, observing each person - their faces harried, frightened, resolute. From the corner of your eye, you notice that a Navy officer slips in the snow, and as you look around, a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
+				goto "move on"
+
+			label katya
+			`	Inside houses, you see families frantically gathering their belongings and running for the Navy ships; it strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person - their faces harried, frightened, resolute. From the corner of your eye, you notice that a Navy officer slips in the snow, and as you look around, a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
+
+			label "move on"
+			`	As you move on, you're startled to find yourself face-to-face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question, and begins to take photos.`
+			`	Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the warehouse. The exhibit is nearly empty as a woman walks up to you. "One of the authors loves that moment too. That's probably why she fought so hard to have that part left in." She mutters something about a "security risk" under her breath, and then turns her attention back to you.`
+			`	"Oh, how rude of me," she says, offering her hand. "My name is Mariel. I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
+			choice
+				`	"I'm <first> <last>."`
+					goto extended
+				`	"I'm Captain <last>."`
+
+			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <planet> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead given the short notice. What do you say?"`
+				goto choice
+
+			label extended
+			`	"Right," she says. "Hey, would you happen to know any ships which can take on <tons> of this exhibition's equipment to <destination>? As you may know, this is the last day of the exhibition. The captain I hired to transport everything is not only rude, but is now late, and I need someone to take his contract on short notice."`
+			choice
+				`	"Well, I'm the captain of the <ship>."`
+				`	"Sorry, I can't help you."`
+					goto decline
+
+			`	Mariel's eyes light up. "Great! I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead. What do you say?"`
+
+			label choice
+			choice
+				`	"I would love to."`
+					goto accept
+				`	"I've got more pressing matters at hand."`
+
+			`	"Oh. I thought that would be a pretty good deal for you, especially given the chance to meet the artists. But it's your call."`
+			choice
+				`	"Okay, I'll do it."`
+				`	"I'm sorry, I can't take the job."`
+					goto decline
+
+			label accept
+			`	"Great!" Mariel says. "I will have our crew get everything ready to load at your ship promptly."`
+			`	After a couple hours, the whole exhibition is packed up and ready for transport to <planet>.`
+				accept
+
+			label decline
+			`	"That's unfortunate. I'll have to find someone else, then." Mariel glances at her watch. "Well, anyway, the exhibition has closed. I'm going to have to ask you to leave."`
+				decline
+
+			label exit
+			`	Following her, you find the true exit of the warehouse and go back out onto the more familiar grounds of <origin>'s spaceport.`
+				decline
+
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying the exhibition installations has not arrived yet. Better depart and wait for your escorts to enter the system.`
+
+	on complete
+		log `Saw an impressive exhibition on the Evacuation of Hope and ended up with a job taking the whole thing to Moonshake.`
+		payment 80000
+		event "adelita 2 offer expired" 1
+		conversation
+			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. After they're done taking Adelita's cargo away, one of the crew walks up to you and hands you a credit chip for <payment> and a note. It reads:`
+			``
+			`	Meet me at the Common Grounds Cafe in the spaceport if you're interested in assisting us with a new project. Make sure you're not followed.`
+			`		-Adelita Zero`
+
+
+event "adelita 2 offer expired"
+
+
+mission "Adelita 2"
+	name "Film Syndicate sweatshop on <planet>"
+	description "Participate in an unauthorized filming of a Syndicate sweatshop on <destination>. You will be paid <payment> after you complete the entire job."
+	cargo "stealth drones" 1
+	passengers 3
+	"apparent payment" 200000
+	source "Moonshake"
+	destination "Maker"
+	to offer
+		has "Adelita 1: done"
+		not "adelita 2 offer expired"
+
+	on offer
+		conversation
+			`It takes a while to navigate through the bustling spaceport and the almost viscous fog of <origin>. After finding an information screen, you're able to get to the Common Grounds Cafe, which has a funky vibe to it and is quite busy. Nobody seems to recognize you, so you take a seat at a booth and order something to eat.`
+			`	Before your meal arrives, however, a woman with dark hair, maybe in her late thirties, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have neither heard of nor can pronounce.`
+			`	"Sorry for the cloak and dagger bit," the woman says to you finally. "We have enemies in high places. So Captain <last>, what did you think of the exhibition?"`
+			choice
+				`	"I found it quite moving."`
+				`	"It was okay."`
+					goto wasok
+				`	"It was too political for me."`
+					goto political
+
+			`	"I'm glad you liked it," she says, smiling.`
+				goto choice
+
+			label wasok
+			`	"Not exactly a rave review, but you're entitled to your opinion," she says, smiling.`
+				goto choice
+
+			label political
+			`	"Oh. Unfortunately for many, everything is political. It was political when the Paradise Worlds tried to block the evacuation. And it was political when the Navy did it anyway without the permission of Parliament. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one someday: wealthy, authoritarian, exploitative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installations," she says with a smile. She gets her smoothie to-go and walks out.`
+				decline
+
+			label choice
+			`	"I heard from Mariel that you saw me take the photos of the woman and her baby," she says. "I really liked that moment, but not many notice it." She takes a quick glance around before leaning in closer. "We need a captain to transport a team to one planet, quickly land on another, and then pick up the team and return here with everyone safe and sound. I can't tell you much more than that until you accept, but it's nothing too dicey. It's a dangerous universe, though, so who knows?" She looks at you expectantly.`
+			`	"Oh, and we have to leave today. It will pay, of course. <payment>. So, what do you say? Are you in or out?" When she finishes speaking, your order is served while she drinks her smoothie.`
+			choice
+				`	"In."`
+				`	"Out."`
+					goto out
+
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll to film the conditions in a secret Syndicate sweatshop.`
+			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
+			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
+			choice
+				`	"Hold on, pirates?"`
+				`	"Won't this get me in trouble with the Syndicate?"`
+					goto syndicate
+
+			`	"Don't worry, Bunker is a pro, and we have an array of long-range stealth drones that do the spying. You won't be anywhere near them. You might encounter some lone pirates on the way though, so you'll need to be quick."`
+				goto leave
+
+			label syndicate
+			`	"Well, I did say we had enemies in high places, didn't I? But don't worry. Bunker's a pro. We have an array of long-range stealth drones that do the spying. You won't be anywhere near them, though pirates do frequent the system, so you'll need to be quick."`
+
+			label leave
+			choice
+				`	"Got it."`
+				`	"Sorry, I don't like the sound of this."`
+					goto out
+
+			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
+			`	You go back to the <ship>'s landing pad, and sure enough, there are two people with backpacks and a few cases waiting for you. They introduce themselves as River and Bunker, and they enthusiastically stow their equipment away without a hitch.`
+			`	"Good. Now that that's done with, let's load up," says Bunker, before letting out a holler. "Taking down the Man. I love it!"`
+				accept
+
+			label out
+			`	"I'm sorry to hear that... I suppose it just wasn't meant to be." She gulps down her smoothie at lightning speed before leaving just as quickly.`
+				decline
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+
+mission "Adelita 3"
+	landing
+	name "Film slave transaction"
+	description "Do a flyby of <destination> while Bunker spies on the slave transaction. You will be paid <payment> after you complete the entire job."
+	cargo "stealth drones" 1
+	passengers 1
+	infiltrating
+	"apparent payment" 200000
+	source "Maker"
+	destination "Hippocrates"
+	to offer
+		has "Adelita 2: done"
+
+	on offer
+		conversation
+			`You drop off Ale and River at the spaceport, watching as they try to seem neither visibly embarrassed to be in their security uniforms nor uncomfortable with their disguises, even though they're now virtually indistinguishable from other Syndicate personnel. Bunker can't stop laughing at them. Everyone wishes each other luck as the two walk off, and you and Bunker go back to the <ship> and prepare for the journey to <planet>.`
+				accept
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+
+mission "Adelita 4"
+	landing
+	name "Take the film to <planet>"
+	description "Take the film to <destination>, where the rest of the Adelita group remained behind. You will be paid <payment> after you complete the entire job."
+	passengers 1
+	cargo "stealth drones" 1
+	infiltrating
+	"apparent payment" 200000
+	source "Hippocrates"
+	destination "Maker"
+	to offer
+		has "Adelita 3: done"
+
+	on offer
+		conversation
+			`As you enter <origin>'s atmosphere Bunker explains that you need to find a place to land in order for him to be able to release the drones. Luckily on this part of <origin>, it's not hard to find a remote canyon within range of the target area.`
+			`	Bunker locates a sheltered outcrop near the <ship> and releases the drones from a briefcase he took with him; the drones are so small you can't make them out. He then unpacks the drones' controller and display feed and sets it up on a flat boulder, using a smaller rock as a stool to sit on while he prepares the drones. "Okay, they're on autopilot to the rendezvous site."`
+			`	As you watch the display, the drones arrive on site, and you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
+			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social pressure, that could stop the slave ships forever."`
+			choice
+				`	"I think you're right."`
+				`	"What about doing both?"`
+					goto plan
+				`	"Are you sure it's that simple?"`
+					goto cynic
+
+			`	"Thank you! It's good to hear someone who's optimistic about this. Way too many people are unconscious about slavery in our civilization, or they believe there's nothing anybody can do about it. If we can-" A chirp from the proximity alert cuts him off.`
+				goto showtime
+
+			label cynic
+			`	"Of course not. And that's why I'm working here instead, to make sure there'll be a time and place in the future where we can finally declare the galaxy free of slavery. What if-" A chirp from the proximity alert cuts him off.`
+				goto showtime
+
+			label plan
+			`	"Now you're talking! But it would take a lot of planning to do it without killing the people we're trying to liberate. You know they'll use those poor people as human shields. Say we-" A chirp from the proximity alert cuts him off.`
+
+			label showtime
+			`	"Showtime!" he exclaims, rubbing his hands together. Both of you watch as a Vanguard flying pirate colors, accompanied by a small flotilla of Quicksilver escorts, lands near the security detail, probably deafening them with the sound of their repulsors. As soon as the loading ramp is down, the security detail gets to work herding the slaves from one ship to another - hitting, shoving, and shouting at anyone that moves too slowly for their liking.`
+			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky as if he sees something. He motions, and the Quicksilvers fire up their engines.`
+			`	"Oh, I don't like the look of this," says Bunker.`
+			choice
+				`	"Did he see us?"`
+					goto "see us"
+				`	"Call back the drones now."`
+					goto "call drones"
+				`	"I think we'll have to leave the drones behind."`
+					goto "no can do"
+				`	"Keep filming."`
+
+			`	"I don't know. I think we oughta get going," says Bunker, grimacing.`
+			choice
+				`	"Okay. Call the drones back."`
+					goto "call drones"
+				`	"That's an order!"`
+
+			`	"You're the captain, you decide whether we go or not," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
+			`	You hear the sudden hum of repulsors overhead, replaced simultaneously by the reports of particle cannons from the Quicksilvers! You think you hear Bunker swear as he leaps off his seat, the both of you running towards the <ship>, dirt and rock kicking up around you from strafing particle fire- until you're engulfed by a searing yellow beam that splits your body apart as a Quicksilver finally finds its mark.`
+				die
+
+			label "see us"
+			`	"I have no idea," says Bunker. "But it's probably time to go."`
+			choice
+				`	"Call back the drones now."`
+					goto "call drones"
+				`	"I think we have to leave the drones behind."`
+
+			label "no can do"
+			`	Bunker hits the recall button for the drones anyway. "This display is a low resolution proxy," explains Bunker. "If we leave the drones, we'll lose all the footage we need. It looks like the Quicksilvers aren't coming straight for us. We have time. The drones are less than two minutes out."`
+			choice
+				`	"We're leaving. Now!"`
+				`	"Fine. Get to the <ship> and lock down the drones as soon as they land. We take off on your mark."`
+					goto "call drones"
+
+			`	"I can't let you do that, <first>," says Bunker, standing between you and the controls. "The drones are almost here. It'll take me no time to lock them down once we're on the <ship>, then we're out of here.`
+			choice
+				`	(Force him to stand down.)`
+					goto pistol
+				`	(Get back to the <ship> and let Bunker lock down the drones.)`
+
+			`	You nod, and Bunker immediately packs up the entire controller and display set, packing it away in his briefcase in seconds.`
+				goto flee
+
+			label "call drones"
+			`	"Aye aye, Captain," he says as he hits a button. "Drone ETA: two minutes, fifteen seconds." He packs up the entire controller and display set and has it packed away in his briefcase in seconds.`
+
+			label flee
+			`	The both of you race onboard the <ship> and you prepare it for take off while Bunker heads to the cargo bay to receive the drones. "Lock down the drones as soon as they arrive and get belted in," you say over the comms to Bunker. "We'll take off on your mark."`
+			`	Less than a minute later, you hear Bunker's reply. "Drones are locked down and ready to go."`
+			`	You immediately raise the shields and take off. The moment you pull out of the canyon, pirate Quicksilvers appear from every direction; not far behind them, the Vanguard you saw earlier. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
+				launch
+
+			label pistol
+			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him you hear the sudden hum of repulsors overhead, replaced simultaneously by the reports of particle cannons from the Quicksilvers! You find yourself letting go of Bunker, the both of you running towards the <ship>, dirt and rock kicking up around you from strafing particle fire- until you're engulfed by a searing yellow beam that splits your body apart as a Quicksilver finally finds its mark.`
+				die
+
+	npc
+		personality heroic nemesis vindictive launching
+		government "Pirate"
+		ship "Quicksilver" "Dog's Leash"
+		ship "Quicksilver" "Burning Whip"
+		ship "Quicksilver" "Iron Chains"
+		ship "Vanguard" "Cat o' Nine Tails"
+
+	npc
+		personality fleeing uninterested launching
+		government "Merchant"
+		ship "Bulk Freighter" "Ramona"
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+
+mission "Adelita 5"
+	landing
+	name "Return Adelita to <planet>"
+	description "Bring everyone back to <destination>. You will be paid <payment> after you complete the entire job."
+	passengers 3
+	cargo "stealth drones" 1
+	"apparent payment" 200000
+	source "Maker"
+	destination "Moonshake"
+	to offer
+		has "Adelita 4: done"
+
+	on offer
+		conversation
+			`You managed to deal with the Quicksilvers and arrive on <origin> alive. As soon as you land, Ale and River rush on board, obviously relieved to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, all of them are eager to get back and process what they filmed - both emotionally and literally.`
+			`	"That was horrible, but we got it done," Ale mumbles. "Can we leave now?"`
+				accept
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+	on complete
+		payment 220000
+		log `Helped the underground journalism collective "Adelita" gather video evidence of Syndicate participation in the slave trade while escaping from pirates.`
+		conversation
+			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
+			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
+			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`

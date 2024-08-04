@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UNIVERSE_OBJECTS_H_
-#define UNIVERSE_OBJECTS_H_
+#pragma once
 
 #include "CategoryTypes.h"
 #include "Sale.h"
@@ -42,8 +41,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
 #include "Wormhole.h"
@@ -58,7 +57,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 class Panel;
-class PlayerInfo;
 class Sprite;
 class TaskQueue;
 
@@ -82,7 +80,7 @@ public:
 	void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
-	void UpdateSystems(const PlayerInfo *player = nullptr);
+	void UpdateSystems();
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
@@ -146,7 +144,3 @@ private:
 	mutable std::mutex menuBackgroundMutex;
 	Interface menuBackgroundCache;
 };
-
-
-
-#endif
