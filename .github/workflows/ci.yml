@@ -14,6 +14,7 @@ on:
     - '.github/workflows/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - Doxyfile
     - keys.txt
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
@@ -25,6 +26,7 @@ on:
     - '.github/workflows/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - Doxyfile
     - keys.txt
 
 
@@ -163,6 +165,25 @@ jobs:
         testPreset: 'macos-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
+
+
+  build_documentation_doxygen:
+    name: Documentation Doxygen
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Install development dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends doxygen graphviz
+    - name: Run Doxygen
+      run: doxygen
 
 
   test-parse:
