@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -545,6 +546,19 @@ private:
 
 
 private:
+	// A class representing the values to calculate the ship explosion weapon
+	// from its base attributes.
+	class AutoExplosion {
+	public:
+		double baseMult = -1.;
+		double radiusMult = 0.01;
+		double shieldMult = 0.10;
+		double hullMult = 0.05;
+		double forceMult = 0.15;
+	};
+
+
+private:
 	// Protected member variables of the Body class:
 	// Point position;
 	// Point velocity;
@@ -617,6 +631,7 @@ private:
 	Outfit baseAttributes;
 	bool addAttributes = false;
 	const Outfit *explosionWeapon = nullptr;
+	std::optional<AutoExplosion> autoExplosion;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
