@@ -130,6 +130,11 @@ namespace {
 		return lhs->RequiredCrew() < rhs->RequiredCrew();
 	}
 
+	bool CompareDeterrence(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
+	{
+		return lhs->Deterrence() < rhs->Deterrence();
+	}
+
 	// A helper function for reversing the arguments of the given function F.
 	template <InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -152,19 +157,22 @@ namespace {
 			return ReverseCompare<CompareHull>;
 		else if(f == &CompareFuel)
 			return ReverseCompare<CompareFuel>;
+		else if(f == &CompareDeterrence)
+			return ReverseCompare<CompareDeterrence>;
 		return ReverseCompare<CompareRequiredCrew>;
 	}
 }
 
 // Table columns and their starting x positions, end x positions, alignment and sort comparator.
-const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[7] = {
-	SortableColumn("ship", 0, 217, {217, Truncate::MIDDLE}, CompareName),
-	SortableColumn("model", 220, 347, {127, Truncate::BACK}, CompareModelName),
-	SortableColumn("system", 350, 487, {137, Truncate::BACK}, CompareSystem),
-	SortableColumn("shields", 550, 493, {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
-	SortableColumn("hull", 610, 553, {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
-	SortableColumn("fuel", 670, 613, {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
-	SortableColumn("crew", 730, 673, {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
+const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[] = {
+	SortableColumn("ship", {202, Truncate::MIDDLE}, CompareName),
+	SortableColumn("model", {127, Truncate::BACK}, CompareModelName),
+	SortableColumn("system", {92, Truncate::BACK}, CompareSystem),
+	SortableColumn("shields", {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
+	SortableColumn("hull", {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
+	SortableColumn("fuel", {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
+	SortableColumn("combat", {57, Alignment::RIGHT, Truncate::BACK}, CompareDeterrence),
+	SortableColumn("crew", {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
 };
 
 
@@ -700,8 +708,14 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	// Table attributes.
 	Table table;
-	for(const auto &col : columns)
-		table.AddColumn(col.offset, col.layout);
+	static const int GUTTER = 3;
+	int offset = 0;
+	for(const auto &column : columns)
+	{
+		table.AddColumn(offset + (column.layout.align == Alignment::RIGHT
+			? column.layout.width : 0), column.layout);
+		offset += column.layout.width + GUTTER;
+	}
 
 	table.SetUnderline(0, 730);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
@@ -709,12 +723,15 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	// Header row.
 	const Point tablePoint = table.GetPoint();
+	const double rowHeight = table.GetRowSize().Y();
+	offset = 0;
 	for(const auto &column : columns)
 	{
-		Rectangle zone = Rectangle(
-			tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
-			Point(column.layout.width, table.GetRowSize().Y())
+		Rectangle zone = Rectangle(tablePoint + Point(offset, 0) +
+			.5 * Point(column.layout.width - GUTTER, rowHeight),
+			Point(column.layout.width, rowHeight)
 		);
+		offset += column.layout.width + GUTTER;
 
 		// Highlight the column header if it is under the mouse
 		// or ships are sorted according to that column.
@@ -766,30 +783,44 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			: dim
 		);
 
-		// Indent the ship name if it is a fighter or drone.
-		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
-		table.Draw(ship.DisplayModelName());
+		std::vector<std::string> row;
+		for(const auto &column : columns)
+		{
+			// Decided an if-else chain was less faff than using a switch on a std::string hash, or an enum.
+			if(column.name == "ship")
+				// Indent the ship name if it is a fighter or drone.
+				row.emplace_back(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
+			else if(column.name == "model")
+				row.emplace_back(ship.DisplayModelName());
+			else if(column.name == "system")
+			{
+				const System *system = ship.GetSystem();
+				row.emplace_back(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
+			}
+			else if(column.name == "shields")
+				row.emplace_back(to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%");
+			else if(column.name == "hull")
+				row.emplace_back(to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%");
+			else if(column.name == "fuel")
+				row.emplace_back(to_string(static_cast<int>(ship.Attributes().Get("fuel capacity") *
+					ship.Fuel())));
+			else if(column.name == "crew")
+			{
+				// If this isn't the flagship, we'll remember how many crew it has, but
+				// only the minimum number of crew need to be paid for.
+				int crewCount = ship.Crew();
+				if(!isFlagship)
+					crewCount = min(crewCount, ship.RequiredCrew());
+				row.emplace_back(ship.IsParked() ? "Parked" : to_string(crewCount));
+			}
+			else if(column.name == "combat")
+				row.emplace_back(to_string(lround(ship.Deterrence() * 100.)));
+			else
+				row.emplace_back("-");
+		}
 
-		const System *system = ship.GetSystem();
-		table.Draw(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
-
-		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
-		table.Draw(shields);
-
-		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
-		table.Draw(hull);
-
-		string fuel = to_string(static_cast<int>(
-			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
-		table.Draw(fuel);
-
-		// If this isn't the flagship, we'll remember how many crew it has, but
-		// only the minimum number of crew need to be paid for.
-		int crewCount = ship.Crew();
-		if(!isFlagship)
-			crewCount = min(crewCount, ship.RequiredCrew());
-		string crew = (ship.IsParked() ? "Parked" : to_string(crewCount));
-		table.Draw(crew);
+		for(auto rit : row)
+			table.Draw(rit);
 
 		++index;
 	}
@@ -916,11 +947,9 @@ bool PlayerInfoPanel::Scroll(int distance)
 
 PlayerInfoPanel::SortableColumn::SortableColumn(
 	string name,
-	double offset,
-	double endX,
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-	: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
+	: name(name), layout(layout), shipSort(shipSort)
 {
 }
