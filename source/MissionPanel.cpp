@@ -136,9 +136,10 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	wrap.SetWrapWidth(380);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -173,9 +174,10 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	wrap.SetWrapWidth(380);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -853,16 +855,34 @@ void MissionPanel::DrawMissionInfo()
 
 	info.SetString("today", player.GetDate().ToString());
 
-	GameData::Interfaces().Get("mission")->Draw(info, this);
+	const Interface *interface = GameData::Interfaces().Get("mission");
+	interface->Draw(info, this);
+	description->SetRect(interface->GetBox("description"));
 
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
-		wrap.Wrap(availableIt->Description());
+	{
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
+		description->SetText(availableIt->Description());
+	}
 	else if(acceptedIt != accepted.end())
-		wrap.Wrap(acceptedIt->Description());
-	else
-		return;
-	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
+	{
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
+		description->SetText(acceptedIt->Description());
+	}
+	else if(descriptionVisible)
+	{
+		RemoveChild(description.get());
+		descriptionVisible = false;
+	}
 }
 
 

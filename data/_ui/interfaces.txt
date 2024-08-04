@@ -1293,6 +1293,8 @@ interface "bank"
 
 
 interface "mission" bottom
+	box "description"
+		from -190 -213 to 190 -118
 	visible if "has description"
 	sprite "ui/mission"
 		align bottom
