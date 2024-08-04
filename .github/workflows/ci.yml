@@ -181,7 +181,7 @@ jobs:
     - name: Install development dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends doxygen graphviz
+        sudo apt-get install -y --no-install-recommends doxygen graphviz clang
     - name: Run Doxygen
       run: doxygen
 
