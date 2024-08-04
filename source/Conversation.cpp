@@ -162,7 +162,7 @@ void Conversation::Load(const DataNode &node)
 			nodes.back().canMergeOnto = false;
 			// Let's support empty conditions for now as well.
 			// Not fully officially supported, but not fully unsupported either...
-			if (child.HasChildren())
+			if(child.HasChildren())
 				nodes.back().conditions.Load(child);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
