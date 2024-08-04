@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLUGINS_H_
-#define PLUGINS_H_
+#pragma once
 
 #include "Set.h"
 
@@ -123,7 +122,3 @@ public:
 
 	static bool Download(const std::string &url, const std::string &location);
 };
-
-
-
-#endif
