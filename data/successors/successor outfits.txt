@@ -178,7 +178,7 @@ outfit "Auxiliary Power Reserve"
 	"mass" 5
 	"outfit space" -5
 	"energy capacity" 3000
-	"hull energy" -0.2
+	"hull energy" -0.16
 	description "The relatively limited output of the Successors' betavoltaic cells has encouraged them to build efficient batteries to make up for that deficit. In order to gain some additional power overhead on their warships, these reserve a portion of their capacity exclusively for use by hull repair systems, effectively reducing the amount of power these systems draw from a ship's total energy pool while active."
 
 outfit "Primary Power Reserve"
@@ -192,7 +192,7 @@ outfit "Primary Power Reserve"
 	"mass" 20
 	"outfit space" -20
 	"energy capacity" 15000
-	"hull energy" -1
+	"hull energy" -0.8
 	description "This larger Successor battery stores an impressive amount of energy, and can noticeably reduce the effective power draw of a ship's hull repair systems while in combat. The High Houses use this in concert with their reactors' power distribution systems to keep their warships powered and functional even when equipped with their most energy-hungry equipment. Even so, they do not restrict the sale of this unit to the general public."
 
 
