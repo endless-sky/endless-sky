@@ -128,8 +128,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		bool removeAll = (remove && !hasValue && !(key == "object" && child.HasChildren()));
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
-		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.count("asteroids"));
+		bool overwriteAll = (!add && !remove && shouldOverwrite.contains(key));
+		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.contains("asteroids"));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
