@@ -110,8 +110,8 @@ private:
 	// Pointers to keep track of what plugin is selected/clicked/hovered over.
 	Plugins::InstallData *latestPlugin = nullptr;
 
-	Plugins::InstallData *selecPluginInstall = nullptr;
-	Plugins::InstallData *oldSelecPluginInstall = nullptr;
+	Plugins::InstallData *selectedPluginInstall = nullptr;
+	Plugins::InstallData *oldSelectedPluginInstall = nullptr;
 	Plugins::InstallData *clickedPluginInstall = nullptr;
 	Plugins::InstallData *oldClickedPluginInstall = nullptr;
 	Plugins::InstallData *hoverPluginInstall = nullptr;

@@ -83,7 +83,7 @@ namespace {
 	set<string> activePlugins;
 
 	// The maximum size of a plugin in bytes, this will be 1 GB.
-	const int MAX_DOWNLOAD_SIZE = 1000000000;
+	const size_t MAX_DOWNLOAD_SIZE = 1000000000;
 
 	// Copy an entry from one archive to the other.
 	bool CopyData(struct archive *inputArchive, struct archive *outputArchive)
@@ -151,7 +151,7 @@ namespace {
 		archive_read_support_format_all(read);
 		archive_read_open_filename(read, filename.c_str(), 10240);
 
-		int size = 0;
+		size_t size = 0;
 		while (true)
 		{
 			int retVal = archive_read_next_header(read, &entry);

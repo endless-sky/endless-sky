@@ -186,7 +186,7 @@ void PreferencesPanel::Draw()
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = page == 'c' ? "controls" :
-		(page == 's' ? "settings" 
+		(page == 's' ? "settings" :
 		(page == 'p' ? "plugins" : "install plugins"));
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
@@ -304,19 +304,22 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
 	else if(key == 'u' && page == 'i' && latestPlugin && !latestPlugin->url.empty()
 			&& latestPlugin->outdated)
+	{
 		installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
+		latestPlugin->outdated = false;
+	}
 	else if(key == 'r' && page == 'i')
 	{
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 		selected = 0;
-		selecPluginInstall = nullptr;
+		selectedPluginInstall = nullptr;
 	}
 	else if(key == 'e' && page == 'i')
 	{
 		currentPluginInstallPage = ((currentPluginInstallPage < pluginInstallPages - 1) ?
 			currentPluginInstallPage + 1 : pluginInstallPages - 1);
 		selected = 0;
-		selecPluginInstall = nullptr;
+		selectedPluginInstall = nullptr;
 	}
 	else
 		return false;
@@ -1169,12 +1172,12 @@ void PreferencesPanel::DrawPluginInstalls()
 
 	const Font &font = FontSet::Get(14);
 
-	if(selecPluginInstall != oldSelecPluginInstall)
-		latestPlugin = selecPluginInstall;
+	if(selectedPluginInstall != oldSelectedPluginInstall)
+		latestPlugin = selectedPluginInstall;
 	if(clickedPluginInstall != oldClickedPluginInstall)
 		latestPlugin = clickedPluginInstall;
 
-	oldSelecPluginInstall = selecPluginInstall;
+	oldSelectedPluginInstall = selectedPluginInstall;
 	oldClickedPluginInstall = clickedPluginInstall;
 
 	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
@@ -1188,15 +1191,15 @@ void PreferencesPanel::DrawPluginInstalls()
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 
 		// Use url as that is more unique, just in case.
-		bool isHover = (hoverPluginInstall && installData.url == hoeverPluginInstall->url);
+		bool isHover = (hoverPluginInstall && installData.url == hoverPluginInstall->url);
 		bool isClick = (clickedPluginInstall && installData.url == clickedPluginInstall->url);
-		bool isSelec = (selecPluginInstall && installData.url == selecPluginInstall->url);
+		bool isSelected = (selectedPluginInstall && installData.url == selectedPluginInstall->url);
 		bool isLatest = (latestPlugin && installData.url == latestPlugin->url);
 		if(isHover || isClick)
 			table.DrawHighlight(back);
-		else if(isSelec)
+		else if(isSelected)
 		{
-			table.SetHighlight(-120, font.Width(selecPluginInstall->name) - 100);
+			table.SetHighlight(-120, font.Width(selectedPluginInstall->name) - 100);
 			table.DrawHighlight(back);
 			table.SetHighlight(-120, 100);
 		}
@@ -1211,8 +1214,8 @@ void PreferencesPanel::DrawPluginInstalls()
 			table.Draw(installData.name, medium);
 	}
 
-	if(!selecPluginInstall && !pluginInstallZones.empty())
-		selecPluginInstall = pluginInstallZones.at(0).Value();
+	if(!selectedPluginInstall && !pluginInstallZones.empty())
+		selectedPluginInstall = pluginInstallZones.at(0).Value();
 
 
 	const Point UP(0, -1);
@@ -1475,8 +1478,8 @@ void PreferencesPanel::HandleUp()
 		ScrollSelectedPlugin();
 		break;
 	case 'i':
-		selecPluginInstall = pluginInstallZones.at(selected).Value();
-		RenderPluginDescription(SpriteSet::Get(selecPluginInstall->name + "-libicon"), selecPluginInstall->aboutText);
+		selectedPluginInstall = pluginInstallZones.at(selected).Value();
+		RenderPluginDescription(SpriteSet::Get(selectedPluginInstall->name + "-libicon"), selectedPluginInstall->aboutText);
 		ScrollSelectedPlugin();
 		break;
 	default:
@@ -1506,8 +1509,8 @@ void PreferencesPanel::HandleDown()
 		break;
 	case 'i':
 		selected = min(selected + 1, static_cast<int>(pluginInstallZones.size() - 1));
-		selecPluginInstall = pluginInstallZones.at(selected).Value();
-		RenderPluginDescription(SpriteSet::Get(selecPluginInstall->name + "-libicon"), selecPluginInstall->aboutText);
+		selectedPluginInstall = pluginInstallZones.at(selected).Value();
+		RenderPluginDescription(SpriteSet::Get(selectedPluginInstall->name + "-libicon"), selectedPluginInstall->aboutText);
 		ScrollSelectedPlugin();
 		break;
 	default:
