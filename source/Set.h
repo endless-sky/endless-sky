@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SET_H_
-#define SET_H_
+#pragma once
 
 #include <map>
 #include <string>
@@ -88,7 +87,3 @@ void Set<Type>::Revert(const Set<Type> &other)
 		// reverting to has a name that is not also in this set.
 	}
 }
-
-
-
-#endif

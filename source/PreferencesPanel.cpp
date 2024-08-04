@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PreferencesPanel.h"
 
 #include "text/alignment.hpp"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
@@ -572,7 +572,8 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD,
+		Command::HOLD_FIRE,
+		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
