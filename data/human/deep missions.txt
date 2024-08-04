@@ -2816,6 +2816,7 @@ mission "Stone of our Fathers 5"
 	on visit
 		dialog `You have reached <planet>, but your escort with the space reserved for Thorleif and Ragnhild has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
+		event "stone waiting most" 30
 		payment 500000
 		conversation
 			`The trip back to Norn was restful.`
@@ -3937,7 +3938,7 @@ mission "Home for Skadenga 13"
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
-			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Midgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
+			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Asgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
 			choice
 				`	"You honor me. Thank you."`
 					goto honor
@@ -3991,7 +3992,7 @@ mission "Homecoming to Skadenga"
 					decline
 			`	It's a short journey to the outskirts of Hrithfjall. You are evidently spotted from afar, as someone is waiting for you.`
 			`	Hjlod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ran-Folk.`
-			`	She points to a small wooden craft up ahead. "I built her." She says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod will take care of you."`
+			`	She points to a small wooden craft up ahead. "I built her." She says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod vill take care of you."`
 			`	You spend the afternoon in Hrithfjall, where you are treated like a guest of honor. The Ondurdis seems younger than you remember, and also appears quite fond of old Aldfrith. You eat strange fish, listen to unlikely stories, and laugh at outrageous jokes.`
 			`	As the sun sinks in the sky, you announce that you should be heading back. "Wait," the Ondurdis says. "I have task for you. If you are interested."`
 			choice
