@@ -1057,15 +1057,6 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.trueDistanceInvisible = node.Value(1);
 		if(node.Size() >= 3)
 			object.trueDistanceVisible = node.Value(2);
-		for(const auto &child : node)
-		{
-			if(child.Token(0) == "clearer" && child.Size() >= 2)
-				object.distanceVisibilityClearers.insert(child.Token(1));
-			else if(child.Token(0) == "multiplier" && child.Size() >= 2)
-				object.distanceVisibilityMultipliers.insert(child.Token(1));
-			else if(child.Token(0) == "adder" && child.Size() >= 2)
-				object.distanceVisibilityAdders.insert(child.Token(1));
-		}
 	}
 	else if(removing && (key == "hazard" || key == "object"))
 		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");

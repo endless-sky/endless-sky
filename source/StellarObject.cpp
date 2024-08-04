@@ -162,33 +162,8 @@ void StellarObject::UpdateDistanceVisibility(const Ship *flagship)
 	if(!flagship || trueDistanceInvisible)
 		return;
 
-	// Check if the player has an attribute that allows them to always
-	// see this object.
-	for(const auto &clearer : distanceVisibilityClearers)
-		if(flagship->Attributes().Get(clearer))
-		{
-			distanceInvisible = -1.;
-			return;
-		}
-
-	// Check if the flagship has any attributes that change the ranges
-	// by multiplying them.
-	double totalMultiplier = 1.;
-	for(const auto &multiplier : distanceVisibilityMultipliers)
-		if(flagship->Attributes().Get(multiplier))
-			totalMultiplier *= flagship->Attributes().Get(multiplier);
-
-	// Lastly check for attributes that get added (subtracted if negative)
-	// to the ranges.
-	double totalAdd = 0.;
-	for(const auto &adder : distanceVisibilityAdders)
-		if(flagship->Attributes().Get(adder))
-			totalAdd += flagship->Attributes().Get(adder);
-
-	// Calculate ranges for the player's flagship by first applying
-	// multipliers and then the adders.
-	distanceInvisible = trueDistanceInvisible * totalMultiplier + totalAdd;
-	distanceVisible = trueDistanceVisible * totalMultiplier + totalAdd;
+	distanceInvisible = trueDistanceInvisible;
+	distanceVisible = trueDistanceVisible;
 }
 
 

@@ -83,9 +83,6 @@ private:
 
 	double trueDistanceVisible = 0.;
 	double trueDistanceInvisible = -1.;
-	std::set<std::string> distanceVisibilityMultipliers;
-	std::set<std::string> distanceVisibilityAdders;
-	std::set<std::string> distanceVisibilityClearers;
 
 	double distance;
 	double speed;
