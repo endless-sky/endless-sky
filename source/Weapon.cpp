@@ -123,12 +123,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 					submunitions.back().facing = Angle(grand.Value(1));
 				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
-				else if(grand.Size() >= 3 && grand.Token(0) == "spawn on")
+				else if(grand.Size() >= 2 && grand.Token(0) == "spawn on")
 				{
-					if(grand.Token(1) == "natural")
-						submunitions.back().spawnOnNaturalDeath = grand.Value(2) > 0;
-					else if(grand.Token(1) == "anti-missile")
-						submunitions.back().spawnOnAntiMissileDeath = grand.Value(2) > 0;
+					submunitions.back().spawnOnNaturalDeath = false;
+					for(int j = 1; j < grand.Size(); ++j)
+					{
+						if(grand.Token(j) == "natural")
+							submunitions.back().spawnOnNaturalDeath = true;
+						else if(grand.Token(j) == "anti-missile")
+							submunitions.back().spawnOnAntiMissileDeath = true;
+					}
 				}
 				else
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
