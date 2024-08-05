@@ -25,6 +25,7 @@ Use your favorite package manager to install the following (version numbers may 
    - libopenal-dev
    - libmad0-dev
    - uuid-dev
+   - libtbb-dev
 
 ##### RPM-based distros:
    - gcc-c++
@@ -37,6 +38,7 @@ Use your favorite package manager to install the following (version numbers may 
    - openal-soft-devel
    - libmad-devel
    - libuuid-devel
+   - tbb
 
 Then, from the project root folder, simply type:
 
