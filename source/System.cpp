@@ -511,13 +511,14 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
 	solarWind = 0.;
-	mapIcon.clear();
+	mapIcons.clear();
 	for(const StellarObject &object : objects)
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
-		if(GameData::StarIcon(object.GetSprite()))
-			mapIcon.emplace_back(GameData::StarIcon(object.GetSprite()));
+		const Sprite *mapIcon = GameData::StarIcon(object.GetSprite());
+		if(mapIcon)
+			mapIcons.emplace_back(mapIcon);
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
@@ -595,9 +596,9 @@ const Government *System::GetGovernment() const
 }
 
 
-const vector<const Sprite *> &System::GetMapIcon() const
+const vector<const Sprite *> &System::GetMapIcons() const
 {
-	return mapIcon;
+	return mapIcons;
 }
 
 // Get the name of the ambient audio to play in this system.

@@ -41,7 +41,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 
 // Constructor, based on the animation from another Body object.
-Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom, double alpha)
+Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom)
 {
 	*this = sprite;
 	this->position = position;
