@@ -1399,6 +1399,7 @@ void MapPanel::DrawSystems()
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
+	BatchDrawList starBatch;
 
 	const float ringFade = mapIsStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
@@ -1423,12 +1424,12 @@ void MapPanel::DrawSystems()
 				starAngle = starAngle + spacing;
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
 					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
-				batchDraw.Add(starBody);
+				starBatch.Add(starBody);
 			}
 		}
 
-		batchDraw.Draw();
-		batchDraw.Clear();
+		starBatch.Draw();
+		starBatch.Clear();
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
