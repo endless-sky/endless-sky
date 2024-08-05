@@ -291,7 +291,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'l')
 	{
-		page = 'i';
+		page = 'l';
 		if(!downloadedInfo)
 		{
 			ProcessPluginIndex();
@@ -301,22 +301,22 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			RenderPluginDescription(SpriteSet::Get(pluginInstallData.front().name + "-libicon"),
 				pluginInstallData.front().aboutText);
 	}
-	else if(key == 'i' && page == 'i' && latestPlugin && !latestPlugin->url.empty()
+	else if(key == 'i' && page == 'l' && latestPlugin && !latestPlugin->url.empty()
 		&& !latestPlugin->installed)
 			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
-	else if(key == 'u' && page == 'i' && latestPlugin && !latestPlugin->url.empty()
+	else if(key == 'u' && page == 'l' && latestPlugin && !latestPlugin->url.empty()
 			&& latestPlugin->outdated)
 	{
 		installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
 		latestPlugin->outdated = false;
 	}
-	else if(key == 'r' && page == 'i')
+	else if(key == 'r' && page == 'l')
 	{
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 		selected = 0;
 		selectedPluginInstall = nullptr;
 	}
-	else if(key == 'e' && page == 'i')
+	else if(key == 'e' && page == 'l')
 	{
 		currentPluginInstallPage = ((currentPluginInstallPage < pluginInstallPages - 1) ?
 			currentPluginInstallPage + 1 : pluginInstallPages - 1);
@@ -461,13 +461,13 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		}
 		return true;
 	}
-	else if(page == 'p' || page == 'i')
+	else if(page == 'p' || page == 'l')
 	{
 		const Interface *ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
-		if(page != 'i' && pluginBox.Contains(hoverPoint))
+		if(page != 'l' && pluginBox.Contains(hoverPoint))
 		{
 			pluginListScroll.Scroll(-dy * Preferences::ScrollSpeed());
 			return true;
@@ -485,7 +485,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 bool PreferencesPanel::Drag(double dx, double dy)
 {
-	if(page == 'p' || page == 'i')
+	if(page == 'p' || page == 'l')
 	{
 		const Interface *ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
@@ -1489,7 +1489,7 @@ void PreferencesPanel::HandleUp()
 		RenderPluginDescription(selectedPlugin);
 		ScrollSelectedPlugin();
 		break;
-	case 'i':
+	case 'l':
 		selectedPluginInstall = pluginInstallZones.at(selected).Value();
 		RenderPluginDescription(SpriteSet::Get(selectedPluginInstall->name + "-libicon"), selectedPluginInstall->aboutText);
 		ScrollSelectedPlugin();
@@ -1519,7 +1519,7 @@ void PreferencesPanel::HandleDown()
 		RenderPluginDescription(selectedPlugin);
 		ScrollSelectedPlugin();
 		break;
-	case 'i':
+	case 'l':
 		selected = min(selected + 1, static_cast<int>(pluginInstallZones.size() - 1));
 		selectedPluginInstall = pluginInstallZones.at(selected).Value();
 		RenderPluginDescription(SpriteSet::Get(selectedPluginInstall->name + "-libicon"), selectedPluginInstall->aboutText);
@@ -1545,7 +1545,7 @@ void PreferencesPanel::HandleConfirm()
 	case 'p':
 		Plugins::TogglePlugin(selectedPlugin);
 		break;
-	case 'i':
+	case 'l':
 		if(latestPlugin && !latestPlugin->url.empty() && !latestPlugin->installed)
 			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
 		else if(latestPlugin && !latestPlugin->url.empty() && latestPlugin->outdated)
