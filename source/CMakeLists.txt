@@ -149,10 +149,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
-	ImageBuffer.cpp
-	ImageBuffer.h
-	ImageSet.cpp
-	ImageSet.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -271,8 +267,6 @@ target_sources(EndlessSkyLib PRIVATE
 	RandomEvent.h
 	Rectangle.cpp
 	Rectangle.h
-	RenderBuffer.cpp
-	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
 	Sale.h
@@ -302,10 +296,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	Sprite.cpp
-	Sprite.h
-	SpriteSet.cpp
-	SpriteSet.h
 	SpriteShader.cpp
 	SpriteShader.h
 	StarField.cpp
@@ -360,6 +350,16 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/ImageBuffer.cpp
+	image/ImageBuffer.h
+	image/ImageSet.cpp
+	image/ImageSet.h
+	image/RenderBuffer.cpp
+	image/RenderBuffer.h
+	image/Sprite.cpp
+	image/Sprite.h
+	image/SpriteSet.cpp
+	image/SpriteSet.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

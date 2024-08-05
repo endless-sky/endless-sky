@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MaskManager.h"
 
 #include "Logger.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 
 using namespace std;
 

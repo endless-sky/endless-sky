@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageSet.h"
 
-#include "GameData.h"
+#include "../GameData.h"
 #include "ImageBuffer.h"
-#include "Logger.h"
-#include "Mask.h"
-#include "MaskManager.h"
+#include "../Logger.h"
+#include "../Mask.h"
+#include "../MaskManager.h"
 #include "Sprite.h"
 
 #include <algorithm>

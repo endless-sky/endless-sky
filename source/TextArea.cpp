@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "PointerShader.h"
 #include "Preferences.h"
-#include "RenderBuffer.h"
+#include "image/RenderBuffer.h"
 
 
 
