@@ -264,6 +264,7 @@ star "star/black-hole"
 star "star/neutron-small"
 	power 2
 	wind 0.2
+	icon map/small-neutron-star
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
