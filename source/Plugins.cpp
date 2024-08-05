@@ -112,6 +112,7 @@ namespace {
 		flags |= ARCHIVE_EXTRACT_PERM;
 		flags |= ARCHIVE_EXTRACT_ACL;
 		flags |= ARCHIVE_EXTRACT_FFLAGS;
+		// Safety first, no malicious links or paths.
 		flags |= ARCHIVE_EXTRACT_SECURE_NOABSOLUTEPATHS;
 		flags |= ARCHIVE_EXTRACT_SECURE_NODOTDOT;
 		flags |= ARCHIVE_EXTRACT_SECURE_SYMLINKS;
@@ -545,8 +546,10 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
+				// We need to change pur working directory for the extraction to be able
+				// to check for symlinks or absolute paths without disallowing these things
+				// for the directory itself.
 				auto oldPath = std::filesystem::current_path();
-
 				std::filesystem::current_path(Files::Plugins());
 				
 				success = ExtractZIP(
