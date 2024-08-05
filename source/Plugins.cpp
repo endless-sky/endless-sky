@@ -140,11 +140,7 @@ namespace {
 		string secondEntry = archive_entry_pathname(entry);
 		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
-#if defined(_WIN32)
-			_wmkdir(Utf8::ToUTF16(destination + expectedName).c_str());
-#else
-			mkdir((destination + expectedName).c_str(), 0777);
-#endif
+			Files::CreateFolder(destination + expectedName);
 
 		// Close the archive so we can start again from the beginning.
 		archive_read_close(read);
