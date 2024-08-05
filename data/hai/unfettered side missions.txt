@@ -280,7 +280,7 @@ mission "Hai Legacy 3"
 	on offer
 		conversation
 			`After delivering the supplies, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, initially warmer than usual compared to your previous experiences with other Unfettered.`
-			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. You see, it is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use it."
+			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. You see, it is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use it."`
 			`	After a sigh, her tone then changes. "But I don't believe in any of that. What does matter to me is that ship is filled with valuable ancient technology and very durable.`
 			`	Her eyes light up as she focuses more on your ship. "I even see technology from those savage Korath that we fought valiantly to obtain!" `
 				to display
