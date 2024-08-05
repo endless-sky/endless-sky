@@ -136,15 +136,15 @@ star "star/m8"
 star "star/f5-old"
 	power 0.80
 	wind 0.9
-	"icon map/f-old-star"
+	icon "map/f-old-star"
 star "star/g0-old"
 	power 0.70
 	wind 1.0
-	"icon map/g-old-star"
+	icon "map/g-old-star"
 star "star/g5-old"
 	power 0.65
 	wind 1.1
-	"icon map/g-old-star"
+	icon "map/g-old-star"
 star "star/k0-old"
 	power 0.62
 	wind 1.3
@@ -309,7 +309,7 @@ star "planet/browndwarf-l"
 star "planet/browndwarf-l-rogue"
 	power 0.4
 	wind 0.5
-	"icon map/brown-dwarf-star"
+	icon "map/brown-dwarf-star"
 star "planet/browndwarf-t"
 	power 0.3
 	wind 0.4
