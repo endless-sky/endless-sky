@@ -151,8 +151,6 @@ namespace {
 		archive_read_support_format_all(read);
 		archive_read_open_filename(read, filename.c_str(), 10240);
 
-		Logger::LogError("well well well");
-
 		size_t size = 0;
 		while (true)
 		{
