@@ -2523,7 +2523,7 @@ system Symphony
 		sprite planet/gas8
 		distance 3668.436
 		period 4189.625
-		object "Napigeo Station"
+		object "Navigeo Yards"
 			sprite planet/station-shipyard-a1
 				scale 0.5
 			distance 360
@@ -2557,10 +2557,15 @@ system Symphony
 			sprite planet/ice7-b
 			distance 246
 			period 100.976
-	object
-		sprite planet/rock17
+	object "Dokimi Range"
+		sprite planet/dust0-b
 		distance 10923
 		period 21526.164
+		object "Ergastirio Station"
+			sprite planet/station-depot-a0
+				scale 0.5
+			distance 240
+			period 60
 
 system Whirlwind
 	pos -671 848

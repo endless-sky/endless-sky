@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-mission "Avgi: Trapped in Twilight"
+mission "Avgi: Lost in Twilight"
 	invisible
 	landing
 	to complete
@@ -21,10 +21,10 @@ mission "Avgi: Trapped in Twilight"
 		system
 			attributes "twilight" "tangled shroud"
 		fail
-		set "avgi: twilight trapped"
-		dialog phrase "twilight trapped"
+		set "avgi: lost in twilight"
+		dialog phrase "lost in twilight"
 
-phrase "twilight trapped"
+phrase "lost in twilight"
 	word
 		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to human space, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
 
@@ -339,7 +339,7 @@ mission "Avgi: Defend Ensemble 1"
 	landing
 	passengers 1
 	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
-	destination "Napigeo Station"
+	destination "Navigeo Yards"
 	to offer
 		has "Avgi: Humans From the Deep: done"
 	on offer
@@ -430,21 +430,21 @@ mission "Avgi: Defend Ensemble 1"
 
 			label end
 			`	You sit together in silence for a few more minutes, when Darius seems to receive a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "There's a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight into the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
-			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around Napigeo Station, their big shipyard not too far from here. Come on, let's join it."`
+			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around the Navigeo Yards, their big shipyard not too far from here. Come on, let's join it."`
 				accept
 
 
 mission "Avgi: Defend Ensemble 2"
 	name "Ensemble Defense"
 	description "Assist the Avgi in the Ensemble system with an Aberrant deep raid."
-	source "Napigeo Station"
+	source "Navigeo Yards"
 	landing
 	destination "Weledos"
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
 		conversation
-			`	Napigeo Station is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the blue-green of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into dry dock for repair.`
+			`	Navigeo is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the blue-green of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into dry dock for repair.`
 			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
 			`	"Caution. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says.`
 			choice
@@ -518,7 +518,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Aberrant Triplet (Disable-able)" 2
 	on complete
 		conversation
-			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to Napigeo Station. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
+			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to the Navigeo Yards. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
 			`	"So, those rumors weren't all talk. There really is another one of us here." You look up to see a woman in combat fatigues standing in front of you, hand extended.`
 			choice
 				`	(Shake her hand.)`
@@ -814,30 +814,126 @@ mission "Avgi: Dissonance Outreach"
 			`	"I don't know where it leads, but it'll be somewhere other than Avgi space. Maybe somewhere your jump drive can work, which would let us eventually make our way back to human space. But it's better than sitting here and twiddling our thumbs for another six years."`
 			`	"Where is this gateway?" Darius asks.`
 			`	"The Aberrant came from the East, beyond the furthest reaches of Avgi space. A place the Avgi always had trouble exploring, due to strange energy storms periodically ionizing entire systems. But it's apparently recognizable by the red nebula suffusing it, just as the Twilight is surrounded by a cluster of blue nebulae."`
-			`	"There's no point in waiting, then. If there's a chance, even a small one, we should check it out," says Darius, looking hopeful for the first time since you've met him.`
+			branch "unknown ember waste"
+				not "ember waste label"
+			choice
+				`	"I've heard of that area. It's called the Ember Waste."`
+				`	"Can it take us back to human space?" asks Leon, to which you nod.`
+			label "unknown ember waste"
+			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him. You just hope his hope isn't a false one, for both of your sakes.`
 
-mission "Avgi: Twilight Escape"
+
+mission "Avgi: Twilight Escape 1"
 	name "Escape the Twilight"
 	description "Find a way out of the Twilight. You may want to look to the far east, where the first invasion started."
 	source "Outpost Tekis"
 	passengers 3
 	blocked "You'll need three free bunks on the <ship> to transport Darius, Sora, and Leon."
-	destination "Valhalla"
+	destination "Vinci"
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on enter "Decet"
 		conversation
-			`	Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but with an inverse effect. Your instrumentation say it is much warmer than usual, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well.`
+			`	Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tell you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 	on enter
 		system
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
 		conversation
 			`	As the purple flames of your jump drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
-			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see my home."`
+			choice
+				'"Heh, told you we'd make it."`
+				`"We're out. Where to now?"`
+			`	Leon stares for a moment, then swears. "That damn magnetar was there the entire time? I was there for years. Years!"`
+			`	"We all were. And you wouldn't have been able to do anything with it without <first>'s jump drive," reminds Sora.`
+			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
+			`	"Drop me off on Vinci first" interjects Leon. "I need to get my life in order again, and there's somewhere there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
-		clear "avgi: twilight trapped"
+		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
-			`	You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. "I'll be in contact, <first>, but I have to tell someone that I'm still alive."`
-			`	Now that you know of a way both in and out of the Twilight, you can visit the Avgi without fear of being trapped again.`
+			`The group is quiet as you set the <ship> down on the landing pad. You notice Sora watching out a window as Darius looks into his hands. As for Leon, he has been ready to leave even before you've hit the atmosphere, pacing near the hatch until the moment you open it.`
+			`	"I'm going to get some fresh air," says Sora, stepping in front of an outraged Leon out of nowhere, a reluctant Darius dragged along with her. "We'll be in the spaceport, so try not to leave without us."`
+			`	Leon, consigned to being the last one out, stops just before he leaves the <ship>, turning to you. "<first>. Thank you." He is uncharacteristically somber, his usual sense of disdain for the world missing, for the moment.`
+			choice
+				"Don't worry about it."
+				"I'm glad I was able to help."
+			`	"No, really. I was expecting to die back there, with those Avgi. Six years... I don't know how to thank you, but if you're ever in the area and you need anything don't hesistate to give me a call." With that, he shakes your hand and sets off in the direction Sora and Darius went, toward Vinci's spaceport.`
 
+
+mission "Avgi: Twilight Escape 2"
+	name "Sora's Return"
+	description "Take Sora to her parents' farm on Memory"
+	source "Vinci"
+	spaceport
+	passengers 2
+	blocked "You'll need two free bunks on the <ship> to transport Darious and Sora."
+	destination "Memory"
+	to offer
+		has "Avgi: Twilight Escape 1: done"
+	on offer
+		conversation
+			`You find Darius and Sora sitting outside a cafe, sipping coffee. "Been a long time since we've had a good cup" explains Sora, pulling a chair out for you.`
+			`	"What, no coffee in Avgi space?" you joke.`
+			`	"Nah, but you should try their drinks sometime. Man, they're something else."`
+			`	"There's nothing like being back, though," Darius says, quiet as he takes in the bustling spaceport around you. "It's hard to believe I'm really here. Harder to understand why it was I that made it out of there when so many who followed me didn't."`
+			`	"Oh, stop that." Sora swats the back of his head. "You're not the first to make a wrong turn into a bad neighborhood. Remember that story about your wife?" Her tone is playful, but you can see the look of worry in her eyes at the evident guilt Darius feels. `
+			`	Darius shakes his head, then continues. "We should get you home. Your parents probably still have that farm, it's been in the family for years. It's not too far from here, right?"`
+			`	A pause, and then Sora says, "Memory. I haven't been there in years, but I guess my apartment is definitely gone... so I have nowhere else to go for now."`
+			`	"Let's get too it then. <first>, could you take us to Memory?"`
+			`	"Of course," you say.`
+
+
+mission "Avgi: Twilight Escape 3"
+	name "Darius' Return"
+	description "Take Darius to his home on Valhalla, in the hope his wife is still there since his apparent death."
+	source "Memory"
+	passengers 1
+	blocked "You'll need one free bunk on the <ship> to transport Darius."
+	destination "Valhalla"
+	to offer
+		has "Avgi: Twilight Escape 2: done"
+	on offer
+		conversation
+			`Memory is a dry world, covered in sands and shrubland. From the spaceport, the three of you catch a shuttle bus that heads out into the countryside, passing miles of cacti and dry plants that abruptly turn into greener fields of crops, probably irrigated by aquifers. It is one of these farms you finally arrive at, the one Sora says belongs to her parents. Traffic must be rare here, because only a few minutes after the bus stops the door to the well-maintained farmhouse opens, a middle-aged couple peering out.`
+			`	"...Sora? Is that you?" the older woman calls out while the man gapes in silence.`
+			`	Eyes shining, Sora gives you and Darius a crushing hug before she leaves you. "Thank you, <first>. And Darius," she gives him a stern look, "I'll be in touch. Don't be so hard on yourself." He nods mutely as she turns and runs towards the house.`
+			`	You don't want to interrupt the reunion, so you and Darius take your leave together, returning to the spaceport. Back aboard the <ship>, you sit in a comfortable silence for a while.`
+			choice
+				`	"So, where do you want me to take you?"`
+				`	"So, where next?"`
+			`	"...I don't know. My wife, Katrina... we lived on Valhalla, but it's been six years. She probably thought I was dead, hell, the whole Republic probably thought I was dead. She..." he chokes up, "she's probably moved on by now. I would have wanted her to, she knew that."
+			choice
+				`	"You have to find out, one way or another. Let's go to Valhalla."`
+				`	"I'm sure she's been waiting for you. Let's go to Valhalla."`
+					goto optimism
+			`	"I don't know if I can face the truth. But I also can't just go my own way without even checking on her, just in case there's a chance she didn't give up in me."`
+			label optimism
+			`	Darius rubs his eyes. "Thank you, <first>. I hope I'm wrong. Let's go to Valhalla."
+	on complete
+			`You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. A quick call for an automated taxi, and you soon find yourselves outside an expansive, fancy-looking apartment complex. "Our old address," he explains. "We were still renting, but were looking at buying our apartment within a few years."`
+			`	You knock on the door to the right apartment, but it is answered by a tall man with black hair. "Hello, can I help you?" he asks cautiously.`
+			`	Darius looks crushed. "Is... Is there a Katrina here?"`
+			`	"Katrina? Can't say I've met anyone with that name in the five years I've lived here. Is that a friend of yours?"`
+			`	Darius looks morose as he turns away. "Yes. I'm sorry for troubling you, we'll be on our way."`
+			choice
+				`	"Don't give up. She probably just moved or something."`
+				`	"We could try looking her information up."`
+					goto lookup
+			`	"Of course she did. But I don't understand why, buying that apartment was our dream. It doesn't make any sense!" He stops himself. "Sorry, <first>. I'm just on edge." He sighs before continuing. "I can try looking her up, maybe..." he trails off, thinking.`
+			`	"Any public records on Valhalla?" you ask.`
+			label lookup
+			`	"...Yes, we'll try the record books. We can check them at the library."`
+			`	A short trip to the library later, and you sit at a table while Darius checks the public records. He scrolls down the list of names and addresses before stopping at a single name. "Katrina... Caldwell. Our name." Hope is plainly visible on his face. "She kept our name, at least."` 
+			`	 You glance over at the address, taking note of it. It looks like it's further out of the city. "Let's try the address. We can still make it there by tonight," you say.`
+			`	The address appears to be out in the country, and you take in the view as the taxi smoothly glides along the roads. Unlike on Memory, the landscape here is lush and green, with rolling hills, abundant forests, and rushing streams. You find that the address belongs to a cozy-looking riverfront house, a large garden visible next to it.`
+			`	Darius has never looked so nervous in his life, but you give him a gentle shove towards the door. Your knocking is unanswered, and his face starts to once more slip into despair, but you hear a voice from the garden.`
+			`	"Darius? Is that you?" A woman with greying hair steps onto the porch, eyes shining. "You're back... I knew you were alive!" she cries out, rushing to embrace him. The two begin speaking, faster than you can follow, as you hang back somewhat awkwardly.`
+			`	After a few minutes, you try to excuse yourself, but Darius won't have it. "No, no, I owe this all to you, <first>. You're the only reason I'm here."`
+			`	Katrina looks at you curiously. "Aliens, huh? You don't look like an alien"`
+			choice
+				`	"Huh?"`
+				`	"That's because I'm not"`
+				`	"Yeah, these skinsuits are pretty good"`
+			`	She bursts out laughing. "I wouldn't believe it if anyone else had told me. I mean, men come up with all sorts of excuses for coming home late, but this is something else!" Her tone suddenly turns serious. "It'll be a headache, working all this out with the government. They gave me the money for this place as recompense for your supposed 'death,' no matter how much I insisted you were still alive."`
+			`	"We'll work it out. They owe me backpay anyway," jokes Darius, still in Katrina's arms.`
+			`	As the pair move to the door, you say your goodbyes, and Darius promises he will keep in touch with you about the Avgi. Neither of you have forgotten the aliens fighting to survive at the edge of the galaxy, and now that you know of a safe way in and out of their space, you can go back without fear of becoming trapped.`

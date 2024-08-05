@@ -175,7 +175,7 @@ outfit "Blue Optical Laser"
 	"weapon capacity" -9
 	"turret mounts" -1
 	"optical jamming" 12
-	"lasing power" -3
+	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/avgi blue laser"
 		sprite "projectile/avgi laser blue"

@@ -287,7 +287,7 @@ planet Orodens
 
 planet Pil
 	attributes moon uninhabited
-	landscape land/mars1
+	landscape land/moon0
 	description `This airless moon is notable only for its rich deposits of light elements such as lithium and phosphorus. Their concentration was high enough to economically justify bringing them up out of the moon's gravity well, instead of simply mining the carbonaceous asteroids present in the system.`
 	government Uninhabited
 
@@ -457,13 +457,12 @@ planet "Peripheria"
 	outfitter "Avgi Militia Surplus"
 
 
-planet "Napigeo Station"
+planet "Navigeo Yards"
 	attributes avgi "avgi diaspora" station "twilight guard" military
 	landscape land/station57
-	description `Napigeo Station is a dedicated shipyard, with dozens of modular dry docks capable of quickly building and repairing ships. Overall, more than two thirds of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability.`
+	description `Navigeo is a station designed to be a dedicated shipyard, with dozens of modular dry docks capable of quickly laying down new ships or repairing damaged ones. Overall, almost all of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability.`
 	description `	Due to its importance and nature as a directly government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost.`
 	spaceport `The spaceport is closer to being a giant array of dry docks than a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day.`
-	"required reputation" 100
 	government "Avgi (Twilight Guard)"
 	"required reputation" 10
 	shipyard "Avgi Civilian Basics"
@@ -479,6 +478,28 @@ planet "Napigeo Station"
 	outfitter "Avgi Torches"
 	outfitter "Avgi Twilight Guard"
 	outfitter "Avgi Atomics"
+
+
+planet "Ergastirio Station"
+	attributes avgi "avgi diaspora" "twilight guard" military
+	landscape land/station50
+	description `When Consonance researchers' need for plentiful space and isolation outgrew what was available on Peripheria or Navigeo, dedicated as they were to habitation and shipbuilding respectively, this mid-sized station was built to accomodate a state-of-the-art collection of laboratory facilities. The work here is largely aimed towards weapons research, a necessary consequence of the fight against the Aberrant.`
+	description `	The facilities are surprisingly comfortable for what you might expect from a research station, a deliberate attempt to boost the productivity of the scientists that live and work here. Labs for all sorts of applied energistics, nuclear research, and even hyperspace experimentation form wings around the central habitation core, which is home to tens of thousands of scientists and engineers as well as a sizable support staff.`
+	spaceport `Ergastirio's spaceport is small, but well-equipped, with the facilities to handle special nuclear material and fragile scientific instrumentation alike. These constitute most of the goods offloaded here, which the station's laboratories require a steady supply of.`
+	government "Avgi (Twilight Guard)"
+	"required reputation" 20
+	outfitter "Avgi General"
+	outfitter "Avgi Engineering"
+	outfitter "Avgi Militia Surplus"
+	outfitter "Avgi Atomics"
+
+
+planet "Dokimi Range"
+	attributes "twilight guard" military uninhabited
+	landscape land/mars1
+	description `This distant planetoid, far from anything of importance, has been designated as the Twilight Guard's dedicated weapons proving ground. Aside from a small outpost, which hosts a laboratory exclusively geared towards data collection and analysis, the surface is a barren wasteland of gleaming nitrogen ice and reddish tholins.`
+	description `	From orbit, the scars of previous weapons tests are subtle. A grid of craters in an unusually regular pattern, large boulders reduced to heaps of slag, clear lines of bright ice sliced across the reddish surface: the Avgi have left a mark upon this world, where no one exists to complain about it.`
+	government "Uninhabited"
 
 
 planet Weledos

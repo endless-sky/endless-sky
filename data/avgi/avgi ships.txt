@@ -782,7 +782,7 @@ ship "Entasi"
 	gun 36 9
 	turret -10 72 "Blue Optical Laser"
 	turret 10 72 "Blue Optical Laser"
-	turret 0 -4
+	turret 0 -4 "Blue Optical Laser"
 	bay "Fighter" 0 -30
 		over
 	bay "Fighter" 0 -30
@@ -1018,7 +1018,7 @@ ship "Modified Tachytia"
 		"Photoelectric Lamina"
 		"Ultracapacitor Bank" 6
 		"Specular Deflector" 2
-		"Optical Lasing Generator" 7
+		"Optical Lasing Generator" 5
 		"Multispectral Scanner" 9
 		"Electrostatic Ramscoop" 3
 		"Concealment Lamina"
@@ -1733,7 +1733,7 @@ ship "Refraktos"
 		"Photoelectric Lamina"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
-		"Optical Lasing Generator" 5
+		"Optical Lasing Generator" 4
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		"Heatsink Partition"
