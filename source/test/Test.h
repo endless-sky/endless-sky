@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ENDLESS_SKY_AC_TEST_H_
 #define ENDLESS_SKY_AC_TEST_H_
 
-#include "Command.h"
-#include "ConditionSet.h"
+#include "../Command.h"
+#include "../ConditionSet.h"
 
 #include <SDL2/SDL.h>
 

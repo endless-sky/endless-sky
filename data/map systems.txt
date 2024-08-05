@@ -2093,10 +2093,12 @@ system Acnanjo
 	asteroids "medium rock" 6 1.48
 	asteroids "large rock" 4 1.18
 	asteroids "large metal" 3 0.96
-	fleet "Gegno Basic" 3600
-	fleet "Gegno Miners" 2800
+	minables aluminum 12 3.216
+	minables silicon 24 6.41
+	minables silver 11 4.1
 	fleet "Small Vi" 1600
-	fleet "Vi Transport" 3700
+	fleet "Gegno Basic" 7600
+	fleet "Gegno Miners" 2800
 	object
 		sprite star/g-giant
 		period 10
@@ -2215,9 +2217,9 @@ system Actannka
 	asteroids "small metal" 5 4
 	asteroids "medium metal" 23 3.74
 	asteroids "large metal" 45 3.3
-	minables iron 22 3.6
-	minables silver 12 5.36
-	minables titanium 12 5.45
+	minables iron 11 3.6
+	minables silver 6 5.36
+	minables titanium 4 5.45
 	trade Clothing 365
 	trade Electronics 785
 	trade Equipment 700
@@ -5214,7 +5216,9 @@ system Anbrim
 	asteroids "small metal" 1 2.6
 	asteroids "medium metal" 39 3.4
 	asteroids "large metal" 9 2.6
-	minables yottrite 2 6.7
+	minables silicon 2 6.2
+	minables uranium 2 5.5
+	minables yottrite 3 6.7
 	fleet "Small Scin" 7900
 	fleet "Small Vi" 7900
 	object
@@ -5972,6 +5976,7 @@ system Asio
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables iron 7 1.8
+	minables lead 3 2.26
 	trade Clothing 230
 	trade Electronics 640
 	trade Equipment 680
@@ -9102,8 +9107,7 @@ system Cshudlye
 	minables titanium 10 9.7
 	minables lead 20 6.64
 	minables tungsten 16 9.25
-	fleet "Small Vi" 4500
-	fleet "Vi Transport" 3800
+	fleet "Small Vi" 6500
 	object
 		sprite star/b5
 		period 10
@@ -11662,10 +11666,12 @@ system Eebu
 	asteroids "small metal" 4 0.91
 	asteroids "medium metal" 4 1.38
 	asteroids "large metal" 12 0.95
-	minables neodymium 5 3.5
 	minables copper 8 4.7
-	fleet "Small Vi" 2200
+	minables neodymium 5 3.5
+	minables titanium 16 6.9
+	fleet "Small Vi" 3600
 	fleet "Small Scin" 3500
+	fleet "Scin Warfleet" 3500
 	object
 		sprite star/g5-old
 		period 10
@@ -12155,8 +12161,9 @@ system Elifennka
 	asteroids "small metal" 51 4.58
 	asteroids "medium metal" 105 8.54
 	asteroids "large metal" 27 4.49
-	minables aluminum 28 8.68
-	minables titanium 31 9.59
+	minables lead 6 5.68
+	minables neodymium 11 6.33
+	minables titanium 21 7.59
 	fleet "Gegno Miners" 10000
 	fleet "Quarg (Gegno)" 4000
 	object
@@ -12382,10 +12389,9 @@ system Empeles
 	asteroids "small metal" 92 5.33
 	asteroids "medium metal" 61 5.79
 	asteroids "large metal" 13 3.84
+	minables aluminum 4 7.29
 	minables iron 10 8.68
-	minables aluminum 14 7.29
-	fleet "Small Vi" 6600
-	fleet "Vi Transport" 5600
+	fleet "Small Vi" 5600
 	object
 		sprite star/g3
 		period 10
@@ -12994,7 +13000,7 @@ system "Erba Yle"
 	asteroids "small metal" 13 2.07
 	asteroids "medium metal" 3 2.8
 	asteroids "large metal" 15 3.3
-	minables copper 1 3.7
+	minables copper 11 3.7
 	trade Clothing 210
 	trade Electronics 800
 	trade Equipment 670
@@ -13323,12 +13329,13 @@ system Evrae
 	asteroids "small metal" 1 7.4
 	asteroids "medium metal" 12 5.2
 	asteroids "large metal" 2 5.4
-	minables platinum 1 6.8
+	minables neodymium 11 6.8
+	minables silicon 25 5.11
+	minables uranium 7 4.7
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
-	fleet "Scin Cargo" 2200
-	fleet "Small Vi" 4900
-	fleet "Large Vi" 5900
+	fleet "Scin Cargo" 2700
+	fleet "Scin Warfleet" 3000
 	object
 		sprite star/a5
 		distance 1.24
@@ -14713,9 +14720,9 @@ system Fscher
 	asteroids "small metal" 30 4.3
 	asteroids "medium metal" 197 3.78
 	asteroids "large metal" 46 4.18
-	minables uranium 22 7.1
-	minables platinum 64 6.142
-	minables copper 22 5.87
+	minables copper 12 7.1
+	minables lead 4 6.142
+	minables titanium 7 5.87
 	fleet "Small Vi" 2600
 	fleet "Small Scin" 5100
 	object
@@ -15470,8 +15477,7 @@ system Ghhil
 	asteroids "medium metal" 30 3.64
 	asteroids "large metal" 4 1.95
 	minables silicon 2 6.3
-	minables copper 13 3.31
-	minables titanium 7 4.9
+	minables copper 7 3.31
 	trade Clothing 340
 	trade Electronics 760
 	trade Equipment 740
@@ -16703,8 +16709,8 @@ system Heutesl
 	asteroids "small metal" 6 1.71
 	asteroids "medium metal" 44 2.1
 	minables copper 8 1.1
-	minables lead 10 1.4
-	minables silicon 10 1.3
+	minables lead 7 1.4
+	minables silicon 9 1.3
 	trade Clothing 250
 	trade Electronics 650
 	trade Equipment 650
@@ -17328,8 +17334,7 @@ system Huud
 	asteroids "medium metal" 1 3.78
 	asteroids "large metal" 1 2.55
 	minables aluminum 1 3.6
-	fleet "Large Vi" 2800
-	fleet "Large Scin" 1700
+	fleet "Small Vi" 4700
 	object
 		sprite star/f5-old
 		period 10
@@ -17403,8 +17408,9 @@ system Iigen
 	asteroids "small metal" 33 5.42
 	asteroids "medium metal" 21 5.8
 	asteroids "large metal" 45 3.84
-	minables uranium 4 5.8
+	minables gold 4 5.8
 	minables iron 22 1.47
+	minables platinum 1 2.15
 	fleet "Gegno Basic" 1100
 	fleet "Gegno Cargo" 2800
 	fleet "Gegno Miners" 2400
@@ -17448,10 +17454,12 @@ system Iinjma
 	asteroids "small metal" 51 4.9
 	asteroids "medium metal" 4 5.4
 	asteroids "large metal" 55 4.8
-	minables iron 1 8.91
-	minables neodymium 4 9.39
+	minables iron 11 4.91
+	minables lead 9 3.6
+	minables neodymium 4 2.39
 	fleet "Small Scin" 3500
-	fleet "Scin Transport" 4500
+	fleet "Scin Transport" 6000
+	fleet "Gegno Miners" 7000
 	object
 		sprite star/a3
 		distance 5.36
@@ -17649,6 +17657,7 @@ system Iliniza
 	link Zeinar
 	asteroids "large metal" 1 5.1
 	minables iron 46 1.16
+	minables silver 9 2.8
 	trade Clothing 190
 	trade Electronics 810
 	trade Equipment 670
@@ -17663,6 +17672,7 @@ system Iliniza
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 600
 	fleet "Scin Cargo" 1200
+	fleet "Scin Warfleet" 4000
 	object
 		sprite star/g5
 		distance 30.19
@@ -17712,9 +17722,10 @@ system Ilirco
 	link Yerser
 	asteroids "medium metal" 7 2.42
 	asteroids "large metal" 5 2.2
-	minables titanium 1 3.4
-	fleet "Small Vi" 4500
-	fleet "Small Scin" 2500
+	minables lead 9 6.23
+	minables silicon 10 5.6
+	minables titanium 10 3.4
+	fleet "Small Scin" 3500
 	object
 		sprite star/k0-old
 		period 10
@@ -18914,8 +18925,8 @@ system Jied
 	asteroids "large metal" 1 1.25
 	minables tungsten 18 2
 	minables copper 2 2.16
-	fleet "Small Vi" 800
-	fleet "Large Vi" 1600
+	fleet "Small Vi" 1800
+	fleet "Large Vi" 2500
 	fleet "Vi Cargo" 2300
 	fleet "Small Vi II" 3600
 	fleet "Gegno Miners" 1700
@@ -18995,10 +19006,10 @@ system Jyelio
 	link Fscher
 	link Vesvii
 	link Wreoul
-	minables tungsten 2 4.15
 	minables copper 2 6.62
-	fleet "Large Vi" 1800
-	fleet "Large Scin" 2700
+	minables tungsten 1 4.15
+	fleet "Vi Warfleet" 2400
+	fleet "Scin Warfleet" 2800
 	fleet "Small Vi II" 3600
 	fleet "Small Scin" 3200
 	object
@@ -19357,8 +19368,6 @@ system Karhio
 	minables aluminum 1 7.1
 	minables tungsten 12 6.8
 	minables uranium 1 9.7
-	fleet "Small Vi" 7100
-	fleet "Vi Transport" 6300
 	object
 		sprite star/k5-old
 		distance 9.4
@@ -19933,7 +19942,7 @@ system Kilema
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
 	minables lead 3 1.4
-	minables iron 5 1.1
+	minables iron 3 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
 	fleet "Scin Science" 12000
@@ -20173,11 +20182,11 @@ system Kneirc
 	asteroids "small metal" 9 5.2
 	asteroids "medium metal" 10 6.2
 	asteroids "large metal" 15 3.8
-	minables aluminum 1 7.04
-	minables tungsten 12 6.8
-	minables uranium 1 9.7
-	fleet "Small Vi" 3800
-	fleet "Small Scin" 2400
+	minables aluminum 12 7.04
+	minables iron 7 9.7
+	minables tungsten 26 6.8
+	fleet "Small Vi" 4600
+	fleet "Small Scin" 3400
 	object
 		sprite star/k0-old
 		distance 44.7
@@ -22073,7 +22082,7 @@ system Maoni
 	asteroids "small metal" 4 1.81
 	asteroids "medium metal" 58 1.71
 	asteroids "large metal" 33 2.37
-	minables copper 14 3.22
+	minables copper 9 3.22
 	object
 		sprite star/k-dwarf
 		period 10
@@ -23976,8 +23985,8 @@ system Mnashyu
 	asteroids "medium metal" 10 6.27
 	asteroids "large metal" 15 3.89
 	minables aluminum 1 7.04
-	minables tungsten 12 6.8
-	minables uranium 1 9.75
+	minables titanium 8 4.75
+	minables tungsten 22 6.8
 	object
 		sprite star/k0-old
 		distance 44.72
@@ -24032,8 +24041,7 @@ system Mohuwo
 	asteroids "large metal" 2 5.53
 	fleet "Small Scin" 1400
 	fleet "Large Scin" 1800
-	fleet "Scin Transport" 2000
-	fleet "Scin Cargo" 1900
+	fleet "Scin Transport" 3000
 	object
 		sprite star/a0
 		distance 85.6
@@ -24879,9 +24887,9 @@ system Nssryos
 	minables titanium 4 4.27
 	minables silver 6 5.13
 	fleet "Small Vi" 1400
-	fleet "Large Vi" 1600
+	fleet "Large Vi" 2600
 	fleet "Vi Transport" 1600
-	fleet "Vi Cargo" 1700
+	fleet "Vi Cargo" 4000
 	object
 		sprite star/f-giant
 		period 10
@@ -25104,7 +25112,7 @@ system Oihaug
 	minables tungsten 11 2.56
 	fleet "Gegno Basic" 3700
 	fleet "Gegno Cargo" 4700
-	fleet "Small Vi" 1600
+	fleet "Small Vi" 2500
 	fleet "Vi Transport" 3200
 	object
 		sprite star/m5
@@ -25143,7 +25151,7 @@ system Ookmya
 	asteroids "small metal" 136 6
 	asteroids "medium metal" 55 4
 	asteroids "large metal" 4 7.69
-	minables lead 11 1.2
+	minables lead 5 1.2
 	trade Clothing 160
 	trade Electronics 590
 	trade Equipment 700
@@ -25857,8 +25865,9 @@ system Pbelnep
 	asteroids "small metal" 7 2.89
 	asteroids "medium metal" 9 3.14
 	asteroids "large metal" 31 3.64
+	minables copper 9 3.34
+	minables silicon 38 1.6
 	minables titanium 3 5.75
-	minables silicon 28 1.6
 	trade Clothing 190
 	trade Electronics 770
 	trade Equipment 665
@@ -27376,7 +27385,7 @@ system Ptetubo
 	asteroids "small metal" 4 1.4
 	asteroids "medium metal" 11 1.26
 	asteroids "large metal" 3 1.1
-	minables copper 4 1.9
+	minables copper 44 3.12
 	minables uranium 2 0.9
 	minables titanium 3 2.3
 	trade Clothing 195
@@ -27519,8 +27528,8 @@ system Pukako
 	asteroids "medium rock" 154 0.61
 	asteroids "large rock" 5 0.58
 	asteroids "large metal" 1 0.65
-	minables neodymium 2 0.76
-	minables lead 26 1.095
+	minables lead 5 1.095
+	minables neodymium 1 0.76
 	object
 		sprite star/k0
 		period 10
@@ -28800,7 +28809,8 @@ system Rouseu
 	asteroids "medium rock" 42 2.32
 	asteroids "large rock" 106 1.75
 	asteroids "large metal" 1 1.51
-	minables uranium 16 7.1
+	minables aluminum 5 8.66
+	minables gold 2 5.1
 	object
 		sprite star/b5
 		distance 43.2
@@ -29761,6 +29771,7 @@ system Scija
 	fleet "Large Vi" 1500
 	fleet "Vi Transport" 600
 	fleet "Vi Cargo" 1200
+	fleet "Vi Warfleet" 3000
 	fleet "Gegno Basic" 3200
 	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 2500
@@ -32952,8 +32963,9 @@ system Tscera
 	asteroids "small metal" 9 3.1
 	asteroids "medium metal" 9 4.1
 	asteroids "large metal" 2 4.27
-	minables aluminum 1 5.75
+	minables aluminum 5 5.75
 	minables lead 7 6.19
+	minables titanium 5 5.2
 	fleet "Gegno Basic" 1000
 	fleet "Gegno Cargo" 3000
 	fleet "Quarg (Gegno)" 3800
@@ -33091,7 +33103,7 @@ system Uelawan
 	minables lead 3 2.06
 	minables titanium 1 3.02
 	fleet "Gegno Basic" 1800
-	fleet "Small Scin" 2000
+	fleet "Small Scin" 2700
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/a5
@@ -33153,9 +33165,12 @@ system Uhebe
 	asteroids "small metal" 2 1.36
 	asteroids "medium metal" 16 2
 	asteroids "large metal" 5 1.9
-	minables silicon 1 2.8
+	minables aluminum 9 8.8
 	minables neodymium 6 3.28
-	fleet "Small Vi" 4200
+	minables tungsten 3 2.11
+	fleet "Small Vi" 4000
+	fleet "Vi Transport" 6000
+	fleet "Vi Warfleet" 4200
 	object
 		sprite star/o5
 		period 10
@@ -33596,8 +33611,7 @@ system Uttna
 	asteroids "large rock" 2 3.96
 	asteroids "small metal" 4 2.84
 	asteroids "large metal" 16 3.42
-	minables platinum 5 1.4
-	minables uranium 8 2.2
+	minables lead 2 2.2
 	fleet "Gegno Basic" 2600
 	fleet "Gegno Miners" 1800
 	object
@@ -34008,10 +34022,10 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables aluminum 8 1.5
+	minables aluminum 46 4.5
 	minables gold 6 2.4
-	minables iron 9 1.7
-	minables lead 11 2.1
+	minables iron 17 7.7
+	minables platinum 9 2.1
 	fleet "Vi Warfleet" 1200
 	fleet "Scin Warfleet" 1200
 	object
@@ -34957,10 +34971,11 @@ system Wreoul
 	asteroids "large rock" 4 2.24
 	asteroids "large metal" 2 3.71
 	fleet "Small Vi" 3600
-	fleet "Large Vi" 5400
-	fleet "Vi Transport" 3400
-	fleet "Vi Cargo" 5000
-	fleet "Small Vi II" 4600
+	fleet "Large Vi" 4400
+	fleet "Vi Transport" 4400
+	fleet "Vi Cargo" 5600
+	fleet "Small Vi II" 5600
+	fleet "Vi Warfleet" 4000
 	object
 		sprite star/g-dwarf
 		period 10
@@ -35259,7 +35274,8 @@ system Yerser
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
-	minables lead 7 6.19
+	minables copper 3 6.19
+	fleet "Small Scin" 4600
 	object
 		sprite star/a0
 		period 10
@@ -35293,13 +35309,12 @@ system Yli
 	asteroids "small metal" 7 2.95
 	asteroids "medium metal" 172 4.23
 	asteroids "large metal" 1 3.36
-	minables tungsten 5 5.58
-	minables aluminum 32 6.6
-	minables platinum 8 5.1
-	fleet "Small Vi" 900
-	fleet "Large Vi" 1600
+	minables neodymium 6 6.6
+	minables silicon 1 5.1
+	fleet "Small Vi" 1000
+	fleet "Large Vi" 1700
 	fleet "Vi Transport" 2300
-	fleet "Vi Cargo" 1700
+	fleet "Vi Cargo" 2000
 	object
 		sprite star/k8
 		distance 2.742
@@ -35344,8 +35359,9 @@ system Yllke
 	asteroids "small metal" 126 1.4
 	asteroids "medium metal" 71 1.5
 	asteroids "large metal" 36 0.99
-	minables iron 27 2.32
-	minables aluminum 42 1.94
+	minables aluminum 19 3.1
+	minables iron 7 2.32
+	minables silicon 3 1.94
 	fleet "Gegno Basic" 1300
 	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 3000
@@ -35506,8 +35522,8 @@ system Zeinar
 	asteroids "small metal" 2 3.2
 	asteroids "medium metal" 7 4.4
 	asteroids "large metal" 9 4.1
-	minables aluminum 3 1.52
-	minables tungsten 4 1.319
+	minables aluminum 13 1.52
+	minables tungsten 14 1.319
 	trade Clothing 180
 	trade Electronics 830
 	trade Equipment 685
@@ -35522,6 +35538,7 @@ system Zeinar
 	fleet "Large Scin" 2000
 	fleet "Scin Transport" 500
 	fleet "Scin Cargo" 1200
+	fleet "Scin Warfleet" 3000
 	fleet "Gegno Basic" 3400
 	fleet "Gegno Cargo" 3600
 	fleet "Gegno Miners" 2500
