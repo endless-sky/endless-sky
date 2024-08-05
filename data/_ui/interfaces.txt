@@ -1379,13 +1379,13 @@ interface "map buttons" bottom right
 	visible if "!is starry"
 	sprite "ui/star"
 		from 0 -120 to -49 -169
-	button ] "_"
+	button ] ""
 		from 0 -120 to -49 -169
 		size 18
 	visible if "is starry"
 	sprite "ui/ring"
 		from 0 -120 to -49 -169
-	button [ "_"
+	button [ ""
 		from 0 -120 to -49 -169
 		size 18
 
