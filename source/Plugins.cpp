@@ -112,6 +112,9 @@ namespace {
 		flags |= ARCHIVE_EXTRACT_PERM;
 		flags |= ARCHIVE_EXTRACT_ACL;
 		flags |= ARCHIVE_EXTRACT_FFLAGS;
+		flags |= ARCHIVE_EXTRACT_SECURE_NOABSOLUTEPATHS;
+		flags |= ARCHIVE_EXTRACT_SECURE_NODOTDOT;
+		flags |= ARCHIVE_EXTRACT_SECURE_SYMLINKS;
 
 		// Create the handles for reading/writing.
 		archive *read = archive_read_new();
@@ -542,9 +545,16 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
+				auto oldPath = std::filesystem::current_path();
+
+				std::filesystem::current_path(Files::Plugins());
+				
 				success = ExtractZIP(
 					zipLocation,
-					Files::Plugins(), installData->name + "/");
+					"./", installData->name + "/");
+
+				std::filesystem::current_path(oldPath);
+
 				if(success)
 				{
 					// Remove old version.
