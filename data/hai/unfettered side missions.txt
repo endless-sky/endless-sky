@@ -253,7 +253,7 @@ mission "Hai Legacy 2"
 			action
 				"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 				"reputation: Hai (Unfettered)" >?= 0
-			`As you enter the system, you prepare for a fight to get the cargo through, but it is surprisingly quiet. For the first time, entering Unfettered space does not mean getting shot at by missiles from all sides.`
+			`As you enter the system, you prepare for a fight to get the cargo through. However, the Unfettered have suddenly stopped firing at you, and the system becomes surprisingly quiet.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are clearly not happy when they somehow find out you didn't deliver the cargo in time, leaving you a brief message on your command panel: "You will not prove yourself to us by failing our requests."`
@@ -279,12 +279,13 @@ mission "Hai Legacy 3"
 		has "ship model: Anomalocaris"
 	on offer
 		conversation
-			`As you land, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, warmer than usual compared to your previous experiences with the Unfettered.`
-			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use that ship to us. Luckily for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
-			`	"I even see technology from those savage Korath that we fought valiantly to obtain!"`
+			`After delivering the supplies, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, initially warmer than usual compared to your previous experiences with other Unfettered.`
+			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. You see, it is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use it."
+			`	After a sigh, her tone then changes. "But I don't believe in any of that. What does matter to me is that ship is filled with valuable ancient technology and very durable.`
+			`	Her eyes light up as she focuses more on your ship. "I even see technology from those savage Korath that we fought valiantly to obtain!" `
 				to display
 					has "outfit: Korath Detainer"
-			`	Her tone suddenly changes as she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
+			`	All of a sudden, she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
 			choice
 				`	"What do I get if I win?"`
 					goto win
@@ -293,14 +294,14 @@ mission "Hai Legacy 3"
 					goto headingout
 			`	"No, because in the eyes of my brethren that would mean I, too, did not deserve this ship. They would then challenge me for it."`
 			label win
-			`	"You will win the right to access our worlds. In order to keep our respect, this Anomalocaris may not be destroyed or sold, until you prove yourself another way. This is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here without paying a fee.`
-			`	"Beware, for there are no official rules, other than the fact that you may only use this one ship. So, will you take to the skies, or are you too afraid?"`
+			`	Mera turns around, talking to other Unfettered for a bit before addressing you again. "You will win the right to access our worlds. But, in order to keep our respect, you must keep this Anomalocaris in good condition until you prove yourself another way. It is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here.`
+			`	She then glares at you. "Beware, for although there are no official rules, you must use only the Anomalocaris. So, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
-				`	"I have nothing to prove to you. If you want it, you'll have to chase me down. No duel."`
+				`	"I have nothing to prove to you. This is my ship now."`
 					goto headingout
-			`	"Good! Of course, I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
-			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. Their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
+			`	Mera grins. "Good! I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
+			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. One that appears to be their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
 			choice
 				`	(Say nothing.)`
@@ -308,20 +309,21 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out," says a third.`
 			label scare
-			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules. We would assume everyone knows them, but since you are an outsider I will explain them to you. Naturally, since this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all.`
+			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules, even if there are no official ones. We would assume everyone knows them, but since you are an outsider I will explain them to you." He then walks beside you.`
+			`Naturally, this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all.`
 			`	"Furthermore, we can understand some may die in glorious battle, and to the victor go the spoils, so looting is allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
-			`	He suddenly looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you," he says with a sudden change of tone before leaving.`
+			`	He then looks at you intensively, straight in the eyes, with a sudden change of tone. "We sometimes bend the rules for our friends, but that is not the case with you".`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	Mera comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!" You see the Unfettered have already begun their launching procedures, so you prepare for takeoff as soon as you can.`
-			`	(Remember to park your other ships and make sure your flagship is the Anomalocaris.)`
+			`	Mera starts to look a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships, but Mera pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!"`
+			`	You see the Unfettered have already begun their launching procedures, so you should prepare for takeoff in your Anomalocaris, and no other ships, as soon as you can.`
 				accept
 			label headingout
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				set "unfettered: fled with the relic"
-			`	Seeing as they are unlikely to cooperate, you quickly head to your ship and launch before they have time to react, but shortly after they begin to follow you.`
+			`	Seeing as they are unlikely to cooperate, you quickly head to your ship and launch, with the Unfettered rushing after you shortly after.`
 				launch
 	on enter
 		conversation
