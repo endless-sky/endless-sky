@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "PointerShader.h"
+#include "ScrollBar.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
+#include <iostream>
 
 
 
@@ -69,6 +71,7 @@ void TextArea::SetRect(const Rectangle &r)
 	buffer.reset();
 	wrappedText.SetWrapWidth(r.Width());
 	scroll.SetDisplaySize(r.Height());
+	scrollBar.displaySizeFraction = scroll.DisplaySize() / scroll.MaxValue();
 	Invalidate();
 }
 
@@ -147,19 +150,23 @@ void TextArea::Draw()
 
 	const Point UP{0, -1};
 	const Point DOWN{0, 1};
+	const float SCROLLBAR_OFFSET = 5;
 	const float POINTER_OFFSET = 5;
 	if(scroll.Scrollable())
 	{
 		// Draw up and down pointers, mostly to indicate when scrolling
 		// is possible, but might as well make them clickable too.
-		Rectangle topRight(position + Point{buffer->Right(), buffer->Top() + POINTER_OFFSET}, {20.0, 20.0});
-		PointerShader::Draw(topRight.Center(), UP,
-			10.f, 10.f, 5.f, Color(scroll.IsScrollAtMin() ? .2f : .8f, 0.f));
-		AddZone(topRight, [&]() { scroll.Scroll(-Preferences::ScrollSpeed()); });
+		Rectangle topRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET}, {20.0, 20.0});
+		Rectangle bottomRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET}, {20.0, 20.0});
 
-		Rectangle bottomRight(position + Point{buffer->Right(), buffer->Bottom() - POINTER_OFFSET}, {20.0, 20.0});
+		scrollBar.SyncFrom(scroll, topRight.Center(), bottomRight.Center());
+
 		PointerShader::Draw(bottomRight.Center(), DOWN,
 			10.f, 10.f, 5.f, Color(scroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+		PointerShader::Draw(topRight.Center(), UP,
+			10.f, 10.f, 5.f, Color(scroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+		scrollBar.Draw();
+		AddZone(topRight, [&]() { scroll.Scroll(-Preferences::ScrollSpeed()); });
 		AddZone(bottomRight, [&]() { scroll.Scroll(Preferences::ScrollSpeed()); });
 	}
 }
@@ -168,6 +175,13 @@ void TextArea::Draw()
 
 bool TextArea::Click(int x, int y, int clicks)
 {
+    if(scrollBar.Click(x, y, clicks))
+    {
+        scrollBar.SyncInto(scroll);
+        bufferIsValid = false;
+        return true;
+    }
+
 	if(!buffer)
 		return false;
 	Rectangle bounds(position, {buffer->Width(), buffer->Height()});
@@ -179,6 +193,13 @@ bool TextArea::Click(int x, int y, int clicks)
 
 bool TextArea::Drag(double dx, double dy)
 {
+    scrollBar.SyncFrom(scroll, scrollBar.from, scrollBar.to, false);
+    if(scrollBar.Drag(dx, dy))
+    {
+        scrollBar.SyncInto(scroll, 0);
+        bufferIsValid = false;
+        return true;
+    }
 	if(dragging)
 	{
 		scroll.Scroll(-dy, 0);
@@ -201,6 +222,8 @@ bool TextArea::Release(int x, int y)
 
 bool TextArea::Hover(int x, int y)
 {
+    scrollBar.Hover(x, y);
+
 	if(!buffer)
 		return false;
 	Rectangle bounds(position, {buffer->Width(), buffer->Height()});

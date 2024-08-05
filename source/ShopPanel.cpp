@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -84,6 +85,18 @@ namespace {
 		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
 		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
+
+	constexpr auto DrawScrollbars = [](auto from, auto to,
+	                                                   auto &scrollbar, auto &scroll){
+		scrollbar.SyncFrom(scroll, from, to);
+    	scrollbar.Draw();
+	};
+    constexpr auto scrollbarMaybeUpdate = [](const auto &op, auto &scrollbar, auto &scroll, bool animate){
+        if(!op(scrollbar))
+            return false;
+        scrollbar.SyncInto(scroll, animate ? 5 : 0);
+        return true;
+    };
 }
 
 
@@ -440,7 +453,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int /* clicks */)
+bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
@@ -472,6 +485,17 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		if(y >= Screen::Bottom() - 20)
 			return Scroll(0, -4);
 	}
+
+	auto ScrollbarClick = [x, y, clicks](auto &scrollbar, auto &scroll){
+        return scrollbarMaybeUpdate([x, y, clicks](auto &scrollbar) {
+            return scrollbar.Click(x, y, clicks);
+        }, scrollbar, scroll, true);
+    };
+    if(ScrollbarClick(mainScrollbar, mainScroll)
+        || ScrollbarClick(sidebarScrollbar, sidebarScroll)
+        || ScrollbarClick(sidebarScrollbar, sidebarScroll))
+        return true;
+
 
 	const Point clickPoint(x, y);
 
@@ -545,6 +569,10 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 
 bool ShopPanel::Hover(int x, int y)
 {
+    mainScrollbar.Hover(x, y);
+    infobarScrollbar.Hover(x, y);
+    sidebarScrollbar.Hover(x, y);
+
 	hoverPoint = Point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
@@ -594,7 +622,16 @@ bool ShopPanel::Drag(double dx, double dy)
 				}
 	}
 	else
-		DoScroll(dy, 0);
+	{
+	    auto scrollbarInterceptSpec = [dx, dy](auto &scrollbar, auto &scroll){
+			scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
+			return scrollbarMaybeUpdate([dx, dy](auto &scrollbar){ return scrollbar.Drag(dx, dy); }, scrollbar, scroll, false);
+		};
+		if(!scrollbarInterceptSpec(mainScrollbar, mainScroll)
+		    && !scrollbarInterceptSpec(sidebarScrollbar, sidebarScroll)
+			&& !scrollbarInterceptSpec(infobarScrollbar, infobarScroll))
+	        DoScroll(dy, 0);
+	}
 
 	return true;
 }
@@ -822,12 +859,20 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
-	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + BUTTON_HEIGHT));
+	sidebarScroll.SetDisplaySize(Screen::Height() - BUTTON_HEIGHT);
+	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + Screen::Height()));
 
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+	if(sidebarScroll.Scrollable())
+	{
+    	Point top = Point(Screen::Right() - 3, Screen::Top() + 10);
+    	Point bottom = Point(Screen::Right() - 3, Screen::Bottom() - 80);
+    	PointerShader::Draw(top,
+    		Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
+    	PointerShader::Draw(bottom,
+    		Point(0., 1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+
+    	DrawScrollbars(top, bottom, sidebarScrollbar, sidebarScroll);
+	}
 }
 
 
@@ -855,12 +900,21 @@ void ShopPanel::DrawDetailsSidebar()
 
 	double heightOffset = DrawDetails(point);
 
-	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()));
+	infobarScroll.SetDisplaySize(Screen::Height());
+	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()) + Screen::Height());
 
-	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 10),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+	if(infobarScroll.Scrollable())
+	{
+    	Point top = Point(Screen::Right() - SIDEBAR_WIDTH - 7, Screen::Top() + 10);
+    	Point bottom = Point(Screen::Right() - SIDEBAR_WIDTH - 7, Screen::Bottom() - 10);
+
+    	PointerShader::Draw(top,
+    		Point(0., -1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
+    	PointerShader::Draw(bottom,
+    		Point(0., 1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+
+	    DrawScrollbars(top, bottom, infobarScrollbar, infobarScroll);
+	}
 }
 
 
@@ -1046,13 +1100,23 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
+	mainScroll.SetDisplaySize(Screen::Height());
 	mainScroll.SetMaxValue(max(0., nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 +
-		VisibilityCheckboxesSize() + 40.));
+		VisibilityCheckboxesSize() + 40.) + Screen::Height());
 
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+	if(mainScroll.Scrollable())
+	{
+    	double dimSim = Screen::Right() - 7 - SIDE_WIDTH;
+    	Point top = Point(dimSim, Screen::Top() + 10);
+    	Point bottom = Point(dimSim, Screen::Bottom() - 10);
+
+    	PointerShader::Draw(top,
+    		Point(0., -1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
+    	PointerShader::Draw(bottom,
+    		Point(0., 1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+
+    	DrawScrollbars(top, bottom, mainScrollbar, mainScroll);
+	}
 }
 
 

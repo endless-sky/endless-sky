@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Point;
 class StellarObject;
+class MapDetailPanel;
 
 
 
@@ -44,7 +45,7 @@ public:
 
 public:
 	// For the orbit selection to work properly this has to be a planet.
-	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited);
+	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited, const MapDetailPanel *parent);
 	// Return if this one was clicked, whether or not we did something about it.
 	ClickAction Click(int x, int y, int clicks);
 	// Draw this at the corresponding scroll; if it is not outside bounds, and return if we drew it.
@@ -74,6 +75,7 @@ protected:
 
 private:
 	const Planet *planet;
+	const MapDetailPanel *parent;
 
 	unsigned number;
 	bool isSelected = false;
