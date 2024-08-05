@@ -516,9 +516,9 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
-		const Sprite *mapIcon = GameData::StarIcon(object.GetSprite());
-		if(mapIcon)
-			mapIcons.emplace_back(mapIcon);
+		const Sprite *starIcon = GameData::StarIcon(object.GetSprite());
+		if(starIcon)
+			mapIcons.emplace_back(starIcon);
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
