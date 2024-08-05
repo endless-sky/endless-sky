@@ -118,7 +118,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	{
 		if(lifetime > -1000)
 		{
-			// This projectile didn't collide with anything. Create any death effects.
+			// This projectile didn't die in a collision. Create any death effects.
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, position, velocity, angle);
