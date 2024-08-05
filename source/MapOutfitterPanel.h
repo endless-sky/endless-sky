@@ -49,6 +49,8 @@ protected:
 	virtual int FindItem(const std::string &text) const override;
 
 	virtual void DrawItems() override;
+	virtual void DrawSelectedSprite(const Point &corner) const override;
+	virtual void DrawCompareSprite(const Point &corner) const override;
 
 
 private:

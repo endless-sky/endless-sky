@@ -61,14 +61,16 @@ protected:
 	virtual int FindItem(const std::string &text) const = 0;
 
 	virtual void DrawItems() = 0;
+	virtual void DrawSelectedSprite(const Point &corner) const;
+	virtual void DrawCompareSprite(const Point &corner) const;
 
 	void DrawKey() const;
 	void DrawPanel() const;
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const;
-	void Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
+	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle, int frame = 0) const;
+	void Draw(Point &corner, const Sprite *sprite, int swizzle, int frame, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &price, const std::string &info,
 		const std::string &storage = "");
 
