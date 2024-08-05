@@ -291,8 +291,6 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(!downloadedInfo)
 		{
 			ProcessPluginIndex();
-			while(!downloadedInfo)
-				std::this_thread::sleep_for(200ms);
 		}
 
 		if(!pluginInstallData.empty())
@@ -1185,9 +1183,17 @@ void PreferencesPanel::DrawPluginInstalls()
 	const size_t maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
 	for(size_t x = currentPageIndex; x < maxIndex; ++x)
 	{
+		
+
 		Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(installData.name.empty())
 			continue;
+		
+		const Plugin *installedVersion = Plugins::Get().Find(installData.name);
+
+		// Update these per frame as they could have been changed.
+		installData.installed = installedVersion && !installedVersion->removed;
+		installData.outdated = installData.installed && installedVersion->version != installData.version;
 
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 
@@ -1567,13 +1573,14 @@ void PreferencesPanel::ProcessPluginIndex()
 			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
 			bool isInstalled = installedVersion && !installedVersion->removed;
 			string pluginName = pluginInstall["name"];
+			string pluginVersion = pluginInstall["version"];
 			pluginInstallData.emplace_back(
 				pluginName,
 				pluginInstall["url"],
-				pluginInstall["version"],
+				pluginVersion,
 				pluginInstall["description"],
 				isInstalled,
-				isInstalled && installedVersion->version != pluginInstall["version"]
+				isInstalled && installedVersion->version != pluginVersion
 			);
 
 			Files::CreateFolder(Files::Config() + "icons/");

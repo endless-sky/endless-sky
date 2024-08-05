@@ -97,7 +97,7 @@ namespace {
 		{
 			retVal = archive_read_data_block(inputArchive, &buff, &size, &offset);
 			if(retVal == ARCHIVE_EOF)
-				return false;
+				return true;
 			if(retVal != ARCHIVE_OK)
 				return false;
 			if(archive_write_data_block(outputArchive, buff, size, offset) != ARCHIVE_OK)
@@ -150,6 +150,8 @@ namespace {
 		read = archive_read_new();
 		archive_read_support_format_all(read);
 		archive_read_open_filename(read, filename.c_str(), 10240);
+
+		Logger::LogError("well well well");
 
 		size_t size = 0;
 		while (true)
@@ -539,6 +541,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 				return;
 
 			string zipLocation = Files::Plugins() + installData->name + ".zip";
+			Logger::LogError(zipLocation);
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
@@ -568,7 +571,10 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 					installData->outdated = false;
 				}
 				else
+				{
+					Logger::LogError("hm");
 					filesystem::remove_all(Files::Plugins() + installData->name);
+				}
 			}
 			Files::Delete(zipLocation);
 			{
@@ -644,7 +650,7 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 
 	CURLcode result = curl_easy_perform(curl);
 	if(result != CURLE_OK)
-		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(result ));
+		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(result));
 
 	curl_easy_cleanup(curl);
 	fclose(out);
