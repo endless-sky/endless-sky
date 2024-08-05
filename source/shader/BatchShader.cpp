@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BatchShader.h"
 
-#include "Screen.h"
+#include "../Screen.h"
 #include "Shader.h"
-#include "Sprite.h"
+#include "../Sprite.h"
 
 using namespace std;
 

@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LineShader.h"
 
 #include "Color.h"
-#include "Point.h"
-#include "Screen.h"
+#include "../Point.h"
+#include "../Screen.h"
 #include "Shader.h"
 
 #include <stdexcept>

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
+#include "shader/Color.h"
 #include "Point.h"
 
 #include <vector>

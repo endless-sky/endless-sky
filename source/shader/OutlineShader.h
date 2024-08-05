@@ -1,4 +1,4 @@
-/* Shader.h
+/* OutlineShader.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,28 +15,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "opengl.h"
+#include "../Point.h"
+
+class Color;
+class Sprite;
 
 
 
-// Class representing a shader, i.e. a compiled GLSL program that the GPU uses
-// in order to draw something. In modern GPL, everything is drawn with shaders.
-// In general, rather than using this class directly, drawing code will use one
-// of the classes representing a particular shader.
-class Shader {
+// Functions for drawing the "outline" of a sprite, i.e. a Sobel filter of its
+// alpha channel.
+class OutlineShader {
 public:
-	Shader() noexcept = default;
-	Shader(const char *vertex, const char *fragment);
+	static void Init();
 
-	GLuint Object() const noexcept;
-	GLint Attrib(const char *name) const;
-	GLint Uniform(const char *name) const;
-
-
-private:
-	GLuint Compile(const char *str, GLenum type);
-
-
-private:
-	GLuint program;
+	static void Draw(const Sprite *sprite, const Point &pos, const Point &size,
+		const Color &color, const Point &unit = Point(0., -1.), float frame = 0.f);
 };

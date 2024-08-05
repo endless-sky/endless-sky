@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Collision.h"
 #include "Government.h"
 #include "Logger.h"
-#include "Mask.h"
+#include "shader/Mask.h"
 #include "Point.h"
 #include "Projectile.h"
 #include "Ship.h"

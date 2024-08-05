@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Color.h"
+#include "shader/Color.h"
 #include "Information.h"
 #include "Point.h"
 #include "Rectangle.h"

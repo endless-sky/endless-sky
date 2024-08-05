@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Collision.h"
 #include "CollisionType.h"
-#include "DrawList.h"
-#include "Mask.h"
+#include "shader/DrawList.h"
+#include "shader/Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
