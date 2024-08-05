@@ -216,6 +216,7 @@ star "star/m-supergiant"
 star "star/a-eater"
 	power 1.84
 	wind 0.45
+	icon map/a-star
 star "star/carbon"
 	power 0.1
 	wind 10
