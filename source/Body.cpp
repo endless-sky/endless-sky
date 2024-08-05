@@ -48,7 +48,6 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 	this->velocity = velocity;
 	this->angle = facing;
 	this->zoom = zoom;
-	this->alpha = alpha;
 }
 
 
