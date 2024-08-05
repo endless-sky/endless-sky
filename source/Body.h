@@ -37,7 +37,7 @@ public:
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
 		double zoom = 1., double alpha = 1.);
-	Body(const Body& sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
+	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
