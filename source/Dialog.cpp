@@ -85,37 +85,37 @@ namespace {
 
 	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
 	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
-	const int LEFT_MARGIN = 20;
-	const int RIGHT_MARGIN = 20;
-	const int HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
+	constexpr double LEFT_MARGIN = 20;
+	constexpr double RIGHT_MARGIN = 20;
+	constexpr double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
 	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
 	// that uses the same value.
-	const int BUTTON_LEFT_MARGIN = 10;
-	const int BUTTON_RIGHT_MARGIN = 10;
-	const int BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
+	constexpr double BUTTON_LEFT_MARGIN = 10;
+	constexpr double BUTTON_RIGHT_MARGIN = 10;
+	constexpr double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
 	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
 	// that uses the same value.
-	const int BUTTON_TOP_MARGIN = 10;
-	const int BUTTON_BOTTOM_MARGIN = 10;
-	const int BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
+	constexpr double BUTTON_TOP_MARGIN = 10;
+	constexpr double BUTTON_BOTTOM_MARGIN = 10;
+	constexpr double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
 	// The width of the padding used on the left/right sides of each segment, in pixels.
-	const int LEFT_PADDING = 10;
-	const int RIGHT_PADDING = 10;
-	const int HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
+	constexpr double LEFT_PADDING = 10;
+	constexpr double RIGHT_PADDING = 10;
+	constexpr double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
 	// The height of the padding used by the top/bottom segment, in pixels.
-	const int TOP_PADDING = 10;
-	const int BOTTOM_PADDING = 10;
-	const int VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
+	constexpr double TOP_PADDING = 10;
+	constexpr double BOTTOM_PADDING = 10;
+	constexpr double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
 	// The width of the padding at the beginning/end of an input field.
-	const int INPUT_LEFT_PADDING = 5;
-	const int INPUT_RIGHT_PADDING = 5;
-	const int INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
+	constexpr double INPUT_LEFT_PADDING = 5;
+	constexpr double INPUT_RIGHT_PADDING = 5;
+	constexpr double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
 	// The height of the padding at the top/bottom of an input field.
-	const int INPUT_TOP_PADDING = 2;
-	const int INPUT_BOTTOM_PADDING = 2;
-	const int INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
+	constexpr double INPUT_TOP_PADDING = 2;
+	constexpr double INPUT_BOTTOM_PADDING = 2;
+	constexpr double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
 	// The height of an input field in pixels.
-	const int INPUT_HEIGHT = 20;
+	constexpr double INPUT_HEIGHT = 20;
 }
 
 
@@ -213,7 +213,8 @@ void Dialog::Draw()
 		Point stringPos(
 			inputPos.X() - (Width() - HORIZONTAL_PADDING) * .5 + INPUT_LEFT_PADDING,
 			inputPos.Y() - .5 * font.Height());
-		const auto inputText = DisplayText(input, {Width() - HORIZONTAL_PADDING - INPUT_HORIZONTAL_PADDING, Truncate::FRONT});
+		const auto inputText = DisplayText(input, {static_cast<int>(Width() - HORIZONTAL_PADDING - INPUT_HORIZONTAL_PADDING),
+				Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + INPUT_TOP_PADDING, inputPos.Y());
