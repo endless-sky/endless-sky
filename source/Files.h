@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILES_H_
-#define ES_FILES_H_
+#pragma once
 
 #include <cstdio>
 #include <ctime>
@@ -80,7 +79,3 @@ public:
 	// happen (and to ensure thread safety on the logging).
 	static void LogErrorToFile(const std::string &message);
 };
-
-
-
-#endif
