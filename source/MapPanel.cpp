@@ -1403,13 +1403,14 @@ void MapPanel::DrawSystems()
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-
-		// System rings fade as you zoom in if starry map is enabled.
-		RingShader::Draw(pos, OUTER, INNER, node.color.Additive(max(ringFade,
-			node.mapIcon.empty() ? .9f : 0)));
-
-		if(isStarry)
+		if(!isStarry)
+			RingShader::Draw(pos, OUTER, INNER, node.color);
+		else
 		{
+			// System rings fade as you zoom in if starry map is enabled.
+			const float alpha = max(ringFade, node.mapIcon.empty() ? .9f : 0.f);
+			RingShader::Draw(pos, OUTER, INNER, node.Color.Additive(alpha));
+
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
 			float starAngle = node.name.length() + node.position.Length();
 			float spin = 4 * acos(0.) / node.mapIcon.size();
