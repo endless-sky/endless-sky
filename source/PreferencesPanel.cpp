@@ -1183,12 +1183,10 @@ void PreferencesPanel::DrawPluginInstalls()
 	const size_t maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
 	for(size_t x = currentPageIndex; x < maxIndex; ++x)
 	{
-		
-
 		Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(installData.name.empty())
 			continue;
-		
+
 		const Plugin *installedVersion = Plugins::Get().Find(installData.name);
 
 		// Update these per frame as they could have been changed.
