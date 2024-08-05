@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_AI_H_
-#define ES_AI_H_
+#pragma once
 
 #include "Command.h"
 #include "FireCommand.h"
@@ -249,7 +248,3 @@ private:
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
 };
-
-
-
-#endif

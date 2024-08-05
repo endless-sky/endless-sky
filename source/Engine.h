@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENGINE_H_
-#define ENGINE_H_
+#pragma once
 
 #include "AI.h"
 #include "AlertLabel.h"
@@ -312,7 +311,3 @@ private:
 	// Keep separate lists for each thread to avoid lock contention.
 	ShipResourceProvider shipResourceProvider;
 };
-
-
-
-#endif

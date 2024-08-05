@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLOTSAM_H_
-#define FLOTSAM_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -93,7 +92,3 @@ private:
 	int count = 0;
 	const Government *sourceGovernment = nullptr;
 };
-
-
-
-#endif

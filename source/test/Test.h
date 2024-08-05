@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENDLESS_SKY_AC_TEST_H_
-#define ENDLESS_SKY_AC_TEST_H_
+#pragma once
 
 #include "../Command.h"
 #include "../ConditionSet.h"
@@ -29,9 +28,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Planet;
 class PlayerInfo;
-class UI;
 class System;
 class TestContext;
+class UI;
 
 
 
@@ -136,5 +135,3 @@ private:
 	std::map<std::string, unsigned int> jumpTable;
 	std::vector<TestStep> steps;
 };
-
-#endif

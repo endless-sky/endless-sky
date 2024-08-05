@@ -436,7 +436,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		}
 	));
 
-	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
+	if(!canEnter || system.Links().empty() || (source && !system.Links().contains(source)))
 	{
 		Place(system, ship);
 		return &system;
