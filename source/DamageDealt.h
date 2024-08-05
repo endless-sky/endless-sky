@@ -41,6 +41,7 @@ public:
 	double Energy() const noexcept;
 	double Heat() const noexcept;
 	double Fuel() const noexcept;
+	double Cloak() const noexcept;
 
 	// DoT damage types with an instantaneous analog.
 	double Discharge() const noexcept;
@@ -49,6 +50,7 @@ public:
 	double Scrambling() const noexcept;
 	double Burn() const noexcept;
 	double Leak() const noexcept;
+	double Dispersion() const noexcept;
 
 	// Unique special damage types.
 	double Disruption() const noexcept;
@@ -71,6 +73,7 @@ private:
 	double energyDamage = 0.;
 	double heatDamage = 0.;
 	double fuelDamage = 0.;
+	double cloakDamage = 0.;
 
 	double corrosionDamage = 0.;
 	double dischargeDamage = 0.;
@@ -78,6 +81,7 @@ private:
 	double scramblingDamage = 0.;
 	double burnDamage = 0.;
 	double leakDamage = 0.;
+	double dispersionDamage = 0.;
 
 	double disruptionDamage = 0.;
 	double slowingDamage = 0.;
@@ -93,6 +97,7 @@ inline double DamageDealt::Hull() const noexcept { return hullDamage; }
 inline double DamageDealt::Energy() const noexcept { return energyDamage; }
 inline double DamageDealt::Heat() const noexcept { return heatDamage; }
 inline double DamageDealt::Fuel() const noexcept { return fuelDamage; }
+inline double DamageDealt::Cloak() const noexcept { return cloakDamage; }
 
 inline double DamageDealt::Discharge() const noexcept { return dischargeDamage; }
 inline double DamageDealt::Corrosion() const noexcept { return corrosionDamage; }
@@ -100,6 +105,7 @@ inline double DamageDealt::Ion() const noexcept { return ionDamage; }
 inline double DamageDealt::Scrambling() const noexcept { return scramblingDamage; }
 inline double DamageDealt::Burn() const noexcept { return burnDamage; }
 inline double DamageDealt::Leak() const noexcept { return leakDamage; }
+inline double DamageDealt::Dispersion() const noexcept { return dispersionDamage; }
 
 inline double DamageDealt::Disruption() const noexcept { return disruptionDamage; }
 inline double DamageDealt::Slowing() const noexcept { return slowingDamage; }
