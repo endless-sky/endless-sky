@@ -551,7 +551,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 				// for the directory itself.
 				auto oldPath = std::filesystem::current_path();
 				std::filesystem::current_path(Files::Plugins());
-				
+
 				success = ExtractZIP(
 					zipLocation,
 					"./", installData->name + "/");
