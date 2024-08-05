@@ -280,7 +280,7 @@ void MapOutfitterPanel::Init()
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
-				if(!seen.count(outfit))
+				if(!seen.contains(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
@@ -290,7 +290,7 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : player.PlanetaryStorage())
 		if(it.first->HasOutfitter())
 			for(const auto &oit : it.second.Outfits())
-				if(!seen.count(oit.first))
+				if(!seen.contains(oit.first))
 				{
 					catalog[oit.first->Category()].push_back(oit.first);
 					seen.insert(oit.first);
@@ -298,7 +298,7 @@ void MapOutfitterPanel::Init()
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())
-		if(!seen.count(it.second))
+		if(!seen.contains(it.second))
 		{
 			catalog[it.second->Category()].push_back(it.second);
 			seen.insert(it.second);
