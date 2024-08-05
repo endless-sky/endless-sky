@@ -30,10 +30,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Conversation;
 class DataNode;
 class Fleet;
+class Outfit;
 class Phrase;
 class Planet;
 class PlayerInfo;
-class Outfit;
 class Ship;
 class System;
 

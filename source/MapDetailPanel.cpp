@@ -499,7 +499,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			// The same "planet" may appear multiple times in one system,
 			// providing multiple landing and departure points (e.g. ringworlds).
 			const Planet *planet = object.GetPlanet();
-			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
+			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.contains(planet))
 				continue;
 
 			planetCards.emplace_back(object, number, player.HasVisited(*planet));
