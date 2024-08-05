@@ -257,8 +257,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
-	else if(key == 'u' && page == 'p')
-		Plugins::DeletePlugin(selectedPlugin);
+	else if(key == 'u' && page == 'p') // MARK
+	{
+		pluginMarkedForDelete = selectedPlugin;
+		GetUI()->Push(new Dialog(this, &PreferencesPanel::DeletePlugin,
+				"Do you really want to delete this plugin?"));
+	}
 	else if((key == 'n' || key == SDLK_PAGEUP)
 		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
 		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
@@ -1153,6 +1157,9 @@ void PreferencesPanel::DrawPlugins()
 
 void PreferencesPanel::DrawPluginInstalls()
 {
+	if(!downloadedInfo)
+		return;
+
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
@@ -1601,4 +1608,13 @@ void PreferencesPanel::ScrollSelectedPlugin()
 		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
 	while(selected * 20 - pluginListScroll > pluginListClip->Height())
 		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+}
+
+
+
+void PreferencesPanel::DeletePlugin()
+{
+	if(!pluginMarkedForDelete.empty())
+		Plugins::DeletePlugin(pluginMarkedForDelete);
+	pluginMarkedForDelete.clear();
 }

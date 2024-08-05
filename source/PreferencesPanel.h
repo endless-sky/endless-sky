@@ -82,6 +82,8 @@ private:
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
+	// Delete a plugin that has been marked to be removed.
+	void DeletePlugin();
 
 private:
 	int editing;
@@ -104,6 +106,7 @@ private:
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
+	std::string pluginMarkedForDelete;
 
 
 	// Pointers to keep track of what plugin is selected/clicked/hovered over.

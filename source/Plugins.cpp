@@ -539,7 +539,6 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 				return;
 
 			string zipLocation = Files::Plugins() + installData->name + ".zip";
-			Logger::LogError(zipLocation);
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
@@ -569,10 +568,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 					installData->outdated = false;
 				}
 				else
-				{
-					Logger::LogError("hm");
 					filesystem::remove_all(Files::Plugins() + installData->name);
-				}
 			}
 			Files::Delete(zipLocation);
 			{
