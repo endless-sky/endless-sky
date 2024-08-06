@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CATEGORY_LIST_H_
-#define CATEGORY_LIST_H_
+#pragma once
 
 #include <iterator>
 #include <map>
@@ -78,7 +77,3 @@ private:
 	std::map<const std::string, Category> byName;
 	int currentPrecedence = 0;
 };
-
-
-
-#endif
