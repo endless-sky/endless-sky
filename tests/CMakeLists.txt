@@ -77,6 +77,9 @@ target_include_directories(EndlessSkyTests PRIVATE unit/include)
 target_link_libraries(EndlessSkyTests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
+target_compile_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
+target_link_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
+
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
 set_tests_properties(unit PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" LABELS unit)
