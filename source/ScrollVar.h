@@ -145,7 +145,7 @@ void ScrollVar<T>::Scroll(const T &dy, int steps)
 template <typename T>
 double ScrollVar<T>::AnimatedScrollFraction() const
 {
-    return static_cast<double>(Animate<T>::AnimatedValue()) / static_cast<double>(maxVal - displaySize);
+	return static_cast<double>(Animate<T>::AnimatedValue()) / static_cast<double>(maxVal - displaySize);
 }
 
 
@@ -153,7 +153,7 @@ double ScrollVar<T>::AnimatedScrollFraction() const
 template <typename T>
 double ScrollVar<T>::ScrollFraction() const
 {
-    return static_cast<double>(Animate<T>::Value()) / static_cast<double>(maxVal - displaySize);
+	return static_cast<double>(Animate<T>::Value()) / static_cast<double>(maxVal - displaySize);
 }
 
 

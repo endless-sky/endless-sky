@@ -24,42 +24,42 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ScrollBar : public Panel {
 public:
-    ScrollBar(
-        float fraction,
-        float displaySizeFraction,
-        const Point &from,
-        const Point &to,
-        float tabWidth,
-        float lineWidth,
-        Color color,
-        Color innerColor
-    ) noexcept;
+	ScrollBar(
+		float fraction,
+		float displaySizeFraction,
+		const Point &from,
+		const Point &to,
+		float tabWidth,
+		float lineWidth,
+		Color color,
+		Color innerColor
+	) noexcept;
 
-    ScrollBar() noexcept;
+	ScrollBar() noexcept;
 
-    void Draw() override;
-    void DrawAt(const Point &from);
-    bool Hover(int x, int y) override;
-    bool Drag(double dx, double dy) override;
-    bool Click(int x, int y, int clicks) override;
+	void Draw() override;
+	void DrawAt(const Point &from);
+	bool Hover(int x, int y) override;
+	bool Drag(double dx, double dy) override;
+	bool Click(int x, int y, int clicks) override;
 
-    template<typename T>
-    void SyncFrom(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
-    template<typename T>
-    void SyncInto(ScrollVar<T> &scroll, int steps = 5);
+	template<typename T>
+	void SyncFrom(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
+	template<typename T>
+	void SyncInto(ScrollVar<T> &scroll, int steps = 5);
 
 
 public:
-    float fraction;
-    float displaySizeFraction;
-    Point from;
-    Point to;
-    float tabWidth;
-    float lineWidth;
-    Color color;
-    Color innerColor;
-    bool highlighted = false;
-    bool innerHighlighted = false;
+	float fraction;
+	float displaySizeFraction;
+	Point from;
+	Point to;
+	float tabWidth;
+	float lineWidth;
+	Color color;
+	Color innerColor;
+	bool highlighted = false;
+	bool innerHighlighted = false;
 };
 
 
@@ -78,7 +78,7 @@ void ScrollBar::SyncFrom(const ScrollVar<T> &scroll, const Point &from, const Po
 template<typename T>
 void ScrollBar::SyncInto(ScrollVar<T> &scroll, int steps)
 {
-    scroll.Set(fraction * (scroll.MaxValue() - scroll.DisplaySize()), steps);
+	scroll.Set(fraction * (scroll.MaxValue() - scroll.DisplaySize()), steps);
 }
 
 #endif

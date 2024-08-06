@@ -18,10 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "PointerShader.h"
-#include "ScrollBar.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
-#include <iostream>
+#include "ScrollBar.h"
 
 
 
@@ -62,10 +61,10 @@ void TextArea::SetText(const std::string &s)
 void TextArea::SetRect(const Rectangle &r)
 {
 	// TODO: Is there a use case where we would want the WrapWidth to be
-	//       larger than the display width? We could handle this case by
-	//       allowing the user to scroll left or right instead of up or
-	//       down. This might be useful for overly long single lined text,
-	//       or for vertical text layout.
+	//	   larger than the display width? We could handle this case by
+	//	   allowing the user to scroll left or right instead of up or
+	//	   down. This might be useful for overly long single lined text,
+	//	   or for vertical text layout.
 	position = r.Center();
 	size = r.Dimensions();
 	buffer.reset();
@@ -156,8 +155,10 @@ void TextArea::Draw()
 	{
 		// Draw up and down pointers, mostly to indicate when scrolling
 		// is possible, but might as well make them clickable too.
-		Rectangle topRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET}, {20.0, 20.0});
-		Rectangle bottomRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET}, {20.0, 20.0});
+		Rectangle topRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET}, {20.0,
+			20.0});
+		Rectangle bottomRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET},
+			{20.0, 20.0});
 
 		scrollBar.SyncFrom(scroll, topRight.Center(), bottomRight.Center());
 
@@ -175,12 +176,12 @@ void TextArea::Draw()
 
 bool TextArea::Click(int x, int y, int clicks)
 {
-    if(scrollBar.Click(x, y, clicks))
-    {
-        scrollBar.SyncInto(scroll);
-        bufferIsValid = false;
-        return true;
-    }
+	if(scrollBar.Click(x, y, clicks))
+	{
+		scrollBar.SyncInto(scroll);
+		bufferIsValid = false;
+		return true;
+	}
 
 	if(!buffer)
 		return false;
@@ -193,13 +194,13 @@ bool TextArea::Click(int x, int y, int clicks)
 
 bool TextArea::Drag(double dx, double dy)
 {
-    scrollBar.SyncFrom(scroll, scrollBar.from, scrollBar.to, false);
-    if(scrollBar.Drag(dx, dy))
-    {
-        scrollBar.SyncInto(scroll, 0);
-        bufferIsValid = false;
-        return true;
-    }
+	scrollBar.SyncFrom(scroll, scrollBar.from, scrollBar.to, false);
+	if(scrollBar.Drag(dx, dy))
+	{
+		scrollBar.SyncInto(scroll, 0);
+		bufferIsValid = false;
+		return true;
+	}
 	if(dragging)
 	{
 		scroll.Scroll(-dy, 0);
@@ -222,7 +223,7 @@ bool TextArea::Release(int x, int y)
 
 bool TextArea::Hover(int x, int y)
 {
-    scrollBar.Hover(x, y);
+	scrollBar.Hover(x, y);
 
 	if(!buffer)
 		return false;

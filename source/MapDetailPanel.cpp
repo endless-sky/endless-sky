@@ -169,10 +169,10 @@ bool MapDetailPanel::Hover(int x, int y)
 
 bool MapDetailPanel::Drag(double dx, double dy)
 {
-    scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
+	scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
 	if(scroll.Scrollable() && scrollbar.Drag(dx, dy))
 	{
-	    scrollbar.SyncInto(scroll, 0);
+		scrollbar.SyncInto(scroll, 0);
 		return true;
 	}
 
@@ -191,7 +191,7 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	if(isPlanetViewSelected)
 	{
-	    scroll.Scroll(-dy * Preferences::ScrollSpeed());
+		scroll.Scroll(-dy * Preferences::ScrollSpeed());
 
 		return true;
 	}
@@ -297,7 +297,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 					card.Select();
 					double space = card.AvailableSpace();
 					if(space < planetCardHeight)
-					    scroll.Scroll(planetCardHeight - space);
+						scroll.Scroll(planetCardHeight - space);
 					break;
 				}
 				// We have this one selected, the next one will be selected instead.
@@ -340,14 +340,14 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 					card.Select(false);
 					double space = previousCard->AvailableSpace();
 					if(space < planetCardHeight)
-					    scroll.Scroll(space - planetCardHeight);
+						scroll.Scroll(space - planetCardHeight);
 					break;
 				}
 				previousCard = &card;
 			}
 			if(!anySelected && !planetCards.empty())
 			{
-			    scroll.Set(scroll.MaxValue() - scroll.DisplaySize());
+				scroll.Set(scroll.MaxValue() - scroll.DisplaySize());
 				planetCards.back().Select();
 			}
 		}
@@ -396,7 +396,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			bool arrowDown = (!arrowUp && y > Screen::Top() + planetPanelHeight - arrowVerticalOffset);
 			scroll.Scroll(arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0);
 			if(!(arrowUp || arrowDown) && scrollbar.Click(x, y, clicks))
-                scrollbar.SyncInto(scroll);
+				scrollbar.SyncInto(scroll);
 		}
 		else
 		{
@@ -447,7 +447,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				{
 					planetCard.Select(planetCard.GetPlanet() == selectedPlanet);
 					if(planetCard.IsSelected())
-					    scroll.Set(place * planetCardHeight);
+						scroll.Set(place * planetCardHeight);
 					++place;
 				}
 			}
