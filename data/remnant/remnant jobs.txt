@@ -383,6 +383,7 @@ mission "Remnant: Rescue"
 ship "Rescue Dummy"
 	# sprite "ship/behemoth"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 1
 		"mass" 10
