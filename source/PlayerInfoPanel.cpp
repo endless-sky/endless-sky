@@ -676,9 +676,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	if(removedCount)
 	{
 		// DrawList needs to draw at least one row, so make it draw the last row that was in the table.
-		table.PopRow(1);
-		licenses[0] = licenses[licenses.size() - removedCount - 2];
-		licenses.resize(removedCount);
+		table.PopRow();
+		licenses.resize(removedCount + 1);
 		DrawList(licenses, table, "", 1, false);
 	}
 
