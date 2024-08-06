@@ -175,9 +175,6 @@ void Dialog::Draw()
 		okPos.Y() - .5 * font.Height());
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
 
-	// Draw the text.
-	text.Draw(textPos, dim);
-
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
@@ -269,7 +266,8 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(boolFun)
 		{
 			DoCallback(okIsActive);
-			GetUI()->Pop(this);
+			// Use PopThrough because the Dialog has spawned additional panels.
+			GetUI()->PopThrough(this);
 		}
 		else if(okIsActive || isMission)
 		{
@@ -278,11 +276,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
-				GetUI()->Pop(this);
+				GetUI()->PopThrough(this);
 			}
 		}
 		else
-			GetUI()->Pop(this);
+			GetUI()->PopThrough(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));
@@ -330,42 +328,65 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	okIsActive = true;
 	isWide = false;
 
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(Width() - 20);
-	text.SetFont(FontSet::Get(14));
-	text.SetTruncate(truncate);
-
-	text.Wrap(message);
+	Point textRectSize(Width() - 20, 0);
+	text = std::make_shared<TextArea>();
+	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetRect(Rectangle(Point(), textRectSize));
+	text->SetFont(FontSet::Get(14));
+	text->SetTruncate(truncate);
+	text->SetText(message);
+	AddChild(text);
 
 	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
-	if(text.Height() > maxHeight)
+	if(text->GetTextHeight() > maxHeight)
 	{
+		textRectSize.Y() = maxHeight;
 		isWide = true;
 		// Re-wrap with the new width
-		text.SetWrapWidth(Width() - 20);
-		text.Wrap(message);
+		textRectSize.X() = Width() - 20;
+		text->SetRect(Rectangle(Point{}, textRectSize));
 
-		if(text.LongestLineWidth() <= WIDTH)
+		if(text->GetLongestLineWidth() <= WIDTH)
 		{
 			// Formatted text is long and skinny (e.g. scan result dialog). Go back
 			// to using the default width, since the wide width doesn't help.
 			isWide = false;
-			text.SetWrapWidth(Width() - 20);
-			text.Wrap(message);
+			textRectSize.X() = Width() - 20;
+			text->SetRect(Rectangle(Point{}, textRectSize));
 		}
 	}
+	else
+		textRectSize.Y() = text->GetTextHeight();
 
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
-	// 5 pixels because it includes its own padding at the bottom. If there is a
+	// 6 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.Height() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
+	height = 10 + (textRectSize.Y() - 6) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;
 	else
 		height = (height - 40) / 40;
+
+	// Now that we know how big we want to render the text, position the text
+	// area and add it to the UI.
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
+
+	// Get the position of the top of this dialog, and of the text and input.
+	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
+	Point textPos(Width() * -.5 + 10., pos.Y() + 20.);
+	// Resize textRectSize to match the visual height of the dialog, which will
+	// be rounded up from the actual text height by the number of panels that
+	// were added. This helps correctly position the TextArea scroll buttons.
+	// The text height was over-reported by 6 pixels, so we add those pixels back for consistency.
+	textRectSize.Y() = 60 + height * 40 + 6 - 30 * (!isMission && (intFun || stringFun));
+
+	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	text->SetRect(textRect);
 }
 
 
