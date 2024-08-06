@@ -310,10 +310,9 @@ mission "Hai Legacy 3"
 			`	"I guess we'll find out," says a third.`
 			label scare
 			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules, even if there are no official ones. We would assume everyone knows them, but since you are an outsider I will explain them to you." He then walks beside you.`
-			`Naturally, this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all.`
-			`	"Furthermore, we can understand some may die in glorious battle, and to the victor go the spoils, so looting is allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
+			`Naturally, this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all. To the victor go the spoils, so looting is allowed, but do not attempt to steal our ships. Do so, and all the Unfettered will be against you!"`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
-			`	He then looks at you intensively, straight in the eyes, with a sudden change of tone. "We sometimes bend the rules for our friends, but that is not the case with you".`
+			`	He then looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you".`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
 			`	Mera starts to look a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships, but Mera pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!"`
@@ -331,26 +330,26 @@ mission "Hai Legacy 3"
 				has "unfettered: fled with the relic"
 			branch "too many ships"
 				"total ships" > 1
-			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warriors should. Prove to us that you have the strength to disable our ship, yet still have the restraint not to destroy them."`
+			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system, as one sends you a hail. "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warriors should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
 				accept
 			label fleeing
 			action
 				fail
-			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and hail you. "Where do you think you're going, monkey?"`
+			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and they are fast to hail you. "Where do you think you're going, monkey?"`
 				decline
 			label "too many ships"
 			action
 				fail
-			`As you take to join your fleet in orbit, You receive a hail from the Unfettered. "If you can't even count how many ships you have you're not worthy of our time, monkey!"`
+			`As you take to join your fleet in orbit, you receive a hail from the Unfettered ships. "If you can't even count how many ships you have, you're not worthy of our time, monkey!"`
 	on disabled
 		fail
 		conversation
-			`The enemy ships hail you. "Thought you could get away from us so easily? You better bribe us and then land on our worlds quick, before we value blowing you up more than preserving that ship!"`
+			`The enemy ships hail you after disabling your ship. "Thought you could get away from us so easily? You better give us a good bribe to land on our worlds and return that ship, before we value blowing you up more than preserving it!"`
 				to display
 					has "unfettered: fled with the relic"
 				decline
-			`One of the enemy ships hails you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
-			`	"Be warned, however, that your truce with us ends as soon as you land. Today, you've failed us, but maybe someday you will prove yourself otherwise."`
+			`After your ship is disabled, one of the Unfettered ships hails you. "You have lost the challenge, but we didn't expect much from a human like you. We will repair your ship for a fair bribe, but you better land at one of our worlds and return it to us with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
+			`	"Be warned, however, that your truce with us ends as soon as you land. Today, you've failed us. Maybe someday you will prove yourself otherwise."`
 	to fail
 		not "flagship landed"
 		has "unfettered: fled with the relic"
@@ -370,10 +369,10 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
 		on kill
-			dialog `When you destroy the last dueling ship, you receive a hail from Mera, who sounds quite angry. "Destroying one or two ships in the middle of the action could be understood. But all of them? That's either incompetence or evil intent, and I will not have either."`
+			dialog `When you destroy the last ship, you receive a hail from Mera, who sounds quite angry. "Destroying one or two ships in the middle of the action could be understood. But all of them? That's either incompetence or evil intent, and we will not have either!"`
 				fail
 		conversation
-			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward, so long as you do not capture our ships."`
+			`You receive a message from the remaining Unfettered ships. "We surrender. If you land now, you will receive your reward, but do not try anything else."`
 			branch "good or bad enough"
 				or
 					has "unfettered: beaten extra bugs"
