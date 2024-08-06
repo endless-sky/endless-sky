@@ -80,6 +80,7 @@ private:
 		InfoPanelState::ShipComparator *shipSort = nullptr;
 	};
 
+
 private:
 	PlayerInfo &player;
 

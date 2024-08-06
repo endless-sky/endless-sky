@@ -16,12 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Point.h"
+#include "text/FlexTable.h"
 #include "text/WrappedText.h"
 
 #include <string>
 #include <vector>
-
-class Table;
 
 
 
@@ -35,38 +34,34 @@ public:
 
 	// Get the panel width.
 	static int PanelWidth();
-	// Get the height of each of the panels.
-	int MaximumHeight() const;
-	int DescriptionHeight() const;
-	int AttributesHeight() const;
+	virtual int AttributesHeight() const;
+
+	bool HasDescription() const;
 
 	// Draw each of the panels.
-	void DrawDescription(const Point &topLeft) const;
-	virtual void DrawAttributes(const Point &topLeft) const;
+	Point DrawDescription(const Point &topLeft) const;
+	virtual Point DrawAttributes(const Point &topLeft) const;
 	void DrawTooltips() const;
 
 	// Update the location where the mouse is hovering.
 	void Hover(const Point &point);
 	void ClearHover();
 
+	static FlexTable CreateTable(const std::vector<std::string> &labels, const std::vector<std::string> &values);
+
 
 protected:
 	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
-	Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
-	void CheckHover(const Table &table, const std::string &label) const;
+	Point Draw(FlexTable &table, Point drawPoint, int labelIndex = 0) const;
+	void CheckHover(FlexTable &table, Point drawPoint, int labelIndex = 0) const;
 
 
 protected:
 	static const int WIDTH = 250;
 
 	WrappedText description;
-	int descriptionHeight = 0;
 
-	std::vector<std::string> attributeLabels;
-	std::vector<std::string> attributeValues;
-	int attributesHeight = 0;
-
-	int maximumHeight = 0;
+	mutable FlexTable attributes{WIDTH - 20, 2};
 
 	// For tooltips:
 	Point hoverPoint;

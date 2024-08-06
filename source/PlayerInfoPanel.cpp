@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
 #include "Planet.h"
@@ -49,7 +48,7 @@ namespace {
 	const int LINES_PER_PAGE = 26;
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+	void DrawList(vector<pair<int64_t, string>> &list, FlexTable &table, const string &title,
 		int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
@@ -68,19 +67,20 @@ namespace {
 		}
 
 		const Color &dim = *GameData::Colors().Get("medium");
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw(title, *GameData::Colors().Get("bright"));
-		table.Advance();
-		table.DrawGap(5);
+		if(!title.empty())
+		{
+			FlexTable::Cell *header = table.FillUnifiedRow(title, *GameData::Colors().Get("bright"));
+			header->SetTopGap(10);
+			header->SetUnderlineColor(dim);
+			header->SetBottomGap(5);
+		}
 
 		for(const auto &it : list)
 		{
-			table.Draw(it.second, dim);
 			if(drawValues)
-				table.Draw(it.first);
+				table.FillRow({{it.second, dim}, {Format::Number(it.first), dim}});
 			else
-				table.Advance();
+				table.FillRow({{it.second, dim}});
 		}
 	}
 
@@ -598,20 +598,16 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Two columns of opposite alignment are used to simulate a single visual column.
-	Table table;
-	const int columnWidth = 230;
-	table.AddColumn(0, {columnWidth, Alignment::LEFT});
-	table.AddColumn(columnWidth, {columnWidth, Alignment::RIGHT});
-	table.SetUnderline(0, columnWidth);
-	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	FlexTable table{230, 2};
+	table.GetColumn(-1).SetAlignment(Alignment::RIGHT);
+	table.GetColumn(-1).SetTruncate(Truncate::MIDDLE);
+	table.SetFlexStrategy(FlexTable::FlexStrategy::INDIVIDUAL);
 
-	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
-		bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
-		bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
-		bright, Truncate::MIDDLE, true);
+	const Point drawPoint = Point{12., 10.};
+
+	table.FillRow({{"player:", dim}, {player.FirstName() + " " + player.LastName(), bright}});
+	table.FillRow({{"net worth:", dim}, {Format::CreditString(player.Accounts().NetWorth()), bright}});
+	table.FillRow({{"time played:", dim}, {Format::PlayTime(player.GetPlayTime()), bright}});
 
 	// Determine the player's combat rating.
 	int combatExperience = player.Conditions().Get("combat rating");
@@ -619,21 +615,16 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	string combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw("combat rating:", bright);
-		table.Advance();
-		table.DrawGap(5);
+		FlexTable::Cell *cell = table.FillUnifiedRow("combat rating:", bright);
+		cell->SetTopGap(10);
+		cell->SetUnderlineColor(dim);
+		cell->SetBottomGap(5);
 
-		table.DrawTruncatedPair("rank:", dim,
-			to_string(combatLevel) + " - " + combatRating,
-			dim, Truncate::MIDDLE, false);
-		table.DrawTruncatedPair("experience:", dim,
-			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
+		table.FillRow({{"rank:", dim}, {to_string(combatLevel) + " - " + combatRating, dim}});
+		table.FillRow({{"experience:", dim}, {Format::Number(combatExperience), dim}});
+
 		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
-		table.DrawTruncatedPair("    for next rank:", dim,
-				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),
-				dim, Truncate::MIDDLE, false);
+		table.FillRow({{"    for next rank:", dim}, {maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))), dim}});
 	}
 
 	// Display the factors affecting piracy targeting the player.
@@ -647,18 +638,16 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
 		double prob = 1. - pow(1. - attraction, 10.);
 
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw("piracy threat:", bright);
-		table.Draw(to_string(lround(100 * prob)) + "%", dim);
-		table.DrawGap(5);
+		FlexTable::Cell *cell = table.FillRow({{"piracy threat:", bright}, {to_string(lround(100 * prob)) + "%", dim}});
+		cell->SetTopGap(10);
+		cell->SetBottomGap(5);
+		table.GetCell(-1, 0).SetUnderlineColor(dim);
+		table.GetCell(-1, 1).SetUnderlineColor(dim);
 
 		// Format the attraction and deterrence levels with tens places, so it
 		// is clear which is higher even if they round to the same level.
-		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
-			"(+" + Format::Decimal(attractionLevel, 1) + ")", dim, Truncate::MIDDLE, false);
-		table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
-			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+		table.FillRow({{"cargo: " + attractionRating, dim}, {"(+" + Format::Decimal(attractionLevel, 1) + ")", dim}});
+		table.FillRow({{"fleet: " + deterrenceRating, dim}, {"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim}});
 	}
 	// Other special information:
 	vector<pair<int64_t, string>> salary;
@@ -673,11 +662,27 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	sort(tribute.begin(), tribute.end(), std::greater<>());
 	DrawList(tribute, table, "tribute:", 4);
 
-	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
 	vector<pair<int64_t, string>> licenses;
 	for(const auto &it : player.Licenses())
 		licenses.emplace_back(1, it);
-	DrawList(licenses, table, "licenses:", maxRows, false);
+	DrawList(licenses, table, "licenses:", licenses.size(), false);
+
+	int removedCount = 0;
+	while(table.Height() + drawPoint.Y() > bounds.Height())
+	{
+		table.PopRow();
+		removedCount++;
+	}
+	if(removedCount)
+	{
+		// DrawList needs to draw at least one row, so make it draw the last row that was in the table.
+		table.PopRow(1);
+		licenses[0] = licenses[licenses.size() - removedCount - 2];
+		licenses.resize(removedCount);
+		DrawList(licenses, table, "", 1, false);
+	}
+
+	table.Draw(drawPoint + bounds.TopLeft());
 }
 
 

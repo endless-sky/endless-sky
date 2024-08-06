@@ -52,83 +52,57 @@ void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool de
 	UpdateAttributes(ship, player, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
-
-	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
 
 
 
-int ShipInfoDisplay::GetAttributesHeight(bool sale) const
+int ShipInfoDisplay::AttributesHeight() const
 {
-	return attributesHeight + (sale ? saleHeight : 0);
+	return AttributesHeight(false);
 }
 
 
 
-int ShipInfoDisplay::OutfitsHeight() const
+int ShipInfoDisplay::AttributesHeight(bool sale) const
 {
-	return outfitsHeight;
+	// There are two places with 10-pixel paddings.
+	return 20 + attributeHeader.Height() + (sale * sales.Height()) + attributes.Height() + energyHeatTable.Height();
 }
 
 
 
-void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
+Point ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	DrawAttributes(topLeft, false);
+	return DrawAttributes(topLeft, false);
 }
 
 
 
 // Draw each of the panels.
-void ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) const
+Point ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) const
 {
 	// Header.
-	Point point = Draw(topLeft, attributeHeaderLabels, attributeHeaderValues);
+	const Point attributePosition = topLeft + Point{10., 10.};
+	Point drawPoint = Draw(attributeHeader, attributePosition);
 
 	// Sale info.
 	if(sale)
-	{
-		point = Draw(point, saleLabels, saleValues);
-
-		const Color &color = *GameData::Colors().Get("medium");
-		FillShader::Fill(point + Point(.5 * WIDTH, 5.), Point(WIDTH - 20., 1.), color);
-	}
-	else
-		point -= Point(0, 10.);
+		drawPoint = Draw(sales, drawPoint);
 
 	// Body.
-	point = Draw(point, attributeLabels, attributeValues);
+	drawPoint = Draw(attributes, drawPoint);
+	drawPoint.Y() += 10;
 
-	// Get standard colors to draw with.
-	const Color &labelColor = *GameData::Colors().Get("medium");
-	const Color &valueColor = *GameData::Colors().Get("bright");
+	drawPoint = Draw(energyHeatTable, drawPoint);
 
-	Table table;
-	table.AddColumn(10, {WIDTH - 10, Alignment::LEFT});
-	table.AddColumn(WIDTH - 90, {WIDTH - 80, Alignment::RIGHT});
-	table.AddColumn(WIDTH - 10, {WIDTH - 20, Alignment::RIGHT});
-	table.SetHighlight(0, WIDTH);
-	table.DrawAt(point);
-	table.DrawGap(10.);
-
-	table.Advance();
-	table.Draw("energy", labelColor);
-	table.Draw("heat", labelColor);
-
-	for(unsigned i = 0; i < tableLabels.size(); ++i)
-	{
-		CheckHover(table, tableLabels[i]);
-		table.Draw(tableLabels[i], labelColor);
-		table.Draw(energyTable[i], valueColor);
-		table.Draw(heatTable[i], valueColor);
-	}
+	return drawPoint;
 }
 
 
 
-void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
+Point ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 {
-	Draw(topLeft, outfitLabels, outfitValues);
+	return Draw(outfits, topLeft);
 }
 
 
@@ -138,13 +112,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
-	attributeHeaderLabels.clear();
-	attributeHeaderValues.clear();
+	vector<string> attributeHeaderLabels, attributeHeaderValues;
 
 	attributeHeaderLabels.push_back("model:");
 	attributeHeaderValues.push_back(ship.DisplayModelName());
-
-	attributesHeight = 20;
 
 	// Only show the ship category on scrolling panels with no risk of overflow.
 	if(scrollingPanel)
@@ -152,12 +123,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeHeaderLabels.push_back("category:");
 		const string &category = ship.BaseAttributes().Category();
 		attributeHeaderValues.push_back(category.empty() ? "???" : category);
-		attributesHeight += 20;
 	}
+	attributeHeader = CreateTable(attributeHeaderLabels, attributeHeaderValues);
 
-	attributeLabels.clear();
-	attributeValues.clear();
-	attributesHeight += 20;
+	vector<string> attributeLabels, attributeValues;
 
 	const Outfit &attributes = ship.Attributes();
 
@@ -172,7 +141,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 			{
 				attributeLabels.push_back("license:");
 				attributeValues.push_back(license);
-				attributesHeight += 20;
 			}
 		}
 
@@ -188,11 +156,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeLabels.push_back(out.str());
 	}
 	attributeValues.push_back(Format::Credits(depreciated));
-	attributesHeight += 20;
 
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
-	attributesHeight += 10;
 	double shieldRegen = (attributes.Get("shield generation")
 		+ attributes.Get("delayed shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
@@ -208,7 +174,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeLabels.push_back("shields:");
 		attributeValues.push_back(Format::Number(ship.MaxShields()));
 	}
-	attributesHeight += 20;
 	double hullRepair = (attributes.Get("hull repair rate")
 		+ attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
@@ -224,23 +189,19 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeLabels.push_back("hull:");
 		attributeValues.push_back(Format::Number(ship.MaxHull()));
 	}
-	attributesHeight += 20;
 	double emptyMass = attributes.Mass();
 	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
 	attributeValues.push_back(Format::Number(isGeneric ? emptyMass : currentMass) + " tons");
-	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
 	if(isGeneric)
 		attributeValues.push_back(Format::Number(attributes.Get("cargo space")) + " tons");
 	else
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
-	attributesHeight += 20;
 	attributeLabels.push_back("required crew / bunks:");
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
-	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	if(isGeneric)
@@ -248,20 +209,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	else
 		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
 			+ " / " + Format::Number(fuelCapacity));
-	attributesHeight += 20;
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
 	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
-	attributesHeight += 10;
 	attributeLabels.push_back(isGeneric ? "movement (full - no cargo):" : "movement:");
 	attributeValues.push_back(string());
-	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
 	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
-	attributesHeight += 20;
 
 	// Movement stats are influenced by inertia reduction.
 	double reduction = 1. + attributes.Get("inertia reduction");
@@ -275,7 +232,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	else
 		attributeValues.push_back(Format::Number(baseAccel / fullMass)
 			+ " - " + Format::Number(baseAccel / emptyMass));
-	attributesHeight += 20;
 
 	attributeLabels.push_back("turning:");
 	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
@@ -284,7 +240,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	else
 		attributeValues.push_back(Format::Number(baseTurn / fullMass)
 			+ " - " + Format::Number(baseTurn / emptyMass));
-	attributesHeight += 20;
 
 	// Find out how much outfit, engine, and weapon space the chassis has.
 	map<string, double> chassis;
@@ -303,13 +258,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
-	attributesHeight += 10;
 	for(unsigned i = 0; i < NAMES.size(); i += 2)
 	{
 		attributeLabels.push_back(NAMES[i]);
 		attributeValues.push_back(Format::Number(attributes.Get(NAMES[i + 1]))
 			+ " / " + Format::Number(chassis[NAMES[i + 1]]));
-		attributesHeight += 20;
 	}
 
 	// Print the number of bays for each bay-type we have
@@ -325,15 +278,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 			attributeLabels.emplace_back(bayLabel + " bays:");
 			attributeValues.emplace_back(to_string(totalBays));
-			attributesHeight += 20;
 		}
 	}
+	ItemInfoDisplay::attributes = CreateTable(attributeLabels, attributeValues);
 
-	tableLabels.clear();
-	energyTable.clear();
-	heatTable.clear();
-	// Skip a spacer and the table header.
-	attributesHeight += 30;
+	ResetEnergyHeatTable();
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
 
 	const double idleEnergyPerFrame = attributes.Get("energy generation")
 		+ attributes.Get("solar collection")
@@ -344,12 +295,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		+ attributes.Get("solar heat")
 		+ attributes.Get("fuel heat")
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
-	tableLabels.push_back("idle:");
-	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
-	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
+	energyHeatTable.FillRow({{"idle:", dim}, {Format::Number(60. * idleEnergyPerFrame), bright},
+			{Format::Number(60. * idleHeatPerFrame), bright}});
 
 	// Add energy and heat while moving to the table.
-	attributesHeight += 20;
 	const double movingEnergyPerFrame =
 		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
 		+ attributes.Get("turning energy")
@@ -357,12 +306,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	const double movingHeatPerFrame = max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
 		+ attributes.Get("turning heat")
 		+ attributes.Get("afterburner heat");
-	tableLabels.push_back("moving:");
-	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
-	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
+	energyHeatTable.FillRow({{"moving:", dim}, {Format::Number(-60. * movingEnergyPerFrame), bright},
+			{Format::Number(60. * movingHeatPerFrame), bright}});
 
 	// Add energy and heat while firing to the table.
-	attributesHeight += 20;
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
@@ -371,33 +318,29 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
 			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
 		}
-	tableLabels.push_back("firing:");
-	energyTable.push_back(Format::Number(-60. * firingEnergy));
-	heatTable.push_back(Format::Number(60. * firingHeat));
+	energyHeatTable.FillRow({{"firing:", dim}, {Format::Number(-60. * firingEnergy), bright},
+			{Format::Number(60. * firingHeat), bright}});
 
 	// Add energy and heat when doing shield and hull repair to the table.
-	attributesHeight += 20;
 	double shieldEnergy = (hasShieldRegen) ? (attributes.Get("shield energy")
 		+ attributes.Get("delayed shield energy"))
 		* (1. + attributes.Get("shield energy multiplier")) : 0.;
 	double hullEnergy = (hasHullRepair) ? (attributes.Get("hull energy")
 		+ attributes.Get("delayed hull energy"))
 		* (1. + attributes.Get("hull energy multiplier")) : 0.;
-	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
-		hullEnergy ? "repairing hull:" : "charging shields:");
-	energyTable.push_back(Format::Number(-60. * (shieldEnergy + hullEnergy)));
 	double shieldHeat = (hasShieldRegen) ? (attributes.Get("shield heat")
 		+ attributes.Get("delayed shield heat"))
 		* (1. + attributes.Get("shield heat multiplier")) : 0.;
 	double hullHeat = (hasHullRepair) ? (attributes.Get("hull heat")
 		+ attributes.Get("delayed hull heat"))
 		* (1. + attributes.Get("hull heat multiplier")) : 0.;
-	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
+	auto shieldText = (shieldEnergy && hullEnergy) ? "shields / hull:" : hullEnergy ? "repairing hull:" : "charging shields:";
+	energyHeatTable.FillRow({{shieldText, dim}, {Format::Number(-60. * (shieldEnergy + hullEnergy)), bright},
+			{Format::Number(60. * (shieldHeat + hullHeat)), bright}});
 
 	if(scrollingPanel)
 	{
 		// Add up the maximum possible changes and add the total to the table.
-		attributesHeight += 20;
 		const double overallEnergy = idleEnergyPerFrame
 			- movingEnergyPerFrame
 			- firingEnergy
@@ -408,29 +351,21 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 			+ firingHeat
 			+ shieldHeat
 			+ hullHeat;
-		tableLabels.push_back("net change:");
-		energyTable.push_back(Format::Number(60. * overallEnergy));
-		heatTable.push_back(Format::Number(60. * overallHeat));
+		energyHeatTable.FillRow({{"net change:", dim}, {Format::Number(60. * overallEnergy), bright},
+				{Format::Number(60. * overallHeat), bright}});
 	}
 
 	// Add maximum values of energy and heat to the table.
-	attributesHeight += 20;
 	const double maxEnergy = attributes.Get("energy capacity");
 	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaximumHeat();
-	tableLabels.push_back("max:");
-	energyTable.push_back(Format::Number(maxEnergy));
-	heatTable.push_back(Format::Number(maxHeat));
-	// Pad by 10 pixels on the top and bottom.
-	attributesHeight += 30;
+	energyHeatTable.FillRow({{"max:", dim}, {Format::Number(maxEnergy), bright}, {Format::Number(maxHeat), bright}});
 }
 
 
 
 void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation)
 {
-	outfitLabels.clear();
-	outfitValues.clear();
-	outfitsHeight = 20;
+	vector<string> outfitLabels, outfitValues;
 
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
@@ -443,18 +378,15 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		{
 			outfitLabels.push_back(string());
 			outfitValues.push_back(string());
-			outfitsHeight += 10;
 		}
 
 		outfitLabels.push_back(cit.first + ':');
 		outfitValues.push_back(string());
-		outfitsHeight += 20;
 
 		for(const auto &it : cit.second)
 		{
 			outfitLabels.push_back(it.first);
 			outfitValues.push_back(to_string(it.second));
-			outfitsHeight += 20;
 		}
 	}
 
@@ -463,17 +395,33 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	int64_t chassisCost = depreciation.Value(
 		GameData::Ships().Get(ship.TrueModelName()),
 		player.GetDate().DaysSinceEpoch());
-	saleLabels.clear();
-	saleValues.clear();
-	saleHeight = 20;
+
+	outfits = CreateTable(outfitLabels, outfitValues);
+
+	vector<string> saleLabels, saleValues;
 
 	saleLabels.push_back("This ship will sell for:");
 	saleValues.push_back(string());
-	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
 	saleValues.push_back(Format::Credits(chassisCost));
-	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
 	saleValues.push_back(Format::Credits(totalCost - chassisCost));
-	saleHeight += 20;
+
+	sales = CreateTable(saleLabels, saleValues);
+	const Color &color = *GameData::Colors().Get("medium");
+	sales.GetCell(-1, 0).SetUnderlineColor(color);
+	sales.GetCell(-1, 1).SetUnderlineColor(color);
+}
+
+
+
+void ShipInfoDisplay::ResetEnergyHeatTable()
+{
+	energyHeatTable = FlexTable{WIDTH - 20, 3};
+	energyHeatTable.Clear();
+	energyHeatTable.SetFlexStrategy(FlexTable::FlexStrategy::EVEN);
+	energyHeatTable.GetColumn(1).SetAlignment(Alignment::RIGHT);
+	energyHeatTable.GetColumn(2).SetAlignment(Alignment::RIGHT);
+
+	energyHeatTable.FillRow({"", "energy", "heat"});
 }

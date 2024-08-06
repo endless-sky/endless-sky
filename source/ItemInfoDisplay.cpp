@@ -20,13 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
-
-#include <algorithm>
-#include <cmath>
 
 using namespace std;
 
@@ -57,41 +53,39 @@ int ItemInfoDisplay::PanelWidth()
 
 
 
-// Get the height of each of the three panels.
-int ItemInfoDisplay::MaximumHeight() const
-{
-	return maximumHeight;
-}
-
-
-
-int ItemInfoDisplay::DescriptionHeight() const
-{
-	return descriptionHeight;
-}
-
-
-
 int ItemInfoDisplay::AttributesHeight() const
 {
-	return attributesHeight;
+	return attributes.Height();
+}
+
+
+
+bool ItemInfoDisplay::HasDescription() const
+{
+	return description.LongestLineWidth();
 }
 
 
 
 // Draw each of the panels.
-void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
+Point ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
+	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), description.Height() + 20.));
 	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright") : *GameData::Colors().Get("medium");
 	description.Draw(topLeft + Point(10., 12.), color);
+
+	// If there is a description, pad under it by 20 pixels.
+	int descriptionHeight = description.Height();
+	if(descriptionHeight)
+		descriptionHeight += 20;
+	return topLeft + Point(0., descriptionHeight);
 }
 
 
 
-void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
+Point ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Draw(topLeft, attributeLabels, attributeValues);
+	return Draw(attributes, topLeft);
 }
 
 
@@ -132,6 +126,35 @@ void ItemInfoDisplay::ClearHover()
 
 
 
+FlexTable ItemInfoDisplay::CreateTable(const vector<string> &labels, const vector<string> &values)
+{
+	// Get standard colors to draw with.
+	const Color &labelColor = *GameData::Colors().Get("medium");
+	const Color &valueColor = *GameData::Colors().Get("bright");
+
+	// Use 10-pixel margins on both sides.
+	FlexTable table(WIDTH - 20, 2);
+	table.SetFlexStrategy(FlexTable::FlexStrategy::INDIVIDUAL);
+	table.GetColumn(1).SetAlignment(Alignment::RIGHT);
+
+	for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
+	{
+		if(labels[i].empty() && i)
+		{
+			table.GetCell(-1, 0).SetBottomGap(table.GetCell(-1, 0).GetBottomGap() + 10);
+			continue;
+		}
+
+		if(values[i].empty())
+			table.FillUnifiedRow(labels[i], valueColor);
+		else
+			table.FillRow({{labels[i], labelColor}, {values[i], valueColor}});
+	}
+	return table;
+}
+
+
+
 void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
 	if(licenses.empty())
@@ -160,63 +183,36 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		fullText += ".\n";
 		description.Wrap(fullText);
 	}
-
-	// If there is a description, pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height();
-	if(descriptionHeight)
-		descriptionHeight += 20;
 }
 
 
 
-Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vector<string> &values) const
+Point ItemInfoDisplay::Draw(FlexTable &table, Point drawPoint, int labelIndex) const
 {
-	// Add ten pixels of padding at the top.
-	point.Y() += 10.;
-
-	// Get standard colors to draw with.
-	const Color &labelColor = *GameData::Colors().Get("medium");
-	const Color &valueColor = *GameData::Colors().Get("bright");
-
-	Table table;
-	// Use 10-pixel margins on both sides.
-	table.AddColumn(10, {WIDTH - 20});
-	table.AddColumn(WIDTH - 10, {WIDTH - 20, Alignment::RIGHT});
-	table.SetHighlight(0, WIDTH);
-	table.DrawAt(point);
-
-	for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
-	{
-		if(labels[i].empty())
-		{
-			table.DrawGap(10);
-			continue;
-		}
-
-		CheckHover(table, labels[i]);
-		table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
-		table.Draw(values[i], valueColor);
-	}
-	return table.GetPoint();
+	Point end = table.Draw(drawPoint);
+	CheckHover(table, drawPoint, labelIndex);
+	return end;
 }
 
 
 
-void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
+void ItemInfoDisplay::CheckHover(FlexTable &table, Point drawPoint, int labelIndex) const
 {
 	if(!hasHover)
 		return;
 
-	Point distance = hoverPoint - table.GetCenterPoint();
-	Point radius = .5 * table.GetRowSize();
-	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())
+	for(int row = 0; row < table.Rows(); ++row)
 	{
-		hoverCount += 2 * (label == hover);
-		hover = label;
-		if(hoverCount >= HOVER_TIME)
+		if(table.GetRowHitbox(row, drawPoint).Contains(hoverPoint))
 		{
-			hoverCount = HOVER_TIME;
-			hoverText.Wrap(GameData::Tooltip(label));
+			const string &label = table.GetCell(row, labelIndex).Text();
+			hoverCount += 2 * (label == hover);
+			hover = label;
+			if(hoverCount >= HOVER_TIME)
+			{
+				hoverCount = HOVER_TIME;
+				hoverText.Wrap(GameData::Tooltip(label));
+			}
 		}
 	}
 }

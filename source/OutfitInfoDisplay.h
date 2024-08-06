@@ -40,25 +40,24 @@ public:
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
-	// int MaximumHeight() const;
-	// int DescriptionHeight() const;
-	// int AttributesHeight() const;
-	int RequirementsHeight() const;
+	virtual int AttributesHeight() const override;
 
 	// Provided by ItemInfoDisplay:
-	// void DrawDescription(const Point &topLeft) const;
-	// void DrawAttributes(const Point &topLeft) const;
-	void DrawRequirements(const Point &topLeft) const;
+	// Point DrawDescription(const Point &topLeft) const;
+	virtual Point DrawAttributes(const Point &topLeft) const override;
+	Point DrawRequirements(const Point &topLeft) const;
 
 
 private:
 	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed);
-	void AddRequirementAttribute(std::string label, double value);
 	void UpdateAttributes(const Outfit &outfit);
 
 
 private:
-	std::vector<std::string> requirementLabels;
-	std::vector<std::string> requirementValues;
-	int requirementsHeight = 0;
+	static void AddRequirementAttribute(const std::string &label, double value, std::vector<std::string> &labels,
+			std::vector<std::string> &values);
+
+
+private:
+	mutable FlexTable requirements{WIDTH, 2};
 };
