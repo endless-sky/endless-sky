@@ -346,7 +346,7 @@ Point max(const Point &p, const Point &q)
 
 
 
-ostream &operator<<(ostream &os, const Point &p)
+std::ostream &operator<<(std::ostream &os, const Point &p)
 {
 	return os << '(' << p.X() << ", " << p.Y() << ')';
 }
