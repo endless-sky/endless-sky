@@ -67,10 +67,10 @@ public:
 template<typename T>
 void ScrollBar::SyncFrom(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated)
 {
-   	this->displaySizeFraction = scroll.DisplaySize() / scroll.MaxValue();
-   	this->fraction = animated ? scroll.AnimatedScrollFraction() : scroll.ScrollFraction();
-   	this->from = from;
-   	this->to = to;
+	this->displaySizeFraction = scroll.DisplaySize() / scroll.MaxValue();
+	this->fraction = animated ? scroll.AnimatedScrollFraction() : scroll.ScrollFraction();
+	this->from = from;
+	this->to = to;
 }
 
 

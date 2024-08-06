@@ -48,14 +48,14 @@ ScrollBar::ScrollBar(
 
 
 ScrollBar::ScrollBar() noexcept : ScrollBar(
-   	0.0,
-   	0.0,
+	0.0,
+	0.0,
 	Point(),
 	Point(),
-   	3,
 	3,
-   	Color(0.6),
-   	Color(0.25)
+	3,
+	Color(0.6),
+	Color(0.25)
 )
 {
 }
