@@ -23,10 +23,10 @@ using namespace std;
 
 
 
-FlexTable::Cell::Cell(FlexTable::Column *column, const string &text) : column(column), wrapWidth(column->table->AverageColumnWidth()),
-		highlightColor(GameData::Colors().Get("faint")), underlineColor(GameData::Colors().Get("medium")),
-		textColor(GameData::Colors().Get("medium")), highlightedTextColor(nullptr),
-		font(&FontSet::Get(14))
+FlexTable::Cell::Cell(FlexTable::Column *column, const string &text) : column(column),
+		wrapWidth(column->table->AverageColumnWidth()), highlightColor(GameData::Colors().Get("faint")),
+		underlineColor(GameData::Colors().Get("medium")), textColor(GameData::Colors().Get("medium")),
+		highlightedTextColor(nullptr), font(&FontSet::Get(14))
 {
 	SetText(text);
 }
@@ -413,8 +413,8 @@ FlexTable::FlexTable(int width, int columns) : width(width), columns(columns, Co
 
 
 
-FlexTable::FlexTable(const FlexTable &other) noexcept : width(other.width), rowSpacing(other.rowSpacing), columnSpacing(other.columnSpacing),
-	flexStrategy(other.flexStrategy), rowCount(other.rowCount)
+FlexTable::FlexTable(const FlexTable &other) noexcept : width(other.width), rowSpacing(other.rowSpacing),
+	columnSpacing(other.columnSpacing), flexStrategy(other.flexStrategy), rowCount(other.rowCount)
 {
 	columns = other.columns;
 
@@ -601,7 +601,8 @@ FlexTable::Cell &FlexTable::GetCell(int row, int column)
 
 
 
-// Fills a row with individual cells. Any extra arguments are discarded, and missing ones are substituted with empty cells.
+// Fills a row with individual cells. Any extra arguments are discarded,
+// and missing ones are substituted with empty cells.
 // Returns a pointer to the first cell in the row, or nullptr if there are no columns in the table.
 FlexTable::Cell *FlexTable::FillRow(const std::initializer_list<std::string> &cellTexts)
 {
@@ -868,7 +869,7 @@ void FlexTable::UpdateLayout()
 		return;
 	}
 
-	//Otherwise, perform all column flexing operations.
+	// Otherwise, perform all column flexing operations.
 
 	// Calculate the size of each column.
 	// Since some columns might be smaller than the initially used average width,

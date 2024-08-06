@@ -207,7 +207,8 @@ public:
 	const Cell &GetCell(int row, int column) const;
 	Cell &GetCell(int row, int column);
 
-	// Fills a row with individual cells. Any extra arguments are discarded, and missing ones are substituted with empty cells.
+	// Fills a row with individual cells. Any extra arguments are discarded,
+	// and missing ones are substituted with empty cells.
 	// Returns a pointer to the first cell in the row, or nullptr if there are no columns in the table.
 	Cell *FillRow(const std::initializer_list<std::string> &cellTexts = {});
 	Cell *FillRow(const std::initializer_list<std::pair<std::string, const Color &>> &cellTexts);

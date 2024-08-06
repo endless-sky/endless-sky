@@ -334,7 +334,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double hullHeat = (hasHullRepair) ? (attributes.Get("hull heat")
 		+ attributes.Get("delayed hull heat"))
 		* (1. + attributes.Get("hull heat multiplier")) : 0.;
-	auto shieldText = (shieldEnergy && hullEnergy) ? "shields / hull:" : hullEnergy ? "repairing hull:" : "charging shields:";
+	auto shieldText = (shieldEnergy && hullEnergy) ? "shields / hull:" : hullEnergy ?
+			"repairing hull:" : "charging shields:";
 	energyHeatTable.FillRow({{shieldText, dim}, {Format::Number(-60. * (shieldEnergy + hullEnergy)), bright},
 			{Format::Number(60. * (shieldHeat + hullHeat)), bright}});
 
