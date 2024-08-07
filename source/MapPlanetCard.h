@@ -19,11 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 
 #include <string>
-#include <vector>
 
+class MapDetailPanel;
 class Point;
 class StellarObject;
-class MapDetailPanel;
 
 
 

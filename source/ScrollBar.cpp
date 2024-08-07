@@ -24,6 +24,8 @@ namespace {
 	constexpr int SCROLLBAR_MOUSE_ADDITIONAL_RANGE = 5;
 }
 
+
+
 ScrollBar::ScrollBar(
 	float fraction,
 	float displaySizeFraction,
@@ -48,8 +50,8 @@ ScrollBar::ScrollBar(
 
 
 ScrollBar::ScrollBar() noexcept : ScrollBar(
-	0.0,
-	0.0,
+	0.,
+	0.,
 	Point(),
 	Point(),
 	3,
@@ -62,54 +64,55 @@ ScrollBar::ScrollBar() noexcept : ScrollBar(
 
 
 
-void ScrollBar::Draw() {
+void ScrollBar::Draw()
+{
 	DrawAt(from);
 }
 
+
+
 void ScrollBar::DrawAt(const Point &from)
 {
-	auto delta = to - this->from;
+	Point delta = to - this->from;
 	LineShader::Draw(
 		from,
 		from + delta,
 		lineWidth,
-		innerHighlighted ? innerColor : Color::Multiply(0.5, innerColor)
+		innerHighlighted ? innerColor : Color::Multiply(.5, innerColor)
 	);
 
-	auto deltaOffset = delta * displaySizeFraction;
-	auto deltap = (delta * (1 - displaySizeFraction));
-	auto offset = deltap * fraction;
+	Point deltaOffset = delta * displaySizeFraction;
+	Point offset = delta * (1 - displaySizeFraction) * fraction;
 	LineShader::Draw(
 		from + offset + deltaOffset,
 		from + offset,
 		tabWidth,
-		highlighted ? color : Color::Combine(0.5, color, 0.5, innerColor)
+		highlighted ? color : Color::Combine(.5, color, .5, innerColor)
 	);
 }
+
+
 
 bool ScrollBar::Hover(int x, int y)
 {
 	auto delta = to - from;
-	auto deltap = (delta * (1.0 - displaySizeFraction));
-	auto offset = deltap * fraction;
-	auto center = from + offset;
+	auto offset = delta * (1.0 - displaySizeFraction) * fraction;
 
-	auto deltam = delta * displaySizeFraction;
+	constexpr auto LineSDF = [](Point a, Point b, Point p)
+	{
+		Point ba = b - a;
+		Point pa = p - a;
 
-	constexpr auto LineSDF = [](auto a, auto b, auto p) {
-		auto pa = p - a;
-		auto ba = b - a;
-
-		auto h = std::clamp(pa.Dot(ba) / ba.LengthSquared(), 0.0, 1.0);
-		auto d = (pa - ba * h).Length();
+		double h = std::clamp(pa.Dot(ba) / ba.LengthSquared(), 0.0, 1.0);
+		double d = (pa - ba * h).Length();
 
 		return d;
 	};
 
-	auto a = center + deltam;
-	auto b = center;
+	Point a = from + offset;
+	Point b = a + delta * displaySizeFraction;
 
-	auto p = Point(x, y);
+	Point p(x, y);
 
 	highlighted = LineSDF(a, b, p) <= tabWidth + SCROLLBAR_MOUSE_ADDITIONAL_RANGE;
 	innerHighlighted = LineSDF(from, to, p) <= lineWidth + SCROLLBAR_MOUSE_ADDITIONAL_RANGE;
@@ -124,9 +127,9 @@ bool ScrollBar::Drag(double dx, double dy)
 		Point dragVector{dx, dy};
 		Point thisVector = to - from;
 
-		auto scalarProjectionOverLength = thisVector.Dot(dragVector) / thisVector.LengthSquared();
+		double scalarProjectionOverLength = thisVector.Dot(dragVector) / thisVector.LengthSquared();
 
-		fraction += scalarProjectionOverLength / (1.0 - displaySizeFraction);
+		fraction += scalarProjectionOverLength / (1. - displaySizeFraction);
 
 		return true;
 	}
@@ -140,9 +143,9 @@ bool ScrollBar::Click(int x, int y, int clicks)
 		Point cursorVector = Point(x, y) - from;
 		Point thisVector = to - from;
 
-		auto scalarProjectionOverLength = thisVector.Dot(cursorVector) / thisVector.LengthSquared();
+		double scalarProjectionOverLength = thisVector.Dot(cursorVector) / thisVector.LengthSquared();
 
-		fraction = (scalarProjectionOverLength - 0.5) / (1.0 - displaySizeFraction) + 0.5;
+		fraction = (scalarProjectionOverLength - .5) / (1. - displaySizeFraction) + .5;
 
 		highlighted = true;
 	}

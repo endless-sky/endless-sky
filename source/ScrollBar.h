@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_SCROLL_BAR_H_
-#define ES_SCROLL_BAR_H_
+#pragma once
 
 #include "Color.h"
 #include "Panel.h"
@@ -80,5 +79,3 @@ void ScrollBar::SyncInto(ScrollVar<T> &scroll, int steps)
 {
 	scroll.Set(fraction * (scroll.MaxValue() - scroll.DisplaySize()), steps);
 }
-
-#endif

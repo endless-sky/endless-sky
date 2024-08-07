@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
+#include "ScrollBar.h"
+#include "ScrollVar.h"
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
@@ -86,12 +88,15 @@ namespace {
 		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
 
-	constexpr auto DrawScrollbars = [](auto from, auto to, auto &scrollbar,
-														auto &scroll) {
+	constexpr auto DrawScrollbars = [](Point from, Point to, ScrollBar &scrollbar,
+		ScrollVar<double> &scroll)
+	{
 		scrollbar.SyncFrom(scroll, from, to);
 		scrollbar.Draw();
 	};
-	constexpr auto scrollbarMaybeUpdate = [](const auto &op, auto &scrollbar, auto &scroll, bool animate) {
+	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
+		ScrollVar<double> &scroll, bool animate)
+	{
 		if(!op(scrollbar))
 			return false;
 		scrollbar.SyncInto(scroll, animate ? 5 : 0);
@@ -486,16 +491,17 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			return Scroll(0, -4);
 	}
 
-	auto ScrollbarClick = [x, y, clicks](auto &scrollbar, auto &scroll) {
-		return scrollbarMaybeUpdate([x, y, clicks](auto &scrollbar) {
-			return scrollbar.Click(x, y, clicks);
-		}, scrollbar, scroll, true);
+	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
+	{
+		return ScrollbarMaybeUpdate([x, y, clicks](ScrollBar &scrollbar)
+			{
+				return scrollbar.Click(x, y, clicks);
+			}, scrollbar, scroll, true);
 	};
 	if(ScrollbarClick(mainScrollbar, mainScroll)
-		|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
-		|| ScrollbarClick(sidebarScrollbar, sidebarScroll))
+			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
+			|| ScrollbarClick(sidebarScrollbar, sidebarScroll))
 		return true;
-
 
 	const Point clickPoint(x, y);
 
@@ -623,13 +629,13 @@ bool ShopPanel::Drag(double dx, double dy)
 	}
 	else
 	{
-		auto scrollbarInterceptSpec = [dx, dy](auto &scrollbar, auto &scroll) {
+		auto scrollbarInterceptSpec = [dx, dy](ScrollBar &scrollbar, ScrollVar<double> &scroll) {
 			scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
-			return scrollbarMaybeUpdate([dx, dy](auto &scrollbar){ return scrollbar.Drag(dx, dy); }, scrollbar, scroll, false);
+			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &scrollbar){ return scrollbar.Drag(dx, dy); }, scrollbar, scroll, false);
 		};
 		if(!scrollbarInterceptSpec(mainScrollbar, mainScroll)
-			&& !scrollbarInterceptSpec(sidebarScrollbar, sidebarScroll)
-			&& !scrollbarInterceptSpec(infobarScrollbar, infobarScroll))
+				&& !scrollbarInterceptSpec(sidebarScrollbar, sidebarScroll)
+				&& !scrollbarInterceptSpec(infobarScrollbar, infobarScroll))
 			DoScroll(dy, 0);
 	}
 
@@ -864,8 +870,8 @@ void ShopPanel::DrawShipsSidebar()
 
 	if(sidebarScroll.Scrollable())
 	{
-		Point top = Point(Screen::Right() - 3, Screen::Top() + 10);
-		Point bottom = Point(Screen::Right() - 3, Screen::Bottom() - 80);
+		Point top(Screen::Right() - 3, Screen::Top() + 10);
+		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
 		PointerShader::Draw(top,
 			Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
 		PointerShader::Draw(bottom,

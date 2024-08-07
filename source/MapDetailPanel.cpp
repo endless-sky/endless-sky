@@ -743,10 +743,10 @@ void MapDetailPanel::DrawInfo()
 			const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
 			const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
 
-			auto top = Point(Screen::Left() + planetWidth + arrowOffsetX,
-							Screen::Top() + arrowOffsetY);
-			auto bottom = Point(Screen::Left() + planetWidth + arrowOffsetX,
-							Screen::Top() - arrowOffsetY + planetPanelHeight);
+			Point top = Point(Screen::Left() + planetWidth + arrowOffsetX,
+				Screen::Top() + arrowOffsetY);
+			Point bottom = Point(Screen::Left() + planetWidth + arrowOffsetX,
+				Screen::Top() - arrowOffsetY + planetPanelHeight);
 
 			scrollbar.SyncFrom(scroll, top, bottom);
 			scrollbar.Draw();
