@@ -2237,26 +2237,26 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 {
 	const System *from = ship.GetSystem();
-	if (from == targetSystem || !targetSystem)
+	if(from == targetSystem || !targetSystem)
 		return;
 	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
-	if (ShouldRefuel(ship, route))
+	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
 		ship.SetTargetStellar(AI::FindLandingLocation(ship));
 		return;
 	}
-	const System* nextSystem = route.FirstStep();
+	const System *nextSystem = route.FirstStep();
 	// The destination may be accessible by both jump and wormhole.
 	// Prefer wormhole travel in these cases, to conserve fuel.
-	if (nextSystem)
-		for (const StellarObject& object : from->Objects())
+	if(nextSystem)
+		for(const StellarObject &object : from->Objects())
 		{
-			if (!object.HasSprite() || !object.HasValidPlanet())
+			if(!object.HasSprite() || !object.HasValidPlanet())
 				continue;
 
-			const Planet& planet = *object.GetPlanet();
-			if (planet.IsWormhole() && planet.IsAccessible(&ship)
+			const Planet &planet = *object.GetPlanet();
+			if(planet.IsWormhole() && planet.IsAccessible(&ship)
 				&& &planet.GetWormhole()->WormholeDestination(*from) == nextSystem)
 			{
 				ship.SetTargetStellar(&object);

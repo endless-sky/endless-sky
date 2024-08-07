@@ -62,7 +62,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 	if(!flagship)
 		return;
 
-	if (center)
+	if(center)
 	{
 		this->center = center;
 	}
@@ -85,7 +85,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 DistanceMap::DistanceMap(const System &center, const System &destination, const PlayerInfo *player)
 	: player(player), center(&center), destination(&destination), useWormholes(true)
 {
-	if (player != nullptr)
+	if(player != nullptr)
 		Init(player->Flagship());
 	else
 		Init();
@@ -93,7 +93,7 @@ DistanceMap::DistanceMap(const System &center, const System &destination, const 
 
 
 
-DistanceMap::DistanceMap(const Ship &ship, const System &destination, const PlayerInfo* player)
+DistanceMap::DistanceMap(const Ship &ship, const System &destination, const PlayerInfo *player)
 	: player(player), center(ship.GetSystem()), destination(&destination), useWormholes(true)
 {
 	Init(&ship);

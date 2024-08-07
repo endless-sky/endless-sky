@@ -217,10 +217,10 @@ void MissionPanel::Draw()
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *previous = player.GetSystem();
-	const vector<const System*> plan = distance.Plan(*selectedSystem);
-	for (auto it = plan.rbegin(); it != plan.rend(); ++it)
+	const vector<const System *> plan = distance.Plan(*selectedSystem);
+	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
-		const System* next = *it;
+		const System *next = *it;
 
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))

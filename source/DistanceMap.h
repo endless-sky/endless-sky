@@ -63,14 +63,14 @@ public:
 
 private:
 	// To use DistanceMap with a destination, you must use RoutePlan as a wrapper,
-	// which uses these private constructors. The pathfinding will stop once it 
+	// which uses these private constructors. The pathfinding will stop once it
 	// finds the best path to the destination. If a player is given, the path will
 	// only include systems that the player has visited.
-	explicit DistanceMap(const System &center, const System &destination, const PlayerInfo* player = nullptr);
+	explicit DistanceMap(const System &center, const System &destination, const PlayerInfo *player = nullptr);
 
 	// Calculate the path for the given ship to get to the given system. The
-	// ship will use a jump drive or hyperdrive depending on what it has. 
-	explicit DistanceMap(const Ship& ship, const System& destination, const PlayerInfo* player = nullptr);
+	// ship will use a jump drive or hyperdrive depending on what it has.
+	explicit DistanceMap(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
 
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
