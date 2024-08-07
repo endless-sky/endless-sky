@@ -384,7 +384,7 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
-	else if(fabs(value) > 1000000000000000ll)
+	else if(fabs(value) > 1e15ll)
 	{
 		// Use scientific notation for excessively large numbers.
 		ostringstream out;
