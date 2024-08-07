@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryTypes.h"
+#include "RandomStock.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
@@ -130,11 +131,13 @@ public:
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
 	static const Set<Sale<Outfit>> &Outfitters();
+	static const Set<RandomStock<Outfit>> &OutfitRandomStocks();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
+	static const Set<RandomStock<Ship>> &ShipRandomStocks();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();

@@ -35,6 +35,10 @@ class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
+	// Calculate depreciation:
+	static double Depreciate(int age);
+	// Calculate how old an item needs to be for a target amount of depreciation, if possible.
+	static int AgeForDepreciation(double depreciation);
 
 
 public:
@@ -68,7 +72,6 @@ private:
 	int Sell(std::map<int, int> &record) const;
 	// Calculate depreciation:
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
-	double Depreciate(int age) const;
 	// Depreciation of an item for which no record exists. If buying, items
 	// default to no depreciation. When selling, they default to full.
 	double DefaultDepreciation() const;
