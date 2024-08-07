@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Font.h"
 #include "../GameData.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -234,8 +236,8 @@ void FlexTable::Cell::UpdateLayout()
 
 
 
-// Draws the cell centered on the given point.
-void FlexTable::Cell::Draw(const Point &position) const
+// Draws the cell from the given point.
+void FlexTable::Cell::Draw(const Point &position, int rowHeight) const
 {
 	double gapWidth = (column->DecoratesGap() && !spansRow && column != &column->table->GetColumn(-1)) ?
 			column->table->columnSpacing : 0.;
@@ -251,7 +253,7 @@ void FlexTable::Cell::Draw(const Point &position) const
 	}
 	// WrappedText has 2 pixels of padding on the left side, so move the text's location to compensate for it.
 	// The text is printed between the top and bottom gaps.
-	const Point &textPos = position + Point(-2., topGap);
+	const Point &textPos = position + Point(-2., topGap + (rowHeight - Height()) / 2.);
 	wrappedText.Draw(textPos, (highlight && highlightedTextColor) ? *highlightedTextColor : *textColor);
 }
 
@@ -747,7 +749,9 @@ Point FlexTable::Draw(const Point &position)
 	Point rowBegin = position;
 	for(int row = 0; row < Rows(); ++row)
 	{
-		int rowHeight = 0;
+		int rowHeight = max_element(columns.begin(), columns.end(), [&](const auto &c1, const auto &c2){
+			return c1.Row(row).Height() < c2.Row(row).Height();
+		})->Row(row).Height();
 		Point cellBegin{rowBegin};
 		for(const auto &column : columns)
 		{
@@ -756,8 +760,7 @@ Point FlexTable::Draw(const Point &position)
 				continue;
 
 			const Cell &cell = column.Row(row);
-			rowHeight = max(rowHeight, cell.Height());
-			cell.Draw(cellBegin);
+			cell.Draw(cellBegin, rowHeight);
 			cellBegin.X() += cell.Width() + columnSpacing;
 
 			if(cell.SpansRow())

@@ -84,8 +84,8 @@ public:
 
 		void UpdateLayout();
 
-		// Draws the cell centered on the given point.
-		void Draw(const Point &position) const;
+		// Draws the cell from the given point.
+		void Draw(const Point &position, int rowHeight) const;
 
 
 	private:
