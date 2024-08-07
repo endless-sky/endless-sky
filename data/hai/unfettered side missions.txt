@@ -154,6 +154,8 @@ mission "Hai Legacy 1"
 			scene "scene/cave scene"
 			choice
 				`	"What is this about?"`
+			choice
+				`	"What is this about?"`
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you. Should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of ten million credits - including two weapons belonging to the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up.`
 			`	"These legendary weapons can interfere with nearly any engine system! Worry not, you'll be able to recuperate the cost of this ship with ease by assisting us. A load of medical supplies is needed on <destination>, and we lack the time and personnel to bring them ourselves on such short notice.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
