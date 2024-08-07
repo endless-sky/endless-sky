@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_EVENT_H_
-#define SHIP_EVENT_H_
+#pragma once
 
 #include <memory>
 
@@ -90,7 +89,3 @@ private:
 	const Government *targetGovernment = nullptr;
 	int type;
 };
-
-
-
-#endif

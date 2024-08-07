@@ -499,7 +499,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			// The same "planet" may appear multiple times in one system,
 			// providing multiple landing and departure points (e.g. ringworlds).
 			const Planet *planet = object.GetPlanet();
-			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
+			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.contains(planet))
 				continue;
 
 			planetCards.emplace_back(object, number, player.HasVisited(*planet));
@@ -819,7 +819,7 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
-	if(selectedPlanet && !selectedPlanet->Description().empty()
+	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		static const int X_OFFSET = 240;
@@ -832,7 +832,7 @@ void MapDetailPanel::DrawInfo()
 		WrappedText text(font);
 		text.SetAlignment(Alignment::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
-		text.Wrap(selectedPlanet->Description());
+		text.Wrap(selectedPlanet->Description().ToString(player.Conditions()));
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 
 		selectedSystemOffset = -150;

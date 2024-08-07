@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DISTANCE_MAP_H_
-#define DISTANCE_MAP_H_
+#pragma once
 
 #include "RouteEdge.h"
 #include "WormholeStrategy.h"
@@ -117,7 +116,3 @@ private:
 
 	friend class RoutePlan;
 };
-
-
-
-#endif

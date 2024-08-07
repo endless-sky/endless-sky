@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSON_H_
-#define PERSON_H_
+#pragma once
 
 #include "LocationFilter.h"
 #include "Personality.h"
@@ -70,7 +69,3 @@ private:
 	Personality personality;
 	Phrase hail;
 };
-
-
-
-#endif
