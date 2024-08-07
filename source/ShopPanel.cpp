@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
-#include "ScrollBar.h"
-#include "ScrollVar.h"
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
@@ -38,6 +36,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Sale.h"
 #include "Screen.h"
+#include "ScrollBar.h"
+#include "ScrollVar.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -50,7 +50,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -631,7 +630,10 @@ bool ShopPanel::Drag(double dx, double dy)
 	{
 		auto scrollbarInterceptSpec = [dx, dy](ScrollBar &scrollbar, ScrollVar<double> &scroll) {
 			scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
-			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &scrollbar){ return scrollbar.Drag(dx, dy); }, scrollbar, scroll, false);
+			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &scrollbar)
+				{
+					return scrollbar.Drag(dx, dy);
+				}, scrollbar, scroll, false);
 		};
 		if(!scrollbarInterceptSpec(mainScrollbar, mainScroll)
 				&& !scrollbarInterceptSpec(sidebarScrollbar, sidebarScroll)
