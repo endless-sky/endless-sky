@@ -87,6 +87,8 @@ planet "Sies Upi"
 		"Mis"
 			`	Torrey breaks out into a brilliant grin. "Well, that's great news, then. You'll find Irene at the militia base on <destination> - that's Gunnery Sergeant Irene Brower. I do appreciate this. You'll be paid upon receipt of the package, too, lest you think my appreciation is all I can give."`
 			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
+			branch "brower death" end
+			label "brower death"
 			`		MSGT IRENE BROWER`
 			`As you step out of your ship, you spot a familiar face: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
