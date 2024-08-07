@@ -520,7 +520,7 @@ void LocationFilter::NearOrDistanceFilter::Load(const DataNode &node, int valueI
 
 LocationFilter::NearOrDistanceFilter::NearElement::NearElement(
 			const LocationFilter::NearOrDistanceFilter::DistanceElement &other)
-	: center(nullptr), minDistance(other.minDistance), maxDistance(other.maxDistance),
+	: minDistance(other.minDistance), maxDistance(other.maxDistance),
 			distanceOptions(other.distanceOptions)
 {
 }
@@ -552,8 +552,7 @@ void LocationFilter::DistanceFilter::LoadElement(const DataNode &node, int index
 	if(node.Size() < index + 1)
 		return;
 
-	elements.emplace_back();
-	DistanceElement &it = elements.back();
+	DistanceElement &it = elements.emplace_back();
 
 	if(node.Size() == 1 + index)
 		it.maxDistance = node.Value(index);
@@ -574,10 +573,7 @@ void LocationFilter::DistanceFilter::LoadElement(const DataNode &node, int index
 LocationFilter::NearFilter::NearFilter(const LocationFilter::DistanceFilter &other, const System *origin)
 {
 	for(const auto &it : other.Elements())
-	{
-		elements.emplace_back(it);
-		elements.back().center = origin;
-	}
+		elements.emplace_back(it).center = origin;
 }
 
 
@@ -628,8 +624,7 @@ void LocationFilter::NearFilter::LoadElement(const DataNode &node, int index)
 	if(node.Size() < index + 2)
 		return;
 
-	elements.emplace_back();
-	NearElement &newFilter = elements.back();
+	NearElement &newFilter = elements.emplace_back();
 
 	newFilter.center = GameData::Systems().Get(node.Token(index));
 
@@ -696,13 +691,11 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "near" && (child.Size() >= 1 + valueIndex || child.HasChildren()))
 	{
-		nearFilters.emplace_back();
-		nearFilters.back().Load(child, valueIndex);
+		nearFilters.emplace_back().Load(child, valueIndex);
 	}
 	else if(key == "distance" && (child.Size() >= 1 + valueIndex || child.HasChildren()))
 	{
-		distanceFilters.emplace_back();
-		distanceFilters.back().Load(child, valueIndex);
+		distanceFilters.emplace_back().Load(child, valueIndex);
 	}
 	else if(key == "category" && child.Size() >= 2 + isNot)
 	{
