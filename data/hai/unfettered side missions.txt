@@ -363,6 +363,7 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
+			"old reputation: Hai (Unfettered)" >= -2000
 		personality disables heroic marked launching plunders staying target unconstrained
 		ship "Sea Scorpion (Ionic)" "ThunderStruck"
 		on kill
@@ -380,7 +381,6 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" < -2000
 		personality entering heroic mute marked plunders target unconstrained
 		ship "Shield Beetle (Prototypes)" "Requiem"
-		system "Hi Yahr"
 		on disable
 			dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
 			set "unfettered: beaten the bugs"
