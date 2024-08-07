@@ -1081,7 +1081,7 @@ mission "Remnant: Cognizance 24"
 	destination "Ssil Vida"
 	cargo "outpost equipment" 11
 	passengers 1
-	blocked "You receive a message from Dusk and Taely indicating the next mission requires space for 11 tons of cargo and a passenger."
+	blocked "You receive a message from Dusk and Taely indicating the next mission requires space for <tons> of cargo and <fare>."
 	to offer
 		has "Remnant: Cognizance 23: done"
 		not "remnant: dusk busy"
