@@ -42,7 +42,7 @@ mission "Successors: Safe at Last"
 mission "Successors: First Contact 1"
 	landing
 	name "Go to the Vade-Staja system"
-	description "The aliens in this area of space have indicated that you should travel to the easternmost inhabited system in their territory."
+	description "The aliens in this area of space have indicated that you should travel to the east."
 	source
 		attributes successor
 		not attributes uninhabited
@@ -52,7 +52,7 @@ mission "Successors: First Contact 1"
 		conversation
 			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure on the planet's coast. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around you and your ship.`
 			`	The predominant aliens here are enormous octopods that rise up off of the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them. Those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
-			`	After a couple of minutes of activity within the crowd, one uniformed and especially vibrant individual breaks away from the rest and begins to move towards you, gliding gently and silently over the ground. They say something the same strange language, shimmering with waves of color, and then wait expectantly for you to reply.`
+			`	After a couple of minutes of activity within the crowd, one uniformed and especially vibrant individual breaks away from the rest and begins to move towards you, gliding gently and silently over the ground. They say something in the same strange language, shimmering with waves of color, and then wait expectantly for you to reply.`
 			choice
 				`	(Say nothing.)`
 					goto map
@@ -65,10 +65,9 @@ mission "Successors: First Contact 1"
 				die
 			label introduce
 			`	The alien shuffles their arms in place and leans their face towards yours, repeating their earlier statement, this time more slowly and at a lower pitch. When you once again fail to give a satisfactory response, they pull away.`
-				goto map
 			label map
 			`	After a few more moments of silence, the alien grunts in a gesture something like a sigh of disappointment and then turns away and says something to another uniformed individual waiting on the edges of the now-substantial crowd. The other's skin flashes a bright blue and then they leave, gliding towards one of the interceptors now parked alongside your ship.`
-			`	When they return, they are holding in one of their arms a small spherical device which they hand to the alien who seems to be in charge, who then in turn offers it to you and burbles an unintelligible phrase with what you might have characterized as an encouraging tone. The individuals making up the crowd are by now stretching over each other to get a look at you, and you can see more of them in the distance gliding and swimming towards your landing site.`
+			`	They shortly return, holding in one of their arms a small spherical device, handing it to the alien who seems to be in charge. The leader in turn offers it to you, and burbles an unintelligible phrase in what you might have characterized as an encouraging tone. The individuals making up the crowd are by now stretching over each other to get a look at you, and you can see more of them in the distance gliding and swimming towards your landing site.`
 			choice
 				`	(Take the device.)`
 				`	(Refuse.)`
@@ -99,9 +98,9 @@ mission "Successors: First Contact 1"
 	on complete
 		event "label successor space"
 		event "successors: first contact wait" 8
-		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to this plant in eight days, when their government will decide what to do about my arrival.`
-		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are amphibious octopods at least three meters tall. They are the heirs of a large and advanced interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled to much of the galaxy, at least as far north as Sol."
-		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
+		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to this planet in eight days, when their government will decide what to do about my arrival.`
+		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are amphibious octopods at least three meters tall. They are the heirs of a large and advanced interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled far across the galaxy, at least as far north as Sol."
+		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
 		"reputation: Successor" += 5
 		"reputation: House Chydiyi" += 5
 		"reputation: House Myurej" += 5
@@ -208,7 +207,7 @@ mission "Successors: First Contact 1"
 
 mission "Successors: First Contact 2"
 	landing
-	name "Return to Staja-Kella-Oa"
+	name "Return to <planet>"
 	description `The scions of House Sioeora have requested your prompt presence at <planet> so you can "render service and aid" to them.`
 	source
 		attributes "successor"
@@ -226,7 +225,7 @@ mission "Successors: First Contact 2"
 	on complete
 		conversation
 			`Shortly after you enter the atmosphere of <planet>, the <ship> is flanked by a pair of interceptors which lead you to a sprawling complex in the northern hemisphere at the edge of a large lake. Your escorts set down on two small landing pads near the shore, and you see that another landing pad between them has been lit up in colors matching the livery of your ship.`
-			`	As before, your landing site has been surrounded by a cadre of uniformed individuals, but here there must be nearly a hundred standing at attention on the pad's perimeter, of which most appear heavily armed. Once again upon disembarking, a lead officer approaches you, this time accompanied by a group of eight others who follow them in a tight formation. The leader motions with their arm towards the center of the complex as if to instruct you to go.`
+			`	As before, your landing site has been surrounded by a cadre of uniformed individuals, but this time there must be nearly a hundred standing at attention on the pad's perimeter, of which most appear heavily armed. Once again upon disembarking, a lead officer approaches you, accompanied by a group of eight others who follow them in a tight formation. The leader motions with one of their arms towards the center of the complex as if to instruct you to go.`
 			choice
 				`	(Go with them.)`
 					goto inside
@@ -241,7 +240,7 @@ mission "Successors: First Contact 2"
 				`	(Go.)`
 			label inside
 			`	Your escort relaxes as you move to walk towards the inner complex, and the group of eight follow you as you approach its outer doors.`
-			`	The inside of the complex is opulent and massive, with vaulted ceilings rising on columns out of the lake water. Some mimic the forms and textures of tree trunks, spreading out on the ceiling into a canopy filled with thin metallic leaves that slowly wave and occlude the lights embedded above them. Each successive hall you pass through is a unique and enormous sculpture: the arch of a wave moments before crashing; the spiral of an huge suckered arm. You eventually arrive at a large door that your escort extends an arm to touch. As soon as they do, it begins to liquefy and flow into a trench on the floor. When it is finished, you step across the threshold into a final circular room where a group of Successors stand waiting. You recognize one as Sieasej, now wearing a new set of metallic-looking robes, but the rest are unfamiliar and especially richly dressed.`
+			`	The inside of the complex is opulent and massive, with vaulted ceilings rising on columns out of the lake water. Some mimic the forms and textures of tree trunks, spreading out on the ceiling into a canopy filled with thin metallic leaves that slowly wave and occlude the lights embedded above them. Each successive hall you pass through is a unique and enormous sculpture: the arch of a wave moments before crashing; the spiral of a huge suckered arm. You eventually arrive at a large door that your escort extends an arm to touch. As soon as they do, it begins to liquefy and flow into a trench on the floor. When it is finished, you step across the threshold into a final circular room where a group of Successors stand waiting. You recognize one as Sieasej, now wearing a new set of metallic-looking robes, but the rest are unfamiliar and are especially richly dressed.`
 			`	One of the adorned individuals looks at you and speaks, and Sieasej translates a moment later.`
 			branch "tardy"
 				has "event: successors: tardy for sioeora"
@@ -264,14 +263,11 @@ mission "Successors: First Contact 2"
 				goto request
 			label apologize-tardiness
 			`	"Thine apology is noted."`
-				goto request
 			label request
 			`	Riijaaora continues. "Thy presence we've demanded here so that thou might'st give service to this House. We've a task for thee, and if thou can'st complete't ably, a gift as well: a symbol of our patronage."`
 			choice
 				`	(Say nothing.)`
-					goto task
 				`	"What sort of task?"`
-					goto task
 				`	"What sort of gift?"`
 					goto gift
 				`	"I do not appreciate being demanded about."`
@@ -348,7 +344,7 @@ mission "Successors: First Contact 3"
 			`	Sieasej shuffles their arms beneath them. "Ah. I must again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall thee provide a marker for the system we are to journey to. On the second planet's second moon, we are to land and find a Kijra-Riitaa, a Kijra-'pet,' a beast of sorts, as the scions told thee prior."`
 			label questions
 			choice
-				`	"We'd better get started then."`
+				`	"We'd better get started, then."`
 					goto embark
 				`	"What more can you tell me about these Kijra-pets?"`
 					to display
@@ -456,7 +452,6 @@ mission "Successors: First Contact 3"
 			label tranq
 			branch tranqed
 				random < 70
-			label tranqed-alarmed
 			`	You take aim and fire a blast from the <tranq h2h> at the animal, but it darts away at the last moment so that the blast only just grazes its body. It plummets to the ground shrieking, and while it soon goes quiet as the tranquilizer takes effect, the shriek is echoed by other animals in the area. Soon after those quiet as well, your ears are pierced by a loud, warbling wail from the distance.`
 				goto escape
 			label tranqed
@@ -482,8 +477,6 @@ mission "Successors: First Contact 3"
 				`	(Catch it with a net.)`
 					goto net
 				`	(Slowly extend your hand.)`
-					goto lure-2
-			label lure-2
 			branch lure-2-success
 				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
 			`	The animal inspects your hand for a moment before darting away.`
@@ -519,7 +512,6 @@ mission "Successors: First Contact 3"
 				`	(Catch it with a net.)`
 					goto net-friends-alarmed
 				`	(Try to bring it back with food alone.)`
-					goto friends
 			label friends
 			action
 				set "Successors FC3: nonviolent kijra-pet capture"
