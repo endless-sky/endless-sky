@@ -315,10 +315,10 @@ mission "FW Deep Memorial"
 	on offer
 		conversation
 			`As you disembark, you hear the sounds of warning sirens and heavy machinery coming from the edge of <planet>'s spaceport. It doesn't take long to find the source of the noise: several large construction vehicles are paving a large clearing at the edge of a cliff. At its center are nine large walls covered in letters, with spaces reserved for an additional fourteen walls. The largest wall is emblazoned with the text "Free Worlds War Memorial." Already, there are friends and family paying their respects to the ever-growing number of fallen.`
-			branch browerdeath end
+			branch "brower death" end
 				has "FW Pirates: Attack 2: done"
 				has "Care Package to South 1: done"
-			label browerdeath
+			label "brower death"
 			`	As you inspect the walls, you recognize one of the names:`
 			``
 			`		MSGT IRENE BROWER`
