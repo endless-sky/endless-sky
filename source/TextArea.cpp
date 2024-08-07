@@ -61,10 +61,10 @@ void TextArea::SetText(const std::string &s)
 void TextArea::SetRect(const Rectangle &r)
 {
 	// TODO: Is there a use case where we would want the WrapWidth to be
-	//	   larger than the display width? We could handle this case by
-	//	   allowing the user to scroll left or right instead of up or
-	//	   down. This might be useful for overly long single lined text,
-	//	   or for vertical text layout.
+	//       larger than the display width? We could handle this case by
+	//       allowing the user to scroll left or right instead of up or
+	//       down. This might be useful for overly long single lined text,
+	//       or for vertical text layout.
 	position = r.Center();
 	size = r.Dimensions();
 	buffer.reset();
