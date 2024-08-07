@@ -29,6 +29,7 @@ namespace {
 	// Vertex data:
 	GLint vertI;
 	GLint texCoordI;
+	GLint alphaI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -44,12 +45,15 @@ void BatchShader::Init()
 		"uniform vec2 scale;\n"
 		"in vec2 vert;\n"
 		"in vec3 texCoord;\n"
+		"in float alpha;\n"
 
 		"out vec3 fragTexCoord;\n"
+		"out float fragAlpha;\n"
 
 		"void main() {\n"
 		"  gl_Position = vec4(vert * scale, 0, 1);\n"
 		"  fragTexCoord = texCoord;\n"
+		"  fragAlpha = alpha;\n"
 		"}\n";
 
 	static const char *fragmentCode =
@@ -62,6 +66,7 @@ void BatchShader::Init()
 		"uniform float frameCount;\n"
 
 		"in vec3 fragTexCoord;\n"
+		"in float fragAlpha;\n"
 
 		"out vec4 finalColor;\n"
 
@@ -72,6 +77,7 @@ void BatchShader::Init()
 		"  finalColor = mix(\n"
 		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
 		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
+		"  finalColor *= vec4(fragAlpha);\n"
 		"}\n";
 
 	// Compile the shaders.
@@ -81,6 +87,7 @@ void BatchShader::Init()
 	frameCountI = shader.Uniform("frameCount");
 	vertI = shader.Attrib("vert");
 	texCoordI = shader.Attrib("texCoord");
+	alphaI = shader.Attrib("alpha");
 
 	// Make sure we're using texture 0.
 	glUseProgram(shader.Object());
@@ -95,13 +102,17 @@ void BatchShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	// In this VAO, enable the two vertex arrays and specify their byte offsets.
-	constexpr auto stride = 5 * sizeof(float);
+	constexpr auto stride = 6 * sizeof(float);
 	glEnableVertexAttribArray(vertI);
 	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 	// The 3 texture fields (s, t, frame) come after the x,y pixel fields.
 	auto textureOffset = reinterpret_cast<const GLvoid *>(2 * sizeof(float));
 	glEnableVertexAttribArray(texCoordI);
 	glVertexAttribPointer(texCoordI, 3, GL_FLOAT, GL_FALSE, stride, textureOffset);
+	// The alpha value.
+	auto alphaOffset = reinterpret_cast<const GLvoid *>(5 * sizeof(float));
+	glEnableVertexAttribArray(alphaI);
+	glVertexAttribPointer(alphaI, 1, GL_FLOAT, GL_FALSE, stride, alphaOffset);
 
 	// Unbind the buffer and the VAO, but leave the vertex attrib arrays enabled
 	// in the VAO so they will be used when it is bound.
@@ -140,7 +151,7 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);
 
 	// Draw all the vertices.
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, data.size() / 5);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, data.size() / 6);
 }
 
 

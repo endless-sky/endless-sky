@@ -390,6 +390,9 @@ mission "Remnant: Defense 3"
 conversation "remnant key stones"
 	branch found
 		has "Remnant: Found Keystones: offered"
+
+	branch equipped
+		has "outfit: Quantum Keystone"
 	
 	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
 	choice
@@ -423,7 +426,11 @@ conversation "remnant key stones"
 	label hai1
 	`	"I've seen that before," you say.`
 	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
+		goto exchange
 	
+	label equipped
+	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
+
 	label exchange
 	choice
 		`	"Yes, in the territory of some aliens far to the north of here."`
@@ -526,79 +533,25 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	
 	
 	
-mission "Remnant: Key Stones (Hai)"
-	name "Keystones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
-	source "Viminal"
-	to offer
-		not "outfit: Quantum Keystone"
-		not "Remnant: Key Stones (Pre-Hai) 1: offered"
-		not "Remnant: Key Stones: offered"
-		has "First Contact: Hai: offered"
-		or
-			has "event: remnant: void sprite research"
-			has "Remnant: Defense 3: done"
-	on offer
-		conversation "remnant key stones"
-		
-	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
-	on complete
-		outfit "Quantum Keystone" -50
-		payment 6000000
-		conversation "remnant key stones done"
-		
-
-
 mission "Remnant: Key Stones"
 	name "Keystones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "outfit: Quantum Keystone"
+		or
+			has "outfit: Quantum Keystone"
+			and
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
+				or
+					has "event: remnant: void sprite research"
+					has "Remnant: Defense 3: done"
 		has "remnant: blood test pure"
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
-		conversation
-			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
-			choice
-				`	"Yes, in the territory of some aliens far to the north of here."`
-					goto hai
-				`	"Yes, but I would prefer not to tell you where."`
-			
-			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
-				goto more
-			
-			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-			
-			label more
-			`	"Tell me more," you say.`
-			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
-			choice
-				`	"Sure, I would be glad to accept that deal."`
-				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
-					decline
-			
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-			`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
-			choice
-				`	"I can purchase outfits into my cargo bay?"`
-				`	"Why would you even need to specify that?"`
-					goto whymention
-				`	"Okay."`
-					accept
-			`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
-			`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
-			`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
-			`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
-			`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
-				accept
-			label whymention
-			`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
-				accept
-	
+		conversation "remnant key stones"
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
@@ -767,7 +720,7 @@ mission "Remnant: Void Sprites 3"
 			`	You also observe some void sprites leaving the planet, soaring upward on thermal updrafts. As they rise, their bodies swell to several times their original size, like an aerostat balloon gaining altitude. But clearly they have another form of propulsion as well, something akin to the antigravity repulsors that human ships use to travel from a planet's surface into orbit.`
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		event "remnant: void sprite research" 20
 		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
@@ -836,7 +789,7 @@ mission "Remnant: Technology Available"
 			label onwards
 			`	As he talks, he gestures for you to walk with him towards a nearby hall. Inside, you discover that it is one of the many cafeterias that seem to be common in Remnant starports. He picks up two trays from the window and leads you to an empty table. "While you are welcome to become one of us, we suspect that you are a citizen of the galaxy - wandering hither and yon building coalitions and enmities with species and groups across the breadth of accessible space, unfettered by conventional allegiances. As such, we hope that you will continue to explore and stop by to let us know what you have found. We ask only that you keep the secret with which you are trusted and bring us word of anything that might influence humanity's long-term survival."`
 			choice
-				`	"What secret do you want me to keep?`
+				`	"What secret do you want me to keep?"`
 					goto secret
 				`	"I would be honored to be one of the Remnant."`
 					goto honored
@@ -844,21 +797,21 @@ mission "Remnant: Technology Available"
 					goto traveler
 				`	"What constitutes 'things that influence humanity's survival'?"`
 			label survival
-			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity, or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite.`
+			`	He takes a bite before responding. "Basically, anything that might either pose an existential threat to humanity, or anything that we might learn from and put to use to ensure humanity's survival. It might be an invading fleet of automated machines or a spaceborn plague. But it is just as possible you might find beings that we can work alongside to form strong partnerships or ancient ruins with old technology that points us towards new discoveries. The possibilities are indeed infinite."`
 				goto feast
 			label honored
 			action
 				set "remnant: desired to join them"
 			`	He nods, smiling. "You are not there yet, but I think you might well become one of us before too long." He takes a bite from his plate, then continues. "Keep learning, and you may well earn yourself a place among us."`
 			choice
-				`	"What secret do you want me to keep?`
+				`	"What secret do you want me to keep?"`
 					goto secret
 				`	"What constitutes 'things that influence humanity's survival'?"`
 					goto survival
 			label traveler
 			`	He nods. "Thank you for confirming our impression. We are grateful to have you with us, and look forward to hearing about your travels."`
 			choice
-				`	"What secret do you want me to keep?`
+				`	"What secret do you want me to keep?"`
 					goto secret
 				`	"What constitutes 'things that influence humanity's survival'?"`
 					goto survival
@@ -1054,7 +1007,7 @@ mission "Remnant: Deep Surveillance"
 			
 			action
 				set "remnant: admitted to helping deep"
-			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of utmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
 					goto threat
@@ -1100,7 +1053,7 @@ mission "Remnant: Deep Surveillance"
 			
 			action
 				set "remnant: admitted to helping deep"
-			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of utmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
 					goto threat
@@ -1410,7 +1363,7 @@ mission "Remnant: Deep Surveillance"
 			label next
 			action
 				set "remnant: got deep wormhole and sprite research"
-			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP', and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP,' and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 				goto reencrypt
 			
 			label remnant
@@ -1538,7 +1491,7 @@ mission "Remnant: Deep Surveillance"
 				`	"No, there's no problem. I'll just see myself out."`
 					goto leave
 			
-			`	He turns his chair back to you and stands up. "News flash, pal. I'm on to you. You asked for the research I had back before we had entered the wormhole in Terminus, and then you later told me that you'd already been through there and met these Remnant. Then when I asked you to help me learn more about them, you said no. I think you're covering for them in some way and giving them information on what I know. Why you're doing that, I don't know, but that's what my gut says, and I've learned to trust my gut on feelings like these. Now get out of my office.`
+			`	He turns his chair back to you and stands up. "News flash, pal. I'm on to you. You asked for the research I had back before we had entered the wormhole in Terminus, and then you later told me that you'd already been through there and met these Remnant. Then when I asked you to help me learn more about them, you said no. I think you're covering for them in some way and giving them information on what I know. Why you're doing that, I don't know, but that's what my gut says, and I've learned to trust my gut on feelings like these. Now get out of my office."`
 			choice
 				`	"You've got me. I'll leave."`
 					goto out
@@ -1928,7 +1881,7 @@ mission "Remnant: D94-YV Shield Generator"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely applying some kind of material over a hole in a hull. "Greetings, <first>. What brings you here today?" She reseals the hatch, and drops to the ground on a tether. "Did you bring us something?"`
 				goto next
 			label familiar
-			`	You decide that you are more likely to find her in the shipyard, so you skip the starport and head out among the ships. As you search through the yard you are soon approached by another engineer. "Well met, Captain. Taely said you may be bringing back samples of new technology from ancestral space. Do you have something to show us?`
+			`	You decide that you are more likely to find her in the shipyard, so you skip the starport and head out among the ships. As you search through the yard you are soon approached by another engineer. "Well met, Captain. Taely said you may be bringing back samples of new technology from ancestral space. Do you have something to show us?"`
 			label next
 			`	You nod in the affirmative and lead her back to your ship, where she examines the D94-YV Shield Generator. "It certainly looks impressive," she chants as she paces around the massive piece of equipment. "It will be valuable to see what our enemies might be shielded with, and maybe something we can learn from it too." She comes to a stop in front of you. "If you could deliver two of these to a lab on <planet> we could compensate you with <payment>."`
 				accept
@@ -2617,6 +2570,7 @@ mission "Remnant: Broken Jump Drive 1"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2674,6 +2628,7 @@ mission "Remnant: Broken Jump Drive 2"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2719,6 +2674,7 @@ mission "Remnant: Broken Jump Drive 3"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2746,7 +2702,7 @@ mission "Remnant: Broken Jump Drive 3"
 				`	"Great! I will find more."`
 					goto end
 				`	"Any theories of note?"`
-			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease.`
+			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to reuse an existing crease.`
 			label end
 			`	"Oh, before I forget..." he hands you <payment>. "Off to start setting up the tests." He sings half to himself as he trundles off after the wagon.`
 
@@ -2763,6 +2719,7 @@ mission "Remnant: Broken Jump Drive 4"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2807,6 +2764,7 @@ mission "Remnant: Broken Jump Drive 5"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2854,12 +2812,12 @@ mission "Remnant: remnant research update compatibility"
 
 
 mission "Remnant: Face to Maw 1"
-	minor
 	landing
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	to offer
 		has "event: remnant: return the samples timer"
+		has "flagship model: Puffin"
 		or
 			not "Remnant: Cognizance 1: offered"
 			has "Remnant: Cognizance 19: done"
@@ -2899,6 +2857,7 @@ mission "Remnant: Face to Maw 1B"
 	landing
 	to offer
 		has "event: remnant: return the samples timer"
+		has "flagship model: Puffin"
 		or
 			not "Remnant: Cognizance 1: offered"
 			has "Remnant: Cognizance 19: done"
@@ -2970,7 +2929,7 @@ mission "Remnant: Face to Maw 2"
 			label skip
 			`	The ship before you has some faint traces of the Puffin you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
-			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the Penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one." She pats the nose of the Penguin and it makes a whooshing noise. "I call her the 'Shadow Hope,' but you can rename her whatever you like." After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+			`	Taely's droning chant of technical details finally seeps through your reverie: "... so from a captain's point of view flying the Penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one." She pats the nose of the Penguin and it makes a whooshing noise. "I call her the 'Shadow Hope,' but you can rename her whatever you like." After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 
 
@@ -3004,7 +2963,7 @@ mission "Remnant: Face to Maw 2B"
 			label chilia
 			`You follow the directions provided to you and eventually find yourself at a Remnant weapons lab. You enter and are met by security, who asks you to wait. A few minutes later a fit young man emerges from another door. "Greetings, captain <first>," he sings. "We meet once again." You immediately recognize the voice as being the man who convinced you to provide the blood sample and get to know the Remnant. "We didn't get a proper introduction last time, but you have probably figured out that I have the nominal responsibility for the overall defense of Remnant space and military operations." He smiles deprecatingly, "I say 'nominal' as virtually all our activities are military in some way, but usually fall under the purview of those who better understand them."`
 			label main
-			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making Void Rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements.`
+			`	He leads you to a room that looks like an armory where a team of technicians is putting the finishing touches on a rifle stock. "The request from the technician on your behalf caught my attention, as we have not had the key resources for making Void Rifles in centuries. Fortunately, we have not really needed them since we resolved the threats that originally plagued our settlements."`
 			choice
 				`	"It's called a 'Void Rifle'?"`
 				`	"I don't need details."`
@@ -3324,7 +3283,7 @@ mission "Remnant: Keystone Research 5"
 				accept
 	npc "scan outfits" "save"
 		government "Remnant (Research)"
-		personality coward disables plunders staying surveillance target mining
+		personality coward decloaked disables mining plunders staying surveillance target
 		system "Peragenor"
 		ship "Starling (Keystone)" "Winds of Light"
 		dialog
@@ -3344,7 +3303,7 @@ mission "Remnant: Keystone Research 6"
 	source "Viminal"
 	npc "scan outfits" "save"
 		government "Remnant (Research)"
-		personality coward disables plunders staying surveillance target mining
+		personality coward decloaked disables mining plunders staying surveillance target
 		system "Peragenor"
 		ship "Starling" "Winds of Light"
 		dialog
@@ -3645,7 +3604,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 			`	After a few minutes of just absorbing the spectacle before you, Dawn pulls herself away from the cockpit windows and scurries down to the lab. Leaving you to your thoughts, she quickly has the lab set up and running a variety of recordings, tests, and observations. After a few hours of work, she reappears on the bridge.`
 			`	"Things are proceeding smoothly, Captain. All the sensors are working nominally, and we are creating extensive archives of astronomical data as well. Another few hours, and we should have all the data we need."`
 			choice
-				`	"Good work. What kind of data are you recording?`
+				`	"Good work. What kind of data are you recording?"`
 				`	"Sounds good. Just let me know when you are ready to leave."`
 					goto astraldone
 			`	She smiles, and replies. "It might be easier to ask what we are leaving out. The data we are collecting broadly falls into three sets: data on Sagittarius A* itself, data on its environment, and observations of the surrounding galaxy from here. Obviously, we cannot go take samples of Sagittarius A* itself, nor can we take direct measurements of most of its properties, but we can get data from increasingly minute distances from the event horizon. We can then add this data to that gathered by previous expeditions, note the differences, and use it in our modeling."`
@@ -3776,7 +3735,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			label stormresume
 			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at approximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures deprecatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
-			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
+			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
 			choice
 				`	"What do the storms have to do with the heat?"`
 				`	"What units do you use for temperature?"`
@@ -3861,7 +3820,7 @@ mission "Remnant: Logistics 1"
 			`Eon leads you to the bustling cafeteria, chattering about ship design since the Alpha Wars. He orders a couple of hot drinks and leads you to a quiet table overlooking the docks. You try your drink. It's strongly flavored but a bit odd, like someone's memory of what coffee should taste like, reconstituted from local foods.`
 			`	Eon leaves his untouched as he launches into conversation. "Those of us in logistics have noticed that you are spending time in our systems, and we wanted to see if you would be available to pick up work for us. It would be delivery work like the generator you brought for the housing project."`
 			choice
-				`	(Nod)`
+				`	(Nod.)`
 					goto delivery
 				`	"You put starship radiothermals in your houses?"`
 			`	"You do not?" he responds playfully. "Well, 'generators in each community' would be more accurate. We maintain a decentralized power grid so we have more resiliency in the event of an attack or natural disaster. It also makes use of the power plants we salvage from the Korath and ones we recover from our own damaged ships. Besides, widely deploying the technology ensures that we have expertise to maintain and repair it all across the Remnant. But," he signs a pushing motion, "civil engineering is another subject. I hope you are more interested in how we move our various cargoes."`
@@ -3869,7 +3828,7 @@ mission "Remnant: Logistics 1"
 			label delivery
 			`	"That generator was originally scheduled for delivery 30 days from now, but it was ready earlier and the project can install it now. So, by bringing it over, you have enabled us to move the project forward and free up delivery capacity next month."`
 			`	"So, why did you offer this work to me?" you ask, trying to mimic the gestures you've seen that you think refer to one's self.`
-			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no... what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
+			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no... what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space."`
 			choice
 				`	"Thanks for the opportunity."`
 					goto thanks

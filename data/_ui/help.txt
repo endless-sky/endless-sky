@@ -41,7 +41,7 @@ help "hiring"
 help "jobs"
 	`Taking on jobs is a safe way to earn money. Special missions are offered in the Spaceport; more mundane jobs are posted on the Job Board. Most special missions are only offered once: if you turn one down, it will not be offered to you again.`
 	`The payment for a job depends on how far you must travel and how much you are carrying. Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.`
-	`As you gain a combat reputation, new jobs will become available, including escorting convoys and bounty hunting.`
+	`As you gain a reputation for skill in combat, new jobs will become available, including escorting convoys and bounty hunting.`
 
 help "lost 1"
 	`There's nothing out here. The only way to get to another star system is by jumping through hyperspace. Unless you are out of fuel, you can jump by pressing <Initiate hyperspace jump>. To select which system you want to jump to, bring up the map by pressing <View star map>.`
@@ -63,7 +63,7 @@ help "lost 5"
 	`Or maybe you're just really, really bad at figuring out how to play this game.`
 
 help "lost 6"
-	`You slip deeper and deeper into the zenlike calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
+	`You slip deeper and deeper into the zen-like calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
 
 # Note to future proofreaders: "vasty nothingness" is a reference to Firefly, see http://signal.serenityfirefly.com/mmx/segment/view.php/2253
 help "lost 7"
@@ -72,6 +72,7 @@ help "lost 7"
 
 help "map"
 	`This map shows all the star systems you know about and the hyperspace links between them. You can use the map to plot a hyperspace course by clicking on the system you want to travel to. To initiate a jump to that system, close the map and press <Initiate hyperspace jump>.`
+	`You can also press F to search the map for a specific system or planet.`
 
 help "map advanced"
 	`As you explore more of the galaxy, the star map will quickly become a very powerful tool. Clicking on a distant system will automatically plot the quickest route to it. You can Shift+click on systems to plot a route between them, or Control+click to select a system without setting a route to it.`
@@ -84,6 +85,10 @@ help "map advanced ports"
 help "map advanced shops"
 	`The shipyard and outfitter map panels respectively display the ships and outfits sold on any planets that you have seen. Ships and outfits are displayed in categories which can be collapsed by clicking on the category name. Using Shift+click on a category name will collapse or uncollapse all the categories at once.`
 	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side with the previously selected item.`
+	`You can also press F to search the shipyard and outfitter maps for a specific ship or outfit.`
+
+help "map advanced danger"
+	`The galaxy can be a dangerous place! Pirates raid some systems more frequently or in greater strength than others, and a poorly defended convoy risks attracting them in many systems. To get an idea of the relative danger of different systems, click on the alert icon next to the system name.`
 
 help "multiple ships"
 	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. Ships can also be sorted by clicking on the column headers in the player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
@@ -105,7 +110,7 @@ help "fleet asteroid mining shortcuts"
 	`Shortcuts for asteroid targeting:`
 	`	<Select nearest asteroid> selects the nearest asteroid if you have an asteroid scanner.`
 	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid.`
-	`	<Fleet: Harvest Flotsam> will toggle whether your fleet tries to pick up flotsams.`
+	`	<Fleet: Harvest flotsam> will toggle whether your fleet tries to pick up flotsam.`
 	``
 	`Alternate targeting:`
 	`	Left click - will target an asteroid without mining it.`
@@ -114,7 +119,7 @@ help "fleet asteroid mining shortcuts"
 help "fleet harvest tutorial"
 	`You can order your escort to pick up discarded cargo or asteroid flotsam.`
 	``
-	`<Fleet: Harvest Flotsam> will order your fleet to collect flotsam if they have free cargo.`
+	`<Fleet: Harvest flotsam> will order your fleet to collect flotsam if they have free cargo.`
 	``
 	`Equip an asteroid scanner to learn more.`
 
@@ -126,7 +131,7 @@ help "fighters transfer cargo"
 help "try out fighters transfer cargo"
 	`You have a carrier which can use fighters to collect dropped materials if the fighter has cargo space.`
 	``
-	`	In Preferences and Settings under the AI section, turn on "Fighters transfer cargo" to learn more.`
+	`	In Preferences and Settings under the Gameplay section, turn on "Fighters transfer cargo" to learn more.`
 
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
@@ -137,8 +142,15 @@ help "navigation"
 help "outfitter"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
 	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
-	`Use your scroll wheel, or click and drag, to scroll the view.`
-	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
+	`Use your scroll wheel or click and drag, to scroll the view.`
+	`As in the trading and shipyard panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
+	`You can also press F to search the outfitter for a specific item.`
+
+help "shipyard"
+	`Here, you can buy new ships.`
+	`Use your scroll wheel or click and drag, to scroll the view.`
+	`As in the trading and outfitter panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 ships at once, or multiple keys for larger amounts.`
+	`You can also press F to search the shipyard for a specific ship.`
 
 help "cargo management"
 	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by Control+clicking on your selected ship to deselect it.`
@@ -148,6 +160,10 @@ help "cargo management"
 help "uninstalling and storage"
 	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try on different outfits. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode. Outfits that are in planetary storage or cargo can be (re)installed at any outfitter without cost.`
 	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
+
+help "outfitter with multiple ships"
+	`You can manage outfits on multiple ships at the same time. Ctrl+click a ship icon to add it to your selection. You can also use Shift+click to select a range of ships.`
+	`When you have more than one ship selected, you can install or remove outfits from all of those ships at once. Additionally, all selected ships with the currently selected outfit installed are marked with a pointer next to their sidebar icon.`
 
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`

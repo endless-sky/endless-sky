@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILE_H_
-#define ES_FILE_H_
+#pragma once
 
 #include <cstdio>
 #include <string>
@@ -35,13 +34,9 @@ public:
 	// Move assignment is OK though.
 	File &operator=(File &&) noexcept;
 
-	operator bool() const;
+	explicit operator bool() const;
 	operator FILE*() const;
 
 private:
 	FILE *file = nullptr;
 };
-
-
-
-#endif

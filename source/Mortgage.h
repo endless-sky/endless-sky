@@ -13,9 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MORTGAGE_H_
-#define MORTGAGE_H_
+#pragma once
 
+#include <cstdint>
 #include <string>
 
 class DataNode;
@@ -32,14 +32,18 @@ class Mortgage {
 public:
 	// Find out how much you can afford to borrow with the given annual revenue
 	// and the given credit score (which should be between 200 and 800).
-	static int64_t Maximum(int64_t annualRevenue, int creditScore, int64_t currentPayments);
+	static int64_t Maximum(int64_t annualRevenue, int creditScore, double currentPayments);
 
 
 public:
 	Mortgage() = default;
 	// Create a new mortgage of the given amount. If this is a fine, set the
 	// credit score to zero for a higher interest rate.
-	Mortgage(int64_t principal, int creditScore, int term = 365);
+	Mortgage(std::string type, int64_t principal, int creditScore, int term = 365);
+	// Create a mortgage with a specific interest rate instead of using the player's
+	// credit score. Due to how the class is set up, the interest rate must currently
+	// be within the range [0, 1).
+	Mortgage(std::string type, int64_t principal, double interest, int term = 365);
 	// Construct and Load() at the same time.
 	Mortgage(const DataNode &node);
 
@@ -57,7 +61,8 @@ public:
 	int64_t PayExtra(int64_t amount);
 
 	// The type is "Mortgage" if this is a mortgage you applied for from a bank,
-	// and "Fine" if this is a fine imposed on you for illegal activities.
+	// "Fine" if this is a fine imposed on you for illegal activities, and
+	// "Debt" if this is debt given to you by a mission.
 	const std::string &Type() const;
 	// Get the remaining mortgage principal.
 	int64_t Principal() const;
@@ -68,6 +73,8 @@ public:
 	int Term() const;
 	// Check the amount of the next payment due (rounded to the nearest credit).
 	int64_t Payment() const;
+	// Check the amount of the next payment due.
+	double PrecisePayment() const;
 
 
 private:
@@ -78,7 +85,3 @@ private:
 	std::string interestString;
 	int term = 365;
 };
-
-
-
-#endif

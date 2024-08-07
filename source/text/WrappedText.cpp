@@ -149,6 +149,14 @@ int WrappedText::Height() const
 
 
 
+// Return the width of the longest line of the wrapped text.
+int WrappedText::LongestLineWidth() const
+{
+	return longestLineWidth;
+}
+
+
+
 // Draw the text.
 void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
@@ -205,12 +213,15 @@ void WrappedText::SetText(const char *it, size_t length)
 void WrappedText::Wrap()
 {
 	height = 0;
+	longestLineWidth = 0;
+
 	if(text.empty() || !font)
 		return;
 
 	// Do this as a finite state machine.
 	Word word;
-	bool hasWord = false;
+	bool traversingWord = false;
+	bool currentLineHasWords = false;
 
 	// Keep track of how wide the current line is. This is just so we know how
 	// much extra space must be allotted by the alignment code.
@@ -226,18 +237,19 @@ void WrappedText::Wrap()
 
 	for(string::iterator it = text.begin(); it != text.end(); ++it)
 	{
-		char c = *it;
+		const char c = *it;
 
-		// Whenever we encounter whitespace, the current word needs wrapping.
-		if(c <= ' ' && hasWord)
+		// Whitespace signals a word end - mark it and wrap the text if needed.
+		if(c <= ' ' && traversingWord)
 		{
+			traversingWord = false;
 			// Break the string at this point, and measure the word's width.
 			*it = '\0';
-			int width = font->Width(text.c_str() + word.index);
+			const int width = font->Width(text.c_str() + word.index);
 			if(word.x + width > wrapWidth)
 			{
-				// If adding this word would overflow the length of the line, this
-				// word will be the first on the next line.
+				// If adding this word would overflow the length of the line,
+				// this word will be the first on the next line.
 				word.y += lineHeight;
 				word.x = 0;
 
@@ -249,8 +261,6 @@ void WrappedText::Wrap()
 			word.x += width;
 			// Keep track of how wide this line is now that this word is added.
 			lineWidth = word.x;
-			// We currently are not inside a word.
-			hasWord = false;
 		}
 
 		// If that whitespace was a newline, we must handle that, too.
@@ -262,38 +272,44 @@ void WrappedText::Wrap()
 
 			// Adjust the word spacings on the now-completed line.
 			AdjustLine(lineBegin, lineWidth, true);
+			currentLineHasWords = false;
 		}
 		// Otherwise, whitespace just adds to the x position.
 		else if(c <= ' ')
 			word.x += Space(c);
 		// If we've reached the start of a new word, remember where it begins.
-		else if(!hasWord)
+		else if(!traversingWord)
 		{
-			hasWord = true;
+			traversingWord = true;
+			currentLineHasWords = true;
 			word.index = it - text.begin();
 		}
 	}
+
 	// Handle the final word.
-	if(hasWord)
+	if(traversingWord)
 	{
-		int width = font->Width(text.c_str() + word.index);
+		const int width = font->Width(text.c_str() + word.index);
 		if(word.x + width > wrapWidth)
 		{
-			// If adding this word would overflow the length of the line, this
-			// final word will be the first (and only) on the next line.
+			// If adding this word would overflow the length of the line,
+			// this final word will be the first (and only) on the next line.
 			word.y += lineHeight;
 			word.x = 0;
 
 			// Adjust the spacing of words in the now-complete line.
 			AdjustLine(lineBegin, lineWidth, false);
 		}
-		// Add this final word to the existing words.
+		// Store this word, then advance the x position to the end of it.
 		words.push_back(word);
-		word.y += lineHeight + paragraphBreak;
-		// Keep track of how wide this line is now that this word is added.
 		word.x += width;
+		// Keep track of how wide this line is now that this word is added.
 		lineWidth = word.x;
 	}
+	// Advance line if we need to.
+	if(currentLineHasWords)
+		word.y += lineHeight + paragraphBreak;
+
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 
@@ -306,6 +322,9 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 {
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
+
+	if(lineWidth > longestLineWidth)
+		longestLineWidth = lineWidth;
 
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the

@@ -33,7 +33,7 @@ class Object {
 	// Some data that the object holds.
 	int value;
 public:
-	Object(int value) : value(value) {}
+	explicit Object(int value) : value(value) {}
 	int GetValue() const { return value; }
 	bool operator==(const Object &other) const { return this->value == other.value; }
 	int64_t GetConstant() const { return CONSTANT; }
@@ -348,7 +348,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 			REQUIRE( list.empty() );
 			THEN( "an informative runtime exception is thrown" ) {
 				CHECK_THROWS_AS( list.Get(), std::runtime_error );
-				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
+				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::ContainsSubstring("empty weighted list") );
 			}
 		}
 	}

@@ -30,7 +30,9 @@ mission "FW Diplomacy 1"
 		conversation
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
 			branch suspended
-				has "FW Pirates 4.1: offered"
+				or
+					has "FW Pirates 4.1: offered"
+					has "event: fw stripped of service"
 			`	Captain <last>, sorry that we have been out of contact. We need your help once again, to assist in a diplomatic mission. Please meet up with Alondo on <planet> as soon as possible. He will give you more information.`
 				goto end
 			
@@ -462,7 +464,8 @@ mission "FW Southern Battle 2"
 				"Bastion" 2
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein" 2
 				"Finch" 12
@@ -477,14 +480,16 @@ mission "FW Southern Battle 2"
 		government "Republic"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -711,6 +716,7 @@ mission "FW Southern Break"
 	on offer
 		log "Once again there is no immediate work to be done for the Free Worlds. This would be a good time to earn some money for an upgraded ship, if possible."
 		event "fw occupying the north" 50
+		event "Deep memorial expansion 1"
 		"salary: Free Worlds" >?= 2100
 		conversation
 			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
@@ -724,6 +730,7 @@ mission "FW Southern Break"
 			label salary
 			branch end
 				not "FW Pirates 4.1: offered"
+				not "event: fw stripped of service"
 			`	"Before you leave, Captain," Freya says. "The Senate has decided to reinstate your pay after these recent events. You should now have a salary of 2,100 credits, just like before."`
 			
 			label end
@@ -998,7 +1005,7 @@ mission "FW Northern 3B"
 	
 	on offer
 		conversation
-			`Freya turns out to be a whiskey drinker, like Tomek. By the time she has finished her first drink, she is chattering quite passionately about starship design: load balancing, stress lines, shield matrices, shipboard computers. Rather than dulling her intelligence, alcohol just seems to reduce her ability to explain things in ways a non-specialist can understand. You try to steer the conversation towards something less technical...`
+			`Freya turns out to be a whiskey drinker. By the time she has finished her first drink, she is chattering quite passionately about starship design: load balancing, stress lines, shield matrices, shipboard computers. Rather than dulling her intelligence, alcohol just seems to reduce her ability to explain things in ways a non-specialist can understand. You try to steer the conversation towards something less technical...`
 			choice
 				`	"So, why did you join the Council, initially?"`
 					goto council
@@ -1139,7 +1146,7 @@ mission "FW Northern 4.2A"
 mission "FW Alphas 1.1"
 	landing
 	name "Liberate Poisonwood"
-	description "Destroy all pirates ships in the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
+	description "Destroy the pirate ships occupying the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
 	autosave
 	source "New Tibet"
 	destination Poisonwood
@@ -1445,7 +1452,7 @@ mission "FW Bloodsea 1.1"
 		conversation
 			`The local leaders are unwilling to meet aboard your ship, and Alondo is afraid you will be ambushed if you venture too far away from it, so eventually they agree to set up a tent on the landing pad next to yours and meet there. Outside, a storm is raging, the rain mixing with salt spray from the blood-red ocean nearby.`
 			branch peaceful
-				not "event: fw suppressed Bloodsea"
+				not "FW Pirates: Attack 2: done"
 			`	Most of the leaders grimace at the sight of you. "What is the invader doing here?" one of them asks to Alondo.`
 			`	"Captain <last> was only following orders, but the officer responsible for giving those orders has been justly punished," Alondo says. "We come in peace this time." The leaders don't seem convinced with that answer, but they agree to continue.`
 			label peaceful
@@ -1462,7 +1469,7 @@ mission "FW Bloodsea 1.1"
 			`	"So, we attack them?" you ask.`
 			label invade
 			branch hostile
-				not "event: fw suppressed Bloodsea"
+				not "FW Pirates: Attack 2: done"
 			`	"They didn't seem very happy about you doing that the first time. But..." Alondo pauses for a moment.`
 			label hostile
 			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
@@ -1926,7 +1933,8 @@ mission "FW Rand 1"
 		personality staying heroic
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2279,7 +2287,8 @@ mission "FW Liberate Delta Sagittarii"
 				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein" 2
 				"Finch" 12
@@ -2294,7 +2303,8 @@ mission "FW Liberate Delta Sagittarii"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2302,7 +2312,8 @@ mission "FW Liberate Delta Sagittarii"
 				"Gunboat (Mark II)" 4
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2314,13 +2325,15 @@ mission "FW Liberate Delta Sagittarii"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Frigate" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Frigate" 4

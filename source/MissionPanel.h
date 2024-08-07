@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_PANEL_H_
-#define MISSION_PANEL_H_
+#pragma once
 
 #include "MapPanel.h"
 
@@ -56,8 +55,6 @@ private:
 	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
-	// Display the name of and distance to the selected system.
-	void DrawSelectedSystem() const;
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
@@ -98,7 +95,3 @@ private:
 	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
 };
-
-
-
-#endif

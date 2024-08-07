@@ -132,3 +132,24 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
+
+
+void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
+		const Color &color, const double dashLength, double spaceLength)
+{
+	const double length = (to - from).Length();
+	const double patternLength = dashLength + spaceLength;
+	int segments = static_cast<int>(length / patternLength);
+	// If needed, scale pattern down so we can draw at least two of them over length.
+	if(segments < 2)
+	{
+		segments = 2;
+		spaceLength *= length / (segments * patternLength);
+	}
+	spaceLength /= 2.;
+	for(int i = 0; i < segments; ++i)
+		Draw(from + unit * ((i * length) / segments + spaceLength),
+			from + unit * (((i + 1) * length) / segments - spaceLength),
+			width, color);
+}
