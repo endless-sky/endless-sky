@@ -1547,11 +1547,12 @@ ship "Shield Beetle" "Shield Beetle (Prototypes)"
 		"Quantum Keystone"
 		"Hai Williwaw Cooling" 2
 		"Hai Octopus Jammer"
-		"Value Detector" 2
+		"Value Detector"
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Steering`
+		`"Basrem" Atomic Steering`
 		`"Bufaer" Atomic Thruster`
 		"Pulse Rifle" 75
 

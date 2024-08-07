@@ -369,9 +369,10 @@ mission "Hai Legacy 3"
 		on kill
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship is either incompetence or evil intent, and we will not have either!"`
 			fail
-		on disable
-			dialog `You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
-			set "unfettered: beaten the bugs"
+		conversation
+			`You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
+			action
+				set "unfettered: beaten the bugs"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -381,9 +382,10 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" < -2000
 		personality entering heroic mute marked plunders target unconstrained
 		ship "Shield Beetle (Prototypes)" "Requiem"
-		on disable
-			dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
-			set "unfettered: beaten the bugs"
+		conversation
+			`You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
+			action
+				set "unfettered: beaten the bugs"
 	npc
 		government "Hai (Unfettered)"
 		to spawn
