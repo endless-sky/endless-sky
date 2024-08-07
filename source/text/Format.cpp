@@ -384,6 +384,14 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
+	else if(fabs(value) > 1000000000000000ll)
+	{
+		// Use scientific notation for excessively large numbers.
+		ostringstream out;
+		out.precision(3);
+		out << static_cast<double>(value);
+		return out.str();
+	}
 
 	string result;
 	bool isNegative = (value < 0.);
