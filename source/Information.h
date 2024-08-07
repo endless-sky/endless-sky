@@ -13,11 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INFORMATION_H_
-#define INFORMATION_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
+#include "Rectangle.h"
 
 #include <map>
 #include <set>
@@ -31,6 +31,10 @@ class Sprite;
 // of how that information is laid out or shown.
 class Information {
 public:
+	void SetRegion(const Rectangle &rect);
+	const Rectangle &GetCustomRegion() const;
+	bool HasCustomRegion() const;
+
 	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), float frame = 0.f);
 	const Sprite *GetSprite(const std::string &name) const;
 	const Point &GetSpriteUnit(const std::string &name) const;
@@ -51,6 +55,9 @@ public:
 
 
 private:
+	Rectangle region;
+	bool hasCustomRegion = false;
+
 	std::map<std::string, const Sprite *> sprites;
 	std::map<std::string, Point> spriteUnits;
 	std::map<std::string, float> spriteFrames;
@@ -62,7 +69,3 @@ private:
 
 	Color outlineColor;
 };
-
-
-
-#endif

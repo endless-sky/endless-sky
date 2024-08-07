@@ -19,12 +19,19 @@ mission "First Contact: Unfettered"
 		conversation
 			branch hai
 				has "First Contact: Hai: offered"
-				
-			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			branch news
+				has "hr: heard the news"
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Although despite their hostility while in orbit, they pay little mind to you on the surface. Do you want to approach one of them?`
 			choice
 				`	(Sure.)`
+					goto sure
 				`	(Not now, it's too risky.)`
 					defer
+			
+			label news
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Their ships look exactly like the ones that you saw on the news. Although despite their hostility while in orbit, they pay little mind to you on the surface.`
+			
+			label sure
 			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"Hai? Is that what you call yourselves?"`
@@ -40,7 +47,7 @@ mission "First Contact: Unfettered"
 				`	(Sure.)`
 				`	(Not now, it's too risky.)`
 					defer
-			`	You catch the eye of one of the Hai dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			`	You catch the eye of one of the Hai dock workers and they walk over. "Ah," they say, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"No, I've encountered many of your brethren south of here."`
 					goto brethren
@@ -50,7 +57,7 @@ mission "First Contact: Unfettered"
 					goto everyone
 			
 			label brethren
-			`	It hisses. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	They hiss. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label true
@@ -62,15 +69,15 @@ mission "First Contact: Unfettered"
 				goto masters
 			
 			label war
-			`	"We fight to defend ourselves from extinction," it says.`
+			`	"We fight to defend ourselves from extinction," they say.`
 			`	"Extinction?" you ask. "Do you mean that there are no other Hai?"`
-			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	"We are all that is left of the original Hai," they say. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label everyone
-			`	"We fight to defend ourselves from extinction," it says.`
+			`	"We fight to defend ourselves from extinction," they say.`
 			`	"Extinction?" you ask. "Do you mean that you are not the same species as the other Hai?"`
-			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	"Indeed," they say. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label masters
@@ -78,20 +85,20 @@ mission "First Contact: Unfettered"
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
 			
-			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
+			`	"This is our story," they say. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			branch sheragi
 				has "Rim Archaeology 6: offered"
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
-			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
+			`	"Sheragi," they say, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 				goto altered
 
 			label sheragi
 			`	"'Dragonfolk?'" you ask. "Do you mean the Sheragi?"`
-			`	"Impressive," it replies, "the monkey knows of Sheragi. We outlived them all. Funny that only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
+			`	"Impressive," they reply, "the monkey knows of Sheragi. We outlived them all. Funny that only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 
 			label altered
 			`	"How were you altered?" you ask.`
-			`	It says, "We Hai fought Sheragi and took worlds that Drak said belonged to them, worlds that Sheragi had not yet even discovered. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
+			`	They say, "We Hai fought Sheragi and took worlds that Drak said belonged to them, worlds that Sheragi had not yet even discovered. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
@@ -99,7 +106,7 @@ mission "First Contact: Unfettered"
 					goto know
 			
 			label resist
-			`	"Silly monkey," it says, "none can resist. They are strong. Their will prevails. And their will is for the galaxy to be a zoo, little remnants of each species all in separate cages. For now they let humans run free so humans will grow in knowledge, but soon they will fashion a cage for humans too."`
+			`	"Silly monkey," they say, "none can resist. They are strong. Their will prevails. And their will is for the galaxy to be a zoo, little remnants of each species all in separate cages. For now they let humans run free so humans will grow in knowledge, but soon they will fashion a cage for humans too."`
 				goto help
 			
 			label know
@@ -113,16 +120,16 @@ mission "First Contact: Unfettered"
 				`	"Is there anything I can do to help you?"`
 			action
 				set "unfettered requested jump drives"
-			`	"If you are ever willing to sell us a jump drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
+			`	"If you are ever willing to sell us a jump drive," they say, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
 			choice
 				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
 				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
 					goto sell
-			`	"Then leave us alone," it says, and it walks off.`
+			`	"Then leave us alone," they say, and they walk off.`
 				decline
 			
 			label sell
-			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
+			`	"Bring us a jump drive," they say, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
 	
 	on decline
@@ -160,7 +167,7 @@ mission "Unfettered Jump Drive 1"
 					goto more
 				`	"How will my ship leave here without my jump drive?"`
 			
-			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"We will give you a hyperdrive in its place," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
 			choice
 				`	"Okay, I accept your generous offer."`
 					goto end
@@ -168,11 +175,11 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label refuse
-			`	It ponders this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
+			`	They ponder this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
 				defer
 			
 			label more
-			`	"Do not underestimate the value of our friendship," it says. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
+			`	"Do not underestimate the value of our friendship," they say. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
 			choice
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					goto end
@@ -180,7 +187,7 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label end
-			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as it hands you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
@@ -259,7 +266,9 @@ mission "Unfettered Jump Drive 3"
 				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
 			branch know
-				has "First Contact: Wanderer: offered"
+				or
+					has "First Contact: Wanderer: offered"
+					has "First Contact: Wanderer (Before Hai): offered"
 			choice
 				`	"Is there any other way I can help you to reclaim those worlds?"`
 					goto help
@@ -305,12 +314,12 @@ mission "Unfettered Jump Drive Trading"
 	source "Darkcloak"
 	substitutions
 		<hood> ""
-		<hood> ", with their face hidden"
+		<hood> ", with their face hidden,"
 			has "unfettered: blade rodeo"
 		<learned> ""
-		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
+		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake. "
 			"unfettered: blade rodeo" == 1
-		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal."
+		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal. "
 			"unfettered: blade rodeo" == 2
 		"<The engineer>" "The engineer, who had stepped back during the fight,"
 		"<The engineer>" "The real engineer then moves out of the crowd,"
@@ -332,12 +341,12 @@ mission "Unfettered Jump Drive Trading"
 		not "Wanderers: Jump Drive Source: done"
 		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
-		"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
+		"unfettered: jd to sell" <= "Unfettered Jump Drive 4: failed"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
 	on offer
 		conversation
-			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
-			`	Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+			`As you exit your ship to head to the spaceport you see that an Unfettered Hai<hood> is waiting for you at your hatch.`
+			`	As you get closer you surmise it is an engineer, judging by the writing pad and equipment they have. Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
 				to display
 					not "unfettered: blade rodeo"
 			`	They probably mean to offer the same deal of exchanging jump drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a jump drive?`
@@ -355,7 +364,7 @@ mission "Unfettered Jump Drive Trading"
 				to display
 					"unfettered: blade rodeo" > 1
 				goto blade
-			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
+			`	You exit your ship and immediately the engineer leads you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
 			label repeat
 			choice
 				`	(Follow them.)`
@@ -389,16 +398,16 @@ mission "Unfettered Jump Drive Trading"
 				`	(Leap to the side and use my own weapon.)`
 				`	(Flee.)`
 					goto flee
-			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did.<learned> I am Desneeparu, and it is my pleasure to meet you, Captain."`
+			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did. <learned>I am Desneeparu, and it is my pleasure to meet you, Captain."`
 				goto meet
 			label grab
 			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. They duel with you for what feels like an eternity. At first you are astonished by the fact you have managed to survive this long, but you soon realize that, as you have not managed to land a single successful blow, this must be some kind of deliberate test.`
-			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade!<learned> I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
+			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade! <learned>I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
 			label meet
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
-			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need, Captain."`
-			`	<The engineer> proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
+			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need."`
+			`	<The engineer> proceeds to take you underground to rows and rows of prototype weapons, some of which are being worked on by engineers. They explain, "We prefer to do most of our testing on the field of battle. We only make the most basic safety tests here before Unfettered captains can get their hands on them. They often start by going to Firelode to put the weapon to its limit, to ensure it will not explode in the middle of action. The more interest in a prototype, the more we develop it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
 			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but they are enhanced in one way or another. Alongside the Tripulses you can spot what look like a very small Ion Cannon and an Ion Cannon mounted turret.`
 			label weapons
 			choice
@@ -422,13 +431,13 @@ mission "Unfettered Jump Drive Trading"
 			action
 				set "choice: blaster"
 			scene "outfit/hai ionic blaster"
-			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight."`
+			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight. This is a more recent innovation, however, and some say it lacks the... finesse of others.`
 				goto "back to choose"
 			label turret
 			action
 				set "choice: turret"
 			scene "outfit/hai ionic turret"
-			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range, small ships and even fighters will never bother you again!"`
+			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range and fast turn-rate, small ships and even fighters will never bother you again!`
 			label "back to choose"
 			`	"However, we only have these weapons in very limited quantities, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
 				goto weapons
@@ -449,7 +458,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				set "choice: tripulse"
 			scene "outfit/tripulse shredder"
-			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can take out a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
+			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can get the upper hand against a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
 				goto weapons
 			label "buy tripulse"
 			action
@@ -506,60 +515,3 @@ mission "Unfettered Jump Drive Trading"
 		outfit "Hyperdrive" 1
 		"reputation: Hai (Unfettered)" >?= 40
 		fail
-
-
-
-mission "Unfettered returning home"
-	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
-	minor
-	source
-		attributes "unfettered"
-	destination "Hai-home"
-	clearance
-	passengers 1
-	to offer
-		has "Unfettered Tribute 3: done"
-		random < 40
-	on offer
-		conversation
-			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
-			choice
-				`	(Yes.)`
-				`	(No.)`
-					defer
-			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
-			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
-			choice
-				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
-					goto true
-				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
-			`	You have little experience reading Hai emotion, but the youth seems crestfallen. "You are certain?" he asks.`
-			choice
-				`	"I am certain. I can do nothing for you."`
-					goto refuse
-				`	"Perhaps you can come with me and find out, but don't get your hopes up."`
-					goto end
-			label true
-			`	"Will you take me to Hai-home?" he asks. "You are able to be outside Unfettered places. Can I go with you?"`
-			choice
-				`	"Yes, I will take you there."`
-					goto end
-				`	"Sorry, I can't risk angering the Unfettered by carrying a defector."`
-			label refuse
-			`	Disappointed, the youth leaves. You hope you made the right choice.`
-				decline
-			label end
-			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
-				accept
-	
-	on visit
-		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
-	on complete
-		payment 100000
-		dialog
-			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
-		"reputation: Hai" += 10
-		"reputation: Hai (Wormhole Access)" += 10
-		"reputation: Hai Merchant" += 10
-		"reputation: Hai Merchant (Human)" += 10
-		"reputation: Hai Merchant (Sympathizers)" += 10

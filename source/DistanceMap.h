@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DISTANCE_MAP_H_
-#define DISTANCE_MAP_H_
+#pragma once
 
 #include "WormholeStrategy.h"
 
@@ -50,7 +49,9 @@ public:
 	// Calculate the path for the given ship to get to the given system. The
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.
-	DistanceMap(const Ship &ship, const System *destination);
+	// If a player is given, the path will only include systems that the
+	// player has visited.
+	DistanceMap(const Ship &ship, const System *destination, const PlayerInfo *player = nullptr);
 
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
@@ -73,7 +74,7 @@ private:
 	// days, how much danger you will pass through, and where you will go next.
 	class Edge {
 	public:
-		Edge(const System *system = nullptr);
+		explicit Edge(const System *system = nullptr);
 
 		// Sorting operator to prioritize the "best" edges. The priority queue
 		// returns the "largest" item, so this should return true if this item
@@ -120,8 +121,5 @@ private:
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
 	double jumpRange = 0.;
+	const Ship *ship = nullptr;
 };
-
-
-
-#endif

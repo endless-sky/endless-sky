@@ -21,6 +21,28 @@ using namespace std;
 
 
 
+void Information::SetRegion(const Rectangle &rect)
+{
+	region = rect;
+	hasCustomRegion = true;
+}
+
+
+
+const Rectangle &Information::GetCustomRegion() const
+{
+	return region;
+}
+
+
+
+bool Information::HasCustomRegion() const
+{
+	return hasCustomRegion;
+}
+
+
+
 void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame)
 {
 	sprites[name] = sprite;
@@ -116,7 +138,7 @@ bool Information::HasCondition(const string &condition) const
 	if(condition.front() == '!')
 		return !HasCondition(condition.substr(1));
 
-	return conditions.count(condition);
+	return conditions.contains(condition);
 }
 
 

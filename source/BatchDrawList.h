@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BATCH_DRAW_LIST_H_
-#define BATCH_DRAW_LIST_H_
+#pragma once
 
 #include "Point.h"
 
@@ -58,11 +57,7 @@ private:
 
 	// Each sprite consists of six vertices (four vertices to form a quad and
 	// two dummy vertices to mark the break in between them). Each of those
-	// vertices has five attributes: (x, y) position in pixels, (s, t) texture
-	// coordinates, and the index of the sprite frame.
+	// vertices has six attributes: (x, y) position in pixels, (s, t) texture
+	// coordinates, the index of the sprite frame, and the alpha value.
 	std::map<const Sprite *, std::vector<float>> data;
 };
-
-
-
-#endif

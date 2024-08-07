@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PLANET_CARD_H_
-#define MAP_PLANET_CARD_H_
+#pragma once
 
 #include "MapPanel.h"
 #include "Sprite.h"
@@ -31,6 +30,7 @@ class StellarObject;
 class MapPlanetCard {
 public:
 	enum class ClickAction : int {
+		SHOW_GOVERNMENT = MapPanel::SHOW_GOVERNMENT,
 		SHOW_REPUTATION = MapPanel::SHOW_REPUTATION,
 		SHOW_SHIPYARD = MapPanel::SHOW_SHIPYARD,
 		SHOW_OUTFITTER = MapPanel::SHOW_OUTFITTER,
@@ -47,7 +47,7 @@ public:
 	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited);
 	// Return if this one was clicked, whether or not we did something about it.
 	ClickAction Click(int x, int y, int clicks);
-	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
+	// Draw this at the corresponding scroll; if it is not outside bounds, and return if we drew it.
 	bool DrawIfFits(const Point &uiPoint);
 	// If this object is currently being shown.
 	bool IsShown() const;
@@ -59,6 +59,10 @@ public:
 	const Planet *GetPlanet() const;
 
 	void Select(bool select = true);
+
+	static double Height();
+
+	static void ResetSize();
 
 
 protected:
@@ -86,12 +90,9 @@ private:
 	const Sprite *sprite;
 	float spriteScale;
 
+	std::string governmentName;
 	std::string reputationLabel;
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)
 	unsigned selectedCategory = 0;
 };
-
-
-
-#endif

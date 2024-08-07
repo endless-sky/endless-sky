@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_H_
-#define SPRITE_H_
+#pragma once
 
 #include "Point.h"
 
@@ -35,8 +34,9 @@ public:
 
 	const std::string &Name() const;
 
-	// Upload the given frames. The given buffer will be cleared afterwards.
+	// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x);
+	void AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 
@@ -56,17 +56,16 @@ public:
 	uint32_t Texture() const;
 	uint32_t Texture(bool isHighDPI) const;
 
+	uint32_t SwizzleMask() const;
+	uint32_t SwizzleMask(bool isHighDPI) const;
 
 private:
 	std::string name;
 
 	uint32_t texture[2] = {0, 0};
+	uint32_t swizzleMask[2] = {0, 0};
 
 	float width = 0.f;
 	float height = 0.f;
 	int frames = 0;
 };
-
-
-
-#endif

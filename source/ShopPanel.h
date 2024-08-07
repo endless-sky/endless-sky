@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHOP_PANEL_H_
-#define SHOP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -23,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -71,11 +71,6 @@ protected:
 
 
 protected:
-	void DrawShipsSidebar();
-	void DrawDetailsSidebar();
-	void DrawButtons();
-	void DrawMain();
-
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
 	void CheckForMissions(Mission::Location location);
@@ -83,12 +78,11 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
-	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
+	virtual void DrawItem(const std::string &name, const Point &point) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
-	virtual int DrawDetails(const Point &center) = 0;
+	virtual double DrawDetails(const Point &center) = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
 	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
@@ -110,22 +104,24 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	void DoFind(const std::string &text);
+	virtual int FindItem(const std::string &text) const = 0;
+
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
+
+	void CheckSelection();
 
 
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
-		explicit Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
-		explicit Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Ship *ship);
+		explicit Zone(Point center, Point size, const Outfit *outfit);
 
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 
-		double ScrollY() const;
-
 	private:
-		double scrollY = 0.;
 		const Outfit *outfit = nullptr;
 	};
 
@@ -150,6 +146,7 @@ protected:
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
+	const bool isOutfitter;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
@@ -166,21 +163,16 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
-	double mainScroll = 0.;
-	double sidebarScroll = 0.;
-	double infobarScroll = 0.;
-	double maxMainScroll = 0.;
-	double maxSidebarScroll = 0.;
-	double maxInfobarScroll = 0.;
+	ScrollVar<double> mainScroll;
+	ScrollVar<double> sidebarScroll;
+	ScrollVar<double> infobarScroll;
 	ShopPane activePane = ShopPane::Main;
-	int mainDetailHeight = 0;
-	int sideDetailHeight = 0;
-	bool scrollDetailsIntoView = false;
-	double selectedTopY = 0.;
-	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
 
+	double previousX = 0.;
+
 	std::vector<Zone> zones;
+	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
 	std::map<std::string, std::vector<std::string>> catalog;
@@ -190,27 +182,37 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 
 private:
-	bool DoScroll(double dy);
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
+	void DrawButtons();
+	void DrawMain();
+
+	int DrawPlayerShipInfo(const Point &point);
+
+	bool DoScroll(double dy, int steps = 5);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
+	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
 	void MainUp();
 	void MainDown();
+	void CategoryAdvance(const std::string &category);
 	std::vector<Zone>::const_iterator Selected() const;
-	std::vector<Zone>::const_iterator MainStart() const;
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+
+
+private:
+	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	std::string warningType;
+	int hoverCount = 0;
 };
-
-
-
-#endif

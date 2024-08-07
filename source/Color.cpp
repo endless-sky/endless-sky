@@ -111,6 +111,8 @@ Color Color::Additive(float alpha) const
 	return result;
 }
 
+
+
 Color Color::Combine(float a1, Color c1, float a2, Color c2)
 {
 	return Color(

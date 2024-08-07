@@ -18,14 +18,15 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 
 || Minimum | Recommended |
 |---|----:|----:|
-|RAM | 500 MB | 1 GB |
+|RAM | 750 MB | 2 GB |
 |Graphics | OpenGL 3.0 | OpenGL 3.3 |
-|Storage Free | 300 MB | 1 GB |
+|Storage Free | 350 MB | 1.5 GB |
 
 ## Building from source
 
-Most development is done on Linux and Windows, using CMake ([build instructions](docs/readme-cmake.md)) to compile the project. For those wishing to use an IDE, project files are provided for [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup, and other IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
-For full installation instructions, consult the [Build Instructions](docs/readme-developer.md) readme.
+Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
+
+For full installation instructions, consult the [Build Instructions](docs/readme-cmake.md) readme.
 
 ## Contributing
 

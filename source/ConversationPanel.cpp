@@ -61,8 +61,8 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
-	: player(player), useTransactions(useTransactions), conversation(conversation),
+	const Mission *caller, const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
@@ -73,9 +73,15 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(ship)
+	{
 		subs["<ship>"] = ship->Name();
+		subs["<model>"] = ship->DisplayModelName();
+	}
 	else if(player.Flagship())
+	{
 		subs["<ship>"] = player.Flagship()->Name();
+		subs["<model>"] = player.Flagship()->DisplayModelName();
+	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.
@@ -111,17 +117,7 @@ void ConversationPanel::Draw()
 		Point(boxWidth, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		// If the screen is high enough, the edge sprite should repeat.
-		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			Screen::Left() + boxWidth + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
@@ -399,7 +395,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr);
+			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{

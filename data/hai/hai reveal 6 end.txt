@@ -27,6 +27,7 @@ mission "Hai Reveal [C01] Cleanup"
 		event "mountaintop ascendant"
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 		log `Returned the Hai to their own space to bring an end to the missing Hai saga. Choot'k tried, unsuccessfully, to recruit Teeneep to the Unfettered. They spoke of a future peaceful unification of the Hai, though differ on the specifics despite their closeness. There is one last trip to do for official matters.`
+		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
 			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle."`
@@ -201,6 +202,7 @@ system "Al Hurr"
 	hidden
 	pos -432 -491
 	government "Uninhabited"
+	attributes "inaccessible"
 	arrival 1715
 	habitable 1715
 	belt 1312
@@ -452,7 +454,8 @@ fleet "Navy Surveillance that won't enter the wormhole"
 	government "Republic that won't enter wormhole"
 	# ... otherwise the surveillance drones fly through the wormhole
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		surveillance opportunistic disables plunders
@@ -465,7 +468,8 @@ fleet "Navy Surveillance that won't enter the wormhole"
 fleet "Navy Friendly Wormhole Guards"
 	government "Republic that won't enter wormhole"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic disables plunders frugal opportunistic
@@ -570,36 +574,21 @@ event "hai-human resolution announced"
 		remove fleet "Hai Wormhole Guards"
 	system "Ultima Thule"
 		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Navy Friendly Wormhole Guards" 2000
 		add fleet "Free Worlds Friendly Wormhole Guards" 5000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	system "Rajak"
 		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Navy Friendly Wormhole Guards" 4000
 		add fleet "Free Worlds Friendly Wormhole Guards" 9000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	# Release the suppression of Stormhold.
 	system "Alcyone"
+		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Small Core Pirates" 400
 		add fleet "Large Core Pirates" 600
 		add fleet "Korath Large Raid" 50000
 		remove fleet "Human Wormhole Guards"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Sumar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Danoa"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Cardax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Volax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Moktar"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Rigel"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alnitak"
@@ -634,8 +623,6 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Schedar"
 		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alcyone"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Almaaz"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Arneb"
@@ -644,4 +631,3 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Almach"
 		remove fleet "Smuggler (Hai Traffickers)"
-
