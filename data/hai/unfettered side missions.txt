@@ -300,7 +300,7 @@ mission "Hai Legacy 3"
 				`	"I accept."`
 				`	"I have nothing to prove to you. This is my ship now."`
 					goto headingout
-			`	Mera grins. "Good! I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
+			`	Mera grins. "Good! I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brethren and his crew the opportunity to prove themselves against a mighty human warrior!"`
 			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. One that appears to be their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
 			choice
@@ -364,23 +364,13 @@ mission "Hai Legacy 3"
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
 		personality disables heroic marked launching plunders staying target unconstrained
-		ship "Lightning Bug (Ionic)" "Eraser"
-		ship "Lightning Bug" "Thunder"
-		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
-		ship "Lightning Bug (Pulse)" "Struck"
+		ship "Sea Scorpion (Ionic)" "ThunderStruck"
 		on kill
-			dialog `When you destroy the last ship, you receive a hail from Mera, who sounds quite angry. "Destroying one or two ships in the middle of the action could be understood. But all of them? That's either incompetence or evil intent, and we will not have either!"`
-				fail
-		conversation
-			`You receive a message from the remaining Unfettered ships. "We surrender. If you land now, you will receive your reward, but do not try anything else."`
-			branch "good or bad enough"
-				or
-					has "unfettered: beaten extra bugs"
-					"old reputation: Hai (Unfettered)" >= -2000
-			`	"Do not declare victory too soon, however, for we were not the only ones you had to beat," another adds.`
-			label "good or bad enough"
-			action
-				set "unfettered: beaten the bugs"
+			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship is either incompetence or evil intent, and we will not have either!"`
+			fail
+		on disable
+			dialog `You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
+			set "unfettered: beaten the bugs"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -389,25 +379,18 @@ mission "Hai Legacy 3"
 			not "unfettered: fled with the relic"
 			"old reputation: Hai (Unfettered)" < -2000
 		personality entering heroic mute marked plunders target unconstrained
-		ship "Sea Scorpion (Shredder)" "Requiem"
+		ship "Shield Beetle (Prototypes)" "Requiem"
 		system "Hi Yahr"
-		conversation
-			branch "first one"
-				not "unfettered: beaten extra bugs"
-			`You have managed to defeat the last of the Unfettered challengers. Now it's time to land and claim your reward.`
-				goto score
-			label "first one"
-			`You receive no hail from this extra challenger, but there can be no doubt that they are indeed defeated.`
-			label score
-			action
-				set "unfettered: beaten extra bugs"
+		on disable
+			dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
+			set "unfettered: beaten the bugs"
 	npc
 		government "Hai (Unfettered)"
 		to spawn
 			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
 		personality launching marked staying surveillance uninterested
-		on disable
+		on provoke
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
 			fail
@@ -418,22 +401,16 @@ mission "Hai Legacy 3"
 		to spawn
 			has "unfettered: fled with the relic"
 		personality unconstrained nemesis launching heroic marked
-		fleet
-			names "hai"
-			variant
-				"Sea Scorpion (Ionic)"
+		ship "Sea Scorpion (Shredder)" "Hunter"
 	on visit
-		dialog "Either you have not defeated all of the Unfettered challengers in orbit yet, or you have broken the terms of their duel."
+		dialog "Either you have not defeated the Unfettered challenger in orbit yet, or you have broken the terms of the duel."
 	to complete
 		not "unfettered: fled with the relic"
+		# Needed to make sure the mission doesn't auto complete if no ships spawn.
 		has "unfettered: beaten the bugs"
 		has "flagship model: Anomalocaris"
-		or
-			"old reputation: Hai (Unfettered)" > -2000
-			has "unfettered: beaten extra bugs"
 	on complete
 		clear "unfettered: beaten the bugs"
-		clear "unfettered: beaten extra bugs"
 		clear "old reputation: Hai (Unfettered)"
 		log "Managed to use an old Anomalocaris to beat some Unfettered challengers, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 		conversation

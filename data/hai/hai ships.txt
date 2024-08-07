@@ -1537,6 +1537,24 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+ship "Shield Beetle" "Shield Beetle (Prototypes)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Tripulse Shredder" 4
+		"Chameleon Anti-Missile" 4
+		Hyperdrive
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"Hai Williwaw Cooling" 2
+		"Hai Octopus Jammer"
+		"Value Detector" 2
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		`"Biroo" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Pulse Rifle" 75
+
 
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
