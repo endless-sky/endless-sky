@@ -1551,7 +1551,7 @@ ship "Shield Beetle" "Shield Beetle (Prototypes)"
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		`"Bondir" Atomic Steering`
+		`"Biroo" Atomic Steering`
 		`"Basrem" Atomic Steering`
 		`"Bufaer" Atomic Thruster`
 		"Pulse Rifle" 75
