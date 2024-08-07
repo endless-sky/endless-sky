@@ -749,7 +749,8 @@ Point FlexTable::Draw(const Point &position)
 	Point rowBegin = position;
 	for(int row = 0; row < Rows(); ++row)
 	{
-		int rowHeight = max_element(columns.begin(), columns.end(), [&](const auto &c1, const auto &c2){
+		int rowHeight = max_element(columns.begin(), columns.end(), [&](const auto &c1, const auto &c2)
+		{
 			return c1.Row(row).Height() < c2.Row(row).Height();
 		})->Row(row).Height();
 		Point cellBegin{rowBegin};
