@@ -2337,15 +2337,21 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	to fail
-		has "Deep: Scientist Rescue 2: done"
-	npc kill
+		or
+			has "Deep: Scientist Rescue 2: done"
+			has "deep: cosmic devil destroyed early"
+	to complete
+		never
+	npc
 		government "Pirate"
 		personality staying nemesis
 		ship "Bactrian (Cosmic Devil)" "Cosmic Devil"
-		dialog
-			`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
-			`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
-			`The transmission cuts out as abruptly as it had started.`
+		on kill
+			set "deep: cosmic devil destroyed early"
+			dialog
+				`After the Bactrian is eliminated, you receive a transmission from an unknown source. It suddenly opens on its own and an electronically distorted voice begins speaking to you.`
+				`	"Well done, Captain. Well done at being a thorn in my side. You will pay for this. One day."`
+				`The transmission cuts out as abruptly as it had started.`
 
 
 
@@ -2374,8 +2380,7 @@ mission "Deep: Scientist Rescue 3A"
 	waypoint "Arneb"
 	to offer
 		has "Deep: Scientist Rescue 2: done"
-		not "Deep: Scientist Rescue 2: Pirate Bactrian: done"
-		not "Deep: Scientist Rescue 3B: offered"
+		not "deep: cosmic devil destroyed early"
 	
 	on offer
 		payment 2000000
@@ -2435,8 +2440,7 @@ mission "Deep: Scientist Rescue 3B"
 	invisible
 	to offer
 		has "Deep: Scientist Rescue 2: done"
-		has "Deep: Scientist Rescue 2: Pirate Bactrian: done"
-		not "Deep: Scientist Rescue 3A: offered"
+		has "deep: cosmic devil destroyed early"
 	
 	on offer
 		set "license: City-Ship"
