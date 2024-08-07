@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGE_SET_H_
-#define IMAGE_SET_H_
+#pragma once
 
 #include "ImageBuffer.h"
 
@@ -46,7 +45,7 @@ public:
 public:
 	// ImageSets should be created with a name, as some image paths (e.g. plugin icons)
 	// do not contain the associated image name.
-	ImageSet(std::string name);
+	explicit ImageSet(std::string name);
 
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;
@@ -60,24 +59,20 @@ public:
 	// Load all the frames. This should be called in one of the image-loading
 	// worker threads. This also generates collision masks if needed.
 	void Load() noexcept(false);
-	// Create the sprite and upload the image data to the GPU. After this is
+	// Create the sprite and optionally upload the image data to the GPU. After this is
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
-	void Upload(Sprite *sprite);
+	void Upload(Sprite *sprite, bool enableUpload);
 
 
 private:
 	// Name of the sprite that will be initialized with these images.
 	std::string name;
 	// Paths to all the images that were discovered during loading.
-	std::map<std::size_t, std::string> framePaths[2];
+	std::map<std::size_t, std::string> framePaths[4];
 	// Paths that comprise a valid animation sequence of 1 or more frames.
-	std::vector<std::string> paths[2];
+	std::vector<std::string> paths[4];
 	// Data loaded from the images:
-	ImageBuffer buffer[2];
+	ImageBuffer buffer[4];
 	std::vector<Mask> masks;
 };
-
-
-
-#endif

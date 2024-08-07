@@ -379,6 +379,7 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 	inner *= inner;
 	outer *= outer;
 
+	// Determine if the ring contains any of the outlines of the mask.
 	for(auto &&outline : outlines)
 		for(auto &&p : outline)
 		{
@@ -387,7 +388,12 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 				return true;
 		}
 
-	return false;
+	// While a ring might not contain any outlines of the mask, it may be
+	// located entirely inside of the mask. This should still count as the
+	// mask being within the ring. This can only be the case if the
+	// entire ring is smaller than the radius of the mask and the center
+	// of the ring is within the mask.
+	return outer < radius && Contains(point);
 }
 
 

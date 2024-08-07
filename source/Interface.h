@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INTERFACE_H_
-#define INTERFACE_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -54,12 +53,17 @@ public:
 	// Get a named value.
 	double GetValue(const std::string &name) const;
 
+	// Get a named list.
+	const std::vector<double> &GetList(const std::string &name) const;
+
 
 private:
 	class AnchoredPoint {
 	public:
 		// Get the point's location, given the current screen dimensions.
 		Point Get() const;
+		// Get the point's location, treating the Region within the Information as the screen area.
+		Point Get(const Information &info) const;
 		void Set(const Point &position, const Point &anchor);
 
 	private:
@@ -94,6 +98,8 @@ private:
 
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
+		// Get the bounding rectangle, treating the Region within the Information as the screen area.
+		Rectangle Bounds(const Information &info) const;
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -192,6 +198,7 @@ private:
 		std::string name;
 		const Color *color = nullptr;
 		float width = 2.f;
+		bool reversed = false;
 		bool isRing = false;
 		double spanAngle = 360.;
 		double startAngle = 0.;
@@ -237,8 +244,5 @@ private:
 	std::vector<Element *> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
+	std::map<std::string, std::vector<double>> lists;
 };
-
-
-
-#endif

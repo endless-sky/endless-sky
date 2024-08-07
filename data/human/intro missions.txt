@@ -145,7 +145,7 @@ mission "Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Chuck, and Sarah, and their son Carl. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Chuck, and Sarah, and their son Carl. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
@@ -402,18 +402,98 @@ mission "Intro [2 Interceptor]"
 				`	"Got it."`
 					accept
 				`	"I really shouldn't try to fight?"`
-			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one Heavy Rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
+			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And two Heavy Rocket hits could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
 				accept
 	
 	on complete
 		payment 40000
 		conversation
-			`As you land on Ingot, James says, "Well, you made it in one piece! Still think you want to be piloting a Sparrow?"`
+			`As you land on Ingot, James says, "Well, you made it in one piece! Still think you want to be piloting an interceptor?"`
 			choice
 				`	"Sure, but I can't wait until I've got a ship big enough to stand up to pirates instead of running from them."`
 				`	"Well, maybe I should've bought a freighter instead."`
 			`	"Better start saving up then," he says. "I know a number of old Sparrow pilots who made their first million credits mining asteroids before they could afford a more combat-worthy ship. They had to look around for a while before finding a system with any asteroids worth mining, but it was worth it. Anyway, let's go get your payment." You walk out of the ship and sign the papers to hand off the <commodity> to the dock workers on <planet>. They hand you a credit chip worth <payment>.`
-			`	"If you're willing to take me on one more journey," says James, "meet me in the spaceport bar in a little while."`
+			`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while."`
+
+
+
+mission "Intro [2.1 Interceptor]"
+	priority
+	name "Mine asteroids in <system>"
+	description "Go to the <system> system and mine 5 tons of Silicon, then land on <planet>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	passengers 1
+	source "Ingot"
+	destination "New Sahara"
+	to offer
+		has "Intro [2 Interceptor]: done"
+		not "Intro [3 Interceptor]: offered"
+	
+	on offer
+		conversation
+			`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here on <origin> is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing the miners can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
+			`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
+			choice
+				`	"I'll give it a shot."`
+					goto mining
+				`	"I think I'm ready to head out on my own."`
+					decline
+	
+			label "mining"
+			`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
+			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
+			`	"I could go on, but I think you get the picture."`
+			`	You and James chat with Marshall a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there."`
+			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon before landing on <planet> and we can call it a day."`
+				accept
+	
+	on visit
+		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
+	
+	on complete
+		require "Silicon" 5
+		conversation
+			`Once you've landed, you meet up with James and he asks you, "What did you think of mining?"`
+			choice
+				`	"I can't believe anyone would do that much work."`
+				`	"I love flying like that."`
+			`	James nods and says, "Chasing asteroids can be a challenge, but when you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own.`
+			`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand after pirates disabled my ship when I was starting out and I worked aboard a mining ship while it was being repaired. Now that was a while back so I might be a little rusty, but I could try at answering any other questions you might have about mining."`
+
+			label choices
+			choice
+				`	"What equipment do I need to mine?"`
+				`	"How do you deal with pirates?"`
+					goto pirates
+				`	"How can I check the value of minerals?"`
+					goto value
+				`	"I think I have enough information."`
+					goto end
+
+			`	"Well, you need a weapon that does hull damage," James says. "A Beam Laser will get the job done, but it will take a while. If you want to optimize your mining operations, however, you'll want a Mining Laser. Not only does it cut through asteroids faster, it's also more precise and preserves more minerals when the asteroid breaks apart. Some miners like to have a bit of combat flexibility by mining with Heavy Lasers, however.`
+			`	"Aside from lasers, the most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids, which increases your profitability per run. After that, a tactical scanner will tell you how far away the asteroid is and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, extend your exploration range, and allow you to be ready for a quick escape."`
+			choice
+				`	"I can't fit all that on my ship!"`
+				`	"That all makes sense."`
+					goto more
+
+			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to be flexible. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be of more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
+				goto more
+
+			label pirates
+			`	"You can always bribe them to leave you alone. If the minerals are good enough and you have enough cargo capacity, you'll still turn a profit. Or if you have a fast ship, you can just run away. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting merchants and plundering ships.`
+				goto more
+			
+			label value
+			`	"You will learn this by experience, but if the planet has an outfitter, you can check the price there before you sell.`
+
+			label more
+			`	"Anything else you want to ask me?"`
+				goto choices
+			
+			label end
+			`	"If you're willing to take me on one more journey," James says, "meet me in the spaceport bar in a little while. Don't forget to sell off your minerals at the trading post, or if there is one, the outfitter."`
 
 
 
@@ -423,14 +503,16 @@ mission "Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	source "Ingot"
+	source "New Sahara"
 	destination "Hestia"
 	to offer
-		has "Intro [2 Interceptor]: done"
+		has "Intro [2.1 Interceptor]: done"
 	
 	on offer
 		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while listening to the steady patter of micrometeorites against the roof. "Working here," says James, "is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing they can do about it except hope they see it coming. Care for a drink?"`
+			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic.`
+			`	"This is one of the least habitable planets in the galaxy. But if it doesn't kill us instantly, then someone's tried to settle it." He pauses for a moment while gazing at one of the displays. You spot a sandstorm picking up in the far distance as the workers in the fields hastily finish their work before it arrives.`
+			`	"Care for a drink?" he asks.`
 			choice
 				`	"Sure."`
 				`	"No thanks."`
@@ -474,8 +556,6 @@ conversation "end of intro missions"
 	label choices
 	choice
 		`	"Where should I go if I want to avoid pirates?"`
-		`	"What's a good place to mine asteroids?"`
-			goto asteroids
 		`	"Have you ever met any aliens?"`
 			goto aliens
 		`	"Are there any good trade routes you can give me?"`
@@ -485,10 +565,6 @@ conversation "end of intro missions"
 		`	"I think I'll manage."`
 			goto end
 	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces. Once you start moving farther south, things get riskier. The worlds down there don't bring in as much tax revenue as the Paradise Worlds do, so the Navy tends to ignore them. You'll find some local militia to back you up, but they're nothing compared to one of the Navy's Cruisers.`
-		goto more
-	
-	label asteroids
-	`	"Well to start off, you'll want to stay right here in the Paradise Worlds. The asteroids aren't the best, but it's the safest place to mine while you're still in a small ship. But once you're in something that's able to take a hit, you'll want to explore for an uninhabited system with lots of asteroids. You'll encounter more pirates, but you'll likely find better asteroids.`
 		goto more
 	
 	label aliens

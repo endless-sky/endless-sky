@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataWriter.h"
 #include "GameData.h"
-#include "Government.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "System.h"
@@ -49,7 +48,7 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 	auto definitions = map<string, set<string>> {};
 
 	for(auto &&node : changes)
-		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.count(node.Token(0)))
+		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.contains(node.Token(0)))
 		{
 			const string &key = node.Token(0);
 			const string &name = node.Token(1);
@@ -63,7 +62,7 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 					definitions[key].emplace(name);
 			}
 			// Since this (or any other) event may be used to assign a planet to a system, we cannot
-			// do a robust "planet definition" check. Similarly, all other GameEvent-createable objects
+			// do a robust "planet definition" check. Similarly, all other GameEvent-creatable objects
 			// become valid once they appear as a root-level node that has at least one child node.
 			else
 				definitions[key].emplace(name);
@@ -117,7 +116,7 @@ void GameEvent::Load(const DataNode &node)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(key == "visit planet" && child.Size() >= 2)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
-		else if(allowedChanges.count(key))
+		else if(allowedChanges.contains(key))
 			changes.push_back(child);
 		else
 			conditionsToApply.Add(child);
@@ -200,11 +199,11 @@ string GameEvent::IsValid() const
 
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
-			if(!system->IsValid() && !deferred["system"].count(system->Name()))
+			if(!system->IsValid() && !deferred["system"].contains(system->Name()))
 				return "contains invalid system \"" + system->Name() + "\".";
 	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
 		for(auto &&planet : planets)
-			if(!planet->IsValid() && !deferred["planet"].count(planet->TrueName()))
+			if(!planet->IsValid() && !deferred["planet"].contains(planet->TrueName()))
 				return "contains invalid planet \"" + planet->TrueName() + "\".";
 
 	return isDefined ? "" : "not defined";
@@ -219,16 +218,15 @@ void GameEvent::SetDate(const Date &date)
 
 
 
-void GameEvent::Apply(PlayerInfo &player)
+// Apply this event's changes to the player. Returns a list of data changes that need to
+// be applied in a batch with other events that are applied at the same time.
+list<DataNode> GameEvent::Apply(PlayerInfo &player)
 {
 	if(isDisabled)
-		return;
+		return {};
 
 	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
-	// Apply (and store a record of applying) this event's other general
-	// changes (e.g. updating an outfitter's inventory).
-	player.AddChanges(changes);
 
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(*system);
@@ -241,6 +239,10 @@ void GameEvent::Apply(PlayerInfo &player)
 		player.Visit(*system);
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(*planet);
+
+	// Return this event's data changes so that they can be batch applied
+	// with the changes from other events.
+	return std::move(changes);
 }
 
 

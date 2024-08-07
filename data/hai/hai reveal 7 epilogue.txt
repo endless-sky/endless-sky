@@ -273,7 +273,7 @@ mission "Hai Reveal [D04] Escort Republic Outfitters"
 			`	"Still," says Hiyamaharu, turning to Xilin.`
 			label fantastic
 			`	"A great success all round," replies Xilin. "The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here.`
-			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the new station, the plan is to facilitate the set up of some of the major outfitters, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, a long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops.`
+			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the new station, the plan is to facilitate the setup of some of the major outfitters, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, a long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops.`
 			`	"Of course," Xilin adds, "we'll understand if you're too busy now."`
 			choice
 				`	"Sure, why not?"`
@@ -497,7 +497,7 @@ mission "Hai Reveal [D10] Escort Free World Outfitters"
 				`	"I'll do it, friend."`
 					accept
 				`	"Of course I'll do it, but how much is that exactly?"`
-			`	He winks. "A hundred thousand credits per day, for a fifty-two day route with eight stops."`
+			`	He winks. "A hundred thousand credits per day, for a fifty-two-day route with eight stops."`
 			`	"Of course, if you really don't want to do it, I'll understand. I don't imagine you're keen to deal with the politics."`
 			`	You take a moment to consider helping a good friend... for six million credits.`
 			choice
@@ -589,7 +589,7 @@ mission "Hai Reveal [D12] Escort Free World Outfitters"
 event "mooncreek main outfitters"
 	planet Mooncreek
 		add outfitter "Lovelace Security"
-		add outfitter "Syndicate Security"
+		add outfitter "Syndicated Security"
 		add outfitter "Hai Security"
 		security 0.8
 

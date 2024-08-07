@@ -21,9 +21,9 @@ ship "Aphid"
 		"hull" 1400
 		"required crew" 1
 		"bunks" 5
-		"mass" 100
-		"drag" 1.9
-		"heat dissipation" .90
+		"mass" 130
+		"drag" 2.1
+		"heat dissipation" .82
 		"fuel capacity" 400
 		"cargo space" 51
 		"outfit space" 185
@@ -89,9 +89,9 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 187
-		"drag" 3.9
-		"heat dissipation" .75
+		"mass" 440
+		"drag" 5.7
+		"heat dissipation" .52
 		"fuel capacity" 600
 		"cargo space" 38
 		"outfit space" 375
@@ -201,9 +201,9 @@ ship "Cicada"
 		"hull" 2000
 		"required crew" 8
 		"bunks" 51
-		"mass" 300
-		"drag" 4.7
-		"heat dissipation" .75
+		"mass" 487
+		"drag" 6.1
+		"heat dissipation" .58
 		"fuel capacity" 500
 		"cargo space" 143
 		"outfit space" 323
@@ -243,7 +243,7 @@ ship "Cicada"
 	explode "large explosion" 16
 	explode "huge explosion" 4
 	"final explode" "final explosion medium"
-	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life".`
+	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life."`
 
 
 
@@ -280,7 +280,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Skipper Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
@@ -301,9 +301,9 @@ ship "Geocoris"
 		"hull" 6200
 		"required crew" 15
 		"bunks" 56
-		"mass" 810
-		"drag" 17.1
-		"heat dissipation" 0.45
+		"mass" 1576
+		"drag" 26.5
+		"heat dissipation" 0.3
 		"fuel capacity" 800
 		"cargo space" 761
 		"outfit space" 582
@@ -384,9 +384,9 @@ ship "Grasshopper"
 		"hull" 600
 		"required crew" 1
 		"bunks" 5
-		"mass" 95
-		"drag" 1.5
-		"heat dissipation" .85
+		"mass" 124
+		"drag" 1.65
+		"heat dissipation" .78
 		"fuel capacity" 300
 		"cargo space" 29
 		"outfit space" 198
@@ -473,9 +473,9 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 220
-		"drag" 3.8
-		"heat dissipation" .85
+		"mass" 345
+		"drag" 4.8
+		"heat dissipation" .68
 		"fuel capacity" 600
 		"cargo space" 73
 		"outfit space" 278
@@ -571,9 +571,9 @@ ship "Ladybug"
 		"hull" 3600
 		"required crew" 9
 		"bunks" 33
-		"mass" 280
-		"drag" 5.4
-		"heat dissipation" .85
+		"mass" 584
+		"drag" 7.8
+		"heat dissipation" .59
 		"fuel capacity" 900
 		"cargo space" 91
 		"outfit space" 460
@@ -709,10 +709,10 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 168
-		"drag" 3.55
+		"mass" 429
+		"drag" 5.33
 		"hull repair rate" 1
-		"heat dissipation" .5
+		"heat dissipation" .34
 		"fuel capacity" 300
 		"cargo space" 71
 		"outfit space" 354
@@ -773,7 +773,7 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
+	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Skipper Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
@@ -856,9 +856,9 @@ ship "Sea Scorpion"
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
-		"mass" 320
-		"drag" 5.2
-		"heat dissipation" .7
+		"mass" 735
+		"drag" 7.8
+		"heat dissipation" .47
 		"fuel capacity" 500
 		"cargo space" 45
 		"outfit space" 510
@@ -1008,9 +1008,9 @@ ship "Scarab"
 		"hull" 1500
 		"required crew" 4
 		"bunks" 27
-		"mass" 146
-		"drag" 3.8
-		"heat dissipation" .87
+		"mass" 221
+		"drag" 4.6
+		"heat dissipation" .73
 		"fuel capacity" 400
 		"cargo space" 44
 		"outfit space" 231
@@ -1059,9 +1059,9 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 650
-		"drag" 8.8
-		"heat dissipation" .60
+		"mass" 1881
+		"drag" 16.3
+		"heat dissipation" .33
 		"fuel capacity" 500
 		"cargo space" 142
 		"outfit space" 798
@@ -1446,14 +1446,14 @@ ship "Emperor Beetle"
 		"hull" 19600
 		"required crew" 83
 		"bunks" 91
-		"mass" 870
-		"drag" 9.8
+		"mass" 2367
+		"drag" 18.1
 		"outfit space" 891
 		"cargo space" 27
 		"weapon capacity" 352
 		"engine capacity" 139
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
-		"heat dissipation" 0.7
+		"heat dissipation" 0.38
 		"tactical scan power" 30
 		"ramscoop" .5
 		"fuel capacity" 600
@@ -1559,9 +1559,9 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 925
-		"drag" 15.4
-		"heat dissipation" .42
+		"mass" 2590
+		"drag" 30
+		"heat dissipation" .22
 		"fuel capacity" 600
 		"cargo space" 142
 		"outfit space" 828
@@ -1625,7 +1625,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alphas' "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -1791,9 +1791,9 @@ ship "Water Bug"
 		"hull" 4500
 		"required crew" 5
 		"bunks" 29
-		"mass" 270
-		"drag" 5.9
-		"heat dissipation" .75
+		"mass" 461
+		"drag" 7.7
+		"heat dissipation" .58
 		"fuel capacity" 600
 		"cargo space" 197
 		"outfit space" 368

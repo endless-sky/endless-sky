@@ -214,6 +214,57 @@ outfit "Fuel Module"
 	description "In their early days of space exploration, the Saryds developed the Fuel Module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
 	description "	Nowadays, nearly every system in the Coalition has refueling facilities, but some captains still find use in the extra jumps these modules offer."
 
+outfit "Decoy Plating"
+	category "Systems"
+	cost 93000
+	thumbnail "outfit/decoy plating"
+	"mass" 7
+	"outfit space" -7
+	"scan interference" 2
+	"radar jamming" 5
+	description "This plating takes advantage of a ship's scan logs and reproduces the data of other ships nearby, effectively deflecting attempts to scan a ship's true cargo and equipment."
+	description "	Out of a need to protect themselves against destructive Heliarch torpedoes, the Lunarium incorporated small, independent radar jamming systems in each section of the plating, if only to act as a last line of defense."
+
+outfit "Refueling Module"
+	category "Systems"
+	cost 822000
+	thumbnail "outfit/refueling module"
+	"mass" 10
+	"outfit space" -10
+	"fuel capacity" -100
+	"fuel generation" .05
+	"energy consumption" .11
+	description "To avoid the risk of being inspected by the Heliarchs as they refuel on planets, Lunarium captains employ this outfit when carrying supplies or stolen outfits."
+	description "	The outfit's mechanisms need a partitioned amount of fuel set aside to allow it to work properly, so a ship can only install so many of these before becoming incapable of jumping to another system."
+
+outfit "Shield Refactor Module"
+	category "Systems"
+	cost 3248000
+	thumbnail "outfit/shield refactor module"
+	"mass" 7
+	"outfit space" -7
+	"hull repair rate" -.25
+	"shield energy multiplier" .2
+	"shield heat" .32
+	"shield generation multiplier" .2
+	"hull repair multiplier" -.2
+	description "In theory, all shield generators can operate at a much faster rate than normal, if pushed to their true limit. However, the constant need to reform shields during a heated battle quickly overloads shield generators and damages them in the process. By relocating dedicated hull repair systems to focus exclusively on repairing such damage, this compact device allows shield generators to reach their true potential."
+	description "	A much needed boon against the Heliarch torpedoes' devastating effects on hull plating, the Lunarium highly favors production of this expensive piece due to its advantages over other shield generators."
+
+outfit "Small Recovery Module"
+	category "Systems"
+	cost 625000
+	thumbnail "outfit/small recovery module"
+	"mass" 25
+	"outfit space" -25
+	"shield generation" .97
+	"shield energy" .43
+	"shield heat" .7
+	"hull repair rate" .43
+	"hull energy" .97
+	"hull heat" .07
+	description "By combining the Coalition's shield generation and hull repair technologies into one piece of equipment, the Lunarium has increased the effectiveness of both, allowing for better defenses against Heliarch weaponry."
+
 outfit "Scanning Module"
 	category "Systems"
 	licenses
@@ -235,6 +286,7 @@ outfit "Outskirts Gauger"
 	thumbnail "outfit/outskirts gauger"
 	"mass" 8
 	"outfit space" -8
+	"unique" 1
 	"tactical scan power" 169
 	"energy consumption" .2
 	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
@@ -249,7 +301,7 @@ outfit "Small Thrust Module"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"thrust" 8.3
+	"thrust" 12.45
 	"thrusting energy" 0.46
 	"thrusting heat" 3
 	"flare sprite" "effect/coalition flare/small"
@@ -266,7 +318,7 @@ outfit "Large Thrust Module"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 30.6
+	"thrust" 45.9
 	"thrusting energy" 1.7
 	"thrusting heat" 11
 	"flare sprite" "effect/coalition flare/large"
@@ -283,7 +335,7 @@ outfit "Small Reverse Module"
 	"mass" 9
 	"outfit space" -9
 	"weapon capacity" -9
-	"reverse thrust" 8.3
+	"reverse thrust" 12.45
 	"reverse thrusting energy" 0.46
 	"reverse thrusting heat" 3
 	"reverse flare sprite" "effect/coalition flare/small"
@@ -301,7 +353,7 @@ outfit "Large Reverse Module"
 	"mass" 32
 	"outfit space" -32
 	"weapon capacity" -32
-	"reverse thrust" 30.6
+	"reverse thrust" 45.9
 	"reverse thrusting energy" 1.7
 	"reverse thrusting heat" 11
 	"reverse flare sprite" "effect/coalition flare/large"
@@ -319,7 +371,7 @@ outfit "Small Steering Module"
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
-	"turn" 178.8
+	"turn" 268.2
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
@@ -336,7 +388,7 @@ outfit "Large Steering Module"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 747
+	"turn" 1120.5
 	"turning energy" 1.0
 	"turning heat" 6.5
 	"steering flare sprite" "effect/coalition flare/large"
@@ -353,7 +405,7 @@ outfit "Enforcer Confrontation Gear"
 	"capture attack" 3.1
 	"capture defense" 4.9
 	"unplunderable" 1
-	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the safety of the Coalition."
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
@@ -366,7 +418,21 @@ outfit "Enforcer Riot Staff"
 	"unplunderable" 1
 	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
+outfit "Anti-Materiel Gun"
+	category "Hand to Hand"
+	cost 257200
+	thumbnail "outfit/anti-materiel gun"
+	"capture attack" 3.4
+	"capture defense" 1.9
+	"unplunderable" 1
+	description "Easy to use and relatively cheap to manufacture, these weapons were born by refurbishing the Heliarchs' favored arms, with the new barrel shaping the energy into deadly blasts that make short work of even the toughest body armor."
+
 outfit "Coalition License"
 	category "Licenses"
 	thumbnail "outfit/coalition license"
 	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
+
+outfit "Heliarch License"
+	category "Licenses"
+	thumbnail "outfit/heliarch license"
+	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."

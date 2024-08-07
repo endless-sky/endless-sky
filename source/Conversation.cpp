@@ -287,7 +287,7 @@ void Conversation::Save(DataWriter &out) const
 					out.Write(line);
 					// If the conditions are the same, output them for each
 					// paragraph. (We currently don't merge paragraphs with
-					// identical ConditionSets, but some day we might.
+					// identical ConditionSets, but some day we might.)
 					if(!it.conditions.IsEmpty())
 					{
 						out.BeginChild();
@@ -619,7 +619,7 @@ bool Conversation::HasDisplayRestriction(const DataNode &node)
 // Add a label, pointing to whatever node is created next.
 void Conversation::AddLabel(const string &label, const DataNode &node)
 {
-	if(labels.count(label))
+	if(labels.contains(label))
 	{
 		node.PrintTrace("Error: Conversation: label \"" + label + "\" is used more than once:");
 		return;

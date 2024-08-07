@@ -26,6 +26,36 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	void AddBuffer(ImageBuffer &buffer, uint32_t *target)
+	{
+		// Check whether this sprite is large enough to require size reduction.
+		if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
+			buffer.ShrinkToHalfSize();
+
+		// Upload the images as a single array texture.
+		glGenTextures(1, target);
+		glBindTexture(GL_TEXTURE_2D_ARRAY, *target);
+
+		// Use linear interpolation and no wrapping.
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		// Upload the image data.
+		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+
+		// Unbind the texture.
+		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+
+		// Free the ImageBuffer memory.
+		buffer.Clear();
+	}
+}
+
 
 
 Sprite::Sprite(const string &name)
@@ -42,13 +72,9 @@ const string &Sprite::Name() const
 
 
 
-// Upload the given frames. The given buffer will be cleared afterwards.
+// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 {
-	// Do nothing if the buffer is empty.
-	if(!buffer.Pixels())
-		return;
-
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
 	{
@@ -57,30 +83,21 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 		frames = buffer.Frames();
 	}
 
-	// Check whether this sprite is large enough to require size reduction.
-	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
-		buffer.ShrinkToHalfSize();
+	// Only non-empty buffers need to be added to the sprite.
+	if(buffer.Pixels())
+		AddBuffer(buffer, &texture[is2x]);
+}
 
-	// Upload the images as a single array texture.
-	glGenTextures(1, &texture[is2x]);
-	glBindTexture(GL_TEXTURE_2D_ARRAY, texture[is2x]);
 
-	// Use linear interpolation and no wrapping.
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	// Upload the image data.
-	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
-		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+// Upload the given frames. The given buffer will be cleared afterwards.
+void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
+{
+	// Do nothing if the buffer is empty.
+	if(!buffer.Pixels())
+		return;
 
-	// Unbind the texture.
-	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
-
-	// Free the ImageBuffer memory.
-	buffer.Clear();
+	AddBuffer(buffer, &swizzleMask[is2x]);
 }
 
 
@@ -88,8 +105,17 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {
-	glDeleteTextures(2, texture);
-	texture[0] = texture[1] = 0;
+	if(texture[0] || texture[1])
+	{
+		glDeleteTextures(2, texture);
+		texture[0] = texture[1] = 0;
+	}
+
+	if(swizzleMask[0] || swizzleMask[1])
+	{
+		glDeleteTextures(2, swizzleMask);
+		swizzleMask[0] = swizzleMask[1] = 0;
+	}
 
 	width = 0.f;
 	height = 0.f;
@@ -143,4 +169,20 @@ uint32_t Sprite::Texture() const
 uint32_t Sprite::Texture(bool isHighDPI) const
 {
 	return (isHighDPI && texture[1]) ? texture[1] : texture[0];
+}
+
+
+
+// Get the texture index, based on whether the screen is high DPI or not.
+uint32_t Sprite::SwizzleMask() const
+{
+	return SwizzleMask(Screen::IsHighResolution());
+}
+
+
+
+// Get the index of the texture for the given high DPI mode.
+uint32_t Sprite::SwizzleMask(bool isHighDPI) const
+{
+	return (isHighDPI && swizzleMask[1]) ? swizzleMask[1] : swizzleMask[0];
 }

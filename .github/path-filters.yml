@@ -16,10 +16,7 @@ integration_tests:
 
 codespell:
   - .codespell.exclude
-
-codeblocks_files:
-  - '*.cbp'
-  - utils/check_codeblocks.sh
+  - .codespell.words.exclude
 
 editorconfig_files:
   - '**/!(*.mp3)'
@@ -36,6 +33,7 @@ cmake_files:
   - source/CMakeLists.txt
   - tests/CMakeLists.txt
   - tests/integration/IntegrationTests.cmake
+  - tests/integration/RunIntegrationTest.cmake
   - utils/vcpkg_bootstrap.cmake
   - utils/check_cmake.sh
   - CMakePresets.json
@@ -49,5 +47,12 @@ copyright:
 changelog:
   - changelog
 
-parse_script:
-  - utils/test_parse.ps1
+ci_config:
+  - '.github/workflows/ci.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'
+
+projects_check_config:
+  - '.github/workflows/projects_check.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'

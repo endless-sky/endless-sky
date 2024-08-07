@@ -720,7 +720,7 @@ mission "Remnant: Void Sprites 3"
 			`	You also observe some void sprites leaving the planet, soaring upward on thermal updrafts. As they rise, their bodies swell to several times their original size, like an aerostat balloon gaining altitude. But clearly they have another form of propulsion as well, something akin to the antigravity repulsors that human ships use to travel from a planet's surface into orbit.`
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		event "remnant: void sprite research" 20
 		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
@@ -1363,7 +1363,7 @@ mission "Remnant: Deep Surveillance"
 			label next
 			action
 				set "remnant: got deep wormhole and sprite research"
-			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP', and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP,' and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 				goto reencrypt
 			
 			label remnant
@@ -2702,7 +2702,7 @@ mission "Remnant: Broken Jump Drive 3"
 				`	"Great! I will find more."`
 					goto end
 				`	"Any theories of note?"`
-			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to re-use an existing crease.`
+			`	He looks thoughtful for a moment, then warbles, "As you may know, standard hyperdrives work by generating a fusion reaction and folding it into the fabric of space/time, and these folds naturally fall along the known hyperlanes. I suppose one could view those lanes as the 'crease lines' of the universe. My favorite theory is that jump drives have some additional machinery to guide the fold. That way they can dictate where the fold occurs instead of just aligning with the nearest crease. Given their increased fuel draw, it makes sense that it would take more fuel to generate a fresh fold than to reuse an existing crease.`
 			label end
 			`	"Oh, before I forget..." he hands you <payment>. "Off to start setting up the tests." He sings half to himself as he trundles off after the wagon.`
 
@@ -2812,7 +2812,6 @@ mission "Remnant: remnant research update compatibility"
 
 
 mission "Remnant: Face to Maw 1"
-	minor
 	landing
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
@@ -2858,6 +2857,7 @@ mission "Remnant: Face to Maw 1B"
 	landing
 	to offer
 		has "event: remnant: return the samples timer"
+		has "flagship model: Puffin"
 		or
 			not "Remnant: Cognizance 1: offered"
 			has "Remnant: Cognizance 19: done"
@@ -2929,7 +2929,7 @@ mission "Remnant: Face to Maw 2"
 			label skip
 			`	The ship before you has some faint traces of the Puffin you have flown to Nenia, along with other elements of Remnant design, but it is clearly something new. Its antennae swivel around, as if taking in its environment, and the tentacles along the side twitch and reach out to touch its surroundings. Solidly built tendrils underneath it flex as it lifts itself off its supports and begins to move around. You have a momentary vision of what this ship might look like in the skies of Nenia.`
 			scene "scene/penguinscene"
-			`	Taely's droning chant of technical details finally seeps through your reverie: "... So from a captain's point of view flying the Penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one." She pats the nose of the Penguin and it makes a whooshing noise. "I call her the 'Shadow Hope,' but you can rename her whatever you like." After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
+			`	Taely's droning chant of technical details finally seeps through your reverie: "... so from a captain's point of view flying the Penguin should be very similar to a normal ship, except she flies herself and doesn't need a crew to run her systems." She pauses, and looks at you. "Your curiosity provided the final ingredients to bring her to life. You should be the first to have one." She pats the nose of the Penguin and it makes a whooshing noise. "I call her the 'Shadow Hope,' but you can rename her whatever you like." After a moment she starts going over the ship with a scanner, leaving you to contemplate in silence.`
 
 
 
@@ -3735,7 +3735,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			label stormresume
 			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at approximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures deprecatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
-			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... Except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
+			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
 			choice
 				`	"What do the storms have to do with the heat?"`
 				`	"What units do you use for temperature?"`
@@ -3820,7 +3820,7 @@ mission "Remnant: Logistics 1"
 			`Eon leads you to the bustling cafeteria, chattering about ship design since the Alpha Wars. He orders a couple of hot drinks and leads you to a quiet table overlooking the docks. You try your drink. It's strongly flavored but a bit odd, like someone's memory of what coffee should taste like, reconstituted from local foods.`
 			`	Eon leaves his untouched as he launches into conversation. "Those of us in logistics have noticed that you are spending time in our systems, and we wanted to see if you would be available to pick up work for us. It would be delivery work like the generator you brought for the housing project."`
 			choice
-				`	(Nod)`
+				`	(Nod.)`
 					goto delivery
 				`	"You put starship radiothermals in your houses?"`
 			`	"You do not?" he responds playfully. "Well, 'generators in each community' would be more accurate. We maintain a decentralized power grid so we have more resiliency in the event of an attack or natural disaster. It also makes use of the power plants we salvage from the Korath and ones we recover from our own damaged ships. Besides, widely deploying the technology ensures that we have expertise to maintain and repair it all across the Remnant. But," he signs a pushing motion, "civil engineering is another subject. I hope you are more interested in how we move our various cargoes."`

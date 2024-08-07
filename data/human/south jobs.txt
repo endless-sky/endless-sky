@@ -223,3 +223,129 @@ mission "Sketchy Passenger [1]"
 	on complete
 		payment 2000 160
 		dialog "Your passengers ask that you land away from the busy spaceport center. They hand you <payment> and rush out of your ship and away from the spaceport with considerable speed."
+
+mission "Delta V Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Delta V Corporation, a major missile and engine manufacturing firm in the Southern Rim. Payment is <payment>."
+	cargo "alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Pherkad 2 15
+		attributes factory
+	destination Solace
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Delta V Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Delta V Corporation, a major missile and engine manufacturing firm in the Southern Rim. Payment is <payment>."
+	cargo Electronics 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Pherkad 2 15
+		attributes factory
+	destination Solace
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tarazed Shipyards Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in the South. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Tarazed 2 10
+		attributes factory
+	destination Wayfarer
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tarazed Shipyards Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in the South. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Tarazed 2 10
+		attributes factory mining
+	destination Wayfarer
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tarazed Shipyards Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in the South. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Tarazed 2 10
+		attributes factory mining
+	destination Wayfarer
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tarazed Systems Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Tarazed Systems, a respected outfits manufacturer and designer in southern human space. Payment is <payment>."
+	cargo "alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Tarazed 2 10
+		attributes factory mining
+	destination Wayfarer
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tarazed Systems Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Tarazed Systems, a respected outfits manufacturer and designer in southern human space. Payment is <payment>."
+	cargo Electronics 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Tarazed 2 10
+		attributes factory
+	destination Wayfarer
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"

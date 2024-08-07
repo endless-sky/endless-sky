@@ -25,7 +25,7 @@ mission "Coalition: First Contact"
 		conversation
 			`This planet seems to be inhabited by at least three different sentient species. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
 			`	One of the spiders walks up to you, stretching its legs to raise its face and many eyes to the level of your own face, and says something to you in a gloopy sort of burbling language that you don't understand. The beetles, meanwhile, are talking to each other in a different language, all clicks and chittering. And the centaur stands quietly at a distance and keeps glancing back toward the spaceport as if waiting for someone.`
-			`	And eventually, someone does arrive: a beetle, a spider, and a centaur all wearing yellow armbands and some sort of electric box hanging on a chain around each of their necks. They walk up to you, and the centaur speaks. After a brief delay, the box around its neck says, "In the name of the Heliarchs, who drove out the oppressors, who maintain peace, we the human visitor greet."`
+			`	And eventually, someone does arrive: a beetle, a spider, and a centaur all wearing yellow armbands, small, triangle-shaped metal headpieces, and some sort of electric box hanging on a chain around each of their necks. They walk up to you, and the centaur speaks. After a brief delay, the box around its neck says, "In the name of the Heliarchs, who drove out the oppressors, who maintain peace, we the human visitor greet."`
 			choice
 				`	"Thank you."`
 					goto next
@@ -1083,7 +1083,7 @@ mission "Saryd Couple 1"
 				`	(Go back to my ship and check if it was properly refueled.)`
 					goto ship
 			`	They pause their map-gazing and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin> and build a home they've always dreamed of on another world.`
-			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
+			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crew member, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
 			`	"Much too far away, his old job took him, and well paid, crew members are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain? Once ready our house is, pay you we would."`
 			choice
 				`	"Of course, just come to my ship when you've finished preparing your luggage."`
@@ -1420,7 +1420,7 @@ mission "Coalition: Alpha Encounter"
 		event "alitis freed" 1095
 		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a jump drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
 		conversation
-			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming towards you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
+			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming toward you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
 			`	You are not pressed for long though. You feel the Alpha's attention shift to the side you cannot see, as an Arach swoops in with a tackle. The Alpha lets go of your arms in an attempt to block the attack, but it does not prevent the Arach from bowling them clear off of you where the two begin to wrestle in your line of sight. The Alpha is a man and, surprisingly to you, despite his strength, it doesn't take long for the Arach Heliarch to restrain your attacker. The Arach firmly pins his arms to his torso with four legs, holds his hips down with two, and uses her last pair to lever herself until she rests her entire body weight into pinning the Alpha.`
 			`	A Saryd Heliarch approaches and tells you to keep your distance before interposing himself partially between you and your assailant. He then looks at the Alpha and asks through his translator box, "What reason for attacking this person, did you have?"`
 			`	The Alpha is still struggling to try and get out of the Arach's grip, and you notice an intricate gold necklace which has splayed across his shoulder and onto the floor in the scuffle, jangling in the quiet every time he struggles. At this point, everyone else has cleared out of the area and is giving the scene a wide berth. As you get to your feet he ignores the Saryd's question and looks at you intensely. "You're with the Navy, aren't you? Finally figured out I was here, thought you'd finish the job?"`
@@ -1453,7 +1453,7 @@ mission "Coalition: Alpha Encounter"
 			choice
 				`	"Are you so busy in that empty cell that you can't answer me?"`
 				`	"Tough talk for someone who wrestled a spider and lost."`
-			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drive capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
+			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drives capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
 			choice
 				`	"You 'knew better?' What do you mean?"`
 				`	"What, did you have a change of heart once you got here?"`
@@ -1486,7 +1486,7 @@ mission "Saryd University Lecture"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop toward you, hailing you down.`
 			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
 			`	"A scientist, I am, and invited to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
 			choice
@@ -1624,8 +1624,10 @@ mission "Saryd University Lecture"
 				`	"There are many independent worlds that are not ruled by one singular government. Some groups there support piracy, but others are peaceful."`
 					goto pirategood
 			`	"Stamped out, may lawlessness soon be," says the Heliarch in a solemn tone of voice. She picks a Saryd for the next question.`
+				goto questionfour
 			label pirategood
 			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
+			label questionfour
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
 			choice
 				`	(Tell them about the Korath.)`
@@ -1906,14 +1908,14 @@ mission "Coalition: Pilgrimage 5"
 					goto shrine
 				`	"Sorry, but I'd rather rest in the ship."`
 			`	She takes a step back, looking down to the bangle again. "Alright. Yes, your responsibility, this is not. Meet you in the spaceport later, I shall."`
-			`	You open the hatch for her, and she heads to one of the Saryds nearby and begins to talk to them. A few seconds into the conversation, they tense up, crossing their arms and swiping them down as if refusing something, then running off. She tries again with some of the other Saryds, but continues to be rejected. She looks back at your ship dejectedly, then starts eyeing the other ships docked nearby before heading towards a Kimek Thorn that has just landed. As she talks to the captain, the Kimek seems confused, but after a moment he briefly reenters their ship, returning in a puffy coat to follow Vellorae to the railway hub.`
+			`	You open the hatch for her, and she heads to one of the Saryds nearby and begins to talk to them. A few seconds into the conversation, they tense up, crossing their arms and swiping them down as if refusing something, then running off. She tries again with some of the other Saryds, but continues to be rejected. She looks back at your ship dejectedly, then starts eyeing the other ships docked nearby before heading toward a Kimek Thorn that has just landed. As she talks to the captain, the Kimek seems confused, but after a moment he briefly re-enters their ship, returning in a puffy coat to follow Vellorae to the railway hub.`
 			`	Long after the sun has set, the Kimek returns, rushing to their ship while trying to shake off the cold. You ask them about Vellorae, and they tell you she headed for the spaceport to "clear her head."`
 				accept
 			label shrine
 			`	She takes a long, deep breath. "Thank you, Captain. Far outside the village, the site is. Come, show you the way there, I will." You leave your ship, follow her to the railway hub, and board one of trains that appears to be one of the oldest and most simple. It lacks seats for non-Saryds, so you are forced to hold tight to what handrails you can reach.`
 			`	You remain on the train until the very last stop, when the sun is already starting to set. As you depart, you see a rural village with just a few dozen buildings and a simple dirt road, where a couple workers battle the snow and ice to keep it clear and easy to traverse. You follow Vellorae down the road, and once you reach a rocky pillar with a hole carved through it, she turns to the forest, heading out on a thin, straight trail. Looking behind you, you see the setting sun fitting inside the pillar's opening.`
 			`	As you follow Vellorae down the trail, you see the trees gradually show more and more signs of a forest fire, with darker, damaged barks, increasingly ashy soil, and many fallen, decomposing portions of the forest. The trail ends abruptly at a large scar scorched through the forest. The piles of ash still present below your feet almost resemble the rest of the planet's otherwise snowy ground, but somehow are kept from mixing with the snow. Whether deliberately cleared by more workers or some other force, you cannot tell. Near the center of the scar you see a small mound with an opening in the side, almost like a "shack" made out of the charred tree trunks and rocks. A faint light comes from within it.`
-			`	While you're looking at the mound, Vellorae grabs your hand and starts hesitantly pulling you towards it. Inside, the fading sunlight behind you contrasts with the source of the light within, a small pyre in the middle of the "shack" which has only a few lone flames dancing on the embers. Vellorae lays down in front of it, removes her bangle, and places it in the flames for a brief moment before snatching it up and standing again. Once on her feet, she grabs your hand again, tugging you along as she hurries back to the edge of the scorched clearing.`
+			`	While you're looking at the mound, Vellorae grabs your hand and starts hesitantly pulling you toward it. Inside, the fading sunlight behind you contrasts with the source of the light within, a small pyre in the middle of the "shack" which has only a few lone flames dancing on the embers. Vellorae lays down in front of it, removes her bangle, and places it in the flames for a brief moment before snatching it up and standing again. Once on her feet, she grabs your hand again, tugging you along as she hurries back to the edge of the scorched clearing.`
 			`	She seems to settle again once you have reached the trail, letting go of your hand and slowing her pace.`
 			choice
 				`	"What was that about? What got you so agitated?"`
@@ -2326,7 +2328,7 @@ mission "Coalition: Submarines 4"
 			`	"Let's see..." Apri'ie heads to the prop to check on the welded parts. "Yes, very good. Performed well, the welder arms have. Good for deployment, they should be." The submarines go ahead once again, lighting the way back to the port as the ships follow them until docking.`
 				goto end
 			label refuse
-			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading towards the shore.`
+			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading toward the shore.`
 			`	"Worked perfectly, the welders have. Ready for deployment, the subs should be," Apri'ie tells you as he steps off of the tanker.`
 			label end
 			`	The subs are once again placed atop the sleds and brought into your ship. Apri'ie thanks the Kimek team for handling the subs and heads back into your ship, saying, "Time for their final trip, it is. Bring the vessels and I to <destination>, you may."`
@@ -2425,7 +2427,7 @@ mission "Coalition: Expeditions Past 2"
 			`	"Approval for us to leave, they gave me, but provide any further assistance - be that a jump drive, or funding - they won't," she explains. "Saved up well over the past few years, I have, so once done we are, pay you several million credits, I shall. But, who knows, maybe if exciting enough, our findings out there are, convinced to give you a bonus, the consuls might be," she smiles.`
 			label heading
 			`	"Ready to go outside, we are not. Not for the purpose of finding out about the last expedition, at least. A tool from House Idriss, we need, if to trace my ancestor's steps, we are. To <destination>, we must go."`
-			`	As she's about to continue, your conversation is cut short by a Kimek rushing towards you two, shouting frantically. Once he's closer, you recognize him as Arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
+			`	As she's about to continue, your conversation is cut short by a Kimek rushing toward you two, shouting frantically. Once he's closer, you recognize him as Arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
 			`	"Know that, I do! Exactly what I'm furious about, that is!" He shouts. "Asked them to give you a definitive answer, I had, but not this kind of definitive! Listen, permission or not, safe to leave, it is not. Know that, you do." He looks at her for a few moments, then to you. "Captain, as her superior, greatly appreciate your intent to help Sedlitaris, I do, but too brash about this, she has been. Take her out of our space, you must not."`
 			`	He looks at her again, as if expecting some response. When no response comes, he turns away slowly, saying, "Waste not, your life on this," and walks away. Sedlitaris sighs once he turns a corridor and says she's ready for the trip.`
 			choice
@@ -2710,7 +2712,7 @@ mission "Coalition: Expeditions Past 8"
 		conversation
 			`You land next to the forest again and venture into it once more. The trail fresh in your memory, you two reach the clearing quickly, where Sedlitaris puts the pylon close to where it was before being dug out. "Almost like if we were there with them, this should be, being right where they left the pylon. Hopefully a better understanding of what they were thinking, it will also provide."`
 			`	She starts the recording, and sharp, static beeps are the first thing you hear. After a moment, you can make out agitated voices, as if the crew was discussing something, but Sedlitaris' translator doesn't pick it up. Finally, the familiar voice of Mimodum comes out, "Destroyed, the rest of the fleet was. Made it back to the system, one of the Punishers that headed north must have; ran into some debris pieces floating about in the system, we did. Take off, the rest of those on Summit couldn't. The ground is..." the static returns, this time including some scratch-like stops. "... cut like clay... rock... molten..." It switches to static once again, then stops for a moment. When it's back, the interference noises are gone. "Meet with the split group, I must. Warn them of what happened, and head back home with them, I will."`
-			`	You two look at the pylon in silence for a while, then she slowly approaches the machine to pick it up, saying, "Supposed to head back home immediately, expedition ships were, if destroyed, one of the Punishers was. If followed those orders, he had... No guarantee of the split group's survival, he had. If back home, they went..."`
+			`	You two look at the pylon in silence for a while, then she slowly approaches the machine to pick it up, saying, "Supposed to head back home immediately, expedition ships were, if destroyed, one of the Punishers was. If followed those orders, he had... no guarantee of the split group's survival, he had. If back home, they went..."`
 			choice
 				`	"He could have, but then the other group wouldn't know that any Punisher was destroyed. They wouldn't know to go back."`
 				`	"Seems like they didn't pick the best person to follow those orders."`
@@ -2758,7 +2760,7 @@ mission "Coalition: Expeditions Past 9"
 			choice
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
-				`	(Stay quiet).`
+				`	(Stay quiet.)`
 			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
 			`	You agree, and look to set a route straight to Ablub.`
 				accept
@@ -3120,6 +3122,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 	minor
 	landing
 	invisible
+	"apparent payment" 5000000
 	to offer
 		has "known to the heliarchs"
 		has "outfit (cargo): Jump Drive"

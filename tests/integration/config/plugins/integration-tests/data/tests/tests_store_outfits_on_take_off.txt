@@ -1,3 +1,16 @@
+# Copyright (c) 2022 by warp-core
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "Outfit Take Off Storage Save"
 	category "savegame"
 	contents
@@ -268,7 +281,8 @@ test "Store Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 1
-		watchdog 90000
+		navigate
+			"travel destination" Winter
 		call "Land"
 		assert
 			and
@@ -302,7 +316,8 @@ test "Sell Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 0
-		watchdog 90000
+		navigate
+			"travel destination" Winter
 		call "Land"
 		assert
 			and

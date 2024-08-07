@@ -32,10 +32,8 @@ phrase "deep mystery cube pickup"
 	word
 		` `
 	word
-		`Odd.`
-		`Odd.`
-		`Strange.`
-		`Strange.`
+		`Odd.` 2
+		`Strange.` 2
 		`You think you see a shady figure watching you, but it could be your imagination.`
 		`You overhear someone giving your description, but you can't see where it's coming from or who they're talking to.`
 		`As you leave, you make eye contact with a dangerous-looking individual. Were they watching you? Probably a coincidence.`
@@ -326,8 +324,9 @@ mission "Transport scientists"
 		attributes "deep"
 	stopover
 		attributes "research"
+		not attributes "uninhabited"
 		distance 2 50
-	passengers 5 16
+	passengers 3 4 .43
 	to offer
 		random < 15
 	on stopover
@@ -338,6 +337,28 @@ mission "Transport scientists"
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
 		payment
 		payment 30000
+
+
+mission "Transport science department"
+	job
+	repeat
+	description "A department of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
+	source
+		attributes "deep"
+	stopover
+		attributes "research"
+		not attributes "uninhabited"
+		distance 2 50
+	passengers 20 4 .1
+	to offer
+		random < "passenger space" - 30
+	on stopover
+		dialog "The scientists have been giddily sharing and discussing the results of each of their research teams during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
+		payment 180000 100
 
 
 mission "Escort science vessel"
@@ -363,7 +384,7 @@ mission "Escort science vessel"
 		government "Merchant"
 		personality escort timid
 		fleet
-			names "deep"
+			names "deep science vessel"
 			variant
 				"Scout"
 			variant
@@ -446,7 +467,7 @@ phrase "secure package dropoff payment"
 	word
 		` `
 	word
-		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
+		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited.`
 
 
 mission "Secure Transport Job (Secret) [0]"
@@ -820,7 +841,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 mission "Deep Consultants"
 	minor
 	name "Transport consultants to <planet>"
-	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings.."
+	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings."
 	source
 		attributes "deep"
 		attributes "urban"
@@ -1071,3 +1092,94 @@ mission "Urgent Deep Sec Consultants [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+
+
+mission "Lionheart Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near "Epsilon Leonis" 2 10
+		attributes factory
+	destination Valhalla
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Lionheart Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near "Epsilon Leonis" 2 10
+		attributes factory research
+	destination Valhalla
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Lionheart Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near "Epsilon Leonis" 2 10
+		attributes factory mining
+	destination Valhalla
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Sky Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Deep Sky, manufacturer of cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
+	cargo Metal 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Naos 2 15
+		attributes factory
+	destination Asgard
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Sky Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Deep Sky, manufacturer of cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
+	cargo Electronics 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Naos 2 15
+		attributes factory research
+	destination Asgard
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
