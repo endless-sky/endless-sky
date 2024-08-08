@@ -261,22 +261,28 @@ void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, b
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
 	UpdateAttributes(outfit);
-
-	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
 }
 
 
 
-int OutfitInfoDisplay::RequirementsHeight() const
+int OutfitInfoDisplay::AttributesHeight() const
 {
-	return requirementsHeight;
+	// There are two places with 10-pixel padding
+	return 20 + attributes.Height();
 }
 
 
 
-void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
+Point OutfitInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Draw(topLeft, requirementLabels, requirementValues);
+	return ItemInfoDisplay::DrawAttributes(topLeft + Point{0., 10.});
+}
+
+
+
+Point OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
+{
+	return Draw(requirements, topLeft + Point{10., 10.});
 }
 
 
@@ -284,9 +290,7 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
 		bool canSell, bool descriptionCollapsed)
 {
-	requirementLabels.clear();
-	requirementValues.clear();
-	requirementsHeight = 20;
+	vector<string> requirementLabels, requirementValues;
 
 	int day = player.GetDate().DaysSinceEpoch();
 	int64_t cost = outfit.Cost();
@@ -303,7 +307,6 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		{
 			requirementLabels.push_back("license:");
 			requirementValues.push_back(license);
-			requirementsHeight += 20;
 		}
 	}
 
@@ -316,7 +319,6 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementLabels.push_back(out.str());
 	}
 	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
-	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
 	{
@@ -329,19 +331,16 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 			requirementLabels.push_back(out.str());
 		}
 		requirementValues.push_back(Format::Credits(sellValue));
-		requirementsHeight += 20;
 	}
 
 	if(outfit.Mass())
 	{
 		requirementLabels.emplace_back("mass:");
 		requirementValues.emplace_back(Format::Number(outfit.Mass()));
-		requirementsHeight += 20;
 	}
 
 	requirementLabels.emplace_back();
 	requirementValues.emplace_back();
-	requirementsHeight += 10;
 
 	bool hasContent = false;
 	static const vector<string> BEFORE = {"outfit space", "weapon capacity", "engine capacity"};
@@ -349,7 +348,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	{
 		if(outfit.Get(attr) < 0)
 		{
-			AddRequirementAttribute(attr, outfit.Get(attr));
+			AddRequirementAttribute(attr, outfit.Get(attr), requirementLabels, requirementValues);
 			hasContent = true;
 		}
 	}
@@ -358,12 +357,13 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	{
 		requirementLabels.emplace_back();
 		requirementValues.emplace_back();
-		requirementsHeight += 10;
 	}
 
 	for(const pair<const char *, double> &it : outfit.Attributes())
 		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
-			AddRequirementAttribute(it.first, it.second);
+			AddRequirementAttribute(it.first, it.second, requirementLabels, requirementValues);
+
+	requirements = CreateTable(requirementLabels, requirementValues);
 }
 
 
@@ -372,7 +372,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 // Any exceptions to that rule would require in-game code to handle
 // their unique properties, so when code is added to handle a new
 // attribute, this code also should also be updated.
-void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
+void OutfitInfoDisplay::AddRequirementAttribute(const string &label, double value, vector<string> &labels,
+		vector<string> &values)
 {
 	// These attributes have negative values but are not requirements
 	if(IsNotRequirement(label))
@@ -383,9 +384,8 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 	{
 		if(value > 0)
 		{
-			requirementLabels.push_back(label + ":");
-			requirementValues.push_back(Format::Number(value));
-			requirementsHeight += 20;
+			labels.push_back(label + ":");
+			values.push_back(Format::Number(value));
 			return;
 		}
 		else
@@ -395,18 +395,15 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 	if(value >= 0)
 		return;
 
-	requirementLabels.push_back(label + " needed:");
-	requirementValues.push_back(Format::Number(-value));
-	requirementsHeight += 20;
+	labels.push_back(label + " needed:");
+	values.push_back(Format::Number(-value));
 }
 
 
 
 void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 {
-	attributeLabels.clear();
-	attributeValues.clear();
-	attributesHeight = 20;
+	vector<string> attributeLabels, attributeValues;
 
 	bool hasNormalAttributes = false;
 
@@ -425,7 +422,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 		attributeLabels.emplace_back(attr + " added:");
 		attributeValues.emplace_back(Format::Number(value));
-		attributesHeight += 20;
 		hasNormalAttributes = true;
 	}
 
@@ -457,44 +453,41 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{
 			attributeLabels.emplace_back(bit->second);
 			attributeValues.emplace_back(" ");
-			attributesHeight += 20;
 		}
 		else
 		{
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
 			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
-			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
 	}
 
 	if(!outfit.IsWeapon())
+	{
+		attributes = CreateTable(attributeLabels, attributeValues);
 		return;
+	}
 
 	// Insert padding if any normal attributes were listed above.
 	if(hasNormalAttributes)
 	{
 		attributeLabels.emplace_back();
 		attributeValues.emplace_back();
-		attributesHeight += 10;
 	}
 
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
 		attributeValues.emplace_back(outfit.Ammo()->DisplayName());
-		attributesHeight += 20;
 		if(outfit.AmmoUsage() != 1)
 		{
 			attributeLabels.emplace_back("ammo usage:");
 			attributeValues.emplace_back(Format::Number(outfit.AmmoUsage()));
-			attributesHeight += 20;
 		}
 	}
 
 	attributeLabels.emplace_back("range:");
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
-	attributesHeight += 20;
 
 	// Identify the dropoff at range and inform the player.
 	double fullDropoff = outfit.MaxDropoff();
@@ -502,13 +495,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
 		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
-		attributesHeight += 20;
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
 		const pair<double, double> &ranges = outfit.DropoffRanges();
 		attributeValues.emplace_back(Format::Number(ranges.first)
 			+ " - " + Format::Number(ranges.second));
-		attributesHeight += 20;
 	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
@@ -603,7 +594,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
 				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
-				attributesHeight += 20;
 			}
 	}
 
@@ -617,21 +607,18 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back("continuous (" + Format::Number(lround(outfit.BurstReload() * 100. / reload)) + "%)");
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
-	attributesHeight += 20;
 
 	double turretTurn = outfit.TurretTurn() * 60.;
 	if(turretTurn)
 	{
 		attributeLabels.emplace_back("turret turn rate:");
 		attributeValues.emplace_back(Format::Number(turretTurn));
-		attributesHeight += 20;
 	}
 	double arc = outfit.Arc();
 	if(arc < 360.)
 	{
 		attributeLabels.emplace_back("arc:");
 		attributeValues.emplace_back(Format::Number(arc));
-		attributesHeight += 20;
 	}
 	int homing = outfit.Homing();
 	if(homing)
@@ -645,7 +632,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		};
 		attributeLabels.emplace_back("homing:");
 		attributeValues.push_back(skill[max(0, min(4, homing))]);
-		attributesHeight += 20;
 	}
 	static const vector<string> PERCENT_NAMES = {
 		"tracking:",
@@ -667,13 +653,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
 			attributeValues.push_back(Format::Number(percent) + "%");
-			attributesHeight += 20;
 		}
 
 	// Pad the table.
 	attributeLabels.emplace_back();
 	attributeValues.emplace_back();
-	attributesHeight += 10;
 
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
@@ -685,7 +669,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
 				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
-				attributesHeight += 20;
 			}
 	}
 
@@ -709,6 +692,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{
 			attributeLabels.emplace_back(OTHER_NAMES[i]);
 			attributeValues.emplace_back(Format::Number(otherValues[i]));
-			attributesHeight += 20;
 		}
+
+	attributes = CreateTable(attributeLabels, attributeValues);
 }

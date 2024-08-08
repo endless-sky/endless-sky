@@ -1060,11 +1060,11 @@ void ShopPanel::DrawMain()
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player, collapsed.contains("description"), true);
-	shipInfo.DrawAttributes(point, !isOutfitter);
-	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
+	Point outfitPoint = shipInfo.DrawAttributes(point, !isOutfitter);
+	outfitPoint.Y() += 10.;
+	Point end = shipInfo.DrawOutfits(outfitPoint);
 
-	return attributesHeight + shipInfo.OutfitsHeight();
+	return end.Y() - point.Y();
 }
 
 

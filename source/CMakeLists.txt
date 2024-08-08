@@ -370,6 +370,8 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestData.h
 	text/DisplayText.cpp
 	text/DisplayText.h
+	text/FlexTable.cpp
+	text/FlexTable.h
 	text/Font.cpp
 	text/Font.h
 	text/FontSet.cpp

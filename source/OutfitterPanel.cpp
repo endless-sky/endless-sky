@@ -270,17 +270,14 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		const bool hasDescription = outfitInfo.DescriptionHeight();
+		const bool hasDescription = outfitInfo.HasDescription();
 
 		double descriptionOffset = hasDescription ? 40. : 0.;
 
 		if(hasDescription)
 		{
 			if(!collapsed.contains(DESCRIPTION))
-			{
-				descriptionOffset = outfitInfo.DescriptionHeight();
-				outfitInfo.DrawDescription(startPoint);
-			}
+				descriptionOffset = outfitInfo.DrawDescription(startPoint).Y() - startPoint.Y();
 			else
 			{
 				const Color &dim = *GameData::Colors().Get("medium");
@@ -298,11 +295,10 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		}
 
 		const Point requirementsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		const Point attributesPoint(startPoint.X(), requirementsPoint.Y() + outfitInfo.RequirementsHeight());
-		outfitInfo.DrawRequirements(requirementsPoint);
-		outfitInfo.DrawAttributes(attributesPoint);
+		const Point attributesPoint = outfitInfo.DrawRequirements(requirementsPoint);
+		const Point attributesEnd = outfitInfo.DrawAttributes(attributesPoint);
 
-		heightOffset = attributesPoint.Y() + outfitInfo.AttributesHeight();
+		heightOffset = startPoint.Y() - attributesEnd.Y();
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel

@@ -180,7 +180,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		}
 
-		const bool hasDescription = shipInfo.DescriptionHeight();
+		const bool hasDescription = shipInfo.HasDescription();
 
 		double descriptionOffset = hasDescription ? 40. : 0.;
 
@@ -188,8 +188,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 		{
 			if(!collapsed.contains(DESCRIPTION))
 			{
-				descriptionOffset = shipInfo.DescriptionHeight();
-				shipInfo.DrawDescription(startPoint);
+				descriptionOffset = shipInfo.DrawDescription(startPoint).Y() - startPoint.Y();
 			}
 			else
 			{
@@ -208,11 +207,11 @@ double ShipyardPanel::DrawDetails(const Point &center)
 		}
 
 		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
-		shipInfo.DrawAttributes(attributesPoint);
-		shipInfo.DrawOutfits(outfitsPoint);
+		Point outfitsPoint = shipInfo.DrawAttributes(attributesPoint);
+		outfitsPoint.Y() += 10.;
+		const Point end = shipInfo.DrawOutfits(outfitsPoint);
 
-		heightOffset = outfitsPoint.Y() + shipInfo.OutfitsHeight();
+		heightOffset = end.Y();
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
