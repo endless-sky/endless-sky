@@ -96,7 +96,7 @@ mission "Successors: First Contact Exploration: Mosaa-Oa-Vyret"
 				random < 10
 	on offer
 		conversation
-			`Near to your landing pad in the spaceport here, you see a large circular pool with several Successors milling about in it. Some relax against the edges while others appear deep in conversation; one trio of individuals are followed by a small salamander-like animal that swims behind them and plays between and around their arms, making soft splashing noises as it jumps in and out of the water.`
+			`Near to your landing pad in the spaceport here, you see a large circular pool with several Successors milling about in it. Some relax against the edges while others appear deep in conversation; one trio of individuals is followed by a small salamander-like animal that swims behind them and plays between and around their arms, making soft splashing noises as it jumps in and out of the water.`
 				decline
 
 mission "Successors: Predecessor Research 1"

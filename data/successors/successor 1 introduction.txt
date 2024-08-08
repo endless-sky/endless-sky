@@ -44,8 +44,8 @@ mission "Successors: First Contact 1"
 	name "Go to the Vade-Staja system"
 	description "The aliens in this area of space have indicated that you should travel to the east."
 	source
-		attributes successor
-		not attributes uninhabited
+		attributes "successor"
+		not attributes "uninhabited"
 	destination "Staja-Kella-Oa"
 	clearance
 	on offer
@@ -72,7 +72,7 @@ mission "Successors: First Contact 1"
 				`	(Take the device.)`
 				`	(Refuse.)`
 					goto refused
-			`	You take the device from the alien. It liquifies the moment it touches your skin before freezing in mid-splash to project a small but detailed holographic star map of the surrounding systems. A star system a few jumps east of here is highlighted amidst a sea of alien lettering. The individual standing opposite you grunts energetically as the trio of interceptors begins to hover in preparation for takeoff: it would appear that these people, whoever they are, want you to travel there.`
+			`	You take the device from the alien. It liquefies the moment it touches your skin before freezing in mid-splash to project a small but detailed holographic star map of the surrounding systems. A star system a few jumps east of here is highlighted amidst a sea of alien lettering. The individual standing opposite you grunts energetically as the trio of interceptors begins to hover in preparation for takeoff: it would appear that these people, whoever they are, want you to travel there.`
 				accept
 			label refused
 			action
@@ -792,7 +792,7 @@ mission "Successors: Kaatrij First Contact 1"
 			choice
 				`	"That's right."`
 				`	"Who are you?"`
-			`	"Hmm. Good. I'm an envoy of the noble scions of House Kaatrij. I attest this myself as Saajret, of Somber Sejra." Saajret's skin erups with green splashes as they say this. "Thy lib'ral patience is well-appreciated." They splay their arms in the same manner as when you were first greeted by the Successors, and the two others behind them do so as well. "Ah," they continue, "but thou surely must be curious as to why we've called thee here. Thine actions, knowing or not, have benefitted this noble House, and 'twould be craven fools to fail to recognize that fact. Prithee understand thee now that Raaqa-Uur-Kaav was our world and not Sioeora's. So too, the Kijran, ours, were never theirs to hold or grasp for."`
+			`	"Hmm. Good. I'm an envoy of the noble scions of House Kaatrij. I attest this myself as Saajret, of Somber Sejra." Saajret's skin erups with green splashes as they say this. "Thy lib'ral patience is well-appreciated." They splay their arms in the same manner as when you were first greeted by the Successors, and the two others behind them do so as well. "Ah," they continue, "but thou surely must be curious as to why we've called thee here. Thine actions, knowing or not, have benefited this noble House, and 'twould be craven fools to fail to recognize that fact. Prithee understand thee now that Raaqa-Uur-Kaav was our world and not Sioeora's. So too, the Kijran, ours, were never theirs to hold or grasp for."`
 			choice
 				`	"So the Kijran belong to you?"`
 					goto kijran
@@ -855,7 +855,7 @@ mission "Successors: Kaatrij First Contact 1"
 				flee
 			label end
 			`	Saajret produces a data-sphere and hands that to you as well. "Within this," they say, "is historical data for most of the worlds within our space. Combined with thy newfound graces of our language, thou should'st find thine efforts of our worlds and cities t'be more revealing and fruitful. Officially, thou shalt be a patronized guest of House Kaatrij and shall proceed with our protection and our blessings. Thou may'st be able to purchase a certain set of petty works without frustration, but most of our technologies require vetting that, as an alien, may take thee time and effort to fulfill. Should'st the prospect interest thee, thine assistance with jobs and other tasks would doubtless help to prove thee t'be an ally to our people."`
-			`	Saajret pauses to adjust their clothing once again. "I must bid thee now farewell, Captain <first> <last>. Kaatrij will continue t'apprise ourselves of thine actions. I hope that next we speak shall be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissapated and the first glimmers of sunlight are creeping over the distant hills.`
+			`	Saajret pauses to adjust their clothing once again. "I must bid thee now farewell, Captain <first> <last>. Kaatrij will continue t'apprise ourselves of thine actions. I hope that next we speak shall be on equally positive terms." With this, Saajret and their escort return to the vehicle, which glides back into the lake. By the time that the <ship> is ready to take off, the ripples on the water have almost entirely dissipated and the first glimmers of sunlight are creeping over the distant hills.`
 			action
 				clear "Successors: kijran"
 				clear "Successors: saajret"

@@ -17,9 +17,9 @@ news "high houses emissary"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		attributes wealthy
-		not attributes uninhabited
+		attributes "successor"
+		attributes "wealthy"
+		not attributes "uninhabited"
 	name
 		word
 			"Emissary of a High House"
@@ -41,8 +41,8 @@ news "port official"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		not attributes crime uninhabited
+		attributes "successor"
+		not attributes "crime" "uninhabited"
 	name
 		word
 			"Port official"
@@ -80,9 +80,9 @@ news "successor student"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		attributes education wealthy
-		not attributes uninhabited
+		attributes "successor"
+		attributes "education" "wealthy"
+		not attributes "uninhabited"
 	name
 		word
 			"Successor student"
@@ -115,8 +115,8 @@ news "successor merchant"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		not attributes uninhabited
+		attributes "successor"
+		not attributes "uninhabited"
 	name
 		word
 			"Independent merchant"
@@ -154,7 +154,7 @@ news "successor merchant"
 		word
 			"now's planetside I shall remain."
 			"'twas never brave enough to stay."
-			"I was a spacesick little knave."
+			"I was a space sick little knave."
 			"it's down at earth I feel at home."
 			"it's selling items that's for me."
 			"my family needed me return."
@@ -194,8 +194,8 @@ news "high houses propaganda"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		not attributes quiet uninhabited
+		attributes "successor"
+		not attributes "quiet" "uninhabited"
 	name
 		word
 			"High House broadcast"
@@ -215,8 +215,8 @@ news "successor advertisements"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		not attributes quiet uninhabited
+		attributes "successor"
+		not attributes "quiet" "uninhabited"
 	name
 		word
 			"Advertisement" 2
@@ -242,9 +242,9 @@ news "local news quiet"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		attributes quiet
-		not attributes station uninhabited
+		attributes "successor"
+		attributes "quiet"
+		not attributes "station" "uninhabited"
 	name
 		word
 			"Local News Report"
@@ -264,9 +264,9 @@ news "station report"
 	to show
 		has "language: Successor"
 	location
-		attributes successor
-		attributes station
-		not attributes uninhabited
+		attributes "successor"
+		attributes "station"
+		not attributes "uninhabited"
 	name
 		word
 			"Station Report"

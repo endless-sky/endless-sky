@@ -355,7 +355,7 @@ ship "Kvelqde"
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
 	description "This tiny shuttle is the smallest vessel operating in Successor space, and the first ship that new Successor pilots are able to get their arms on. Despite their small size, they are capable multipurpose vessels, and are frequently used for transporting passengers and cargo, and for short-duration research expeditions."
-	description "	The design of the Kvelqde is, like most Successor vessels, based on originals from the time of the Predecessors. While the modern incarnation is nowhere near as advanced, successive generations of iteration with more limited resources have promoted the cost-efficiency and user-friendliess of the design."
+	description "	The design of the Kvelqde is, like most Successor vessels, based on originals from the time of the Predecessors. While the modern incarnation is nowhere near as advanced, successive generations of iteration with more limited resources have promoted the cost-efficiency and user-friendliness of the design."
 
 
 ship "Kvelqde" "Kvelqde (Naive)"
