@@ -430,7 +430,7 @@ mission "Hai Legacy 3"
 			`	"Don't get overconfident, Captain," she muses. "I am sure you know what happens to such pilots.`
 				goto next
 			label challenge
-			`	"Oh, so we almost got that ship after all? Maybe I should have participated in the fight after all.`
+			`	"Oh, so their plan almost worked after all? Maybe I should have participated in the fight too."`
 			label next
 			`	"Well, congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. Remember, right now, your reputation with us is solely due to to that ship. If you somehow lose it because of incompetence on your own end, it would look pretty bad to us true Hai!"`
 			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some sort of respect for you, so long as you have the Anomalocaris.`
