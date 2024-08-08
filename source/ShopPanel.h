@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 
@@ -168,6 +169,10 @@ protected:
 	ScrollVar<double> infobarScroll;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
+
+	ScrollBar mainScrollbar;
+	ScrollBar sidebarScrollbar;
+	ScrollBar infobarScrollbar;
 
 	double previousX = 0.;
 
