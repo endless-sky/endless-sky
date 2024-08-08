@@ -44,8 +44,8 @@ mission "Successors: First Contact 1"
 	name "Go to the Vade-Staja system"
 	description "The aliens in this area of space have indicated that you should travel to the east."
 	source
-		attributes successor
-		not attributes uninhabited
+		attributes "successor"
+		not attributes "uninhabited"
 	destination "Staja-Kella-Oa"
 	clearance
 	on offer
