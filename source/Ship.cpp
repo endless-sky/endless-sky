@@ -907,6 +907,118 @@ void Ship::FinishLoading(bool isNewInstance)
 
 
 
+double Ship::GetAttribute(string name) const
+{
+	double shieldRegen = (attributes.Get("shield generation")
+		+ attributes.Get("delayed shield generation"))
+		* (1. + attributes.Get("shield generation multiplier"));
+	bool hasShieldRegen = shieldRegen > 0.;
+
+	double hullRepair = (attributes.Get("hull repair rate")
+		+ attributes.Get("delayed hull repair rate"))
+		* (1. + attributes.Get("hull repair multiplier"));
+	bool hasHullRepair = hullRepair > 0.;
+
+	const double idleEnergyPerFrame = attributes.Get("energy generation")
+		+ attributes.Get("solar collection")
+		+ attributes.Get("fuel energy")
+		- attributes.Get("energy consumption")
+		- attributes.Get("cooling energy");
+
+	const double idleHeatPerFrame = attributes.Get("heat generation")
+		+ attributes.Get("solar heat")
+		+ attributes.Get("fuel heat")
+		- CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
+
+	const double movingEnergyPerFrame =
+		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+		+ attributes.Get("turning energy")
+		+ attributes.Get("afterburner energy");
+
+	const double movingHeatPerFrame =
+		max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
+		+ attributes.Get("turning heat")
+		+ attributes.Get("afterburner heat");
+
+	double firingEnergy = 0.;
+	double firingHeat = 0.;
+	for(const auto &it : outfits)
+		if(it.first->IsWeapon() && it.first->Reload())
+		{
+			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
+			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+		}
+
+	double shieldEnergy = hasShieldRegen ? (attributes.Get("shield energy")
+		+ attributes.Get("delayed shield energy"))
+		* (1. + attributes.Get("shield energy multiplier")) : 0.;
+	double hullEnergy = hasHullRepair ? (attributes.Get("hull energy")
+		+ attributes.Get("delayed hull energy"))
+		* (1. + attributes.Get("hull energy multiplier")) : 0.;
+
+	double shieldHeat = hasShieldRegen ? (attributes.Get("shield heat")
+		+ attributes.Get("delayed shield heat"))
+		* (1. + attributes.Get("shield heat multiplier")) : 0.;
+	double hullHeat = hasHullRepair ? (attributes.Get("hull heat")
+		+ attributes.Get("delayed hull heat"))
+		* (1. + attributes.Get("hull heat multiplier")) : 0.;
+
+	const double overallEnergy = idleEnergyPerFrame
+		- movingEnergyPerFrame
+		- firingEnergy
+		- shieldEnergy
+		- hullEnergy;
+
+	const double overallHeat = idleHeatPerFrame
+		+ movingHeatPerFrame
+		+ firingHeat
+		+ shieldHeat
+		+ hullHeat;
+	const double maxEnergy = attributes.Get("energy capacity");
+	const double maxHeat = HeatDissipation() * MaximumHeat();
+
+	if(name == "shield regen")
+		return shieldRegen;
+	else if(name == "hull repair")
+		return hullRepair;
+	else if(name == "idle energy per frame")
+		return idleEnergyPerFrame;
+	else if(name == "idle heat per frame")
+		return idleHeatPerFrame;
+	else if(name == "moving energy per frame")
+		return movingEnergyPerFrame;
+	else if(name == "moving heat per frame")
+		return movingHeatPerFrame;
+	else if(name == "firing energy")
+		return firingEnergy;
+	else if(name == "firing heat")
+		return firingHeat;
+	else if(name == "total shield energy cost")
+		return shieldEnergy;
+	else if(name == "total hull energy cost")
+		return hullEnergy;
+	else if(name == "total shield & hull energy cost")
+		return (shieldEnergy + hullEnergy);
+	else if(name == "total shield heat cost")
+		return shieldHeat;
+	else if(name == "total hull heat cost")
+		return hullHeat;
+	else if(name == "total shield & hull heat cost")
+		return (shieldHeat + hullHeat);
+	else if(name == "net energy")
+		return overallEnergy;
+	else if(name == "net heat")
+		return overallHeat;
+	else if(name == "max energy")
+		return maxEnergy;
+	else if(name == "max heat")
+		return maxHeat;
+
+	return attributes.Get(name);
+}
+
+
+
 // Check if this ship (model) and its outfits have been defined.
 bool Ship::IsValid() const
 {

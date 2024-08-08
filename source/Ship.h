@@ -436,6 +436,7 @@ public:
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 
 	// Get the current attributes of this ship.
+	double GetAttribute(std::string name) const;
 	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
