@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "WormholeStrategy.h"
 
 class DataNode;
+class DataWriter;
 
 
 
@@ -29,6 +30,7 @@ public:
 	bool operator!=(const DistanceCalculationSettings &other) const;
 
 	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
 
 	WormholeStrategy WormholeStrat() const;
 	bool AssumesJumpDrive() const;
