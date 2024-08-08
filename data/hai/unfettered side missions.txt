@@ -449,24 +449,18 @@ mission "Undeserved Anomalocaris"
 		not "Hai Legacy 2: active"
 	on offer
 		conversation
-			`You land on this Unfettered world in possession of the Anomalocaris, and, as you do, countless Unfettered head to your ship, each armed as they always are.`
-			`	Except, this time, they seem even more intimidating than usual... they must want the ship.`
-			`	One of them sends you a private message. "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn that right!"`
+			`You land on this Unfettered world in possession of the Anomalocaris, and, as you do, countless Hai hastily head to your ship, each armed with several weapons. One of them points at you and makes a declaration in front of the crowd that is quickly forming, shouting loud enough for all to hear. "You do not deserve to fly this relic of old!"`
+			`	One standing behind them then chimes in. "You wasted your opportunity for a glorious battle to earn that right! We know of what you've failed!"`
 				to display
 					has "Hai Legacy 3: offered"
-			`	"We will give you another ship so you can leave, but you must surrender this one, and the weapons of the savage Korath, if you did not already rob us of those," one of them explains to you in a menacing tone.`
-			`	Another one steps forward. "We will allow you to keep the outfits, provided you give the ship to us on Darkcloak."`
-				to display
-					not "flagship planet: Darkcloak"
-			`	Another one steps forward, "Since you so kindly came to Darkcloak to deliver the ship to us, we will allow you to buy back any outfits you may still desire, as a courtesy."`
-				to display
-					has "flagship planet: Darkcloak"
+			`	A more important-looking Unfettered then steps up close to you, speaking in a menacing tone. "You must surrender the ship to us immediately, along with the weapons of the savages, if you did not already rob us of those." For a moment, they look down in thought, then speak to you once more. "We will give you another ship so you can leave, but you must leave the Anomalocaris with us!"`
+
 			choice
-				`	(Let them have it.)`
-				`	(Take off, now!)`
+				`	(Hand over the Anomalocaris.)`
+				`	(Decline their request and leave.)`
 					depart
-			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one - probably the leader, judging by the amount of weaponry on their person. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. In exchange, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
-			`	"That relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will earn you favor, and prove you can fight."`
+			`	You and your crew exit what was briefly your ship, and the local Unfettered militia are informed that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one - probably the leader, judging by the amount of weaponry on their person. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. In exchange, we will provide you with a suitable replacement.`
+			`	"That relic was not meant for you, but there are other ways for you to prove yourself to us." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will earn you favor, and prove you can fight."`
 				to display
 					not "Unfettered Jump Drive 1: offered"
 			branch "has detainers"
