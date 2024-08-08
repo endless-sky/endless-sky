@@ -453,7 +453,7 @@ mission "Undeserved Anomalocaris"
 			`	Except, this time, they seem even more intimidating than usual... they must want the ship.`
 			`	One of them sends you a private message. "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn that right!"`
 				to display
-					not "Hai Legacy 3: offered"
+					has "Hai Legacy 3: offered"
 			`	"We will give you another ship so you can leave, but you must surrender this one, and the weapons of the savage Korath, if you did not already rob us of those," one of them explains to you in a menacing tone.`
 			`	Another one steps forward. "We will allow you to keep the outfits, provided you give the ship to us on Darkcloak."`
 				to display
