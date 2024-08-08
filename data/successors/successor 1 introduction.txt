@@ -50,8 +50,8 @@ mission "Successors: First Contact 1"
 	clearance
 	on offer
 		conversation
-			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure on the planet's coast. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around you and your ship.`
-			`	The predominant aliens here are enormous octopods that rise up off of the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them. Those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
+			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure along the coastline. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around you and your ship.`
+			`	The predominant aliens here are enormous octopods that rise up from the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them. Those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
 			`	After a couple of minutes of activity within the crowd, one uniformed and especially vibrant individual breaks away from the rest and begins to move towards you, gliding gently and silently over the ground. They say something in the same strange language, shimmering with waves of color, and then wait expectantly for you to reply.`
 			choice
 				`	(Say nothing.)`
@@ -88,7 +88,7 @@ mission "Successors: First Contact 1"
 		ship "Stolsaqra (Mission Escort)" "Seqra-saqra"
 
 	on fail
-		dialog `At least one of the Successor interceptors escorting has been destroyed. If you want to continue the Successors' story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `At least one of the Successor interceptors escorting has been destroyed. If you want to continue the Successors' story line, revert to an earlier save.`
 
 	on visit
 		conversation
@@ -120,7 +120,7 @@ mission "Successors: First Contact 1"
 			label questions
 			choice
 				`	"What should I do now?"`
-					goto whatnow
+					goto "what now"
 				`	"How do you know my language?"`
 					to display
 						not "Successors: language"
@@ -141,7 +141,7 @@ mission "Successors: First Contact 1"
 			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
-					goto whatnow
+					goto "what now"
 				`	"What do you mean that you were ripped from the galaxy?"`	# Define choices uniquely when they contain a follow-up question not in label "questions."
 					to display
 						not "Successors: ripped"
@@ -150,13 +150,13 @@ mission "Successors: First Contact 1"
 					to display
 						not "Successors: house"
 					goto house
-			label language-short
+			label "language short"
 			action
 				set "Successors: language"
 			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
 			choice
 				`	"What should I do now?"`
-					goto whatnow
+					goto "what now"
 				`	"Humans have certainly changed a lot in the last fifteen hundred years."`
 					to display
 						not "Successors: changed"
@@ -181,11 +181,11 @@ mission "Successors: First Contact 1"
 			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
 			choice
 				`	"What should I do now?"`
-					goto whatnow
+					goto "what now"
 				`	"Is that how you know my language?"`
 					to display
 						not "Successors: language"
-					goto language-short
+					goto "language short"
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
@@ -257,11 +257,11 @@ mission "Successors: First Contact 2"
 				`	"I apologize for being late."`
 					to display
 						has "event: successors: tardy for sioeora"
-					goto apologize-tardiness
+					goto "apologize tardiness"
 			label introduce
 			`	"We are aware of this. The introduction of an alien like thee is not expected or requested in this hall."`
 				goto request
-			label apologize-tardiness
+			label "apologize tardiness"
 			`	"Thine apology is noted."`
 			label request
 			`	Riijaaora continues. "Thy presence we've demanded here so that thou might'st give service to this House. We've a task for thee, and if thou can'st complete't ably, a gift as well: a symbol of our patronage."`
@@ -303,7 +303,7 @@ mission "Successors: First Contact 2"
 			action
 				log "Met with the leaders of Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Did not accept."
 				set "rejected: Successors: First Contact 2"
-				"reputation: House Sioeora" = 0
+				"reputation: House Sioeora" <?= 0
 			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of grace today shall be t'allow thee to depart this noble place still possessed o'thy freedom and belongings. Thou shalt receive no further aid nor comfort from this House, and shalt be banished at the pleasure of its scions from whatever worlds lie under our dominion."`
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
@@ -329,6 +329,7 @@ mission "Successors: First Contact 3"
 	stopover "Raaqa-Uur-Kaav"
 	destination "Staja-Kella-Oa"
 	passengers 1
+	cargo "Animal Transport Container" 1
 	blocked `You speak with Sieasej, who informs you that they require at least 1 free bunk to travel.`
 	on offer
 		conversation
@@ -356,12 +357,12 @@ mission "Successors: First Contact 3"
 					goto knowledge
 				`	"Are you certain you're okay going with me?"`
 					to display
-						not "Successors: youokay"
-					goto youokay
+						not "Successors: you okay"
+					goto "you okay"
 				`	"Is there anything I should watch out for?"`
 					to display
-						not "Successors: watchout"
-					goto watchout
+						not "Successors: watch out"
+					goto "watch out"
 			label kijra-pet
 			action
 				set "Successors: kijra-pet"
@@ -375,22 +376,22 @@ mission "Successors: First Contact 3"
 				`	"We'd better get started then."`
 					goto embark
 				`	"What do you mean that jump drives are 'familiar?'"`
-					goto jumpdrives
+					goto "jump drives"
 				`	"What more can you tell me about the Kijra-pets?"`
 					goto kijra-pet
 				`	"Are you certain you're okay going with me?"`
-					goto youokay
+					goto "you okay"
 				`	"Is there anything I should watch out for?"`
-					goto watchout
-			label youokay
+					goto "watch out"
+			label "you okay"
 				set "Successors: youokay"
 			`	Splotches of orange color emerge at the tips of Sieasej's arms. "I confess this is a little strange, and know the prospect of this... journey instills within me some thoughts of trepidation. But to visit these worlds is reward itself, and to do so in thy company, the very aliens who I have studied, makes it a reward that's doubly grand. Thou must realize that thou'rt a historian's dream. Thou'rt a creature from a distant story-page made flesh and blood in the modern age."`
 				goto questions
-			label watchout
+			label "watch out"
 				set "Successors: watchout"
 			`	"The House hast warned me of the dangers which that space entails. Thy vessel must've endured enough to make it here intact, so I must trust that it shall be enduring once again.`
 				goto questions
-			label jumpdrives
+			label "jump drives"
 				set "Successors: jumpdrives"
 			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who then had only just discovered industry. Drives like the one within thy ship have been known to us for long into thy past."`
 			choice
@@ -401,9 +402,9 @@ mission "Successors: First Contact 3"
 				`	"What more can you tell me about the Kijra-pets?"`
 					goto kijra-pet
 				`	"Are you certain you're okay going with me?"`
-					goto youokay
+					goto "you okay"
 				`	"Is there anything I should watch out for?"`
-					goto watchout
+					goto "watch out"
 			label warning
 				set "Successors: warning"
 			`	"That is not for me to know, nor, I think, for thee."`
@@ -414,21 +415,21 @@ mission "Successors: First Contact 3"
 				clear "Successors: kijra-pet"
 				clear "Successors: knowledge"
 				clear "Successors: warning"
-				clear "Successors: watchout"
-				clear "Successors: youokay"
+				clear "Successors: watch out"
+				clear "Successors: you okay"
 			`	"I agree," Sieasej says. "We have no time to squander."`
 				accept
 	on stopover
 		conversation
 			`Shortly after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a place where once the beasts were bred. When last our vessels traveled here, 'twas this location were they noted many Kijran-Riitaa."`
 			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown, vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
-			branch retrieve-tranqs
+			branch "retrieve tranqs"
 				or
 					has "outfit: Enforcer Riot Staff"
 					has "outfit: Pug Peacekeeping Staff"
 			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 				goto approach
-			label retrieve-tranqs
+			label "retrieve tranqs"
 			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage, along with a <tranq h2h long> as an improvised tranquilizer weapon. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 			label approach
 			choice
@@ -448,7 +449,7 @@ mission "Successors: First Contact 3"
 				`	(Try to catch it with a net.)`
 					goto net
 				`	(Stay still.)`
-					goto lure-1
+					goto "lure 1"
 			label tranq
 			branch tranqed
 				random < 70
@@ -456,16 +457,16 @@ mission "Successors: First Contact 3"
 				goto escape
 			label tranqed
 			`	You take aim and fire a blast from the <tranq h2h> at the center of the animal. It briefly jumps to escape but soon plummets to the ground in a puff of leaves and dusty feathers.`
-				goto bring-tranq
+				goto "bring tranq"
 			label net
 			`	You toss a net over the animal and it falls to the ground, where it shrieks for a duration before going quiet. The shriek is soon echoed by similar ones from other animals in the area, and once those go quiet as well, your ears are pierced by a loud, warbling wail in the distance.`
 				goto escape
-			label lure-1
-			branch lure-1-success
+			label "lure 1"
+			branch "lure 1 success"
 				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
 			`	The animal remains stationary for a moment before darting away.`
-				goto lure-failed
-			label lure-1-success
+				goto "lure failed"
+			label "lure 1 success"
 			`	The animal remains stationary, examining you closely.`
 			choice
 				`	(Tranquilize it.)`
@@ -477,10 +478,10 @@ mission "Successors: First Contact 3"
 				`	(Catch it with a net.)`
 					goto net
 				`	(Slowly extend your hand.)`
-			branch lure-2-success
+			branch "lure 2 success"
 				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
 			`	The animal inspects your hand for a moment before darting away.`
-			label lure-failed
+			label "lure failed"
 				`	(Tranquilize it.)`
 					goto tranq
 					to display
@@ -489,7 +490,7 @@ mission "Successors: First Contact 3"
 							has "outfit: Pug Peacekeeping Staff"
 				`	(Catch it with a net.)`
 					goto net
-			label lure-2-success
+			label "lure 2 success"
 			`	The animal seems curious. It approaches your hand, sniffing it gently.`
 			choice
 				`	(Tranquilize it.)`
@@ -504,13 +505,13 @@ mission "Successors: First Contact 3"
 			`	You retrieve a morsel of food and offer it to the animal, which sniffs it gently before starting to eat some.`
 			choice
 				`	(Tranquilize it now.)`
-					goto tranq-friends
+					goto "tranq friends"
 					to display
 						or
 							has "outfit: Enforcer Riot Staff"
 							has "outfit: Pug Peacekeeping Staff"
 				`	(Catch it with a net.)`
-					goto net-friends-alarmed
+					goto "net friends alarmed"
 				`	(Try to bring it back with food alone.)`
 			label friends
 			action
@@ -518,13 +519,13 @@ mission "Successors: First Contact 3"
 			`	The Kijra-pet trills as it eats out of your hand; it tucks its wings behind its body like a dragonfly and unfurls two long feather-like antennae from its head, which gently brush at your skin and clothing. Soon, it hops on your arm while sniffing at your pockets, probing deeper into the one where you kept the food and trilling softly at you. You begin the walk back to your ship, slowly and gently so as not to frighten the animal.`
 			`	"'Tis no surprise," Sieasej says, "that 'twere such valued pets if their demeanor is so docile and agreeable." They tuck their triangulation device away in a pocket and slither with you as you approach your ship.`
 				goto ambush
-			label tranq-friends
+			label "tranq friends"
 			`	While the animal is distracted, you take aim and fire a shot from your <tranq h2h> at it. It briefly jumps to escape but soon plummets to the ground in a puff of leaves and dusty feathers.`
-				goto bring-tranq
-			label net-friends-alarmed
+				goto "bring tranq"
+			label "net friends alarmed"
 			`	While the animal is distracted, you toss a net over it and it falls to the ground, where it shrieks for a duration before going quiet. The shriek is soon echoed by similar ones from other animals in the area, and once those go quiet as well, your ears are pierced by a loud, warbling wail in the distance.`
 				goto escape
-			label bring-tranq
+			label "bring tranq"
 			`	You scoop up the tranquilized animal, careful not to damage its extremities, and begin the walk back to your ship.`
 				goto ambush
 			label escape
@@ -534,10 +535,10 @@ mission "Successors: First Contact 3"
 			choice
 				`	(Keep running.)`
 				`	(Try to shoot at whatever is above you.)`
-					goto shoot-ambush
+					goto "shoot ambush"
 			`	Suddenly, the shadow disappears and the wailing stops. You keep running towards your ship, but can't shake the feeling that you are being watched.`
 				goto ambush
-			label shoot-ambush
+			label "shoot ambush"
 			`	You draw your sidearm and look to see what's above you, but the shadow is suddenly gone and you are left staring up into the sunlight and leaves. The wailing has stopped as well; indeed, the whole area remains eerily quiet as you continue to run towards your ship.`
 			label ambush
 			`	When you arrive, however, you find that blocking your entry to the <ship> are two large creatures. Their glassy skin resembles that of the smaller creature you captured, but they are each several meters in size. Their feelers, rather than soft and downy, are whiplike and serrated and tipped with vicious-looking barbs that they thrust towards you and Sieasej upon noticing your presence. Their many eyes flick back and forth between you and the animal that you captured, and the two let out a loud wail in unison. Waves of red and blue run down Sieasej's body, probably an expression of fear.`
@@ -549,24 +550,24 @@ mission "Successors: First Contact 3"
 					to display
 						"flagship base attribute: turret mounts" > "flagship attribute: turret mounts"
 						"flagship crew" > ( "flagship required crew" - 1 )
-					goto ship-shoot
+					goto "ship shoot"
 				`	(Release the animal that you captured.)`
 					goto release
 			`	You attempt to run past the creatures, but before you can even get close, one of them swings its barbed feeler at you, lodging it deep in your chest. The last thing you see is Sieasej hurrying away as the creatures pursue them as well.`
 				die
 			label shoot
-			branch shoot-success
+			branch "shoot success"
 				random < 50
 			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and the other one suddenly vanishes before you can fire a second shot. In the time it takes your eyes to adapt to the creature's camouflage, it has already lodged the barbed tip of its feeler deep in your chest.`
 				die
-			label shoot-success
+			label "shoot success"
 			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and immediately after the other one charges at you. Just in time, you are able to shoot that one as well and it tumbles to the ground, kicking up dirt and leaf litter and wailing before going silent.`
 				goto successful
-			label ship-shoot
+			label "ship shoot"
 			`	You radio to the <ship> and order your crew to fire a turret at the creatures, vaporizing them both before they have the opportunity to attack you and leaving only two small scorched craters in the ground.`
 				goto successful
 			label release
-			branch release-friends
+			branch "release friends"
 				has "Successors FC3: nonviolent kijra-pet capture"
 			action
 				set "Successors FC3: released kijra-pet"
@@ -575,7 +576,7 @@ mission "Successors: First Contact 3"
 			action
 				set "Successors FC3: released kijra-pet"
 				set "Successors FC3: friend to animals" # Nonviolent capture AND released at first opportunity
-			label release-friends
+			label "release friends"
 			`	You gently coax the animal off your arm and onto the ground in front of you, backing away from it slowly and shuffling to the side. It runs towards the larger two creatures, touching the tips of its feelers against theirs and trilling softly as before. After some time, it wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes, a longer, lower trill almost like a cat's purr.`
 				goto released
 			label successful
@@ -583,20 +584,20 @@ mission "Successors: First Contact 3"
 			`	While Sieasej returns to their cabin, you store the captured Kijra-riitaa in a spare animal-transport cargo container in the <ship>'s hold. It seems to dislike being caged, growling gently and pacing the container, kicking up bits of the straw inside.`
 			choice
 				`	(Leave it be.)`
-					goto takeoff
+					goto "take off"
 				`	(Put some more bedding in the container.)`
 				`	(Release it.)`
-					goto betterlatethannever
+					goto "better late than never"
 			action
 				set "Successors FC3: captured kijra-pet"
 			`	You rummage around in the other cargo containers until you find a bit of spare fabric scraps and leaf litter, a couple of handfuls of which you add to the animal's cage. With that sorted out, you make your preparations for takeoff.`
 				goto end
-			label takeoff
+			label "take off"
 			action
 				set "Successors FC3: captured kijra-pet"
 			`	With the animal stowed away, you make your preparations for takeoff.`
 				goto end
-			label betterlatethannever
+			label "better late than never"
 			action
 				set "Successors FC3: released kijra-pet"
 			`	You open the container's door and coax the Kijra-riitaa out of your ship. It takes flight shortly after stepping outside, soon disappearing into a speck against the vast blue sky. With nothing left to do here, you make your preparations for takeoff so that you can at least return Sieasej to their people.`
@@ -605,13 +606,13 @@ mission "Successors: First Contact 3"
 			`	The waves of color running over Sieasej's body slowly fade once the animals are gone. "I confess I hadn't picked thee for such a tender soul," they eventually say.`
 			choice
 				`	"I only did what I thought would get us back alive."`
-					goto backalive
+					goto "back alive"
 				`	"It wasn't right to hurt them."`
 			`	"Ah," they say. "We are fortunate, then, they thought the same of us."`
-				goto released-2
-			label backalive
+				goto "released 2"
+			label "back alive"
 			`	"Ah," they say. "Well I, for one, shall thank thee for thy prudence." After a delay, they add, "Even if my noble house shall not."`
-			label released-2
+			label "released 2"
 			`	Sieasej briefly waves their device in the air unsuccessfully. "Nonetheless," they say, "thine act of mercy here entails us failure. Under threat, the adults shall surely shroud their issues, and so it is now here. It seems we must return with empty arms." They briefly undulate in a manner similar to a laugh. "I do not think I'd take another chase like that again regardless."`
 			`	The two of you return to the <ship> and make preparations for takeoff so that you can, at the very least, return Sieasej to their people.`
 			label end
@@ -726,18 +727,18 @@ mission "Successors: Kaatrij First Contact 1"
 		random < 30
 	on offer
 		conversation
-			branch was-monoglot
+			branch "was monoglot"
 				has "offered: Successors: Kaatrij Monoglot Prompt"
 			branch hai
 				has "language: Hai"
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize belongs to one of the species of the Coalition. After running the text through the translation box you acquired from the <coalition ally>, you are able to decode the message:`
-				goto message-coalition
+				goto "message coalition"
 			label hai
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize is that of the Hai. After running the text through your ship's Hai translator, you are able to decode the message:`
-				goto message-hai
+				goto "message hai"
 
-			label was-monoglot
-			branch hai-monoglot
+			label "was monoglot"
+			branch "hai monoglot"
 				has "language: Hai"
 			`Upon landing here, you briefly remember the Successor data-sphere that you found on your ship some time ago. Given that you've recently acquired a Coalition translation box, you might be able to decode its message.`
 			choice
@@ -747,8 +748,8 @@ mission "Successors: Kaatrij First Contact 1"
 				`	(Don't decode it.)`
 					decline
 			`	You retrieve the sphere, and it projects its message in a familiar-looking script that you quickly realize belongs to one of the species of the Coalition. After running the text through the translation box you acquired from the <coalition ally>, you are able to decode it:`
-				goto message-coalition
-			label hai-monoglot
+				goto "message coalition"
+			label "hai monoglot"
 			`Upon landing here, you briefly remember the Successor data-sphere that you found on your ship some time ago. Given that you've recently acquired a Hai translator, you might be able to decode its message.`
 			choice
 				`	(Try to decode it.)`
@@ -757,11 +758,11 @@ mission "Successors: Kaatrij First Contact 1"
 				`	(Don't decode it.)`
 					decline
 			`	You retrieve the sphere, and it projects its message in a familiar-looking script that you quickly realize belongs to the Hai. After running the text through the translation box you acquired from them, you are able to decode it:`
-				goto message-hai
-			label message-coalition
+				goto "message hai"
+			label "message coalition"
 			`		AUDIENCE OF HUMAN CAPTAIN, HOUSE KAATRIJ REQUESTS`
 				goto end
-			label message-hai
+			label "message hai"
 			`		HOUSE KAATRIJ [REQUESTS/REQUIRES] AUDIENCE OF HUMAN CAPTAIN`
 			label end
 			`	The sphere slowly switches back and forth between displaying this message and a map to a system in western Successor space.`
