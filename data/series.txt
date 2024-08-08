@@ -12,8 +12,25 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 category "series"
+	# Guns
+	"Guns: Successors" 800
+	# Turrets
+	"Turrets: Successors" 800
+	# Ammunition
+	"Ammunition: Successors" 800
+	# Systems
+	"Shields: Successors" 800
+	"Cooling: Successors" 810
+	"Scanners: Successors" 820
+	"Ramscoops: Successors" 830
+	"Special Systems: Successors" 840
+	# Power
+	"Power: Successors" 800
 	# Engines
 	"Human: Ion" 110
 	"Human: Plasma" 120
 	"Human: Atomic" 130
 	"Human: Afterburners" 140
+	"Engines: Successors" 800
+	# Licenses
+	"Licenses: Successors" 800
