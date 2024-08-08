@@ -1099,7 +1099,7 @@ void MapPanel::UpdateCache()
 			}
 		}
 
-		nodes.emplace_back(system.Position(), color,
+		nodes.emplace_back(system.Position(), color, system.IsInhabited(player.Flagship()),
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
 			player.CanView(system) ? system.GetGovernment() : nullptr);
@@ -1378,30 +1378,32 @@ void MapPanel::DrawSystems()
 	if(commodity != cachedCommodity)
 		UpdateCache();
 
-	// If coloring by government, we need to keep track of which ones are the
-	// closest to the center of the window because those will be the ones that
-	// are shown in the map key.
+	// If coloring by government, we need to keep track of which ones are
+	// most prevalent.
 	if(commodity == SHOW_GOVERNMENT)
-		closeGovernments.clear();
+		governmentCounts.clear();
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
+	hasUnexplored = false;
+	hasUninhabited = false;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 
-		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
+		// Count the system for the government (to choose what government labels to display).
+		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
+		// before counting it.
+		if(commodity == SHOW_GOVERNMENT &&
+			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
-			// For every government that is drawn, keep track of how close it
-			// is to the center of the view. The four closest governments
-			// will be displayed in the key.
-			double distance = pos.Length();
-			auto it = closeGovernments.find(node.government);
-			if(it == closeGovernments.end())
-				closeGovernments[node.government] = distance;
-			else
-				it->second = min(it->second, distance);
+			hasUnexplored |= !(node.government);
+			hasUninhabited |= !(node.isInhabited);
+			// Count the number of occurences of each government.
+			// Exclude ones that are uninhabited, unexplored, or aren't their true color.
+			if(node.government && node.isInhabited && node.color == GovernmentColor(node.government))
+				governmentCounts[node.government]++;
 		}
 	}
 }

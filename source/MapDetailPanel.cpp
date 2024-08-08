@@ -537,6 +537,8 @@ void MapDetailPanel::DrawKey()
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
+	int availableLines = 4 + !hasUnexplored + !hasUninhabited;
+
 	if(commodity >= 0)
 	{
 		// Each system is colored by the selected commodity's price. Draw
@@ -586,18 +588,19 @@ void MapDetailPanel::DrawKey()
 	else if(commodity == SHOW_GOVERNMENT)
 	{
 		// Each system is colored by the government of the system. Only the
-		// four largest visible governments are labeled in the legend.
-		vector<pair<double, const Government *>> distances;
-		for(const auto &it : closeGovernments)
+		// `availableLines` largest visible governments are labeled in the legend, as
+		// well as uninhabited & unexplored (if applicable).
+		vector<pair<unsigned int, const Government *>> screenNum;
+		for(const auto &it : governmentCounts)
 		{
 			if(!it.first)
 				continue;
-			distances.emplace_back(it.second, it.first);
+			screenNum.emplace_back(it.second, it.first);
 		}
-		sort(distances.begin(), distances.end());
+		sort(screenNum.begin(), screenNum.end(), greater<pair<unsigned int, const Government *>>());
 		int drawn = 0;
 		vector<pair<string, Color>> alreadyDisplayed;
-		for(const auto &it : distances)
+		for(const auto &it : screenNum)
 		{
 			const string &displayName = it.second->GetName();
 			const Color &displayColor = it.second->GetColor();
@@ -610,7 +613,7 @@ void MapDetailPanel::DrawKey()
 			pos.Y() += 20.;
 			alreadyDisplayed.emplace_back(displayName, displayColor);
 			++drawn;
-			if(drawn >= 4)
+			if(drawn >= availableLines)
 				break;
 		}
 	}
@@ -655,15 +658,17 @@ void MapDetailPanel::DrawKey()
 		}
 	}
 
-	if(commodity != SHOW_DANGER)
+	if(commodity != SHOW_DANGER && hasUninhabited)
 	{
 		RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 		font.Draw("Uninhabited", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
-
-	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
-	font.Draw("Unexplored", pos + textOff, dim);
+	if(hasUnexplored)
+	{
+		RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
+		font.Draw("Unexplored", pos + textOff, dim);
+	}
 }
 
 

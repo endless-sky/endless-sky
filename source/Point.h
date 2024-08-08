@@ -50,6 +50,7 @@ public:
 	friend Point operator*(double scalar, const Point &point);
 	Point &operator*=(double scalar);
 	Point operator/(double scalar) const;
+	friend Point operator/(double scalar, const Point &point);
 	Point &operator/=(double scalar);
 
 	// Multiply the respective components of each Point.
