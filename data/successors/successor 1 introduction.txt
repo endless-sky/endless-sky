@@ -195,7 +195,7 @@ mission "Successors: First Contact 1"
 				set "Successors: house"
 			`	Sieasej translates your query to the military officer this time, who considers for a moment before saying something back and Sieasej speaks again. "Sioeora is the noble house whose grand estate thou sees around thee. There are many such within the broader realm: the stars this side'f the wormhole, but 'tis Sioeora who has taken patronage on thee, for the keeping of our history is the... core of its desire. 'Twere't thou apprehended by the arms of another," Sieasej says, gesturing towards an interceptor landed on another pad, "thou surely would have languished without recognition as a creature t'was so distant in our past."`
 				goto questions
-			label whatnow
+			label "what now"
 			action
 				clear "Successors: changed"
 				clear "Successors: history"
@@ -944,8 +944,8 @@ mission "Successors: Trusted"
 					goto sioeora
 				`	"What are you doing here?"`
 					to display
-						not "Successors: aboutyou"
-					goto aboutyou
+						not "Successors: about you"
+					goto "about you"
 			label explain
 			action
 				set "Successors: explain"
@@ -954,13 +954,13 @@ mission "Successors: Trusted"
 			label sioeora
 			action
 				set "Successors: sioeora"
-			branch sioeora-opposed
+			branch "sioeora opposed"
 				has "completed: Successors: Kaatrij First Contact 1"
 			`	"Our mutual patrons remain their usual selves, with all that this entails. Would'st though believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader 'mong the others for their fruitful advocacy of thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee here today, for thou'rt by now a successful investment on their part."`
-				goto sioeora-choice
-			label sioeora-opposed
+				goto "sioeora choice"
+			label "sioeora opposed"
 			`	"Ah, do they approve o'thy presence here and that?" Sieasej briefly examines a suckered arm before leaning in a little closer. "'Tis true the scions of my honored House remain towards thee a little chilly; and doubly so for thy finding of another patron which, I confess, may be what irks them most. Thou nonetheless remaineth a person of interest to them, and I suspect they'd be quite pleased to know that I'd encountered thee in council. So, let them brood, I say, for if Sioeora requires thee once more, they shan't be so knavish so's not to make thine acquaintance 'gain, methinks."`
-			label sioeora-choice
+			label "sioeora choice"
 			choice
 				`	"We'd better begin, then."`
 					goto start
@@ -970,11 +970,11 @@ mission "Successors: Trusted"
 					goto explain
 				`	"What are you doing here?"`
 					to display
-						not "Successors: aboutyou"
-					goto aboutyou
-			label aboutyou
+						not "Successors: about you"
+					goto "about you"
+			label "about you"
 			action
-				set "Successors: aboutyou"
+				set "Successors: about you"
 			`	Sieasej briefly turns a shade of green in a display you might almost characterize as blushing. "I was summoned here as well, for thine arrival among our worlds has sparked some interest in our past dealings with thy kind. I've been instructed to speak to some groups here as a so-called expert on the subject."`
 			choice
 				`	"Indeed. I'm ready to begin, then."`
@@ -1014,13 +1014,13 @@ mission "Successors: Trusted"
 				`	"I don't intend to take sides in your conflicts."`
 					goto no
 			label no
-			branch no-kaatrij
+			branch "no kaatrij"
 				has "completed: Successors: Kaatrij First Contact 1"
 			`	This sparks some murmuring among the gathered Successors, both the representatives themselves and the other, quieter members who continue to stand around the periphery of the pool. There is no direct reply for some time until, after what seems like several minutes, the representative from House Kaatrij returns to the center and speaks.`
 			`	"Guest. House Kaatrij shall recognize thy noble words, even if we hold no reason for belief in them. We will permit the others to let thee buy our trinkets, and we shall watch thee closely to see if thy words is matched in action."`
 			`	With no further comments from any of the Successors, the representative from House Sioeora calls for a vote from among the gathered representatives. Sioeora and Chydiyi vote for the proposition and Kaatrij abstains from the vote, remaining at the rim of the pool, inspecting your behavior closely. The representative from Sioeora then promptly produces another small box from within their outfit and presents it to you. You open it to reveal one of the pin insignias that you have seen throughout this meeting.`
 				goto license
-			label no-kaatrij
+			label "no kaatrij"
 			`	This sparks some murmuring among the gathered Successors, both the representatives themselves and the other, quieter members who continue to stand around the periphery of the pool. There is no direct reply for some time until, after what seems like several minutes, the representative from House Sioeora returns to the center and speaks.`
 			`	"Alien. House Sioeora hears well thy words, but must commit ourselves in opposition to this proposition for a gift. Thou surely can'st remain a neutral party while thy patron already seeks to honor thee before this council, t'offer boons that surely curry favor soon enough. Thy meager words make little difference."`
 			`	With no further comments from any of the Successors, the representative from House Kaatrij calls for a vote from among the gathered representatives. Kaatrij and Chydiyi vote for the proposition and Sioeora votes against it, remaining stationary at the rim of the pool. The representative from Kaatrij then promptly produces another small box from within their outfit and presents it to you. You open it to reveal one of the pin insignias that you have seen throughout this meeting.`
