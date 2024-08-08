@@ -155,6 +155,7 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	static const Sprite *StarIcon(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

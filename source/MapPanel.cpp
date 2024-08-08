@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -340,6 +341,9 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
+	mapIsStarry = player.StarryMap();
+	if(mapIsStarry)
+		info.SetCondition("map is starry");
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
@@ -578,6 +582,10 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
+	else if(key == ']' && !mapIsStarry)
+		player.SetStarryMap(true);
+	else if(key == '[' && mapIsStarry)
+		player.SetStarryMap(false);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
@@ -1099,10 +1107,15 @@ void MapPanel::UpdateCache()
 			}
 		}
 
+		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
+
+		const bool canViewSystem = player.CanView(system);
+
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.CanView(system) ? system.GetGovernment() : nullptr);
+			canViewSystem ? system.GetGovernment() : nullptr,
+			canViewSystem ? system.GetMapIcons() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1386,10 +1399,37 @@ void MapPanel::DrawSystems()
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
+	BatchDrawList starBatch;
+
+	const float ringFade = mapIsStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+		if(!mapIsStarry)
+			RingShader::Draw(pos, OUTER, INNER, node.color);
+		else
+		{
+			// System rings fade as you zoom in if starry map is enabled.
+			const float alpha = max(ringFade, node.mapIcons.empty() ? .9f : 0.f);
+			RingShader::Draw(pos, OUTER, INNER, node.color.Additive(alpha));
+
+			// Ensures every multiple-star system has a characteristic, deterministic rotation.
+			Angle starAngle = node.name.length() + node.position.Length();
+			Angle spacing = 360. / node.mapIcons.size();
+			Point starOffset = (node.mapIcons.size() == 1) ? Point(0, 0) : node.mapIcons.size() * Point(2, 2);
+
+			// Draw the star sprites
+			for(const Sprite *star : node.mapIcons)
+			{
+				starAngle = starAngle + spacing;
+				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
+					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
+				starBatch.Add(starBody);
+			}
+		}
+
+		starBatch.Draw();
+		starBatch.Clear();
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
