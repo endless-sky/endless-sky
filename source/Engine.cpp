@@ -1983,7 +1983,7 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// Although an attempt to spawn a person is specified by a gamerule,
 	// that attempt can still fail due to an added weight for no person to spawn.
 	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
