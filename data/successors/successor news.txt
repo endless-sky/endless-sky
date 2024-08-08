@@ -154,7 +154,7 @@ news "successor merchant"
 		word
 			"now's planetside I shall remain."
 			"'twas never brave enough to stay."
-			"I was a spacesick little knave."
+			"I was a space sick little knave."
 			"it's down at earth I feel at home."
 			"it's selling items that's for me."
 			"my family needed me return."

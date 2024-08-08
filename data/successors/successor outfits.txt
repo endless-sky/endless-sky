@@ -226,7 +226,7 @@ outfit `"Ryuit" Fusion Core`
 	"heat generation" 23.5
 	"shield energy multiplier" -0.14
 	"hull energy multiplier" -0.14
-	description "Like most Successor technology, their modern reactors are based on similar ones secreted away by the High Houses during the collapse of the Predecessors' empire. Even though their modern efforts don't quite match the potency of their ancestors', the designs retain a aura of elegance and power, twisting like flames and humming with energy."
+	description "Like most Successor technology, their modern reactors are based on similar ones secreted away by the High Houses during the collapse of the Predecessors' empire. Even though their modern efforts don't quite match the potency of their ancestors', the designs retain an aura of elegance and power, twisting like flames and humming with energy."
 	description "	One also can't help but wonder about those few original reactors, which presumably remain locked away in the private vaults of the High Houses, kept in prime condition for if and when they are needed once again."
 
 outfit `"Uoret" Fusion Core`
