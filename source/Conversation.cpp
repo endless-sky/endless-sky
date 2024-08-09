@@ -160,7 +160,7 @@ void Conversation::Load(const DataNode &node)
 			// Don't merge "branch" nodes with any other nodes.
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
-			// Maintenance note: Empty conditions might have to be removed in the future,
+			// Maintenance note: empty conditions might have to be removed in the future,
 			// so their support is unofficial.
 			if(child.HasChildren())
 				nodes.back().conditions.Load(child);
