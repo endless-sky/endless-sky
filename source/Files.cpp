@@ -50,6 +50,7 @@ namespace {
 	string soundPath;
 	string savePath;
 	string testPath;
+	string pluginsPath;
 
 	File errorLog;
 
@@ -162,7 +163,8 @@ void Files::Init(const char * const *argv)
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	CreateFolder(config + "plugins/");
+	pluginsPath = config + "plugins/";
+	CreateFolder(pluginsPath);
 
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
@@ -220,6 +222,13 @@ const string &Files::Saves()
 const string &Files::Tests()
 {
 	return testPath;
+}
+
+
+
+const string &Files::Plugins()
+{
+	return pluginsPath;
 }
 
 

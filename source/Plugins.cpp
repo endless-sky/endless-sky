@@ -21,12 +21,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "Logger.h"
 
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#endif
+
+#include <archive.h>
+#include <archive_entry.h>
+#include <curl/curl.h>
+
 #include <algorithm>
+#include <atomic>
+#include <cassert>
+#include <cstdio>
+#include <cstring>
+#include <filesystem>
+#include <future>
 #include <map>
+#include <mutex>
+#include <set>
+#include <sys/stat.h>
+#include <string>
+#include <vector>
+
+#ifdef _WIN32
+#include "text/Utf8.h"
+
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 using namespace std;
 
 namespace {
+	mutex pluginsMutex;
 	Set<Plugin> plugins;
 
 	void LoadSettingsFromFile(const string &path)
@@ -38,13 +66,140 @@ namespace {
 				continue;
 
 			for(const DataNode &child : node)
-				if(child.Size() == 2)
+				if(child.Size() >= 2)
 				{
+					lock_guard<mutex> guard(pluginsMutex);
 					auto *plugin = plugins.Get(child.Token(0));
 					plugin->enabled = child.Value(1);
 					plugin->currentState = child.Value(1);
+					plugin->version = child.Size() > 2 ? child.Token(2) : "???";
 				}
 		}
+	}
+
+	bool oldNetworkActivity = false;
+
+	mutex activePluginsMutex;
+	set<string> activePlugins;
+
+	// The maximum size of a plugin in bytes, this will be 1 GB.
+	const size_t MAX_DOWNLOAD_SIZE = 1000000000;
+
+	// Copy an entry from one archive to the other.
+	bool CopyData(struct archive *inputArchive, struct archive *outputArchive)
+	{
+		int retVal;
+		const void *buff;
+		size_t size;
+		int64_t offset;
+
+		while(true)
+		{
+			retVal = archive_read_data_block(inputArchive, &buff, &size, &offset);
+			if(retVal == ARCHIVE_EOF)
+				return true;
+			if(retVal != ARCHIVE_OK)
+				return false;
+			if(archive_write_data_block(outputArchive, buff, size, offset) != ARCHIVE_OK)
+				return false;
+		}
+		return true;
+	}
+
+	bool ExtractZIP(string &filename, const string &destination, const string &expectedName)
+	{
+		int flags = ARCHIVE_EXTRACT_TIME;
+		flags |= ARCHIVE_EXTRACT_PERM;
+		flags |= ARCHIVE_EXTRACT_ACL;
+		flags |= ARCHIVE_EXTRACT_FFLAGS;
+		// Safety first, no malicious links or paths.
+		flags |= ARCHIVE_EXTRACT_SECURE_NOABSOLUTEPATHS;
+		flags |= ARCHIVE_EXTRACT_SECURE_NODOTDOT;
+		flags |= ARCHIVE_EXTRACT_SECURE_SYMLINKS;
+
+		// Create the handles for reading/writing.
+		archive *read = archive_read_new();
+		archive *ext = archive_write_disk_new();
+		archive_write_disk_set_options(ext, flags);
+		archive_read_support_format_all(read);
+		if(!filename.empty() && filename.front() == '-')
+			filename.clear();
+		if(archive_read_open_filename(read, filename.c_str(), 10240))
+			return false;
+
+		// Check if this plugin has the right head folder name.
+		archive_entry *entry;
+		archive_read_next_header(read, &entry);
+		string firstEntry = archive_entry_pathname(entry);
+		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
+		bool fitsExpected = firstEntry == expectedName;
+		archive_read_data_skip(read);
+
+		// Check if this plugin has a head folder, if not, create one in the destination.
+		archive_read_next_header(read, &entry);
+		string secondEntry = archive_entry_pathname(entry);
+		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
+		if(!hasHeadFolder)
+			Files::CreateFolder(destination + expectedName);
+
+		// Close the archive so we can start again from the beginning.
+		archive_read_close(read);
+		archive_read_free(read);
+
+		// Read another time, this time for writing.
+		read = archive_read_new();
+		archive_read_support_format_all(read);
+		archive_read_open_filename(read, filename.c_str(), 10240);
+
+		size_t size = 0;
+		while (true)
+		{
+			int retVal = archive_read_next_header(read, &entry);
+			if(retVal == ARCHIVE_EOF)
+				break;
+			if(retVal != ARCHIVE_OK)
+				return false;
+
+			size += archive_entry_size(entry);
+			// The extracted size may be 4 times the maximum download size.
+			if(size > MAX_DOWNLOAD_SIZE * 4)
+				return false;
+
+			// Adjust root folder name if neccessary.
+			if(!fitsExpected && hasHeadFolder)
+			{
+				string thisEntryName = archive_entry_pathname(entry);
+				size_t start_pos = thisEntryName.find(firstEntry);
+				if(start_pos != std::string::npos)
+					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
+
+				// Check for malicous path.
+				if(thisEntryName.find("..") != string::npos)
+					return false;
+
+				archive_entry_set_pathname(entry, thisEntryName.c_str());
+			}
+
+			// Add root folder to path if neccessary.
+			string dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
+			archive_entry_set_pathname(entry, dest_file.c_str());
+
+			// Write files.
+			if(archive_write_header(ext, entry) == ARCHIVE_OK)
+			{
+				if(!CopyData(read, ext))
+					return false;
+				if(archive_write_finish_entry(ext) != ARCHIVE_OK)
+					return false;
+			}
+		}
+
+		// Free all data.
+		archive_read_close(read);
+		archive_read_free(read);
+		archive_write_close(ext);
+		archive_write_free(ext);
+		return true;
 	}
 }
 
@@ -253,7 +408,11 @@ const Plugin *Plugins::Load(const string &path)
 		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
 
 	// Plugin names should be unique.
-	auto *plugin = plugins.Get(name);
+	Plugin *plugin;
+	{
+		lock_guard<mutex> guard(pluginsMutex);
+		plugin = plugins.Get(name);
+	}
 	if(plugin && plugin->IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
@@ -296,16 +455,18 @@ void Plugins::LoadSettings()
 
 void Plugins::Save()
 {
+	lock_guard<mutex> guard(pluginsMutex);
 	if(plugins.empty())
 		return;
+
 	DataWriter out(Files::Config() + "plugins.txt");
 
 	out.Write("state");
 	out.BeginChild();
 	{
 		for(const auto &it : plugins)
-			if(it.second.IsValid())
-				out.Write(it.first, it.second.currentState);
+			if(it.second.IsValid() && !it.second.removed)
+				out.Write(it.first, it.second.currentState, it.second.version);
 	}
 	out.EndChild();
 }
@@ -326,10 +487,19 @@ bool Plugins::IsPlugin(const string &path)
 // launched via user preferences.
 bool Plugins::HasChanged()
 {
+	lock_guard<mutex> guard(pluginsMutex);
 	for(const auto &it : plugins)
-		if(it.second.enabled != it.second.currentState)
+		if(it.second.enabled != it.second.currentState || it.second.removed)
 			return true;
-	return false;
+	return oldNetworkActivity;
+}
+
+
+
+bool Plugins::IsInBackground()
+{
+	lock_guard<mutex> guard(activePluginsMutex);
+	return !activePlugins.empty();
 }
 
 
@@ -345,6 +515,147 @@ const Set<Plugin> &Plugins::Get()
 // Toggles enabling or disabling a plugin for the next game restart.
 void Plugins::TogglePlugin(const string &name)
 {
+	lock_guard<mutex> guard(pluginsMutex);
 	auto *plugin = plugins.Get(name);
 	plugin->currentState = !plugin->currentState;
+}
+
+
+
+future<void> Plugins::Install(InstallData *installData, bool update)
+{
+	oldNetworkActivity = true;
+	if(!update)
+	{
+		lock_guard<mutex> guard(activePluginsMutex);
+		if(!activePlugins.insert(installData->name).second)
+			return future<void>();
+	}
+
+	return async(launch::async, [installData, update]() noexcept -> void
+		{
+			// Check for malicous path.
+			if(installData->name.find("..") != string::npos)
+				return;
+
+			string zipLocation = Files::Plugins() + installData->name + ".zip";
+			bool success = Download(installData->url, zipLocation);
+			if(success)
+			{
+				// We need to change pur working directory for the extraction to be able
+				// to check for symlinks or absolute paths without disallowing these things
+				// for the directory itself.
+				auto oldPath = std::filesystem::current_path();
+				std::filesystem::current_path(Files::Plugins());
+
+				success = ExtractZIP(
+					zipLocation,
+					"./", installData->name + "/");
+
+				std::filesystem::current_path(oldPath);
+
+				if(success)
+				{
+					// Remove old version.
+					if(update)
+						filesystem::remove_all(Files::Plugins() + installData->name);
+
+					// Create a new entry for the plugin.
+					Plugin *newPlugin;
+					{
+						lock_guard<mutex> guard(pluginsMutex);
+						newPlugin = plugins.Get(installData->name);
+					}
+					newPlugin->name = installData->name;
+					newPlugin->aboutText = installData->aboutText;
+					newPlugin->path = Files::Plugins() + installData->name + "/";
+					newPlugin->version = installData->version;
+					newPlugin->enabled = false;
+					newPlugin->currentState = true;
+
+					installData->installed = true;
+					installData->outdated = false;
+				}
+				else
+					filesystem::remove_all(Files::Plugins() + installData->name);
+			}
+			Files::Delete(zipLocation);
+			{
+				lock_guard<mutex> guard(activePluginsMutex);
+				activePlugins.erase(installData->name);
+			}
+		});
+}
+
+
+
+future<void> Plugins::Update(InstallData *installData)
+{
+	{
+		lock_guard<mutex> guard(activePluginsMutex);
+		if(!activePlugins.insert(installData->name).second)
+			return future<void>();
+	}
+
+	{
+		lock_guard<mutex> guard(pluginsMutex);
+		plugins.Get(installData->name)->version = installData->version;
+	}
+
+	return Install(installData, true);
+}
+
+
+
+void Plugins::DeletePlugin(const std::string &pluginName)
+{
+	{
+		lock_guard<mutex> guard(activePluginsMutex);
+		if(activePlugins.count(pluginName))
+			return;
+	}
+
+	{
+		lock_guard<mutex> guard(pluginsMutex);
+		plugins.Get(pluginName)->removed = true;
+	}
+
+	filesystem::remove_all(Files::Plugins() + pluginName);
+}
+
+
+
+bool Plugins::Download(const std::string &url, const std::string &location)
+{
+	CURL *curl = curl_easy_init();
+	if(!curl)
+		return false;
+#if defined _WIN32
+	FILE *out = nullptr;
+	_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"wb");
+#else
+	FILE *out = fopen(location.c_str(), "wb");
+#endif
+	if(!out)
+		return false;
+
+	// Set the url that gets downloaded.
+	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+	// Follow redirects.
+	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
+	// How long we will wait.
+	curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
+	// What is the maximum filesize in bytes.
+	curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_DOWNLOAD_SIZE);
+	// Set the write function and the output file used in the write function.
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
+
+	CURLcode result = curl_easy_perform(curl);
+	if(result != CURLE_OK)
+		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(result));
+
+	curl_easy_cleanup(curl);
+	fclose(out);
+	return result == CURLE_OK;
 }

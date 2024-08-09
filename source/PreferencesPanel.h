@@ -18,17 +18,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Command.h"
+#include "Plugins.h"
 #include "Point.h"
 #include "ScrollVar.h"
+#include "TaskQueue.h"
 #include "text/WrappedText.h"
+
+#include <future>
+#include <nlohmann/json.hpp>
 
 #include <memory>
 #include <string>
 #include <vector>
 
-class RenderBuffer;
+class Command;
 struct Plugin;
+class Sprite;
+class RenderBuffer;
 
 
 
@@ -40,6 +46,7 @@ public:
 
 	// Draw this panel.
 	virtual void Draw() override;
+	virtual void Step() override;
 
 
 protected:
@@ -57,8 +64,9 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void DrawPluginInstalls();
 	void RenderPluginDescription(const std::string &pluginName);
-	void RenderPluginDescription(const Plugin &plugin);
+	void RenderPluginDescription(const Sprite *sprite, const std::string &description);
 
 	void DrawTooltips();
 
@@ -70,9 +78,12 @@ private:
 	void HandleDown();
 	void HandleConfirm();
 
+	void ProcessPluginIndex();
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
+	// Delete a plugin that has been marked to be removed.
+	void DeletePlugin();
 
 private:
 	int editing;
@@ -95,10 +106,34 @@ private:
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
+	std::string pluginMarkedForDelete;
+
+
+	// Pointers to keep track of what plugin is selected/clicked/hovered over.
+	Plugins::InstallData *latestPlugin = nullptr;
+
+	Plugins::InstallData *selectedPluginInstall = nullptr;
+	Plugins::InstallData *oldSelectedPluginInstall = nullptr;
+	Plugins::InstallData *clickedPluginInstall = nullptr;
+	Plugins::InstallData *oldClickedPluginInstall = nullptr;
+	Plugins::InstallData *hoverPluginInstall = nullptr;
+
+	size_t pluginInstallPages = 1;
+	size_t currentPluginInstallPage = 0;
+	// If the plugin index was already downloaded.
+	bool downloadedInfo = false;
+	// Vector to store the feedback of the async tasks from installing/updating/deleting.
+	std::vector<std::future<void>> installFeedbacks;
+	// A list of plugins that can be installed.
+	std::vector<Plugins::InstallData> pluginInstallData;
+	// Queue to load icons for installable plugins and a list of those.
+	TaskQueue queue;
+	Set<Sprite> icons;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+	std::vector<ClickZone<Plugins::InstallData *>> pluginInstallZones;
 
 	std::unique_ptr<RenderBuffer> pluginListClip;
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
