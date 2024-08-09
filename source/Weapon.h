@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEAPON_H_
-#define WEAPON_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -108,6 +107,7 @@ public:
 	double Inaccuracy() const;
 	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
+	double Arc() const;
 
 	double Tracking() const;
 	double OpticalTracking() const;
@@ -287,6 +287,7 @@ private:
 	// and whether it is inverted
 	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
+	double maxAngle = 360.;
 
 	double tracking = 0.;
 	double opticalTracking = 0.;
@@ -391,6 +392,7 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
+inline double Weapon::Arc() const { return maxAngle; }
 
 inline double Weapon::Tracking() const { return tracking; }
 inline double Weapon::OpticalTracking() const { return opticalTracking; }
@@ -465,7 +467,3 @@ inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
-
-
-
-#endif

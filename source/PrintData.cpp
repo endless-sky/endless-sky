@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "LocationFilter.h"
@@ -51,7 +52,7 @@ namespace {
 	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
 	{
-		cout << itemNoun << ',' << saleNoun << '\n';
+		cout << DataWriter::Quote(itemNoun) << ',' << DataWriter::Quote(saleNoun) << '\n';
 		map<string, set<string>> itemSales;
 		for(auto &saleIt : sales)
 			for(auto &itemIt : saleIt.second)
@@ -60,9 +61,9 @@ namespace {
 		{
 			if(itemIt.first != ObjectName(itemIt.second))
 				continue;
-			cout << '"' << itemIt.first << '"';
+			cout << DataWriter::Quote(itemIt.first);
 			for(auto &saleName : itemSales[itemIt.first])
-				cout << ',' << '"' << saleName << '"';
+				cout << ',' << DataWriter::Quote(saleName);
 			cout << '\n';
 		}
 	}
@@ -72,13 +73,13 @@ namespace {
 	template <class Type>
 	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
-		cout << saleNoun << ';' << itemNoun << '\n';
+		cout << DataWriter::Quote(saleNoun) << ';' << DataWriter::Quote(itemNoun) << '\n';
 		for(auto &saleIt : sales)
 		{
-			cout << '"' << saleIt.first << '"';
+			cout << DataWriter::Quote(saleIt.first);
 			int index = 0;
 			for(auto &item : saleIt.second)
-				cout << (index++ ? ';' : ',') << '"' << ObjectName(*item) << '"';
+				cout << (index++ ? ';' : ',') << DataWriter::Quote(ObjectName(*item));
 			cout << '\n';
 		}
 	}
@@ -86,13 +87,11 @@ namespace {
 
 	// Take a Set and print a list of the names (keys) it contains.
 	template <class Type>
-	void PrintObjectList(const Set<Type> &objects, bool withQuotes, const string &name)
+	void PrintObjectList(const Set<Type> &objects, const string &name)
 	{
-		cout << name << '\n';
-		const string start = withQuotes ? "\"" : "";
-		const string end = withQuotes ? "\"\n" : "\n";
+		cout << DataWriter::Quote(name) << '\n';
 		for(const auto &it : objects)
-			cout << start << it.first << end;
+			cout << DataWriter::Quote(it.first) << endl;
 	}
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
@@ -100,14 +99,14 @@ namespace {
 	template <class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
-		cout << name << ',' << "attributes" << '\n';
+		cout << DataWriter::Quote(name) << ',' << DataWriter::Quote("attributes") << '\n';
 		for(auto &it : objects)
 		{
-			cout << '"' << it.first << '"';
+			cout << DataWriter::Quote(it.first);
 			const Type &object = it.second;
 			int index = 0;
 			for(const string &attribute : object.Attributes())
-				cout << (index++ ? ';' : ',') << '"' << attribute << '"';
+				cout << (index++ ? ';' : ',') << DataWriter::Quote(attribute);
 			cout << '\n';
 		}
 	}
@@ -117,7 +116,7 @@ namespace {
 	template <class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
-		cout << "attribute" << ',' << name << '\n';
+		cout << DataWriter::Quote("attribute") << ',' << DataWriter::Quote(name) << '\n';
 		set<string> attributes;
 		for(auto &it : objects)
 		{
@@ -127,13 +126,13 @@ namespace {
 		}
 		for(const string &attribute : attributes)
 		{
-			cout << '"' << attribute << '"';
+			cout << DataWriter::Quote(attribute);
 			int index = 0;
 			for(auto &it : objects)
 			{
 				const Type &object = it.second;
-				if(object.Attributes().count(attribute))
-					cout << (index++ ? ';' : ',') << '"' << it.first << '"';
+				if(object.Attributes().contains(attribute))
+					cout << (index++ ? ';' : ',') << DataWriter::Quote(it.first);
 			}
 			cout << '\n';
 		}
@@ -144,11 +143,13 @@ namespace {
 	{
 		auto PrintBaseShipStats = []() -> void
 		{
-			cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
-				<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
-				<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
-				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
-				<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
+			cout << "model" << ',' << "category" << ',' << DataWriter::Quote("chassis cost") << ','
+				<< DataWriter::Quote("loaded cost") << ',' << "shields" << ',' << "hull" << ',' << "mass" << ',' << "drag" << ','
+				<< DataWriter::Quote("heat dissipation") << ',' << DataWriter::Quote("required crew") << ',' << "bunks" << ','
+				<< DataWriter::Quote("cargo space") << ',' << "fuel" << ',' << DataWriter::Quote("outfit space") << ','
+				<< DataWriter::Quote("weapon capacity") << ',' << DataWriter::Quote("engine capacity") << ','
+				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
+				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << '\n';
 
 			for(auto &it : GameData::Ships())
 			{
@@ -157,10 +158,10 @@ namespace {
 					continue;
 
 				const Ship &ship = it.second;
-				cout << '"' << it.first << '"' << ',';
+				cout << DataWriter::Quote(it.first) << ',';
 
 				const Outfit &attributes = ship.BaseAttributes();
-				cout << '"' << attributes.Category() << '"' << ',';
+				cout << DataWriter::Quote(attributes.Category()) << ',';
 				cout << ship.ChassisCost() << ',';
 				cout << ship.Cost() << ',';
 
@@ -198,14 +199,15 @@ namespace {
 
 		auto PrintLoadedShipStats = [](bool variants) -> void
 		{
-			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-				<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "bunks" << ','
-				<< "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
-				<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
-				<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
-				<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
-				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
-				<< "drone bays" << ',' << "deterrence" << '\n';
+			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ',' << "hull" << ',' << "mass" << ','
+				<< DataWriter::Quote("required crew") << ',' << "bunks" << ',' << DataWriter::Quote("cargo space") << ','
+				<< "fuel" << ',' << DataWriter::Quote("outfit space") << ',' << DataWriter::Quote("weapon capacity") << ','
+				<< DataWriter::Quote("engine capacity") << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
+				<< DataWriter::Quote("energy generation") << ',' << DataWriter::Quote("max energy usage") << ','
+				<< DataWriter::Quote("energy capacity") << ',' << DataWriter::Quote("idle/max heat") << ','
+				<< DataWriter::Quote("max heat generation") << ',' << DataWriter::Quote("max heat dissipation") << ','
+				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
+				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << ',' << "deterrence" << '\n';
 
 			for(auto &it : GameData::Ships())
 			{
@@ -214,10 +216,10 @@ namespace {
 					continue;
 
 				const Ship &ship = it.second;
-				cout << '"' << it.first << '"' << ',';
+				cout << DataWriter::Quote(it.first) << ',';
 
 				const Outfit &attributes = ship.Attributes();
-				cout << '"' << attributes.Category() << '"' << ',';
+				cout << DataWriter::Quote(attributes.Category()) << ',';
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
@@ -310,7 +312,7 @@ namespace {
 				if(it.second.TrueModelName() != it.first && !variants)
 					continue;
 
-				cout << "\"" << it.first << "\"\n";
+				cout << DataWriter::Quote(it.first) << "\n";
 			}
 		};
 
@@ -346,14 +348,15 @@ namespace {
 	{
 		auto PrintWeaponStats = []() -> void
 		{
-			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-				<< "reload" << ',' << "burst count" << ',' << "burst reload" << ',' << "lifetime" << ','
-				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
-				<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
-				<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
-				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scrambling dmg/s" << ','
-				<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
-				<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
+			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ',' << "reload" << ','
+				<< DataWriter::Quote("burst count") << ',' << DataWriter::Quote("burst reload") << ',' << "lifetime" << ','
+				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ',' << "energy/s" << ','
+				<< "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ',' << "discharge/s" << ',' << "hull/s" << ','
+				<< "corrosion/s" << ',' << "heat dmg/s" << ',' << DataWriter::Quote("burn dmg/s") << ','
+				<< DataWriter::Quote("energy dmg/s") << ',' << DataWriter::Quote("ion dmg/s") << ','
+				<< DataWriter::Quote("scrambling dmg/s") << ',' << DataWriter::Quote("slow dmg/s") << ','
+				<< DataWriter::Quote("disruption dmg/s") << ',' << "piercing" << ',' << DataWriter::Quote("fuel dmg/s") << ','
+				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
 				<< "deterrence" << '\n';
 
 			for(auto &it : GameData::Outfits())
@@ -363,8 +366,8 @@ namespace {
 					continue;
 
 				const Outfit &outfit = it.second;
-				cout << '"' << it.first << '"' << ',';
-				cout << '"' << outfit.Category() << '"' << ',';
+				cout << DataWriter::Quote(it.first)<< ',';
+				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
 
@@ -436,12 +439,13 @@ namespace {
 
 		auto PrintEngineStats = []() -> void
 		{
-			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
-				<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
-				<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
-				<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
-				<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
+			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << DataWriter::Quote("outfit space") << ','
+				<< DataWriter::Quote("engine capacity") << ',' << "thrust/s" << ',' << DataWriter::Quote("thrust energy/s") << ','
+				<< DataWriter::Quote("thrust heat/s") << ',' << "turn/s" << ',' << DataWriter::Quote("turn energy/s") << ','
+				<< DataWriter::Quote("turn heat/s") << ',' << DataWriter::Quote("reverse thrust/s") << ','
+				<< DataWriter::Quote("reverse energy/s") << ',' << DataWriter::Quote("reverse heat/s") << ','
+				<< DataWriter::Quote("afterburner thrust/s") << ',' << DataWriter::Quote("afterburner energy/s") << ','
+				<< DataWriter::Quote("afterburner heat/s") << ',' << DataWriter::Quote("afterburner fuel/s") << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -450,7 +454,7 @@ namespace {
 					continue;
 
 				const Outfit &outfit = it.second;
-				cout << '"' << it.first << '"' << ',';
+				cout << DataWriter::Quote(it.first) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -475,8 +479,9 @@ namespace {
 
 		auto PrintPowerStats = []() -> void
 		{
-			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
+			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << DataWriter::Quote("outfit space") << ','
+				<< DataWriter::Quote("energy generation") << ',' << DataWriter::Quote("heat generation") << ','
+				<< DataWriter::Quote("energy capacity") << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -485,7 +490,7 @@ namespace {
 					continue;
 
 				const Outfit &outfit = it.second;
-				cout << '"' << it.first << '"' << ',';
+				cout << DataWriter::Quote(it.first) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -509,14 +514,14 @@ namespace {
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
 			for(const auto &attribute : attributes)
-				cout << ',' << '"' << attribute << '"';
+				cout << ',' << DataWriter::Quote(attribute);
 			cout << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				cout << '"' << outfit.TrueName() << '"' << ',';
-				cout << '"' << outfit.Category() << '"' << ',';
+				cout << DataWriter::Quote(outfit.TrueName()) << ',';
+				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass();
 				for(const auto &attribute : attributes)
@@ -557,7 +562,7 @@ namespace {
 		else if(all)
 			PrintOutfitsAllStats();
 		else
-			PrintObjectList(GameData::Outfits(), true, "outfit");
+			PrintObjectList(GameData::Outfits(), "outfit");
 	}
 
 	void Sales(const char *const *argv)
@@ -595,8 +600,12 @@ namespace {
 			{
 				cout << it.first << "::";
 				const Planet &planet = it.second;
-				cout << planet.Description() << "::";
-				cout << planet.GetPort().Description() << "\n";
+				for(auto &whenText : planet.Description())
+					cout << whenText.second;
+				cout << "::";
+				for(auto &whenText : planet.GetPort().Description())
+					cout << whenText.second;
+				cout << "\n";
 			}
 		};
 
@@ -621,7 +630,7 @@ namespace {
 		else if(attributes)
 			PrintObjectAttributes(GameData::Planets(), "planet");
 		if(!(descriptions || attributes))
-			PrintObjectList(GameData::Planets(), false, "planet");
+			PrintObjectList(GameData::Planets(), "planet");
 	}
 
 	void Systems(const char *const *argv)
@@ -642,7 +651,7 @@ namespace {
 		else if(attributes)
 			PrintObjectAttributes(GameData::Systems(), "system");
 		else
-			PrintObjectList(GameData::Systems(), false, "system");
+			PrintObjectList(GameData::Systems(), "system");
 	}
 
 	void LocationFilterMatches(const char *const *argv)
@@ -705,7 +714,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(OTHER_VALID_ARGS.count(arg) || OUTFIT_ARGS.count(arg))
+		if(OTHER_VALID_ARGS.contains(arg) || OUTFIT_ARGS.contains(arg))
 			return true;
 	}
 	return false;
@@ -723,7 +732,7 @@ void PrintData::Print(const char *const *argv)
 			Ships(argv);
 			break;
 		}
-		else if(OUTFIT_ARGS.count(arg))
+		else if(OUTFIT_ARGS.contains(arg))
 		{
 			Outfits(argv);
 			break;

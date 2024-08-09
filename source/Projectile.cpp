@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "FighterHitHelper.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -147,7 +148,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	{
 		target = TargetPtr().get();
 		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
-				(!targetDisabled && target->IsDisabled() && target->CanBeCarried()))
+				(!targetDisabled && !FighterHitHelper::IsValidTarget(target)))
 		{
 			BreakTarget();
 			target = nullptr;
@@ -465,9 +466,23 @@ double Projectile::DistanceTraveled() const
 
 
 
+bool Projectile::Phases(const Ship &ship) const
+{
+	return phasedShip == &ship;
+}
+
+
+
 uint16_t Projectile::HitsRemaining() const
 {
 	return hitsRemaining;
+}
+
+
+
+void Projectile::SetPhases(const Ship *ship)
+{
+	phasedShip = ship;
 }
 
 

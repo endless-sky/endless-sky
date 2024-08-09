@@ -50,6 +50,140 @@ namespace {
 
 
 
+// Checks if there are any dependencies of any kind.
+bool Plugin::PluginDependencies::IsEmpty() const
+{
+	return required.empty() && optional.empty() && conflicted.empty();
+}
+
+
+
+// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
+bool Plugin::PluginDependencies::IsValid() const
+{
+	// We will check every dependency before returning to allow the
+	// plugin developer to see all errors and not just the first.
+	bool isValid = true;
+
+	string dependencyCollisions;
+
+	// Required dependencies will already be valid due to sets not
+	// allowing duplicate values. Therefore we only need to check optional
+	// and conflicts.
+
+	// Check and log collisions between optional and required dependencies.
+	for(const string &dependency : optional)
+	{
+		if(required.contains(dependency))
+			dependencyCollisions += dependency + ", ";
+	}
+	if(!dependencyCollisions.empty())
+	{
+		dependencyCollisions.pop_back();
+		dependencyCollisions.pop_back();
+		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+			+ " were found in both the required dependencies list and the optional dependencies list.");
+		dependencyCollisions.clear();
+	}
+
+	// Check and log collisions between conflicted and required dependencies.
+	for(const string &dependency : conflicted)
+	{
+		if(required.contains(dependency))
+		{
+			isValid = false;
+			dependencyCollisions += dependency + ", ";
+		}
+	}
+	if(!dependencyCollisions.empty())
+	{
+		dependencyCollisions.pop_back();
+		dependencyCollisions.pop_back();
+		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+			+ " were found in both the conflicting dependencies list and the required dependencies list.");
+		dependencyCollisions.clear();
+	}
+
+	// Check and log collisions between optional and conflicted dependencies.
+	for(const string &dependency : conflicted)
+	{
+		if(optional.contains(dependency))
+		{
+			isValid = false;
+			dependencyCollisions += dependency + ", ";
+		}
+	}
+	if(!dependencyCollisions.empty())
+	{
+		dependencyCollisions.pop_back();
+		dependencyCollisions.pop_back();
+		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+			+ " were found in both the optional dependencies list and the conflicting dependencies list.");
+		dependencyCollisions.clear();
+	}
+
+	return isValid;
+}
+
+
+
+// Constructs a description of the plugin from its name, tags, dependencies, etc.
+string Plugin::CreateDescription() const
+{
+	string text;
+	if(!version.empty())
+		text += "Version: " + version + '\n';
+	if(!authors.empty())
+	{
+		text += "Authors: ";
+		for(const string &author : authors)
+			text += author + ", ";
+		text.pop_back();
+		text.pop_back();
+		text += '\n';
+	}
+	if(!tags.empty())
+	{
+		text += "Tags: ";
+		for(const string &tag : tags)
+			text += tag + ", ";
+		text.pop_back();
+		text.pop_back();
+		text += '\n';
+	}
+	if(!dependencies.IsEmpty())
+	{
+		text += "Dependencies:\n";
+		if(!dependencies.gameVersion.empty())
+			text += "  Game Version: " + dependencies.gameVersion + '\n';
+		if(!dependencies.required.empty())
+		{
+			text += "  Requires:\n";
+			for(const string &dependency : dependencies.required)
+				text += "  - " + dependency + '\n';
+		}
+		if(!dependencies.optional.empty())
+		{
+			text += "  Optional:\n";
+			for(const string &dependency : dependencies.optional)
+				text += "  - " + dependency + '\n';
+		}
+		if(!dependencies.conflicted.empty())
+		{
+			text += "  Conflicts:\n";
+			for(const string &dependency : dependencies.conflicted)
+				text += "  - " + dependency + '\n';
+		}
+		text += '\n';
+	}
+	if(!aboutText.empty())
+		text += aboutText;
+
+	return text;
+}
+
+
+
 // Checks whether this plugin is valid, i.e. whether it exists.
 bool Plugin::IsValid() const
 {
@@ -67,6 +201,10 @@ const Plugin *Plugins::Load(const string &path)
 
 	string pluginFile = path + "plugin.txt";
 	string aboutText;
+	string version;
+	set<string> authors;
+	set<string> tags;
+	Plugin::PluginDependencies dependencies;
 
 	// Load plugin metadata from plugin.txt.
 	bool hasName = false;
@@ -78,7 +216,34 @@ const Plugin *Plugins::Load(const string &path)
 			hasName = true;
 		}
 		else if(child.Token(0) == "about" && child.Size() >= 2)
-			aboutText = child.Token(1);
+			aboutText += child.Token(1) + '\n';
+		else if(child.Token(0) == "version" && child.Size() >= 2)
+			version = child.Token(1);
+		else if(child.Token(0) == "authors" && child.HasChildren())
+			for(const DataNode &grand : child)
+				authors.insert(grand.Token(0));
+		else if(child.Token(0) == "tags" && child.HasChildren())
+			for(const DataNode &grand : child)
+				tags.insert(grand.Token(0));
+		else if(child.Token(0) == "dependencies" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "game version")
+					dependencies.gameVersion = grand.Token(1);
+				else if(grand.Token(0) == "requires" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.required.insert(great.Token(0));
+				else if(grand.Token(0) == "optional" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.optional.insert(great.Token(0));
+				else if(grand.Token(0) == "conflicts" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.conflicted.insert(great.Token(0));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -97,10 +262,22 @@ const Plugin *Plugins::Load(const string &path)
 		return nullptr;
 	}
 
+	// Skip the plugin if the dependencies aren't valid.
+	if(!dependencies.IsValid())
+	{
+		Logger::LogError("Warning: Skipping plugin located at \"" + path
+			+ "\" because plugin has errors in its dependencies.");
+		return nullptr;
+	}
+
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
 	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
+	plugin->version = std::move(version);
+	plugin->authors = std::move(authors);
+	plugin->tags = std::move(tags);
+	plugin->dependencies = std::move(dependencies);
 
 	return plugin;
 }

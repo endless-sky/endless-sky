@@ -37,7 +37,6 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(ui.GetBox("content").Width());
-	text.Wrap(port.Description());
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
@@ -93,6 +92,7 @@ void SpaceportPanel::Draw()
 		return;
 
 	Rectangle box = ui.GetBox("content");
+	text.Wrap(port.Description().ToString(player.Conditions()));
 	text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 
 	if(hasNews)
