@@ -14,7 +14,6 @@
           "name": "glew",
           "platform": "!osx"
         },
-        "libavif",
         "libpng",
         "libjpeg-turbo",
         "libmad",

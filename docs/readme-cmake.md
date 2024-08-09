@@ -59,7 +59,7 @@ In addition to the below dependencies, you will also need CMake 3.16 or newer, h
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev catch2 libavif-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev catch2
 ```
 
 </details>
@@ -68,7 +68,7 @@ g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev li
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel catch2-devel libavif-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel catch2-devel
 ```
 
 </details>
