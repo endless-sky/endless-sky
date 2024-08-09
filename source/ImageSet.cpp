@@ -293,7 +293,7 @@ void ImageSet::Load() noexcept(false)
 
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
-	for(size_t i = 0; i < frames; ++i)
+	for(size_t i = 0; i < paths[0].size(); ++i)
 	{
 		int loadedFrames = buffer[0].Read(paths[0][i], i);
 		if(!loadedFrames)
@@ -314,9 +314,6 @@ void ImageSet::Load() noexcept(false)
 			if(!masks[i].IsLoaded())
 				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
-
-		if(loadedFrames > 1)
-			break;
 	}
 
 	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
