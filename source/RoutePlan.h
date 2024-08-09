@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ROUTE_PLAN_H_
-#define ROUTE_PLAN_H_
+#pragma once
 
 #include "RouteEdge.h"
 
@@ -57,7 +56,3 @@ private:
 	std::vector<std::pair<const System *, RouteEdge>> plan;
 	bool hasRoute = false;
 };
-
-
-
-#endif

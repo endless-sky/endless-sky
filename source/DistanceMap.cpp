@@ -233,15 +233,15 @@ void DistanceMap::Init(const Ship *ship)
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
 		if(wormholeStrategy != WormholeStrategy::NONE)
-			for(const StellarObject &object : nextEdge.prev->Objects())
+			for(const StellarObject &object : currentSystem->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
 					const System &link = center ?
-						object.GetPlanet()->GetWormhole()->WormholeSource(*nextEdge.prev) :
-						object.GetPlanet()->GetWormhole()->WormholeDestination(*nextEdge.prev);
+						object.GetPlanet()->GetWormhole()->WormholeSource(*currentSystem) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*currentSystem);
 					if(HasBetter(link, nextEdge))
 						continue;
 

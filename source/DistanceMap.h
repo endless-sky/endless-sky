@@ -33,7 +33,7 @@ class System;
 // This is a map of shortest routes to all other systems from the given "center"
 // system. It also tracks how many days and fuel it takes to get there. Ships with
 // a hyperdrive travel using the "links" between systems. Ships with jump drives
-// can make use of those links, but can also travel to any system that's closeby.
+// can make use of those links, but can also travel to any system that's close by.
 // Wormholes can also be used by players or ships.
 class DistanceMap {
 public:

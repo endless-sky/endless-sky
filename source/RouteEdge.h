@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ROUTE_EDGE_H_
-#define ROUTE_EDGE_H_
+#pragma once
 
 class System;
 
@@ -46,7 +45,3 @@ public:
 	// is going to hit its danger anyway, so it doesn't change anything.
 	double danger = 0.;
 };
-
-
-
-#endif

@@ -3039,7 +3039,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		shipScanCount += outfitScansIt != outfitScans.end() ? outfitScansIt->second.size() : 0;
 		int shipScanTime = scanTimeIt != scanTime.end() ? scanTimeIt->second : 0;
 		if((cargoScan || outfitScan) && shipScanCount < 12 && shipScanTime < 18000)
-			{
+		{
 			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
@@ -3051,7 +3051,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 					if(it->IsTargetable())
 						targetShips.emplace_back(it);
 				}
-			}
+		}
 
 		// Consider scanning any planetary object in the system, if able.
 		vector<const StellarObject *> targetPlanets;
@@ -4355,7 +4355,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			}
 			else if(isTryingLanding)
 					message = object.LandingMessage();
-			}
+		}
 
 		const StellarObject *target = ship.GetTargetStellar();
 		// Require that the player's planetary target is one of the current system's planets.
