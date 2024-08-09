@@ -314,6 +314,9 @@ void ImageSet::Load() noexcept(false)
 			if(!masks[i].IsLoaded())
 				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
+
+		if(loadedFrames > 1)
+			break;
 	}
 
 	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
