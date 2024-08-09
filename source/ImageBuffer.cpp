@@ -153,13 +153,10 @@ void ImageBuffer::ShrinkToHalfSize()
 
 bool ImageBuffer::Read(const string &path, int frame)
 {
-	// First, make sure this is a JPG or PNG file.
-	if(path.length() < 4)
-		return false;
+	// First, make sure this is a supported file.
+	bool isPNG = (path.ends_with(".png") || path.ends_with(".PNG"));
+	bool isJPG = (path.ends_with(".jpg") || path.ends_with(".JPG") || path.ends_with(".jpeg") || path.ends_with(".JPEG"));
 
-	string extension = path.substr(path.length() - 4);
-	bool isPNG = (extension == ".png" || extension == ".PNG");
-	bool isJPG = (extension == ".jpg" || extension == ".JPG");
 	if(!isPNG && !isJPG)
 		return false;
 
@@ -170,7 +167,7 @@ bool ImageBuffer::Read(const string &path, int frame)
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
-	int pos = path.length() - 4;
+	int pos = path.find_last_of('.');
 	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
 		pos -= 3;
 	while(--pos)
