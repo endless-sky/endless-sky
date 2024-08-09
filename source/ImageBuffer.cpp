@@ -18,12 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "File.h"
 #include "Logger.h"
 
-#include <avif/avif.h>
 #include <jpeglib.h>
 #include <png.h>
 
-#include <cmath>
-#include <memory>
+#include <cstdio>
 #include <stdexcept>
 #include <vector>
 
@@ -55,11 +53,8 @@ ImageBuffer::~ImageBuffer()
 // Set the number of frames. This must be called before allocating.
 void ImageBuffer::Clear(int frames)
 {
-	if(pixels)
-	{
-		delete[] pixels;
-		pixels = nullptr;
-	}
+	delete[] pixels;
+	pixels = nullptr;
 	this->frames = frames;
 }
 
