@@ -730,12 +730,10 @@ License: public-domain
 
 Files:
  images/land/water4*
-Copyright: N/A (CC0 Public Domain)
-License: CC0
+Copyright: Unknown
+License: Depends
 Comment:
- Taken from https://pixabay.com/photos/macedonia-sunset-dusk-lake-water-260851, resized,
- cropped, and adjusted gamma. According to Section 3 of the Pixabay Terms of Service,
- all images with a "published date" earlier than January 9, 2019 have the CC0 license.
+ Cannot source. The image was probably removed from unsplash.
 
 Files:
  images/land/badlands10*
