@@ -23,8 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <png.h>
 
 #include <cmath>
-#include <stdexcept>
 #include <memory>
+#include <stdexcept>
 #include <vector>
 
 using namespace std;
