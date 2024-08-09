@@ -7455,3 +7455,142 @@ mission "Adelita 5"
 			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
 			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
 			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
+
+mission "Syndicate Business 1"
+	name "Rescue Kidnapped Man in <waypoints>"
+	description "A mysterious man has been kidnapped by a heavy pirate warship in <waypoints>. Destroy the ship to rescue him."
+	minor
+	to offer
+		random < 40
+		credits > 5000000
+	source 
+		government Syndicate
+		attributes "core"
+	waypoint "Moktar"
+	destination "Sunracer"
+	on offer
+		conversation
+			`You are walking near the spaceport and suddenly a computer terminal starts blinking and beeping when you pass it.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`	When you approach, you are greeted by plain text on the terminal's screen:` 
+			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: -1.18143560, -0.01575673, 0.00755328. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
+			`	You note that the message doesn't have any information about the sender, but there wouldn't be if what the message contains is true. There are no shortage of pirates in <waypoints>.`
+			choice
+				`	"To <waypoints>!"`
+				`	(Ignore it and walk away.)`
+					decline	
+			`	You return to your ship and prepare to leave.`
+				accept
+
+	on enter "Moktar"
+		"reputation: Independent (Killable)" = -1000
+		conversation
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
+			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
+			choice
+				`	"Uhhh... hand over who?"`
+					goto who
+				`	"I don't negotiate with pirates!"`
+					goto negotiate
+				`	"You can take him, but I don't know where he is."`
+			label who
+			`	"Bah, you lying buffoon! I'll find him in your ship's wreckage!"`
+				goto power
+			label negotiate
+			`	"Aye, then I won't negotiate with you!"`
+			label power
+			`	The Vanguard powers up its weapons.`
+	npc kill
+		government "Independent (Killable)"
+		personality heroic vindictive staying
+			confusion 20
+		system "Moktar"
+		ship "Vanguard" "Golden Jewel"		
+		conversation 
+			`The <npc> has been destroyed. You receive a hail from a small escape pod drifting nearby. "Thank you, Captain, you've saved my life. I'm Howard. I can promise you a reward if you would pick me up from this tin can and drop me off at <destination>."`
+			choice
+				`	"Sounds good."`
+					decline
+				`	"What's the deal with you and that pirate?"`
+			`	"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <planet>.`
+	on complete
+		"reputation: Independent (Killable)" = 10
+		conversation
+			`When you land on <planet>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`	However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Maralex perpetual bond? To purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
+			choice
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Maralex Controls? I thought you were part of the Syndicate."`
+					goto maralex
+				`	"Private placement? Does that mean I own part of the Syndicate?"`
+					goto placement
+				`	"No thanks. I'll take the money, please."`
+					goto payup
+			label maralex
+			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
+			choice
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Nope, I'll stick with the 90k."`	
+					goto payup
+			label placement
+			`	"Not quite. You will be a lender to a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
+			choice
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Nope, I'll stick with the 90k."`
+					goto payup
+			label invest
+			`	"Excellent. To purchase 1 bond in Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the stock sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
+				decline
+			label payup
+			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`	
+			action
+				payment 91951
+
+
+
+mission "Syndicate Business 2"
+	name "Purchase Stock on <planet>"
+	description "Howard from Maralex Controls is letting you buy a bond in the company for 1 million credits"
+	passengers 1
+	source "Sunracer"
+	destination "Hephaestus"
+	to offer
+		has "Syndicate Business 1: done"
+		credits > 1000000
+	on offer
+		conversation
+			`Howard once again thanks you profusely for saving his life and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Maralex Controls.`
+			`	"To reiterate, to purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our promised returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
+			choice
+				`	"Sure, here's the 1 million credits."`
+					goto doit
+				`	"Nope, I won't become an investor."`	
+					decline
+			label doit
+			`After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. All that's left is to submit this first set of paperwork to our headquarters and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
+				accept
+	on accept
+		payment -1000000
+	on complete
+		conversation
+			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled out, and after scanning your fingerprint, retinas, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places one more set of documents on the table and taps the stack of papers.`
+			`	"New regulations dictate that we inform you that the proceeds of this bond may be used in high risk activities such as strip mining, clearing endangered habitats, or doing business on worlds with alleged human rights violations. All boilerplate language, of course, but you have to disclose every possibility these days." He shrugs.`
+			`	He then taps the documents the documents again and says, "This is your final decision and set of paperwork. I would also like to disclose that your initial deposit covering the full 1 million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
+			choice
+				`	"Of course."`
+					goto high
+				`	"I'm backing out, I can't ethically invest in this."`	
+					decline
+			
+			label high
+			"salary: Syndicate Business" = 500
+			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`		
+
+			label end
+			`	"Thanks."`
