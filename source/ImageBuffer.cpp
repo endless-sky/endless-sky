@@ -430,7 +430,7 @@ namespace {
 		// Based on this unit, we can calculate how many times each frame is repeated.
 		vector<size_t> repeats(decoder->imageCount);
 		size_t bufferFrameCount = 0;
-		for(size_t i = 0; i < decoder->imageCount; ++i)
+		for(size_t i = 0; i < static_cast<size_t>(decoder->imageCount); ++i)
 		{
 			result = avifDecoderNthImageTiming(decoder, 0, &timing);
 			if(result != AVIF_RESULT_OK)
@@ -464,7 +464,7 @@ namespace {
 
 		// Load each image in the sequence.
 		int avifFrameIndex = 0;
-		int bufferFrame = 0;
+		size_t bufferFrame = 0;
 		while(avifDecoderNextImage(decoder) == AVIF_RESULT_OK)
 		{
 			// Ignore frames with insufficient duration.
@@ -486,7 +486,7 @@ namespace {
 			}
 
 			// Now copy the image in the buffer to match frame timings.
-			for(int i = 1; i < repeats[avifFrameIndex]; ++i)
+			for(size_t i = 1; i < repeats[avifFrameIndex]; ++i)
 			{
 				uint8_t *end = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + 1));
 				uint8_t *dest = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + i));
