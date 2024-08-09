@@ -2521,6 +2521,8 @@ mission "Terraforming 13"
 			`As you walk through the spaceport, you notice a poster featuring Amy, whom you previously helped terraform this world and Rand. The poster describes that terraforming action, and the long-term goal to restore the warmer climate Tundra had millions of years ago. Amy's work on "equilibrium mapping," the idea that planets naturally "want" to support more complex and varied life, seems similar to the Wanderer philosophy that each planet has its own "will", and that the best way to terraform it is to work with that "will." Amy may be interested in learning about the Wanderers and their techniques. Would you like to find her and tell her about them?`
 			choice
 				`	(Yes.)`
+				`	(Not right now.)`
+					defer
 				`	(No.)`
 					decline
 			`	You're able to contact Amy. She has been continuing to monitor the status of Tundra's climate, alongside the researchers from the Deep who she worked with to terraform this world. You tell her you've encountered some alien terraformers who may share her philosophy. She is eager to learn more about them and agrees to meet you in the spaceport bar.`
