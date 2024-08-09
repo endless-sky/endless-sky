@@ -7463,7 +7463,7 @@ mission "Syndicate Business 1"
 	to offer
 		random < 40
 		credits > 5000000
-	source 
+	source
 		government Syndicate
 		attributes "core"
 	waypoint "Moktar"
@@ -7475,13 +7475,13 @@ mission "Syndicate Business 1"
 				`	(Check it out.)`
 				`	(Ignore it.)`
 					decline
-			`	When you approach, you are greeted by plain text on the terminal's screen:` 
+			`	When you approach, you are greeted by plain text on the terminal's screen:`
 			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: -1.18143560, -0.01575673, 0.00755328. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
 			`	You note that the message doesn't have any information about the sender, but there wouldn't be if what the message contains is true. There are no shortage of pirates in <waypoints>.`
 			choice
 				`	"To <waypoints>!"`
 				`	(Ignore it and walk away.)`
-					decline	
+					decline
 			`	You return to your ship and prepare to leave.`
 				accept
 
@@ -7508,8 +7508,8 @@ mission "Syndicate Business 1"
 		personality heroic vindictive staying
 			confusion 20
 		system "Moktar"
-		ship "Vanguard" "Golden Jewel"		
-		conversation 
+		ship "Vanguard" "Golden Jewel"
+		conversation
 			`The <npc> has been destroyed. You receive a hail from a small escape pod drifting nearby. "Thank you, Captain, you've saved my life. I'm Howard. I can promise you a reward if you would pick me up from this tin can and drop me off at <destination>."`
 			choice
 				`	"Sounds good."`
@@ -7535,7 +7535,7 @@ mission "Syndicate Business 1"
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
-				`	"Nope, I'll stick with the 90k."`	
+				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label placement
 			`	"Not quite. You will be a lender to a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
@@ -7548,7 +7548,7 @@ mission "Syndicate Business 1"
 			`	"Excellent. To purchase 1 bond in Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the stock sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
 				decline
 			label payup
-			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`	
+			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
 			action
 				payment 91951
 			action 
@@ -7571,7 +7571,7 @@ mission "Syndicate Business 2"
 			choice
 				`	"Sure, here's the 1 million credits."`
 					goto doit
-				`	"Nope, I won't become an investor."`	
+				`	"Nope, I won't become an investor."`
 					decline
 			label doit
 			`After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. All that's left is to submit this first set of paperwork to our headquarters and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
@@ -7586,13 +7586,13 @@ mission "Syndicate Business 2"
 			choice
 				`	"Of course."`
 					goto high
-				`	"I'm backing out, I can't ethically invest in this."`	
+				`	"I'm backing out, I can't ethically invest in this."`
 					decline
 			
 			label high
 			action
 				"salary: Syndicate Business" = 500
-			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`		
+			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`
 
 			label end
 			`	"Thanks."`
