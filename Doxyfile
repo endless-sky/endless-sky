@@ -1,0 +1,110 @@
+# Doxyfile 1.9.4
+
+# This file describes the settings to be used by the documentation system
+# doxygen (www.doxygen.org) for a project.
+#
+# All text after a double hash (##) is considered a comment and is placed in
+# front of the TAG it is preceding.
+#
+# All text after a single hash (#) is considered a comment and will be ignored.
+# The format is:
+# TAG = value [value, ...]
+# For lists, items can also be appended using:
+# TAG += value [value, ...]
+# Values that contain spaces should be placed between quotes (\" \").
+#
+# Note:
+#
+# Use doxygen to compare the used configuration file with the template
+# configuration file:
+# doxygen -x [configFile]
+# Use doxygen to compare the used configuration file with the template
+# configuration file without replacing the environment variables:
+# doxygen -x_noenv [configFile]
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Endless Sky"
+PROJECT_NUMBER         =
+PROJECT_BRIEF          = "This is an auto generated documentation for the source code of endless-sky."
+PROJECT_LOGO           = icons/icon_48x48.png
+OUTPUT_DIRECTORY       = ./docs/api
+
+CREATE_SUBDIRS         = YES
+
+INPUT                  = ./source
+RECURSIVE              = YES
+EXCLUDE                =
+EXCLUDE_SYMLINKS       = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_PRIV_VIRTUAL   = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_ANON_NSPACES   = YES
+
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = NO
+WARN_LOGFILE           =
+
+CLANG_ASSISTED_PARSING = YES
+CLANG_ADD_INC_PATHS    = YES
+CLANG_OPTIONS          = -std=c++20
+CLANG_DATABASE_PATH    =
+
+GENERATE_LATEX         = NO
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            =
+HTML_FOOTER            =
+HTML_STYLESHEET        =
+HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_FILES       =
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = NO
+HTML_INDEX_NUM_ENTRIES = 100
+
+GENERATE_TREEVIEW      = NO
+FULL_SIDEBAR           = NO
+TREEVIEW_WIDTH         = 250
+
+HTML_FORMULA_FORMAT    = svg
+FORMULA_FONTSIZE       = 10
+USE_MATHJAX            = NO
+MATHJAX_VERSION        = MathJax_2
+MATHJAX_FORMAT         = HTML-CSS
+MATHJAX_RELPATH        =
+MATHJAX_EXTENSIONS     =
+MATHJAX_CODEFILE       =
+
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           =
+INCLUDE_FILE_PATTERNS  =
+PREDEFINED             =
+
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 0
+DOT_FONTPATH           =
+
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = YES
+UML_LIMIT_NUM_FIELDS   = 10
+DOT_UML_DETAILS        = NO
+DOT_WRAP_THRESHOLD     = 17
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DIR_GRAPH_MAX_DEPTH    = 1
+
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+DOT_MULTI_TARGETS      = NO
+DOT_CLEANUP            = YES
