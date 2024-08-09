@@ -160,7 +160,10 @@ void Conversation::Load(const DataNode &node)
 			// Don't merge "branch" nodes with any other nodes.
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
-			nodes.back().conditions.Load(child);
+			// Maintenance note: empty conditions might have to be removed in the future,
+			// so their support is unofficial.
+			if(child.HasChildren())
+				nodes.back().conditions.Load(child);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
 			for(int i = 1; i <= 2; ++i)

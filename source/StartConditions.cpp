@@ -103,7 +103,7 @@ void StartConditions::Load(const DataNode &node)
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 			else if(key == "conditions")
-				conditions = ConditionSet();
+				conditions = ConditionAssignments();
 			else
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
@@ -226,7 +226,7 @@ bool StartConditions::IsValid() const
 
 
 
-const ConditionSet &StartConditions::GetConditions() const noexcept
+const ConditionAssignments &StartConditions::GetConditions() const noexcept
 {
 	return conditions;
 }
