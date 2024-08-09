@@ -34,6 +34,7 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -183,6 +184,9 @@ private:
 	void IssueOrders(const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	// Mission NPC blocks may define specific travel plans.
+	void IssueNPCOrders(Ship &ship, const System *targetSystem,
+		const std::map<const Planet *, bool> &stopovers, const Planet *destination);
 
 
 private:
@@ -214,8 +218,8 @@ private:
 	// The minimum speed before landing will consider non-landable objects.
 	const float MIN_LANDING_VELOCITY = 80.;
 
-	// Current orders for the player's ships. Because this map only applies to
-	// player ships, which are never deleted except when landed, it can use
+	// Current orders for the player's ships or NPCs. Because this map only applies
+	// to special ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
 	std::map<const Ship *, Orders> orders;
 
