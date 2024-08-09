@@ -54,9 +54,12 @@ public:
 
 	void ShrinkToHalfSize();
 
-	// Read a single frame. Return false if an error is encountered - either the
+	// Read frames from a file. Return the number of frames read,
+	// or 0 if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	bool Read(const std::string &path, int frame = 0);
+	// If the file is an image sequence, it overwrites the preconfigured
+	// frame count with the number of frames found in the file.
+	int Read(const std::string &path, int frame = 0);
 
 
 private:
