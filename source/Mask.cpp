@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mask.h"
 
-#include "ImageBuffer.h"
+#include "image/ImageBuffer.h"
 #include "Logger.h"
 
 #include <algorithm>

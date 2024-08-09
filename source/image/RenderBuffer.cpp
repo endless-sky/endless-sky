@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RenderBuffer.h"
 
-#include "Logger.h"
-#include "Screen.h"
-#include "Shader.h"
+#include "../Logger.h"
+#include "../Screen.h"
+#include "../Shader.h"
 
-#include "opengl.h"
+#include "../opengl.h"
 
 namespace {
 	Shader shader;

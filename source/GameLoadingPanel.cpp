@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "PointerShader.h"
 #include "Ship.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "StarField.h"
 #include "System.h"
 #include "TaskQueue.h"
