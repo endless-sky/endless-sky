@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpaceportPanel.h"
 #include "System.h"
 #include "TaskQueue.h"
+#include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -59,9 +60,12 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
 
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(480);
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetRect(ui.GetBox("content"));
+	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -144,14 +148,10 @@ void PlanetPanel::Draw()
 
 	ui.Draw(info, this);
 
+	// The description text needs to be updated, because player conditions can be changed
+	// in the meantime, for example if the player accepts a mission on the Job Board.
 	if(!selectedPanel)
-	{
-		Rectangle box = ui.GetBox("content");
-		if(box.Width() != text.WrapWidth())
-			text.SetWrapWidth(box.Width());
-		text.Wrap(planet.Description().ToString(player.Conditions()));
-		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
-	}
+		description->SetText(planet.Description().ToString(player.Conditions()));
 }
 
 
@@ -232,7 +232,17 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// If we are here, it is because something happened to change the selected
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
-		GetUI()->Pop(oldPanel);
+		GetUI()->PopThrough(oldPanel);
+	if(selectedPanel)
+	{
+		RemoveChild(description.get());
+		descriptionVisible = false;
+	}
+	else
+	{
+		AddChild(description);
+		descriptionVisible = true;
+	}
 
 	return true;
 }
@@ -468,7 +478,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI()->Pop(selectedPanel);
-		GetUI()->Pop(this);
+			GetUI()->PopThrough(selectedPanel);
+		GetUI()->PopThrough(this);
 	}
 }
