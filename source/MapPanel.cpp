@@ -383,7 +383,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 				if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
 					for(const auto &it : t.outfits)
-						tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
+						tooltip += "\n - " + to_string(it.second) + " on " + it.first->DisplayName();
 			}
 
 			hoverText.Wrap(tooltip);
@@ -443,7 +443,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		const System &system = *jump[i];
 		const Government *gov = system.GetGovernment();
 		Point from = system.Position() - center + drawPos;
-		const string &name = player.KnowsName(system) ? system.Name() : UNKNOWN_SYSTEM;
+		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
 		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
 
 		// Draw the origin and destination systems, since they
@@ -1100,7 +1100,7 @@ void MapPanel::UpdateCache()
 		}
 
 		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.Name() : "",
+			player.KnowsName(system) ? system.DisplayName() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
 			player.CanView(system) ? system.GetGovernment() : nullptr);
 	}
@@ -1230,7 +1230,7 @@ void MapPanel::DrawSelectedSystem()
 	if(!player.KnowsName(*selectedSystem))
 		text = "Selected system: unexplored system";
 	else
-		text = "Selected system: " + selectedSystem->Name();
+		text = "Selected system: " + selectedSystem->DisplayName();
 
 	int jumps = 0;
 	const vector<const System *> &plan = player.TravelPlan();

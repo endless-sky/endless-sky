@@ -51,7 +51,7 @@ public:
 
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
-	void SetName(const std::string &name);
+	void SetTrueName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Series() const;
