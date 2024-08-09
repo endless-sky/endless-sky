@@ -173,17 +173,14 @@ bool ImageBuffer::Read(const string &path, int frame)
 	while(--pos)
 		if(path[pos] < '0' || path[pos] > '9')
 			break;
-
 	// Special case: if the image is already in premultiplied alpha format,
 	// there is no need to apply premultiplication here.
-
 	if(path[pos] != '=')
 	{
 		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2))
 			Premultiply(*this, frame, additive);
 	}
-
 	return true;
 }
 
