@@ -67,7 +67,7 @@ private:
 	unsigned priority = 0;
 	unsigned weight = 1;
 
-	ProgressionStyle progressionStyle;
+	ProgressionStyle progressionStyle = ProgressionStyle::LINEAR;
 	WeightedList<const Track *> tracks;
 };
 

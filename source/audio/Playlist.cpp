@@ -58,27 +58,30 @@ void Playlist::Load(const DataNode &node)
 		{
 			priority = max<unsigned>(0, child.Value(1));
 			if(child.Value(1) < 0)
-				child.PrintTrace("Warning: Negative weight sepcified for priority.");
+				child.PrintTrace("Warning: Negative weight specified for priority.");
 		}
 		else if(key == "weight" && hasValue)
 		{
 			weight = max<unsigned>(1, child.Value(1));
 			if(child.Value(1) < 0)
-				child.PrintTrace("Warning: Negative weight sepcified for priority.");
+				child.PrintTrace("Warning: Negative weight specified for priority.");
 		}
 		else if(key == "tracks")
 		{
-			if(child.Token(1) == "linear")
-				progressionStyle = ProgressionStyle::LINEAR;
-			else if(child.Token(1) == "pick")
-				progressionStyle = ProgressionStyle::PICK;
-			else if(child.Token(1) == "random")
-				progressionStyle = ProgressionStyle::RANDOM;
-			else
+			if(hasValue)
 			{
-				if(hasValue)
-					child.PrintTrace("Warning: \"" + child.Token(1) + "\" is not a valid progression style so using linear:");
-				progressionStyle = ProgressionStyle::LINEAR;
+				if(child.Token(1) == "linear")
+					progressionStyle = ProgressionStyle::LINEAR;
+				else if(child.Token(1) == "pick")
+					progressionStyle = ProgressionStyle::PICK;
+				else if(child.Token(1) == "random")
+					progressionStyle = ProgressionStyle::RANDOM;
+				else
+				{
+					if(hasValue)
+						child.PrintTrace("Warning: \"" + child.Token(1) + "\" is not a valid progression style so using linear:");
+					progressionStyle = ProgressionStyle::LINEAR;
+				}
 			}
 			for(const auto &grand : child)
 			{
