@@ -200,7 +200,7 @@ int ImageBuffer::Read(const string &path, int frame)
 				Premultiply(*this, i, additive);
 	}
 
-	return true;
+	return endFrame - startFrame;
 }
 
 
