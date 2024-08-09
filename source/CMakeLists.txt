@@ -56,6 +56,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CollisionType.h
 	Color.cpp
 	Color.h
+	ColumnChooserPanel.cpp
+	ColumnChooserPanel.h
 	Command.cpp
 	Command.h
 	ConditionSet.cpp
