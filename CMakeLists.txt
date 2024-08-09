@@ -14,8 +14,8 @@ cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executabl
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 
-# Use C++17 without any compiler specific extensions.
-set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
+# Use C++20 without any compiler specific extensions.
+set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # Use LTO for Release builds only.
@@ -108,6 +108,16 @@ add_subdirectory(source)
 # Create an interface library that contains common libraries for the game and unit tests.
 add_library(ExternalLibraries INTERFACE)
 target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
+
+# Enable sanitizers on debug builds, depending on platform support.
+if(NOT WIN32)
+	set(SANITIZER_OPTS "-g" "-fsanitize=address,undefined,pointer-compare,pointer-subtract,unreachable,builtin,integer-divide-by-zero,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow")
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr")
+	endif()
+endif()
+target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)

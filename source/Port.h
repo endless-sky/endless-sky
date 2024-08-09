@@ -17,8 +17,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PORT_H_
-#define PORT_H_
+#pragma once
 
 #include "Paragraphs.h"
 
@@ -108,7 +107,3 @@ private:
 	// Whether this port has news.
 	bool hasNews = false;
 };
-
-
-
-#endif

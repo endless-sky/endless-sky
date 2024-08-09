@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Music.h"
 
-#include "Files.h"
+#include "../Files.h"
 
 #include <mad.h>
 

@@ -159,7 +159,7 @@ void Interface::Draw(const Information &info, Panel *panel) const
 // Check if a named point exists.
 bool Interface::HasPoint(const string &name) const
 {
-	return points.count(name);
+	return points.contains(name);
 }
 
 

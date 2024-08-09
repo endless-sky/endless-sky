@@ -619,7 +619,7 @@ bool Conversation::HasDisplayRestriction(const DataNode &node)
 // Add a label, pointing to whatever node is created next.
 void Conversation::AddLabel(const string &label, const DataNode &node)
 {
-	if(labels.count(label))
+	if(labels.contains(label))
 	{
 		node.PrintTrace("Error: Conversation: label \"" + label + "\" is used more than once:");
 		return;

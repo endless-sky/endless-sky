@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef HAIL_PANEL_H_
-#define HAIL_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -77,7 +76,3 @@ private:
 	bool hasLanguage = true;
 	bool requestedToBribeShip = false;
 };
-
-
-
-#endif

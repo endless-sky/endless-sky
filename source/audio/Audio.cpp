@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 
-#include "Files.h"
-#include "Logger.h"
+#include "../Files.h"
+#include "../Logger.h"
 #include "Music.h"
-#include "Point.h"
-#include "Random.h"
+#include "../Point.h"
+#include "../Random.h"
 #include "Sound.h"
 
 #include <AL/al.h>

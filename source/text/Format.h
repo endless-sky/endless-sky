@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_FORMAT_H_
-#define ES_TEXT_FORMAT_H_
+#pragma once
 
 #include <cstdint>
 #include <functional>
@@ -85,7 +84,3 @@ public:
 	// Function for the "find" dialogs:
 	static int Search(const std::string &str, const std::string &sub);
 };
-
-
-
-#endif

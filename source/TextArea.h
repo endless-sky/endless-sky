@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEXT_AREA_H
-#define TEXT_AREA_H
+#pragma once
 
 #include "Color.h"
 #include "Panel.h"
@@ -77,7 +76,3 @@ private:
 	bool dragging = false;
 	bool hovering = false;
 };
-
-
-
-#endif

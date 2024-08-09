@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PANEL_H_
-#define PANEL_H_
+#pragma once
 
 #include "Rectangle.h"
 
@@ -181,7 +180,3 @@ bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
 	// If none of our children handled this event, then it could be for us.
 	return (this->*f)(args...);
 }
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PARAGRAPHS_H_
-#define PARAGRAPHS_H_
+#pragma once
 
 #include "ConditionSet.h"
 
@@ -60,7 +59,3 @@ public:
 private:
 	ConditionalText text;
 };
-
-
-
-#endif

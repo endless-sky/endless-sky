@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UI_H_
-#define UI_H_
+#pragma once
 
 #include "Point.h"
 
@@ -93,7 +92,3 @@ private:
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };
-
-
-
-#endif

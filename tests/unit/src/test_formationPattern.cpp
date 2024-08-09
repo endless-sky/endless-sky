@@ -30,16 +30,8 @@ namespace { // test namespace
 // #region mock data
 bool Near(const Point a, const Point b)
 {
-	if(!(a.Distance(b) == Approx(0.)))
-	{
-		if(a.Distance(b) < 0.001)
-		{
-			INFO("Distance under 0.001, but beyond Approx range!");
-			return true;
-		}
-		return false;
-	}
-	return true;
+	double d = a.Distance(b);
+	return Catch::Matchers::WithinAbs(0, 0.001).match(d) || Catch::Matchers::WithinRel(0.001).match(d);
 }
 
 

@@ -89,9 +89,9 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 		swap(first, second);
 	if(first->IsPlayer())
 	{
-		if(bribed.count(second))
+		if(bribed.contains(second))
 			return false;
-		if(provoked.count(second))
+		if(provoked.contains(second))
 			return true;
 
 		auto it = reputationWith.find(second);
@@ -183,11 +183,11 @@ bool Politics::CanLand(const Planet *planet) const
 		return false;
 	if(!planet->IsInhabited())
 		return true;
-	if(dominatedPlanets.count(planet))
+	if(dominatedPlanets.contains(planet))
 		return true;
-	if(bribedPlanets.count(planet))
+	if(bribedPlanets.contains(planet))
 		return true;
-	if(provoked.count(planet->GetGovernment()))
+	if(provoked.contains(planet->GetGovernment()))
 		return false;
 
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
@@ -199,7 +199,7 @@ bool Politics::CanUseServices(const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(dominatedPlanets.count(planet))
+	if(dominatedPlanets.contains(planet))
 		return true;
 
 	auto it = bribedPlanets.find(planet);
@@ -231,7 +231,7 @@ void Politics::DominatePlanet(const Planet *planet, bool dominate)
 
 bool Politics::HasDominated(const Planet *planet) const
 {
-	return dominatedPlanets.count(planet);
+	return dominatedPlanets.contains(planet);
 }
 
 
@@ -241,7 +241,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
+	if(fined.contains(gov) || Random::Real() > security || !gov->GetFineFraction())
 		return "";
 
 	string reason;

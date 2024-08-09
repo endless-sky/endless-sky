@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEATHER_H_
-#define WEATHER_H_
+#pragma once
 
 #include "Point.h"
 
@@ -86,5 +85,3 @@ private:
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 };
-
-#endif

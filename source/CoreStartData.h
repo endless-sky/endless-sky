@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_CORE_START_DATA_H_
-#define ES_CORE_START_DATA_H_
+#pragma once
 
 #include "Account.h"
 #include "Date.h"
@@ -68,7 +67,3 @@ protected:
 	// The key, if any, used to identify this start in data files.
 	std::string identifier;
 };
-
-
-
-#endif

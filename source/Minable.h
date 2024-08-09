@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MINABLE_H_
-#define MINABLE_H_
+#pragma once
 
 #include "Body.h"
 
@@ -132,7 +131,3 @@ private:
 	// The expected value of the payload of this minable.
 	int64_t value = 0.;
 };
-
-
-
-#endif

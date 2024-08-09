@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLEET_CARGO_H_
-#define FLEET_CARGO_H_
+#pragma once
 
 #include "Sale.h"
 
@@ -39,5 +38,3 @@ private:
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;
 };
-
-#endif

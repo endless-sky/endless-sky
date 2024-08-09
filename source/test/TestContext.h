@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENDLESS_SKY_AC_TESTCONTEXT_H_
-#define ENDLESS_SKY_AC_TESTCONTEXT_H_
+#pragma once
 
 #include <set>
 #include <vector>
@@ -50,5 +49,3 @@ private:
 
 	std::set<ActiveTestStep> branchesSinceGameStep;
 };
-
-#endif

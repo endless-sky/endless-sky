@@ -56,15 +56,15 @@ SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 				CHECK( copy.HasFire(2) == command.HasFire(2) );
 				CHECK( copy.HasFire(3) == command.HasFire(3) );
 				CHECK( copy.HasFire(4) == command.HasFire(4) );
-				CHECK( copy.Aim(0) == Approx(command.Aim(0)) );
-				CHECK( copy.Aim(1) == Approx(command.Aim(1)) );
-				CHECK( copy.Aim(2) == Approx(command.Aim(2)) );
-				CHECK( copy.Aim(3) == Approx(command.Aim(3)) );
-				CHECK( copy.Aim(4) == Approx(command.Aim(4)) );
+				CHECK_THAT( copy.Aim(0), Catch::Matchers::WithinAbs(command.Aim(0), 0.0001) );
+				CHECK_THAT( copy.Aim(1), Catch::Matchers::WithinAbs(command.Aim(1), 0.0001) );
+				CHECK_THAT( copy.Aim(2), Catch::Matchers::WithinAbs(command.Aim(2), 0.0001) );
+				CHECK_THAT( copy.Aim(3), Catch::Matchers::WithinAbs(command.Aim(3), 0.0001) );
+				CHECK_THAT( copy.Aim(4), Catch::Matchers::WithinAbs(command.Aim(4), 0.0001) );
 			}
 			THEN( "the two bitsets are independent" ) {
 				command.SetAim(1, -1.);
-				CHECK( command.Aim(1) == Approx(-1) );
+				CHECK_THAT( command.Aim(1), Catch::Matchers::WithinAbs(-1, 0.0001) );
 				CHECK_FALSE( copy.Aim(1) );
 
 				copy.SetFire(4);
@@ -112,15 +112,15 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 			command.SetAim(4, 1.);
 			command.SetAim(9, 1.);
 
-			REQUIRE( command.Aim(0) == Approx(-1.) );
-			REQUIRE( command.Aim(4) == Approx(1.) );
-			REQUIRE( command.Aim(9) == Approx(1.) );
+			REQUIRE_THAT( command.Aim(0), Catch::Matchers::WithinAbs(-1., 0.0001) );
+			REQUIRE_THAT( command.Aim(4), Catch::Matchers::WithinAbs(1., 0.0001) );
+			REQUIRE_THAT( command.Aim(9), Catch::Matchers::WithinAbs(1., 0.0001) );
 			WHEN( "clear is called" ) {
 				command.Clear();
 				THEN( "the command is empty" ) {
-					CHECK( command.Aim(0) == Approx(0.) );
-					CHECK( command.Aim(4) == Approx(0.) );
-					CHECK( command.Aim(9) == Approx(0.) );
+					CHECK_THAT( command.Aim(0), Catch::Matchers::WithinAbs(0., 0.0001) );
+					CHECK_THAT( command.Aim(4), Catch::Matchers::WithinAbs(0., 0.0001) );
+					CHECK_THAT( command.Aim(9), Catch::Matchers::WithinAbs(0., 0.0001) );
 				}
 			}
 		}

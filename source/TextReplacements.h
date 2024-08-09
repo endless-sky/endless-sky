@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEXT_REPLACEMENTS_H_
-#define TEXT_REPLACEMENTS_H_
+#pragma once
 
 #include <map>
 #include <string>
@@ -50,7 +49,3 @@ private:
 	// Vector with "string to be replaced", "condition when to replace", and "replacement text".
 	std::vector<std::pair<std::string, std::pair<ConditionSet, std::string>>> substitutions;
 };
-
-
-
-#endif

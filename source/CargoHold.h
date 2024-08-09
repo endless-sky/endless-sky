@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CARGO_HOLD_H_
-#define CARGO_HOLD_H_
+#pragma once
 
 #include <cstdint>
 #include <map>
@@ -128,7 +127,3 @@ private:
 	std::map<const Mission *, int> missionCargo;
 	std::map<const Mission *, int> passengers;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GOVERNMENT_H_
-#define GOVERNMENT_H_
+#pragma once
 
 #include "Color.h"
 #include "ExclusiveItem.h"
@@ -31,10 +30,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Conversation;
 class DataNode;
 class Fleet;
+class Outfit;
 class Phrase;
 class Planet;
 class PlayerInfo;
-class Outfit;
 class Ship;
 class System;
 
@@ -186,7 +185,3 @@ private:
 	// action instead of this government's own penalties.
 	std::set<unsigned> useForeignPenaltiesFor;
 };
-
-
-
-#endif

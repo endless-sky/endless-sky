@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_NODE_H_
-#define DATA_NODE_H_
+#pragma once
 
 #include <cstdint>
 #include <list>
@@ -96,7 +95,3 @@ private:
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;
 };
-
-
-
-#endif

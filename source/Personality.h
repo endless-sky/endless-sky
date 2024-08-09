@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSONALITY_H_
-#define PERSONALITY_H_
+#pragma once
 
 #include "Angle.h"
 #include "Point.h"
@@ -112,7 +111,3 @@ private:
 	Point confusion;
 	Point confusionVelocity;
 };
-
-
-
-#endif

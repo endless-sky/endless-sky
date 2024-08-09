@@ -13,11 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FILL_SHADER_H_
-#define FILL_SHADER_H_
+#pragma once
 
-class Point;
 class Color;
+class Point;
 
 
 
@@ -29,7 +28,3 @@ public:
 	static void Init();
 	static void Fill(const Point &center, const Point &size, const Color &color);
 };
-
-
-
-#endif

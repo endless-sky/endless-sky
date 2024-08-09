@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"

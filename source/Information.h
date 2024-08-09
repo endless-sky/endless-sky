@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INFORMATION_H_
-#define INFORMATION_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -70,7 +69,3 @@ private:
 
 	Color outlineColor;
 };
-
-
-
-#endif

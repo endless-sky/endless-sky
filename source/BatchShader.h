@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BATCH_SHADER_H_
-#define BATCH_SHADER_H_
+#pragma once
 
 class Sprite;
 
@@ -33,7 +32,3 @@ public:
 	static void Add(const Sprite *sprite, bool isHighDPI, const std::vector<float> &data);
 	static void Unbind();
 };
-
-
-
-#endif

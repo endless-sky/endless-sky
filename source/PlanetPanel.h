@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_PANEL_H_
-#define PLANET_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -78,7 +77,3 @@ private:
 	// Cache flight checks to not calculate them twice before each takeoff.
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
-
-
-
-#endif

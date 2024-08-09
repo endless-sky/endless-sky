@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef AUDIO_H_
-#define AUDIO_H_
+#pragma once
 
 #include <string>
 #include <vector>
@@ -71,7 +70,3 @@ public:
 	// Shut down the audio system (because we're about to quit).
 	static void Quit();
 };
-
-
-
-#endif
