@@ -28,8 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "avif", "avifs"};
-	const set<string> IMAGE_SEQUENCE_EXTENSIONS{"avif", "avifs"};
+	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg"};
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
@@ -233,21 +232,6 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
-	// Ensure that image sequences aren't mixed with other images.
-	for(int i = 0; i < 4; i++)
-		for(auto &str : paths[i])
-		{
-			string ext = str.substr(str.find_last_of('.') + 1);
-			if(IMAGE_SEQUENCE_EXTENSIONS.contains(ToLowerCase(ext)) && paths[i].size() > 1)
-			{
-				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
-						+ name + "\n");
-				paths[i][0] = str;
-				paths[i].resize(1);
-				break;
-			}
-		}
-
 	auto DropPaths = [&](vector<string> &toResize, const string &specifier) {
 		if(toResize.size() > paths[0].size())
 		{
@@ -275,40 +259,23 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
+	buffer[0].Clear(frames);
+	buffer[1].Clear(frames);
+	buffer[2].Clear(frames);
+	buffer[3].Clear(frames);
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
-
-	const auto UpdateFrameCount = [&]() {
-		buffer[1].Clear(frames);
-		buffer[2].Clear(frames);
-		buffer[3].Clear(frames);
-
-		if(makeMasks)
-			masks.resize(frames);
-	};
-
-	buffer[0].Clear(frames);
-	UpdateFrameCount();
+	if(makeMasks)
+		masks.resize(frames);
 
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
-	for(size_t i = 0; i < paths[0].size(); ++i)
+	for(size_t i = 0; i < frames; ++i)
 	{
-		int loadedFrames = buffer[0].Read(paths[0][i], i);
-		if(!loadedFrames)
-		{
+		if(!buffer[0].Read(paths[0][i], i))
 			Logger::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
-			continue;
-		}
-		// If we loaded an image sequence, clear all other buffers.
-		if(loadedFrames > 1)
-		{
-			frames = loadedFrames;
-			UpdateFrameCount();
-		}
-
-		if(makeMasks)
+		else if(makeMasks)
 		{
 			masks[i].Create(buffer[0], i);
 			if(!masks[i].IsLoaded())

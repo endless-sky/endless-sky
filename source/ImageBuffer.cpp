@@ -160,6 +160,11 @@ bool ImageBuffer::Read(const string &path, int frame)
 	if(!isPNG && !isJPG)
 		return false;
 
+	if(isPNG && !ReadPNG(path, *this, frame))
+		return false;
+	if(isJPG && !ReadJPG(path, *this, frame))
+		return false;
+
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
 	int pos = path.find_last_of('.');
@@ -169,10 +174,8 @@ bool ImageBuffer::Read(const string &path, int frame)
 		if(path[pos] < '0' || path[pos] > '9')
 			break;
 
-	if(isPNG && !ReadPNG(path, *this, frame))
-		return false;
-	if(isJPG && !ReadJPG(path, *this, frame))
-		return false;
+	// Special case: if the image is already in premultiplied alpha format,
+	// there is no need to apply premultiplication here.
 
 	if(path[pos] != '=')
 	{
