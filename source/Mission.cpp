@@ -472,10 +472,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			it.second.Save(out);
 		// Save any "on enter" actions that have not been performed.
 		for(const auto &it : onEnter)
-			if(!didEnter.count(&it.second))
+			if(!didEnter.contains(&it.second))
 				it.second.Save(out);
 		for(const MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action))
+			if(!didEnter.contains(&action))
 				action.Save(out);
 	}
 	out.EndChild();
@@ -760,7 +760,7 @@ bool Mission::HasClearance(const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
-	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
+	if(planet == destination || stopovers.contains(planet) || visitedStopovers.contains(planet))
 		return true;
 	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
@@ -815,20 +815,21 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
 		return false;
 
+	bool isFailed = IsFailed(player);
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	it = actions.find(DEFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	return true;
@@ -842,12 +843,13 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 	if(!toAccept.Test(playerConditions))
 		return false;
 
+	bool isFailed = IsFailed(player);
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
 		return false;
 	return HasSpace(player);
 }
@@ -896,7 +898,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
 		return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -991,7 +993,10 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(flagship)
+	{
 		subs["<ship>"] = flagship->Name();
+		subs["<model>"] = flagship->DisplayModelName();
+	}
 
 	const auto &playerConditions = player.Conditions();
 	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
@@ -1092,7 +1097,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
 		return false;
 
 	if(trigger == ACCEPT)
@@ -1151,7 +1156,7 @@ bool Mission::RequiresGiftedShip(const string &shipId) const
 			requiredActions.insert(Trigger::WAYPOINT);
 	}
 	for(const auto &it : actions)
-		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+		if(requiredActions.contains(it.first) && it.second.RequiresGiftedShip(shipId))
 			return true;
 
 	return false;
@@ -1193,7 +1198,7 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
+	if(event.TargetGovernment()->IsPlayer() && !IsFailed(player))
 	{
 		bool failed = false;
 		string message;
@@ -1225,7 +1230,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		}
 	}
 
-	if((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
+	if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
 		Do(DISABLED, player, ui);
 
 	// Jump events are only created for the player's flagship.
@@ -1615,7 +1620,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
 	{
 		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
@@ -1624,7 +1629,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action) && action.CanBeDone(player))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(player)))
 			{
 				action.Do(player, ui, this);
 				didEnter.insert(&action);

@@ -1301,9 +1301,13 @@ tip "Fleet: Fight my target"
 
 tip "Fleet: Gather around me"
 	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
+	`With <shift>, change the formation pattern in your fleet.`
+
+tip "Fleet: Toggle hold fire"
+	`Command your fleet to stop firing except if they are given a specific target to shoot at afterwards. If only some escorts are selected, only sends the command to those escorts.`
 
 tip "Fleet: Hold position"
-	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
+	`Command your fleet to hold its current position. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
 
 tip "Fleet: Toggle ammo usage"
 	`Toggle the "Escorts expend ammo" setting.`
@@ -1402,7 +1406,7 @@ tip "Alert indicator"
 	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
 
 tip "Extra fleet status messages"
-	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
+	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
 
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
@@ -1437,6 +1441,9 @@ tip "Fighters transfer cargo"
 tip "Rehire extra crew when lost"
 	`Rehires extra crew whenever you land if you lost additional (non-required) crew while in flight.`
 
+tip "Automatically unpark flagship"
+	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 

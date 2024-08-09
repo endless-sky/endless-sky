@@ -181,6 +181,8 @@ void MissionAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 	}
+	else if(key == "can trigger after failure")
+		runsWhenFailed = true;
 	else
 		action.LoadSingle(child);
 }
@@ -269,8 +271,10 @@ const string &MissionAction::DialogText() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
 {
+	if(isFailed && !runsWhenFailed)
+		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;
 
@@ -379,8 +383,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 		subs["<first>"] = player.FirstName();
 		subs["<last>"] = player.LastName();
-		if(player.Flagship())
-			subs["<ship>"] = player.Flagship()->Name();
+		const Ship *flagship = player.Flagship();
+		if(flagship)
+		{
+			subs["<ship>"] = flagship->Name();
+			subs["<model>"] = flagship->DisplayModelName();
+		}
 		string text = Format::Replace(dialogText, subs);
 
 		// Don't push the dialog text if this is a visit action on a nonunique

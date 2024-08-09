@@ -13,14 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DIALOG_H_
-#define DIALOG_H_
+#pragma once
 
 #include "Panel.h"
 
 #include "Point.h"
+#include "TextArea.h"
 #include "text/truncate.hpp"
-#include "text/WrappedText.h"
 
 #include <functional>
 #include <string>
@@ -107,7 +106,7 @@ private:
 
 
 protected:
-	WrappedText text;
+	std::shared_ptr<TextArea> text;
 	int height;
 
 	std::function<void(int)> intFun;
@@ -196,7 +195,3 @@ Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate tru
 {
 	Init(text, truncate);
 }
-
-
-
-#endif

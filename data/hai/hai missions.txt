@@ -1814,7 +1814,7 @@ mission "Station Exploration 1"
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 					decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... but we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
 					to display
@@ -2032,4 +2032,3 @@ mission "Hai Pilgrimage"
 			`Hareek was quite tight-lipped about what he planned to do once on <planet>. The most you could get out of him was more stories about his past as a military pilot. Once you land, Hareek jumps off your ship, moving surprisingly fast for his age.`
 			`"Thank you, Captain, for making this journey. I apologize for not telling you more about me; the work I do is not something that I can reveal to any human who asks." He hands you <payment> and moves away. The surrounding Unfettered appear almost awed by his presence and consequentially give you a wide berth.`
 		log "Minor People" "Hareek" `An old Hai who claims to foresee the future. Dropped him off in Unfettered space so he could spread his message there. He appears to be well-respected amongst the Unfettered.`
-

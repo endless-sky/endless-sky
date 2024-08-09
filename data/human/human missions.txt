@@ -280,7 +280,7 @@ mission "Pookie, Part 2"
 			label response
 			`	"Thank heavens," she says. "She's all yours." She hands you the leash and a large bag that appears to be full of chew toys. "Here are her toys, her food, and her... outfits. Which she hates. Feed her twice a day, or she will go berserk. Do not feed her more than twice a day, or she will throw up..."`
 			`	As she continues rattling off instructions, you ask, "Wait, Pookie is the dog?"`
-			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
+			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately squats against the landing strut.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
@@ -5971,7 +5971,7 @@ mission "Argosy Hijacking"
 			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
 				decline
 	
-	npc save disable
+	npc disable save
 		personality launching daring uninterested target
 			confusion 80
 		government "Bounty (Disguised)"
@@ -6014,7 +6014,7 @@ mission "Argosy Hijacking"
 			`	He sighs and says, "Man, I don't have time for this. Tell me what actually happened."`
 			choice
 				`	"I blew it up, didn't you hear me?"`
-				`	"You ship got away. That's what happened."`
+				`	"Your ship got away. That's what happened."`
 			`	"If you're going to waste my time, get out of here." Before you can react, he storms off towards the Syndicated Security offices.`
 				decline
 
@@ -6049,7 +6049,7 @@ mission "Argosy Hijacking"
 			choice
 				`	"Well, yeah."`
 				`	"No, that's not what I meant."`
-			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
+			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, and I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
 			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
 				decline
 

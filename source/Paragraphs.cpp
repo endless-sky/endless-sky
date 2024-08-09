@@ -28,10 +28,10 @@ void Paragraphs::Load(const DataNode &node)
 	for(const DataNode &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
-			text.emplace_back(child, node.Token(1) + "\n");
+			text.emplace_back(child, node.Token(node.Size() - 1) + "\n");
 			return;
 		}
-	text.emplace_back(ConditionSet(), node.Token(1) + "\n");
+	text.emplace_back(ConditionSet(), node.Token(node.Size() - 1) + "\n");
 }
 
 
