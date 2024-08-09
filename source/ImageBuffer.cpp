@@ -428,9 +428,9 @@ namespace {
 				frameTimeUnit = timing.duration;
 		}
 		// Based on this unit, we can calculate how many times each frame is repeated.
-		vector<int> repeats(decoder->imageCount);
-		int bufferFrameCount = 0;
-		for(int i = 0; i < decoder->imageCount; ++i)
+		vector<size_t> repeats(decoder->imageCount);
+		size_t bufferFrameCount = 0;
+		for(size_t i = 0; i < decoder->imageCount; ++i)
 		{
 			result = avifDecoderNthImageTiming(decoder, 0, &timing);
 			if(result != AVIF_RESULT_OK)
