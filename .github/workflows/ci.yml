@@ -170,7 +170,7 @@ jobs:
   build_documentation_doxygen:
     name: Documentation Doxygen
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.doxygen_config }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.doxygen_config == 'true' || needs.changed.outputs.ci_config == 'true'}}
     runs-on: ubuntu-24.04
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
