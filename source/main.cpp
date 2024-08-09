@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PrintData.h"
 #include "Screen.h"
 #include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"

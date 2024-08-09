@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Logger.h"
 #include "Screen.h"
-#include "Shader.h"
+#include "shader/Shader.h"
 
 #include "opengl.h"
 

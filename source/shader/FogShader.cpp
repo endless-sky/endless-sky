@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FogShader.h"
 
-#include "GameData.h"
-#include "PlayerInfo.h"
-#include "Point.h"
-#include "Screen.h"
+#include "../GameData.h"
+#include "../PlayerInfo.h"
+#include "../Point.h"
+#include "../Screen.h"
 #include "Shader.h"
-#include "System.h"
+#include "../System.h"
 
-#include "opengl.h"
+#include "../opengl.h"
 
 #include <algorithm>
 #include <cmath>

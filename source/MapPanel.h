@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "Color.h"
+#include "shader/Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
 #include "text/WrappedText.h"

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
-#include "Color.h"
+#include "shader/Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"
@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 

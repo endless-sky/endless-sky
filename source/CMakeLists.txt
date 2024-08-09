@@ -31,10 +31,6 @@ target_sources(EndlessSkyLib PRIVATE
 	AsteroidField.h
 	BankPanel.cpp
 	BankPanel.h
-	BatchDrawList.cpp
-	BatchDrawList.h
-	BatchShader.cpp
-	BatchShader.h
 	Bitset.cpp
 	Bitset.h
 	BoardingPanel.cpp
@@ -54,8 +50,6 @@ target_sources(EndlessSkyLib PRIVATE
 	CollisionSet.cpp
 	CollisionSet.h
 	CollisionType.h
-	Color.cpp
-	Color.h
 	Command.cpp
 	Command.h
 	ConditionSet.cpp
@@ -91,8 +85,6 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
-	DrawList.cpp
-	DrawList.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -107,8 +99,6 @@ target_sources(EndlessSkyLib PRIVATE
 	File.h
 	Files.cpp
 	Files.h
-	FillShader.cpp
-	FillShader.h
 	FireCommand.cpp
 	FireCommand.h
 	Fleet.cpp
@@ -117,8 +107,6 @@ target_sources(EndlessSkyLib PRIVATE
 	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
-	FogShader.cpp
-	FogShader.h
 	FormationPattern.cpp
 	FormationPattern.h
 	FormationPositioner.cpp
@@ -164,8 +152,6 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpTypes.h
 	Logger.cpp
 	Logger.h
-	LineShader.cpp
-	LineShader.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -186,10 +172,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -222,8 +204,6 @@ target_sources(EndlessSkyLib PRIVATE
 	OutfitInfoDisplay.h
 	OutfitterPanel.cpp
 	OutfitterPanel.h
-	OutlineShader.cpp
-	OutlineShader.h
 	Panel.cpp
 	Panel.h
 	Paragraphs.cpp
@@ -248,8 +228,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Plugins.h
 	Point.cpp
 	Point.h
-	PointerShader.cpp
-	PointerShader.h
 	Politics.cpp
 	Politics.h
 	Port.cpp
@@ -273,8 +251,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Rectangle.h
 	RenderBuffer.cpp
 	RenderBuffer.h
-	RingShader.cpp
-	RingShader.h
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
@@ -282,8 +258,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Screen.h
 	ScrollVar.h
 	Set.h
-	Shader.cpp
-	Shader.h
 	Ship.cpp
 	Ship.h
 	ShipEvent.cpp
@@ -306,10 +280,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Sprite.h
 	SpriteSet.cpp
 	SpriteSet.h
-	SpriteShader.cpp
-	SpriteShader.h
-	StarField.cpp
-	StarField.h
 	StartConditions.cpp
 	StartConditions.h
 	StartConditionsPanel.cpp
@@ -360,6 +330,36 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	shader/BatchDrawList.cpp
+	shader/BatchDrawList.h
+	shader/BatchShader.cpp
+	shader/BatchShader.h
+	shader/Color.cpp
+	shader/Color.h
+	shader/DrawList.cpp
+	shader/DrawList.h
+	shader/FillShader.cpp
+	shader/FillShader.h
+	shader/FogShader.cpp
+	shader/FogShader.h
+	shader/LineShader.cpp
+	shader/LineShader.h
+	shader/Mask.cpp
+	shader/Mask.h
+	shader/MaskManager.cpp
+	shader/MaskManager.h
+	shader/OutlineShader.cpp
+	shader/OutlineShader.h
+	shader/PointerShader.cpp
+	shader/PointerShader.h
+	shader/RingShader.cpp
+	shader/RingShader.h
+	shader/Shader.cpp
+	shader/Shader.h
+	shader/SpriteShader.cpp
+	shader/SpriteShader.h
+	shader/StarField.cpp
+	shader/StarField.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

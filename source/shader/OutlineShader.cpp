@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutlineShader.h"
 
 #include "Color.h"
-#include "Point.h"
-#include "Screen.h"
+#include "../Point.h"
+#include "../Screen.h"
 #include "Shader.h"
-#include "Sprite.h"
+#include "../Sprite.h"
 
 using namespace std;
 

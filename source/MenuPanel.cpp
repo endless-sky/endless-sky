@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PreferencesPanel.h"
 #include "Ship.h"
 #include "Sprite.h"
-#include "StarField.h"
+#include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"

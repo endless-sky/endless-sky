@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AmmoDisplay.h"
 
-#include "Color.h"
+#include "shader/Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 
 using namespace std;
 
