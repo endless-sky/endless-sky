@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UNIVERSE_OBJECTS_H_
-#define UNIVERSE_OBJECTS_H_
+#pragma once
 
 #include "CategoryTypes.h"
 #include "Sale.h"
@@ -43,8 +42,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "TextReplacements.h"
 #include "audio/Track.h"
 #include "Trade.h"
@@ -149,7 +148,3 @@ private:
 	mutable std::mutex menuBackgroundMutex;
 	Interface menuBackgroundCache;
 };
-
-
-
-#endif

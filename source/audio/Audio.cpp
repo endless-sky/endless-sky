@@ -336,8 +336,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 	}
 
 	// If the current playlist's conditions are not matching anymore, search for a new playlist.
-	bool currentPlaylistValid = currentPlaylist ?
-		currentPlaylist->MatchesConditions(player) : false;
+	bool currentPlaylistValid = currentPlaylist && currentPlaylist->MatchesConditions(player);
 	// The track has to be updated if the current track is finished or the playlist is not matching
 	// anymore.
 	if(!currentPlaylistValid)
@@ -370,22 +369,25 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 	}
 
 	// Only switch to a new track if a playlist is set.
-	if(currentPlaylist && (currentTrack->IsFinished() || !currentPlaylistValid))
+	if(!currentPlaylistValid || (currentTrack->IsFinished() && !isWaiting))
 	{
-		currentPlaylistTrack = currentPlaylist->GetNextTrack();
-		if(currentPlaylistTrack)
+		if(currentPlaylist)
 		{
-			trackVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
-			SetMusicVolume(musicVolume);
-			PlayMusic(currentPlaylistTrack->GetTitle(state));
-			finishedWaiting = false;
+			currentPlaylistTrack = currentPlaylist->GetNextTrack();
+			if(currentPlaylistTrack)
+			{
+				trackVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
+				SetMusicVolume(musicVolume);
+				PlayMusic(currentPlaylistTrack->GetTitle(state));
+				finishedWaiting = false;
+			}
+			oldState = state;
 		}
-		oldState = state;
+		// If no playlist is set this means nothing should be played, so stop
+		// everything and fade out.
+		else
+			PlayMusic("");
 	}
-	// If no playlist is set this means nothing should be played, so stop
-	// everything and fade out.
-	else
-		PlayMusic("");
 
 	if(oldState != state)
 	{

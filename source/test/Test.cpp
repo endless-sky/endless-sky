@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Test.h"
 
-#include "DataNode.h"
-#include "text/Format.h"
-#include "GameData.h"
-#include "Logger.h"
-#include "Planet.h"
-#include "PlayerInfo.h"
-#include "Ship.h"
-#include "System.h"
+#include "../DataNode.h"
+#include "../text/Format.h"
+#include "../GameData.h"
+#include "../Logger.h"
+#include "../Planet.h"
+#include "../PlayerInfo.h"
+#include "../Ship.h"
+#include "../System.h"
 #include "TestContext.h"
 #include "TestData.h"
 
@@ -445,7 +445,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
 				// Encountering branch entries twice typically only happen in "wait loops" and we should give
 				// the game cycles to proceed if we are in a wait loop for something that happens over time.
-				if(context.branchesSinceGameStep.count(context.callstack.back()))
+				if(context.branchesSinceGameStep.contains(context.callstack.back()))
 				{
 					continueGameLoop = true;
 					break;

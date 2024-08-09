@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEAPON_H_
-#define WEAPON_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -468,7 +467,3 @@ inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
-
-
-
-#endif

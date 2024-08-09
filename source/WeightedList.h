@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEIGHTED_LIST_H_
-#define WEIGHTED_LIST_H_
+#pragma once
 
 #include "Random.h"
 
@@ -204,7 +203,3 @@ void WeightedList<Type>::RecalculateWeight()
 {
 	total = std::accumulate(weights.begin(), weights.end(), 0);
 }
-
-
-
-#endif
