@@ -4354,7 +4354,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 					potentialTarget = &object;
 			}
 			else if(isTryingLanding)
-					message = object.LandingMessage();
+				message = object.LandingMessage();
 		}
 
 		const StellarObject *target = ship.GetTargetStellar();
