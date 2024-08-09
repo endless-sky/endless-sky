@@ -360,6 +360,11 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	concurrent/Parallel.h
+	concurrent/PartiallyGuardedList.h
+	concurrent/ResourceProvider.h
+	concurrent/WithMutex.cpp
+	concurrent/WithMutex.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

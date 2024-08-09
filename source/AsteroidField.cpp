@@ -84,7 +84,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 
 
 // Move all the asteroids forward one step.
-void AsteroidField::Step(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
+void AsteroidField::Step(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam, int step)
 {
 	asteroidCollisions.Clear(step);
 	for(Asteroid &asteroid : asteroids)

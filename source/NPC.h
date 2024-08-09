@@ -93,7 +93,7 @@ public:
 	bool ShouldSpawn() const;
 
 	// Get the ships associated with this set of NPCs.
-	const std::list<std::shared_ptr<Ship>> Ships() const;
+	const std::vector<std::shared_ptr<Ship>> Ships() const;
 
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
@@ -156,7 +156,7 @@ private:
 
 	// The ships may be listed individually or referred to as a fleet, and may
 	// be customized or just refer to stock objects:
-	std::list<std::shared_ptr<Ship>> ships;
+	std::vector<std::shared_ptr<Ship>> ships;
 	std::list<const Ship *> stockShips;
 	std::list<std::string> shipNames;
 	std::list<ExclusiveItem<Fleet>> fleets;

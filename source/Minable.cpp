@@ -198,7 +198,7 @@ void Minable::Place(double energy, double beltRadius)
 // Move the object forward one step. If it has been reduced to zero hull, it
 // will "explode" instead of moving, creating flotsam and explosion effects.
 // In that case it will return false, meaning it should be deleted.
-bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+bool Minable::Move(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	if(hull < 0)
 	{

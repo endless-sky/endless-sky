@@ -67,6 +67,14 @@ find_package(JPEG REQUIRED)
 if(NOT APPLE)
 	find_package(GLEW REQUIRED)
 endif()
+if(WIN32)
+	include(FetchContent)
+	FetchContent_Declare(TBB_ZIP URL https://github.com/oneapi-src/oneTBB/releases/download/v2021.13.0/oneapi-tbb-2021.13.0-win.zip URL_HASH SHA256=0a7b19b52ec9d8eaa10cbbe396e955130815489c544642acecda8ef8d2d7f64d)
+	FetchContent_MakeAvailable(TBB_ZIP)
+	find_library(TBB NAMES tbb.lib PATHS ${TBB_ZIP_SOURCE_DIR}/oneapi-tbb-2021.13.0/lib/intel64/vc14/)
+else()
+	find_package(TBB REQUIRED)
+endif()
 
 # Only very new versions of OpenAL provide a config package, so try to find it manually.
 find_package(OpenAL CONFIG QUIET)
@@ -131,8 +139,10 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+	target_include_directories(ExternalLibraries INTERFACE TBB)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
+	target_link_libraries(ExternalLibraries INTERFACE TBB::tbb)
 endif()
 
 # Link with the UUID library, which is different for each OS.

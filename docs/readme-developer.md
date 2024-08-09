@@ -26,6 +26,7 @@ Use your favorite package manager to install the following (version numbers may 
    - libmad0-dev
    - uuid-dev
    - catch2
+   - libtbb-dev
 
 ##### RPM-based distros:
    - gcc-c++
@@ -39,6 +40,7 @@ Use your favorite package manager to install the following (version numbers may 
    - libmad-devel
    - libuuid-devel
    - catch2-devel
+   - tbb
 
 Then, from the project root folder, simply type:
 

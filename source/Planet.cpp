@@ -689,28 +689,27 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 
 // While being tributed, attempt to spawn the next specified defense fleet.
-void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
+void Planet::DeployDefense(vector<shared_ptr<Ship>> &ships) const
 {
 	if(!isDefending || Random::Int(60) || defenseDeployed == defenseFleets.size())
 		return;
 
-	auto end = defenders.begin();
 	if(defenseFleets[defenseDeployed]->IsValid())
 		defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
 	else
 		Logger::LogError("Warning: skipped an incomplete defense fleet of planet \"" + name + "\".");
-	ships.insert(ships.begin(), defenders.begin(), end);
+	ships.insert(ships.end(), defenders.begin(), defenders.end());
 
 	// All defenders use a special personality.
 	Personality defenderPersonality = Personality::Defender();
 	Personality fighterPersonality = Personality::DefenderFighter();
-	for(auto it = defenders.begin(); it != end; ++it)
+	for(const auto &it : defenders)
 	{
-		(**it).SetPersonality(defenderPersonality);
-		if((**it).HasBays())
-			for(auto bay = (**it).Bays().begin(); bay != (**it).Bays().end(); ++bay)
-				if(bay->ship)
-					bay->ship->SetPersonality(fighterPersonality);
+		it->SetPersonality(defenderPersonality);
+		if(it->HasBays())
+			for(auto &bay : it->Bays())
+				if(bay.ship)
+					bay.ship->SetPersonality(fighterPersonality);
 	}
 
 	++defenseDeployed;
