@@ -292,8 +292,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + acceptedIt->Name() + "\"?"));
+			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission, acceptedIt->AbortMessage(player)));
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
