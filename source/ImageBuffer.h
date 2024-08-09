@@ -56,7 +56,7 @@ public:
 
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	void Read(const std::string &path, int frame = 0);
+	bool Read(const std::string &path, int frame = 0);
 
 
 private:

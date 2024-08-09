@@ -18,12 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "File.h"
 #include "Logger.h"
 
-#include <avif/avif.h>
 #include <jpeglib.h>
 #include <png.h>
 
-#include <cmath>
-#include <memory>
+#include <cstdio>
 #include <stdexcept>
 #include <vector>
 
@@ -32,7 +30,6 @@ using namespace std;
 namespace {
 	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
-	int ReadAVIF(const string &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
 }
 
@@ -55,11 +52,8 @@ ImageBuffer::~ImageBuffer()
 // Set the number of frames. This must be called before allocating.
 void ImageBuffer::Clear(int frames)
 {
-	if(pixels)
-	{
-		delete[] pixels;
-		pixels = nullptr;
-	}
+	delete [] pixels;
+	pixels = nullptr;
 	this->frames = frames;
 }
 
@@ -157,15 +151,13 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-int ImageBuffer::Read(const string &path, int frame)
+bool ImageBuffer::Read(const string &path, int frame)
 {
 	// First, make sure this is a supported file.
 	bool isPNG = (path.ends_with(".png") || path.ends_with(".PNG"));
 	bool isJPG = (path.ends_with(".jpg") || path.ends_with(".JPG") || path.ends_with(".jpeg") || path.ends_with(".JPEG"));
-	bool isAVIF = (path.ends_with(".avif") || path.ends_with(".AVIF") || path.ends_with(".avifs")
-			|| path.ends_with(".AVIFS"));
 
-	if(!isPNG && !isJPG && !isAVIF)
+	if(!isPNG && !isJPG)
 		return false;
 
 	// Check if the sprite uses additive blending. Start by getting the index of
@@ -176,32 +168,20 @@ int ImageBuffer::Read(const string &path, int frame)
 	while(--pos)
 		if(path[pos] < '0' || path[pos] > '9')
 			break;
-	// Special case: if the image is already in premultiplied alpha format,
-	// there is no need to apply premultiplication here.
-	bool premultiplied = path[pos] == '=';
 
-	// Load the image data.
-	int startFrame = frame;
-	int endFrame = startFrame;
-	if(isPNG)
-		endFrame += ReadPNG(path, *this, frame);
-	else if(isJPG)
-		endFrame += ReadJPG(path, *this, frame);
-	else
-		endFrame += ReadAVIF(path, *this, frame, premultiplied);
+	if(isPNG && !ReadPNG(path, *this, frame))
+		return false;
+	if(isJPG && !ReadJPG(path, *this, frame))
+		return false;
 
-	if(startFrame >= endFrame)
-		return 0;
-
-	if(!premultiplied)
+	if(path[pos] != '=')
 	{
 		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
-		if(isPNG || (isJPG && additive == 2) || isAVIF)
-			for(int i = startFrame; i < endFrame; i++)
-				Premultiply(*this, i, additive);
+		if(isPNG || (isJPG && additive == 2))
+			Premultiply(*this, frame, additive);
 	}
 
-	return endFrame - startFrame;
+	return true;
 }
 
 
