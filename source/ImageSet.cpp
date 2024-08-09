@@ -328,14 +328,12 @@ void ImageSet::Load() noexcept(false)
 
 	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
-		{
 			if(!buffer.Read(toLoad[i], i))
 			{
 				Logger::LogError("Removing " + specifier + " frames for \"" + name + "\" due to read error");
 				buffer.Clear();
 				break;
 			}
-		}
 	};
 	// Now, load the mask and 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
