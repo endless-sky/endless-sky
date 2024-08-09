@@ -378,7 +378,7 @@ namespace {
 	// logic that avoids duplicating the frames.
 	int ReadAVIF(const string &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied)
 	{
-		// Guard dynamically allocated objects to prevent memory leaks
+		// Guard dynamically allocated objects to prevent memory leaks.
 		struct DecoderGuard
 		{
 			explicit DecoderGuard(avifDecoder *decoder) : decoder(decoder){}
