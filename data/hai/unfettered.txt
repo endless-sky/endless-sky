@@ -1,0 +1,135 @@
+# Copyright (c) 2023 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# this file contains assets that can be used at any point in the campaign
+
+phrase "Essential Unfettered Mission Fail"
+	word
+		`You have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
+
+phrase "Essential Unfettered Mission Fail If Killed"
+	word
+		`If you did not kill the duelling ship, you may try this mission again later. Otherwise, you have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
+
+# using <, > so we can have an empty name
+# could add some depending on the kind of warlord you are (and SB you choose):
+# He'Shi: sneaky, deadly
+# Mem'he: fast, ?
+# To'or: enduring, honest
+substitutions
+	"<uhai>" "Triumph of the True Hai"
+	"<, unfettered title>" ", monkey"
+	"<, unfettered title>" ", space-monkey"
+		has "Unfettered Jump Drive 1: offered"
+	"<, unfettered title>" ", Captain"
+		has "unfettered: beaten the captain"
+	"<, unfettered title>" ", Herald"
+		has "salary: Unfettered"
+	"<, unfettered title>" ", Warlord"
+		"salary: Unfettered" > 1000
+	"<, unfettered title>" ", High Warlord"
+		has "unfettered: high warlord"
+	"<, unfettered title>" ", outcast"
+		has "unfettered: outcast"
+
+
+
+conversation "unfettered outcast"
+	branch "no license"
+		has "license: Unfettered"
+	action
+		# replace it by a worthless outfit
+		clear "license: Unfettered"
+		outfit "Unfettered License"
+	label "no license"
+	action
+		event "unfettered: outcast"
+		clear "unfettered: challengers"
+	`The local authorities hail you immediately after the destruction of the Alpha ship with a code purple message.`
+		to display
+			has "unfettered: destroyed auxiliary"
+	`The local authorities hail you immediately after the destruction of the duelling ship with a code purple message.`
+		to display
+			not "unfettered: destroyed auxiliary"
+	branch translator
+		has "language: Hai"
+	`	They speak in Hai but the tone alone is enough to understand what they mean: you have angered them greatly by destroying that ship, and you should leave, or you risk being shot at. You probably will not be offered missions from them in the future.`
+		decline
+	label translator
+	branch "alpha ship"
+		has "unfettered: destroyed auxiliary"
+	`	"You have disappointed us greatly by breaking the sacred rules of the duels! Think very carefully before you make any more mistakes, or it will be war! We have removed any privileges you had, and have added you to the list of shame. Rest assured that no True Hai will offer you special missions any longer, but we'll allow you to ferry cargo. For now."`
+		decline
+	label "alpha ship"
+	`	"How dare you?! This ship was helping us by providing supplies, and you just shoot it down? Disabling it would have been more than fine, looting it tolerated, but destroying the source of our independence? We cannot tolerate it. It matters not who shot first, you have hereby lost all privileges, and it will be war if you make the slightest mistake!"`
+
+
+
+event "unfettered: outcast"
+	set "unfettered: outcast"
+	clear "salary: unfettered"
+	planet "Firelode"
+		remove outfitter "Mera's Lab"
+	planet "Darkcloak"
+		remove outfitter "Unfettered"
+	government "Hai (Unfettered)"
+		"bribe" .04
+	"reputation: Hai (Unfettered)" <?= 0
+
+
+
+mission "Unfettered: Regrets"
+	landing
+	invisible
+	to offer
+		not "license: Unfettered"
+		has "Wanderers: Defend Vara Ke'sok: done"
+		not "unfettered: outcast"
+	on enter "Ehma Ti" "Wah Yoot" "Hi Yahr"
+		event "unfettered: outcast"
+		dialog
+			`The instant you enter the system, you receive a priority message from the local authorities. "<last>, because of your recent involvements with the aliens up north, we have decided to stop offering you missions."`
+			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you.`
+		fail
+
+mission "Unfettered: Betrayed"
+	landing
+	invisible
+	to offer
+		has "license: Unfettered"
+		has "Wanderers: Defend Vara Ke'sok: done"
+	on enter "Hi Yahr" "Wah Yoot" "Ehma Ti"
+		fail
+	# this can be failed by another mission (because if it will instantly fail the mission will not offer)
+	on fail
+		outfit "Unfettered License"
+		event "unfettered: outcast"
+		dialog
+			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
+			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. Your license no longer has any value.`
+			`	"Consider yourself lucky we do not blow you up, in honor of our past. But you will give this ship back, when the time is right."`
+				to display
+					has "flagship model: Modified Shield Beetle"
+
+mission "Unfettered: Betrayed: Failure"
+	landing
+	invisible
+	deadline
+	to offer
+		has "Unfettered: Betrayed: active"
+		or
+			has "midas: tracker relay"
+			has "flagship model: Modified Shield Beetle"
+	on offer
+		fail "Unfettered: Betrayed"
+

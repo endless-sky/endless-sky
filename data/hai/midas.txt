@@ -1,0 +1,1010 @@
+# Copyright (c) 2024 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# SPOILER: concept: these contain fuel that comes from ancient space behemoths that have since almost all migrated
+# it is going to be used to power the dimensional eraser, a misused Pug engine that got disrupted by the gases emanating from the leviathan
+# Midas would do anything to make sure they are safe.
+outfit "Gold Bars"
+	category "Special"
+	plural "Gold Bars"
+	cost 64000
+	thumbnail "outfit/gold bars"
+	mass 2.1
+	"installable" -1
+	description "It shines, although you can't help but feel like it also absorbs light. For some reason, the text 'nemo me impune lacessit' is written on the gold bars. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold however, and would not give you any more than the price of brute gold for it."
+
+ship "Sea Scorpion" "Si-Ra' Scorpion"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Pulse Turret" 2
+		"Systems Core (Small)"
+		"Hai Diamond Regenerator"
+		"Bright Cloud Shielding"
+		"Hai Octopus Jammer" 3
+		"Small Heat Shunt"
+		"Hai Zephyr Cooling"
+		"Hai Williwaw Cooling"
+		"Hyperdrive"
+		"Value Detector"
+		"Outfits Expansion" 2
+		"Hai Gorge Batteries"
+		"Small Biochemical Cell"
+		"Boulder Reactor"
+
+		"Pulse Rifle" 35
+		"Dual Pulse Pistols"
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Afterburner (Asteroid Class)"
+		"Heshi"
+	cargo
+		outfits
+			"Gold Bars" 5
+
+ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
+	add attributes
+		"shields" -2000
+		"hull" 500
+		"heat dissipation" .05
+		"ion resistance" .25
+	outfits
+		"Tripulse Shredder" 8
+		"Hai Octopus Jammer" 3
+		"Hai Zephyr Cooling" 2
+		Hyperdrive
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+		"Value Detector"
+		"White Sun Reactor"
+		"Generator (Inferno Class)"
+		"Hai Gorge Batteries"
+		"Supercapacitor"
+
+		"Pulse Rifle" 77
+		"Dual Pulse Pistols"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+	cargo
+		outfits
+			"Gold Bars" 20
+
+ship "Marauder Firebird" "Marauder Firebird (Bars)"
+	crew 37
+	outfits
+		"Plasma Cannon" 4
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		
+		"Boulder Reactor"
+		"Supercapacitor"
+		"S-970 Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Bunk Room" 3
+		"Quantum Keystone"
+		"Outfits Expansion"
+		"Nerve Gas" 40
+		
+		"Ionic Afterburner"
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+	cargo
+		outfits
+			"Gold Bars" 15
+
+# Ship of She of the Void, Shadow of Mintaka, leader of Midas.
+ship "Antlion"
+	sprite "ship/hai antlion"
+	thumbnail "thumbnail/hai antlion"
+	attributes
+		category "Heavy Warship"
+		cost 35200000
+		mass 728
+		bunks 67
+		"cargo space" 56
+		drag 9.6
+		"engine capacity" 180
+		"fuel capacity" 700
+		"heat dissipation" 0.47
+		hull 9000
+		"outfit space" 696
+		"required crew" 35
+		shields 24000
+		"weapon capacity" 280
+		weapon
+			"blast radius" 260
+			"shield damage" 3600
+			"hull damage" 1820
+			"hit force" 2500
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile"
+
+		"Fuel Processor"
+		"Scram Drive"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+		"Geode Reactor"
+		"Hai Valley Batteries"
+		"Value Detector" 2
+
+		"Quantum Keystone"
+		"Ionic Blade"
+		"Thermal Repeater Rifle" 61
+		"Dual Pulse Pistols" 5
+
+		"Type 4 Radiant Thruster"
+		`"Bufaer" Atomic Steering`
+		`"Biroo" Reverse Thruster`
+	cargo
+		outfits
+			"Gold Bars" 50
+	"steering engine" 62 10
+		zoom 0.6
+		right
+		angle -115
+	"steering engine" -62 10
+		zoom 0.6
+		left
+		angle 115
+	"reverse engine" 0 -96
+		zoom 0.8
+	engine 44.5 64
+		zoom 0.8
+	engine -44.5 64
+		zoom 0.8
+	engine 0 110
+	gun -24 -100 "Ionic Blaster Prototype"
+	gun 24 -100 "Ionic Blaster Prototype"
+	gun -15 -97 "Ionic Blaster Prototype"
+	gun 15 -97 "Ionic Blaster Prototype"
+	turret -22.5 -57.5 "Chameleon Anti-Missile"
+	turret 22.5 -57.5 "Bullfrog Anti-Missile"
+	turret -15 41 "Ionic Turret Prototype"
+	turret 15 41 "Ionic Turret Prototype"
+	bay Drone -67 -76 under
+		"launch effect" "hai launch"
+	bay Drone 67 -76 under
+		"launch effect" "hai launch"
+	bay Drone 0 70.5 over
+		"launch effect" "hai launch"
+	leak leak 40 50
+	leak flame 50 80
+	leak "big leak" 60 50
+	explode "huge explosion" 10
+	explode "large explosion" 30
+	explode "medium explosion" 50
+	explode "small explosion" 40
+	explode "tiny explosion" 40
+	"final explode" "final explosion large"
+	description "This ship was designed to repel raiding ships, near the end of the Korath war. While it would not be able to defeat one of their ships alone, and would struggle in a prolonged fight, its energy weapons and drone support allow it to hold its own until reinforcements arrive."
+	description "	The prototype was stolen after the raids and that this ship design was never produced again, given it would be of little use in the Unfettered conflict. Nowadays the Antlion is renowned for attacking vulnerable targets and disappearing before anyone can react, as if always one move ahead."
+	# hint at multiple of them/projections being used
+	description "	Some say it has already been beaten, but it keeps coming back, taking all by surprise and sometimes even somehow managed to strike multiple enemies at once."
+
+
+ship "Tick"
+	sprite "ship/hai flea"
+	thumbnail "thumbnail/hai flea"
+	attributes
+		category "Drone"
+		"cost" 186500
+		"shields" 200
+		"hull" 1000
+		"mass" 24
+		"drag" .55
+		"heat dissipation" .7
+		"outfit space" 63
+		"weapon capacity" 14
+		"engine capacity" 22
+		"automaton" 1
+		weapon
+			"blast radius" 8
+			"shield damage" 65
+			"hull damage" 37
+			"hit force" 85
+	outfits
+		"Thermal Repeater"
+		"Hai Chasm Batteries" 2
+		"Small Biochemical Cell"
+		`"Baellie" Atomic Engines`
+
+	engine 0 27 1.4
+	gun 0 -27
+	turret 0 -15
+	leak "leak" 60 50
+	explode "tiny explosion" 17
+	description "This drone was customized with the idea of using either a Repeater, to increase the owner's damage output, or a Bullfrog Anti-Missile, to keep its owner safe. The denser materials used allow for better protection, at the cost of a bit more mass and lower heat dissipation."
+	description "	This handy drone was only made possible thanks to scavenging and combining multiple alien technologies."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+# Ships of the twins, Thorn and Talon.
+# They trade with the Korath, which is how their outfits were obtained.
+ship "Sea Dragon"
+	crew 34
+	sprite "ship/hai sea dragon"
+	thumbnail "thumbnail/hai sea dragon"
+	attributes
+		category "Medium Warship"
+		cost 7450000
+		shields 17000
+		hull 5600
+		"required crew" 20
+		bunks 34
+		mass 800
+		drag 8
+		"fuel capacity" 600
+		"heat dissipation" .45
+		"cargo space" 20
+		"outfit space" 555
+		"weapon capacity" 188
+		"engine capacity" 125
+		weapon
+			"blast radius" 100
+			"shield damage" 1050
+			"hull damage" 520
+			"hit force" 1500
+	outfits
+		"Tripulse Shredder" 4
+		"Bullfrog Anti-Missile" 2
+
+		"Small Heat Shunt" 2
+		"Jump Drive"
+		"Fuel Processor"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+
+		"Thermal Repeater Rifle" 33
+		"Dual Pulse Pistols"
+
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+	cargo
+		outfits
+			"Gold Bars" 20
+	engine -28.5 68.5
+	engine 28.5 68.5
+	"steering engine" 64.5 23.5
+		zoom 0.6
+		angle -90
+		right
+	"steering engine" -64.5 23.5
+		zoom 0.6
+		angle 90
+		left
+	gun -13 -77.5
+	gun 13 -77.5
+	gun -27 -56
+	gun 27 -56
+	turret -35.5 24.5
+	turret 35.5 24.5
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 30
+	explode "small explosion" 50
+	explode "medium explosion" 35
+	explode "large explosion" 18
+	"final explode" "final explosion medium"
+	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever-growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
+	description "	This version was built from stronger materials, allowing for a stronger hull at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
+
+
+
+# Note: this is very very ancient latin for them so it is normal that some of these do not make sense.
+phrase "ancient script"
+	word
+		"Lumen" # light
+		"Mare" # sea
+		"Solis" # sun
+		"Ignus" # fire
+		"Ventus" # wind
+		"Caelorum" # heaven
+		"Improbus" # rogue
+		"Semper" # always
+		"Ad" # for the
+	word
+		" "
+	word
+		"Domine" # lord
+		"Regem" # ruler
+		"Regina" # queen
+		"Quaesitor" # seeker
+		"Ex" # out of
+		"Sapentia" # wisdom
+		"Requiem" # song for the dead
+		"Invictus" # unbeaten
+		"Infinitum" # infinite
+		"Veritas" # truth
+		"Glorium" # glory
+		"Argentius" # silver
+		"Arcana" # secrets
+		"Culpa" # guilty
+		"Fortuna" # luck
+
+fleet "Marauders"
+	government "Midas"
+	names "ancient script"
+	personality
+		disables plunders harvests
+	variant 2
+		"Marauder Firebird (Engines)"
+	variant 3
+		"Marauder Firebird"
+	variant 3
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder"
+	variant 3
+		"Marauder Falcon"
+	variant 3
+		"Marauder Raven (Weapons)"
+	variant
+		"Marauder Raven"
+		"Marauder Quicksilver (Weapons)" 2
+	variant 3
+		"Marauder Splinter (Weapons)"
+	variant 2
+		"Marauder Manta" 2
+	variant
+		"Marauder Leviathan (Engines)"
+	variant
+		"Marauder Raven" 2
+	variant
+		"Sea Scorpion (Ion)"
+	variant
+		"Sea Scorpion (Pulse)"
+	variant
+		"Lightning Bug" 2
+
+
+
+mission "Midas: Stash of Bars"
+	outfitter
+	invisible
+	repeat
+	to offer
+		has "outfit: Gold Bars"
+		# only used for counting for that mission
+		not "Midas: Who is the mad one?: offered"
+		not "Midas: Betrayal For The Bars: offered"
+	on offer
+		"midas: bars" = "outfit: Gold Bars"
+		fail
+
+mission "Midas: Who is the mad one?"
+	outfitter
+	name "A golden opportunity!"
+	description "Go to any pirate world to see if you can sell these gold bars for a good price."
+	to offer
+		has "outfit: Gold Bars"
+	to accept
+		"outfit: Gold Bars" < "midas: bars"
+	on offer
+		conversation
+			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed, and addresses the one you sold the bars to. "These are cursed! You should get rid of them. As soon as you can!" Your buyer does not seem particularly surprised by this encounter.`
+			`	The excited man then takes a closer look at the gold bars, even going as far as grabbing the last one you were giving to the buyer to take a closer look. He then stares at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize, and he presents the bar back as if it was some kind of offering. The buyer energetically takes the bar from his hands, not interested to hear any more, and gets away before you can react. You then turn back to this mysterious stranger.`
+			choice
+				`	"Who are 'they'?"`
+					goto who
+				`	"I got these after a duel."`
+				`	"Where I got these bars is none of your business."`
+					goto wontsay
+				`	(Ignore him.)`
+					decline
+			`	"Ha! I made the same mistake, once, plundering them from a ship. It almost was my last."`
+			label who
+			`	He looks at you, fascinated. "You truly do not know, do you?" He stops for a few seconds, examining your face as if the truth was hidden behind your left ear. "Good! Then you may still be free. Do not make the mistake I did, or this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth the fabulous prices they may offer for it!"`
+			`	He continues, finally and painfully catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of credits, but not for me. I got plundered myself on the way there!"`
+			choice
+				`	"A good price, you say? That sounds interesting."`
+				`	"You're right, it is not worth it, I will get rid of them."`
+					goto rid
+				`	"I just sold all of my bars, but if they are this interesting I'll be looking for more."`
+					to display
+						not "outfit (all): Gold Bars"
+			`	His eyes open fully in despair, "NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause. Perhaps the bars have already affected you! At any rate, make sure to have enough escorts, and watch your back.`
+			`	"At least do not keep them on your flagship, that would only attract them," he shouts over his shoulder before running away.`
+				accept
+			label rid
+			`	"Good. You do well to listen." he says, before leaving, finally calm.`
+				decline
+			label wontsay
+			`	"It is your choice to make. Just know that it is a mistake, just like it would be to take these to a pirate world. Or do anything else than getting rid of them." he says, before leaving.`
+	npc evade
+		government "Midas"
+		personality plunders disables heroic nemesis marked
+		system
+			distance 2 5
+		fleet "Marauders" 3
+	to fail
+		or
+			not "outfit: Gold Bars"
+			has "Midas: Betrayal For The Bars: offered"
+	to complete
+		never
+
+
+
+
+phrase "midas defeated"
+	word
+		`After getting rid of the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "Nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
+
+# Attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
+mission "Midas: Nemo Me Impune Lacessit"
+	minor
+	landing
+	invisible
+	repeat
+	source
+		near "Ya Hai" 10
+	to offer
+		has "outfit: Gold Bars"
+		not "midas: sold bars"
+		not "midas: proven worthy"
+		random < 3
+	npc disable
+		government "Midas"
+		personality plunders disables heroic nemesis marked
+		system
+			distance 2 5
+		fleet "Marauders" 3
+		dialog phrase "midas defeated"
+	to fail
+		or
+			has "midas: proven worthy"
+			not "outfit: Gold Bars"
+
+mission "Midas: Nemo Me Impune Lacessit 2"
+	minor
+	landing
+	invisible
+	repeat
+	source
+		near Sol 100
+	to offer
+		"outfit: Gold Bars" > 15
+		not "midas: sold bars"
+		not "midas: proven worthy"
+		random < 1
+	npc disable
+		government "Midas"
+		personality plunders disables heroic nemesis marked
+		system
+			distance 2 5
+		fleet "Marauders" 5
+		dialog phrase "midas defeated"
+	to fail
+		or
+			has "midas: proven worthy"
+			not "outfit: Gold Bars"
+
+
+
+# SPOILER: Midas sometimes saves pirates from slavery, in exchange for a life debt.
+# Some of your crew may be part of that, or maybe it is just any pirate from this world that tries to get them, attracted by the huge reward.
+mission "Midas: Betrayal For The Bars"
+	landing
+	invisible
+	source
+		government "Pirate"
+	to offer
+		not "midas: sold bars"
+		or
+			random < 40
+			has "Midas: Who is the mad one?: active"
+		has "<uhai> 3: Jump Drive Vault: done"
+		"flagship crew" > 4
+		"outfit: Gold Bars" >= 5
+	on offer
+		conversation
+			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
+			choice
+				`	(It's nothing. Probably just a rat.)`
+				`	(Go investigate.)`
+					goto investigate
+			action
+				outfit "Gold Bars" -5
+			`	You decide not to check it out now. A few moments later, you hear a big metallic sound, followed by deep silence. You may want to check your cargo bay later on.`
+				defer
+			label investigate
+			`	You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you had better not overreact, or someone could get hurt.`
+			choice
+				`	(Ask if someone is there.)`
+					goto hello
+				`	(Never too careful.)`
+			`	You go into the cargo bay, on guard. As you enter, you think you see something move, on your left. There is not much time to think.`
+			choice
+				`	(Call my crew to help.)`
+				`	(Run in that direction.)`
+					goto run
+			label help
+			`	You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
+				defer
+			label run
+			`	As you run, you see a silhouette of someone running. They are armed, and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
+			choice
+				`	(Order them to stand down.)`
+				`	(Follow them to see where they are going.)`
+					goto follow
+				`	(Shoot.)`
+					goto shoot
+			`	There is no doubt that you were heard, but the only reaction from the silhouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+				defer
+			label follow
+			`	You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take them a while. They haven't noticed you're following them yet.`
+			choice
+				`	(Wait for the traitor near the exit to stun them.)`
+					goto wait
+				`	(Order the crew member to stand down.)`
+				`	(Shoot.)`
+					goto shoot
+			`	There is no doubt that you were heard, but the only reaction from the silhouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+				accept
+			label shoot
+			`	You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "Nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
+				decline
+			label hello
+			`	In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter, you see that a few gold bars have fallen off the pile. That was probably the sound you heard.`
+			choice
+				`	(Head in that direction.)`
+				`	(Call for help.)`
+					goto help
+			`	You move that way, but soon you feel a pressure on the back of your neck. "Sweet dreams, Captain." You recognize the voice of one of your crew before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing, and so are two members of your crew.`
+				goto lostbars
+			label wait
+			`	You patiently wait for the intruder to arrive and hit them in the back with your pistol. Given it is a member of your crew that betrayed you, you decide not to involve anyone else, as they could be complicit. You first remove the weapon they are carrying. After doing a thorough search, you notice a distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. This seems bad, very bad. Then you pause for a second to wonder if you really want to know about this.`
+			choice
+				`	(Ignorance is bliss.)`
+				`	(I prefer not to stay in the dark. Wake them.)`
+					goto light
+			label bliss
+			`	You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid of.`
+				accept
+			label light
+			`	You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they concede to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
+			`	You nod, and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
+			choice
+				`	(This is it. I want to know all.)`
+				`	(Ignorance is bliss.)`
+					goto bliss
+			`	They take a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
+			choice
+				`	(Sell the bars.)`
+				`	(Keep the bars, and drop that traitor on the planet.)`
+					goto bliss2
+				`	(Keep the crew member for further interrogation.)`
+					goto escape
+				`	(Make them walk the plank.)`
+					to display
+						has "outfit (flagship installed): Heshi"
+					goto heshi
+			action
+				outfit "Gold Bars" -5
+				payment 5000000
+				set "midas: sold bars"
+			`	The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the raw value of gold for it."`
+				decline
+			label bliss2
+			`	You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed away safely, or maybe you should get rid of them.`
+				decline
+			label heshi
+			action
+				"midas: proven worthy" ++
+			`	You put the traitor in the aquarium and the Heshi takes care of them. This should send a strong message to Midas you are not one to be trifled with.`
+				decline
+			label escape
+			`	You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
+			label lostbars
+			action
+				outfit "Gold Bars" -5
+	# accept is used when you spot the crew member but do not know the link to the bars. If they are revealed, they will not try again.
+	on accept
+		fail "Midas: Betrayal For The Bars"
+
+# Sell the bars if you agreed to the deal, 1 million a piece and 5 by 5 followed by one by one so we can get all of them.
+mission "Midas: Bar Selling"
+	minor
+	landing
+	invisible
+	repeat
+	substitutions
+		"<amount>" "one"
+		"<amount>" "five"
+		"<amount>" "ten"
+	to offer
+		has "midas: sold bars"
+		has "outfit: Gold Bars"
+	on offer
+		conversation
+			action
+				payment 1000000
+				outfit "Gold Bars" -1
+			branch selling
+				"outfit: Gold Bars" < 4
+			action
+				payment 4000000
+				outfit "Gold Bars" -4
+			label selling
+			`An operative of the organization you're selling to offers you the usual one million per stack of gold bars, for <amount> of your gold bars. It doesn't seem like you have much choice in the matter, so you hand them over.`
+				decline
+
+
+
+# SPOILERS: Midas want that governor down because she can easily help the Hai-Unfettered Hai unite, given she understands the Unfettered well.
+# They will only take her hostage here, she may come back later.
+mission "<uhai> 6 B: To The Wolves"
+	landing
+	name "Feed them to the Wolves"
+	description "Instead of escorting the governor as planned, take their fleet to <waypoints>, for an ambush. You may disable the governor's ships too, but risk angering the Hai by doing so."
+	source "Greenbloom"
+	destination "Warfeed"
+	to offer
+		has "<uhai> 6 A: Loyal Escort: active"
+		has "midas: tracker relay"
+		not "event: mountaintop ascendant"
+	on offer
+		dialog
+			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice.`
+			`	"She of the Void requests that you bring the Hai ships to <waypoints> without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded.`
+			`	"Worry not, they will not suspect you for taking a small detour. We will bring the supplies to the Unfettered ourselves, we are only acting in their best interest, after all.`
+			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone, before the transmission stops. You notice a contract on your desk computer, ready to be accepted. This clearly conflicts with the official deal that was concluded between the Unfettered and the Hai, so you will have to choose between the two.`
+			``
+			`	Do you accept this deal from 'She of the Void', or do you want to escort the governor as planned?`
+	waypoint "Heia Due"
+	on waypoint
+		"reputation: Midas" >?= 0
+		conversation
+			`One of the unidentified ships hails you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
+			`	When this is done, go to <destination> for your reward. The Unfettered are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
+			`	Right after that, the governor's ship hails you, and you hear her voice, between anger and confusion. "What have you done?!" You feel like she was about to continue, but before she could all communications are jammed.`
+			`	You can see some pirates present with the Midas fleets, probably to distract other Hai ships that happen to be in the system. It might be a good idea to bribe them.`
+		payment 1000000
+	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
+	npc
+		# The Alphas and their minions left Midas alone so that this would happen. They probably even gave them an anonymous tip about it.
+		government "Midas"
+		system "Heia Due"
+		personality plunders staying harvests
+		fleet "Marauders" 6
+		on provoke
+			dialog `You hear a voice the instant you fire on the ships you had pretended to ally with, seemingly coming from nowhere, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You suddenly feel a strong pain in your neck.`
+			"reputation: Midas" <?= -1000
+			"midas: wronged" ++
+	npc
+		government "Pirate"
+		system "Heia Due"
+		personality entering plunders staying
+		fleet "Small Northern Pirates" 10
+	to fail
+		or
+			has "<uhai> 6 A: Loyal Escort: done"
+			has "<uhai> 6 A: Loyal Escort: aborted"
+	on fail
+		dialog `You hear a voice once alone in your quarters, "A shame, captain. Truly a shame you would not simply take an alternate path."`
+		"reputation: Midas" <?= -1000
+	to complete
+		has "<uhai> 6 A: Loyal Escort: failed"
+	on complete
+		"unfettered rep: Sookootow" -= 2
+		"reputation: Midas" <?= -1000
+		clear "unfettered: stopped on Greenbloom"
+		log `The plan was to escort a Hai fleet carrying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
+		payment 4000000
+		dialog
+			`As before, a voice addresses you once you are alone in your quarters. "We have transferred <payment> to your account, and made sure the Chief will not make your life difficult.`
+			`	"Do be aware, however, that a food situation has arisen, not because of our small operation, but because of the bomb's presence in the first place, placed by our rivals.`
+			`	"The Unfettered will probably be busy for some time... As for the governor, if it can ease your conscience, we only captured her."`
+
+
+
+# The miners will keep on doing their thing, but this is sign of the amount of influence Midas has with the Korath
+# (also they just bashed some Alphas so the Korath are happy right now)
+event "misam: korath raids stop"
+	system Misam
+		remove fleet "Korath Raid"
+		remove fleet "Korath Large Raid"
+
+event "misam: korath raids resume"
+	system Misam
+		add fleet "Korath Raid" 5000
+		add fleet "Korath Large Raid" 11000
+
+# secret mission
+# happens if you accept a duel in "<uhai> 7: Stolen Cargo" (offered if your fleet is smaller than 2 heavy warships)
+mission "<uhai> 7: Duel"
+	landing
+	deadline
+	source "New Tortuga"
+	name "Duel with the twins."
+	description "Beat the two twins today, or lose 10 million credits!"
+	to offer
+		has "midas: accepted duel"
+		has "<uhai> 7: Cavalry Arrives: done"
+		"unfettered: cleaned up cerberus" > 1
+	on offer
+		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... for a quarter of the agreed price. You see, we have already made some arrangements with the Korath so they do not intervene in the fight."`
+	on accept
+		event "misam: korath raids stop"
+		event "misam: korath raids resume" 2
+	on decline
+		fine 2500000
+	npc disable save
+		government "Hai (Unfettered Challenger)"
+		personality waiting heroic unconstrained staying disables
+		ship "Sea Dragon" "Thorn"
+		ship "Sea Dragon" "Talon"
+		on kill
+			dialog `Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "Nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel, if they get wind of this.`
+			set "midas: thorn assassination"
+			set "midas: talon assassination"
+			"midas: wronged" += 2
+			event "midas: thorn talon vengeance" 180
+			log `Destroyed mysterious ships that serve the 'Shadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
+		conversation
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land."`
+			action
+				set "midas: won the duel"
+				log `Won a duel against two mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Plundering of their ships was so nicely offered!`
+	on disabled
+		fail "<uhai> 7: Duel"
+	on fail
+		fine 10000000
+		dialog `The duelists hail you: "You have lost the duel. We will take our prize of 10 million credits."`
+		log `Lost a duel against two mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`
+	on complete
+		conversation
+			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
+				to display
+					not "midas: won the duel"
+			`Shortly after you land, the ships disappear from your radar. They must have somehow repaired themselves.`
+				to display
+					has "midas: won the duel"
+
+event "midas: thorn talon vengeance"
+	"reputation: Shadow" <?= -1000
+	# super high bribe for when they attack you
+	government "Midas"
+		bribe 2
+	# can't rep farm anymore
+	government "Shadow"
+		"attitude toward"
+			"Cerberus" -.01
+
+
+
+event "joined midas"
+	government "Escort"
+		swizzle 9
+	government "Midas"
+		remove "display name"
+
+
+
+mission "Midas: Be Warned"
+	landing
+	description "You have been warned of an impressive fleet waiting for you in the Wah Yoot system, and advised to 'aim for the head'"
+	destination "Darkcloak"
+	to offer
+		has "Midas: Daemons Unleashed: active"
+		"unfettered rep: He-Yi" >= 3
+	on offer
+		dialog `You receive a code purple message from an Unfettered warlord. "<last>. A black fleet has amassed in Wah Yoot. From the communications I intercepted they seem to be interested in you. Do not come here unprepared. Aim for the head."`
+
+# they get mad when you kill the twins, striking at you after they had time to muster their strength.
+# the Hai did not dare to contest them
+mission "Midas: Daemons Unleashed"
+	landing
+	invisible
+	to offer
+		has "event: midas: thorn talon vengeance"
+		or
+			not "<uhai> 16: Strength Of A Leader: Si-Ra: active"
+			has "unfettered: mad Si-Ra"
+		not "<uhai> 16: Strength Of A Leader: He-Yi: active"
+	npc kill
+		system "Wah Yoot"
+		government "Shadow"
+		personality heroic staying nemesis vindictive target quiet
+		ship "Antlion" "Parmen"
+		conversation
+			`As soon as you destroy the flagship of this fleet, you can see confusion in the fleet, unsure whether to attack you or not. The new flagship hails you. "I am now in command of Midas.`
+			`	"I will not be making the same mistake my predecessor did. Before this becomes an uncontrollable spiral of destruction, I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
+			choice
+				`	"May I wear your colors as well?"`
+					goto wearcolors
+				`	"How can I restore my reputation with the Unfettered? Attacking the previous flagship seems to have upset them."`
+					to display
+						"reputation: Hai (Unfettered)" < 0
+				`	"You did not even ask me if I wanted to be a part of it."`
+					goto asked
+				`	(End the connection.)`
+					goto endco
+			`	"They will probably forget about it if you sell them a Jump Drive."`
+			choice
+				`	"May I wear your colors as well?"`
+				`	(End the connection.)`
+					goto endco
+			label wearcolors
+			action
+				event "joined midas"
+			`	"You may paint your ship however you like.`
+				goto endco
+			label asked
+			`	"That's right. And I won't.`
+			label endco
+			`	"Now you should leave the system. I will have to get some things straight with the others before they stop shooting you permanently, some still consider you an enemy." They cut the transmission.`
+			action
+				"reputation: Midas" >?= 100
+				"salary: Midas" = 5000
+				set "midas: took out the Shadow"
+				"midas: proven worthy" ++
+				clear "midas: wronged"
+				log "Took out the leader of the Midas organization that manages the Gold Bars. They did not reveal much, only that they do not wish to fight me anymore."
+	npc
+		system "Wah Yoot"
+		government "Shadow"
+		personality heroic staying nemesis quiet
+		ship "Tick" "Hell Unleashed"
+		ship "Tick" "Fire Incarnate"
+		ship "Far Lek 14" "Phoenix"
+	npc
+		system "Wah Yoot"
+		government "Shadow"
+		personality heroic staying nemesis quiet
+		ship "Sea Scorpion" "Thorn wishes Talon"
+		to spawn
+			or
+				not "midas: talon assassination"
+				not "midas: thorn assassination"
+		on kill
+			set "midas: thorn assassination"
+			set "midas: talon assassination"
+	npc kill
+		system "Wah Yoot"
+		government "Shadow"
+		personality disables plunders harvests staying quiet
+		ship "Marauder Firebird (Bars)" "Dark Angel"
+		to spawn
+			not "midas: angel assassination"
+		on kill
+			set "midas: angel assassination"
+	npc
+		system "Wah Yoot"
+		government "Midas"
+		personality heroic staying nemesis vindictive
+		to despawn
+			has "salary: Midas"
+		fleet "Marauders" 8
+	on enter "Wah Yoot"
+		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness so long as I draw breath! I am the Shadow of Mintaka, and never again will you see the light."`
+
+
+
+ship "Corvette" "Corvette (Harpy)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 112
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Cooling Ducts"
+		"Bunk Room"
+		"Pulse Rifle" 3
+		"Brig" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+	cargo
+		outfits
+			"Gold Bars" 15
+
+
+
+phrase "friendly midas"
+	word
+		"What is your command"
+		"Orders"
+		"Anything I can do for you"
+		"Who should I shoot"
+		"Covering fire, where"
+		"Yes"
+		"Change of plan"
+		"Where to"
+	word
+		", "
+	word
+		"Boss"
+		"Leader"
+		"Sigma"
+		"Cresus"
+		"First"
+		"Commander"
+		"Captain"
+	word
+		"?"
+
+phrase "disabled midas"
+	word
+		"I await judgment."
+		"Do not expect me to beg."
+		"It seems I was proven... weak."
+		"I can pay you... If you would only lend me a hand."
+		"Truly a shameful display on my part."
+		"I have executed the former captain for his incompetence."
+		"Leave me alone, I do not deserve any help."
+
+phrase "enemy midas"
+	word
+		"You have "
+		"You possess "
+		"We know that on your ship you have "
+	word
+		"something "
+		"an item "
+		"a possession "
+	word
+		"precious to us"
+		"valuable to us"
+		"of ours"
+		"that we want"
+	word
+		". "
+		"! "
+	word
+		"Surrender it"
+		"Drop it in the next spaceport"
+		"Give it to me and your death will be quick."
+		"Nemo Me Impune Lacessit"
+		"Sell it on a lawless world"
+		"Give it to us, scum"
+		"Hand it over, scum"
+	word
+		"."
+		"!"
+
+phrase "enemy midas"
+	word
+		"Nemo Me Impune Lacessit" 3
+		"You should run if you still hope to see the sun rise"
+		"We will never stop hunting you"
+		"You do not understand the value of what you have stolen"
+		"Mere children cannot be allowed to hold on to such power"
+		"Do not stand in our way, we act for the benefit of all"
+		"Come, let us teach you our ways"
+	word
+		"!"
+		"."
+
+phrase "refuse to answer hail"
+	word
+		"This ship refuses to answer your hails."
+		"The ship is refusing any hails, and seems to be trying to run silent."
+		"It seems like they received our hails but do not wish to answer it."
+
+phrase "refuse to answer hail"
+	word
+		"Stop hailing us or else..."
+		"We will not answer you."
+		"You are undeserving of our attention."
+		"Stop these futile attempts to hail us at once."
+		"There is no time for talking."
+		"Now is the time for action, not talks!"
+		"Stop interrupting us in our plannings."
+		"What do you want?"
