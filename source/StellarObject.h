@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "Hazard.h"
 #include "RandomEvent.h"
+#include <set>
 
 class Planet;
 class Ship;
@@ -72,9 +73,15 @@ public:
 	// Find out how far this object is from its parent.
 	double Distance() const;
 
+	// Change the distances an object is visible from, based on flagship attributes.
+	void UpdateDistanceVisibility(const Ship *flagship);
+
 
 private:
 	const Planet *planet;
+
+	double trueDistanceVisible = 0.;
+	double trueDistanceInvisible = -1.;
 
 	double distance;
 	double speed;

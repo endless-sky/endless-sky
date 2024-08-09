@@ -71,6 +71,8 @@ public:
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
+	void UpdateObjectVisibilities(const Ship *flagship);
+
 
 	// Modify a system's links.
 	void Link(System *other);
