@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <stdexcept>
+#include <memory>
 #include <vector>
 
 using namespace std;
@@ -377,32 +378,22 @@ namespace {
 	// logic that avoids duplicating the frames.
 	int ReadAVIF(const string &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied)
 	{
-		// Guard dynamically allocated objects to prevent memory leaks.
-		struct DecoderGuard
-		{
-			explicit DecoderGuard(avifDecoder *decoder) : decoder(decoder){}
-			~DecoderGuard() { avifDecoderDestroy(decoder);}
-
-			avifDecoder *decoder;
-		};
-
-		avifDecoder * decoder = avifDecoderCreate();
+		unique_ptr<avifDecoder, void(*)(avifDecoder *)> decoder(avifDecoderCreate(), avifDecoderDestroy);
 		if(!decoder)
 		{
 			Logger::LogError("Could not create avif decoder");
 			return 0;
 		}
-		const DecoderGuard decoderGuard(decoder);
 		// Maintenance note: this is where decoder defaults should be overwritten (codec, exif/xmp, etc.)
 
-		avifResult result = avifDecoderSetIOFile(decoder, path.c_str());
+		avifResult result = avifDecoderSetIOFile(decoder.get(), path.c_str());
 		if(result != AVIF_RESULT_OK)
 		{
 			Logger::LogError("Could not read file: " + path);
 			return 0;
 		}
 
-		result = avifDecoderParse(decoder);
+		result = avifDecoderParse(decoder.get());
 		if(result != AVIF_RESULT_OK)
 		{
 			Logger::LogError("Failed to decode image: " + string(avifResultToString(result)));
@@ -418,7 +409,7 @@ namespace {
 		avifImageTiming timing;
 		for(int i = 0; i < decoder->imageCount; ++i)
 		{
-			result = avifDecoderNthImageTiming(decoder, 0, &timing);
+			result = avifDecoderNthImageTiming(decoder.get(), 0, &timing);
 			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("Could not get image timing for '" + path + "': " + avifResultToString(result));
@@ -432,7 +423,7 @@ namespace {
 		size_t bufferFrameCount = 0;
 		for(size_t i = 0; i < static_cast<size_t>(decoder->imageCount); ++i)
 		{
-			result = avifDecoderNthImageTiming(decoder, 0, &timing);
+			result = avifDecoderNthImageTiming(decoder.get(), 0, &timing);
 			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("Could not get image timing for \"" + path + "\": " + avifResultToString(result));
@@ -465,7 +456,7 @@ namespace {
 		// Load each image in the sequence.
 		int avifFrameIndex = 0;
 		size_t bufferFrame = 0;
-		while(avifDecoderNextImage(decoder) == AVIF_RESULT_OK)
+		while(avifDecoderNextImage(decoder.get()) == AVIF_RESULT_OK)
 		{
 			// Ignore frames with insufficient duration.
 			if(!repeats[avifFrameIndex])
