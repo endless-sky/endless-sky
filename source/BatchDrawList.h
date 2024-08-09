@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BATCH_DRAW_LIST_H_
-#define BATCH_DRAW_LIST_H_
+#pragma once
 
 #include "Point.h"
 
@@ -62,7 +61,3 @@ private:
 	// coordinates, the index of the sprite frame, and the alpha value.
 	std::map<const Sprite *, std::vector<float>> data;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MUSIC_H_
-#define MUSIC_H_
+#pragma once
 
 #include <condition_variable>
 #include <cstdint>
@@ -77,7 +76,3 @@ private:
 	std::mutex decodeMutex;
 	std::condition_variable condition;
 };
-
-
-
-#endif

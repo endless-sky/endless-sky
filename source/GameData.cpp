@@ -61,8 +61,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 #include "System.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
@@ -792,7 +792,7 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.landingMessages.count(sprite);
+	return objects.landingMessages.contains(sprite);
 }
 
 
