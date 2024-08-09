@@ -675,12 +675,12 @@ mission "Deep Security Package Reveal"
 			`	As you sit down, the man smiles at you before directing his attention back to those passing by as he speaks. "My name is Wayde, Agent Wayde if you will. Don't mind the title though, I... well I work in the logistics division for Deep Security. You've transported a large number of secure packages recently, and several of them were mine."`
 			choice
 				`	"If it pays, it pays."`
-					goto blindacceptance
+					goto "blind acceptance"
 				`	"Ah, yes."`
-					goto blindacceptance
+					goto "blind acceptance"
 				`	"Do all the secure packages belong to Deep Security?"`
 			`	"Oh no, plenty of tech businesses and wealthy individuals use the same secure package shipping channels. We do monitor all of them though just to make sure our own channels don't get compromised by something ill-advised... or illegal." He shrugs, giving you a measured look.`
-			label blindacceptance
+			label "blind acceptance"
 			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion, and it seems like you qualified. You passed the background check at any rate.`
 			`	"So at any rate, I'm authorized to give you a one-time offer to join that list. Don't worry, I'm not asking anything of you right now."`
 			`	He stops keeping an eye on passers-by for a moment to look directly at you. "So, are you interested?"`
