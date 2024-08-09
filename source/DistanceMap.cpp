@@ -102,17 +102,17 @@ DistanceMap::DistanceMap(const Ship &ship, const System &destination, const Play
 
 
 // Find out if the given system is reachable
-bool DistanceMap::HasRoute(const System &system) const
+bool DistanceMap::HasRoute(const System &target) const
 {
-	return route.contains(&system);
+	return route.contains(&target);
 }
 
 
 
 // Find out how many days away the given system is.
-int DistanceMap::Days(const System &system) const
+int DistanceMap::Days(const System &target) const
 {
-	auto it = route.find(&system);
+	auto it = route.find(&target);
 	return (it == route.end() ? -1 : it->second.days);
 }
 
@@ -130,13 +130,13 @@ set<const System *> DistanceMap::Systems() const
 
 
 // Get the planned route from center to this system.
-vector<const System *> DistanceMap::Plan(const System &system) const
+vector<const System *> DistanceMap::Plan(const System &target) const
 {
 	auto plan = vector<const System *>{};
-	if(!HasRoute(system))
+	if(!HasRoute(target))
 		return plan;
 
-	const System *nextStep = &system;
+	const System *nextStep = &target;
 	while(nextStep != center)
 	{
 		plan.push_back(nextStep);
