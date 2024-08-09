@@ -7551,7 +7551,8 @@ mission "Syndicate Business 1"
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`	
 			action
 				payment 91951
-
+			action 
+				"mean to Howard" = 1
 
 
 mission "Syndicate Business 2"
@@ -7589,7 +7590,8 @@ mission "Syndicate Business 2"
 					decline
 			
 			label high
-			"salary: Syndicate Business" = 500
+			action
+				"salary: Syndicate Business" = 500
 			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`		
 
 			label end
