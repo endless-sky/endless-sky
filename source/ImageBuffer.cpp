@@ -55,11 +55,8 @@ ImageBuffer::~ImageBuffer()
 // Set the number of frames. This must be called before allocating.
 void ImageBuffer::Clear(int frames)
 {
-	if(pixels)
-	{
-		delete[] pixels;
-		pixels = nullptr;
-	}
+	delete [] pixels;
+	pixels = nullptr;
 	this->frames = frames;
 }
 
