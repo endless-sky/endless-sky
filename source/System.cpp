@@ -166,8 +166,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				// Make sure any planets that were linked to this system know
 				// that they are no longer here.
 				for(StellarObject &object : objects)
-					if(object.GetPlanet())
-						planets.Get(object.GetPlanet()->TrueName())->RemoveSystem(this);
+					if(object.planet)
+						object.planet->RemoveSystem(this);
 
 				objects.clear();
 			}
