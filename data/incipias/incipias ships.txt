@@ -125,7 +125,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 4
-		"Stagnation Beam" # to be replaced with a flotsam tractor beam
+		"Horizon Grappler"
 		"Cloud Piercer" 20
 
 		"MH Red-Class Thruster"
