@@ -28,7 +28,7 @@ using namespace std;
 
 namespace {
 	// The greatest number displayed without switching to scientific notation
-	constexpr int64_t SCIENTIFIC_THRESHOLD = 1000000000000000ll;
+	constexpr int64_t SCIENTIFIC_THRESHOLD = 1'000'000'000'000'000ll;
 	constexpr int64_t K = 1000;
 	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
 		{ "quintillion", K * K * K * K * K * K },
