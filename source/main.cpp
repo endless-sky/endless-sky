@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -40,8 +40,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestContext.h"
+#include "test/Test.h"
+#include "test/TestContext.h"
 #include "UI.h"
 
 #include <chrono>

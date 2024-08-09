@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FORMATION_POSITIONER_H_
-#define FORMATION_POSITIONER_H_
+#pragma once
 
 #include "Angle.h"
 
@@ -89,7 +88,3 @@ private:
 	// TODO: This method of tracking shouldn't be needed; ships themselves should have a state to show what they are doing.
 	bool tickTock = true;
 };
-
-
-
-#endif

@@ -361,10 +361,10 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	if(!shipCategory.empty())
 		return false;
 
-	if(!governments.empty() && !governments.count(planet->GetGovernment()))
+	if(!governments.empty() && !governments.contains(planet->GetGovernment()))
 		return false;
 
-	if(!planets.empty() && !planets.count(planet))
+	if(!planets.empty() && !planets.contains(planet))
 		return false;
 	for(const set<AnyAttribute> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
@@ -400,12 +400,12 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 bool LocationFilter::Matches(const Ship &ship) const
 {
 	const System *origin = ship.GetSystem();
-	if(!systems.empty() && !systems.count(origin))
+	if(!systems.empty() && !systems.contains(origin))
 		return false;
-	if(!governments.empty() && !governments.count(ship.GetGovernment()))
+	if(!governments.empty() && !governments.contains(ship.GetGovernment()))
 		return false;
 
-	if(!shipCategory.empty() && !shipCategory.count(ship.Attributes().Category()))
+	if(!shipCategory.empty() && !shipCategory.contains(ship.Attributes().Category()))
 		return false;
 
 	if(!attributes.empty())
@@ -517,7 +517,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		if(planet.IsWormhole()
 				|| (requireSpaceport && !planet.GetPort().HasService(Port::ServicesType::OffersMissions))
 				|| (!hasClearance && !planet.CanLand()))
-			if(planets.empty() || !planets.count(&planet))
+			if(planets.empty() || !planets.contains(&planet))
 				continue;
 		if(Matches(&planet, origin))
 			options.push_back(&planet);
@@ -629,14 +629,14 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 {
 	if(!system || !system->IsValid())
 		return false;
-	if(!systems.empty() && !systems.count(system))
+	if(!systems.empty() && !systems.contains(system))
 		return false;
 
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.
 	if(!didPlanet)
 	{
-		if(!governments.empty() && !governments.count(system->GetGovernment()))
+		if(!governments.empty() && !governments.contains(system->GetGovernment()))
 			return false;
 
 		// This filter is being applied to a system, not a planet.
