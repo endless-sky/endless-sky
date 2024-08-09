@@ -24,37 +24,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	// Perform a binary search on a sorted vector. Return the key's location (or
-	// proper insertion spot) in the first element of the pair, and "true" in
-	// the second element if the key is already in the vector.
-	pair<size_t, bool> Search(const char *key, const vector<pair<const char *, double>> &v)
-	{
-		// At each step of the search, we know the key is in [low, high).
-		size_t low = 0;
-		size_t high = v.size();
-
-		while(low != high)
-		{
-			size_t mid = (low + high) / 2;
-			int cmp = strcmp(key, v[mid].first);
-			if(!cmp)
-				return make_pair(mid, true);
-
-			if(cmp < 0)
-				high = mid;
-			else
-				low = mid + 1;
-		}
-		return make_pair(low, false);
-	}
-}
-
-
 
 double &Dictionary::operator[](const char *key)
 {
-	pair<size_t, bool> pos = Search(key, *this);
+	pair<size_t, bool> pos = Search(key);
 	if(pos.second)
 		return data()[pos.first].second;
 
@@ -72,7 +45,7 @@ double &Dictionary::operator[](const string &key)
 
 double Dictionary::Get(const char *key) const
 {
-	pair<size_t, bool> pos = Search(key, *this);
+	pair<size_t, bool> pos = Search(key);
 	return (pos.second ? data()[pos.first].second : 0.);
 }
 
