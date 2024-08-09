@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <jpeglib.h>
 #include <png.h>
 
-#include <cstdio>
 #include <cmath>
 #include <stdexcept>
 #include <vector>
@@ -404,7 +403,8 @@ namespace {
 		}
 
 		result = avifDecoderParse(decoder);
-		if (result != AVIF_RESULT_OK) {
+		if(result != AVIF_RESULT_OK)
+		{
 			Logger::LogError("Failed to decode image: " + string(avifResultToString(result)));
 			return 0;
 		}
@@ -419,7 +419,7 @@ namespace {
 		for(int i = 0; i < decoder->imageCount; ++i)
 		{
 			result = avifDecoderNthImageTiming(decoder, 0, &timing);
-			if (result != AVIF_RESULT_OK)
+			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("Could not get image timing for '" + path + "': " + avifResultToString(result));
 				return 0;
@@ -433,7 +433,7 @@ namespace {
 		for(int i = 0; i < decoder->imageCount; ++i)
 		{
 			result = avifDecoderNthImageTiming(decoder, 0, &timing);
-			if (result != AVIF_RESULT_OK)
+			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("Could not get image timing for \"" + path + "\": " + avifResultToString(result));
 				return 0;
@@ -479,7 +479,7 @@ namespace {
 			image.pixels = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame));
 
 			result = avifImageYUVToRGB(decoder->image, &image);
-			if (result != AVIF_RESULT_OK)
+			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("\"Conversion from YUV failed for \"" + path + "\": " + avifResultToString(result));
 				return bufferFrame;
@@ -499,7 +499,7 @@ namespace {
 		}
 
 		if(avifFrameIndex != decoder->imageCount || bufferFrame != bufferFrameCount)
-			Logger::LogError("Skipped corrupted frames for \"" + path +"\"");
+			Logger::LogError("Skipped corrupted frames for \"" + path + "\"");
 
 		return bufferFrameCount;
 	}

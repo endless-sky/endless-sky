@@ -238,7 +238,8 @@ void ImageSet::ValidateFrames() noexcept(false)
 		for(auto &str : paths[i])
 		{
 			string ext = str.substr(str.find_last_of('.') + 1);
-			if(IMAGE_SEQUENCE_EXTENSIONS.contains(ToLowerCase(ext)) && paths[i].size() > 1) {
+			if(IMAGE_SEQUENCE_EXTENSIONS.contains(ToLowerCase(ext)) && paths[i].size() > 1)
+			{
 				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
 						+ name + "\n");
 				paths[i][0] = str;
@@ -278,7 +279,7 @@ void ImageSet::Load() noexcept(false)
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
 
-	const auto UpdateFrameCount = [&](){
+	const auto UpdateFrameCount = [&]() {
 		buffer[1].Clear(frames);
 		buffer[2].Clear(frames);
 		buffer[3].Clear(frames);
