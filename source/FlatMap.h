@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLAT_MAP_H_
-#define FLAT_MAP_H_
+#pragma once
 
 #include <functional>
 #include <utility>
@@ -105,5 +104,3 @@ std::pair<size_t, bool> FlatMap<Key, Value, ThreeWayComp, Alloc>::Search(KeyRef 
 	}
 	return std::make_pair(low, false);
 }
-
-#endif
