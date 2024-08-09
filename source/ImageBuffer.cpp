@@ -18,10 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "File.h"
 #include "Logger.h"
 
+#include <avif/avif.h>
 #include <jpeglib.h>
 #include <png.h>
 
 #include <cstdio>
+#include <cmath>
 #include <stdexcept>
 #include <vector>
 
@@ -30,6 +32,7 @@ using namespace std;
 namespace {
 	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
+	int ReadAVIF(const string &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
 }
 
@@ -52,8 +55,11 @@ ImageBuffer::~ImageBuffer()
 // Set the number of frames. This must be called before allocating.
 void ImageBuffer::Clear(int frames)
 {
-	delete [] pixels;
-	pixels = nullptr;
+	if(pixels)
+	{
+		delete[] pixels;
+		pixels = nullptr;
+	}
 	this->frames = frames;
 }
 
@@ -151,26 +157,20 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-bool ImageBuffer::Read(const string &path, int frame)
+int ImageBuffer::Read(const string &path, int frame)
 {
-	// First, make sure this is a JPG or PNG file.
-	if(path.length() < 4)
-		return false;
+	// First, make sure this is a supported file.
+	bool isPNG = (path.ends_with(".png") || path.ends_with(".PNG"));
+	bool isJPG = (path.ends_with(".jpg") || path.ends_with(".JPG") || path.ends_with(".jpeg") || path.ends_with(".JPEG"));
+	bool isAVIF = (path.ends_with(".avif") || path.ends_with(".AVIF") || path.ends_with(".avifs")
+			|| path.ends_with(".AVIFS"));
 
-	string extension = path.substr(path.length() - 4);
-	bool isPNG = (extension == ".png" || extension == ".PNG");
-	bool isJPG = (extension == ".jpg" || extension == ".JPG");
-	if(!isPNG && !isJPG)
-		return false;
-
-	if(isPNG && !ReadPNG(path, *this, frame))
-		return false;
-	if(isJPG && !ReadJPG(path, *this, frame))
+	if(!isPNG && !isJPG && !isAVIF)
 		return false;
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
-	int pos = path.length() - 4;
+	int pos = path.find_last_of('.');
 	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
 		pos -= 3;
 	while(--pos)
@@ -178,12 +178,29 @@ bool ImageBuffer::Read(const string &path, int frame)
 			break;
 	// Special case: if the image is already in premultiplied alpha format,
 	// there is no need to apply premultiplication here.
-	if(path[pos] != '=')
+	bool premultiplied = path[pos] == '=';
+
+	// Load the image data.
+	int startFrame = frame;
+	int endFrame = startFrame;
+	if(isPNG)
+		endFrame += ReadPNG(path, *this, frame);
+	else if(isJPG)
+		endFrame += ReadJPG(path, *this, frame);
+	else
+		endFrame += ReadAVIF(path, *this, frame, premultiplied);
+
+	if(startFrame >= endFrame)
+		return 0;
+
+	if(!premultiplied)
 	{
 		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
-		if(isPNG || (isJPG && additive == 2))
-			Premultiply(*this, frame, additive);
+		if(isPNG || (isJPG && additive == 2) || isAVIF)
+			for(int i = startFrame; i < endFrame; i++)
+				Premultiply(*this, i, additive);
 	}
+
 	return true;
 }
 
@@ -348,6 +365,143 @@ namespace {
 		jpeg_destroy_decompress(&cinfo);
 
 		return true;
+	}
+
+
+
+	// Read an AVIF file, and return the number of frames. This might be
+	// greater than the number of frames in the file due to frame time corrections.
+	// Since sprite animation properties are not visible here, we take the shortest frame
+	// duration, and treat that as our time unit. Every other frame is repeated
+	// based on how much longer its duration is compared to this unit.
+	// TODO: If animation properties are exposed here, we can have custom presentation
+	// logic that avoids duplicating the frames.
+	int ReadAVIF(const string &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied)
+	{
+		// Guard dynamically allocated objects to prevent memory leaks
+		struct DecoderGuard
+		{
+			explicit DecoderGuard(avifDecoder *decoder) : decoder(decoder){}
+			~DecoderGuard() { avifDecoderDestroy(decoder);}
+
+			avifDecoder *decoder;
+		};
+
+		avifDecoder * decoder = avifDecoderCreate();
+		if(!decoder)
+		{
+			Logger::LogError("Could not create avif decoder");
+			return 0;
+		}
+		const DecoderGuard decoderGuard(decoder);
+		// Maintenance note: this is where decoder defaults should be overwritten (codec, exif/xmp, etc.)
+
+		avifResult result = avifDecoderSetIOFile(decoder, path.c_str());
+		if(result != AVIF_RESULT_OK)
+		{
+			Logger::LogError("Could not read file: " + path);
+			return 0;
+		}
+
+		result = avifDecoderParse(decoder);
+		if (result != AVIF_RESULT_OK) {
+			Logger::LogError("Failed to decode image: " + string(avifResultToString(result)));
+			return 0;
+		}
+		// Generic image information is now available (width, height, depth, color profile, metadata, alpha, etc.)
+		// Also image count and frame timings.
+		if(!decoder->imageCount)
+			return 0;
+
+		// Find the shortest frame duration.
+		double frameTimeUnit = -1;
+		avifImageTiming timing;
+		for(int i = 0; i < decoder->imageCount; ++i)
+		{
+			result = avifDecoderNthImageTiming(decoder, 0, &timing);
+			if (result != AVIF_RESULT_OK)
+			{
+				Logger::LogError("Could not get image timing for '" + path + "': " + avifResultToString(result));
+				return 0;
+			}
+			if(frameTimeUnit == -1 || (frameTimeUnit > timing.duration && timing.duration))
+				frameTimeUnit = timing.duration;
+		}
+		// Based on this unit, we can calculate how many times each frame is repeated.
+		vector<int> repeats(decoder->imageCount);
+		int bufferFrameCount = 0;
+		for(int i = 0; i < decoder->imageCount; ++i)
+		{
+			result = avifDecoderNthImageTiming(decoder, 0, &timing);
+			if (result != AVIF_RESULT_OK)
+			{
+				Logger::LogError("Could not get image timing for \"" + path + "\": " + avifResultToString(result));
+				return 0;
+			}
+			repeats[i] = round(timing.duration / frameTimeUnit);
+			bufferFrameCount += repeats[i];
+		}
+
+		// Now that we know the buffer's frame count, we can allocate the memory for it.
+		// If this is an image sequence, the preconfigured frame count is wrong.
+		try {
+			if(bufferFrameCount > 1)
+				buffer.Clear(bufferFrameCount);
+			buffer.Allocate(decoder->image->width, decoder->image->height);
+		}
+		catch(const bad_alloc &)
+		{
+			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			Logger::LogError(message);
+			throw runtime_error(message);
+		}
+		if(static_cast<unsigned>(buffer.Width()) != decoder->image->width
+				|| static_cast<unsigned>(buffer.Height()) != decoder->image->height)
+		{
+			Logger::LogError("Invalid dimensions for \"" + path + "\"");
+			return 0;
+		}
+
+		// Load each image in the sequence.
+		int avifFrameIndex = 0;
+		int bufferFrame = 0;
+		while(avifDecoderNextImage(decoder) == AVIF_RESULT_OK)
+		{
+			// Ignore frames with insufficient duration.
+			if(!repeats[avifFrameIndex])
+				continue;
+
+			avifRGBImage image;
+			avifRGBImageSetDefaults(&image, decoder->image);
+			image.depth = 8; // force 8-bit color depth
+			image.alphaPremultiplied = alphaPreMultiplied;
+			image.rowBytes = image.width * avifRGBImagePixelSize(&image);
+			image.pixels = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame));
+
+			result = avifImageYUVToRGB(decoder->image, &image);
+			if (result != AVIF_RESULT_OK)
+			{
+				Logger::LogError("\"Conversion from YUV failed for \"" + path + "\": " + avifResultToString(result));
+				return bufferFrame;
+			}
+
+			// Now copy the image in the buffer to match frame timings.
+			for(int i = 1; i < repeats[avifFrameIndex]; ++i)
+			{
+				uint8_t *end = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + 1));
+				uint8_t *dest = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + i));
+				std::copy(image.pixels, end, dest);
+			}
+			bufferFrame += repeats[avifFrameIndex];
+
+			avifFrameIndex++;
+			avifRGBImageSetDefaults(&image, decoder->image);
+		}
+
+		if(avifFrameIndex != decoder->imageCount || bufferFrame != bufferFrameCount)
+			Logger::LogError("Skipped corrupted frames for \"" + path +"\"");
+
+		return bufferFrameCount;
 	}
 
 
