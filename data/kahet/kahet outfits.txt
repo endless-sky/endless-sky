@@ -149,7 +149,7 @@ outfit "Ka'het Ravager Turret"
 		sound "disruptor"
 		"hit effect" "ravager impact"
 		"inaccuracy" .2
-		"turret turn" 1.8
+		"turret turn" 2.3
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -205,7 +205,7 @@ outfit "Ka'het Annihilator Turret"
 		"hardpoint offset" 15.
 		"hit effect" "bullet impact"
 		"inaccuracy" 1
-		"turret turn" 2.3
+		"turret turn" 1.8
 		"range override" 630
 		"velocity override" 18
 		"reload" 10
