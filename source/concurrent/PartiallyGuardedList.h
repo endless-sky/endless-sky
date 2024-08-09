@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PARTIALLY_GUARDED_LIST_H_
-#define PARTIALLY_GUARDED_LIST_H_
+#pragma once
 
 #include <list>
 #include <mutex>
@@ -63,5 +62,3 @@ inline T &PartiallyGuardedList<T, Allocator>::emplace_back(Args &&...args)
 	const std::lock_guard<std::mutex> lock(write_mutex);
 	return std::list<T, Allocator>::emplace_back(args...);
 }
-
-#endif

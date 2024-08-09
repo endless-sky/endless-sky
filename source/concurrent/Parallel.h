@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PARALLEL_H_
-#define PARALLEL_H_
+#pragma once
 
 #include <version>
 
@@ -60,7 +59,5 @@ inline void for_each(const ExecutionPolicy e, RandomIt begin, RandomIt end, Func
 #include <vector>
 
 namespace parallel = std::execution;
-
-#endif
 
 #endif
