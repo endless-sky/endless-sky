@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ATTRIBUTE_STORE_H_
-#define ATTRIBUTE_STORE_H_
+#pragma once
 
 #include "attribute/Attribute.h"
 #include "attribute/AttributeAccessor.h"
@@ -75,5 +74,3 @@ private:
 	// The attributes that describe various flight effects, i.e. what happens during shield generation, thrusting etc.
 	std::map<AttributeCategory, Attribute> categorizedAttributes;
 };
-
-#endif

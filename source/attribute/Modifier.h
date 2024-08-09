@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MODIFIER_H_
-#define MODIFIER_H_
+#pragma once
 
 // Defines various alternative effect behaviours. NONE is used for regular effects,
 // RELATIVE specifies scaling relative to some target values, MULTIPLIER multiplies
@@ -28,5 +27,3 @@ enum class Modifier {
 	OVER_TIME,
 	MODIFIER_COUNT
 };
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ATTRIBUTE_EFFECT_TYPE_H_
-#define ATTRIBUTE_EFFECT_TYPE_H_
+#pragma once
 
 // The different effects of an attribute. Each one has multiple variants,
 // each offset by ATTRIBUTE_EFFECT_COUNT. The variants are defined by their Modifier;
@@ -42,5 +41,3 @@ enum AttributeEffectType : int {
 	PIERCING,
 	ATTRIBUTE_EFFECT_COUNT
 };
-
-#endif

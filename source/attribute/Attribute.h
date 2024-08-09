@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ATTRIBUTE_H_
-#define ATTRIBUTE_H_
+#pragma once
 
 #include "AttributeAccessor.h"
 #include "AttributeCategory.h"
@@ -73,5 +72,3 @@ private:
 	AttributeCategory category;
 	std::map<AttributeEffectType, AttributeEffect> effects;
 };
-
-#endif

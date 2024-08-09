@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ATTRIBUTE_ACCESS_H_
-#define ATTRIBUTE_ACCESS_H_
+#pragma once
 
 #include "AttributeCategory.h"
 #include "AttributeEffectType.h"
@@ -106,5 +105,3 @@ public:
 	const AttributeAccessor &Categorized() const;
 	const std::string &String() const;
 };
-
-#endif

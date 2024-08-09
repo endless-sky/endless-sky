@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ATTRIBUTE_CATEGORY_H_
-#define ATTRIBUTE_CATEGORY_H_
+#pragma once
 
 // Defines groupings for attributes. Many of these are situations when outfit effects are applied to a ship.
 // The first couple entries (until CLOAKING) define the same effect as the first couple entries of AttributeEffect,
@@ -42,5 +41,3 @@ enum AttributeCategory : int {
 	PASSIVE,
 	ATTRIBUTE_CATEGORY_COUNT
 };
-
-#endif
