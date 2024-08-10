@@ -7566,7 +7566,7 @@ mission "Syndicate Business 2"
 		credits > 1000000
 	on offer
 		conversation
-			`You visit the office address Howard gave you at the spaceport where Howard immediately sees you and once again thanks you profusely for saving his life and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Maralex Controls.`
+			`You visit the office address Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Maralex Controls.`
 			`	"To reiterate, to purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our promised returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
 				`	"Sure, here's the 1 million credits."`
