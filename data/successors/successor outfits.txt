@@ -293,7 +293,7 @@ outfit `"Veldt" Combat Scanner`
 	"cargo scan power" 50
 	"cargo scan efficiency" 15
 	description "The High Houses prefer to keep their territories well-monitored, and have a long history of developing powerful and efficient scanners to that end. This scanning system is their latest generation, used to both identify contraband and target potential foes at great distance."
-	description "	While restricted for sale to the public, the sheer number of these produced has allowed a few to slip onto black markets; a persistent problem the High Houses are extremely eager to correct."
+	description "	While restricted for sale to the public, the sheer number of scanners produced has allowed a few to slip onto black markets; a persistent problem the High Houses are extremely eager to correct."
 
 outfit `"Tuur" Scanning Suite`
 	category "Systems"
