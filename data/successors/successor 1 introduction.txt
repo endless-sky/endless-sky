@@ -375,34 +375,50 @@ mission "Successors: First Contact 3"
 				`	"We'd better get started then."`
 					goto embark
 				`	"What do you mean that jump drives are 'familiar?'"`
+					to display
+						not "Successors: jump drives"
 					goto "jump drives"
 				`	"What more can you tell me about the Kijra-pets?"`
+					to display
+						not "Successors: kijra-pet"
 					goto kijra-pet
 				`	"Are you certain you're okay going with me?"`
+					to display
+						not "Successors: you okay"
 					goto "you okay"
 				`	"Is there anything I should watch out for?"`
+					to display
+						not "Successors: watch out"
 					goto "watch out"
 			label "you okay"
-				set "Successors: youokay"
+				set "Successors: you okay"
 			`	Splotches of orange color emerge at the tips of Sieasej's arms. "I confess this is a little strange, and know the prospect of this... journey instills within me some thoughts of trepidation. But to visit these worlds is reward itself, and to do so in thy company, the very aliens who I have studied, makes it a reward that's doubly grand. Thou must realize that thou'rt a historian's dream. Thou'rt a creature from a distant story-page made flesh and blood in the modern age."`
 				goto questions
 			label "watch out"
-				set "Successors: watchout"
+				set "Successors: watch out"
 			`	"The House hast warned me of the dangers which that space entails. Thy vessel must've endured enough to make it here intact, so I must trust that it shall be enduring once again.`
 				goto questions
 			label "jump drives"
-				set "Successors: jumpdrives"
+				set "Successors: jump drives"
 			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who then had only just discovered industry. Drives like the one within thy ship have been known to us for long into thy past."`
 			choice
 				`	"We'd better get going."`
 					goto embark
 				`	"Do the scions have their own jump drives?"`
+					to display
+						not "Successors: warning"
 					goto warning
 				`	"What more can you tell me about the Kijra-pets?"`
+					to display
+						not "Successors: kijra-pet"
 					goto kijra-pet
 				`	"Are you certain you're okay going with me?"`
+					to display
+						not "Successors: you okay"
 					goto "you okay"
 				`	"Is there anything I should watch out for?"`
+					to display
+						not "Successors: watch out"
 					goto "watch out"
 			label warning
 				set "Successors: warning"
@@ -410,7 +426,7 @@ mission "Successors: First Contact 3"
 				goto questions
 			label embark
 			action
-				clear "Successors: jumpdrives"
+				clear "Successors: jump drives"
 				clear "Successors: kijra-pet"
 				clear "Successors: knowledge"
 				clear "Successors: warning"
@@ -885,14 +901,6 @@ mission "Successors: Kaatrij Monoglot Prompt"
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
 			decline
 
-substitutions
-	"<successor patron>" "Sioeora"
-	"<successor patron>" "Kaatrij"
-		has "completed: Successors: Kaatrij First Contact 1"
-	"<successor opponent>" "Kaatrij"
-	"<successor opponent>" "Sioeora"
-		has "completed: Successors: Kaatrij First Contact 1"
-
 mission "Successors: Trusted"
 	landing
 	name "Meet the High Houses"
@@ -904,6 +912,13 @@ mission "Successors: Trusted"
 	to offer
 		has "language: Successor"
 		has "successor jobs" >= 10
+	substitutions
+		"<successor patron>" "Sioeora"
+		"<successor patron>" "Kaatrij"
+			has "completed: Successors: Kaatrij First Contact 1"
+		"<successor opponent>" "Kaatrij"
+		"<successor opponent>" "Sioeora"
+			has "completed: Successors: Kaatrij First Contact 1"
 	on offer
 		"reputation: Old Houses" += 5
 		"reputation: New Houses" += 5
