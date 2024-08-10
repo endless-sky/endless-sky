@@ -150,18 +150,14 @@ mission "Successors: Predecessor Research 1"
 			`	As you are making preparations to leave, you realize this would be a good moment to learn about the Predecessors from the experts, especially considering you're liable to be listening to them talk about their new data all the way back.`
 			choice
 				`	(Ask them about the Predecessors.)`
-					goto ask
 				`	(Don't ask them.)`
 					launch
-			label ask
 			`	You approach the group of researchers, still twittering with excitement over the day's work. "I was wondering if you could tell me a little bit about the Predecessors," you say.`
 			`	"Of course!" the head researcher replies, "What dost thou wish to know?"`
 			choice
 				`	"Who were the Predecessors?"`
-					goto who
 				`	"Actually, I didn't have any questions after all."`
 					launch
-			label who
 			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
 			choice
 				`	"What caused the collapse?"`
@@ -224,7 +220,7 @@ mission "Successors: Biology Research 1"
 	destination "Staja-Kella-Oa"
 	on offer
 		conversation
-			`While you are sitting in the spaceport, you are approached by a Successor wearing a curious green outfit and carrying several pieces of seemingly high-tech equipment, enough that it appears close to falling out of their arms. They explain that they are a Successor biologist who had chartered a flight to go and examine the primordial life on Naph-Naap-Kella, a young and still-developing planet, but that their pilot had been detained, leaving them stranded here.`
+			`While you are sitting in the spaceport, you are approached by a Successor wearing a curious green outfit and carrying several pieces of seemingly high-tech equipment, enough that it appears close to falling out of their arms. They explain that they are a Successor biologist who had chartered a flight to go and examine the primordial life on <planet stopovers>, a young and still-developing planet, but that their pilot had been detained, leaving them stranded here.`
 			`	"If thou coulds't provide travel to that planet, I may still be able to gather my data before my period of research leave expires."`
 			choice
 				`	"Sure, I would be happy to."`
@@ -416,13 +412,10 @@ mission "Successors: Stargazing 1"
 			`	"Oh!" says Nnesa, "I am not sure I know the name for that one, captain. What dost thou call thy home?"`
 			choice
 				`	"Rutilicus."`
-					goto rutilicus2
-			label rutilicus2
 			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
 				goto interrupt
 			label sol
 			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the northernmost extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
-				goto interrupt
 			label interrupt
 			`	The two of you are interrupted by Jaasora, who needs Nnesa's help to pack the now-deflating tent back in its cart, and once that is done they indicate that they are ready to return home.`
 	on complete
@@ -472,24 +465,19 @@ mission "Successors: Graffiti"
 			`	One of the other ones pipes up, cheerfully adding, "We don't know anything!" before the others give them a dark look.`
 			choice
 				`	"And it's so colorful too! Are you sure it's not a paint of some sort?"`
-					goto colorful
 				`	"Fascinating. Carry on."`
 					goto fooled
 
-			label colorful
 			`	"Oh, that's for... ah... safety. Yes, 'tis very dangerous to touch if thou'r'nt trained, so 'tis bright in color as a warning." None of the three are wearing any sort of protective equipment that you can see, and by now most of the group have changed color to what you might characterize as a mirthful shade of pink. This is something which one or two are clearly trying to suppress, their skin shifting in gradients in an effort to maintain their previous dull purple hue. One of the others is trying to hide a bag filled with more cans of "hull solution" behind their arms.`
 			choice
 				`	"Well, if you're working on behalf of the port, then surely I can ask you to remove it as well."`
-					goto called
 				`	"Nice try, but you and I both know what's going on here."`
-					goto called
 				`	"I think my ship's hull has been well enough repaired. It might be best for you to attend to whatever other vessels are on your list."`
 					goto complicit
 				`	"Thanks for answering my questions. Please carry on."`
 					goto fooled
 
-			label called
-			`	The trio seem rather deflated at hearing this, but after quite a bit of milling amongst themselves eventually relent and agree to remove the solution so long as you don't inform the port authority about their actions. While they put good effort into removing it---or at least act the part---they can't seem to scrub away the most dried-on parts, and you eventually let them go after it becomes apparent that some of the paint has permanently bonded to the hull.`
+			`	The trio seem rather deflated at hearing this, but after quite a bit of milling amongst themselves eventually relent and agree to remove the solution so long as you don't inform the port authority about their actions. While they put good effort into removing it - or at least act the part - they can't seem to scrub away the most dried-on parts, and you eventually let them go after it becomes apparent that some of the paint has permanently bonded to the hull.`
 				decline
 
 			label complicit

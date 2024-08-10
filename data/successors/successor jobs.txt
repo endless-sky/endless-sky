@@ -619,7 +619,7 @@ mission "Successor: Data Courier 1"
 mission "Successor: Researchers Out 1"
 	job
 	repeat
-	name "Researchers to <stopovers>"
+	name "Researchers to <planet stopovers>"
 	description "These <bunks> researchers studying the Predecessors will pay you <payment> to bring them to <stopovers> and return them here."
 	passengers 2 5 .5
 	to offer
@@ -643,7 +643,7 @@ mission "Successor: Researchers Out 1"
 mission "Successor: Large Researchers Out 1"
 	job
 	repeat
-	name "Researchers to <stopovers>"
+	name "Researchers to <planet stopovers>"
 	description "This large research team of <bunks> that is studying the Predecessors will pay you <payment> to bring them to <stopovers> and return them here."
 	passengers 10 30 .5
 	to offer
@@ -667,7 +667,7 @@ mission "Successor: Large Researchers Out 1"
 mission "Successor: Home Researchers Out 1"
 	job
 	repeat
-	name "Researchers to <stopovers>"
+	name "Researchers to <planet stopovers>"
 	description "These <bunks> researchers studying <stopovers> will pay you <payment> to transport them there for research and return them home."
 	passengers 2 5 .5
 	to offer
