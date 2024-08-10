@@ -7557,7 +7557,7 @@ mission "Syndicate Business 1"
 
 mission "Syndicate Business 2"
 	name "Purchase Stock on <planet>"
-	description "Howard from Maralex Controls is letting you buy a bond in the company for 1 million credits"
+	description "Howard from Maralex Controls is letting you buy a bond in the company for 1 million credits."
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
