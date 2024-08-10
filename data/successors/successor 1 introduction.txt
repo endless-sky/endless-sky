@@ -309,14 +309,6 @@ mission "Successors: First Contact 2"
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 			label end
 
-substitutions
-	"<tranq h2h>" "Pug staff"
-	"<tranq h2h>" "Heliarch staff"
-		has "outfit: Enforcer Riot Staff"
-	"<tranq h2h long>" "Pug Peacekeeping Staff"
-	"<tranq h2h long>" "Enforcer Riot Staff"
-		has "outfit: Enforcer Riot Staff"
-
 mission "Successors: First Contact 3"
 	priority
 	name "Capture an animal for House Sioeora"
@@ -331,6 +323,13 @@ mission "Successors: First Contact 3"
 	passengers 1
 	cargo "Animal Transport Container" 1
 	blocked `You speak with Sieasej, who informs you that they require at least 1 free bunk to travel.`
+	substitutions
+		"<tranq h2h>" "Pug staff"
+		"<tranq h2h>" "Heliarch staff"
+			has "outfit: Enforcer Riot Staff"
+		"<tranq h2h long>" "Pug Peacekeeping Staff"
+		"<tranq h2h long>" "Enforcer Riot Staff"
+			has "outfit: Enforcer Riot Staff"
 	on offer
 		conversation
 			`You are met in House Sioeora's spaceport by Sieasej, who has shed the adorned metallic robes they wore in the presence of the scions for a more robust and rugged cocoon-like outfit. "Ah, Captain <last>," they say. "Thou conducted thyself well with the scions of the House. Well enough for an alien, at least."`
@@ -706,11 +705,6 @@ mission "Successors: First Contact 3"
 			`	"Good. We bid thee good farewells, then, and good tidings in thy travels." Riijaaora and the other scions turn around to face their backs towards you and the officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
 			label exit
 
-substitutions
-	"<coalition ally>" "Heliarchy"
-	"<coalition ally>" "Lunarium"
-		has "joined the lunarium"
-
 mission "Successors: Kaatrij First Contact 1"
 	landing
 	clearance
@@ -725,6 +719,10 @@ mission "Successors: Kaatrij First Contact 1"
 			has "language: Hai"
 			has "language: Coalition"
 		random < 30
+	substitutions
+		"<coalition ally>" "Heliarchy"
+		"<coalition ally>" "Lunarium"
+			has "joined the lunarium"
 	on offer
 		conversation
 			branch "was monoglot"
