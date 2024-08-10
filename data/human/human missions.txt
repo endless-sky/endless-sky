@@ -7499,12 +7499,12 @@ mission "Syndicate Business 1"
 					goto negotiate
 				`	"You can take him, but I don't know where he is."`
 			label who
-			`	"Bah, you lying buffoon! I'll find him in your ship's wreckage!"`
+			`	"Bah, you spineless buffoon! Your lies won't save you or that useless salesman. I'll find him in your ship's wreckage!"`
 				goto power
 			label negotiate
-			`	"Aye, then I won't negotiate with you!"`
+			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
-			`	The Vanguard powers up its weapons.`
+			`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim your ship, ready to strike.`
 	npc kill
 		government "Independent (Killable)"
 		personality heroic staying vindictive
