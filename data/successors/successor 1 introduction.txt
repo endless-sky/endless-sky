@@ -726,7 +726,7 @@ mission "Successors: Kaatrij First Contact 1"
 	clearance
 	infiltrating
 	name "Summons to <destination>"
-	description "A Successor data-sphere left in your ship appears to be issuing a summons from a House Kaatrij to <destination>."
+	description "A Successor data-sphere left in your ship appears to be issuing a summons from House Kaatrij to <destination>."
 	destination "Raaqa-Puan-Uuoru"
 	to offer
 		has "event: successors: released kijra-pet wait"
@@ -811,6 +811,8 @@ mission "Successors: Kaatrij First Contact 1"
 				`	"So the Kijran belong to you?"`
 					goto kijran
 				`	"How is it that you can communicate with me?"`
+					to display
+						not "language: Successor"
 					goto communicate
 			label questions
 			choice
@@ -833,6 +835,8 @@ mission "Successors: Kaatrij First Contact 1"
 						not "Successors: saajret"
 					goto saajret
 				`	"You mentioned earlier that the Kijran 'belong' to you?"`
+					to display
+						not "Successors: kijran"
 					goto kijran
 				`	"Can you tell me more about yourself?"`
 					to display
@@ -1004,7 +1008,7 @@ mission "Successors: Trusted"
 			`	After a few minutes and other Successors have trickled in, the meeting begins in earnest. One of the Successors moves to the center of the pool and addresses you directly.`
 			`	"Captain. House Sioeora's supported thee with the gift of our device of tongues, and we continue t'recognize thy potential as an ally. We wish to further 'ppreciate the good that thou hast done upon our worlds, and we propose thou be awarded purchase rights for our petty technologies."`
 			`	That representative then returns to the outer rim of the circle and another takes the center, this time facing the representative who just spoke.`
-			`	"House Kaatrij. House Chydiyi well sees thy perspicacity and, too, the value demonstrated by the captain, and so we support thy just proposal. The captain's proven themself t'be a benevolent traveler in our space, for whom we've every desire to make an ever more positive and useful element."`
+			`	"House Sioeora. House Chydiyi well sees thy perspicacity and, too, the value demonstrated by the captain, and so we support thy just proposal. The captain's proven themself t'be a benevolent traveler in our space, for whom we've every desire to make an ever more positive and useful element."`
 			`	A third representative now takes the center position, addressing the two previous speakers.`
 			`	"Noble Houses Sioeora and Chydiyi. House Kaatrij proposes this alien be given no further rights nor gifts until they have proved themself neutral. The Old Houses, which Sioeora and Chydiyi do today here represent, doth clearly seek to sway this alien's favor through brib'ry and deceit, t'exploit their lack of knowledge of our practices, and use them as they've already done to further their own interests in conflict with the common good."`
 			`	That representative then returns to the edge of the circle, where they continue to eye you with suspicion. There is a pause in the conversation.`
@@ -1080,7 +1084,7 @@ mission "Successors: People's Houses, First Contact"
 			choice
 				`	"Yes."`
 				`	"You could say so."`
-			`	Despite the accusation of being "paraded around," the Successor grunts again at your response; with approval or disgust you cannot tell. They lean against one of the cargo containers on the spaceport floor and continue,`
+			`	Despite the accusation of being "paraded around," the Successor grunts again at your response; with approval or disgust you cannot tell. They lean against one of the cargo containers on the spaceport floor and continue.`
 			`	"So then thou art another indolent fool, no doubt deceived by their fine promises, of wealth and power so long as you toe the line? Well, look around and see the value of their noble word! The Houses care but naught for you or I or any of them." The Successor gestures to the crowd in a broad sweeping motion.`
 			choice
 				`	"Who are they?"`
