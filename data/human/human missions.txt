@@ -7594,4 +7594,3 @@ mission "Syndicate Business 2"
 			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`
 
 			label end
-			`	"Thanks."`
