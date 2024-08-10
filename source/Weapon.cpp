@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
@@ -51,13 +51,27 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "safe")
 			isSafe = true;
 		else if(key == "phasing")
+		{
 			isPhasing = true;
+			// Phasing projectiles implicitly have no asteroid collisions
+			// for reverse compatibility.
+			canCollideAsteroids = false;
+			canCollideMinables = false;
+		}
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
 		else if(key == "parallel")
 			isParallel = true;
 		else if(key == "gravitational")
 			isGravitational = true;
+		else if(key == "fused")
+			isFused = true;
+		else if(key == "no ship collisions")
+			canCollideShips = false;
+		else if(key == "no asteroid collisions")
+			canCollideAsteroids = false;
+		else if(key == "no minable collisions")
+			canCollideMinables = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -189,6 +203,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "turret turn")
 				turretTurn = value;
+			else if(key == "arc")
+				maxAngle = max(0., value);
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
 			else if(key == "optical tracking")

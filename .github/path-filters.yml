@@ -18,10 +18,6 @@ codespell:
   - .codespell.exclude
   - .codespell.words.exclude
 
-codeblocks_files:
-  - '*.cbp'
-  - utils/check_codeblocks.sh
-
 editorconfig_files:
   - '**/!(*.mp3)'
 
@@ -51,5 +47,12 @@ copyright:
 changelog:
   - changelog
 
-parse_script:
-  - utils/test_parse.ps1
+ci_config:
+  - '.github/workflows/ci.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'
+
+projects_check_config:
+  - '.github/workflows/projects_check.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'

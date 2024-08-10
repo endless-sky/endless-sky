@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MenuPanel.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -91,6 +91,9 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(player.GetPlanet())
 		Audio::PlayMusic(player.GetPlanet()->MusicName());
+
+	if(!scrollSpeed)
+		scrollSpeed = 1;
 }
 
 

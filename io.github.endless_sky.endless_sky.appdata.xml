@@ -6,6 +6,7 @@
   <summary>Space exploration and combat game</summary>
   <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
   <summary xml:lang="fr">Jeu d'exploration et de combat dans l'espace</summary>
+  <summary xml:lang="hu">Űrkutatási és harci játék</summary>
   <developer_name>Michael Zahniser</developer_name>
   <project_license>GPL-3.0-or-later</project_license>
   <metadata_license>CC0-1.0</metadata_license>
@@ -59,6 +60,85 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.8" date="2024-6-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>These changes include:</p>
+        <ul>
+          <li>Fixed various crashes, including ones that could occur when sorting ships or when using the flagship outline or new cloaked settings.</li>
+          <li>The flagship will no longer move through wormholes ahead of escorts when using fleet jumping.</li>
+          <li>Reduced the difficulty of the battle in "Wanderers: Mind 6".</li>
+          <li>Added a gamerule for controlling the disabled fighter projectile collision behavior introduced in v0.10.7.</li>
+          <li>Illegal mission passengers can now be detected by planetary security. Previously, missions with only illegal passengers could never result in a fine.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.8/changelog</url>
+    </release>
+    <release version="0.10.7" date="2024-5-25" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>One of the biggest changes is a rebalance of all ship masses.</p>
+        <ul>
+          <li>Alongside this is a 50% increase in thrust, turn, reverse thrust, and afterburner thrust across the board.</li>
+          <li>While newly instantiated ships have higher masses, ships already in save files will now be considerably faster. Have fun!</li>
+        </ul>
+        <p>Some other notable additions and changes to content and mechanics are:</p>
+        <ul>
+          <li>Various new short mission chains, including one involving the Wanderers and Mereti.</li>
+          <li>The changes to initial velocity and acceleration of missiles in v0.10.0 have been reverted.</li>
+          <li>There are now many new uninhabited planets and stations in human space.</li>
+          <li>Disabled fighters and drones will no longer be hit by stray projectiles; only weapons fire that specifically targets them.</li>
+          <li>Missions can "mark" systems of importance without requiring the player to visit them, and leave them marked after the player has visited.</li>
+          <li>Mission triggers and conversation actions can do various new things, including playing music, giving the player debt, and applying events immediately, instead of after at least one day.</li>
+          <li>The firing arc for a turret hardpoint can now be limited.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 42 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.7/changelog</url>
+    </release>
+    <release version="0.10.6" date="2024-2-17">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>These changes include:</p>
+        <ul>
+          <li>The Gatling Turret and Javelin Turret now each require one crew member.</li>
+          <li>The timer ship in "Sad Archie" has been given the "ramming" personality to improve its consistency.</li>
+          <li>Animated ship and planet sprites are now correctly rendered in the hail panel instead of not being rendered at all or being rendered at a high frame rate.</li>
+          <li>Gave the stock Dreadnought its fourth Torpedo Launcher back that it had lost in a previous release to make room for a bigger battery; it didn't need the bigger battery.</li>
+        </ul>
+        <p>There's much more in the changelog!</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.6/changelog</url>
+    </release>
+    <release version="0.10.5" date="2024-1-27" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>This update turns its focus back to human space, bringing with it improvements and expansions of both piracy and mining gameplay, as well as continuing the trend of UI and UX improvements.</p>
+        <p>Some other major changes and additions are:</p>
+        <ul>
+          <li>Expanded the mechanics behind asteroid mining, including the addition of mining lasers that increase the yield of asteroids, tractor beams that pull ores toward your ship, dedicated mining ships in human space, and a new mission in the Sparrow introduction that goes over the basics of asteroid mining.</li>
+          <li>Added a small pirate region to the south, home to the remnants of a collapsed government: the Confederated Councils of the Outer Rim. Includes the addition of various new pirate ships and weapons. This is the first of a number of planned expansions to pirate content and gameplay, with the goal of making it so that playing as a pirate is a more viable option. Stay tuned for more in future updates.</li>
+          <li>You can now review past hails and status messages by opening the messages log panel, default "/".</li>
+          <li>Lowered the brightness of the center of the galaxy sprite to make the system names in the galaxy's core more readable.</li>
+          <li>Plugins can now customize the services that a spaceport offers, and even the name that appears on the spaceport button.</li>
+          <li>The state of your capslock key is now tied to the state of fast-forward in the game if your capslock key is bound to your fast-forward control. This means that toggling your capslock key even when the game window is not in focus will also toggle the game's fast-forward.</li>
+          <li>The list of plugins and the selected plugin description in the plugins panel can now scroll, instead of causing too many plugins or verbose descriptions to overflow the menu.</li>
+        </ul>
+        <p>Some notable bug fixes are:</p>
+        <ul>
+          <li>Planetary security will now properly scan illegal goods in your fleet's cargo. Previously, only illegal installed outfits could be scanned.</li>
+          <li>Improved the collision detection of flotsam, preventing cases where flying over a flotsam at high velocity could cause it to phase through your ship and not be collected.</li>
+          <li>Various fixes to missions in the Coalition intro storylines.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 48 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.5/changelog</url>
+    </release>
     <release version="0.10.4" date="2023-10-21">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>

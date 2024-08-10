@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
+#pragma once
 
 #include "Body.h"
 
@@ -23,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <memory>
+#include <set>
 #include <vector>
 
 class Government;
@@ -100,6 +100,14 @@ public:
 	double DistanceTraveled() const;
 	// Get the number of objects this projectile can still collide with.
 	uint16_t HitsRemaining() const;
+	// Get whether this projectile should explode the next time collision
+	// detection is run.
+	bool ShouldExplode() const;
+
+	// Once the projectile has come into contact with a phasing device, it
+	// will be decided if it should completely phase through or make contact.
+	bool Phases(const Ship &ship) const;
+	void SetPhases(const Ship *ship);
 
 
 private:
@@ -111,6 +119,7 @@ private:
 
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
+	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 
 	// The change in velocity of all stages of this projectile
@@ -121,8 +130,8 @@ private:
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;
+
+	// This is safe to keep even if the ships die, because we don't actually call the ship,
+	// we just compare this pointer to other ship pointers.
+	const Ship *phasedShip;
 };
-
-
-
-#endif

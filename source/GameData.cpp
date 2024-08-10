@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"
@@ -41,7 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
-#include "Music.h"
+#include "audio/Music.h"
 #include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
@@ -56,18 +56,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
-#include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "Test.h"
-#include "TestData.h"
+#include "TaskQueue.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
+#include <atomic>
 #include <iostream>
+#include <queue>
 #include <utility>
 #include <vector>
 
@@ -90,8 +92,6 @@ namespace {
 
 	StarField background;
 
-	SpriteQueue spriteQueue;
-
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
@@ -103,7 +103,53 @@ namespace {
 
 	ConditionsStore globalConditions;
 
-	void LoadPlugin(const string &path)
+	bool preventSpriteUpload = false;
+
+	// Tracks the progress of loading the sprites when the game starts.
+	int spriteLoadingProgress = 0;
+	std::atomic<int> totalSprites = 0;
+
+	// List of image sets that are waiting to be uploaded to the GPU.
+	mutex imageQueueMutex;
+	queue<shared_ptr<ImageSet>> imageQueue;
+
+	// Loads a sprite and queues it for upload to the GPU.
+	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
+	{
+		queue.Run([image] { image->Load(); },
+			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
+	}
+
+	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
+	// Loads a sprite from the image queue, recursively.
+	void LoadSpriteQueued(TaskQueue &queue)
+	{
+		if(imageQueue.empty())
+			return;
+
+		// Start loading the next image in the list.
+		// This is done to save memory on startup.
+		LoadSpriteQueued(queue, imageQueue.front());
+		imageQueue.pop();
+	}
+
+	// Loads a sprite from the given image, with progress tracking.
+	// Recursively loads the next image in the queue, if any.
+	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
+	{
+		queue.Run([image] { image->Load(); },
+			[image, &queue]
+			{
+				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
+				++spriteLoadingProgress;
+
+				// Start loading the next image in the queue, if any.
+				lock_guard lock(imageQueueMutex);
+				LoadSpriteQueued(queue);
+			});
+	}
+
+	void LoadPlugin(TaskQueue &queue, const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -129,49 +175,62 @@ namespace {
 		if(!icon->IsEmpty())
 		{
 			icon->ValidateFrames();
-			spriteQueue.Add(icon);
+			LoadSprite(queue, icon);
 		}
 	}
 }
 
 
 
-future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload)
+shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
 {
-	if(preventUpload)
-		spriteQueue.SetPreventUpload();
+	preventSpriteUpload = preventUpload;
 
 	// Initialize the list of "source" folders based on any active plugins.
-	LoadSources();
+	LoadSources(queue);
 
 	if(!onlyLoadData)
 	{
-		// Now, read all the images in all the path directories. For each unique
-		// name, only remember one instance, letting things on the higher priority
-		// paths override the default images.
-		map<string, shared_ptr<ImageSet>> images = FindImages();
+		queue.Run([&queue] {
+			// Now, read all the images in all the path directories. For each unique
+			// name, only remember one instance, letting things on the higher priority
+			// paths override the default images.
+			map<string, shared_ptr<ImageSet>> images = FindImages();
 
-		// From the name, strip out any frame number, plus the extension.
-		for(const auto &it : images)
-		{
-			// This should never happen, but just in case:
-			if(!it.second)
-				continue;
+			// From the name, strip out any frame number, plus the extension.
+			for(auto &it : images)
+			{
+				// This should never happen, but just in case:
+				if(!it.second)
+					continue;
 
-			// Reduce the set of images to those that are valid.
-			it.second->ValidateFrames();
-			// For landscapes, remember all the source files but don't load them yet.
-			if(ImageSet::IsDeferred(it.first))
-				deferred[SpriteSet::Get(it.first)] = it.second;
-			else
-				spriteQueue.Add(it.second);
-		}
+				// Reduce the set of images to those that are valid.
+				it.second->ValidateFrames();
+				// For landscapes, remember all the source files but don't load them yet.
+				if(ImageSet::IsDeferred(it.first))
+					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
+				else
+				{
+					lock_guard lock(imageQueueMutex);
+					imageQueue.push(std::move(std::move(it.second)));
+					++totalSprites;
+				}
+			}
 
-		// Generate a catalog of music files.
-		Music::Init(sources);
+			// Launch the tasks to actually load the images, making sure not to exceed the amount
+			// of tasks the main thread can handle in a single frame to limit peak memory usage.
+			{
+				lock_guard lock(imageQueueMutex);
+				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
+					LoadSpriteQueued(queue);
+			}
+
+			// Generate a catalog of music files.
+			Music::Init(sources);
+		});
 	}
 
-	return objects.Load(sources, debugMode);
+	return objects.Load(queue, sources, debugMode);
 }
 
 
@@ -234,16 +293,8 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	// Cache progress completion seen, so clients are
-	// isolated from the loading implementation details.
-	static bool initiallyLoaded = false;
-	if(initiallyLoaded)
-		return 1.;
-
-	double val = min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
-	if(val >= 1.)
-		initiallyLoaded = true;
-	return val;
+	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
+	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
 }
 
 
@@ -257,7 +308,7 @@ bool GameData::IsLoaded()
 
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
-void GameData::Preload(const Sprite *sprite)
+void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
@@ -281,14 +332,14 @@ void GameData::Preload(const Sprite *sprite)
 	// This sprite is not currently preloaded. Check to see whether we already
 	// have the maximum number of sprites loaded, in which case the oldest one
 	// must be unloaded to make room for this one.
-	const string &name = sprite->Name();
 	pit = preloaded.begin();
 	while(pit != preloaded.end())
 	{
 		++pit->second;
 		if(pit->second >= 20)
 		{
-			spriteQueue.Unload(name);
+			// Unloading needs to be queued on the main thread.
+			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
 			pit = preloaded.erase(pit);
 		}
 		else
@@ -297,22 +348,7 @@ void GameData::Preload(const Sprite *sprite)
 
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
-	spriteQueue.Add(dit->second);
-}
-
-
-
-void GameData::ProcessSprites()
-{
-	spriteQueue.UploadSprites();
-}
-
-
-
-// Wait until all pending sprite uploads are completed.
-void GameData::FinishLoadingSprites()
-{
-	spriteQueue.Finish();
+	LoadSprite(queue, dit->second);
 }
 
 
@@ -752,7 +788,7 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.landingMessages.count(sprite);
+	return objects.landingMessages.contains(sprite);
 }
 
 
@@ -871,7 +907,7 @@ const Gamerules &GameData::GetGamerules()
 
 
 
-void GameData::LoadSources()
+void GameData::LoadSources(TaskQueue &queue)
 {
 	sources.clear();
 	sources.push_back(Files::Resources());
@@ -879,12 +915,12 @@ void GameData::LoadSources()
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
-			LoadPlugin(path);
+			LoadPlugin(queue, path);
 
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
 		if(Plugins::IsPlugin(path))
-			LoadPlugin(path);
+			LoadPlugin(queue, path);
 }
 
 

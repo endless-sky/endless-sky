@@ -29,8 +29,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
-	Audio.cpp
-	Audio.h
 	BankPanel.cpp
 	BankPanel.h
 	BatchDrawList.cpp
@@ -104,6 +102,7 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.cpp
 	EscortDisplay.h
 	ExclusiveItem.h
+	FighterHitHelper.h
 	File.cpp
 	File.h
 	Files.cpp
@@ -122,6 +121,8 @@ target_sources(EndlessSkyLib PRIVATE
 	FogShader.h
 	FormationPattern.cpp
 	FormationPattern.h
+	FormationPositioner.cpp
+	FormationPositioner.h
 	FrameTimer.cpp
 	FrameTimer.h
 	Galaxy.cpp
@@ -207,14 +208,14 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
-	Music.cpp
-	Music.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
 	NPCAction.h
 	News.cpp
 	News.h
+	Orders.cpp
+	Orders.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -225,6 +226,8 @@ target_sources(EndlessSkyLib PRIVATE
 	OutlineShader.h
 	Panel.cpp
 	Panel.h
+	Paragraphs.cpp
+	Paragraphs.h
 	Person.cpp
 	Person.h
 	Personality.cpp
@@ -299,14 +302,10 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipyardPanel.h
 	ShopPanel.cpp
 	ShopPanel.h
-	Sound.cpp
-	Sound.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
 	Sprite.cpp
 	Sprite.h
-	SpriteQueue.cpp
-	SpriteQueue.h
 	SpriteSet.cpp
 	SpriteSet.h
 	SpriteShader.cpp
@@ -319,15 +318,15 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	StringInterner.cpp
+	StringInterner.h
 	System.cpp
 	System.h
 	SystemEntry.h
-	Test.cpp
-	Test.h
-	TestContext.cpp
-	TestContext.h
-	TestData.cpp
-	TestData.h
+	TaskQueue.cpp
+	TaskQueue.h
+	TextArea.cpp
+	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
 	Trade.cpp
@@ -354,11 +353,23 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	audio/Audio.cpp
+	audio/Audio.h
+	audio/Music.cpp
+	audio/Music.h
+	audio/Sound.cpp
+	audio/Sound.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	test/Test.cpp
+	test/Test.h
+	test/TestContext.cpp
+	test/TestContext.h
+	test/TestData.cpp
+	test/TestData.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PREFERENCES_PANEL_H_
-#define PREFERENCES_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -92,6 +91,7 @@ private:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
@@ -106,7 +106,3 @@ private:
 	ScrollVar<double> pluginDescriptionScroll;
 	int pluginListHeight = 0;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHOP_PANEL_H_
-#define SHOP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -107,7 +106,6 @@ protected:
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
-	static int Search(const std::string &str, const std::string &sub);
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
@@ -184,9 +182,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 
 private:
 	void DrawShipsSidebar();
@@ -215,8 +210,9 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	std::string warningType;
+	int hoverCount = 0;
 };
-
-
-
-#endif

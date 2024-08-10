@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEAPON_H_
-#define WEAPON_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -108,6 +107,7 @@ public:
 	double Inaccuracy() const;
 	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
+	double Arc() const;
 
 	double Tracking() const;
 	double OpticalTracking() const;
@@ -154,6 +154,14 @@ public:
 	// Gravitational weapons deal the same amount of hit force to a ship regardless
 	// of its mass.
 	bool IsGravitational() const;
+	// True if this projectile should create an explosion at the end of its lifetime
+	// instead of simply disappearing or only creating a die effect. Blast radius
+	// weapons will cause a blast at the end of their lifetime.
+	bool IsFused() const;
+	// Whether projectiles from this weapon can directly collide with objects.
+	bool CanCollideShips() const;
+	bool CanCollideAsteroids() const;
+	bool CanCollideMinables() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -239,6 +247,10 @@ private:
 	bool isPhasing = false;
 	bool isDamageScaled = true;
 	bool isGravitational = false;
+	bool isFused = false;
+	bool canCollideShips = true;
+	bool canCollideAsteroids = true;
+	bool canCollideMinables = true;
 	// Guns and missiles are by default aimed a converged point at the
 	// maximum weapons range in front of the ship. When either the installed
 	// weapon or the gun-port (or both) have the isParallel attribute set
@@ -275,6 +287,7 @@ private:
 	// and whether it is inverted
 	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
+	double maxAngle = 360.;
 
 	double tracking = 0.;
 	double opticalTracking = 0.;
@@ -379,6 +392,7 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
+inline double Weapon::Arc() const { return maxAngle; }
 
 inline double Weapon::Tracking() const { return tracking; }
 inline double Weapon::OpticalTracking() const { return opticalTracking; }
@@ -420,6 +434,10 @@ inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 inline bool Weapon::IsGravitational() const { return isGravitational; }
+inline bool Weapon::IsFused() const { return isFused; }
+inline bool Weapon::CanCollideShips() const { return canCollideShips; }
+inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
+inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
@@ -449,7 +467,3 @@ inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
-
-
-
-#endif

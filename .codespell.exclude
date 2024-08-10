@@ -51,7 +51,6 @@
 		"cach"
 		"oder"
 		" Grat"
-			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
 			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow. Somewhere outside, subsequent rumble starts to build rapidly. After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
 			`	By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
 			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die."`
@@ -89,9 +88,19 @@ planet "Sies Upi"
 		"Mis"
 			`	Torrey breaks out into a brilliant grin. "Well, that's great news, then. You'll find Irene at the militia base on <destination> - that's Gunnery Sergeant Irene Brower. I do appreciate this. You'll be paid upon receipt of the package, too, lest you think my appreciation is all I can give."`
 			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
-			`	Staying carefully out of the way of the hurrying corpsmen and nurses, you watch as the triage tent begins to fill up with the walking wounded, the not-so-walking wounded... and a few gurneys that someone pulls a sheet over not long after they arrive. Before long, you spot someone you think you recognize: Irene Brower, the gunnery sergeant you delivered a care package to before the war.`
-			`		MSGT BROWER, IRENE`
-			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
+			`		MSGT IRENE BROWER`
+			`As you step out of your ship, you spot a familiar face: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
 		"Brin"
 		"exis"
+			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+planet Independance
+	description `Independance, originally named for a document of emancipation for an ancient nation on old Earth, became of interest to the Confederated Councils when they began to consider plans for a defense against an invasion. One such plan involved deploying "cloud bunkers" into the gas giants of the Outer Rim from which an uprising could be staged against a foreign occupier. Independance, given its fitting name and position near Alvorada, was chosen as the testing site for this project.`
+	description `	Of the few prototype bunkers that were deployed, none ever survived the surface of Independance; the Councils simply didn't have the technology for such an ambitious project. The official who proposed the plan was shortly shuffled out of the Politburo, and what remained of the bunkers were left quietly in the depths of the gas giant.`
+	object Independance
+system Currus
+	link Currus
+		"Mian"
+		"i' amazin"          # is amazing (mispronounced)
+            * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.

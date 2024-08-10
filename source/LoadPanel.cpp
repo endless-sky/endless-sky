@@ -50,37 +50,36 @@ using namespace std;
 
 namespace {
 	// Return a pair containing settings to use for time formatting.
-	pair<pair<string, string>, size_t> TimestampFormatString(Preferences::DateFormat fmt)
+	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
 	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
-		// size_t: BUF_SIZE
-		if(fmt == Preferences::DateFormat::YMD)
-			return make_pair(make_pair("%F %T", "%F %T"), 26);
-		if(fmt == Preferences::DateFormat::MDY)
-			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
-		if(fmt == Preferences::DateFormat::DMY)
-			return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
-
-		// Return YYYY-MM-DD by default.
-		return make_pair(make_pair("%F %T", "%F %T"), 26);
+		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
+		switch(format)
+		{
+			case Preferences::DateFormat::YMD:
+				return make_pair("%F %T", "%F %T");
+			case Preferences::DateFormat::MDY:
+				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
+			case Preferences::DateFormat::DMY:
+			default:
+				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
+		}
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetDateFormat());
-		char* buf = static_cast<char*>(std::malloc(fmt.second));
+		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
+		static const size_t BUF_SIZE = 25;
+		char str[BUF_SIZE];
 
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		auto str = string(buf, strftime(buf, fmt.second, fmt.first.second.c_str(), &date));
+		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
 #else
 		const tm *date = localtime(&timestamp);
-		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), date));
+		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
 #endif
-		std::free(buf);
-		return str;
 	}
 
 	// Extract the date from this pilot's most recent save.
@@ -216,7 +215,7 @@ void LoadPanel::Draw()
 	string hoverText;
 
 	// Draw the list of snapshots for the selected pilot.
-	if(!selectedPilot.empty() && files.count(selectedPilot))
+	if(!selectedPilot.empty() && files.contains(selectedPilot))
 	{
 		const Point topLeft = snapshotBox.TopLeft();
 		Point currentTopLeft = topLeft + Point(0, -centerScroll);

@@ -13,11 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RAID_FLEET_H_
-#define RAID_FLEET_H_
+#pragma once
 
-class Fleet;
+#include <vector>
+
 class DataNode;
+class Fleet;
 
 
 
@@ -41,7 +42,3 @@ private:
 	double capAttraction;
 	double fleetCap = 10.;
 };
-
-
-
-#endif
