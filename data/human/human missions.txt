@@ -7504,7 +7504,7 @@ mission "Syndicate Business 1"
 			label negotiate
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
-			`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim your ship, ready to strike.`
+			`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
 	npc kill
 		government "Independent (Killable)"
 		personality heroic staying vindictive
