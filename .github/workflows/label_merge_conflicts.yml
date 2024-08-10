@@ -5,7 +5,7 @@ on:
     branches:
       - master
   pull_request_target:
-    types: [opened, synchronize]
+    types: [synchronize]
 
 jobs:
   label-conflicts:
