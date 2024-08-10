@@ -38,7 +38,7 @@ public:
 	int Weight() const;
 	const std::vector<const Ship *> &Ships() const;
 
-	// The strength of a variant is the sum of the strength of its ships.
+	// The strength of a variant is the sum of the cost of its ships.
 	int64_t Strength() const;
 
 	bool operator==(const Variant &other) const;

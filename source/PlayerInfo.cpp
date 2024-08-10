@@ -1459,7 +1459,7 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 			}
 		}
 		// When the fleet is big enough to hit, or
-		// if the current attraction became lower than what it used to be adjust it and use the new one as maximum.
+		// if the current attraction became lower than what it used to be, adjust it, and use the new one as maximum.
 		else
 			govAttraction -= attraction;
 	}
