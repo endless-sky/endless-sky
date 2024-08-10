@@ -1473,7 +1473,7 @@ mission "<uhai> 4: Scan Geocoris"
 	on decline
 		event "unfettered: analyzed the scans" 30 60
 	on abort
-		dialog `Mera hails you when she learns of you aborting this mission. "This will slow us down significantly, by a month at least."`
+		dialog `Mera hails you when she learns of you aborting this mission. "How dare you abort?! Now I'll have to find another way to get those scans! This will slow us down significantly, by a month at least."`
 		"unfettered rep: Mera" -= 2
 		event "unfettered: analyzed the scans" 30 60
 	on waypoint
