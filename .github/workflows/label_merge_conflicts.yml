@@ -4,8 +4,12 @@ on:
   push:
     branches:
       - master
-  pull_request_target:
+  pull_request:
     types: [synchronize]
+
+permissions:
+  pull-requests: write
+  contents: read
 
 jobs:
   label-conflicts:
