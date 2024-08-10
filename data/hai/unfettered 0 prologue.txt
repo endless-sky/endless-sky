@@ -644,8 +644,8 @@ mission "<uhai> 0: Bring Hai"
 			`	"Then you have heard about the stories of the Drak modifying our people..." he sighs and deflates a bit. "I do not believe in such things. What makes a Hai - or any other species - 'true' is in their heart. It will take them wherever they want to go." He pauses, thinking, and when he speaks again it is with deep conviction. "Even if we quarrel with the Elders, it does not mean we hate other Hai, nor do they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the Elders, who cannot help but think in a box."`
 			choice
 				`	"Will this get me into any trouble with the Hai?"`
-				`	"What limits?"`
-					goto limits
+				`	"What do you mean by freed from the Elders?"`
+					goto free
 				`	"Why do you need me to do it anyway?"`
 					goto whyme
 			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently, they know we are still Hai and that we would never hurt Hai civilians." He seems confident when telling you this.`
@@ -654,7 +654,7 @@ mission "<uhai> 0: Bring Hai"
 					goto action
 				`	"I don't think they would fit here. I won't bring them."`
 					decline
-			label limits
+			label free
 			`	"I mean that they are prevented from reaching their true potential. Once we had many stars and planets to call ours, but since then most of the Hai have decided to stop changing, and to stay peaceful with all species. They have chosen to decay, to grow soft. We Unfettered decided to keep our legacy, our way of life, and to evolve, to grow."`
 			choice
 				`	"What is it exactly that you want me to do?"`
@@ -684,7 +684,7 @@ mission "<uhai> 0: Bring Hai"
 		clear "unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
-		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered Chief comes back to address you, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply!" Checking back on the group, you can see they are doing fine and already finding a place to call home. They may not have much, but they seem not to require anything at all, other than to be here.`
+		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered Chief comes back to address you. "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply!" Checking back on the group, you can see they are doing fine and are already being welcomed by the others. They may not have much, but they look content.`
 
 
 
@@ -784,7 +784,7 @@ mission "<uhai> 1: Bring Medicine"
 			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. Most are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it one Captain possesses one of monstrous size."`
 				decline
 			label soldiers
-			`	He looks around before answering. "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight.`
+			`	He looks around before answering. "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the what we believe in that drives us, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight.`
 			`	"And then, I have to grant it to you, many may be armed among those you see here - but remember that you often wander in the spaceports, where soldiers come to resupply. We also all need to be ready for action, in case the raiders ever return..."`
 			choice
 				`	"Glad to have prevented a disaster then."`
@@ -975,6 +975,8 @@ mission "<uhai> 2: Prove Your Strength"
 					goto weapons
 			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... a mistake which I shall not make again next time."`
 			choice
+				`	"We shall see."`
+					goto end
 				`	"You could have just asked."`
 			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." he shouts something in Hai, presumably to the crew member who just spoke.`
 				goto end
