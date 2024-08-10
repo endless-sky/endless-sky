@@ -7510,7 +7510,7 @@ mission "Syndicate Business 1"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		conversation
-			`The <npc> has been destroyed. You receive a hail from a small escape pod drifting nearby. "Thank you, Captain, you've saved my life. I'm Howard. I can promise you a reward if you would pick me up from this tin can and drop me off at <destination>."`
+			`The <npc> has been destroyed. You receive a hail from a small escape pod drifting nearby. "Thank you, Captain, you've saved my life. I'm Howard. I can promise you a reward if you pick me up from this tin can and drop me off at <destination>."`
 			choice
 				`	"Sounds good."`
 					decline
