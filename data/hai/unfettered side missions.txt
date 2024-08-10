@@ -373,10 +373,7 @@ mission "Hai Legacy 3"
 		on kill
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship is either incompetence or evil intent, and we will not have either!"`
 			fail
-		conversation
-			`You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
-			action
-				set "unfettered: beaten the bugs"
+		dialog `You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -386,10 +383,7 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" < -2000
 		personality heroic mute marked plunders target unconstrained
 		ship "Shield Beetle (Prototypes)" "Requiem"
-		conversation
-			`You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
-			action
-				set "unfettered: beaten the bugs"
+		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
 	npc
 		government "Hai (Unfettered)"
 		to spawn
@@ -406,17 +400,15 @@ mission "Hai Legacy 3"
 		government "Hai (Unfettered)"
 		to spawn
 			has "unfettered: fled with the relic"
-		personality unconstrained nemesis launching heroic marked
+		personality unconstrained launching heroic marked pacifist
 		ship "Sea Scorpion (Shredder)" "Hunter"
 	on visit
 		dialog "Either you have not defeated the Unfettered challenger in orbit yet, or you have broken the terms of the duel."
 	to complete
 		not "unfettered: fled with the relic"
 		# Needed to make sure the mission doesn't auto complete if no ships spawn.
-		has "unfettered: beaten the bugs"
 		has "flagship model: Anomalocaris"
 	on complete
-		clear "unfettered: beaten the bugs"
 		clear "old reputation: Hai (Unfettered)"
 		log "Managed to use an ancient Hai warship to beat an Unfettered challenge, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 		conversation
@@ -465,9 +457,7 @@ mission "Undeserved Anomalocaris"
 					not "Unfettered Jump Drive 1: offered"
 			branch "has detainers"
 				"outfit: Korath Detainer" > 1
-			action
-				fine 5000000
-			`	As he takes a look at the ship manifest, he seems to notice something missing. "How dare you? You will incur a fine of <fine> for having kept that Korath technology to yourself."`
+			`	As he takes a look at the ship manifest, he seems to notice something missing. "How dare you steal from us?! Those Detainers were promised to mighty warriors, they won't be happy about this!"`
 				goto nodetain
 			label "has detainers"
 			action
