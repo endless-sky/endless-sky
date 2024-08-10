@@ -949,7 +949,12 @@ phrase "friendly civilian"
 		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
+		"How many Lunatics does it take to change a lightbulb? Don't bother, they light up with anger if you call them Lunatics."
+		"How many New Britons does it take to change a lightbulb? Many, they prefer selling instead of installing lightbulbs on their planet of shopkeepers."
+		`Someone met a djinn and said "leave me alone." That person is now stranded on an uninhabited planet.`
+		`Somebody met a genie and said "I don't want to see you," and then went blind.`
 		"Those Hogsheads! I can't believe they're still flying around with kegs for engines!"
+		"What is one small step for a person, but a giant leap for mankind? You leaving this system. Haha."
 	word
 		"" 2
 		" What? Not funny?"

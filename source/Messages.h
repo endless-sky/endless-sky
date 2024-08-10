@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MESSAGES_H_
-#define MESSAGES_H_
+#pragma once
 
 #include <cstdint>
 #include <deque>
@@ -71,7 +70,3 @@ public:
 	// Get color that should be used for drawing messages of given importance.
 	static const Color *GetColor(Importance importance, bool isLogPanel);
 };
-
-
-
-#endif

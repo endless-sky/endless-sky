@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_WRITER_H_
-#define DATA_WRITER_H_
+#pragma once
 
 #include <algorithm>
 #include <map>
@@ -149,7 +148,3 @@ void WriteSorted(const std::map<const K *, V, Args...> &container, A sortFn, B w
 	for(const auto &sit : sorted)
 		writeFn(*sit);
 }
-
-
-
-#endif
