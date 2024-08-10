@@ -115,7 +115,7 @@ mission "Successors: Predecessor Research 1"
 	on offer
 		conversation
 			branch has-deferred
-				has "Successors: Predecessor Research 1: offered" > 1
+				has "Successors: Predecessor Research 1: deferred"
 			`As you land on the spaceport pad, you see a familiar face approaching; it is Sieasej, the Successor scholar who translated for you during your first contact with the Successors and assisted you during your mission for House Sioeora. They are moving towards you with a small group of similarly-dressed individuals, who you assume are also scholars of some sort.`
 			`	"Captain! I delight to see thy return; I came here with haste as soon as I saw that thou was to arrive!"`
 			`	You greet Sieasej, and they explain that the scholars with them are researchers of the Predecessors seeking transport on a wormhole-traveling vessel.`
@@ -156,51 +156,64 @@ mission "Successors: Predecessor Research 1"
 			label ask
 			`	You approach the group of researchers, still twittering with excitement over the day's work. "I was wondering if you could tell me a little bit about the Predecessors," you say.`
 			`	"Of course!" the head researcher replies, "What dost thou wish to know?"`
+			label questions
 			choice
 				`	"Who were the Predecessors?"`
+					to display
+						not "Successors: who"
 					goto who
 				`	"Actually, I didn't have any questions after all."`
-					launch
-			label who
-			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
-			choice
+					to display
+						not "Successors: who"
+					goto end
 				`	"What caused the collapse?"`
+					to display
+						has "Successors: who"
+						not "Successors: collapse"
 					goto collapse
 				`	"How large was their empire?"`
+					to display
+						has "Successors: who"
+						not "Successors: empire"
 					goto empire
 				`	"What was their technology like?"`
+					to display
+						has "Successors: who"
+						not "Successors: tech"
 					goto tech
 				`	"I have no more questions."`
-					launch
+					to display
+						has "Successors: who"
+					goto end
+			label who
+			action
+				set "Successors: who"
+			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
+				goto questions
 			label collapse
+			action
+				set "Successors: collapse"
 			`	The researcher sighs. "We do not know; or better put, the fullness of the truth yet remains obscured. The flesh of space itself was rent, distorted; the effects of this remain today: the holes embedded in the skies, the dying-out of light and even of the hyperlanes. It was a warring time; the Houses turned upon each other or they fled, and space itself was set alight with the blinks of shots and drives---"`
 			`	The researcher stops for a moment, composing themself.`
 			`	"I digress and do apologize. T'is challenging to separate the truth from fiction in this regard. Our Predecessors wielded power far beyond our modern imitations, the sort that sows the seeds of peace or chaos deep within the fabric of the world, the sort of things that poke and prod at places that must remain untouched. 'What caused the collapse?' you ask? Hubris, methinks."`
-			choice
-				`	"How large was their empire?"`
-					goto empire
-				`	"What was their technology like?"`
-					goto tech
-				`	"I have no more questions."`
-					launch
+				goto questions
 			label empire
+			action
+				set "Successors: empire"
 			`	"The translation device thou wears upon thy person speaks volumes to its scale. Sieasej tells me that at the empire's peak, our scholars had even laid eyes upon thine own world, so far to the north! These dead systems that remain where once the core of their empire stood are but a small fraction of what was there. Some, it's sure, now belong to other races, and others, it would seem, have been obscured. We know not how nor why, only that the starcharts of our Predecessors do not mirror those we see today."`
-			choice
-				`	"What caused the collapse?"`
-					goto collapse
-				`	"What was their technology like?"`
-					goto tech
-				`	"I have no more questions."`
-					launch
+				goto questions
 			label tech
+			action
+				set "Successors: tech"
 			`	"Glorious and beautiful, it was; as much a sort of art as of engineering. Our Predecessors' works were envied even by the Quarg, whose mastery of art and science only few may equal. T'were exotic in their natures and unique in applications; living metal grown in stars, subtle points to pierce space itself. We have descriptions, enough to make rudimentary imitations of their processes, but even if we had a perfect understanding of wha'twas, the space of our new systems seems unsuitable to manifest that mastery. We fail even to replicate the heirlooms kept by the High Houses; the materials and techniques they use are always out of reach."`
-			choice
-				`	"What caused the collapse?"`
-					goto collapse
-				`	"How large was their empire?"`
-					goto empire
-				`	"I have no more questions."`
-					launch
+				goto questions
+			label end
+			action
+				clear "Successors: who"
+				clear "Successors: collapse"
+				clear "Successors: empire"
+				clear "Successors: tech"
+			launch
 	on complete
 		"successor jobs" += 2
 		"old houses jobs" += 2
@@ -247,44 +260,45 @@ mission "Successors: Biology Research 1"
 					launch
 			label ask
 			`	As expected, Kaatiora is more than happy to share their biological knowledge, and asks if there is anything in particular you'd like to know about.`
+			label questions
 			choice
 				`	"What can you tell me about the Successors?"`
+					to display
+						not "Successors: successor"
 					goto successor
 				`	"Were the Predecessors any different from the present Successors, biologically speaking?"`
+					to display
+						not "Successors: predecessor"
 					goto predecessor
 				`	"What is the life in this star cluster like?"`
+					to display
+						not "Successors: cluster"
 					goto cluster
 				`	"I have no more questions."`
-					launch
+					goto end
 			label successor
+			action
+				set "Successors: successor"
 			`	"Much of our evolutionary history, we spent beneath the waves of our home planet, and while now you clearly see we breathe the same air as you, we still retain our cold and water-loving tendencies. Our respiration works just as well submerged as on dry land, though we must retain some degree of moisture on our skin.`
 			`	"Apart from that, we are a hermaphroditic species, like most from our home planet, and as we took to the stars, we learned that this is uncommon but not rare, and so there is some curiosity as to why our planet had such a diversity of such species while most do not. Perhaps, since we grew up under a harsh sun, the redundancy provided by our divorce from biological sex was beneficial to our evolution.`
 			`	"And of course, thou hast surely noticed by now the natural camouflage of our skin. While today its use is for communication, it was long ago a useful tool for evading predators who hunted by sight, until, of course, we gained the wisdom to outsmart our predators rather than hide from them."`
-			choice
-				`	"Were the Predecessors any different from you, biologically speaking?"`
-					goto predecessor
-				`	"What about the other life in this star cluster?"`
-					goto cluster
-				`	"I have no more questions."`
-					launch
+				goto questions
 			label predecessor
+			action
+				set "Successors: predecessor"
 			`	"As brevity is the soul of wit, then no, our Predecessors did not differ greatly from us in their core biology. A scion of the High Houses from the time of the collapse would not stand out from the average one of us in the present day. That being said, their understanding of it was much superior: their medical science was much more advanced than our own, and much of their technology was genetically coded to function only for specific families."`
-			choice
-				`	"What can you tell me about the modern Successors?"`
-					goto successor
-				`	"What about the native life in this star cluster?"`
-					goto cluster
-				`	"I have no more questions."`
-					launch
+				goto questions
 			label cluster
+			action
+				set "Successors: cluster"
 			`	"Thou asks at a fortuitous time! This planet, and the life that lives upon it, may provide to us a better answer to that question. Many of the stars here are hot and young and therefore harsh to nascent life, and yet thou hast surely seen the verdant worlds that orbit them! While some of this results from early settlement during the old empire, much of it does not and therefore remains a vexing point. How could life develop here? If we can track the path taken by the life of this planet, we may find the answer both you and I seek."`
-			choice
-				`	"What can you tell me about the Successors?"`
-					goto successor
-				`	"Were the Predecessors any different, biologically speaking, from the present Successors?"`
-					goto predecessor
-				`	"I have no more questions."`
-					launch
+				goto questions
+			label end
+			action
+				clear "Successors: successor"
+				clear "Successors: predecessor"
+				clear "Successors: cluster"
+			launch
 	on complete
 		"successor jobs" += 2
 		payment 200000
@@ -324,15 +338,12 @@ mission "Successors: Buskers"
 					goto hum
 				`	(Return to your ship.)`
 					decline
-
 			label applaud
 			`	The Successors around you seem a little surprised or perhaps confused by your display, but do not express any offense at it, as far as you can tell. The trio of performers eventually emerge from the pool, gently tucking their instruments into various equally oddly-shaped cases before chatting with some of the few remaining members of the crowd and then departing.`
 				decline
-
 			label hum
 			`	The Successors around you seem amused by your attempt to emulate the humming; some briefly display a bluish-green wave of color across their skin before quickly returning to their base shade. Nonetheless, no one here seems to take any significant offense at the gesture. The performers eventually emerge from the pool, gently tucking their instruments into equally oddly-shaped cases before chatting with some of the few remaining members of the crowd and then departing.`
 				decline
-
 			label unappreciative
 			`	You return to your ship, gently extricating yourself from the throng of spellbound Successors, who continue to shimmer and sway in the distance until the performance eventually ends and they disperse to go their separate ways.`
 				decline
@@ -392,6 +403,7 @@ mission "Successors: Stargazing 1"
 				`	"How about we get you onboard first."`
 			`	Nnesa flashes with embarrassment once again, but Jaasora offers a supportive arm, wrapping it around their body. The two enlist your help in loading their cart of equipment, which is much heavier than it looks, but together the three of you eventually manage to maneuver their luggage into the <ship>'s cargo bay and are ready for departure.`
 				accept
+
 	on stopover
 		conversation
 			`Nnesa and Jaasora have been simply enthralled on the journey here; the inseparable pair has spent seemingly every waking moment peering out the <ship>'s windows to watch the stars stream past. Upon arrival in the Maspa-Mavra system, however, their excitement dwindled to what you would call a subdued awe at the sight of the entire galaxy splayed out in the sky.`
@@ -425,6 +437,7 @@ mission "Successors: Stargazing 1"
 				goto interrupt
 			label interrupt
 			`	The two of you are interrupted by Jaasora, who needs Nnesa's help to pack the now-deflating tent back in its cart, and once that is done they indicate that they are ready to return home.`
+
 	on complete
 		"successor jobs" += 2
 		payment 78000
@@ -466,7 +479,6 @@ mission "Successors: Graffiti"
 					goto how
 				`	"I'm sorry to interrupt in that case. Carry on."`
 					goto fooled
-
 			label how
 			`	The group look around at each other before the same one replies again. "The... ah... solution seeps into the cracks and strains within the hull and when it dries it seals them. Beyond that, we do not know; we just apply it as directed by the port authority."`
 			`	One of the other ones pipes up, cheerfully adding, "We don't know anything!" before the others give them a dark look.`
@@ -475,7 +487,6 @@ mission "Successors: Graffiti"
 					goto colorful
 				`	"Fascinating. Carry on."`
 					goto fooled
-
 			label colorful
 			`	"Oh, that's for... ah... safety. Yes, 'tis very dangerous to touch if thou'r'nt trained, so 'tis bright in color as a warning." None of the three are wearing any sort of protective equipment that you can see, and by now most of the group have changed color to what you might characterize as a mirthful shade of pink. This is something which one or two are clearly trying to suppress, their skin shifting in gradients in an effort to maintain their previous dull purple hue. One of the others is trying to hide a bag filled with more cans of "hull solution" behind their arms.`
 			choice
@@ -487,19 +498,15 @@ mission "Successors: Graffiti"
 					goto complicit
 				`	"Thanks for answering my questions. Please carry on."`
 					goto fooled
-
 			label called
 			`	The trio seem rather deflated at hearing this, but after quite a bit of milling amongst themselves eventually relent and agree to remove the solution so long as you don't inform the port authority about their actions. While they put good effort into removing it---or at least act the part---they can't seem to scrub away the most dried-on parts, and you eventually let them go after it becomes apparent that some of the paint has permanently bonded to the hull.`
 				decline
-
 			label complicit
 			`	The trio brighten up at hearing this, and after some milling amongst themselves eventually glide off into the spaceport with their cans of solution in tow, though not before leaving one with you for "emergency repairs," though considering how terrible it smells it's not certain if you could ever stand trying to apply it.`
 				decline
-
 			label ignored
 			`	Upon returning from the spaceport some time later, you find that an area on the side of the <ship> has been covered in a thick, colorful solution with an incredibly noxious smell so potent you can hardly bear to approach it. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Ryiaa was here (and friends.)" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
-
 			label fooled
-			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Hai-Fool! Naked with no tail." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
+			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Erjn-Fool! Lost its quills (and brain)!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
