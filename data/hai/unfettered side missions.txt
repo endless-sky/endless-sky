@@ -389,7 +389,7 @@ mission "Hai Legacy 3"
 			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
 		personality launching marked staying uninterested pacifist
-		on provoke
+		on disable
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
 			fail
