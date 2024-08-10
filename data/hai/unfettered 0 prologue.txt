@@ -648,7 +648,7 @@ mission "<uhai> 0: Bring Hai"
 					goto free
 				`	"Why do you need me to do it anyway?"`
 					goto whyme
-			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently, they know we are still Hai and that we do all we can to avoid hurting Hai civilians," He says with confidence.`
+			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently, they know we are still Hai and that we do all we can to avoid hurting Hai civilians," he says with confidence.`
 			choice
 				`	"What is it exactly that you want me to do?"`
 					goto action
@@ -839,14 +839,14 @@ mission "<uhai> 2: Prove Your Strength"
 					not "visited planet: Firelode"
 			`	The Unfettered present are proudly showing their weapons, more so than on other planets, and some of them are even armored. They seem ready for action, at any time. Thankfully they no longer consider you an enemy, at least for the moment.`
 			`	Eventually your attention is drawn to a gathering, where someone is speaking loudly to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you.`
-			`	"Arrr, be this the bilge-sucking<, unfettered title> ye all speak so highly of? The one who fears not to come into our ports, and fight our ships?" he asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
+			`	"Arrr, be this the bilge-sucking monkey ye all speak so highly of? The one who fears not to come into our ports, and fight our ships?" he asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
 				`	(Say nothing.)`
 				`	(Run away.)`
 					goto run
-			`	"See? The lily-livered monkey dares not even speak! This scallywag be no more than shark bait! Even our 'umble clipper would be sending ye straight to Davy Jones' locker! We be ready to prove it, too, yet we dare not, lest we lose our dancing monkey to the briny deep! But mateys, there be no shame if it dance away, with a dinghy looking like that!" `
+			`	"See? The lily-livered monkey dares not even speak! This scallywag be no more than shark bait! Even our 'umble clipper would be sending ye straight to Davy Jones' locker! We be ready to prove it, too, yet we dare not, lest we lose our dancing monkey to the briny deep! But mateys, there be no shame if it dance away, with a dinghy looking like that!"`
 			choice
 				`	"You dare insult the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
@@ -912,7 +912,7 @@ mission "<uhai> 2: Prove Your Strength"
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
 			`The captain launches right after you, and hails you as soon as you enter orbit, probably anxious to get the fight started.`
-			`	"I saw fit to bring a bit of extra crew to make it a fair fight, as it is no sitting duck that ye brought! They don't really count for the duel; in fact with how few decks they have we'll understand if they were to go down in battle, but don't ye dare commandeer their ships!`
+			`	"I saw fit to bring a few extra friends to make it a fair fight, as it is no sitting duck that ye brought! They don't really count for the duel; in fact with how few decks they have we'll understand if they were to go down in battle, but don't ye dare commandeer their ships!`
 				to display
 					"ships: Medium Warship" + "ships: Heavy Warship" * 2 > 1
 			`	"May crossing swords sharpen our blades. Let it begin!"`
