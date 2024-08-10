@@ -42,7 +42,7 @@ mission "Successors: Safe at Last"
 mission "Successors: First Contact 1"
 	landing
 	name "Go to the Vade-Staja system"
-	description "The aliens in this area of space have indicated that you should travel to the east."
+	description "The aliens in this area of space have indicated that you should travel to a system to the east."
 	source
 		attributes "successor"
 		not attributes "uninhabited"
@@ -50,8 +50,9 @@ mission "Successors: First Contact 1"
 	clearance
 	on offer
 		conversation
-			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure along the coastline. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around you and your ship.`
-			`	The predominant aliens here are enormous octopods that rise up from the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them. Those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
+			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure along the coastline. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around your ship.`
+			`	You carefully open the <ship>'s hatch and step outside to make contact.`
+			`	The predominant species of aliens you see here are enormous octopods that rise up from the ground on their long, suckered arms. On average, they stand about three meters tall even with their arms coiled beneath them. Those standing on dry land are joined by others who slither out of a network of water-filled pools and channels to come and watch you. Their skin glistens with mucous wetness and you can see it changing color and texture as they run their hourglass-shaped pupils over your person and your ship.`
 			`	After a couple of minutes of activity within the crowd, one uniformed and especially vibrant individual breaks away from the rest and begins to move towards you, gliding gently and silently over the ground. They say something in the same strange language, shimmering with waves of color, and then wait expectantly for you to reply.`
 			choice
 				`	(Say nothing.)`
@@ -61,7 +62,7 @@ mission "Successors: First Contact 1"
 				`	"I come in peace."`
 					goto introduce
 				`	(Shoot them.)`
-			`	You draw your weapon and fire a shot directly at the center of the uniformed alien, but it does not manage to even scorch the fabric of their clothing. Before you have time to fire a second time, you hear, see, and feel an unfathomably loud noise that pushes you back and leaves you dead before your body even makes contact with the ground.`
+			`	You draw your weapon and fire a shot directly at the center of the uniformed alien, but it does not manage to even scorch the fabric of their clothing. Before you have time to fire a second time, you hear an unfathomably loud noise that pushes you back and leaves you dead before your body even makes contact with the ground.`
 				die
 			label introduce
 			`	The alien shuffles their arms in place and leans their face towards yours, repeating their earlier statement, this time more slowly and at a lower pitch. When you once again fail to give a satisfactory response, they pull away.`
@@ -98,7 +99,7 @@ mission "Successors: First Contact 1"
 	on complete
 		event "label successor space"
 		event "successors: first contact wait" 8
-		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to this planet in eight days, when their government will decide what to do about my arrival.`
+		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to Staja-Kella-Oa in eight days, when their government will decide what to do about my arrival.`
 		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are amphibious octopods at least three meters tall. They are the heirs of a large and advanced interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled far across the galaxy, at least as far north as Sol."
 		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
 		"reputation: Successor" += 5
@@ -322,7 +323,7 @@ mission "Successors: First Contact 3"
 	destination "Staja-Kella-Oa"
 	passengers 1
 	cargo "Animal Transport Container" 1
-	blocked `You speak with Sieasej, who informs you that they require at least 1 free bunk to travel.`
+	blocked `You speak with Sieasej, who informs you that they require at least 1 free bunk to travel and 1 ton of cargo space to carry the "Kijra-riitaa" back to Successor space.`
 	substitutions
 		"<tranq h2h>" "Pug staff"
 		"<tranq h2h>" "Heliarch staff"
@@ -341,7 +342,7 @@ mission "Successors: First Contact 3"
 			`	"I see," you say. "I suppose I am too."`
 			`	"Fret not," Sieasej says, "for elegance of thine address was neither expected nor required. It's all that has a place and time where's needed, and a place and time where's not."`
 			label task
-			`	Sieasej shuffles their arms beneath them. "Ah. I must again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall thee provide a marker for the system we are to journey to. On the second planet's second moon, we are to land and find a Kijra-Riitaa, a Kijra-'pet,' a beast of sorts, as the scions told thee prior."`
+			`	Sieasej shuffles their arms beneath them. "Ah. I must again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall thee provide a marker for the system we are to journey to. On the second planet's second moon, we are to land and find a Kijra-riitaa, a Kijra-'pet,' a beast of sorts, as the scions told thee prior."`
 			label questions
 			choice
 				`	"We'd better get started, then."`
@@ -579,7 +580,7 @@ mission "Successors: First Contact 3"
 			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and immediately after the other one charges at you. Just in time, you are able to shoot that one as well and it tumbles to the ground, kicking up dirt and leaf litter and wailing before going silent.`
 				goto successful
 			label "ship shoot"
-			`	You radio to the <ship> and order your crew to fire a turret at the creatures, vaporizing them both before they have the opportunity to attack you and leaving only two small scorched craters in the ground.`
+			`	You radio to the <ship> and order your crew to fire a turret at the creatures. The power of starship weapons fired at such close range is enough to quickly and unceremoniously dispatch the pair before they have the opportunity to attack.`
 				goto successful
 			label release
 			branch "release friends"
@@ -670,7 +671,6 @@ mission "Successors: First Contact 3"
 				"reputation: House Seineq" += 10
 				"reputation: People's Houses" += 10
 				log "Captured and returned the animal House Sioeora requested that I bring to them. Was rewarded with a translation device and historical data that allows me to land on most Successor worlds. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
-				log "Factions" "Successors" "The Successors are governed by a group of six High Houses who operate mostly independently from each other. The Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before, who direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
 			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou returns from thy hunt successful!"`
 			choice
@@ -865,6 +865,7 @@ mission "Successors: Kaatrij First Contact 1"
 				goto questions
 			label saajret
 			action
+				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society."
 				set "Successors: saajret"
 			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij, member of the somber noble line of House Sejra, which no longer stands as naught but a banner under Kaatrij's watchful wings. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more were lost forever, their families splintered and histories broken. Kaatrij absorbed the citizens of some into itself, and now'ts a patchwork that reminds us that we're all patchworks, metamorphic and composed. My roles in it are many, but first among them, I am an archivist, of sorts. I am t'preserve the old technology that still remains in our possession and, when necessary, put it to use, as best as we can judge it can be."`
 				goto questions
@@ -879,7 +880,6 @@ mission "Successors: Kaatrij First Contact 1"
 				clear "Successors: saajret"
 				clear "Successors: sioeora"
 				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral caretakers of the animals I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
-				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society."
 				set "known to the successors"
 				event "successors: trust 1"
 				"reputation: Successor" += 5
@@ -942,6 +942,7 @@ mission "Successors: Trusted"
 		set "trusted by the successors"
 		event "successors: trust 2"
 		log "Summoned to meet with the Successor High Houses in council, where I was given the right to purchase their civilian technology."
+		log "Factions" "Successors" "The Successors are governed by a group of six High Houses who operate mostly independently from each other. The Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general."
 		conversation
 			`Once you have sat down at the spaceport, you are met by another group of Successor naval officers. You notice that this group appears even more diverse than the last, representing several different uniform styles and liveries. Unifying them all is a small white and blue pin attached to their outfits; one that does not correspond to the insignia of any of the High Houses. The officers guide you, politely but firmly, to one of the monorail trains snaking out from the spaceport to other installations on the planet, and you all shuffle together into one of the cars, which appears to have been completely cleared of normal passengers, if it even carried those in the first place.`
 			`	Several minutes later, the monorail deposits you at an especially large and well-decorated complex that swarms with both military and well-dressed civilians, some of whom appear so opulent and bejeweled that you suspect their personal effects are worth more than your ship. Each of them without exception wears the same white and blue insignia as your escorts, though many have incorporated it into their clothes' design or even display it as a pattern in skin coloration.`
