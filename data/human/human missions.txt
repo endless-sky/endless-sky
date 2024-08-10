@@ -7570,7 +7570,7 @@ mission "Syndicate Business 2"
 			choice
 				`	"Sure, here's the 1 million credits."`
 					goto doit
-				`	"Nope, I won't become an investor."`
+				`	"No, I won't become an investor."`
 					decline
 			label doit
 			`After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. All that's left is to submit this first set of paperwork to our headquarters and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
