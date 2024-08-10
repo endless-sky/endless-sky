@@ -93,7 +93,8 @@ mission "Hai Legacy 1"
 				`	(Never.)`
 					decline
 			label first
-			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull on your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
+			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull on your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again.`
+			`	"My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
 			`	However, the paper also mentions you need to have at least 10 million credits in cash! You'll have to save up or take a loan and then come back another day before heading to the specified location.`
 				to display
 					"credits" < 10000000
@@ -152,8 +153,6 @@ mission "Hai Legacy 1"
 			`	"This ship is our guarantee that nothing goes wrong, should you attempt something against us. After all, we are still not sure if we can trust you."`
 			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks in the walls, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This one, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
 			scene "scene/cave scene"
-			choice
-				`	"What is this about?"`
 			choice
 				`	"What is this about?"`
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you. Should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of ten million credits - including two weapons belonging to the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up.`
@@ -246,7 +245,7 @@ mission "Hai Legacy 2"
 		has "ship model: Anomalocaris"
 	on offer
 		conversation
-			`You leave the shipyard and go to the spaceport after your encounter. A worker immediately greets you while others begin to fill your ship with crates, and a quick check of the shipment data shows that the cargo has already been allocated in your name. All that's left is to deliver it to <destination> by <date> for a promised sum of <payment>.`
+			`You leave the shipyard and go to the spaceport after your encounter. A worker immediately greets you while others begin to fill your ship with crates, and a quick check of the shipment data shows that the cargo has already been allocated in your name. All that's left is to deliver it to <destination> by <date>.`
 			`	As you head to back to your ship and prepare to take off from the planet, you notice a message on the command panel:`
 			`	"You would be wise to bring the Anomalocaris we trusted you with on your delivery."`
 				accept
@@ -277,7 +276,7 @@ mission "Hai Legacy 3"
 	name "Ancient Claim"
 	description "Defeat the Unfettered challenger in combat. You only have one day, and becoming disabled will result in losing the fight."
 	source "Firelode"
-	deadline 2
+	deadline 1
 	to offer
 		has "Hai Legacy 2: done"
 		has "ship model: Anomalocaris"
