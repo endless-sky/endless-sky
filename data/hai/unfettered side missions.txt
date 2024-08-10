@@ -437,7 +437,8 @@ mission "Undeserved Anomalocaris"
 		attributes "unfettered"
 	to offer
 		has "ship model: Anomalocaris"
-		"reputation: Hai (Unfettered)" <= -1000
+		or
+			"reputation: Hai (Unfettered)" <= -1000
 		not "Hai Legacy 2: active"
 	on offer
 		conversation
@@ -455,48 +456,9 @@ mission "Undeserved Anomalocaris"
 			`	"That relic was not meant for you, but there are other ways for you to prove yourself to us." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will earn you favor, and prove you can fight."`
 				to display
 					not "Unfettered Jump Drive 1: offered"
-			branch "has detainers"
-				"outfit: Korath Detainer" > 1
-			`	As he takes a look at the ship manifest, he seems to notice something missing. "How dare you steal from us?! Those Detainers were promised to mighty warriors, they won't be happy about this!"`
-				goto nodetain
-			label "has detainers"
 			action
-				outfit "Korath Detainer" -2
-			label nodetain
-			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship.`
-			action
-				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
 					id "hai legacy"
-
-
-
-mission "Unfettered Anomalocaris Lost"
-	landing
-	invisible
-	source
-		attributes "unfettered"
-	to offer
-		has "Hai Legacy 3: done"
-		not "ship model (all): Anomalocaris"
-	on offer
-		conversation
-			`You see the sun slowly disappear into the horizon as you land on this planet, indicating it is already night here. Shortly after exiting your ship, you see a group of Unfettered Hai sitting on the side of the path, eating corn around a campfire. One of them, probably the youngest, judging by their size, tries to get your attention by calling you repeatedly. "Captain, Captain! Can you tell me stories about how you used great cunning to beat a swarm of Lightning Bugs?" Another one, probably their parent, then speaks up. "Come, sit with us. I am sure there is much to be said about that great relic from our past."`
-			`	You start to explain how the fight went, but before you can explain much, the young one interrupts you, speaking to the others. "See? There is no way they lost the ship, if they fought so well with it!" The parent speaks again, trying to console the child. "That great ship may be lost, but everything has to end at one point, and its time of glory was already behind it."`
-			choice
-				`	"How did you learn about the loss of the ship?"`
-				`	"Nonsense. I still have the ship."`
-			`	The elder of the group speaks, raising her hand to gather attention, her tone commanding respect. "That ship had an emergency locator, a relic of an age where the Hai Empire was fighting wars on different fronts, and we needed a way to find a ship if its crew had been lost in battle. It sent a short signal, meaning it was either taken apart or destroyed. Tell me, which is it?" As she says this she looks at you deep in the eye, as if she was gazing into your soul.`
-			choice
-				`	"It was lost in a great battle!"`
-				`	"I sold the ship."`
-					goto sold
-			`	She seems proud, "At least it got the end it deserved!"`
-				goto leave
-			label sold
-			`	"You... what? One of the most important relics of my people, and you just sold it? At least you had the courage to earn it, young human."`
-			label leave
-			`	She looks around, and as she does you notice more Unfettered Hai than before, talking in little groups and looking your way regularly. She gets up, and continue, in a stronger tone, "It would be wise for you to leave now, wait for things to calm down." You head back to your ship, and thankfully nobody seems be following you.`
-		log "The Unfettered were not pleased to learn about the loss of the Anomalocaris."
-		"reputation: Hai (Unfettered)" -= -250
-
+				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
+			`	The leader of the Unfettered group then has a few of them escort you to a farther out location. On your way there, some of them seemed to be holding back some frustration, and you could have sworn one wanted to attack you at any moment. Eventually you are lead to a landed Lightning Bug, and after some messy paperwork, the Unfettered leave it with you.`
+				decline
