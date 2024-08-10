@@ -7464,7 +7464,7 @@ mission "Syndicate Business 1"
 		random < 40
 		credits > 5000000
 	source
-		government Syndicate
+		government "Syndicate"
 		attributes "core"
 	waypoint "Moktar"
 	destination "Sunracer"
