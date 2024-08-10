@@ -648,7 +648,7 @@ mission "<uhai> 0: Bring Hai"
 					goto free
 				`	"Why do you need me to do it anyway?"`
 					goto whyme
-			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently, they know we are still Hai and that we would never hurt Hai civilians." He seems confident when telling you this.`
+			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently, they know we are still Hai and that we do all we can to avoid hurting Hai civilians," He says with confidence.`
 			choice
 				`	"What is it exactly that you want me to do?"`
 					goto action
