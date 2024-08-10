@@ -46,6 +46,8 @@ namespace {
 		if(base.ends_with("@2x"))
 			base = base.substr(0, base.length() - 3);
 		// In addition, more characters may be taken up by a mask label.
+		if(base.ends_with("@sw"))
+			base = base.substr(0, base.length() - 3);
 
 		// This should never happen, but just in case:
 		if(base.empty())
