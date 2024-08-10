@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -39,18 +39,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "Test.h"
-#include "TestContext.h"
+#include "TaskQueue.h"
+#include "test/Test.h"
+#include "test/TestContext.h"
 #include "UI.h"
 
 #include <chrono>
 #include <iostream>
 #include <map>
-#include <thread>
 
 #include <cassert>
 #include <future>
-#include <stdexcept>
+#include <exception>
 #include <string>
 
 #ifdef _WIN32
@@ -65,7 +65,8 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
+	const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 void PrintTestsTable();
 #ifdef _WIN32
@@ -135,14 +136,17 @@ int main(int argc, char *argv[])
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
+		TaskQueue queue;
+
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
+		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+			isConsoleOnly || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
-		// all data now. (Sprites and sounds can safely be deferred.)
+		// all data now.
 		if(isConsoleOnly || isTesting)
-			dataLoading.wait();
+			dataFuture.wait();
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
 		{
@@ -209,13 +213,13 @@ int main(int argc, char *argv[])
 			Audio::SetVolume(0);
 
 		// This is the main loop where all the action begins.
-		GameLoop(player, conversation, testToRunName, debugMode);
+		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
 	catch(Test::known_failure_tag)
 	{
 		// This is not an error. Simply exit successfully.
 	}
-	catch(const runtime_error &error)
+	catch(const exception &error)
 	{
 		Audio::Quit();
 		GameWindow::ExitWithError(error.what(), !isTesting);
@@ -237,7 +241,8 @@ int main(int argc, char *argv[])
 
 
 
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
+		const string &testToRunName, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -253,7 +258,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new GameLoadingPanel(player, conversation, gamePanels, dataFinishedLoading));
+	menuPanels.Push(new GameLoadingPanel(player, queue, conversation, gamePanels, dataFinishedLoading));
 
 	bool showCursor = true;
 	int cursorTime = 0;
@@ -499,7 +504,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.7-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.9-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -535,6 +540,7 @@ Conversation LoadConversation()
 		{"<passengers>", "[your passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
+		{"<model>", "[Ship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};

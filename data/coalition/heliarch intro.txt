@@ -1382,7 +1382,7 @@ mission "Heliarch Containment 2"
 			`	The Saryd frowns. "A shame that is, use we could all the help available." The group leaves, moving to ask the next merchant captain for help.`
 				decline
 			label license
-			`	The group is clearly apalled. "Willing are you not to help your fellow troops?!" One of the Arachi exclaims.`
+			`	The group is clearly appalled. "Willing are you not to help your fellow troops?!" One of the Arachi exclaims.`
 			`	"Disgraceful." The Saryd shakes her head. "If injured were you, would you not from your fellow Heliarchs help expect?"`
 			`	The group stomps away, trying to recruit more civilian captains to help.`
 				decline

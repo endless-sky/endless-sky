@@ -75,6 +75,8 @@ color "escort split fuel" .35 .31 .215 0.
 
 color "flagship highlight" .5 .8 .2 0.
 
+color "cloak highlight" .45 0. 0. .65
+
 color "drag select" .2 1. 0. 0.
 
 # Colors used for drawing mission or job pointers on the map,
@@ -604,9 +606,15 @@ interface "hud"
 		color "medium"
 		align right
 	
+	visible if "!fast hud sprites"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
+	visible if "fast hud sprites"
+	image "player sprite"
+		center -75 155
+		dimensions 70 70
+	visible
 	ring "shields"
 		center -75 155
 		dimensions 120 120
@@ -684,10 +692,16 @@ interface "hud"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
+	visible if "!fast hud sprites"
 	outline "target sprite"
 		center 75 315
 		dimensions 70 70
 		colored
+	visible if "fast hud sprites"
+	image "target sprite"
+		center 75 315
+		dimensions 70 70
+	visible
 	ring "target shields"
 		center 75 315
 		dimensions 120 120
@@ -1279,9 +1293,14 @@ interface "bank"
 
 
 interface "mission" bottom
+	visible if "has description"
 	sprite "ui/mission"
 		align bottom
-	
+	visible if "!has description"
+	sprite "ui/mission empty"
+		align bottom
+
+	visible
 	label "cargo space free:"
 		center -130 -85
 	string "cargo free"
@@ -1553,6 +1572,11 @@ interface "info panel"
 
 interface "message log"
 	value "width" 570
+
+	visible if "empty"
+	label "(The message log is empty.)"
+		from 300 0 left
+		color medium
 
 
 

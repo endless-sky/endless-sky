@@ -722,7 +722,7 @@ mission "Burthen Triathlon"
 
 			action
 				payment -2
-			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go. The Burthensider at the counter advises you not to drink too much of it at once, and not to drop the cup "unless you want a munted foot for a few weeks."`
+			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go. The Burthenian at the counter advises you not to drink too much of it at once, and not to drop the cup "unless you want a munted foot for a few weeks."`
 				goto "leave tent"
 
 			label antigrav
@@ -743,11 +743,11 @@ mission "Burthen Triathlon"
 
 			label outside
 			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthenians and offworlders, with Burthenians wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthenian apparently doing his eleventh Burthen Triathlon. Meanwhile, the leading offworlder is five hundred meters behind him, a competitor from Martini named Caldarone. Apparently, they've been at it for over 11 hours, beginning with a 1.5 kilometer swim, then a 40 kilometer bicycle ride, and finally a 10 kilometer run.`
-			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather overly ethusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
+			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather overly enthusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
 				goto end
 
 			label "after tent"
-			`	As he nears the finish line the Burthensiders' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
+			`	As he nears the finish line the Burthenians' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
 
 			label "end"
 			`	Abernathy doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`

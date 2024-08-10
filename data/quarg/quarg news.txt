@@ -31,7 +31,7 @@ news "anonymous quarg"
 		word
 			"a merchant"
 			"a merchant captain"
-			"a travelling merchant"
+			"a traveling merchant"
 			"a captain"
 		word
 			"?"

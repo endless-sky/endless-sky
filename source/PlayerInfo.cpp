@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 
 #include "AI.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -113,6 +113,16 @@ namespace {
 			return mission.HasClearance(planet);
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
+	}
+
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip, const System *system)
+	{
+		if(newFirstShip != oldFirstShip && Preferences::Has("Automatically unpark flagship")
+						&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
+		{
+			newFirstShip->SetIsParked(false);
+			oldFirstShip->SetIsParked(true);
+		}
 	}
 }
 
@@ -571,7 +581,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		{
 			seen.insert(system);
 			for(const System *neighbor : system->VisibleNeighbors())
-				if(!neighbor->Hidden() || system->Links().count(neighbor))
+				if(!neighbor->Hidden() || system->Links().contains(neighbor))
 					seen.insert(neighbor);
 		}
 	}
@@ -586,8 +596,19 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 // Add an event that will happen at the given date.
 void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 {
-	event.SetDate(date);
-	gameEvents.insert(std::move(event));
+	// Check if the event should be applied directly.
+	if(date <= this->date)
+	{
+		GameEvent eventCopy = event;
+		list<DataNode> eventChanges = {eventCopy.Apply(*this)};
+		if(!eventChanges.empty())
+			AddChanges(eventChanges);
+	}
+	else
+	{
+		event.SetDate(date);
+		gameEvents.insert(std::move(event));
+	}
 }
 
 
@@ -728,7 +749,7 @@ void PlayerInfo::AdvanceDate(int amount)
 			if(mission.CheckDeadline(date) && mission.IsVisible())
 				Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
 					Messages::Importance::Highest);
-			if(!mission.IsFailed())
+			if(!mission.IsFailed(*this))
 				mission.Do(Mission::DAILY, *this);
 		}
 
@@ -979,8 +1000,7 @@ void PlayerInfo::RemoveLicense(const string &name)
 
 bool PlayerInfo::HasLicense(const string &name) const
 {
-	// TODO: This should be changed to use std::set<>::contains when we move to C++20.
-	return licenses.count(name);
+	return licenses.contains(name);
 }
 
 
@@ -1051,11 +1071,10 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Set the new flagship pointer.
 	flagship = other.shared_from_this();
 
-	// Make sure your jump-capable ships all know who the flagship is.
+	// Make sure your ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
-			(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked());
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
@@ -1346,8 +1365,12 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 
 	// Reorder the list.
 	shared_ptr<Ship> ship = ships[fromIndex];
+	auto oldFirstShip = ships[0];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
+	auto newFirstShip = ships[0];
+	// Check if the ship in the first position can be a flagship and is in the current system.
+	HandleFlagshipParking(oldFirstShip.get(), newFirstShip.get(), system);
 	flagship.reset();
 }
 
@@ -1358,7 +1381,12 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 	// Check if the incoming vector contains the same elements
 	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
+		Ship *oldFirstShip = ships.front().get();
 		ships = newOrder;
+		Ship *newFirstShip = ships.front().get();
+		// Check if the position of the flagship has changed, and the ship in the first position
+		// can be a flagship and is in the current system.
+		HandleFlagshipParking(oldFirstShip, newFirstShip, system);
 		flagship.reset();
 	}
 	else
@@ -2109,7 +2137,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
-			if(boardingMissions.back().HasFailed(*this))
+			if(boardingMissions.back().IsFailed(*this))
 				boardingMissions.pop_back();
 			else
 				return &boardingMissions.back();
@@ -2132,9 +2160,9 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 	// ship again after accepting the mission.
 	if(!mission)
 		for(const Mission &mission : Missions())
-			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
+			if(mission.OverridesCapture() && !mission.IsFailed(*this) && mission.SourceShip() == ship.get())
 				return true;
-	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
+	return mission && mission->OverridesCapture() && !mission->IsFailed(*this) && mission->SourceShip() == ship.get();
 }
 
 
@@ -2323,8 +2351,12 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 	subs["<first>"] = FirstName();
 	subs["<last>"] = LastName();
-	if(Flagship())
-		subs["<ship>"] = Flagship()->Name();
+	const Ship *flag = Flagship();
+	if(flag)
+	{
+		subs["<ship>"] = flag->Name();
+		subs["<model>"] = flag->DisplayModelName();
+	}
 
 	subs["<system>"] = GetSystem()->Name();
 	subs["<date>"] = GetDate().ToString();
@@ -2398,14 +2430,16 @@ bool PlayerInfo::HasSeen(const System &system) const
 
 	// Shrouded systems have special considerations as to whether they're currently seen or not.
 	bool shrouded = system.Shrouded();
-	if(!shrouded && seen.count(&system))
+	if(!shrouded && seen.contains(&system))
 		return true;
 
 	auto usesSystem = [&system](const Mission &m) noexcept -> bool
 	{
 		if(!m.IsVisible())
 			return false;
-		if(m.Waypoints().count(&system))
+		if(m.Waypoints().contains(&system))
+			return true;
+		if(m.MarkedSystems().contains(&system))
 			return true;
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
@@ -2424,7 +2458,7 @@ bool PlayerInfo::HasSeen(const System &system) const
 				[&](const System *s) noexcept -> bool { return CanView(*s); }))
 			return true;
 		// A shrouded system not linked to a viewable system must be visible from the current system.
-		if(!system.VisibleNeighbors().count(this->system))
+		if(!system.VisibleNeighbors().contains(this->system))
 			return false;
 		// If a shrouded system is in visible range, then it can be seen if it is not also hidden.
 		return !system.Hidden();
@@ -2448,7 +2482,7 @@ bool PlayerInfo::CanView(const System &system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System &system) const
 {
-	return visitedSystems.count(&system);
+	return visitedSystems.contains(&system);
 }
 
 
@@ -2456,7 +2490,7 @@ bool PlayerInfo::HasVisited(const System &system) const
 // Check if the player has visited the given planet.
 bool PlayerInfo::HasVisited(const Planet &planet) const
 {
-	return visitedPlanets.count(&planet);
+	return visitedPlanets.contains(&planet);
 }
 
 
@@ -2486,7 +2520,7 @@ void PlayerInfo::Visit(const System &system)
 	visitedSystems.insert(&system);
 	seen.insert(&system);
 	for(const System *neighbor : system.VisibleNeighbors())
-		if(!neighbor->Hidden() || system.Links().count(neighbor))
+		if(!neighbor->Hidden() || system.Links().contains(neighbor))
 			seen.insert(neighbor);
 }
 
@@ -3179,6 +3213,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	unpaidFinesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Fine")); });
 
+	auto &&unpaidDebtsProvider = conditions.GetProviderNamed("unpaid debts");
+	unpaidDebtsProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Debt")); });
+
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.CrewSalariesOwed()); });
@@ -3201,7 +3239,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 		return it->second;
 	};
-	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
@@ -3227,7 +3264,6 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		return it->second;
 	};
-	tributeProvider.SetHasFunction(tributeHasGetFun);
 	tributeProvider.SetGetFunction(tributeHasGetFun);
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value);
@@ -3237,9 +3273,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
-	licenseProvider.SetHasFunction([this](const string &name) -> bool {
-		return HasLicense(name.substr(strlen("license: ")));
-	});
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return HasLicense(name.substr(strlen("license: ")));
 	});
@@ -3279,7 +3312,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship model: " + flagship->TrueModelName();
 	};
-	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
 	auto &&flagshipDisabledProvider = conditions.GetProviderNamed("flagship disabled");
@@ -3287,7 +3319,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return flagship && flagship->IsDisabled();
 	};
-	flagshipDisabledProvider.SetHasFunction(flagshipDisabledFun);
 	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
 	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
@@ -3309,7 +3340,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
 	};
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
-	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
 
 	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
 	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
@@ -3317,7 +3347,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
-	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
 	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
 	auto flagshipBaysFun = [this](const string &name) -> int64_t
@@ -3328,14 +3357,12 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
-	flagshipBaysProvider.SetHasFunction(flagshipBaysFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
 		return name == "name: " + firstName + " " + lastName;
 	};
-	playerNameProvider.SetHasFunction(playerNameFun);
 	playerNameProvider.SetGetFunction(playerNameFun);
 
 	auto &&playerNameFirstProvider = conditions.GetProviderPrefixed("first name: ");
@@ -3343,7 +3370,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return name == "first name: " + firstName;
 	};
-	playerNameFirstProvider.SetHasFunction(playerNameFirstFun);
 	playerNameFirstProvider.SetGetFunction(playerNameFirstFun);
 
 	auto &&playerNameLastProvider = conditions.GetProviderPrefixed("last name: ");
@@ -3351,7 +3377,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return name == "last name: " + lastName;
 	};
-	playerNameLastProvider.SetHasFunction(playerNameLastFun);
 	playerNameLastProvider.SetGetFunction(playerNameLastFun);
 
 
@@ -3394,7 +3419,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return round((1. - safeChance) * 1000.);
 	};
 	systemAttractionProvider.SetGetFunction(systemAttractionFun);
-	systemAttractionProvider.SetHasFunction(systemAttractionFun);
 
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
@@ -3711,7 +3735,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return name == "entered system by: " + EntryToString(entry);
 	};
-	systemEntryProvider.SetHasFunction(systemEntryFun);
 	systemEntryProvider.SetGetFunction(systemEntryFun);
 
 	// This condition corresponds to the last system the flagship was in.
@@ -3722,7 +3745,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "previous system: " + previousSystem->Name();
 	};
-	previousSystemProvider.SetHasFunction(previousSystemFun);
 	previousSystemProvider.SetGetFunction(previousSystemFun);
 
 	// Conditions to determine if flagship is in a system and on a planet.
@@ -3733,7 +3755,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship system: " + flagship->GetSystem()->Name();
 	};
-	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
 	auto &&flagshipLandedProvider = conditions.GetProviderNamed("flagship landed");
@@ -3741,7 +3762,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		return (flagship && flagship->GetPlanet());
 	};
-	flagshipLandedProvider.SetHasFunction(flagshipLandedFun);
 	flagshipLandedProvider.SetGetFunction(flagshipLandedFun);
 
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
@@ -3751,7 +3771,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
 	};
-	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
 
 	auto &&flagshipPlanetAttributesProvider = conditions.GetProviderPrefixed("flagship planet attribute: ");
@@ -3760,10 +3779,9 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship || !flagship->GetPlanet())
 			return false;
 		string attribute = name.substr(strlen("flagship planet attribute: "));
-		return flagship->GetPlanet()->Attributes().count(attribute);
+		return flagship->GetPlanet()->Attributes().contains(attribute);
 	};
 	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
-	flagshipPlanetAttributesProvider.SetHasFunction(flagshipPlanetAttributesFun);
 
 	// Read only exploration conditions.
 	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
@@ -3773,7 +3791,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return planet ? HasVisited(*planet) : false;
 	};
 	visitedPlanetProvider.SetGetFunction(visitedPlanetFun);
-	visitedPlanetProvider.SetHasFunction(visitedPlanetFun);
 
 	auto &&visitedSystemProvider = conditions.GetProviderPrefixed("visited system: ");
 	auto visitedSystemFun = [this](const string &name) -> bool
@@ -3782,7 +3799,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return system ? HasVisited(*system) : false;
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
-	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	auto &&landingAccessProvider = conditions.GetProviderPrefixed("landing access: ");
 	auto landingAccessFun = [this](const string &name) -> bool
@@ -3791,7 +3807,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (planet && flagship) ? planet->CanLand(*flagship) : false;
 	};
 	landingAccessProvider.SetGetFunction(landingAccessFun);
-	landingAccessProvider.SetHasFunction(landingAccessFun);
 
 	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
 	auto pluginFun = [](const string &name) -> bool
@@ -3799,7 +3814,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
 		return plugin ? plugin->IsValid() && plugin->enabled : false;
 	};
-	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
 
 	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
@@ -3809,7 +3823,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return person ? person->IsDestroyed() : false;
 	};
 	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
-	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
 
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
@@ -3836,7 +3849,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToSystemProvider.SetGetFunction(hyperjumpsToSystemFun);
-	hyperjumpsToSystemProvider.SetHasFunction(hyperjumpsToSystemFun);
 
 	auto &&hyperjumpsToPlanetProvider = conditions.GetProviderPrefixed("hyperjumps to planet: ");
 	auto hyperjumpsToPlanetFun = [this, HyperspaceTravelDays](const string &name) -> int
@@ -3858,16 +3870,10 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	};
 	hyperjumpsToPlanetProvider.SetGetFunction(hyperjumpsToPlanetFun);
-	hyperjumpsToPlanetProvider.SetHasFunction(hyperjumpsToPlanetFun);
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
-	reputationProvider.SetHasFunction([](const string &name) -> bool
-	{
-		string govName = name.substr(strlen("reputation: "));
-		return GameData::Governments().Has(govName);
-	});
 	reputationProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string govName = name.substr(strlen("reputation: "));
@@ -3904,16 +3910,10 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 		return Random::Int(value);
 	};
-	randomRollProvider.SetHasFunction(randomRollFun);
 	randomRollProvider.SetGetFunction(randomRollFun);
 
 	// Global conditions setters and getters:
 	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
-	globalProvider.SetHasFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Has(condition);
-	});
 	globalProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string condition = name.substr(strlen("global: "));
@@ -3954,7 +3954,7 @@ void PlayerInfo::CreateMissions()
 				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
-			if(missions.back().HasFailed(*this))
+			if(missions.back().IsFailed(*this))
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
 				hasPriorityMissions |= missions.back().HasPriority();
@@ -4139,8 +4139,12 @@ void PlayerInfo::StepMissions(UI *ui)
 		{"<first>", firstName},
 		{"<last>", lastName}
 	};
-	if(Flagship())
-		substitutions["<ship>"] = Flagship()->Name();
+	const Ship *flag = Flagship();
+	if(flag)
+	{
+		substitutions["<ship>"] = flag->Name();
+		substitutions["<model>"] = flag->DisplayModelName();
+	}
 
 	auto mit = missions.begin();
 	while(mit != missions.end())
@@ -4151,7 +4155,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		// If this is a stopover for the mission, perform the stopover action.
 		mission.Do(Mission::STOPOVER, *this, ui);
 
-		if(mission.HasFailed(*this))
+		if(mission.IsFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
@@ -4189,7 +4193,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		Mission &mission = *mit;
 		++mit;
 
-		if(mission.HasFailed(*this))
+		if(mission.IsFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
@@ -4203,10 +4207,10 @@ void PlayerInfo::StepMissions(UI *ui)
 
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
-		if(!active.count(it.first))
+		if(!active.contains(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
-		if(!active.count(it.first))
+		if(!active.contains(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
@@ -4593,7 +4597,7 @@ void PlayerInfo::Fine(UI *ui)
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
 		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-					(mission.Destination() == planet || mission.Stopovers().count(planet))))
+					(mission.Destination() == planet || mission.Stopovers().contains(planet))))
 			return;
 
 	// The planet's government must have the authority to enforce laws.

@@ -69,7 +69,7 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
+			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.contains(outfit))
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
@@ -89,6 +89,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
+
+	for(auto &ship : player.Ships())
+		if(ship->GetPlanet() == planet)
+			++shipsHere;
 }
 
 
@@ -101,7 +105,8 @@ void OutfitterPanel::Step()
 	if(GetUI()->IsTop(this) && !checkedHelp)
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)
-		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage") || true)
+		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage")
+				|| (shipsHere > 1 && DoHelp("outfitter with multiple ships")) || true)
 			// Either a help message was freshly displayed, or all of them have already been seen.
 			checkedHelp = true;
 }
@@ -250,7 +255,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count(DESCRIPTION));
+		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -271,8 +276,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 		if(hasDescription)
 		{
-			// Maintenance note: This can be replaced with collapsed.contains() in C++20
-			if(!collapsed.count(DESCRIPTION))
+			if(!collapsed.contains(DESCRIPTION))
 			{
 				descriptionOffset = outfitInfo.DescriptionHeight();
 				outfitInfo.DrawDescription(startPoint);

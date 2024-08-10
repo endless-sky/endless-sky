@@ -43,8 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstdlib>
-#include <iomanip>
-#include <sstream>
 #include <stdexcept>
 #include <utility>
 
@@ -71,17 +69,17 @@ namespace {
 	string TimestampString(time_t timestamp)
 	{
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		stringstream ss;
+		static const size_t BUF_SIZE = 25;
+		char str[BUF_SIZE];
 
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		ss << std::put_time(&date, format.second);
+		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
 #else
 		const tm *date = localtime(&timestamp);
-		ss << std::put_time(date, format.first);
+		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
 #endif
-		return ss.str();
 	}
 
 	// Extract the date from this pilot's most recent save.
@@ -217,7 +215,7 @@ void LoadPanel::Draw()
 	string hoverText;
 
 	// Draw the list of snapshots for the selected pilot.
-	if(!selectedPilot.empty() && files.count(selectedPilot))
+	if(!selectedPilot.empty() && files.contains(selectedPilot))
 	{
 		const Point topLeft = snapshotBox.TopLeft();
 		Point currentTopLeft = topLeft + Point(0, -centerScroll);

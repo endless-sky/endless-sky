@@ -34,6 +34,7 @@ namespace { // test namespace
 		{ "zero", 0 }, // "0"
 		{ "negative", -5 }, // "-5"
 		{ "positive", 61 }, // "61"
+		{ "twelve thousand", 12000 }, // "twelve thousand", "12,000"
 		{ "mass test", 4361000 }, // "4,361,000 tons"
 		{ "scaled test", 3361000000 }, // "3.361B"
 		{ "raw test", 1810244 }, // "1810224"
@@ -107,19 +108,19 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]") {
 	GIVEN( "The string 123.45" ) {
 		THEN( "parses to 123.45" ) {
-			CHECK( Format::Parse("123.45") == Approx(123.45) );
+			CHECK_THAT( Format::Parse("123.45"), Catch::Matchers::WithinAbs(123.45, 0.0001) );
 		}
 	}
 
 	GIVEN( "The string 1,234K" ) {
 		THEN( "parses to 1234000" ) {
-			CHECK( Format::Parse("1,234K") == Approx(1234000.) );
+			CHECK_THAT( Format::Parse("1,234K"), Catch::Matchers::WithinAbs(1234000., 0.0001) );
 		}
 	}
 
 	GIVEN( "The string 1 523 004" ) {
 		THEN( "parses to 1523004" ) {
-			CHECK( Format::Parse("1 523 004") == Approx(1523004.) );
+			CHECK_THAT( Format::Parse("1 523 004"), Catch::Matchers::WithinAbs(1523004., 0.0001) );
 		}
 	}
 }
@@ -420,6 +421,28 @@ TEST_CASE( "Format::ExpandConditions", "[Format][ExpandConditions]") {
 		CHECK( Format::ExpandConditions("__&[balanced at [[@]]]__", getter) == "__33,104__" );
 		CHECK( Format::ExpandConditions("", getter) == "" );
 		CHECK( Format::ExpandConditions("I AM A PRETTY CHICKEN", getter) == "I AM A PRETTY CHICKEN");
+	}
+	SECTION( "word form" ) {
+		CHECK( Format::ExpandConditions("&[words@zero]", getter) == "zero" );
+		CHECK( Format::ExpandConditions("&[chicago@zero]", getter) == "zero" );
+		CHECK( Format::ExpandConditions("&[mla@zero]", getter) == "zero" );
+		CHECK( Format::ExpandConditions("&[words@negative]", getter) == "negative five" );
+		CHECK( Format::ExpandConditions("&[chicago@negative]", getter) == "negative five" );
+		CHECK( Format::ExpandConditions("&[mla@negative]", getter) == "negative five" );
+		CHECK( Format::ExpandConditions("&[words@big test]", getter) ==
+			"thirty billion one hundred three million ten thousand three hundred one");
+		CHECK( Format::ExpandConditions("&[chicago@big test]", getter) == "30,103,010,301" );
+		CHECK( Format::ExpandConditions("&[mla@big test]", getter) == "30,103,010,301" );
+		CHECK( Format::ExpandConditions("&[Words@big test]", getter) ==
+			"Thirty billion one hundred three million ten thousand three hundred one");
+		CHECK( Format::ExpandConditions("&[Chicago@big test]", getter) ==
+			"Thirty billion one hundred three million ten thousand three hundred one");
+		CHECK( Format::ExpandConditions("&[Mla@big test]", getter) ==
+			"Thirty billion one hundred three million ten thousand three hundred one");
+		CHECK( Format::ExpandConditions("&[words@twelve thousand]", getter) == "twelve thousand" );
+		CHECK( Format::ExpandConditions("&[chicago@twelve thousand]", getter) == "twelve thousand" );
+		CHECK( Format::ExpandConditions("&[mla@twelve thousand]", getter) == "12,000" );
+		CHECK( Format::ExpandConditions("&[mla@credits test]", getter) == "negative 2.361 million" );
 	}
 }
 

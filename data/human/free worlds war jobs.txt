@@ -60,6 +60,7 @@ mission "FW Scout Run [0]"
 	waypoint
 		distance 1 2
 		government "Republic"
+		not system "Graffias"
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
@@ -85,9 +86,11 @@ mission "FW Scout Run [1]"
 	waypoint
 		distance 2 3
 		government "Republic"
+		not system "Graffias"
 	waypoint
 		distance 2 3
 		government "Republic"
+		not system "Graffias"
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
@@ -113,9 +116,11 @@ mission "FW Scout Run [2]"
 	waypoint
 		distance 2 3
 		government "Republic"
+		not system "Graffias"
 	waypoint
 		distance 3 4
 		government "Republic"
+		not system "Graffias"
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete

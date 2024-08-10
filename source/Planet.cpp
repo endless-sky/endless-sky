@@ -92,7 +92,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		removeAll |= (!add && !remove && hasValue && value == "clear");
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.contains(key));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
@@ -102,7 +102,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "description")
-				description.clear();
+				description.Clear();
 			else if(key == "port" || key == "spaceport")
 			{
 				port = Port();
@@ -178,17 +178,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
-		else if(key == "description" || key == "spaceport")
+		else if(key == "description")
+			description.Load(child);
+		else if(key == "spaceport")
 		{
-			const bool isDescription = key == "description";
-			if(!isDescription)
-				port.LoadDefaultSpaceport();
-
-			string &text = isDescription ? description : port.Description();
-			if(!text.empty() && !value.empty() && value[0] > ' ')
-				text += '\t';
-			text += value;
-			text += '\n';
+			port.LoadDefaultSpaceport();
+			port.LoadDescription(child);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -243,7 +238,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	// For reverse compatibility, if this planet has a spaceport but it was not custom loaded,
 	// and the planet has the "uninhabited" attribute, replace the spaceport with a special-case
 	// uninhabited spaceport.
-	if(attributes.count("uninhabited") && HasNamedPort() && !port.CustomLoaded())
+	if(attributes.contains("uninhabited") && HasNamedPort() && !port.CustomLoaded())
 		port.LoadUninhabitedSpaceport();
 
 	// Apply any auto-attributes to this planet depending on what it has.
@@ -289,7 +284,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
+	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
@@ -348,7 +343,7 @@ const string &Planet::TrueName() const
 
 
 // Get the planet's descriptive text.
-const string &Planet::Description() const
+const Paragraphs &Planet::Description() const
 {
 	return description;
 }
