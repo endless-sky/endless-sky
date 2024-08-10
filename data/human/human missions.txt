@@ -7505,7 +7505,7 @@ mission "Syndicate Business 1"
 			`	The Vanguard powers up its weapons.`
 	npc kill
 		government "Independent (Killable)"
-		personality heroic vindictive staying
+		personality heroic staying vindictive
 			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
