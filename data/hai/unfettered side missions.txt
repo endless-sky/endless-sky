@@ -275,7 +275,7 @@ mission "Hai Legacy 2"
 mission "Hai Legacy 3"
 	landing
 	name "Ancient Claim"
-	description "Beat the Lightning Bugs in combat. You only have one day, and becoming disabled will result in losing the fight."
+	description "Defeat the Unfettered challenger in combat. You only have one day, and becoming disabled will result in losing the fight."
 	source "Firelode"
 	deadline 2
 	to offer
@@ -344,7 +344,7 @@ mission "Hai Legacy 3"
 			label "too many ships"
 			action
 				fail
-			`As you take to join your fleet in orbit, you receive a hail from the Unfettered ships. "If you can't even count how many ships you have, you're not worthy of our time, monkey!"`
+			`As you take to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us true Hai!"`
 	on disabled
 		fail
 		conversation
@@ -382,14 +382,14 @@ mission "Hai Legacy 3"
 			not "unfettered: fled with the relic"
 			"old reputation: Hai (Unfettered)" < -2000
 		personality heroic mute marked plunders target unconstrained
-		ship "Shield Beetle (Prototypes)" "Requiem"
+		ship "Shield Beetle (Prototype)" "Requiem"
 		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
 	npc
 		government "Hai (Unfettered)"
 		to spawn
 			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
-		personality launching marked staying uninterested
+		personality launching marked staying uninterested pacifist
 		on provoke
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
