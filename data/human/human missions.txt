@@ -7456,6 +7456,8 @@ mission "Adelita 5"
 			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
 			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
 
+
+
 mission "Syndicate Business 1"
 	name "Rescue Kidnapped Man in <waypoints>"
 	description "A mysterious man has been kidnapped by a heavy pirate warship in <waypoints>. Destroy the ship to rescue him."
@@ -7463,6 +7465,7 @@ mission "Syndicate Business 1"
 	to offer
 		random < 40
 		credits > 5000000
+		"combat rating" > 350
 	source
 		government "Syndicate"
 		attributes "core"
@@ -7492,7 +7495,6 @@ mission "Syndicate Business 1"
 			`	The voice of the apparent captain of the <npc> sends you a hail. "You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
-					goto who
 				`	"I don't negotiate with pirates!"`
 					goto negotiate
 				`	"You can take him, but I don't know where he is."`
@@ -7541,7 +7543,6 @@ mission "Syndicate Business 1"
 			`	"Not quite. You will be a lender to a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
-					goto invest
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
@@ -7592,5 +7593,3 @@ mission "Syndicate Business 2"
 			action
 				"salary: Syndicate Business" = 500
 			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`
-
-			label end
