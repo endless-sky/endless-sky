@@ -38,11 +38,12 @@ namespace {
 	// Get the character index where the sprite name in the given path ends.
 	size_t NameEnd(const string &path)
 	{
-		if(path.find('.') == string::npos)
+		auto lastDot = path.find_last_of('.');
+		if(lastDot == string::npos)
 			return 0;
 
 		// Get the name of the file, without the extension and the @2x label.
-		string base = path.substr(0, path.find_last_of('.'));
+		string base = path.substr(0, lastDot);
 		if(base.ends_with("@2x"))
 			base = base.substr(0, base.length() - 3);
 		// In addition, more characters may be taken up by a mask label.
