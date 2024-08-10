@@ -7520,7 +7520,7 @@ mission "Syndicate Business 1"
 		"reputation: Independent (Killable)" = 10
 		conversation
 			`When you land on <planet>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
-			`	However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Maralex perpetual bond? To purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
+			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Maralex perpetual bond. To purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
