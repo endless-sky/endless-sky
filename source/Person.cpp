@@ -59,7 +59,6 @@ void Person::Load(const DataNode &node)
 void Person::FinishLoading()
 {
 	for(const shared_ptr<Ship> &ship : ships)
-		// Some comment to force merge conflicts
 		ship->FinishLoading(true);
 }
 
