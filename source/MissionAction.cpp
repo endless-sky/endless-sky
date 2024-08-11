@@ -383,8 +383,12 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 		subs["<first>"] = player.FirstName();
 		subs["<last>"] = player.LastName();
-		if(player.Flagship())
-			subs["<ship>"] = player.Flagship()->Name();
+		const Ship *flagship = player.Flagship();
+		if(flagship)
+		{
+			subs["<ship>"] = flagship->Name();
+			subs["<model>"] = flagship->DisplayModelName();
+		}
 		string text = Format::Replace(dialogText, subs);
 
 		// Don't push the dialog text if this is a visit action on a nonunique

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 
 #include "AlertLabel.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Collision.h"
@@ -66,7 +66,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "SystemEntry.h"
-#include "Test.h"
+#include "test/Test.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -100,36 +100,10 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	template <class Type>
-	void Prune(vector<Type> &objects)
-	{
-		// First, erase any of the old objects that should be removed.
-		typename vector<Type>::iterator in = objects.begin();
-		while(in != objects.end() && !in->ShouldBeRemoved())
-			++in;
-
-		typename vector<Type>::iterator out = in;
-		while(in != objects.end())
-		{
-			if(!in->ShouldBeRemoved())
-				*out++ = std::move(*in);
-			++in;
-		}
-		if(out != objects.end())
-			objects.erase(out, objects.end());
-	}
-
-	template <class Type>
-	void Prune(list<shared_ptr<Type>> &objects)
-	{
-		for(auto it = objects.begin(); it != objects.end(); )
-		{
-			if((*it)->ShouldBeRemoved())
-				it = objects.erase(it);
-			else
-				++it;
-		}
-	}
+	constexpr auto PrunePointers = [](auto &objects) { erase_if(objects,
+			[](const auto &obj) { return obj->ShouldBeRemoved(); }); };
+	constexpr auto Prune = [](auto &objects) { erase_if(objects,
+			[](const auto &obj) { return obj.ShouldBeRemoved(); }); };
 
 	template <class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
@@ -536,7 +510,7 @@ void Engine::Step(bool isActive)
 		if(isActive)
 		{
 			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
 				flagship->IsHyperspacing());
 
 			center = newCenter;
@@ -989,7 +963,7 @@ void Engine::Step(bool isActive)
 				bool inRange = offset.LengthSquared() <= scanRangeMetric;
 
 				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
-				if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
+				if(shouldCatalogAsteroids && !asteroidsScanned.contains(minable->DisplayName()))
 				{
 					scanComplete = false;
 					if(!Random::Int(10) && inRange)
@@ -1519,7 +1493,7 @@ void Engine::CalculateStep()
 		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
-	Prune(ships);
+	PrunePointers(ships);
 
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
@@ -1529,7 +1503,7 @@ void Engine::CalculateStep()
 	// checks if any ship has picked it up.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		it->Move(newVisuals);
-	Prune(flotsam);
+	PrunePointers(flotsam);
 
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
@@ -1598,9 +1572,12 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
+		bool isHyperspacing = flagship->IsHyperspacing();
+		if(isHyperspacing)
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
-			flagship->IsHyperspacing());
+			flagship->Center(), flagship->Velocity(), hyperspacePercentage,
+			isHyperspacing);
 		newCenter = newCameraCenter;
 		newCenterVelocity = newCameraVelocity;
 	}
@@ -1850,7 +1827,7 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// Although an attempt to spawn a person is specified by a gamerule,
 	// that attempt can still fail due to an added weight for no person to spawn.
 	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
@@ -2194,7 +2171,11 @@ void Engine::DoCollisions(Projectile &projectile)
 		// For weapons with a trigger radius, check if any detectable object will set it off.
 		double triggerRadius = weapon.TriggerRadius();
 		if(triggerRadius)
-			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
+		{
+			vector<Body *> inRadius;
+			inRadius.reserve(min(static_cast<vector<Body *>::size_type>(triggerRadius), ships.size()));
+			shipCollisions.Circle(projectile.Position(), triggerRadius, inRadius);
+			for(const Body *body : inRadius)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
@@ -2204,25 +2185,17 @@ void Engine::DoCollisions(Projectile &projectile)
 					break;
 				}
 			}
+		}
 
 		// If nothing triggered the projectile, check for collisions with ships and asteroids.
 		if(collisions.empty())
 		{
 			if(weapon.CanCollideShips())
-			{
-				const vector<Collision> &newShipHits = shipCollisions.Line(projectile);
-				collisions.insert(collisions.end(), newShipHits.begin(), newShipHits.end());
-			}
+				shipCollisions.Line(projectile, collisions);
 			if(weapon.CanCollideAsteroids())
-			{
-				const vector<Collision> &newAsteroidHits = asteroids.CollideAsteroids(projectile);
-				collisions.insert(collisions.end(), newAsteroidHits.begin(), newAsteroidHits.end());
-			}
+				asteroids.CollideAsteroids(projectile, collisions);
 			if(weapon.CanCollideMinables())
-			{
-				const vector<Collision> &newMinableHits = asteroids.CollideMinables(projectile);
-				collisions.insert(collisions.end(), newMinableHits.begin(), newMinableHits.end());
-			}
+				asteroids.CollideMinables(projectile, collisions);
 		}
 	}
 
@@ -2265,7 +2238,10 @@ void Engine::DoCollisions(Projectile &projectile)
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
-			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
+			vector<Body *> blastCollisions;
+			blastCollisions.reserve(32);
+			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
+			for(Body *body : blastCollisions)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
@@ -2327,8 +2303,15 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : (hazard->SystemWide() ? shipCollisions.All()
-			: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange())))
+		vector<Body *> affectedShips;
+		if(hazard->SystemWide())
+			affectedShips = shipCollisions.All();
+		else
+		{
+			affectedShips.reserve(ships.size());
+			shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), affectedShips);
+		}
+		for(Body *body : affectedShips)
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
@@ -2343,7 +2326,10 @@ void Engine::DoCollection(Flotsam &flotsam)
 {
 	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
-	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
+	vector<Body *> pickupShips;
+	pickupShips.reserve(16);
+	shipCollisions.Circle(flotsam.Position(), 5., pickupShips);
+	for(Body *body : pickupShips)
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
 		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship->CanPickUp(flotsam))
@@ -2396,25 +2382,30 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Checks for player FlotsamCollection setting
+	bool collectorIsFlagship = collector == player.Flagship();
 	if(collector->IsYours())
 	{
 		const auto flotsamSetting = Preferences::GetFlotsamCollection();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
 			return;
-		if(collector == player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+		if(collectorIsFlagship && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return;
-		if(collector != player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(!collectorIsFlagship && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return;
 	}
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);
+
 	// If the collector is not one of the player's ships, we can bail out now.
 	if(!collector->IsYours())
 		return;
 
+	if(!collectorIsFlagship && !Preferences::Has("Extra fleet status messages"))
+		return;
+
 	// One of your ships picked up this flotsam. Describe who it was.
-	string name = (!collector->GetParent() ? "You" :
+	string name = (collectorIsFlagship ? "You" :
 			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
@@ -2648,7 +2639,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
-	if(grudge.count(attacker))
+	if(grudge.contains(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		// If the previous ship is destroyed, or was able to send a

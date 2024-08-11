@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_SET_H_
-#define SPRITE_SET_H_
+#pragma once
 
 #include <set>
 #include <string>
@@ -36,7 +35,3 @@ public:
 
 	static Sprite *Modify(const std::string &name);
 };
-
-
-
-#endif
