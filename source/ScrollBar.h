@@ -91,8 +91,8 @@ void ScrollBar::SyncInto(ScrollVar<T> &scroll, int steps)
 template<typename T>
 void ScrollBar::SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated)
 {
-    SyncFrom(scroll, from, to);
-    Draw();
+	SyncFrom(scroll, from, to);
+	Draw();
 }
 
 
@@ -100,12 +100,12 @@ void ScrollBar::SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Po
 template<typename T>
 bool ScrollBar::SyncClick(ScrollVar<T> &scroll, int x, int y, int clicks)
 {
-    if(Click(x, y, clicks))
-    {
-        SyncInto(scroll);
-        return true;
-    }
-    return false;
+	if(Click(x, y, clicks))
+	{
+		SyncInto(scroll);
+		return true;
+	}
+	return false;
 }
 
 template<typename T>
