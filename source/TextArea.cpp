@@ -160,15 +160,7 @@ void TextArea::Draw()
 		Rectangle bottomRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET},
 			{20.0, 20.0});
 
-		scrollBar.SyncFrom(scroll, topRight.Center(), bottomRight.Center());
-
-		PointerShader::Draw(bottomRight.Center(), DOWN,
-			10.f, 10.f, 5.f, Color(scroll.IsScrollAtMax() ? .2f : .8f, 0.f));
-		PointerShader::Draw(topRight.Center(), UP,
-			10.f, 10.f, 5.f, Color(scroll.IsScrollAtMin() ? .2f : .8f, 0.f));
-		scrollBar.Draw();
-		AddZone(topRight, [&]() { scroll.Scroll(-Preferences::ScrollSpeed()); });
-		AddZone(bottomRight, [&]() { scroll.Scroll(Preferences::ScrollSpeed()); });
+		scrollBar.SyncDraw(scroll, topRight.Center(), bottomRight.Center());
 	}
 }
 
@@ -176,9 +168,8 @@ void TextArea::Draw()
 
 bool TextArea::Click(int x, int y, int clicks)
 {
-	if(scrollBar.Click(x, y, clicks))
+	if(scrollBar.SyncClick(scroll, x, y, clicks))
 	{
-		scrollBar.SyncInto(scroll);
 		bufferIsValid = false;
 		return true;
 	}
@@ -194,10 +185,8 @@ bool TextArea::Click(int x, int y, int clicks)
 
 bool TextArea::Drag(double dx, double dy)
 {
-	scrollBar.SyncFrom(scroll, scrollBar.from, scrollBar.to, false);
-	if(scrollBar.Drag(dx, dy))
+	if(scrollBar.SyncDrag(scroll, dx, dy))
 	{
-		scrollBar.SyncInto(scroll, 0);
 		bufferIsValid = false;
 		return true;
 	}

@@ -87,12 +87,6 @@ namespace {
 		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
 
-	constexpr auto DrawScrollbars = [](Point from, Point to, ScrollBar &scrollbar,
-		ScrollVar<double> &scroll)
-	{
-		scrollbar.SyncFrom(scroll, from, to);
-		scrollbar.Draw();
-	};
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
 	{
@@ -464,31 +458,6 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	char button = CheckButton(x, y);
 	if(button)
 		return DoKey(button);
-
-	// Check for clicks on the ShipsSidebar pane arrows.
-	if(x >= Screen::Right() - 20)
-	{
-		if(y < Screen::Top() + 20)
-			return Scroll(0, 4);
-		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
-			return Scroll(0, -4);
-	}
-	// Check for clicks on the DetailsSidebar pane arrows.
-	else if(x >= Screen::Right() - SIDEBAR_WIDTH - 20 && x < Screen::Right() - SIDEBAR_WIDTH)
-	{
-		if(y < Screen::Top() + 20)
-			return Scroll(0, 4);
-		if(y >= Screen::Bottom() - 20)
-			return Scroll(0, -4);
-	}
-	// Check for clicks on the Main pane arrows.
-	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
-	{
-		if(y < Screen::Top() + 20)
-			return Scroll(0, 4);
-		if(y >= Screen::Bottom() - 20)
-			return Scroll(0, -4);
-	}
 
 	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
@@ -874,12 +843,8 @@ void ShopPanel::DrawShipsSidebar()
 	{
 		Point top(Screen::Right() - 3, Screen::Top() + 10);
 		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
-		PointerShader::Draw(top,
-			Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-		PointerShader::Draw(bottom,
-			Point(0., 1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
 
-		DrawScrollbars(top, bottom, sidebarScrollbar, sidebarScroll);
+		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
 	}
 }
 
@@ -916,12 +881,7 @@ void ShopPanel::DrawDetailsSidebar()
 		Point top = Point(Screen::Right() - SIDEBAR_WIDTH - 7, Screen::Top() + 10);
 		Point bottom = Point(Screen::Right() - SIDEBAR_WIDTH - 7, Screen::Bottom() - 10);
 
-		PointerShader::Draw(top,
-			Point(0., -1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-		PointerShader::Draw(bottom,
-			Point(0., 1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
-
-		DrawScrollbars(top, bottom, infobarScrollbar, infobarScroll);
+		infobarScrollbar.SyncDraw(infobarScroll, top, bottom);
 	}
 }
 
@@ -1118,12 +1078,7 @@ void ShopPanel::DrawMain()
 		Point top = Point(dimSim, Screen::Top() + 10);
 		Point bottom = Point(dimSim, Screen::Bottom() - 10);
 
-		PointerShader::Draw(top,
-			Point(0., -1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-		PointerShader::Draw(bottom,
-			Point(0., 1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
-
-		DrawScrollbars(top, bottom, mainScrollbar, mainScroll);
+		mainScrollbar.SyncDraw(mainScroll, top, bottom);
 	}
 }
 

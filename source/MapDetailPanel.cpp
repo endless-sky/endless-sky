@@ -169,12 +169,8 @@ bool MapDetailPanel::Hover(int x, int y)
 
 bool MapDetailPanel::Drag(double dx, double dy)
 {
-	scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
-	if(scroll.Scrollable() && scrollbar.Drag(dx, dy))
-	{
-		scrollbar.SyncInto(scroll, 0);
+	if(scroll.Scrollable() && scrollbar.SyncDrag(scroll, dx, dy))
 		return true;
-	}
 
 	if(isPlanetViewSelected)
 	{
@@ -362,11 +358,15 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y, int clicks)
 {
+	if(scroll.Scrollable() && scrollbar.SyncClick(scroll, x, y, clicks))
+		return true;
+
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
 	const double planetCardHeight = MapPlanetCard::Height();
+
 	if(x < Screen::Left() + 160)
 	{
 		// The player clicked in the left-hand interface. This could be the system
@@ -388,42 +388,29 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
-		if(scroll.Scrollable() && x > Screen::Left() + planetCardWidth + arrowOffset - 10)
+		for(auto &card : planetCards)
 		{
-			// The arrows are of size 10.
-			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
-			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset);
-			bool arrowDown = (!arrowUp && y > Screen::Top() + planetPanelHeight - arrowVerticalOffset);
-			scroll.Scroll(arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0);
-			if(!(arrowUp || arrowDown) && scrollbar.Click(x, y, clicks))
-				scrollbar.SyncInto(scroll);
-		}
-		else
-		{
-			for(auto &card : planetCards)
+			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
+			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 			{
-				MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
-				if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
-				{
-					GetUI()->Pop(this);
-					GetUI()->Push(new MapShipyardPanel(*this, true));
-					break;
-				}
-				else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
-				{
-					GetUI()->Pop(this);
-					GetUI()->Push(new MapOutfitterPanel(*this, true));
-					break;
-				}
-				// Then this is the planet selected.
-				else if(clickAction != MapPlanetCard::ClickAction::NONE)
-				{
-					selectedPlanet = card.GetPlanet();
-					if(selectedPlanet && player.Flagship())
-						player.SetTravelDestination(selectedPlanet);
-					if(clickAction != MapPlanetCard::ClickAction::SELECTED)
-						SetCommodity(static_cast<int>(clickAction));
-				}
+				GetUI()->Pop(this);
+				GetUI()->Push(new MapShipyardPanel(*this, true));
+				break;
+			}
+			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
+			{
+				GetUI()->Pop(this);
+				GetUI()->Push(new MapOutfitterPanel(*this, true));
+				break;
+			}
+			// Then this is the planet selected.
+			else if(clickAction != MapPlanetCard::ClickAction::NONE)
+			{
+				selectedPlanet = card.GetPlanet();
+				if(selectedPlanet && player.Flagship())
+					player.SetTravelDestination(selectedPlanet);
+				if(clickAction != MapPlanetCard::ClickAction::SELECTED)
+					SetCommodity(static_cast<int>(clickAction));
 			}
 		}
 		return true;
@@ -748,13 +735,7 @@ void MapDetailPanel::DrawInfo()
 			Point bottom = Point(Screen::Left() + planetWidth + arrowOffsetX,
 				Screen::Top() - arrowOffsetY + planetPanelHeight);
 
-			scrollbar.SyncFrom(scroll, top, bottom);
-			scrollbar.Draw();
-
-			// Draw the pointers to go up and down by a planet at most.
-			PointerShader::Draw(top, Point(0., -1.), 10.f, 10.f, 5.f, scroll.IsScrollAtMax() ? medium : dim);
-			PointerShader::Draw(bottom, Point(0., 1.), 10.f, 10.f, 5.f,
-				scroll.IsScrollAtMin() ? medium : dim);
+			scrollbar.SyncDraw(scroll, top, bottom);
 		}
 	}
 

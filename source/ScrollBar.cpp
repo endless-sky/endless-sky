@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 
 #include "LineShader.h"
+#include "PointerShader.h"
 
 #include <algorithm>
 
@@ -89,6 +90,9 @@ void ScrollBar::DrawAt(const Point &from)
 		tabWidth,
 		highlighted ? color : Color::Combine(.5, color, .5, innerColor)
 	);
+
+	PointerShader::Draw(from, Point(0., -1.), lineWidth * 3.0, 10.f, 5.f, fraction > 0.0 ? color : innerColor);
+	PointerShader::Draw(from + delta, Point(0., 1.), lineWidth * 3.0, 10.f, 5.f, fraction < 1.0 ? color : innerColor);
 }
 
 
@@ -138,6 +142,18 @@ bool ScrollBar::Drag(double dx, double dy)
 
 bool ScrollBar::Click(int x, int y, int clicks)
 {
+	Point clickPos = Point(x, y);
+	if((clickPos - from).Length() < 10.0)
+	{
+		fraction = std::clamp(fraction - displaySizeFraction * .6f, 0.f, 1.f);
+		return true;
+	}
+	if((clickPos - to).Length() < 10.0)
+	{
+		fraction = std::clamp(fraction + displaySizeFraction * .6f, 0.f, 1.f);
+		return true;
+	}
+
 	if(innerHighlighted && !highlighted)
 	{
 		Point cursorVector = Point(x, y) - from;

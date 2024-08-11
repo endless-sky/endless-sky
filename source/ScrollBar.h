@@ -46,6 +46,12 @@ public:
 	void SyncFrom(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
 	template<typename T>
 	void SyncInto(ScrollVar<T> &scroll, int steps = 5);
+	template<typename T>
+	void SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
+	template<typename T>
+	bool SyncClick(ScrollVar<T> &scroll, int x, int y, int clicks);
+	template<typename T>
+	bool SyncDrag(ScrollVar<T> &scroll, double dx, double dy);
 
 
 public:
@@ -78,4 +84,38 @@ template<typename T>
 void ScrollBar::SyncInto(ScrollVar<T> &scroll, int steps)
 {
 	scroll.Set(fraction * (scroll.MaxValue() - scroll.DisplaySize()), steps);
+}
+
+
+
+template<typename T>
+void ScrollBar::SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated)
+{
+    SyncFrom(scroll, from, to);
+    Draw();
+}
+
+
+
+template<typename T>
+bool ScrollBar::SyncClick(ScrollVar<T> &scroll, int x, int y, int clicks)
+{
+    if(Click(x, y, clicks))
+    {
+        SyncInto(scroll);
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool ScrollBar::SyncDrag(ScrollVar<T> &scroll, double dx, double dy)
+{
+	SyncFrom(scroll, from, to, false);
+	if(Drag(dx, dy))
+	{
+		SyncInto(scroll, 0);
+		return true;
+	}
+	return false;
 }

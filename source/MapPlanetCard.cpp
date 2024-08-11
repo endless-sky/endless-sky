@@ -41,7 +41,7 @@ namespace {
 
 
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
-								const MapDetailPanel *parent)
+		const MapDetailPanel *parent)
 	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.Name())
 {
 	planet = object.GetPlanet();
