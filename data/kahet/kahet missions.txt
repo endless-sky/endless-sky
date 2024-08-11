@@ -791,16 +791,16 @@ mission "Ka'het: Patir Mystery 6"
 			`	"Cloaking is the key. If we can stay hidden as we enter Patir and land, then the Fetri'sei should stay outside of the settlement, letting us explore further. Make sure your ship has enough fuel for the journey, however; if you drop your cloak at any time in Patir, then the Ka'sei will block our progress again."`
 			`	After he finishes signing, he makes a few quick gestures toward the projector, enlarging the hologram of the Builder settlement and revealing what looks like a flight path. "You are going to land roughly where we did last time, carrying me and four other xenoarcheologists. If you accept, I should be able to allocate 100,000 credits to help you buy the necessary equipment for this mission."`
 			choice
-				`	"I am in."`
+				`	"I'm in."`
 					accept
 				`	"What if they detect us while inside the structure?"`
-				`	"Sorry, but I do not think it is a good idea to return there."`
+				`	"Sorry, but I don't think it is a good idea to return there."`
 					decline
 			`	"It is a possibility, yes. It is also quite problematic because communication between the inside and the outside of the structure is impossible. I think the best course of action would be to place a scanner that controls the large airlocks on the upper side of the dome, the same ones the Ka'sei used last time. If I am right, it should give us around a quarter of an hour to get back in the airlock and escape."`
 			choice
 				`	"Alright, let's do it."`
 					accept
-				`	"Sorry, but I do not think it is a good idea to return there."`
+				`	"Sorry, but I don't think it is a good idea to return there."`
 					decline
 
 	on accept
