@@ -126,6 +126,8 @@ private:
 	// relative to the firing ship.
 	Point dV;
 	double clip = 1.;
+	// A positive value means the projectile is alive, -100 means it was killed
+	// by an anti-missile system, and -1000 means it exploded in a collision.
 	int lifetime = 0;
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
