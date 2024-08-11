@@ -2782,12 +2782,15 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/_menu/haze-dark-nebula*
  images/effect/incipias?flare/*
+ images/effect/horizon?grappler*
  images/effect/plasma?exhaust*
  images/effect/plasma?particle*
  images/effect/stagnation?beam?impact*
  images/effect/star?tail*
+ images/hardpoint/horizon?grappler*
  images/hardpoint/stagnation?beam*
  images/outfit/gas?class?shield*
+ images/outfit/horizon?grappler*
  images/outfit/liquid?class?shield*
  images/outfit/metallic?hydrogen?cell*
  images/outfit/mh?*
