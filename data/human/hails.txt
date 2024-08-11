@@ -2707,7 +2707,189 @@ phrase "friendly civilian"
 		"uranium or uranium" "uranium"
 		"neodymium and neodymium" "neodymium"
 		"neodymium or neodymium" "neodymium"
-
+phrase "friendly civilian"
+    word
+        "Be careful of"
+        "A warning about"
+        "Be suspicious of"
+        "Don't trust"
+    word
+        " "
+    word
+        "those space casinos. I blew"
+    word
+        " "
+    word
+        "a"
+        "two"
+        "three"
+        "four"
+        "five"
+    word
+        " "
+    word
+        "million credits on"
+    word
+        "Bourne"
+        "Spica"
+        "Rust"
+        "Starcross"
+        "Skymoot"
+        "Thunder"
+        "Zug"
+        "Flood"
+        "Longjump"
+        "Glaze"
+        "Deep"
+        "Clink"
+        "Winter"
+        "Solace"
+        "Twinstar"
+        "Sundrinker"
+        "Trinket"
+        "Dancer"
+    word
+        " "
+    word
+        "blackjack."
+        "poker."
+        "backgammon."
+        "baccarat."
+        "roulette."
+phrase "friendly civilian"
+    word
+        "Have you read the latest edition of"
+    word
+        " "
+    word
+        "Cosmic Chronicles"
+        "Stellar Spectacles"
+        "Galactic Gazette"
+        "Quantum Quandaries"
+        "Nebula News"
+        "Phantom Planets"
+        "Vague Voyages"
+        "Dark Dimensions"
+        "Mysterious Moons"
+        "Silent Satellites"
+        "Zesty Zeniths"
+        "Daring Discoveries"
+        "Fiery Frontiers"
+        "Global Galaxies"
+        "Rapid Rockets"
+        "Orbital Overload"
+    word
+         "? It says that"
+    word
+         " "
+    word
+        "pulse showers are good for your quantum pores."
+        "exposing yourself to neodymium increases your risk of spacepox."
+        "shoddily grown ion algae exhaust your psychic karma."
+        "laser acupuncture let you communicate with nebula ghosts."
+        "star crystals brings luck with long distance relationships."
+        "consuming moon dust accelerates hair growth but causes lunar lunacy."
+        "excessive exposure to zero gravity can lead to phantom limb syndrome."
+        "alien prosthetics often come with unexpected telepathic abilities."
+        "stardate tattoos increase your chances of alien abduction."
+phrase "friendly civilian"
+    word
+        "I'm no weapons expert, but it feels better firing"
+    word
+        " "
+    word
+        "energy blasters"
+        "particle cannons"
+        "proton guns"
+    word
+        " "
+    word
+        "than"
+        "compared to"
+    word
+        " "
+    word
+        "beam lasers."
+        "electron beams."
+        "heavy lasers."
+phrase "friendly civilian"
+    word
+        "I shouldn't have sold my old ship. It was a"
+    word
+        " "
+    word
+        "Shuttle"
+        "Star Barge"
+        "Sparrow"
+        "Heavy Shuttle"
+        "Freighter"
+        "Fury"
+    word
+        " "
+    word
+        "that never had"
+    word
+        " "
+    word
+        "stalling engines."
+        "broken batteries."
+        "unstable shielding."
+        "overheating fuel cells."
+        "a glitchy HUD."
+        "faulty ship detection."
+phrase "friendly civilian"
+    word
+        "Finished cleaning my cargo hold. The" 
+        "Cargo hold is all spick and span. The"
+        "Finished scrubbing the hold. The"
+    word
+        " "
+    word
+        "freshener" 
+        "perfume"
+        "spray"
+        "fragrance"
+    word
+        " "
+    word
+        "I used makes it smell like"
+    word
+        " "
+    word
+        "strawberries!"
+        "bananas!"
+        "peaches!"
+        "roses!"
+        "jasmine!"
+        "lavender!"
+phrase "friendly civilian"
+    word
+        "Have you seen the movie where the" 
+    word
+        " "
+    word
+        "hero"
+        "villain"
+    word
+        " "
+    word
+        "mounted modded twin blasters on a modded Argosy"
+        "shoots up a security station with dual space pistols"
+        "dodges quad blaster turrets with a stolen Flivver"
+    word
+        "? So cool."
+phrase "friendly civilian"
+    word
+        "Frankly, I'm thinking of joining the Navy because"
+        "Truthfully, I'm going to be part of the Navy because"
+        "I'm enlisting in the Navy because"
+    word
+        " "
+    word
+        "of their dental insurance."
+        "they'll cover my tuition."
+        "their amazing ship selection."
+        "they offer childcare assistance."
 phrase "friendly navy"
 	word
 		"The Navy"
