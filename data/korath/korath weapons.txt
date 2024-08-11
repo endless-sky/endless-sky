@@ -935,6 +935,7 @@ outfit "Firelight Missile Bank"
 		ammo "Firelight Missile"
 		icon "icon/firelight"
 		"hit effect" "firelight ring" 20
+		"die effect" "piercer fire"
 		"velocity" 4
 		"velocity override" 16
 		"lifetime" 10
