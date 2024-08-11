@@ -150,7 +150,8 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		Logger::LogError(error);
 		Files::Write(Files::Config() + "/shader_error.txt",
 			string("Shader type: ") + std::to_string(type) + '\n' +
-			str + '\n' +
+			reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION)) + '\n' +
+			cText + '\n' +
 			error
 		);
 		throw runtime_error("Shader compilation failed.");
