@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Point.h"
 
-#include <ostream>
-
 #ifndef __SSE3__
 #include <algorithm>
 #include <cmath>
@@ -342,13 +340,6 @@ Point max(const Point &p, const Point &q)
 #else
 	return Point(max(p.x, q.x), max(p.y, q.y));
 #endif
-}
-
-
-
-std::ostream &operator<<(std::ostream &os, const Point &p)
-{
-	return os << '(' << p.X() << ", " << p.Y() << ')';
 }
 
 

@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <ostream>
 #ifdef __SSE3__
 #include <pmmintrin.h>
 #endif
@@ -83,8 +82,6 @@ public:
 	friend Point min(const Point &p, const Point &q);
 	// Use the max of each x and each y coordinates.
 	friend Point max(const Point &p, const Point &q);
-
-	friend std::ostream &operator<<(std::ostream &, const Point &);
 
 
 private:
