@@ -182,10 +182,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -267,6 +263,8 @@ target_sources(EndlessSkyLib PRIVATE
 	RandomEvent.h
 	Rectangle.cpp
 	Rectangle.h
+	RenderBuffer.cpp
+	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
 	Sale.h
@@ -354,8 +352,10 @@ target_sources(EndlessSkyLib PRIVATE
 	image/ImageBuffer.h
 	image/ImageSet.cpp
 	image/ImageSet.h
-	image/RenderBuffer.cpp
-	image/RenderBuffer.h
+	images/Mask.cpp
+	images/Mask.h
+	images/MaskManager.cpp
+	images/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
 	image/SpriteSet.cpp

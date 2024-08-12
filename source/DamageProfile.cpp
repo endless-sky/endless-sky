@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageProfile.h"
 
 #include "DamageDealt.h"
-#include "Mask.h"
+#include "images/Mask.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "Weapon.h"

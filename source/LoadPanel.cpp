@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "MaskManager.h"
+#include "images/MaskManager.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"

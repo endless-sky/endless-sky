@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "MapPanel.h"
-#include "Mask.h"
+#include "images/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "Mission.h"
