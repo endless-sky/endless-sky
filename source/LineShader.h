@@ -24,10 +24,10 @@ class Point;
 // the start and end of the line are not.
 class LineShader {
 public:
-    enum class Cap : int {
-        Solid = 0,
-        Rounded = 1,
-    };
+	enum class Cap : int {
+		Solid = 0,
+		Rounded = 1,
+	};
 
 public:
 	static void Init();
