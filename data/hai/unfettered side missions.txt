@@ -337,14 +337,17 @@ mission "Hai Legacy 3"
 				accept
 			label fleeing
 			action
+				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				fail
 			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and they are fast to hail you. "Where do you think you're going, monkey?"`
 				decline
 			label "too many ships"
 			action
+				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				fail
 			`As you take to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us true Hai!"`
 	on disabled
+		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		fail
 		conversation
 			`The enemy ship hails you after disabling your own. "Thought you could get away from us so easily? You better give us a good bribe to land on our worlds and return that ship, before we value blowing you up more than preserving it!"`
@@ -354,6 +357,7 @@ mission "Hai Legacy 3"
 			`After your ship is disabled, one of the Unfettered ships hails you. "You have lost the challenge, but we didn't expect much from a human like you. We will repair your ship for a fair bribe, but you better land at one of our worlds and return it to us with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. Today, you've failed us. Maybe someday you will prove yourself otherwise."`
 	to fail
+		# Fails after you launch after fleeing so the ship spawns.
 		not "flagship landed"
 		has "unfettered: fled with the relic"
 	on fail
@@ -370,7 +374,8 @@ mission "Hai Legacy 3"
 		personality disables heroic marked plunders staying target unconstrained
 		ship "Sea Scorpion (Ionic)" "ThunderStruck"
 		on kill
-			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship is either incompetence or evil intent, and we will not have either!"`
+			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
+			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
 		dialog `You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
 	npc disable
@@ -392,6 +397,7 @@ mission "Hai Legacy 3"
 		on disable
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
+			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
 			set "unfettered: outcast"
 			dialog `As you destroy the Lightning Bug, along with Mera and her crew in it, you receive an angry hail from the Unfettered. "You completely disrespected the rules of a duel and killed one of our most prominent members! You will not be welcome here anymore!"`
