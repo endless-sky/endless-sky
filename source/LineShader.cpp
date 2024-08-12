@@ -41,36 +41,6 @@ namespace {
 
 void LineShader::Init()
 {
-	// static const char *vertexCode =
-	// 	"// vertex line shader\n"
-	// 	"uniform vec2 scale;\n"
-	// 	"uniform vec2 start;\n"
-	// 	"uniform vec2 len;\n"
-	// 	"uniform vec2 width;\n"
-
-	// 	"in vec2 vert;\n"
-	// 	"out vec2 tpos;\n"
-	// 	"out float tscale;\n"
-
-	// 	"void main() {\n"
-	// 	"  tpos = vert;\n"
-	// 	"  tscale = length(len);\n"
-	// 	"  gl_Position = vec4((start + vert.x * len + vert.y * width) * scale, 0, 1);\n"
-	// 	"}\n";
-
-	// static const char *fragmentCode =
-	// 	"// fragment line shader\n"
-	// 	"precision mediump float;\n"
-	// 	"uniform vec4 color;\n"
-
-	// 	"in vec2 tpos;\n"
-	// 	"in float tscale;\n"
-	// 	"out vec4 finalColor;\n"
-
-	// 	"void main() {\n"
-	// 	"  float alpha = min(tscale - abs(tpos.x * (2.f * tscale) - tscale), 1.f - abs(tpos.y));\n"
-	// 	"  finalColor = color * alpha;\n"
-	// 	"}\n";
 	static const char *vertexCode = R"(
 // vertex line shader
 
@@ -93,7 +63,7 @@ void main() {
     gl_Position.y = -gl_Position.y;
     gl_Position.xy *= 2.0;
 }
-)";
+    )";
 
 	static const char *fragmentCode = R"(
 // fragment line shader
@@ -132,7 +102,7 @@ void main() {
     float alpha = clamp(dist, 0.0, 1.0);
     finalColor = color * alpha;
 }
-)";
+    )";
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
