@@ -28,7 +28,7 @@ namespace {
 	Shader shader;
 	GLint scaleI;
 	GLint startI;
-	GLint lengthI;
+	GLint endI;
 	GLint widthI;
 	GLint colorI;
 
@@ -40,41 +40,94 @@ namespace {
 
 void LineShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex line shader\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 start;\n"
-		"uniform vec2 len;\n"
-		"uniform vec2 width;\n"
+	// static const char *vertexCode =
+	// 	"// vertex line shader\n"
+	// 	"uniform vec2 scale;\n"
+	// 	"uniform vec2 start;\n"
+	// 	"uniform vec2 len;\n"
+	// 	"uniform vec2 width;\n"
 
-		"in vec2 vert;\n"
-		"out vec2 tpos;\n"
-		"out float tscale;\n"
+	// 	"in vec2 vert;\n"
+	// 	"out vec2 tpos;\n"
+	// 	"out float tscale;\n"
 
-		"void main() {\n"
-		"  tpos = vert;\n"
-		"  tscale = length(len);\n"
-		"  gl_Position = vec4((start + vert.x * len + vert.y * width) * scale, 0, 1);\n"
-		"}\n";
+	// 	"void main() {\n"
+	// 	"  tpos = vert;\n"
+	// 	"  tscale = length(len);\n"
+	// 	"  gl_Position = vec4((start + vert.x * len + vert.y * width) * scale, 0, 1);\n"
+	// 	"}\n";
 
-	static const char *fragmentCode =
-		"// fragment line shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
+	// static const char *fragmentCode =
+	// 	"// fragment line shader\n"
+	// 	"precision mediump float;\n"
+	// 	"uniform vec4 color;\n"
 
-		"in vec2 tpos;\n"
-		"in float tscale;\n"
-		"out vec4 finalColor;\n"
+	// 	"in vec2 tpos;\n"
+	// 	"in float tscale;\n"
+	// 	"out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  float alpha = min(tscale - abs(tpos.x * (2.f * tscale) - tscale), 1.f - abs(tpos.y));\n"
-		"  finalColor = color * alpha;\n"
-		"}\n";
+	// 	"void main() {\n"
+	// 	"  float alpha = min(tscale - abs(tpos.x * (2.f * tscale) - tscale), 1.f - abs(tpos.y));\n"
+	// 	"  finalColor = color * alpha;\n"
+	// 	"}\n";
+	static const char *vertexCode = R"(
+// vertex line shader
+
+uniform vec2 scale;
+
+uniform vec2 start;
+uniform vec2 end;
+uniform float width;
+
+in vec2 vert;
+out vec2 pos;
+
+void main() {
+    vec2 unit = normalize(end - start);
+    vec2 origin = vert.y > 0.0 ? start : end;
+    pos = origin + vec2(unit.y, -unit.x) * vert.x * width - unit * width * vert.y;
+    gl_Position = vec4(pos / scale, 0, 1);
+    gl_Position.y = -gl_Position.y;
+    gl_Position.xy *= 2.0;
+}
+)";
+
+	static const char *fragmentCode = R"(
+// fragment line shader
+precision mediump float;
+
+uniform vec2 start;
+uniform vec2 end;
+uniform float width;
+uniform vec4 color;
+
+in vec2 pos;
+out vec4 finalColor;
+
+float udSegment(vec2 p, vec2 a, vec2 b) {
+    vec2 ba = b-a;
+    vec2 pa = p-a;
+    float h = clamp(dot(pa,ba)/dot(ba,ba), 0.0, 1.0);
+    return length(pa-h*ba);
+}
+float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {
+    float l = length(b-a);
+    vec2  d = (b-a)/l;
+    vec2  q = (p-(a+b)*0.5);
+          q = mat2(d.x,-d.y,d.y,d.x)*q;
+          q = abs(q)-vec2(l,th)*0.5;
+    return length(max(q,0.0)) + min(max(q.x,q.y),0.0);
+}
+void main() {
+    float alpha = clamp(1.0 - sdOrientedBox(pos, start, end, width), 0.0, 1.0);
+    finalColor = color * alpha;
+}
+)";
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
 	startI = shader.Uniform("start");
-	lengthI = shader.Uniform("len");
+	endI = shader.Uniform("end");
 	widthI = shader.Uniform("width");
 	colorI = shader.Uniform("color");
 
@@ -86,9 +139,9 @@ void LineShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	GLfloat vertexData[] = {
-		0.f, -1.f,
+		-1.f, -1.f,
 		1.f, -1.f,
-		0.f,  1.f,
+		-1.f,  1.f,
 		1.f,  1.f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
@@ -111,19 +164,17 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 
-	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+	GLfloat scale[2] = {static_cast<GLfloat>(Screen::Width()), static_cast<GLfloat>(Screen::Height())};
 	glUniform2fv(scaleI, 1, scale);
 
 	GLfloat start[2] = {static_cast<float>(from.X()), static_cast<float>(from.Y())};
 	glUniform2fv(startI, 1, start);
 
-	Point v = to - from;
-	Point u = v.Unit() * width;
-	GLfloat length[2] = {static_cast<float>(v.X()), static_cast<float>(v.Y())};
-	glUniform2fv(lengthI, 1, length);
+	GLfloat end[2] = {static_cast<float>(to.X()), static_cast<float>(to.Y())};
+	glUniform2fv(endI, 1, end);
 
-	GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
-	glUniform2fv(widthI, 1, w);
+	// GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
+	glUniform1f(widthI, width);
 
 	glUniform4fv(colorI, 1, color.Get());
 
