@@ -352,10 +352,10 @@ target_sources(EndlessSkyLib PRIVATE
 	image/ImageBuffer.h
 	image/ImageSet.cpp
 	image/ImageSet.h
-	images/Mask.cpp
-	images/Mask.h
-	images/MaskManager.cpp
-	images/MaskManager.h
+	image/Mask.cpp
+	image/Mask.h
+	image/MaskManager.cpp
+	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
 	image/SpriteSet.cpp

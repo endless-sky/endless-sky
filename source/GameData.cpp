@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
-#include "images/MaskManager.h"
+#include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "audio/Music.h"
