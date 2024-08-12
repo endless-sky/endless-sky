@@ -31,6 +31,7 @@ namespace {
 	GLint endI;
 	GLint widthI;
 	GLint colorI;
+	GLint capI;
 
 	GLuint vao;
 	GLuint vbo;
@@ -78,6 +79,7 @@ uniform vec2 scale;
 uniform vec2 start;
 uniform vec2 end;
 uniform float width;
+uniform int cap;
 
 in vec2 vert;
 out vec2 pos;
@@ -86,7 +88,7 @@ void main() {
     vec2 unit = normalize(end - start);
     vec2 origin = vert.y > 0.0 ? start : end;
     float widthOffset = width + 1;
-    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * widthOffset * vert.y;
+    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * (cap == 1 ? widthOffset : 1) * vert.y;
     gl_Position = vec4(pos / scale, 0, 1);
     gl_Position.y = -gl_Position.y;
     gl_Position.xy *= 2.0;
@@ -101,6 +103,7 @@ uniform vec2 start;
 uniform vec2 end;
 uniform float width;
 uniform vec4 color;
+uniform int cap;
 
 in vec2 pos;
 out vec4 finalColor;
@@ -120,7 +123,13 @@ float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {
     return length(max(q,0.0)) + min(max(q.x,q.y),0.0);
 }
 void main() {
-    float alpha = clamp(1.0 - sdOrientedBox(pos, start, end, width), 0.0, 1.0);
+    float dist;
+    if(cap == 1) {
+        dist = width - udSegment(pos, start, end);
+    } else {
+        dist = 1. - sdOrientedBox(pos, start, end, width);
+    }
+    float alpha = clamp(dist, 0.0, 1.0);
     finalColor = color * alpha;
 }
 )";
@@ -131,6 +140,7 @@ void main() {
 	endI = shader.Uniform("end");
 	widthI = shader.Uniform("width");
 	colorI = shader.Uniform("color");
+	capI = shader.Uniform("cap");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -157,7 +167,7 @@ void main() {
 
 
 
-void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color)
+void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, Cap capKind)
 {
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
@@ -179,6 +189,8 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 	glUniform4fv(colorI, 1, color.Get());
 
+	glUniform1i(capI, static_cast<GLint>(capKind));
+
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	glBindVertexArray(0);
@@ -188,7 +200,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
-		const Color &color, const double dashLength, double spaceLength)
+		const Color &color, const double dashLength, double spaceLength, Cap capKind)
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
@@ -200,8 +212,9 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 		spaceLength *= length / (segments * patternLength);
 	}
 	spaceLength /= 2.;
+	float capOffset = capKind == Cap::Rounded ? width : 0.;
 	for(int i = 0; i < segments; ++i)
-		Draw(from + unit * ((i * length) / segments + spaceLength),
-			from + unit * (((i + 1) * length) / segments - spaceLength),
-			width, color);
+		Draw(from + unit * ((i * length) / segments + spaceLength + capOffset),
+			from + unit * (((i + 1) * length) / segments - spaceLength - capOffset),
+			width, color, capKind);
 }
