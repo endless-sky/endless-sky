@@ -91,7 +91,7 @@ namespace {
 	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(extension)
+		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(<extension>)
 		size_t i = NameEnd(path);
 
 		// If the name contains a frame index, it must be separated from the name
