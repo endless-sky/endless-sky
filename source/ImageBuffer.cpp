@@ -16,18 +16,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageBuffer.h"
 
 #include "File.h"
+#include "text/Format.h"
 #include "Logger.h"
 
 #include <jpeglib.h>
 #include <png.h>
 
 #include <cstdio>
+#include <set>
 #include <stdexcept>
 #include <vector>
 
 using namespace std;
 
 namespace {
+	const set<string> PNG_EXTENSIONS{"png"};
+	const set<string> JPG_EXTENSIONS{"jpg", "jpeg", "jpe"};
+
 	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
@@ -154,8 +159,9 @@ void ImageBuffer::ShrinkToHalfSize()
 bool ImageBuffer::Read(const string &path, int frame)
 {
 	// First, make sure this is a supported file.
-	bool isPNG = (path.ends_with(".png") || path.ends_with(".PNG"));
-	bool isJPG = (path.ends_with(".jpg") || path.ends_with(".JPG") || path.ends_with(".jpeg") || path.ends_with(".JPEG"));
+	string extension = Format::LowerCase(path.substr(path.find_last_of('.')));
+	bool isPNG = PNG_EXTENSIONS.contains(extension);
+	bool isJPG = JPG_EXTENSIONS.contains(extension);
 
 	if(!isPNG && !isJPG)
 		return false;
@@ -167,17 +173,17 @@ bool ImageBuffer::Read(const string &path, int frame)
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
-	int pos = path.find_last_of('.');
-	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
-		pos -= 3;
+	string name = path.substr(0, path.find_last_of('.'));
+	Format::ReplaceAll(name, "@2x", "");
+	int pos = name.size();
 	while(--pos)
-		if(path[pos] < '0' || path[pos] > '9')
+		if(name[pos] < '0' || name[pos] > '9')
 			break;
 	// Special case: if the image is already in premultiplied alpha format,
 	// there is no need to apply premultiplication here.
-	if(path[pos] != '=')
+	if(name[pos] != '=')
 	{
-		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
+		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2))
 			Premultiply(*this, frame, additive);
 	}

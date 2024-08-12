@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageSet.h"
 
+#include "text/Format.h"
 #include "GameData.h"
 #include "ImageBuffer.h"
 #include "Logger.h"
@@ -42,13 +43,10 @@ namespace {
 		if(lastDot == string::npos)
 			return 0;
 
-		// Get the name of the file, without the extension and the @2x label.
+		// Get the name of the file, without the extension and the @2x or @sw label.
 		string base = path.substr(0, lastDot);
-		if(base.ends_with("@2x"))
-			base = base.substr(0, base.length() - 3);
-		// In addition, more characters may be taken up by a mask label.
-		if(base.ends_with("@sw"))
-			base = base.substr(0, base.length() - 3);
+		Format::ReplaceAll(base, "@2x", "");
+		Format::ReplaceAll(base, "@sw", "");
 
 		// This should never happen, but just in case:
 		if(base.empty())
@@ -68,13 +66,13 @@ namespace {
 	// Determine whether the given path is to an @2x image.
 	bool Is2x(const string &path)
 	{
-		return path.substr(NameEnd(path)).find("@2x") != string::npos;
+		return path.find("@2x") != string::npos;
 	}
 
 	// Determine whether the given path is to a swizzle mask.
 	bool IsSwizzleMask(const string &path)
 	{
-		return path.substr(NameEnd(path)).find("@sw") != string::npos;
+		return path.find("@sw") != string::npos;
 	}
 
 	// Determine whether the given path or name is to a sprite for which a
@@ -146,12 +144,6 @@ namespace {
 				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
-
-	string ToLowerCase(std::string str)
-	{
-		std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c){ return std::tolower(c); });
-		return str;
-	}
 }
 
 
@@ -163,7 +155,7 @@ bool ImageSet::IsImage(const string &path)
 		return false;
 
 	string ext = path.substr(path.find_last_of('.') + 1);
-	return SUPPORTED_EXTENSIONS.contains(ToLowerCase(ext));
+	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(ext));
 }
 
 
