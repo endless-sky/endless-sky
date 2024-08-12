@@ -48,8 +48,10 @@ public:
 	// Get the list of jumps + fuel to take to get to the destination.
 	std::vector<std::pair<const System *, int>> FuelCosts() const;
 
+
 private:
 	void Init(const DistanceMap &distance);
+
 
 private:
 	// The final planned route. plan.front() is the destination.

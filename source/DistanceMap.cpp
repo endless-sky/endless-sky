@@ -63,9 +63,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 		return;
 
 	if(center)
-	{
 		this->center = center;
-	}
 	else if(flagship->IsEnteringHyperspace())
 		this->center = flagship->GetTargetSystem();
 	else
@@ -85,7 +83,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 DistanceMap::DistanceMap(const System &center, const System &destination, const PlayerInfo *player)
 	: player(player), center(&center), destination(&destination), useWormholes(true)
 {
-	if(player != nullptr)
+	if(player)
 		Init(player->Flagship());
 	else
 		Init();

@@ -304,8 +304,6 @@ namespace {
 		return fuel < route.RequiredFuel();
 	}
 
-
-
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
