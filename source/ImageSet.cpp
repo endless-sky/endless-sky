@@ -39,7 +39,7 @@ namespace {
 	// Get the character index where the sprite name in the given path ends.
 	size_t NameEnd(const string &path)
 	{
-		auto lastDot = path.find_last_of('.');
+		size_t lastDot = path.find_last_of('.');
 		if(lastDot == string::npos)
 			return 0;
 

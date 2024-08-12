@@ -175,7 +175,7 @@ bool ImageBuffer::Read(const string &path, int frame)
 	// the last character before the frame number (if one is specified).
 	string name = path.substr(0, path.find_last_of('.'));
 	Format::ReplaceAll(name, "@2x", "");
-	int pos = name.size();
+	size_t pos = name.size();
 	while(--pos)
 		if(name[pos] < '0' || name[pos] > '9')
 			break;
