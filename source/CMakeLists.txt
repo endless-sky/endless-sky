@@ -50,6 +50,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CollisionSet.cpp
 	CollisionSet.h
 	CollisionType.h
+	Color.cpp
+	Color.h
 	Command.cpp
 	Command.h
 	ConditionSet.cpp
@@ -172,6 +174,10 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
+	Mask.cpp
+	Mask.h
+	MaskManager.cpp
+	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -334,8 +340,6 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/BatchDrawList.h
 	shader/BatchShader.cpp
 	shader/BatchShader.h
-	shader/Color.cpp
-	shader/Color.h
 	shader/DrawList.cpp
 	shader/DrawList.h
 	shader/FillShader.cpp
@@ -344,10 +348,6 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/FogShader.h
 	shader/LineShader.cpp
 	shader/LineShader.h
-	shader/Mask.cpp
-	shader/Mask.h
-	shader/MaskManager.cpp
-	shader/MaskManager.h
 	shader/OutlineShader.cpp
 	shader/OutlineShader.h
 	shader/PointerShader.cpp

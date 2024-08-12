@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
-#include "shader/Color.h"
+#include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"

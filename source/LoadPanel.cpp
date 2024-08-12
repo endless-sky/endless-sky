@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LoadPanel.h"
 
-#include "shader/Color.h"
+#include "Color.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "shader/MaskManager.h"
+#include "MaskManager.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Font.h"
 
 #include "alignment.hpp"
-#include "../shader/Color.h"
+#include "../Color.h"
 #include "DisplayText.h"
 #include "../ImageBuffer.h"
 #include "../Point.h"

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "shader/Color.h"
+#include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "shader/FillShader.h"

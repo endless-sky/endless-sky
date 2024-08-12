@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
-#include "shader/Mask.h"
+#include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "pi.h"

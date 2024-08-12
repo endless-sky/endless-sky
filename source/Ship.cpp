@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
-#include "shader/Mask.h"
+#include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"

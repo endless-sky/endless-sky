@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FillShader.h"
 
-#include "Color.h"
+#include "../Color.h"
 #include "../Point.h"
 #include "../Screen.h"
 #include "Shader.h"

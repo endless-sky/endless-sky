@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AmmoDisplay.h"
 
-#include "shader/Color.h"
+#include "Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"

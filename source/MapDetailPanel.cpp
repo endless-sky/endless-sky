@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
-#include "shader/Color.h"
+#include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"

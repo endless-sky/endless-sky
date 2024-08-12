@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MessageLogPanel.h"
 
 #include "text/alignment.hpp"
-#include "shader/Color.h"
+#include "Color.h"
 #include "Command.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"

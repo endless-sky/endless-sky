@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
-#include "shader/Color.h"
+#include "Color.h"
 #include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"

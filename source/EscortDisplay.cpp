@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "EscortDisplay.h"
 
-#include "shader/Color.h"
+#include "Color.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"

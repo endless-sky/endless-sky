@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 
 #include "CategoryList.h"
-#include "shader/Color.h"
+#include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"

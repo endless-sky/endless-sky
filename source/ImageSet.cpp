@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "ImageBuffer.h"
 #include "Logger.h"
-#include "shader/Mask.h"
-#include "shader/MaskManager.h"
+#include "Mask.h"
+#include "MaskManager.h"
 #include "Sprite.h"
 
 #include <algorithm>

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ItemInfoDisplay.h"
 
 #include "text/alignment.hpp"
-#include "shader/Color.h"
+#include "Color.h"
 #include "shader/FillShader.h"
 #include "text/FontSet.h"
 #include "GameData.h"

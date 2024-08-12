@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AsteroidField.h"
 #include "shader/BatchDrawList.h"
 #include "CollisionSet.h"
-#include "shader/Color.h"
+#include "Color.h"
 #include "Command.h"
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
