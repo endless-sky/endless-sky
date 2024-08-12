@@ -159,7 +159,7 @@ void ImageBuffer::ShrinkToHalfSize()
 bool ImageBuffer::Read(const string &path, int frame)
 {
 	// First, make sure this is a supported file.
-	string extension = Format::LowerCase(path.substr(path.find_last_of('.')));
+	string extension = Format::LowerCase(path.substr(path.find_last_of('.') + 1));
 	bool isPNG = PNG_EXTENSIONS.contains(extension);
 	bool isJPG = JPG_EXTENSIONS.contains(extension);
 
