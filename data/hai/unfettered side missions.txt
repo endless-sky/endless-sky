@@ -356,10 +356,6 @@ mission "Hai Legacy 3"
 				decline
 			`After your ship is disabled, one of the Unfettered ships hails you. "You have lost the challenge, but we didn't expect much from a human like you. We will repair your ship for a fair bribe, but you better land at one of our worlds and return it to us with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. Today, you've failed us. Maybe someday you will prove yourself otherwise."`
-	to fail
-		# Fails after you launch after fleeing so the ship spawns.
-		not "flagship landed"
-		has "unfettered: fled with the relic"
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		clear "old reputation: Hai (Unfettered)"
