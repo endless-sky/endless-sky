@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg"};
+	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "jpe"};
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
