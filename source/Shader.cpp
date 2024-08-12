@@ -120,7 +120,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		}
 		if(glsl.find("GLSL ES") != std::string::npos)
 		{
-			version += " es";
+			version = "#version 300 es";
 		}
 		version += '\n';
 	}
