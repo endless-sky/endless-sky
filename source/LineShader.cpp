@@ -85,7 +85,8 @@ out vec2 pos;
 void main() {
     vec2 unit = normalize(end - start);
     vec2 origin = vert.y > 0.0 ? start : end;
-    pos = origin + vec2(unit.y, -unit.x) * vert.x * width - unit * width * vert.y;
+    float widthOffset = width + 1;
+    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * widthOffset * vert.y;
     gl_Position = vec4(pos / scale, 0, 1);
     gl_Position.y = -gl_Position.y;
     gl_Position.xy *= 2.0;
