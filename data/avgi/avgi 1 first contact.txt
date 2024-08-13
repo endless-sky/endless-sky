@@ -857,7 +857,7 @@ mission "Avgi: Twilight Escape 1"
 			choice
 				"Don't worry about it."
 				"I'm glad I was able to help."
-			`	"No, really. I was expecting to die back there, with those Avgi. Six years... I don't know how to thank you, but if you're ever in the area and you need anything don't hesistate to give me a call." With that, he shakes your hand and sets off in the direction Sora and Darius went, toward Vinci's spaceport.`
+			`	"No, really. I was expecting to die back there, with those Avgi. Six years... I don't know how to thank you, but if you're ever in the area and you need anything don't hesitate to give me a call." With that, he shakes your hand and sets off in the direction Sora and Darius went, toward Vinci's spaceport.`
 
 
 mission "Avgi: Twilight Escape 2"

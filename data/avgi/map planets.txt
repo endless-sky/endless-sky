@@ -483,7 +483,7 @@ planet "Navigeo Yards"
 planet "Ergastirio Station"
 	attributes avgi "avgi diaspora" "twilight guard" military
 	landscape land/station50
-	description `When Consonance researchers' need for plentiful space and isolation outgrew what was available on Peripheria or Navigeo, dedicated as they were to habitation and shipbuilding respectively, this mid-sized station was built to accomodate a state-of-the-art collection of laboratory facilities. The work here is largely aimed towards weapons research, a necessary consequence of the fight against the Aberrant.`
+	description `When Consonance researchers' need for plentiful space and isolation outgrew what was available on Peripheria or Navigeo, dedicated as they were to habitation and shipbuilding respectively, this mid-sized station was built to accommodate a state-of-the-art collection of laboratory facilities. The work here is largely aimed towards weapons research, a necessary consequence of the fight against the Aberrant.`
 	description `	The facilities are surprisingly comfortable for what you might expect from a research station, a deliberate attempt to boost the productivity of the scientists that live and work here. Labs for all sorts of applied energistics, nuclear research, and even hyperspace experimentation form wings around the central habitation core, which is home to tens of thousands of scientists and engineers as well as a sizable support staff.`
 	spaceport `Ergastirio's spaceport is small, but well-equipped, with the facilities to handle special nuclear material and fragile scientific instrumentation alike. These constitute most of the goods offloaded here, which the station's laboratories require a steady supply of.`
 	government "Avgi (Twilight Guard)"
