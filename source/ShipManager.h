@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_MANAGER_H_
-#define SHIP_MANAGER_H_
+#pragma once
 
 #include <map>
 #include <memory>
@@ -62,7 +61,3 @@ private:
 	bool requireOutfits = false;
 	bool takeOutfits = false;
 };
-
-
-
-#endif

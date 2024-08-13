@@ -1293,9 +1293,14 @@ interface "bank"
 
 
 interface "mission" bottom
+	visible if "has description"
 	sprite "ui/mission"
 		align bottom
-	
+	visible if "!has description"
+	sprite "ui/mission empty"
+		align bottom
+
+	visible
 	label "cargo space free:"
 		center -130 -85
 	string "cargo free"
@@ -1567,6 +1572,11 @@ interface "info panel"
 
 interface "message log"
 	value "width" 570
+
+	visible if "empty"
+	label "(The message log is empty.)"
+		from 300 0 left
+		color medium
 
 
 

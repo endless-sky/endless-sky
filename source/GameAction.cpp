@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameAction.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -58,7 +58,7 @@ namespace {
 		string message;
 		if(isSingle)
 		{
-			char c = tolower(nameWas.front());
+			char c = tolower(static_cast<unsigned char>(nameWas.front()));
 			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
 			message = (isVowel ? "An " : "A ");
 		}
@@ -422,7 +422,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.contains(mission.Identifier()))
 				player.FailMission(mission);
 	}
 	if(failCaller && caller)

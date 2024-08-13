@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "FighterHitHelper.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -115,22 +116,22 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
-		if(lifetime > -100)
+		if(lifetime > -1000)
 		{
-			// This projectile died a "natural" death. Create any death effects
-			// and submunitions.
+			// This projectile didn't die in a collision. Create any death effects.
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, position, velocity, angle);
 
 			for(const auto &it : weapon->Submunitions())
-				for(size_t i = 0; i < it.count; ++i)
-				{
-					const Weapon *const subWeapon = it.weapon;
-					Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
-							subWeapon->InaccuracyDistribution());
-					projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
-				}
+				if(lifetime > -100 ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
+					for(size_t i = 0; i < it.count; ++i)
+					{
+						const Weapon *const subWeapon = it.weapon;
+						Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
+								subWeapon->InaccuracyDistribution());
+						projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
+					}
 		}
 		MarkForRemoval();
 		return;
@@ -147,7 +148,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	{
 		target = TargetPtr().get();
 		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
-				(!targetDisabled && target->IsDisabled() && target->CanBeCarried()))
+				(!targetDisabled && !FighterHitHelper::IsValidTarget(target)))
 		{
 			BreakTarget();
 			target = nullptr;
@@ -300,7 +301,7 @@ void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hit
 	if(--hitsRemaining == 0)
 	{
 		clip = intersection;
-		lifetime = -100;
+		lifetime = -1000;
 	}
 }
 
@@ -325,7 +326,7 @@ bool Projectile::IsDead() const
 // This projectile was killed, e.g. by an anti-missile system.
 void Projectile::Kill()
 {
-	lifetime = 0;
+	lifetime = -100;
 }
 
 
