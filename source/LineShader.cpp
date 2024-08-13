@@ -41,68 +41,68 @@ namespace {
 
 void LineShader::Init()
 {
-	static const char *vertexCode = R"(
-// vertex line shader
+	static const char *vertexCode =
+		"// vertex line shader\n"
+		"\n"
+		"uniform vec2 scale;\n"
+		"\n"
+		"uniform vec2 start;\n"
+		"uniform vec2 end;\n"
+		"uniform float width;\n"
+		"uniform int cap;\n"
+		"\n"
+		"in vec2 vert;\n"
+		"out vec2 pos;\n"
+		"\n"
+		"void main() {\n"
+		"    vec2 unit = normalize(end - start);\n"
+		"    vec2 origin = vert.y > 0.0 ? start : end;\n"
+		"    float widthOffset = width + 1;\n"
+		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * (cap == 1 ? widthOffset : 1) * vert.y;\n"
+		"    gl_Position = vec4(pos / scale, 0, 1);\n"
+		"    gl_Position.y = -gl_Position.y;\n"
+		"    gl_Position.xy *= 2.0;\n"
+		"}\n";
 
-uniform vec2 scale;
-
-uniform vec2 start;
-uniform vec2 end;
-uniform float width;
-uniform int cap;
-
-in vec2 vert;
-out vec2 pos;
-
-void main() {
-    vec2 unit = normalize(end - start);
-    vec2 origin = vert.y > 0.0 ? start : end;
-    float widthOffset = width + 1;
-    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * (cap == 1 ? widthOffset : 1) * vert.y;
-    gl_Position = vec4(pos / scale, 0, 1);
-    gl_Position.y = -gl_Position.y;
-    gl_Position.xy *= 2.0;
-}
-    )";
-
-	static const char *fragmentCode = R"(
-// fragment line shader
-precision mediump float;
-
-uniform vec2 start;
-uniform vec2 end;
-uniform float width;
-uniform vec4 color;
-uniform int cap;
-
-in vec2 pos;
-out vec4 finalColor;
-
-float udSegment(vec2 p, vec2 a, vec2 b) {
-    vec2 ba = b-a;
-    vec2 pa = p-a;
-    float h = clamp(dot(pa,ba)/dot(ba,ba), 0.0, 1.0);
-    return length(pa-h*ba);
-}
-float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {
-    float l = length(b-a);
-    vec2  d = (b-a)/l;
-    vec2  q = (p-(a+b)*0.5);
-          q = mat2(d.x,-d.y,d.y,d.x)*q;
-          q = abs(q)-vec2(l,th)*0.5;
-    return length(max(q,0.0)) + min(max(q.x,q.y),0.0);
-}
-void main() {
-    float dist;
-    if(cap == 1) {
-        dist = width - udSegment(pos, start, end);
-    } else {
-        dist = 1. - sdOrientedBox(pos, start, end, width);
-    }
-    float alpha = clamp(dist, 0.0, 1.0);
-    finalColor = color * alpha;
-}
-    )";
+	static const char *fragmentCode =
+		"// fragment line shader\n"
+		"precision mediump float;\n"
+		"\n"
+		"uniform vec2 start;\n"
+		"uniform vec2 end;\n"
+		"uniform float width;\n"
+		"uniform vec4 color;\n"
+		"uniform int cap;\n"
+		"\n"
+		"in vec2 pos;\n"
+		"out vec4 finalColor;\n"
+		"\n"
+		"float udSegment(vec2 p, vec2 a, vec2 b) {\n"
+		"    vec2 ba = b-a;\n"
+		"    vec2 pa = p-a;\n"
+		"    float h = clamp(dot(pa,ba)/dot(ba,ba), 0.0, 1.0);\n"
+		"    return length(pa-h*ba);\n"
+		"}\n"
+		"\n"
+		"float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {\n"
+		"    float l = length(b-a);\n"
+		"    vec2  d = (b-a)/l;\n"
+		"    vec2  q = (p-(a+b)*0.5);\n"
+		"          q = mat2(d.x,-d.y,d.y,d.x)*q;\n"
+		"          q = abs(q)-vec2(l,th)*0.5;\n"
+		"    return length(max(q,0.0)) + min(max(q.x,q.y),0.0);\n"
+		"}\n"
+		"\n"
+		"void main() {\n"
+		"    float dist;\n"
+		"    if(cap == 1) {\n"
+		"        dist = width - udSegment(pos, start, end);\n"
+		"    } else {\n"
+		"        dist = 1. - sdOrientedBox(pos, start, end, width);\n"
+		"    }\n"
+		"    float alpha = clamp(dist, 0.0, 1.0);\n"
+		"    finalColor = color * alpha;\n"
+		"}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
