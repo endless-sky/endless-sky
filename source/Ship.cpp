@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Minable.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -49,6 +50,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstring>
 #include <limits>
 #include <sstream>
 
@@ -242,6 +244,9 @@ void Ship::Load(const DataNode &node)
 
 	government = GameData::PlayerGovernment();
 
+	// Populate the ConditionStore.
+	RegisterDerivedConditions();
+
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
 	bool hasEngine = false;
@@ -262,7 +267,7 @@ void Ship::Load(const DataNode &node)
 					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
-		if(key == "sprite")
+		if(key.find("sprite") != string::npos)
 			LoadSprite(child);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
@@ -932,7 +937,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("plural", pluralModelName);
 		if(!noun.empty())
 			out.Write("noun", noun);
-		SaveSprite(out);
+		SaveSprite(out, "sprite", true);
 		if(thumbnail)
 			out.Write("thumbnail", thumbnail->Name());
 
@@ -1447,6 +1452,13 @@ void Ship::SetGovernment(const Government *government)
 
 
 
+void Ship::SetIsPlayerFlagship(bool isFlagship)
+{
+	isPlayerFlagship = isFlagship;
+}
+
+
+
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -1648,6 +1660,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Don't let the ship do anything else if it is being destroyed.
 	if(!isBeingDestroyed)
 	{
+		// Check if any conditions for trigger sprites are met.
+		CheckTriggers();
 		// See if the ship is entering hyperspace.
 		// If it is, nothing more needs to be done here.
 		if(DoHyperspaceLogic(visuals))
@@ -2041,23 +2055,32 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon)
 		{
-			if(weapon->AntiMissile())
-				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(weapon->TractorBeam())
-				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
-			else if(firingCommands.HasFire(i))
+
+			bool isAntiMissile = weapon->AntiMissile();
+			bool isTractorBeam = weapon->TractorBeam();
+			if(CanFire(weapon))
 			{
-				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
-				if(cloak)
+				if(isAntiMissile)
+					antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+				else if(isTractorBeam)
+					tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
+				else if(firingCommands.HasFire(i))
 				{
-					double cloakingFiring = attributes.Get("cloaked firing");
-					// Any negative value means shooting does not decloak.
-					if(cloakingFiring > 0)
-						cloak -= cloakingFiring;
+					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+					if(cloak)
+					{
+						double cloakingFiring = attributes.Get("cloaked firing");
+						// Any negative value means shooting does not decloak.
+						if(cloakingFiring > 0)
+							cloak -= cloakingFiring;
+					}
 				}
 			}
+			// Calculate max range of fireable weapons.
+			if(!isAntiMissile && !isTractorBeam)
+				weaponRange = max(weaponRange, weapon->Range());
 		}
 	}
 
@@ -2254,7 +2277,7 @@ bool Ship::CanLand() const
 bool Ship::CannotAct(ActionType actionType) const
 {
 	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
-		(actionType == ActionType::COMMUNICATION && !Crew());
+		(actionType == ActionType::COMMUNICATION && !Crew()) || !ReadyForAction();
 	if(cannotAct)
 		return true;
 	bool canActCloaked = true;
@@ -2404,7 +2427,10 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 			return false;
 	}
 
-	return true;
+	// For any ship that is not the player flagship,
+	// jumps should not be restricted by animation if they are not in the system.
+	return (GetState() == BodyState::JUMPING && ReadyForAction()) ||
+		!(isPlayerFlagship || isInSystem);
 }
 
 
@@ -3556,6 +3582,11 @@ bool Ship::CanFire(const Weapon *weapon) const
 	if(slowness < -weapon->FiringSlowing())
 		return false;
 
+	// Prevent ships that need to indicate to fire from firing their primary weapon outside of the FIRING state.
+	const SpriteParameters *firingSprite = GetSpriteParameters(BodyState::FIRING);
+	if(firingSprite->GetParameters().indicateReady && GetState() != BodyState::FIRING)
+		return false;
+
 	return true;
 }
 
@@ -3763,6 +3794,59 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+// Register ship based conditions.
+void Ship::RegisterDerivedConditions()
+{
+	// Read-only conditions.
+	auto &&hullProvider = conditions.GetProviderNamed("hull");
+	hullProvider.SetGetFunction([this](const string &name) { return hull; });
+
+	auto &&shieldsProvider = conditions.GetProviderNamed("shields");
+	shieldsProvider.SetGetFunction([this](const string &name) { return shields; });
+
+	auto &&outfitInstalledProvider = conditions.GetProviderPrefixed("outfit (installed): ");
+	outfitInstalledProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
+		if(!outfit)
+			return 0;
+		return OutfitCount(outfit);
+	});
+
+	auto &&jumpUsingProvider = conditions.GetProviderPrefixed("jump (type): ");
+	jumpUsingProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		string jumpType = name.substr(strlen("jump (type): "));
+		if(targetSystem)
+		{
+			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
+			bool jumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE) && jumpType == "jump";
+			bool hyperDrive = (jumpUsed.first == JumpType::HYPERDRIVE) && jumpType == "hyper";
+			return jumpDrive || hyperDrive ? 1 : 0;
+		}
+		return 0;
+	});
+
+	auto &&weaponFiringProvider = conditions.GetProviderPrefixed("weapon (firing): ");
+	weaponFiringProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("weapon (firing): ")));
+		if(!outfit || OutfitCount(outfit) <= 0)
+			return 0;
+		const vector<Hardpoint> &hardpoints = armament.Get();
+		for(unsigned i = 0; i < hardpoints.size(); ++i)
+		{
+			const Weapon *weapon = hardpoints[i].GetOutfit();
+			string weaponName = hardpoints[i].GetOutfit()->TrueName();
+			if(weaponName == outfit->TrueName() && CanFire(weapon) && firingCommands.HasFire(i))
+				return 1;
+		}
+		return 0;
+	});
 }
 
 
@@ -4016,7 +4100,11 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(ship.HasDeployOrder())
+				{
 					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
+					// Fighters enter the launching state here.
+					ship.SetState(BodyState::LAUNCHING);
+				}
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -4168,9 +4256,7 @@ void Ship::DoGeneration()
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Update ship supply levels.
-	if(isDisabled)
-		PauseAnimation();
-	else
+	if(!isDisabled)
 	{
 		// Ramscoops work much better when close to the system center.
 		// Carried fighters can't collect fuel or energy this way.
@@ -4216,6 +4302,8 @@ void Ship::DoGeneration()
 				heat -= activeCooling * min(1., Heat());
 		}
 	}
+	else if(!HasSpriteFor(BodyState::DISABLED))
+		PauseAnimation();
 
 	// Don't allow any levels to drop below zero.
 	shields = max(0., shields);
@@ -4467,6 +4555,8 @@ bool Ship::DoLandingLogic()
 	if(!landingPlanet && zoom >= 1.f)
 		return false;
 
+	static const double ZOOM_TRIGGER_START = .03f;
+
 	// Don't apply external acceleration while landing.
 	acceleration = Point();
 
@@ -4481,12 +4571,15 @@ bool Ship::DoLandingLogic()
 	// just slowly refuel.
 	if(landingPlanet && zoom)
 	{
+		SetState(BodyState::LANDING);
+
 		// Move the ship toward the center of the planet while landing.
 		if(GetTargetStellar())
 			position = .97 * position + .03 * GetTargetStellar()->Position();
 		zoom -= landingSpeed;
 		if(zoom < 0.f)
 		{
+			FinishStateTransition();
 			// If this is not a special ship, it ceases to exist when it
 			// lands on a true planet. If this is a wormhole, the ship is
 			// instantly transported.
@@ -4508,11 +4601,23 @@ bool Ship::DoLandingLogic()
 
 			zoom = 0.f;
 		}
+		// Ship should be small enough to not notice any sprite changes.
+		else if(zoom <= ZOOM_TRIGGER_START)
+			ShowDefaultSprite(true);
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
 			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 	{
+		// Ship is moving upwards to space.
+		if(zoom <= ZOOM_TRIGGER_START)
+		{
+			// If the ship was transitioning states while landing, finish any animation transitions.
+			FinishStateTransition();
+		}
+		else if(zoom >= ZOOM_TRIGGER_START)
+			ShowDefaultSprite(false);
+		SetState(BodyState::LAUNCHING);
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
 		landingPlanet = nullptr;
@@ -4534,16 +4639,23 @@ void Ship::DoInitializeMovement()
 {
 	// If you're disabled, you can't initiate landing or jumping.
 	if(isDisabled)
+	{
+		SetState(BodyState::DISABLED);
 		return;
+	}
 
 	if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetStellar()->GetPlanet();
-	else if(commands.Has(Command::JUMP) && IsReadyToJump())
+	else if(commands.Has(Command::JUMP))
 	{
-		hyperspaceSystem = GetTargetSystem();
-		pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(hyperspaceSystem);
-		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE);
-		hyperspaceFuelCost = jumpUsed.second;
+		SetState(BodyState::JUMPING);
+		if(IsReadyToJump())
+		{
+			hyperspaceSystem = GetTargetSystem();
+			pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(hyperspaceSystem);
+			isUsingJumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE);
+			hyperspaceFuelCost = jumpUsed.second;
+		}
 	}
 }
 
@@ -4788,68 +4900,122 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 void Ship::StepTargeting()
 {
+	static const double WEAPONS_RANGE_MULTIPLIER = 1.25;
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
+	bool hasPrimary = commands.Has(Command::PRIMARY);
+	bool canBeCarriedNow = CanBeCarried() && !(target && (target == GetShipToAssist() || isYours));
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
 	// Unless the player uses a fighter as their flagship and is boarding an enemy ship.
-	if(CanBeCarried() && !(target && (target == GetShipToAssist() || isYours)))
+	if(canBeCarriedNow)
 		target = GetParent();
-	if(target && !isDisabled)
+	if(!isDisabled)
 	{
-		Point dp = (target->position - position);
-		double distance = dp.Length();
-		Point dv = (target->velocity - velocity);
-		double speed = dv.Length();
-		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
-		if(isBoarding && !CanBeCarried())
+		if(target)
 		{
-			if(!target->IsDisabled() && government->IsEnemy(target->government))
-				isBoarding = false;
-			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
-					|| target->GetSystem() != GetSystem())
-				isBoarding = false;
-		}
-		if(isBoarding && !pilotError)
-		{
-			Angle facing = angle;
-			bool left = target->Unit().Cross(facing.Unit()) < 0.;
-			double turn = left - !left;
+			Point dp = (target->position - position);
+			double distance = dp.Length();
+			Point dv = (target->velocity - velocity);
+			double speed = dv.Length();
+			isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 
-			// Check if the ship will still be pointing to the same side of the target
-			// angle if it turns by this amount.
-			facing += TurnRate() * turn;
-			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
-			if(left != stillLeft)
-				turn = 0.;
-			angle += TurnRate() * turn;
-
-			velocity += dv.Unit() * .1;
-			position += dp.Unit() * .5;
-
-			if(distance < 10. && speed < 1. && ((CanBeCarried() && government == target->government) || !turn))
+			bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
+			if(!commands.Has(Command::JUMP))
 			{
-				if(cloak && !attributes.Get("cloaked boarding"))
+				if(!hasPrimary)
 				{
-					// Allow the player to get all the way to the end of the
-					// boarding sequence (including locking on to the ship) but
-					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
-					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
-				}
-				else
-				{
-					isBoarding = false;
-					bool isEnemy = government->IsEnemy(target->government);
-					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+					bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
+						|| !weaponRange;
+
+					if(activeEnemyTarget && target->isInSystem && targetInRange)
 					{
-						Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
-							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
-						GetTargetShip()->SelfDestruct();
+						SetState(BodyState::FIRING);
 					}
 					else
-						hasBoarded = true;
+						SetState(BodyState::FLYING);
 				}
+				else
+					SetState(BodyState::FIRING);
+			}
+			// Fighter/Drone is boarding/landing.
+			if(isBoarding && canBeCarriedNow)
+			{
+				SetState(BodyState::LANDING);
+			}
+			if(isBoarding && !CanBeCarried())
+			{
+				if(!target->IsDisabled() && government->IsEnemy(target->government))
+					isBoarding = false;
+				else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
+						|| target->GetSystem() != GetSystem())
+					isBoarding = false;
+			}
+			if(isBoarding && !pilotError)
+			{
+				Angle facing = angle;
+				bool left = target->Unit().Cross(facing.Unit()) < 0.;
+				double turn = left - !left;
+
+				// Check if the ship will still be pointing to the same side of the target
+				// angle if it turns by this amount.
+				facing += TurnRate() * turn;
+				bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
+				if(left != stillLeft)
+					turn = 0.;
+				angle += TurnRate() * turn;
+
+				velocity += dv.Unit() * .1;
+				position += dp.Unit() * .5;
+
+				if(distance < 10. && speed < 1. && ((CanBeCarried() && government == target->government) || !turn))
+				{
+					if(cloak && !attributes.Get("cloaked boarding"))
+					{
+						// Allow the player to get all the way to the end of the
+						// boarding sequence (including locking on to the ship) but
+						// not to actually board, if they are cloaked, except if they have "cloaked boarding".
+						if(isYours)
+							Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
+					}
+					else
+					{
+						isBoarding = false;
+						bool isEnemy = government->IsEnemy(target->government);
+						if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+						{
+							Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
+								+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
+							GetTargetShip()->SelfDestruct();
+						}
+						else
+							hasBoarded = true;
+					}
+				}
+			}
+		}
+		else
+		{
+			shared_ptr<Minable> target = GetTargetAsteroid();
+
+			if(!commands.Has(Command::JUMP))
+			{
+				if(!hasPrimary)
+				{
+					if(target && !isDisabled)
+					{
+						bool targetInRange = target->Position().Distance(Position()) < WEAPONS_RANGE_MULTIPLIER * weaponRange
+											|| !weaponRange;
+						// If in range, or the weapon range hasn't been calculated yet.
+						if(targetInRange)
+							SetState(BodyState::FIRING);
+					}
+					// If the ship has no target but is still flying around and doesn't want to jump.
+					else
+						SetState(BodyState::FLYING);
+				}
+				else
+					SetState(BodyState::FIRING);
 			}
 		}
 	}
