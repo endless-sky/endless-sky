@@ -270,6 +270,8 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 	SECTION( "Large numbers" ) {
 		CHECK( Format::Number(1e15) == "1,000,000,000,000,000" );
 		CHECK( Format::Number(1e15 + 1) == "1e+15" );
+		CHECK( Format::Number(1e19) == "1e+19" );
+		CHECK( Format::Number(-1e19) == "-1e+19" );
 	}
 }
 
