@@ -43,17 +43,17 @@ void LineShader::Init()
 {
 	static const char *vertexCode =
 		"// vertex line shader\n"
-		"\n"
+
 		"uniform vec2 scale;\n"
-		"\n"
+
 		"uniform vec2 start;\n"
 		"uniform vec2 end;\n"
 		"uniform float width;\n"
 		"uniform int cap;\n"
-		"\n"
+
 		"in vec2 vert;\n"
 		"out vec2 pos;\n"
-		"\n"
+
 		"void main() {\n"
 		"    vec2 unit = normalize(end - start);\n"
 		"    vec2 origin = vert.y > 0.0 ? start : end;\n"
@@ -67,32 +67,32 @@ void LineShader::Init()
 	static const char *fragmentCode =
 		"// fragment line shader\n"
 		"precision mediump float;\n"
-		"\n"
+
 		"uniform vec2 start;\n"
 		"uniform vec2 end;\n"
 		"uniform float width;\n"
 		"uniform vec4 color;\n"
 		"uniform int cap;\n"
-		"\n"
+
 		"in vec2 pos;\n"
 		"out vec4 finalColor;\n"
-		"\n"
+
 		"float udSegment(vec2 p, vec2 a, vec2 b) {\n"
-		"    vec2 ba = b-a;\n"
-		"    vec2 pa = p-a;\n"
-		"    float h = clamp(dot(pa,ba)/dot(ba,ba), 0.0, 1.0);\n"
-		"    return length(pa-h*ba);\n"
+		"    vec2 ba = b - a;\n"
+		"    vec2 pa = p - a;\n"
+		"    float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);\n"
+		"    return length(pa - h * ba);\n"
 		"}\n"
-		"\n"
+
 		"float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {\n"
-		"    float l = length(b-a);\n"
-		"    vec2  d = (b-a)/l;\n"
-		"    vec2  q = (p-(a+b)*0.5);\n"
-		"          q = mat2(d.x,-d.y,d.y,d.x)*q;\n"
-		"          q = abs(q)-vec2(l,th)*0.5;\n"
-		"    return length(max(q,0.0)) + min(max(q.x,q.y),0.0);\n"
+		"    float l = length(b - a);\n"
+		"    vec2  d = (b - a) / l;\n"
+		"    vec2  q = (p - (a + b) * 0.5);\n"
+		"          q = mat2(d.x, -d.y, d.y, d.x) * q;\n"
+		"          q = abs(q) - vec2(l, th) * 0.5;\n"
+		"    return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0);\n"
 		"}\n"
-		"\n"
+
 		"void main() {\n"
 		"    float dist;\n"
 		"    if(cap == 1) {\n"
@@ -137,7 +137,7 @@ void LineShader::Init()
 
 
 
-void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, Cap capKind)
+void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap)
 {
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
@@ -159,7 +159,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 	glUniform4fv(colorI, 1, color.Get());
 
-	glUniform1i(capI, static_cast<GLint>(capKind));
+	glUniform1i(capI, static_cast<GLint>(roundCap));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
@@ -170,7 +170,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
-		const Color &color, const double dashLength, double spaceLength, Cap capKind)
+		const Color &color, const double dashLength, double spaceLength, bool roundCap)
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
@@ -182,9 +182,9 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 		spaceLength *= length / (segments * patternLength);
 	}
 	spaceLength /= 2.;
-	float capOffset = capKind == Cap::Rounded ? width : 0.;
+	float capOffset = roundCap ? width : 0.;
 	for(int i = 0; i < segments; ++i)
 		Draw(from + unit * ((i * length) / segments + spaceLength + capOffset),
 			from + unit * (((i + 1) * length) / segments - spaceLength - capOffset),
-			width, color, capKind);
+			width, color, roundCap);
 }

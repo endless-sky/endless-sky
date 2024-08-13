@@ -24,14 +24,8 @@ class Point;
 // the start and end of the line are not.
 class LineShader {
 public:
-	enum class Cap : int {
-		Solid = 0,
-		Rounded = 1,
-	};
-
-public:
 	static void Init();
-	static void Draw(const Point &from, const Point &to, float width, const Color &color, Cap capKind = Cap::Rounded);
+	static void Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap = true);
 	static void DrawDashed(const Point &from, const Point &to, const Point &unit, float width, const Color &color,
-		double dashLength, double spaceLength, Cap capKind = Cap::Rounded);
+		double dashLength, double spaceLength, bool roundCap = true);
 };
