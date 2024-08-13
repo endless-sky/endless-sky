@@ -2043,6 +2043,7 @@ person "Danau"
 	frequency 100
 	personality
 		heroic unconstrained opportunistic
+	formation "Vic"
 	phrase
 		word
 			"When you want to stop your ship, press shift and reverse."
