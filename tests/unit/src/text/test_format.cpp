@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../../source/DataNode.h"
 
 // ... and any system includes needed for the test file.
-#include <limits>
 #include <string>
 
 namespace { // test namespace
