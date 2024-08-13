@@ -276,10 +276,9 @@ namespace {
 string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
-	int64_t absolute = abs(value);
 
 	// If the value is above one quadrillion, show it in scientific notation.
-	if(absolute > SCIENTIFIC_THRESHOLD)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		ostringstream out;
 		out.precision(3);
@@ -290,6 +289,8 @@ string Format::Credits(int64_t value)
 	// Reserve enough space for something like "-123.456M".
 	string result;
 	result.reserve(8);
+
+	int64_t absolute = abs(value);
 
 	// Handle numbers bigger than a million.
 	static const vector<char> SUFFIX = {'T', 'B', 'M'};
