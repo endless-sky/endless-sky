@@ -665,7 +665,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		return result;
 	}
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(conditions, subs, origin, jumps, payload);
+		result.npcActions[it.first] = it.second.Instantiate(player.Conditions(), subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
