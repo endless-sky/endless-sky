@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_SET_H_
-#define SPRITE_SET_H_
+#pragma once
 
 #include <set>
 #include <string>
@@ -34,13 +33,5 @@ public:
 	// Inspect the sprite map and warn if some images contain no data.
 	static void CheckReferences();
 
-
-private:
-	// Only SpriteQueue is allowed to modify the sprites.
-	friend class SpriteQueue;
 	static Sprite *Modify(const std::string &name);
 };
-
-
-
-#endif

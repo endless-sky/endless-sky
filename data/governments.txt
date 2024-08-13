@@ -180,6 +180,20 @@ government "Coalition"
 	"hostile hail" "hostile coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
+government "Conlatio"
+	swizzle 0
+	color 0.5 0.0 0.9
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 0
+	"attitude toward"
+		"Hicemus" 1
+		"Incipias Civilian" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias friendly disabled"
+	"hostile disabled hail" "incipias hostile disabled"
+
 government "Deep"
 	"display name" "Deep Security"
 	swizzle 0
@@ -204,6 +218,14 @@ government "Deep Security"
 government "Derelict"
 	"fine" 0
 
+government "Derelict (Boardable)"
+	swizzle 10
+	"display name" "Derelict"
+	"player reputation" -1
+	"default attitude" -.01
+	"crew attack" 0
+	"crew defense" 0
+
 government "Drak"
 	swizzle 0
 	color 1 1 1
@@ -220,6 +242,17 @@ government "Drak (Hostile)"
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
+
+government "Drak (Incipias)"
+	"display name" "Drak"
+	swizzle 0
+	color 1 1 1
+	"player reputation" 1
+	"fine" 0
+	"attitude toward"
+		"Hicemus" 1
+		"Conlatio" 1
+		"Incipias Civilian" 1
 
 government "Elenctic Commune"
 	swizzle 0
@@ -450,6 +483,36 @@ government "Gegno Vi (Duelist B)"
 		board 0.5
 		destroy 0.3
 
+# Gegno governments that are always hostile but do not affect the original governments.
+government "Gegno Vi (Combative)"
+	swizzle 0
+	"display name" "Gegno Vi"
+	language "Gegno"
+	color "governments: Gegno Vi"
+
+	"player reputation" -1
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		"Gegno Scin" -0.01
+		"Gegno Scin (Combative)" -0.01
+	"penalty for"
+		assist 0
+
+government "Gegno Scin (Combative)"
+	swizzle 18
+	"display name" "Gegno Scin"
+	language "Gegno"
+	color "governments: Gegno Scin"
+
+	"player reputation" -1
+	"crew attack" 1.2
+	"crew defense" 1.4
+	"attitude toward"
+		"Gegno Vi" -0.01
+		"Gegno Vi (Combative)" -0.01
+	"penalty for"
+		assist 0
 
 color "governments: Hai" .86 .48 .79
 
@@ -690,6 +753,34 @@ government "Heliarch Test Dummy"
 	"hostile disabled hail" "disabled heliarch test dummy"
 	"bribe" 0
 	"fine" 0
+
+government "Hicemus"
+	swizzle 0
+	color 0.6 0.0 0.4
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 0
+	"attitude toward"
+		"Conlatio" 1
+		"Incipias Civilian" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias friendly disabled"
+	"hostile disabled hail" "incipias hostile disabled"
+
+government "Incipias Civilian"
+	swizzle 0
+	color 0.5 0.0 0.9
+	"crew attack" .2
+	"crew defense" 1
+	language "Incups"
+	"player reputation" 0
+	"attitude toward"
+		"Hicemus" 1
+		"Conlatio" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias friendly disabled"
+	"hostile disabled hail" "incipias hostile disabled"
 
 color "governments: Independent" .78 .36 .36
 
@@ -953,26 +1044,6 @@ government "Merchant"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
 
-government "Merchant (Hijacked)"
-	"display name" "Merchant"
-	swizzle 5
-	"attitude toward"
-		"Republic" -.01
-		"Syndicate" -.01
-	"player reputation" 1
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"friendly disabled hail" "friendly disabled"
-	"hostile hail" "hostile pirate"
-	"hostile disabled hail" "hostile disabled"
-	"penalty for"
-		assist 0
-		disable 0
-		board 0
-		capture 0
-		destroy 0
-		atrocity 0
-
 government "Militia"
 	swizzle 2
 	color "governments: Free"
@@ -1067,9 +1138,9 @@ government "Pirate"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
-	"friendly disabled hail" "friendly disabled"
+	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
-	"hostile disabled hail" "hostile disabled"
+	"hostile disabled hail" "hostile disabled pirate"
 	raid "pirate raid"
 
 government "Pirate (Devil-Run Gang)"
@@ -1090,9 +1161,9 @@ government "Pirate (Devil-Run Gang)"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
-	"friendly disabled hail" "friendly disabled"
+	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
-	"hostile disabled hail" "hostile disabled"
+	"hostile disabled hail" "hostile disabled pirate"
 
 government "Pirate (Rival)"
 	"display name" "Pirate"
@@ -1110,9 +1181,9 @@ government "Pirate (Rival)"
 	"bribe" 0
 	"fine" 0
 	"friendly hail" "friendly pirate"
-	"friendly disabled hail" "friendly disabled"
+	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
-	"hostile disabled hail" "hostile disabled"
+	"hostile disabled hail" "hostile disabled pirate"
 	raid "pirate raid"
 
 color "governments: Pug" .99 .89 .70
@@ -1161,6 +1232,7 @@ government "Quarg"
 		"Quarg (Hai)" 1
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
+		"Quarg (Incipias)" 1
 		"Merchant" .01
 		"Kor Efret" .01
 		"Kor Mereti" -.01
@@ -1194,12 +1266,55 @@ government "Quarg (Hai)"
 		"Quarg" 1
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
+		"Quarg (Incipias)" 1
 		"Merchant" .01
 		"Kor Sestor" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
+	"death sentence" "quarg imprisonment"
+	"hostile hail" "hostile quarg"
+	"hostile disabled hail" "hostile quarg"
+	atrocities
+		"Nanotech Battery"
+		"Antimatter Core"
+		"Quarg Skylance"
+		"Quarg Anti-Missile"
+		"Intrusion Countermeasures"
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
+
+government "Quarg (Incipias)"
+	swizzle 0
+	color .88 .77 0
+	"display name" "Quarg"
+
+	"player reputation" 1
+	"attitude toward"
+		"Quarg" 1
+		"Quarg (Hai)" 1
+		"Quarg (Kor Efret)" 1
+		"Quarg (Gegno)" 1
+	"custom penalties for"
+		"Conlatio"
+			disable 10
+			board 10
+			capture 20
+			destroy 40
+		"Incipias Civilian"
+			disable 10
+			board 10
+			capture 20
+			destroy 40
+		"Hicemus"
+			disable 10
+			board 10
+			capture 20
+			destroy 40
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
@@ -1225,6 +1340,7 @@ government "Quarg (Kor Efret)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Gegno)" 1
+		"Quarg (Incipias)" 1
 		"Kor Efret" 1
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
@@ -1255,6 +1371,7 @@ government "Quarg (Gegno)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Kor Efret)" 1
+		"Quarg (Incipias)" 1
 		"Gegno" 0.1
 	"foreign penalties for"
 		"Gegno"
@@ -1450,6 +1567,22 @@ government "Sheragi"
 	"player reputation" 1
 	"crew attack" 0
 	"crew defense" 0
+
+government "Silent Ones"
+	"display name" "Indigenous Lifeform"
+	swizzle 0
+	"player reputation" 1
+	"bribe" 0
+	"fine" 0
+	"crew attack" 0
+	"crew defense" 0
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
 
 government "Smuggler (Hai Trafficker)"
 	swizzle 5

@@ -142,7 +142,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 
 		damage.shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * ship.MaxShields())
-			* ScaleType(0., 0., attributes.Get("shield protection"));
+			* ScaleType(0., 0., attributes.Get("shield protection")
+			+ (ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
 	}
@@ -152,9 +153,11 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
 	damage.shieldDamage *= shieldFraction;
+	double totalHullProtection = (ScaleType(1., 0., attributes.Get("hull protection") +
+		(ship.IsCloaked() ? attributes.Get("cloak hull protection") : 0.)));
 	damage.hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * ship.MaxHull())
-		* ScaleType(1., 0., attributes.Get("hull protection"));
+		* totalHullProtection;
 	double hull = ship.HullUntilDisabled();
 	if(damage.hullDamage > hull)
 	{
@@ -162,7 +165,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * ship.MaxHull())
-			* ScaleType(1., 0., attributes.Get("hull protection"))
+			* totalHullProtection
 			* (1. - hullFraction);
 	}
 	damage.energyDamage = (weapon.EnergyDamage()

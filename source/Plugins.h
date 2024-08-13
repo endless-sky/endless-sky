@@ -13,19 +13,37 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLUGINS_H_
-#define PLUGINS_H_
+#pragma once
 
 #include "Set.h"
 
+#include <set>
 #include <string>
 
 
 
 // Represents information about a single plugin.
 struct Plugin {
+	struct PluginDependencies {
+		// Checks if there are any dependencies of any kind.
+		bool IsEmpty() const;
+		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
+		bool IsValid() const;
+
+		// The game version to match against.
+		std::string gameVersion;
+		// The plugins, if any, which are required by this plugin.
+		std::set<std::string> required;
+		// The plugins, if any, which are designed to work with this plugin but aren't required.
+		std::set<std::string> optional;
+		// The plugins, if any, which can't be run alongside this plugin.
+		std::set<std::string> conflicted;
+	};
+
 	// Checks whether this plugin is valid, i.e. whether it exists.
 	bool IsValid() const;
+	// Constructs a description of the plugin from its name, tags, dependencies, etc.
+	std::string CreateDescription() const;
 
 	// The name that identifies this plugin.
 	std::string name;
@@ -33,6 +51,16 @@ struct Plugin {
 	std::string path;
 	// The about text, if any, of this plugin.
 	std::string aboutText;
+	// The version of the plugin as defined by the authors.
+	std::string version;
+
+	// The set of tags which are used to categorize the plugin.
+	std::set<std::string> tags;
+	// The set of people who have created the plugin.
+	std::set<std::string> authors;
+
+	// Other plugins which are required for, optional for, or conflict with this plugin.
+	PluginDependencies dependencies;
 
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
@@ -64,7 +92,3 @@ public:
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
 };
-
-
-
-#endif

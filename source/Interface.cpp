@@ -159,7 +159,7 @@ void Interface::Draw(const Information &info, Panel *panel) const
 // Check if a named point exists.
 bool Interface::HasPoint(const string &name) const
 {
-	return points.count(name);
+	return points.contains(name);
 }
 
 
@@ -496,14 +496,14 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 		return;
 
 	float frame = info.GetSpriteFrame(name);
+	Point unit = info.GetSpriteUnit(name);
 	if(isOutline)
 	{
 		Color color = (isColored ? info.GetOutlineColor() : Color(1.f, 1.f));
-		Point unit = info.GetSpriteUnit(name);
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame);
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame, unit);
 }
 
 
@@ -536,7 +536,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 
-	// Fill in any undefined state colors. By default labels are "medium", strings
+	// Fill in any undefined state colors. By default, labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
 	if(!color[Element::ACTIVE] && !buttonKey)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
@@ -729,7 +729,6 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		}
 	}
 }
-
 
 
 

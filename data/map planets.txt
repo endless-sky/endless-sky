@@ -44,6 +44,12 @@ planet Ada
 		threshold 8000
 		fleet "Large Republic" 16
 
+planet Aera
+	attributes "requires: gaslining"
+	landscape land/aera
+	description `Aera is a large tidally locked ice giant close to its parent star. Its methane atmosphere is dominated by a titanic hurricane covering the dayside half of the planet, the result of tidal forces drawing streams of air and clouds into a planet-sized storm. The eye of the hurricane is surprisingly calm, but the heat of perpetual daylight drives temperatures higher than what is habitable for most life.`
+	government Uninhabited
+
 planet Aetuah
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa30
@@ -81,6 +87,7 @@ planet Albatross
 	outfitter "Ammo South"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	"required reputation" -20
 	security 0
 	tribute 400
@@ -249,11 +256,22 @@ planet "Ashy Reach"
 	"required reputation" 15
 	security 0.1
 
+planet Asphodel
+	attributes uninhabited
+	landscape land/haze0
+	description `Despite being nominally in the habitable zone, this planet's surface is continually scorched by the stars of Gacrux and their solar flares, steadily blasting away its atmosphere. A joint venture of three major universities from Chiron has placed some small research stations in orbit around Asphodel, and while they provide valuable insights into the nature and behavior of flare stars, the researchers generally avoid descending to the planet's surface unnecessarily. None of the stations appear to have the facilities to service your ship, however.`
+	government Uninhabited
+
 planet Aspiration
 	attributes pirate
 	landscape land/sea17-harro
 	description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years, it might look similar to Earth before it was paved over. For now, it's a sparse world with a single major town built on a promontory, overlooking a wide river mouth which carries runoff from continental scale glaciers to the sea.`
 	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
+
+planet Asterus
+	attributes moon uninhabited
+	landscape land/snow23
+	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on other, more habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that Parliament designate the entire moon as a nature preserve in the 2900s.`
 
 planet Avalon
 	landscape land/sea22
@@ -367,6 +385,7 @@ planet Bloodsea
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
 	tribute 200
@@ -494,6 +513,8 @@ planet "Buccaneer Bay"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
 	security 0
 	tribute 800
 		threshold 3000
@@ -592,6 +613,13 @@ planet "Carbuncle Station"
 	tribute 2700
 		threshold 5500
 		fleet "Large Republic" 10
+
+planet Cassandra
+	attributes paradise uninhabited
+	landscape land/mars4
+	description `In the late 2300s, Cassandra was the subject of one of the most ambitious terraforming projects performed by humanity up to that point; an attempt to rapidly modify its biosphere and jumpstart the process of making the planet more than perfect for human habitation.`
+	description `	The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occurred during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
+	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
 
 planet "Ceaseless Toil"
 	attributes factory saryd uninhabited
@@ -767,6 +795,8 @@ planet Covert
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
 	"required reputation" 10
 	bribe 0.1
 	security 0
@@ -801,6 +831,12 @@ planet Cyife
 	landscape land/snow13
 	description `This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no signs of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before.`
 	government Uninhabited
+
+planet "Dagon Station"
+	attributes core station uninhabited
+	landscape land/station50
+	description `Originally built in the 25th century as a corporate military outpost, Dagon Station's notoriety stems from its past as a privateer base; its infamous mercenary fleets all but decided the victors in the constant wars in this region during the 26th and 27th centuries. As those conflicts subsided, those privateers began turning towards piracy. Their influence was brought to an end when a fleet from Earth took control of the station, later becoming a military base for the fledgling Republic.`
+	description `	In the 29th century, control of Dagon Station was passed to the Syndicate, who eventually vacated the station due to its age. Local laws prevent landing on Dagon Station without a permit, but the Syndicate doesn't pay close attention to whether or not anybody lands here, anyway.`
 
 planet Dancer
 	attributes research south
@@ -839,7 +875,7 @@ planet Darkrest
 	attributes hai station uninhabited
 	landscape land/station34
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	An immediately obvious difference between this station and the others in Hai space is the presence of a solemn plaque that takes up a sizable portion of the nearest wall. Upon further inspection, it seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
+	description `	The presence of a solemn plaque that takes up a sizable portion of the nearest wall seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -870,6 +906,7 @@ planet "Deadman's Cove"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	bribe 0.03
 	security 0
 	tribute 600
@@ -880,7 +917,7 @@ planet Deep
 	attributes fishing south
 	landscape land/sea3
 	description `Deep is a sparsely populated world of small island archipelagos surrounded by vast expanses of empty ocean. There is not enough land for any large cities or serious industry to emerge, so most of the inhabitants live in small fishing villages. The climate is temperate and Earth-like, but the sunlight is somewhat dimmer than you are used to.`
-	description `	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, no trace of the original colony was found.`
+	description `	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperspace travel the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, no trace of the original colony was found.`
 	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 	security 0.1
 	tribute 500
@@ -1608,6 +1645,8 @@ planet Freedom
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
 	tribute 500
@@ -1646,6 +1685,7 @@ planet Gagarin
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	bribe 0.07
 	security 0
 	tribute 800
@@ -1664,7 +1704,7 @@ planet "Garden Empyreal"
 	attributes "coalition station" kimek shipping tourism wealthy
 	landscape land/clouds_03
 	description `Not including the trio of Quarg ringworlds, this is the largest megastructure in Coalition space. Arrays of gigantic metal pyramids lay at every angle, each nearly a dozen times larger than the average space station. Spread out over the planet's upper atmosphere, these so-called "hubs" are connected by long, inextensible, and extremely sturdy wires, ensuring no part of the structure is destabilized.`
-	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
+	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently, about two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
 	spaceport `When not in "harvest season," the hubs are relatively quiet, and serve mostly as a tourist destination. Many come for the unique, close-up view of a sea of clouds, swarming with furious storms and dotted with more of the silver pyramids in the distance.`
 	spaceport `	Each hub shares the same overall design in general, but the decoration pieces, services, and local amenities for each one have grown in their own way over the centuries. The only common thing they have between all of them is the signature restaurant, which serves a variety of dishes, drinks, and even desserts all based on the processed, scooped up produce.`
 	"required reputation" 20
@@ -1725,7 +1765,7 @@ planet Geyser
 	security 0.3
 	tribute 1300
 		threshold 3500
-		fleet "Large Militia" 20
+		fleet "Small Republic" 20
 
 planet Ghneoe
 	attributes uninhabited
@@ -1773,6 +1813,12 @@ planet Glaze
 	tribute 1700
 		threshold 3500
 		fleet "Large Militia" 25
+
+planet Gliese
+	attributes "requires: gaslining"
+	landscape land/gliese
+	description `A shine of magenta emanates from the depths of this planet, suggesting the presence of a strong heat source in the core of Gliese. While the color is pleasant at first, its brightness gets nauseating over time. The winds are calm and no storms are in sight, and if you look closely you can see creatures that look like very small jellyfish emitting a soft glow.`
+	government Uninhabited
 
 planet "Glittering Ice"
 	attributes frozen saryd
@@ -1874,7 +1920,9 @@ planet Greenrock
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Pirate Outfits"
-	outfitter "South Pirate Outfits Advanced"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
+	outfitter "South Pirate Advanced"
 	bribe 0.05
 	security 0
 	tribute 1800
@@ -1988,6 +2036,8 @@ planet Haven
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
 	outfitter "Northern Explorers"
 	bribe 0.03
 	security 0
@@ -2159,6 +2209,12 @@ planet Humanika
 		threshold 8000
 		fleet Quarg 2
 
+planet Humo
+	attributes "requires: gaslining"
+	landscape land/humo
+	description `Interestingly, this gas giant is not only made from gaseous elements; sand is being pushed around in the air and accumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for the presence of sand in the upper atmosphere. While the sand itself is not dangerous, it may pile up in your ship's mechanics if you stay here for too long.`
+	government Uninhabited
+
 planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
@@ -2213,6 +2269,12 @@ planet "Iemn Eitch"
 	bribe 0
 	security 0
 
+planet "Igna"
+	landscape land/igna
+	attributes "requires: gaslining"
+	description `This gas giant has an extremely hot atmosphere due to its proximity to the system's star. The clouds emit a warm, orange glow, enabling good visibility even in deeper layers. Occasional storms break the almost peaceful atmosphere, raging violently but disappearing as quickly as they appeared.`
+	government Uninhabited
+
 planet "Illbo Avo"
 	attributes bunrodea military moon
 	landscape land/badlands6
@@ -2237,6 +2299,13 @@ planet "Illbo Elo"
 	"required reputation" 25
 	bribe 0
 	security 0
+
+planet Independance
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa20
+	description `Independance, originally named for a document of emancipation for an ancient nation on old Earth, became of interest to the Confederated Councils when they began to consider plans for a defense against an invasion. One such plan involved deploying "cloud bunkers" into the gas giants of the Outer Rim from which an uprising could be staged against a foreign occupier. Independance, given its fitting name and position near Alvorada, was chosen as the testing site for this project.`
+	description `	Of the few prototype bunkers that were deployed, none ever survived the surface of Independance; the Councils simply didn't have the technology for such an ambitious project. The official who proposed the plan was shortly shuffled out of the Politburo, and what remained of the bunkers were left quietly in the depths of the gas giant.`
+	government Uninhabited
 
 planet Ingot
 	attributes "dirt belt" mining moon volcanic
@@ -2293,6 +2362,8 @@ planet Jakobsen
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Ammo South"
 	security 0
 	tribute 300
@@ -2418,6 +2489,9 @@ planet "Kort Kehai"
 	spaceport `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
 	"required reputation" 2
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 3
 
 planet "Kort Vek'kri"
 	attributes wanderer
@@ -2426,10 +2500,13 @@ planet "Kort Vek'kri"
 	spaceport `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
 	"required reputation" 2
 	bribe 0
+	tribute 500
+		threshold 2000
+		fleet "Wanderer Defense" 4
 
 planet "Kraken Station"
 	attributes "near earth" station
-	landscape land/station8
+	landscape land/station49
 	music ambient/machinery
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains.`
 	description `	Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
@@ -2540,6 +2617,7 @@ planet Longjump
 	spaceport `The spaceport consists of four large towers connected by bridges, with openings for hangars in the sides. The upper stories are for landing ships; business takes place down below, at street level.`
 	spaceport `	You can recognize the natives immediately because they are almost all taller than you, a result of growing up in a low-gravity environment.`
 	outfitter "Basic Outfits"
+	outfitter "Kraz Basics"
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
 	security 0.1
@@ -2755,6 +2833,13 @@ planet "Mereti Station"
 	bribe 0
 	security 0
 
+planet Methuselah
+	attributes "requires: gaslining"
+	landscape land/methuselah
+	description `This world feels ancient, and the air is calm as if the last storm ended millennia ago. A continuous deep sound from below seems to tell a story from the early days of the universe - memories of hotter and faster times.`
+	description `	From time to time giant creatures can be seen floating through the atmosphere in total peace.`
+	government Uninhabited
+
 planet "Miblulub's Plenty"
 	attributes arach farming folklore longcows
 	landscape land/fields7
@@ -2846,10 +2931,11 @@ planet Mordente-Bridi
 	shipyard "Southern Pirates"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
-	outfitter "Basic Weapons"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
-	outfitter "South Pirate Outfits Advanced"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
+	outfitter "South Pirate Advanced"
 	bribe 0.08
 	security 0
 	tribute 600
@@ -2910,6 +2996,13 @@ planet Nepheritis
 	landscape land/clouds_08
 	description `An unusually large ice giant, Nepheritis is well-known among the denizens of the Paradise Planets for its prodigious rains of large diamonds. While this phenomenon is common on most ice giants of sufficient size, Nepheritis is a scientific curiosity due to the sheer size of the diamonds formed in its atmosphere, with some even becoming large boulders during their plummet into the depths.`
 	description `	While these diamonds are unfortunately not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
+	government Uninhabited
+
+planet Neriene
+	attributes uninhabited
+	landscape land/haze1
+	description `While lacking its iconic ferrous-red color, this planet is eerily similar in conditions to the second planet humanity set foot on, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in eons past.`
+	description `	Even though humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought in the now interstellar human civilization.`
 	government Uninhabited
 
 planet "New Argentina"
@@ -2979,9 +3072,9 @@ planet "New China"
 	spaceport `The "new port" here was built several centuries ago, when the grand but impractical spaceport built by the original settlers had deteriorated to the point where it was no longer usable. This port is much simpler by comparison: just a ring of landing pads of various sizes around a large central building with ten levels of warehouse space accessible by freight elevator.`
 	spaceport `	There are always locals hanging around the port, some of them mere children, who are trying to find a cheap ride off-planet.`
 	outfitter "Common Outfits"
+	outfitter "Lovelace Basics"
+	outfitter "Syndicate Basics"
 	outfitter "Ammo South"
-	outfitter "Delta V Basics"
-	outfitter "Kraz Basics"
 	security 0.1
 	tribute 1400
 		threshold 4000
@@ -3123,6 +3216,8 @@ planet "New Tortuga"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
 	"required reputation" -10
@@ -3250,6 +3345,12 @@ planet Oblivion
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet "Occupas"
+	attributes "requires: gaslining"
+	landscape land/occupas
+	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
+	government Uninhabited
 
 planet Ochrescoop
 	attributes hai station
@@ -3435,6 +3536,17 @@ planet Poisonwood
 		threshold 2000
 		fleet "Large Militia" 7
 
+planet "Pon'tes"
+	landscape land/station16
+	description `Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping.`
+	description `	Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways.`
+	spaceport `The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains.`
+	spaceport `	Most of the ships are delivering minerals, but some also deliver supplies from Redias. In a small area separated from the rest there is a constant buzzing of small transport ships transporting civilians in both directions.`
+	outfitter "Hicemus"
+	shipyard "Hicemus"
+	"required reputation" 10
+	government "Hicemus"
+
 planet Poseidos
 	attributes fishing rim
 	landscape land/sea9
@@ -3481,6 +3593,7 @@ planet Pugglemug
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
 	spaceport `The primary spaceport here is marked by an enormous collection of arches forming an open-air dome. Based on the power cables and devices attached to the sides of the arches, you suspect that the entire dome can be protected by an energy shield if necessary. Inside it, landing platforms jut out from the arches at many different levels.`
 	"required reputation" 2
+	"bribe" 0
 	security 1
 
 planet Pugglequat
@@ -3488,6 +3601,7 @@ planet Pugglequat
 	description `This planet has a handful of Pug cities on it, full of tall, graceful spires and arches. However, most of the land area is either left in its natural state, or in use for mining; it seems to abound in both oil reserves and metal ore. The climate is somewhat cold by human standards, but still quite livable. You are not sure if that is because the Pug were just lucky enough to have a star system with two hospitable planets, or whether they have employed some sort of terraforming.`
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
+	"bribe" 0
 	security 1
 
 planet Pyriphlegethon
@@ -3527,6 +3641,16 @@ planet Rand
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet "Redias"
+	attributes "requires: gaslining"
+	landscape land/redias
+	description `The home planet of the Incipias is ruled by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed.`
+	description `	The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds.`
+	spaceport `Because of the size of their homeworld, the Incipias have built not one but four spaceports. These spaceports are the only platforms on the planet with fixed positions. They were built at an atmospheric level where the planet's storms are not so strong, but they still require a great deal of energy to be held in place.`
+	spaceport `	The spaceports themselves are giant circular platforms with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land at each spaceport at a time.`
+	"required reputation" 10
+	government "Conlatio"
 
 planet Redwatch
 	attributes hai station uninhabited
@@ -3646,6 +3770,13 @@ planet "Ring of Wisdom"
 	"required reputation" 25
 	bribe 0
 	security 0.8
+
+planet "Rowark's Roost"
+	attributes moon uninhabited
+	landscape land/moon1
+	description `Rowark's Roost was once the hideout of one of the most famous privateers of the Southern Rim, Rowark Balois. From this remote moon he became one of the largest players in drug-running and slave trading in the Rim during the early 27th century. The extensive stronghold of hangars and tunnels he built here remains to this day.`
+	description `	In 2655, Rowark was flushed out of his Roost by a combined Rim and Deep fleet in a battle that continues to be studied by every aspirant Navy officer in their tutelage. As you fly over the moon you spy the wrecks of countless ships dotting its surface, but what is most striking is the truly impressive battleship-sized crater that marks the spot where Rowark met his end, doggedly choosing to fight to the very last.`
+	government Uninhabited
 
 planet Ruelogakk
 	attributes "gegno quarg" quarg station
@@ -4110,7 +4241,9 @@ planet "Smuggler's Den"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
-	outfitter "South Pirate Outfits Advanced"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
+	outfitter "South Pirate Advanced"
 	bribe 0.06
 	security 0
 	tribute 400
@@ -4134,7 +4267,7 @@ planet Solace
 	spaceport `	The spaceport serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
 	spaceport `	At the heart of the spaceport are a few bars, plus restaurants representing nearly every style of cuisine that you are familiar with. All the buildings are well maintained; this strikes you as a quite prosperous world, for this section of the galaxy.`
 	outfitter "Delta V Advanced"
-	outfitter "Kraz Basics"
+	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe 0.04
@@ -4168,6 +4301,15 @@ planet Sopoyra
 	"required reputation" 25
 	bribe 0
 	security 0
+
+planet "Spec Inci"
+	attributes "incipias quarg" quarg
+	landscape land/sky7
+	description `This small moon seems to be used mainly as a shipment and processing base, run with the typical efficiency of the Quarg. You wouldn't have even noticed the freighters dropping off large amounts of raw ore for processing if it were not for their large size, as they are surprisingly silent when working. Other ships load the processed materials and fly away.`
+	spaceport `The spaceport is fully automated, and you can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the moon's many hangars. One section of the spaceport is restricted, where a large amount of warships are being lowered into what is presumably a Quarg military base.`
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
 
 planet "Spera Anatrusk"
 	attributes korath
@@ -4251,12 +4393,14 @@ planet Stonebreak
 planet Stormhold
 	attributes core "core pirate" forest frontier pirate
 	landscape land/fog11
-	description `A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
+	description `Stormhold is a cold planet, with a dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
 	spaceport `The spaceport is a large town, with a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
 	bribe 0.03
 	security 0
 	tribute 500
@@ -4277,8 +4421,8 @@ planet Sundive
 	attributes core farming forest frontier research
 	landscape land/water9
 	description `Sundive is largely covered in tropical rainforests and savanna, but with enough open plains that it has also become a major agricultural world. For most of the year, the weather here is quite mild, but tornadoes and massive thunderstorms are not uncommon in the summer months.`
-	description `	Sundive is also home to a large astronomical laboratory with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there.`
-	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the laboratory and telescopes are far beyond the horizon, where incoming ships will not interfere with their operation.`
+	description `	Sundive is also home to a number of research facilities which study the data gathered from the astronomical laboratory on its moon, Taylor.`
+	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the nearest cities are kilometers away, presumably so that its inhabitants aren't subjected to the loud commotion of planetary spaceports and ships coming and going.`
 	spaceport `	The buildings are short and made of wood; even the roofs are clapboard shingles rather than metal or rubber. Several farmers have brought in goods to sell; most of them came in trucks, but you also see a few horse-drawn wagons.`
 	security 0.3
 	tribute 300
@@ -4326,6 +4470,19 @@ planet Swiftsong
 	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels rising up from the promenade into each of the station's main branches. Almost any business or service you could want can be found here - except for an outfitter or shipyard. Apparently there is simply no room, as the docking bay must take up nearly all the station's exterior space to accommodate its massive volume of daily traffic.`
 	bribe 0.1
 	security 0.5
+
+planet Taylor
+	landscape land/moon0
+	attributes research core moon military
+	description `Taylor is home to a large astronomical laboratory, with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there. Because of the laboratory, Taylor has strict landing protocols that ensure your ship doesn't cross the path of the telescopes at any time.`
+	description `	On the other side of the moon the Syndicate has established a substantial military base, as a guard against the pirates in nearby Alcyone.`
+	description `	If you need to repair or refuel in this system, you will need to visit Sundive instead of this moon, as the military base is not open to ships that aren't affiliated with the Syndicate, and the laboratory's small spaceport does not have the facilities to service ships.`
+	"required reputation" 10
+	bribe 0.05
+	security 0.1
+	tribute 1200
+		threshold 3500
+		fleet "Large Syndicate" 7
 
 planet "Tebuteb's Table"
 	attributes arach farming longcows
@@ -4408,6 +4565,8 @@ planet Thule
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
 	bribe 0.05
 	security 0.6
 	tribute 900
@@ -4437,10 +4596,13 @@ planet "Tik Klai"
 	attributes research wanderer
 	landscape land/badlands2
 	description `This world is uncomfortably hot, even for the Wanderers, and so close to its star that the surface is bathed in dangerous levels of ultraviolet light. The few Wanderer installations here are buried underground, with only a few access hatches and storage buildings on the surface.`
-	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
+	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the Wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
 	spaceport `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
 	"required reputation" 35
 	bribe 0
+	tribute 600
+		threshold 3500
+		fleet "Wanderer Defense" 4
 
 planet Tinker
 	attributes factory mining "near earth"
@@ -4469,6 +4631,12 @@ planet Topkapi
 	government Uninhabited
 	security 0
 
+planet Treser
+	attributes "requires: gaslining"
+	landscape land/treser
+	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the light that hits this planet, resulting in an enormous amount of heat in the gas giant's atmosphere. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
+	government Uninhabited
+
 planet Trinket
 	attributes south tourism
 	landscape land/beach3
@@ -4478,9 +4646,11 @@ planet Trinket
 	spaceport `	Many of the starships parked here have scorch marks and dents on their hulls, a sure sign of recent battle. It is likely that some of the people walking through the port are in fact pirates, posing as civilians in order to sell stolen cargo or to take a vacation incognito.`
 	outfitter "Basic Outfits"
 	outfitter "Delta V Basics"
+	outfitter "Kraz Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	bribe 0.02
 	security 0.4
 	tribute 500
@@ -4552,6 +4722,12 @@ planet "Turquoise Four"
 	spaceport `The boats docked in this spaceport city are more numerous than the space ships, and some of them are considerably larger, as well. Almost half of the city is built on piers that extend out into the harbor with broad canals between them, but the largest and fanciest dwellings are on land, built along a ridge of hills that overlook the ocean. The air is full of the cries of gulls and the smell of fish and salt and drying seaweed.`
 	"required reputation" 15
 
+planet "Turra"
+	attributes "requires: gaslining"
+	landscape land/turra
+	description `Turra's thick atmosphere makes this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing the little light that shines on them.`
+	government Uninhabited
+
 planet Twinstar
 	attributes frontier moon south tourism
 	landscape land/lava3
@@ -4573,6 +4749,22 @@ planet "Typhon Station"
 	tribute 500
 		threshold 2000
 		fleet "Large Militia" 8
+
+planet "Ut Divitas"
+	attributes "incipias quarg" quarg
+	landscape land/canyon13
+	description `The surface here is bare, and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract, elegant, and unlike anything humans have ever built.`
+	spaceport `The spaceport is a small one, consisting of only a few landing pads. Ships parked here appear to be mostly civilian, and the few Quarg working here seem to be confused by your presence.`
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
+
+planet "Uye Mpi"
+	attributes uninhabited
+	landscape land/bwerner6
+	description `Spanning lands of dust and bulky rock formations make up a majority of this world's details. However, unlike many other desert worlds, there are many basins of spring water and surprisingly calm weather patterns. The clear blue skies and tame wildlife commonly found on the planet give it a sense of serenity and beauty.`
+	description `	Nearby conflict between the warring Gegno factions often results in engagements within this system, though neither group has yet to commit to any large-scale foundation on the surface of this planet. A majority of skirmishes either occur in orbit above or follow the Gegno to neighboring systems.`
+	government Uninhabited
 
 planet Vail
 	attributes farming paradise tourism
@@ -4629,6 +4821,9 @@ planet "Var' Kar'i'i"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 1700
+		threshold 5000
+		fleet "Wanderer Defense" 7
 
 planet "Var' Kayi"
 	attributes urban wanderer
@@ -4640,6 +4835,9 @@ planet "Var' Kayi"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 4500
+		threshold 12500
+		fleet "Wanderer Defense" 12
 
 planet "Var' Roi"
 	attributes frozen moon research wanderer
@@ -4648,6 +4846,9 @@ planet "Var' Roi"
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
 	"required reputation" 25
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 4
 
 planet "Vara K'chrai"
 	attributes urban wanderer
@@ -4658,6 +4859,9 @@ planet "Vara K'chrai"
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
 	bribe 0
+	tribute 8000
+		threshold 14000
+		fleet "Wanderer Defense" 17
 
 planet "Vara Ke'sok"
 	attributes fishing wanderer
@@ -4666,6 +4870,9 @@ planet "Vara Ke'sok"
 	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
 	"required reputation" 5
 	bribe 0
+	tribute 500
+		threshold 2500
+		fleet "Wanderer Defense" 4
 
 planet "Vara Ke'stai"
 	attributes farming wanderer
@@ -4675,6 +4882,9 @@ planet "Vara Ke'stai"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 650
+		threshold 4300
+		fleet "Wanderer Defense" 3
 
 planet "Vara Kehi'ki"
 	attributes farming research wanderer
@@ -4684,6 +4894,9 @@ planet "Vara Kehi'ki"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 900
+		threshold 3500
+		fleet "Wanderer Defense" 5
 
 planet "Vara Pug"
 	attributes pug
@@ -4704,6 +4917,9 @@ planet "Vara Rakak"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 2300
+		threshold 6500
+		fleet "Wanderer Defense" 5
 
 planet "Varu Ek'lak'lai"
 	attributes mining wanderer
@@ -4714,6 +4930,9 @@ planet "Varu Ek'lak'lai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 1300
+		threshold 3400
+		fleet "Wanderer Defense" 4
 
 planet "Varu K'est"
 	attributes military wanderer
@@ -4724,6 +4943,9 @@ planet "Varu K'est"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 5500
+		fleet "Wanderer Defense" 16
 
 planet "Varu K'prai"
 	attributes oil wanderer
@@ -4733,6 +4955,10 @@ planet "Varu K'prai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 800
+		threshold 1800
+		fleet "Wanderer Defense" 2
+		fleet "Wanderer Freight" 4
 
 planet "Varu Mer'ek"
 	attributes factory wanderer
@@ -4743,6 +4969,9 @@ planet "Varu Mer'ek"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 3200
+		fleet "Wanderer Defense" 3
 
 planet "Varu Tek'kai"
 	attributes factory moon wanderer
@@ -4752,6 +4981,9 @@ planet "Varu Tek'kai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 200
+		threshold 1700
+		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
 	attributes factory wanderer
@@ -4761,6 +4993,9 @@ planet "Varu Tev'kei"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 500
+		threshold 1950
+		fleet "Wanderer Defense" 5
 
 planet Vatican
 	attributes lava uninhabited
@@ -4834,6 +5069,12 @@ planet "Vivid Aether"
 	landscape land/nasa29
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
+	government Uninhabited
+
+planet Vulpa
+	attributes "requires: gaslining"
+	landscape land/vulpa
+	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving; its clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
 	government Uninhabited
 
 planet Warfeed
@@ -5032,6 +5273,8 @@ planet Zenith
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous concrete fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	bribe 0.04
 	security 0
 	tribute 400
@@ -5049,7 +5292,7 @@ planet Zug
 	shipyard "Southbound Basics"
 	shipyard "Southbound Advanced"
 	outfitter "Delta V Advanced"
-	outfitter "Kraz Basics"
+	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe 0.03

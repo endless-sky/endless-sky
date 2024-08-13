@@ -961,7 +961,7 @@ mission "Lunarium: Evacuation 1"
 				`	"Sorry, I'm not available at the moment."`
 					decline
 			label alright
-			`	One of them brings you to the Spire, sending a message as you two head there, and the hatch is opened right as you arrive. They thank you for helping, and rush to board their own ship and depart. You go up the Spire's ramp and meet some more Kimek from the company, who greet you and guide you through the ship. Halfway through a corridor, they stop and ask that you wait there. A different Kimek carring nearly a dozen different devices emerges from a side corridor, and the group begins patting and circling your body with the devices. You ask them what they're doing, but they don't respond. After every single one of the machines has finished its beeps and chirps around you, and the Kimek seem satisfied, they continue on. Surprisingly, they bring you not to the cockpit, but to one of the bunks, where a Kimek is talking with a Saryd man. Once she sees you're there, the Kimek gives a glance to the Saryd, and leaves with the others, leaving you two alone.`
+			`	One of them brings you to the Spire, sending a message as you two head there, and the hatch is opened right as you arrive. They thank you for helping, and rush to board their own ship and depart. You go up the Spire's ramp and meet some more Kimek from the company, who greet you and guide you through the ship. Halfway through a corridor, they stop and ask that you wait there. A different Kimek carrying nearly a dozen different devices emerges from a side corridor, and the group begins patting and circling your body with the devices. You ask them what they're doing, but they don't respond. After every single one of the machines has finished its beeps and chirps around you, and the Kimek seem satisfied, they continue on. Surprisingly, they bring you not to the cockpit, but to one of the bunks, where a Kimek is talking with a Saryd man. Once she sees you're there, the Kimek gives a glance to the Saryd, and leaves with the others, leaving you two alone.`
 			branch lunarium
 				has "joined the lunarium"
 			`	Middle-aged, the Saryd has little hair on his head and a dense beard. "Greetings, human friend. <first> <last> your name is, correct?" You nod. "Apologize I do, for the safety measures experienced, you must have. You see, rather sickly lately, I have been, and while usually fine around Kimek or Arach employees and passengers, wish to try my health against a Saryd or human disease, I did not. But, come to listen of my woes, you have not. Called Elirom, and owner of this company, I am. For those wishing to travel in leisure or for work, provide comfortable ships we do," he explains. "Run into some trouble, one of our ships has. Supposed to transport <bunks> students and teachers back to Second Viridian after their school trip was done, but now waiting for repairs for the ship's malfunctioning outfits, they are. Picked up by <date>, the students must be, so as to not miss their tests, but elsewhere busy, our other ships are. Pick them up in our stead, would you? <payment> from our company, you will receive."`
@@ -1856,6 +1856,8 @@ mission "Lunarium: Questions"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 		not "assisting lunarium"
+	to complete
+		not "assisting heliarchy"
 	to fail
 		or
 			has "joined the heliarchs"
@@ -1865,6 +1867,8 @@ mission "Lunarium: Questions"
 			`As you prepare to land on <origin>, your monitor starts producing a low hum, stops, then starts again. This keeps up for nearly a minute until a message pops up. "Captain <last>, come to trust you our comrades have, thanks to your consistent help to our cause. Interested we are in your continuous support, so that free the Coalition, together we can. Come to <destination> you must. Meet with you, our leaders will, so that discuss an important task with them, you may. Have an available bunk in your ship, you should."`
 			`	The message cuts off shortly after you finish reading it. Your monitor is back to normal, and no humming sound can be heard. You mark <planet> on your map.`
 				accept
+	on visit
+		dialog `You are currently assisting the Heliarchy. Cancel or finish any missions you have for them if you want to join the Lunarium.`
 
 mission "Lunarium: Quarg Interview"
 	name "The Interview"
