@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../../source/DataNode.h"
 
 // ... and any system includes needed for the test file.
+#include <limits>
 #include <string>
 
 namespace { // test namespace
@@ -272,6 +273,8 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(1e15 + 1) == "1e+15" );
 		CHECK( Format::Number(1e19) == "1e+19" );
 		CHECK( Format::Number(-1e19) == "-1e+19" );
+		CHECK( Format::Number(9223372036854775807.) == "9.22e+18" ); // Maximum and minimum values of 64-bit integers
+		CHECK( Format::Number(-9223372036854775808.) == "-9.22e+18" );
 	}
 }
 
