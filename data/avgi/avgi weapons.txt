@@ -148,7 +148,7 @@ outfit "Green Optical Laser"
 	"lasing power" -1
 	weapon
 		"hardpoint sprite" "hardpoint/avgi green laser"
-		sound "disruptor"
+		sound "optical laser"
 		"die effect" "laser ejecta" 4
 		"die effect" "green laser reflection" 30
 		"die effect" "green laser scattering"
@@ -180,7 +180,7 @@ outfit "Blue Optical Laser"
 		"hardpoint sprite" "hardpoint/avgi blue laser"
 		sprite "projectile/avgi laser blue"
 			"frame rate" 1
-		sound "disruptor"
+		sound "optical laser"
 		"hit effect" "laser ejecta" 4
 		"hit effect" "blue laser reflection" 30
 		"hit effect" "blue laser scattering"
@@ -276,7 +276,7 @@ outfit "Ultrarelativistic Electron Beam"
 		"firing scramble" 4.5
 		"reload" 18
 		"burst count" 1
-		"inaccuracy" 3
+		"inaccuracy" 6
 			"narrow"
 		"velocity override" 300
 		"piercing" 0.3
@@ -291,9 +291,9 @@ outfit "Electron Bunch"
 		"hit effect" "nuclear spallation"
 		"velocity" 300
 		"random velocity" -240
-		"lifetime" 6
+		"lifetime" 9
 		"random lifetime" 3
-		"inaccuracy" 0.15
+		"inaccuracy" 0.3
 		"shield damage" 1.2
 		"hull damage" 1.8
 		"ion damage" 0.006
@@ -419,7 +419,7 @@ outfit "Vertical Launch Array"
 	weapon
 		sprite "projectile/nettle"
 			"scale" 0.5
-		sound "finisher"
+		sound "bounce"
 		ammo `"Nettle" KKV`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
@@ -475,9 +475,9 @@ outfit "Nettle Active"
 			"scale" 0.5
 		"hit effect" "missile hit"
 		"live effect" "nettle exhaust" 18000
-		"die effect" "missile death"
+		"die effect" "nettle split" 30
 		"lifetime" 300
-		"split range" 240
+		"split range" 180
 		"acceleration" 0.3
 		"drag" .03
 		"turn" 6
@@ -513,6 +513,14 @@ effect "nettle exhaust"
 		"random start frame"
 		"scale" 0.5
 
+effect "nettle split"
+	sprite "effect/emp spark"
+		"no repeat"
+		"frame rate" 120
+	"sound" clink
+	"lifetime" 60
+	"random angle" 180
+	"random velocity" 15
 
 outfit `"Orchid" Nuclear Missile`
 	series "Avgi: Missiles"
@@ -660,7 +668,7 @@ effect "thermonuclear flash"
 		"no repeat"
 		"frame rate" 30
 		"scale" 2
-	sound "explosion nuke"
+	sound "mcnuke"
 	"lifetime" 15
 	"random angle" 360
 	"random spin" 5
