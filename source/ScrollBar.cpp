@@ -102,6 +102,8 @@ bool ScrollBar::Hover(int x, int y)
 	Point delta = to - from;
 	Point offset = delta * (1.0 - displaySizeFraction) * fraction;
 
+	// Find the distance from a point (p) to the line segment a->b
+	// From https://www.shadertoy.com/view/3tdSDj
 	constexpr auto LineSDF = [](Point a, Point b, Point p)
 	{
 		Point ba = b - a;
