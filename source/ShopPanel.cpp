@@ -878,8 +878,8 @@ void ShopPanel::DrawDetailsSidebar()
 
 	if(infobarScroll.Scrollable())
 	{
-		Point top = Point(Screen::Right() - SIDEBAR_WIDTH - 7, Screen::Top() + 10);
-		Point bottom = Point(Screen::Right() - SIDEBAR_WIDTH - 7, Screen::Bottom() - 10);
+		Point top{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Top() + 10.};
+		Point bottom{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Bottom() - 10.};
 
 		infobarScrollbar.SyncDraw(infobarScroll, top, bottom);
 	}
@@ -1075,8 +1075,8 @@ void ShopPanel::DrawMain()
 	if(mainScroll.Scrollable())
 	{
 		double dimSim = Screen::Right() - 7 - SIDE_WIDTH;
-		Point top = Point(dimSim, Screen::Top() + 10);
-		Point bottom = Point(dimSim, Screen::Bottom() - 10);
+		Point top{dimSim, Screen::Top() + 10.};
+		Point bottom{dimSim, Screen::Bottom() - 10.};
 
 		mainScrollbar.SyncDraw(mainScroll, top, bottom);
 	}

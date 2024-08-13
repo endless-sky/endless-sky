@@ -91,23 +91,23 @@ void ScrollBar::DrawAt(const Point &from)
 		highlighted ? color : Color::Combine(.5, color, .5, innerColor)
 	);
 
-	PointerShader::Draw(from, Point(0., -1.), lineWidth * 3.0, 10.f, 5.f, fraction > 0.0 ? color : innerColor);
-	PointerShader::Draw(from + delta, Point(0., 1.), lineWidth * 3.0, 10.f, 5.f, fraction < 1.0 ? color : innerColor);
+	PointerShader::Draw(from, Point(0., -1.), lineWidth * 3., 10.f, 5.f, fraction > 0. ? color : innerColor);
+	PointerShader::Draw(from + delta, Point(0., 1.), lineWidth * 3., 10.f, 5.f, fraction < 1. ? color : innerColor);
 }
 
 
 
 bool ScrollBar::Hover(int x, int y)
 {
-	auto delta = to - from;
-	auto offset = delta * (1.0 - displaySizeFraction) * fraction;
+	Point delta = to - from;
+	Point offset = delta * (1.0 - displaySizeFraction) * fraction;
 
 	constexpr auto LineSDF = [](Point a, Point b, Point p)
 	{
 		Point ba = b - a;
 		Point pa = p - a;
 
-		double h = std::clamp(pa.Dot(ba) / ba.LengthSquared(), 0.0, 1.0);
+		double h = std::clamp(pa.Dot(ba) / ba.LengthSquared(), 0., 1.);
 		double d = (pa - ba * h).Length();
 
 		return d;
@@ -143,12 +143,12 @@ bool ScrollBar::Drag(double dx, double dy)
 bool ScrollBar::Click(int x, int y, int clicks)
 {
 	Point clickPos = Point(x, y);
-	if((clickPos - from).Length() < 10.0)
+	if((clickPos - from).Length() < 10.)
 	{
 		fraction = std::clamp(fraction - displaySizeFraction * .6f, 0.f, 1.f);
 		return true;
 	}
-	if((clickPos - to).Length() < 10.0)
+	if((clickPos - to).Length() < 10.)
 	{
 		fraction = std::clamp(fraction + displaySizeFraction * .6f, 0.f, 1.f);
 		return true;

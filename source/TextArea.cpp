@@ -153,12 +153,10 @@ void TextArea::Draw()
 	const float POINTER_OFFSET = 5;
 	if(scroll.Scrollable())
 	{
-		// Draw up and down pointers, mostly to indicate when scrolling
-		// is possible, but might as well make them clickable too.
-		Rectangle topRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET}, {20.0,
-			20.0});
+		Rectangle topRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET}, {20.,
+			20.});
 		Rectangle bottomRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET},
-			{20.0, 20.0});
+			{20., 20.});
 
 		scrollBar.SyncDraw(scroll, topRight.Center(), bottomRight.Center());
 	}
