@@ -29,9 +29,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Planet;
 class PlayerInfo;
-class UI;
 class System;
 class TestContext;
+class UI;
 
 
 

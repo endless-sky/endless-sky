@@ -472,10 +472,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			it.second.Save(out);
 		// Save any "on enter" actions that have not been performed.
 		for(const auto &it : onEnter)
-			if(!didEnter.count(&it.second))
+			if(!didEnter.contains(&it.second))
 				it.second.Save(out);
 		for(const MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action))
+			if(!didEnter.contains(&action))
 				action.Save(out);
 	}
 	out.EndChild();
@@ -759,7 +759,7 @@ bool Mission::HasClearance(const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
-	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
+	if(planet == destination || stopovers.contains(planet) || visitedStopovers.contains(planet))
 		return true;
 	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
@@ -1155,7 +1155,7 @@ bool Mission::RequiresGiftedShip(const string &shipId) const
 			requiredActions.insert(Trigger::WAYPOINT);
 	}
 	for(const auto &it : actions)
-		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+		if(requiredActions.contains(it.first) && it.second.RequiresGiftedShip(shipId))
 			return true;
 
 	return false;
@@ -1619,7 +1619,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
 	{
 		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
@@ -1628,7 +1628,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action) && action.CanBeDone(player, IsFailed(player)))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(player)))
 			{
 				action.Do(player, ui, this);
 				didEnter.insert(&action);
