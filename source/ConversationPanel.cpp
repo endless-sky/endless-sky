@@ -34,8 +34,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
