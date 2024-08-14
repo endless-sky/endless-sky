@@ -1,4 +1,4 @@
-name: Manage labels
+name: Manage Labels
 
 on:
   push:
