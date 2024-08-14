@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageSet.h"
 
+#include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
 #include "../Logger.h"
@@ -28,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "avif", "avifs"};
+	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "jpe", "avif", "avifs"};
 	const set<string> IMAGE_SEQUENCE_EXTENSIONS{"avif", "avifs"};
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
@@ -39,14 +40,14 @@ namespace {
 	// Get the character index where the sprite name in the given path ends.
 	size_t NameEnd(const string &path)
 	{
-		if(path.find('.') == string::npos)
+		size_t lastDot = path.find_last_of('.');
+		if(lastDot == string::npos)
 			return 0;
 
-		// Get the name of the file, without the extension and the @2x label.
-		string base = path.substr(0, path.find_last_of('.'));
-		if(base.ends_with("@2x"))
-			base = base.substr(0, base.length() - 3);
-		// In addition, more characters may be taken up by a mask label.
+		// Get the name of the file, without the extension and the @2x or @sw label.
+		string base = path.substr(0, lastDot);
+		Format::ReplaceAll(base, "@2x", "");
+		Format::ReplaceAll(base, "@sw", "");
 
 		// This should never happen, but just in case:
 		if(base.empty())
@@ -66,13 +67,13 @@ namespace {
 	// Determine whether the given path is to an @2x image.
 	bool Is2x(const string &path)
 	{
-		return path.substr(NameEnd(path)).find("@2x") != string::npos;
+		return path.find("@2x") != string::npos;
 	}
 
 	// Determine whether the given path is to a swizzle mask.
 	bool IsSwizzleMask(const string &path)
 	{
-		return path.substr(NameEnd(path)).find("@sw") != string::npos;
+		return path.find("@sw") != string::npos;
 	}
 
 	// Determine whether the given path or name is to a sprite for which a
@@ -91,7 +92,7 @@ namespace {
 	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(extension)
+		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(<extension>)
 		size_t i = NameEnd(path);
 
 		// If the name contains a frame index, it must be separated from the name
@@ -161,7 +162,7 @@ bool ImageSet::IsImage(const string &path)
 		return false;
 
 	string ext = path.substr(path.find_last_of('.') + 1);
-	return SUPPORTED_EXTENSIONS.contains(ToLowerCase(ext));
+	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(ext));
 }
 
 
