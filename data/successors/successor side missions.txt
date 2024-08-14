@@ -529,7 +529,7 @@ mission "Successors: Unified Defense"
 				launch
 			label "populated language"
 			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad.`
-			`	You soon recieve a transmission routed through the local spaceport. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
+			`	You soon receive a transmission routed through the local spaceport. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
 			choice
 				`	"It was an accident!"`
 					goto accident
@@ -540,10 +540,10 @@ mission "Successors: Unified Defense"
 			label uninhabited
 			branch "uninhabited language"
 				has "language: Successor"
-			`Shortly after landing here, you recieve a long-range transmission from the Successors. Though you can't make sense of any of the words, you get the distinct impression that they are angry at you.`
+			`Shortly after landing here, you receive a long-range transmission from the Successors. Though you can't make sense of any of the words, you get the distinct impression that they are angry at you.`
 				goto end
 			label "uninhabited language"
-			`Shortly after landing here, you recieve a long-range transmission from the Successors. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
+			`Shortly after landing here, you receive a long-range transmission from the Successors. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
 			choice
 				`	"It was an accident!"`
 					goto accident
@@ -570,6 +570,6 @@ mission "Successors: Unified Defense"
 		personality heroic vindictive staying
 		system Kella-Uoasa
 		ship "Aaulqra" "Kijria-Sol"
-		ship "Aaqulra" "Aret-I"
+		ship "Aaulqra" "Aret-I"
 		ship "Veusade" "Nosola-o-Kasja"
 		ship "Veusade" "Saqra-Vasa"
