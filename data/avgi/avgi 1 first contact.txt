@@ -876,7 +876,7 @@ mission "Avgi: Twilight Escape 2"
 			`	"What, no coffee in Avgi space?" you joke.`
 			`	"Nah, but you should try their drinks sometime. Man, they're something else."`
 			`	"There's nothing like being back, though," Darius says, quiet as he takes in the bustling spaceport around you. "It's hard to believe I'm really here. Harder to understand why it was I that made it out of there when so many who followed me didn't."`
-			`	"Oh, stop that." Sora swats the back of his head. "You're not the first to make a wrong turn into a bad neighborhood. Remember that story about your wife?" Her tone is playful, but you can see the look of worry in her eyes at the evident guilt Darius feels. `
+			`	"Oh, stop that." Sora swats the back of his head. "You're not the first to make a wrong turn into a bad neighborhood. Remember that story about your wife?" Her tone is playful, but you can see the look of worry in her eyes at the evident guilt Darius feels.`
 			`	Darius shakes his head, then continues. "We should get you home. Your parents probably still have that farm, it's been in the family for years. It's not too far from here, right?"`
 			`	A pause, and then Sora says, "Memory. I haven't been there in years, but I guess my apartment is definitely gone... so I have nowhere else to go for now."`
 			`	"Let's get too it then. <first>, could you take us to Memory?"`
@@ -911,6 +911,7 @@ mission "Avgi: Twilight Escape 3"
 			label optimism
 			`	Darius rubs his eyes. "Thank you, <first>. I hope I'm wrong. Let's go to Valhalla."
 	on complete
+		conversation
 			`You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. A quick call for an automated taxi, and you soon find yourselves outside an expansive, fancy-looking apartment complex. "Our old address," he explains. "We were still renting, but were looking at buying our apartment within a few years."`
 			`	You knock on the door to the right apartment, but it is answered by a tall man with black hair. "Hello, can I help you?" he asks cautiously.`
 			`	Darius looks crushed. "Is... Is there a Katrina here?"`
@@ -924,8 +925,8 @@ mission "Avgi: Twilight Escape 3"
 			`	"Any public records on Valhalla?" you ask.`
 			label lookup
 			`	"...Yes, we'll try the record books. We can check them at the library."`
-			`	A short trip to the library later, and you sit at a table while Darius checks the public records. He scrolls down the list of names and addresses before stopping at a single name. "Katrina... Caldwell. Our name." Hope is plainly visible on his face. "She kept our name, at least."` 
-			`	 You glance over at the address, taking note of it. It looks like it's further out of the city. "Let's try the address. We can still make it there by tonight," you say.`
+			`	A short trip to the library later, and you sit at a table while Darius checks the public records. He scrolls down the list of names and addresses before stopping at a single name. "Katrina... Caldwell. Our name." Hope is plainly visible on his face. "She kept our name, at least."`
+			`	You glance over at the address, taking note of it. It looks like it's further out of the city. "Let's try the address. We can still make it there by tonight," you say.`
 			`	The address appears to be out in the country, and you take in the view as the taxi smoothly glides along the roads. Unlike on Memory, the landscape here is lush and green, with rolling hills, abundant forests, and rushing streams. You find that the address belongs to a cozy-looking riverfront house, a large garden visible next to it.`
 			`	Darius has never looked so nervous in his life, but you give him a gentle shove towards the door. Your knocking is unanswered, and his face starts to once more slip into despair, but you hear a voice from the garden.`
 			`	"Darius? Is that you?" A woman with greying hair steps onto the porch, eyes shining. "You're back... I knew you were alive!" she cries out, rushing to embrace him. The two begin speaking, faster than you can follow, as you hang back somewhat awkwardly.`

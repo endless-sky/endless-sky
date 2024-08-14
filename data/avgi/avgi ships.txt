@@ -764,7 +764,7 @@ ship "Entasi"
 			"hull damage" 1200
 			"hit force" 1200
 	outfits
-		"Blue Optical Laser" 2
+		"Blue Optical Laser" 3
 
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
