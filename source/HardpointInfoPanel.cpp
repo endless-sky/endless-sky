@@ -39,7 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipInfoPanel.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
