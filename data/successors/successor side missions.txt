@@ -497,3 +497,79 @@ mission "Successors: Graffiti"
 			label fooled
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script placed alongside a rather crude depiction of your face. The translation device struggles to interpret the non-standard glyphs, but it eventually resolves the text as "'Erjn'-Fool! No quills, no brain!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
+
+mission "Successors: Unified Defense"
+	invisible
+	landing
+	infiltrating
+	to offer
+		or
+			"reputation: Successor" < -10
+			"reputation: New Houses" < -10
+			"reputation: Old Houses" < -10
+	to complete
+		never
+	on offer
+		"reputation: Successor" = -999
+		"reputation: Old Houses" = -999
+		"reputation: House Chydiyi" = -999
+		"reputation: House Myurej" = -999
+		"reputation: House Sioeora" = -999
+		"reputation: New Houses" = -999
+		"reputation: House Aqrabe" = -999
+		"reputation: House Kaatrij" = -999
+		"reputation: House Seineq" = -999
+		event "successors: unified defense"
+		conversation
+			branch uninhabited
+				has "flagship planet attribute: uninhabited"
+			branch "populated language"
+				has "language: Successor"
+			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad, their weapons trained on your vessel. As several interceptors begin to hover over your ship as well with their weapons ready, you are forced to take off.`
+				launch
+			label "populated language"
+			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad.`
+			`	You soon recieve a transmission routed through the local spaceport. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
+			choice
+				`	"It was an accident!"`
+					goto accident
+				`	"I apologize for the transgression. I won't do it again."`
+					goto "never again"
+				`	"They deserved it."`
+					goto "deserved it"
+			label uninhabited
+			branch "uninhabited language"
+				has "language: Successor"
+			`Shortly after landing here, you recieve a long-range transmission from the Successors. Though you can't make sense of any of the words, you get the distinct impression that they are angry at you.`
+				goto end
+			label "uninhabited language"
+			`Shortly after landing here, you recieve a long-range transmission from the Successors. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
+			choice
+				`	"It was an accident!"`
+					goto accident
+				`	"I apologize for the transgression. I won't do it again."`
+					goto "never again"
+				`	"They deserved it."`
+					goto "deserved it"
+			label accident
+			`	Spots of flaming orange appear over the Successor's skin. "Any creature prone to such 'accidents' has no place among our worlds." They end the transmission there.`
+				goto end
+			label "never again"
+			`	The Successor flashes a dark red. "Our fleets will make sure of it." They end the transmission there.`
+				goto end
+			label "deserved it"
+			`	A wave of bristling black runs over the Successor's body before they end the transmission.`
+			label end
+			branch "uninhabited end"
+			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
+				launch
+			label "uninhabited end"
+		
+	npc
+		government "New Houses"
+		personality heroic vindictive staying
+		system Kella-Uoasa
+		ship "Aaulqra" "Kijria-Sol"
+		ship "Aaqulra" "Aret-I"
+		ship "Veusade" "Nosola-o-Kasja"
+		ship "Veusade" "Saqra-Vasa"
