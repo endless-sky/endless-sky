@@ -841,7 +841,7 @@ mission "Avgi: Twilight Escape 1"
 		conversation
 			`	As the purple flames of your jump drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
 			choice
-				'"Heh, told you we'd make it."`
+				`"Heh, told you we'd make it."`
 				`"We're out. Where to now?"`
 			`	Leon stares for a moment, then swears. "That damn magnetar was there the entire time? I was there for years. Years!"`
 			`	"We all were. And you wouldn't have been able to do anything with it without <first>'s jump drive," reminds Sora.`
@@ -864,7 +864,6 @@ mission "Avgi: Twilight Escape 2"
 	name "Sora's Return"
 	description "Take Sora to her parents' farm on Memory"
 	source "Vinci"
-	spaceport
 	passengers 2
 	blocked "You'll need two free bunks on the <ship> to transport Darious and Sora."
 	destination "Memory"
@@ -902,14 +901,14 @@ mission "Avgi: Twilight Escape 3"
 			choice
 				`	"So, where do you want me to take you?"`
 				`	"So, where next?"`
-			`	"...I don't know. My wife, Katrina... we lived on Valhalla, but it's been six years. She probably thought I was dead, hell, the whole Republic probably thought I was dead. She..." he chokes up, "she's probably moved on by now. I would have wanted her to, she knew that."
+			`	"...I don't know. My wife, Katrina... we lived on Valhalla, but it's been six years. She probably thought I was dead, hell, the whole Republic probably thought I was dead. She..." he chokes up, "she's probably moved on by now. I would have wanted her to, she knew that."`
 			choice
 				`	"You have to find out, one way or another. Let's go to Valhalla."`
 				`	"I'm sure she's been waiting for you. Let's go to Valhalla."`
 					goto optimism
 			`	"I don't know if I can face the truth. But I also can't just go my own way without even checking on her, just in case there's a chance she didn't give up in me."`
 			label optimism
-			`	Darius rubs his eyes. "Thank you, <first>. I hope I'm wrong. Let's go to Valhalla."
+			`	Darius rubs his eyes. "Thank you, <first>. I hope I'm wrong. Let's go to Valhalla."`
 	on complete
 		conversation
 			`You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. A quick call for an automated taxi, and you soon find yourselves outside an expansive, fancy-looking apartment complex. "Our old address," he explains. "We were still renting, but were looking at buying our apartment within a few years."`
