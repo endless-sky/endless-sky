@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageBuffer.h"
 
 #include "../File.h"
+#include "../text/Format.h"
 #include "../Logger.h"
 
 #include <avif/avif.h>
@@ -24,12 +25,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <memory>
+#include <set>
 #include <stdexcept>
 #include <vector>
 
 using namespace std;
 
 namespace {
+	const set<string> PNG_EXTENSIONS{"png"};
+	const set<string> JPG_EXTENSIONS{"jpg", "jpeg", "jpe"};
+	const set<string> AVIF_EXTENSIONS{"avif", "avifs"};
+
 	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
 	int ReadAVIF(const string &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied);
@@ -157,25 +163,25 @@ void ImageBuffer::ShrinkToHalfSize()
 int ImageBuffer::Read(const string &path, int frame)
 {
 	// First, make sure this is a supported file.
-	bool isPNG = (path.ends_with(".png") || path.ends_with(".PNG"));
-	bool isJPG = (path.ends_with(".jpg") || path.ends_with(".JPG") || path.ends_with(".jpeg") || path.ends_with(".JPEG"));
-	bool isAVIF = (path.ends_with(".avif") || path.ends_with(".AVIF") || path.ends_with(".avifs")
-			|| path.ends_with(".AVIFS"));
+	string extension = Format::LowerCase(path.substr(path.find_last_of('.') + 1));
+	bool isPNG = PNG_EXTENSIONS.contains(extension);
+	bool isJPG = JPG_EXTENSIONS.contains(extension);
+	bool isAVIF = AVIF_EXTENSIONS.contains(extension);
 
 	if(!isPNG && !isJPG && !isAVIF)
 		return false;
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
-	int pos = path.find_last_of('.');
-	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
-		pos -= 3;
+	string name = path.substr(0, path.find_last_of('.'));
+	Format::ReplaceAll(name, "@2x", "");
+	int pos = name.size();
 	while(--pos)
-		if(path[pos] < '0' || path[pos] > '9')
+		if(name[pos] < '0' || name[pos] > '9')
 			break;
 	// Special case: if the image is already in premultiplied alpha format,
 	// there is no need to apply premultiplication here.
-	bool premultiplied = path[pos] == '=';
+	bool premultiplied = name[pos] == '=';
 
 	// Load the image data.
 	int startFrame = frame;
@@ -192,7 +198,7 @@ int ImageBuffer::Read(const string &path, int frame)
 
 	if(!premultiplied)
 	{
-		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
+		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2) || isAVIF)
 			for(int i = startFrame; i < endFrame; i++)
 				Premultiply(*this, i, additive);
