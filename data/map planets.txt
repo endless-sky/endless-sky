@@ -5229,6 +5229,7 @@ planet Vade-Osolaa-Kaska
 		to display
 			has "known to the successors"
 	spaceport `The spaceport here is cavernous but empty, riddled with voids where vast pieces of machinery have been removed. A layer of dust covers the ground; it is disturbed in some locations with what look like trails, suggesting that this place may not be entirely unused.`
+	government Uninhabited
 
 planet Vail
 	attributes farming paradise tourism
