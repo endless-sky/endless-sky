@@ -51,14 +51,17 @@ public:
 	// Get the names of the conditions that are modified by this ConditionSet.
 	std::set<std::string> RelevantConditions() const;
 
-	// Read a single assignment condition from a data node.
+	// Add an extra assignment to set a condition.
+	void AddSetCondition(const std::string &name);
+
+	// Add an extra condition assignment from a data node.
 	void Add(const DataNode &node);
-	bool Add(const std::string &firstToken, const std::string &secondToken);
-	// Add simple conditions having only a single operator.
-	bool Add(const std::string &name, const std::string &op, const std::string &value);
 
 
 private:
+	bool Add(const std::string &firstToken, const std::string &secondToken);
+	// Add simple conditions having only a single operator.
+	bool Add(const std::string &name, const std::string &op, const std::string &value);
 	// Add complex conditions having multiple operators, including parentheses.
 	bool Add(const std::vector<std::string> &lhs, const std::string &op, const std::vector<std::string> &rhs);
 

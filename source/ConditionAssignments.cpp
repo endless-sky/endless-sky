@@ -68,6 +68,13 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 
 
+void ConditionAssignments::AddSetCondition(const std::string &name)
+{
+	Add("set", name);
+}
+
+
+
 void ConditionAssignments::Add(const DataNode &node)
 {
 	setToEvaluate.Add(node);
