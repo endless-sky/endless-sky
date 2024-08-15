@@ -13,11 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MASK_H_
-#define MASK_H_
+#pragma once
 
-#include "Angle.h"
-#include "Point.h"
+#include "../Angle.h"
+#include "../Point.h"
 
 #include <vector>
 
@@ -75,7 +74,3 @@ private:
 	std::vector<std::vector<Point>> outlines;
 	double radius = 0.;
 };
-
-
-
-#endif

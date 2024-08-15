@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FIGHTER_HIT_POLICY_H_
-#define FIGHTER_HIT_POLICY_H_
+#pragma once
 
 #include "GameData.h"
 #include "Gamerules.h"
@@ -39,5 +38,3 @@ public:
 		return false;
 	}
 };
-
-#endif

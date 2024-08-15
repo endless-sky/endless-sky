@@ -1,4 +1,4 @@
-/* Sound.h
+/* SpriteSet.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,31 +13,25 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SOUND_H_
-#define SOUND_H_
+#pragma once
 
+#include <set>
 #include <string>
 
+class Sprite;
 
 
-// This is a sound that can be played. The sound's file name will determine
-// whether it is looping (ends in '~') or not.
-class Sound {
+
+// Class for storing sprites, and for getting the sprite associated with a given
+// name. If a sprite has not been loaded yet, this will still return an object
+// but with no OpenGL textures associated with it (so it will draw nothing).
+class SpriteSet {
 public:
-	bool Load(const std::string &path, const std::string &name);
+	// Get a pointer to the sprite data with the given name.
+	static const Sprite *Get(const std::string &name);
 
-	const std::string &Name() const;
+	// Inspect the sprite map and warn if some images contain no data.
+	static void CheckReferences();
 
-	unsigned Buffer() const;
-	bool IsLooping() const;
-
-
-private:
-	std::string name;
-	unsigned buffer = 0;
-	bool isLooped = false;
+	static Sprite *Modify(const std::string &name);
 };
-
-
-
-#endif
