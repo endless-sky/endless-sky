@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 
 #include <ctime>
+#include <filesystem>
 #include <map>
 #include <string>
 #include <utility>

@@ -23,7 +23,7 @@ using namespace std;
 
 
 // Constructor, taking a file path (in UTF-8).
-DataFile::DataFile(const string &path)
+DataFile::DataFile(const filesystem::path &path)
 {
 	Load(path);
 }
@@ -39,7 +39,7 @@ DataFile::DataFile(istream &in)
 
 
 // Load from a file path (in UTF-8).
-void DataFile::Load(const string &path)
+void DataFile::Load(const filesystem::path &path)
 {
 	string data = Files::Read(path);
 	if(data.empty())

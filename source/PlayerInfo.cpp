@@ -472,7 +472,7 @@ void PlayerInfo::Load(const string &path)
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
-	string recentPath = Files::Read(Files::Config() + "recent.txt");
+	string recentPath = Files::Read(Files::Config() / "recent.txt");
 	// Trim trailing whitespace (including newlines) from the path.
 	while(!recentPath.empty() && recentPath.back() <= ' ')
 		recentPath.pop_back();
@@ -497,7 +497,7 @@ void PlayerInfo::Save() const
 		return;
 
 	// Remember that this was the most recently saved player.
-	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
+	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
 	if(filePath.rfind(".txt") == filePath.length() - 4)
 	{
@@ -524,7 +524,7 @@ void PlayerInfo::Save() const
 	Save(filePath);
 
 	// Save global conditions:
-	DataWriter globalConditions(Files::Config() + "global conditions.txt");
+	DataWriter globalConditions(Files::Config() / "global conditions.txt");
 	GameData::GlobalConditions().Save(globalConditions);
 }
 
@@ -694,7 +694,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 
 	// If there are multiple pilots with the same name, append a number to the
 	// pilot name to generate a unique file name.
-	filePath = Files::Saves() + fileName;
+	filePath = Files::Saves() / fileName;
 	int index = 0;
 	while(true)
 	{

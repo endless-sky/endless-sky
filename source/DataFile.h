@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 
 #include <istream>
+#include <filesystem>
 #include <list>
 #include <string>
 
@@ -33,10 +34,10 @@ class DataFile {
 public:
 	// A DataFile can be loaded either from a file path or an istream.
 	DataFile() = default;
-	explicit DataFile(const std::string &path);
+	explicit DataFile(const std::filesystem::path &path);
 	explicit DataFile(std::istream &in);
 
-	void Load(const std::string &path);
+	void Load(const std::filesystem::path &path);
 	void Load(std::istream &in);
 
 	// Functions for iterating through all DataNodes in this file.

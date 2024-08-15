@@ -32,30 +32,26 @@ namespace {
 	// stereo, the duration of the sample is half this amount:
 	const size_t OUTPUT_CHUNK = 32768;
 
-	map<string, string> paths;
+	map<string, filesystem::path> paths;
 }
 
 
 
-void Music::Init(const vector<string> &sources)
+void Music::Init(const vector<filesystem::path> &sources)
 {
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
 		// Find all the sound files that this resource source provides.
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
+		string root = source / "sounds/";
+		vector<filesystem::path> files = Files::RecursiveList(root);
 
-		for(const string &path : files)
+		for(const auto &path : files)
 		{
 			// Sanity check on the path length.
-			if(path.length() < root.length() + 4)
-				continue;
-			string ext = path.substr(path.length() - 4);
-			if(ext != ".mp3" && ext != ".MP3")
+			if(path.extension() != ".mp3" && path.extension() != ".MP3")
 				continue;
 
-			string name = path.substr(root.length(), path.length() - root.length() - 4);
-			paths[name] = path;
+			paths[path.stem()] = path;
 		}
 	}
 }

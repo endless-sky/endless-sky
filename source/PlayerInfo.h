@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SystemEntry.h"
 
 #include <chrono>
+#include <filesystem>
 #include <list>
 #include <map>
 #include <memory>
