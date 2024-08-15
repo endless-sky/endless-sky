@@ -24,6 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 
+using namespace std;
+
 namespace {
 	Shader shader;
 	GLint sizeI = -1;
