@@ -44,6 +44,7 @@ namespace {
 			return 0;
 
 		// Get the name of the file, without the extension and the @2x or @sw label.
+		// @2x denotes a high-dpi sprite, and @sw marks a swizzle mask.
 		string base = path.substr(0, lastDot);
 		Format::ReplaceAll(base, "@2x", "");
 		Format::ReplaceAll(base, "@sw", "");
