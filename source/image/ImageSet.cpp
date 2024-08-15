@@ -80,12 +80,7 @@ namespace {
 	// collision mask ought to be generated.
 	bool IsMasked(const string &path)
 	{
-		if(path.starts_with("ship/"))
-			return true;
-		if(path.starts_with("asteroid/"))
-			return true;
-
-		return false;
+		return path.starts_with("ship/") || path.starts_with("asteroid/");
 	}
 
 	// Get the frame index from the given path.
