@@ -233,7 +233,7 @@ mission "Hai Rescue: Ooonem"
 			branch nohint
 				and
 					not "Hai Rescue: Ooonem Hint: offered"
-					not "Hai Rescue: Ooonem (defer count)" >= 1
+					"Hai Rescue: Ooonem (defer count)" < 1
 			`Following reports of the last time the "angel of death" was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. They might be a Hai. Do you want to talk to them?`
 				goto start
 			label nohint
