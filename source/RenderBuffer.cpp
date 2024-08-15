@@ -166,13 +166,10 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	widthMultiplier = static_cast<double>(GameWindow::DrawWidth()) / static_cast<double>(Screen::RawWidth());
-	heightMultiplier = static_cast<double>(GameWindow::DrawHeight()) / static_cast<double>(Screen::RawHeight());
+	multiplier = Point(GameWindow::DrawWidth(), GameWindow::DrawHeight()) / Point(Screen::RawWidth(), Screen::RawHeight());
 
 	// Attach a blank image to the texture.
-	Point scaledSize = size * Screen::Zoom() / 100.0;
-	scaledSize.X() *= widthMultiplier;
-	scaledSize.Y() *= heightMultiplier;
+	Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
@@ -216,9 +213,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	Point scaledSize = size * Screen::Zoom() / 100.0;
-	scaledSize.X() *= widthMultiplier;
-	scaledSize.Y() *= heightMultiplier;
+	Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 

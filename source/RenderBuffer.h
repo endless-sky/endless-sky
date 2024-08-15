@@ -89,8 +89,7 @@ private:
 
 	float fadePadding[4] = {};
 
-	double widthMultiplier = 0;
-	double heightMultiplier = 0;
+	Point multiplier;
 };
 
 
