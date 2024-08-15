@@ -55,10 +55,22 @@ void LineShader::Init()
 		"out vec2 pos;\n"
 
 		"void main() {\n"
+		// Construct a rectangle around the line that can accommodate a line of width "width".
 		"    vec2 unit = normalize(end - start);\n"
+		// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
 		"    vec2 origin = vert.y > 0.0 ? start : end;\n"
+		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
 		"    float widthOffset = width + 1;\n"
+		// The vertex position is the originating position plus an offset away from the line.
+		// The offset away is a combination of a perpendicular offset and a normal offset.
+		// The perpendicular offset is the unit vector rotated 90 degrees and scaled to widthOffset, flipped depending on the vertex input.
+		// The normal offset is the unit vector scaled to widthOffset or 1, depending on whether the line has a round cap of not,
+		//     to accommodate for the cap.
+		//
+		// The offset goes in a different direction for each vertex, resulting in a rectangle that tightly covers the bounds of the line.
 		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * (cap == 1 ? widthOffset : 1) * vert.y;\n"
+		// Transform the vertex position into es coordinates, so it can easily be consumed by the fragment shader,
+		// which has access to the start/end points of the line in es' coordinate system.
 		"    gl_Position = vec4(pos / scale, 0, 1);\n"
 		"    gl_Position.y = -gl_Position.y;\n"
 		"    gl_Position.xy *= 2.0;\n"
@@ -77,7 +89,9 @@ void LineShader::Init()
 		"in vec2 pos;\n"
 		"out vec4 finalColor;\n"
 
-		"float udSegment(vec2 p, vec2 a, vec2 b) {\n"
+		// From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
+
+		"float sdSegment(vec2 p, vec2 a, vec2 b) {\n"
 		"    vec2 ba = b - a;\n"
 		"    vec2 pa = p - a;\n"
 		"    float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);\n"
@@ -96,8 +110,10 @@ void LineShader::Init()
 		"void main() {\n"
 		"    float dist;\n"
 		"    if(cap == 1) {\n"
-		"        dist = width - udSegment(pos, start, end);\n"
+		// Rounded caps can shortcut to a segment sdf. Segment sdf only provides a distance so we manually subtract it from the width.
+		"        dist = width - sdSegment(pos, start, end);\n"
 		"    } else {\n"
+		// Suubtract from 1 here to add some AA.
 		"        dist = 1. - sdOrientedBox(pos, start, end, width);\n"
 		"    }\n"
 		"    float alpha = clamp(dist, 0.0, 1.0);\n"
@@ -154,7 +170,6 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 	GLfloat end[2] = {static_cast<float>(to.X()), static_cast<float>(to.Y())};
 	glUniform2fv(endI, 1, end);
 
-	// GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
 	glUniform1f(widthI, width);
 
 	glUniform4fv(colorI, 1, color.Get());
