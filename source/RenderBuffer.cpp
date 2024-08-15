@@ -169,8 +169,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	multiplier = Point(GameWindow::DrawWidth(), GameWindow::DrawHeight()) / Point(Screen::RawWidth(), Screen::RawHeight());
 
 	// Attach a blank image to the texture.
-	Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
-
+	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer.
@@ -213,8 +212,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
-
+	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
