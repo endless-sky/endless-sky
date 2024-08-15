@@ -20,10 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "text/WrappedText.h"
 
+class Interface;
 class News;
 class PlayerInfo;
 class Port;
-class Interface;
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
