@@ -63,11 +63,13 @@ void LineShader::Init()
 		"    float widthOffset = width + 1;\n"
 		// The vertex position is the originating position plus an offset away from the line.
 		// The offset away is a combination of a perpendicular offset and a normal offset.
-		// The perpendicular offset is the unit vector rotated 90 degrees and scaled to widthOffset, flipped depending on the vertex input.
-		// The normal offset is the unit vector scaled to widthOffset or 1, depending on whether the line has a round cap of not,
-		//     to accommodate for the cap.
+		// The perpendicular offset is the unit vector rotated 90 degrees and scaled to widthOffset,
+		//     flipped depending on the vertex input.
+		// The normal offset is the unit vector scaled to widthOffset or 1,
+		//     depending on whether the line has a round cap of not, to accommodate for the cap's additional length.
 		//
-		// The offset goes in a different direction for each vertex, resulting in a rectangle that tightly covers the bounds of the line.
+		// The offset goes in a different direction for each vertex,
+		//     resulting in a rectangle that tightly covers the bounds of the line.
 		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * (cap == 1 ? widthOffset : 1) * vert.y;\n"
 		// Transform the vertex position into es coordinates, so it can easily be consumed by the fragment shader,
 		// which has access to the start/end points of the line in es' coordinate system.
@@ -110,7 +112,8 @@ void LineShader::Init()
 		"void main() {\n"
 		"    float dist;\n"
 		"    if(cap == 1) {\n"
-		// Rounded caps can shortcut to a segment sdf. Segment sdf only provides a distance so we manually subtract it from the width.
+		// Rounded caps can shortcut to a segment sdf.
+		// Segment sdf only provides a distance fromt the line itself so we manually subtract it from the width.
 		"        dist = width - sdSegment(pos, start, end);\n"
 		"    } else {\n"
 		// Suubtract from 1 here to add some AA.
