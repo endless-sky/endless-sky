@@ -22,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+#include <cmath>
+
 namespace {
 	Shader shader;
 	GLint sizeI = -1;
