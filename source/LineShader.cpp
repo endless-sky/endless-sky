@@ -119,7 +119,7 @@ void LineShader::Init()
 		// Suubtract from 1 here to add some AA.
 		"        dist = 1. - sdOrientedBox(pos, start, end, width);\n"
 		"    }\n"
-		"    float alpha = max(dist, 0.0);\n"
+		"    float alpha = clamp(dist, 0.0, 1.0);\n"
 		"    finalColor = color * alpha;\n"
 		"}\n";
 
