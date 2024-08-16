@@ -2431,51 +2431,6 @@ phrase "Raiders returning to Mordente-Bridi - light damage"
 	word
 		"The work won't take the shuttles long."
 
-news "Symbol War"
-	location
-		planet "Gagarin"
-	name
-		word
-			"Guerrilla Symbology"
-	message
-		word
-			"It's an average day in Gagarin's busy spaceport, until "
-		word
-			"your attention is grabbed by an oddity. A "
-			"an unusual commotion catches your attention. A "
-		word
-			"squad "
-			"band "
-			"team "
-		word
-			"of CCOR "
-		word
-			"guerrillas "
-			"insurgents "
-		word
-			"have entered the port. "
-		word
-			"Almost none "
-			"Few "
-			"Some "
-			"All "
-		word
-			"of them are armed, but it's their other equipment that stands out; paint, plaster, and ladders. They "
-		word
-			"scale the rear wall toward the giant crest of the local government and "
-			"walk along the walls, stopping at each local government crest and %"
-		word
-			"replace the crest, then take down their ladders and leave."
-		word
-			"Spaceport security "
-		word
-			"is noticeably absent the whole scene."
-			"watched but kept their distance."
-			"pointedly ignored it as it happened."
-		replace
-			"%replace the crest, then take down their ladders and leave" "replacing them, then taking down their ladders and leaving"
-			"%" ""
-
 news "Betelgeuse Stolen Ship Advisory"
 	location
 		attributes "shipyard"
