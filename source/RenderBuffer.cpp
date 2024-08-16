@@ -22,10 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
-#include <cmath>
-
-using namespace std;
-
 namespace {
 	Shader shader;
 	GLint sizeI = -1;
@@ -170,8 +166,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	multiplier = Point(GameWindow::DrawWidth(), GameWindow::DrawHeight()) *
-		Point(pow(Screen::RawWidth(), -1), pow(Screen::RawHeight(), -1));
+	multiplier = Point(GameWindow::DrawWidth() / Screen::RawWidth(), GameWindow::DrawHeight() / Screen::RawHeight());
 
 	// Attach a blank image to the texture.
 	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
