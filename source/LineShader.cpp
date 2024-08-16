@@ -94,10 +94,10 @@ void LineShader::Init()
 		// From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
 
 		"float sdSegment(vec2 p, vec2 a, vec2 b) {\n"
-		"    vec2 ba = b - a;\n"
-		"    vec2 pa = p - a;\n"
-		"    float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);\n"
-		"    return length(pa - h * ba);\n"
+		"    vec2 ab = b - a;\n"
+		"    vec2 ap = p - a;\n"
+		"    float h = clamp(dot(ap, ab) / dot(ab, ab), 0.0, 1.0);\n"
+		"    return length(ap - h * ab);\n"
 		"}\n"
 
 		"float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {\n"
@@ -119,7 +119,7 @@ void LineShader::Init()
 		// Suubtract from 1 here to add some AA.
 		"        dist = 1. - sdOrientedBox(pos, start, end, width);\n"
 		"    }\n"
-		"    float alpha = clamp(dist, 0.0, 1.0);\n"
+		"    float alpha = max(dist, 0.0);\n"
 		"    finalColor = color * alpha;\n"
 		"}\n";
 
