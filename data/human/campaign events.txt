@@ -168,6 +168,8 @@ mission "event: war begins"
 				decline
 			
 			label geminus
+			action
+				set "bombing witness"
 			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. A liasion officer is herding a group of civilians toward a low bunker beside a nearby landing pad. On the landing pad itself, soldiers are struggling to set up a heavy plasma cannon mounted on an anti-aircraft turret.`
 			`	The civilians safely in the bunker, the liasion officer turns to face you. "I'm sorry, captain, but I'm going to have to ask you to leave the planet. We've got a carrier squadron coming in, and we need all the pads free."`
 			choice
@@ -188,6 +190,8 @@ mission "event: war begins"
 					goto help
 
 			label martini
+			action
+				set "bombing witness"
 			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. Sirens are going off along the streets outside, and a liasion officer is herding a group of civilians toward a military transport auxiliary. Still more people are stretched out on cots in a makeshift field hospital in the center of the spaceport.`
 			`	As soon as the last mobile civilian is safely aboard the transport, the liasion officer turns to face you. "I'm sorry, captain, but I'm going to have to ask you to leave the planet. We've got another transport fleet coming in, and we need all the pads free."`
 			choice
