@@ -171,7 +171,7 @@ mission "event: war begins"
 			action
 				set "bombing witness"
 			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. A liaison officer is herding a group of civilians toward a low bunker beside a nearby landing pad. On the landing pad itself, soldiers are struggling to set up a heavy plasma cannon mounted on an anti-aircraft turret.`
-			`	The civilians safely in the bunker, the liaison officer turns to face you. "I'm sorry, captain, but I'm going to have to ask you to leave the planet. We've got a carrier squadron coming in, and we need all the pads free."`
+			`	The civilians safely in the bunker, the liaison officer turns to face you. "I'm sorry, Captain, but I'm going to have to ask you to leave the planet. We've got a Carrier squadron coming in, and we need all the pads free."`
 			choice
 				`	"Of course."`
 					goto summary
@@ -193,7 +193,7 @@ mission "event: war begins"
 			action
 				set "bombing witness"
 			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. Sirens are going off along the streets outside, and a liaison officer is herding a group of civilians toward a military transport auxiliary. Still more people are stretched out on cots in a makeshift field hospital in the center of the spaceport.`
-			`	As soon as the last mobile civilian is safely aboard the transport, the liaison officer turns to face you. "I'm sorry, captain, but I'm going to have to ask you to leave the planet. We've got another transport fleet coming in, and we need all the pads free."`
+			`	As soon as the last mobile civilian is safely aboard the transport, the liaison officer turns to face you. "I'm sorry, Captain, but I'm going to have to ask you to leave the planet. We've got another transport fleet coming in, and we need all the pads free."`
 			choice
 				`	"Of course."`
 					goto summary
@@ -211,7 +211,7 @@ mission "event: war begins"
 					goto help
 
 			label noncompliance
-			`	"Look, captain. The government here on <planet> has declared a state of emergency, and that means that the spaceport is under martial law. I'm not sure how you managed to get landing clearance, but you shouldn't be here. We've got thousands of injured people to get off-planet, even if we ignore the potential for a major follow-up attack. If you refuse to comply, I will have you arrested by the military police, and your ship will be impounded. If your crew refuses to accept the change in captainship, they will be replaced by troops from the Naval Reserve Command. Think what you will, but we've got human lives to save here and we aren't going to stop just because some hotshot captain is feeling full of themself. Is that clear?"`
+			`	"Look, Captain. The government here on <planet> has declared a state of emergency, and that means that the spaceport is under martial law. I'm not sure how you managed to get landing clearance, but you shouldn't be here. We've got thousands of injured people to get off-planet, even if we ignore the potential for a major follow-up attack. If you refuse to comply, I will have you arrested by the military police, and your ship will be impounded. If your crew refuses to accept the change in captainship, they will be replaced by troops from the Naval Reserve Command. Think what you will, but we've got human lives to save here and we aren't going to stop just because some hotshot captain is feeling full of themself. Is that clear?"`
 			choice
 				`	"Yes, that's clear."`
 					goto summary
@@ -223,18 +223,18 @@ mission "event: war begins"
 				die
 
 			label summary
-			`	"Glad to hear it," they reply, turning to calm a group of hysterical Paradise worlders.`
-			`	Re-entering the <ship>, you take off and head for orbit, narrowly missing the carrier squadron mentioned by the liaison officer. Only then do you see that you've left the video screen in your ship on, playing footage almost identical to what you saw on the ground not long ago. According to the newscaster, this debacle was all started yesterday, when a group of planets in the south of the galaxy sent the Republic Parliament an ultimatum: a refusal to pay taxes until reforms are made in the election of planetary representatives. This group, calling itself the "Free Worlds," has also asked for immediate reevaluation of all existing trade tariffs and regulations concerning pilot registration. Parliament outright refused to consider any of these demands.`
+			`	"Glad to hear it," they reply, turning to calm a group of hysterical Paradisians.`
+			`	Re-entering the <ship>, you take off and head for orbit, narrowly missing the Carrier squadron mentioned by the liaison officer. Only then do you see that you've left the video screen in your ship on, playing footage almost identical to what you saw on the ground not long ago. According to the newscaster, this debacle was all started yesterday, when a group of planets in the south of the galaxy sent the Republic Parliament an ultimatum: a refusal to pay taxes until reforms are made in the election of planetary representatives. This group, calling itself the "Free Worlds," has also asked for immediate reevaluation of all existing trade tariffs and regulations concerning pilot registration. Parliament outright refused to consider any of these demands.`
 			`	Then, only hours before you landed, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
 			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
 				flee
 
 			label end
-			`	The liaison officer responds with a curt thank-you and turns around to calm a hysterical Paradise worlder. You re-enter the <ship>, and prepare to take off. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
+			`	The liaison officer responds with a curt thank-you and turns around to calm a hysterical Paradisian. You re-enter the <ship>, and prepare to take off. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
 				flee
 			
 			label help
-			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, captain, I'm sure you have the best of intentions, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here is taking up extra space." The officer turns around, interrupted by the shrieks of a panicked Paradise worlder. You re-enter the <ship>, and prepare to take off.`
+			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, I'm sure you have the best of intentions, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here is taking up extra space." The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
 				flee
 
 event "initial deployment 1"
