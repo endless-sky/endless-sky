@@ -758,7 +758,6 @@ mission "CCOR Guerrilla Standoff"
 	source "Gagarin"
 	to offer
 		random < 1
-		has "event: war begins"
 	on offer
 		conversation
 			`Although every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars, by comparison Gagarin appears much more like any old, slightly run-down port a captain would find around the South, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
@@ -782,3 +781,13 @@ mission "CCOR Guerrilla Standoff"
 			`	You turn around and see the gendarme you ended up next to. He meets your eyes and recognizes your off-world air.`
 			`	"Just an everyday interruption, Captain," he says. "Only nostalgists for the old cause. We get a dozen of these incidents a month." He seems to be interrupted by a buzz from the radio receiver at his hip and strides off into the crowd, leaving you on the ledge.`
 			`	Slowly but surely, the spaceport snaps out of its shock and picks up its previous momentum, although as you turn around you pass two government-branded trucks mounted with cranes, almost certainly there to carry off the statue that was just installed and to clean up the mess left behind by the guerrillas.`
+
+mission "Raider returning to Mordente-Bridi"
+	source "Mordente-Bridi"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
+			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs; meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
+			`	Within the hour, the work shuttles scatter from the ship, having done their work replacing the battered hull and blown shield emitters, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`
