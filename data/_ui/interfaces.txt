@@ -1376,13 +1376,15 @@ interface "map buttons" bottom right
 		from -50 -90 to -80 -120
 		size 18
 
+	sprite "ui/map display"
+		from 0 -120 to -49 -169
 	visible if "!map is starry"
-	sprite "ui/star"
+	sprite "ui/star icon"
 		from 0 -120 to -49 -169
 	button ] ""
 		from 0 -120 to -49 -169
 	visible if "map is starry"
-	sprite "ui/ring"
+	sprite "ui/ring icon"
 		from 0 -120 to -49 -169
 	button [ ""
 		from 0 -120 to -49 -169
@@ -1436,13 +1438,15 @@ interface "map buttons (small screen)" bottom right
 		from -50 -90 to -80 -120
 		size 18
 
+	sprite "ui/map display"
+		from 0 -120 to -49 -169
 	visible if "!map is starry"
-	sprite "ui/star"
+	sprite "ui/star icon"
 		from 0 -120 to -49 -169
 	button ] ""
 		from 0 -120 to -49 -169
 	visible if "map is starry"
-	sprite "ui/ring"
+	sprite "ui/ring icon"
 		from 0 -120 to -49 -169
 	button [ ""
 		from 0 -120 to -49 -169
