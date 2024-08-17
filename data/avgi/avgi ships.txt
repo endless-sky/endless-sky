@@ -985,7 +985,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
-		"frame rate" 30
+		"frame rate" 15
 	thumbnail "thumbnail/avgi tachytia"
 	attributes
 		category "Utility"
