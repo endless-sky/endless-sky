@@ -1414,9 +1414,16 @@ void MapPanel::DrawSystems()
 			RingShader::Draw(pos, OUTER, INNER, node.color.Additive(alpha));
 
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
-			Angle starAngle = node.name.length() + node.position.Length();
-			Angle spacing = 360. / node.mapIcons.size();
-			Point starOffset = (node.mapIcons.size() == 1) ? Point(0, 0) : node.mapIcons.size() * Point(2, 2);
+			Angle starAngle = 0;
+			Angle spacing = 0;
+			Point starOffset = Point(0, 0);
+
+			if(node.mapIcons.size() > 1)
+			{
+				starAngle = node.name.length() + node.position.Length();
+				spacing = 360. / node.mapIcons.size();
+				starOffset = node.mapIcons.size() * Point(2., 2.);
+			}
 
 			// Draw the star sprites
 			for(const Sprite *star : node.mapIcons)
