@@ -20,7 +20,7 @@ outfit "Radiative Lamina"
 	index 10
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/radiative lamina"
 	"mass" 12
 	"anchor point" -1
 	"heat dissipation" 0.3
@@ -37,7 +37,7 @@ outfit "Concealment Lamina"
 	licenses
 		"Twilight Guard"
 	cost 2000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/concealment lamina"
 	"mass" 6
 	"anchor point" -1
 	"scan interference" 6
