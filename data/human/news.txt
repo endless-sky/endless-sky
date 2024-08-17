@@ -2404,7 +2404,7 @@ news "ccor graffiti"
 		word
 			"Someone has stenciled the emblem of the Confederated Councils of the Outer Rim here. ${ccor crest graffiti}"
 			"A crest of the local government here has been defaced with a generous amount of spray paint. ${ccor crest graffiti}"
-			"An insignia of a local guerrilla group has been painted on the wall here. ${ccor crest graffiti}"
+			"The insignia of a local guerrilla group has been painted on the wall here. ${ccor crest graffiti}"
 			"There's a spray-painted mess of competing emblems and slogans here. You can't make out the details, but it appears as if the burgundy-colored markings are in support of the CCOR."
 
 phrase "ccor crest graffiti"
@@ -2427,9 +2427,9 @@ news "ccor guerrilla"
 		word
 			`"`
 		word
-			"We've suffered long enough under this government of cronies and Syndicate oligarchs."
+			"We've suffered long enough under this government of cronies and Syndicate oligarchs!"
 			"Ever since the Republic engineered the dismantling of the Councils, our living standards have dropped considerably."
-			"We're not pirates, we're freedom fighters for the Outer Rim."
+			"We're not pirates, we're freedom fighters for the Outer Rim!"
 			"Belenos shines across the galaxy!"
 			"Our goal is to take back the prosperity of the Outer Rim that the Syndicate has taken from us."
 		word
@@ -2442,7 +2442,7 @@ news "ccor gendarme"
 		word
 			"Gendarme"
 			"Spaceport guard"
-			"Spaceport security"
+			"Spaceport security officer"
 	message
 		word
 			`"Report any signs of guerilla or pirate activity to us."`
