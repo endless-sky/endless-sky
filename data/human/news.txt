@@ -2449,5 +2449,4 @@ news "ccor gendarme"
 			`"Move along, now."`
 			`"If you see any defacement of local insignia, tell us and we'll have it sorted."`
 			`"We are here to keep the peace in this spaceport."`
-			`Security guards march through the spaceport, escorting a number of tattered, burgundy-uniformed men in cuffs.`
 			`You notice a spaceport guard eying you suspiciously as you pass through the corridor.`
