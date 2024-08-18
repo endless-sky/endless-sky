@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
-#include <filesystem>
 
 using namespace std;
 
@@ -154,7 +153,10 @@ namespace {
 // Check if the given path is to an image of a valid file type.
 bool ImageSet::IsImage(const string &path)
 {
-	string extension = filesystem::path(path).extension().string();
+	const auto period = path.find_last_of('.');
+	if(period == string::npos)
+		return false;
+	string extension = path.substr(period);
 	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(extension));
 }
 
