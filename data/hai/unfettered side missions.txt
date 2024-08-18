@@ -383,6 +383,10 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" < -2000
 		personality heroic mute marked plunders target unconstrained
 		ship "Shield Beetle (Prototype)" "Requiem"
+		on kill
+			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
+			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+			fail
 		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
 	npc
 		government "Hai (Unfettered)"
@@ -394,9 +398,9 @@ mission "Hai Legacy 3"
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
-			fail
 			set "unfettered: outcast"
 			dialog `As you destroy the Lightning Bug, along with Mera and her crew in it, you receive an angry hail from the Unfettered. "You completely disrespected the rules of a duel and killed one of our most prominent members! You will not be welcome here anymore!"`
+			fail
 	npc
 		government "Hai (Unfettered)"
 		to spawn
@@ -438,7 +442,7 @@ mission "Undeserved Anomalocaris"
 		attributes "unfettered"
 	to offer
 		has "ship model: Anomalocaris"
-		"reputation: Hai (Unfettered)" <= -1000
+		"reputation: Hai (Unfettered)" <= 0
 		not "Hai Legacy 2: active"
 	on offer
 		conversation
@@ -457,8 +461,7 @@ mission "Undeserved Anomalocaris"
 				to display
 					not "Unfettered Jump Drive 1: offered"
 			action
-				take ship "Anomalocaris"
-					id "hai legacy"
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
+				take ship "Anomalocaris"
 			`	The leader of the Unfettered group then has a few of them escort you to a farther out location. On your way there, some of them seemed to be holding back some frustration, and you could have sworn one wanted to attack you at any moment. Eventually you are lead to a landed Lightning Bug, and after some messy paperwork, the Unfettered leave it with you.`
 				decline
