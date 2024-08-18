@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace {
 	// Additional distance the scrollbar's tab can be selected from.
-	constexpr int SCROLLBAR_MOUSE_ADDITIONAL_RANGE = 5;
+	constexpr float SCROLLBAR_MOUSE_ADDITIONAL_RANGE = 5.;
 }
 
 
@@ -107,18 +107,17 @@ bool ScrollBar::Hover(int x, int y)
 
 bool ScrollBar::Drag(double dx, double dy)
 {
-	if(highlighted)
-	{
-		Point dragVector{dx, dy};
-		Point thisVector = to - from;
+	if(!highlighted)
+		return false;
 
-		double scalarProjectionOverLength = thisVector.Dot(dragVector) / thisVector.LengthSquared();
+	Point dragVector{dx, dy};
+	Point thisVector = to - from;
 
-		fraction += scalarProjectionOverLength / (1. - displaySizeFraction);
+	double scalarProjectionOverLength = thisVector.Dot(dragVector) / thisVector.LengthSquared();
 
-		return true;
-	}
-	return false;
+	fraction += scalarProjectionOverLength / (1. - displaySizeFraction);
+
+	return true;
 }
 
 bool ScrollBar::Click(int x, int y, int clicks)
