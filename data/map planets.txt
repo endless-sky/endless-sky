@@ -4832,6 +4832,7 @@ planet "Successor Wormhole"
 	spaceport ``
 	attributes "requires: quantum keystone"
 	wormhole "Successor Wormhole"
+	government Uninhabited
 
 wormhole "Successor Wormhole"
 	link "Myruet-Kvelq" "Oublaa-Khora"
