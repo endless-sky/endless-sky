@@ -3648,7 +3648,7 @@ system Rivulet
 		distance 260
 		period 35.753
 	object
-		sprite land/mountain33
+		sprite planet/luna
 		distance 490
 		period 92.5
 	object
