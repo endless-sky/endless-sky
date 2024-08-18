@@ -659,7 +659,7 @@ mission "FW Southern Prisoners - Released"
 			`<origin> has become the home of a major Navy base almost overnight; the number of ships and people here is almost overwhelming. You return the prisoners, who have all taken an oath of parole to take no further part in the war against the Free Worlds. One of the four Navy admirals who you and Alondo met with earlier is here, and as you are unloading the prisoners, he says, "More volunteers for the 'Oathkeepers,' I see."`
 			choice
 				`	"Who are the 'Oathkeepers'?"`
-			`	"The officers you granted parole two months ago. We reassigned them all to duty in the north, patrolling for pirates."`
+			`	"The officers you granted parole to months ago. We reassigned them all to duty in the north, patrolling for pirates."`
 			`	"You mean they really do honor their promise not to fight us?" you ask.`
 			`	"Of course. They swore a vow, after all." You suspect it's not quite that simple, but decide that questioning this admiral's word would be pointless. As you are getting ready to leave, he says, "Don't worry, we will be returning Miss Reynolds to you shortly. The ship carrying her should arrive here in a week or two."`
 			`	You hope he is telling the truth. Now, it is time to meet with Freya and Alondo and decide what should be done next.`
