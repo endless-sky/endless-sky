@@ -161,6 +161,8 @@ mission "Successor: Tourists Out 1"
 	to offer
 		has "known to the successors"
 		random < 25
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -186,6 +188,8 @@ mission "Successor: Tourists Out 2"
 	to offer
 		has "known to the successors"
 		random < 25
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -212,6 +216,8 @@ mission "Successor: Bold Tourists Round Trip"
 	to offer
 		has "known to the successors"
 		random < 15
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	stopover
@@ -238,6 +244,8 @@ mission "Successor: Tourist Expedition"
 	to offer
 		has "known to the successors"
 		random < 15
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	stopover
@@ -275,6 +283,8 @@ mission "Successor: Students Out"
 	to offer
 		has "known to the successors"
 		random < 50
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		attributes "education"
@@ -300,6 +310,8 @@ mission "Successor: Students In"
 	to offer
 		has "known to the successors"
 		random < 20
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		not attributes "crime"
@@ -326,6 +338,8 @@ mission "Successor: Workers Out 1"
 	to offer
 		has "known to the successors"
 		random < 20
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -350,6 +364,8 @@ mission "Successor: Workers Out 2"
 	to offer
 		has "known to the successors"
 		random < 20
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -373,6 +389,8 @@ mission "Successor: Delivery Out 1"
 	to offer
 		has "known to the successors"
 		random < 35
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -397,6 +415,8 @@ mission "Successor: Delivery Out 2"
 	to offer
 		has "known to the successors"
 		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -421,6 +441,8 @@ mission "Successor: High Value Delivery Out"
 	to offer
 		has "known to the successors"
 		random < 10
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		not attributes "crime"
@@ -449,6 +471,8 @@ mission "Successor: Aid Delivery Out 1"
 	to offer
 		has "known to the successors"
 		random < 10
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		not attributes "crime"
@@ -474,6 +498,8 @@ mission "Successor: Large Delivery Out 1"
 	to offer
 		has "known to the successors"
 		random < 20
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -498,6 +524,8 @@ mission "Successor: Large Delivery Out 2"
 	to offer
 		has "known to the successors"
 		random < 20
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -523,6 +551,8 @@ mission "Successor: Rush Delivery Out 1"
 	to offer
 		has "known to the successors"
 		random < 25
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -548,6 +578,8 @@ mission "Successor: Large Rush Delivery Out 1"
 	to offer
 		has "known to the successors"
 		random < 15
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -574,6 +606,8 @@ mission "Successor: Seismic Stabilizers"
 	to offer
 		has "known to the successors"
 		random < 6
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -599,6 +633,8 @@ mission "Successor: Data Courier 1"
 	to offer
 		has "known to the successors"
 		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		attributes "wealthy" "urban" "station"
@@ -625,6 +661,8 @@ mission "Successor: Researchers Out 1"
 	to offer
 		has "known to the successors"
 		random < 15
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		attributes "education"
@@ -649,6 +687,8 @@ mission "Successor: Large Researchers Out 1"
 	to offer
 		has "known to the successors"
 		random < 10
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		attributes "education"
@@ -673,6 +713,8 @@ mission "Successor: Home Researchers Out 1"
 	to offer
 		has "known to the successors"
 		random < 20
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		attributes "education"
@@ -700,6 +742,8 @@ mission "Successor: Researchers Transfer"
 	to offer
 		has "known to the successors"
 		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 		not attributes "crime"
@@ -727,6 +771,8 @@ mission "Successor: Old Houses Rush Delivery"
 	to offer
 		has "known to the successors"
 		random < 10
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
@@ -752,6 +798,8 @@ mission "Successor: New Houses Rush Delivery"
 	to offer
 		has "known to the successors"
 		random < 10
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		attributes "successor"
 	destination
