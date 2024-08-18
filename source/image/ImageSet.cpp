@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageSet.h"
 
 #include "../text/Format.h"
-#include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
 #include "../Logger.h"
@@ -31,8 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "jpe", "avif", "avifs"};
-	const set<string> IMAGE_SEQUENCE_EXTENSIONS{"avif", "avifs"};
+	const set<string> SUPPORTED_EXTENSIONS{".png", ".jpg", ".jpeg", ".jpe", ".avif", ".avifs"};
+	const set<string> IMAGE_SEQUENCE_EXTENSIONS{".avif", ".avifs"};
 
 	// Determine whether the given path is to an @2x image.
 	bool Is2x(const string &path)
