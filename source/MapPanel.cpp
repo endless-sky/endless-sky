@@ -1439,7 +1439,7 @@ void MapPanel::DrawSystems()
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
 					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
 				starBatch.Add(starBody);
-				if (starIncrement > maxStars)
+				if(starIncrement > maxStars)
 					break;
 			}
 		}
