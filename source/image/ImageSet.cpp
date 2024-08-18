@@ -25,15 +25,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <filesystem>
 
 using namespace std;
 
 namespace {
 	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "jpe"};
+
+	// Determine whether the given path is to an @2x image.
+	bool Is2x(const string &path)
+	{
+		return path.find("@2x") != string::npos;
+	}
+
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
 		return (c == '-' || c == '~' || c == '+' || c == '=');
+	}
+
+	// Determine whether the given path or name is to a sprite for which a
+	// collision mask ought to be generated.
+	bool IsMasked(const string &path)
+	{
+		return path.starts_with("ship/") || path.starts_with("asteroid/");
 	}
 
 	// Get the character index where the sprite name in the given path ends.
@@ -64,30 +79,17 @@ namespace {
 		return (IsBlend(path[pos]) ? pos : base.length());
 	}
 
-	// Determine whether the given path is to an @2x image.
-	bool Is2x(const string &path)
-	{
-		return path.find("@2x") != string::npos;
-	}
-
 	// Determine whether the given path is to a swizzle mask.
 	bool IsSwizzleMask(const string &path)
 	{
 		return path.find("@sw") != string::npos;
 	}
 
-	// Determine whether the given path or name is to a sprite for which a
-	// collision mask ought to be generated.
-	bool IsMasked(const string &path)
-	{
-		return path.starts_with("ship/") || path.starts_with("asteroid/");
-	}
-
 	// Get the frame index from the given path.
 	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(<extension>)
+		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).<extension>
 		size_t i = NameEnd(path);
 
 		// If the name contains a frame index, it must be separated from the name
@@ -147,11 +149,9 @@ namespace {
 // Check if the given path is to an image of a valid file type.
 bool ImageSet::IsImage(const string &path)
 {
-	if(path.find('.') == string::npos)
-		return false;
+	string extension = filesystem::path(path).extension();
 
-	string ext = path.substr(path.find_last_of('.') + 1);
-	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(ext));
+	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(extension));
 }
 
 
