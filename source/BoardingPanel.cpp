@@ -318,10 +318,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else
 		{
-			unsigned int yourAttackCasualties = 0;
-			unsigned int yourDefenseCasualties = 0;
-			unsigned int victimAttackCasualties = 0;
-			unsigned int victimDefenseCasualties = 0;
+			unsigned int yourCasualties = 0;
+			unsigned int victimCasualties = 0;
 
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
@@ -333,6 +331,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourCrew || !enemyCrew)
 					break;
 
+				double total = 0;
 				if(youAttack)
 				{
 					// Your chance of winning this round is equal to the ratio of
@@ -340,74 +339,49 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					double yourAttackPower = attackOdds.AttackerPower(yourCrew);
 					double enemyDefensePower = attackOdds.DefenderPower(enemyCrew);
 					double total = yourAttackPower + enemyDefensePower;
-					if(total)
-					{
-						if(Random::Real() * total >= yourAttackPower)
-						{
-							++yourAttackCasualties;
-							you->AddCrew(-1);
-							if(!you->Crew())
-								break;
-						}
-						else
-						{
-							++victimDefenseCasualties;
-							victim->AddCrew(-1);
-							if(!victim->Crew())
-								break;
-						}
-					}
 				}
 				if(enemyAttacks)
 				{
 					double enemyAttackPower = defenseOdds.AttackerPower(enemyCrew);
 					double yourDefensePower = defenseOdds.DefenderPower(yourCrew);
 					double total = enemyAttackPower + yourDefensePower;
-					if(total)
+				}
+
+				if(total)
+				{
+					if(youAttack && Random::Real() * total >= yourAttackPower
+						|| enemyAttacks && Random::Real() * total >= yourDefensePower)
 					{
-						if(Random::Real() * total >= yourDefensePower)
-						{
-							++yourDefenseCasualties;
-							you->AddCrew(-1);
-							if(!you->Crew())
-								break;
-						}
-						else
-						{
-							++victimAttackCasualties;
-							victim->AddCrew(-1);
-							if(!victim->Crew())
-								break;
-						}
+						++yourCasualties;
+						you->AddCrew(-1);
+						if(!you->Crew())
+							break;
+					}
+					else
+					{
+						++victimCasualties;
+						victim->AddCrew(-1);
+						if(!victim->Crew())
+							break;
 					}
 				}
 			}
 
 			// Report what happened and how many casualties each side suffered.
-			if(youAttack)
-			{
-				messages.push_back("You attack. ");
-
-				if(yourAttackCasualties && victimDefenseCasualties)
-					messages.back() += "You lose " + to_string(yourAttackCasualties)
-						+ " crew; they lose " + to_string(victimDefenseCasualties) + ".";
-				else if(yourAttackCasualties)
-					messages.back() += "You lose " + to_string(yourAttackCasualties) + " crew.";
-				else if(victimDefenseCasualties)
-					messages.back() += "They lose " + to_string(victimDefenseCasualties) + " crew.";
-			}
-			if(enemyAttacks)
-			{
+			if(youAttack && enemyAttacks)
+				messages.push_back("You both attack. ");
+			else if(youAttack)
+				message.push_back("You attack. ");
+			else if(enemyAttacks)
 				messages.push_back("They attack. ");
-
-				if(yourDefenseCasualties && victimAttackCasualties)
-					messages.back() += "You lose " + to_string(yourDefenseCasualties)
-						+ " crew; they lose " + to_string(victimAttackCasualties) + ".";
-				else if(yourDefenseCasualties)
-					messages.back() += "You lose " + to_string(yourDefenseCasualties) + " crew.";
-				else if(victimAttackCasualties)
-					messages.back() += "They lose " + to_string(victimAttackCasualties) + " crew.";
-			}
+			
+			if(yourCasualties && victimCasualties)
+				messages.back() += "You lose " + to_string(yourCasualties)
+					+ " crew; they lose " + to_string(victimCasualties) + ".";
+			else if(yourCasualties)
+				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
+			else if(victimCasualties)
+				messages.back() += "They lose " + to_string(victimCasualties) + " crew.";
 
 			// Check if either ship has been captured.
 			if(!you->Crew())
