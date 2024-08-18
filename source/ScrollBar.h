@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Otherwise, manually use the functions inside the regular panel update cycle.
 // If not using as a child panel, it is recommended to use the scrollbar with a `ScrollVar`, and use the
 //     Sync* versions of the methods to automatically update the `ScrollVar` on changes.
-// Chck existing uses for more in-depth usage.
+// Check existing uses for more in-depth examples.
 class ScrollBar : public Panel {
 public:
 	ScrollBar(float fraction, float displaySizeFraction, const Point &from, const Point &to,
