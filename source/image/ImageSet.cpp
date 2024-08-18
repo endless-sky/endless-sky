@@ -236,7 +236,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 
 	// Ensure that image sequences aren't mixed with other images.
 	for(int i = 0; i < 4; i++)
-		for(auto &str : paths[i])
+		for(const auto &str : paths[i])
 		{
 			string ext = str.substr(str.find_last_of('.') + 1);
 			if(IMAGE_SEQUENCE_EXTENSIONS.contains(ToLowerCase(ext)) && paths[i].size() > 1)
