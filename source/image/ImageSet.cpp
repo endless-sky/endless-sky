@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "jpe"};
+	const set<string> SUPPORTED_EXTENSIONS{".png", ".jpg", ".jpeg", ".jpe"};
 
 	// Determine whether the given path is to an @2x image.
 	bool Is2x(const string &path)
