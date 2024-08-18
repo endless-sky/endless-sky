@@ -155,7 +155,7 @@ namespace {
 // Check if the given path is to an image of a valid file type.
 bool ImageSet::IsImage(const string &path)
 {
-	string extension = filesystem::path(path).extension();
+	string extension = filesystem::path(path).extension().string();
 	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(extension));
 }
 
