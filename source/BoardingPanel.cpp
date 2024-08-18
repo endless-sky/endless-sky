@@ -319,7 +319,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else
 		{
 			unsigned int yourCasualties = 0;
-			unsigned int victimCasualties = 0;
+			unsigned int enemyCasualties = 0;
 
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
@@ -349,7 +349,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 						}
 						else
 						{
-							++victimCasualties;
+							++enemyCasualties;
 							victim->AddCrew(-1);
 							if(!victim->Crew())
 								break;
@@ -372,7 +372,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 						}
 						else
 						{
-							++victimCasualties;
+							++enemyCasualties;
 							victim->AddCrew(-1);
 							if(!victim->Crew())
 								break;
@@ -385,17 +385,17 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			if(youAttack && enemyAttacks)
 				messages.push_back("You both attack. ");
 			else if(youAttack)
-				message.push_back("You attack. ");
+				messages.push_back("You attack. ");
 			else if(enemyAttacks)
 				messages.push_back("They attack. ");
 			
-			if(yourCasualties && victimCasualties)
+			if(yourCasualties && enemyCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties)
-					+ " crew; they lose " + to_string(victimCasualties) + ".";
+					+ " crew; they lose " + to_string(enemyCasualties) + ".";
 			else if(yourCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
-			else if(victimCasualties)
-				messages.back() += "They lose " + to_string(victimCasualties) + " crew.";
+			else if(enemyCasualties)
+				messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
 
 			// Check if either ship has been captured.
 			if(!you->Crew())
