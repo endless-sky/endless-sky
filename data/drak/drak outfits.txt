@@ -28,7 +28,7 @@ outfit "Drak Distancer"
 		"reload" 1
 		"firing energy" 15
 		"firing heat" 10
-		"firing force" 75
+		"firing force" 112.5
 	description "This is a thruster that can produce force in any direction, allowing a Drak ship to keep a safe distance away from its target."
 
 effect "distancer flare"
@@ -58,8 +58,8 @@ outfit "Drak Draining Field"
 		"reload" 1
 		"firing energy" -15
 		"firing heat" 5
-		"firing force" 30
-		"hit force" 100
+		"firing force" 45
+		"hit force" 150
 		"shield damage" 50
 		"ion damage" .5
 		"scrambling damage" .5
@@ -89,8 +89,8 @@ outfit "Drak Draining Field (Augmented)"
 		"reload" 1
 		"firing energy" -25
 		"firing heat" 5
-		"firing force" 30
-		"hit force" 1000
+		"firing force" 45
+		"hit force" 1500
 		"shield damage" 500
 		"ion damage" 1
 		"scrambling damage" 1
@@ -163,7 +163,7 @@ outfit "Drak Turret"
 		"firing heat" 160
 		"shield damage" 256
 		"hull damage" 256
-		"hit force" 120
+		"hit force" 180
 	description "This is a turret based cannon with significant range and accuracy."
 
 
@@ -191,7 +191,7 @@ outfit "Drak Turret (Augmented)"
 		"firing heat" 160
 		"shield damage" 2560
 		"hull damage" 2560
-		"hit force" 120
+		"hit force" 180
 	description "This is a turret based cannon with significant range and accuracy."
 	description "	Against most threats, Archons respond with their weapons set to very low levels. They are, however, more than capable of dealing much more damage when the situation requires it."
 
@@ -228,7 +228,7 @@ outfit "Drak Antimatter Cannon"
 		"firing energy" 5610
 		"firing heat" 1870
 		"blast radius" 100
-		"hit force" 1000
+		"hit force" 1500
 	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races."
 
 
@@ -255,7 +255,7 @@ outfit "Drak Antimatter Cannon (Augmented)"
 		"firing energy" 5610
 		"firing heat" 1870
 		"blast radius" 250
-		"hit force" 1000
+		"hit force" 1500
 	description "This is the most powerful weapon that the Archons deign to utilize in the presence of the younger races. Hitherto unknown as Archons are rarely pushed to the point of needing to use more than their minimum abilities, the Antimatter Cannon is capable of far more damage than originally thought."
 
 
@@ -271,7 +271,7 @@ outfit "Drak Antimatter Fragment"
 		"safe"
 		"inaccuracy" 1
 		"lifetime" 499
-		"hit force" 1000
+		"hit force" 1500
 		"disruption damage" 300
 		"heat damage" 500
 		"shield damage" 5610
@@ -291,7 +291,7 @@ outfit "Drak Antimatter Fragment (Augmented)"
 		"safe"
 		"inaccuracy" 1
 		"lifetime" 1000
-		"hit force" 1000
+		"hit force" 1500
 		"disruption damage" 1000
 		"heat damage" 2500
 		"shield damage" 56100
@@ -316,4 +316,3 @@ effect "antimatter dust"
 	"random spin" 50
 	"random velocity" 12
 	"velocity scale" .1
-
