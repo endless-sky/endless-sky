@@ -1418,23 +1418,29 @@ void MapPanel::DrawSystems()
 
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
 			Angle starAngle = 0;
-			Angle spacing = 0;
+			Angle angularSpacing = 0;
 			Point starOffset = Point(0, 0);
+			int maxStars = 5;
 
 			if(node.mapIcons.size() > 1)
 			{
+				int starsToDraw = min(int(node.mapIcons.size()), maxStars);
 				starAngle = node.name.length() + node.position.Length();
-				spacing = 360. / node.mapIcons.size();
-				starOffset = node.mapIcons.size() * Point(2., 2.);
+				angularSpacing = 360. / starsToDraw;
+				starOffset = starsToDraw * Point(2., 2.);
 			}
 
 			// Draw the star sprites
+			int starIncrement = 0;
 			for(const Sprite *star : node.mapIcons)
 			{
-				starAngle = starAngle + spacing;
+				starIncrement += 1;
+				starAngle += angularSpacing;
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
 					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
 				starBatch.Add(starBody);
+				if (starIncrement > maxStars)
+					break;
 			}
 		}
 
