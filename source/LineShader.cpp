@@ -65,8 +65,9 @@ void LineShader::Init()
 		//     'width' from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
 		"    float capOffset = (cap == 1) ? widthOffset : 1;\n"
 		// The vertex position is the originating position plus an offset away from the line.
-		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset that is flipped
-		//     into a different direction for each vertex, resulting in a rectangle that tightly covers the bounds of the line.
+		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset
+		//     that is flipped into a different direction for each vertex, resulting in a rectangle that tightly
+		//     covers the bounds of the line.
 		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * capOffset * vert.y;\n"
 		// Transform the vertex position into es coordinates, so it can easily be consumed by the fragment shader,
 		// which has access to the start/end points of the line in es' coordinate system.
