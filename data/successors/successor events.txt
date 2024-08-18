@@ -88,8 +88,8 @@ event "successors: trust 2"
 		add "Veusade"
 
 event "successors: unified defense"
-	planet "Kasii-Tuur-Saqra"
-		government "New Houses"
+	government "People's Houses"
+		bribe 0
 	system "Kella-Uoasa"
 		add fleet "Large New Houses" 1200
 		add fleet "Small New Houses" 600

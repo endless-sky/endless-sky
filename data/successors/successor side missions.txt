@@ -111,6 +111,8 @@ mission "Successors: Predecessor Research 1"
 		has "trusted by the successors"
 		has "flagship attribute: quantum keystone" > 0
 		random < 40
+	to fail
+		has "Successors: Unified Defense: offered"
 	source "Staja-Kella-Oa"
 	stopover "Myiara-Aret-Iir"
 	on offer
@@ -229,6 +231,8 @@ mission "Successors: Biology Research 1"
 	to offer
 		has "known to the successors"
 		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
 	source
 		government "Successor" "Old Houses" "New Houses"
 	stopover "Naph-Naap-Kella"
@@ -357,6 +361,8 @@ mission "Successors: Stargazing 1"
 	to offer
 		has "known to the successors"
 		random < 40
+	to fail
+		has "Successors: Unified Defense: offered"
 	passengers 2
 	cargo "Vacuum Tents" 1
 	deadline 20
@@ -502,7 +508,10 @@ mission "Successors: Unified Defense"
 	invisible
 	landing
 	infiltrating
+	source
+		attributes "successor"
 	to offer
+		has "Successors: First Contact 1: offered"
 		or
 			"reputation: Successor" < -10
 			"reputation: New Houses" < -10
@@ -519,6 +528,7 @@ mission "Successors: Unified Defense"
 		"reputation: House Aqrabe" = -999
 		"reputation: House Kaatrij" = -999
 		"reputation: House Seineq" = -999
+		"reputation: People's Houses" = -999
 		event "successors: unified defense"
 		conversation
 			branch uninhabited

@@ -48,6 +48,8 @@ mission "Successors: First Contact 1"
 		not attributes "uninhabited"
 	destination "Staja-Kella-Oa"
 	clearance
+	to fail
+		has "Successors: Unified Defense: offered"
 	on offer
 		conversation
 			`After trudging through several shrouded and mostly-dead systems, you've finally found a planet with living inhabitants. As you enter the planet's upper atmosphere, your ship is surrounded by a trio of interceptors and thoroughly scanned. Soon after, the lead ship transmits a hail to you in a sharply flowing alien language before proceeding to a spaceport complex floating on a large structure along the coastline. The group corrals you onto one of the few fully-dry landing pads, and as the minutes wear on, a small crowd begins to form around your ship.`
@@ -216,6 +218,8 @@ mission "Successors: First Contact 2"
 	destination "Staja-Kella-Oa"
 	to offer
 		has "event: successors: first contact wait"
+	to fail
+		has "Successors: Unified Defense: offered"
 	on offer
 		conversation
 			`As you exit the <ship>, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
@@ -318,6 +322,8 @@ mission "Successors: First Contact 3"
 	to offer
 		has "Successors: First Contact 2: done"
 		not "rejected: Successors: First Contact 2"
+	to fail
+		has "Successors: Unified Defense: offered"
 	deadline 30
 	stopover "Raaqa-Uur-Kaav"
 	destination "Staja-Kella-Oa"
@@ -735,6 +741,8 @@ mission "Successors: Kaatrij First Contact 1"
 			has "language: Hai"
 			has "language: Coalition"
 		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
 	substitutions
 		"<coalition ally>" "Heliarchy"
 		"<coalition ally>" "Lunarium"
@@ -900,6 +908,8 @@ mission "Successors: Kaatrij Monoglot Prompt"
 			not "language: Hai"
 			not "language: Coalition"
 		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
 	on offer
 		conversation
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
@@ -916,6 +926,8 @@ mission "Successors: Trusted"
 	to offer
 		has "language: Successor"
 		has "successor jobs" >= 10
+	to fail
+		has "Successors: Unified Defense: offered"
 	substitutions
 		"<successor patron>" "Sioeora"
 		"<successor patron>" "Kaatrij"
@@ -1070,6 +1082,8 @@ mission "Successors: People's Houses, First Contact"
 	source "Kasii-Tuur-Saqru"
 	to offer
 		has "known to the successors"
+	to fail
+		has "Successors: Unified Defense: offered"
 	on offer
 		conversation
 			`Compared to most of the spaceports you have been to in Successor space, this one is dingy, crowded, and uncomfortable. Most of the Successors you see look equally dirty and unhappy, and the majority of the few ships you've noticed landing are painted in a different, darker shade of red.`
