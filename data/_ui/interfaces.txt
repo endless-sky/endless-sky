@@ -193,6 +193,7 @@ color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
+color "map system ring" .4 .4 .4 .6
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
@@ -1378,15 +1379,20 @@ interface "map buttons" bottom right
 
 	sprite "ui/map display"
 		from 0 -120 to -49 -169
+	visible if "map is starry"
+	ring "system ring"
+		center -24 -145
+		dimensions 10 10
+		color "map system ring"
+		size 2
+	active if "map is starry"
+	button [ ""
+		from 0 -120 to -49 -169
 	visible if "!map is starry"
 	sprite "ui/star icon"
 		from 0 -120 to -49 -169
+	active if "!map is starry"
 	button ] ""
-		from 0 -120 to -49 -169
-	visible if "map is starry"
-	sprite "ui/ring icon"
-		from 0 -120 to -49 -169
-	button [ ""
 		from 0 -120 to -49 -169
 
 
@@ -1440,15 +1446,20 @@ interface "map buttons (small screen)" bottom right
 
 	sprite "ui/map display"
 		from 0 -120 to -49 -169
+	visible if "map is starry"
+	ring "system ring"
+		center -24 -145
+		dimensions 10 10
+		color "map system ring"
+		size 2
+	active if "map is starry"
+	button [ ""
+		from 0 -120 to -49 -169
 	visible if "!map is starry"
 	sprite "ui/star icon"
 		from 0 -120 to -49 -169
+	active if "!map is starry"
 	button ] ""
-		from 0 -120 to -49 -169
-	visible if "map is starry"
-	sprite "ui/ring icon"
-		from 0 -120 to -49 -169
-	button [ ""
 		from 0 -120 to -49 -169
 
 
