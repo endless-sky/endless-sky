@@ -910,6 +910,7 @@ mission "Avgi: Twilight Escape 3"
 			`	"I don't know if I can face the truth. But I also can't just go my own way without even checking on her, just in case there's a chance she didn't give up in me."`
 			label optimism
 			`	Darius rubs his eyes. "Thank you, <first>. I hope I'm wrong. Let's go to Valhalla."`
+				accept
 	on complete
 		conversation
 			`You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. A quick call for an automated taxi, and you soon find yourselves outside an expansive, fancy-looking apartment complex. "Our old address," he explains. "We were still renting, but were looking at buying our apartment within a few years."`
