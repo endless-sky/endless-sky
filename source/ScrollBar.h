@@ -23,16 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ScrollBar : public Panel {
 public:
-	ScrollBar(
-		float fraction,
-		float displaySizeFraction,
-		const Point &from,
-		const Point &to,
-		float tabWidth,
-		float lineWidth,
-		Color color,
-		Color innerColor
-	) noexcept;
+	ScrollBar(float fraction, float displaySizeFraction, const Point &from, const Point &to,
+		float tabWidth, float lineWidth, Color color, Color innerColor) noexcept;
 
 	ScrollBar() noexcept;
 

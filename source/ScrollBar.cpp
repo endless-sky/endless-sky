@@ -27,39 +27,18 @@ namespace {
 
 
 
-ScrollBar::ScrollBar(
-	float fraction,
-	float displaySizeFraction,
-	const Point &from,
-	const Point &to,
-	float tabWidth,
-	float lineWidth,
-	Color color,
-	Color innerColor
-) noexcept :
-	fraction(fraction),
-	displaySizeFraction(displaySizeFraction),
-	from(from),
-	to(to),
-	tabWidth(tabWidth),
-	lineWidth(lineWidth),
-	color(color),
-	innerColor(innerColor)
+ScrollBar::ScrollBar(float fraction, float displaySizeFraction, const Point &from, const Point &to,
+	float tabWidth, float lineWidth, Color color, Color innerColor) noexcept
+	: fraction(fraction), displaySizeFraction(displaySizeFraction), from(from), to(to),
+		tabWidth(tabWidth), lineWidth(lineWidth), color(color), innerColor(innerColor)
 {
 }
 
 
 
-ScrollBar::ScrollBar() noexcept : ScrollBar(
-	0.,
-	0.,
-	Point(),
-	Point(),
-	3,
-	3,
-	Color(0.6),
-	Color(0.25)
-)
+ScrollBar::ScrollBar() noexcept
+	: ScrollBar(0., 0., Point(), Point(),
+		3, 3, Color(0.6), Color(0.25))
 {
 }
 
