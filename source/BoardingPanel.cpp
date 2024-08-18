@@ -388,7 +388,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				messages.push_back("You attack. ");
 			else if(enemyAttacks)
 				messages.push_back("They attack. ");
-			
+
 			if(yourCasualties && enemyCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties)
 					+ " crew; they lose " + to_string(enemyCasualties) + ".";
