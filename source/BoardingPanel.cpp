@@ -331,38 +331,52 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourCrew || !enemyCrew)
 					break;
 
-				double total = 0;
 				if(youAttack)
 				{
 					// Your chance of winning this round is equal to the ratio of
 					// your power to the enemy's power.
 					double yourAttackPower = attackOdds.AttackerPower(yourCrew);
-					double enemyDefensePower = attackOdds.DefenderPower(enemyCrew);
-					double total = yourAttackPower + enemyDefensePower;
+					double total = yourAttackPower + attackOdds.DefenderPower(enemyCrew);
+
+					if(total)
+					{
+						if(Random::Real() * total >= yourAttackPower)
+						{
+							++yourCasualties;
+							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
+						}
+						else
+						{
+							++victimCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
 				}
 				if(enemyAttacks)
 				{
-					double enemyAttackPower = defenseOdds.AttackerPower(enemyCrew);
 					double yourDefensePower = defenseOdds.DefenderPower(yourCrew);
-					double total = enemyAttackPower + yourDefensePower;
-				}
+					double total = defenseOdds.AttackerPower(enemyCrew) + yourDefensePower;
 
-				if(total)
-				{
-					if(youAttack && Random::Real() * total >= yourAttackPower
-						|| enemyAttacks && Random::Real() * total >= yourDefensePower)
+					if(total)
 					{
-						++yourCasualties;
-						you->AddCrew(-1);
-						if(!you->Crew())
-							break;
-					}
-					else
-					{
-						++victimCasualties;
-						victim->AddCrew(-1);
-						if(!victim->Crew())
-							break;
+						if(Random::Real() * total >= yourDefensePower)
+						{
+							++yourCasualties;
+							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
+						}
+						else
+						{
+							++victimCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
 					}
 				}
 			}
