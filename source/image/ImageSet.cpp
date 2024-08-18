@@ -38,6 +38,12 @@ namespace {
 		return path.find("@2x") != string::npos;
 	}
 
+	// Determine whether the given path is to a swizzle mask.
+	bool IsSwizzleMask(const string &path)
+	{
+		return path.find("@sw") != string::npos;
+	}
+
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
@@ -77,12 +83,6 @@ namespace {
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
 		return (IsBlend(path[pos]) ? pos : base.length());
-	}
-
-	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const string &path)
-	{
-		return path.find("@sw") != string::npos;
 	}
 
 	// Get the frame index from the given path.
