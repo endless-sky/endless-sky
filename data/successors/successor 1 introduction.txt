@@ -41,7 +41,7 @@ mission "Successors: Safe at Last"
 
 mission "Successors: First Contact 1"
 	landing
-	name "Go to the Vade-Staja system"
+	name "Octopod first contact"
 	description "The aliens in this area of space have indicated that you should travel to a system to the east."
 	source
 		attributes "successor"
@@ -953,7 +953,7 @@ mission "Successors: Trusted"
 		"reputation: House Chydiyi" += 5
 		set "trusted by the successors"
 		event "successors: trust 2"
-		log "Summoned to meet with the Successor High Houses in council, where I was given the right to purchase their civilian technology."
+		log "Summoned to meet with the Successor High Houses in council, and given the right to purchase their civilian technology."
 		log "Factions" "Successors" "The Successors are governed by a group of six High Houses who operate mostly independently from each other. The Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general."
 		conversation
 			`Once you have sat down at the spaceport, you are met by another group of Successor naval officers. You notice that this group appears even more diverse than the last, representing several different uniform styles and liveries. Unifying them all is a small white and blue pin attached to their outfits; one that does not correspond to the insignia of any of the High Houses. The officers guide you, politely but firmly, to one of the monorail trains snaking out from the spaceport to other installations on the planet, and you all shuffle together into one of the cars, which appears to have been completely cleared of normal passengers, if it even carried those in the first place.`
