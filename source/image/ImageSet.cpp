@@ -95,7 +95,7 @@ namespace {
 	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(<extension>)
+		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).<extension>
 		size_t i = NameEnd(path);
 
 		// If the name contains a frame index, it must be separated from the name
@@ -230,7 +230,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 
 	// Ensure that image sequences aren't mixed with other images.
 	for(int i = 0; i < 4; i++)
-		for(auto &str : paths[i])
+		for(const auto &str : paths[i])
 		{
 			string ext = str.substr(str.find_last_of('.') + 1);
 			if(IMAGE_SEQUENCE_EXTENSIONS.contains(Format::LowerCase(ext)) && paths[i].size() > 1)
