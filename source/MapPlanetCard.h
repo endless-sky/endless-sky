@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "MapPanel.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 
 #include <string>
 
