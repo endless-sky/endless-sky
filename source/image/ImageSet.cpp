@@ -150,7 +150,6 @@ namespace {
 bool ImageSet::IsImage(const string &path)
 {
 	string extension = filesystem::path(path).extension();
-
 	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(extension));
 }
 
