@@ -61,16 +61,13 @@ void LineShader::Init()
 		"    vec2 origin = vert.y > 0.0 ? start : end;\n"
 		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
 		"    float widthOffset = width + 1;\n"
+		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
+		//     'width' from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
+		"    float capOffset = (cap == 1) ? widthOffset : 1;\n"
 		// The vertex position is the originating position plus an offset away from the line.
-		// The offset away is a combination of a perpendicular offset and a normal offset.
-		// The perpendicular offset is the unit vector rotated 90 degrees and scaled to widthOffset,
-		//     flipped depending on the vertex input.
-		// The normal offset is the unit vector scaled to widthOffset or 1,
-		//     depending on whether the line has a round cap of not, to accommodate for the cap's additional length.
-		//
-		// The offset goes in a different direction for each vertex,
-		//     resulting in a rectangle that tightly covers the bounds of the line.
-		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * (cap == 1 ? widthOffset : 1) * vert.y;\n"
+		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset that is flipped
+		//     into a different direction for each vertex, resulting in a rectangle that tightly covers the bounds of the line.
+		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * capOffset * vert.y;\n"
 		// Transform the vertex position into es coordinates, so it can easily be consumed by the fragment shader,
 		// which has access to the start/end points of the line in es' coordinate system.
 		"    gl_Position = vec4(pos / scale, 0, 1);\n"
@@ -116,7 +113,7 @@ void LineShader::Init()
 		// Segment sdf only provides a distance fromt the line itself so we manually subtract it from the width.
 		"        dist = width - sdSegment(pos, start, end);\n"
 		"    } else {\n"
-		// Suubtract from 1 here to add some AA.
+		// Subtract from 1 here to add some AA.
 		"        dist = 1. - sdOrientedBox(pos, start, end, width);\n"
 		"    }\n"
 		"    float alpha = clamp(dist, 0.0, 1.0);\n"
