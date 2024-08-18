@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
+#include "../text/Format.h"
 #include "../Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
@@ -25,16 +26,42 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <filesystem>
 
 using namespace std;
 
 namespace {
 	const set<string> SUPPORTED_EXTENSIONS{"png", "jpg", "jpeg", "jpe", "avif", "avifs"};
 	const set<string> IMAGE_SEQUENCE_EXTENSIONS{"avif", "avifs"};
+
+	// Determine whether the given path is to an @2x image.
+	bool Is2x(const string &path)
+	{
+		return path.find("@2x") != string::npos;
+	}
+
+	// Determine whether the given path is to a swizzle mask.
+	bool IsSwizzleMask(const string &path)
+	{
+		return path.find("@sw") != string::npos;
+	}
+
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
 		return (c == '-' || c == '~' || c == '+' || c == '=');
+	}
+
+	// Determine whether the given path or name is to a sprite for which a
+	// collision mask ought to be generated.
+	bool IsMasked(const string &path)
+	{
+		if(path.starts_with("ship/"))
+			return true;
+		if(path.starts_with("asteroid/"))
+			return true;
+
+		return false;
 	}
 
 	// Get the character index where the sprite name in the given path ends.
@@ -62,30 +89,6 @@ namespace {
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
 		return (IsBlend(path[pos]) ? pos : base.length());
-	}
-
-	// Determine whether the given path is to an @2x image.
-	bool Is2x(const string &path)
-	{
-		return path.find("@2x") != string::npos;
-	}
-
-	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const string &path)
-	{
-		return path.find("@sw") != string::npos;
-	}
-
-	// Determine whether the given path or name is to a sprite for which a
-	// collision mask ought to be generated.
-	bool IsMasked(const string &path)
-	{
-		if(path.starts_with("ship/"))
-			return true;
-		if(path.starts_with("asteroid/"))
-			return true;
-
-		return false;
 	}
 
 	// Get the frame index from the given path.
@@ -145,12 +148,6 @@ namespace {
 				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
-
-	string ToLowerCase(std::string str)
-	{
-		std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c){ return std::tolower(c); });
-		return str;
-	}
 }
 
 
@@ -158,11 +155,8 @@ namespace {
 // Check if the given path is to an image of a valid file type.
 bool ImageSet::IsImage(const string &path)
 {
-	if(path.find('.') == string::npos)
-		return false;
-
-	string ext = path.substr(path.find_last_of('.') + 1);
-	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(ext));
+	string extension = filesystem::path(path).extension();
+	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(extension));
 }
 
 
@@ -239,7 +233,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		for(auto &str : paths[i])
 		{
 			string ext = str.substr(str.find_last_of('.') + 1);
-			if(IMAGE_SEQUENCE_EXTENSIONS.contains(ToLowerCase(ext)) && paths[i].size() > 1)
+			if(IMAGE_SEQUENCE_EXTENSIONS.contains(Format::LowerCase(ext)) && paths[i].size() > 1)
 			{
 				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
 						+ name + "\n");
