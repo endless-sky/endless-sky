@@ -139,10 +139,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
-	ImageBuffer.cpp
-	ImageBuffer.h
-	ImageSet.cpp
-	ImageSet.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -174,10 +170,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -282,10 +274,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	Sprite.cpp
-	Sprite.h
-	SpriteSet.cpp
-	SpriteSet.h
 	StartConditions.cpp
 	StartConditions.h
 	StartConditionsPanel.cpp
@@ -336,6 +324,18 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/ImageBuffer.cpp
+	image/ImageBuffer.h
+	image/ImageSet.cpp
+	image/ImageSet.h
+	image/Mask.cpp
+	image/Mask.h
+	image/MaskManager.cpp
+	image/MaskManager.h
+	image/Sprite.cpp
+	image/Sprite.h
+	image/SpriteSet.cpp
+	image/SpriteSet.h
 	shader/BatchDrawList.cpp
 	shader/BatchDrawList.h
 	shader/BatchShader.cpp

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Screen.h"
 #include "Shader.h"
-#include "../Sprite.h"
+#include "../image/Sprite.h"
 
 #include <sstream>
 #include <vector>

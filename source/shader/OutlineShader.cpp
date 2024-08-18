@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Point.h"
 #include "../Screen.h"
 #include "Shader.h"
-#include "../Sprite.h"
+#include "../image/Sprite.h"
 
 using namespace std;
 

@@ -44,7 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
