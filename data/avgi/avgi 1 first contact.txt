@@ -880,6 +880,7 @@ mission "Avgi: Twilight Escape 2"
 			`	A pause, and then Sora says, "Memory. I haven't been there in years, but I guess my apartment is definitely gone... so I have nowhere else to go for now."`
 			`	"Let's get too it then. <first>, could you take us to Memory?"`
 			`	"Of course," you say.`
+				accept
 
 
 mission "Avgi: Twilight Escape 3"
