@@ -29,8 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "shift.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 

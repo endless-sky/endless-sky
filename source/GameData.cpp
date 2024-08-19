@@ -35,10 +35,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Hazard.h"
-#include "ImageSet.h"
+#include "image/ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
-#include "MaskManager.h"
+#include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "audio/Music.h"
@@ -54,8 +54,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RenderBuffer.h"
 #include "RingShader.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
@@ -777,7 +777,7 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.landingMessages.count(sprite);
+	return objects.landingMessages.contains(sprite);
 }
 
 

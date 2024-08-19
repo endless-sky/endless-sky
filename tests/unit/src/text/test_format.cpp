@@ -267,6 +267,14 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(107.09) == "107.09" );
 		CHECK( Format::Number(0.0123) == "0.01" );
 	}
+	SECTION( "Large numbers" ) {
+		CHECK( Format::Number(1e15) == "1,000,000,000,000,000" );
+		CHECK( Format::Number(1e15 + 1) == "1e+15" );
+		CHECK( Format::Number(1e19) == "1e+19" );
+		CHECK( Format::Number(-1e19) == "-1e+19" );
+		CHECK( Format::Number(9223372036854775807.) == "9.22e+18" ); // Maximum and minimum values of 64-bit integers
+		CHECK( Format::Number(-9223372036854775808.) == "-9.22e+18" );
+	}
 }
 
 TEST_CASE( "Format::Credits", "[Format][Credits]") {
