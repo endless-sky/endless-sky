@@ -148,8 +148,8 @@ void PlanetPanel::Draw()
 
 	ui.Draw(info, this);
 
-	// The description text needs to be updated, because player conditions can be changed
-	// in the meantime, for example if the player accepts a mission on the Job Board.
+	// The description text needs to be updated because player conditions can be changed
+	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
 		description->SetText(planet.Description().ToString(player.Conditions()));
 }
