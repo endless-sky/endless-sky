@@ -90,15 +90,15 @@ namespace {
 
 		// If the name contains a frame index, it must be separated from the name
 		// by a character indicating the additive blending mode.
-		const string pathName = path.string();
-		if(!IsBlend(pathName[i]))
+		const string name = path.string();
+		if(!IsBlend(name[i]))
 			return 0;
 
 		size_t frame = 0;
 		// The path ends in an extension, so there's no need to check for going off
 		// the end of the string in this loop; we're guaranteed to hit a non-digit.
-		for(++i; pathName[i] >= '0' && pathName[i] <= '9'; ++i)
-			frame = (frame * 10) + (pathName[i] - '0');
+		for(++i; name[i] >= '0' && name[i] <= '9'; ++i)
+			frame = (frame * 10) + (name[i] - '0');
 
 		return frame;
 	}
