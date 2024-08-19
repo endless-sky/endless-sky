@@ -7521,32 +7521,32 @@ mission "Syndicate Business 1"
 	on complete
 		"reputation: Independent (Killable)" = 10
 		conversation
-			`When you land on <planet>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
-			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Maralex perpetual bond. To purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
+			`When you land on <planet>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase 1 perpetual bond of Megaparsec Inc I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
-				`	"Maralex Controls? I thought you were part of the Syndicate."`
-					goto maralex
+				`	"Megaparsec? I thought you were part of the Syndicate."`
+					goto mega
 				`	"Private placement? Does that mean I own part of the Syndicate?"`
 					goto placement
 				`	"No thanks. I'll take the money, please."`
 					goto payup
-			label maralex
-			`	"Maralex Controls is an affiliate of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
+			label mega
+			`	"Megaparsec Incorporated is a proud affiliate of Syndicated Systems that accepts some private outside investment. We specialize in the design and manufacture of innovative, fast, and lightweight high-performance commercial and military space vehicles. Though a relatively young shipyard, our ships can still outmaneuver and outgun almost anything their size. Would you like to invest?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label placement
-			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
+			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Megaparsec Incorporated. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest with us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. To purchase 1 bond in Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the bond sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the bond purchase."`
+			`	"Excellent. To purchase 1 bond in Megaparsec Incorporated I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the bond sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the bond purchase."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
@@ -7557,7 +7557,7 @@ mission "Syndicate Business 1"
 
 mission "Syndicate Business 2"
 	name "Purchase Bond on <planet>"
-	description "Howard from Maralex Controls is letting you buy a bond in the company for 1 million credits."
+	description "Howard from Megaparsec Incorporated is letting you buy a bond in the company for 1 million credits."
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
@@ -7566,8 +7566,8 @@ mission "Syndicate Business 2"
 		credits > 1000000
 	on offer
 		conversation
-			`You visit the office address Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Maralex Controls.`
-			`	"To reiterate, to purchase 1 perpetual bond of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our promised returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
+			`You visit the office address Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
+			`	"To reiterate, to purchase 1 perpetual bond of Megaparsec Incorporated I will need 1 million credits and for you to sign a few documents. Our promised returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
 				`	"Sure, here's the 1 million credits."`
 					goto doit
@@ -7592,4 +7592,4 @@ mission "Syndicate Business 2"
 			label high
 			action
 				"salary: Syndicate Business" = 500
-			`	"Excellent. As a bond owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`
+			`	"Excellent. As a bond owner of Megaparsec Incorporated, you will now receive a daily dividend. I have some work to attend to with our major shareholders, but it was a pleasure doing business with you, Captain."`
