@@ -51,7 +51,7 @@ void DataFile::Load(const filesystem::path &path)
 
 	// Note what file this node is in, so it will show up in error traces.
 	root.tokens.push_back("file");
-	root.tokens.push_back(path);
+	root.tokens.push_back(path.string());
 
 	LoadData(data);
 }
