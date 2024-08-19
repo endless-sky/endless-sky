@@ -448,7 +448,6 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 // Modify the given set of conditions.
 void ConditionSet::Apply(ConditionsStore &conditions) const
 {
-	ConditionsStore unused;
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
 			expression.Apply(conditions);
