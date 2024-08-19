@@ -54,6 +54,8 @@ namespace {
 	// collision mask ought to be generated.
 	bool IsMasked(const filesystem::path &path)
 	{
+		if(path.empty())
+			return false;
 		filesystem::path directory = *path.begin();
 		return directory == "ship" || directory == "asteroid";
 	}
