@@ -64,8 +64,8 @@ namespace {
 		// The path always ends in a three-letter extension, ".png" or ".jpg".
 		// In addition, 3 more characters may be taken up by an @2x label or a mask label.
 		bool is2x = Is2x(path);
-		const string pathName = path.string();
-		size_t end = pathName.size() - (is2x ? 7 : 4) - (IsSwizzleMask(path, is2x) ? 3 : 0);
+		const string name = path.string();
+		size_t end = name.size() - path.extension().string().size() - (is2x ? 3 : 0) - (IsSwizzleMask(path, is2x) ? 3 : 0);
 		// This should never happen, but just in case:
 		if(!end)
 			return 0;
@@ -73,12 +73,12 @@ namespace {
 		// Skip any numbers at the end of the name.
 		size_t pos = end;
 		while(--pos)
-			if(pathName[pos] < '0' || pathName[pos] > '9')
+			if(name[pos] < '0' || name[pos] > '9')
 				break;
 
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
-		return (IsBlend(pathName[pos]) ? pos : end);
+		return (IsBlend(name[pos]) ? pos : end);
 	}
 
 	// Get the frame index from the given path.
