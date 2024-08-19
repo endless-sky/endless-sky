@@ -154,7 +154,7 @@ void Audio::Init(const vector<filesystem::path> &sources)
 				// folder, without the ".wav" or "~.wav" suffix.
 				string name = path.parent_path() / path.stem();
 				if(name.ends_with('~'))
-					name = name.substr(0, name.length() -1);
+					name.resize(name.length() -1);
 				loadQueue[name] = path;
 			}
 		}
