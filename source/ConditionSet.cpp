@@ -332,11 +332,9 @@ void ConditionSet::Add(const DataNode &node)
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
 		children.emplace_back(node);
-		// If a child node has assignment operators, warn on load since
-		// these will be processed after all non-child expressions.
+		// Warn if a child node has assignment operators, because those will be ignored.
 		if(children.back().hasAssign)
-			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last."
-			" This may be unexpected.");
+			node.PrintTrace("Error: Assignment expressions contained within and/or groups is not supported.");
 	}
 	else if(IsValidCondition(node))
 	{
@@ -451,9 +449,6 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
 			expression.Apply(conditions);
-
-	for(const ConditionSet &child : children)
-		child.Apply(conditions);
 }
 
 
