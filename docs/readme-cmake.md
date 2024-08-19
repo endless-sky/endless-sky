@@ -52,7 +52,7 @@ If you want to build the libraries from source instead of using Homebrew, you ca
 You can use your favorite package manager to install the needed dependencies. If you're using a slower moving distro like Ubuntu or Debian (or any derivatives thereof), make sure to use at least Ubuntu 22.04 LTS or Debian 12.
 If your distro does not provide up-to-date version of these libraries, you can use vcpkg to build the necessary libraries from source by passing `-DES_USE_VCPKG=ON`. Older versions of Ubuntu and Debian, for example, will need this. Additional dependencies will likely need to be installed to build the libraries from source as well.
 
-In addition to the below dependencies, you will also need CMake 3.16 or newer, however 3.21 or newer is strongly recommended. You can get the latest version from the [official website](https://cmake.org/download/).
+In addition to the below dependencies, you will also need CMake 3.16 or newer, however 3.21 or newer is strongly recommended. You can get the latest version from the [official website](https://cmake.org/download/). If you are often switching branches, then you could also consider to install ccache to speed up re-builds after switching branches.
 
 
 <details>
