@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_LAYOUT_H_
-#define ES_TEXT_LAYOUT_H_
+#pragma once
 
 #include "alignment.hpp"
 #include "truncate.hpp"
@@ -81,7 +80,3 @@ inline Layout::Layout(int width, Alignment alignment, Truncate truncateType) noe
 	: width(width), align(alignment), truncate(truncateType)
 {
 }
-
-
-
-#endif

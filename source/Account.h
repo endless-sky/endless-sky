@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ACCOUNT_H_
-#define ACCOUNT_H_
+#pragma once
 
 #include "Mortgage.h"
 
@@ -202,7 +201,3 @@ private:
 	// Regular income from salaries paid to the player.
 	std::map<std::string, int64_t> salariesIncome;
 };
-
-
-
-#endif

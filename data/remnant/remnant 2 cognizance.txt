@@ -1374,7 +1374,7 @@ mission "Remnant: Cognizance 31"
 
 mission "Remnant: Cognizance 32"
 	name "Pick Up Refined Fuel"
-	description "Chilia has asked you to pick up 58 tons of refined fuel from <planet> by <date>."
+	description "Chilia has asked you to pick up <tons> of refined fuel from <planet> by <date>."
 	source "Viminal"
 	destination "Clink"
 	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."

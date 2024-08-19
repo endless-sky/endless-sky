@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 
 #include "AI.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -113,6 +113,16 @@ namespace {
 			return mission.HasClearance(planet);
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
+	}
+
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip, const System *system)
+	{
+		if(newFirstShip != oldFirstShip && Preferences::Has("Automatically unpark flagship")
+						&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
+		{
+			newFirstShip->SetIsParked(false);
+			oldFirstShip->SetIsParked(true);
+		}
 	}
 }
 
@@ -571,7 +581,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		{
 			seen.insert(system);
 			for(const System *neighbor : system->VisibleNeighbors())
-				if(!neighbor->Hidden() || system->Links().count(neighbor))
+				if(!neighbor->Hidden() || system->Links().contains(neighbor))
 					seen.insert(neighbor);
 		}
 	}
@@ -978,8 +988,7 @@ void PlayerInfo::RemoveLicense(const string &name)
 
 bool PlayerInfo::HasLicense(const string &name) const
 {
-	// TODO: This should be changed to use std::set<>::contains when we move to C++20.
-	return licenses.count(name);
+	return licenses.contains(name);
 }
 
 
@@ -1344,8 +1353,12 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 
 	// Reorder the list.
 	shared_ptr<Ship> ship = ships[fromIndex];
+	auto oldFirstShip = ships[0];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
+	auto newFirstShip = ships[0];
+	// Check if the ship in the first position can be a flagship and is in the current system.
+	HandleFlagshipParking(oldFirstShip.get(), newFirstShip.get(), system);
 	flagship.reset();
 }
 
@@ -1356,7 +1369,12 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 	// Check if the incoming vector contains the same elements
 	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
+		Ship *oldFirstShip = ships.front().get();
 		ships = newOrder;
+		Ship *newFirstShip = ships.front().get();
+		// Check if the position of the flagship has changed, and the ship in the first position
+		// can be a flagship and is in the current system.
+		HandleFlagshipParking(oldFirstShip, newFirstShip, system);
 		flagship.reset();
 	}
 	else
@@ -2318,7 +2336,14 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, Conditions());
+	AddPlayerSubstitutions(subs);
+	return subs;
+}
 
+
+
+void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
+{
 	subs["<first>"] = FirstName();
 	subs["<last>"] = LastName();
 	const Ship *flag = Flagship();
@@ -2331,7 +2356,6 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 	subs["<system>"] = GetSystem()->Name();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
-	return subs;
 }
 
 
@@ -2400,16 +2424,16 @@ bool PlayerInfo::HasSeen(const System &system) const
 
 	// Shrouded systems have special considerations as to whether they're currently seen or not.
 	bool shrouded = system.Shrouded();
-	if(!shrouded && seen.count(&system))
+	if(!shrouded && seen.contains(&system))
 		return true;
 
 	auto usesSystem = [&system](const Mission &m) noexcept -> bool
 	{
 		if(!m.IsVisible())
 			return false;
-		if(m.Waypoints().count(&system))
+		if(m.Waypoints().contains(&system))
 			return true;
-		if(m.MarkedSystems().count(&system))
+		if(m.MarkedSystems().contains(&system))
 			return true;
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
@@ -2428,7 +2452,7 @@ bool PlayerInfo::HasSeen(const System &system) const
 				[&](const System *s) noexcept -> bool { return CanView(*s); }))
 			return true;
 		// A shrouded system not linked to a viewable system must be visible from the current system.
-		if(!system.VisibleNeighbors().count(this->system))
+		if(!system.VisibleNeighbors().contains(this->system))
 			return false;
 		// If a shrouded system is in visible range, then it can be seen if it is not also hidden.
 		return !system.Hidden();
@@ -2452,7 +2476,7 @@ bool PlayerInfo::CanView(const System &system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System &system) const
 {
-	return visitedSystems.count(&system);
+	return visitedSystems.contains(&system);
 }
 
 
@@ -2460,7 +2484,7 @@ bool PlayerInfo::HasVisited(const System &system) const
 // Check if the player has visited the given planet.
 bool PlayerInfo::HasVisited(const Planet &planet) const
 {
-	return visitedPlanets.count(&planet);
+	return visitedPlanets.contains(&planet);
 }
 
 
@@ -2490,7 +2514,7 @@ void PlayerInfo::Visit(const System &system)
 	visitedSystems.insert(&system);
 	seen.insert(&system);
 	for(const System *neighbor : system.VisibleNeighbors())
-		if(!neighbor->Hidden() || system.Links().count(neighbor))
+		if(!neighbor->Hidden() || system.Links().contains(neighbor))
 			seen.insert(neighbor);
 }
 
@@ -3749,7 +3773,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship || !flagship->GetPlanet())
 			return false;
 		string attribute = name.substr(strlen("flagship planet attribute: "));
-		return flagship->GetPlanet()->Attributes().count(attribute);
+		return flagship->GetPlanet()->Attributes().contains(attribute);
 	};
 	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
 
@@ -4177,10 +4201,10 @@ void PlayerInfo::StepMissions(UI *ui)
 
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
-		if(!active.count(it.first))
+		if(!active.contains(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
-		if(!active.count(it.first))
+		if(!active.contains(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
@@ -4567,7 +4591,7 @@ void PlayerInfo::Fine(UI *ui)
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
 		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-					(mission.Destination() == planet || mission.Stopovers().count(planet))))
+					(mission.Destination() == planet || mission.Stopovers().contains(planet))))
 			return;
 
 	// The planet's government must have the authority to enforce laws.
