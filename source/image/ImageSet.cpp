@@ -169,7 +169,7 @@ bool ImageSet::IsDeferred(const filesystem::path &path)
 {
 	if(path.empty())
 		return false;
-	else return *path.begin() == "land";
+	return *path.begin() == "land";
 }
 
 
