@@ -73,9 +73,7 @@ private:
 	void Apply(ConditionsStore &conditions) const;
 
 	// Compare this set's expressions and the union of created and supplied conditions.
-	bool TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const;
-	// Evaluate this set's assignment expressions and store the result in "created" (for use by TestSet).
-	void TestApply(const ConditionsStore &conditions, ConditionsStore &created) const;
+	bool TestSet(const ConditionsStore &conditions) const;
 
 
 private:
@@ -99,9 +97,8 @@ private:
 		bool IsTestable() const;
 
 		// Functions to use this expression:
-		bool Test(const ConditionsStore &conditions, const ConditionsStore &created) const;
-		void Apply(ConditionsStore &conditions, ConditionsStore &created) const;
-		void TestApply(const ConditionsStore &conditions, ConditionsStore &created) const;
+		bool Test(const ConditionsStore &conditions) const;
+		void Apply(ConditionsStore &conditions) const;
 
 
 	private:
@@ -122,7 +119,7 @@ private:
 			bool IsEmpty() const;
 
 			// Substitute numbers for any string values and then compute the result.
-			int64_t Evaluate(const ConditionsStore &conditions, const ConditionsStore &created) const;
+			int64_t Evaluate(const ConditionsStore &conditions) const;
 
 
 		private:

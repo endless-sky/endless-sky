@@ -153,8 +153,7 @@ namespace {
 
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions,
-		const ConditionsStore &created)
+	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions)
 	{
 		auto result = vector<int64_t>();
 		result.reserve(side.size());
@@ -167,15 +166,9 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				const auto temp = created.Get(str);
-				if(temp)
-					value = temp;
-				else
-				{
-					const auto perm = conditions.Get(str);
-					if(perm)
-						value = perm;
-				}
+				const auto perm = conditions.Get(str);
+				if(perm)
+					value = perm;
 			}
 			result.emplace_back(value);
 		}
@@ -296,13 +289,7 @@ bool ConditionSet::IsEmpty() const
 // on a temporary condition map, if this set mixes comparisons and modifications.
 bool ConditionSet::Test(const ConditionsStore &conditions) const
 {
-	// If this ConditionSet contains any expressions with operators that
-	// modify the condition map, then they must be applied before testing,
-	// to generate any temporary conditions needed.
-	ConditionsStore created;
-	if(hasAssign)
-		TestApply(conditions, created);
-	return TestSet(conditions, created);
+	return TestSet(conditions);
 }
 
 
@@ -464,7 +451,7 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 	ConditionsStore unused;
 	for(const Expression &expression : expressions)
 		if(!expression.IsTestable())
-			expression.Apply(conditions, unused);
+			expression.Apply(conditions);
 
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
@@ -472,14 +459,14 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 
 
 
-// Check if this set is satisfied by either the created, temporary conditions, or the given conditions.
-bool ConditionSet::TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const
+// Check if this set is satisfied by the given conditions.
+bool ConditionSet::TestSet(const ConditionsStore &conditions) const
 {
-	// Not all expressions may be testable: some may have been used to form the "created" condition map.
+	// All expressions should be testable: assign-conditions should only be used for ConditionAssignments.
 	for(const Expression &expression : expressions)
 		if(expression.IsTestable())
 		{
-			bool result = expression.Test(conditions, created);
+			bool result = expression.Test(conditions);
 			// If this is a set of "and" conditions, bail out as soon as one of them
 			// returns false. If it is an "or", bail out if anything returns true.
 			if(result == isOr)
@@ -488,27 +475,13 @@ bool ConditionSet::TestSet(const ConditionsStore &conditions, const ConditionsSt
 
 	for(const ConditionSet &child : children)
 	{
-		bool result = child.TestSet(conditions, created);
+		bool result = child.TestSet(conditions);
 		if(result == isOr)
 			return result;
 	}
 	// If this is an "and" condition, all the above conditions were true, so return
 	// true. If it is an "or," no condition returned true, so return false.
 	return !isOr;
-}
-
-
-
-// Construct new, temporary conditions based on the assignment expressions in
-// this ConditionSet and the values in the player's conditions map.
-void ConditionSet::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
-{
-	for(const Expression &expression : expressions)
-		if(!expression.IsTestable())
-			expression.TestApply(conditions, created);
-
-	for(const ConditionSet &child : children)
-		child.TestApply(conditions, created);
 }
 
 
@@ -575,30 +548,20 @@ bool ConditionSet::Expression::IsTestable() const
 
 
 // Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
-bool ConditionSet::Expression::Test(const ConditionsStore &conditions, const ConditionsStore &created) const
+bool ConditionSet::Expression::Test(const ConditionsStore &conditions) const
 {
-	int64_t lhs = left.Evaluate(conditions, created);
-	int64_t rhs = right.Evaluate(conditions, created);
+	int64_t lhs = left.Evaluate(conditions);
+	int64_t rhs = right.Evaluate(conditions);
 	return fun(lhs, rhs);
 }
 
 
 
 // Assign the computed value to the desired condition.
-void ConditionSet::Expression::Apply(ConditionsStore &conditions, ConditionsStore &created) const
+void ConditionSet::Expression::Apply(ConditionsStore &conditions) const
 {
 	auto &c = conditions[Name()];
-	int64_t value = right.Evaluate(conditions, created);
-	c = fun(c, value);
-}
-
-
-
-// Assign the computed value to the desired temporary condition.
-void ConditionSet::Expression::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
-{
-	auto &c = created[Name()];
-	int64_t value = right.Evaluate(conditions, created);
+	int64_t value = right.Evaluate(conditions);
 	c = fun(c, value);
 }
 
@@ -681,8 +644,7 @@ bool ConditionSet::Expression::SubExpression::IsEmpty() const
 
 
 // Evaluate the SubExpression using the given condition maps.
-int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions,
-	const ConditionsStore &created) const
+int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions) const
 {
 	// Sanity check.
 	if(tokens.empty())
@@ -690,7 +652,7 @@ int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore 
 
 	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
 	// of only the condition or numeric value to be returned as-is after substitution.
-	auto data = SubstituteValues(tokens, conditions, created);
+	auto data = SubstituteValues(tokens, conditions);
 
 	if(!sequence.empty())
 	{
