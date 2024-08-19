@@ -262,7 +262,7 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 		return list;
 
 	for(const auto &entry : filesystem::recursive_directory_iterator(directory))
-		if (entry.is_regular_file())
+		if(entry.is_regular_file())
 			list.emplace_back(entry);
 
 	sort(list.begin(), list.end());
