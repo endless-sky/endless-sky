@@ -89,31 +89,31 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
-		filesystem::path path = filesystem::current_path();
-		if(path.empty())
+		resources = filesystem::current_path();
+		if(resources.empty())
 			throw runtime_error("Unable to get path to resource directory!");
 
-		resources = path;
+		if(exists(resources))
+			resources = filesystem::canonical(resources);
+
+		#if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
+			// Special case, for Linux: the resource files are not in the same place as
+			// the executable, but are under the same prefix (/usr or /usr/local).
+			static const filesystem::path LOCAL_PATH = "/usr/local/";
+			static const filesystem::path STANDARD_PATH = "/usr/";
+			static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
+			if(resources.string().starts_with(LOCAL_PATH.string()))
+				resources = LOCAL_PATH / RESOURCE_PATH;
+			else if(resources.string().starts_with(STANDARD_PATH.string()))
+				resources = STANDARD_PATH / RESOURCE_PATH;
+		#endif
 	}
-	if(exists(resources))
-		resources = filesystem::canonical(resources);
-#if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
-	// Special case, for Linux: the resource files are not in the same place as
-	// the executable, but are under the same prefix (/usr or /usr/local).
-	static const filesystem::path LOCAL_PATH = "/usr/local/";
-	static const filesystem::path STANDARD_PATH = "/usr/";
-	static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
-	if(resources.string().starts_with(LOCAL_PATH.string()))
-		resources = LOCAL_PATH / RESOURCE_PATH;
-	else if(!resources.string().starts_with(STANDARD_PATH.string()))
-		resources = STANDARD_PATH / RESOURCE_PATH;
-#endif
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
 	// resources embedded within it.
 	while(!Exists(resources / "credits.txt"))
 	{
-		if(!resources.has_parent_path())
+		if(!resources.has_parent_path() || resources == "/")
 			throw runtime_error("Unable to find the resource directories!");
 		resources = resources.parent_path();
 	}
@@ -258,6 +258,9 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 {
 	vector<filesystem::path> list;
+	if(!Exists(directory) || !is_directory(directory))
+		return list;
+
 	for(const auto &entry : filesystem::recursive_directory_iterator(directory))
 		if (entry.is_regular_file())
 			list.emplace_back(entry);
