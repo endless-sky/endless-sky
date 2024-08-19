@@ -54,7 +54,7 @@ namespace {
 	// collision mask ought to be generated.
 	bool IsMasked(const filesystem::path &path)
 	{
-		string directory = *path.begin();
+		filesystem::path directory = *path.begin();
 		return directory == "ship" || directory == "asteroid";
 	}
 
@@ -146,7 +146,7 @@ namespace {
 // Check if the given path is to an image of a valid file type.
 bool ImageSet::IsImage(const filesystem::path &path)
 {
-	string ext = path.extension();
+	filesystem::path ext = path.extension();
 	return (ext == ".png" || ext == ".jpg" || ext == ".PNG" || ext == ".JPG");
 }
 
