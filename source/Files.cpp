@@ -226,7 +226,7 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 	if(!Exists(directory) || !is_directory(directory))
 		return list;
 
-	for(const auto & entry : filesystem::directory_iterator(directory))
+	for(const auto &entry : filesystem::directory_iterator(directory))
 		if(entry.is_regular_file())
 			list.emplace_back(entry);
 
