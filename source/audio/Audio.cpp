@@ -152,7 +152,7 @@ void Audio::Init(const vector<filesystem::path> &sources)
 			{
 				// The "name" of the sound is its full path within the "sounds/"
 				// folder, without the ".wav" or "~.wav" suffix.
-				string name = path.stem();
+				string name = path.parent_path() / path.stem();
 				if(name.ends_with('~'))
 					name = name.substr(0, name.length() -1);
 				loadQueue[name] = path;

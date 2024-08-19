@@ -51,7 +51,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 			if(path.extension() != ".mp3" && path.extension() != ".MP3")
 				continue;
 
-			paths[path.stem()] = path;
+			paths[path.parent_path() / path.stem()] = path;
 		}
 	}
 }
