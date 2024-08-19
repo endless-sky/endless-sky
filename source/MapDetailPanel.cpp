@@ -86,6 +86,10 @@ namespace {
 		// Return the angle, plus the length as a tie-breaker.
 		return make_pair(angle, length);
 	}
+
+	constexpr int DESCRIPTION_X_OFFSET = 240;
+	constexpr int DESCRIPTION_WIDTH = 500;
+	constexpr int DESCRIPTION_HEIGHT = 240;
 }
 
 double MapDetailPanel::scroll = 0.;
@@ -96,6 +100,7 @@ double MapDetailPanel::planetPanelHeight = 0.;
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
 	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
 {
+	InitTextArea();
 }
 
 
@@ -105,6 +110,8 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
+
+	InitTextArea();
 }
 
 
@@ -485,6 +492,20 @@ bool MapDetailPanel::RClick(int x, int y)
 
 
 
+void MapDetailPanel::InitTextArea()
+{
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("medium"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetRect(Rectangle::FromCorner(
+		Point(Screen::Right() - DESCRIPTION_X_OFFSET - DESCRIPTION_WIDTH, Screen::Top() + 20),
+		Point(DESCRIPTION_WIDTH - 20, DESCRIPTION_HEIGHT)
+	));
+}
+
+
+
 void MapDetailPanel::GeneratePlanetCards(const System &system)
 {
 	set<const Planet *> shown;
@@ -822,26 +843,11 @@ void MapDetailPanel::DrawInfo()
 	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
-		static const int X_OFFSET = 240;
-		static const int WIDTH = 500;
-		static const int HEIGHT = 240;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
+		Point pos(Screen::Right() - DESCRIPTION_X_OFFSET - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
-		if(!description)
-		{
-			// Initialize the description TextArea.
-			description = make_shared<TextArea>();
-			description->SetFont(font);
-			description->SetColor(medium);
-			description->SetAlignment(Alignment::JUSTIFIED);
-			description->SetRect(Rectangle::FromCorner(
-				Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20),
-				Point(WIDTH - 20, HEIGHT)
-			));
-		}
 		description->SetText(selectedPlanet->Description().ToString(player.Conditions()));
 		if(!descriptionVisible)
 		{

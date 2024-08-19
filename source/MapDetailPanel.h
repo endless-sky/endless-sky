@@ -62,6 +62,7 @@ protected:
 
 
 private:
+	void InitTextArea();
 	void GeneratePlanetCards(const System &system);
 	void DrawKey();
 	void DrawInfo();
