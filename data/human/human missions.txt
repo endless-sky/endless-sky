@@ -107,14 +107,13 @@ mission "Hunted"
 	to offer
 		"combat rating" > 8103
 		"armament deterrence" >= 2
-		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
 		or
 			and
 				not "Hunted: active"
-				"ship scale" < 32
-				random < 2 + "ship scale" / 4
+				"ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4 < 32
+				random < 8
 			and
-				"ship scale" >= 32 + "Hunted: active" * 4
+				"ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4 >= 32 + "Hunted: active" * 4
 				random < 10
 		or
 			not "chosen sides"
@@ -5739,7 +5738,7 @@ mission "Quicksilver Mixup 0"
 			`You're looking at some job listings when a man with a harried face approaches you, carrying a package.`
 			`	"Excuse me, Captain," he says. "I need this package delivered in the next four days. Details are on the package. I'll pay you <payment> once it's done." Without waiting for a response, he shoves the package into your hands and runs off to attend to whatever business has gotten him in such a hurry. The package is addressed to a location on <planet>.`
 			branch "can't make it in time"
-				has "hyperjumps to planet: Silver" > 3
+				"hyperjumps to planet: Silver" > 3
 			`	It's going to be close to his deadline, but it's possible.`
 				goto choice
 			label "can't make it in time"
