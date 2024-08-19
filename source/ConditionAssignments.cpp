@@ -56,7 +56,9 @@ bool ConditionAssignments::IsEmpty() const
 // Modify the given set of conditions.
 void ConditionAssignments::Apply(ConditionsStore &conditions) const
 {
-	setToEvaluate.Apply(conditions);
+	for(const ConditionSet::Expression &expression : setToEvaluate.expressions)
+		if(!expression.IsTestable())
+			expression.Apply(conditions);
 }
 
 

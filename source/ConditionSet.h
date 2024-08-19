@@ -69,12 +69,6 @@ private:
 	// Add complex conditions having multiple operators, including parentheses.
 	bool Add(const std::vector<std::string> &lhs, const std::string &op, const std::vector<std::string> &rhs);
 
-	// Helper function for ConditionAssignments class.
-	void Apply(ConditionsStore &conditions) const;
-
-	// Compare this set's expressions and the union of created and supplied conditions.
-	bool TestSet(const ConditionsStore &conditions) const;
-
 
 private:
 	// This class represents a single expression involving a condition,

@@ -285,11 +285,29 @@ bool ConditionSet::IsEmpty() const
 
 
 
-// Check if the given condition values satisfy this set of conditions. Performs any assignments
-// on a temporary condition map, if this set mixes comparisons and modifications.
+// Check if the given condition values satisfy this set of conditions.
 bool ConditionSet::Test(const ConditionsStore &conditions) const
 {
-	return TestSet(conditions);
+	// All expressions should be testable: assign-conditions should only be used for ConditionAssignments.
+	for(const Expression &expression : expressions)
+		if(expression.IsTestable())
+		{
+			bool result = expression.Test(conditions);
+			// If this is a set of "and" conditions, bail out as soon as one of them
+			// returns false. If it is an "or", bail out if anything returns true.
+			if(result == isOr)
+				return result;
+		}
+
+	for(const ConditionSet &child : children)
+	{
+		bool result = child.Test(conditions);
+		if(result == isOr)
+			return result;
+	}
+	// If this is an "and" condition, all the above conditions were true, so return
+	// true. If it is an "or," no condition returned true, so return false.
+	return !isOr;
 }
 
 
@@ -439,43 +457,6 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(lhs, op, rhs);
 	return true;
-}
-
-
-
-// Modify the given set of conditions.
-void ConditionSet::Apply(ConditionsStore &conditions) const
-{
-	for(const Expression &expression : expressions)
-		if(!expression.IsTestable())
-			expression.Apply(conditions);
-}
-
-
-
-// Check if this set is satisfied by the given conditions.
-bool ConditionSet::TestSet(const ConditionsStore &conditions) const
-{
-	// All expressions should be testable: assign-conditions should only be used for ConditionAssignments.
-	for(const Expression &expression : expressions)
-		if(expression.IsTestable())
-		{
-			bool result = expression.Test(conditions);
-			// If this is a set of "and" conditions, bail out as soon as one of them
-			// returns false. If it is an "or", bail out if anything returns true.
-			if(result == isOr)
-				return result;
-		}
-
-	for(const ConditionSet &child : children)
-	{
-		bool result = child.TestSet(conditions);
-		if(result == isOr)
-			return result;
-	}
-	// If this is an "and" condition, all the above conditions were true, so return
-	// true. If it is an "or," no condition returned true, so return false.
-	return !isOr;
 }
 
 
