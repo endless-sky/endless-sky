@@ -38,8 +38,8 @@ namespace {
 	bool IsSwizzleMask(const filesystem::path &path, bool is2x)
 	{
 		string s = path.stem().string();
-		if(s.ends_with("@2x"))
-			s = s.substr(0, s.length() - 3);
+		if(is2x)
+			s.resize(s.length() - 3);
 
 		return s.ends_with("@sw");
 	}
