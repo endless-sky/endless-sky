@@ -57,6 +57,7 @@ public:
 	// Add an extra condition assignment from a data node.
 	void Add(const DataNode &node);
 
+
 private:
 	ConditionSet setToEvaluate;
 };
