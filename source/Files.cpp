@@ -312,7 +312,7 @@ void Files::Delete(const filesystem::path &filePath)
 // Get the filename from a path.
 string Files::Name(const filesystem::path &path)
 {
-	return path.filename();
+	return path.filename().string();
 }
 
 
@@ -321,7 +321,7 @@ FILE *Files::Open(const filesystem::path &path, bool write)
 {
 #if defined _WIN32
 	FILE *file = nullptr;
-	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	_wfopen_s(&file, path.u16string().c_str(), write ? L"w" : L"rb");
 	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
