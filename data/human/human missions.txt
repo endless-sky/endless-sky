@@ -7533,20 +7533,20 @@ mission "Syndicate Business 1"
 				`	"No thanks. I'll take the money, please."`
 					goto payup
 			label maralex
-			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
+			`	"Maralex Controls is an affiliate of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label placement
-			`	"Not quite. You will be a lender to a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
+			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. To purchase 1 bond in Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the stock sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
+			`	"Excellent. To purchase 1 bond in Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the bond sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the bond purchase."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
@@ -7556,7 +7556,7 @@ mission "Syndicate Business 1"
 
 
 mission "Syndicate Business 2"
-	name "Purchase Stock on <planet>"
+	name "Purchase Bond on <planet>"
 	description "Howard from Maralex Controls is letting you buy a bond in the company for 1 million credits."
 	passengers 1
 	source "Sunracer"
@@ -7574,7 +7574,7 @@ mission "Syndicate Business 2"
 				`	"No, I won't become an investor."`
 					decline
 			label doit
-			`After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. All that's left is to submit this first set of paperwork to our headquarters and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
+			`After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. This particular investment is in partnership with Syndicated Systems, so we'll need to submit this first set of paperwork to their office and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
 				accept
 	on accept
 		payment -1000000
