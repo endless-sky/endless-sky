@@ -72,7 +72,7 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 void ConditionAssignments::AddSetCondition(const std::string &name)
 {
-	Add("set", name);
+	setToEvaluate.Add("set", name);
 }
 
 
@@ -80,25 +80,4 @@ void ConditionAssignments::AddSetCondition(const std::string &name)
 void ConditionAssignments::Add(const DataNode &node)
 {
 	setToEvaluate.Add(node);
-}
-
-
-
-bool ConditionAssignments::Add(const string &firstToken, const string &secondToken)
-{
-	return setToEvaluate.Add(firstToken, secondToken);
-}
-
-
-
-bool ConditionAssignments::Add(const string &name, const string &op, const string &value)
-{
-	return setToEvaluate.Add(name, op, value);
-}
-
-
-
-bool ConditionAssignments::Add(const vector<string> &lhs, const string &op, const vector<string> &rhs)
-{
-	return setToEvaluate.Add(lhs, op, rhs);
 }
