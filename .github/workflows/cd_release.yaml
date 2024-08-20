@@ -121,7 +121,7 @@ jobs:
           mkdir "${{ env.OUTPUT }}"
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
-          hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
+          until hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"; do echo "hdiutil create failed, retrying..."; done
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -152,7 +152,7 @@ jobs:
     - name: Build Endless Sky
       run: |
         cd steam
-        docker-compose run steam-x64
+        docker compose run steam-x64
     - name: Prepare binary
       run: cp build/steam-x64/endless-sky .
     - name: Upload Steam Depot
