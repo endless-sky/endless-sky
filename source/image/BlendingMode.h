@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 enum class BlendingMode : char {
 	ALPHA = '-',
-	PREMULTIPLIED_ALPHA='=',
-	HALF_ADDITIVE='~',
-	ADDITIVE='+'
+	PREMULTIPLIED_ALPHA = '=',
+	HALF_ADDITIVE = '~',
+	ADDITIVE = '+'
 };
