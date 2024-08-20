@@ -64,9 +64,9 @@ jobs:
       uses: actions/cache@v4
       with:
         path: /home/runner/.cache/sccache
-        key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
         restore-keys: |
-          ${{ runner.os }}-sccache-
+          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-sccache-
     - name: Setup sccache
       uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
@@ -140,9 +140,9 @@ jobs:
       uses: actions/cache@v4
       with:
         path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
-        key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
+        key: ${{ runner.os }}-clang-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
         restore-keys: |
-          ${{ runner.os }}-sccache-
+          ${{ runner.os }}-clang-sccache-
     - name: Setup sccache
       uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
