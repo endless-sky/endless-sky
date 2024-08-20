@@ -198,7 +198,7 @@ void PlayerInfo::New(const StartConditions &start)
 
 
 // Load player information from a saved game file.
-void PlayerInfo::Load(const string &path)
+void PlayerInfo::Load(const filesystem::path &path)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
@@ -210,7 +210,7 @@ void PlayerInfo::Load(const string &path)
 	map<string, map<string, int>> missionCargoToDistribute;
 	map<string, map<string, int>> missionPassengersToDistribute;
 
-	filePath = path;
+	filePath = path.string();
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
 	size_t pos = filePath.find('~');

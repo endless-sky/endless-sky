@@ -82,7 +82,7 @@ public:
 	// Make a new player.
 	void New(const StartConditions &start);
 	// Load an existing player.
-	void Load(const std::string &path);
+	void Load(const std::filesystem::path &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).

@@ -57,7 +57,7 @@ private:
 
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
-	void WriteSnapshot(const std::string &sourceFile, const std::string &snapshotName);
+	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.
 	void LoadCallback();
 	// Delete callbacks.

@@ -921,7 +921,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		string directoryPath = source / "images/";
+		filesystem::path directoryPath = source / "images/";
 
 		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
 		for(auto &path : imageFiles)

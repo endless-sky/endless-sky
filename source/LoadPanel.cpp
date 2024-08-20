@@ -294,7 +294,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			return false;
 
 		nameToConfirm.clear();
-		string lastSave = Files::Saves() / it->second.front().first;
+		filesystem::path lastSave = Files::Saves() / it->second.front().first;
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
@@ -567,7 +567,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 
 	// If a file with this name already exists, make sure the player
 	// actually wants to overwrite it.
-	string to = from.parent_path() / (from.stem().string() + extension);
+	filesystem::path to = from.parent_path() / (from.stem().string() + extension);
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
@@ -581,7 +581,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 
 
 // This name is the one to be used, even if it already exists.
-void LoadPanel::WriteSnapshot(const string &sourceFile, const string &snapshotName)
+void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesystem::path &snapshotName)
 {
 	// Copy the autosave to a new, named file.
 	Files::Copy(sourceFile, snapshotName);
@@ -592,7 +592,7 @@ void LoadPanel::WriteSnapshot(const string &sourceFile, const string &snapshotNa
 		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName + "\"."));
+		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
 }
 
 
