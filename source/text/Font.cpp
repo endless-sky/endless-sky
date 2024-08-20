@@ -92,7 +92,7 @@ void Font::Load(const string &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(imagePath))
+	if(!image.Read(ImageFileData(imagePath)))
 		return;
 
 	LoadTexture(image);
