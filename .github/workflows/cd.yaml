@@ -13,9 +13,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
-env:
-  SCCACHE_VERSION: 0.8.1
-
 jobs:
 
   cd_appimage_x64:
@@ -41,8 +38,6 @@ jobs:
             ${{ runner.os }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
-        with:
-          version: v${{ env.SCCACHE_VERSION }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
@@ -74,14 +69,12 @@ jobs:
       - name: Setup cached directories
         uses: actions/cache@v4
         with:
-          path: C:\hostedtoolcache\windows\sccache\${{ env.SCCACHE_VERSION }}\x64\sccache
+          path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
-        with:
-          version: v${{ env.SCCACHE_VERSION }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
@@ -116,14 +109,12 @@ jobs:
       - name: Setup cached directories
         uses: actions/cache@v4
         with:
-          path: /Users/runner/hostedtoolcache/sccache/${{ env.SCCACHE_VERSION }}/x64/sccache
+          path: /Users/runner/Library/Caches/Mozilla.sccache
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
-        with:
-          version: v${{ env.SCCACHE_VERSION }}
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
