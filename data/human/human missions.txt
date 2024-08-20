@@ -7593,3 +7593,286 @@ mission "Syndicate Business 2"
 			action
 				"salary: Syndicate Business" = 500
 			`	"Excellent. As a bond owner of Megaparsec Incorporated, you will now receive a daily dividend. I have some work to attend to with our major shareholders, but it was a pleasure doing business with you, Captain."`
+
+#part 2
+# Best case: 10m, 2700 per day best case out of the negative after almost 10.1 years
+# Worst case: 11m, 1500 per day worst case out of the negative after 20 years
+# Super Worst case: 11m, 1500 per day worst case out of the negative after 38 years
+# Driven by if you were mean to Howard, which of 3 investment options picked, and if you pay off debt ASAP
+
+mission "Syndicate Business 3"
+	name "Visit Howard on <planet>"
+	description "Howard from Megaparsec Inc wants to tell you about an investment opportunity."
+	source
+		government "Syndicate"
+		attributes "core"
+		not planet "Hephaestus"
+	destination "Hephaestus"
+	to offer
+		has "Syndicate Business 2: done"
+		random < 40
+		credits > 40000000
+	on offer
+		conversation
+			`After an uneventful trip to the spaceport you return to <ship> and see a message from Howard, the Megaparsec salesman who sold you a 1 million credit bond. The message says: `
+			`	"<first> <last>! My Bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my office on <planet> to discuss.`
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated"`
+			choice
+				`	(Message him back that you're on the way.)`
+				`	(Ignore and delete the message.)`
+					decline
+			`You immediately receive an automated response:`
+			`	"Dear Valued Contact,
+			`	Thank you for reaching out to Howard Vendeur. I am currently out of the office and will respond to your message as soon as possible.`
+			`	For urgent matters, please contact our support team. `
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated"`
+				accept
+	on complete
+		event "howard back at sunracer" 14
+		conversation
+			`You land <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the Syndicate's headquarters.`
+			`You find yourself waiting in a sleek, sterile lobby, the hum of distant machinery filling the air. The walls are lined with glossy advertisements for various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from minutes to hours.`
+			choice
+				`	Take a seat in the lobby.`
+			branch makeemwait
+				has "mean to Howard"
+			`	Much to your surprise, the wait is brief. Within minutes, Howard emerges with a warm smile, extending a hand as he welcomes you into his office, clearly eager to discuss the next big deal.`
+				goto next			
+			label makeemwait
+			`	Hours crawl by as the polished receptionist offers increasingly strained reassurances. Finally, Howard arrives, barely masking his annoyance, and motions for you to follow with a curt nod, clearly viewing this meeting as an inconvenience.`
+			label next
+			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress, but it's clear this is more for show than substance`
+			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
+			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings over the next few days, but I'll be back at my other office on Sunracer in a couple weeks. I'll explain everything once you get there."`
+			choice
+				`	"Sure thing, I'll see you later."`
+					goto next2
+				`	"You have 2 offices?"`
+					goto offices
+				`	"I don't care about prying eyes! What do you want and what do I get?"`
+			`	Howard raises an eyebrow and then waves you off with a chuckle. "All in good time, my friend," he says, leaning back. "It's nothing you can't handle. I'll fill you in once we're safely on Sunracer, and let's just say it'll be worth your while."
+				goto next2
+			label offices
+			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I keep reserved for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."
+			label next2
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. It's clear that, for now, that Howard is finished with you and you'll get no more information.`
+
+event "howard back at sunracer"
+
+mission "Syndicate Business 4"
+	landing
+	name "Meet Howard on <planet>"
+	description "Meet Howard from Megaparsec Inc on <planet> to complete a favor in exchange for an investment opportunity."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		near Sol 100
+	to offer
+		has "event: howard back at sunracer"
+		has "Syndicate Business 3: done"
+	destination "Sunracer"
+	on offer
+		conversation
+			`You see a message from Howard just after landing <ship>:`
+			`	"<first> <last>! I've just settled back in on <planet>! Meet me at my office on <planet> to continue our conversation.`
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated"`
+				accept
+	on complete
+		conversation
+			`As soon as you land, you see yet another message from Howard:`
+			`	"<first> <last>! My people tell me you've landed on <planet>! Meet me at my office near the spaceport to discuss.`
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated"`
+
+mission "Syndicate Business 5"
+	name "Disable a Marauder Ship on <planet>"
+	description "Howard from Megaparsec Inc wants you to disable a Marauder ship in exchange for an investment opportunity."
+	minor
+	to offer
+		has "Syndicate Business 4: done"
+	source
+		planet "Sunracer"
+	waypoint "Oblate"
+	destination "Sunracer"
+	on offer
+		conversation
+			`Even amidst the mix of landing pads, hangars, and cranes, it's hard to miss the Megaparsec corporate office. After a short walk, you reach the towering building. The lobby is sleek and modern, filled with the quiet hum of efficiency. To your surprise the receptionist waves you on and you take an elevator up to the 8th floor, where Howard awaits.`
+			`	The office reminds you of the one you were in on Hephaestus, though more understated. Howard's office is a modest yet modern space, featuring a smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Minimalist decor hints at ambition, with a single digital screen displaying market data.`
+			`	"Glad you could make it," Howard says, extending his hand. "Apologies for the inconvenience, but it's better to discuss these matters away from potentially 'interested' parties." He motions for you to join him at one of the few sleek chairs in the center of the room. 
+			choice
+				`	Take a seat.`
+				`	Remain standing.`
+					goto shrug
+			`	Howard sits beside you in an oddly intimate expression.`
+				goto familiar
+			label shrug
+			`	Howard shrugs and takes a seat anyway.`
+			label familiar
+			`	Once settled, Howard leans back in his chair and gives you a serious look. "Tell me," he says, "are you familiar with Marauder ships?"`
+			choice
+				`	"Yes, of course."`
+					goto ask
+				`	"No, I can't say I'm familiar."`
+			`	Howard raises an eyebrow. "Marauder ships are nasty pieces of work," he explains. "They're ships with numerous modifications - mostly with combat in mind. More shields, weapons, engines, and outfit space, with enough firepower to tear through a lot of defenses before anyone knows what hit them. They're often used by rogue groups that operate outside the law, preying on vulnerable targets."`
+			label ask
+			`	Howard pauses for a moment before continuing. "Megaparsec is interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted on Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
+			`	He gives you a pointed look. "Think you can handle that?"`
+			choice
+				`	"You got it."`
+					goto accepting
+				`	"What do you need me for? This sounds like something that the Syndicate could do themselves."`
+				`	"No way, we're done here."`
+					decline			
+			`	Howard shifts a bit in his seat as he considers your question. "Normally, we'd contract Lightspeed Logistics for this sort of job. They've got the expertise and resources to handle something like this cleanly." He pauses, choosing his words carefully. "But they lack the discretion. This particular Marauder ship belongs to a pirate who ran in the same circles as a number of Lightspeed contractors. If we sent them in, I'm concerned they might try to study the ship themselves, tip off the pirate, or worse, tip off others in the Syndicate that Megaparsec is making a move."`
+			`	"That's where you come in. You're outside the usual network, and that gives us a layer of security. Take this job, and it stays between us. No one else needs to know Megaparsec is involved."`
+			choice
+				`	"Alright, I'm in."`
+					goto accepting
+				`	"And where does that promised investment opportunity fit in?"`
+					goto investingop
+				`	"I'm still not interested."`
+					goto decline	
+			label investingop
+			`	His face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least 10, maybe 12 million credits to get in on this one."`
+			`	He leans forward. "We're looking to fund a refueling station expansion at our logistics hub on Crossroads. We're between an aggressive option, a more conventional expansion, and a more conservative one."`
+			`	Howard pauses, gauging your reaction before continuing. "All of the options have their merits, though investors usually prefer the one with the most returns. But the choice is yours if you're in, I'll make sure you get the full details once we're done with this little favor on Oblate."`	
+			choice
+				`	"Alright, I'm in. Let's discuss it more after Oblate."`
+					goto accepting
+				`	"Why would a shipyard have refueling stations?"`
+				`	"None of those option sound good to me. I'm out."
+					decline
+			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for the freighters carrying the Quicksilver's signature Particle Cannons from Lovelace Labs on Ada!`
+			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic. " 
+			`	"There are, of course, ancillary benefits as well. For R&D, we can test the impact of different fuel mixtures on our ships prior to entering the market. For partnerships, we can include fueling rights in large-scale sales agreements. At our largest logistics hubs the economies of scale even allow us to competitively offer refueling services on the open market, giving us a diversified revenue stream."`
+			`	"In fact, the ancillary benefits are largely why there's such discretion in how the expansion will go. The aggressive and conservative fueling options both offer R&D and partnership benefits that are more than the project's directs returns."`
+			choice
+				`	"That makes sense. Let's discuss the deal more after Oblate."`
+				`	"Thanks for the overview, but I'm still not interested. I'm out."
+					decline
+			label accepting
+			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated." He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship, cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met."`
+				accept
+	on enter "Oblate"
+		"reputation: Independent (Killable)" = -1000
+	npc disable
+		government "Independent (Killable)"
+		personality heroic staying vindictive
+			confusion 20
+		system "Oblate"
+		ship "Marauder Quicksilver (Engines) (Safe)" "Pilgrim Shadow"
+		on disable
+			conversation
+				`The ship has been disabled. You receive a message from Howard almost immediately:`
+				`	"<first> <last>, you've done it again! Meet back at <destination> to discuss.`
+				`		Howard Vendeur`
+				`		Investor Relations Manager, Megaparsec Incorporated"`
+	on complete
+		event "10m investment done" 180
+		conversation
+			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a  nod, and you quickly ascend to the 8th floor.`
+			`	Howard greets you with a smile as you step into his office. The room is as you left it -- modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job on Oblate went smoothly?"`
+			choice
+				`	"Of course."`
+					goto next1
+				`	"Didn't you message me as soon as I did it?"`
+			`	"True enough, just making conversation," he says with a grin. "The important thing is the job's done. Now, let's get down to business."`
+			label next1
+			`	"Our recovery team is already retrieving the ship as we speak. You've done well. Now, let's talk about that investment opportunity."`
+			`	Howard pulls up a holographic display on the digital screen behind him. Various charts and projections flash by. "Ready for the pitch?"`
+			choice
+				`	"You know it."`
+			`	"Here's what we're looking at. Megaparsec Incorporated is expanding a refueling station on Crossroads, and we're likely going to go with a conventional expansion. But don't let the term 'conventional' fool you, Megaparsec rarely expands its refueling stations--this is the first time in over a decade. When we do, it's because we've identified a strategic location that will skyrocket profits. These opportunities are as rare as they come, and most investors never even hear about them. But you've proven yourself, and that's why you're getting a seat at the table."`
+			`	He pauses, letting the weight of his words sink in. "Getting in on this is a once-in-a-lifetime chance. We're talking about a key hub on a high-traffic trade route, with a captive market of ships desperate for fuel. The returns will be solid... and dependable. Opportunities like this don't just come around, and when they do, they go fast."`
+			choice
+				`	"Okay."`
+			branch upcharge
+				has "mean to Howard"
+			`	"Excellent. The price for this investment is 10 million credits for a solid 2000 credit a day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
+			`	He slides a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
+			choice
+				`	"Sounds good."
+					action
+						debt 10000000
+							interest 0.03
+							term 3650
+					goto nexty
+				`	"I'm done with these deals, I'm leaving."`
+					decline			
+			label upcharge
+			`	Howard's tone carries a hint of impatience. "Alright then. The price for this investment is 11 million credits for a 2000 credit a day return. I've managed to arrange a loan through the bank, so you won't need to come up with the cash immediately. Just sign these documents to formalize the arrangement."`
+			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
+			choice
+				`	"Sounds good."
+					debt 11000000
+						interest 0.04
+						term 3650
+					goto nexty
+				`	"I'm done with these deals, I'm leaving."`
+					decline	
+			label nexty
+			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 2200 credits a day, or around 7-8% a year."`
+			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan." `
+			`	Howard pauses, waiting to see if you're interested in taking the conversation further.`
+			choice
+				`	"Sounds like a good plan to me."`
+					"salary: Syndicate Business10m" = 2200
+					set "Syndicate Business expansion 10m neutral"
+					goto choseplana
+				`	"What would it take to boost profits even more?"`
+					goto planb
+				`	"What if I have concerns about the environmental impact?"`
+					goto planc
+			label plana
+			`	The conventional expansion is anything but. We'd work with licensed suppliers and build it by the book. Of course, Crossroads is already a radioactive wasteland of sandstorms, so the book's pretty light, all things considered. It's a solid investment with good returns and minimal risk. Nothing too flashy, but reliable returns of about 2200 credits a day, or around 7-8% a year."`
+			choice
+				`	"Sounds like a good plan to me."`
+					"salary: Syndicate Business10m" = 2200
+					set "Syndicate Business expansion 10m neutral"
+					goto choseplana
+				`	"What would it take to boost profits even more?"`
+					goto planb
+				`	"And if I have concerns about the environmental impact?"`
+					goto planc
+			label planb
+			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile--one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 2700 credits a day, or 9-10% a year."
+			choice
+				`	"Bring on the profits, this unregulated option is the one for me"`
+					"salary: Syndicate Business10m" = 2700
+					set "Syndicate Business expansion 10m evil"
+					goto choseplanb
+				`	"Tell me about the conventional expansion again."`
+					goto plana
+				`	"And if I have concerns about the environmental impact?"`
+					goto planc
+			label planc
+			`	"There's also the eco-friendly route. We'd invest in green energy technologies and refining processes that minimize environmental impact and implement best-in-class workplace safety protocols. It's the most expensive option, and it'll slow our expansion, but it would reduce our environmental liabilities and might give us some goodwill. Easily the worst returns with around 1500 credits a day expected, or just around 5% a year."
+			choice
+				`	"This enviornmental and safety focused option is the one for me"`
+					"salary: Syndicate Business10m" = 1500
+					set "Syndicate Business expansion 10m good"
+					goto choseplanc
+				`	"Tell me about the conventional expansion again."`
+					goto plana
+				`	"What would it take to boost profits even more?"`
+					goto planb
+			label choseplana
+			`	"Excellent choice. The conventional expansion is a safe bet with solid returns. It's not the flashiest option, but the steady stream of ships passing through Crossroads will ensure consistent profits. The only drawback is that it won't make headlines--but it'll keep the credits flowing smoothly".`
+				goto ending
+			label choseplanb
+			`	"Well done. The unregulated option is bold and ambitious--exactly the kind of move the Syndicate prizes. The volatility of this fuel isn't for the faint of heart, but some bad PR is well worth the profits and potential learnings we'll achieve. High risk often means high reward."`
+				goto ending
+			label choseplanc
+			`	"An admirable decision. The eco-friendly route won't make the most credits, but it's a forward-thinking investment. It could pay off in other ways, like reduced turnover and environmental liabilities. Objectively the worst investment from a returns perspective, but I suppose you value other things more."`
+			label ending
+			choice
+				`	"Thanks."`
+			`	"Alright, now that we've settled on your investment, let's get the rest of the paperwork squared away." He slides a stack of documents across the desk. "These cover the remaining loan terms, the investment agreement, and the usual legal fine print. Nothing too complicated, just a few signatures to make it all official." He hands you a sleek pen, his expression all business. "Once this is done, you'll be a stakeholder in one of Megaparsec's most promising expansions."`
+			choice
+				`	(Sign the paperwork.)`
+			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
+			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to <ship>.`
+
+event "10m investment done"
