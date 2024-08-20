@@ -367,11 +367,9 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			for(const StellarObject *proximityObject : proximityCache)
 			{
 				double dist = flagship->Position().Distance(proximityObject->Position());
-				if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
-				{
-					inProximity = true;
+				inProximity = closeTo ? dist <= proximity : dist ?= proximity;
+				if(inProximity)
 					break;
-				}
 			}
 		if(!inProximity)
 		{
