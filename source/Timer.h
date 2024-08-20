@@ -59,7 +59,7 @@ public:
 	bool IsComplete() const;
 
 	// Calculate the total time to wait, including any random value.
-	Timer Instantiate(std::map<std::string, std::string> &subs, const System *origin,
+	Timer Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs, const System *origin,
 		int jumps, int64_t payload) const;
 	// Progress the timer within the main loop.
 	void Step(PlayerInfo &player, UI *ui, const Mission &mission);
