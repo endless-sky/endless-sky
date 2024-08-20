@@ -205,6 +205,8 @@ public:
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
 	const ShipAICache &GetAICache() const;
+	// Updates the AI and navigation caches. If the ship's mass hasn't changed,
+	// reuses some of the previous values.
 	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
