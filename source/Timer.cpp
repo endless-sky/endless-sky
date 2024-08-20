@@ -207,7 +207,7 @@ void Timer::Save(DataWriter &out) const
 
 // Calculate the total time to wait, including any random value,
 // and instantiate the triggered action.
-Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin, 
+Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	Timer result;
