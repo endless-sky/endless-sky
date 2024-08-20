@@ -207,7 +207,7 @@ void Timer::Save(DataWriter &out) const
 
 // Calculate the total time to wait, including any random value,
 // and instantiate the triggered action.
-Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
+Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	Timer result;
 	result.requireIdle = requireIdle;
@@ -240,7 +240,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(store, subs, origin, jumps, payload);
 
 	// Calculate the random variance to the wait time.
 	result.waitTime = waitTime;

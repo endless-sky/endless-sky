@@ -1536,7 +1536,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Instantiate the Timers.
 	for(const Timer &timer : timers)
-		result.timers.push_back(timer.Instantiate(subs, sourceSystem, jumps, payload));
+		result.timers.push_back(timer.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
