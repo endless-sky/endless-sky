@@ -90,15 +90,6 @@ bool ImageSet::IsImage(const filesystem::path &path)
 
 
 
-// Get the base name for the given path. The path should be relative to one
-// of the source image directories, not a full filesystem path.
-string ImageSet::Name(const filesystem::path &path)
-{
-	return path.string().substr(0, NameEnd(path));
-}
-
-
-
 // Determine whether the given path or name is for a sprite whose loading
 // should be deferred until needed.
 bool ImageSet::IsDeferred(const filesystem::path &path)
@@ -138,10 +129,8 @@ bool ImageSet::IsEmpty() const
 void ImageSet::Add(ImageFileData data)
 {
 	// Determine which frame of the sprite this image will be.
-	bool is2x = Is2x(path);
-	size_t frame = FrameIndex(path);
 	// Store the requested path.
-	framePaths[is2x + (2 * IsSwizzleMask(path))][frame].swap(path);
+	framePaths[data.is2x + (2 * data.isSwizzleMask)][data.frameNumber].swap(data.path);
 }
 
 
