@@ -33,9 +33,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /home/runner/.cache/sccache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
+          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
           restore-keys: |
-            ${{ runner.os }}-sccache-
+            ${{ runner.os }}-cd-sccache-refs/heads/master
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Adjust version strings
@@ -70,9 +70,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
+          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
           restore-keys: |
-            ${{ runner.os }}-sccache-
+            ${{ runner.os }}-cd-sccache-refs/heads/master
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Adjust version strings
@@ -110,9 +110,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /Users/runner/Library/Caches/Mozilla.sccache
-          key: ${{ runner.os }}-${{ runner.arch }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
+          key: ${{ runner.os }}-${{ runner.arch }}-cd-sccache-${{ github.ref }}
           restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-sccache-
+            ${{ runner.os }}-${{ runner.arch }}-cd-sccache-refs/heads/master
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Install pkg-config
