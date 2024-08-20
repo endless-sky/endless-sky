@@ -42,7 +42,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 	for(const auto &source : sources)
 	{
 		// Find all the sound files that this resource source provides.
-		string root = source / "sounds/";
+		filesystem::path root = source / "sounds/";
 		vector<filesystem::path> files = Files::RecursiveList(root);
 
 		for(const auto &path : files)
@@ -51,7 +51,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 			if(path.extension() != ".mp3" && path.extension() != ".MP3")
 				continue;
 
-			paths[path.parent_path() / path.stem()] = path;
+			paths[(path.parent_path() / path.stem()).string()] = path;
 		}
 	}
 }
@@ -93,7 +93,7 @@ void Music::SetSource(const string &name)
 {
 	// Find a file that provides this music.
 	auto it = paths.find(name);
-	string path = (it == paths.end() ? "" : it->second);
+	filesystem::path path = (it == paths.end() ? "" : it->second);
 
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)

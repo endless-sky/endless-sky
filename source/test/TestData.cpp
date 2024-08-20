@@ -35,7 +35,7 @@ const string &TestData::Name() const
 
 
 // Loader to load the generic test-data entry
-void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
+void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFilePath)
 {
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
