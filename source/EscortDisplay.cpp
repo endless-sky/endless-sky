@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "System.h"
 
 #include <algorithm>
@@ -240,7 +240,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
+			if(!unstackable.contains(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 
 			height += icon.Height();
