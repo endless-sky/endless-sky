@@ -468,7 +468,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	};
 	if(ScrollbarClick(mainScrollbar, mainScroll)
 			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
-			|| ScrollbarClick(sidebarScrollbar, sidebarScroll))
+			|| ScrollbarClick(infobarScrollbar, infobarScroll))
 		return true;
 
 	const Point clickPoint(x, y);

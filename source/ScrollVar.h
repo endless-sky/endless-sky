@@ -36,7 +36,7 @@ public:
 	const T &MaxValue() const;
 	// Set the size of the displayable scroll area.
 	void SetDisplaySize(const T &size);
-	// get the size of the displayable scroll area.
+	// Get the size of the displayable scroll area.
 	const T &DisplaySize() const;
 	// Returns true if scroll buttons are needed.
 	bool Scrollable() const;

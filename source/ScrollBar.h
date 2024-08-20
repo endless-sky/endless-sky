@@ -22,23 +22,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Helper class for easily creating/handling/drawing scrollbars.
+//
 // Useable as a panel, with special considerations:
 // - Scroll percentage/start/end will have to be manually updated when needed.
 // - Changes will have to be checked every frame, as there is no way to notify parents on change.
+//
 // Otherwise, manually use the functions inside the regular panel update cycle.
+//
 // If not using as a child panel, it is recommended to use the scrollbar with a `ScrollVar`, and use the
-//     Sync* versions of the methods to automatically update the `ScrollVar` on changes.
+// Sync* versions of the methods to automatically update the `ScrollVar` on changes.
+//
 // Check existing uses for more in-depth examples.
 class ScrollBar : public Panel {
 public:
 	ScrollBar(float fraction, float displaySizeFraction, const Point &from, const Point &to,
-		float tabWidth, float lineWidth, Color color, Color innerColor) noexcept;
+		float tabWidth, float lineWidth, const Color &color, const Color &innerColor) noexcept;
 
 	ScrollBar() noexcept;
 
 	void Draw() override;
 	// Draw at a point, overriding the stored 'from' position. Useful for RenderBuffers to be drawn
-	//    without affecting the input handling.
+	// without affecting the input handling.
 	void DrawAt(const Point &from);
 	bool Hover(int x, int y) override;
 	bool Drag(double dx, double dy) override;

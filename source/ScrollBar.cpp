@@ -28,7 +28,7 @@ namespace {
 
 
 ScrollBar::ScrollBar(float fraction, float displaySizeFraction, const Point &from, const Point &to,
-	float tabWidth, float lineWidth, Color color, Color innerColor) noexcept
+	float tabWidth, float lineWidth, const Color &color, const Color &innerColor) noexcept
 	: fraction(fraction), displaySizeFraction(displaySizeFraction), from(from), to(to),
 		tabWidth(tabWidth), lineWidth(lineWidth), color(color), innerColor(innerColor)
 {
@@ -38,7 +38,7 @@ ScrollBar::ScrollBar(float fraction, float displaySizeFraction, const Point &fro
 
 ScrollBar::ScrollBar() noexcept
 	: ScrollBar(0., 0., Point(), Point(),
-		3, 3, Color(0.6), Color(0.25))
+		3, 3, Color(.6), Color(.25))
 {
 }
 
@@ -85,11 +85,11 @@ bool ScrollBar::Hover(int x, int y)
 	// From https://www.shadertoy.com/view/3tdSDj
 	constexpr auto LineSDF = [](Point a, Point b, Point p)
 	{
-		Point ba = b - a;
-		Point pa = p - a;
+		Point ab = b - a;
+		Point ap = p - a;
 
-		double h = std::clamp(pa.Dot(ba) / ba.LengthSquared(), 0., 1.);
-		double d = (pa - ba * h).Length();
+		double h = std::clamp(ap.Dot(ab) / ab.LengthSquared(), 0., 1.);
+		double d = (ap - ab * h).Length();
 
 		return d;
 	};
@@ -122,7 +122,7 @@ bool ScrollBar::Drag(double dx, double dy)
 
 bool ScrollBar::Click(int x, int y, int clicks)
 {
-	Point clickPos = Point(x, y);
+	Point clickPos(x, y);
 	if((clickPos - from).Length() < 10.)
 	{
 		fraction = std::clamp(fraction - displaySizeFraction * .6f, 0.f, 1.f);
@@ -136,7 +136,7 @@ bool ScrollBar::Click(int x, int y, int clicks)
 
 	if(innerHighlighted && !highlighted)
 	{
-		Point cursorVector = Point(x, y) - from;
+		Point cursorVector = clickPos - from;
 		Point thisVector = to - from;
 
 		double scalarProjectionOverLength = thisVector.Dot(cursorVector) / thisVector.LengthSquared();
