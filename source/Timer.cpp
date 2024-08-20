@@ -80,14 +80,20 @@ void Timer::Load(const DataNode &node)
 			requirePeaceful = true;
 		else if(child.Token(0) == "optional")
 			optional = true;
-		else if(child.Token(0) == "system" && child.Size() > 1)
-			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "system")
-			systems.Load(child);
-		else if(child.Token(0) == "proximity" && child.Size() > 1)
-			proximityCenter = GameData::Planets().Get(child.Token(1));
+		{
+			if(child.Size() > 1)
+				system = GameData::Systems().Get(child.Token(1));
+			else
+				systems.Load(child);
+		}
 		else if(child.Token(0) == "proximity")
-			proximityCenters.Load(child);
+		{
+			if(child.Size() > 1)
+				proximityCenter = GameData::Planets().Get(child.Token(1));
+			else
+				proximityCenters.Load(child);
+		}
 		else if(child.Token(0) == "proximity settings" && child.Size() > 1)
 		{
 			proximity = child.Value(1);
@@ -246,7 +252,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	if(system && (proximityCenter || !proximityCenters.IsEmpty()))
 		for(const StellarObject &proximityObject : system->Objects())
 			if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
-				proximityCenters.Matches(proximityObject.GetPlanet())))
+					proximityCenters.Matches(proximityObject.GetPlanet())))
 				result.proximityCache.insert(&proximityObject);
 
 	return result;
@@ -331,7 +337,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 		bool shipIdle = true;
 		if(requireIdle)
 			shipIdle = (!flagship->IsThrusting() && !flagship->IsSteering()
-						&& !flagship->IsReversing() && flagship->Velocity().LengthSquared() < idleMaxSpeed);
+				&& !flagship->IsReversing() && flagship->Velocity().LengthSquared() < idleMaxSpeed);
 		if(requirePeaceful)
 			for(const Hardpoint &weapon : flagship->Weapons())
 				shipIdle &= !weapon.WasFiring();
