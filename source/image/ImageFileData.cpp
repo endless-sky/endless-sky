@@ -32,10 +32,10 @@ namespace {
 
 
 
-ImageFileData::ImageFileData(const std::filesystem::path &path)
+ImageFileData::ImageFileData(const std::filesystem::path &path, const std::filesystem::path &source)
 	: path(path), extension(Format::LowerCase(path.extension().string()))
 {
-	string name = path.stem().string();
+	string name = (relative(path, source).parent_path() / path.stem()).string();
 	if(name.ends_with("@2x"))
 	{
 		is2x = true;
@@ -47,19 +47,14 @@ ImageFileData::ImageFileData(const std::filesystem::path &path)
 		name.resize(name.size() - 3);
 	}
 
-	while(!name.empty() && name[name.size() - 1] >= '0' && name[name.size() - 1] <= '9')
-	{
-		unsigned power = !frameNumber ? 0 : log10(frameNumber) + 1;
-		frameNumber += pow(10, power) * (name[name.size() - 1] - '0');
-		name.resize(name.size() - 1);
-	}
+	size_t frameNumberStart = name.size();
+	while(frameNumberStart > 0 && name[--frameNumberStart] >= '0' && name[frameNumberStart] <= '9');
 
-	if(name.empty())
-		return;
-	else if(IsBlend(name[name.size() - 1]))
+	if(frameNumberStart > 0 && IsBlend(name[frameNumberStart]))
 	{
-		blendingMode = static_cast<BlendingMode>(name[name.size() - 1]);
-		name.resize(name.length() - 1);
+		frameNumber = Format::Parse(name.substr(frameNumberStart + 1));
+		blendingMode = static_cast<BlendingMode>(name[frameNumberStart]);
+		name.resize(frameNumberStart);
 	}
 
 	this->name = name;
