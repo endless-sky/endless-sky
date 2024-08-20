@@ -690,7 +690,7 @@ void Engine::Step(bool isActive)
 					break;
 				}
 			const System *system = escort->GetSystem();
-			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
+			escorts.Add(*escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
@@ -2434,12 +2434,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Unless something went wrong while forming the message, display it.
-	if(!message.empty())
-	{
-		int free = collector->Cargo().Free();
-		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
-		Messages::Add(message, Messages::Importance::High);
-	}
+	if(message.empty())
+		return;
+
+	int free = collector->Cargo().Free();
+	int total = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		if(!ship->IsParked() && ship->GetSystem() == player.GetSystem())
+			total += ship->Cargo().Free();
+
+	message += " (" + Format::CargoString(free, "free space") + " remaining";
+	if(free == total)
+		message += ".)";
+	else
+		message += ", " + Format::MassString(total) + " in fleet.)";
+	Messages::Add(message, Messages::Importance::High);
 }
 
 

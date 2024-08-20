@@ -30,11 +30,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> PNG_EXTENSIONS{"png"};
-	const set<string> JPG_EXTENSIONS{"jpg", "jpeg", "jpe"};
+	const set<string> PNG_EXTENSIONS{".png"};
+	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
 
-	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
-	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
+	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
+	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
 }
 
@@ -156,10 +156,10 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-bool ImageBuffer::Read(const string &path, int frame)
+bool ImageBuffer::Read(const filesystem::path &path, int frame)
 {
 	// First, make sure this is a supported file.
-	string extension = Format::LowerCase(path.substr(path.find_last_of('.') + 1));
+	string extension = Format::LowerCase(path.extension().string());
 	bool isPNG = PNG_EXTENSIONS.contains(extension);
 	bool isJPG = JPG_EXTENSIONS.contains(extension);
 
@@ -173,7 +173,7 @@ bool ImageBuffer::Read(const string &path, int frame)
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
-	string name = path.substr(0, path.find_last_of('.'));
+	string name = path.stem().string();
 	Format::ReplaceAll(name, "@2x", "");
 	size_t pos = name.size();
 	while(--pos)
@@ -193,10 +193,10 @@ bool ImageBuffer::Read(const string &path, int frame)
 
 
 namespace {
-	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame)
+	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
 		// Open the file, and make sure it really is a PNG.
-		File file(path);
+		File file(path.string());
 		if(!file)
 			return false;
 
@@ -233,7 +233,7 @@ namespace {
 		catch(const bad_alloc &)
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
-			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
 			Logger::LogError(message);
 			throw runtime_error(message);
 		}
@@ -241,7 +241,7 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
-			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
+			string message = "Skipped processing \"" + path.string() + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
 				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
@@ -293,9 +293,9 @@ namespace {
 
 
 
-	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame)
+	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		File file(path);
+		File file(path.string());
 		if(!file)
 			return false;
 
@@ -323,7 +323,7 @@ namespace {
 		catch(const bad_alloc &)
 		{
 			jpeg_destroy_decompress(&cinfo);
-			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
 			Logger::LogError(message);
 			throw runtime_error(message);
 		}
@@ -331,7 +331,7 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			jpeg_destroy_decompress(&cinfo);
-			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
+			string message = "Skipped processing \"" + path.string() + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
 				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())

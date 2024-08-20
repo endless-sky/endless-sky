@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 
 
@@ -56,7 +57,7 @@ public:
 
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	bool Read(const std::string &path, int frame = 0);
+	bool Read(const std::filesystem::path &path, int frame = 0);
 
 
 private:

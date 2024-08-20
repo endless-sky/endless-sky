@@ -32,15 +32,15 @@ namespace {
 	const set<string> SUPPORTED_EXTENSIONS{".png", ".jpg", ".jpeg", ".jpe"};
 
 	// Determine whether the given path is to an @2x image.
-	bool Is2x(const string &path)
+	bool Is2x(const filesystem::path &path)
 	{
-		return path.find("@2x") != string::npos;
+		return path.stem().string().find("@2x") != string::npos;
 	}
 
 	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const string &path)
+	bool IsSwizzleMask(const filesystem::path &path)
 	{
-		return path.find("@sw") != string::npos;
+		return path.string().find("@sw") != string::npos;
 	}
 
 	// Check if the given character is a valid blending mode.
@@ -51,21 +51,20 @@ namespace {
 
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
-	bool IsMasked(const string &path)
+	bool IsMasked(const filesystem::path &path)
 	{
-		return path.starts_with("ship/") || path.starts_with("asteroid/");
+		if(path.empty())
+			return false;
+		filesystem::path directory = *path.begin();
+		return directory == "ship" || directory == "asteroid";
 	}
 
 	// Get the character index where the sprite name in the given path ends.
-	size_t NameEnd(const string &path)
+	size_t NameEnd(const filesystem::path &path)
 	{
-		size_t lastDot = path.find_last_of('.');
-		if(lastDot == string::npos)
-			return 0;
-
 		// Get the name of the file, without the extension and the @2x or @sw label.
 		// @2x denotes a high-dpi sprite, and @sw marks a swizzle mask.
-		string base = path.substr(0, lastDot);
+		string base = (path.parent_path() / path.stem()).string();
 		Format::ReplaceAll(base, "@2x", "");
 		Format::ReplaceAll(base, "@sw", "");
 
@@ -76,16 +75,16 @@ namespace {
 		// Skip any numbers at the end of the name.
 		size_t pos = base.length();
 		while(--pos)
-			if(path[pos] < '0' || path[pos] > '9')
+			if(base[pos] < '0' || base[pos] > '9')
 				break;
 
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
-		return (IsBlend(path[pos]) ? pos : base.length());
+		return (IsBlend(base[pos]) ? pos : base.length());
 	}
 
 	// Get the frame index from the given path.
-	size_t FrameIndex(const string &path)
+	size_t FrameIndex(const filesystem::path &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
 		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).<extension>
@@ -93,20 +92,21 @@ namespace {
 
 		// If the name contains a frame index, it must be separated from the name
 		// by a character indicating the additive blending mode.
-		if(!IsBlend(path[i]))
+		const string name = path.string();
+		if(!IsBlend(name[i]))
 			return 0;
 
 		size_t frame = 0;
 		// The path ends in an extension, so there's no need to check for going off
 		// the end of the string in this loop; we're guaranteed to hit a non-digit.
-		for(++i; path[i] >= '0' && path[i] <= '9'; ++i)
-			frame = (frame * 10) + (path[i] - '0');
+		for(++i; name[i] >= '0' && name[i] <= '9'; ++i)
+			frame = (frame * 10) + (name[i] - '0');
 
 		return frame;
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
-	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence,
+	void AddValid(const map<size_t, filesystem::path> &frameData, vector<filesystem::path> &sequence,
 		const string &prefix, bool is2x, bool isSwizzleMask) noexcept(false)
 	{
 		if(frameData.empty())
@@ -130,7 +130,7 @@ namespace {
 		size_t count = distance(frameData.begin(), next);
 		sequence.resize(count);
 		transform(frameData.begin(), next, sequence.begin(),
-			[](const pair<size_t, string> &p) -> string { return p.second; });
+			[](const pair<size_t, filesystem::path> &p) -> filesystem::path { return p.second; });
 
 		// If `next` is not the end, then there was at least one discontinuous frame.
 		if(next != frameData.end())
@@ -146,31 +146,30 @@ namespace {
 
 
 // Check if the given path is to an image of a valid file type.
-bool ImageSet::IsImage(const string &path)
+bool ImageSet::IsImage(const filesystem::path &path)
 {
-	const auto period = path.find_last_of('.');
-	if(period == string::npos)
-		return false;
-	string extension = path.substr(period);
-	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(extension));
+	filesystem::path ext = path.extension();
+	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(ext.string()));
 }
 
 
 
 // Get the base name for the given path. The path should be relative to one
 // of the source image directories, not a full filesystem path.
-string ImageSet::Name(const string &path)
+string ImageSet::Name(const filesystem::path &path)
 {
-	return path.substr(0, NameEnd(path));
+	return path.string().substr(0, NameEnd(path));
 }
 
 
 
 // Determine whether the given path or name is for a sprite whose loading
 // should be deferred until needed.
-bool ImageSet::IsDeferred(const string &path)
+bool ImageSet::IsDeferred(const filesystem::path &path)
 {
-	return path.starts_with("land/");
+	if(path.empty())
+		return false;
+	return *path.begin() == "land";
 }
 
 
@@ -200,7 +199,7 @@ bool ImageSet::IsEmpty() const
 
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(string path)
+void ImageSet::Add(filesystem::path path)
 {
 	// Determine which frame of the sprite this image will be.
 	bool is2x = Is2x(path);
@@ -224,7 +223,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
-	auto DropPaths = [&](vector<string> &toResize, const string &specifier) {
+	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier) {
 		if(toResize.size() > paths[0].size())
 		{
 			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
@@ -275,7 +274,7 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
-	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
+	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize) {
 		if(toFill.size() == 1 && intendedSize > 1)
 			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
@@ -286,7 +285,7 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[3], paths[0].size());
 
 
-	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
