@@ -73,7 +73,7 @@ jobs:
     - name: Setup sccache
       uses: Mozilla-Actions/sccache-action@v0.0.5
       with:
-        version: ${{ env.SCCACHE_VERSION }}
+        version: v${{ env.SCCACHE_VERSION }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -108,7 +108,7 @@ jobs:
     - name: Setup sccache
       uses: Mozilla-Actions/sccache-action@v0.0.5
       with:
-        version: ${{ env.SCCACHE_VERSION }}
+        version: v${{ env.SCCACHE_VERSION }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -153,7 +153,7 @@ jobs:
     - name: Setup sccache
       uses: Mozilla-Actions/sccache-action@v0.0.5
       with:
-        version: ${{ env.SCCACHE_VERSION }}
+        version: v${{ env.SCCACHE_VERSION }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -188,7 +188,7 @@ jobs:
     - name: Setup sccache
       uses: Mozilla-Actions/sccache-action@v0.0.5
       with:
-        version: ${{ env.SCCACHE_VERSION }}
+        version: v${{ env.SCCACHE_VERSION }}
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
     - uses: lukka/get-cmake@latest
