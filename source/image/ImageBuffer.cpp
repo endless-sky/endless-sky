@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <jpeglib.h>
 #include <png.h>
 
+#include <algorithm>
 #include <cstdio>
 #include <set>
 #include <stdexcept>
@@ -31,6 +32,12 @@ using namespace std;
 namespace {
 	const set<string> PNG_EXTENSIONS{".png"};
 	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
+	const set<string> IMAGE_EXTENSIONS = []()
+	{
+		set<string> extensions(PNG_EXTENSIONS);
+		extensions.insert(JPG_EXTENSIONS.begin(), JPG_EXTENSIONS.end());
+		return extensions;
+	}();
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
@@ -179,11 +186,9 @@ bool ImageBuffer::Read(const ImageFileData &data, int frame)
 
 
 
-set<string> ImageBuffer::ImageExtensions()
+const set<string> &ImageBuffer::ImageExtensions()
 {
-	set<string> extensions(PNG_EXTENSIONS);
-	extensions.insert(JPG_EXTENSIONS.begin(), JPG_EXTENSIONS.end());
-	return extensions;
+	return IMAGE_EXTENSIONS;
 }
 
 

@@ -29,8 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS = ImageBuffer::ImageExtensions();
-
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
 	bool IsMasked(const filesystem::path &path)
@@ -85,7 +83,7 @@ namespace {
 bool ImageSet::IsImage(const filesystem::path &path)
 {
 	filesystem::path ext = path.extension();
-	return SUPPORTED_EXTENSIONS.contains(Format::LowerCase(ext.string()));
+	return ImageBuffer::ImageExtensions().contains(Format::LowerCase(ext.string()));
 }
 
 

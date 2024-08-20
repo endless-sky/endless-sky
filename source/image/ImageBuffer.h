@@ -64,7 +64,7 @@ public:
 
 public:
 	// The supported image extensions, in lower case and with a leading period.
-	static std::set<std::string> ImageExtensions();
+	static const std::set<std::string> &ImageExtensions();
 
 
 private:
