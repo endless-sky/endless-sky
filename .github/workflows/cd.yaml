@@ -104,6 +104,7 @@ jobs:
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SCCACHE_PATH: /Users/runner/hostedtoolcache/sccache/latest/x64/sccache
     steps:
       - uses: actions/checkout@v4
         with:
