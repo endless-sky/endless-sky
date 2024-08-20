@@ -690,8 +690,7 @@ void Engine::Step(bool isActive)
 					break;
 				}
 			const System *system = escort->GetSystem();
-			bool systemNameKnown = system && player.KnowsName(*system);
-			escorts.Add(*escort, system == currentSystem, systemNameKnown, fleetIsJumping, isSelected);
+			escorts.Add(*escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
