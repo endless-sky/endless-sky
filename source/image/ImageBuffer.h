@@ -15,8 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ImageFileData.h"
+
 #include <cstdint>
-#include <filesystem>
+#include <set>
 #include <string>
 
 
@@ -57,7 +59,12 @@ public:
 
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	bool Read(const std::filesystem::path &path, int frame = 0);
+	bool Read(const ImageFileData &data, int frame = 0);
+
+
+public:
+	// The supported image extensions, in lower case and with a leading period.
+	static std::set<std::string> ImageExtensions();
 
 
 private:

@@ -348,8 +348,11 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h
+	image/ImageFileData.cpp
+	image/ImageFileData.h
 	image/ImageSet.cpp
 	image/ImageSet.h
 	image/Mask.cpp

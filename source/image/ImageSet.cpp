@@ -29,25 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const set<string> SUPPORTED_EXTENSIONS{".png", ".jpg", ".jpeg", ".jpe"};
-
-	// Determine whether the given path is to an @2x image.
-	bool Is2x(const filesystem::path &path)
-	{
-		return path.stem().string().find("@2x") != string::npos;
-	}
-
-	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const filesystem::path &path)
-	{
-		return path.string().find("@sw") != string::npos;
-	}
-
-	// Check if the given character is a valid blending mode.
-	bool IsBlend(char c)
-	{
-		return (c == '-' || c == '~' || c == '+' || c == '=');
-	}
+	const set<string> SUPPORTED_EXTENSIONS = ImageBuffer::ImageExtensions();
 
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
@@ -57,52 +39,6 @@ namespace {
 			return false;
 		filesystem::path directory = *path.begin();
 		return directory == "ship" || directory == "asteroid";
-	}
-
-	// Get the character index where the sprite name in the given path ends.
-	size_t NameEnd(const filesystem::path &path)
-	{
-		// Get the name of the file, without the extension and the @2x or @sw label.
-		// @2x denotes a high-dpi sprite, and @sw marks a swizzle mask.
-		string base = (path.parent_path() / path.stem()).string();
-		Format::ReplaceAll(base, "@2x", "");
-		Format::ReplaceAll(base, "@sw", "");
-
-		// This should never happen, but just in case:
-		if(base.empty())
-			return 0;
-
-		// Skip any numbers at the end of the name.
-		size_t pos = base.length();
-		while(--pos)
-			if(base[pos] < '0' || base[pos] > '9')
-				break;
-
-		// If there is not a blending mode specifier before the numbers, they
-		// are part of the sprite name, not a frame index.
-		return (IsBlend(base[pos]) ? pos : base.length());
-	}
-
-	// Get the frame index from the given path.
-	size_t FrameIndex(const filesystem::path &path)
-	{
-		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).<extension>
-		size_t i = NameEnd(path);
-
-		// If the name contains a frame index, it must be separated from the name
-		// by a character indicating the additive blending mode.
-		const string name = path.string();
-		if(!IsBlend(name[i]))
-			return 0;
-
-		size_t frame = 0;
-		// The path ends in an extension, so there's no need to check for going off
-		// the end of the string in this loop; we're guaranteed to hit a non-digit.
-		for(++i; name[i] >= '0' && name[i] <= '9'; ++i)
-			frame = (frame * 10) + (name[i] - '0');
-
-		return frame;
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
@@ -199,7 +135,7 @@ bool ImageSet::IsEmpty() const
 
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(filesystem::path path)
+void ImageSet::Add(ImageFileData data)
 {
 	// Determine which frame of the sprite this image will be.
 	bool is2x = Is2x(path);
