@@ -233,12 +233,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->PopThrough(oldPanel);
+
 	if(selectedPanel)
 	{
 		RemoveChild(description.get());
 		descriptionVisible = false;
 	}
-	else
+	else if(oldPanel)
 	{
 		AddChild(description);
 		descriptionVisible = true;
