@@ -75,7 +75,7 @@ public:
 
 
 private:
-	Planet *planet;
+	const Planet *planet;
 
 	double distance;
 	double speed;

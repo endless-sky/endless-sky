@@ -167,7 +167,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				// that they are no longer here.
 				for(StellarObject &object : objects)
 					if(object.planet)
-						object.planet->RemoveSystem(this);
+						const_cast<Planet *>(object.planet)->RemoveSystem(this);
 
 				objects.clear();
 			}
