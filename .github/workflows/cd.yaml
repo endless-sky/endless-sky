@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+env:
+  SCCACHE_VERSION: 0.8.1
+
 jobs:
 
   cd_appimage_x64:
@@ -21,7 +24,6 @@ jobs:
     env:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      SCCACHE_PATH: /home/runner/.cache/sccache
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,12 +35,14 @@ jobs:
       - name: Setup cached directories
         uses: actions/cache@v4
         with:
-          path: ${{ env.SCCACHE_PATH }}
+          path: /home/runner/.cache/sccache
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
+        with:
+          version: ${{ env.SCCACHE_VERSION }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
@@ -63,7 +67,6 @@ jobs:
     env:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      SCCACHE_PATH: C:\hostedtoolcache\windows\sccache\latest\x64\sccache
     steps:
       - uses: actions/checkout@v4
         with:
@@ -71,12 +74,14 @@ jobs:
       - name: Setup cached directories
         uses: actions/cache@v4
         with:
-          path: ${{ env.SCCACHE_PATH }}
+          path: C:\hostedtoolcache\windows\sccache\${{ env.SCCACHE_VERSION }}\x64\sccache
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
+        with:
+          version: ${{ env.SCCACHE_VERSION }}
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
@@ -104,7 +109,6 @@ jobs:
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      SCCACHE_PATH: /Users/runner/hostedtoolcache/sccache/latest/x64/sccache
     steps:
       - uses: actions/checkout@v4
         with:
@@ -112,12 +116,14 @@ jobs:
       - name: Setup cached directories
         uses: actions/cache@v4
         with:
-          path: ${{ env.SCCACHE_PATH }}
+          path: /Users/runner/hostedtoolcache/sccache/${{ env.SCCACHE_VERSION }}/x64/sccache
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
+        with:
+          version: ${{ env.SCCACHE_VERSION }}
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
