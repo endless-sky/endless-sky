@@ -110,9 +110,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /Users/runner/Library/Caches/Mozilla.sccache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
+          key: ${{ runner.os }}-${{ runner.arch }}-sccache-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/CMakePresets.json') }}
           restore-keys: |
-            ${{ runner.os }}-sccache-
+            ${{ runner.os }}-${{ runner.arch }}-sccache-
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Install pkg-config
