@@ -49,7 +49,7 @@ struct Plugin {
 	// The name that identifies this plugin.
 	std::string name;
 	// The path to the plugin's folder.
-	std::string path;
+	std::filesystem::path path;
 	// The about text, if any, of this plugin.
 	std::string aboutText;
 	// The version of the plugin as defined by the authors.

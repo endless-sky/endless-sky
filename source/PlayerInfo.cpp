@@ -694,7 +694,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 
 	// If there are multiple pilots with the same name, append a number to the
 	// pilot name to generate a unique file name.
-	filePath = Files::Saves() / fileName;
+	filePath = (Files::Saves() / fileName).string();
 	int index = 0;
 	while(true)
 	{

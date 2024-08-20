@@ -196,7 +196,7 @@ bool Plugin::IsValid() const
 const Plugin *Plugins::Load(const filesystem::path &path)
 {
 	// Get the name of the folder containing the plugin.
-	string name = path.filename();
+	string name = path.filename().string();
 
 	filesystem::path pluginFile = path / "plugin.txt";
 	string aboutText;
@@ -257,7 +257,7 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
 			+ "\" because another plugin with the same name has already been loaded from: \""
-			+ plugin->path + "\".");
+			+ plugin->path.string() + "\".");
 		return nullptr;
 	}
 
