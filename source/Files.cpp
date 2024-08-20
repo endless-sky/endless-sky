@@ -113,7 +113,7 @@ void Files::Init(const char * const *argv)
 	// resources embedded within it.
 	while(!Exists(resources / "credits.txt"))
 	{
-		if(!resources.has_parent_path() || resources == "/")
+		if(!resources.has_parent_path() || resources.parent_path() == resources)
 			throw runtime_error("Unable to find the resource directories!");
 		resources = resources.parent_path();
 	}
