@@ -38,10 +38,10 @@ outfit "Inhibitor Cannon"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 	description `	Although the Remnant appreciated the original weapon, they were disappointed that it was too big to fit on most of their ships. Instead of letting their effort go to waste, they instead opted to put their newfound knowledge to use creating a weapon suitable for their more nimble craft. Thus, the Inhibitor is excellent at controlling engagement distances, keeping targets at range by both pushing them backward with the impact of each shot while also slowing their approach by interfering with their engines.`
@@ -84,10 +84,10 @@ outfit "Inhibitor Turret"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
 	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
@@ -277,7 +277,7 @@ outfit "EMP Torpedo Bay"
 		"hull damage" 100
 		"ion damage" 48
 		"scrambling damage" 48
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
@@ -353,7 +353,7 @@ outfit "Teciimach Bay"
 		"ion damage" 65
 		"scrambling damage" 65
 		"energy damage" 2000
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 95
 	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
@@ -405,7 +405,7 @@ outfit "Teciimach Pod"
 		"ion damage" 60
 		"scrambling damage" 60
 		"energy damage" 2000
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
@@ -467,7 +467,7 @@ outfit "Ember Tear"
 		"safe"
 		"lifetime" 1
 		"reload" 1
-		"firing force" 1
+		"firing force" 1.5
 		"blast radius" 150
 		"firing energy" 230
 		"firing fuel" 10
@@ -541,7 +541,7 @@ outfit "Crystal Capacitor"
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
-	"scrambling resistance" 0.01
+	"scramble resistance" 0.01
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
 
@@ -556,7 +556,7 @@ outfit "Millennium Cell"
 	"energy generation" 3.6
 	"heat generation" 6.0
 	"ion resistance" 0.025
-	"scrambling resistance" 0.025
+	"scramble resistance" 0.025
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 	description "	Although not very impressive in terms of how much energy they produce, Remnant generators have been designed to better handle the energy draining effects of ionization."
 
@@ -571,7 +571,7 @@ outfit "Epoch Cell"
 	"energy generation" 12.7
 	"heat generation" 19.8
 	"ion resistance" 0.085
-	"scrambling resistance" 0.085
+	"scramble resistance" 0.085
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 	description "	The Remnant took the ion dissipation effects of the crystals found on Viminal and replicated them for their generators in order to help survive the hostile environment of the Ember Waste."
 
@@ -586,7 +586,7 @@ outfit "Aeon Cell"
 	"energy generation" 21.9
 	"heat generation" 31.5
 	"ion resistance" 0.14
-	"scrambling resistance" 0.14
+	"scramble resistance" 0.14
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 	description "	The ion resistance on all Remnant generators not only allows them to bounce back from ion storms more quickly, but also gives their ships a window of time when an ion storm starts where they are not affected, giving them a chance to escape before becoming debilitated by the storm."
 
@@ -611,7 +611,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 1.25
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description `The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their "gills," which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded.`
 
 outfit "NDR-114 Android"
 	category "Unique"
@@ -619,6 +619,7 @@ outfit "NDR-114 Android"
 	thumbnail "outfit/android"
 	"required crew" -1
 	"energy consumption" 0.01
+	"unique" 1
 	unplunderable 1
 	description "While these were once considered cutting-edge outfits, their lack of autonomous capabilities and economic benefit ensured they were never licensed by a manufacturer."
 	description "	Despite this, some captains commissioned these directly from their inventor, effectively replacing one of their crew members with a robotic counterpart. These captains found that androids possessed sufficient capabilities to perform most work, but lacked the capability to captain a ship or take part in boarding actions."
@@ -674,13 +675,13 @@ outfit "Bellows-Class Afterburner"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
-	"outfit space" -7
-	"engine capacity" -7
+	"outfit space" -11
+	"engine capacity" -11
 	"slowing resistance" 0.01
-	"afterburner thrust" 125.0
-	"afterburner fuel" 0.65
-	"afterburner energy" 6.0
-	"afterburner heat" 8.0
+	"afterburner thrust" 187.5
+	"afterburner fuel" 1.3
+	"afterburner energy" 6
+	"afterburner heat" 18
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
 	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
@@ -701,13 +702,13 @@ outfit "Anvil-Class Engine"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 13.5
+	"thrust" 20.7
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 369.6
+	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.1
+	"reverse thrust" 15.45
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 1.45
 	"slowing resistance" 0.02
@@ -731,10 +732,10 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 14.4
+	"thrust" 24.825
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 10.8
+	"reverse thrust" 18.6
 	"reverse thrusting energy" 1.6
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -755,10 +756,10 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 31.5
+	"thrust" 51
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
-	"reverse thrust" 23.6
+	"reverse thrust" 38.25
 	"reverse thrusting energy" 3.3
 	"reverse thrusting heat" 3.2
 	"slowing resistance" 0.024
@@ -779,10 +780,10 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 71.1
+	"thrust" 106.65
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 53.3
+	"reverse thrust" 79.95
 	"reverse thrusting energy" 7.1
 	"reverse thrusting heat" 7.2
 	"slowing resistance" 0.048
@@ -803,7 +804,7 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 456
+	"turn" 684
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing resistance" 0.008
@@ -821,7 +822,7 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 995
+	"turn" 1492.5
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -839,7 +840,7 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2123
+	"turn" 3184.5
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
@@ -876,6 +877,7 @@ outfit "Void Rifle"
 	"capture attack" 20
 	"capture defense" 20
 	"energy consumption" 0.017
+	"unique" 1
 	"unplunderable" 1
 	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
 	description "	When fired, the Void Rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
@@ -892,6 +894,7 @@ outfit "Void Sprite Parts"
 	"outfit space" -1
 	"flotsam chance" .5
 	"installable" -1
+	"unique" 1
 	description "This is nothing more and nothing less than a cubic meter of void sprite parts. To the Remnant, this represents both a terrible occurrence and a dreadful opportunity."
 	description "	This could have been very valuable to someone who knew what they were doing, if it had been handled properly. Instead, it is worth little more than the value of the compounds contained within."
 

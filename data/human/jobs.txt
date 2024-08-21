@@ -2034,6 +2034,54 @@ mission "Wealthy tourists out"
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
 
+mission "Wealthy tourist group out [0]"
+	name "Wealthy tourist group to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "rich" "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "tourism"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group out [1]"
+	name "Wealthy tourist group to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "rich" "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "tourism"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
 mission "Tourists back [0]"
 	name "Bring a tourist home to <planet>"
 	job
@@ -2077,7 +2125,7 @@ mission "Tourists back [1]"
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wealthy tourists back"
-	name "Bring wealthy tourists home to <planet>"
+	name "Wealthy tourists home to <planet>"
 	job
 	repeat
 	description "These <bunks> wealthy tourists are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
@@ -2097,6 +2145,54 @@ mission "Wealthy tourists back"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group back [0]"
+	name "Wealthy tourists home to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "tourism"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "rich" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group back [1]"
+	name "Wealthy tourists home to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "tourism"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "rich" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Family [0]"
@@ -2205,6 +2301,26 @@ mission "Strike Breakers [mining]"
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
+mission "Strike Breakers [large mining]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of mine workers who are on strike. The company will pay you <payment>."
+	passengers 40 4 .08
+	to offer
+		random < ( "passenger space" - 45 ) / 2
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "mining"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 130000 100
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
 mission "Strike Breakers [textile]"
 	name "Strike breakers to <planet>"
 	job
@@ -2225,6 +2341,26 @@ mission "Strike Breakers [textile]"
 	on complete
 		payment
 		payment 10000
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
+mission "Strike Breakers [large textile]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of textile workers who are on strike. The company will pay you <payment>."
+	passengers 40 4 .08
+	to offer
+		random < ( "passenger space" - 45 ) / 2
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "textiles"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [factory]"
@@ -2249,6 +2385,26 @@ mission "Strike Breakers [factory]"
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
+mission "Strike Breakers [large factory]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of factory workers who are on strike. The company will pay you <payment>."
+	passengers 40 4 .08
+	to offer
+		random < ( "passenger space" - 45 ) / 2
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "factory"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 130000 100
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
 mission "Colonists [0]"
 	name "Colonists to <planet>"
 	job
@@ -2256,8 +2412,7 @@ mission "Colonists [0]"
 	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
 	passengers 10 4 .1
 	to offer
-		random < 30
-		"passenger space" > 30
+		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2269,9 +2424,8 @@ mission "Colonists [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 8000
-		dialog "The colonists depart your ship after paying you <payment>."
+		payment 70000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
 
 mission "Colonists [1]"
 	name "Colonists to <planet>"
@@ -2280,8 +2434,7 @@ mission "Colonists [1]"
 	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
 	passengers 10 4 .1
 	to offer
-		random < 20
-		"passenger space" > 20
+		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2293,9 +2446,52 @@ mission "Colonists [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
-		dialog "The colonists depart your ship after paying you <payment>."
+		payment 80000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
+
+mission "Colonists [2]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < ( "passenger space" - 20 ) / 2
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 90000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
+
+mission "Colonists [3]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < ( "passenger space" - 20 ) / 2
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 100000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
 
 mission "Stranded Field Trip"
 	name "Stranded field trip to <planet>"
@@ -2305,8 +2501,8 @@ mission "Stranded Field Trip"
 	passengers 20 4 .1
 	cargo "educational supplies" 2 10 .6
 	to offer
+		random < ( "passenger space" - 30 ) / 2
 		random < 10
-		"passenger space" > 30
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2318,8 +2514,7 @@ mission "Stranded Field Trip"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 100000 150
 		dialog `The students excitedly rush off your ship into the arms of their waiting parents. The adventure was fun, but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
 
 mission "Prisoners [0]"
@@ -2731,19 +2926,21 @@ mission "FW Wildfire Aid [2]"
 		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
 
 
+
 mission "Bounty Hunting (Very Tiny)"
 	name "Wanted corsair near <system>"
-	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 25000
 	to offer
 		or
 			"combat rating" > 15
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 80
-		random < 50
+		random < 40
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2770,26 +2967,74 @@ mission "Bounty Hunting (Very Tiny)"
 				"Wasp (Plasma)"
 			variant
 				"Wasp (Proton)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 25000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 25000
+			fail
+
+mission "Bounty Hunting (Very Tiny, Local)"
+	name "Wanted corsair entering <system>"
+	description "A small pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 25000
+	to offer
+		or
+			"combat rating" > 15
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 80
+		random < 15
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Scrapper"
+			variant
+				"Scrapper (Gatling)"
+			variant
+				"Scrapper (Mod Blaster)"
+			variant 4
+				"Sparrow"
+			variant 2
+				"Sparrow (Gatling)"
+			variant 2
+				"Wasp"
+			variant
+				"Wasp (Javelin)"
+			variant
+				"Wasp (Meteor)"
+			variant
+				"Wasp (Plasma)"
+			variant
+				"Wasp (Proton)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 25000
+			fail
+
+
 
 mission "Bounty Hunting (Tiny)"
 	name "Wanted outlaw near <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A well armed pirate fighter named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 50000
 	to offer
 		or
 			"combat rating" > 30
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 200
-		random < 45
+		random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2824,26 +3069,76 @@ mission "Bounty Hunting (Tiny)"
 				"Fury (Laser)"
 			variant
 				"Fury (Bomber)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 50000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 50000
+			fail
+
+mission "Bounty Hunting (Tiny, Local)"
+	name "Wanted outlaw entering <system>"
+	description "A well armed pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 50000
+	to offer
+		or
+			"combat rating" > 30
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 200
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Hawk"
+			variant
+				"Hawk (Plasma)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				"Hawk (Bomber)"
+			variant
+				"Berserker"
+			variant
+				"Berserker (Afterburner)"
+			variant
+				"Berserker (Strike)"
+			variant
+				"Fury"
+			variant
+				"Fury (Gatling)"
+			variant
+				"Fury (Heavy)"
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Bomber)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 50000
+			fail
 
 mission "Bounty Hunting (Very Small)"
 	name "Wanted criminal near <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A light pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 95000
 	to offer
 		or
 			"combat rating" > 80
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 		"combat rating" < 350
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2876,25 +3171,71 @@ mission "Bounty Hunting (Very Small)"
 				"Clipper (Heavy)"
 			variant
 				"Clipper (Speedy)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 95000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 95000
+			fail
 
-
+mission "Bounty Hunting (Very Small, Local)"
+	name "Wanted criminal entering <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 95000
+	to offer
+		or
+			"combat rating" > 80
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" < 350
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Quicksilver"
+			variant
+				"Quicksilver (Proton)"
+			variant
+				"Raven"
+			variant
+				"Raven (Heavy)"
+			variant
+				"Raven (Afterburner)"
+			variant
+				"Headhunter"
+			variant
+				"Headhunter (Strike)"
+			variant
+				"Headhunter (Particle)"
+			variant
+				"Clipper"
+			variant
+				"Clipper (Heavy)"
+			variant
+				"Clipper (Speedy)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 95000
+			fail
 
 mission "Bounty Hunting (Small)"
 	name "Wanted bandit near <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 180000
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2923,23 +3264,64 @@ mission "Bounty Hunting (Small)"
 				"Manta"
 			variant
 				"Manta (Proton)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 180000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 180000
+			fail
+
+mission "Bounty Hunting (Small, Local)"
+	name "Wanted bandit entering <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 180000
+	to offer
+		"combat rating" > 200
+		"combat rating" < 500
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 180000
+			fail
 
 mission "Bounty Hunting (Medium)"
 	name "Wanted pirate near <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 240000
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2962,23 +3344,58 @@ mission "Bounty Hunting (Medium)"
 				"Bastion (Laser)"
 			variant
 				"Firebird (Plasma)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 240000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 240000
+			fail
+
+mission "Bounty Hunting (Medium, Local)"
+	name "Wanted pirate entering <system>"
+	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 240000
+	to offer
+		"combat rating" > 350
+		"combat rating" < 1200
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Proton)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 240000
+			fail
 
 mission "Bounty Hunting (Big)"
 	name "Wanted warlord near <system>"
-	description "A heavy warship known as the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A heavy warship known as the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 300000
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3005,19 +3422,58 @@ mission "Bounty Hunting (Big)"
 				"Vanguard"
 			variant
 				"Vanguard (Particle)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 300000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 300000
+			fail
+
+mission "Bounty Hunting (Big, Local)"
+	name "Wanted warlord entering <system>"
+	description "A heavy warship known as the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 300000
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2500
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 300000
+			fail
 
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
-	description "A medium pirate warship named the <npc> is posing as a merchant ship near the <system> system. Find a merchant ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
+	"apparent payment" 360000
 	to offer
 		"combat rating" > 200
 		or
@@ -3053,19 +3509,18 @@ mission "Bounty Hunting (Small, Hidden)"
 				"Manta"
 			variant
 				"Manta (Proton)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 360000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 360000
+			fail
 
 mission "Bounty Hunting (Medium, Hidden)"
 	name "Disguised pirate near <system>"
-	description "A sizable pirate warship named the <npc> is posing as a merchant ship near the <system> system. Find a merchant ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
+	"apparent payment" 480000
 	to offer
 		"combat rating" > 350
 		or
@@ -3095,19 +3550,18 @@ mission "Bounty Hunting (Medium, Hidden)"
 				"Bastion (Laser)"
 			variant
 				"Firebird (Plasma)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 480000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 480000
+			fail
 
 mission "Bounty Hunting (Big, Hidden)"
 	name "Disguised warlord near <system>"
-	description "A heavy warship known as the <npc> is posing as a merchant ship near the <system> system. Find a merchant ship with a matching name, then destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A heavy warship known as the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
+	"apparent payment" 600000
 	to offer
 		"combat rating" > 500
 		or
@@ -3141,12 +3595,10 @@ mission "Bounty Hunting (Big, Hidden)"
 				"Vanguard"
 			variant
 				"Vanguard (Particle)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 600000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 600000
+			fail
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
 	name "Stolen ship near <system>"
@@ -3230,10 +3682,11 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 
 mission "Bounty Hunting (Solo Marauder I)"
 	name "Marauder interceptor near <system>"
-	description "A Marauder interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A Marauder interceptor named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 130000
 	to offer
 		or
 			"combat rating" > 100
@@ -3251,19 +3704,18 @@ mission "Bounty Hunting (Solo Marauder I)"
 		system
 			distance 1 1
 		fleet "Marauder I"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 130000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 130000
+			fail
 
 mission "Bounty Hunting (Solo Marauder II)"
 	name "Small Marauder near <system>"
-	description "A small Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A small Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 200000
 	to offer
 		or
 			"combat rating" > 200
@@ -3281,19 +3733,18 @@ mission "Bounty Hunting (Solo Marauder II)"
 		system
 			distance 1 1
 		fleet "Marauder II"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 200000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 200000
+			fail
 
 mission "Bounty Hunting (Solo Marauder III)"
 	name "Marauder near <system>"
-	description "A Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 310000
 	to offer
 		"combat rating" > 300
 		"combat rating" < 1200
@@ -3307,19 +3758,18 @@ mission "Bounty Hunting (Solo Marauder III)"
 		system
 			distance 1 1
 		fleet "Marauder III"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 310000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 310000
+			fail
 
 mission "Bounty Hunting (Solo Marauder IV)"
 	name "Large Marauder near <system>"
-	description "A large Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	description "A large Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 500000
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3333,19 +3783,18 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		system
 			distance 1 1
 		fleet "Marauder IV"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 500000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 500000
+			fail
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 360000
 	to offer
 		"combat rating" > 500
 		or
@@ -3362,19 +3811,18 @@ mission "Bounty Hunting (Marauder I)"
 		system
 			distance 1 1
 		fleet "Marauder fleet I"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 360000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 360000
+			fail
 
 mission "Bounty Hunting (Marauder II)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 380000
 	to offer
 		"combat rating" > 600
 		or
@@ -3391,19 +3839,18 @@ mission "Bounty Hunting (Marauder II)"
 		system
 			distance 1 1
 		fleet "Marauder fleet II"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 380000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 380000
+			fail
 
 mission "Bounty Hunting (Marauder III)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 400000
 	to offer
 		"combat rating" > 700
 		or
@@ -3420,19 +3867,18 @@ mission "Bounty Hunting (Marauder III)"
 		system
 			distance 1 1
 		fleet "Marauder fleet III"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 400000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 400000
+			fail
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 480000
 	to offer
 		"combat rating" > 1200
 		or
@@ -3449,19 +3895,18 @@ mission "Bounty Hunting (Marauder IV)"
 		system
 			distance 1 1
 		fleet "Marauder fleet IV"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 480000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 480000
+			fail
 
 mission "Bounty Hunting (Marauder V)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 500000
 	to offer
 		"combat rating" > 1400
 		or
@@ -3478,20 +3923,19 @@ mission "Bounty Hunting (Marauder V)"
 		system
 			distance 1 1
 		fleet "Marauder fleet V"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 500000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 500000
+			fail
 
 
 mission "Bounty Hunting (Marauder VI)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 520000
 	to offer
 		"combat rating" > 1600
 		or
@@ -3508,19 +3952,18 @@ mission "Bounty Hunting (Marauder VI)"
 		system
 			distance 1 1
 		fleet "Marauder fleet VI"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 520000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 520000
+			fail
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 620000
 	to offer
 		"combat rating" > 2500
 		random < 20
@@ -3533,19 +3976,18 @@ mission "Bounty Hunting (Marauder VII)"
 		system
 			distance 1 1
 		fleet "Marauder fleet VII"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 620000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 620000
+			fail
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 640000
 	to offer
 		"combat rating" > 2800
 		random < 15
@@ -3558,19 +4000,18 @@ mission "Bounty Hunting (Marauder VIII)"
 		system
 			distance 1 1
 		fleet "Marauder fleet VIII"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 640000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 640000
+			fail
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 660000
 	to offer
 		"combat rating" > 3100
 		random < 10
@@ -3583,19 +4024,18 @@ mission "Bounty Hunting (Marauder IX)"
 		system
 			distance 1 1
 		fleet "Marauder fleet IX"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 660000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 660000
+			fail
 
 mission "Bounty Hunting (Marauder X)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
+	"apparent payment" 1000000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3608,12 +4048,10 @@ mission "Bounty Hunting (Marauder X)"
 		system
 			distance 1 1
 		fleet "Marauder fleet X"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 1000000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 1000000
+			fail
 
 
 

@@ -61,7 +61,7 @@ outfit "Korath Ark'torbal Thruster"
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
-	"thrust" 8.9
+	"thrust" 13.35
 	"thrusting energy" 1.1
 	"thrusting heat" 1.0
 	"flare sprite" "effect/plasma flare/tiny"
@@ -76,7 +76,7 @@ outfit "Korath Ark'parat Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 240
+	"turn" 360
 	"turning energy" .6
 	"turning heat" .7
 	description "This engine is used by Korath fighters."
@@ -88,7 +88,7 @@ outfit "Korath Jak'torbal Thruster"
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
-	"thrust" 63.1
+	"thrust" 94.65
 	"thrusting energy" 5.9
 	"thrusting heat" 14.3
 	"flare sprite" "effect/plasma flare/large"
@@ -103,7 +103,7 @@ outfit "Korath Jak'parat Steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
-	"turn" 1680
+	"turn" 2520
 	"turning energy" 3.1
 	"turning heat" 7.9
 	description "This engine is used in the Korath capital ships."
@@ -129,7 +129,7 @@ outfit "Reverse Thruster"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
-	"reverse thrust" 15.4
+	"reverse thrust" 28.06
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 
@@ -226,7 +226,7 @@ outfit "Afterburner"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"afterburner thrust" 37.5
+	"afterburner thrust" 56.25
 	"afterburner fuel" .1
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
@@ -267,7 +267,7 @@ outfit "Korath Grab-Strike"
 		"tracking" .7
 		"shield damage" 108
 		"hull damage" 32
-		"hit force" -160
+		"hit force" -240
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
 outfit "Korath Banisher"
@@ -295,7 +295,7 @@ outfit "Korath Banisher"
 		"firing heat" 4.9
 		"shield damage" 2.8
 		"hull damage" .9
-		"hit force" 40
+		"hit force" 60
 	description "The Korath like to keep their enemies close... but not too close."
 
 outfit "Korath Warder"
@@ -457,7 +457,7 @@ outfit "Korath Piercer Launcher"
 		"shield damage" 290
 		"hull damage" 440
 		"piercing" .2
-		"hit force" 300
+		"hit force" 450
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
@@ -515,7 +515,7 @@ outfit "Korath Minelayer"
 		"missile strength" 35
 		"shield damage" -3200
 		"hull damage" -2400
-		"hit force" -150
+		"hit force" -225
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
 

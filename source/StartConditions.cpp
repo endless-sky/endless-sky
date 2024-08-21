@@ -16,14 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 
 #include "DataNode.h"
-#include "DataWriter.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 
 #include <algorithm>

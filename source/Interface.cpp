@@ -31,8 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "RingShader.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
@@ -85,6 +85,7 @@ void Interface::Load(const DataNode &node)
 	elements.clear();
 	points.clear();
 	values.clear();
+	lists.clear();
 
 	// First, figure out the anchor point of this interface.
 	Point anchor = ParseAlignment(node, 2);
@@ -103,6 +104,12 @@ void Interface::Load(const DataNode &node)
 			// This node specifies a named point where custom drawing is done.
 			points[child.Token(1)].Load(child, anchor);
 		}
+		else if(child.Token(0) == "list" && child.Size() >= 2)
+		{
+			auto &list = lists[child.Token(1)];
+			for(const auto &grand : child)
+				list.emplace_back(grand.Value(0));
+		}
 		else if(child.Token(0) == "visible" || child.Token(0) == "active")
 		{
 			// This node alters the visibility or activation of future nodes.
@@ -117,7 +124,8 @@ void Interface::Load(const DataNode &node)
 			// Check if this node specifies a known element type.
 			if(child.Token(0) == "sprite" || child.Token(0) == "image" || child.Token(0) == "outline")
 				elements.push_back(new ImageElement(child, anchor));
-			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button")
+			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button"
+					|| child.Token(0) == "dynamic button")
 				elements.push_back(new TextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
@@ -151,7 +159,7 @@ void Interface::Draw(const Information &info, Panel *panel) const
 // Check if a named point exists.
 bool Interface::HasPoint(const string &name) const
 {
-	return points.count(name);
+	return points.contains(name);
 }
 
 
@@ -188,12 +196,30 @@ double Interface::GetValue(const string &name) const
 
 
 
+// Get a named list.
+const vector<double> &Interface::GetList(const string &name) const
+{
+	static vector<double> EMPTY;
+	auto it = lists.find(name);
+	return (it == lists.end() ? EMPTY : it->second);
+}
+
+
+
 // Members of the AnchoredPoint class:
 
 // Get the point's location, given the current screen dimensions.
 Point Interface::AnchoredPoint::Get() const
 {
 	return position + .5 * Screen::Dimensions() * anchor;
+}
+
+
+
+Point Interface::AnchoredPoint::Get(const Information &info) const
+{
+	const Rectangle &region = info.GetCustomRegion();
+	return position + region.Center() + .5 * region.Dimensions() * anchor;
 }
 
 
@@ -312,7 +338,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 		return;
 
 	// Get the bounding box of this element, relative to the anchor point.
-	Rectangle box = Bounds();
+	Rectangle box = (info.HasCustomRegion() ? Bounds(info) : Bounds());
 	// Check if this element is active.
 	int state = info.HasCondition(activeIf);
 	// Check if the mouse is hovering over this element.
@@ -346,6 +372,13 @@ void Interface::Element::SetConditions(const string &visible, const string &acti
 Rectangle Interface::Element::Bounds() const
 {
 	return Rectangle::WithCorners(from.Get(), to.Get());
+}
+
+
+
+Rectangle Interface::Element::Bounds(const Information &info) const
+{
+	return Rectangle::WithCorners(from.Get(info), to.Get(info));
 }
 
 
@@ -463,14 +496,14 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 		return;
 
 	float frame = info.GetSpriteFrame(name);
+	Point unit = info.GetSpriteUnit(name);
 	if(isOutline)
 	{
 		Color color = (isColored ? info.GetOutlineColor() : Color(1.f, 1.f));
-		Point unit = info.GetSpriteUnit(name);
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame);
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame, unit);
 }
 
 
@@ -490,8 +523,8 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	if(node.Size() < 2)
 		return;
 
-	isDynamic = (node.Token(0) == "string");
-	if(node.Token(0) == "button")
+	isDynamic = (node.Token(0) == "string" || node.Token(0) == "dynamic button");
+	if(node.Token(0) == "button" || node.Token(0) == "dynamic button")
 	{
 		buttonKey = node.Token(1).front();
 		if(node.Size() >= 3)
@@ -503,7 +536,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 
-	// Fill in any undefined state colors. By default labels are "medium", strings
+	// Fill in any undefined state colors. By default, labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
 	if(!color[Element::ACTIVE] && !buttonKey)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
@@ -636,6 +669,8 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		spanAngle = max(0., min(360., node.Value(1)));
 	else if(node.Token(0) == "start angle" && node.Size() >= 2)
 		startAngle = max(0., min(360., node.Value(1)));
+	else if(node.Token(0) == "reversed")
+		reversed = true;
 	else
 		return false;
 
@@ -669,9 +704,12 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 	else
 	{
 		// Figue out where the line should be drawn from and to.
-		// Note: this assumes that the bottom of the rectangle is the start.
-		Point start = rect.BottomRight();
+		// Note: the default start position is the bottom right.
+		// If "reversed" was specified, the top left will be used instead.
+		Point start = reversed ? rect.TopLeft() : rect.BottomRight();
 		Point dimensions = -rect.Dimensions();
+		if(reversed)
+			dimensions *= -1.;
 		double length = dimensions.Length();
 
 		// We will have (segments - 1) gaps between the segments.
@@ -691,7 +729,6 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		}
 	}
 }
-
 
 
 

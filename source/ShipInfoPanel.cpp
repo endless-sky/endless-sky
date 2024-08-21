@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
@@ -140,6 +140,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
 		GetUI()->Pop(this);
+	else if(command.Has(Command::HELP))
+		DoHelp("ship info", true);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == panelState.Ships().begin())
@@ -169,9 +171,43 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(panelState.CanEdit() && key == 'D')
 	{
 		if(shipIt->get() != player.Flagship())
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, "Are you sure you want to disown \""
+		{
+			map<const Outfit*, int> uniqueOutfits;
+			auto AddToUniques = [&uniqueOutfits] (const std::map<const Outfit *, int> &outfits)
+			{
+				for(const auto &it : outfits)
+					if(it.first->Attributes().Get("unique"))
+						uniqueOutfits[it.first] += it.second;
+			};
+			AddToUniques(shipIt->get()->Outfits());
+			AddToUniques(shipIt->get()->Cargo().Outfits());
+
+			string message = "Are you sure you want to disown \""
 				+ shipIt->get()->Name()
-				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
+				+ "\"? Disowning a ship rather than selling it means you will not get any money for it.";
+			if(!uniqueOutfits.empty())
+			{
+				const int uniquesSize = uniqueOutfits.size();
+				const int detailedOutfitSize = (uniquesSize > 20 ? 19 : uniquesSize);
+				message += "\nThe following unique items carried by the ship will be lost:";
+				auto it = uniqueOutfits.begin();
+				for(int i = 0; i < detailedOutfitSize; ++i)
+				{
+					message += "\n" + to_string(it->second) + " "
+						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+					++it;
+				}
+				if(it != uniqueOutfits.end())
+				{
+					int otherUniquesCount = 0;
+					for( ; it != uniqueOutfits.end(); ++it)
+						otherUniquesCount += it->second;
+					message += "\nand " + to_string(otherUniquesCount) + " other unique outfits";
+				}
+			}
+
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, message));
+		}
 	}
 	else if(key == 'c' && CanDump())
 	{
@@ -358,7 +394,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		if(it == outfits.end())
 			continue;
 
-		// Skip to the next column if there is not space for this category label
+		// Skip to the next column if there is no space for this category label
 		// plus at least one outfit.
 		if(table.GetRowBounds().Bottom() + 40. > bounds.Bottom())
 		{
@@ -458,8 +494,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 	int index = 0;
 	const double centerX = bounds.Center().X();
-	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
-	const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
+	const double labelCenter[2] = {centerX - .5 * LABEL_WIDTH - LABEL_DX, centerX + LABEL_DX + .5 * LABEL_WIDTH};
+	const double fromX[2] = { centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
 	static const double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);

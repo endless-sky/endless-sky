@@ -40,39 +40,39 @@ namespace { // test namespace
 TEST_CASE( "DataNode Basics", "[DataNode]" ) {
 	using T = DataNode;
 	SECTION( "Class Traits" ) {
-		CHECK_FALSE( std::is_trivial<T>::value );
+		CHECK_FALSE( std::is_trivial_v<T> );
 		// The class layout apparently satisfies StandardLayoutType when building/testing for Steam, but false otherwise.
 		// This may change in the future, with the expectation of false everywhere (due to the list<DataNode> field).
-		// CHECK_FALSE( std::is_standard_layout<T>::value );
-		CHECK( std::is_nothrow_destructible<T>::value );
-		CHECK_FALSE( std::is_trivially_destructible<T>::value );
+		// CHECK_FALSE( std::is_standard_layout_v<T> );
+		CHECK( std::is_nothrow_destructible_v<T> );
+		CHECK_FALSE( std::is_trivially_destructible_v<T> );
 	}
 	SECTION( "Construction Traits" ) {
-		CHECK( std::is_default_constructible<T>::value );
-		CHECK_FALSE( std::is_trivially_default_constructible<T>::value );
+		CHECK( std::is_default_constructible_v<T> );
+		CHECK_FALSE( std::is_trivially_default_constructible_v<T> );
 		// We explicitly allocate some memory when default-constructing DataNodes.
-		CHECK_FALSE( std::is_nothrow_default_constructible<T>::value );
-		CHECK( std::is_copy_constructible<T>::value );
+		CHECK_FALSE( std::is_nothrow_default_constructible_v<T> );
+		CHECK( std::is_copy_constructible_v<T> );
 		// We have work to do when copy-constructing, including allocations.
-		CHECK_FALSE( std::is_trivially_copy_constructible<T>::value );
-		CHECK_FALSE( std::is_nothrow_copy_constructible<T>::value );
-		CHECK( std::is_move_constructible<T>::value );
+		CHECK_FALSE( std::is_trivially_copy_constructible_v<T> );
+		CHECK_FALSE( std::is_nothrow_copy_constructible_v<T> );
+		CHECK( std::is_move_constructible_v<T> );
 		// We have work to do when move-constructing.
-		CHECK_FALSE( std::is_trivially_move_constructible<T>::value );
-		CHECK( std::is_nothrow_move_constructible<T>::value );
+		CHECK_FALSE( std::is_trivially_move_constructible_v<T> );
+		CHECK( std::is_nothrow_move_constructible_v<T> );
 	}
 	SECTION( "Copy Traits" ) {
-		CHECK( std::is_copy_assignable<T>::value );
+		CHECK( std::is_copy_assignable_v<T> );
 		// The class data can be spread out due to vector + list contents.
-		CHECK_FALSE( std::is_trivially_copyable<T>::value );
+		CHECK_FALSE( std::is_trivially_copyable_v<T> );
 		// We have work to do when copying.
-		CHECK_FALSE( std::is_trivially_copy_assignable<T>::value );
-		CHECK_FALSE( std::is_nothrow_copy_assignable<T>::value );
+		CHECK_FALSE( std::is_trivially_copy_assignable_v<T> );
+		CHECK_FALSE( std::is_nothrow_copy_assignable_v<T> );
 	}
 	SECTION( "Move Traits" ) {
-		CHECK( std::is_move_assignable<T>::value );
-		CHECK_FALSE( std::is_trivially_move_assignable<T>::value );
-		CHECK( std::is_nothrow_move_assignable<T>::value );
+		CHECK( std::is_move_assignable_v<T> );
+		CHECK_FALSE( std::is_trivially_move_assignable_v<T> );
+		CHECK( std::is_nothrow_move_assignable_v<T> );
 	}
 }
 

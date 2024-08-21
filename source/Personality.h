@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSONALITY_H_
-#define PERSONALITY_H_
+#pragma once
 
 #include "Angle.h"
 #include "Point.h"
@@ -53,6 +52,8 @@ public:
 	bool Plunders() const;
 	bool IsVindictive() const;
 	bool IsUnconstrained() const;
+	bool IsUnrestricted() const;
+	bool IsRestricted() const;
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
@@ -82,6 +83,7 @@ public:
 	bool IsMarked() const;
 	bool IsMute() const;
 	bool IsDecloaked() const;
+	bool IsQuiet() const;
 
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
@@ -99,7 +101,7 @@ private:
 private:
 	// Make sure this matches the number of items in PersonalityTrait,
 	// or the build will fail.
-	static const int PERSONALITY_COUNT = 34;
+	static const int PERSONALITY_COUNT = 37;
 
 	bool isDefined = false;
 
@@ -109,7 +111,3 @@ private:
 	Point confusion;
 	Point confusionVelocity;
 };
-
-
-
-#endif

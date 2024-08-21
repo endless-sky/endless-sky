@@ -21,9 +21,9 @@ ship "Quarg Skylark"
 		"hull" 70000
 		"required crew" 120
 		"bunks" 210
-		"mass" 460
-		"drag" 12.3
-		"heat dissipation" .7
+		"mass" 990
+		"drag" 18.5
+		"heat dissipation" .47
 		"fuel capacity" 1000
 		"cargo space" 200
 		"outfit space" 600
@@ -75,9 +75,9 @@ ship "Quarg Wardragon"
 		"hull" 50000
 		"required crew" 160
 		"bunks" 185
-		"mass" 360
-		"drag" 9.3
-		"heat dissipation" .5
+		"mass" 840
+		"drag" 14
+		"heat dissipation" .34
 		"fuel capacity" 800
 		"cargo space" 50
 		"outfit space" 600
@@ -106,10 +106,10 @@ ship "Quarg Wardragon"
 		
 	engine -14 47
 	engine 14 47
-	turret -28 7 "Quarg Skylance"
-	turret 28 7 "Quarg Skylance"
 	turret -9 -14 "Quarg Anti-Missile"
 	turret 9 -14 "Quarg Anti-Missile"
+	turret -28 7 "Quarg Skylance"
+	turret 28 7 "Quarg Skylance"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30

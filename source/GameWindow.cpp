@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameWindow.h"
 
 #include "Files.h"
-#include "ImageBuffer.h"
+#include "image/ImageBuffer.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -34,7 +34,6 @@ namespace {
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
-	bool hasSwizzle = false;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -70,11 +69,23 @@ string GameWindow::SDLVersions()
 
 
 
-bool GameWindow::Init()
+bool GameWindow::Init(bool headless)
 {
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#elif defined(__linux__)
+	// Set the class name for the window on Linux. Used to set the application icon.
+	// This sets it for both X11 and Wayland.
+	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
+#endif
+
+	// When running the integration tests, don't create a window nor an OpenGL context.
+	if(headless)
+#if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
+		setenv("SDL_VIDEODRIVER", "dummy", true);
+#else
+		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 #endif
 
 	// This needs to be called before any other SDL commands.
@@ -127,12 +138,21 @@ bool GameWindow::Init()
 
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
 
 	if(!mainWindow)
 	{
 		ExitWithError("Unable to create window!");
 		return false;
+	}
+
+	// Bail out early if we are in headless mode; no need to initialize all the OpenGL stuff.
+	if(headless)
+	{
+		width = windowWidth;
+		height = windowHeight;
+		Screen::SetRaw(width, height);
+		return true;
 	}
 
 	// Settings that must be declared before the context creation.
@@ -212,7 +232,6 @@ bool GameWindow::Init()
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Check for support of various graphical features.
-	hasSwizzle = OpenGL::HasSwizzleSupport();
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 
 	// Enable the user's preferred VSync state, otherwise update to an available
@@ -404,13 +423,6 @@ void GameWindow::ToggleFullscreen()
 	}
 	else
 		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-}
-
-
-
-bool GameWindow::HasSwizzle()
-{
-	return hasSwizzle;
 }
 
 

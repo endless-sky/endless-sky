@@ -22,7 +22,7 @@ mv AppDir/usr/share/games/endless-sky/* AppDir/
 
 # Now build the actual AppImage
 curl -sSL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -o linuxdeploy && chmod +x linuxdeploy
-OUTPUT=es-temp.AppImage ./linuxdeploy --appdir AppDir -e "$1/endless-sky" -d endless-sky.desktop -i endless-sky.png --output appimage
+OUTPUT=es-temp.AppImage ./linuxdeploy --appdir AppDir -e "$1/endless-sky" -d io.github.endless_sky.endless_sky.desktop -i endless-sky.png --output appimage
 
 # Use the static runtime for the AppImage. This lets the AppImage being run on systems without fuse2.
 gh release download -R probonopd/go-appimage continuous -p appimagetool*x86_64.AppImage

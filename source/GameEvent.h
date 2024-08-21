@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_EVENT_H_
-#define GAME_EVENT_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "DataNode.h"
@@ -49,7 +48,7 @@ public:
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
-	GameEvent(const DataNode &node);
+	explicit GameEvent(const DataNode &node);
 
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
@@ -67,7 +66,9 @@ public:
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
 
-	void Apply(PlayerInfo &player);
+	// Apply this event's changes to the player. Returns a list of data changes that need to
+	// be applied in a batch with other events that are applied at the same time.
+	std::list<DataNode> Apply(PlayerInfo &player);
 
 	const std::list<DataNode> &Changes() const;
 
@@ -85,7 +86,3 @@ private:
 	std::vector<const System *> systemsToUnvisit;
 	std::vector<const Planet *> planetsToUnvisit;
 };
-
-
-
-#endif

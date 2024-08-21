@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CATEGORY_LIST_H_
-#define CATEGORY_LIST_H_
+#pragma once
 
 #include <iterator>
 #include <map>
@@ -28,7 +27,7 @@ class DataNode;
 
 // A CategoryList is a list of names that are associated to a Category of items (e.g. ships
 // or outfits). Categories within the list are sorted by the precedence of each Category.
-// Any conflicting precedencies are resolved by sorting the names of the Categories
+// Any conflicting precedences are resolved by sorting the names of the Categories
 // alphabetically.
 class CategoryList {
 public:
@@ -38,9 +37,9 @@ public:
 	// name.
 	class Category {
 	public:
-		Category(std::string name, int precedence) : name(name), precedence(precedence) {}
+		Category(const std::string &name, int precedence) : name(name), precedence(precedence) {}
 		const std::string &Name() const { return name; }
-		const bool operator<(Category other) const { return SortHelper(*this, other); }
+		const bool operator<(const Category &other) const { return SortHelper(*this, other); }
 		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
 
 	private:
@@ -78,7 +77,3 @@ private:
 	std::map<const std::string, Category> byName;
 	int currentPrecedence = 0;
 };
-
-
-
-#endif

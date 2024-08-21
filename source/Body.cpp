@@ -18,12 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
-#include "Mask.h"
-#include "MaskManager.h"
+#include "image/Mask.h"
+#include "image/MaskManager.h"
+#include "pi.h"
 #include "Random.h"
-#include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -148,6 +148,13 @@ const Point &Body::Velocity() const
 
 
 
+const Point Body::Center() const
+{
+	return -rotatedCenter + position;
+}
+
+
+
 // Direction this Body is facing in.
 const Angle &Body::Facing() const
 {
@@ -232,6 +239,8 @@ void Body::LoadSprite(const DataNode &node)
 		}
 		else if(child.Token(0) == "rewind")
 			rewind = true;
+		else if(child.Token(0) == "center" && child.Size() >= 3)
+			center = Point(child.Value(1), child.Value(2));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -263,6 +272,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("no repeat");
 		if(rewind)
 			out.Write("rewind");
+		if(center)
+			out.Write("center", center.X(), center.Y());
 	}
 	out.EndChild();
 }
@@ -282,6 +293,13 @@ void Body::SetSprite(const Sprite *sprite)
 void Body::SetSwizzle(int swizzle)
 {
 	this->swizzle = swizzle;
+}
+
+
+
+double Body::Alpha() const
+{
+	return alpha;
 }
 
 
@@ -322,6 +340,39 @@ void Body::MarkForRemoval()
 void Body::UnmarkForRemoval()
 {
 	shouldBeRemoved = false;
+}
+
+
+
+// Turn this object around its center of rotation.
+void Body::Turn(double amount)
+{
+	angle += amount;
+	if(!center)
+		return;
+
+	auto RotatePointAroundOrigin = [](Point &toRotate, double radians) -> Point {
+		float si = sin(radians);
+		float co = cos(radians);
+		float newX = toRotate.X() * co - toRotate.Y() * si;
+		float newY = toRotate.X() * si + toRotate.Y() * co;
+		return Point(newX, newY);
+	};
+
+	rotatedCenter = -RotatePointAroundOrigin(center, (angle - amount).Degrees() * TO_RAD);
+
+	position -= rotatedCenter;
+
+	rotatedCenter = RotatePointAroundOrigin(rotatedCenter, Angle(amount).Degrees() * TO_RAD);
+
+	position += rotatedCenter;
+}
+
+
+
+void Body::Turn(const Angle &amount)
+{
+	Turn(amount.Degrees());
 }
 
 

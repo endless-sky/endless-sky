@@ -45,7 +45,7 @@ mission "Pact Recon 0"
 			`	"Because captains from around here don't rubberneck at an every-day occurrence. After seeing your first dozen or so damaged ships, you eventually get used to seeing them and just move on."`
 			`	"Are the pirates rough around these parts?" you ask.`
 			label pirates
-			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free reign to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
+			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free rein to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
 			choice
 				`	"Is there something I can do to help?"`
 				`	"I wish I could help, but my ship is not a warship."`
@@ -79,8 +79,11 @@ mission "Pact Recon 0"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 25000
+		event "pact recon 0" 1
 		dialog `When you land on <planet>, you're approached by Freya Winters. She gives you <payment> in exchange for your scanner logs of the Southern systems. "Thank you, Captain. I pray the pirates didn't give you too much trouble," she says. "I'll be in touch when we've got a new assignment for you, assuming you're still interested."`
 
+
+event "pact recon 0"
 
 
 mission "Pact Recon 1"
@@ -97,7 +100,7 @@ mission "Pact Recon 1"
 	waypoint "Wei"
 	to offer
 		random < 40
-		has "Pact Recon 0: done"
+		has "event: pact recon 0"
 		not "event: war begins"
 	
 	on offer
@@ -107,8 +110,11 @@ mission "Pact Recon 1"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 35000
+		event "pact recon 1" 1
 		dialog `You transfer your sensor logs to Freya. She thanks you for your work and pays you <payment>. "I'll let you know when we need your services again," she says.`
 
+
+event "pact recon 1"
 
 
 mission "Pact Recon 2"
@@ -125,37 +131,39 @@ mission "Pact Recon 2"
 	waypoint "Shaula"
 	to offer
 		random < 40
-		has "Pact Recon 1: done"
+		has "event: pact recon 1"
 		not "event: war begins"
 	
 	on offer
-		dialog `You receive another message from Freya: "Hello, Captain! I've got a more challenging and lucrative mission for you this time. We need someone to do a flyby of all four pirate systems here in the South, to gauge their strength. Again, no fighting is required, just fly in and out of the systems as fast as possible, and we're willing to pay much more than the last job given the danger involved. What do you say?"`
+		dialog `You receive another message from Freya: "Hello, Captain! I've got a more challenging and lucrative mission for you this time. We need someone to do a flyby of four pirate systems bordering the South, to gauge their strength. Again, no fighting is required, just fly in and out of the systems as fast as possible, and we're willing to pay much more than the last job given the danger involved. What do you say?"`
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 70000
+		event "pact recon 2" 1
 		dialog `Freya Winters meets up with you in person soon after you land. "Glad to see you're still in one piece. I pray you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
 
+
+event "pact recon 2"
 
 
 mission "Pact Recon 3"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the <waypoints> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
+	description "Fly through the <marks> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> once you have located them."
 	source
 		attributes "dirt belt" "near earth" "rim" "south"
 		not government "Pirate"
 	destination "Glaze"
-	waypoint "Boral"
-	waypoint "Hintar"
-	waypoint "Naper"
-	waypoint "Orvala"
+	mark "Boral"
+	mark "Hintar"
+	mark "Naper"
+	mark "Orvala"
 	to offer
 		random < 40
-		has "Pact Recon 2: done"
+		has "event: pact recon 2"
 		not "event: war begins"
-	
 	on offer
 		dialog `Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet amassing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight, just observe them."`
 	
@@ -165,10 +173,26 @@ mission "Pact Recon 3"
 		system "Naper"
 		fleet "Small Southern Pirates" 3
 		fleet "Large Northern Pirates"
-	
+
+	on enter "Boral"
+		unmark "Boral"
+	on enter "Hintar"
+		unmark "Hintar"
+	on enter "Orvala"
+		unmark "Orvala"
+	on enter "Naper"
+		unmark "Boral"
+		unmark "Hintar"
+		unmark "Orvala"
+		unmark "Naper"
+		set "fw located pirate fleet"
+		dialog `You have located the pirate fleet. Time to head back to <planet> to report to Freya what you found.`
 	on visit
-		dialog phrase "generic waypoint on visit"
+		dialog `You have reached <planet>, but you haven't located the pirate fleet yet! Better depart and make sure you have checked <marks>.`
+	to complete
+		has "fw located pirate fleet"
 	on complete
+		clear "fw located pirate fleet"
 		payment 80000
 		dialog `You report to Freya that you found a sizable pirate fleet in the Naper system, as well as spotting some pirates elsewhere. She thanks you, and pays you <payment>. "Thank you for your assistance," she says. "Again, I'll be in touch if we need you."`
 
@@ -311,7 +335,7 @@ mission "FW Recon 1"
 				`	"Perhaps. What do you want me to do?"`
 				`	"Sorry, I want no part in your rebellion."`
 					decline
-			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The oufitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
+			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The outfitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
 				`	"Sure, that sounds simple enough."`
 					accept
@@ -736,6 +760,8 @@ mission "FW Escort 1B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -861,6 +887,8 @@ mission "FW Escort 2B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -925,6 +953,8 @@ mission "FW Escort 3"
 	npc accompany save
 		government "Merchant"
 		personality escort derelict timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		system "Lesath"
 		ship "Freighter" "F.S. Shackleton"
 	
@@ -1012,7 +1042,7 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	minor
 	name "Free Worlds Bounty Hunting"
-	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been attacking freighters in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
 	source
 		government "Free Worlds"
 	to offer
@@ -1094,10 +1124,10 @@ ship "Mammoth" "Mammoth (Moonless)"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
-	turret "Modified Blaster Turret"
-	turret "Modified Blaster Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
+	turret "Modified Blaster Turret"
+	turret "Modified Blaster Turret"
 
 
 
@@ -1546,8 +1576,8 @@ mission "FW Katya 2B"
 		log `Met up with a friend of Katya's named Mr. Eyes, who calls himself a "vigilante nuclear power plant inspector." He thinks he can help hunt down the people who bombed Geminus and Martini, to prove that the Free Worlds were not behind it.`
 	
 	npc
-		government "Pirate"
-		personality nemesis plunders waiting
+		government "Bounty Hunter"
+		personality nemesis plunders staying waiting
 		fleet "Small Core Pirates" 2
 	
 	on visit

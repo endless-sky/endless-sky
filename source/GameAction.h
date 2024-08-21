@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_ACTION_H_
-#define GAME_ACTION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ShipManager.h"
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
@@ -29,9 +29,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class GameEvent;
+class Mission;
 class Outfit;
 class PlayerInfo;
 class Ship;
+class System;
 class UI;
 
 
@@ -47,11 +49,11 @@ class GameAction {
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node, const std::string &missionName);
+	GameAction(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child, const std::string &missionName);
+	void LoadSingle(const DataNode &child);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.
@@ -66,11 +68,21 @@ public:
 	const std::vector<ShipManager> &Ships() const noexcept;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui) const;
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
 	GameAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
+
+
+private:
+	struct Debt {
+		Debt(int64_t amount) : amount(amount) {}
+
+		int64_t amount = 0;
+		std::optional<double> interest;
+		int term = 365;
+	};
 
 
 private:
@@ -85,13 +97,17 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+	std::vector<Debt> debt;
+
+	std::optional<std::string> music;
+
+	std::set<const System *> mark;
+	std::set<const System *> unmark;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
+	// When this action is performed, the mission that called this action is failed.
+	bool failCaller = false;
 
 	ConditionSet conditions;
 };
-
-
-
-#endif

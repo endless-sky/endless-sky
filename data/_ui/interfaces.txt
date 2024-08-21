@@ -48,6 +48,7 @@ color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
+color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
@@ -59,7 +60,22 @@ color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
 
+# Colors for the escort HUD status bars.
+color "escort shields" .43 .55 .70 0.
+color "escort hull" .70 .62 .43 0.
+color "escort heat" .70 .43 .43 0.
+color "escort energy" .6 .6 .6 0.
+color "escort fuel" .630 .62 .43 0.
+# These values are half the desired "full color" values.
+color "escort split shields" .215 .275 .35 0.
+color "escort split hull" .35 .31 .215 0.
+color "escort split heat" .35 .215 .215 0.
+color "escort split energy" .3 .3 .3 0.
+color "escort split fuel" .35 .31 .215 0.
+
 color "flagship highlight" .5 .8 .2 0.
+
+color "cloak highlight" .45 0. 0. .65
 
 color "drag select" .2 1. 0. 0.
 
@@ -76,6 +92,7 @@ color "blocked back" 0. .15 .2 .5
 color "special mission" 1. 1. 1. 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
+color "mission route" .2 .1 0. 0.
 
 # Colors for the Escort HUD that is displayed in-flight.
 color "escort disabled" .4 .4 .4 0.
@@ -154,8 +171,17 @@ color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest"	1. .5 0. 1.
-color "message importance default"	1. 1. 1. 1.
+color "message importance highest" 1. .5 0. 1.
+color "message importance high" 1. 1. 1. 1.
+color "message importance info" 0. 1. .5 1.
+color "message importance daily" 1. 1. 1. 1.
+color "message importance low" 1. 1. 1. 1.
+
+color "message log importance highest" 1. .5 0. 1.
+color "message log importance high" .75 .75 .75 1.
+color "message log importance info" 0. 1. .5 1.
+color "message log importance daily" 0. .5 1. 1.
+color "message log importance low" .75 .75 .75 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -164,9 +190,9 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
-color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
+color "map danger none" .1 .6 0. .4
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
@@ -192,10 +218,10 @@ interface "map detail panel"
 interface "map planet card"
 	value "text start" 13
 	value "category size" 20
-	value "height" 130
+	value "categories" 5
+	value "height padding" 30
 	value "width" 235
 	value "planet icon max size" 100
-	value "categories" 5
 
 
 
@@ -385,8 +411,21 @@ interface "start conditions menu"
 interface "load menu"
 	sprite "_menu/side panel"
 		center -360 0
+	box "pilots"
+		center -360 -19
+		dimensions 230 280
+	
 	sprite "_menu/side panel"
 		center 0 0
+	box "snapshots"
+		center 0 -19
+		dimensions 230 280
+	
+	value "pilot horizontal text pad" 5
+	value "pilot fade out" 10
+	value "snapshot horizontal text pad" 5
+	value "snapshot fade out" 10
+	
 	sprite "_menu/side panel"
 		center 360 0
 	
@@ -397,6 +436,13 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
+
+	sprite "ui/wide button"
+		center -435 195
+	active
+	button o "_Open Saves"
+		center -435 195
+		dimensions 120 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -435,12 +481,19 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
-	label "Press '_x' over keybind to unbind"
-		from -255 200
-		color "bright"
-		align left
-		width 240
-		truncate back
+	visible if "multiple controls pages"
+	sprite "ui/dialog cancel"
+		center -115 210
+	active if "show next controls"
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	sprite "ui/wide button"
+		center -210 210
+	active if "show previous controls"
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
 
 
 
@@ -461,16 +514,16 @@ interface "settings"
 		dimensions 90 30
 		color medium
 		hover bright
-	visible if "multiple pages"
+	visible if "multiple settings pages"
 	sprite "ui/dialog cancel"
 		center -115 210
-	active if "show next"
+	active if "show next settings"
 	button n "_Next"
 		center -115 210
 		dimensions 70 30
 	sprite "ui/wide button"
 		center -210 210
-	active if "show previous"
+	active if "show previous settings"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
@@ -508,6 +561,13 @@ interface "plugins"
 		from -225 -236
 		align top left
 		color bright
+	visible
+	line
+		from -230 -222 to -10 -221
+	box "plugin list"
+		from -250 -216 to -10 184
+	box "plugin description"
+		from 250 -244 to 10 184
 
 
 
@@ -546,9 +606,15 @@ interface "hud"
 		color "medium"
 		align right
 	
+	visible if "!fast hud sprites"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
+	visible if "fast hud sprites"
+	image "player sprite"
+		center -75 155
+		dimensions 70 70
+	visible
 	ring "shields"
 		center -75 155
 		dimensions 120 120
@@ -626,10 +692,16 @@ interface "hud"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
+	visible if "!fast hud sprites"
 	outline "target sprite"
 		center 75 315
 		dimensions 70 70
 		colored
+	visible if "fast hud sprites"
+	image "target sprite"
+		center 75 315
+		dimensions 70 70
+	visible
 	ring "target shields"
 		center 75 315
 		dimensions 120 120
@@ -709,6 +781,144 @@ interface "hud"
 		center 0 100
 
 
+interface "main view"
+	list "zooms"
+		.25
+		.35
+		.5
+		.7
+		1.
+		1.4
+		2.
+
+
+
+interface "escort element"
+	value "width" 120
+	value "basic height" 30
+	value "system label height" 15
+
+	anchor top left
+	outline "icon"
+		center 20 10
+		dimensions 20 20
+		colored
+	visible if "selected"
+	pointer
+		center 10 10
+		dimensions 10 10
+		"orientation angle" 90
+		color "escort selected"
+	visible if "other system"
+	string "system"
+		from 10 28
+		width 120
+		size 14
+		align left
+		truncate back
+		color "escort elsewhere"
+
+	visible if "!multiple"
+	bar "shields high"
+		from 35 1.5
+		dimensions 70 0
+		size 1.5
+		reversed
+		color "escort shields"
+	bar "hull high"
+		from 35 5.5
+		dimensions 70 0
+		size 1.5
+		reversed
+		color "escort hull"
+	bar "energy high"
+		from 40 9.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort energy"
+	bar "heat high"
+		from 40 13.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort heat"
+	bar "fuel high"
+		from 40 17.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort fuel"
+
+	visible if "multiple"
+	anchor top right
+	string "count"
+		from -15 3 to -55 17
+		align right
+		color "escort elsewhere"
+	anchor top left
+	bar "shields high"
+		from 35 1.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split shields"
+	bar "shields low"
+		from 35 1.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split shields"
+	bar "hull high"
+		from 35 5.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split hull"
+	bar "hull low"
+		from 35 5.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split hull"
+	bar "energy high"
+		from 40 9.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split energy"
+	bar "energy low"
+		from 40 9.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split energy"
+	bar "heat high"
+		from 40 13.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split heat"
+	bar "heat low"
+		from 40 13.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split heat"
+	bar "fuel high"
+		from 40 17.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split fuel"
+	bar "fuel low"
+		from 40 17.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split fuel"
+
+
 
 interface "planet"
 	image "land"
@@ -742,7 +952,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "is inhabited"
+	visible if "has job board"
 	sprite "ui/planet dialog button"
 		center -400 150
 	button j "_Job Board"
@@ -751,6 +961,7 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"
@@ -780,17 +991,18 @@ interface "planet"
 		align left
 		pad 10 0
 	
-	visible if "has spaceport"
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 270
-	button p "Space_port"
+	"dynamic button" p "port name"
 		center -400 270
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
+	visible
 	
-	visible if "has ship"
+	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 270
 	button d "_Depart"
@@ -1042,7 +1254,7 @@ interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
-	button B "Buy All"
+	button u "B_uy All"
 		center 40 355
 		dimensions 70 30
 	
@@ -1051,13 +1263,13 @@ interface "trade"
 	
 	active if "can sell"
 	visible if "!can sell outfits"
-	button S "Sell All"
+	button e "S_ell All"
 		center 130 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
 	visible if "can sell outfits"
-	button S "Sell Outfits"
+	button e "S_ell Outfits"
 		center 130 355
 		dimensions 90 30
 
@@ -1081,9 +1293,14 @@ interface "bank"
 
 
 interface "mission" bottom
+	visible if "has description"
 	sprite "ui/mission"
 		align bottom
-	
+	visible if "!has description"
+	sprite "ui/mission empty"
+		align bottom
+
+	visible
 	label "cargo space free:"
 		center -130 -85
 	string "cargo free"
@@ -1350,6 +1567,16 @@ interface "info panel"
 	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
+
+
+
+interface "message log"
+	value "width" 570
+
+	visible if "empty"
+	label "(The message log is empty.)"
+		from 300 0 left
+		color medium
 
 
 

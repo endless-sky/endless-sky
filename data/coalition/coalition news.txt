@@ -21,8 +21,11 @@ news "heliarch news"
 	message
 		word
 			"A sizable crowd is watching one of the monitors in the spaceport where an interviewer is speaking to a Heliarch agent. You learn from someone in the crowd that the agent was a professional athlete until recently."
-			"A news broadcast shows footage of many Heliarch agents arresting a group of terrorists. The Heliarch who was supervising the operation is later interviewed, explaining that the now prisoners were found to have stolen government equipment."
+			"A news broadcast shows footage of many Heliarch agents arresting a group of terrorists. The Heliarch who was supervising the operation is later interviewed, explaining that the new prisoners were found to have stolen government equipment."
 			"The news show a Heliarch consul giving a short speech in a ship launching ceremony. After they finish, the brand new Heliarch warships are shown heading to their first patrol."
+			"All the spaceport screens momentarily swap to a broadcast from the Heliarch government, where they show a video of several dozens of arrested criminals. The Heliarch host describing the event mentions their sentences range from 40 years to life, prompting varying reactions from the civilian spectators."
+			"During one of the more busy hours on the spaceport, the news details the crimes of a recently arrested terrorist group: arson, kidnapping, theft of government equipment, possession of weapons, conspiring against the Coalition, attacking both government and civilian properties, subversion... The list goes on for a few more minutes."
+			`After the latest report on how the Heliarchs arrested some terrorists on a nearby world, the news shows various short clips with the same message, asking the public to "stay vigilant" and report any and all suspicious activity.`
 
 news "heliarch propaganda"
 	location
@@ -89,6 +92,7 @@ news "heliarch agent"
 			"An agent is trying to calm down a small crowd outside a local bar. After some minutes, the more agitated drunkards are convinced to accompany the agent to a nearby Heliarch office."
 			"A pair of agents passes by you. Most of the spaceport crowd gives them a wide berth."
 			`"A pilot, I once was. Learned from an older sibling, I did."`
+			`"Seen those charity workers in blue on some of our worlds, have you? Noble intentions they may have, but understand it I do not. Why trouble themselves with it when taking care of everyone, we already are?"`
 
 news "heliarch candidate"
 	location
@@ -99,7 +103,7 @@ news "heliarch candidate"
 	message
 		word
 			`"Laws, history, theory, too much of it I have read, and still behind I am..."`
-			`"As part of my trials, read the works of consul Elirom, I had to. Exceeded my expectations, his books have."`
+			`"As part of my trials, read the works of consul Aulori, I had to. Exceeded my expectations, his books have."`
 			`"Meant to prove our dedication and show our potential, the trials we candidates go through are. Though difficult, we're sure to be apt to serve once passed, we have."`
 
 news "coalition ad"
@@ -431,3 +435,34 @@ news "coalition games crowd"
 			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs and are being helped back to their feet one by one by both Heliarch agents and others from the crowd."
 			"This is a particularly crowded part of the spaceport today. The lines of people waiting for admission into the Games have started crossing and looping in on themselves. Some even head inside shops and restaurants while others stretch into docking areas. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
 			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle to get them to settle down while keeping their spots in the waiting lines."
+
+news "lunarium charity"
+	location
+		government "Coalition"
+		not planet "Fourth Shadow"
+	name
+		word
+			"Charitable Organization"
+	message
+		word
+			"Several workers in blue uniforms are loading up cargo crates and containers full of charity goods into Coalition merchant ships."
+			"A few civilian captains in the spaceport are discussing their recent jobs for a charity organization. It seems they operate mostly in Kimek space."
+			"The spaceport has a few flyers glued to the entrance walls. You ask one of the locals, and they tell you they're for promoting a charity organization."
+			"Coalition families have formed a line to a large cargo ship. Brought by their parents, the children are one by one giving away blankets, outdated electronics, and all sorts of toys, which are all carefully packed into cargo containers. It seems they are donating to a charity organization."
+			"Charity workers are meeting with a few wealthy-looking individuals in the spaceport. Apparently all the expenses of the endeavor are paid by donations, and they are trying to bring in some new patrons to expand the efforts."
+
+news "lunarium charity worker"
+	to show
+		not "Heliarch License 1: offered"
+	location
+		government "Coalition"
+	name
+		word
+			"Charity worker"
+	message
+		word
+			`"Help bring amenity goods and services to those who can't afford them, we do. Operate mostly in Kimek space we do, if interested in helping you are."`
+			`"Interested in contributing to the charity, are you? Take every sort of donation, we do. Credits, winter supplies, trinkets, old tech devices. Whatever it is, if willing to donate you are, drop them here you can."`
+			`"Just finished filling up an entire Arach fleet's cargo holds with school supplies, we have. Very tiring, the job is, but glad I am that making a difference, our charity efforts are."`
+			`"Get most of our funding from some of the Arach Houses and rich Saryd families, we do. Meant only to acquire part of the charity goods and the means to transport them, the credits are, for voluntary work, this is."`
+			`Standing by the spaceport entrance, a worker is distributing flyers to those who come in and out. "Hello human visitor. Part of a charity group, I am, raising awareness to our cause. Aware were you, that lack the electronics for many educational activities, children on poor Kimek worlds do? Together, make a difference we can!"`
