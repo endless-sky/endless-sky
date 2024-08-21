@@ -22,8 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-class ImageFileData
-{
+class ImageFileData {
 public:
 	// Computes the image file data from a path. If the path has a source directory,
 	// it has to be specified here.
