@@ -31,6 +31,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // some sort of special format.
 class ImageBuffer {
 public:
+	// The supported image extensions, in lower case and with a leading period.
+	static const std::set<std::string> &ImageExtensions();
+
+
+public:
 	// When initializing a buffer, we know the number of frames but not the size
 	// of them. So, it must be Allocate()d later.
 	ImageBuffer(int frames = 1);
@@ -60,11 +65,6 @@ public:
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
 	bool Read(const ImageFileData &data, int frame = 0);
-
-
-public:
-	// The supported image extensions, in lower case and with a leading period.
-	static const std::set<std::string> &ImageExtensions();
 
 
 private:

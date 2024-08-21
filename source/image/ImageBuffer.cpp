@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <jpeglib.h>
 #include <png.h>
 
-#include <algorithm>
 #include <cstdio>
 #include <set>
 #include <stdexcept>
@@ -42,6 +41,13 @@ namespace {
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive);
+}
+
+
+
+const set<string> &ImageBuffer::ImageExtensions()
+{
+	return IMAGE_EXTENSIONS;
 }
 
 
@@ -182,13 +188,6 @@ bool ImageBuffer::Read(const ImageFileData &data, int frame)
 			Premultiply(*this, frame, data.blendingMode);
 	}
 	return true;
-}
-
-
-
-const set<string> &ImageBuffer::ImageExtensions()
-{
-	return IMAGE_EXTENSIONS;
 }
 
 

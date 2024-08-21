@@ -160,15 +160,24 @@ namespace {
 		auto icon = make_shared<ImageSet>(plugin->name);
 
 		// Try adding all the possible icon variants.
-		if(Files::Exists(path + "icon.png"))
-			icon->Add(filesystem::path(path + "icon.png"));
-		else if(Files::Exists(path + "icon.jpg"))
-			icon->Add(filesystem::path(path + "icon.jpg"));
-
-		if(Files::Exists(path + "icon@2x.png"))
-			icon->Add(filesystem::path(path + "icon@2x.png"));
-		else if(Files::Exists(path + "icon@2x.jpg"))
-			icon->Add(filesystem::path(path + "icon@2x.jpg"));
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			string iconPath = path + "icon" + extension;
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(filesystem::path(iconPath));
+				break;
+			}
+		}
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			string iconPath = path + "icon@2x" + extension;
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(filesystem::path(iconPath));
+				break;
+			}
+		}
 
 		if(!icon->IsEmpty())
 		{
