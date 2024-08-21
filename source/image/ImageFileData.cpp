@@ -57,5 +57,5 @@ ImageFileData::ImageFileData(const std::filesystem::path &path, const std::files
 		name.resize(frameNumberStart);
 	}
 
-	this->name = name;
+	this->name = std::move(name);
 }
