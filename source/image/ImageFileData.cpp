@@ -35,7 +35,7 @@ namespace {
 ImageFileData::ImageFileData(const std::filesystem::path &path, const std::filesystem::path &source)
 	: path(path), extension(Format::LowerCase(path.extension().string()))
 {
-	string name = (relative(path, source).parent_path() / path.stem()).string();
+	string name = (relative(path, source).parent_path() / path.stem()).generic_string();
 	if(name.ends_with("@2x"))
 	{
 		is2x = true;
