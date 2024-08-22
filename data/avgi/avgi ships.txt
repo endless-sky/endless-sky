@@ -729,7 +729,7 @@ ship "Polari"
 	explode "small explosion" 9
 	"final explode" "final explosion medium"
 
-	description "The Polari-class Scout is a legacy design that has managed to remain relevant in the current era by virtue of fulfilling a role historically not requiring much in the way of combat power. A specialized science ship, it is fitted with a spacious laboratory for analyzing samples and processing data, as well as an extensive suite of sensor arrays for recording observations. A pair of bays can deploy Optikon sensor drones, while an external mount is designed to hold an Akoustiki excursion vehicle for piloted sample gathering operations."
+	description "The Polari-class Scout is a legacy design that has managed to remain relevant in the current era by virtue of fulfilling a role historically not requiring much in the way of combat power. A specialized science ship, it is fitted with a spacious laboratory for analyzing samples and processing data, as well as an extensive suite of sensor arrays for recording observations. A pair of bays can deploy Optikon sensor drones, while an external mount is designed to hold an Akoustiki Excursion Vehicle for piloted sample gathering operations."
 	description "Despite this versatility, the contested battlespace of the post-Incursion Avgi cluster is one in which the Polari is simply not as capable in. As science crews are increasingly asked to lead risky scouting expeditions back to the Avgi homeworld, demands for a newer, more survivable science ship routinely make their way to the Twilight Guard."
 
 

@@ -85,7 +85,7 @@ planet Oura
 planet Anitlos
 	attributes avgi moon "ice moon" frozen uninhabited
 	landscape land/mars3
-	description `Anitlos is a frozen ball of rock and ice. Surface metal deposits, brought there by a late asteroid bombardment a few hundred million years ago, were one of the largest sources of material for Avgi cylinder habitats in the Anax system.`
+	description `The surface of Anitlos, the largest moon of Oura, is a smooth landscape of ice pierced by rocky, metallic protrusions. These surface metal deposits, brought by a late asteroid bombardment a few hundred million years ago, served as one of the largest sources of material for the cylinder habitats that clustered around Oura, its moons, and the Trojan asteroids at its Lagrange points.`
 	government Uninhabited
 	
 
@@ -487,7 +487,7 @@ planet "Ergastirio Station"
 	description `	The facilities are surprisingly comfortable for what you might expect from a research station, a deliberate attempt to boost the productivity of the scientists that live and work here. Labs for all sorts of applied energistics, nuclear research, and even hyperspace experimentation form wings around the central habitation core, which is home to tens of thousands of scientists and engineers as well as a sizable support staff.`
 	spaceport `Ergastirio's spaceport is small, but well-equipped, with the facilities to handle special nuclear material and fragile scientific instrumentation alike. These constitute most of the goods offloaded here, which the station's laboratories require a steady supply of.`
 	government "Avgi (Twilight Guard)"
-	"required reputation" 20
+	"required reputation" 30
 	outfitter "Avgi General"
 	outfitter "Avgi Engineering"
 	outfitter "Avgi Militia Surplus"

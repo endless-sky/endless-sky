@@ -485,31 +485,31 @@ system Anax
 			scale 0.5
 		distance 7258.824
 		period 5274.096
-		offset 10
+		offset 50
 	object
 		sprite planet/station-cylinder-incomplete
 			scale 0.5
 		distance 7258.824
 		period 5274.096
-		offset -10
+		offset 55
 	object "Nisos Cylinder"
 		sprite planet/station-cylinder
 			scale 0.5
 		distance 7258.824
 		period 5274.096
-		offset -15
+		offset 60
 	object
 		sprite planet/station-cylinder-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
-		offset -20
+		offset 65
 	object
 		sprite planet/station-cylinder-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
-		offset -25
+		offset 70
 	object
 		sprite planet/gas2
 		distance 10719.178
