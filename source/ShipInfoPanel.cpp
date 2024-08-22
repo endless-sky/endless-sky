@@ -390,8 +390,18 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
 		const string &category = cat.Name();
+		if(category.empty())
+			continue;
 		auto it = outfits.find(category);
 		if(it == outfits.end())
+			continue;
+
+		vector<const Outfit *> validOutfits;
+		for(const auto outfit : it->second)
+			if(outfit->IsDefined() && !outfit->DisplayName().empty())
+				validOutfits.emplace_back(outfit);
+
+		if(validOutfits.empty())
 			continue;
 
 		// Skip to the next column if there is no space for this category label
@@ -407,7 +417,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		// Draw the category label.
 		table.Draw(category, bright);
 		table.Advance();
-		for(const Outfit *outfit : it->second)
+		for(const Outfit *outfit : validOutfits)
 		{
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
