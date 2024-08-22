@@ -6413,12 +6413,12 @@ mission "Moving House 1"
 				
 			label sure
 			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
-			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
+			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht. I use they/them."`
 			choice
 				`	(Shake their hand.)`
 					goto shake
 				`	(Just stare.)`
-			`	You stare at Kris' unorthodox getup while they stand there with their hand out for a few beats. Then they sigh and take it back. "Will this be a problem?" They gesture to themselves.`
+			`	You pause at the mention of Kris' pronouns while they stand there with their hand out for a few beats. Then they sigh and take it back. "Will this be a problem?" They gesture to themselves, indicating both the pronouns and the very unorthodox outfit.`
 			choice
 				`	"No, I was just surprised."`
 					goto surprised
@@ -6427,12 +6427,12 @@ mission "Moving House 1"
 				decline
 			
 			label surprised
-			`	Their confident demeanor returns, and they nod. "I can have that effect on people. Glad to see you're not another of those stuck-up establishment types. Well, all the rest of my stuff is on <planet stopovers>, so we'd better get going!"`
+			`	Their confident demeanor returns, and they nod. "I can have that effect on people. Glad to see you're not another of those stuck-up establishment types. Well, all the rest of my stuff is on <stopovers>, so we'd better get going!"`
 				goto establishment
 			
 			label shake
 			`	You shake their hand. "<first> <last>. That's all you've got with you?"`
-			`	Kris nods. "All the rest of my stuff is on <planet stopovers>. I was just here for a meeting with some others who feel like I do about the establishment."`
+			`	Kris nods. "All the rest of my stuff is on <stopovers>. I was just here for a meeting with some others who feel like I do about the establishment."`
 
 			label establishment
 			choice
@@ -6449,7 +6449,7 @@ mission "Moving House 1"
 		conversation
 			`As you traveled to <planet stopovers>, you found yourself frequently listening to Kris' opinions on the subject of governments. While they had some very good points, other times they would spend hours ranting about things that seem completely impractical and without a solid foundation. If it weren't for the fact that they were unfailingly polite otherwise, and eager to help with chores around the ship, you would've declared the cockpit off-limits.`
 			`	Still, you are somewhat relieved that when you arrive, both of you are too out of breath from moving furniture to talk more.`
-			`	You soon have it loaded up, though, and start the trip south to <planet>.`
+			`	You soon have it loaded up, though, and start the trip south to <destination>.`
 	on complete
 		payment
 		payment 5000
