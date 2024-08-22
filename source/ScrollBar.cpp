@@ -110,7 +110,7 @@ bool ScrollBar::Drag(double dx, double dy)
 	if(!highlighted)
 		return false;
 
-	Point dragVector{dx, dy};
+	Point dragVector(dx, dy);
 	Point thisVector = to - from;
 
 	double scalarProjectionOverLength = thisVector.Dot(dragVector) / thisVector.LengthSquared();

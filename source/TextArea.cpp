@@ -153,8 +153,8 @@ void TextArea::Draw()
 	const float POINTER_OFFSET = 5;
 	if(scroll.Scrollable())
 	{
-		Point topRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET});
-		Point bottomRight(position + Point{buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET});
+		Point topRight(position + Point(buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET));
+		Point bottomRight(position + Point(buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET));
 
 		scrollBar.SyncDraw(scroll, topRight, bottomRight);
 	}

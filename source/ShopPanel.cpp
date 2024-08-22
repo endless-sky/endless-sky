@@ -1074,9 +1074,9 @@ void ShopPanel::DrawMain()
 
 	if(mainScroll.Scrollable())
 	{
-		double dimSim = Screen::Right() - 7 - SIDE_WIDTH;
-		Point top{dimSim, Screen::Top() + 10.};
-		Point bottom{dimSim, Screen::Bottom() - 10.};
+		double scrollbarX = Screen::Right() - 7 - SIDE_WIDTH;
+		Point top(scrollbarX, Screen::Top() + 10.);
+		Point bottom(scrollbarX, Screen::Bottom() - 10.);
 
 		mainScrollbar.SyncDraw(mainScroll, top, bottom);
 	}
