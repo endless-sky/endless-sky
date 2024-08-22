@@ -83,7 +83,7 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
-		GetUI()->Pop(this);
+		GetUI()->PopThrough(this);
 		return;
 	}
 
