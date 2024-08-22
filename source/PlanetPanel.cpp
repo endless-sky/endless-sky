@@ -83,7 +83,7 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
 		return;
 	}
 
@@ -232,7 +232,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// If we are here, it is because something happened to change the selected
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
-		GetUI()->PopThrough(oldPanel);
+		GetUI()->Pop(oldPanel);
 
 	if(selectedPanel)
 	{
@@ -479,7 +479,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI()->PopThrough(selectedPanel);
-		GetUI()->PopThrough(this);
+			GetUI()->Pop(selectedPanel);
+		GetUI()->Pop(this);
 	}
 }
