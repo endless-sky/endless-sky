@@ -34,7 +34,7 @@ namespace {
 
 
 
-ImageFileData::ImageFileData(const std::filesystem::path &path, const std::filesystem::path &source)
+ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::path &source)
 	: path(path), extension(Format::LowerCase(path.extension().string()))
 {
 	string name = (relative(path, source).parent_path() / path.stem()).generic_string();
