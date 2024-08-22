@@ -3246,7 +3246,7 @@ planet Myiara-Aret-Iir
 	description `In contrast to the pristine emptiness of the other formerly-inhabited planets in this area of space, this world teems with signs of chaos. The remains of hastily-built weather-control towers dot much of its surface, and the cities upon it are neither majestic nor well-maintained; none are very large, but most are surrounded by vast expanses of fabric and radiation-bleached temporary constructions.`
 		to display
 			not "trusted by the successors"
-	description `Once a minor colony world, what would come to be known as Myiara-Aret-Iir was the last stop of all those hoping to escape the decay of the Predecessors' space by traveling through the wormhole. Those with wealthy patrons who could afford passage on specially-modified vessels spent little time here, but those without often found the blossoming shanty towns of the planet to be their new homes. With the denouement of the Predecessors' last inter-Houses war and the final push to evacuate, most of those living here eventually made it through. The rest probably perished long ago.`
+	description `Once a minor colony world, what would come to be known as Myiara-Aret-Iir was the last stop of all those hoping to escape the decay of the Predecessors' space by traveling through the wormhole. Those who had wealthy patrons who could finance prompt transport spent little time here, but those without often found the blossoming shanty towns of the planet to be their new homes. With the denouement of the Predecessors' last inter-Houses war and the final push to evacuate, most of those living here eventually made it through. The rest probably perished long ago.`
 		to display
 			has "trusted by the successors"
 	government Predecessor
