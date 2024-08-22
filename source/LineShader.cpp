@@ -62,7 +62,7 @@ void LineShader::Init()
 		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
 		"    float widthOffset = width + 1;\n"
 		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
-		//     'width' from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
+		//     "width" from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
 		"    float capOffset = (cap == 1) ? widthOffset : 1;\n"
 		// The vertex position is the originating position plus an offset away from the line.
 		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset
