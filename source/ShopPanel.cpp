@@ -201,8 +201,8 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
 	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
-	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
-	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
+	Point offset(-SIDEBAR_CONTENT / 2, -.5f * SHIP_SIZE + 10.f);
+	font.Draw({name, {SIDEBAR_CONTENT, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
 }
 
@@ -729,8 +729,8 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
-		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll.AnimatedValue() + 40 - 93);
+		Screen::Right() - SIDEBAR_CONTENT / 2 - SIDEBAR_PADDING - 93,
+		Screen::Top() + SIDEBAR_CONTENT / 2 - sidebarScroll.AnimatedValue() + 40 - 93);
 
 	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
@@ -820,10 +820,10 @@ void ShopPanel::DrawShipsSidebar()
 	if(playerShip)
 	{
 		point.Y() += SHIP_SIZE / 2;
-		point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
+		point.X() = (Screen::Right() - SIDEBAR_CONTENT / 2) - SIDEBAR_PADDING;
 		DrawShip(*playerShip, point, true);
 
-		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
+		Point offset(SIDEBAR_CONTENT / -2, SHIP_SIZE / 2);
 		const int detailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += detailHeight + SHIP_SIZE / 2;
 	}
