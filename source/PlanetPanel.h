@@ -70,7 +70,6 @@ private:
 	Panel *selectedPanel = nullptr;
 
 	std::shared_ptr<TextArea> description;
-	bool descriptionVisible = true;
 
 	// Out of system (absent) ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> absentCannotFly;

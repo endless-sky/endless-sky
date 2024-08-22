@@ -235,15 +235,9 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Pop(oldPanel);
 
 	if(selectedPanel)
-	{
 		RemoveChild(description.get());
-		descriptionVisible = false;
-	}
 	else if(oldPanel)
-	{
 		AddChild(description);
-		descriptionVisible = true;
-	}
 
 	return true;
 }
