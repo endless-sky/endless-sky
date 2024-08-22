@@ -548,28 +548,37 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	auto removeChildren = [this]()
+	{
+		for(auto &child : GetChildren())
+			RemoveChild(child.get());
+	};
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapShipyardPanel(*this));
 	}
 	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapOutfitterPanel(*this));
 	}
 	else if(key == 'i' && buttonCondition != "is missions")
 	{
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MissionPanel(*this));
 	}
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this));
 	}
 	else if(key == 'f')
