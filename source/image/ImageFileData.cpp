@@ -50,7 +50,8 @@ ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::pat
 	}
 
 	size_t frameNumberStart = name.size();
-	while(frameNumberStart > 0 && name[--frameNumberStart] >= '0' && name[frameNumberStart] <= '9');
+	while(frameNumberStart > 0 && name[--frameNumberStart] >= '0' && name[frameNumberStart] <= '9')
+		continue;
 
 	if(frameNumberStart > 0 && IsBlend(name[frameNumberStart]))
 	{
