@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageFileData.h"
 
 #include "../text/Format.h"
+#include "../Logger.h"
 
 #include <cmath>
 
@@ -26,7 +27,8 @@ namespace {
 	bool IsBlend(char c)
 	{
 		return (c == static_cast<char>(BlendingMode::ALPHA) || c == static_cast<char>(BlendingMode::HALF_ADDITIVE)
-			|| c == static_cast<char>(BlendingMode::ADDITIVE) || c == static_cast<char>(BlendingMode::PREMULTIPLIED_ALPHA));
+			|| c == static_cast<char>(BlendingMode::ADDITIVE) || c == static_cast<char>(BlendingMode::PREMULTIPLIED_ALPHA)
+			|| c == static_cast<char>(BlendingMode::COMPAT_HALF_ADDITIVE));
 	}
 }
 
@@ -55,6 +57,13 @@ ImageFileData::ImageFileData(const std::filesystem::path &path, const std::files
 		frameNumber = Format::Parse(name.substr(frameNumberStart + 1));
 		blendingMode = static_cast<BlendingMode>(name[frameNumberStart]);
 		name.resize(frameNumberStart);
+
+		if(blendingMode == BlendingMode::COMPAT_HALF_ADDITIVE)
+		{
+			blendingMode = BlendingMode::HALF_ADDITIVE;
+			Logger::LogError("Warning: file '" + path.string()
+				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.");
+		}
 	}
 
 	this->name = std::move(name);
