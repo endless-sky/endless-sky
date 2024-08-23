@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
@@ -396,10 +397,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		if(it == outfits.end())
 			continue;
 
-		vector<const Outfit *> validOutfits;
-		for(const auto outfit : it->second)
-			if(outfit->IsDefined() && !outfit->DisplayName().empty())
-				validOutfits.emplace_back(outfit);
+		auto validOutfits = std::ranges::filter_view(it->second,
+				[](const auto &o){return o->IsDefined() && !o->DisplayName().empty();});
 
 		if(validOutfits.empty())
 			continue;
