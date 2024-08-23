@@ -320,7 +320,7 @@ FILE *Files::Open(const filesystem::path &path, bool write)
 {
 #if defined _WIN32
 	FILE *file = nullptr;
-	_wfopen_s(&file, path.string().c_str(), write ? L"w" : L"rb");
+	_wfopen_s(&file, path.c_str(), write ? L"w" : L"rb");
 	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
