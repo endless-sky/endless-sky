@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Color.h"
 #include "DisplayText.h"
 #include "../image/ImageBuffer.h"
+#include "../image/ImageFileData.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
