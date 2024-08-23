@@ -18,10 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <set>
 #include <string>
-
-
-
+ 
 class ImageFileData;
+ 
+
 
 // This class stores the raw pixel data from an image, and handles reading that
 // image from disk (so that multiple images can be read and decoded at the same
