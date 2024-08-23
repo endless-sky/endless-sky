@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #if defined _WIN32
-#include "text/Utf8.h"
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -321,7 +320,7 @@ FILE *Files::Open(const filesystem::path &path, bool write)
 {
 #if defined _WIN32
 	FILE *file = nullptr;
-	_wfopen_s(&file, Utf8::ToUTF16(path.string()).c_str(), write ? L"w" : L"rb");
+	_wfopen_s(&file, path.string().c_str(), write ? L"w" : L"rb");
 	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
