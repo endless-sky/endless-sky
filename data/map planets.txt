@@ -2697,7 +2697,7 @@ planet "Kraken Station"
 		fleet "Small Syndicate" 7
 
 planet Kua-Oa-Aava
-	attributes quiet successor
+	attributes quiet station successor
 	landscape land/space2
 	description `This small moon hosts only a few surface installations; most are much larger than the public spaceport and are frequented exclusively by military craft. Beyond these, the moon is barren and undeveloped and your ship's sensors detect nothing of interest beyond the spaceport limits.`
 		to display

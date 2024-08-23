@@ -470,8 +470,8 @@ mission "Successors: First Contact 3"
 							has "outfit: Pug Peacekeeping Staff"
 				`	(Try to catch it with a net.)`
 					goto net
-				`	(Stay still.)`
-					goto "lure 1"
+				`	(Stay still and try to capture it without aggression.)`
+					goto lure
 			label tranq
 			branch tranqed
 				random < 70
@@ -483,49 +483,10 @@ mission "Successors: First Contact 3"
 			label net
 			`	You toss a net over the animal and it falls to the ground, where it shrieks for a duration before going quiet. The shriek is soon echoed by similar ones from other animals in the area, and once those go quiet as well, your ears are pierced by a loud, warbling wail in the distance.`
 				goto escape
-			label "lure 1"
-			branch "lure 1 success"
-				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
-			`	The animal remains stationary for a moment before darting away.`
-				goto "lure failed"
-			label "lure 1 success"
-			`	The animal remains stationary, examining you closely.`
+			label lure
+			`	The animal remains stationary as well, examining you closely. Its eyes are large and furtive, with bright-red irises and the same hourglass-shaped pupils as the Successors. After it looks you over, it eventually approaches your hand, sniffing it gently and brushing its downy forelimbs against your skin.`
 			choice
-				`	(Tranquilize it.)`
-					goto tranq
-					to display
-						or
-							has "outfit: Enforcer Riot Staff"
-							has "outfit: Pug Peacekeeping Staff"
-				`	(Catch it with a net.)`
-					goto net
-				`	(Slowly extend your hand.)`
-			branch "lure 2 success"
-				random < ( 95 + has "Pookie, Part 5: offered" * 2 + has "Remnant: Face to Maw 1: completed" * 2 )
-			`	The animal inspects your hand for a moment before darting away.`
-			label "lure failed"
-				`	(Tranquilize it.)`
-					goto tranq
-					to display
-						or
-							has "outfit: Enforcer Riot Staff"
-							has "outfit: Pug Peacekeeping Staff"
-				`	(Catch it with a net.)`
-					goto net
-			label "lure 2 success"
-			`	The animal seems curious. It approaches your hand, sniffing it gently.`
-			choice
-				`	(Tranquilize it.)`
-					goto tranq
-					to display
-						or
-							has "outfit: Enforcer Riot Staff"
-							has "outfit: Pug Peacekeeping Staff"
-				`	(Catch it with a net.)`
-					goto net
-				`	(Offer it a morsel of food.)`
-			`	You retrieve a morsel of food and offer it to the animal, which sniffs it gently before starting to eat some.`
-			choice
+				`	(Try to bring it back with food alone.)`
 				`	(Tranquilize it now.)`
 					goto "tranq friends"
 					to display
@@ -534,11 +495,9 @@ mission "Successors: First Contact 3"
 							has "outfit: Pug Peacekeeping Staff"
 				`	(Catch it with a net.)`
 					goto "net friends alarmed"
-				`	(Try to bring it back with food alone.)`
-			label friends
 			action
 				set "Successors FC3: nonviolent kijra-pet capture"
-			`	The Kijra-pet trills as it eats out of your hand; it tucks its wings behind its body like a dragonfly and unfurls two long feather-like antennae from its head, which gently brush at your skin and clothing. Soon, it hops on your arm while sniffing at your pockets, probing deeper into the one where you kept the food and trilling softly at you. You begin the walk back to your ship, slowly and gently so as not to frighten the animal.`
+			`	You retrieve a morsel of food and offer it to the Kijra-pet, which sniffs it extensively before starting to eat, trilling quietly as it takes a couple of small bites. It tucks its wings behind its body like a dragonfly and unfurls two long feather-like antennae from its head, which join its legs in feeling your skin and clothing. Soon, it hops on your arm while sniffing at your pockets, cooing and probing deeper into the one where you kept the food. You begin the walk back to your ship, slowly and carefully so as not to frighten the animal.`
 			`	"'Tis no surprise," Sieasej says, "that 'twere such valued pets if their demeanor is so docile and agreeable." They tuck their triangulation device away in a pocket and slither with you as you approach your ship.`
 				goto ambush
 			label "tranq friends"
@@ -578,11 +537,6 @@ mission "Successors: First Contact 3"
 			`	You attempt to run past the creatures, but before you can even get close, one of them swings its barbed feeler at you, lodging it deep in your chest. The last thing you see is Sieasej hurrying away as the creatures pursue them as well.`
 				die
 			label shoot
-			branch "shoot success"
-				random < 50
-			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and the other one suddenly vanishes before you can fire a second shot. In the time it takes your eyes to adapt to the creature's camouflage, it has already lodged the barbed tip of its feeler deep in your chest.`
-				die
-			label "shoot success"
 			`	You draw your sidearm and fire at the creatures, striking one in its midsection. It crumples, and immediately after the other one charges at you. Just in time, you are able to shoot that one as well and it tumbles to the ground, kicking up dirt and leaf litter and wailing before going silent.`
 				goto successful
 			label "ship shoot"
@@ -740,7 +694,6 @@ mission "Successors: Kaatrij First Contact 1"
 		or
 			has "language: Hai"
 			has "language: Coalition"
-		random < 30
 	to fail
 		has "Successors: Unified Defense: offered"
 	substitutions
@@ -796,17 +749,17 @@ mission "Successors: Kaatrij First Contact 1"
 				`	(Wait.)`
 			`	A couple of animals swim in the water in the distance, making faint honking sounds every once in a while that linger in the starlit air.`
 			choice
-				`	(Wait.)`
+				`	(Look around.)`
 				`	(Leave.)`
 					goto premature
 			`	The glow of the <ship>'s lights attract a swarm of flying insect-like creatures that vainly dive at them again and again. A gentle breeze ripples through the leaves of the flora surrounding the lake.`
 			choice
-				`	(Wait.)`
+				`	(Check your sensors.)`
 				`	(Leave.)`
 					goto premature
 			`	Inside, a light on the cockpit control panel flashes as if your ship were being scanned, but there's nothing on the sensors, and the alert disappears almost immediately after it began. Soft thunderclaps from a distant storm startle the animals on the lake and they leap up into the air before gliding back down onto the water's surface some distance away.`
 			choice
-				`	(Wait.)`
+				`	(Step outside.)`
 				`	(Leave.)`
 					goto premature
 			`	The minutes of the night wear on and, curious, you step out on your ship's boarding ramp to get a better view of your surroundings, to no avail, but you continue to wait. Eventually, after the night has worn on a little more, you hear the sound of water rushing; a small vehicle emerges from the lake and parks itself alongside your ship. A couple of Successors get out, one of whom approaches you.`
@@ -887,7 +840,7 @@ mission "Successors: Kaatrij First Contact 1"
 				clear "Successors: kijran"
 				clear "Successors: saajret"
 				clear "Successors: sioeora"
-				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral caretakers of the animals I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
+				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral keepers of the animals that I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
 				set "known to the successors"
 				event "successors: trust 1"
 				"reputation: Successor" += 5
@@ -907,13 +860,12 @@ mission "Successors: Kaatrij Monoglot Prompt"
 		and
 			not "language: Hai"
 			not "language: Coalition"
-		random < 30
 	to fail
 		has "Successors: Unified Defense: offered"
 	on offer
 		conversation
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
-			decline
+				decline
 
 mission "Successors: Trusted"
 	landing
@@ -1092,6 +1044,8 @@ mission "Successors: People's Houses, First Contact"
 				`	(Yes.)`
 				`	(Not yet.)`
 					defer
+				`	(Never.)`
+					decline
 			`	You approach one of the crew members disembarking from one of the red-painted ships, which, as you draw closer, you see bears several large burns and scars.`
 			`	"Excuse me, I was wondering if you could tell me about this place. It seems different to the rest of Successor space I've been through."`
 			`	The Successor looks over at the spaceport for a moment before grunting quietly and deciding to reply. Their voice is lower and darker than that of most Successors you have heard, and their skin changes color and texture rapidly, almost with every word.`

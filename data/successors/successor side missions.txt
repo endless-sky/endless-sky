@@ -193,7 +193,7 @@ mission "Successors: Predecessor Research 1"
 			label collapse
 			action
 				set "Successors: collapse"
-			`	The researcher sighs. "We do not know; or better put, the fullness of the truth yet remains obscured. The flesh of space itself was rent, distorted; the effects of this remain today: the holes embedded in the skies, the dying-out of light and even of the hyperlanes. It was a warring time; the Houses turned upon each other or they fled, and space itself was set alight with the blinks of shots and drives---"`
+			`	The researcher sighs. "We do not know; or better put, the fullness of the truth yet remains obscured. The flesh of space itself was rent, distorted; the effects of this remain today: the holes embedded in the skies, the dying-out of light and even of the hyperlanes. It was a warring time; the Houses turned upon each other or they fled, and space itself was set alight with the blinks of shots and drives..."`
 			`	The researcher stops for a moment, composing themself.`
 			`	"I digress and do apologize. T'is challenging to separate the truth from fiction in this regard. Our Predecessors wielded power far beyond our modern imitations, the sort that sows the seeds of peace or chaos deep within the fabric of the world, the sort of things that poke and prod at places that must remain untouched. 'What caused the collapse?' you ask? Hubris, methinks."`
 				goto questions
@@ -234,9 +234,9 @@ mission "Successors: Biology Research 1"
 	to fail
 		has "Successors: Unified Defense: offered"
 	source
-		government "Successor" "Old Houses" "New Houses"
+		attributes "successor"
+		attributes "education"
 	stopover "Naph-Naap-Kella"
-	destination "Staja-Kella-Oa"
 	on offer
 		conversation
 			`While you are sitting in the spaceport, you are approached by a Successor wearing a curious green outfit and carrying several pieces of seemingly high-tech equipment, enough that it appears close to falling out of their arms. They explain that they are a Successor biologist who had chartered a flight to go and examine the primordial life on <planet stopovers>, a young and still-developing planet, but that their pilot had been detained, leaving them stranded here.`
@@ -247,7 +247,7 @@ mission "Successors: Biology Research 1"
 				`	"Sorry, but you'll have to find someone else to take you."`
 					decline
 			label accept
-			`	"Thou has my deep and certain thanks. Tell none, but the High Houses are beastly to us academics." The biologist, who introduces themselves as "Kaatiora," loads their collection of equipment into your ship---though not without almost dropping one particularly fragile-looking item---and is eventually ready to leave.`
+			`	"Thou has my deep and certain thanks. Tell none, but the High Houses are beastly to us academics." The biologist, who introduces themselves as "Kaatiora," loads their collection of equipment into your ship - though not without almost dropping one particularly fragile-looking item - and is eventually ready to leave.`
 				accept
 	on stopover
 		conversation
@@ -259,7 +259,7 @@ mission "Successors: Biology Research 1"
 				`	(Ask about Successor biology.)`
 					goto ask
 				`	(Don't ask anything.)`
-					launch
+				launch
 			label ask
 			`	As expected, Kaatiora is more than happy to share their biological knowledge, and asks if there is anything in particular you'd like to know about.`
 			label questions
@@ -311,8 +311,8 @@ mission "Successors: Biology Research 1"
 mission "Successors: Buskers"
 	minor
 	source
-		government "Successor"
-		not attributes "crime" "quiet"
+		attributes "successor"
+		not attributes "crime" "quiet" "uninhabited"
 	to offer
 		has "known to the successors"
 		random < 40
@@ -355,8 +355,8 @@ mission "Successors: Stargazing 1"
 	name "Transport Successor stargazers"
 	description "Transport a pair of Successor stargazers to <planet stopovers> and return them home to <destination> by <date>."
 	source
-		government "Successor"
-		not attributes "crime" "tourism"
+		attributes "successor"
+		not attributes "crime" "tourism" "uninhabited"
 	stopover "Khosa-Kella-Oa"
 	to offer
 		has "known to the successors"
@@ -369,16 +369,16 @@ mission "Successors: Stargazing 1"
 	on offer
 		conversation
 			`While in the spaceport on <origin>, you notice a pair of tired-looking Successors lugging around a cart of a curious folded material, taking turns dragging their apparently heavy luggage over the floor. Both perk up substantially when they see you and your ship, however, and pull their equipment towards you with renewed vigor, finally getting close enough to speak.`
-			`	The larger of the two begins, "Oh! Thour't that recent alien, no? 'Tis a gorgeous ship thou commands---"`
-			`	"What we meant to say is---"`
-			`	"Sorry, 'tis just that---" `
+			`	The larger of the two begins, "Oh! Thour't that recent alien, no? 'Tis a gorgeous ship thou commands-"`
+			`	"What we meant to say is-"`
+			`	"Sorry, 'tis just that-" `
 			`	"Do you take passenger missions?"`
 			choice
 				`	"I do."`
 					goto immediate
 				`	"It depends for what purpose."`
 			`	One of the Successors looks what you might call embarrassed, flushing a dull green. The other replies.`
-			`	"Stargazing. There is a world at the edge of the galaxy, the farthest edge; it has the most beautiful view---"`
+			`	"Stargazing. There is a world at the edge of the galaxy, the farthest edge; it has the most beautiful view-"`
 			`	"We've brought our own equipment."`
 			`	"The sky there's divided into star-studded night and utter void. Could thou take us there?"`
 			`	"And back, of course. And our cargo," the other one says, gesturing towards the cart of folded fabric.`
@@ -389,8 +389,8 @@ mission "Successors: Stargazing 1"
 				`	"You'll have to find a different pilot."`
 					decline
 			label immediate
-			`	"Oh! 'Tis perfect! We were looking for a private transport. We're stargazers---"`
-			`	"There's a planet at the edge of the galaxy with the perfect view---"`
+			`	"Oh! 'Tis perfect! We were looking for a private transport. We're stargazers-"`
+			`	"There's a planet at the edge of the galaxy with the perfect view-"`
 			`	"The sky there's divided into star-studded night and utter void. Could thou take us there?"`
 			`	"And back, of course. And our cargo too," the other one says, gesturing towards the cart of folded fabric.`
 			`	"And back. And our cargo. We can give thee modest pay."`
@@ -402,7 +402,7 @@ mission "Successors: Stargazing 1"
 			label yes
 			`	The two seem thrilled, the larger one turning a dull pink. "Oh! Thour't truly honorable, noble alien. I am Nnesa."`
 			`	"Jaasora. Thank you, Captain. Most pilots here've no appetite to travel to the uninhabited systems."`
-			`	"Yes, you must tell us about all the places you've been---"`
+			`	"Yes, you must tell us about all the places you've been-"`
 			choice
 				`	"How about we get you onboard first."`
 			`	Nnesa flashes with embarrassment once again, but Jaasora offers a supportive arm, wrapping it around their body. The two enlist your help in loading their cart of equipment, which is much heavier than it looks, but together the three of you eventually manage to maneuver their luggage into the <ship>'s cargo bay and are ready for departure.`
@@ -412,7 +412,7 @@ mission "Successors: Stargazing 1"
 			`Nnesa and Jaasora have been simply enthralled on the journey here; the inseparable pair has spent seemingly every waking moment peering out the <ship>'s windows to watch the stars stream past. Upon arrival in the Maspa-Mavra system, however, their excitement dwindled to what you would call a subdued awe at the sight of the entire galaxy splayed out in the sky.`
 			`	Khosa-Kella-Oa itself is cold, dark and rocky, for all purposes functionally identical to any of the other innumerable uninhabited airless worlds in the galaxy. Your passengers seem pleased with it, though; Nnesa remarks that the local star "is so dim that there's hardly any glare!" and Jaasora energetically agrees. They activate their cart of folded equipment within the <ship>'s cargo bay, which slowly inflates and unfolds into something halfway between a tent and a repulsor lift. It skids over the floor like melting ice, gently bumping the inside walls a couple times before Jaasora manages to quiet its movement.`
 			`	"Our thanks again, captain, for transporting us," says Jaasora as they load a bundle of telescopes inside.`
-			`	"Oh! The planet's perfect; no air to muddy the view nor other ships to cloud the skies---"`
+			`	"Oh! The planet's perfect; no air to muddy the view nor other ships to cloud the skies-"`
 			`	"We should be back in a couple hours. Please wait for us."`
 			`	The pair depart in their gliding tent, which manifests several transparent spots on its surface as it exits and as a bevy of telescopes are prodded around inside.`
 			choice
@@ -425,7 +425,7 @@ mission "Successors: Stargazing 1"
 				`	(Indicate Sol.)`
 					goto sol
 				`	(Gesture broadly to the expanse of space depicted on the map.)`
-			`	"Oh!" says Nnesa, "Thou art a scion of the constellations, first and foremost to the stars? 'Tis fair. Thou hast a galaxy to wander, a nearly endless sky. The things that there must be to see---"`
+			`	"Oh!" says Nnesa, "Thou art a scion of the constellations, first and foremost to the stars? 'Tis fair. Thou hast a galaxy to wander, a nearly endless sky. The things that there must be to see-"`
 				goto interrupt
 			label rutilicus
 			`	"Oh!" says Nnesa, "I am not sure I know the name for that one, captain. What dost thou call thy home?"`
@@ -446,13 +446,14 @@ mission "Successors: Stargazing 1"
 mission "Successors: Graffiti"
 	minor
 	source
-		government "Successor"
+		attributes "successor"
+		not attributes "uninhabited"
 	to offer
 		has "known to the successors"
 		random < 15
 	on offer
 		conversation
-			`Shortly after you disembark the <ship> for the spaceport on <source>, you hear a quiet but noticeable clattering from behind you near where your ship is being refueled.`
+			`Shortly after you disembark the <ship> for the spaceport on <origin>, you hear a quiet but noticeable clattering from behind you near where your ship is being refueled.`
 			choice
 				`	(Investigate the sound.)`
 				`	(Ignore it.)`
@@ -462,7 +463,7 @@ mission "Successors: Graffiti"
 				`	"What are you doing to my ship?"`
 					goto what
 				`	"Excuse me, are you all part of the repair crew?"`
-			`	The three Successors startle at the sound of your voice, arms whipping around as they turn to face you. One makes a move to run away, but one of the others clamps onto their arm and reels them back alongside them. All three slowly turn a shade of dull purple and their skin seems to contract over the underlying musculature. One of them eventually replies. "Yes, correct thou is! We've orders to apply this ... hull solution to repair a spot of damage here."`
+			`	The three Successors startle at the sound of your voice, arms whipping around as they turn to face you. One makes a move to run away, but one of the others clamps onto their arm and reels them back alongside them. All three slowly turn a shade of dull purple and their skin seems to contract over the underlying musculature. One of them eventually replies. "Yes, correct thou art! We've orders to apply this ... hull solution to repair a spot of damage here."`
 			`	Waves of color run up the bodies of the others, and the tips of their arms undulate gently.`
 			choice
 				`	"I've never seen a solution like that before. How does it work?"`
