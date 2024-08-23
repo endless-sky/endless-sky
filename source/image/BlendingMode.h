@@ -22,5 +22,5 @@ enum class BlendingMode : char {
 	PREMULTIPLIED_ALPHA = '=',
 	HALF_ADDITIVE = '^',
 	ADDITIVE = '+',
-	COMPAT_HALF_ADDITIVE = '~' // The legacy half additive mode marker. This is only used during parsing.
+	COMPAT_HALF_ADDITIVE = '~' // The legacy half-additive mode marker. This is only used during parsing.
 };
