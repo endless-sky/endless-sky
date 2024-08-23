@@ -124,7 +124,7 @@ bool ImageSet::IsEmpty() const
 
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(const ImageFileData &data)
+void ImageSet::Add(ImageFileData data)
 {
 	// Determine which frame of the sprite this image will be.
 	// Store the requested path.

@@ -52,7 +52,7 @@ public:
 	bool IsEmpty() const;
 	// Add a single image to this set. Assume the name of the image has already
 	// been checked to make sure it belongs in this set.
-	void Add(const ImageFileData &data);
+	void Add(ImageFileData data);
 	// Reduce all given paths to frame images into a sequence of consecutive frames.
 	void ValidateFrames() noexcept(false);
 	// Load all the frames. This should be called in one of the image-loading
