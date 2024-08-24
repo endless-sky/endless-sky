@@ -2771,7 +2771,12 @@ phrase "friendly civilian"
 		"The New Moonshake"
 		"The Satellite Sentinel"
 	word
-		"? It says that"
+		"? "
+	word
+		"It says that"
+		"It claims that"
+		"It says"
+		"It claims"
 	word
 		" "
 	word
