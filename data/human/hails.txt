@@ -2814,7 +2814,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"I shouldn't have sold my old ship. It was a"
+		"I shouldn't have sold my old ship. It was just a"
 	word
 		" "
 	word
@@ -2827,7 +2827,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"that never had"
+		"but it never had"
 	word
 		" "
 	word
