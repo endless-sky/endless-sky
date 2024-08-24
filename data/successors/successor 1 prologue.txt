@@ -622,6 +622,7 @@ mission "Successors: First Contact 3"
 			action
 				set "known to the successors"
 				set "language: Successor"
+				set "successors sioeora patron"
 				event "successors: trust 1"
 				"reputation: Successor" += 1
 				"reputation: House Chydiyi" += 1
@@ -690,7 +691,7 @@ mission "Successors: Kaatrij First Contact 1"
 	destination "Raaqa-Puan-Uuoru"
 	to offer
 		has "event: successors: released kijra-pet wait"
-		not "failed: Successors: First Contact 3"
+		not "Successors: First Contact 3: failed"
 		or
 			has "language: Hai"
 			has "language: Coalition"
@@ -703,7 +704,7 @@ mission "Successors: Kaatrij First Contact 1"
 	on offer
 		conversation
 			branch "was monoglot"
-				has "offered: Successors: Kaatrij Monoglot Prompt"
+				has "Successors: Kaatrij Monoglot Prompt: offered"
 			branch hai
 				has "language: Hai"
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a familiar-looking script that you quickly realize belongs to one of the species of the Coalition. After running the text through the translation box you acquired from the <coalition ally>, you are able to decode the message:`
@@ -842,6 +843,7 @@ mission "Successors: Kaatrij First Contact 1"
 				clear "Successors: sioeora"
 				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral keepers of the animals that I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
 				set "known to the successors"
+				set "successors kaatrij patron"
 				event "successors: trust 1"
 				"reputation: Successor" += 1
 				"reputation: House Chydiyi" += 1
@@ -856,7 +858,7 @@ mission "Successors: Kaatrij Monoglot Prompt"
 	invisible
 	to offer
 		has "event: successors: released kijra-pet wait"
-		not "failed: Successors: First Contact 3"
+		not "Successors: First Contact 3: failed"
 		and
 			not "language: Hai"
 			not "language: Coalition"
@@ -883,10 +885,10 @@ mission "Successors: Trusted"
 	substitutions
 		"<successor patron>" "Sioeora"
 		"<successor patron>" "Kaatrij"
-			has "completed: Successors: Kaatrij First Contact 1"
+			has "successors kaatrij patron"
 		"<successor opponent>" "Kaatrij"
 		"<successor opponent>" "Sioeora"
-			has "completed: Successors: Kaatrij First Contact 1"
+			has "successors kaatrij patron"
 	on offer
 		"reputation: Old Houses" += 1
 		"reputation: New Houses" += 1
@@ -937,7 +939,7 @@ mission "Successors: Trusted"
 			action
 				set "Successors: sioeora"
 			branch "sioeora opposed"
-				has "completed: Successors: Kaatrij First Contact 1"
+				has "successors kaatrij patron"
 			`	"Our mutual patrons remain their usual selves, with all that this entails. Would'st though believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader 'mong the others for their fruitful advocacy of thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee here today, for thou'rt by now a successful investment on their part."`
 				goto "sioeora choice"
 			label "sioeora opposed"
@@ -969,7 +971,7 @@ mission "Successors: Trusted"
 			`	"Good! We'd be wise to be prompt in our arrival t'our events."`
 			`	Sieasej brings you to a concierge of sorts, who eventually informs you that you should make your way to one of the smaller rooms branching off from the lobby. The doors open to reveal a garden-like area, filled with large long-leafed plants surrounding a centrally-located depression half-filled with water. Several Successors, many well-dressed like before, are gathered in the pool; you can't help but wince a little as the frigid water floods your boots.`
 			branch kaatrij
-				has "completed: Successors: Kaatrij First Contact 1"
+				has "successors kaatrij patron"
 			`	After a few minutes and other Successors have trickled in, the meeting begins in earnest. One of the Successors moves to the center of the pool and addresses you directly.`
 			`	"Captain. House Sioeora's supported thee with the gift of our device of tongues, and we continue t'recognize thy potential as an ally. We wish to further 'ppreciate the good that thou hast done upon our worlds, and we propose thou be awarded purchase rights for our petty technologies."`
 			`	That representative then returns to the outer rim of the circle and another takes the center, this time facing the representative who just spoke.`
@@ -997,7 +999,7 @@ mission "Successors: Trusted"
 					goto no
 			label no
 			branch "no kaatrij"
-				has "completed: Successors: Kaatrij First Contact 1"
+				has "successors kaatrij patron"
 			`	This sparks some murmuring among the gathered Successors, both the representatives themselves and the other, quieter members who continue to stand around the periphery of the pool. There is no direct reply for some time until, after what seems like several minutes, the representative from House Kaatrij returns to the center and speaks.`
 			`	"Guest. House Kaatrij shall recognize thy noble words, even if we hold no reason for belief in them. We will permit the others to let thee buy our trinkets, and we shall watch thee closely to see if thy words is matched in action."`
 			`	With no further comments from any of the Successors, the representative from House Sioeora calls for a vote from among the gathered representatives. Sioeora and Chydiyi vote for the proposition and Kaatrij abstains from the vote, remaining at the rim of the pool, inspecting your behavior closely. The representative from Sioeora then promptly produces another small box from within their outfit and presents it to you. You open it to reveal one of the pin insignias that you have seen throughout this meeting.`
