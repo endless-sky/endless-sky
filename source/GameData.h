@@ -178,8 +178,7 @@ public:
 	static const Gamerules &GetGamerules();
 
 	// Thread-safe way to draw the menu background.
-	static void DrawMenuBackground(Panel *panel);
-
+	static void DrawMenuBackground(Panel *panel);	
 
 private:
 	static void LoadSources(TaskQueue &queue);

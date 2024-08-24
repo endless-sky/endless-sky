@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "ImageBuffer.h"
+#include "image/ImageBuffer.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
