@@ -2866,6 +2866,8 @@ phrase "friendly civilian"
 	word
 		" "
 	word
+		"good guy"
+		"hero"
 		"bad guy"
 		"villain"
 	word
