@@ -35161,7 +35161,7 @@ system Vade-Staja
 	trade Electronics 723
 	trade Equipment 526
 	trade Food 422
-	trade "Heavy Metals" 855
+	trade "Heavy Metals" 955
 	trade Industrial 643
 	trade "Luxury Goods" 1167
 	trade Medical 468
