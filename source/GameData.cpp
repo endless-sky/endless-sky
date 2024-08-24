@@ -71,6 +71,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <queue>
 #include <utility>
 #include <vector>
+#include "Logger.h"
+#include <archive.h>
+#include <archive_entry.h>
+#include <fstream>
+#include "File.h"
+#include "Archive.h"
 
 using namespace std;
 
@@ -91,6 +97,8 @@ namespace {
 	StarField background;
 
 	vector<string> sources;
+	vector<string> zipSources;
+
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
@@ -190,6 +198,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 	if(!onlyLoadData)
 	{
 		queue.Run([&queue] {
+
 			// Now, read all the images in all the path directories. For each unique
 			// name, only remember one instance, letting things on the higher priority
 			// paths override the default images.
@@ -228,7 +237,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 		});
 	}
 
-	return objects.Load(queue, sources, debugMode);
+	return objects.Load(queue, sources, zipSources, debugMode);
 }
 
 
@@ -901,15 +910,28 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
-	for(const string &path : globalPlugins)
+	vector<string> plugins = Files::ListDirectories(Files::Resources() + "plugins/");
+	for(const string &path : plugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	plugins.clear();
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
+	plugins = Files::ListDirectories(Files::Config() + "plugins/");
+	for(const string &path : plugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	plugins.clear();
+	
+	plugins = Files::List(Files::Resources() + "plugins/");
+	for(const string &path : plugins)
+		if(path.ends_with(".zip"))
+			zipSources.emplace_back(path);
+	plugins.clear();
+
+	plugins = Files::List(Files::Config() + "plugins/");
+	for(const string &path : plugins)
+		if(path.ends_with(".zip"))
+			zipSources.emplace_back(path);
 }
 
 
@@ -935,6 +957,17 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 					imageSet.reset(new ImageSet(name));
 				imageSet->Add(std::move(path));
 			}
+	}
+	for(const string &source : zipSources)
+	{
+		auto imageFiles = Archive::GetImagePaths(source);
+		for(auto &path : imageFiles)
+		{
+			shared_ptr<ImageSet> &imageSet = images[path.second];
+			if(!imageSet)
+				imageSet.reset(new ImageSet(path.second));
+			imageSet->Add(std::move(path.first));
+		}
 	}
 	return images;
 }

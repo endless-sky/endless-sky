@@ -30,19 +30,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <utility>
 #include <vector>
+#include "Archive.h"
 
 using namespace std;
 
 
 
-shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, const vector<string> &zipSources,  bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return queue.Run([this, sources, debugMode]() noexcept -> void
+	return queue.Run([this, sources, zipSources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)
@@ -55,6 +56,15 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string>
 				files.insert(files.end(),
 						make_move_iterator(list.begin()),
 						make_move_iterator(list.end()));
+			}
+
+			for(const string &source : zipSources)
+			{
+				vector<string> zipFiles = Archive::GetDataPaths(source);
+				files.reserve(files.size() + zipFiles.size());
+				files.insert(files.end(),
+						make_move_iterator(zipFiles.begin()),
+						make_move_iterator(zipFiles.end()));
 			}
 
 			const double step = 1. / (static_cast<int>(files.size()) + 1);

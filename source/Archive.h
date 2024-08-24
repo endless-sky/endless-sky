@@ -1,5 +1,5 @@
-/* File.h
-Copyright (c) 2015 by Michael Zahniser
+/* Archive.h
+Copyright (c) 2024 by RisingLeaf (the one and only if you notice this tell me to delete it XD)
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,29 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <cstdio>
 #include <string>
+#include <vector>
+
+class File;
 
 
 
-// RAII wrapper for FILE, to make sure it gets closed if an error occurs.
-class File {
+class Archive {
 public:
-	File() noexcept = default;
-	explicit File(const std::string &path, bool write = false);
-	File(void *data, size_t size, const char *type);
-	File(const File &) = delete;
-	File(File &&other) noexcept;
-	~File() noexcept;
-
-	// Do not allow copying the FILE pointer.
-	File &operator=(const File &) = delete;
-	// Move assignment is OK though.
-	File &operator=(File &&) noexcept;
-
-	explicit operator bool() const;
-	operator FILE*() const;
-
-private:
-	FILE *file = nullptr;
+	static std::vector<std::pair<std::string, std::string>> GetImagePaths(std::string archivePath);
+	static std::vector<std::string> GetDataPaths(std::string archivePath);
+	static std::pair<File, size_t> GetArchiveFile(std::string archivePath);
+	static void FreeResource(size_t index);
 };
+

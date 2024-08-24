@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <stdexcept>
 #include <vector>
+#include "../Archive.h"
 
 using namespace std;
 
@@ -190,10 +191,21 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 namespace {
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
+		size_t resource = 0;
+
 		// Open the file, and make sure it really is a PNG.
 		File file(path.string());
 		if(!file)
-			return false;
+		{
+			auto archiveReturn = Archive::GetArchiveFile(path.string());
+			resource = archiveReturn.second;
+			if(!resource)
+				return false;
+
+			file = std::move(archiveReturn.first);
+			if(!file)
+				return false;
+		}
 
 		// Set up libpng.
 		png_struct *png = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
@@ -290,9 +302,21 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
+		size_t resource = 0;
+
+		// Open the file, and make sure it really is a PNG.
 		File file(path.string());
 		if(!file)
-			return false;
+		{
+			auto archiveReturn = Archive::GetArchiveFile(path.string());
+			resource = archiveReturn.second;
+			if(!resource)
+				return false;
+
+			file = std::move(archiveReturn.first);
+			if(!file)
+				return false;
+		}
 
 		jpeg_decompress_struct cinfo;
 		struct jpeg_error_mgr jerr;

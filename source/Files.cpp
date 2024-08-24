@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <iostream>
 #include <mutex>
 #include <stdexcept>
+#include "Archive.h"
 
 using namespace std;
 
@@ -505,6 +506,12 @@ FILE *Files::Open(const string &path, bool write)
 string Files::Read(const string &path)
 {
 	File file(path);
+	if(!file)
+	{
+		auto archiveReturn = Archive::GetArchiveFile(path);
+
+		file = std::move(archiveReturn.first);
+	}
 	return Read(file);
 }
 

@@ -25,6 +25,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Angle.cpp
 	Angle.h
 	Animate.h
+	Archive.cpp
+	Archive.h
 	Armament.cpp
 	Armament.h
 	AsteroidField.cpp
