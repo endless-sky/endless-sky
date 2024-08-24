@@ -505,6 +505,58 @@ mission "Successors: Graffiti"
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script placed alongside a rather crude depiction of your face. The translation device struggles to interpret the non-standard glyphs, but it eventually resolves the text as "'Erjn'-Fool! No quills, no brain!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
 
+mission "Successors: People's Houses, First Contact"
+	landing
+	source "Kasii-Tuur-Saqru"
+	to offer
+		has "known to the successors"
+	to fail
+		has "Successors: Unified Defense: offered"
+	on offer
+		conversation
+			`Compared to most of the spaceports you have been to in Successor space, this one is dingy, crowded, and uncomfortable. Most of the Successors you see look equally dirty and unhappy, and the majority of the few ships you've noticed landing are painted in a different, darker shade of red.`
+			`	Would you like to ask someone here about this place?`
+			choice
+				`	(Yes.)`
+				`	(Not yet.)`
+					defer
+				`	(Never.)`
+					decline
+			`	You approach one of the crew members disembarking from one of the red-painted ships, which, as you draw closer, you see bears several large burns and scars.`
+			`	"Excuse me, I was wondering if you could tell me about this place. It seems different to the rest of Successor space I've been through."`
+			`	The Successor looks over at the spaceport for a moment before grunting quietly and deciding to reply. Their voice is lower and darker than that of most Successors you have heard, and their skin changes color and texture rapidly, almost with every word.`
+			`	"Thou art the alien vis'tor brought by the Old Houses, art thou not? Their 'noble guest' whom they parade around with such delight?"`
+			choice
+				`	"Yes."`
+				`	"You could say so."`
+			`	Despite the accusation of being "paraded around," the Successor grunts again at your response; with approval or disgust you cannot tell. They lean against one of the cargo containers on the spaceport floor and continue.`
+			`	"So then thou art another indolent fool, no doubt deceived by their fine promises, of wealth and power so long as you toe the line? Well, look around and see the value of their noble word! The Houses care but naught for you or I or any of them." The Successor gestures to the crowd in a broad sweeping motion.`
+			choice
+				`	"Who are they?"`
+					goto who
+				`	"I don't think of myself as a fool."`
+			`	"Then thou art doubly so, because thy time within this space is new and short and so the thoughts contained within thy brain are like those of a child, still blind to the world. But keep thy friends if they appear so kind; and take the time to recollect what I have said when in thy back their dagger nests."`
+			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
+				decline
+
+			label who
+			`	"They are the outcasts of the Houses New, who, like the rest, were forced here when the old empire crumbled into ash. But while the rest of the New Houses had ample wealth to move and grow into their new domains, not all of us were able to escape this intermediary place they shoved us while we waited. A thousand years and still they paint us with their scorn and demonize our yearning to be free."`
+			choice
+				`	"Free?"`
+					goto free
+				`	"Thank you. I have no more questions."`
+			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back against thy new and treacherous 'friends.'`
+			`	"Or don't. Another buried fool makes little difference."`
+			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
+				decline
+			label free
+			`	"Free, or freer than Old and New permit. The People's Houses stand not for the rich and those of noble blood, but for the true and honest heirs of that which was."`
+			`	The Successor looks over to the spaceport, before returning their attention to you for the last time.`
+			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back against thy new and treacherous 'friends.'`
+			`	"Or don't. Another buried fool makes little difference."`
+			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
+				decline
+
 mission "Successors: Unified Defense"
 	invisible
 	landing
