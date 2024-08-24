@@ -2798,7 +2798,6 @@ phrase "friendly civilian"
 		" "
 	word
 		"than"
-		"compared to"
 	word
 		" "
 	word
