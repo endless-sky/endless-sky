@@ -27,7 +27,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int64_t K = 1000;
+	// The greatest number displayed without switching to scientific notation.
+	constexpr int64_t SCIENTIFIC_THRESHOLD = 1e15;
+	constexpr int64_t K = 1000;
 	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
 		{ "quintillion", K * K * K * K * K * K },
 		{ "quadrillion", K * K * K * K * K },
@@ -274,10 +276,9 @@ namespace {
 string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
-	int64_t absolute = abs(value);
 
 	// If the value is above one quadrillion, show it in scientific notation.
-	if(absolute > 1000000000000000ll)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		ostringstream out;
 		out.precision(3);
@@ -288,6 +289,8 @@ string Format::Credits(int64_t value)
 	// Reserve enough space for something like "-123.456M".
 	string result;
 	result.reserve(8);
+
+	int64_t absolute = abs(value);
 
 	// Handle numbers bigger than a million.
 	static const vector<char> SUFFIX = {'T', 'B', 'M'};
@@ -384,6 +387,14 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
+	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	{
+		// Use scientific notation for excessively large numbers.
+		ostringstream out;
+		out.precision(3);
+		out << value;
+		return out.str();
+	}
 
 	string result;
 	bool isNegative = (value < 0.);
