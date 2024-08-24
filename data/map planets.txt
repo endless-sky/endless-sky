@@ -25,7 +25,7 @@ planet Aava-Aasa-Khora
 	outfitter "High Houses Light"
 	outfitter "Successor Basics"
 	outfitter "Successor Civilian"
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet "Ablub's Invention"
@@ -2431,7 +2431,7 @@ planet Iyra-Ijasa-Iret
 		to display
 			has "known to the successors"
 	spaceport `The spaceport resembles a group of enormous bubbles in the ocean near the equator; translucent, hemi-spherical hangars protrude from the water, cracking open like the petals of flowers to allow ships to enter and depart. Once inside, all the hangars are connected by a dense web of corridors and small, spherical rooms. Many are just as water-filled as the port's surroundings, and about half of the Successors you see throughout the spaceport are partially or entirely submerged.`
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet Jakobsen
@@ -2519,7 +2519,7 @@ planet Kasii-Cavasaa-Oa
 	outfitter "Successor Civilian"
 	outfitter "High Houses Light"
 	outfitter "High Houses Heavy"
-	"required reputation" 10
+	"required reputation" 2
 	bribe 0
 
 planet Kasii-Tuur-Saqru
@@ -2536,7 +2536,7 @@ planet Kasii-Tuur-Saqru
 	outfitter "Successor Basics"
 	outfitter "Successor Civilian"
 	outfitter "Successor Weapons Heavy"
-	"required reputation" 10
+	"required reputation" 2
 	bribe 0
 
 planet Kasi-Osolaa-Sossa
@@ -2546,7 +2546,7 @@ planet Kasi-Osolaa-Sossa
 	spaceport `The mountainside spaceport here is tiny and almost deserted, and the Successors who guide your ship to its dirt landing pad seem to disappear entirely, immediately after you touch down. While there are a few small shops and trading posts scattered around the area, none of them make any effort to get your attention, and a few are even completely automated, with nothing more than a few inoffensively blinking lights indicating that they are functional and open for business.`
 	government Successor
 	outfitter "Successor Basics"
-	"required reputation" 15
+	"required reputation" 3
 	bribe 0
 
 planet Kella-Uuoru-Sossa
@@ -2609,7 +2609,7 @@ planet Khora-Vasa-Reyyaa
 	outfitter "Successor Civilian"
 	outfitter "Successor Heavy"
 	outfitter "Successor High Tech"
-	"required reputation" 15
+	"required reputation" 3
 	bribe 0
 	security 0.8
 
@@ -2713,7 +2713,7 @@ planet Kua-Oa-Aava
 			has "known to the successors"
 	spaceport `	Several tunnels from this spaceport lead off into the distance, though they are guarded by military personnel and identification equipment. You presume that they lead to some of the facilities established elsewhere on the moon's surface.`
 	government Successor
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet Kuj-Sol-Nnesa
@@ -2987,7 +2987,7 @@ planet Mavra-Sol-Kvel
 		to display
 			has "known to the successors"
 	spaceport `The spaceport is large but efficient, and plastered in bright and friendly colors, much like the landscape surrounding it. Most of the buildings are organic in shape, arcing and bubbling from place to place like seafoam, and despite the fanciful design, they also appear to be servicing a large volume of travellers, merchants, and military personnel, with color-coded lines leading to different areas.`
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet "Mebla's Portion"
@@ -3715,7 +3715,7 @@ planet O-Vasa-Oa
 	shipyard "Successor Heavy"
 	outfitter "High Houses Light"
 	outfitter "Successor Civilian"
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet Palarei
@@ -3962,7 +3962,7 @@ planet Raaqa-Kvelq-Ryuit
 			has "known to the successors"
 	spaceport `The spaceport is located right on the equator and is a massive, sprawling affair with several enormous racks of cargo containers stretching out into the distance, clearly awaiting transport on soon-arriving freighters. The ground is wet from a sprinkler system that maintains a constant thin film of water all throughout the spaceport's exterior. The Successors, lacking shoes, must appreciate this for reducing friction between their arms and the relatively rough and uncomfortable concrete.`
 	government "House Myurej"
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet Raaqa-Puan-Uuoru
@@ -3978,7 +3978,7 @@ planet Raaqa-Puan-Uuoru
 	outfitter "Successor Civilian"
 	outfitter "Successor Heavy"
 	outfitter "Successor High Tech"
-	"required reputation" 10
+	"required reputation" 2
 	government "House Kaatrij"
 	bribe 0
 
@@ -4276,7 +4276,7 @@ planet Saska-Aa-Noorr
 	spaceport `The spaceport takes full advantage of its zero-gravity nature; loading docks extend into the distance at all angles and magnetic cargo trains circle and arch around the interior. Most of the walkable areas of the port are enclosed in a giant cylindrical shell rotating around the docks such that you can watch your docked ship pass by overhead every couple of minutes.`
 	spaceport `	There is no "dry" access to any of the residential areas of the station; instead of normal corridors or elevators, large tubes of gently circulating water carry the Successors to other sections. The station directory indicates that outfitting services are among those separated from the main port by one of these tubes; unfortunately, it doesn't seem like they're going to be accessible to you.`
 	government "House Myurej"
-	"required reputation" 15
+	"required reputation" 3
 	bribe 0
 
 planet "Sebarep Atarkis"
@@ -4463,7 +4463,7 @@ planet Shassa-Wyra-Orrou
 	spaceport `The spaceport is built on a large rock beach in the northern hemisphere, with a number of large fabric shades covering important areas. A substantial portion of the port is devoted to offloading mined items, and surprisingly, there is also a large and healthily-populated tourist section, which is displaying several particularly attractive stones, no doubt locally mined.`
 	government Successor
 	outfitter "Successor Basics"
-	"required reputation" 10
+	"required reputation" 2
 	bribe 0
 
 planet "Shifting Sand"
@@ -4745,7 +4745,7 @@ planet Staja-Kella-Oa
 		to display
 			has "known to the successors"
 	government "House Sioeora"
-	"required reputation" 5
+	"required reputation" 1
 	bribe 0
 
 planet Starcross
@@ -5195,7 +5195,7 @@ planet Uo-Oraa-Vayya
 	description `	It is rumored that the navies of the New Houses will send recruits on missions here to test their fortitude, though that is unequivocally denied by official sources.`
 	spaceport `The spaceport, if you can call it that, is nothing more than an approximately flat area in a mountain valley with a small research base serving as a control tower. The air outside is bitterly cold, and while the Successors do not seem to mind it as much as you, even they express discomfort at being out in the open for too long.`
 	government Successor
-	"required reputation" 10
+	"required reputation" 2
 	bribe 0
 
 planet "Ut Divitas"
@@ -5766,7 +5766,7 @@ planet Yoqqa-Vasa-Vasa
 	shipyard "Successor Civilian"
 	outfitter "Successor Civilian"
 	outfitter "Successor Weapons Basics"
-	"required reputation" 10
+	"required reputation" 2
 	bribe 0
 
 planet Zenith

@@ -104,10 +104,10 @@ mission "Successors: First Contact 1"
 		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to Staja-Kella-Oa in eight days, when their government will decide what to do about my arrival.`
 		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are amphibious octopods at least three meters tall. They are the heirs of a large and advanced interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled far across the galaxy, at least as far north as Sol."
 		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
-		"reputation: Successor" += 5
-		"reputation: House Chydiyi" += 5
-		"reputation: House Myurej" += 5
-		"reputation: House Sioeora" += 5
+		"reputation: Successor" += 1
+		"reputation: House Chydiyi" += 1
+		"reputation: House Myurej" += 1
+		"reputation: House Sioeora" += 1
 		conversation
 			`Like last time, you are escorted by the interceptors to a landing pad on this planet's spaceport. Here, however, they guide you to a small, out-of-the way area at great distance from the main complex, where several uniformed aliens are gathered on the landing pad, standing at attention.`
 			`	After waiting for several minutes, a shuttle lands on the pad beside yours and several individuals emerge from it. Two of them move in front of the rest, where they are allowed to pass by the guards and approach you. The one on the left is a uniformed officer wearing what appears to be heavy body armor with shimmering metallic plates that sparkle in the light. On the right is a smaller alien who is wrapped up in a dark, cocoon-like outfit from which their head and arms emerge. The officer says something to the smaller one, who quietly replies and then pulls from a pocket on their outfit a smooth sheet which they inspect several times before haltingly addressing you.`
@@ -596,9 +596,9 @@ mission "Successors: First Contact 3"
 	on fail
 		dialog `You failed to return Sieasej to their people in time. If you wish to continue the Successors' storyline, revert to a prior save.`
 		"reputation: House Sioeora" = -999
-		"reputation: Successor" = 0
-		"reputation: House Chydiyi" = 0
-		"reputation: House Myurej" = 0
+		"reputation: Successor" <?= 0
+		"reputation: House Chydiyi" <?= 0
+		"reputation: House Myurej" <?= 0
 
 	on complete
 		conversation
@@ -606,7 +606,7 @@ mission "Successors: First Contact 3"
 				has "Successors FC3: captured kijra-pet"
 			label release
 			action
-				"reputation: House Sioeora" = 0
+				"reputation: House Sioeora" <?= 0
 				event "successors: released kijra-pet wait" 32
 				log "Released the animal House Sioeora requested I bring to them. Returned their citizen, but was barred from further dealings with the House."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. You and Sieasej are given fewer escorts than before, and you can't help but wonder if the absence of your quarry is particularly conspicuous to them. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
@@ -623,13 +623,13 @@ mission "Successors: First Contact 3"
 				set "known to the successors"
 				set "language: Successor"
 				event "successors: trust 1"
-				"reputation: Successor" += 5
-				"reputation: House Chydiyi" += 5
-				"reputation: House Myurej" += 5
-				"reputation: House Sioeora" += 5
-				"reputation: House Aqrabe" += 10
-				"reputation: House Seineq" += 10
-				"reputation: People's Houses" += 10
+				"reputation: Successor" += 1
+				"reputation: House Chydiyi" += 1
+				"reputation: House Myurej" += 1
+				"reputation: House Sioeora" += 1
+				"reputation: House Aqrabe" += 2
+				"reputation: House Seineq" += 2
+				"reputation: People's Houses" += 2
 				log "Captured and returned the animal House Sioeora requested that I bring to them. Was rewarded with a translation device and historical data that allows me to land on most Successor worlds. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before, who direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
 			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou returns from thy hunt successful!"`
@@ -843,13 +843,13 @@ mission "Successors: Kaatrij First Contact 1"
 				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral keepers of the animals that I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
 				set "known to the successors"
 				event "successors: trust 1"
-				"reputation: Successor" += 5
-				"reputation: House Chydiyi" += 5
-				"reputation: House Myurej" += 5
-				"reputation: House Aqrabe" += 10
-				"reputation: House Kaatrij" += 10
-				"reputation: House Seineq" += 10
-				"reputation: People's Houses" += 10
+				"reputation: Successor" += 1
+				"reputation: House Chydiyi" += 1
+				"reputation: House Myurej" += 1
+				"reputation: House Aqrabe" += 2
+				"reputation: House Kaatrij" += 2
+				"reputation: House Seineq" += 2
+				"reputation: People's Houses" += 2
 
 mission "Successors: Kaatrij Monoglot Prompt"
 	landing
@@ -888,8 +888,8 @@ mission "Successors: Trusted"
 		"<successor opponent>" "Sioeora"
 			has "completed: Successors: Kaatrij First Contact 1"
 	on offer
-		"reputation: Old Houses" += 5
-		"reputation: New Houses" += 5
+		"reputation: Old Houses" += 1
+		"reputation: New Houses" += 1
 		conversation
 			`Shortly after you set down in the spaceport here, you are approached by a group of Successors in naval uniforms, clearly and surprisingly in the employ of multiple various High Houses; there is some variance in the design of the uniforms of different members. Their leader addresses you in a calm tone with the unmistakable coolness that military officers seem to hold regardless of species, their skin remaining a flat gray throughout.`
 			`	"Captain <last>. The High Houses have noted thine actions in their space, and, wishing to make thee a stronger ally to their cause, have summoned thee to meet them in council. Thou art encouraged to make haste to the Uuoru-Kella system.`
@@ -901,8 +901,8 @@ mission "Successors: Trusted"
 				accept
 	on complete
 		set "license: Successor"
-		"reputation: Successor" += 5
-		"reputation: House Chydiyi" += 5
+		"reputation: Successor" += 1
+		"reputation: House Chydiyi" += 1
 		set "trusted by the successors"
 		event "successors: trust 2"
 		log "Summoned to meet with the Successor High Houses in council, and given the right to purchase their civilian technology."
