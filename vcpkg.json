@@ -54,7 +54,8 @@
         {
           "name": "libarchive",
           "default-features": false
-        }
+        },
+        "catch2"
       ]
     }
   }
