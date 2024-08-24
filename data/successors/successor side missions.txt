@@ -525,7 +525,13 @@ mission "Successors: People's Houses, First Contact"
 			`	You approach one of the crew members disembarking from one of the red-painted ships, which, as you draw closer, you see bears several large burns and scars.`
 			`	"Excuse me, I was wondering if you could tell me about this place. It seems different to the rest of Successor space I've been through."`
 			`	The Successor looks over at the spaceport for a moment before grunting quietly and deciding to reply. Their voice is lower and darker than that of most Successors you have heard, and their skin changes color and texture rapidly, almost with every word.`
+			branch kaatrij
+				has "completed: Successors: Kaatrij First Contact 1"
 			`	"Thou art the alien vis'tor brought by the Old Houses, art thou not? Their 'noble guest' whom they parade around with such delight?"`
+				goto affirm
+			label kaatrij
+			`	"Thou art the alien vis'tor paraded 'round between the Houses, art thou not? Their 'noble guest' or 'flighty knave' that depends on t'which thee speaks?`
+			label affirm
 			choice
 				`	"Yes."`
 				`	"You could say so."`
