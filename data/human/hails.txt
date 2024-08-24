@@ -2883,7 +2883,7 @@ phrase "friendly civilian"
 	word
 		"of their dental insurance."
 		"they'll cover my tuition."
-		"their amazing ship selection."
+		"to see if I can get my hands on one of their warships."
 		"they offer childcare assistance."
 
 phrase "friendly navy"
