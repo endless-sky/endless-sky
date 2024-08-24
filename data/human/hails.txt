@@ -2780,15 +2780,18 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"pulse showers are good for your quantum pores."
-		"exposing yourself to neodymium increases your risk of spacepox."
-		"shoddily grown ion algae exhausts your psychic karma."
-		"laser acupuncture lets you communicate with nebula ghosts."
-		"star crystals bring luck to long distance relationships."
-		"consuming moon dust accelerates hair growth but causes lunacy."
-		"excessive exposure to zero gravity can lead to phantom limb syndrome."
-		"alien prosthetics often come with unexpected telepathic abilities."
-		"stardate tattoos increase your chances of alien abduction."
+		"pulse showers are good for your quantum pores"
+		"exposing yourself to neodymium increases your risk of spacepox"
+		"shoddily grown ion algae exhausts your psychic karma"
+		"laser acupuncture lets you communicate with nebula ghosts"
+		"star crystals bring luck to long distance relationships"
+		"consuming moon dust accelerates hair growth but causes lunacy"
+		"excessive exposure to zero gravity can lead to phantom limb syndrome"
+		"alien prosthetics often come with unexpected telepathic abilities"
+		"stardate tattoos increase your chances of alien abduction"
+	word
+		"."
+		"!"
 
 phrase "friendly civilian"
 	word
