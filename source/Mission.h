@@ -200,6 +200,7 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
+	std::string storyline;
 	Location location = SPACEPORT;
 
 	EsUuid uuid;

@@ -152,6 +152,8 @@ void Mission::Load(const DataNode &node)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
+		else if(child.Token(0) == "storyline" && child.Size() >= 2)
+			storyline = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
