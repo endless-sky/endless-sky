@@ -2856,12 +2856,15 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"strawberries!"
-		"bananas!"
-		"peaches!"
-		"roses!"
-		"jasmine!"
-		"lavender!"
+		"strawberries"
+		"bananas"
+		"peaches"
+		"roses"
+		"jasmine"
+		"lavender"
+	word
+		"."
+		"!"
 
 phrase "friendly civilian"
 	word
