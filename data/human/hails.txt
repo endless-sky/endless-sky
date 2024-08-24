@@ -2862,7 +2862,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Have you seen the movie where the"
+		"Have you seen the holofilm where the"
 	word
 		" "
 	word
