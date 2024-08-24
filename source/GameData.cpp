@@ -198,7 +198,6 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 	if(!onlyLoadData)
 	{
 		queue.Run([&queue] {
-
 			// Now, read all the images in all the path directories. For each unique
 			// name, only remember one instance, letting things on the higher priority
 			// paths override the default images.
