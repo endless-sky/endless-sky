@@ -2708,7 +2708,6 @@ phrase "friendly civilian"
 		"neodymium and neodymium" "neodymium"
 		"neodymium or neodymium" "neodymium"
 
-
 phrase "friendly civilian"
 	word
 		"Be careful of"
