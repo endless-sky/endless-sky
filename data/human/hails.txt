@@ -2876,7 +2876,7 @@ phrase "friendly civilian"
 phrase "friendly civilian"
 	word
 		"Frankly, I'm thinking of joining the Navy because"
-		"Truthfully, I'm going to be part of the Navy because"
+		"Honestly, I'm going to join the Navy because"
 		"I'm enlisting in the Navy because"
 	word
 		" "
