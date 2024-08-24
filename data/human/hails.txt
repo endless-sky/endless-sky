@@ -2832,13 +2832,13 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Finished cleaning my cargo hold. The" 
+		"Finished cleaning my cargo hold. The"
 		"Cargo hold is all spick and span. The"
 		"Finished scrubbing the hold. The"
 	word
 		" "
 	word
-		"freshener" 
+		"freshener"
 		"perfume"
 		"spray"
 		"fragrance"
@@ -2858,7 +2858,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Have you seen the movie where the" 
+		"Have you seen the movie where the"
 	word
 		" "
 	word
