@@ -82,7 +82,7 @@ private:
 	int oldHover;
 	int latest;
 	// Which page of the preferences we're on.
-	char page = 'c';
+	char page;
 
 	Point hoverPoint;
 	int hoverCount = 0;
@@ -91,8 +91,8 @@ private:
 	std::string tooltip;
 	WrappedText hoverText;
 
-	int currentControlsPage = 0;
-	int currentSettingsPage = 0;
+	int currentControlsPage;
+	int currentSettingsPage;
 
 	std::string selectedPlugin;
 

@@ -110,6 +110,13 @@ public:
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
 
+	// Last shown settings page - saves `PreferencesPanel.page`
+	static char GetPreviousPage();
+	static void SetPreviousPage(char page);
+	// The pagination on said page (currentControlsPage / currentSettingsPage).
+	static int GetPreviousPagination();
+	static void SetPreviousPagination(int pagination);
+
 	// Toggle the ammo usage preferences, cycling between "never," "frugally,"
 	// and "always."
 	static void ToggleAmmoUsage();

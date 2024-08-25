@@ -144,6 +144,9 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+
+	char previousPage = static_cast<char> (0);
+	int previousPagination = 0;
 }
 
 
@@ -222,6 +225,11 @@ void Preferences::Load()
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
+		else if(node.Token(0) == "previous page" && node.Size() >= 3)
+		{
+			previousPage = node.Token(1)[0];
+			previousPagination = node.Value(2);
+		}
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -284,6 +292,8 @@ void Preferences::Save()
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
+	if (previousPage)
+		out.Write("previous page", std::string(1,previousPage), previousPagination);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -304,6 +314,25 @@ void Preferences::Set(const string &name, bool on)
 	settings[name] = on;
 }
 
+
+// Last shown settings page - saves `PreferencesPanel.page`
+char Preferences::GetPreviousPage()
+{
+	return previousPage;
+}
+
+void Preferences::SetPreviousPage(char page) {
+	previousPage = page;
+}
+
+// The pagination on said page (currentControlsPage / currentSettingsPage).
+int Preferences::GetPreviousPagination() {
+	return previousPagination;
+}
+
+void Preferences::SetPreviousPagination(int pagination) {
+	previousPagination = pagination;
+}
 
 
 void Preferences::ToggleAmmoUsage()
