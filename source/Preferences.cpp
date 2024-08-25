@@ -292,8 +292,8 @@ void Preferences::Save()
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
-	if (previousPage)
-		out.Write("previous page", std::string(1,previousPage), previousPagination);
+	if(previousPage)
+		out.Write("previous page", std::string(1, previousPage), previousPagination);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);

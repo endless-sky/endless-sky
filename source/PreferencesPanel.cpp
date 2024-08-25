@@ -253,7 +253,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 void PreferencesPanel::ResetPluginListRenderBuffers()
 {
-	// Needs to run when the user activates the plugin list view or when the saved state says the plugin list is the initial view
+	// Needs to run when the user activates the plugin list view
+	// or when the saved state says the plugin list is the initial view
 	if(page != 'p') return;
 
 	// Reset the render buffers in case the UI scale has changed.
