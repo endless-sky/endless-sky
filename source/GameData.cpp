@@ -92,7 +92,6 @@ namespace {
 	StarField background;
 
 	vector<string> sources;
-	vector<string> zipSources;
 
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
@@ -231,7 +230,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 		});
 	}
 
-	return objects.Load(queue, sources, zipSources, debugMode);
+	return objects.Load(queue, sources, debugMode);
 }
 
 
@@ -919,13 +918,13 @@ void GameData::LoadSources(TaskQueue &queue)
 	plugins = Files::List(Files::Resources() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))
-			zipSources.emplace_back(path);
+			sources.emplace_back(path);
 	plugins.clear();
 
 	plugins = Files::List(Files::Config() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))
-			zipSources.emplace_back(path);
+			sources.emplace_back(path);
 }
 
 
@@ -937,6 +936,8 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
+		if(Files::Exists(source + "images/"))
+		{
 		string directoryPath = source + "images/";
 		size_t start = directoryPath.size();
 
@@ -951,16 +952,17 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 					imageSet.reset(new ImageSet(name));
 				imageSet->Add(std::move(path));
 			}
-	}
-	for(const string &source : zipSources)
-	{
-		auto imageFiles = Archive::GetImagePaths(source);
-		for(auto &path : imageFiles)
+		}
+		else
 		{
-			shared_ptr<ImageSet> &imageSet = images[path.second];
-			if(!imageSet)
-				imageSet.reset(new ImageSet(path.second));
-			imageSet->Add(std::move(path.first));
+			auto imageFiles = Archive::GetImagePaths(source);
+			for(auto &path : imageFiles)
+			{
+				shared_ptr<ImageSet> &imageSet = images[path.second];
+				if(!imageSet)
+					imageSet.reset(new ImageSet(path.second));
+				imageSet->Add(std::move(path.first));
+			}
 		}
 	}
 	return images;

@@ -70,7 +70,7 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::string> &sources, const std::vector<std::string> &zipSources,  bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::string> &sources,  bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
