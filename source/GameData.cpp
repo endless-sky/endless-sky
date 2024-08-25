@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 
 #include "audio/Audio.h"
+#include "Archive.h"
 #include "BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"
@@ -71,12 +72,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <queue>
 #include <utility>
 #include <vector>
-#include "Logger.h"
-#include <archive.h>
-#include <archive_entry.h>
-#include <fstream>
-#include "File.h"
-#include "Archive.h"
 
 using namespace std;
 

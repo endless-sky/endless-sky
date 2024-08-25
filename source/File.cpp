@@ -35,7 +35,7 @@ File::File(File &&other) noexcept
 
 
 
-File::File(void *data, size_t size, const char *type)
+File::File(unsigned char *data, size_t size, const char *type)
 {
 #if defined _WIN32
 	int fd;

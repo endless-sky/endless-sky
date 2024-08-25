@@ -15,18 +15,61 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Archive.h"
 
-#include "File.h"
 #include "image/ImageSet.h"
 
 #include <archive.h>
 #include <archive_entry.h>
-#include "Logger.h"
 
 using namespace std;
 
-namespace {
-	vector<void *> resources(1);
+
+
+Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
+{
+	if(data)
+		free(data);
 }
+
+
+
+void Archive::ArchiveResourceHandle::Allocate(size_t newSize)
+{
+	if(size)
+		data = reinterpret_cast<unsigned char *>(realloc(data, newSize));
+	else
+		data = reinterpret_cast<unsigned char *>(malloc(newSize));
+
+	size = size;
+}
+
+
+
+void Archive::ArchiveResourceHandle::CreateFileFromData()
+{
+	file = File(data, size, "rb");
+}
+
+
+
+File &Archive::ArchiveResourceHandle::GetFile()
+{
+	return file;
+}
+
+
+
+unsigned char *Archive::ArchiveResourceHandle::GetData()
+{
+	return data;
+}
+
+
+
+Archive::ArchiveResourceHandle::operator bool() const
+{
+	return file;
+}
+
 
 
 vector<pair<string, string>> Archive::GetImagePaths(string archivePath)
@@ -102,12 +145,12 @@ vector<string> Archive::GetDataPaths(string archivePath)
 
 
 
-pair<File, size_t> Archive::GetArchiveFile(std::string archiveFilePath)
+void Archive::GetArchiveFile(std::string archiveFilePath, Archive::ArchiveResourceHandle &handle)
 {
 	// First split path up into archive path and inside archive path.
 	size_t start = archiveFilePath.find(".zip/");
 	if(start == string::npos)
-		return std::make_pair(File(), 0);
+		return;
 
 	string archivePath = archiveFilePath.substr(0, start + 4);
 	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
@@ -117,7 +160,7 @@ pair<File, size_t> Archive::GetArchiveFile(std::string archiveFilePath)
 	archive_read_support_format_all(reading);
 	int ret = archive_read_open_filename(reading, archivePath.c_str(), 10240);
 	if(ret != ARCHIVE_OK)
-		return std::make_pair(File(), 0);
+		return;
 	
 	archive_entry *entry;
 	archive_read_next_header(reading, &entry);
@@ -132,23 +175,15 @@ pair<File, size_t> Archive::GetArchiveFile(std::string archiveFilePath)
 		if(name == filePath)
 		{
 			size_t size = archive_entry_size(entry);
-			resources.emplace_back();
-			resources.back() = malloc(size);
-			archive_read_data(reading, resources.back(), size);
 
-			File file(resources.back(), size, "rb");
+			handle.Allocate(size);
+			archive_read_data(reading, handle.GetData(), size);
+			handle.CreateFileFromData();
 
-			return std::make_pair(std::move(file), resources.size() - 1);
+			return;
 		}
 	}
 	archive_read_free(reading);
 
-	return std::make_pair(File(), 0);
-}
-
-
-
-void Archive::FreeResource(size_t index)
-{
-	free(resources[index]);
+	return;
 }

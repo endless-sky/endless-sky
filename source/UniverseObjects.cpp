@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UniverseObjects.h"
 
+#include "Archive.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
@@ -30,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <utility>
 #include <vector>
-#include "Archive.h"
 
 using namespace std;
 

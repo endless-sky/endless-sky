@@ -15,18 +15,38 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "File.h"
+
 #include <string>
 #include <vector>
-
-class File;
 
 
 
 class Archive {
 public:
+	class ArchiveResourceHandle {
+	public:
+		ArchiveResourceHandle() = default;
+		~ArchiveResourceHandle();
+
+		void Allocate(size_t newSize);
+		void CreateFileFromData();
+
+		File &GetFile();
+		unsigned char *GetData();
+
+		explicit operator bool() const;
+
+	private:
+		File file;
+		unsigned char *data = nullptr;
+		size_t size = 0;
+	};
+
+
+public:
 	static std::vector<std::pair<std::string, std::string>> GetImagePaths(std::string archivePath);
 	static std::vector<std::string> GetDataPaths(std::string archivePath);
-	static std::pair<File, size_t> GetArchiveFile(std::string archivePath);
-	static void FreeResource(size_t index);
+	static void GetArchiveFile(std::string archivePath, ArchiveResourceHandle &handle);
 };
 

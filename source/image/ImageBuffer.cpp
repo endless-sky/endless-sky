@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
+#include "../Archive.h"
 #include "../File.h"
 #include "../Logger.h"
 
@@ -24,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <stdexcept>
 #include <vector>
-#include "../Archive.h"
 
 using namespace std;
 
@@ -191,21 +191,18 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 namespace {
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		size_t resource = 0;
+		Archive::ArchiveResourceHandle handle;
 
 		// Open the file, and make sure it really is a PNG.
 		File file(path.string());
 		if(!file)
 		{
-			auto archiveReturn = Archive::GetArchiveFile(path.string());
-			resource = archiveReturn.second;
-			if(!resource)
-				return false;
-
-			file = std::move(archiveReturn.first);
-			if(!file)
+			Archive::GetArchiveFile(path.string(), handle);
+			if(!handle)
 				return false;
 		}
+
+
 
 		// Set up libpng.
 		png_struct *png = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
@@ -227,7 +224,7 @@ namespace {
 
 		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
 		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
-		png_init_io(png, file);
+		png_init_io(png, handle ? handle.GetFile() : file);
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
@@ -302,19 +299,14 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		size_t resource = 0;
+		Archive::ArchiveResourceHandle handle;
 
 		// Open the file, and make sure it really is a PNG.
 		File file(path.string());
 		if(!file)
 		{
-			auto archiveReturn = Archive::GetArchiveFile(path.string());
-			resource = archiveReturn.second;
-			if(!resource)
-				return false;
-
-			file = std::move(archiveReturn.first);
-			if(!file)
+			Archive::GetArchiveFile(path.string(), handle);
+			if(!handle)
 				return false;
 		}
 
@@ -326,7 +318,7 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		jpeg_stdio_src(&cinfo, file);
+		jpeg_stdio_src(&cinfo, handle ? handle.GetFile() : file);
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 
