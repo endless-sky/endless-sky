@@ -189,7 +189,7 @@ void Audio::CheckReferences()
 	}
 
 	for(auto &&it : sounds)
-		if(it.second.Name().empty())
+		if(it.second.Name().empty() && !it.first.empty())
 			Logger::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
 }
 
