@@ -572,9 +572,9 @@ mission "Successors: Unified Defense"
 	to offer
 		has "Successors: First Contact 1: offered"
 		or
-			"reputation: Successor" < -10
-			"reputation: New Houses" < -10
-			"reputation: Old Houses" < -10
+			"reputation: Successor" < -0.01
+			"reputation: New Houses" < -0.01
+			"reputation: Old Houses" < -0.01
 	to complete
 		never
 	on offer
