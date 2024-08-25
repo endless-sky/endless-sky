@@ -3154,6 +3154,10 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 
 		// Don't chase anything that will take more than 10 seconds to reach.
 		double bestTime = 600.;
+		// We used 800 compared to p.Length() before - so Escorts had fixed flotsam detection range.
+		// That old value is now the minimum without any asteroid scan capability.
+		double scanPower = ship.Attributes().Get("asteroid scan power") + ship.Attributes().Get("tactical scan power");
+		double scanRangeMetric = 10000. * max(64., scanPower);
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
 			if(!ship.CanPickUp(*it) || avoid.contains(it.get()))
@@ -3162,10 +3166,10 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
 			// the facing angle check.
 			Point p = it->Position() - ship.Position();
-			double range = p.Length();
+			double rangeSquared = p.LengthSquared();
+			if(rangeSquared > scanRangeMetric) continue;
 			// Player ships do not have a restricted field of view so that they target flotsam behind them.
-			if(range > 800. || (range > 100. && p.Unit().Dot(ship.Facing().Unit()) < .9 && !ship.IsYours()))
-				continue;
+			if(rangeSquared > 10000. && !ship.IsYours() && p.Unit().Dot(ship.Facing().Unit()) < .9) continue;
 
 			// Estimate how long it would take to intercept this flotsam.
 			Point v = it->Velocity() - ship.Velocity();
