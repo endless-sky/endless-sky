@@ -3156,8 +3156,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		double bestTime = 600.;
 		// We used 800 compared to p.Length() before - so Escorts had fixed flotsam detection range.
 		// That old value is now the minimum without any asteroid scan capability.
-		double scanPower = ship.Attributes().Get("asteroid scan power") + ship.Attributes().Get("tactical scan power");
-		double scanRangeMetric = 10000. * max(64., scanPower);
+		double scanRangeMetric = 10000. * max(64., ship.Attributes().Get("asteroid scan power"));
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
 			if(!ship.CanPickUp(*it) || avoid.contains(it.get()))
