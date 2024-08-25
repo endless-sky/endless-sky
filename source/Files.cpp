@@ -505,15 +505,14 @@ FILE *Files::Open(const string &path, bool write)
 
 string Files::Read(const string &path)
 {
-	//Archive::ArchiveResourceHandle handle;
+	Archive::ArchiveResourceHandle handle;
 
 	// Open the file, and make sure it really is a PNG.
 	File file(path);
-	//if(!file)
-	//	Archive::GetArchiveFile(path, handle);
-	Logger::LogError("hi");
+	if(!file)
+		Archive::GetArchiveFile(path, handle);
 
-	return Read(file);//handle ? handle.GetFile() : file);
+	return Read(handle ? handle.GetFile() : file);
 }
 
 

@@ -32,7 +32,7 @@ public:
 		void Allocate(size_t newSize);
 		void CreateFileFromData();
 
-		File &GetFile();
+		FILE *GetFile();
 		unsigned char *GetData();
 
 		explicit operator bool() const;

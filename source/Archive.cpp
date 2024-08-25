@@ -34,12 +34,9 @@ Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
 
 void Archive::ArchiveResourceHandle::Allocate(size_t newSize)
 {
-	if(size)
-		data = reinterpret_cast<unsigned char *>(realloc(data, newSize));
-	else
-		data = reinterpret_cast<unsigned char *>(malloc(newSize));
+	data = reinterpret_cast<unsigned char *>(malloc(newSize));
 
-	size = size;
+	size = newSize;
 }
 
 
@@ -51,7 +48,7 @@ void Archive::ArchiveResourceHandle::CreateFileFromData()
 
 
 
-File &Archive::ArchiveResourceHandle::GetFile()
+FILE *Archive::ArchiveResourceHandle::GetFile()
 {
 	return file;
 }
@@ -67,7 +64,7 @@ unsigned char *Archive::ArchiveResourceHandle::GetData()
 
 Archive::ArchiveResourceHandle::operator bool() const
 {
-	return file;
+	return size;
 }
 
 
