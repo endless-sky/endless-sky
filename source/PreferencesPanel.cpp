@@ -94,12 +94,15 @@ PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
 {
 	page = Preferences::GetPreviousPage();
-	if (!page) page = 'c';
+	if(!page)
+		page = 'c';
 	currentControlsPage = 0;
 	currentSettingsPage = 0;
 	int pagination = Preferences::GetPreviousPagination();
-	if (page == 'c') currentControlsPage = pagination;
-	else if (page == 's') currentSettingsPage = pagination;
+	if(page == 'c')
+		currentControlsPage = pagination;
+	else if(page == 's')
+		currentSettingsPage = pagination;
 
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
