@@ -63,8 +63,15 @@ jobs:
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache/sccache
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -89,8 +96,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -125,8 +139,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -151,8 +172,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
     - uses: lukka/get-cmake@latest
