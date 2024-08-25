@@ -132,6 +132,8 @@ PreferencesPanel::PreferencesPanel()
 	pluginListScroll.SetMaxValue(pluginListHeight);
 	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
 	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
+
+	ResetPluginListRenderBuffers();
 }
 
 
@@ -212,14 +214,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		hoverItem.clear();
 		selected = 0;
 
-		if(page == 'p')
-		{
-			// Reset the render buffers in case the UI scale has changed.
-			const Interface *pluginUi = GameData::Interfaces().Get("plugins");
-			Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-			pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
-			RenderPluginDescription(selectedPlugin);
-		}
+		ResetPluginListRenderBuffers();
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
@@ -253,6 +248,19 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		return false;
 
 	return true;
+}
+
+
+void PreferencesPanel::ResetPluginListRenderBuffers()
+{
+	// Needs to run when the user activates the plugin list view or when the saved state says the plugin list is the initial view
+	if(page != 'p') return;
+
+	// Reset the render buffers in case the UI scale has changed.
+	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+	pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
+	RenderPluginDescription(selectedPlugin);
 }
 
 

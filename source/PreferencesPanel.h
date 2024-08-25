@@ -73,6 +73,7 @@ private:
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
+	void ResetPluginListRenderBuffers();
 
 private:
 	int editing;
