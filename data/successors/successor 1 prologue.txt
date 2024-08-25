@@ -102,8 +102,7 @@ mission "Successors: First Contact 1"
 		event "label successor space"
 		event "successors: first contact wait" 8
 		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to Staja-Kella-Oa in eight days, when their government will decide what to do about my arrival.`
-		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy. They are amphibious octopods at least three meters tall. They are the heirs of a large and advanced interstellar empire which collapsed around fifteen hundred years ago. Explorers from this empire traveled far across the galaxy, at least as far north as Sol."
-		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
+		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy; amphibious octopods approximately three meters tall. They are governed by their High Houses, institutions built around several noble families whose scions wield political and military power. They have not encountered humans since 1500 years ago, at which time their Predecessors were exploring much of the galaxy."
 		"reputation: Successor" += 1
 		"reputation: House Chydiyi" += 1
 		"reputation: House Myurej" += 1
@@ -228,6 +227,7 @@ mission "Successors: First Contact 2"
 				accept
 		event "successors: tardy for sioeora" 14
 	on complete
+		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
 		conversation
 			`Shortly after you enter the atmosphere of <planet>, the <ship> is flanked by a pair of interceptors which lead you to a sprawling complex in the northern hemisphere at the edge of a large lake. Your escorts set down on two small landing pads near the shore, and you see that another landing pad between them has been lit up in colors matching the livery of your ship.`
 			`	As before, your landing site has been surrounded by a cadre of uniformed individuals, but this time there must be nearly a hundred standing at attention on the pad's perimeter, of which most appear heavily armed. Once again upon disembarking, a lead officer approaches you, accompanied by a group of eight others who follow them in a tight formation. The leader motions with one of their arms towards the center of the complex as if to instruct you to go.`
