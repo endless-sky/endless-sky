@@ -936,12 +936,18 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		if(Files::Exists(source + "images/"))
-		{
 		string directoryPath = source + "images/";
-		size_t start = directoryPath.size();
 
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
+		if(imageFiles.empty())
+		{
+			auto archiveRet = Archive::GetRecursiveFileList(source, "images/");
+			imageFiles = archiveRet.second;
+			directoryPath = archiveRet.first;
+		}
+
+		size_t start = directoryPath.size();
+
 		for(string &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
@@ -952,18 +958,6 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 					imageSet.reset(new ImageSet(name));
 				imageSet->Add(std::move(path));
 			}
-		}
-		else
-		{
-			auto imageFiles = Archive::GetImagePaths(source);
-			for(auto &path : imageFiles)
-			{
-				shared_ptr<ImageSet> &imageSet = images[path.second];
-				if(!imageSet)
-					imageSet.reset(new ImageSet(path.second));
-				imageSet->Add(std::move(path.first));
-			}
-		}
 	}
 	return images;
 }

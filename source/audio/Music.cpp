@@ -44,7 +44,12 @@ void Music::Init(const vector<string> &sources)
 		// Find all the sound files that this resource source provides.
 		string root = source + "sounds/";
 		vector<string> files = Files::RecursiveList(root);
-
+		if(files.empty())
+		{
+			auto archiveRet = Archive::GetRecursiveFileList(source, "sounds/");
+			files = archiveRet.second;
+			root = archiveRet.first;
+		}
 		for(const string &path : files)
 		{
 			// Sanity check on the path length.
@@ -110,7 +115,15 @@ void Music::SetSource(const string &name)
 	if(path.empty())
 		nextFile = nullptr;
 	else
+	{
 		nextFile = Files::Open(path);
+		if(!nextFile)
+		{
+			Archive::GetArchiveFile(path, archiveHandle);
+			nextFile = archiveHandle.GetFile();
+		}
+	}
+
 	hasNewFile = true;
 
 	// Also clear any decoded data left over from the previous file.
@@ -284,5 +297,6 @@ void Music::Decode()
 		mad_frame_finish(&frame);
 		mad_stream_finish(&stream);
 		fclose(file);
+		archiveHandle.Clear();
 	}
 }

@@ -22,6 +22,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	bool InitArchive(const string &path, archive *&reading, archive_entry *&entry, string &firstEntry)
+	{
+		reading = archive_read_new();
+		archive_read_support_filter_all(reading);
+		archive_read_support_format_all(reading);
+		int ret = archive_read_open_filename(reading, path.c_str(), 10240);
+		if(ret != ARCHIVE_OK)
+			return false;
+		
+		archive_read_next_header(reading, &entry);
+		firstEntry = archive_entry_pathname(entry);
+		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
+		archive_read_data_skip(reading);
+		
+		return true;
+	}
+};
+
 
 
 Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
@@ -48,7 +67,23 @@ void Archive::ArchiveResourceHandle::CreateFileFromData()
 
 
 
+void Archive::ArchiveResourceHandle::Clear()
+{
+	if(data)
+		free(data);
+	size = 0;
+}
+
+
+
 FILE *Archive::ArchiveResourceHandle::GetFile()
+{
+	return file;
+}
+
+
+
+File &Archive::ArchiveResourceHandle::GetFileRAI()
 {
 	return file;
 }
@@ -69,36 +104,27 @@ Archive::ArchiveResourceHandle::operator bool() const
 
 
 
-vector<pair<string, string>> Archive::GetImagePaths(string archivePath)
+pair<string, vector<string>> Archive::GetRecursiveFileList(const string &archivePath, const string &subFolder)
 {
-	vector<pair<string, string>> result;
+	pair<string, vector<string>> result;
 
-	struct archive *reading = archive_read_new();
-	archive_read_support_filter_all(reading);
-	archive_read_support_format_all(reading);
-	int ret = archive_read_open_filename(reading, archivePath.c_str(), 10240);
-	if(ret != ARCHIVE_OK)
+	struct archive *reading = nullptr;
+	archive_entry *entry = nullptr;
+	string firstEntry;
+
+	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return result;
-	
-	archive_entry *entry;
-	archive_read_next_header(reading, &entry);
-	string firstEntry = archive_entry_pathname(entry);
-	firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
-	archive_read_data_skip(reading);
 
+	const string directoryPath = firstEntry + subFolder;
 
-	string directoryPath = firstEntry + "images/";
-	size_t start = directoryPath.size();
-	
+	result.first = archivePath + "/" + directoryPath;
 
 	while(archive_read_next_header(reading, &entry) == ARCHIVE_OK)
 	{
-		string name = archive_entry_pathname(entry);
+		const string name = archive_entry_pathname(entry);
 		if(!name.starts_with(directoryPath))
 			continue;
-		if(!ImageSet::IsImage(name))
-			continue;
-		result.emplace_back(archivePath + "/" + name, ImageSet::Name(name.substr(start)));
+		result.second.emplace_back(archivePath + "/" + name);
 	}
 	archive_read_free(reading);
 
@@ -107,42 +133,7 @@ vector<pair<string, string>> Archive::GetImagePaths(string archivePath)
 
 
 
-vector<string> Archive::GetDataPaths(string archivePath)
-{
-	vector<string> result;
-
-	struct archive *reading = archive_read_new();
-	archive_read_support_filter_all(reading);
-	archive_read_support_format_all(reading);
-	int ret = archive_read_open_filename(reading, archivePath.c_str(), 10240);
-	if(ret != ARCHIVE_OK)
-		return result;
-	
-	archive_entry *entry;
-	archive_read_next_header(reading, &entry);
-	string firstEntry = archive_entry_pathname(entry);
-	firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
-	archive_read_data_skip(reading);
-
-
-	string directoryPath = firstEntry + "data/";
-	
-
-	while(archive_read_next_header(reading, &entry) == ARCHIVE_OK)
-	{
-		string name = archive_entry_pathname(entry);
-		if(!name.starts_with(directoryPath))
-			continue;
-		result.emplace_back(archivePath + "/" + name);
-	}
-	archive_read_free(reading);
-
-	return result;
-}
-
-
-
-void Archive::GetArchiveFile(std::string archiveFilePath, Archive::ArchiveResourceHandle &handle)
+void Archive::GetArchiveFile(const std::string &archiveFilePath, Archive::ArchiveResourceHandle &handle)
 {
 	// First split path up into archive path and inside archive path.
 	size_t start = archiveFilePath.find(".zip/");
@@ -152,20 +143,13 @@ void Archive::GetArchiveFile(std::string archiveFilePath, Archive::ArchiveResour
 	string archivePath = archiveFilePath.substr(0, start + 4);
 	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
 	
-	struct archive *reading = archive_read_new();
-	archive_read_support_filter_all(reading);
-	archive_read_support_format_all(reading);
-	int ret = archive_read_open_filename(reading, archivePath.c_str(), 10240);
-	if(ret != ARCHIVE_OK)
+	struct archive *reading = nullptr;
+	archive_entry *entry = nullptr;
+	string firstEntry;
+
+	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return;
 	
-	archive_entry *entry;
-	archive_read_next_header(reading, &entry);
-	string firstEntry = archive_entry_pathname(entry);
-	firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
-	archive_read_data_skip(reading);
-	
-
 	while(archive_read_next_header(reading, &entry) == ARCHIVE_OK)
 	{
 		string name = archive_entry_pathname(entry);

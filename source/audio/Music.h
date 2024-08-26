@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "../Archive.h"
+
 #include <condition_variable>
 #include <cstdint>
 #include <cstdio>
@@ -22,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <thread>
 #include <vector>
+
 
 
 
@@ -65,6 +68,7 @@ private:
 	// thread. When the decode thread takes possession of it, it sets this
 	// pointer to null.
 	FILE *nextFile = nullptr;
+	Archive::ArchiveResourceHandle archiveHandle;
 	bool hasNewFile = false;
 	bool done = false;
 

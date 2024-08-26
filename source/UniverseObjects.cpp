@@ -53,7 +53,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string>
 				// override things in folders later in the path.
 				auto list = Files::RecursiveList(source + "data/");
 				if(list.empty())
-					list = Archive::GetDataPaths(source);
+					list = Archive::GetRecursiveFileList(source, "data/").second;
 				files.reserve(files.size() + list.size());
 				files.insert(files.end(),
 						make_move_iterator(list.begin()),

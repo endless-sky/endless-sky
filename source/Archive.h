@@ -31,8 +31,10 @@ public:
 
 		void Allocate(size_t newSize);
 		void CreateFileFromData();
+		void Clear();
 
 		FILE *GetFile();
+		File &GetFileRAI();
 		unsigned char *GetData();
 
 		explicit operator bool() const;
@@ -45,8 +47,8 @@ public:
 
 
 public:
-	static std::vector<std::pair<std::string, std::string>> GetImagePaths(std::string archivePath);
-	static std::vector<std::string> GetDataPaths(std::string archivePath);
-	static void GetArchiveFile(std::string archivePath, ArchiveResourceHandle &handle);
+	static std::pair<std::string, std::vector<std::string>> GetRecursiveFileList(
+		const std::string &archivePath, const std::string &subFolder);
+	static void GetArchiveFile(const std::string &archivePath, ArchiveResourceHandle &handle);
 };
 
