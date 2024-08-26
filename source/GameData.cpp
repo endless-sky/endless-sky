@@ -914,7 +914,7 @@ void GameData::LoadSources(TaskQueue &queue)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 	plugins.clear();
-	
+
 	plugins = Files::List(Files::Resources() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))

@@ -31,12 +31,12 @@ namespace {
 		int ret = archive_read_open_filename(reading, path.c_str(), 10240);
 		if(ret != ARCHIVE_OK)
 			return false;
-		
+
 		archive_read_next_header(reading, &entry);
 		firstEntry = archive_entry_pathname(entry);
 		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
 		archive_read_data_skip(reading);
-		
+
 		return true;
 	}
 };
@@ -154,7 +154,7 @@ bool Archive::FileExists(const string &archivePath, const string &path)
 
 	InitArchive(archivePath, reading, entry, firstEntry);
 
-	return false
+	return false;
 }
 
 
@@ -168,14 +168,14 @@ void Archive::GetArchiveFile(const std::string &archiveFilePath, Archive::Archiv
 
 	string archivePath = archiveFilePath.substr(0, start + 4);
 	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
-	
+
 	struct archive *reading = nullptr;
 	archive_entry *entry = nullptr;
 	string firstEntry;
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return;
-	
+
 	while(archive_read_next_header(reading, &entry) == ARCHIVE_OK)
 	{
 		string name = archive_entry_pathname(entry);
