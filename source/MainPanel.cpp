@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "Messages.h"
 #include "Mission.h"
 #include "Phrase.h"
@@ -70,6 +71,10 @@ void MainPanel::Step()
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 
+	// If the player is dead, don't show anything.
+	if(player.IsDead())
+		show = Command::NONE;
+
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
@@ -79,6 +84,11 @@ void MainPanel::Step()
 	else if(show.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		isActive = false;
+	}
+	else if(show.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
@@ -187,11 +197,28 @@ bool MainPanel::AllowsFastForward() const noexcept
 
 
 
+Engine &MainPanel::GetEngine()
+{
+	return engine;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MAP | Command::INFO | Command::HAIL | Command::HELP))
+	if(player.IsDead())
+		return true;
+
+	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
+	else if(command.Has(Command::TURRET_TRACKING))
+	{
+		bool newValue = !Preferences::Has("Turrets focus fire");
+		Preferences::Set("Turrets focus fire", newValue);
+		Messages::Add("Turret tracking mode set to: " + string(newValue ? "focused" : "opportunistic") + ".",
+			Messages::Importance::High);
+	}
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
@@ -208,14 +235,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 
 	return true;
-}
-
-
-
-// Forward the given TestContext to the Engine under MainPanel.
-void MainPanel::SetTestContext(TestContext &testContext)
-{
-	engine.SetTestContext(testContext);
 }
 
 
@@ -412,7 +431,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
-	else if(flagship->Cloaking() == 1.)
+	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
 		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
 	else if(target)
 	{
@@ -420,7 +439,7 @@ bool MainPanel::ShowHailPanel()
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
-				|| target->Cloaking() == 1.)
+				|| target->IsCloaked())
 			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."

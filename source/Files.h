@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILES_H_
-#define ES_FILES_H_
+#pragma once
 
 #include <cstdio>
 #include <ctime>
@@ -72,13 +71,11 @@ public:
 
 	// Open this user's plugins directory in their native file explorer.
 	static void OpenUserPluginFolder();
+	// Open this user's save file directory in their native file explorer.
+	static void OpenUserSavesFolder();
 
 	// Logging to the error-log. Actual calls should be done through Logger
 	// and not directly here to ensure that other logging actions also
 	// happen (and to ensure thread safety on the logging).
 	static void LogErrorToFile(const std::string &message);
 };
-
-
-
-#endif

@@ -24,9 +24,9 @@ ship "Archon"
 		"hull" 1000000
 		"required crew" 1
 		"bunks" 1
-		"mass" 1000
-		"drag" 27
-		"heat dissipation" 40
+		"mass" 2150
+		"drag" 40.5
+		"heat dissipation" 27
 		"fuel capacity" 800
 		"cargo space" 0
 		"outfit space" 1300
@@ -44,10 +44,10 @@ ship "Archon"
 		"ion resistance" 1
 		"scramble resistance" 1
 		"ramscoop" 100
-		"thrust" 80
+		"thrust" 120
 		"thrusting energy" 20
 		"thrusting heat" 10
-		"turn" 1600
+		"turn" 2400
 		"turning energy" 10
 		"turning heat" 5
 		weapon
@@ -114,6 +114,30 @@ ship "Archon" "Archon (Cloaked)"
 	add attributes
 		"cloak" .04
 	"final explode" "archon c teleport"
+
+ship "Archon" "Archon (Hyperdrive Cloaked)"
+	sprite "ship/archon b"
+		"frame rate" 0.87
+	"never disabled"
+	add attributes
+		"cloak" .04
+		"jump speed" 1
+		"hyperdrive" 1
+		"hyperdrive sound" ""
+		"hyperdrive out sound" ""
+		"hyperdrive in sound" ""
+	"final explode" "archon b teleport"
+	outfits
+		"Drak Antimatter Cannon"
+		"Drak Antimatter Cannon (Augmented)"
+		"Drak Anti-Missile Field" 2
+		"Drak Anti-Missile Field (Augmented)" 2
+		"Drak Draining Field"
+		"Drak Draining Field (Augmented)"
+		"Drak Distancer" 2
+		"Drak Turret" 3
+		"Drak Turret (Augmented)" 3
+
 
 effect "archon a teleport"
 	sprite "effect/archon teleport/archonateleport"
