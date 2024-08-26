@@ -152,7 +152,17 @@ bool Archive::FileExists(const string &archivePath, const string &path)
 	archive_entry *entry = nullptr;
 	string firstEntry = "";
 
-	InitArchive(archivePath, reading, entry, firstEntry);
+	if(!InitArchive(archivePath, reading, entry, firstEntry))
+		return false;
+
+	const string filePath = firstEntry + path;
+
+	while(archive_read_next_header(reading, &entry) == ARCHIVE_OK)
+	{
+		string name = archive_entry_pathname(entry);
+		if(name == filePath)
+			return true;
+	}
 
 	return false;
 }
