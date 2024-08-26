@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOCATION_FILTER_H_
-#define LOCATION_FILTER_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "DistanceCalculationSettings.h"
@@ -133,7 +132,3 @@ private:
 
 	ConditionSet conditions;
 };
-
-
-
-#endif

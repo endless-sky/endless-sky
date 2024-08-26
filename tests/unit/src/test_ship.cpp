@@ -37,13 +37,13 @@ namespace { // test namespace
 // #region unit tests
 SCENARIO( "Creating a Ship::Bay instance", "[ship][bay]" ) {
 	// No default constructor.
-	REQUIRE_FALSE( std::is_default_constructible<Ship::Bay>::value );
+	REQUIRE_FALSE( std::is_default_constructible_v<Ship::Bay> );
 
 	GIVEN( "a reference position" ) {
 		auto bay = Ship::Bay(20., 40., "Fighter");
 		THEN( "the position is scaled by 50%" ) {
-			CHECK( bay.point.X() == Approx(10.) );
-			CHECK( bay.point.Y() == Approx(20.) );
+			CHECK_THAT( bay.point.X(), Catch::Matchers::WithinAbs(10., 0.0001) );
+			CHECK_THAT( bay.point.Y(), Catch::Matchers::WithinAbs(20., 0.0001) );
 		}
 	}
 	GIVEN( "a category string" ) {

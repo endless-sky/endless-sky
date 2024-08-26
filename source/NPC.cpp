@@ -59,6 +59,8 @@ namespace {
 				return "on destroy";
 			case NPC::Trigger::KILL:
 				return "on kill";
+			case NPC::Trigger::ENCOUNTER:
+				return "on encounter";
 			default:
 				return "unknown trigger";
 		}
@@ -197,7 +199,8 @@ void NPC::Load(const DataNode &node)
 				{"board", Trigger::BOARD},
 				{"capture", Trigger::CAPTURE},
 				{"destroy", Trigger::DESTROY},
-				{"kill", Trigger::KILL}
+				{"kill", Trigger::KILL},
+				{"encounter", Trigger::ENCOUNTER},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -512,7 +515,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed.", Messages::Importance::Highest);
+		Messages::Add("Mission failed" + (caller ? ": \"" + caller->Name() + "\"" : "") + ".",
+			Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
@@ -661,7 +665,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		return result;
 	}
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+		result.npcActions[it.first] = it.second.Instantiate(player.Conditions(), subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -678,14 +682,17 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true);
+		ship->FinishLoading(true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
+	map<string, string> playerSubs;
+	player.AddPlayerSubstitutions(playerSubs);
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(*nameIt);
+		result.ships.back()->SetName(Format::Replace(Format::Replace(
+			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
@@ -747,6 +754,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		{ShipEvent::BOARD, {Trigger::BOARD}},
 		{ShipEvent::CAPTURE, {Trigger::CAPTURE, Trigger::KILL}},
 		{ShipEvent::DESTROY, {Trigger::DESTROY, Trigger::KILL}},
+		{ShipEvent::ENCOUNTER, {Trigger::ENCOUNTER}},
 	};
 
 	int type = event.Type();
@@ -778,7 +786,8 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			{Trigger::BOARD, ShipEvent::BOARD},
 			{Trigger::CAPTURE, ShipEvent::CAPTURE},
 			{Trigger::DESTROY, ShipEvent::DESTROY},
-			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
+			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
+			{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
 		};
 
 		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
@@ -792,10 +801,10 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		const auto excludedIt = triggerExclusions.find(trigger);
 		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
 
-		// The PROVOKE Trigger only requires a single ship to receive the
+		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
