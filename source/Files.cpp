@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 
+#include "Archive.h"
 #include "File.h"
 #include "Logger.h"
 
@@ -38,7 +39,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <iostream>
 #include <mutex>
 #include <stdexcept>
-#include "Archive.h"
 
 using namespace std;
 

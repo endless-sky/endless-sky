@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
-#include "audio/Audio.h"
 #include "Archive.h"
+#include "audio/Audio.h"
 #include "BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"

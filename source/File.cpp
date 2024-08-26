@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 
 #if defined _WIN32
-#include <windows.h>
-#include <share.h>
 #include <io.h>
+#include <share.h>
+#include <windows.h>
 #endif
 
 #include <fcntl.h>
