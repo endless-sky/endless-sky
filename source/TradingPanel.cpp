@@ -236,7 +236,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
 	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
-	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
 			const string &commodity = it.first;
