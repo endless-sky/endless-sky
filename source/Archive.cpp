@@ -133,6 +133,32 @@ pair<string, vector<string>> Archive::GetRecursiveFileList(const string &archive
 
 
 
+string Archive::GetRootPath(const string &archivePath)
+{
+	struct archive *reading = nullptr;
+	archive_entry *entry = nullptr;
+	string firstEntry = "";
+
+	InitArchive(archivePath, reading, entry, firstEntry);
+
+	return firstEntry;
+}
+
+
+
+bool Archive::FileExists(const string &archivePath, const string &path)
+{
+	struct archive *reading = nullptr;
+	archive_entry *entry = nullptr;
+	string firstEntry = "";
+
+	InitArchive(archivePath, reading, entry, firstEntry);
+
+	return false
+}
+
+
+
 void Archive::GetArchiveFile(const std::string &archiveFilePath, Archive::ArchiveResourceHandle &handle)
 {
 	// First split path up into archive path and inside archive path.

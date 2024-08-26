@@ -39,6 +39,7 @@ public:
 
 		explicit operator bool() const;
 
+
 	private:
 		File file;
 		unsigned char *data = nullptr;
@@ -49,6 +50,8 @@ public:
 public:
 	static std::pair<std::string, std::vector<std::string>> GetRecursiveFileList(
 		const std::string &archivePath, const std::string &subFolder);
+	static std::string GetRootPath(const std::string &archivePath);
+	static bool FileExists(const std::string &archivePath, const std::string &path);
 	static void GetArchiveFile(const std::string &archivePath, ArchiveResourceHandle &handle);
 };
 
