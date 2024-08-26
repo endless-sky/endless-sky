@@ -47,7 +47,7 @@ namespace {
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
-		return (c == '-' || c == '~' || c == '+' || c == '=');
+		return (c == '-' || c == '~' || c == '^' || c == '+' || c == '=');
 	}
 
 	// Determine whether the given path or name is to a sprite for which a

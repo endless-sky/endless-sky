@@ -175,11 +175,14 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 	while(--pos)
 		if(name[pos] < '0' || name[pos] > '9')
 			break;
+	if(name[pos] == '~')
+		Logger::LogError("Warning: file '" + path.string()
+				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.");
 	// Special case: if the image is already in premultiplied alpha format,
 	// there is no need to apply premultiplication here.
 	if(name[pos] != '=')
 	{
-		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~') ? 1 : 0;
+		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~' || name[pos] == '^') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2))
 			Premultiply(*this, frame, additive);
 	}
