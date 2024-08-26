@@ -31,7 +31,6 @@ namespace {
 		int ret = archive_read_open_filename(reading, path.c_str(), 10240);
 		if(ret != ARCHIVE_OK)
 			return false;
-		
 		size_t start = path.rfind("/");
 		string cleanedArchiveName = path.substr(start, path.size() - start - 4) + "/";
 
