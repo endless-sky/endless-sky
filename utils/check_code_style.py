@@ -49,7 +49,7 @@ line_include = {re.compile(regex): description for regex, description in {
 	"\\s+$": "trailing whitespace at end of line",
 	# Matches any number of operators that have no leading whitespace,
 	# except if preceded by '(', '[' or '{', or inside a 'case' constant expression.
-	"(?<!^case\\s.*)([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator"
+	"(?<!^case\\s.*)([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+(?<!(->|::|\\.)\\*)([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator"
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)

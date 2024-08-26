@@ -313,9 +313,9 @@ mission "Unfettered Small Medicals Rush"
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much-needed medical supplies."
 	name "Express medical stock from <planet stopovers>"
-	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
-	deadline 5 1
-	cargo "medical supplies" 15 2 .05
+	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and swiftly bring it to the Unfettered before <date> for <payment>."
+	deadline 4 1
+	cargo "medical supplies" 10 2 .05
 	source
 		attributes "unfettered"
 	stopover
@@ -324,13 +324,14 @@ mission "Unfettered Small Medicals Rush"
 		attributes "spaceport"
 	destination "Darkcloak"
 	to offer
-		random < 30 + "Unfettered Jump Drive 1: offered" * 30
+		random < 20 + "Unfettered Jump Drive 2: offered" * 10
+		"reputation: Hai (Unfettered)" >= 0
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered medicals pickup dialog"
 	on complete
-		payment 8000 3300
+		payment 8000 2000
 		dialog phrase "unfettered medicals payment dialog"
 
 
@@ -339,7 +340,7 @@ mission "Unfettered Big Medicals Rush"
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much-needed medical supplies."
 	name "Medical supplies from <planet stopovers>"
-	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
+	description "The Unfettered hospitals on <destination> are in need of significant resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 10 1
 	cargo "medicals" 35 2 .05
 	source
@@ -349,8 +350,9 @@ mission "Unfettered Big Medicals Rush"
 		government "Hai"
 		attributes "spaceport"
 	to offer
-		has "Unfettered Jump Drive 1: offered"
-		random < 40
+		"reputation: Hai (Unfettered)" >= 0
+		has "Unfettered Jump Drive 3: offered"
+		random < 20
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover

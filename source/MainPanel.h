@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAIN_PANEL_H_
-#define MAIN_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -44,11 +43,11 @@ public:
 	// The hail panel calls this when it closes.
 	void OnBribeCallback(const Government *bribed);
 
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext) override;
-
 	// The main panel allows fast-forward.
 	bool AllowsFastForward() const noexcept final;
+
+	// Get the underlying game engine used by the game.
+	Engine &GetEngine();
 
 
 protected:
@@ -96,7 +95,3 @@ private:
 	bool canClick = false;
 	bool canDrag = false;
 };
-
-
-
-#endif

@@ -29,7 +29,7 @@ on:
 
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -41,11 +41,11 @@ jobs:
   build_ubuntu:
     name: Ubuntu
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
     runs-on: ubuntu-${{ matrix.os }}
     strategy:
       matrix:
-        os: [20.04, 22.04]
+        os: [22.04, 24.04]
         opengl: [GL, GLES]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,14 +55,20 @@ jobs:
         show-progress: false
     - name: Install development dependencies
       run: |
-        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache/sccache
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -79,7 +85,7 @@ jobs:
   build_windows:
     name: Windows
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
     runs-on: windows-2022
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -87,8 +93,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -101,12 +114,12 @@ jobs:
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: binary-windows
         path: ./build/ci/Endless Sky.exe
     - name: Upload DLLs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-dlls
         path: ./build/ci/*.dll
@@ -115,7 +128,7 @@ jobs:
   build_windows_clang:
     name: Windows Clang
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
     runs-on: windows-2022
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -123,8 +136,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -141,16 +161,23 @@ jobs:
   build_macos:
     name: MacOS
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
-    runs-on: macos-12
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
     - uses: lukka/get-cmake@latest
@@ -169,7 +196,7 @@ jobs:
   test-parse:
     needs: [changed, build_windows]
     name: Data Files
-    if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.parse_script == 'true') && always() }}
+    if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.ci_config == 'true') && always() }}
     runs-on: windows-2022
     env:
       CONTINUOUS: EndlessSky-win64-continuous.zip
@@ -180,26 +207,28 @@ jobs:
         show-progress: false
     # If no code changes occurred then we can download the latest continuous.
     - name: Download latest continuous
-      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' }}
+      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' && needs.changed.outputs.ci_config != 'true' }}
       run: gh release download -R ${{ github.repository }} continuous -p ${{ env.CONTINUOUS }}
     - name: Extract and prepare continuous
-      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' }}
+      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' && needs.changed.outputs.ci_config != 'true' }}
       run: |
         Expand-Archive ${{ env.CONTINUOUS }} -DestinationPath continuous -Force
         COPY '.\continuous\Endless Sky.exe' .
         COPY '.\continuous\*.dll' .
     # Otherwise download the binary from CI.
     - name: Download game binary from CI
-      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
-      uses: actions/download-artifact@v3
+      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+      uses: actions/download-artifact@v4
       with:
         name: binary-windows
     - name: Download DLLs from CI
-      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
-      uses: actions/download-artifact@v3
+      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+      uses: actions/download-artifact@v4
       with:
         name: windows-dlls
     - name: Parse Datafiles
-      run: .\utils\test_parse.ps1 'Endless Sky.exe'
+      run: "'./Endless Sky.exe' -p"
+      shell: bash
     - name: Parse Integration Test Data
-      run: .\utils\test_parse.ps1 'Endless Sky.exe' tests/integration/config
+      run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
+      shell: bash

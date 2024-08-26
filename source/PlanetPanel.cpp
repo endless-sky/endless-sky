@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -61,18 +63,27 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
-	GameData::Preload(planet.Landscape());
-	GameData::FinishLoadingSprites();
+	TaskQueue queue;
+	GameData::Preload(queue, planet.Landscape());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
 
 void PlanetPanel::Step()
 {
+	// If the player is dead, pop the planet panel.
+	if(player.IsDead())
+	{
+		player.SetPlanet(nullptr);
+		GetUI()->PopThrough(this);
+		return;
+	}
+
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -88,9 +99,6 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	if(player.IsDead())
-		return;
-
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 
@@ -129,10 +137,8 @@ void PlanetPanel::Draw()
 	{
 		Rectangle box = ui.GetBox("content");
 		if(box.Width() != text.WrapWidth())
-		{
 			text.SetWrapWidth(box.Width());
-			text.Wrap(planet.Description());
-		}
+		text.Wrap(planet.Description().ToString(player.Conditions()));
 		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 	}
 }
@@ -148,6 +154,9 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// So, we give the spaceport a one frame reprieve in which to react.
 	if(GetUI()->WillBeTop(spaceport.get()) && !spaceportWasTop)
 		return false;
+	if(player.IsDead())
+		return true;
+
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
@@ -205,6 +214,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(command.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
 	else
@@ -335,7 +349,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
-				if(jumpWarnings.count(warning))
+				if(jumpWarnings.contains(warning))
 				{
 					++nonJumpCount;
 					break;

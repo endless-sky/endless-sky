@@ -45,7 +45,7 @@ outfit "Grab-Strike Turret"
 		"tracking" .7
 		"shield damage" 108
 		"hull damage" 32
-		"hit force" -160
+		"hit force" -240
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
 effect "grab-strike impact"
@@ -140,7 +140,7 @@ outfit "Banisher Grav-Turret"
 		"firing heat" 4.9
 		"shield damage" 2.8
 		"hull damage" .9
-		"hit force" 40
+		"hit force" 60
 	description "The Korath like to keep their enemies close... but not too close."
 
 outfit "Expeller Grav-Ray"
@@ -164,7 +164,7 @@ outfit "Expeller Grav-Ray"
 		"firing heat" 3.1
 		"shield damage" 1.4
 		"hull damage" .45
-		"hit force" 25
+		"hit force" 37.5
 	description "This low-power version of the Banisher is used on Korath fighters to push enemy vessels away from carriers and civilians."
 
 effect "banisher impact"
@@ -440,7 +440,7 @@ outfit "Piercer Missile Launcher"
 		"shield damage" 290
 		"hull damage" 440
 		"piercing" .2
-		"hit force" 300
+		"hit force" 450
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
@@ -500,9 +500,9 @@ outfit "Korath Detainer"
 		"burst reload" 10
 		"burst count" 2
 		"firing energy" 756
-		"firing force" 40
+		"firing force" 60
 		"firing heat" 400
-		"hit force" 80
+		"hit force" 120
 		"shield damage" 320
 		"hull damage" 240
 		"slowing damage" 40
@@ -592,7 +592,7 @@ outfit "Cluster Mine Layer"
 		"missile strength" 35
 		"shield damage" -3200
 		"hull damage" -2400
-		"hit force" -150
+		"hit force" -225
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
 
@@ -612,7 +612,7 @@ outfit "Korath Mine Submunition"
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280
-		"hit force" 200
+		"hit force" 300
 		"missile strength" 22
 
 effect "minelayer fire"
@@ -767,6 +767,7 @@ outfit "Digger Mining Turret"
 		"shield damage" 0.8
 		"hull damage" 1.3
 		"minable damage" 5.2
+		"prospecting" 4.2
 		"disruption damage" .08
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they re-engineered this ancient, robust design and added a turret base. The mild shield disruption effect makes it somewhat useful in combat if required.`
 
@@ -793,6 +794,7 @@ outfit "Digger Mining Beam"
 		"shield damage" 0.5
 		"hull damage" 0.9
 		"minable damage" 4.6
+		"prospecting" 3.7
 		"disruption damage" .06
 	description `The gun version of the classic Korath mining laser allows a larger mothership to release a cloud of fighter-sized miners to harvest resources when working faster-moving or more dangerous asteroid fields.`
 
@@ -835,7 +837,7 @@ outfit "Langrage Hyper-Heaver"
 		"firing fuel" 12.5
 		"shield damage" -342
 		"hull damage" -342
-		"hit force" 3600
+		"hit force" 5400
 		submunition "Heaver Shard" 20
 	description `Langrage Hyper-Heavers raise the use of improvised ammunition to a fine art. This turret converts scrap metal, nearby asteroids, compressed garbage, or other debris into a high speed debris field. The exact mechanism is unclear, but the internal workings bear some similarities to hyperdrives and Banishers.`
 	description `	At close range, the heaved langrage merely forces the enemy back. As the launch field collapses and the langrage returns fully to normal space, however, it is rent into a rapidly-expanding cloud of deadly projectiles as it returns to normal space.`
@@ -860,7 +862,7 @@ outfit "Heaver Shard"
 		"random velocity" 1.5
 		"lifetime" 20
 		"random lifetime" 7.5
-		"hit force" 20
+		"hit force" 30
 		submunition "Heaver Splinter" 3
 
 outfit "Heaver Splinter"
@@ -875,7 +877,7 @@ outfit "Heaver Splinter"
 		"random lifetime" 7.5
 		"shield damage" 5.7
 		"hull damage" 5.7
-		"hit force" 6.7
+		"hit force" 10.05
 
 effect "heaver shard hit"
 	sprite "effect/heaver shard hit"
@@ -933,6 +935,7 @@ outfit "Firelight Missile Bank"
 		ammo "Firelight Missile"
 		icon "icon/firelight"
 		"hit effect" "firelight ring" 20
+		"die effect" "piercer fire"
 		"velocity" 4
 		"velocity override" 16
 		"lifetime" 10
@@ -948,8 +951,8 @@ outfit "Firelight Missile Bank"
 		"homing" 4
 		"trigger radius" 30
 		"blast radius" 60
-		"hit force" 100
-		"missile strength" 60
+		"hit force" 150
+		"missile strength" 30
 		submunition "Firelight Turning"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
@@ -970,8 +973,8 @@ outfit "Firelight Turning"
 		"optical tracking" .9
 		"trigger radius" 30
 		"blast radius" 60
-		"hit force" 60
-		"missile strength" 60
+		"hit force" 90
+		"missile strength" 30
 		"submunition" "Firelight Activated"
 
 outfit "Firelight Activated"
@@ -985,7 +988,7 @@ outfit "Firelight Activated"
 		"lifetime" 140
 		"acceleration" 1.6
 		"drag" .1
-		"turn" 2
+		"turn" 1.7
 		"homing" 4
 		"infrared tracking" .5
 		"optical tracking" .7
@@ -996,8 +999,8 @@ outfit "Firelight Activated"
 		"heat damage" 1800
 		"burn damage" 10
 		"corrosion damage" 2
-		"hit force" 400
-		"missile strength" 60
+		"hit force" 600
+		"missile strength" 30
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
@@ -1105,7 +1108,7 @@ outfit "Firestorm Battery"
 		"heat damage" 5320
 		"burn damage" 40
 		"corrosion damage" 5
-		"hit force" 4000
+		"hit force" 6000
 		"missile strength" 115
 	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
 

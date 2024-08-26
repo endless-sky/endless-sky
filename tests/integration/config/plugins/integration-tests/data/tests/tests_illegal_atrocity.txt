@@ -317,8 +317,6 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 			command board
 		label "floating"
-		# empty input to make time pass
-		input
 		# wait for it to become hostile from the scanning
 		branch "floating"
 			"reputation: Quarg" >= 0
@@ -332,7 +330,6 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning save"
 		call "Load First Savegame"
-		watchdog 6000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
@@ -350,7 +347,6 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity save"
 		call "Load First Savegame"
-		watchdog 6000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
