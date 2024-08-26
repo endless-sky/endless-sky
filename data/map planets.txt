@@ -2558,12 +2558,13 @@ planet Kella-Uuoru-Sossa
 	description `This is the ancestral homeworld of the Successor species. The spatial anomalies that now dominate this system have scoured its surface with radiation and evaporated most of its once-extensive oceans. The great cities of the Predecessors' empire are now devoid of all organic life; many of them remain as pristine and gleaming as the on the days they were abandoned. Caustic dust chokes the lower atmosphere of the planet, and your ship's sensors alert you to the presence of several sandstorms at other locations on the planet's surface. It would be wise not to get caught in one.`
 		to display
 			has "trusted by the successors"
-	spaceport `A massive spaceport on the surface stands proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters up above your ship, some scarred by weapons fire, others distorted by heat or radiation. A couple of small cleaning drones attempt to polish the weather-worn floors, while others wander aimlessly, devoid of purpose and direction.`
-		to display
-			not "trusted by the successors"
-	spaceport `The planet's main spaceport endures proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters above your ship, some scarred by weapons fire, others distorted by heat or radiation. One flock of small cleaning drones continually polishes the sand-worn floors, while others wander about aimlessly, devoid of purpose or direction.`
-		to display
-			has "trusted by the successors"
+	port "Spaceport"
+		description `A massive spaceport on the surface stands proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters up above your ship, some scarred by weapons fire, others distorted by heat or radiation. A couple of small cleaning drones attempt to polish the weather-worn floors, while others wander aimlessly, devoid of purpose and direction.`
+			to display
+				not "trusted by the successors"
+		description `The planet's main spaceport endures proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters above your ship, some scarred by weapons fire, others distorted by heat or radiation. One flock of small cleaning drones continually polishes the sand-worn floors, while others wander about aimlessly, devoid of purpose or direction.`
+			to display
+				has "trusted by the successors"
 	government Predecessor
 
 planet "Keneska Fek"
@@ -3991,12 +3992,13 @@ planet Raaqa-Uur-Kaav
 	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have flourished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nonetheless quietly demonstrate their supremacy over the unmaintained artificial.`
 		to display
 			has "trusted by the successors"
-	spaceport `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
-		to display
-			not "trusted by the successors"
-	spaceport `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
-		to display
-			has "trusted by the successors"
+	port "Spaceport"
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
+			to display
+				not "trusted by the successors"
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
+			to display
+				has "trusted by the successors"
 	government Predecessor
 
 planet Rand
@@ -5229,7 +5231,8 @@ planet Vade-Osolaa-Kaska
 	description `Although briefly used as a small-scale shipyard several hundred years ago, this station was eventually abandoned by the High Houses because of its inconvenient location and altogether poor construction. There are occasional rumors about criminals using it as a bolt-hole or a place to hide contraband, but few among the Successors have the desire to go and check.`
 		to display
 			has "known to the successors"
-	spaceport `The spaceport here is cavernous but empty, riddled with voids where vast pieces of machinery have been removed. A layer of dust covers the ground; it is disturbed in some locations with what look like trails, suggesting that this place may not be entirely unused.`
+	port "Spaceport"
+		description `The spaceport here is cavernous but empty, riddled with voids where vast pieces of machinery have been removed. A layer of dust covers the ground; it is disturbed in some locations with what look like trails, suggesting that this place may not be entirely unused.`
 	government Uninhabited
 
 planet Vail
