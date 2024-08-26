@@ -36,24 +36,23 @@ namespace {
 		FILE *fp;
 		char tp[MAX_PATH - 13];
 		char fn[MAX_PATH + 1];
-		int * pfd = &fd;
-		int retner = -1;
+		int *pfd = &fd;
 		char tfname[] = "MemTF_";
-		if (!GetTempPathA(sizeof(tp), tp))
-			return NULL;
-		if (!GetTempFileNameA(tp, tfname, 0, fn))
-			return NULL;
-		retner = _sopen_s(pfd, fn, _O_CREAT | _O_SHORT_LIVED | _O_TEMPORARY | _O_RDWR | _O_BINARY | _O_NOINHERIT, _SH_DENYRW, _S_IREAD | _S_IWRITE);
-		if (retner != 0)
-			return NULL;
-		if (fd == -1)
-			return NULL;
+		if(!GetTempPathA(sizeof(tp), tp))
+			return nullptr;
+		if(!GetTempFileNameA(tp, tfname, 0, fn))
+			return nullptr;
+		int retner = _sopen_s(pfd, fn, _O_CREAT | _O_SHORT_LIVED | _O_TEMPORARY
+			| _O_RDWR | _O_BINARY | _O_NOINHERIT, _SH_DENYRW, _S_IREAD | _S_IWRITE);
+
+		if(retner != 0 || fd == -1)
+			return nullptr;
 		fp = _fdopen(fd, "wb+");
-		if (!fp) {
+		if(!fp)
+		{
 			_close(fd);
-			return NULL;
+			return nullptr;
 		}
-		/*File descriptors passed into _fdopen are owned by the returned FILE * stream.If _fdopen is successful, do not call _close on the file descriptor.Calling fclose on the returned FILE * also closes the file descriptor.*/
 		fwrite(data, size, 1, fp);
 		rewind(fp);
 		return fp;
