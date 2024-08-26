@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RADAR_H_
-#define RADAR_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -93,7 +92,3 @@ private:
 	std::vector<Pointer> pointers;
 	std::vector<Line> lines;
 };
-
-
-
-#endif

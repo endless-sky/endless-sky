@@ -15,10 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteShader.h"
 
-#include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 
 #include <sstream>
 #include <vector>
@@ -293,20 +292,21 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
+void SpriteShader::Draw(const Sprite *sprite, const Point &position,
+	float zoom, int swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return;
 
 	Bind();
-	Add(Prepare(sprite, position, zoom, swizzle, frame));
+	Add(Prepare(sprite, position, zoom, swizzle, frame, unit));
 	Unbind();
 }
 
 
 
 SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame)
+	float zoom, int swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return {};
@@ -319,9 +319,14 @@ SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &posi
 	// Position.
 	item.position[0] = static_cast<float>(position.X());
 	item.position[1] = static_cast<float>(position.Y());
-	// Rotation (none) and scale.
-	item.transform[0] = sprite->Width() * zoom;
-	item.transform[3] = sprite->Height() * zoom;
+	// Rotation and scale.
+	Point scaledUnit = unit * zoom;
+	Point uw = scaledUnit * sprite->Width();
+	Point uh = scaledUnit * sprite->Height();
+	item.transform[0] = static_cast<float>(-uw.Y());
+	item.transform[1] = static_cast<float>(uw.X());
+	item.transform[2] = static_cast<float>(-uh.X());
+	item.transform[3] = static_cast<float>(-uh.Y());
 	// Swizzle.
 	item.swizzle = swizzle;
 

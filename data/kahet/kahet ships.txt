@@ -23,9 +23,9 @@ ship "Maeri'het"
 		"hull" 23100
 		"required crew" 1
 		"bunks" 1
-		"mass" 390
-		"drag" 3.8
-		"heat dissipation" .4
+		"mass" 620
+		"drag" 5.0
+		"heat dissipation" .31
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.3
 		"fuel capacity" 800
@@ -126,9 +126,9 @@ ship "Telis'het"
 		"hull" 21300
 		"required crew" 1
 		"bunks" 1
-		"mass" 820
-		"drag" 6.9
-		"heat dissipation" .35
+		"mass" 1570
+		"drag" 10.3
+		"heat dissipation" .24
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.2
 		"fuel capacity" 800
@@ -265,9 +265,9 @@ ship "Vareti'het"
 		"hull" 25800
 		"required crew" 1
 		"bunks" 1
-		"mass" 1520
-		"drag" 11.9
-		"heat dissipation" 0.3
+		"mass" 3220
+		"drag" 20.2
+		"heat dissipation" 0.18
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.4
 		"fuel capacity" 700
@@ -494,9 +494,9 @@ ship "Faes'mar"
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900
-		"mass" 46
-		"drag" .7
-		"heat dissipation" 1.05
+		"mass" 54
+		"drag" .73
+		"heat dissipation" 1
 		"cargo space" 102
 		"outfit space" 113
 		"engine capacity" 21
@@ -540,18 +540,18 @@ ship "Fetri'sei"
 		"hull" 7200
 		"required crew" 1
 		"bunks" 1
-		"mass" 210
-		"drag" 2.9
-		"heat dissipation" .5
+		"mass" 330
+		"drag" 3.5
+		"heat dissipation" .42
 		"fuel capacity" 100
 		"ramscoop" 0.13
 		"cargo space" 62
-		"outfit space" 383
-		"weapon capacity" 184
-		"engine capacity" 86
-		"energy capacity" 10000
-		"energy generation" 23.3
-		"heat generation" 32
+		"outfit space" 173
+		"weapon capacity" 54
+		"engine capacity" 46
+		"energy capacity" 6000
+		"energy generation" 16.6
+		"heat generation" 24
 		"shield heat" 3.4
 		"hull repair rate" 0.3
 		"ka'sei" 1
