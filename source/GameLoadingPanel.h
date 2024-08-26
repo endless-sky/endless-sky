@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_LOADING_PANEL_H_
-#define GAME_LOADING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -23,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Conversation;
 class PlayerInfo;
+class TaskQueue;
 class UI;
 
 
@@ -31,7 +31,8 @@ class UI;
 // (like game data and save files).
 class GameLoadingPanel final : public Panel {
 public:
-	GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading);
+	GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
+		UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
@@ -39,6 +40,7 @@ public:
 
 private:
 	PlayerInfo &player;
+	TaskQueue &queue;
 	const Conversation &conversation;
 	UI &gamePanels;
 	bool &finishedLoading;
@@ -49,7 +51,3 @@ private:
 	// The current number of ticks to be displayed.
 	int progress = 0;
 };
-
-
-
-#endif

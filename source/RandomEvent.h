@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RANDOMEVENT_H_
-#define RANDOMEVENT_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
@@ -98,7 +97,3 @@ void RandomEvent<T>::AddConditions(const DataNode &node)
 	else
 		conditions->Load(node);
 }
-
-
-
-#endif

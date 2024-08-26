@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAMEWINDOW_H_
-#define GAMEWINDOW_H_
+#pragma once
 
 #include "Preferences.h"
 
@@ -24,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class GameWindow {
 public:
 	static std::string SDLVersions();
-	static bool Init();
+	static bool Init(bool headless);
 	static void Quit();
 
 	// Paint the next frame in the main window.
@@ -51,7 +50,3 @@ public:
 	// Checks for video system errors and records those as well.
 	static void ExitWithError(const std::string& message, bool doPopUp = true);
 };
-
-
-
-#endif

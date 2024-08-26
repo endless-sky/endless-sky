@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PHRASE_H_
-#define PHRASE_H_
+#pragma once
 
 #include "WeightedList.h"
 
@@ -97,7 +96,3 @@ private:
 	// Each time this phrase is defined, a new sentence is created.
 	std::vector<Sentence> sentences;
 };
-
-
-
-#endif
