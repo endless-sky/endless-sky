@@ -21,9 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 
-
+// Wrapper class for everything related to libarchive, allows easy access to
+// any archive and is able to store files in memory.
 class Archive {
 public:
+	// Safety class for storing files in memory, makes sure everything gets cleaned
+	// up neatly and hopefully safely.
 	class ArchiveResourceHandle {
 	public:
 		ArchiveResourceHandle() = default;

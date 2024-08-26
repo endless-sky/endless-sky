@@ -149,7 +149,7 @@ namespace {
 			});
 	}
 
-	void LoadPlugin(TaskQueue &queue, const string &path)
+	void LoadPlugin(TaskQueue &queue, const string &path, bool isZip = false)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -161,16 +161,18 @@ namespace {
 		// Load the icon for the plugin, if any.
 		auto icon = make_shared<ImageSet>(plugin->name);
 
-		// Try adding all the possible icon variants.
-		if(Files::Exists(path + "icon.png"))
-			icon->Add(path + "icon.png");
-		else if(Files::Exists(path + "icon.jpg"))
-			icon->Add(path + "icon.jpg");
+		string realPath = isZip ? path + "/" + Archive::GetRootPath(path) : path;
 
-		if(Files::Exists(path + "icon@2x.png"))
-			icon->Add(path + "icon@2x.png");
-		else if(Files::Exists(path + "icon@2x.jpg"))
-			icon->Add(path + "icon@2x.jpg");
+		// Try adding all the possible icon variants.
+		if(Files::Exists(realPath + "icon.png"))
+			icon->Add(realPath + "icon.png");
+		else if(Files::Exists(realPath + "icon.jpg"))
+			icon->Add(realPath + "icon.jpg");
+
+		if(Files::Exists(realPath + "icon@2x.png"))
+			icon->Add(realPath + "icon@2x.png");
+		else if(Files::Exists(realPath + "icon@2x.jpg"))
+			icon->Add(realPath + "icon@2x.jpg");
 
 		if(!icon->IsEmpty())
 		{
@@ -918,13 +920,13 @@ void GameData::LoadSources(TaskQueue &queue)
 	plugins = Files::List(Files::Resources() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))
-			sources.emplace_back(path);
+			LoadPlugin(queue, path, true);
 	plugins.clear();
 
 	plugins = Files::List(Files::Config() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))
-			sources.emplace_back(path);
+			LoadPlugin(queue, path, true);
 }
 
 
