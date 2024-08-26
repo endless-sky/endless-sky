@@ -30,6 +30,7 @@ using namespace std;
 
 namespace {
 #if defined _WIN32
+	// Adapted from https://github.com/Arryboom/fmemopen_windows
 	FILE *fmemopen(unsigned char *data, size_t size, const char *type)
 	{
 		int fd;

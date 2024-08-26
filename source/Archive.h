@@ -54,7 +54,7 @@ public:
 	static std::pair<std::string, std::vector<std::string>> GetRecursiveFileList(
 		const std::string &archivePath, const std::string &subFolder);
 	static std::string GetRootPath(const std::string &archivePath);
-	static bool FileExists(const std::string &archivePath, const std::string &path);
+	static bool FileExists(const std::string &archivePath);
 	static void GetArchiveFile(const std::string &archivePath, ArchiveResourceHandle &handle);
 };
 

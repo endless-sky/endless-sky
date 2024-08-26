@@ -163,15 +163,17 @@ namespace {
 
 		string realPath = isZip ? path + "/" + Archive::GetRootPath(path) : path;
 
+		auto Exists = isZip ? &Archive::FileExists : &Files::Exists;
+
 		// Try adding all the possible icon variants.
-		if(Files::Exists(realPath + "icon.png"))
+		if((*Exists)(realPath + "icon.png"))
 			icon->Add(realPath + "icon.png");
-		else if(Files::Exists(realPath + "icon.jpg"))
+		else if((*Exists)(realPath + "icon.jpg"))
 			icon->Add(realPath + "icon.jpg");
 
-		if(Files::Exists(realPath + "icon@2x.png"))
+		if((*Exists)(realPath + "icon@2x.png"))
 			icon->Add(realPath + "icon@2x.png");
-		else if(Files::Exists(realPath + "icon@2x.jpg"))
+		else if((*Exists)(realPath + "icon@2x.jpg"))
 			icon->Add(realPath + "icon@2x.jpg");
 
 		if(!icon->IsEmpty())

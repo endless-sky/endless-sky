@@ -31,11 +31,32 @@ namespace {
 		int ret = archive_read_open_filename(reading, path.c_str(), 10240);
 		if(ret != ARCHIVE_OK)
 			return false;
+		
+		size_t start = path.rfind("/");
+		string cleanedArchiveName = path.substr(start, path.size() - start - 4) + "/";
 
+		// Find out if the archive contains a head folder.
 		archive_read_next_header(reading, &entry);
 		firstEntry = archive_entry_pathname(entry);
-		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
+		bool hasHeadFolder = firstEntry == cleanedArchiveName;
+		if(hasHeadFolder)
+			firstEntry = firstEntry.substr(0, firstEntry.find("/") + 1);
+		else
+			firstEntry = "";
 		archive_read_data_skip(reading);
+
+		// If the archive has no head folder rewind to the start.
+		if(!hasHeadFolder)
+		{
+			archive_read_free(reading);
+
+			reading = archive_read_new();
+			archive_read_support_filter_all(reading);
+			archive_read_support_format_all(reading);
+			int ret = archive_read_open_filename(reading, path.c_str(), 10240);
+			if(ret != ARCHIVE_OK)
+				return false;
+		}
 
 		return true;
 	}
@@ -146,16 +167,22 @@ string Archive::GetRootPath(const string &archivePath)
 
 
 
-bool Archive::FileExists(const string &archivePath, const string &path)
+bool Archive::FileExists(const string &archiveFilePath)
 {
+	// First split path up into archive path and inside archive path.
+	size_t start = archiveFilePath.find(".zip/");
+	if(start == string::npos)
+		return false;
+
+	string archivePath = archiveFilePath.substr(0, start + 4);
+	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
+
 	struct archive *reading = nullptr;
 	archive_entry *entry = nullptr;
 	string firstEntry = "";
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return false;
-
-	const string filePath = firstEntry + path;
 
 	while(archive_read_next_header(reading, &entry) == ARCHIVE_OK)
 	{
