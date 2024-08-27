@@ -144,7 +144,7 @@ void Personality::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "confusion")
 		{
-			if(keyIndex)
+			if(add || remove)
 				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
