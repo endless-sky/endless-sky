@@ -2940,7 +2940,7 @@ mission "Bounty Hunting (Very Tiny)"
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 80
-		random < 50
+		random < 40
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2972,6 +2972,53 @@ mission "Bounty Hunting (Very Tiny)"
 			payment 25000
 			fail
 
+mission "Bounty Hunting (Very Tiny, Local)"
+	name "Wanted corsair entering <system>"
+	description "A small pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 25000
+	to offer
+		or
+			"combat rating" > 15
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 80
+		random < 15
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Scrapper"
+			variant
+				"Scrapper (Gatling)"
+			variant
+				"Scrapper (Mod Blaster)"
+			variant 4
+				"Sparrow"
+			variant 2
+				"Sparrow (Gatling)"
+			variant 2
+				"Wasp"
+			variant
+				"Wasp (Javelin)"
+			variant
+				"Wasp (Meteor)"
+			variant
+				"Wasp (Plasma)"
+			variant
+				"Wasp (Proton)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 25000
+			fail
+
 
 
 mission "Bounty Hunting (Tiny)"
@@ -2987,7 +3034,7 @@ mission "Bounty Hunting (Tiny)"
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 200
-		random < 45
+		random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3027,6 +3074,57 @@ mission "Bounty Hunting (Tiny)"
 			payment 50000
 			fail
 
+mission "Bounty Hunting (Tiny, Local)"
+	name "Wanted outlaw entering <system>"
+	description "A well armed pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 50000
+	to offer
+		or
+			"combat rating" > 30
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 200
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Hawk"
+			variant
+				"Hawk (Plasma)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				"Hawk (Bomber)"
+			variant
+				"Berserker"
+			variant
+				"Berserker (Afterburner)"
+			variant
+				"Berserker (Strike)"
+			variant
+				"Fury"
+			variant
+				"Fury (Gatling)"
+			variant
+				"Fury (Heavy)"
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Bomber)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 50000
+			fail
+
 mission "Bounty Hunting (Very Small)"
 	name "Wanted criminal near <system>"
 	description "A light pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
@@ -3040,7 +3138,7 @@ mission "Bounty Hunting (Very Small)"
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 		"combat rating" < 350
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3049,6 +3147,55 @@ mission "Bounty Hunting (Very Small)"
 		personality heroic staying nemesis target
 		system
 			distance 1 1
+		fleet
+			names "pirate"
+			variant
+				"Quicksilver"
+			variant
+				"Quicksilver (Proton)"
+			variant
+				"Raven"
+			variant
+				"Raven (Heavy)"
+			variant
+				"Raven (Afterburner)"
+			variant
+				"Headhunter"
+			variant
+				"Headhunter (Strike)"
+			variant
+				"Headhunter (Particle)"
+			variant
+				"Clipper"
+			variant
+				"Clipper (Heavy)"
+			variant
+				"Clipper (Speedy)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 95000
+			fail
+
+mission "Bounty Hunting (Very Small, Local)"
+	name "Wanted criminal entering <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 95000
+	to offer
+		or
+			"combat rating" > 80
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" < 350
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
 		fleet
 			names "pirate"
 			variant
@@ -3088,7 +3235,7 @@ mission "Bounty Hunting (Small)"
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3122,9 +3269,51 @@ mission "Bounty Hunting (Small)"
 			payment 180000
 			fail
 
+mission "Bounty Hunting (Small, Local)"
+	name "Wanted bandit entering <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 180000
+	to offer
+		"combat rating" > 200
+		"combat rating" < 500
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 180000
+			fail
+
 mission "Bounty Hunting (Medium)"
 	name "Wanted pirate near <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3132,7 +3321,7 @@ mission "Bounty Hunting (Medium)"
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3160,6 +3349,42 @@ mission "Bounty Hunting (Medium)"
 			payment 240000
 			fail
 
+mission "Bounty Hunting (Medium, Local)"
+	name "Wanted pirate entering <system>"
+	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 240000
+	to offer
+		"combat rating" > 350
+		"combat rating" < 1200
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Proton)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 240000
+			fail
+
 mission "Bounty Hunting (Big)"
 	name "Wanted warlord near <system>"
 	description "A heavy warship known as the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
@@ -3170,7 +3395,7 @@ mission "Bounty Hunting (Big)"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
-		random < 40
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3202,9 +3427,49 @@ mission "Bounty Hunting (Big)"
 			payment 300000
 			fail
 
+mission "Bounty Hunting (Big, Local)"
+	name "Wanted warlord entering <system>"
+	description "A heavy warship known as the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 300000
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2500
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 300000
+			fail
+
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
-	description "A medium pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it <day> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30

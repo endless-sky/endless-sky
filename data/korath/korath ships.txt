@@ -23,9 +23,9 @@ ship "Rano'erek"
 		"hull" 16500
 		"required crew" 137
 		"bunks" 357
-		"mass" 1503
-		"drag" 17.1
-		"heat dissipation" .45
+		"mass" 3542
+		"drag" 32.5
+		"heat dissipation" .24
 		"fuel capacity" 900
 		"cargo space" 675
 		"outfit space" 763
@@ -105,9 +105,9 @@ ship "Palavret"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 720
-		"drag" 12
-		"heat dissipation" .5
+		"mass" 1770
+		"drag" 20.4
+		"heat dissipation" .3
 		"fuel capacity" 600
 		"cargo space" 175
 		"outfit space" 777
@@ -179,9 +179,9 @@ ship "Tubfalet"
 		"hull" 11000
 		"required crew" 157
 		"bunks" 250
-		"mass" 952
-		"drag" 15
-		"heat dissipation" .6
+		"mass" 2228
+		"drag" 25.5
+		"heat dissipation" .36
 		"heat protection" 0.1
 		"hull protection" 0.1
 		"fuel capacity" 700
@@ -293,9 +293,9 @@ ship "'nra'ret"
 		"hull" 9850
 		"required crew" 193
 		"bunks" 221
-		"mass" 979
-		"drag" 11.3
-		"heat dissipation" .63
+		"mass" 2228
+		"drag" 18.7
+		"heat dissipation" .39
 		"fuel capacity" 900
 		"cargo space" 50
 		"outfit space" 943
@@ -447,9 +447,9 @@ ship "Rai'alorej"
 		hull 27000
 		"required crew" 523
 		"bunks" 1433
-		"mass" 1660
-		"drag" 27.6
-		"heat dissipation" .36
+		"mass" 4050
+		"drag" 53.8
+		"heat dissipation" .19
 		"fuel capacity" 700
 
 		"cargo space" 351
@@ -528,9 +528,9 @@ ship "Ikatila'ej"
 		"hull" 93000
 		"required crew" 957
 		"bunks" 1933
-		"mass" 5380
-		"drag" 58
-		"heat dissipation" .29
+		"mass" 14082
+		"drag" 133.4
+		"heat dissipation" .13
 		"fuel capacity" 800
 		"cargo space" 845
 		"outfit space" 1314
@@ -595,6 +595,7 @@ ship "Ikatila'ej"
 
 
 ship "Lor'kas Ik 577"
+	"display name" "Karek A'awoj"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
@@ -604,9 +605,9 @@ ship "Lor'kas Ik 577"
 		hull 29600
 		"required crew" 234
 		"bunks" 453
-		"mass" 1885
-		"drag" 19
-		"heat dissipation" .4
+		"mass" 4791
+		"drag" 39
+		"heat dissipation" .2
 		"fuel capacity" 1000
 		"cargo space" 1375
 		"outfit space" 883
@@ -666,10 +667,11 @@ ship "Lor'kas Ik 577"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This simple ship has been adapted for hauling materials between refinery and factory stations."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. The simplest are adapted to haul materials between refinery and factory stations. Fittingly, they're named after a productive colony of the Efreti, to honor their focus on peaceful industry."
 
 
 ship "Ra'gru Ik 618"
+	"display name" "Sapira A'awoj"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
@@ -679,9 +681,9 @@ ship "Ra'gru Ik 618"
 		hull 39500
 		"required crew" 619
 		"bunks" 794
-		"mass" 1745
-		"drag" 21
-		"heat dissipation" .48
+		"mass" 5070
+		"drag" 44.1
+		"heat dissipation" .23
 		"fuel capacity" 1000
 		"cargo space" 191
 		"outfit space" 1278
@@ -750,10 +752,11 @@ ship "Ra'gru Ik 618"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels. It is named after the Mereti's capital planet, where they made powerful warships out of modular components."
 
 
 ship "Kas'lor Ik 582"
+	"display name" "Dathnak A'awoj"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	attributes
@@ -763,9 +766,9 @@ ship "Kas'lor Ik 582"
 		hull 26100
 		"required crew" 314
 		"bunks" 551
-		"mass" 1901
-		"drag" 17
-		"heat dissipation" .35
+		"mass" 4778
+		"drag" 34.9
+		"heat dissipation" .18
 		"solar collection" 3.8
 		"fuel capacity" 32700
 		"cargo space" 734
@@ -822,10 +825,11 @@ ship "Kas'lor Ik 582"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel. Its name refers to the delicious squids that lived in their gas giants, and especially Deka Dathnak."
 
 
 ship "Lor'nag Ik 590"
+	"display name" "Spera A'awoj"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
 	attributes
@@ -835,9 +839,9 @@ ship "Lor'nag Ik 590"
 		hull 34800
 		"required crew" 538
 		"bunks" 1492
-		"mass" 1929
-		"drag" 18
-		"heat dissipation" .37
+		"mass" 4853
+		"drag" 36.9
+		"heat dissipation" .19
 		"solar collection" 5.6
 		"fuel capacity" 1000
 		"cargo space" 264
@@ -897,10 +901,11 @@ ship "Lor'nag Ik 590"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This bulbous ship has been adapted to carry passengers between stations, or boarding parties into enemy strongholds."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This bulbous ship has been adapted to carry passengers between stations, or boarding parties into enemy strongholds. Its name is in memory of the Anatruskor, who invented the jump drive."
 
 
 ship "Ra'at Ik 621"
+	"display name" "Ikfar A'awoj"
 	sprite "ship/world-ship e"
 	thumbnail "thumbnail/world-ship e"
 	attributes
@@ -910,9 +915,9 @@ ship "Ra'at Ik 621"
 		hull 31400
 		"required crew" 794
 		"bunks" 1037
-		"mass" 1755
-		"drag" 27
-		"heat dissipation" .41
+		"mass" 4647
+		"drag" 55.4
+		"heat dissipation" .2
 		"fuel capacity" 1000
 		"cargo space" 228
 		"outfit space" 999
@@ -984,7 +989,7 @@ ship "Ra'at Ik 621"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This many-lobed ship has been adapted to carry fighters into large-scale raids, or mining craft into asteroid belts. Its radial arrangements of hangars allows fighters a maximum variety of safe approach patterns in combat."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This many-lobed ship has been adapted to carry fighters into large-scale raids, or mining craft into asteroid belts. Its radial arrangements of hangars allows fighters a maximum variety of safe approach patterns in combat. Sestor exiles, who had a great affinity for carriers and fighters, bequeathed this variant its name after their capital world."
 
 
 ship "Kasichara A'awoj"
@@ -997,9 +1002,9 @@ ship "Kasichara A'awoj"
 		hull 49600
 		"required crew" 543
 		"bunks" 1997
-		"mass" 2105
-		"drag" 24
-		"heat dissipation" .43
+		"mass" 5562
+		"drag" 50.4
+		"heat dissipation" .21
 		"solar collection" 12.7
 		"fuel capacity" 600
 		"cargo space" 532
@@ -1051,8 +1056,8 @@ ship "Kasichara A'awoj"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Originally designed as a luxury habitat for those wealthy enough to escape living on the polluted surface of Korath worlds, when the Korath were exiled, it was into these gargantuan 'world-ships' they first crammed themselves into and fled to the core on. Nostalgically, the class was then renamed after the devastated and now forbidden Korath homeworld."
-	description "	Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids."
+	description `Originally designed as a luxury habitat for those wealthy enough to escape living on the polluted surface of Korath worlds, when the Korath were exiled, it was into these gargantuan "world-ships" they first crammed themselves into and fled to the core on. Nostalgically, the class was then renamed after the devastated and now forbidden Korath homeworld in honor of the Korsmanathi, ancestors of all Korath.`
+	description `	Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids.`
 
 
 ship "Korsmanath A'awoj"
@@ -1066,9 +1071,9 @@ ship "Korsmanath A'awoj"
 		hull 320690
 		"required crew" 1940
 		"bunks" 31920
-		"mass" 12000
-		"drag" 84
-		"heat dissipation" .22
+		"mass" 38565
+		"drag" 231
+		"heat dissipation" .08
 		"solar collection" 4.2
 		"fuel capacity" 1000
 		"cargo space" 1864
@@ -1077,10 +1082,10 @@ ship "Korsmanath A'awoj"
 		"engine capacity" 480
 		"atmosphere scan" 100
 		weapon
-			"blast radius" 400
-			"shield damage" 8000
-			"hull damage" 4000
-			"hit force" 12000
+			"blast radius" 800
+			"shield damage" 15000
+			"hull damage" 7500
+			"hit force" 22500
 	outfits
 		"Banisher Grav-Turret" 7
 		"Langrage Hyper-Heaver" 3
@@ -1302,19 +1307,19 @@ ship "Echo-Galleon"
 		hull 27000
 		"required crew" 243
 		"bunks" 972
-		"mass" 1535
-		"drag" 21
-		"heat dissipation" .6
+		"mass" 3791
+		"drag" 42
+		"heat dissipation" .3
 		"fuel capacity" 600
 		"cargo space" 734
 		"outfit space" 721
 		"weapon capacity" 285
 		"engine capacity" 155
 		weapon
-			"blast radius" 1000
-			"shield damage" 4000
-			"hull damage" 2000
-			"hit force" 6000
+			"blast radius" 360
+			"shield damage" 7200
+			"hull damage" 3600
+			"hit force" 10800
 	outfits
 		"Digger Mining Beam" 4
 		"Grab-Strike Turret" 2
@@ -1364,9 +1369,9 @@ ship "Arch-Carrack"
 		"hull" 19300
 		"required crew" 54
 		"bunks" 97
-		"mass" 1077
-		"drag" 14.9
-		"heat dissipation" .5
+		"mass" 1906
+		"drag" 22.3
+		"heat dissipation" .34
 		"fuel capacity" 600
 		"cargo space" 635
 		"outfit space" 582
@@ -1427,9 +1432,9 @@ ship "Charm-Shallop"
 		"hull" 15200
 		"required crew" 65
 		"bunks" 203
-		"mass" 495
-		"drag" 7.5
-		"heat dissipation" .7
+		"mass" 882
+		"drag" 10.5
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 194
 		"outfit space" 473
@@ -1486,9 +1491,9 @@ ship "Kar Ik Vot 349"
 		"hull" 65400
 		"automaton" 1
 		"crew equivalent" 150
-		"mass" 1350
-		"drag" 16.8
-		"heat dissipation" .5
+		"mass" 3754
+		"drag" 33.6
+		"heat dissipation" .25
 		"fuel capacity" 400
 		"cargo space" 87
 		"outfit space" 1054
@@ -1553,9 +1558,9 @@ ship "Tek Far 71 - Lek"
 		"hull" 29500
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 610
-		"drag" 9.6
-		"heat dissipation" .6
+		"mass" 1240
+		"drag" 14.9
+		"heat dissipation" .39
 		"fuel capacity" 400
 		"cargo space" 36
 		"outfit space" 533
@@ -1633,9 +1638,9 @@ ship "Tek Far 78 - Osk"
 		"hull" 34100
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 690
-		"drag" 10.2
-		"heat dissipation" .55
+		"mass" 1471
+		"drag" 16.3
+		"heat dissipation" .35
 		"fuel capacity" 400
 		"cargo space" 43
 		"outfit space" 611
@@ -1713,9 +1718,9 @@ ship "Tek Far 109"
 		"hull" 15800
 		"automaton" 1
 		"crew equivalent" 100
-		"mass" 540
-		"drag" 9.1
-		"heat dissipation" .65
+		"mass" 1056
+		"drag" 13.7
+		"heat dissipation" .44
 		"fuel capacity" 400
 		"cargo space" 31
 		"outfit space" 491
@@ -1801,9 +1806,9 @@ ship "Met Par Tek 53"
 		"hull" 22200
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 420
-		"drag" 5.7
-		"heat dissipation" .8
+		"mass" 935
+		"drag" 8.6
+		"heat dissipation" .54
 		"fuel capacity" 400
 		"cargo space" 26
 		"outfit space" 610
@@ -1927,7 +1932,7 @@ ship "Far Osk 27"
 	gun 13 -8
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to support a thicker hull, more shields, and more powerful guns than any comparable human ship."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
@@ -1942,9 +1947,9 @@ ship "Model 8"
 		"hull" 3320
 		"automaton" 1
 		"crew equivalent" 5
-		"mass" 110
-		"drag" 3.2
-		"heat dissipation" 1.5
+		"mass" 160
+		"drag" 3.7
+		"heat dissipation" 1.3
 		"fuel capacity" 200
 		"cargo space" 29
 		"outfit space" 220
@@ -1989,9 +1994,9 @@ ship "Model 16"
 		"hull" 9800
 		"automaton" 1
 		"crew equivalent" 10
-		"mass" 250
-		"drag" 6.9
-		"heat dissipation" 1.3
+		"mass" 390
+		"drag" 8.3
+		"heat dissipation" 1.09
 		"fuel capacity" 400
 		"cargo space" 7
 		"outfit space" 426
@@ -2043,9 +2048,9 @@ ship "Model 32"
 		"hull" 13400
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 370
-		"drag" 9.0
-		"heat dissipation" 1.3
+		"mass" 625
+		"drag" 11.7
+		"heat dissipation" 1.0
 		"fuel capacity" 400
 		"cargo space" 16
 		"outfit space" 481
@@ -2098,9 +2103,9 @@ ship "Model 64"
 		"hull" 18000
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 580
-		"drag" 11.1
-		"heat dissipation" 1.1
+		"mass" 1096
+		"drag" 16.1
+		"heat dissipation" .76
 		"fuel capacity" 400
 		"cargo space" 34
 		"outfit space" 567
@@ -2155,9 +2160,9 @@ ship "Model 128"
 		"hull" 23100
 		"automaton" 1
 		"crew equivalent" 75
-		"mass" 780
-		"drag" 13.2
-		"heat dissipation" 1.0
+		"mass" 1601
+		"drag" 20.5
+		"heat dissipation" .65
 		"fuel capacity" 400
 		"cargo space" 53
 		"outfit space" 713
@@ -2213,9 +2218,9 @@ ship "Model 256"
 		"hull" 28700
 		"automaton" 1
 		"crew equivalent" 100
-		"mass" 970
-		"drag" 15.3
-		"heat dissipation" .9
+		"mass" 2340
+		"drag" 26.8
+		"heat dissipation" .52
 		"fuel capacity" 400
 		"cargo space" 78
 		"outfit space" 857
@@ -2273,9 +2278,9 @@ ship "Model 512"
 		"hull" 34200
 		"automaton" 1
 		"crew equivalent" 150
-		"mass" 1150
-		"drag" 17.4
-		"heat dissipation" .8
+		"mass" 3186
+		"drag" 33.9
+		"heat dissipation" .42
 		"fuel capacity" 400
 		"cargo space" 107
 		"outfit space" 994

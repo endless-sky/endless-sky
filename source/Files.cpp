@@ -568,11 +568,18 @@ void Files::CreateFolder(const std::string &path)
 
 
 
-
 // Open this user's plugins directory in their native file explorer.
 void Files::OpenUserPluginFolder()
 {
 	OpenFolder(Config() + "plugins");
+}
+
+
+
+// Open this user's save file directory in their native file explorer.
+void Files::OpenUserSavesFolder()
+{
+	OpenFolder(savePath);
 }
 
 

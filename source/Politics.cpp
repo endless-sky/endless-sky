@@ -89,9 +89,9 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 		swap(first, second);
 	if(first->IsPlayer())
 	{
-		if(bribed.count(second))
+		if(bribed.contains(second))
 			return false;
-		if(provoked.count(second))
+		if(provoked.contains(second))
 			return true;
 
 		auto it = reputationWith.find(second);
@@ -169,7 +169,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
-		return (ship.GetPersonality().IsUnrestricted() || !gov->IsRestrictedFrom(*planet)) &&
+		return !ship.IsRestrictedFrom(*planet) &&
 			(!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
 
 	return CanLand(planet);
@@ -183,11 +183,11 @@ bool Politics::CanLand(const Planet *planet) const
 		return false;
 	if(!planet->IsInhabited())
 		return true;
-	if(dominatedPlanets.count(planet))
+	if(dominatedPlanets.contains(planet))
 		return true;
-	if(bribedPlanets.count(planet))
+	if(bribedPlanets.contains(planet))
 		return true;
-	if(provoked.count(planet->GetGovernment()))
+	if(provoked.contains(planet->GetGovernment()))
 		return false;
 
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
@@ -199,7 +199,7 @@ bool Politics::CanUseServices(const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(dominatedPlanets.count(planet))
+	if(dominatedPlanets.contains(planet))
 		return true;
 
 	auto it = bribedPlanets.find(planet);
@@ -231,7 +231,7 @@ void Politics::DominatePlanet(const Planet *planet, bool dominate)
 
 bool Politics::HasDominated(const Planet *planet) const
 {
-	return dominatedPlanets.count(planet);
+	return dominatedPlanets.contains(planet);
 }
 
 
@@ -241,7 +241,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	if(fined.count(gov) || Random::Real() > security || !gov->GetFineFraction())
+	if(fined.contains(gov) || Random::Real() > security || !gov->GetFineFraction())
 		return "";
 
 	string reason;
@@ -252,12 +252,44 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
+		const Planet *planet = player.GetPlanet();
+		if(planet && ship->GetPlanet() != planet)
+			continue;
 
 		int failedMissions = 0;
 
+		// Illegal passengers can only be detected by planetary security.
+		if(!scan)
+		{
+			int64_t fine = ship->Cargo().IllegalPassengersFine(gov, player);
+			if((fine > maxFine && maxFine >= 0) || fine < 0)
+			{
+				maxFine = fine;
+				reason = " for carrying illegal passengers.";
+
+				for(const Mission &mission : player.Missions())
+				{
+					if(mission.IsFailed(player))
+						continue;
+
+					string fineMessage = mission.FineMessage();
+					if(!fineMessage.empty())
+					{
+						reason = ".\n\t";
+						reason.append(fineMessage);
+					}
+					// Fail any missions with illegal passengers and "stealth" set.
+					if(mission.Fine() > 0 && mission.Passengers() && mission.FailIfDiscovered())
+					{
+						player.FailMission(mission);
+						++failedMissions;
+					}
+				}
+			}
+		}
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov, player);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -265,18 +297,18 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
-					if(mission.IsFailed())
+					if(mission.IsFailed(player))
 						continue;
 
-					// Append the illegalCargoMessage from each applicable mission, if available
-					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty())
+					// Append the fineMessage from each applicable mission, if available.
+					string fineMessage = mission.FineMessage();
+					if(!fineMessage.empty())
 					{
 						reason = ".\n\t";
-						reason.append(illegalCargoMessage);
+						reason.append(fineMessage);
 					}
-					// Fail any missions with illegal cargo and "Stealth" set
-					if(mission.IllegalCargoFine() > 0 && mission.FailIfDiscovered())
+					// Fail any missions with illegal cargo and "stealth" set.
+					if(mission.Fine() > 0 && mission.CargoSize() && mission.FailIfDiscovered())
 					{
 						player.FailMission(mission);
 						++failedMissions;
