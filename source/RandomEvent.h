@@ -29,7 +29,7 @@ template <typename T>
 class RandomEvent {
 public:
 	constexpr RandomEvent(const T *event, int period) noexcept;
-	RandomEvent(const RandomEvent &);
+	RandomEvent(const RandomEvent &r);
 	RandomEvent &operator = (const RandomEvent &r);
 
 	constexpr const T *Get() const noexcept;
