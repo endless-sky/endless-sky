@@ -2610,7 +2610,7 @@ mission "Stone of our Fathers 3"
 				decline
 			label accept
 			`	You're surprised at how cool the smooth stone feels in your palm.`
-			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	And with that, the man disappears into the crowd.`
 				accept
 	on complete

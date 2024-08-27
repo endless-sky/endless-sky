@@ -52,14 +52,14 @@ If you want to build the libraries from source instead of using Homebrew, you ca
 You can use your favorite package manager to install the needed dependencies. If you're using a slower moving distro like Ubuntu or Debian (or any derivatives thereof), make sure to use at least Ubuntu 22.04 LTS or Debian 12.
 If your distro does not provide up-to-date version of these libraries, you can use vcpkg to build the necessary libraries from source by passing `-DES_USE_VCPKG=ON`. Older versions of Ubuntu and Debian, for example, will need this. Additional dependencies will likely need to be installed to build the libraries from source as well.
 
-In addition to the below dependencies, you will also need CMake 3.16 or newer, however 3.21 or newer is strongly recommended. You can get the latest version from the [official website](https://cmake.org/download/).
+In addition to the below dependencies, you will also need CMake 3.16 or newer, however 3.21 or newer is strongly recommended. You can get the latest version from the [official website](https://cmake.org/download/). If you are often switching branches, then you can also consider installing [ccache](https://ccache.dev/) to speed up rebuilds after switching branches.
 
 
 <details>
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev catch2
 ```
 
 </details>
@@ -68,7 +68,7 @@ g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev li
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel catch2-devel
 ```
 
 </details>
