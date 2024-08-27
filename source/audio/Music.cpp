@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Files.h"
 
+#include "../text/Format.h"
+
 #include <mad.h>
 
 #include <algorithm>
@@ -48,7 +50,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 		for(const auto &path : files)
 		{
 			// Sanity check on the path length.
-			if(path.extension() != ".mp3" && path.extension() != ".MP3")
+			if(Format::LowerCase(path.extension()) != ".mp3")
 				continue;
 
 			paths[(path.parent_path() / path.stem()).generic_string()] = path;

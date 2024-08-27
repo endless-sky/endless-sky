@@ -83,7 +83,7 @@ public:
 
 private:
 	// Save path (in UTF-8). Empty string for in-memory DataWriter.
-	std::filesystem::path path = std::filesystem::path();
+	std::filesystem::path path;
 	// Current indentation level.
 	std::string indent;
 	// Before writing each token, we will write either the indentation string
