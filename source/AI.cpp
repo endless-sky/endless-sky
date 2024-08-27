@@ -3169,7 +3169,8 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 			if(rangeSquared > scanRangeMetric)
 				continue;
 			// Player ships do not have a restricted field of view so that they target flotsam behind them.
-			if(rangeSquared > 10000. && !ship.IsYours() && p.Unit().Dot(ship.Facing().Unit()) < .9) continue;
+			if(rangeSquared > 10000. && !ship.IsYours() && p.Unit().Dot(ship.Facing().Unit()) < .9)
+				continue;
 
 			// Estimate how long it would take to intercept this flotsam.
 			Point v = it->Velocity() - ship.Velocity();
