@@ -131,7 +131,7 @@ void TradingPanel::Draw()
 
 	int missionCargo = player.Cargo().MissionCargoSize();
 	double minableCargo = player.Cargo().MinablesSizePrecise();
-	double outfitCargo = max(0.0, player.Cargo().OutfitsSizePrecise() - minableCargo);
+	double outfitCargo = max(0., player.Cargo().OutfitsSizePrecise() - minableCargo);
 	if(minableCargo || outfitCargo || missionCargo)
 	{
 		string str = Format::MassString(ceil(minableCargo + outfitCargo + missionCargo)) + " of ";
@@ -360,9 +360,8 @@ void TradingPanel::SellOutfitsOrMinables(bool sellMinable)
 
 string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 {
-	struct OutfitInfo
-	{
-		std::string name;
+	struct OutfitInfo {
+		string name;
 		int64_t count, value;
 	};
 	vector<OutfitInfo> outfitValue;
@@ -379,7 +378,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 		profit += value;
 		tonsSold += static_cast<int>(it.second * it.first->Mass());
 		// Store a description of the count & item, followed by its value.
-		outfitValue.push_back({ "", it.second, value });
+		outfitValue.emplace_back("", it.second, value);
 		if(sellMinable)
 			outfitValue.back().name = Format::CargoString(it.second, it.first->DisplayName());
 		else if(it.second == 1)
@@ -395,7 +394,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 		<< Format::CargoString(tonsSold, sellMinable ? "of special commodities" : "of outfits")
 		<< " for " << Format::CreditString(profit) << '?' << endl;
 
-	// Sort by decreasing value
+	// Sort by decreasing value.
 	sort(outfitValue.begin(), outfitValue.end(), [](const OutfitInfo &left, const OutfitInfo &right)
 	{
 		return right.value < left.value;
