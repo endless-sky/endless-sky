@@ -228,7 +228,7 @@ outfit "Outfit Scanner"
 
 outfit "Asteroid Scanner"
 	category "Systems"
-	cost 122000
+	cost 61000
 	thumbnail "outfit/asteroid scanner"
 	"mass" 6
 	"outfit space" -6
@@ -280,7 +280,7 @@ outfit "Outfits Expansion"
 	"outfit space" 15
 	"cargo space" -20
 	"cooling inefficiency" 1
-	"heat dissipation" -.01
+	"heat dissipation" -.0065
 	"unplunderable" 1
 	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
 	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."

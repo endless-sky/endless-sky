@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLOTSAM_H_
-#define FLOTSAM_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -55,6 +54,7 @@ public:
 
 	// Move the object one time-step forward.
 	void Move(std::vector<Visual> &visuals);
+	void SetVelocity(Point velocity);
 
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;
@@ -69,6 +69,7 @@ public:
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
+	double Mass() const;
 
 	// Transfer contents to the collector ship. The flotsam velocity is
 	// stabilized in proportion to the amount being transferred.
@@ -91,7 +92,3 @@ private:
 	int count = 0;
 	const Government *sourceGovernment = nullptr;
 };
-
-
-
-#endif

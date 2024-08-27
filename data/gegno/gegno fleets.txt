@@ -95,7 +95,7 @@ fleet "Gegno Old"
 	names "gegno vi"
 	cargo 2
 	personality
-		timid
+		timid lingering
 	variant
 		"Protolith"
 
@@ -433,6 +433,4 @@ fleet "Scin Science"
 	variant
 		"Kyanite (Guile)"
 		"Tridymite"
-	variant
-		"Kyanite (Acumen)"
-		"Tridymite"
+

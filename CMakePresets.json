@@ -30,6 +30,7 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
+        "ES_USE_VCPKG": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF"
       },
       "condition": {
@@ -51,6 +52,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
+        "ES_USE_VCPKG": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF",
         "BUILD_TESTING": "OFF"
       },
@@ -212,7 +214,7 @@
         "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "13"
       }
     },
     {
@@ -260,7 +262,7 @@
         "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "13"
       }
     },
     {
@@ -278,7 +280,7 @@
         "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos-arm64-release",
         "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "13"
       }
     },
     {
@@ -681,6 +683,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "macos-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "macos",
+      "inherits": "integration"
+    },
+    {
       "name": "macos-integration-debug",
       "displayName": "Integration Tests (Debug)",
       "configurePreset": "macos",
@@ -703,6 +711,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "macos-arm",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-arm-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "macos-arm",
+      "inherits": "integration"
     },
     {
       "name": "macos-arm-integration-debug",
@@ -729,6 +743,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "clang-cl-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "clang-cl",
+      "inherits": "integration"
+    },
+    {
       "name": "clang-cl-integration-debug",
       "displayName": "Integration Tests (Debug)",
       "configurePreset": "clang-cl",
@@ -751,6 +771,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "mingw",
       "inherits": "benchmark"
+    },
+    {
+      "name": "mingw-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "mingw",
+      "inherits": "integration"
     },
     {
       "name": "mingw-integration-debug",
@@ -798,7 +824,7 @@
       "name": "linux-gles-ci",
       "displayName": "Linux GLES CI Tests",
       "configurePreset": "linux-gles-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "linux-gles-ci-benchmark",
@@ -810,7 +836,7 @@
       "name": "macos-ci",
       "displayName": "MacOS CI Tests",
       "configurePreset": "macos-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "macos-ci-benchmark",
@@ -822,7 +848,7 @@
       "name": "clang-cl-ci",
       "displayName": "VS CI Tests",
       "configurePreset": "clang-cl-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "clang-cl-ci-benchmark",
@@ -834,7 +860,7 @@
       "name": "mingw-ci",
       "displayName": "Mingw CI Tests",
       "configurePreset": "mingw-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "mingw-ci-benchmark",
