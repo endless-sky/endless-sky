@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_LOGGER_H_
-#define ES_LOGGER_H_
+#pragma once
 
 #include <functional>
 #include <string>
@@ -29,7 +28,3 @@ public:
 	static void SetLogErrorCallback(std::function<void(const std::string &message)> callback);
 	static void LogError(const std::string &message);
 };
-
-
-
-#endif

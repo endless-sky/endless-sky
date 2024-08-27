@@ -1004,7 +1004,7 @@ mission "Wanderers: Mind Escorts"
 			variant
 				"Hurricane" 2
 				"Derecho" 3
-				"Tempest" 4
+				"Tempest" 5
 
 mission "Wanderers: Mind 4"
 	landing
@@ -1127,9 +1127,9 @@ mission "Wanderers: Mind 6"
 			variant
 				"Model 512" 3
 				"Model 256" 4
-				"Model 128" 5
-				"Model 64" 6
-				"Model 32" 8
+				"Model 128" 4
+				"Model 64" 5
+				"Model 32" 7
 				"Model 16" 12
 		dialog `The last of the hostile Kor Mereti drones are destroyed; the remaining drones are not attacking the Wanderers. It is not entirely clear what has happened, but hopefully the Wanderers back on <planet> will have gained some information through the backdoor connection to their AI.`
 	npc
@@ -1139,10 +1139,10 @@ mission "Wanderers: Mind 6"
 			names "kor mereti"
 			variant
 				"Model 256" 1
-				"Model 128" 2
+				"Model 128" 1
 				"Model 64" 3
 				"Model 32" 5
-				"Model 16" 8
+				"Model 16" 10
 	on visit
 		dialog `You've landed on <planet>, but there are still hostile Kor Mereti drones in the Chimitarp system. Better depart and make sure they've been taken care of.`
 
