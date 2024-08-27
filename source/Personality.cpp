@@ -151,12 +151,15 @@ void Personality::Load(const DataNode &node)
 			else
 				confusionMultiplier = child.Value(1);
 		}
-		else if(remove && child.Size() == 2 && child.Token(1) == "linger time")
-			lingerTime = -1;
-		else if(!remove && child.Size() == 2 + keyIndex && child.Token(keyIndex) == "linger time")
-			lingerTime = child.Value(add + 1);
-		else if(child.Size() > keyIndex && child.Token(keyIndex) == "linger time")
-			child.PrintTrace("Invalid \"linger time\" specification.");
+		else if(child.Token(0) == "linger time")
+		{
+			if(remove)
+				lingerTime = -1;
+			else if(child.Size() >= 2)
+				lingerTime = child.Value(1);
+			else
+				child.PrintTrace("The \"linger time\" must have a value.");
+		}
 		else
 			for(int i = 0; i < child.Size(); ++i)
 				Parse(child, i, remove);
