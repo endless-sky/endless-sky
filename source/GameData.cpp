@@ -162,7 +162,7 @@ namespace {
 
 		string realPath = isZip ? path + "/" + Archive::GetRootPath(path) : path;
 
-		auto Exists = isZip ? &Archive::FileExists : &Files::Exists;
+		const auto Exists = isZip ? &Archive::FileExists : &Files::Exists;
 
 		// Try adding all the possible icon variants.
 		if((*Exists)(realPath + "icon.png"))

@@ -50,6 +50,7 @@ void Music::Init(const vector<string> &sources)
 			files = archiveRet.second;
 			root = archiveRet.first;
 		}
+
 		for(const string &path : files)
 		{
 			// Sanity check on the path length.

@@ -152,6 +152,7 @@ void Audio::Init(const vector<string> &sources)
 			files = archiveRet.second;
 			root = archiveRet.first;
 		}
+
 		for(const string &path : files)
 		{
 			if(!path.compare(path.length() - 4, 4, ".wav"))
