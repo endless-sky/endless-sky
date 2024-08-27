@@ -219,8 +219,15 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
-		else if(!remove && child.Size() == valueIndex + 1 && key == "linger time")
-			requestedLingerTime = child.Value(valueIndex);
+		else if(key == "linger time")
+		{
+			if(hasValue)
+				// add "linger time" value
+				requestedLingerTime = child.Value(valueIndex);
+			else
+				// remove "linger time" OR add "linger time" (without a value)
+				requestedLingerTime = -1;
+		}
 		// Handle the attributes which can be "removed."
 		else if(key == "attributes")
 		{
