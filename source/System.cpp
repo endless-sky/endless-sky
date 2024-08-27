@@ -982,21 +982,7 @@ double System::Danger() const
 
 
 
-int System::MinimumFleetPeriod() const
-{
-	return minimumFleetPeriod;
-}
-
-
-
-int System::RequestedLingerTime() const
-{
-	return requestedLingerTime;
-}
-
-
-
-int System::ActualLingerTime() const
+int System::LingerTime() const
 {
 	return actualLingerTime;
 }

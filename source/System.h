@@ -172,15 +172,9 @@ public:
 	// in per frame).
 	double Danger() const;
 
-	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
-	int MinimumFleetPeriod() const;
-
-	// The value of "linger time" from the data files:
-	int RequestedLingerTime() const;
-
 	// Amount of time a ship should linger when it has nothing to do,
 	// unless something else overrides that linger time.
-	int ActualLingerTime() const;
+	int LingerTime() const;
 
 	const std::vector<RaidFleet> &RaidFleets() const;
 
