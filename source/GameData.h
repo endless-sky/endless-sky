@@ -177,6 +177,7 @@ public:
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
 
+
 private:
 	static void LoadSources(TaskQueue &queue);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();

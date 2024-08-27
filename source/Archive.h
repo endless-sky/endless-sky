@@ -1,5 +1,5 @@
 /* Archive.h
-Copyright (c) 2024 by RisingLeaf (the one and only if you notice this tell me to delete it XD)
+Copyright (c) 2024 by RisingLeaf
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software

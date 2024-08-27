@@ -26,10 +26,10 @@ namespace {
 	bool InitArchive(const string &path, archive *&reading, archive_entry *&entry, string &firstEntry)
 	{
 		reading = archive_read_new();
-		archive_read_support_filter_all(reading);
-		archive_read_support_format_all(reading);
-		int ret = archive_read_open_filename(reading, path.c_str(), 10240);
-		if(ret != ARCHIVE_OK)
+		archive_read_support_filter_zip(reading);
+		archive_read_support_format_zip(reading);
+		int status = archive_read_open_filename(reading, path.c_str(), 10240);
+		if(status != ARCHIVE_OK)
 			return false;
 		size_t start = path.rfind("/");
 		string cleanedArchiveName = path.substr(start, path.size() - start - 4) + "/";
@@ -65,8 +65,8 @@ namespace {
 
 Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
 {
-	if(data)
-		free(data);
+	free(data);
+	data = nullptr;
 }
 
 
@@ -74,7 +74,6 @@ Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
 void Archive::ArchiveResourceHandle::Allocate(size_t newSize)
 {
 	data = reinterpret_cast<unsigned char *>(malloc(newSize));
-
 	size = newSize;
 }
 
