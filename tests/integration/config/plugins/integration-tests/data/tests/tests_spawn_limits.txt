@@ -152,7 +152,6 @@ test "Spawn Limit Tests"
 	sequence
 		inject "Spawn Limits Test"
 		call "Load First Savegame"
-		watchdog 12000
 		call "Depart"
 		apply
 			"test: steps to wait" = 20
