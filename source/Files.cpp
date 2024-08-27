@@ -387,7 +387,7 @@ void Files::CreateFolder(const filesystem::path &path)
 		return;
 
 	if(filesystem::create_directory(path))
-		filesystem::permissions(path, filesystem::perms(std::filesystem::perms::owner_all));
+		filesystem::permissions(path, filesystem::perms(filesystem::perms::owner_all));
 	else
 		throw runtime_error("Error creating directory!");
 }
