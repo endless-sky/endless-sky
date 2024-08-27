@@ -103,16 +103,6 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 
 
-void ShipyardPanel::Step()
-{
-	ShopPanel::Step();
-	ShopPanel::CheckForMissions(Mission::SHIPYARD);
-	if(GetUI()->IsTop(this))
-		DoHelp("shipyard");
-}
-
-
-
 int ShipyardPanel::TileSize() const
 {
 	return SHIP_SIZE;
