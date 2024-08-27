@@ -45,7 +45,7 @@ phrase "generic cargo on visit"
 
 phrase "generic passenger stopover pickup"
 	word
-		`Your <passengers> board your ship and are prepared to go to <planet>.`
+		`Your <passengers> board your ship, ready to go to <planet>.`
 
 phrase "generic passenger dropoff payment"
 	word

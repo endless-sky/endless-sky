@@ -772,7 +772,7 @@ mission "Korath [F01]: A Fishy Deal"
 							has "Korath [F01]: A Fishy Deal: down"
 							has "Korath [F01]: A Fishy Deal: mission"
 				`	(Ignore her and go about your business.)`
-					decline
+					goto "decline mission"
 					to display
 						not "Korath [F01]: A Fishy Deal: ship"
 						not "Korath [F01]: A Fishy Deal: down"
@@ -804,9 +804,9 @@ mission "Korath [F01]: A Fishy Deal"
 			label "d'ya want the job"
 			choice
 				`	"I'm not afraid of dodging the cops... where there are none. Give me the cargo, and it'll reach its destination. You have my word."`
-					accept
+					goto "accept mission"
 				`	"On second thought, I don't think I want this mission. Illegal fish deliveries are too strange for my tastes."`
-					decline
+					goto "decline mission"
 				`	"If I'm just delivering fish, why is it illegal?"`
 					to display
 						not "Korath [F01]: A Fishy Deal: spicy"
@@ -816,6 +816,20 @@ mission "Korath [F01]: A Fishy Deal"
 			`	"Nothing is wrong with the fish; the other end of the delivery is the problem, so the whole trade arrangement is illegal. There's all sorts of barrels and boxes that come back from <planet>. It's mostly mundane stuff; never any drugs, counterfeits, or weapons. Why the Republic would ban this... I haven't the slightest notion.`
 			`	"A while back, my aunt was fined 25,000 credits for using a knock-off fuel gasket on her racing Flivver. She used the gasket because it was more reliable than a genuine one. Of course, that doesn't matter to the Republic. The Navy officer that caught her knew how dumb the law was, so he let her keep the gasket."`
 				goto "d'ya want the job"
+			label "accept mission"
+			action
+				clear "Korath [F01]: A Fishy Deal: ship"
+				clear "Korath [F01]: A Fishy Deal: down"
+				clear "Korath [F01]: A Fishy Deal: mission"
+				clear "Korath [F01]: A Fishy Deal: spicy"
+			branch accept
+			label "decline mission"
+			action
+				clear "Korath [F01]: A Fishy Deal: ship"
+				clear "Korath [F01]: A Fishy Deal: down"
+				clear "Korath [F01]: A Fishy Deal: mission"
+				clear "Korath [F01]: A Fishy Deal: spicy"
+			branch decline
 
 	on enter Atik
 		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
@@ -1167,9 +1181,15 @@ mission "Korath [F06]: The Rainbow Feather"
 				"willingness to agree to Iris's request to help Korath" = 2
 			label happyiris
 			`	She closes her eyes and sighs happily. "Thank you. We do not share this information lightly, and I'm glad we judged well." Opening her eyes and smiling, she does a slight bow and departs.`
-				decline
+				goto end
 			label "agree to disagree"
 			action
 				"willingness to agree to Iris's request to help Korath" = 1
 			`	She looks concerned and says, "Then, I'll pray that you make the right choice when fate brings power your way." At this, she does a slight bow and departs.`
-				decline
+
+			label end
+			action
+				clear "Korath [F05]: The Rainbow Feather: feather"
+				clear "Korath [F05]: The Rainbow Feather: know"
+				clear "Korath [F05]: The Rainbow Feather: exile"
+				clear "Korath [F05]: The Rainbow Feather: freedom"

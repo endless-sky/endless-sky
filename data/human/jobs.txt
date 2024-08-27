@@ -4171,7 +4171,6 @@ mission "Syndicate Defectors [0]"
 	repeat
 	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
-	# illegal passengers await a bugfix to actually be illegal
 	illegal 50000
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
