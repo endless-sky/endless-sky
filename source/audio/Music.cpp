@@ -50,7 +50,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 		for(const auto &path : files)
 		{
 			// Sanity check on the path length.
-			if(Format::LowerCase(path.extension()) != ".mp3")
+			if(Format::LowerCase(path.extension().string()) != ".mp3")
 				continue;
 
 			paths[(path.parent_path() / path.stem()).generic_string()] = path;
