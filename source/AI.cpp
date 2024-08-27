@@ -3166,7 +3166,8 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 			// the facing angle check.
 			Point p = it->Position() - ship.Position();
 			double rangeSquared = p.LengthSquared();
-			if(rangeSquared > scanRangeMetric) continue;
+			if(rangeSquared > scanRangeMetric)
+				continue;
 			// Player ships do not have a restricted field of view so that they target flotsam behind them.
 			if(rangeSquared > 10000. && !ship.IsYours() && p.Unit().Dot(ship.Facing().Unit()) < .9) continue;
 
