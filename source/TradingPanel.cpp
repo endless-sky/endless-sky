@@ -346,6 +346,8 @@ void TradingPanel::SellOutfitsOrMinables(bool sellMinable)
 	{
 		if(sellMinable != static_cast<bool>(it.first->Get("minable")))
 			continue;
+		if(!it.second)
+			continue;
 		int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
 		profit += value;
 		tonsSold += static_cast<int>(it.second * it.first->Mass());
@@ -378,7 +380,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 		profit += value;
 		tonsSold += static_cast<int>(it.second * it.first->Mass());
 		// Store a description of the count & item, followed by its value.
-		outfitValue.emplace_back("", it.second, value);
+		outfitValue.push_back({ "", it.second, value });
 		if(sellMinable)
 			outfitValue.back().name = Format::CargoString(it.second, it.first->DisplayName());
 		else if(it.second == 1)
