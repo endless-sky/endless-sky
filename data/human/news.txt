@@ -752,7 +752,7 @@ news "humanika efreti engineer"
 			`"I've never seen an alloy like we have on our drill heads. I wasn't able to drill half as deep back on New Wales."`
 			`"Our bunker cities use a lot of light-weight composites, which is why we're able to build them so large."`
 			`"A while back, we imported some machining tools that triple our engine manufacturing rate. I think we've almost caught up to Wayfarer in efficiency."`
-			`"We have a prototype ion engine that produces 50% more thrust, at triple the heat. Unfortunately, it tends to melt the ship's engine compartments and flies into the ship. I expect we'll have to cut down on thrust to compensate."`
+			`"We have a prototype ion engine that produces 50% more thrust, at triple the heat. Unfortunately, it tends to melt the ship's engine compartments and fly into the ship. I expect we'll have to cut down on thrust to compensate."`
 
 
 news "humanika efreti researcher"

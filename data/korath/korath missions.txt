@@ -673,7 +673,7 @@ mission "First Contact: Korath Exiles"
 			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw several smaller ones, facing each other. "Korath," they say again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
 			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small spiders, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
 			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." They point to the gun at the front of their fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." They point to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then they point to you. "Humani ka Korath nik lak'mal."`
-			`	To emphasize the point, on a blank part of the sand they draw a large circle with lots of dots on it, pointing to the plants as they make each dot. They then draw on outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships and likewise tosses it onto the map of their own space.`
+			`	To emphasize the point, on a blank part of the sand they draw a large circle with lots of dots on it, pointing to the plants as they make each dot. They then draw an outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships and likewise tosses it onto the map of their own space.`
 			choice
 				`	(Try to assure them you do not mean to fight them.)`
 					goto assurance
@@ -730,7 +730,7 @@ mission "First Contact: Korath Exiles"
 mission "Korath [F01]: A Fishy Deal"
 	landing
 	name "A fishy proposition"
-	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be paid 140,000. Don't get caught."
+	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be paid 140,000 credits. Don't get caught."
 	cargo "live fish" 15
 	# The mission is illegal because of the broader trade agreement. The player is supposed to be left with the impression that the Korath are sending back more dangerous things than waste processing systems. The Syndicate (and by extension, the Republic) is aware of this, and fines pilots involved.
 	illegal 50000
@@ -741,7 +741,7 @@ mission "Korath [F01]: A Fishy Deal"
 	on offer
 		event "know about Korath fish jobs"
 		conversation
-			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of an unfamiliar brown material. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
+			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they are ten meters thick, made of an unfamiliar brown material. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
 			`	Spaceport authorities direct you to bay 23X-5, which contains an odd ship you see on your way in. It resembles an old-fashioned jet aircraft, whose four jet engines have been replaced with small ion engines. From the gold pipes on the tail, it appears to have a hyperdrive built into the hull. Several packages are being unloaded from the plane. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the spaceport.`
 			`	The ship is parked next to yours and the woman is about to walk past you. She looks quite distraught and, perchance, looks your way. Maybe a distraction will cheer her up?`
 			label questions
