@@ -92,7 +92,6 @@ namespace {
 	StarField background;
 
 	vector<string> sources;
-
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
