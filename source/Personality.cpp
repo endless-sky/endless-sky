@@ -134,10 +134,9 @@ void Personality::Load(const DataNode &node)
 {
 	bool add = (node.Token(0) == "add");
 	bool remove = (node.Token(0) == "remove");
-	int keyIndex = add || remove;
-	if(!keyIndex)
+	if(!(add || remove))
 		flags.reset();
-	for(int i = 1 + keyIndex; i < node.Size(); ++i)
+	for(int i = 1 + (add || remove); i < node.Size(); ++i)
 		Parse(node, i, remove);
 
 	for(const DataNode &child : node)
