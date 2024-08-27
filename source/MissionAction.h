@@ -105,6 +105,8 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 
+	// Condition under which the dialog Decline button is visible
+	std::shared_ptr<ConditionSet> toDecline;
 	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
 	std::string dialogText;
 

@@ -147,14 +147,36 @@ void MissionAction::LoadSingle(const DataNode &child)
 
 	if(key == "dialog")
 	{
-		// Parse the "dialog phrase whatever" and "dialog whatever" lines:
-		if(child.Size() == 3 && child.Token(1) == "phrase")
+
+		// Collect the "to decline" button condition and determine if there are text grandchildren
+		const DataNode *firstText = nullptr;
+		for(auto &grand : child)
+			if(grand.Size() != 2 || grand.Token(0) != "to")
+			{
+				if(!firstText)
+					firstText = &grand;
+			}
+			else if(grand.Token(1) != "decline")
+				grand.PrintTrace("Expected \"phrase\", \"to decline\", or dialog text:");
+			else if(toDecline)
+				toDecline->Load(grand);
+			else
+				toDecline = make_shared<ConditionSet>(grand);
+
+		// Construct the dialog phrase or text, if it is valid
+		if(child.Size() == 3 && child.Token(1) == "phrase" && !firstText)
 			dialog.emplace_back(ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2))));
-		else if(hasValue)
-			dialog.emplace_back(child.Token(1));
-		// Parse embedded child dialog
-		for(const auto &grand : child)
-			dialog.emplace_back(grand);
+		else if(child.Size() == 1 && firstText && firstText->Size() == 1 && firstText->Token(0) == "phrase" &&
+				firstText->HasChildren())
+			dialog.emplace_back(ExclusiveItem<Phrase>(Phrase(*firstText)));
+		else if((child.Size() == 1 && firstText) || (child.Size() > 1 && child.Token(1) != "phrase"))
+		{
+			for(const auto &grand : child)
+				if(grand.Size() != 2 || grand.Token(0) != "to")
+					dialog.emplace_back(grand);
+		}
+		else
+			child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 	}
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child));
@@ -219,6 +241,13 @@ void MissionAction::SaveBody(DataWriter &out) const
 		out.Write("dialog");
 		out.BeginChild();
 		{
+			if(toDecline && !toDecline->IsEmpty())
+			{
+				out.Write("to", "decline");
+				out.BeginChild();
+				toDecline->Save(out);
+				out.EndChild();
+			}
 			// Break the text up into paragraphs.
 			for(const string &line : Format::Split(dialogText, "\n\t"))
 				out.Write(line);
@@ -396,10 +425,17 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		// avoid the player being spammed by dialogs if they have multiple
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
+		Dialog *dialog = nullptr;
 		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
+			dialog = new Dialog(text, player, destination);
 		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			dialog = new Dialog(text);
+		if(dialog)
+		{
+			dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
+			dialog->SetAcceptDecline(dialog->GetCanCancel());
+			ui->Push(dialog);
+		}
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
@@ -427,6 +463,8 @@ MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<strin
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	result.dialogText = CollapseDialog(&store, &subs);
+	if(toDecline)
+		result.toDecline = make_shared<ConditionSet>(*toDecline);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
