@@ -126,7 +126,7 @@ pair<string, vector<string>> Archive::GetRecursiveFileList(const string &archive
 	pair<string, vector<string>> result;
 
 	ReadingHandle reading(archive_read_new(), archive_read_free);
-	EntryHandle entry(nullptr, archive_entry_free);
+	EntryHandle entry(archive_entry_new(), archive_entry_free);
 	string firstEntry;
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
@@ -152,7 +152,7 @@ pair<string, vector<string>> Archive::GetRecursiveFileList(const string &archive
 string Archive::GetRootPath(const string &archivePath)
 {
 	ReadingHandle reading(archive_read_new(), archive_read_free);
-	EntryHandle entry(nullptr, archive_entry_free);
+	EntryHandle entry(archive_entry_new(), archive_entry_free);
 	string firstEntry = "";
 
 	InitArchive(archivePath, reading, entry, firstEntry);
@@ -173,7 +173,7 @@ bool Archive::FileExists(const string &archiveFilePath)
 	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
 
 	ReadingHandle reading(archive_read_new(), archive_read_free);
-	EntryHandle entry(nullptr, archive_entry_free);
+	EntryHandle entry(archive_entry_new(), archive_entry_free);
 	string firstEntry = "";
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
@@ -202,7 +202,7 @@ void Archive::GetArchiveFile(const std::string &archiveFilePath, Archive::Archiv
 	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
 
 	ReadingHandle reading(archive_read_new(), archive_read_free);
-	EntryHandle entry(nullptr, archive_entry_free);
+	EntryHandle entry(archive_entry_new(), archive_entry_free);
 	string firstEntry;
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
