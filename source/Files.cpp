@@ -100,7 +100,7 @@ void Files::Init(const char * const *argv)
 		if(resources.empty())
 			throw runtime_error("Unable to get path to resource directory!");
 
-		if(exists(resources))
+		if(Exists(resources))
 			resources = filesystem::canonical(resources);
 
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
