@@ -36,7 +36,9 @@ namespace {
 		string cleanedArchiveName = path.substr(start, path.size() - start - 4) + "/";
 
 		// Find out if the archive contains a head folder.
-		archive_read_next_header2(reading.get(), entry.get());
+		if(archive_read_next_header2(reading.get(), entry.get()) != ARCHIVE_OK)
+			return false;
+
 		firstEntry = archive_entry_pathname(entry.get());
 		bool hasHeadFolder = firstEntry == cleanedArchiveName;
 		if(hasHeadFolder)
@@ -180,11 +182,8 @@ bool Archive::FileExists(const string &archiveFilePath)
 		return false;
 
 	while(archive_read_next_header2(reading.get(), entry.get()) == ARCHIVE_OK)
-	{
-		string name = archive_entry_pathname(entry.get());
-		if(name == filePath)
+		if(archive_entry_pathname(entry.get()) == filePath)
 			return true;
-	}
 
 	return false;
 }
