@@ -54,7 +54,7 @@ public:
 	static std::vector<std::filesystem::path> RecursiveList(const std::filesystem::path &directory);
 
 	static bool Exists(const std::filesystem::path &filePath);
-	static time_t Timestamp(const std::filesystem::path &filePath);
+	static std::time_t Timestamp(const std::filesystem::path &filePath);
 	static void Copy(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Move(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Delete(const std::filesystem::path &filePath);
