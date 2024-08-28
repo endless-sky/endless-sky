@@ -66,6 +66,14 @@ namespace {
 		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
 	}
+
+	// Checks if a path is parent of another, without resolving symbolic links or requiring the path to exist.
+	bool IsParent(const filesystem::path &parent, const filesystem::path &child)
+	{
+		if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
+			return false;
+		return equal(parent.begin(), parent.end(), child.begin());
+	}
 }
 
 
@@ -95,17 +103,17 @@ void Files::Init(const char * const *argv)
 		if(exists(resources))
 			resources = filesystem::canonical(resources);
 
-		#if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
+#if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 			// Special case, for Linux: the resource files are not in the same place as
 			// the executable, but are under the same prefix (/usr or /usr/local).
 			static const filesystem::path LOCAL_PATH = "/usr/local/";
 			static const filesystem::path STANDARD_PATH = "/usr/";
 			static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
-			if(resources.string().starts_with(LOCAL_PATH.string()))
+			if(IsParent(LOCAL_PATH, resources))
 				resources = LOCAL_PATH / RESOURCE_PATH;
-			else if(resources.string().starts_with(STANDARD_PATH.string()))
+			else if(IsParent(STANDARD_PATH, resources))
 				resources = STANDARD_PATH / RESOURCE_PATH;
-		#endif
+#endif
 	}
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
