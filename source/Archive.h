@@ -36,8 +36,7 @@ public:
 		void CreateFileFromData();
 		void Clear();
 
-		FILE *GetFile();
-		File &GetFileRAI();
+		File &GetFile();
 		unsigned char *GetData();
 
 		explicit operator bool() const;

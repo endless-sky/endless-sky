@@ -74,7 +74,7 @@ Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
 
 void Archive::ArchiveResourceHandle::Allocate(size_t newSize)
 {
-	data = reinterpret_cast<unsigned char *>( new bool[newSize] );
+	data = new unsigned char[newSize];
 	size = newSize;
 }
 
@@ -94,15 +94,7 @@ void Archive::ArchiveResourceHandle::Clear()
 }
 
 
-
-FILE *Archive::ArchiveResourceHandle::GetFile()
-{
-	return file;
-}
-
-
-
-File &Archive::ArchiveResourceHandle::GetFileRAI()
+File &Archive::ArchiveResourceHandle::GetFile()
 {
 	return file;
 }

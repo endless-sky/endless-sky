@@ -54,7 +54,7 @@ bool Sound::Load(const string &path, const string &name)
 			return false;
 	}
 	uint32_t frequency = 0;
-	uint32_t bytes = ReadHeader(handle ? handle.GetFileRAI() : in, frequency);
+	uint32_t bytes = ReadHeader(handle ? handle.GetFile() : in, frequency);
 	if(!bytes)
 		return false;
 
