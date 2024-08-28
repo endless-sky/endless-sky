@@ -102,7 +102,7 @@ void Files::Init(const char * const *argv)
 		static const filesystem::path STANDARD_PATH = "/usr/";
 		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
 
-		const auto IsParent = [](const auto parent, const auto child) {
+		const auto IsParent = [](const auto parent, const auto child) -> bool {
 			if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
 				return false;
 			return equal(parent.begin(), parent.end(), child.begin());
