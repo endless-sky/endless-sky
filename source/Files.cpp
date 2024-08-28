@@ -104,15 +104,15 @@ void Files::Init(const char * const *argv)
 			resources = filesystem::canonical(resources);
 
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
-			// Special case, for Linux: the resource files are not in the same place as
-			// the executable, but are under the same prefix (/usr or /usr/local).
-			static const filesystem::path LOCAL_PATH = "/usr/local/";
-			static const filesystem::path STANDARD_PATH = "/usr/";
-			static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
-			if(IsParent(LOCAL_PATH, resources))
-				resources = LOCAL_PATH / RESOURCE_PATH;
-			else if(IsParent(STANDARD_PATH, resources))
-				resources = STANDARD_PATH / RESOURCE_PATH;
+		// Special case, for Linux: the resource files are not in the same place as
+		// the executable, but are under the same prefix (/usr or /usr/local).
+		static const filesystem::path LOCAL_PATH = "/usr/local/";
+		static const filesystem::path STANDARD_PATH = "/usr/";
+		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
+		if(IsParent(LOCAL_PATH, resources))
+			resources = LOCAL_PATH / RESOURCE_PATH;
+		else if(IsParent(STANDARD_PATH, resources))
+			resources = STANDARD_PATH / RESOURCE_PATH;
 #endif
 	}
 	// If the resources are not here, search in the directories containing this
