@@ -904,7 +904,6 @@ fleet "Unfettered Hai Space Raid"
 		"Sea Scorpion (Pulse)" 2
 	variant 5
 		"Sea Scorpion (Ion)" 2
-	# run, you fool! (bigger less likely ones to prevent easy farming)
 	variant 2
 		"Shield Beetle (Pulse)"
 		"Sea Scorpion (Pulse)"

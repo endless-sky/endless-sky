@@ -2025,25 +2025,26 @@ mission "Wanderers Hai Assistance Fleet"
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
-# This prevents the raids from going beyond Wah Ki
+# Unfettered raids no longer happen beyond Wah Ki.
 event "hai blockade"
-	system Boral
+	system "Bore Fah"
 		remove raid
-	system "Bosuno Le"
+	system "Bote Asu"
 		remove raid
-	system Ilirco
+	system "Imo Dep"
 		remove raid
-	system Zosma
+	system "Zuba Zub"
 		remove raid
 
 mission "Wanderers Hai Assistance Fleet patch"
 	landing
 	invisible
 	to offer
-		has "Wanderers Hai Assistance Fleet: done"
+		has "Wanderers Hai Assistance Fleet: offered"
 		not "event: hai blockade"
 	on offer
 		event "hai blockade"
+		fail
 
 
 mission "Wanderers Hai Assistance 3"
