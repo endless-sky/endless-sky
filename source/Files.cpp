@@ -66,14 +66,6 @@ namespace {
 		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
 	}
-
-	// Checks if a path is parent of another, without resolving symbolic links or requiring the path to exist.
-	bool IsParent(const filesystem::path &parent, const filesystem::path &child)
-	{
-		if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
-			return false;
-		return equal(parent.begin(), parent.end(), child.begin());
-	}
 }
 
 
@@ -109,6 +101,13 @@ void Files::Init(const char * const *argv)
 		static const filesystem::path LOCAL_PATH = "/usr/local/";
 		static const filesystem::path STANDARD_PATH = "/usr/";
 		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
+
+		const auto IsParent = [](const auto parent, const auto child){
+			if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
+				return false;
+			return equal(parent.begin(), parent.end(), child.begin());
+		};
+
 		if(IsParent(LOCAL_PATH, resources))
 			resources = LOCAL_PATH / RESOURCE_PATH;
 		else if(IsParent(STANDARD_PATH, resources))
