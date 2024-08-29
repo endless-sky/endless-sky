@@ -936,12 +936,12 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		for(string &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				const ImageFileData data(path, directoryPath);
+				ImageFileData data(path, directoryPath);
 
 				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)
 					imageSet.reset(new ImageSet(data.name));
-				imageSet->Add(data);
+				imageSet->Add(std::move(data));
 			}
 	}
 	return images;
