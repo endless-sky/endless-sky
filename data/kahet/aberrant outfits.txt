@@ -22,6 +22,7 @@ outfit "Aberrant Spiker"
 	"outfit space" -23
 	"weapon capacity" -23
 	"gun ports" -1
+	"unplunderable" 1
 	weapon
 		sprite "projectile/aberrant spike"
 			"frame rate" 24
@@ -38,6 +39,7 @@ outfit "Aberrant Spiker"
 		"firing energy" 4
 		"firing heat" 6
 		"firing fuel" 10
+		"firing hull" 150
 		"velocity" 15
 		"lifetime" 2000
 		"acceleration" 2
@@ -80,19 +82,19 @@ outfit "Nucleolysis Beam"
 	cost 1800000
 	thumbnail "outfit/unknown"
 	"flotsam sprite" "outfit/unknown"
-	"mass" 29
-	"outfit space" -23
-	"weapon capacity" -23
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
 	"flotsam chance" 0.1
-	"unplunderable" 1
 	"gun ports" -1
+	"unplunderable" 1
 	weapon
-		sprite "projectile/nucleolysis beam"
+		sprite "projectile/nucleolysis"
 			"frame rate" 15
 		sound "fire-lance"
 		"hit effect" "acuit hit"
 		"inaccuracy" .2
-		"velocity" 380
+		"velocity" 420
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 4.2
@@ -101,7 +103,7 @@ outfit "Nucleolysis Beam"
 		"hull damage" 1.6
 		"heat damage" -9.1
 		"fuel damage" 0.9
-		"corrosion damage" 0.15
+		"corrosion damage" 0.015
 	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
 	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
 
