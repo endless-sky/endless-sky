@@ -146,7 +146,6 @@ void Audio::Init(const vector<string> &sources)
 	{
 		string root = source + "sounds/";
 		vector<string> files = Files::RecursiveList(root);
-
 		for(const string &path : files)
 		{
 			if(!path.compare(path.length() - 4, 4, ".wav"))
