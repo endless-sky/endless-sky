@@ -25,6 +25,51 @@ event "outer limits label"
 		sprite "label/outer limits"
 
 
+mission "Avgi: Aberrant Blockade"
+	invisible
+	landing
+	repeat
+	to offer
+		has "avgi: aberrant siege"
+		not "avgi: aberrant blockade respite"
+	source
+		attributes "aberrant siege"
+	on offer
+		conversation
+			`	As you attempt to land, your sensors warn you of an approaching pod of Aberrant over the horizon, intent on destroying anything that approaches or tries to launch from <origin>. It seems you'll have to fight if you want to land here.`
+				launch
+	on complete
+		dialog "With the area cleared of Aberrant, you manage to slip through the blockade and land on <origin>."
+		action
+			set "avgi: aberrant blockade respite"
+			event "avgi: blockade respite timer" 2 3
+
+	npc kill
+		government "Aberrant"
+		personality hunting vindictive unconstrained secretive target launching
+		fleet "Small Aberrant"
+		fleet "Small Aberrant"
+		fleet "Small Aberrant"
+		on kill
+			set "avgi: aberrant blockade respite"
+			event "avgi: blockade respite timer" 2 3
+
+	npc kill
+		government "Aberrant"
+		personality hunting vindictive unconstrained secretive target
+		system
+			distance 1 3
+		fleet "Large Aberrant"
+		fleet "Large Aberrant"
+		fleet "Large Aberrant"
+		on kill
+			set "avgi: aberrant blockade respite"
+			event "avgi: blockade respite timer" 2 3
+
+event "avgi: blockade respite timer"
+	clear "avgi: aberrant blockade respite"
+
+
 mission "Avgi: Spawn Wandering Fleet"
 	invisible
 	landing
