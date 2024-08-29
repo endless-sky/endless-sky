@@ -902,28 +902,18 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> plugins = Files::List(Files::Resources() + "plugins/");
-	for(const string &path : plugins)
-		if(Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
-	plugins.clear();
+	auto AddPlugins = [&queue] (const string &directory) {
+		vector<string> plugins = Files::List(directory);
+		for(const string &path : plugins)
+		{
+			string realPath = path.ends_with(".zip") ? path + "/" : path;
+			if(Plugins::IsPlugin(realPath))
+				LoadPlugin(queue, realPath);
+		}
+	};
 
-	plugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : plugins)
-		if(Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
-	plugins.clear();
-
-	plugins = Files::List(Files::Resources() + "plugins/");
-	for(const string &path : plugins)
-		if(path.ends_with(".zip"))
-			LoadPlugin(queue, path + "/");
-	plugins.clear();
-
-	plugins = Files::List(Files::Config() + "plugins/");
-	for(const string &path : plugins)
-		if(path.ends_with(".zip"))
-			LoadPlugin(queue, path + "/");
+	AddPlugins(Files::Resources() + "plugins/");
+	AddPlugins(Files::Config() + "plugins/");
 }
 
 

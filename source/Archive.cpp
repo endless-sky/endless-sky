@@ -161,6 +161,7 @@ bool Archive::FileExists(const string &archiveFilePath)
 	string archivePath = archiveFilePath.substr(0, start + 4);
 	string filePath = archiveFilePath.substr(start + 5, archiveFilePath.size());
 
+
 	ReadingHandle reading(archive_read_new(), archive_read_free);
 	EntryHandle entry(archive_entry_new(), archive_entry_free);
 	string firstEntry = "";
@@ -171,8 +172,13 @@ bool Archive::FileExists(const string &archiveFilePath)
 	filePath = firstEntry + filePath;
 
 	while(archive_read_next_header2(reading.get(), entry.get()) == ARCHIVE_OK)
-		if(archive_entry_pathname(entry.get()) == filePath)
+	{
+		string name = archive_entry_pathname(entry.get());
+		if(name.ends_with("/"))
+			name = name.substr(0, name.size() - 1);
+		if(name == filePath)
 			return true;
+	}
 
 	return false;
 }
