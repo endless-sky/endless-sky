@@ -40,6 +40,7 @@ mission "Avgi: First Contact"
 	destination "Peripheria"
 	clearance
 	on offer
+		set "avgi: aberrant siege"
 		event "tangled shroud label"
 		conversation
 			branch aviskir
@@ -56,7 +57,7 @@ mission "Avgi: First Contact"
 			`The first thing you notice about this Earth-like world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with your naked eye, glittering fragments of an immensely long tether slowly spinning in orbit.`
 			`	Your observations are interrupted by a blared warning from your console. You barely manage to yank your ship aside as a bright trail of plasma nearly clips you, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
 			action
-				set "avgi: planetary battery fire"
+				set "avgi: fired on by planets"
 			choice
 				`	(Attempt to land regardless.)`
 					goto explode
@@ -78,7 +79,7 @@ mission "Avgi: First Contact"
 			`The first thing you notice about this habitable world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
 			`	Your observations are interrupted by a blared warning from your console. You barely manage to yank your ship aside as a bright trail of plasma nearly clips you, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
 			action
-				set "avgi: planetary battery fire"
+				set set "avgi: fired on by planets"
 			choice
 				`	(Attempt to land regardless)`
 					goto explode
@@ -150,8 +151,6 @@ mission "Avgi: First Contact"
 				goto transmission
 
 			label transmission
-			action
-				set "avgi: aberrant siege"
 			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
 			`	The message includes an alien-looking star chart, with a trail of marked systems leading to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked past a certain point and are instead labeled as "tangled," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
 				launch
