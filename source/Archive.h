@@ -32,9 +32,14 @@ public:
 		ArchiveResourceHandle() = default;
 		~ArchiveResourceHandle();
 
+		ArchiveResourceHandle(const ArchiveResourceHandle &) = delete;
+		ArchiveResourceHandle(const ArchiveResourceHandle &&) = delete;
+		ArchiveResourceHandle &operator=(const ArchiveResourceHandle &) = delete;
+		ArchiveResourceHandle &operator=(const ArchiveResourceHandle &&) = delete;
+
 		void Allocate(size_t newSize);
 		void CreateFileFromData();
-		void Clear();
+		void Clear() noexcept;
 
 		File &GetFile();
 		unsigned char *GetData();

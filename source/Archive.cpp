@@ -88,7 +88,7 @@ void Archive::ArchiveResourceHandle::CreateFileFromData()
 
 
 
-void Archive::ArchiveResourceHandle::Clear()
+void Archive::ArchiveResourceHandle::Clear() noexcept
 {
 	delete[] data;
 	size = 0;
