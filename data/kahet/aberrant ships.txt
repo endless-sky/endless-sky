@@ -478,6 +478,7 @@ ship "Aberrant Junior"
 			"hit force" 2800
 	outfits
 		"Ka'het Ravager Beam" 2
+		"Aberrant Spiker" 2
 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer"
@@ -489,6 +490,10 @@ ship "Aberrant Junior"
 
 	gun -9.5 -27.5 "Ka'het Ravager Beam"
 	gun 9.5 -27.5 "Ka'het Ravager Beam"
+	gun -25 21 "Aberrant Spiker"
+		angle -90
+	gun 25 21 "Aberrant Spiker"
+		angle 90
 	engine -14.5 41
 	engine 14.5 41
 
@@ -544,6 +549,7 @@ ship "Aberrant Traincar"
 			"hit force" 2800
 	outfits
 		"Ka'het Ravager Beam" 2
+		"Aberrant Spiker" 2
 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer"
@@ -556,6 +562,10 @@ ship "Aberrant Traincar"
 
 	gun -10.5 -42.5 "Ka'het Ravager Beam"
 	gun 10.5 -42.5 "Ka'het Ravager Beam"
+	gun -24 30 "Aberrant Spiker"
+		angle -90
+	gun 24 30 "Aberrant Spiker"
+		angle 90
 	engine -12 51
 	engine 12 51
 
@@ -611,6 +621,7 @@ ship "Aberrant Pike"
 			"hit force" 2800
 	outfits
 		"Ka'het Ravager Beam" 2
+		"Aberrant Spiker" 2
 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer"
@@ -622,6 +633,10 @@ ship "Aberrant Pike"
 
 	gun -9.5 -39 "Ka'het Ravager Beam"
 	gun 9.5 -39 "Ka'het Ravager Beam"
+	gun -23 7 "Aberrant Spiker"
+		angle -90
+	gun 23 7 "Aberrant Spiker"
+		angle 90
 	engine -12.5 54
 	engine 12.5 54
 
@@ -677,6 +692,7 @@ ship "Aberrant Mole"
 			"hit force" 2800
 	outfits
 		"Ka'het Ravager Beam" 4
+		"Aberrant Spiker" 2
 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer"
@@ -690,6 +706,10 @@ ship "Aberrant Mole"
 	gun 3.5 -35.5 "Ka'het Ravager Beam"
 	gun -8.5 -30.5 "Ka'het Ravager Beam"
 	gun 8.5 -30.5 "Ka'het Ravager Beam"
+	gun -25 21 "Aberrant Spiker"
+		angle -90
+	gun 25 21 "Aberrant Spiker"
+		angle 90
 	engine -11.5 42.5
 	engine 11.5 42.5
 
@@ -783,83 +803,6 @@ ship "Aberrant Trip"
 	attributes
 		category "Medium Warship"
 		"cost" 5700000
-		"shields" 34600
-		"hull" 33800
-		"required crew" 1
-		"bunks" 1
-		"mass" 444
-		"drag" 6.7
-		"heat dissipation" .65
-		"fuel capacity" 900
-		"ramscoop" 0.2
-		"cargo space" 126
-		"outfit space" 429
-		"weapon capacity" 266
-		"engine capacity" 244
-		"energy capacity" 23000
-		"inscrutable" 1
-		"energy generation" 39
-		"heat generation" 32
-		"shield heat" 6.6
-		"shield generation" 1.8
-		"hull repair rate" 1.4
-		"ka'sei" 1
-		weapon
-			"blast radius" 600
-			"shield damage" 12400
-			"hull damage" 9600
-			"hit force" 3800
-	outfits
-		"Ka'het Ravager Beam" 4
-		"Nucleolysis Beam" 2
-
-		"Ka'het Primary Cooling"
-		"Ka'het Shield Restorer"
-		"Ka'het MHD Generator"
-		"Ka'het Reserve Accumulator"
-		"Anomalous Shield Restorer"
-
-		"Ka'het Compact Engine" 2
-		"Hyperdrive"
-
-	gun -8.5 -42 "Nucleolysis Beam"
-	gun 8.5 -42 "Nucleolysis Beam"
-	gun -25 -31 "Ka'het Ravager Beam"
-	gun 25 -31 "Ka'het Ravager Beam"
-	gun -35.5 -22 "Ka'het Ravager Beam"
-	gun 35.5 -22 "Ka'het Ravager Beam"
-	turret 0 -21
-	turret -13 -3
-	turret 13 -3
-
-	engine -29 38
-	engine 29 38
-	engine -8 57
-	engine 8 57
-
-	explode "tiny explosion" 8
-	explode "small explosion" 14
-	explode "medium explosion" 26
-	explode "large explosion" 18
-	"final explode" "nuke explosion"
-	"final explode" "nuke residue fast" 50
-	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "Something appears to have gone terribly wrong in the germination of this variant. It is a lopsided, deformed mass of malformed material, which survives only through sheer luck."
-
-ship "Aberrant Trip" "Aberrant Trip (Disable-able)"
-	"display name" `K-IIF "Trip"`
-	"uncapturable"
-
-
-ship "Aberrant Triplet"
-	"display name" `K-IIG "Triplet"`
-	plural "Triplets"
-	sprite "ship/aberrant triplet"
-	thumbnail "thumbnail/aberrant triplet"
-	"never disabled"
-	attributes
-		category "Medium Warship"
-		"cost" 5700000
 		"shields" 14200
 		"hull" 16600
 		"required crew" 1
@@ -889,6 +832,7 @@ ship "Aberrant Triplet"
 	outfits
 		"Ka'het Ravager Beam"
 		"Nucleolysis Beam" 2
+		"Aberrant Spiker" 2
 
 		"Ka'het Primary Cooling"
 		"Ka'het Shield Restorer"
@@ -902,6 +846,10 @@ ship "Aberrant Triplet"
 	gun -2 -37 "Nucleolysis Beam"
 	gun 16 -37 "Nucleolysis Beam"
 	gun -25 -17.5 "Ka'het Ravager Beam"
+	gun -34 25 "Aberrant Spiker"
+		angle -90
+	gun 32 32 "Aberrant Spiker"
+		angle 90
 	turret 8.5 -21
 	turret -5 -3.5
 
@@ -909,6 +857,89 @@ ship "Aberrant Triplet"
 	engine 23.5 43
 	engine 18 45
 	engine -1.5 52.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "Something appears to have gone terribly wrong in the germination of this variant. It is a lopsided, deformed mass of malformed material, which survives only through sheer luck."
+
+ship "Aberrant Trip" "Aberrant Trip (Disable-able)"
+	"display name" `K-IIF "Trip"`
+	"uncapturable"
+
+
+ship "Aberrant Triplet"
+	"display name" `K-IIG "Triplet"`
+	plural "Triplets"
+	sprite "ship/aberrant triplet"
+	thumbnail "thumbnail/aberrant triplet"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"cost" 5700000
+		"shields" 34600
+		"hull" 33800
+		"required crew" 1
+		"bunks" 1
+		"mass" 444
+		"drag" 6.7
+		"heat dissipation" .65
+		"fuel capacity" 900
+		"ramscoop" 0.2
+		"cargo space" 126
+		"outfit space" 429
+		"weapon capacity" 266
+		"engine capacity" 244
+		"energy capacity" 23000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 6.6
+		"shield generation" 1.8
+		"hull repair rate" 1.4
+		"ka'sei" 1
+		weapon
+			"blast radius" 600
+			"shield damage" 12400
+			"hull damage" 9600
+			"hit force" 3800
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Nucleolysis Beam" 2
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+
+	gun -8.5 -42 "Nucleolysis Beam"
+	gun 8.5 -42 "Nucleolysis Beam"
+	gun -25 -31 "Ka'het Ravager Beam"
+	gun 25 -31 "Ka'het Ravager Beam"
+	gun -35.5 -22 "Ka'het Ravager Beam"
+	gun 35.5 -22 "Ka'het Ravager Beam"
+	gun -43 25 "Aberrant Spiker"
+		angle -90
+	gun 43 25 "Aberrant Spiker"
+		angle 90
+	turret 0 -21
+	turret -13 -3
+	turret 13 -3
+
+	engine -29 38
+	engine 29 38
+	engine -8 57
+	engine 8 57
+
 
 	explode "tiny explosion" 8
 	explode "small explosion" 14
