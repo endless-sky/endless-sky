@@ -356,7 +356,7 @@ namespace {
 
 
 
-	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive)
+	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode blend)
 	{
 		for(int y = 0; y < buffer.Height(); ++y)
 		{
@@ -372,9 +372,9 @@ namespace {
 				uint64_t blue = (((value & 0xFF) * alpha) / 255) & 0xFF;
 
 				value = red | green | blue;
-				if(additive == BlendingMode::HALF_ADDITIVE)
+				if(blend == BlendingMode::HALF_ADDITIVE)
 					alpha >>= 2;
-				if(additive != BlendingMode::ADDITIVE)
+				if(blend != BlendingMode::ADDITIVE)
 					value |= (alpha << 24);
 
 				*it = static_cast<uint32_t>(value);
