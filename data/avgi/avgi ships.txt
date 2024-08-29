@@ -525,10 +525,9 @@ ship "Phononos"
 	attributes
 		category "Light Freighter"
 		"cost" 144000
-		"shields" 240
 		"hull" 1500
 		"automaton" 1
-		"mass" 42
+		"mass" 72
 		"drag" 0.72
 		"heat dissipation" 0.6
 		"fuel capacity" 300
@@ -586,7 +585,7 @@ ship "Frequentia"
 	sprite "ship/avgi frequentia"
 	thumbnail "thumbnail/avgi frequentia"
 	attributes
-		category "Utility"
+		category "Light Freighter"
 		"cost" 1920000
 		"shields" 600
 		"hull"	1800
@@ -1001,7 +1000,7 @@ ship "Modified Tachytia"
 		"cargo space" 1200
 		"outfit space" 1440
 		"weapon capacity" 180
-		"engine capacity" 420
+		"engine capacity" 900
 		"spinal mount" 1
 		"anchor point" 1
 		weapon
@@ -1189,11 +1188,11 @@ ship "Prismaios"
 		licenses
 			"Twilight Guard"
 		"cost" 2640000
-		"shields" 1440
-		"hull" 6600
+		"shields" 1800
+		"hull" 6000
 		"required crew" 2
 		"bunks" 6
-		"mass" 270
+		"mass" 300
 		"drag" 2.4
 		"heat dissipation" 1.5
 		"fuel capacity" 1200
@@ -1302,7 +1301,7 @@ ship "Interferos"
 		category "Light Warship"
 		"cost" 1380000
 		"shields" 900
-		"hull" 3600
+		"hull" 3000
 		"automaton" 1
 		"crew equivalent" 3
 		"mass" 180
@@ -2038,9 +2037,9 @@ ship "Photikon"
 			"Twilight Guard"
 		"cost" 138000
 		"shields" 240
-		"hull" 1800
+		"hull" 2100
 		"automaton" 1
-		"mass" 30
+		"mass" 45
 		"drag" 0.6
 		"heat dissipation" 0.9
 		"fuel capacity" 90
@@ -2127,7 +2126,7 @@ ship "Vibratia"
 		licenses
 			"Twilight Guard"
 		"cost" 96000
-		"hull" 1500
+		"hull" 1200
 		"automaton" 1
 		"crew equivalent" 1
 		"threshold percentage" 0.12

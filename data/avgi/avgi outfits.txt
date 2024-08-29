@@ -241,7 +241,9 @@ outfit "Lantern Fission Core"
 	"outfit space" -24
 	"energy generation" 3.6
 	"heat generation" 12
-	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact dusty plasma fission reactor designed to fill this role, providing a stable, reliable flow of power while fitting on even smaller ships. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it surprisingly efficient for its size, at the cost of producing significant amounts of waste heat."
+	"overheat damage rate" 3
+	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact gas core fission reactor, which supplies a stable, reliable flow of power to even smaller ships. With uranium plasma intermixed with hydrogen gas, electrostatic screens keep the uranium fuel contained in the reactor core while the superheated hydrogen is allowed to flow through a compact magnetohydrodynamic generator. The high temperatures involved allow the reactor to achieve a surprisingly high thermodynamic efficiency for its size, at the cost of producing significant amounts of waste heat."
+	description "Run at the very edge of its thermal limits, the Lantern does not tolerate overheating of its coolant loop, which can cause catastrophic damage if sustained."
 
 
 outfit "Ultracapacitor Cell"
@@ -298,8 +300,8 @@ outfit "Magnetoplasma Drive"
 	"reverse flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
-	description "For speed-agnostic, bulk transportation of people and goods, electric thrusters have long been used by the Avgi for their versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy-hungry. Being propellant agnostic, it is common to see magnetoplasmadynamic drives run with water or ammonia propellants, adding to their renowned flexibility."
-	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction at will."
+	description "For speed-agnostic, bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for their versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive speeds over time, but is also quite energy-hungry. Being propellant agnostic, it is common to see magnetoplasmadynamic drives run with water or ammonia propellants, contributing to their renowned flexibility."
+	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
 
 
 outfit `Z-330 "Spark" Fusion Torch`
@@ -375,7 +377,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"flare sound" "zpinch"
 	"afterburner effect" "large remass injection"
 	"magnozzle rings" 9
-	description "The largest of the standard fusion torches used by the Avgi, the Arc is derived from an interstellar-class design that was modified and downrated to make it more suitable for intra-system operations, trading specific impulse for raw thrust. At this scale, the pinch is long enough that it is able to confine the plasma for sufficient time to not only fuse the deuterium into a mix of helium-3 and tritium, but to likewise burn the aforementioned fusion products together with leftover deuterium to release even more energy. This reaction, known as catalyzed D-D fusion, gives the Arc unprecedented fuel efficiency over its smaller cousins."
+	description "The largest and oldest of the common fusion torches used by the Avgi, the Arc is derived from an interstellar-class design that was modified and downrated to make it more suitable for intra-system operations, trading specific impulse for raw thrust. At this scale, the pinch is long enough that it is able to confine the plasma for sufficient time to not only fuse the deuterium into a mix of helium-3 and tritium, but to likewise burn the aforementioned fusion products together with leftover deuterium to release even more energy. This reaction, known as catalyzed D-D fusion, gives the Arc unprecedented fuel efficiency over its smaller cousins."
 	description "The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
 

@@ -11,45 +11,68 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Weapons:
 
+# Weapons:
 
 outfit "Aberrant Spiker"
 	category "Secondary Weapons"
-	licenses
-		"Twilight Guard"
 	cost 1370000
 	thumbnail "outfit/unknown"
-	"mass" 6
-	"outfit space" -15
-	"weapon capacity" -15
+	"mass" 23
+	"outfit space" -23
+	"weapon capacity" -23
 	"gun ports" -1
-	"nettle capacity" 60
 	weapon
 		sprite "projectile/aberrant spike"
 			"frame rate" 24
 			"scale" 0.5
 			"rewind"
-		sound "finisher"
+		sound "minelayer"
 		icon "icon/finisher"
-		"fire effect" "sidewinder fire"
-		"fire effect" "speckle fire"
-		"inaccuracy" 2.4
-		"reload" 60
-		"firing energy" 6
-		"firing heat" 3
-		"velocity" 6
-		"lifetime" 1800
-		"acceleration" 0.6
-		"drag" .09
-		"turn" 3
-		"homing" 3
+		"fire effect" "blood" 20
+		"live effect" "spiker trail" 10000
+		"die effect" "spiker impact"
+		"hit effect" "spiker impact"
+		"inaccuracy" 4
+		"reload" 90
+		"firing energy" 4
+		"firing heat" 6
+		"firing fuel" 10
+		"velocity" 15
+		"lifetime" 2000
+		"acceleration" 2
+		"drag" .15
+		"turn" 1.3
+		"homing" 2
 		"optical tracking" 0.8
 		"hit force" 300
-		"hull damage" 1000
-		"shield damage" 1000
-		"missile strength" 12
+		"hull damage" 730
+		"shield damage" 690
+		"missile strength" 14
 	description "Spikes grow on the backs of many Aberrant variants, made of a seemingly random assortment of materials both metallic and mineral in nature. This device appears to allow an Aberrant to launch these spikes as an offensive weapon, but just how they are able to guide and propel themselves through space is a mystery that a cursory examination of this outfit does not reveal."
+
+effect "spiker trail"
+	sprite "effect/blood"
+		"no repeat"
+		"frame rate" 10
+		"random start frame"
+	"lifetime" 61
+	"random angle" 20
+	"random velocity" 6
+	"random spin" 5
+	"velocity scale" 0
+
+effect "spiker impact"
+	sprite "effect/explosion/pug/medium"
+		"no repeat"
+		"frame rate" 19
+	sound "explosion medium"
+	"lifetime" 30
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 6
+	"random velocity" .5
+	"velocity scale" .4
 
 
 outfit "Nucleolysis Beam"
@@ -60,7 +83,7 @@ outfit "Nucleolysis Beam"
 	"mass" 29
 	"outfit space" -23
 	"weapon capacity" -23
-	"flotsam chance" 0.5
+	"flotsam chance" 0.1
 	"unplunderable" 1
 	"gun ports" -1
 	weapon
@@ -91,7 +114,7 @@ outfit "Telescopic Antimissile"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
-	"flotsam chance" 0.5
+	"flotsam chance" 0.1
 	"unplunderable" 1
 	"turret mounts" -1
 	weapon
@@ -117,7 +140,7 @@ outfit "Anomalous Shield Restorer"
 	"outfit space" -25
 	"shield generation" 3
 	"shield energy" 6
-	"flotsam chance" 0.1
+	"flotsam chance" 0.05
 	"unplunderable" 1
 	description "This emitter produces no detectable fields of any kind, but a shield springs into existence whenever any danger comes near."
 
@@ -131,8 +154,8 @@ outfit "Antimatter Power Cell"
 	"flotsam sprite" "outfit/antimatter power cell"
 	"mass" 34
 	"outfit space" -13
-	"energy generation" 6.6
+	"energy generation" 2.8
 	"heat generation" 4.9
-	"flotsam chance" 0.1
+	"flotsam chance" 0.05
 	"unplunderable" 1
 	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter annihilated, generating more energy than should be possible."
