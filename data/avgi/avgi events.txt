@@ -40,9 +40,6 @@ mission "Avgi: Aberrant Blockade"
 				launch
 	on complete
 		dialog "With the area cleared of Aberrant, you manage to slip through the blockade and land on <origin>."
-		action
-			set "avgi: aberrant blockade respite"
-			event "avgi: blockade respite timer" 2 3
 
 	npc kill
 		government "Aberrant"

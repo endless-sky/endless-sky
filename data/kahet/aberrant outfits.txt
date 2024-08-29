@@ -42,7 +42,7 @@ outfit "Aberrant Spiker"
 		"firing hull" 150
 		"velocity" 15
 		"lifetime" 2000
-		"acceleration" 2
+		"acceleration" 1.4
 		"drag" .15
 		"turn" 1.3
 		"homing" 2
