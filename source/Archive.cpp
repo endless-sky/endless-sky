@@ -168,7 +168,7 @@ bool Archive::FileExists(const string &archiveFilePath)
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return false;
-	
+
 	filePath = firstEntry + filePath;
 
 	while(archive_read_next_header2(reading.get(), entry.get()) == ARCHIVE_OK)
