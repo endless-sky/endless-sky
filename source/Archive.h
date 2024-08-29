@@ -42,7 +42,7 @@ public:
 		void Clear() noexcept;
 
 		File &GetFile();
-		unsigned char *GetData();
+		unsigned char * const GetData();
 
 		explicit operator bool() const;
 

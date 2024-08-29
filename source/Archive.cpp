@@ -102,7 +102,7 @@ File &Archive::ArchiveResourceHandle::GetFile()
 
 
 
-unsigned char *Archive::ArchiveResourceHandle::GetData()
+unsigned char * const Archive::ArchiveResourceHandle::GetData()
 {
 	return data;
 }
