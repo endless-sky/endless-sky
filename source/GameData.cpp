@@ -148,7 +148,7 @@ namespace {
 			});
 	}
 
-	void LoadPlugin(TaskQueue &queue, const string &path, bool isZip = false)
+	void LoadPlugin(TaskQueue &queue, const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -160,20 +160,16 @@ namespace {
 		// Load the icon for the plugin, if any.
 		auto icon = make_shared<ImageSet>(plugin->name);
 
-		string realPath = isZip ? path + "/" + Archive::GetRootPath(path) : path;
-
-		const auto Exists = isZip ? &Archive::FileExists : &Files::Exists;
-
 		// Try adding all the possible icon variants.
-		if((*Exists)(realPath + "icon.png"))
-			icon->Add(realPath + "icon.png");
-		else if((*Exists)(realPath + "icon.jpg"))
-			icon->Add(realPath + "icon.jpg");
+		if(Files::Exists(path + "icon.png"))
+			icon->Add(path + "icon.png");
+		else if(Files::Exists(path + "icon.jpg"))
+			icon->Add(path + "icon.jpg");
 
-		if((*Exists)(realPath + "icon@2x.png"))
-			icon->Add(realPath + "icon@2x.png");
-		else if((*Exists)(realPath + "icon@2x.jpg"))
-			icon->Add(realPath + "icon@2x.jpg");
+		if(Files::Exists(path + "icon@2x.png"))
+			icon->Add(path + "icon@2x.png");
+		else if(Files::Exists(path + "icon@2x.jpg"))
+			icon->Add(path + "icon@2x.jpg");
 
 		if(!icon->IsEmpty())
 		{
@@ -906,7 +902,7 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> plugins = Files::ListDirectories(Files::Resources() + "plugins/");
+	vector<string> plugins = Files::List(Files::Resources() + "plugins/");
 	for(const string &path : plugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
@@ -921,13 +917,13 @@ void GameData::LoadSources(TaskQueue &queue)
 	plugins = Files::List(Files::Resources() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))
-			LoadPlugin(queue, path, true);
+			LoadPlugin(queue, path + "/");
 	plugins.clear();
 
 	plugins = Files::List(Files::Config() + "plugins/");
 	for(const string &path : plugins)
 		if(path.ends_with(".zip"))
-			LoadPlugin(queue, path, true);
+			LoadPlugin(queue, path + "/");
 }
 
 
@@ -942,12 +938,6 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		string directoryPath = source + "images/";
 
 		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		if(imageFiles.empty())
-		{
-			auto archiveRet = Archive::GetRecursiveFileList(source, "images/");
-			imageFiles = archiveRet.second;
-			directoryPath = archiveRet.first;
-		}
 
 		size_t start = directoryPath.size();
 

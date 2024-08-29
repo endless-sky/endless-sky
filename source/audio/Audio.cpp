@@ -146,12 +146,6 @@ void Audio::Init(const vector<string> &sources)
 	{
 		string root = source + "sounds/";
 		vector<string> files = Files::RecursiveList(root);
-		if(files.empty())
-		{
-			auto archiveRet = Archive::GetRecursiveFileList(source, "sounds/");
-			files = archiveRet.second;
-			root = archiveRet.first;
-		}
 
 		for(const string &path : files)
 		{

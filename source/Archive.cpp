@@ -74,8 +74,9 @@ Archive::ArchiveResourceHandle::~ArchiveResourceHandle()
 
 void Archive::ArchiveResourceHandle::Allocate(size_t newSize)
 {
-	data = new unsigned char[newSize];
+	Clear();
 	size = newSize;
+	data = new unsigned char[size];
 }
 
 
@@ -115,9 +116,16 @@ Archive::ArchiveResourceHandle::operator bool() const
 
 
 
-pair<string, vector<string>> Archive::GetRecursiveFileList(const string &archivePath, const string &subFolder)
+vector<string> Archive::GetRecursiveFileList(const string &archiveFolderPath)
 {
-	pair<string, vector<string>> result;
+	vector<string> result;
+
+	size_t start = archiveFolderPath.find(".zip/");
+	if(start == string::npos)
+		return result;
+
+	string archivePath = archiveFolderPath.substr(0, start + 4);
+	string filePath = archiveFolderPath.substr(start + 5, archiveFolderPath.size());
 
 	ReadingHandle reading(archive_read_new(), archive_read_free);
 	EntryHandle entry(archive_entry_new(), archive_entry_free);
@@ -126,32 +134,19 @@ pair<string, vector<string>> Archive::GetRecursiveFileList(const string &archive
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return result;
 
-	const string directoryPath = firstEntry + subFolder;
+	const string directoryPath = firstEntry + filePath;
 
-	result.first = archivePath + "/" + directoryPath;
 
 	while(archive_read_next_header2(reading.get(), entry.get()) == ARCHIVE_OK)
 	{
 		const string name = archive_entry_pathname(entry.get());
 		if(!name.starts_with(directoryPath))
 			continue;
-		result.second.emplace_back(archivePath + "/" + name);
+
+		result.emplace_back(archivePath + "/" + name.substr(firstEntry.size(), name.size() - firstEntry.size()));
 	}
 
 	return result;
-}
-
-
-
-string Archive::GetRootPath(const string &archivePath)
-{
-	ReadingHandle reading(archive_read_new(), archive_read_free);
-	EntryHandle entry(archive_entry_new(), archive_entry_free);
-	string firstEntry = "";
-
-	InitArchive(archivePath, reading, entry, firstEntry);
-
-	return firstEntry;
 }
 
 
@@ -172,6 +167,8 @@ bool Archive::FileExists(const string &archiveFilePath)
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return false;
+	
+	filePath = firstEntry + filePath;
 
 	while(archive_read_next_header2(reading.get(), entry.get()) == ARCHIVE_OK)
 		if(archive_entry_pathname(entry.get()) == filePath)
@@ -198,6 +195,8 @@ void Archive::GetArchiveFile(const std::string &archiveFilePath, Archive::Archiv
 
 	if(!InitArchive(archivePath, reading, entry, firstEntry))
 		return;
+
+	filePath = firstEntry + filePath;
 
 	while(archive_read_next_header2(reading.get(), entry.get()) == ARCHIVE_OK)
 	{

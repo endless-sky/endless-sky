@@ -201,9 +201,7 @@ const Plugin *Plugins::Load(const string &path)
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
 	string name = path.substr(pos, path.length() - (isZip ? 4 : 1) - pos);
 
-	string realPath = isZip ? path + "/" + Archive::GetRootPath(path) : path;
-
-	string pluginFile = realPath + "plugin.txt";
+	string pluginFile = path + "plugin.txt";
 	string aboutText;
 	string version;
 	set<string> authors;
@@ -277,7 +275,7 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
-	plugin->aboutText = aboutText.empty() ? Files::Read(realPath + "about.txt") : std::move(aboutText);
+	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
 	plugin->version = std::move(version);
 	plugin->authors = std::move(authors);
 	plugin->tags = std::move(tags);

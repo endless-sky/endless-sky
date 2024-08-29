@@ -346,6 +346,8 @@ vector<string> Files::RecursiveList(const string &directory)
 {
 	vector<string> list;
 	RecursiveList(directory, &list);
+	if(list.empty())
+		list = Archive::GetRecursiveFileList(directory);
 	sort(list.begin(), list.end());
 	return list;
 }
@@ -410,13 +412,19 @@ void Files::RecursiveList(string directory, vector<string> *list)
 
 bool Files::Exists(const string &filePath)
 {
+	bool returnValue = false;
 #if defined _WIN32
 	struct _stat buf;
-	return !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
+	returnValue = !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
 #else
 	struct stat buf;
-	return !stat(filePath.c_str(), &buf);
+	returnValue = !stat(filePath.c_str(), &buf);
 #endif
+
+	if(!returnValue && filePath.find(".zip/") != string::npos)
+		return Archive::FileExists(filePath);
+	else
+		return returnValue;
 }
 
 
