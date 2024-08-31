@@ -518,7 +518,7 @@ mission "Successors: People's Houses, First Contact"
 			`	Would you like to ask someone here about this place?`
 			choice
 				`	(Yes.)`
-				`	(Not yet.)`
+				`	(Not now.)`
 					defer
 				`	(Never.)`
 					decline
