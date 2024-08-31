@@ -2766,9 +2766,9 @@ phrase "friendly civilian"
 		"Stars and Starships"
 		"Sunracer Stellar Spectacles"
 		"Tarazed Today"
-		"The Galactic Gazette"
-		"The New Moonshake"
-		"The Satellite Sentinel"
+		"the Galactic Gazette"
+		"the New Moonshake"
+		"the Satellite Sentinel"
 	word
 		"? "
 	word
