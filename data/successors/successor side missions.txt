@@ -259,7 +259,7 @@ mission "Successors: Biology Research 1"
 				`	(Ask about Successor biology.)`
 					goto ask
 				`	(Don't ask anything.)`
-				launch
+					launch
 			label ask
 			`	As expected, Kaatiora is more than happy to share their biological knowledge, and asks if there is anything in particular you'd like to know about.`
 			label questions
