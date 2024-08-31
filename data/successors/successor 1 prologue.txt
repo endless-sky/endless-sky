@@ -207,7 +207,7 @@ mission "Successors: First Contact 1"
 			`	Sieasej translates this question to the uniformed officer, who conveys a detailed response accompanied by a series of color and texture displays on their skin. Overhead, a buzzing flock of interceptors fly past and land on a set of landing pads closer to the center of the spaceport complex. Eventually, Sieasej responds, and does so even more slowly and carefully than previously. "The noble scions o'House Sioeora have made it known t'others of the High Houses that thou'rt guest within their space and shalt proceed with their protection. Thou may'st explore those of our worlds of ours which offer thee their grace. 'Thout our tongue, though, thou shalt find few but few chances to do more than to observe. As to that," Sieasej continues, "our noble scions're set to start their meeting here in eight days time. And as it is that thou hast aroused their close attentions, 'tis expected that thou shalt receive a summons to their union."`
 			`	With that, Sieasej and some of the others depart, leaving you along on the pad with your ship and the ring of guards, who remain silent and at attention.`
 
-mission "Successors: First Contact 2"
+mission "Successors: First Contact 2 Prompt"
 	landing
 	name "Return to <planet>"
 	description `The scions of House Sioeora have requested your prompt presence at <planet> so you can "render service and aid" to them.`
@@ -226,7 +226,16 @@ mission "Successors: First Contact 2"
 			`	The recording ends there, and the sphere changes to display a star map as before.`
 				accept
 		event "successors: tardy for sioeora" 14
-	on complete
+
+mission "Successors: First Contact 2"
+	landing
+	invisible
+	source "Staja-Kella-Oa"
+	to offer
+		has "event: successors: first contact wait"
+	to fail
+		has "Successors: Unified Defense: offered"
+	on offer
 		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
 		conversation
 			`Shortly after you enter the atmosphere of <planet>, the <ship> is flanked by a pair of interceptors which lead you to a sprawling complex in the northern hemisphere at the edge of a large lake. Your escorts set down on two small landing pads near the shore, and you see that another landing pad between them has been lit up in colors matching the livery of your ship.`
@@ -313,6 +322,7 @@ mission "Successors: First Contact 2"
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 			label end
+			decline
 
 mission "Successors: First Contact 3"
 	priority
@@ -320,7 +330,7 @@ mission "Successors: First Contact 3"
 	description `The scions of House Sioeora have instructed you to visit the planet <planet stopovers> and capture a "Kijra-riitaa" to safely return to them at <planet>. Return by <date> or they will consider you to have kidnapped Sieasej.`
 	source "Staja-Kella-Oa"
 	to offer
-		has "Successors: First Contact 2: done"
+		has "Successors: First Contact 2: offered"
 		not "rejected: Successors: First Contact 2"
 	to fail
 		has "Successors: Unified Defense: offered"
