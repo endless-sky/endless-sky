@@ -2886,16 +2886,16 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Frankly, I'm thinking of joining the Navy because"
-		"Honestly, I'm going to join the Navy because"
-		"I'm enlisting in the Navy because"
+		"Frankly, I'm thinking of joining the Navy"
+		"Honestly, I'm going to join the Navy"
+		"I'm enlisting in the Navy"
 	word
 		" "
 	word
-		"of their dental insurance."
-		"they'll cover my tuition."
+		"because of their dental insurance."
+		"since they'll cover my tuition."
 		"to see if I can get my hands on one of their warships."
-		"they offer childcare assistance."
+		"because they offer childcare assistance."
 
 phrase "friendly navy"
 	word
