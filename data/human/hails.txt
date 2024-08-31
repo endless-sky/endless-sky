@@ -2727,9 +2727,7 @@ phrase "friendly civilian"
 		"four"
 		"five"
 	word
-		" "
-	word
-		"million credits on "
+		" million credits on "
 	word
 		"Martini"
 		"Thrall"
