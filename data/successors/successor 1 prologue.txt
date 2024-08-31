@@ -238,7 +238,7 @@ mission "Successors: First Contact 2"
 	on offer
 		log "People" "Sieasej" "Sieasej is a Successor scholar of historical linguistics and a member of the noble House Sioeora. Because of their area of study, they are one of the only Successors who can speak to and understand human language without the benefit of a translation device."
 		conversation
-			`Shortly after you enter the atmosphere of <planet>, the <ship> is flanked by a pair of interceptors which lead you to a sprawling complex in the northern hemisphere at the edge of a large lake. Your escorts set down on two small landing pads near the shore, and you see that another landing pad between them has been lit up in colors matching the livery of your ship.`
+			`Soon after you enter the atmosphere of <planet>, the <ship> is flanked by a pair of interceptors which lead you to a sprawling complex in the northern hemisphere at the edge of a large lake. Your escorts set down on two small landing pads near the shore, and you see that another landing pad between them has been lit up in colors matching the livery of your ship.`
 			`	As before, your landing site has been surrounded by a cadre of uniformed individuals, but this time there must be nearly a hundred standing at attention on the pad's perimeter, of which most appear heavily armed. Once again upon disembarking, a lead officer approaches you, accompanied by a group of eight others who follow them in a tight formation. The leader motions with one of their arms towards the center of the complex as if to instruct you to go.`
 			choice
 				`	(Go with them.)`
@@ -453,7 +453,7 @@ mission "Successors: First Contact 3"
 				accept
 	on stopover
 		conversation
-			`Shortly after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a place where once the beasts were bred. When last our vessels traveled here, 'twas this location were they noted many Kijran-Riitaa."`
+			`Some minutes after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a place where once the beasts were bred. When last our vessels traveled here, 'twas this location were they noted many Kijran-Riitaa."`
 			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown, vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
 			branch "retrieve tranqs"
 				or
@@ -755,7 +755,7 @@ mission "Successors: Kaatrij First Contact 1"
 				accept
 	on complete
 		conversation
-			`Shortly after you enter the atmosphere of the planet, the data-sphere begins to trill again and projects a different map, this time highlighting a set of coordinates on the night side. You adjust your course to fly there, setting down the <ship> on a patch of land next to a large lake. The data-sphere offers no further guidance.`
+			`As you enter this planet's atmosphere, the data-sphere begins to trill again and projects a different map, this time highlighting a set of coordinates on the night side. You adjust your course to fly there, setting down the <ship> on a patch of land next to a large lake. The data-sphere offers no further guidance.`
 			choice
 				`	(Wait.)`
 			`	A couple of animals swim in the water in the distance, making faint honking sounds every once in a while that linger in the starlit air.`
@@ -903,7 +903,7 @@ mission "Successors: Trusted"
 		"reputation: Old Houses" += 1
 		"reputation: New Houses" += 1
 		conversation
-			`Shortly after you set down in the spaceport here, you are approached by a group of Successors in naval uniforms, clearly and surprisingly in the employ of multiple various High Houses; there is some variance in the design of the uniforms of different members. Their leader addresses you in a calm tone with the unmistakable coolness that military officers seem to hold regardless of species, their skin remaining a flat gray throughout.`
+			`Soon after you set down in the spaceport here, you are approached by a group of Successors in naval uniforms, clearly and surprisingly in the employ of multiple various High Houses; there is some variance in the design of the uniforms of different members. Their leader addresses you in a calm tone with the unmistakable coolness that military officers seem to hold regardless of species, their skin remaining a flat gray throughout.`
 			`	"Captain <last>. The High Houses have noted thine actions in their space, and, wishing to make thee a stronger ally to their cause, have summoned thee to meet them in council. Thou art encouraged to make haste to the Uuoru-Kella system.`
 			choice
 				`	"Thank you for telling me. I'll prepare to travel there immediately."`
