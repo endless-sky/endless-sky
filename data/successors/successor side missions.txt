@@ -131,6 +131,8 @@ mission "Successors: Predecessor Research 1"
 				`	"Sorry, but you'll have to find someone else to take you."`
 					decline
 			label deferred
+			action
+				set "Successors: Predecessor Research 1: deferred"
 			`	"Hm, probably. We've been patient enough for this long, though I encourage thee to seek us out again with haste."`
 				defer
 			label accept
@@ -152,11 +154,10 @@ mission "Successors: Predecessor Research 1"
 			`	As night begins to fall on the planet, the researchers reluctantly return to your ship, dusty and tired but abuzz with excitement at their discoveries.`
 			`	As you are making preparations to leave, you realize this would be a good moment to learn about the Predecessors from the experts, especially considering you're liable to be listening to them talk about their new data all the way back.`
 			choice
-				`	(Ask them about the Predecessors.)`
-				`	(Don't ask them.)`
+				`	"What can you tell me about the Predecessors?"`
+					goto who
+				`	(Don't ask them anything.)`
 					launch
-			`	You approach the group of researchers, still twittering with excitement over the day's work. "I was wondering if you could tell me a little bit about the Predecessors," you say.`
-			`	"Of course!" the head researcher replies, "What dost thou wish to know?"`
 			label questions
 			choice
 				`	"Who were the Predecessors?"`
@@ -213,7 +214,6 @@ mission "Successors: Predecessor Research 1"
 				clear "Successors: collapse"
 				clear "Successors: empire"
 				clear "Successors: tech"
-			launch
 	on complete
 		"successor jobs" += 2
 		"old houses jobs" += 2
@@ -257,10 +257,8 @@ mission "Successors: Biology Research 1"
 			`	Before leaving, you realize this would be a good time to learn more about the Successors from an expert. Besides, since you spent the majority of the time on the way here answering Kaatiora's questions, you are probably entitled to ask a few of your own.`
 			choice
 				`	(Ask about Successor biology.)`
-					goto ask
 				`	(Don't ask anything.)`
-					launch
-			label ask
+					goto end
 			`	As expected, Kaatiora is more than happy to share their biological knowledge, and asks if there is anything in particular you'd like to know about.`
 			label questions
 			choice
@@ -300,7 +298,6 @@ mission "Successors: Biology Research 1"
 				clear "Successors: successor"
 				clear "Successors: predecessor"
 				clear "Successors: cluster"
-			launch
 	on complete
 		"successor jobs" += 2
 		payment 200000
