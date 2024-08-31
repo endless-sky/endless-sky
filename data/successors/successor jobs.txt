@@ -173,7 +173,7 @@ mission "Successor: Tourists Out 1"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 22000 200
+		payment 8000 160
 		dialog phrase "successor tourists out"
 		"successor jobs" ++
 
@@ -200,7 +200,7 @@ mission "Successor: Tourists Out 2"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 22000 200
+		payment 10000 160
 		dialog phrase "successor tourists out"
 		"successor jobs" ++
 
@@ -228,7 +228,7 @@ mission "Successor: Bold Tourists Round Trip"
 	on visit
 		dialog phrase "successor bold tourists stopover"
 	on complete
-		payment 28000 220
+		payment 24000 200
 		dialog phrase "successor tourists in"
 		"successor jobs" ++
 
@@ -268,7 +268,7 @@ mission "Successor: Tourist Expedition"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 35000 300
+		payment 36000 200
 		dialog phrase "successor tourists in"
 		"successor jobs" ++
 
@@ -295,7 +295,7 @@ mission "Successor: Students Out"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 22000 200
+		payment 8000 160
 		dialog phrase "successor students out"
 		"successor jobs" ++
 
@@ -323,7 +323,7 @@ mission "Successor: Students In"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 22000 200
+		payment 8000 160
 		dialog phrase "successor students out"
 		"successor jobs" ++
 
@@ -349,7 +349,7 @@ mission "Successor: Workers Out 1"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 22000 200
+		payment 8000 160
 		dialog phrase "successor workers out"
 		"successor jobs" ++
 
@@ -375,7 +375,7 @@ mission "Successor: Workers Out 2"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 21500 200
+		payment 9000 160
 		dialog phrase "successor workers out"
 		"successor jobs" ++
 
@@ -401,7 +401,7 @@ mission "Successor: Delivery Out 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 2000 200
+		payment 3000 160
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -427,7 +427,7 @@ mission "Successor: Delivery Out 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 2000 200
+		payment 3000 160
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -455,7 +455,7 @@ mission "Successor: High Value Delivery Out"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 3000 400
+		payment 3000 180
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -484,7 +484,7 @@ mission "Successor: Aid Delivery Out 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 2400 200
+		payment 2400 160
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -510,7 +510,7 @@ mission "Successor: Large Delivery Out 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 1900 200
+		payment 2000 140
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -536,7 +536,7 @@ mission "Successor: Large Delivery Out 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 1900 200
+		payment 2000 140
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -563,7 +563,7 @@ mission "Successor: Rush Delivery Out 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 3000 200
+		payment 2200 165
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -590,7 +590,7 @@ mission "Successor: Large Rush Delivery Out 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 2600 200
+		payment 3000 150
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -618,7 +618,7 @@ mission "Successor: Seismic Stabilizers"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 3000 210
+		payment 2000 140
 		dialog phrase "successor delivery"
 		"successor jobs" ++
 
@@ -647,7 +647,7 @@ mission "Successor: Data Courier 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 1400 200
+		payment 1000 100
 		dialog phrase "successor data"
 		"successor jobs" ++
 
@@ -673,7 +673,7 @@ mission "Successor: Researchers Out 1"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 41000 200
+		payment 41000 160
 		dialog phrase "successor researchers in"
 		"successor jobs" ++
 
@@ -699,7 +699,7 @@ mission "Successor: Large Researchers Out 1"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 34000 200
+		payment 34000 160
 		dialog phrase "successor researchers in"
 		"successor jobs" ++
 
@@ -727,7 +727,7 @@ mission "Successor: Home Researchers Out 1"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 11000 200
+		payment 12000 160
 		dialog phrase "successor researchers in"
 		"successor jobs" ++
 
@@ -755,7 +755,7 @@ mission "Successor: Researchers Transfer"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 23000 200
+		payment 8000 150
 		dialog phrase "successor researchers transfer"
 		"successor jobs" ++
 
@@ -781,7 +781,7 @@ mission "Successor: Old Houses Rush Delivery"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 3000 800
+		payment 3000 170
 		dialog phrase "high houses delivery"
 		"successor jobs" ++
 		"old houses jobs" ++
@@ -808,7 +808,7 @@ mission "Successor: New Houses Rush Delivery"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
-		payment 3000 800
+		payment 3000 170
 		dialog phrase "high houses delivery"
 		"successor jobs" ++
 		"new houses jobs" ++
