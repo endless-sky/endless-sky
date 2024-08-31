@@ -2721,6 +2721,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
+		"half a"
 		"a"
 		"two"
 		"three"
