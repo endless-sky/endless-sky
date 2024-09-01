@@ -569,22 +569,22 @@ mission "Successors: Unified Defense"
 	to offer
 		has "Successors: First Contact 1: offered"
 		or
-			"reputation: Successor" < -0.01
-			"reputation: New Houses" < -0.01
-			"reputation: Old Houses" < -0.01
+			"reputation: Successor" < 0
+			"reputation: New Houses" < 0
+			"reputation: Old Houses" < 0
 	to complete
 		never
 	on offer
-		"reputation: Successor" = -999
-		"reputation: Old Houses" = -999
-		"reputation: House Chydiyi" = -999
-		"reputation: House Myurej" = -999
-		"reputation: House Sioeora" = -999
-		"reputation: New Houses" = -999
-		"reputation: House Aqrabe" = -999
-		"reputation: House Kaatrij" = -999
-		"reputation: House Seineq" = -999
-		"reputation: People's Houses" = -999
+		"reputation: Successor" <?= -999
+		"reputation: Old Houses" <?= -999
+		"reputation: House Chydiyi" <?= -999
+		"reputation: House Myurej" <?= -999
+		"reputation: House Sioeora" <?= -999
+		"reputation: New Houses" <?= -999
+		"reputation: House Aqrabe" <?= -999
+		"reputation: House Kaatrij" <?= -999
+		"reputation: House Seineq" <?= -999
+		"reputation: People's Houses" <?= -999
 		event "successors: unified defense"
 		conversation
 			branch uninhabited
