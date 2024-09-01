@@ -7473,7 +7473,7 @@ mission "Syndicate Business 1"
 	destination "Sunracer"
 	on offer
 		conversation
-			`You are walking near the spaceport and suddenly a computer terminal starts blinking and beeping when you pass it.`
+			`As you are walking through the spaceport, you are startled by a sudden loud beeping from a nearby computer terminal. The computer is unattended and the screen is blinking on and off.`
 			choice
 				`	(Check it out.)`
 				`	(Ignore it.)`
@@ -7498,7 +7498,6 @@ mission "Syndicate Business 1"
 				`	"I don't negotiate with pirates!"`
 					goto negotiate
 				`	"You can take him, but I don't know where he is."`
-			label who
 			`	"Bah, you spineless buffoon! Your lies won't save you or that useless salesman. I'll find him in your ship's wreckage!"`
 				goto power
 			label negotiate
@@ -7517,7 +7516,7 @@ mission "Syndicate Business 1"
 				`	"Sounds good."`
 					decline
 				`	"What's the deal with you and that pirate?"`
-			`	"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <planet>.`
+			`	"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to get back to <planet>.`
 	on complete
 		"reputation: Independent (Killable)" = 10
 		conversation
@@ -7557,7 +7556,7 @@ mission "Syndicate Business 1"
 
 mission "Syndicate Business 2"
 	name "Purchase Bond on <planet>"
-	description "Howard from Megaparsec Incorporated is letting you buy a bond in the company for 1 million credits."
+	description "Bring Howard to <destination> in order to finalize the paperwork you'll need to finalize your bond agreement with Megaparsec Incorporated."
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
