@@ -7585,8 +7585,8 @@ mission "Syndicate Business 2"
 				`	"Of course."`
 					goto high
 				`	"I'm backing out, I can't ethically invest in this."`
-					decline
-			
+			`	Howard nods. "I get it, ethics are important and I respect your decision. Unfortunately, the inital deposit is non-refundable, nothing I can do there. Best of luck finding another investment that suits you."`
+				decline
 			label high
 			action
 				"salary: Syndicate Business" = 500
