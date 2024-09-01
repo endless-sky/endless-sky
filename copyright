@@ -1625,24 +1625,24 @@ Files:
   images/map/f-dwarf-star*
   images/map/f-giant-star*
   images/map/f-large-star*
+  images/map/f-old-star*
   images/map/f-small-star*
   images/map/f-star*
   images/map/f-supergiant-star*
-  images/map/f-old-star*
   images/map/g-dwarf-star*
   images/map/g-giant-star*
   images/map/g-large-star*
+  images/map/g-old-star*
   images/map/g-small-star*
   images/map/g-star*
   images/map/g-supergiant-star*
-  images/map/g-old-star*
   images/map/k-dwarf-star*
   images/map/k-giant-star*
   images/map/k-large-star*
+  images/map/k-old-star*
   images/map/k-small-star*
   images/map/k-star*
   images/map/k-supergiant-star*
-  images/map/k-old-star*
   images/map/m-dwarf-star*
   images/map/m-giant-star*
   images/map/m-large-star*
@@ -1660,8 +1660,8 @@ Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files:
-  images/map/active-black-hole-star*
   images/map/carbon-star*
+  images/map/coal-black-hole-star*
   images/map/neutron-star*
   images/map/nova-old-star*
   images/map/nova-small-star*
@@ -1671,7 +1671,7 @@ Files:
   images/map/supermassive-black-hole-star*
 Copyright: Azure
 License: CC-BY-SA-4.0
-Comment: Derived from works by Gefüllte Taubenbrust and Matteo "Lead" M.
+Comment: Derived from works by Gefüllte Taubenbrust, Saugia, and Matteo "Lead" M.
 
 Files: sounds/*
 Copyright: Various
