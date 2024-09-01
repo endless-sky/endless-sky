@@ -7492,7 +7492,7 @@ mission "Syndicate Business 1"
 		"reputation: Independent (Killable)" = -1000
 		conversation
 			`When you enter <waypoints>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
-			`	The voice of the apparent captain of the <npc> sends you a hail. "You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
+			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
 				`	"I don't negotiate with pirates!"`
