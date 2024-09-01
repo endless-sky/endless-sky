@@ -398,7 +398,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			continue;
 
 		auto validOutfits = std::ranges::filter_view(it->second,
-				[](const auto &o){return o->IsDefined() && !o->DisplayName().empty();});
+			[](const Outfit *o){return o->IsDefined() && !o->DisplayName().empty();});
 
 		if(validOutfits.empty())
 			continue;
