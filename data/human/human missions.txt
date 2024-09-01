@@ -7460,7 +7460,7 @@ mission "Adelita 5"
 
 mission "Syndicate Business 1"
 	name "Rescue Kidnapped Man in <waypoints>"
-	description "A mysterious man has been kidnapped by a heavy pirate warship in <waypoints>. Destroy the ship to rescue him."
+	description "You have received a mysterious distress call from an alleged abductee in the <waypoints> system. Head there to see if you can find the signal's source."
 	minor
 	to offer
 		random < 40
