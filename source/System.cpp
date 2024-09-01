@@ -596,6 +596,7 @@ const Government *System::GetGovernment() const
 }
 
 
+// Get this system's map icons.
 const vector<const Sprite *> &System::GetMapIcons() const
 {
 	return mapIcons;
