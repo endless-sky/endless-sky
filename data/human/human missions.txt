@@ -7510,7 +7510,7 @@ mission "Syndicate Business 1"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		conversation
-			`The <npc> has been destroyed. You find a small escape pod aimlessly drifting near the coordinates in the original message. You recieve a hail from the pod's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you pick me up from this tin can and drop me off at <destination>! I'm with Megaparsec, I can make it worth your while!"`
+			`The <npc> has been destroyed. You find a small escape pod aimlessly drifting near the coordinates in the original message. You receive a hail from the pod's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you pick me up from this tin can and drop me off at <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
