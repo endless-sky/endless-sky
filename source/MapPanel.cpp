@@ -1424,7 +1424,7 @@ void MapPanel::DrawSystems()
 
 			if(node.mapIcons.size() > 1)
 			{
-				int starsToDraw = min(int(node.mapIcons.size()), maxStars);
+				int starsToDraw = min(static_cast<int>(node.mapIcons.size()), maxStars);
 				starAngle = node.name.length() + node.position.Length();
 				angularSpacing = 360. / starsToDraw;
 				starOffset = starsToDraw * Point(2., 2.);
