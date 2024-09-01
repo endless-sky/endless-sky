@@ -585,9 +585,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
-	else if(key == ']' && !mapIsStarry)
+	else if(key == 'x' && !mapIsStarry)
 		player.SetStarryMap(true);
-	else if(key == '[' && mapIsStarry)
+	else if(key == 'x' && mapIsStarry)
 		player.SetStarryMap(false);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));

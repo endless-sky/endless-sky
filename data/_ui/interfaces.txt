@@ -1386,13 +1386,13 @@ interface "map buttons" bottom right
 		color "map system ring"
 		size 2
 	active if "map is starry"
-	button [ ""
+	button x ""
 		from 0 -120 to -49 -169
 	visible if "!map is starry"
 	sprite "ui/star icon"
 		from 0 -120 to -49 -169
 	active if "!map is starry"
-	button ] ""
+	button x ""
 		from 0 -120 to -49 -169
 
 
@@ -1453,13 +1453,13 @@ interface "map buttons (small screen)" bottom right
 		color "map system ring"
 		size 2
 	active if "map is starry"
-	button [ ""
+	button x ""
 		from 0 -120 to -49 -169
 	visible if "!map is starry"
 	sprite "ui/star icon"
 		from 0 -120 to -49 -169
 	active if "!map is starry"
-	button ] ""
+	button x ""
 		from 0 -120 to -49 -169
 
 
