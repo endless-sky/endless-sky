@@ -214,11 +214,13 @@ mission "Successors: First Contact 2 Prompt"
 	source
 		attributes "successor"
 		not attributes "uninhabited"
+		not planet "Staja-Kella-Oa"
 	destination "Staja-Kella-Oa"
 	to offer
 		has "event: successors: first contact wait"
 	to fail
 		has "Successors: Unified Defense: offered"
+		has "Successors: First Contact 2: offered"
 	on offer
 		conversation
 			`As you exit the <ship>, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
