@@ -7480,7 +7480,7 @@ mission "Syndicate Business 1"
 					decline
 			`	When you approach, you are greeted by plain text on the terminal's screen:`
 			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: -1.18143560, -0.01575673, 0.00755328. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
-			`	You note that the message doesn't have any information about the sender, but there wouldn't be if what the message contains is true. There are no shortage of pirates in <waypoints>.`
+			`	You note that the message doesn't have any information about the sender, but that doesn't mean the message couldn't be true. There is no shortage of pirates in <waypoints>.`
 			choice
 				`	"To <waypoints>!"`
 				`	(Ignore it and walk away.)`
@@ -7521,7 +7521,7 @@ mission "Syndicate Business 1"
 		"reputation: Independent (Killable)" = 10
 		conversation
 			`When you land on <planet>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
-			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase 1 perpetual bond of Megaparsec Inc I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
+			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase a perpetual bond of Megaparsec Inc I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
@@ -7545,7 +7545,7 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. To purchase 1 bond in Megaparsec Incorporated I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the bond sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the bond purchase."`
+			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork, so the deal won't be ready today, but feel free to come back to my office here at the spaceport anytime afterwards to execute the purchase. Remember, you'll need to have at least one million credits for the bond purchase and to take care of a few other administrative tasks."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
