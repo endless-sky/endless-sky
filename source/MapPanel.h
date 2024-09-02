@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "BatchDrawList.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
@@ -186,7 +185,6 @@ private:
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
-
 
 	class Node {
 	public:
