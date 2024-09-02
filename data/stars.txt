@@ -263,7 +263,11 @@ star "star/neutron-small"
 star "star/black-hole"
 	power 0
 	wind 0
-	icon "map/supermassive-black-hole-star"
+	icon "map/black-hole-star"
+star "star/small-black-hole"
+	power 0
+	wind 0
+	icon "map/small-black-hole-star"
 star "star/coal-black-hole"
 	power 0
 	wind 0

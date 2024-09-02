@@ -1660,18 +1660,49 @@ Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files:
+  images/map/black-hole-star*
   images/map/carbon-star*
   images/map/coal-black-hole-star*
   images/map/neutron-star*
   images/map/nova-old-star*
   images/map/nova-small-star*
   images/map/nova-star*
+  images/map/small-black-hole-star*
   images/map/small-neutron-star*
   images/map/small-wr-star*
-  images/map/supermassive-black-hole-star*
 Copyright: Azure
 License: CC-BY-SA-4.0
-Comment: Derived from works by Gefüllte Taubenbrust, Saugia, and Matteo "Lead" M.
+Comment: Derived from works by Gefüllte Taubenbrust.
+
+Files:
+  images/map/black-hole-star*
+  images/map/carbon-star*
+  images/map/coal-black-hole-star*
+  images/map/neutron-star*
+  images/map/nova-old-star*
+  images/map/nova-small-star*
+  images/map/nova-star*
+  images/map/small-black-hole-star*
+  images/map/small-neutron-star*
+  images/map/small-wr-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Saugia.
+
+Files:
+  images/map/black-hole-star*
+  images/map/carbon-star*
+  images/map/coal-black-hole-star*
+  images/map/neutron-star*
+  images/map/nova-old-star*
+  images/map/nova-small-star*
+  images/map/nova-star*
+  images/map/small-black-hole-star*
+  images/map/small-neutron-star*
+  images/map/small-wr-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matteo "Lead" M.
 
 Files: sounds/*
 Copyright: Various
