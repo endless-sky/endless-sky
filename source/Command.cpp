@@ -85,7 +85,7 @@ const Command Command::FIGHT(ONE << 28, "Fleet: Fight my target", "ui/icon_fleet
 const Command Command::GATHER(ONE << 29, "Fleet: Gather around me", "ui/icon_fleet_gather");
 const Command Command::HOLD(ONE << 30, "Fleet: Hold position", "ui/icon_fleet_stop");
 const Command Command::HARVEST(ONE << 31, "Fleet: Harvest flotsam", "ui/icon_fleet_harvest");
-const Command Command::AMMO(ONE << 32, "Fleet: Toggle ammo usage");
+const Command Command::AMMO(ONE << 32, "Fleet: Toggle ammo usage", "ui/icon_ammo_usage");
 const Command Command::AUTOSTEER(ONE << 33, "Auto steer");
 const Command Command::WAIT(ONE << 34, "");
 const Command Command::STOP(ONE << 35, "Stop", "ui/icon_fleet_stop");
