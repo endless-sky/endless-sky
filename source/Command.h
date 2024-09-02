@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
+#include <SDL_events.h>
+
 #include <cstdint>
 #include <string>
 #include <atomic>
@@ -24,7 +26,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 
-
+struct CommandEvent
+{
+	uint32_t type;
+	uint32_t timestamp;
+	uint32_t windowID;
+	uint64_t state;
+	uint8_t  pressed;
+};
+static_assert(sizeof(CommandEvent) <= sizeof(SDL_Event), "The CommandEvent should be smaller");
 
 // Class mapping key presses to specific commands / actions. The player can
 // change the mappings for most of these keys in the preferences panel.

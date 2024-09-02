@@ -124,7 +124,7 @@ Command::Command(const SDL_Event &event)
 {
 	if(event.type == EventID())
 	{
-		state = event.key.windowID;
+		state = reinterpret_cast<const CommandEvent&>(event).state;
 	}
 }
 
@@ -755,9 +755,10 @@ void Command::InjectSet(const Command& command)
 {
 	simulated_command.fetch_or(command.state, std::memory_order_relaxed);
 	SDL_Event event{};
-	event.type = EventID();
-	event.key.windowID = command.state;
-	event.key.state = SDL_PRESSED;
+	auto& cevent = reinterpret_cast<CommandEvent&>(event);
+	cevent.type = EventID();
+	cevent.state = command.state;
+	cevent.pressed = SDL_PRESSED;
 	SDL_PushEvent(&event);
 }
 
@@ -769,11 +770,13 @@ void Command::InjectOnce(const Command& command, bool next)
 	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
 	simulated_command_skip = next;
 	SDL_Event event{};
-	event.type = EventID();
-	event.key.windowID = command.state;
-	event.key.state = SDL_PRESSED;
+	auto& cevent = reinterpret_cast<CommandEvent&>(event);
+	cevent.type = EventID();
+	// command.state is 64 bits, but WindowID is 32 bits.
+	cevent.state = command.state;
+	cevent.pressed = SDL_PRESSED;
 	SDL_PushEvent(&event);
-	event.key.state = SDL_RELEASED;
+	cevent.pressed = SDL_RELEASED;
 	SDL_PushEvent(&event);
 }
 
@@ -791,9 +794,10 @@ void Command::InjectOnceNoEvent(const Command& command)
 void Command::InjectClear()
 {
 	SDL_Event event{};
-	event.type = EventID();
-	event.key.windowID = simulated_command.exchange(0);
-	event.key.state = SDL_RELEASED;
+	auto& cevent = reinterpret_cast<CommandEvent&>(event);
+	cevent.type = EventID();
+	cevent.state = simulated_command.exchange(0);
+	cevent.pressed = SDL_RELEASED;
 	SDL_PushEvent(&event);
 }
 
