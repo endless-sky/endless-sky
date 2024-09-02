@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "FillShader.h"
@@ -68,6 +69,7 @@ namespace {
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
+	static const int MAX_STARS = 5;
 
 	// Struct to track per system how many pointers are drawn and still
 	// need to be drawn.
@@ -1418,9 +1420,8 @@ void MapPanel::DrawSystems()
 			Angle starAngle = 0;
 			Angle angularSpacing = 0;
 			Point starOffset = Point(0, 0);
-			int maxStars = 5;
 
-			const int starsToDraw = min(static_cast<int>(node.mapIcons.size()), maxStars);
+			const int starsToDraw = min(static_cast<int>(node.mapIcons.size()), MAX_STARS);
 			if(starsToDraw > 1)
 			{
 				starAngle = node.name.length() + node.position.Length();
@@ -1432,7 +1433,7 @@ void MapPanel::DrawSystems()
 			for(int i = 0; i < starsToDraw; ++i)
 			{
 				starAngle += angularSpacing;
-				const Sprite *star = node.mapIcons(i);
+				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
 					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
 				starBatch.Add(starBody);
