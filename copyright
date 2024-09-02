@@ -1644,12 +1644,12 @@ Files:
  images/map/m-small-star*
  images/map/m-star*
  images/map/m-supergiant-star*
- images/map/o-dwarf-star
- images/map/o-giant-star
- images/map/o-large-star
- images/map/o-small-star
- images/map/o-star
- images/map/o-supergiant-star
+ images/map/o-dwarf-star*
+ images/map/o-giant-star*
+ images/map/o-large-star*
+ images/map/o-small-star*
+ images/map/o-star*
+ images/map/o-supergiant-star*
  images/map/unexplored-star*
  images/planet/nebula1*
 Copyright: Azure
