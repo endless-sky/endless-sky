@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include <SDL_events.h>
+#include <SDL2/SDL_events.h>
 
 #include <cstdint>
 #include <string>
