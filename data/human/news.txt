@@ -2402,20 +2402,31 @@ news "ccor graffiti"
 			"Graffiti painted on a wall"
 	message
 		word
-			"Someone has stenciled the emblem of the Confederated Councils of the Outer Rim here. ${ccor crest graffiti}"
-			"A crest of the local government here has been defaced with a generous amount of spray paint. ${ccor crest graffiti}"
-			"The insignia of a local guerrilla group has been painted on the wall here. ${ccor crest graffiti}"
-			"There's a spray-painted mess of competing emblems and slogans here. You can't make out the details, but it appears as if the burgundy-colored markings are in support of the CCOR."
+			"Someone has stenciled the emblem of the Confederated Councils of the Outer Rim here."
+			"A crest of the local government here has been defaced with a generous amount of spray paint."
+			"The insignia of a local guerrilla group has been painted on the wall here."
+		word
+			" "
+		phrase
+			"ccor crest graffiti"
+	message
+		word
+			"There's a spray-painted mess of competing emblems and slogans here. You can't make out the details, but it appears as if the burgundy markings are in support of the CCOR."
 
 phrase "ccor crest graffiti"
 	word
 		`` 2
-		`Underneath are the words "BELENOS SHINES ACROSS THE GALAXY."`
-		`Underneath are the words "THE CONFEDERATED COUNCILS WILL RETURN."`
-		`Underneath are the words "RESIST THE FOREIGN OCCUPIERS."`
-		`Underneath are the words "THE CCOR WILL RISE AGAIN."`
-		`Underneath are the words "LIBERATE THE OUTER RIM."`
-		`Underneath are the words "DISMANTLE THE SYNDICATE OLIGARCHY."`
+		`Underneath are the words "`
+	word
+		`BELENOS SHINES ACROSS THE GALAXY`
+		`THE CONFEDERATED COUNCILS WILL RETURN`
+		`RESIST THE FOREIGN OCCUPIERS`
+		`THE CCOR WILL RISE AGAIN`
+		`LIBERATE THE OUTER RIM`
+		`DISMANTLE THE SYNDICATE OLIGARCHY`
+	word
+		`!"`
+		`."`
 
 news "ccor guerrilla"
 	location
@@ -2445,8 +2456,14 @@ news "ccor gendarme"
 			"Spaceport security officer"
 	message
 		word
-			`"Report any signs of guerilla or pirate activity to us."`
-			`"Move along, now."`
-			`"If you see any defacement of local insignia, tell us and we'll have it sorted."`
-			`"We are here to keep the peace in this spaceport."`
+			`"`
+		word
+			"Report any signs of guerilla or pirate activity to us."
+			"Move along, now."
+			"If you see any defacement of local insignia, tell us and we'll have it sorted."
+			"We are here to keep the peace in this spaceport."
+		word
+			`"`
+	message
+		word
 			`You notice a spaceport guard eying you suspiciously as you pass through the corridor.`
