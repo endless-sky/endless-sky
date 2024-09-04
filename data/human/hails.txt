@@ -2772,11 +2772,10 @@ phrase "friendly civilian"
 	word
 		"? "
 	word
-		"It says that"
-		"It claims that"
 		"It says"
 		"It claims"
 	word
+		" that "
 		" "
 	word
 		"pulse showers are good for your quantum pores"
