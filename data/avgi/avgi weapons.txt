@@ -95,12 +95,13 @@ outfit "Speckle Turret"
 		"submunition" "Speck"
 			"offset" 3 0
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
-	description "Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to a nearby target."
+	description "Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
 
 
 outfit "Speck"
 	weapon
 		sprite "projectile/speck"
+			"scale" 0.5
 			"frame rate" 120
 			"no repeat"
 		"hit effect" "bullet impact"

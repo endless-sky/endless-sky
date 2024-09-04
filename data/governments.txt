@@ -22,8 +22,10 @@ government "Aberrant"
 		"Avgi (Consonance)" -0.01
 		"Avgi (Twilight Guard)" -0.01
 		"Avgi (Dissonance)" -0.01
-		"Avgi (Angry Dissonance)" -0.01
+		"Avgi (Dissonance Angry)" -0.01
 		"Avgi (Wandering Fleet)" -0.01
+		"Quarg" -0.01
+		"Pug" -0.01
 	"penalty for"
 		assist 0
 		disable 0
@@ -58,7 +60,7 @@ government "Avgi"
 		"Avgi (Consonance)" 0.5
 		"Avgi (Twilight Guard)" 0.5
 		"Avgi (Dissonance)" 0.01
-		"Avgi (Angry Dissonance)" -0.05
+		"Avgi (Dissonance Angry)" -0.05
 		"Aberrant" -0.1
 	bribe 0.3
 	"friendly hail" "friendly avgi"
@@ -76,7 +78,7 @@ government "Avgi (Consonance)"
 	"attitude toward"
 		"Avgi" 1
 		"Avgi (Dissonance)" 0.1
-		"Avgi (Angry Dissonance)" -0.05
+		"Avgi (Dissonance Angry)" -0.05
 		"Aberrant" -0.1
 	"penalty for"
 		disable 0.3
@@ -100,7 +102,7 @@ government "Avgi (Twilight Guard)"
 		"Avgi" 1
 		"Avgi (Consonance)" 1
 		"Avgi (Dissonance)" 0.1
-		"Avgi (Angry Dissonance)" -0.05
+		"Avgi (Dissonance Angry)" -0.05
 		"Aberrant" -0.1
 	"penalty for"
 		disable 0.3
@@ -128,10 +130,10 @@ government "Avgi (Dissonance)"
 		"Avgi" 1
 		"Avgi (Consonance)" 0.01
 		"Avgi (Twilight Guard)" 0.01
-		"Avgi (Angry Dissonance)" 0.01
+		"Avgi (Dissonance Angry)" 0.01
 		"Aberrant" -0.01
 	"custom penalties for"
-		"Avgi (Angry Dissonance)"
+		"Avgi (Dissonance Angry)"
 			disable 0
 			board 0.1
 			capture 1
@@ -143,7 +145,7 @@ government "Avgi (Dissonance)"
 	"hostile hail" "hostile dissonance"
 	"hostile disabled hail" "hostile disabled dissonance"
 
-government "Avgi (Angry Dissonance)"
+government "Avgi (Dissonance Angry)"
 	"display name" "Dissonance"
 	swizzle 1
 	language Avgi

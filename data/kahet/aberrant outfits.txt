@@ -80,8 +80,8 @@ effect "spiker impact"
 outfit "Nucleolysis Beam"
 	category "Guns"
 	cost 1800000
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "outfit/unknown"
+	thumbnail "outfit/nucleolysis beam"
+	"flotsam sprite" "outfit/nucleolysis beam"
 	"mass" 31
 	"outfit space" -31
 	"weapon capacity" -31

@@ -417,7 +417,7 @@ fleet "Dissonance Miners"
 			mining harvests
 	personality
 		confusion 20
-		mining harvests timid coward hunting disables plunders secretive
+		mining harvests timid coward hunting disables plunders secretive opportunistic
 	variant 20
 		"Entasi"
 		"Sonikis" 6
@@ -437,7 +437,7 @@ fleet "Dissonance Miners"
 
 
 fleet "Small Dissonance Pirates"
-	government "Avgi (Angry Dissonance)"
+	government "Avgi (Dissonance Angry)"
 	names "avgi civilian names"
 	fighters
 		names "avgi fighter names"
@@ -453,7 +453,7 @@ fleet "Small Dissonance Pirates"
 
 
 fleet "Large Dissonance Pirates"
-	government "Avgi (Angry Dissonance)"
+	government "Avgi (Dissonance Angry)"
 	names "avgi civilian names"
 	fighters
 		names "avgi fighter names"
@@ -468,7 +468,14 @@ fleet "Large Dissonance Pirates"
 		"Akoustiki" 2
 		"Tremoros" 2
 	variant 10
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
 		"Interferos"
 	variant 10
 		"Undsyni"
 		"Sonikis (Armed)" 4
+	variant 10
+		"Undsyni"
+		"Sonikis (Armed)" 4
+		"Interferos"

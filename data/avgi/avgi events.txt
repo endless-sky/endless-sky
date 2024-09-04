@@ -78,7 +78,7 @@ mission "Avgi: Spawn Wandering Fleet"
 		never
 	npc save
 		government "Avgi (Wandering Fleet)"
-		personality coward lingering mute secretive timid unconstrained uninterested
+		personality coward lingering quiet secretive timid unconstrained uninterested
 		system Kr-84
 		ship "Modified Tachytia" "Voyager"
 		ship "Undsyni (Tanker)" "Vitrified Carbon"
