@@ -2748,9 +2748,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Have you read the latest edition of"
-	word
-		" "
+		"Have you read the latest edition of "
 	word
 		"Cosmic Chronicles"
 		"Daring Discoveries"
@@ -2786,28 +2784,20 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"I'm no weapons expert, but it feels better firing"
-	word
-		" "
+		"I'm no weapons expert, but it feels better firing "
 	word
 		"energy blasters"
 		"particle cannons"
 		"proton guns"
 	word
-		" "
-	word
-		"than"
-	word
-		" "
+		" than "
 	word
 		"beam lasers."
 		"heavy lasers."
 
 phrase "friendly civilian"
 	word
-		"I shouldn't have sold my old ship. It was just a"
-	word
-		" "
+		"I shouldn't have sold my old ship. It was just a "
 	word
 		"Shuttle"
 		"Star Barge"
@@ -2816,11 +2806,7 @@ phrase "friendly civilian"
 		"Freighter"
 		"Fury"
 	word
-		" "
-	word
-		"but it never had"
-	word
-		" "
+		" but it never had "
 	word
 		"stalling engines."
 		"unstable shielding."
@@ -2830,22 +2816,18 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Finished cleaning my cargo hold. The"
-		"Cargo hold is all spick and span. The"
-		"Finished scrubbing the hold. The"
+		"Finished cleaning my cargo hold"
+		"Cargo hold is all spick and span"
+		"Finished scrubbing the hold"
 	word
-		" "
+		". The "
 	word
 		"freshener"
 		"perfume"
 		"spray"
 		"fragrance"
 	word
-		" "
-	word
-		"I used makes it smell like"
-	word
-		" "
+		" I used makes it smell like "
 	word
 		"strawberries"
 		"bananas"
@@ -2859,9 +2841,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Have you seen the holofilm where the"
-	word
-		" "
+		"Have you seen the holofilm where the "
 	word
 		"good guy"
 		"hero"
