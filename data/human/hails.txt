@@ -2715,11 +2715,7 @@ phrase "friendly civilian"
 		"Be suspicious of"
 		"Don't trust"
 	word
-		" "
-	word
-		"those space casinos. I blew"
-	word
-		" "
+		" those space casinos. I blew "
 	word
 		"half a"
 		"a"
