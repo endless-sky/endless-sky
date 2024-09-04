@@ -7479,18 +7479,19 @@ mission "Syndicate Business 1"
 					decline
 			`	When you approach, you are greeted by plain text on the terminal's screen:`
 			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: -1.18143560, -0.01575673, 0.00755328. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
-			`	You note that the message appears to be coming from an emergency transmitter commonly found on many escape pods. There is no shortage of pirates in <waypoints>.`
+			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>.`
 			choice
 				`	"To <waypoints>!"`
 				`	(Ignore it and walk away.)`
 					decline
 			`	You return to your ship and prepare to leave.`
 				accept
-
+	on accept
+		event "start of independent violence"
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <waypoints>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard, and a derelict shuttle aimlessly drifting near the coordinates in the original message. Your ship is immediately hailed, and the pirate opens communication.`
 			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
@@ -7503,14 +7504,20 @@ mission "Syndicate Business 1"
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
 			`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
-	npc kill
+	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
 			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
+	npc save assist
+		government "Independent"
+		personality derelict target quiet escort
+		system "Moktar"
+		ship "Shuttle" "Escape Pod 001"
 		conversation
-			`The <npc> has been destroyed. You find a small escape pod aimlessly drifting near the coordinates in the original message. You receive a hail from the pod's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you pick me up from this tin can and drop me off at <destination>! I'm with Megaparsec, I can make it worth your while!"`
+		conversation
+			`You board the shuttle to see it's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
@@ -7518,8 +7525,9 @@ mission "Syndicate Business 1"
 			`	Howard takes a breath and seems to calm himself. "That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to get back to <planet>.`
 	on complete
 		"reputation: Independent (Killable)" = 10
+		event "end of independent violence"
 		conversation
-			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the escape pod. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the shuttle. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
 			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase a perpetual bond of Megaparsec Inc I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
@@ -7551,6 +7559,22 @@ mission "Syndicate Business 1"
 			action
 				payment 91951
 				set "mean to Howard"
+
+event "start of independent violence"
+	government "Independent (Killable)"
+		"attitude toward"
+			"Independent" -.2
+	government "Independent"
+		"attitude toward"
+			"Independent (Killable)" -.2
+
+event "end of independent violence"
+	government "Independent (Killable)"
+		"attitude toward"
+			"Independent" 0
+	government "Independent"
+		"attitude toward"
+			"Independent (Killable)" 0
 
 
 mission "Syndicate Business 2"
