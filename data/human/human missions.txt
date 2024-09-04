@@ -7516,7 +7516,6 @@ mission "Syndicate Business 1"
 		system "Moktar"
 		ship "Shuttle" "Escape Pod 001"
 		conversation
-		conversation
 			`You board the shuttle to see it's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
