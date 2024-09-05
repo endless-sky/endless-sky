@@ -467,7 +467,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			{
 				// handle injected commands
 				Command command(event);
-				if(command == Command::FASTFORWARD && event.key.state == SDL_PRESSED)
+				if(command == Command::FASTFORWARD && reinterpret_cast<const CommandEvent&>(event).pressed == SDL_PRESSED)
 				{
 					isFastForward = !isFastForward;
 				}
