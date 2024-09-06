@@ -55,7 +55,7 @@ DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy
 // one end of the path has been visited. Also, if the ship has a jump drive
 // or wormhole access, the route will make use of it.
 DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
-	: player(&player), useWormholes(true)
+	: player(&player)
 {
 	const Ship *flagship = player.Flagship();
 
@@ -81,7 +81,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 // If a player is given, the path will only include systems that the
 // player has visited.
 DistanceMap::DistanceMap(const System &center, const System &destination, const PlayerInfo *player)
-	: player(player), center(&center), destination(&destination), useWormholes(true)
+	: player(player), center(&center), destination(&destination)
 {
 	if(player)
 		Init(player->Flagship());
@@ -92,7 +92,7 @@ DistanceMap::DistanceMap(const System &center, const System &destination, const 
 
 
 DistanceMap::DistanceMap(const Ship &ship, const System &destination, const PlayerInfo *player)
-	: player(player), center(ship.GetSystem()), destination(&destination), useWormholes(true)
+	: player(player), center(ship.GetSystem()), destination(&destination)
 {
 	Init(&ship);
 }
@@ -235,11 +235,7 @@ void DistanceMap::Init(const Ship *ship)
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
-					// If we're seeking a path toward a "source," travel through
-					// wormholes in the reverse of the normal direction.
-					const System &link = center ?
-						object.GetPlanet()->GetWormhole()->WormholeSource(*currentSystem) :
-						object.GetPlanet()->GetWormhole()->WormholeDestination(*currentSystem);
+					const System &link = object.GetPlanet()->GetWormhole()->WormholeDestination(*currentSystem);
 					if(HasBetter(link, nextEdge))
 						continue;
 

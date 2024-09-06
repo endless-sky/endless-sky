@@ -110,7 +110,6 @@ private:
 	// Defaults are set for hyperlane usage only. Using a ship overrides these.
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
-	bool useWormholes = false;
 	double jumpRange = 0.;
 	const Ship *ship = nullptr;
 
