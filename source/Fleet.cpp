@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -109,6 +110,8 @@ void Fleet::Load(const DataNode &node)
 			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
+		else if(key == "formation" && hasValue)
+			formation = GameData::Formations().Get(child.Token(1));
 		else if(key == "variant" && !remove)
 		{
 			if(resetVariants && !add)
@@ -432,7 +435,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		}
 	));
 
-	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
+	if(!canEnter || system.Links().empty() || (source && !system.Links().contains(source)))
 	{
 		Place(system, ship);
 		return &system;
@@ -525,6 +528,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 			ship->SetPersonality(fighterPersonality);
 		else
 			ship->SetPersonality(personality);
+		ship->SetFormationPattern(formation);
 
 		placed.push_back(ship);
 	}

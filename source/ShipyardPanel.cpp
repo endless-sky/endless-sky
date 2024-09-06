@@ -33,8 +33,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -163,7 +163,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION), true);
+		shipInfo.Update(*selectedShip, player, collapsed.contains(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
@@ -186,8 +186,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 		if(hasDescription)
 		{
-			// Maintenance note: This can be replaced with collapsed.contains() in C++20
-			if(!collapsed.count(DESCRIPTION))
+			if(!collapsed.contains(DESCRIPTION))
 			{
 				descriptionOffset = shipInfo.DescriptionHeight();
 				shipInfo.DrawDescription(startPoint);
