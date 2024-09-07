@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_H_
-#define SPRITE_H_
+#pragma once
 
-#include "Point.h"
+#include "../Point.h"
 
 #include <cstdint>
 #include <string>
@@ -70,7 +69,3 @@ private:
 	float height = 0.f;
 	int frames = 0;
 };
-
-
-
-#endif

@@ -9,6 +9,7 @@
     "system-libs": {
       "description": "System libraries required to build ES.",
       "dependencies": [
+        "catch2",
         {
           "name": "glew",
           "platform": "!osx"
@@ -34,7 +35,8 @@
     "steam-libs": {
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
-        "libmad"
+        "libmad",
+        "catch2"
       ]
     }
   }

@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGE_BUFFER_H_
-#define IMAGE_BUFFER_H_
+#pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 
 
@@ -57,7 +57,7 @@ public:
 
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	bool Read(const std::string &path, int frame = 0);
+	bool Read(const std::filesystem::path &path, int frame = 0);
 
 
 private:
@@ -66,7 +66,3 @@ private:
 	int frames;
 	uint32_t *pixels;
 };
-
-
-
-#endif
