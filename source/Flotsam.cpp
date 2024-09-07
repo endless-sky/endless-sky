@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Random.h"
 #include "Ship.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <cmath>

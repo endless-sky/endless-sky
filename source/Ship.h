@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_H_
-#define SHIP_H_
+#pragma once
 
 #include "Body.h"
 
@@ -174,6 +173,7 @@ public:
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -717,7 +717,3 @@ private:
 
 	bool removeBays = false;
 };
-
-
-
-#endif

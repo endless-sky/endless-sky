@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SCREEN_H_
-#define SCREEN_H_
+#pragma once
 
 #include "Point.h"
 
@@ -75,7 +74,3 @@ public:
 	static Point BottomLeft();
 	static Point BottomRight();
 };
-
-
-
-#endif
