@@ -81,7 +81,7 @@ outfit "Bimodal Coilgun Turret"
 		"velocity" 30
 		"lifetime" 15
 		"range override" 900
-		"turret turn" 3.5
+		"turret turn" 1.6
 		"burst count" 24
 		"burst reload" 3
 		"reload" 15
