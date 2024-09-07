@@ -126,7 +126,7 @@ ship "Ejniisde"
 		"cargo space" 50
 		"outfit space" 265
 		"weapon capacity" 85
-		"engine capacity" 180
+		"engine capacity" 100
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
