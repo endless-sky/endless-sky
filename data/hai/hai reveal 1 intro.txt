@@ -448,6 +448,8 @@ event "hr: pirate uptick"
 
 
 mission "Hai Reveal Concern Period: Humans Going Home"
+	name "Transport Estranged Humans to Safety"
+	description "These humans need transporting to <planet> to get away from a breakdown in relations with the local Hai."
 	landing
 	passengers 5 10
 	source
@@ -474,7 +476,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 			`	As it turns out, it is almost impossible to miss these humans, as their camp is located directly in the crossroads of the spaceport's major thoroughfares. Judging by their expensive clothing and somewhat impatient attitude they are people of means, which makes this even more odd.`
 			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue. "We have run an import services business here for some time, but with the recent events suspicion of human captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them," they say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand, though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
 			`	"Naturally, business immediately suffered, and we got enough flak for it that we decided it was time to shut up shop and go elsewhere until this all blows over. This offended someone and then several Hai captains refused to take us. Now, well, they've relented since we started camping out, but I can't honestly say we trust them either right now. We will be more than happy to give you a just compensation of <payment> to take us somewhere we won't be nearly the only humans in town."`
-			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
+			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I wish to return to <planet> where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
 			choice
 				`	"Of course, welcome aboard."`
 				`	"Sorry, you're on your own."`
@@ -575,8 +577,8 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 		set "hr: allhome raided"
 		conversation
 			`A wall screen situated between two food stands just outside the docking area is playing through a news segment, and your ears suddenly perk up at the word "marauder".`
-			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew hijacked a vessel with some of the crew still on board and made off with it successfully. At this time it is unclear what has happened to those crewhai."`
-			`	At a table nearby, a Hai says, "Oh, that's awful!" and the human next to her responds, "Feels like being back on Solace."`
+			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew hijacked a vessel with some of the crew still on board and made off with it successfully. At this time it is unclear what has happened to those hai crewmembers."`
+			`	At a table nearby, a Hai says, "Oh, that's awful, those poor crewhai!" and the human next to her responds, "Feels like being back on Solace."`
 			choice
 				`	(Approach the pair.)`
 				`	(Keep walking.)`
@@ -641,14 +643,14 @@ mission "HR: Call for Aid with Sandsnap"
 	description "Experienced combat pilots are requested to apply at the spaceport on <destination> for a project to reactivate the Sandsnap station."
 	to offer
 		has "hr: allhome raided"
-		not "hr: sandsnap project"
+		not "hr: sandsnap project attempted"
 		not "Hai Reveal Concern Period: Reactivating Sandsnap: declined"
 	source
 		government "Hai"
 		not planet "Makerplace"
 	destination "Makerplace"
 	to complete
-		has "hr: sandsnap project"
+		never
 	on complete
 		payment 1000 150
 		dialog `Having accepted the job, the initial retainer of <payment> appears in your account.`
@@ -704,7 +706,10 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 			`	You show her to her bunks. She seems satisfied, and immediately begins calling people to get things sorted. She does not seem to be the kind for casual conversation.`
 				accept
 	on accept
-		set "hr: sandsnap project"
+		fail "HR: Call for Aid with Sandsnap"
+		set "hr: sandsnap project attempted"
+		payment 1000 150
+		dialog `Having accepted the job, the initial retainer of <payment> appears in your account.`
 		log "People" "Stationkeeper Kelamursh" `Kelamursh is a high-ranking employee in an arms manufacturing company. With the concerns on Allhome, she was entrusted with the responsibility of reactivating Sandsnap Station and taking on the role of Stationkeeper.`
 
 
@@ -738,7 +743,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 	landing
 	source "Sandsnap"
 	to offer
-		has "hr: sandsnap project"
+		has "hr: sandsnap project attempted"
 	on offer
 		conversation
 			`Upon arrival the Stationkeeper suits up and requests that you stay aboard your ship in case hostiles approach the station while she goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, the main lighting comes on in the docking section, and the team disappears inside.`
@@ -759,8 +764,6 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 			`	He blinks at you. "Well, what are you waiting for? Go! Come back when all the supply ships have arrived safely."`
 			`	You are left with little choice other than to nod and get on your way.`
 				accept
-	on accept
-		set "hr: sandsnap project"
 	on visit
 		dialog "The supply ships have not all arrived safely yet."
 	on fail
@@ -781,6 +784,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		"reputation: Hai Merchant" += 200
 		"reputation: Hai Merchant (Human)" += 200
 		"reputation: Hai Merchant (Sympathizers)" += 200
+		set "hr: sandsnap project completed"
 		event "hr: sandsnap awoken" 5
 		fail "HRCP: Sandsnap Mercenaries"
 		# Ideally eventually use: payment ( "armament deterrence" * 18000 - "cargo attractiveness" * 3000 )
@@ -832,9 +836,11 @@ mission "Hai Leaks Response 2"
 			has "Hai Reveal Concern Period: Raid on Allhome (away): declined"
 			has "Hai Reveal Concern Period: Raid on Allhome (local): declined"
 		or
-			has "Hai Reveal Concern Period: Reactivating Sandsnap: declined"
-			has "Hai Reveal Concern Period: Securing Sandsnap: done"
-			has "Hai Reveal Concern Period: Securing Sandsnap: failed"
+			not "Hai Reveal Concern Period: Reactivating Sandsnap: offered"
+			or
+				has "Hai Reveal Concern Period: Reactivating Sandsnap: declined"
+				has "Hai Reveal Concern Period: Securing Sandsnap: done"
+				has "Hai Reveal Concern Period: Securing Sandsnap: failed"
 	on offer
 		conversation
 			`A brief announcement in the regular news feeds advises that the Hai government and the human diplomats on Hai-home are close to taking next actionable steps towards resolving the current situation. As you listen, you realize it's now been over two months since you last saw them.`
