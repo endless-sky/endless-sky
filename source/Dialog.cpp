@@ -266,8 +266,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(boolFun)
 		{
 			DoCallback(okIsActive);
-			// Use PopThrough because the Dialog has spawned additional panels.
-			GetUI()->PopThrough(this);
+			GetUI()->Pop(this);
 		}
 		else if(okIsActive || isMission)
 		{
@@ -276,11 +275,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
-				GetUI()->PopThrough(this);
+				GetUI()->Pop(this);
 			}
 		}
 		else
-			GetUI()->PopThrough(this);
+			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));

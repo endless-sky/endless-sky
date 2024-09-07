@@ -193,7 +193,7 @@ outfit "Dragonflame Cannon"
 		"hull damage" 15000
 		"heat damage" 50000
 		"piercing" 0.4
-		"blast radius" 50
+		"penetration count" 20
 	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
 
 effect "dragonflame"
