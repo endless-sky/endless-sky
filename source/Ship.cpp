@@ -4179,7 +4179,7 @@ void Ship::DoGeneration()
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), 1., scale);
 			fuel += currentSystem->RamscoopFuel(attributes.Get("velocity ramscoop"),
-				velocity.Length() * !IsHyperspacing() / 100., scale);
+				velocity.Length() * !IsHyperspacing() / 1.66, scale);
 			heat += scale * currentSystem->SolarWind() * attributes.Get("ramscoop heat");
 			energy -= scale * currentSystem->SolarWind() * attributes.Get("ramscoop energy");
 
