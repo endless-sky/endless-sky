@@ -351,14 +351,14 @@ outfit `"Sjeja" Kinetic Lance`
 		"velocity" 320
 		"lifetime" 8
 		"reload" 160
-		"firing force" 1200
+		"firing force" 800
 		"firing energy" 1900
 		"firing ion" 3.0
 		"firing heat" 4000
 		"shield damage" 1336
 		"hull damage" 1920
 		"piercing" 0.15
-		"hit force" 3750
+		"hit force" 800
 		"penetration count" 5
 	description "The largest and most powerful of the Successors' modern weapons, this massive superconducting coilgun is elegant in its simplicity, cleanly perforating targets at extreme range. Although the weapon requires a substantial burst of power in order to fire, it is capable of storing some of this within the coils themselves, allowing it to be fired without additional battery banks at the cost of inflicting a lingering power draw on the ship's systems."
 
