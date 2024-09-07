@@ -3248,7 +3248,7 @@ ship "Starling" "Starling (Keystone)"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
-		"Crucible-Class Steering"
+		# "Crucible-Class Steering" # Extra steering
 		"Hyperdrive"
 
 
@@ -3655,6 +3655,7 @@ ship "_Ion Timer Ship"
 	# The _Ion Storm Timer: Generator outfit counteracts this until there is an ion storm
 	# sprite "ship/shuttle" # uncomment this for debugging
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 1.0
 		"mass" 100

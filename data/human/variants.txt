@@ -142,7 +142,7 @@ ship "Auxiliary" "Auxiliary (Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -169,7 +169,7 @@ ship "Auxiliary" "Auxiliary (Cargo Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -196,7 +196,7 @@ ship "Auxiliary" "Auxiliary (Transport Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -350,7 +350,7 @@ ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
 		"Liquid Nitrogen Cooler"
 		"Plasma Cannon" 4
 		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
+		# "A255 Atomic Steering" # Extra steering
 		"A525 Atomic Steering"
 		"Fission Reactor"
 		"Quad Blaster Turret" 3
@@ -496,7 +496,7 @@ ship "Behemoth" "Behemoth (Hai)"
 		"Outfits Expansion" 6
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` Extra thruster
 		"Hyperdrive"
 
 
@@ -569,7 +569,7 @@ ship "Behemoth" "Behemoth (Proton)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 6
 		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
+		# "A125 Atomic Steering" # Extra thruster
 		"A375 Atomic Steering"
 		"Scram Drive"
 	turret "Proton Turret"
@@ -592,7 +592,7 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 6
 		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
+		# "A125 Atomic Steering" # Extra steering
 		"A375 Atomic Steering"
 		"Scram Drive"
 
@@ -764,7 +764,7 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 		"Pulse Rifle" 4
 		"X3700 Ion Thruster"
 		`"Benga" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Scram Drive"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
@@ -813,7 +813,7 @@ ship "Bulk Freighter" "Bulk Freighter (Long Haul)"
 		"Laser Rifle" 6
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"X1200 Ion Steering"
+		# "X1200 Ion Steering" # Extra steering
 		"Scram Drive"
 	turret "Anti-Missile Turret"
 	turret "Laser Turret"
@@ -1269,7 +1269,7 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Brig"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"X2200 Ion Steering"
+		# "X2200 Ion Steering" # Extra steering
 		"Scram Drive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
@@ -1803,7 +1803,7 @@ ship "Firebird" "Firebird (CCOR)"
 		"Outfit Scanner"
 		"Laser Rifle" 22
 		"Security Station"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering" # Extra Steering
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
@@ -2187,7 +2187,7 @@ ship "Hauler II" "Hauler II (CCOR)"
 		"Laser Rifle" 12
 		"Security Station" 2
 		"Capybara Reverse Thruster"
-		"Chipmunk Plasma Thruster"
+		# "Chipmunk Plasma Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Scram Drive"
@@ -2458,7 +2458,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Security Station"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering"
 		"Scram Drive"
 
 
@@ -2681,7 +2681,7 @@ ship "Marauder Firebird" "Marauder Firebird (Hai)"
 		"Outfits Expansion"
 		"Laser Rifle" 25
 		`"Biroo" Atomic Thruster`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 
@@ -3320,7 +3320,7 @@ ship "Saber" "Saber (CCOR Javelin)"
 		"Laser Rifle" 16
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering" # Extra steering
 		"Hyperdrive"
 
 

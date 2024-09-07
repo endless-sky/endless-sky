@@ -23,7 +23,7 @@ ship "Rano'erek"
 		"hull" 16500
 		"required crew" 137
 		"bunks" 357
-		"mass" 3542
+		"mass" 12024
 		"drag" 32.5
 		"heat dissipation" .24
 		"fuel capacity" 900
@@ -31,6 +31,9 @@ ship "Rano'erek"
 		"outfit space" 763
 		"weapon capacity" 276
 		"engine capacity" 206
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 4600
@@ -95,6 +98,7 @@ ship "Rano'erek"
 	description "	Featuring an abundance of cargo and passenger space in addition to their formidable defensive armament, these bulky ships can also offer potent support for frontline Palavrets."
 
 
+
 ship "Palavret"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
@@ -105,7 +109,7 @@ ship "Palavret"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 1770
+		"mass" 2880
 		"drag" 20.4
 		"heat dissipation" .3
 		"fuel capacity" 600
@@ -113,6 +117,9 @@ ship "Palavret"
 		"outfit space" 777
 		"weapon capacity" 339
 		"engine capacity" 159
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -169,6 +176,7 @@ ship "Palavret"
 	description "	Like all Exile ships, the Palavret has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly armed warships. The spaceborne construction techniques employed allow for the ship's easy replacement, facilitating continued raids of nearby systems."
 
 
+
 ship "Tubfalet"
 	sprite "ship/tubfalet"
 	thumbnail "thumbnail/tubfalet"
@@ -179,7 +187,7 @@ ship "Tubfalet"
 		"hull" 11000
 		"required crew" 157
 		"bunks" 250
-		"mass" 2228
+		"mass" 3808
 		"drag" 25.5
 		"heat dissipation" .36
 		"heat protection" 0.1
@@ -189,6 +197,9 @@ ship "Tubfalet"
 		"outfit space" 871
 		"weapon capacity" 377
 		"engine capacity" 212
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 250
 			"shield damage" 3700
@@ -210,7 +221,7 @@ ship "Tubfalet"
 		"Thermal Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
+		# "Thruster (Lunar Class)" # Extra thrustera
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
@@ -283,6 +294,7 @@ ship "Tubfalet"
 	description "	Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to draw upon, the Korath have created a new raider to deal with modern targets, and the Tubfalet-Class Raiding Ship is named for an admiral who dealt with such enemies. Despite extensive injuries, he remained on his flag bridge during a Remnant attack, leading his squadron to victory."
 
 
+
 ship "'nra'ret"
 	sprite "ship/-nra-ret"
 	thumbnail "thumbnail/-nra-ret"
@@ -293,7 +305,7 @@ ship "'nra'ret"
 		"hull" 9850
 		"required crew" 193
 		"bunks" 221
-		"mass" 2228
+		"mass" 7832
 		"drag" 18.7
 		"heat dissipation" .39
 		"fuel capacity" 900
@@ -301,6 +313,9 @@ ship "'nra'ret"
 		"outfit space" 943
 		"weapon capacity" 407
 		"engine capacity" 177
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 4400
@@ -356,6 +371,7 @@ ship "'nra'ret"
 	description "	The 'nra'ret-Class Chaser, named in honor of a brilliant weapons engineer who took their own life to avoid having their secrets captured by a hostile alien force, provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units. To this end, it is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of langrage heavers for sustained operations, and two Fire-Lances for emergency use in close quarters."
 
 
+
 ship "'olofez"
 	plural "'olofezes"
 	sprite "ship/chaser"
@@ -373,6 +389,9 @@ ship "'olofez"
 		"outfit space" 92
 		"weapon capacity" 25
 		"engine capacity" 30
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -396,6 +415,7 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
+
 ship "Kas'ik Tek 7"
 	sprite "ship/kas-ik tek 7"
 	thumbnail "thumbnail/kas-ik tek 7"
@@ -412,6 +432,9 @@ ship "Kas'ik Tek 7"
 		"cargo space" 4
 		"outfit space" 48
 		"engine capacity" 18
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"atmosphere scan" 100
 		"outfit scan power" 18
 		"outfit scan efficiency" 20
@@ -437,6 +460,7 @@ ship "Kas'ik Tek 7"
 	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`
 
 
+
 ship "Rai'alorej"
 	sprite "ship/rai-alorej"
 	thumbnail "thumbnail/rai-alorej"
@@ -447,7 +471,7 @@ ship "Rai'alorej"
 		hull 27000
 		"required crew" 523
 		"bunks" 1433
-		"mass" 4050
+		"mass" 13280
 		"drag" 53.8
 		"heat dissipation" .19
 		"fuel capacity" 700
@@ -456,6 +480,9 @@ ship "Rai'alorej"
 		"outfit space" 856
 		"weapon capacity" 237
 		"engine capacity" 195
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
@@ -518,6 +545,7 @@ ship "Rai'alorej"
 	description "	The Rai'alorej-Class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have at hand. Even incubators and nurseries are available to treat the young who grow up aboard ship."
 
 
+
 ship "Ikatila'ej"
 	sprite "ship/ikatila-ej"
 	thumbnail "thumbnail/ikatila-ej"
@@ -528,7 +556,7 @@ ship "Ikatila'ej"
 		"hull" 93000
 		"required crew" 957
 		"bunks" 1933
-		"mass" 14082
+		"mass" 32280
 		"drag" 133.4
 		"heat dissipation" .13
 		"fuel capacity" 800
@@ -536,6 +564,9 @@ ship "Ikatila'ej"
 		"outfit space" 1314
 		"weapon capacity" 440
 		"engine capacity" 259
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"spinal mount" 1
 		weapon
 			"blast radius" 600
@@ -594,6 +625,7 @@ ship "Ikatila'ej"
 	description "	When not assisting with damaged ships and stations, or replenishing its own stores, the Ikatila'ej serves as an all-in-one recycling, mining, refining, and factory ship, using its microbot-powered grinder to rapidly turn asteroids and garbage into whatever products the civilian economic planning committees have determined to be in the most dire need."
 
 
+
 ship "Lor'kas Ik 577"
 	"display name" "Karek A'awoj"
 	sprite "ship/world-ship a"
@@ -605,7 +637,7 @@ ship "Lor'kas Ik 577"
 		hull 29600
 		"required crew" 234
 		"bunks" 453
-		"mass" 4791
+		"mass" 15080
 		"drag" 39
 		"heat dissipation" .2
 		"fuel capacity" 1000
@@ -613,6 +645,9 @@ ship "Lor'kas Ik 577"
 		"outfit space" 883
 		"weapon capacity" 338
 		"engine capacity" 238
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -670,6 +705,7 @@ ship "Lor'kas Ik 577"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. The simplest are adapted to haul materials between refinery and factory stations. Fittingly, they're named after a productive colony of the Efreti, to honor their focus on peaceful industry."
 
 
+
 ship "Ra'gru Ik 618"
 	"display name" "Sapira A'awoj"
 	sprite "ship/world-ship b"
@@ -681,7 +717,7 @@ ship "Ra'gru Ik 618"
 		hull 39500
 		"required crew" 619
 		"bunks" 794
-		"mass" 5070
+		"mass" 13960
 		"drag" 44.1
 		"heat dissipation" .23
 		"fuel capacity" 1000
@@ -689,6 +725,9 @@ ship "Ra'gru Ik 618"
 		"outfit space" 1278
 		"weapon capacity" 633
 		"engine capacity" 263
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -755,6 +794,7 @@ ship "Ra'gru Ik 618"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels. It is named after the Mereti's capital planet, where they made powerful warships out of modular components."
 
 
+
 ship "Kas'lor Ik 582"
 	"display name" "Dathnak A'awoj"
 	sprite "ship/world-ship c"
@@ -766,7 +806,7 @@ ship "Kas'lor Ik 582"
 		hull 26100
 		"required crew" 314
 		"bunks" 551
-		"mass" 4778
+		"mass" 15208
 		"drag" 34.9
 		"heat dissipation" .18
 		"solar collection" 3.8
@@ -775,6 +815,9 @@ ship "Kas'lor Ik 582"
 		"outfit space" 839
 		"weapon capacity" 321
 		"engine capacity" 241
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -828,6 +871,7 @@ ship "Kas'lor Ik 582"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel. Its name refers to the delicious squids that lived in their gas giants, and especially Deka Dathnak."
 
 
+
 ship "Lor'nag Ik 590"
 	"display name" "Spera A'awoj"
 	sprite "ship/world-ship d"
@@ -839,7 +883,7 @@ ship "Lor'nag Ik 590"
 		hull 34800
 		"required crew" 538
 		"bunks" 1492
-		"mass" 4853
+		"mass" 15432
 		"drag" 36.9
 		"heat dissipation" .19
 		"solar collection" 5.6
@@ -848,6 +892,9 @@ ship "Lor'nag Ik 590"
 		"outfit space" 856
 		"weapon capacity" 321
 		"engine capacity" 241
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -904,6 +951,7 @@ ship "Lor'nag Ik 590"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This bulbous ship has been adapted to carry passengers between stations, or boarding parties into enemy strongholds. Its name is in memory of the Anatruskor, who invented the jump drive."
 
 
+
 ship "Ra'at Ik 621"
 	"display name" "Ikfar A'awoj"
 	sprite "ship/world-ship e"
@@ -915,7 +963,7 @@ ship "Ra'at Ik 621"
 		hull 31400
 		"required crew" 794
 		"bunks" 1037
-		"mass" 4647
+		"mass" 14040
 		"drag" 55.4
 		"heat dissipation" .2
 		"fuel capacity" 1000
@@ -923,6 +971,9 @@ ship "Ra'at Ik 621"
 		"outfit space" 999
 		"weapon capacity" 407
 		"engine capacity" 277
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -992,6 +1043,7 @@ ship "Ra'at Ik 621"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This many-lobed ship has been adapted to carry fighters into large-scale raids, or mining craft into asteroid belts. Its radial arrangements of hangars allows fighters a maximum variety of safe approach patterns in combat. Sestor exiles, who had a great affinity for carriers and fighters, bequeathed this variant its name after their capital world."
 
 
+
 ship "Kasichara A'awoj"
 	sprite "ship/world-ship f"
 	thumbnail "thumbnail/world-ship f"
@@ -1002,7 +1054,7 @@ ship "Kasichara A'awoj"
 		hull 49600
 		"required crew" 543
 		"bunks" 1997
-		"mass" 5562
+		"mass" 16840
 		"drag" 50.4
 		"heat dissipation" .21
 		"solar collection" 12.7
@@ -1011,6 +1063,9 @@ ship "Kasichara A'awoj"
 		"outfit space" 1038
 		"weapon capacity" 331
 		"engine capacity" 251
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -1060,6 +1115,7 @@ ship "Kasichara A'awoj"
 	description `	Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids.`
 
 
+
 ship "Korsmanath A'awoj"
 	sprite "ship/korsmanath a-awoj"
 	thumbnail "thumbnail/korsmanath a-awoj"
@@ -1071,7 +1127,7 @@ ship "Korsmanath A'awoj"
 		hull 320690
 		"required crew" 1940
 		"bunks" 31920
-		"mass" 38565
+		"mass" 60000
 		"drag" 231
 		"heat dissipation" .08
 		"solar collection" 4.2
@@ -1080,6 +1136,9 @@ ship "Korsmanath A'awoj"
 		"outfit space" 3180
 		"weapon capacity" 1148
 		"engine capacity" 480
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"atmosphere scan" 100
 		weapon
 			"blast radius" 800
@@ -1307,7 +1366,7 @@ ship "Echo-Galleon"
 		hull 27000
 		"required crew" 243
 		"bunks" 972
-		"mass" 3791
+		"mass" 12280
 		"drag" 42
 		"heat dissipation" .3
 		"fuel capacity" 600
@@ -1315,6 +1374,9 @@ ship "Echo-Galleon"
 		"outfit space" 721
 		"weapon capacity" 285
 		"engine capacity" 155
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 7200
@@ -1369,7 +1431,7 @@ ship "Arch-Carrack"
 		"hull" 19300
 		"required crew" 54
 		"bunks" 97
-		"mass" 1906
+		"mass" 8616
 		"drag" 22.3
 		"heat dissipation" .34
 		"fuel capacity" 600
@@ -1377,6 +1439,9 @@ ship "Arch-Carrack"
 		"outfit space" 582
 		"weapon capacity" 193
 		"engine capacity" 147
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"disruption resistance" 0.24
 		"disruption resistance energy" 2.4
 		"disruption resistance heat" 2.4
@@ -1398,7 +1463,7 @@ ship "Arch-Carrack"
 		"Thermal Repeater Rifle" 55
 		
 		"Gaktem GP Hybrid Thruster"
-		"Farves GP Hybrid Thruster"
+		# "Farves GP Hybrid Thruster" # Extra thruster
 		"Gaktem GP Hybrid Steering"
 		"Scram Drive"
 
@@ -1422,6 +1487,7 @@ ship "Arch-Carrack"
 	description "Although they do not effectively provide for their own defense, the Efreti remain responsible for the day-to-day needs of civilian and cargo transportation. While not as bulky or powerful as other Korath designs, this freighter is much faster at making runs back and forth between the Efreti's handful of remaining planets, while still holding enough defensive loadout to ward off the odd Mereti drone that slips past the Quarg."
 
 
+
 ship "Charm-Shallop"
 	sprite "ship/charm-shallop"
 	thumbnail "thumbnail/charm-shallop"
@@ -1432,7 +1498,7 @@ ship "Charm-Shallop"
 		"hull" 15200
 		"required crew" 65
 		"bunks" 203
-		"mass" 882
+		"mass" 990
 		"drag" 10.5
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -1440,6 +1506,9 @@ ship "Charm-Shallop"
 		"outfit space" 473
 		"weapon capacity" 158
 		"engine capacity" 129
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"disruption resistance" 0.2
 		"disruption resistance energy" 2
 		"disruption resistance heat" 2
@@ -1491,7 +1560,7 @@ ship "Kar Ik Vot 349"
 		"hull" 65400
 		"automaton" 1
 		"crew equivalent" 150
-		"mass" 3754
+		"mass" 10800
 		"drag" 33.6
 		"heat dissipation" .25
 		"fuel capacity" 400
@@ -1499,6 +1568,9 @@ ship "Kar Ik Vot 349"
 		"outfit space" 1054
 		"weapon capacity" 447
 		"engine capacity" 173
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .8
 		"ramscoop" 3
 		weapon
@@ -1548,6 +1620,7 @@ ship "Kar Ik Vot 349"
 	description "The largest and deadliest of the Kor Sestor robotic warships, a single one of these battlecruisers can hold its own against an entire fleet of lesser ships."
 
 
+
 ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	thumbnail "thumbnail/tek far 71 lek"
@@ -1558,7 +1631,7 @@ ship "Tek Far 71 - Lek"
 		"hull" 29500
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 1240
+		"mass" 2440
 		"drag" 14.9
 		"heat dissipation" .39
 		"fuel capacity" 400
@@ -1566,6 +1639,9 @@ ship "Tek Far 71 - Lek"
 		"outfit space" 533
 		"weapon capacity" 235
 		"engine capacity" 102
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .7
 		"ramscoop" 3
 		weapon
@@ -1628,6 +1704,7 @@ ship "Tek Far 71 - Lek"
 	description "The Kor Sestor war fleets rely heavily on small, powerful fighters and drones. This ship can carry up to ten of their drones, clamped to the exterior of its hull."
 
 
+
 ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	thumbnail "thumbnail/tek far 78 osk"
@@ -1638,7 +1715,7 @@ ship "Tek Far 78 - Osk"
 		"hull" 34100
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 1471
+		"mass" 2760
 		"drag" 16.3
 		"heat dissipation" .35
 		"fuel capacity" 400
@@ -1646,6 +1723,9 @@ ship "Tek Far 78 - Osk"
 		"outfit space" 611
 		"weapon capacity" 272
 		"engine capacity" 117
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .7
 		"ramscoop" 3
 		weapon
@@ -1708,6 +1788,7 @@ ship "Tek Far 78 - Osk"
 	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
 
 
+
 ship "Tek Far 109"
 	sprite "ship/tek far 109"
 	thumbnail "thumbnail/tek far 109"
@@ -1718,7 +1799,7 @@ ship "Tek Far 109"
 		"hull" 15800
 		"automaton" 1
 		"crew equivalent" 100
-		"mass" 1056
+		"mass" 2160
 		"drag" 13.7
 		"heat dissipation" .44
 		"fuel capacity" 400
@@ -1726,6 +1807,9 @@ ship "Tek Far 109"
 		"outfit space" 491
 		"weapon capacity" 217
 		"engine capacity" 98
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .7
 		"ramscoop" 3
 		weapon
@@ -1796,6 +1880,7 @@ ship "Tek Far 109"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
+
 ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	thumbnail "thumbnail/met par tek 53"
@@ -1806,7 +1891,7 @@ ship "Met Par Tek 53"
 		"hull" 22200
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 935
+		"mass" 840
 		"drag" 8.6
 		"heat dissipation" .54
 		"fuel capacity" 400
@@ -1814,6 +1899,9 @@ ship "Met Par Tek 53"
 		"outfit space" 610
 		"weapon capacity" 213
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .65
 		"ramscoop" 3
 		weapon
@@ -1855,6 +1943,7 @@ ship "Met Par Tek 53"
 	description "Although this is the smallest Kor Sestor ship other than their fighters, it is larger than most human capital ships and considerably more powerful."
 
 
+
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	thumbnail "thumbnail/far lek 14"
@@ -1871,6 +1960,9 @@ ship "Far Lek 14"
 		"outfit space" 65
 		"weapon capacity" 11
 		"engine capacity" 24
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .6
 		weapon
 			"blast radius" 5
@@ -1895,6 +1987,7 @@ ship "Far Lek 14"
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
+
 ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
@@ -1909,8 +2002,11 @@ ship "Far Osk 27"
 		"drag" 1.1
 		"heat dissipation" 1.0
 		"outfit space" 99
-		"weapon capacity" 22
+		"weapon capacity" 33
 		"engine capacity" 24
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .6
 		weapon
 			"blast radius" 12
@@ -1932,7 +2028,7 @@ ship "Far Osk 27"
 	gun 13 -8
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to support a thicker hull, more shields, and more powerful guns than any comparable human ship."
+	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to support a thicker hull, more shields, and more weaponry than any comparable human ship."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
@@ -1955,6 +2051,9 @@ ship "Model 8"
 		"outfit space" 220
 		"weapon capacity" 49
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .60
 		"ramscoop" 3
 		weapon
@@ -1984,6 +2083,7 @@ ship "Model 8"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
 
 
+
 ship "Model 16"
 	sprite "ship/model 16"
 	thumbnail "thumbnail/model 16"
@@ -1994,7 +2094,7 @@ ship "Model 16"
 		"hull" 9800
 		"automaton" 1
 		"crew equivalent" 10
-		"mass" 390
+		"mass" 500
 		"drag" 8.3
 		"heat dissipation" 1.09
 		"fuel capacity" 400
@@ -2002,6 +2102,9 @@ ship "Model 16"
 		"outfit space" 426
 		"weapon capacity" 149
 		"engine capacity" 107
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .65
 		"ramscoop" 3
 		weapon
@@ -2038,6 +2141,7 @@ ship "Model 16"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
 
 
+
 ship "Model 32"
 	sprite "ship/model 32"
 	thumbnail "thumbnail/model 32"
@@ -2048,7 +2152,7 @@ ship "Model 32"
 		"hull" 13400
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 625
+		"mass" 740
 		"drag" 11.7
 		"heat dissipation" 1.0
 		"fuel capacity" 400
@@ -2056,6 +2160,9 @@ ship "Model 32"
 		"outfit space" 481
 		"weapon capacity" 205
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .70
 		"ramscoop" 3
 		weapon
@@ -2093,6 +2200,7 @@ ship "Model 32"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
 
 
+
 ship "Model 64"
 	sprite "ship/model 64"
 	thumbnail "thumbnail/model 64"
@@ -2103,7 +2211,7 @@ ship "Model 64"
 		"hull" 18000
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 1096
+		"mass" 2320
 		"drag" 16.1
 		"heat dissipation" .76
 		"fuel capacity" 400
@@ -2111,6 +2219,9 @@ ship "Model 64"
 		"outfit space" 567
 		"weapon capacity" 263
 		"engine capacity" 114
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .74
 		"ramscoop" 3
 		weapon
@@ -2131,7 +2242,7 @@ ship "Model 64"
 		"Reasoning Node" 2
 		
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Steering (Planetary Class)"
 		Hyperdrive
 	
@@ -2150,6 +2261,7 @@ ship "Model 64"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
 
 
+
 ship "Model 128"
 	sprite "ship/model 128"
 	thumbnail "thumbnail/model 128"
@@ -2160,7 +2272,7 @@ ship "Model 128"
 		"hull" 23100
 		"automaton" 1
 		"crew equivalent" 75
-		"mass" 1601
+		"mass" 3120
 		"drag" 20.5
 		"heat dissipation" .65
 		"fuel capacity" 400
@@ -2168,6 +2280,9 @@ ship "Model 128"
 		"outfit space" 713
 		"weapon capacity" 344
 		"engine capacity" 132
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .77
 		"ramscoop" 3
 		weapon
@@ -2188,7 +2303,7 @@ ship "Model 128"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		Hyperdrive
 
 	engine -14 178
@@ -2208,6 +2323,7 @@ ship "Model 128"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
 
 
+
 ship "Model 256"
 	sprite "ship/model 256"
 	thumbnail "thumbnail/model 256"
@@ -2218,7 +2334,7 @@ ship "Model 256"
 		"hull" 28700
 		"automaton" 1
 		"crew equivalent" 100
-		"mass" 2340
+		"mass" 7760
 		"drag" 26.8
 		"heat dissipation" .52
 		"fuel capacity" 400
@@ -2226,6 +2342,9 @@ ship "Model 256"
 		"outfit space" 857
 		"weapon capacity" 393
 		"engine capacity" 145
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .79
 		"ramscoop" 3
 		weapon
@@ -2247,7 +2366,7 @@ ship "Model 256"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Steering (Comet Class)"
+		# "Steering (Comet Class)" # Extra steering
 		Hyperdrive
 
 	engine -60 147
@@ -2268,6 +2387,7 @@ ship "Model 256"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
 
 
+
 ship "Model 512"
 	sprite "ship/model 512"
 	thumbnail "thumbnail/model 512"
@@ -2278,7 +2398,7 @@ ship "Model 512"
 		"hull" 34200
 		"automaton" 1
 		"crew equivalent" 150
-		"mass" 3186
+		"mass" 9200
 		"drag" 33.9
 		"heat dissipation" .42
 		"fuel capacity" 400
@@ -2286,6 +2406,9 @@ ship "Model 512"
 		"outfit space" 994
 		"weapon capacity" 440
 		"engine capacity" 161
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .80
 		"ramscoop" 3
 		weapon

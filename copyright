@@ -3548,8 +3548,24 @@ Comment:
 
 Files:
  images/ui/red?alert*
+ images/ui/tactical/acceleration*
+ images/ui/tactical/gun?range*
+ images/ui/tactical/ramscoop*
+ images/ui/tactical/solar*
+ images/ui/tactical/turret?range*
+ images/ui/tactical/turn*
+ images/ui/tactical/velocity*
 Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/ui/tactical/crew*
+ images/ui/tactical/energy*
+ images/ui/tactical/fuel*
+ images/ui/tactical/thermal*
+Copyright: Zitchas
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/_menu/haze-brown*

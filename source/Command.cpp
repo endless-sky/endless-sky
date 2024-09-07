@@ -82,9 +82,12 @@ const Command Command::HOLD_POSITION(ONE << 31, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 32, "Fleet: Harvest flotsam");
 const Command Command::AMMO(ONE << 33, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 34, "Auto steer");
-const Command Command::WAIT(ONE << 35, "");
-const Command Command::STOP(ONE << 36, "");
-const Command Command::SHIFT(ONE << 37, "");
+const Command Command::LATERALLEFT(ONE << 35, "Lateral left thrust");
+const Command Command::LATERALRIGHT(ONE << 36, "Lateral right thrust");
+const Command Command::WAIT(ONE << 37, "");
+const Command Command::STOP(ONE << 38, "");
+const Command Command::SHIFT(ONE << 39, "");
+const Command Command::CTRL(ONE << 40, "");
 
 
 
@@ -127,6 +130,8 @@ void Command::ReadKeyboard()
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
 		*this |= SHIFT;
+	if(SDL_GetModState() & KMOD_CTRL)
+		*this |= CTRL;
 }
 
 
@@ -264,6 +269,8 @@ void Command::Load(const DataNode &node)
 			{"left", Command::LEFT},
 			{"right", Command::RIGHT},
 			{"back", Command::BACK},
+			{"lateralleft", Command::LATERALLEFT},
+			{"lateralright", Command::LATERALRIGHT},
 			{"primary", Command::PRIMARY},
 			{"secondary", Command::SECONDARY},
 			{"select", Command::SELECT},
@@ -291,7 +298,8 @@ void Command::Load(const DataNode &node)
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
-			{"shift", Command::SHIFT}
+			{"shift", Command::SHIFT},
+			{"control", Command::CTRL}
 		};
 
 		auto it = lookup.find(node.Token(i));
@@ -365,6 +373,39 @@ double Command::Turn() const
 {
 	return turn;
 }
+
+
+
+// Set the thrust direction and amount to a value between -1 and 1.
+void Command::SetThrust(double amount)
+{
+	thrust = max(-1., min(1., amount));
+}
+
+
+
+// Get the thrust amount.
+double Command::Thrust() const
+{
+	return thrust;
+}
+
+
+
+// Set the lateral thrust direction and amount to a value between -1 and 1.
+void Command::SetLateralThrust(double amount)
+{
+	lateralThrust = max(-1., min(1., amount));
+}
+
+
+
+// Get the lateral thrust amount.
+double Command::LateralThrust() const
+{
+	return lateralThrust;
+}
+
 
 
 
