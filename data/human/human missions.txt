@@ -7478,7 +7478,7 @@ mission "Syndicate Business 1"
 				`	(Ignore it.)`
 					decline
 			`	When you approach, you are greeted by plain text on the terminal's screen:`
-			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: -1.18143560, -0.01575673, 0.00755328. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
+			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: RAD AU 30.12 LAT 0.2 LON 303.9. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
 			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>.`
 			choice
 				`	"To <waypoints>!"`
