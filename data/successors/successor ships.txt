@@ -27,7 +27,7 @@ ship "Aaulqra"
 		"required crew" 18
 		"bunks" 25
 		"mass" 650
-		"drag" 5.8
+		"drag" 8.75
 		"heat dissipation" 0.49
 		"fuel capacity" 600
 		"cargo space" 15
@@ -120,7 +120,7 @@ ship "Ejniisde"
 		"required crew" 12
 		"bunks" 64
 		"mass" 350
-		"drag" 2.3
+		"drag" 4.6
 		"heat dissipation" 0.67
 		"fuel capacity" 700
 		"cargo space" 50
@@ -198,7 +198,7 @@ ship "Kaskhorade"
 		"required crew" 34
 		"bunks" 130
 		"mass" 990
-		"drag" 9.7
+		"drag" 13.6
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 140
@@ -294,7 +294,7 @@ ship "Kvelqde"
 		"required crew" 1
 		"bunks" 9
 		"mass" 110
-		"drag" 2.1
+		"drag" 2.25
 		"heat dissipation" 0.82
 		"fuel capacity" 500
 		"cargo space" 25
@@ -377,7 +377,7 @@ ship "Kvelqde-Khora"
 		"required crew" 1
 		"bunks" 6
 		"mass" 158
-		"drag" 2.1
+		"drag" 2.95
 		"heat dissipation" 0.78
 		"fuel capacity" 500
 		"cargo space" 10
@@ -458,7 +458,7 @@ ship "Myaede"
 		"required crew" 6
 		"bunks" 20
 		"mass" 500
-		"drag" 3.4
+		"drag" 7.1
 		"heat dissipation" 0.62
 		"fuel capacity" 500
 		"cargo space" 125
@@ -541,7 +541,7 @@ ship "Nnaatej"
 		"required crew" 5
 		"bunks" 26
 		"mass" 570
-		"drag" 2.4
+		"drag" 5.6
 		"heat dissipation" 0.61
 		"fuel capacity" 500
 		"cargo space" 35
@@ -694,7 +694,7 @@ ship "Ojde"
 		"required crew" 8
 		"bunks" 24
 		"mass" 1190
-		"drag" 5
+		"drag" 15.5
 		"heat dissipation" 0.5
 		"fuel capacity" 500
 		"cargo space" 450
@@ -776,7 +776,7 @@ ship "Seiitej"
 		"required crew" 8
 		"bunks" 36
 		"mass" 320
-		"drag" 3.1
+		"drag" 5.2
 		"heat dissipation" .60
 		"fuel capacity" 800
 		"cargo space" 130
@@ -851,7 +851,7 @@ ship "Stolsaqra"
 		"required crew" 1
 		"bunks" 2
 		"mass" 120
-		"drag" 1.6
+		"drag" 2.75
 		"heat dissipation" 0.79
 		"fuel capacity" 300
 		"cargo space" 5
@@ -941,7 +941,7 @@ ship "Veusade"
 		"required crew" 5
 		"bunks" 10
 		"mass" 360
-		"drag" 3.1
+		"drag" 5.45
 		"heat dissipation" .62
 		"fuel capacity" 500
 		"cargo space" 15
@@ -1036,7 +1036,7 @@ ship "Vujlet"
 		"required crew" 2
 		"bunks" 6
 		"mass" 230
-		"drag" 2.8
+		"drag" 3.8
 		"heat dissipation" .68
 		"fuel capacity" 600
 		"cargo space" 10
