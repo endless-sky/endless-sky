@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NAME_DIALOG_H_
-#define NAME_DIALOG_H_
+#pragma once
 
 #include "Dialog.h"
 
@@ -44,7 +43,3 @@ protected:
 private:
 	Point randomPos;
 };
-
-
-
-#endif
