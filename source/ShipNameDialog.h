@@ -30,7 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ShipNameDialog : public Dialog {
 public:
 	template <class T>
-	ShipNameDialog(T *panel, void (T::*fun)(const std::string &), const std::string &message, std::string initialValue = "");
+	ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
+		const std::string &message, std::string initialValue = "");
 
 	virtual void Draw() override;
 
