@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-${{ matrix.os }}
     strategy:
       matrix:
-        os: [20.04, 22.04]
+        os: [22.04, 24.04]
         opengl: [GL, GLES]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,14 +55,20 @@ jobs:
         show-progress: false
     - name: Install development dependencies
       run: |
-        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache/sccache
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -87,8 +93,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -123,8 +136,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -142,15 +162,22 @@ jobs:
     name: MacOS
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: macos-12
+    runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
     - uses: lukka/get-cmake@latest
