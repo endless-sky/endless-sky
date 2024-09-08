@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Phrase.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 
 using namespace std;
