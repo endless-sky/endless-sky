@@ -18,16 +18,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
-#include "GameData.h"
-#include "Phrase.h"
 #include "Point.h"
 
 #include <string>
 
 
 
-// The name entry dialog should include a "Random" button to choose a random
-// name using the civilian ship name generator.
+// A special version of Dialog for naming ships.
+// Contains a text entry field and an additional button, "Random",
+// which populates the text entry field with a randomly selected name
+// from the "civilian" phrase.
 class NameDialog : public Dialog {
 public:
 	template <class T>

@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "GameData.h"
+#include "Phrase.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
@@ -33,7 +35,7 @@ void NameDialog::Draw()
 	SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
 
 	const Font &font = FontSet::Get(14);
-	static const string RANDOM = "Suggest";
+	static const string RANDOM = "Random";
 	Point labelPos = randomPos - .5 * Point(font.Width(RANDOM), font.Height());
 	font.Draw(RANDOM, labelPos, *GameData::Colors().Get("medium"));
 }
