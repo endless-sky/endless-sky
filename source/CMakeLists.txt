@@ -206,8 +206,8 @@ target_sources(EndlessSkyLib PRIVATE
 	NPC.h
 	NPCAction.cpp
 	NPCAction.h
-	NameDialog.cpp
-	NameDialog.h
+	ShipNameDialog.cpp
+	ShipNameDialog.h
 	News.cpp
 	News.h
 	Orders.cpp

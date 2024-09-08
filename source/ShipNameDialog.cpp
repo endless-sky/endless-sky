@@ -1,4 +1,4 @@
-/* NameDialog.cpp
+/* ShipNameDialog.cpp
 Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "NameDialog.h"
+#include "ShipNameDialog.h"
 
 #include "Color.h"
 #include "text/Font.h"
@@ -27,7 +27,7 @@ using namespace std;
 
 
 
-void NameDialog::Draw()
+void ShipNameDialog::Draw()
 {
 	Dialog::Draw();
 
@@ -42,7 +42,7 @@ void NameDialog::Draw()
 
 
 
-bool NameDialog::Click(int x, int y, int clicks)
+bool ShipNameDialog::Click(int x, int y, int clicks)
 {
 	Point off = Point(x, y) - randomPos;
 	if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)

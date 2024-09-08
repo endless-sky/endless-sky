@@ -1,4 +1,4 @@
-/* NameDialog.h
+/* ShipNameDialog.h
 Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -28,10 +28,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Contains a text entry field and an additional button, "Random",
 // which populates the text entry field with a randomly selected name
 // from the "civilian" phrase.
-class NameDialog : public Dialog {
+class ShipNameDialog : public Dialog {
 public:
 	template <class T>
-	NameDialog(T *panel, void (T::*fun)(const std::string &), const std::string &message, std::string initialValue = "")
+	ShipNameDialog(T *panel, void (T::*fun)(const std::string &), const std::string &message, std::string initialValue = "")
 		: Dialog(panel, fun, message, initialValue) {}
 
 	virtual void Draw() override;

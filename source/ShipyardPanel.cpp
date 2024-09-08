@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Mission.h"
-#include "NameDialog.h"
+#include "ShipNameDialog.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -254,7 +254,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
 }
 
 

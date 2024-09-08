@@ -31,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
-#include "NameDialog.h"
+#include "ShipNameDialog.h"
 #include "OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
@@ -163,7 +163,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new NameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
+		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
