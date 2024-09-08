@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_SHIPYARD_PANEL_H_
-#define MAP_SHIPYARD_PANEL_H_
+#pragma once
 
 #include "MapSalesPanel.h"
 
@@ -69,7 +68,3 @@ private:
 	ShipInfoDisplay selectedInfo;
 	ShipInfoDisplay compareInfo;
 };
-
-
-
-#endif

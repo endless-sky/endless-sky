@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTLINE_SHADER_H_
-#define OUTLINE_SHADER_H_
+#pragma once
 
 #include "Point.h"
 
@@ -32,7 +31,3 @@ public:
 	static void Draw(const Sprite *sprite, const Point &pos, const Point &size,
 		const Color &color, const Point &unit = Point(0., -1.), float frame = 0.f);
 };
-
-
-
-#endif

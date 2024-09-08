@@ -1589,6 +1589,11 @@ interface "info panel"
 interface "message log"
 	value "width" 570
 
+	visible if "empty"
+	label "(The message log is empty.)"
+		from 300 0 left
+		color medium
+
 
 
 interface "hail panel"

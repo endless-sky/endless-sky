@@ -90,11 +90,11 @@ void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller)
 
 
 // Convert this validated template into a populated action.
-NPCAction NPCAction::Instantiate(map<string, string> &subs, const System *origin,
+NPCAction NPCAction::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	NPCAction result;
 	result.trigger = trigger;
-	result.action = action.Instantiate(subs, origin, jumps, payload);
+	result.action = action.Instantiate(store, subs, origin, jumps, payload);
 	return result;
 }
