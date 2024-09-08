@@ -47,7 +47,7 @@ private:
 
 template <class T>
 ShipNameDialog::ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
-		const std::string &message, std::string initialValue = "")
+		const std::string &message, std::string initialValue)
 	: Dialog(panel, fun, message, initialValue)
 {
 }
