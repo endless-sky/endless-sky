@@ -131,7 +131,6 @@ namespace {
 	}
 
 	const Color black(0.f, 1.f);
-	const Color red(1.f, 0.f, 0.f, 1.f);
 
 	// Hovering an escort pip for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
