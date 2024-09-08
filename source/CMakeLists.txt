@@ -200,14 +200,10 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
-	Music.cpp
-	Music.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
 	NPCAction.h
-	ShipNameDialog.cpp
-	ShipNameDialog.h
 	News.cpp
 	News.h
 	Orders.cpp
@@ -292,6 +288,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
+	ShipNameDialog.cpp
+	ShipNameDialog.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
