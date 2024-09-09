@@ -476,12 +476,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
-}
 
-
-
-void System::FinishLoading()
-{
 	if(displayName.empty())
 		displayName = trueName;
 }

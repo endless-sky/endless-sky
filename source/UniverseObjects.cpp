@@ -83,8 +83,6 @@ double UniverseObjects::GetProgress() const
 
 void UniverseObjects::FinishLoading()
 {
-	for(auto &&it : systems)
-		it.second.FinishLoading();
 	for(auto &&it : planets)
 		it.second.FinishLoading(wormholes);
 
