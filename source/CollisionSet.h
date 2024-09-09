@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COLLISION_SET_H_
-#define COLLISION_SET_H_
+#pragma once
 
 #include "Collision.h"
 #include "CollisionType.h"
@@ -47,18 +46,18 @@ public:
 
 	// Get all possible collisions for the given projectile. Collisions are not necessarily
 	// sorted by distance.
-	const std::vector<Collision> &Line(const Projectile &projectile) const;
+	void Line(const Projectile &projectile, std::vector<Collision> &result) const;
 
 	// Get all possible collisions along a line. Collisions are not necessarily sorted by
 	// distance.
-	const std::vector<Collision> &Line(const Point &from, const Point &to,
+	void Line(const Point &from, const Point &to, std::vector<Collision> &result,
 		const Government *pGov = nullptr, const Body *target = nullptr) const;
 
 	// Get all objects within the given range of the given point.
-	const std::vector<Body *> &Circle(const Point &center, double radius) const;
+	void Circle(const Point &center, double radius, std::vector<Body *> &result) const;
 	// Get all objects touching a ring with a given inner and outer range
 	// centered at the given point.
-	const std::vector<Body *> &Ring(const Point &center, double inner, double outer) const;
+	void Ring(const Point &center, double inner, double outer, std::vector<Body *> &result) const;
 
 	// Get all objects within this collision set.
 	const std::vector<Body *> &All() const;
@@ -99,17 +98,4 @@ private:
 	std::vector<Entry> sorted;
 	// After Finish(), counts[index] is where a certain bin begins.
 	std::vector<unsigned> counts;
-
-	// Vector for returning the result of a circle query.
-	mutable std::vector<Body *> circleResult;
-	// Vector for returning the result of a line query.
-	mutable std::vector<Collision> lineResult;
-
-	// Keep track of which objects we've already considered
-	mutable std::vector<unsigned> seen;
-	mutable unsigned seenEpoch = 0;
 };
-
-
-
-#endif

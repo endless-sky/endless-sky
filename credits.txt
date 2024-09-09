@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.7
+version 0.10.9-alpha
 
 The player's manual and other
 resources are available at:
@@ -59,6 +59,7 @@ Storyline & Faction Authors
   MasterOfGrey
   Peter van der Meer
   Pointedstick
+  RisingLeaf
   Saugia
   TheUnfetteredOne
   Zitchas
@@ -247,6 +248,7 @@ contributed to Endless Sky:
   gunqqer
   Hacklin
   Hadron1776
+  Hannah-E-M
   har9862
   Hatrask
   Hecter94
@@ -325,6 +327,7 @@ contributed to Endless Sky:
   nathan-b
   Nescio0
   neurotrope
+  nickshanks
   nobodywasishere
   NomadicVolcano
   nothing-but-the-rain
@@ -412,6 +415,7 @@ contributed to Endless Sky:
   Terin
   The-Legendary-M
   thebigh2014
+  TheGiraffe3
   TheMarksman-ES
   thenerdfreak
   TheUnfetteredOne
