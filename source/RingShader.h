@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RING_SHADER_H_
-#define RING_SHADER_H_
+#pragma once
 
 class Color;
 class Point;
@@ -37,7 +36,3 @@ public:
 		const Color &color, float dash = 0.f, float startAngle = 0.f);
 	static void Unbind();
 };
-
-
-
-#endif

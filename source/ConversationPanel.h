@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_PANEL_H_
-#define CONVERSATION_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -163,7 +162,3 @@ void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
 {
 	callback = std::bind(fun, t, std::placeholders::_1);
 }
-
-
-
-#endif

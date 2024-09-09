@@ -31,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "MaskManager.h"
+#include "image/MaskManager.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -216,7 +216,7 @@ void LoadPanel::Draw()
 	string hoverText;
 
 	// Draw the list of snapshots for the selected pilot.
-	if(!selectedPilot.empty() && files.count(selectedPilot))
+	if(!selectedPilot.empty() && files.contains(selectedPilot))
 	{
 		const Point topLeft = snapshotBox.TopLeft();
 		Point currentTopLeft = topLeft + Point(0, -centerScroll);

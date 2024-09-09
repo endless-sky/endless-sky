@@ -13,12 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGE_SET_H_
-#define IMAGE_SET_H_
+#pragma once
 
 #include "ImageBuffer.h"
 
-#include <cstddef>
+#include <filesystem>
 #include <map>
 #include <string>
 #include <vector>
@@ -34,13 +33,13 @@ class Sprite;
 class ImageSet {
 public:
 	// Check if the given path is to an image of a valid file type.
-	static bool IsImage(const std::string &path);
+	static bool IsImage(const std::filesystem::path &path);
 	// Get the base name for the given path. The path should be relative to one
 	// of the source image directories, not a full filesystem path.
-	static std::string Name(const std::string &path);
+	static std::string Name(const std::filesystem::path &path);
 	// Determine whether the given path or name is for a sprite whose loading
 	// should be deferred until needed.
-	static bool IsDeferred(const std::string &path);
+	static bool IsDeferred(const std::filesystem::path &path);
 
 
 public:
@@ -54,7 +53,7 @@ public:
 	bool IsEmpty() const;
 	// Add a single image to this set. Assume the name of the image has already
 	// been checked to make sure it belongs in this set.
-	void Add(std::string path);
+	void Add(std::filesystem::path path);
 	// Reduce all given paths to frame images into a sequence of consecutive frames.
 	void ValidateFrames() noexcept(false);
 	// Load all the frames. This should be called in one of the image-loading
@@ -70,14 +69,10 @@ private:
 	// Name of the sprite that will be initialized with these images.
 	std::string name;
 	// Paths to all the images that were discovered during loading.
-	std::map<std::size_t, std::string> framePaths[4];
+	std::map<std::size_t, std::filesystem::path> framePaths[4];
 	// Paths that comprise a valid animation sequence of 1 or more frames.
-	std::vector<std::string> paths[4];
+	std::vector<std::filesystem::path> paths[4];
 	// Data loaded from the images:
 	ImageBuffer buffer[4];
 	std::vector<Mask> masks;
 };
-
-
-
-#endif

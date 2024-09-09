@@ -30,8 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "shift.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
@@ -267,8 +267,7 @@ bool Dialog::KeyDown(int32_t key, const Command &command, bool isNewPress)
 		if(boolFun)
 		{
 			DoCallback(okIsActive);
-			// Use PopThrough because the Dialog has spawned additional panels.
-			GetUI()->PopThrough(this);
+			GetUI()->Pop(this);
 		}
 		else if(okIsActive || isMission)
 		{
@@ -277,11 +276,11 @@ bool Dialog::KeyDown(int32_t key, const Command &command, bool isNewPress)
 			if(!isOkDisabled)
 			{
 				DoCallback();
-				GetUI()->PopThrough(this);
+				GetUI()->Pop(this);
 			}
 		}
 		else
-			GetUI()->PopThrough(this);
+			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));
