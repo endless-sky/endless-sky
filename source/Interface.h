@@ -176,7 +176,7 @@ private:
 		Truncate truncate = Truncate::NONE;
 	};
 
-	// This class handles "label", "string", "button" and "dynamic button" elements.
+	// This class handles "label", "string", "button", and "dynamic button" elements.
 	class BasicTextElement : public TextElement {
 	public:
 		BasicTextElement(const DataNode &node, const Point &globalAnchor);
