@@ -2191,7 +2191,7 @@ news "graffiti on spaceport wall"
 			"Those who dance will be called fools by those who cannot hear the music."
 			"Better half a sentence, "
 
-news "High Tension Situation"
+news "high tension situation"
 	location
 		attributes "ccor"
 	name
@@ -2241,20 +2241,20 @@ news "High Tension Situation"
 			", but they end up dispersing."
 			", and the two groups back down."
 
-phrase "Pronoun"
+phrase "pronoun"
 	word
 		"his"
 		"her"
 		"their"
 
-phrase "Careless Ends Well"
+phrase "careless ends well"
 	word
 		"turns around to reenter the ship"
 	word
 		" as it's struck by a wave, nudging it close to the edge of the platform. The captain then moves the ship to a lowerable pad."
 		", moving it to a lowerable pad before it could be caught by a wave."
 
-phrase "Careless Ends Poorly"
+phrase "careless ends poorly"
 	word
 		"ignores air traffic control and heads to the bar. The ship"
 		"argues with the controller about their landing. The ship"
@@ -2270,7 +2270,7 @@ phrase "Careless Ends Poorly"
 		"swept into the sea."
 		"pushed off the pad."
 
-news "Careless Landing"
+news "careless landing"
 	location
 		planet "Jakobsen"
 	name
@@ -2294,7 +2294,7 @@ news "Careless Landing"
 			"Careless Ends Well"
 			"Careless Ends Poorly"
 
-phrase "CCOR Song Description"
+phrase "ccor song description"
 	word
 		"a song about "
 	word
@@ -2303,7 +2303,7 @@ phrase "CCOR Song Description"
 		"the CCOR, praising their accomplishments"
 		"resistance and opposition to the current planetary administration"
 
-phrase "Worker's Demands"
+phrase "worker's demands"
 	word
 		"safety regulations"
 		"increased pay"
@@ -2345,7 +2345,7 @@ news "Discontent"
 			"%The rioters" "The protesters"
 			"%" ""
 
-news "Clandestine"
+news "clandestine"
 	location
 		planet "Alvorada"
 	name
@@ -2372,7 +2372,7 @@ news "Clandestine"
 		word
 			"Whatever is going on, your ship appears unscathed."
 
-news "Betelgeuse Stolen Ship Advisory"
+news "betelgeuse stolen ship advisory"
 	location
 		attributes "shipyard"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
