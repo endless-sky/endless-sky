@@ -2376,7 +2376,6 @@ news "Betelgeuse Stolen Ship Advisory"
 	location
 		attributes "shipyard"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		not government "Pirate"
 	name
 		word
 			"Message on an interactive screen"
