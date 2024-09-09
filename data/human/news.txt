@@ -2227,7 +2227,6 @@ news "High Tension Situation"
 			"disperse"
 			"make themselves scarce"
 			"abandon their objective"
-			"shut up and buzz off"
 		word
 			", "
 		word
@@ -2338,9 +2337,9 @@ news "Discontent"
 		word
 			"Security eventually steps in, "
 		word
-			"but they're pushed back. "
-			"but they're routed. "
-			"and they disperse the demonstrators. "
+			"but they're pushed back."
+			"but they're routed."
+			"and they disperse the demonstrators."
 			"and the demonstrators scatter but don't appear dissuaded."
 		replace
 			"%The rioters" "The protesters"
