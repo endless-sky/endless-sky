@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Date.h"
 #include "text/Format.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 using namespace std;
 
