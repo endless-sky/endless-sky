@@ -1,4 +1,17 @@
-test-data "shipyard outfitter missions"
+# Copyright (c) 2022 by rovermicrover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Shipyard Outfitter Mission Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -57,31 +70,34 @@ test-data "shipyard outfitter missions"
 
 
 
-mission "%TEST%: SHIPYARD MISSION"
-	shipyard
-	source "Ruin"
-	to offer
-		has "%TEST%: SHIPYARD MISSION OFFER"
-	on offer
-		conversation
-			`THIS IS A SHIPYARD MISSION YO!`
-				decline
-	on decline
-		set "succeed test"
+test-data "Shipyard Outfitter Mission Missions"
+	category mission
+	contents
+		mission "%TEST%: SHIPYARD MISSION"
+			shipyard
+			source "Ruin"
+			to offer
+				has "%TEST%: SHIPYARD MISSION OFFER"
+			on offer
+				conversation
+					`THIS IS A SHIPYARD MISSION YO!`
+						decline
+			on decline
+				set "succeed test"
 
 
 
-mission "%TEST%: OUTFITTER MISSION"
-	outfitter
-	source "Ruin"
-	to offer
-		has "%TEST%: OUTFITTER MISSION OFFER"
-	on offer
-		conversation
-			`THIS IS A OUTFITTER MISSION YO!`
-				decline
-	on decline
-		set "succeed test"
+		mission "%TEST%: OUTFITTER MISSION"
+			outfitter
+			source "Ruin"
+			to offer
+				has "%TEST%: OUTFITTER MISSION OFFER"
+			on offer
+				conversation
+					`THIS IS A OUTFITTER MISSION YO!`
+						decline
+			on decline
+				set "succeed test"
 
 
 
@@ -90,6 +106,8 @@ test "Trigger Shipyard Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		input
 			key s
@@ -100,6 +118,8 @@ test "Trigger Outfitter Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		input
 			key o
@@ -131,7 +151,8 @@ test "Shipyard Mission Test"
 	status active
 	description "Test if a conversation option shows up when the given condition is set."
 	sequence
-		inject "shipyard outfitter missions"
+		inject "Shipyard Outfitter Mission Missions"
+		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: SHIPYARD MISSION OFFER" = 1
@@ -147,7 +168,8 @@ test "Outfitter Mission Test"
 	status active
 	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
 	sequence
-		inject "shipyard outfitter missions"
+		inject "Shipyard Outfitter Mission Missions"
+		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
 			"%TEST%: OUTFITTER MISSION OFFER" = 1

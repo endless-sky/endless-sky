@@ -13,8 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WORMHOLE_H_
-#define WORMHOLE_H_
+#pragma once
+
+#include "Color.h"
+#include "ExclusiveItem.h"
 
 #include <string>
 #include <unordered_map>
@@ -28,6 +30,8 @@ class System;
 // Class representing a wormhole in a planet.
 class Wormhole {
 public:
+	// Define the constructor to set "linkColor" to the desired default color.
+	Wormhole();
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);
 	// Load a wormhole from a given planet.
@@ -41,6 +45,9 @@ public:
 	const std::string &Name() const;
 	// Whether this wormhole's link appears on the map.
 	bool IsMappable() const;
+	// Returns this wormhole's arrow color.
+	// The link color will be a dimmed version of this one.
+	const Color *GetLinkColor() const;
 	// Whether this wormhole was auto-generated. This is used to
 	// update this wormhole in game events that update the corresponding
 	// planet.
@@ -65,9 +72,6 @@ private:
 	const Planet *planet = nullptr;
 	std::string name = "???";
 	bool mappable = false;
+	ExclusiveItem<Color> linkColor;
 	std::unordered_map<const System *, const System *> links;
 };
-
-
-
-#endif

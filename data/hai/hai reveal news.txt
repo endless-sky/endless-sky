@@ -235,7 +235,7 @@ news "pirate: korath collector"
 			"Ever since we installed those strange red alien turrets, no missile has been able to get anywhere near us. We lost five ships getting it, but we've captured five more to replace them!"
 			"The power generator we pillaged off of that alien ship near Stormhold is larger than some of our interceptors. It melted through the hull when we tried to install it."
 			"I hear a rich pirate gang to the north tried to capture one of those big alien ships near Stormhold. They packed a Bactrian with four hundred teenagers and nerve gas. I don't know if they won the fight. Waste of slaves if you ask me."
-			"My captain installed two of those big alien turrets that shoot yellow sparks. Now we can throw Syndicate Wasps half way across the star system."
+			"My captain installed two of those big alien turrets that shoot yellow sparks. Now we can throw Syndicate Wasps halfway across the star system."
 			"We captured one of those alien fighters near Stormhold. I'm not sure what the creature was that we found inside, but I can tell you it was delicious. Our ship's chef really knows his trade."
 			"From an alien ship near Stormhold, my crew pillaged one of the... sparkle drive systems? We jumped past human space and regretted it quickly. I sold the drive to the Syndicate for a hefty sum. Let them deal with the insanity that lies beyond."
 			"I still have nightmares about my time at Durax. I'm never going back there."
@@ -392,8 +392,7 @@ phrase "paranoia: media creators are aliens"
 		" the set designer is"
 		" the producer is"
 	word
-		" an alien"
-		" an alien"
+		" an alien" 2
 		" some kind of alien"
 	word
 		" in disguise."
@@ -518,14 +517,10 @@ phrase "person you could suspect to be aliens"
 		"cat"
 
 
-########################################################################
-
-# Many different missions have the potential to trigger this so an event is used instead of missions in the "to show".
-event "news: hai video clip published"
 
 news "Hai video: human response"
 	to show
-		has "event: news: hai video clip published"
+		has "hr: secret leaks"
 		not "event: news: hai video clip debunked"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
@@ -554,9 +549,6 @@ news "Hai video: human response"
 			`"`
 
 
-########################################################################
-
-event "news: hai video clip debunked"
 
 news "Hai roleplay station: human response"
 	to show
@@ -585,7 +577,6 @@ news "Hai roleplay station: human response"
 			`"`
 
 
-########################################################################
 
 news "Hai news: generic citizen"
 	to show
@@ -633,7 +624,7 @@ news "Hai news: merchant captain"
 		word
 			"I wonder if Hai have pirates of their own, like we do?"
 			"I hear Hai defensive technology is amazing. I'm going to stock up on shields and anti-missile turrets when I get there. Hopefully I'll lose fewer ships when I fly near pirate space."
-			"Ever since I got my hands on a Shield Beetle, I've taken up bounty hunting. Replace those wimpy Hai weapons with some particle or plasma cannons, and the ships are unstoppable."
+			"Ever since I got my hands on a Shield Beetle, I've taken up bounty hunting. Replace those wimpy Hai weapons with some particle or Plasma Cannons, and the ships are unstoppable."
 			"I hear the Hai let pirates live in their territory, as part of reformation programs. That may not be the wisest decision they've ever made, but it's certainly a compassionate one."
 			"I hope nobody is smuggling Hai technology to the pirates. I don't want to think of what would happen if pirates got their hands on that stuff."
 			"I've flown through Cardax many times. How did I not notice there was a wormhole just a few systems away?"
@@ -644,4 +635,3 @@ news "Hai news: merchant captain"
 			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
 		word
 			`"`
-

@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -36,10 +35,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
-#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -107,8 +106,9 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			plunder.emplace_back(outfit, count);
 	}
 
+	canCapture = victim->IsCapturable() || player.CaptureOverriden(victim);
 	// Some "ships" do not represent something the player could actually pilot.
-	if(!victim->IsCapturable())
+	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
 
 	// Sort the plunder by price per ton.
@@ -181,7 +181,7 @@ void BoardingPanel::Draw()
 			Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
-	if(victim && (victim->IsCapturable() || victim->IsYours()))
+	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
@@ -189,7 +189,7 @@ void BoardingPanel::Draw()
 		info.SetString("enemy defense",
 			Round(attackOdds.DefenderPower(vCrew)));
 	}
-	if(victim && victim->IsCapturable() && !victim->IsYours())
+	if(victim && canCapture && !victim->IsYours())
 	{
 		// If you haven't initiated capture yet, show the self destruct odds in
 		// the attack odds. It's illogical for you to have access to that info,
@@ -489,7 +489,7 @@ bool BoardingPanel::CanCapture() const
 		return false;
 	if(victim->IsYours())
 		return false;
-	if(!victim->IsCapturable())
+	if(!canCapture)
 		return false;
 
 	return (!victim->RequiredCrew() || you->Crew() > 1);

@@ -25,7 +25,7 @@ mission "Coalition: First Contact"
 		conversation
 			`This planet seems to be inhabited by at least three different sentient species. First are giant beetles, about a meter tall, who scurry quickly toward your ship and swarm around it, gawking at you, as soon as you land. The second species, even more disturbing than the beetles, are giant spiders. And the third species are centaurs. Not just something vaguely resembling centaurs; they look like they could have stepped right off the page of a story book from ancient Earth.`
 			`	One of the spiders walks up to you, stretching its legs to raise its face and many eyes to the level of your own face, and says something to you in a gloopy sort of burbling language that you don't understand. The beetles, meanwhile, are talking to each other in a different language, all clicks and chittering. And the centaur stands quietly at a distance and keeps glancing back toward the spaceport as if waiting for someone.`
-			`	And eventually, someone does arrive: a beetle, a spider, and a centaur all wearing yellow armbands and some sort of electric box hanging on a chain around each of their necks. They walk up to you, and the centaur speaks. After a brief delay, the box around its neck says, "In the name of the Heliarchs, who drove out the oppressors, who maintain peace, we the human visitor greet."`
+			`	And eventually, someone does arrive: a beetle, a spider, and a centaur all wearing yellow armbands, small, triangle-shaped metal headpieces, and some sort of electric box hanging on a chain around each of their necks. They walk up to you, and the centaur speaks. After a brief delay, the box around its neck says, "In the name of the Heliarchs, who drove out the oppressors, who maintain peace, we the human visitor greet."`
 			choice
 				`	"Thank you."`
 					goto next
@@ -33,7 +33,7 @@ mission "Coalition: First Contact"
 			`	The spider speaks, and the box around its neck translates. "Our nearest and most recent neighbor you are. The Heliarchs in their great wisdom, all things that come to pass in our region of space, they are aware of."`
 			label next
 			`	Speaking through its own translation box, the beetle says, "To the seat of the Heliarch government must you go. Once to the Heliarchs you have become known, in many ways to our society, contribute you may."`
-			`	The centaur pulls out a map printed on a thin sheet of plastic. You recognize it as a star map of this region. Lines mark out three different territories, and where they meet are three star systems colored yellow. The centaur points to the southernmost of the three. "Where you must go, here it is," it says.`
+			`	The centaur pulls out a map printed on a thin sheet of plastic. You recognize it as a star map of this region. Lines mark out three different territories, and where they meet are three star systems colored yellow. The centaur points to the southernmost of the three. "Where you must go, here it is," they say.`
 			choice
 				`	"Thank you. I will go there."`
 					goto end
@@ -49,7 +49,7 @@ mission "Coalition: First Contact"
 		log "Factions" "Heliarchs" `The Heliarchs are the rulers of Coalition space: apparently not elected, but instead selected by merit from among the citizens of the Coalition in such a way as to ensure that all three species are equally represented. Thousands of years ago, the Heliarchs led their three species to band together and drive the Quarg out of Coalition space. The Heliarch centers of government are the three Quarg ringworlds that they captured in that war. They are the only ones in Coalition space who are allowed to have weapons on their starships, and they act as a sort of police force, maintaining peace between the Coalition species.`
 		conversation
 			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only the three species of the Coalition. Soon after you land, a delegation approaches your ship: again, one of each species, but these are wearing golden circlets around their heads. The circlets are not merely decorative, but seem to contain some electronics as well.`
-			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
+			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," they say.`
 			`	The beetle says, "With our people you may mingle. The beauty of our culture, you may experience."`
 			`	The spider adds, "Our people and yours perhaps one day may trade. Perhaps one day the humans our great and free Coalition may join."`
 			choice
@@ -64,7 +64,7 @@ mission "Coalition: First Contact"
 				goto next
 			label oppressive
 			`	The spider says, "In separate boxes, they each species keep. And in subtle ways, your development and discoveries they limit. And on your technology, restrictions they place."`
-			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give jump drives to humans, and it says, "Then, prisoners indeed you are."`
+			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell them that the Quarg do indeed refuse to give jump drives to humans, and they say, "Then, prisoners indeed you are."`
 			label next
 			branch hai
 				has "First Contact: Hai: offered"
@@ -72,14 +72,14 @@ mission "Coalition: First Contact"
 				`	"I suppose you may be right about the Quarg."`
 					goto end
 				`	"Perhaps the Quarg will change their minds in the future."`
-			`	The giant beetle considers you gravely. "Hope, we can only," it says.`
+			`	The giant beetle considers you gravely. "Hope, we can only," they say.`
 				goto end
 			label hai
 			choice
 				`	"I suppose you may be right about the Quarg."`
 					goto end
 				`	"But, the Quarg do let the humans and the Hai make contact with each other."`
-			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping its hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
+			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping their hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
 			action
 				set "coalition knows hai"
 			label end
@@ -111,6 +111,7 @@ mission "Coalition: Contributor"
 	description "Return to the <planet> to see if the Heliarchs will grant you a higher status in the Coalition now that you have been working among them for some time."
 	to offer
 		"coalition jobs" >= 30
+		not "license: Coalition"
 	source
 		government "Coalition"
 	destination "Ring of Friendship"
@@ -157,7 +158,7 @@ mission "lost in coalition"
 	source
 		government "Coalition" "Heliarch"
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	on offer
 		require "Jump Drive" 0
 		event "lost in coalition" 14
@@ -237,7 +238,7 @@ mission "Coalition Yottrite 1"
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	to complete
 		has "Coalition Yottrite 2: offered"
 	source
@@ -333,7 +334,7 @@ mission "Coalition Yottrite 3"
 				`	"That's gotta be the shortest courier mission I've ever heard of. Can't some other ship do the trip?"`
 					goto soitwouldseem
 			label insidecrate
-			`	"Older samples that you've brought to us, they contain. Experimented with, the Yottrite was. Unsure of the details, I am."`
+			`	"Older samples that you've brought to us, they contain. Experimented with, the yottrite was. Unsure of the details, I am."`
 				goto end
 			label soitwouldseem
 			`	"For you to carry them, the overseer asked. Why you in particular, unsure I am."`
@@ -357,7 +358,7 @@ mission "Coalition Yottrite 3"
 
 mission "Coalition Yottrite 4"
 	name "Yottrite Research"
-	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the Yottrite research."
+	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the yottrite research."
 	to offer
 		has "Coalition Yottrite 3: done"
 	source "Delve of Bloptab"
@@ -382,7 +383,7 @@ mission "Coalition Yottrite 4"
 
 mission "Coalition Yottrite 5"
 	name "Saryd Specialists"
-	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the Yottrite research."
+	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the yottrite research."
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -405,7 +406,7 @@ mission "Coalition Yottrite 5"
 
 mission "Coalition Yottrite 6"
 	name "Master Shipwright"
-	description "Head to <destination> to pick up a member of House Mallob so that they may help in trying to apply Yottrite to an alloy."
+	description "Head to <destination> to pick up a member of House Mallob so that they may help in trying to apply yottrite to an alloy."
 	landing
 	to offer
 		has "Coalition Yottrite 5: done"
@@ -425,7 +426,7 @@ mission "Coalition Yottrite 6"
 
 mission "Coalition Yottrite 7"
 	name "Master Shipwright"
-	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their Yottrite research."
+	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their yottrite research."
 	passengers 1
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	landing
@@ -492,7 +493,7 @@ mission "Coalition Yottrite 8"
 	destination "Pelubta Station"
 	on offer
 		conversation
-			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
+			`When you land, you receive a message from Lugglop, the Arach to whom you brought several yottrite samples.`
 			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you? Willing to pay slightly more for the inconvenience, we are. <payment>."`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
@@ -509,7 +510,7 @@ mission "Coalition Yottrite 8"
 
 mission "Coalition Yottrite 9"
 	name "Yottrite Presentation"
-	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on Yottrite."
+	description "Transport Lugglop and his team, alongside <cargo>, to the <destination>, where they will share with the Coalition's scientific community their findings on yottrite."
 	passengers 6
 	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
@@ -758,7 +759,7 @@ mission "Coalition Outbreak 1"
 	passengers 75
 	cargo "medical supplies" 90
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 5
 	source
 		near "1 Axis" 1 6
@@ -803,7 +804,7 @@ mission "Coalition Outbreak 2"
 				`	"What do you mean 'finally?' Didn't this virus just break out recently?"`
 				`	"You want me to go there retrieve the vaccines?"`
 					goto vaccines
-			`	He looks puzzles by your question.`
+			`	He looks puzzled by your question.`
 			`	"That some weeks have already passed, true it is, but hard at work, the researchers have been," he says. "Blame them for taking a few days more than usual, we cannot. Intricate, this virus is."`
 			label vaccines
 			`	He shows you a detailed map of Kimek space, explaining that most of the confirmed and suspected cases have been there. Given that the Kimek population is more than double that of the Arachi and the Saryds combined, it's not surprising.`
@@ -958,6 +959,7 @@ mission "Saryd Students 2"
 	landing
 	deadline
 	cargo "arach rum" 2
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
@@ -983,7 +985,7 @@ mission "Saryd Census 1"
 	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 40
 	source
 		attributes saryd
@@ -1081,7 +1083,7 @@ mission "Saryd Couple 1"
 				`	(Go back to my ship and check if it was properly refueled.)`
 					goto ship
 			`	They pause their map-gazing and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin> and build a home they've always dreamed of on another world.`
-			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
+			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crew member, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
 			`	"Much too far away, his old job took him, and well paid, crew members are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain? Once ready our house is, pay you we would."`
 			choice
 				`	"Of course, just come to my ship when you've finished preparing your luggage."`
@@ -1311,7 +1313,7 @@ mission "Arachi Orphans"
 	passengers 5
 	cargo "orphanage belongings" 2
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 45
 	source
 		attributes arach
@@ -1418,7 +1420,7 @@ mission "Coalition: Alpha Encounter"
 		event "alitis freed" 1095
 		log "Minor People" "Alitis" `Alitis, formerly known as Athis, is an Alpha who lives in the Coalition. Centuries ago, he stole a jump drive from an alien ship and used it to explore, but after some sort of encounter in the galactic east, he decided to give up on his former life.`
 		conversation
-			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming towards you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
+			`You're window-browsing a shop in the spaceport when you catch the scuff of too quick footsteps coming toward you. Before you can glance in that direction, you're suddenly tackled into the ground by someone astonishingly human-shaped. You try to get up, but whoever attacked you pins you down, pressing your face into the ground and holding your arms behind your back to restrain you. As you struggle against your attacker you manage to catch sight of long hair and then, with a flash of concern, a glimpse of green skin - an Alpha.`
 			`	You are not pressed for long though. You feel the Alpha's attention shift to the side you cannot see, as an Arach swoops in with a tackle. The Alpha lets go of your arms in an attempt to block the attack, but it does not prevent the Arach from bowling them clear off of you where the two begin to wrestle in your line of sight. The Alpha is a man and, surprisingly to you, despite his strength, it doesn't take long for the Arach Heliarch to restrain your attacker. The Arach firmly pins his arms to his torso with four legs, holds his hips down with two, and uses her last pair to lever herself until she rests her entire body weight into pinning the Alpha.`
 			`	A Saryd Heliarch approaches and tells you to keep your distance before interposing himself partially between you and your assailant. He then looks at the Alpha and asks through his translator box, "What reason for attacking this person, did you have?"`
 			`	The Alpha is still struggling to try and get out of the Arach's grip, and you notice an intricate gold necklace which has splayed across his shoulder and onto the floor in the scuffle, jangling in the quiet every time he struggles. At this point, everyone else has cleared out of the area and is giving the scene a wide berth. As you get to your feet he ignores the Saryd's question and looks at you intensely. "You're with the Navy, aren't you? Finally figured out I was here, thought you'd finish the job?"`
@@ -1451,7 +1453,7 @@ mission "Coalition: Alpha Encounter"
 			choice
 				`	"Are you so busy in that empty cell that you can't answer me?"`
 				`	"Tough talk for someone who wrestled a spider and lost."`
-			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drive capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
+			`	He leans forward, his legs twitching as if stopped mid-tackle, and he pauses, turning to look down the hallway to where the Heliarchs went. He backs up, slowing his breathing, and then sits down. "Alright. This may be the last time in three years I can have a proper conversation, so I will entertain you. My name... is Alitis. Over a century ago my kin stumbled upon an alien civilization beyond the Far North in conflict with bands of invaders. These invaders possessed drives capable of jumping between systems without the need for hyperspace links, technology that we greatly desired, for it could put us far outside of the reach of... you." He fixates his eyes on yours, ever so slightly closing his eyelids. "We explored the far reaches of the galaxy to the east, but found no place to call home. Our only choice was to return to the Dirt Belt where we knew of an enclave of more kin, only for the Navy," he spits on the ground, then looks at you again, "to find us. We evacuated, and my kin thought it wise to return to the east, but I knew better. I stole one of the drives my kin had along with a small ship and began traveling west. That is when I discovered the Coalition, and they have provided for me a home that I have been unable to find elsewhere in the galaxy."`
 			choice
 				`	"You 'knew better?' What do you mean?"`
 				`	"What, did you have a change of heart once you got here?"`
@@ -1484,7 +1486,7 @@ mission "Saryd University Lecture"
 	destination "Shadow of Leaves"
 	on offer
 		conversation
-			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
+			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop toward you, hailing you down.`
 			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
 			`	"A scientist, I am, and invited to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
 			choice
@@ -1524,20 +1526,13 @@ mission "Saryd University Lecture"
 					decline
 			label answer
 			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
-			choice
-				`	"Sure, I'd be glad to."`
-					goto yes
-				`	"Sorry, I don't have time."`
-					decline
+				goto choosetostay
 			label low
-			`	"Nonsense! Travel the galaxy, you do. A most knowledgable individual, surely you must be. Accept my offer, will you?"`
-			choice
-				`	"Sure, I'd be glad to."`
-					goto yes
-				`	"Sorry, I don't have time."`
-					decline
+			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
+				goto choosetostay
 			label explanation
 			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knowledge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
+			label choosetostay
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1564,58 +1559,59 @@ mission "Saryd University Lecture"
 				decline
 			label questions
 			`	As soon as you walk up to the stage, several scientists in the crowd stand up out of their chairs. The Arach Heliarch comes up to you on the stage, and explains that this is their way of asking questions. She selects a Saryd from the crowd.`
-			branch hai
-				has "First Contact: Hai: offered"
-			`	"What is the extent of contact that humans have with other aliens?"`
-			choice
-				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
-					goto quarg
-				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
-					goto quarg
-				`	"Humans know about the Quarg, but most people know little about them."`
-					goto quarg
-			label hai
 			`	"What is the extent of contact that humans have with other aliens?"`
 			choice
 				`	"Humans are in contact with the Hai. Some of them even live on Hai planets. They live to the north of human space, and we can visit them through a wormhole."`
-					goto "know"
+					goto hai
+					to display
+						has "First Contact: Hai: offered"
 				`	"A few humans know about the Hai, but there's no official acknowledgment of their existence. They live to the north of human space, and we can visit them through a wormhole."`
-					goto "know"
+					goto hai
+					to display
+						has "First Contact: Hai: offered"
+						not "event: hai-human resolution announced"
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`
-			label quarg
 			`	The audience response is muted. You get the impression that you haven't told them anything they don't already know.`
 				goto nextquestion
-			label know
-			branch coalitionknow
-				has "coalition knows hai"
+			label hai
 			action
 				set "coalition knows hai"
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
-			`	"Tell us more of them, could you?" asks another scientist.`
-			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
-				goto nextquestion
-			label coalitionknow
+				to display
+					not "coalition knows hai"
 			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
+				to display
+					has "coalition knows hai"
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
 			label nextquestion
-			branch war
-				has "FWC End: completed"
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
+					to display
+						has "event: war begins"
+						not "free worlds checkmate"
 				`	"No, human space is split between the Republic in the west, the Free Worlds in the south, and the Syndicate in the east. The Syndicate is technically part of the Republic, but they have a lot of autonomy."`
-			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
-				goto questionthree
-			label war
-			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
-			choice
+					to display
+						has "event: war begins"
+						not "free worlds checkmate"
 				`	"Yes, all of human space is united under the Republic."`
 					goto united
+					to display
+						or
+							not "event: war begins"
+							has "free worlds checkmate"
 				`	"Yes, but there are internal subdivisions: the Free Worlds in the south, the Republic in the north, and the Syndicate in the east."`
+					to display
+						has "free worlds checkmate"
+				`	"No. Technically all of human space is under the Republic, but the Syndicate has significant autonomy."`
+					to display
+						not "event: war begins"
 				`	"No. Technically all of human space is under the Republic, but the Free Worlds and Syndicate have significant autonomy."`
+					to display
+						has "free worlds checkmate"
 			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
 				goto questionthree
 			label united
@@ -1628,44 +1624,52 @@ mission "Saryd University Lecture"
 				`	"There are many independent worlds that are not ruled by one singular government. Some groups there support piracy, but others are peaceful."`
 					goto pirategood
 			`	"Stamped out, may lawlessness soon be," says the Heliarch in a solemn tone of voice. She picks a Saryd for the next question.`
+				goto questionfour
 			label pirategood
 			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
+			label questionfour
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
-			branch korath
-				or
-					has "First Contact: Korathi Efreti: offered"
-					has "First Contact: Laki Nemparu: offered"
-					has "First Contact: Karek Fornati: offered"
-					has "First Contact: Setar Fort: offered"
-					has "Wanderers: Rek To Kor Efret: offered"
-			choice
-				`	"Sorry, I don't know what's there any more than you do."`
-			`	The Saryd walks away, disappointed.`
-				goto sorry
-			label korath
 			choice
 				`	(Tell them about the Korath.)`
 					goto tell
+					to display
+						or
+							has "Discovered Korath Space: offered"
+							has "Wanderers: Rek To Kor Efret: offered"
 				`	(Don't tell them about the Korath.)`
-					goto donttell
-			label donttell
+					to display
+						or
+							has "Discovered Korath Space: offered"
+							has "Wanderers: Rek To Kor Efret: offered"
+				`	"Sorry, I don't know what's there any more than you do."`
+					to display
+						not "Discovered Korath Space: offered"
+						not "Wanderers: Rek To Kor Efret: offered"
 			`	"Sorry, I don't know what's there any more than you do."`
+				to display
+					or
+						has "Discovered Korath Space: offered"
+						has "Wanderers: Rek To Kor Efret: offered"
 			`	The Saryd walks away, disappointed.`
 				goto sorry
 			label tell
 			`	"I've met an alien species there called the Korath," you say. "They're reptilian creatures. What's left of their planets has been ruined by infighting. The Kor Sestor and Kor Mereti have been fighting a civil war using autonomous ships. The Kor Efreti have stayed out of the civil war, living under the Quarg's protection. The Korath Exiles have been banished to the Core by the Drak for refusing to give up their ability to manufacture jump drives. They are now raiding humanity for supplies."`
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
-			branch unfettered
-				has "coalition knows hai"
 			choice
 				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto knowunfettered
-				`	"Sorry, I don't know of any other species that does."`
-					goto sorry
-			label unfettered
-			choice
+					to display
+						not "coalition knows hai"
+						or
+							has "unfettered requested jump drives"
+							has "Wanderers: Translation Machine: offered"
 				`	"There is a faction among the Hai, the Unfettered. They steal from the normal Hai, and try to get their hands on jump drives any way they can."`
 					goto unfortunate
+					to display
+						has "coalition knows hai"
+						or
+							has "unfettered requested jump drives"
+							has "Wanderers: Translation Machine: offered"
 				`	"Sorry, I don't know of any other species that does."`
 					goto sorry
 			label unfortunate
@@ -1673,13 +1677,13 @@ mission "Saryd University Lecture"
 				goto exit
 			label knowunfettered
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "Powerful in their fight against the Quarg, may they become."`
+				goto exit
 			label sorry
 			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
-			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
-			`	After he shakes your hand, you say your goodbyes and board your ship.`
-				decline
+				goto end
 			label exit
 			`	Upon the announcement of the interview's end, the crowd begins to leave. The mood is exuberant as you exit the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
+			label end
 			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
@@ -1692,7 +1696,7 @@ mission "Coalition: Pilgrimage 1"
 	description "Bring Vellorae to <destination>, where she will begin her mourning pilgrimage for her late husband."
 	passengers 1
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 	source "Bright Echo"
 	destination "Saros"
 	on offer
@@ -1741,7 +1745,7 @@ mission "Coalition: Pilgrimage 2"
 				`	"If you're okay with me going, I'd be glad to accompany you."`
 				`	"Sorry, I'm not in the mood for a mourning ritual."`
 					goto skip
-			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ochre colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
+			`	Together you follow the streets out of the spaceport city and into a park filled with several different forms of trees twisting upon themselves; some reach far up to the skies while others anchor most of their branches into the ground. The trail brings you to a large clearing, where dozens of Saryds are gathered by a circle of tall, rocky pillars with an altar at the center. Many of the Saryds there are dressed in delicate fabrics of dark greens or ocher colors. Some of them are grouped into pairs that seem to be young couples, while others appear to simply be passing visitors to the shrine.`
 			`	Once the sun peeks over the tree tops and into the clearing, the visitors move away from the pillars and the altar while the couples line up and walk to it one at a time. There they remain for a few minutes, speaking to one another, before moving aside for the next pair. "Exchanging their vows, they are," Vellorae explains. "Our most popular wedding locations, the shrines here on the capital are."`
 			choice
 				`	"I thought this was a shrine for mourning the dead?"`
@@ -1904,14 +1908,14 @@ mission "Coalition: Pilgrimage 5"
 					goto shrine
 				`	"Sorry, but I'd rather rest in the ship."`
 			`	She takes a step back, looking down to the bangle again. "Alright. Yes, your responsibility, this is not. Meet you in the spaceport later, I shall."`
-			`	You open the hatch for her, and she heads to one of the Saryds nearby and begins to talk to them. A few seconds into the conversation, they tense up, crossing their arms and swiping them down as if refusing something, then running off. She tries again with some of the other Saryds, but continues to be rejected. She looks back at your ship dejectedly, then starts eyeing the other ships docked nearby before heading towards a Kimek Thorn that has just landed. As she talks to the captain, the Kimek seems confused, but after a moment he briefly reenters their ship, returning in a puffy coat to follow Vellorae to the railway hub.`
+			`	You open the hatch for her, and she heads to one of the Saryds nearby and begins to talk to them. A few seconds into the conversation, they tense up, crossing their arms and swiping them down as if refusing something, then running off. She tries again with some of the other Saryds, but continues to be rejected. She looks back at your ship dejectedly, then starts eyeing the other ships docked nearby before heading toward a Kimek Thorn that has just landed. As she talks to the captain, the Kimek seems confused, but after a moment he briefly re-enters their ship, returning in a puffy coat to follow Vellorae to the railway hub.`
 			`	Long after the sun has set, the Kimek returns, rushing to their ship while trying to shake off the cold. You ask them about Vellorae, and they tell you she headed for the spaceport to "clear her head."`
 				accept
 			label shrine
 			`	She takes a long, deep breath. "Thank you, Captain. Far outside the village, the site is. Come, show you the way there, I will." You leave your ship, follow her to the railway hub, and board one of trains that appears to be one of the oldest and most simple. It lacks seats for non-Saryds, so you are forced to hold tight to what handrails you can reach.`
 			`	You remain on the train until the very last stop, when the sun is already starting to set. As you depart, you see a rural village with just a few dozen buildings and a simple dirt road, where a couple workers battle the snow and ice to keep it clear and easy to traverse. You follow Vellorae down the road, and once you reach a rocky pillar with a hole carved through it, she turns to the forest, heading out on a thin, straight trail. Looking behind you, you see the setting sun fitting inside the pillar's opening.`
 			`	As you follow Vellorae down the trail, you see the trees gradually show more and more signs of a forest fire, with darker, damaged barks, increasingly ashy soil, and many fallen, decomposing portions of the forest. The trail ends abruptly at a large scar scorched through the forest. The piles of ash still present below your feet almost resemble the rest of the planet's otherwise snowy ground, but somehow are kept from mixing with the snow. Whether deliberately cleared by more workers or some other force, you cannot tell. Near the center of the scar you see a small mound with an opening in the side, almost like a "shack" made out of the charred tree trunks and rocks. A faint light comes from within it.`
-			`	While you're looking at the mound, Vellorae grabs your hand and starts hesitantly pulling you towards it. Inside, the fading sunlight behind you contrasts with the source of the light within, a small pyre in the middle of the "shack" which has only a few lone flames dancing on the embers. Vellorae lays down in front of it, removes her bangle, and places it in the flames for a brief moment before snatching it up and standing again. Once on her feet, she grabs your hand again, tugging you along as she hurries back to the edge of the scorched clearing.`
+			`	While you're looking at the mound, Vellorae grabs your hand and starts hesitantly pulling you toward it. Inside, the fading sunlight behind you contrasts with the source of the light within, a small pyre in the middle of the "shack" which has only a few lone flames dancing on the embers. Vellorae lays down in front of it, removes her bangle, and places it in the flames for a brief moment before snatching it up and standing again. Once on her feet, she grabs your hand again, tugging you along as she hurries back to the edge of the scorched clearing.`
 			`	She seems to settle again once you have reached the trail, letting go of your hand and slowing her pace.`
 			choice
 				`	"What was that about? What got you so agitated?"`
@@ -1960,7 +1964,7 @@ mission "Coalition: Council of Ahr"
 	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
 	deadline 30
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		random < 50
 		"month" < 3
 	source
@@ -2324,7 +2328,7 @@ mission "Coalition: Submarines 4"
 			`	"Let's see..." Apri'ie heads to the prop to check on the welded parts. "Yes, very good. Performed well, the welder arms have. Good for deployment, they should be." The submarines go ahead once again, lighting the way back to the port as the ships follow them until docking.`
 				goto end
 			label refuse
-			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading towards the shore.`
+			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading toward the shore.`
 			`	"Worked perfectly, the welders have. Ready for deployment, the subs should be," Apri'ie tells you as he steps off of the tanker.`
 			label end
 			`	The subs are once again placed atop the sleds and brought into your ship. Apri'ie thanks the Kimek team for handling the subs and heads back into your ship, saying, "Time for their final trip, it is. Bring the vessels and I to <destination>, you may."`
@@ -2385,7 +2389,7 @@ mission "Coalition: Expeditions Past 1"
 		conversation
 			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
 			`	As you open your hatch to see her leave, you're faced with a Kimek Heliarch waiting for the two of you, startling Sedlitaris as she sees him.`
-			`	"Made it clear, have I not, that to cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
+			`	"Made it clear, have I not, that cease your stubborn attempts, you should, tribune?" he asks. "Too precious, the consuls' time is. Keep wasting it in telling you off, they cannot."`
 			`	Sedlitaris brings a hand to her hair as she looks down. She opens her mouth, but cuts whatever she had to say at her throat. Instead, she goes down the ramp and leaves quickly for some section of the ringworld, ignoring the Kimek's protests. He sighs and approaches you. "Roped you into her exploration plan has she, Captain? An outsider with a jump drive, you are, so of course drawn to you, she would be, that girl..."`
 			choice
 				`	"Are you two colleagues?"`
@@ -2410,22 +2414,22 @@ mission "Coalition: Expeditions Past 2"
 				`	"I certainly didn't wait around for long. So, where are we heading?"`
 					goto heading
 				`	"Didn't care to hear your case? What do you mean?"`
-			`	"According to protocol, present valid reasoning for their expedition, and a thorough travel plan, aspiring inspectors must. This time, taken every legal detail into account, I had, in preparation for the meeting, but once I entered, barely time to greet them, they gave me." She explains. "Said that thought it over and willing to oblige, they were, so just sign a few documents, I did, and now officially an inspector, I am."`
+			`	"According to protocol, present valid reasoning for their expedition, and a thorough travel plan, aspiring inspectors must. This time, taken every legal detail into account, I had, in preparation for the meeting, but once I entered, barely time to greet them, they gave me." She explains. "Said that thought it over, they had, and willing to oblige, they were, so just sign a few documents, I did, and now officially an inspector, I am."`
 			choice
 				`	"I take it inspector is what you call explorers?"`
 				`	"Good to hear they had a change of heart. So, where are we heading?"`
 					goto heading
-			`	"No mere explorers, we are," she begins. "A rank granted with utmost respect to the Coalition's bravest, those unafraid to venture out into the void, to chart the unknown, it is. Date back thousands of years, the title does. First used by early Saryds, when set out to explore beyond the home system, they had, and then adopted by the Heliarchs, it was. Remains in use to this day, the term does," she says in excitement, pausing with a smile as if considering that she herself is one such "inspector" now.`
+			`	"No mere explorers, we are," she begins. "A rank granted with utmost respect to the Coalition's bravest, those unafraid to venture out into the void, to chart the unknown, it is. Date back thousands of years, the title does. First used by early Saryds, when set out to explore beyond the home system, they had, and then adopted by the Heliarchs, it was. Remain in use to this day, the term does," she says in excitement, pausing with a smile as if considering that she herself is one such "inspector" now.`
 			choice
-				`	"So, will you still be paying me for the job, or is that the consuls now since they've officially approved this?"`
+				`	"So, will it be you paying me for the job, or is that the consuls now since they've officially approved this?"`
 				`	"You seem eager to get started. So, where are we heading?"`
 					goto heading
 			`	"Approval for us to leave, they gave me, but provide any further assistance - be that a jump drive, or funding - they won't," she explains. "Saved up well over the past few years, I have, so once done we are, pay you several million credits, I shall. But, who knows, maybe if exciting enough, our findings out there are, convinced to give you a bonus, the consuls might be," she smiles.`
 			label heading
 			`	"Ready to go outside, we are not. Not for the purpose of finding out about the last expedition, at least. A tool from House Idriss, we need, if to trace my ancestor's steps, we are. To <destination>, we must go."`
-			`	As she's about to continue, your conversation is cut short by a Kimek rushing towards you two, shouting frantically. Once he's closer, you recognize him as Arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
-			`	"I know! Exactly what I'm furious about, that is!" He shouts. "Asked them to give you a definitive answer, I had, but not this kind of definitive! Listen, permission or not, safe to leave, it is not. Know that, you do." He looks at her for a few moments, then to you. "Captain, as her superior, greatly appreciate your intent to help Sedlitaris, I do, but too brash about this, she has been. Take her out of our space, you must not."`
-			`	He looks at her again, as if expecting some response. When no response comes, he turns away slowly, saying, "Don't waste your life on this," and walking away. Sedlitaris sighs once he turns a corridor and says she's ready for the trip.`
+			`	As she's about to continue, your conversation is cut short by a Kimek rushing toward you two, shouting frantically. Once he's closer, you recognize him as Arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
+			`	"Know that, I do! Exactly what I'm furious about, that is!" He shouts. "Asked them to give you a definitive answer, I had, but not this kind of definitive! Listen, permission or not, safe to leave, it is not. Know that, you do." He looks at her for a few moments, then to you. "Captain, as her superior, greatly appreciate your intent to help Sedlitaris, I do, but too brash about this, she has been. Take her out of our space, you must not."`
+			`	He looks at her again, as if expecting some response. When no response comes, he turns away slowly, saying, "Waste not, your life on this," and walks away. Sedlitaris sighs once he turns a corridor and says she's ready for the trip.`
 			choice
 				`	"Hold on, what did he mean by it not being safe to leave? I thought you had permission."`
 				`	"Alright, let's head back to the ship."`
@@ -2464,7 +2468,7 @@ mission "Coalition: Expeditions Past 3"
 			`	"Repilor, a work trip, this is. Away for long, I won't be, so wish to trouble you all with the news, I didn't," she responds.`
 			`	"Trouble us? In truth, know that wrong, you are, but face telling father that you're throwing your life away, you couldn't!"`
 			`	He tries to push his way to her, but the guards stop him before he can make much progress. One of the Heliarch representatives gets closer, saying, "A restricted area, this is. Invading government property, you are, so suggest that you leave immediately, I do."`
-			`	"Restricted? What about the outside? Is it not also restricted? Much more dangerous? Fine with sending my sister there, you seem," Repilor counters, and the Heliarch looks away after a moment. "If bothering the consuls so much, she was, just fired, she should've been!" He then looks at you, and continues, "And the human? Your transport out of here, I imagine? Or maybe the one who put these ideas in your head, they are?"`
+			`	"Restricted? What about the outside? Also restricted, is it not? Much more dangerous? Fine with sending my sister there, you seem," Repilor counters, and the Heliarch looks away after a moment. "If bothering the consuls so much, she was, just fired, she should've been!" He then looks at you, and continues, "And the human? Your transport out of here, I imagine? Or maybe the one who put these ideas in your head, they are?"`
 			choice
 				`	"I've just been hired to transport her."`
 					goto hired
@@ -2472,7 +2476,7 @@ mission "Coalition: Expeditions Past 3"
 					goto wrong
 				`	"Wait, what did you say about the outside being dangerous?"`
 			`	The Saryd looks at you, puzzled. Then, as if realizing something, he turns to Sedlitaris. "Told the human, you haven't?"`
-			`	"That's enough Repilor. Trespassing on a restricted area, you are. Escort him to his ship," she tells the guards, and after some struggle on Repilor's part, the Arachi manage to push him back inside the Sojourner. "Ignore that you should, Captain. Always... difficult, my brother was. Too stubborn to realize when to stop, and easy to impress with folk tales of the outside."`
+			`	"Enough that is, Repilor. Trespassing on a restricted area, you are. Escort him to his ship," she tells the guards, and after some struggle on Repilor's part, the Arachi manage to push him back inside the Sojourner. "Ignore that you should, Captain. Always... difficult, my brother was. Too stubborn to realize when to stop, and easy to impress with folk tales of the outside."`
 			choice
 				`	"If you say so. Should I wait in my ship until you all are done here?"`
 					goto accept
@@ -2708,7 +2712,7 @@ mission "Coalition: Expeditions Past 8"
 		conversation
 			`You land next to the forest again and venture into it once more. The trail fresh in your memory, you two reach the clearing quickly, where Sedlitaris puts the pylon close to where it was before being dug out. "Almost like if we were there with them, this should be, being right where they left the pylon. Hopefully a better understanding of what they were thinking, it will also provide."`
 			`	She starts the recording, and sharp, static beeps are the first thing you hear. After a moment, you can make out agitated voices, as if the crew was discussing something, but Sedlitaris' translator doesn't pick it up. Finally, the familiar voice of Mimodum comes out, "Destroyed, the rest of the fleet was. Made it back to the system, one of the Punishers that headed north must have; ran into some debris pieces floating about in the system, we did. Take off, the rest of those on Summit couldn't. The ground is..." the static returns, this time including some scratch-like stops. "... cut like clay... rock... molten..." It switches to static once again, then stops for a moment. When it's back, the interference noises are gone. "Meet with the split group, I must. Warn them of what happened, and head back home with them, I will."`
-			`	You two look at the pylon in silence for a while, then she slowly approaches the machine to pick it up, saying, "Supposed to head back home immediately, expedition ships were, if destroyed, one of the Punishers was. If followed those orders, he had... No guarantee of the split group's survival, he had. If back home, they went..."`
+			`	You two look at the pylon in silence for a while, then she slowly approaches the machine to pick it up, saying, "Supposed to head back home immediately, expedition ships were, if destroyed, one of the Punishers was. If followed those orders, he had... no guarantee of the split group's survival, he had. If back home, they went..."`
 			choice
 				`	"He could have, but then the other group wouldn't know that any Punisher was destroyed. They wouldn't know to go back."`
 				`	"Seems like they didn't pick the best person to follow those orders."`
@@ -2756,7 +2760,7 @@ mission "Coalition: Expeditions Past 9"
 			choice
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
-				`	(Stay quiet).`
+				`	(Stay quiet.)`
 			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
 			`	You agree, and look to set a route straight to Ablub.`
 				accept
@@ -2814,7 +2818,7 @@ mission "Coalition: Expeditions Past 10"
 			`	"Inspector! A most... fortunate return this is. A great deal of information you've collected, we take it?" an Arach consul asks.`
 			`	"Yes, eager to hear your report, we are," one of the Kimek consuls continues. "A rare occasion, it is, to be able to learn of the outside from one of our esteemed inspectors."`
 			`	A Saryd consul, who's kept a stern look on his face, cuts in. "Returned with his fleet, your ancestor, Mimodum, did not. Learned of the reason for that, have you?"`
-			`	"Yes," she says. "Recovered as much information as I wished to, I could not, but prepared a report on what me and Captain <last> found, I have. Additionally, recovered two of the pylons Mimodum left, we have."`
+			`	"Yes," she says. "Recover as much information as I wished to, I could not, but prepared a report on what Captain <last> and I found, I have. Additionally, recovered two of the pylons Mimodum left, we have."`
 			`	One of the consuls addresses you, "Tell us, Captain, run into any er... complications during the trip, have you? Maybe occasioned by the tribune - the inspector - being with you?"`
 			choice
 				`	"She stayed inside my ship whenever there was a risk of humans seeing her, if that's what you're asking."`
@@ -2831,7 +2835,7 @@ mission "Coalition: Expeditions Past 10"
 				`	"Don't worry, I'm glad to have helped."`
 					goto end
 				`	"Why was everyone so surprised we made it back? Seems they expected to never see you again."`
-			`	Her smile drops as you ask the question, and she seemingly struggles to find a place to look at. "I... I, Captain-" She looks around, then takes a deep breath. "I'm sorry, Captain. Ever since independence from the Quarg, we gained, six expeditions out of the Coalition, there were. Return, only ships of the first of them did. The most well equipped and numerous, my ancestor's fleet was, the sixth expeditionary fleet. Increasingly more fearful of leaving, we became, and with the last expedition having been centuries ago, a taboo, even talking about leaving has become. A year after the sixth had left, effectively forbid any further expeditions, the council did." She travels around with her eyes again. "I'm sorry that kept it hidden from you, I have. Wished to find out what happened, I did. Afraid I was, that refuse to help me like everyone else, you would, if you knew of the risk."`
+			`	Her smile drops as you ask the question, and she seemingly struggles to find a place to look at. "I... I, Captain-" She looks around, then takes a deep breath. "Sorry I am, Captain. Ever since independence from the Quarg, we gained, six expeditions out of the Coalition, there were. Return, only ships of the first of them did. The most well equipped and numerous, my ancestor's fleet was, the sixth expeditionary fleet. Increasingly more fearful of leaving, we became, and with the last expedition having been centuries ago, a taboo, even talking about leaving has become. A year after the sixth had left, effectively forbid any further expeditions, the council did." She travels around with her eyes again. "Sorry I am, that kept it hidden from you, I have. Wish to find out what happened, I did. Afraid I was, that refuse to help me like everyone else, you would, if know of the risk, you did."`
 			choice
 				`	"Well, we made it back safely, and you were passionate enough about this to take the risk. I don't hold it against you."`
 					goto forgive
@@ -3111,3 +3115,59 @@ mission "Coalition: Outskirts Gauger Ready"
 			`	While the Arachi work on the outfit, she explains that they used the probe's algorithms to have the scanners excel at finding basic energy signatures, such as heat or energy levels of other ships. "Made to check for complex machinery like outfits, or recognize specific cargo types, it was not, but still find uses for its current form, I'm sure you will."`
 			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
 				decline
+
+
+
+mission "Heliarchs Buy Jump Drive Mission"
+	minor
+	landing
+	invisible
+	"apparent payment" 5000000
+	to offer
+		has "known to the heliarchs"
+		has "outfit (cargo): Jump Drive"
+	source
+		government "Heliarch"
+	on offer
+		conversation
+			`Your ship has barely touched down in the <origin> when several dozen Heliarch warships of all sizes start landing around it. The local garrison wastes no time in hailing you. "Captain <last>, our esteemed friend. Noticed it was that in your possession an extra jump drive is. Aid us tremendously any extra copies would, so if willing to sell your spare to us you are, thank you with <payment> we will." Many Heliarchs leave their ships, staring at the <ship> as they eagerly wait for your decision.`
+			choice
+				`	(Accept the deal.)`
+					goto accept
+				`	(No, you're not interested.)`
+			`	"Regrettable that is," the Heliarch voice hailing you says with great disappointment. "If ever change your mind you do, prepared, a special job request will be, for when a spare jump drive you bring. Recommend it we do that our offer you carefully consider, Captain. Very generous in rewarding you for any and all copies you bring us, we would be."`
+				decline
+			label accept
+			`	They thank you profusely, and as if collectively told about the decision in an instant, all the Heliarch personnel stop gawking, and make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is, so prepare special job requests for them, I will. If interested in selling any more jump drives, you are, check the job boards in the rings, from now on you should."`
+			branch license
+				"coalition jobs" < 30
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
+				accept
+			label license
+			action
+				"reputation: Coalition" += 10
+				"reputation: Heliarch" += 10
+				set "license: Coalition"
+				log "Sold a jump drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
+				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
+				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive. Not a minute after she has left, three more Heliarchs arrive at your ship, a delegation consisting of a member of each of the three Coalition species, all wearing golden circlets denoting their rank and authority. "A most unexpected, but greatly value contribution this is," the Saryd says, "to think that so eager would our visitor be to prove their diligence and commitment."`
+			`	The Kimek says, "As aided you have our society in breaking free of the Quarg's cages, with our society's technology may you be trusted."`
+			`	"But," says the Arach, "like all civilians, even citizens, to you our weapons and warships we still cannot sell."`
+			choice
+				`	"Thank you."`
+					goto end
+				`	"Why don't you allow civilians to purchase weapons or warships?"`
+			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have, even you. But as a respectful guest you are, to maintain your weapons we shall allow."`
+			label end
+			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters. The three Heliarchs all express their deep gratitude for your generosity with providing them a fresh jump drive, and wish you well.`
+				accept
+
+
+	on accept
+		"coalition jobs" >?= 30
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail

@@ -40,39 +40,39 @@ namespace { // test namespace
 TEST_CASE( "DataNode Basics", "[DataNode]" ) {
 	using T = DataNode;
 	SECTION( "Class Traits" ) {
-		CHECK_FALSE( std::is_trivial<T>::value );
+		CHECK_FALSE( std::is_trivial_v<T> );
 		// The class layout apparently satisfies StandardLayoutType when building/testing for Steam, but false otherwise.
 		// This may change in the future, with the expectation of false everywhere (due to the list<DataNode> field).
-		// CHECK_FALSE( std::is_standard_layout<T>::value );
-		CHECK( std::is_nothrow_destructible<T>::value );
-		CHECK_FALSE( std::is_trivially_destructible<T>::value );
+		// CHECK_FALSE( std::is_standard_layout_v<T> );
+		CHECK( std::is_nothrow_destructible_v<T> );
+		CHECK_FALSE( std::is_trivially_destructible_v<T> );
 	}
 	SECTION( "Construction Traits" ) {
-		CHECK( std::is_default_constructible<T>::value );
-		CHECK_FALSE( std::is_trivially_default_constructible<T>::value );
+		CHECK( std::is_default_constructible_v<T> );
+		CHECK_FALSE( std::is_trivially_default_constructible_v<T> );
 		// We explicitly allocate some memory when default-constructing DataNodes.
-		CHECK_FALSE( std::is_nothrow_default_constructible<T>::value );
-		CHECK( std::is_copy_constructible<T>::value );
+		CHECK_FALSE( std::is_nothrow_default_constructible_v<T> );
+		CHECK( std::is_copy_constructible_v<T> );
 		// We have work to do when copy-constructing, including allocations.
-		CHECK_FALSE( std::is_trivially_copy_constructible<T>::value );
-		CHECK_FALSE( std::is_nothrow_copy_constructible<T>::value );
-		CHECK( std::is_move_constructible<T>::value );
+		CHECK_FALSE( std::is_trivially_copy_constructible_v<T> );
+		CHECK_FALSE( std::is_nothrow_copy_constructible_v<T> );
+		CHECK( std::is_move_constructible_v<T> );
 		// We have work to do when move-constructing.
-		CHECK_FALSE( std::is_trivially_move_constructible<T>::value );
-		CHECK( std::is_nothrow_move_constructible<T>::value );
+		CHECK_FALSE( std::is_trivially_move_constructible_v<T> );
+		CHECK( std::is_nothrow_move_constructible_v<T> );
 	}
 	SECTION( "Copy Traits" ) {
-		CHECK( std::is_copy_assignable<T>::value );
+		CHECK( std::is_copy_assignable_v<T> );
 		// The class data can be spread out due to vector + list contents.
-		CHECK_FALSE( std::is_trivially_copyable<T>::value );
+		CHECK_FALSE( std::is_trivially_copyable_v<T> );
 		// We have work to do when copying.
-		CHECK_FALSE( std::is_trivially_copy_assignable<T>::value );
-		CHECK_FALSE( std::is_nothrow_copy_assignable<T>::value );
+		CHECK_FALSE( std::is_trivially_copy_assignable_v<T> );
+		CHECK_FALSE( std::is_nothrow_copy_assignable_v<T> );
 	}
 	SECTION( "Move Traits" ) {
-		CHECK( std::is_move_assignable<T>::value );
-		CHECK_FALSE( std::is_trivially_move_assignable<T>::value );
-		CHECK( std::is_nothrow_move_assignable<T>::value );
+		CHECK( std::is_move_assignable_v<T> );
+		CHECK_FALSE( std::is_trivially_move_assignable_v<T> );
+		CHECK( std::is_nothrow_move_assignable_v<T> );
 	}
 }
 
@@ -242,6 +242,43 @@ SCENARIO( "Determining if a token is numeric", "[IsNumber][Parsing][DataNode]" )
 			);
 			CAPTURE( strNum ); // Log the value if the assertion fails.
 			CHECK( DataNode::IsNumber(strNum) );
+		}
+	}
+}
+
+SCENARIO( "Determining if a token is a boolean", "[Boolean][Parsing][DataNode]" ) {
+	GIVEN( "A string that is \"true\"/\"1\" or \"false\"/\"0\"" ) {
+		THEN( "IsBool returns true" ) {
+			CHECK( DataNode::IsBool("true") );
+			CHECK( DataNode::IsBool("1") );
+			CHECK( DataNode::IsBool("false") );
+			CHECK( DataNode::IsBool("0") );
+		}
+	}
+	GIVEN( "A string that is not \"true\"/\"1\" or \"false\"/\"0\"" ) {
+		THEN( "IsBool returns false" ) {
+			CHECK_FALSE( DataNode::IsBool("monkey") );
+			CHECK_FALSE( DataNode::IsBool("banana") );
+			CHECK_FALSE( DataNode::IsBool("-1") );
+			CHECK_FALSE( DataNode::IsBool("2") );
+		}
+	}
+	GIVEN( "A DataNode with a boolean string token" ) {
+		DataNode root = AsDataNode("root\n\ttrue\n\t\tfalse");
+		const DataNode &trueVal = *root.begin();
+		const DataNode &falseVal = *trueVal.begin();
+		THEN( "BoolValue returns expected contents" ) {
+			CHECK( trueVal.BoolValue(0) );
+			CHECK_FALSE( falseVal.BoolValue(0) );
+		}
+	}
+	GIVEN( "A DataNode with a boolean number token" ) {
+		DataNode root = AsDataNode("root\n\t1\n\t\t0");
+		const DataNode &trueVal = *root.begin();
+		const DataNode &falseVal = *trueVal.begin();
+		THEN( "BoolValue returns expected contents" ) {
+			CHECK( trueVal.BoolValue(0) );
+			CHECK_FALSE( falseVal.BoolValue(0) );
 		}
 	}
 }

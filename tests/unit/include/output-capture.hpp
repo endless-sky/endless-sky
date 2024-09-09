@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEST_HELPER_OUTPUT_CAPTURE_HPP_
-#define ES_TEST_HELPER_OUTPUT_CAPTURE_HPP_
+#pragma once
 
 #include <iostream>
 #include <sstream>
@@ -23,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class OutputSink {
 public:
 	// Redirect an ostream, such as std::cout or std::cerr.
-	OutputSink(std::ostream &toCapture)
+	explicit OutputSink(std::ostream &toCapture)
 		: captured(toCapture), original(toCapture.rdbuf())
 	{
 		// Store anything sent to the captured stream in our buffer.
@@ -62,7 +61,3 @@ private:
 	// Our redirection buffer
 	std::stringstream storage;
 };
-
-
-
-#endif

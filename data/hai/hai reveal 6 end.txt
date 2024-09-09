@@ -22,12 +22,12 @@ mission "Hai Reveal [C01] Cleanup"
 	passengers 4
 	blocked "You need <bunks> passenger spaces to transport Xilin, Alondo, Sayari and Teeneep."
 	to offer
-		has "Hai Reveal [B13] Freedom: done"
+		has "Hai Reveal [B14] Journey to Peace: done"
 	on offer
 		event "mountaintop ascendant"
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
-		log `Returned the Hai to their own space to bring an end to the missing Hai saga. All that remains is to work out what to do about the leak and the cover story, so thin as to provide no modesty to its wearers.`
-		log `Teeneep and General Choot'k, prominent leaders of the Hai and Unfettered, kissed in a romantic goodbye. They spoke of a future peaceful unification of the Hai.`
+		log `Returned the Hai to their own space to bring an end to the missing Hai saga. Choot'k tried, unsuccessfully, to recruit Teeneep to the Unfettered. They spoke of a future peaceful unification of the Hai, though differ on the specifics despite their closeness. There is one last trip to do for official matters.`
+		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
 			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle."`
@@ -49,9 +49,23 @@ mission "Hai Reveal [C01] Cleanup"
 		log `The Free Worlds, Republic, and Hai Elders have signed a resolution to ensure safe passage for Hai in human space, on the condition that they register with a customs authority on Mountaintop. Any Hai sent against their will into human space will be recovered alive if possible, regardless of the risk to human soldiers. However, human authorities will not change their approach towards regular human pirates and slavery, citing "unsustainable loss of life."`
 		log `Have learned that during the crisis a single ship loaded with kidnapped Hai was misplaced and abandoned. They require rescue and may indicate the presence of a loose end.`
 		conversation
-			`Arriving on Mountaintop, you see the station has seen serious renovations, including a grand ballroom, all manner of diplomatic suites, and a notable lack of movie props. Rather than actors and stage crew, you see many familiar and unfamiliar people in full diplomatic regalia. The Chancellor of the Free Worlds and President of the Republic are in their most respectable suits, Alondo and Xilin have the traditional symbols of office (though Alondo's looks like the Free Worlds have perhaps not finalized their design just yet), and dress uniforms laden with medals abound on both sides. Throughout the preliminary meetings, you notice Remington and Terry are missing.`
-			`	Between sessions, Xilin explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
-			`	You follow the diplomats to a room called the grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty.`
+			`Arriving on Mountaintop, you see the station has seen serious renovations including a grand ballroom, all manner of diplomatic suites, and a notable lack of movie props. Rather than actors and stage crew, you see many familiar and unfamiliar people in full diplomatic regalia, and dress uniforms laden with medals abound on all sides. The Chancellor of the Free Worlds and President of the Republic are in their most respectable suits, while Alondo and Xilin have the traditional symbols of office (though Alondo's looks like the Free Worlds have perhaps not finalized their design just yet). You appear to be a guest of honor, occasionally being called upon to answer idle queries from people seeking clarity on one point or another but otherwise left to yourself. As you mingle with those taking a break from their duties throughout these preliminary meetings, you notice Remington and Terry are conspicuously absent.`
+			choice
+				`	(Ask Xilin about it.)`
+				`	(Ignore it.)`
+					goto publicbroadcast
+			branch presaside
+				has patronizedthepresident
+			`	Between scheduled sessions, Xilin explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
+				goto publicbroadcast
+			label presaside
+			`	At one quiet point between structured meetings, during which the peripheral conversations are more focused on the particulars of the Free World's position, you manage to get a hold of Xilin to ask about it. He explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
+			`	Perhaps seizing on the opportunity to get a momentary reprieve from more official business, the President himself steps in to fill the gap as soon as Xilin departs. It seems that you acquire a bubble of space around you whenever anyone of note stands next to you, and the President exploits this. "You know," he says quietly, while staring out at the many people hustling about at their business, "it's not very often that someone has the gall to patronize me to my face... I usually have to pay people to do that, or at least, to do it constructively anyway."`
+			`	The pause he leaves between sentences is just slightly too short to invite a response. "If you ever decide on a career change, that might be an option for you."`
+			`	He exhales through his nose as if chuckling at something humorous. "Fly safe Captain, a lot of people know who you are now."`
+			`	With that he steps away directly to meet an aide who had been hurrying towards you both, intent on ignoring the bubble. From across the room you catch Xilin with his eyebrows raised, giving you a curious look despite being engaged in his own conversation. Neither of them speak to you again for the remainder of the meetings.`
+			label publicbroadcast
+			`	Eventually you follow the diplomats to a room called the Grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty.`
 			`	As you leave the summit for lunch, Xilin and Sayari intercept you.`
 			`	"Trouble. We need to talk," says Xilin. You follow them to a private meeting room.`
 			choice
@@ -188,6 +202,9 @@ system "Al Hurr"
 	hidden
 	pos -432 -491
 	government "Uninhabited"
+	attributes "inaccessible"
+	arrival 1715
+	habitable 1715
 	belt 1312
 	haze _menu/haze-brown
 	trade "Clothing" 201
@@ -406,7 +423,6 @@ mission "Hai Reveal [C05] Cleanup"
 				accept
 	on complete
 		event "hai-human resolution announced"
-		event "wandering nightmare map" 11
 		fail "Hai Reveal [A11-A] Permanent Fleets"
 		fail "Hai Reveal [B02-A] The Blockade Goes Up"
 		conversation
@@ -416,26 +432,6 @@ mission "Hai Reveal [C05] Cleanup"
 			`	At last, it really is over, and you can get back to your own life.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
 
-event "wandering nightmare map"
-
-# TODO: delete this mission and event before next steam build - just to fix up saves running on continuous.
-mission "Hai Reveal [C05C] Cleanup Check"
-	landing
-	invisible
-	to offer
-		has "Hai Reveal [C05] Cleanup: done"
-		has "Hai Reveal [A11-A] Permanent Fleets: active"
-	on offer
-		fail "Hai Reveal [A11-A] Permanent Fleets"
-		fail "Hai Reveal [B02-A] The Blockade Goes Up"
-		event "stormhold unsuppressed"
-
-event "stormhold unsuppressed"
-	system "Alcyone"
-		add fleet "Small Core Pirates" 400
-		add fleet "Large Core Pirates" 600
-		add fleet "Korath Large Raid" 50000
-		remove fleet "Human Wormhole Guards"
 
 
 
@@ -458,7 +454,8 @@ fleet "Navy Surveillance that won't enter the wormhole"
 	government "Republic that won't enter wormhole"
 	# ... otherwise the surveillance drones fly through the wormhole
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		surveillance opportunistic disables plunders
@@ -471,7 +468,8 @@ fleet "Navy Surveillance that won't enter the wormhole"
 fleet "Navy Friendly Wormhole Guards"
 	government "Republic that won't enter wormhole"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic disables plunders frugal opportunistic
@@ -576,36 +574,21 @@ event "hai-human resolution announced"
 		remove fleet "Hai Wormhole Guards"
 	system "Ultima Thule"
 		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Navy Friendly Wormhole Guards" 2000
 		add fleet "Free Worlds Friendly Wormhole Guards" 5000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	system "Rajak"
 		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Navy Friendly Wormhole Guards" 4000
 		add fleet "Free Worlds Friendly Wormhole Guards" 9000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	# Release the suppression of Stormhold.
 	system "Alcyone"
+		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Small Core Pirates" 400
 		add fleet "Large Core Pirates" 600
 		add fleet "Korath Large Raid" 50000
 		remove fleet "Human Wormhole Guards"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Sumar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Danoa"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Cardax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Volax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Moktar"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Rigel"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alnitak"
@@ -640,8 +623,6 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Schedar"
 		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alcyone"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Almaaz"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Arneb"
@@ -650,4 +631,3 @@ event "hai-human resolution announced"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Almach"
 		remove fleet "Smuggler (Hai Traffickers)"
-

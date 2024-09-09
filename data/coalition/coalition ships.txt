@@ -23,9 +23,9 @@ ship "Arach Courier"
 		"hull" 2000
 		"required crew" 1
 		"bunks" 1
-		"mass" 100
-		"drag" 2.9
-		"heat dissipation" .65
+		"mass" 125
+		"drag" 3.2
+		"heat dissipation" .6
 		"fuel capacity" 300
 		"cargo space" 94
 		"outfit space" 148
@@ -82,9 +82,9 @@ ship "Arach Freighter"
 		"hull" 8500
 		"required crew" 3
 		"bunks" 10
-		"mass" 380
-		"drag" 10.6
-		"heat dissipation" .55
+		"mass" 672
+		"drag" 14.8
+		"heat dissipation" .4
 		"fuel capacity" 500
 		"cargo space" 372
 		"outfit space" 349
@@ -152,9 +152,9 @@ ship "Arach Hulk"
 		"hull" 13800
 		"required crew" 8
 		"bunks" 14
-		"mass" 670
-		"drag" 18.9
-		"heat dissipation" .50
+		"mass" 1325
+		"drag" 29.3
+		"heat dissipation" .33
 		"fuel capacity" 500
 		"cargo space" 688
 		"outfit space" 520
@@ -228,9 +228,9 @@ ship "Arach Spindle"
 		"hull" 9700
 		"required crew" 4
 		"bunks" 14
-		"mass" 340
-		"drag" 10.8
-		"heat dissipation" .55
+		"mass" 766
+		"drag" 16.7
+		"heat dissipation" .36
 		"fuel capacity" 500
 		"cargo space" 392
 		"outfit space" 434
@@ -291,6 +291,42 @@ ship "Arach Spindle" "Arach Spindle (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+ship "Arach Spindle" "Arach Spindle (Plasma)"
+	outfits
+		"Hyperdrive"
+		"Outfits Expansion" 3
+		"Small Shield Module"
+		"Small Repair Module" 2
+		"Large Repair Module"
+		"Cooling Module" 5
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module"
+		"Small Battery Module"
+		"Large Battery Module"
+		"Large Steering Module" 2
+		"Fusion Reactor"
+		"Plasma Turret" 2
+
+ship "Arach Spindle" "Arach Spindle (Jump Drive)"
+	outfits
+		"Large Collector Module" 3
+		"Small Collector Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Small Shield Module"
+		"Large Repair Module"
+		"Small Repair Module" 2
+		"Cooling Module" 2
+		"Fuel Module" 4
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 3
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Jump Drive"
+
+
 ship "Arach Transport"
 	sprite "ship/arach transport"
 	thumbnail "thumbnail/arach transport"
@@ -303,9 +339,9 @@ ship "Arach Transport"
 		"hull" 4800
 		"required crew" 2
 		"bunks" 5
-		"mass" 280
-		"drag" 7.2
-		"heat dissipation" .60
+		"mass" 420
+		"drag" 9
+		"heat dissipation" .48
 		"fuel capacity" 400
 		"cargo space" 228
 		"outfit space" 281
@@ -370,9 +406,9 @@ ship "Heliarch Breacher"
 		"hull" 21500
 		"required crew" 11
 		"bunks" 15
-		"mass" 200
-		"drag" 3.2
-		"heat dissipation" .77
+		"mass" 343
+		"drag" 4.0
+		"heat dissipation" .62
 		"ion protection" .1
 		"scramble protection" .1
 		"fuel capacity" 800
@@ -488,9 +524,9 @@ ship "Heliarch Hunter"
 		"hull" 45300
 		"required crew" 26
 		"bunks" 41
-		"mass" 420
-		"drag" 5.3
-		"heat dissipation" .71
+		"mass" 860
+		"drag" 7.7
+		"heat dissipation" .5
 		"ion protection" .2
 		"scramble protection" .2
 		"fuel capacity" 1500
@@ -674,9 +710,9 @@ ship "Heliarch Interdictor"
 		"hull" 54600
 		"required crew" 42
 		"bunks" 70
-		"mass" 520
-		"drag" 7.4
-		"heat dissipation" .70
+		"mass" 1052
+		"drag" 11.1
+		"heat dissipation" .47
 		"ion protection" .2
 		"scramble protection" .2
 		"fuel capacity" 800
@@ -847,9 +883,9 @@ ship "Heliarch Judicator"
 		"hull" 41900
 		"required crew" 31
 		"bunks" 110
-		"mass" 480
-		"drag" 7.9
-		"heat dissipation" .67
+		"mass" 982
+		"drag" 11.9
+		"heat dissipation" .45
 		"ion protection" .2
 		"scramble protection" .2
 		"fuel capacity" 900
@@ -891,11 +927,17 @@ ship "Heliarch Judicator"
 	gun 13 -124.5 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
 	bay "Fighter" -34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" 34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 20
@@ -1025,9 +1067,9 @@ ship "Heliarch Neutralizer"
 		"hull" 32800
 		"required crew" 17
 		"bunks" 24
-		"mass" 270
-		"drag" 4.1
-		"heat dissipation" .75
+		"mass" 429
+		"drag" 5.1
+		"heat dissipation" .6
 		"ion protection" .1
 		"scramble protection" .1
 		"fuel capacity" 1000
@@ -1146,9 +1188,9 @@ ship "Heliarch Punisher"
 		"hull" 85000
 		"required crew" 96
 		"bunks" 145
-		"mass" 780
-		"drag" 12.2
-		"heat dissipation" .60
+		"mass" 2030
+		"drag" 21.3
+		"heat dissipation" .35
 		"ion protection" .3
 		"scramble protection" .3
 		"fuel capacity" 600
@@ -1231,6 +1273,28 @@ ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 	gun
 	gun "Finisher Maegrolain"
 	gun "Finisher Maegrolain"
+
+ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 4
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
+		"Scanning Module" 4
+		"Fuel Module" 4
+		"Enforcer Riot Staff" 160
+		"Enforcer Confrontation Gear" 150
+	
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Jump Drive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -1486,9 +1550,9 @@ ship "Heliarch Stalker"
 		"hull" 5200
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
-		"drag" 2.1
-		"heat dissipation" 0.64
+		"mass" 101
+		"drag" 2.3
+		"heat dissipation" 0.59
 		"outfit space" 133
 		"weapon capacity" 43
 		"engine capacity" 16
@@ -1542,9 +1606,9 @@ ship "Kimek Briar"
 		"hull" 1700
 		"required crew" 3
 		"bunks" 38
-		"mass" 180
-		"drag" 3.8
-		"heat dissipation" .75
+		"mass" 286
+		"drag" 4.8
+		"heat dissipation" .6
 		"fuel capacity" 700
 		"cargo space" 23
 		"outfit space" 245
@@ -1603,9 +1667,9 @@ ship "Kimek Spire"
 		"hull" 4900
 		"required crew" 19
 		"bunks" 296
-		"mass" 570
-		"drag" 8.4
-		"heat dissipation" .60
+		"mass" 1152
+		"drag" 13
+		"heat dissipation" .39
 		"fuel capacity" 800
 		"cargo space" 70
 		"outfit space" 489
@@ -1675,9 +1739,9 @@ ship "Kimek Thistle"
 		"hull" 2800
 		"required crew" 7
 		"bunks" 78
-		"mass" 270
-		"drag" 5.8
-		"heat dissipation" .70
+		"mass" 506
+		"drag" 8.1
+		"heat dissipation" .5
 		"fuel capacity" 700
 		"cargo space" 32
 		"outfit space" 321
@@ -1732,6 +1796,22 @@ ship "Kimek Thistle" "Kimek Thistle (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
+	outfits
+		"Hyperdrive"
+		"Small Shield Module" 2
+		"Small Repair Module" 2
+		"Cooling Module" 2
+		"Small Thrust Module" 2
+		"Small Steering Module"
+		"Large Thrust Module"
+		"Small Battery Module"
+		"Large Steering Module"
+		"Heavy Anti-Missile Turret"
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Breeder Reactor"
+
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
 	thumbnail "thumbnail/kimek thorn"
@@ -1744,9 +1824,9 @@ ship "Kimek Thorn"
 		"hull" 800
 		"required crew" 1
 		"bunks" 10
-		"mass" 80
-		"drag" 1.8
-		"heat dissipation" .80
+		"mass" 90
+		"drag" 1.9
+		"heat dissipation" .77
 		"fuel capacity" 600
 		"cargo space" 13
 		"outfit space" 133
@@ -1803,9 +1883,9 @@ ship "Saryd Runabout"
 		"hull" 1400
 		"required crew" 2
 		"bunks" 14
-		"mass" 140
-		"drag" 2.8
-		"heat dissipation" .70
+		"mass" 190
+		"drag" 3.2
+		"heat dissipation" .61
 		"fuel capacity" 400
 		"cargo space" 46
 		"outfit space" 172
@@ -1860,9 +1940,9 @@ ship "Saryd Sojourner"
 		"hull" 7700
 		"required crew" 17
 		"bunks" 101
-		"mass" 640
-		"drag" 12.9
-		"heat dissipation" .50
+		"mass" 1304
+		"drag" 20
+		"heat dissipation" .33
 		"fuel capacity" 800
 		"cargo space" 312
 		"outfit space" 568
@@ -1926,6 +2006,22 @@ ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
+	outfits
+		"Hyperdrive"
+		"Bombardment Turret" 3
+		"Ion Rain Gun" 2
+		"Large Reactor Module"
+		"Small Battery Module"
+		"Large Battery Module" 2
+		"Cooling Module" 3
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module" 2
+		"Large Steering Module" 2
+		"Overclocked Repair Module"
+		"Overcharged Shield Module"
+
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	thumbnail "thumbnail/saryd traveler"
@@ -1938,9 +2034,9 @@ ship "Saryd Traveler"
 		"hull" 4000
 		"required crew" 10
 		"bunks" 54
-		"mass" 350
-		"drag" 5.5
-		"heat dissipation" .60
+		"mass" 676
+		"drag" 7.7
+		"heat dissipation" .43
 		"fuel capacity" 600
 		"cargo space" 164
 		"outfit space" 466
@@ -2013,9 +2109,9 @@ ship "Saryd Visitor"
 		"hull" 2400
 		"required crew" 5
 		"bunks" 32
-		"mass" 270
-		"drag" 4.4
-		"heat dissipation" .65
+		"mass" 418
+		"drag" 5.5
+		"heat dissipation" .52
 		"fuel capacity" 400
 		"cargo space" 108
 		"outfit space" 320

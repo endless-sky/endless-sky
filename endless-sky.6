@@ -1,4 +1,4 @@
-.TH endless\-sky 6 "18 Oct 2022" "ver. 0.9.17-alpha" "Endless Sky"
+.TH endless\-sky 6 "22 Jun 2024" "ver. 0.10.9-alpha" "Endless Sky"
 
 .SH NAME
 endless\-sky \- a space exploration and combat game.
@@ -39,10 +39,13 @@ sets the directory where preferences and saved games will be stored.
 prints any content or whitespace\-formatting errors found while loading data files and the most recent saved game. This option prevents the game from launching.
 
 .IP \fB\-\-test\ <name>
-execute the test case with the given name
+execute the test case with the given name. By default, the game will be muted while running tests.
 
 .IP \fB\-\-tests
 prints (to STDOUT) a list of available tests, usable for automatic test runs. This option prevents the game from launching.
+
+.IP \fB\-\-nomute
+prevents muting the game when running tests.
 
 .IP \fB\-s,\ \-\-ships
 prints (to STDOUT) a table of ship stats (just the base stats, not considering any stored outfits). This option prevents the game from launching.
@@ -78,9 +81,9 @@ prints a table of outfits and all attributes used by any outfits present.
 .IP \fB\-\-sales
 prints (to STDOUT) a list of all shipyards and outfitters and the ships and outfits they each contain.
 .RS
-.IP \fB\-\s,\ \-\-ships
+.IP \fB\-s,\ \-\-ships
 prints a list of shipyards and the ships they each contain.
-.IP \fB\-\o,\ \-\-outfits
+.IP \fB\-o,\ \-\-outfits
 pritns a list of outfitters and the outfits they each contain.
 .RE
 

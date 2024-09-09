@@ -69,7 +69,7 @@ mission "Remnant: Visit to Paradise 1"
 			`As you approach, your navigation system picks up the beacons designating the approach path, and before long you are automatically guided to a landing pad on the outskirts of the main spaceport.`
 				goto vaillanding
 			label science
-			`As you approach Vail, the specialized sensors from your Remnant research laboratory detect parts of the weather control network tasked with increasing the amount of snowfall on the planet. Your navigation system picks up the beacons designating the approach path, and before too long you are automatically guided down to a landing pad on the outskirts of the main spaceport.`
+			`As you approach Vail, the specialized sensors from your Remnant Research Laboratory detect parts of the weather control network tasked with increasing the amount of snowfall on the planet. Your navigation system picks up the beacons designating the approach path, and before too long you are automatically guided down to a landing pad on the outskirts of the main spaceport.`
 			label vaillanding
 			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on a new commlink. "Here, <first>. This one sounds more interested in providing a challenge and less pampering. What do you think?"`
 			choice
@@ -99,12 +99,13 @@ mission "Remnant: Visit to Paradise 1"
 					goto ourdestination
 				`	"Why is that number so precise?"`
 				`	"That sounds like the speed of light."`
-			`	Taely smiles. "After all the safety factors, margins for error, and assorted other adjustments were taken into account, someone noticed that coefficient of the rated value was calculated to be 1.1DE79, a fraction above the coefficient of the speed of light in a vacuum, so they adjusted the rated maximum velocity down only slightly so that they would match."`
+			`	Taely smiles. "After all the safety factors, margins for error, and assorted other adjustments were taken into account, someone noticed that, when expressed in scientific notation, the coefficient of the rated value was calculated to be 1.1DE79, a fraction above the coefficient of the speed of light in a vacuum, so they adjusted the rated maximum velocity down only slightly so that they would match."`
 			choice
 				`	"Thanks for the explanation."`
 					goto ourdestination
 				`	"What is a coefficient?"`
-			`	"Here, I will switch to base 10 to make it easier for you to understand." She pulls up a hologram with 299,792,458 m/s on it. As she speaks, the number shifts to 2.99792458x10^8 m/s. "When we write out a number such as the speed of light, it is typical to break it into parts. This is generally referred to as scientific notation. This is done to facilitate comparing and working with large numbers. The first part, 2.99792458 in this case, would be called the coefficient. The second part, x10, specifies the base; and the third part, ^8 is the exponent." The display shifts again to show 1.1DE784Ax16^7 m/s. "So this would be how we typically write the speed of light when we are using it in our research. So, 1.1DE78 is the coefficient of both the speed of light and the speed of the train, just with a different exponent." She pauses, then vanishes the display. "We will be arriving momentarily, so I should probably stop there."`
+				`	"What is scientific notation?"`
+			`	"Here, I will switch to base 10 to make it easier for you to understand." She pulls up a hologram with 299,792,458 m/s on it. As she speaks, the number shifts to 2.99792458x10^8 m/s. "When we write out a number such as the speed of light, it is typical to break it into parts. This is generally referred to as scientific notation. This is done to facilitate comparing and working with large numbers. The first part, 2.99792458 in this case, would be called the coefficient. The second part, x10, is called the base; and the third part, ^8 is the exponent." The display shifts again to show 1.1DE784Ax10^7 m/s. "So this would be how we typically write the speed of light when we are using it in our research. So, 1.1DE78 is the coefficient of both the speed of light and the speed of the train, just with a different exponent." She pauses, then vanishes the display. "We will be arriving momentarily, so I should probably stop there."`
 			label ourdestination
 			`	After several minutes, the lights in the train car suddenly pulse several times, and the train starts to decelerate heavily. You can feel yourself pushing into the harness as the train slows and comes to a stop. Unbuckling, Taely leads you out onto the platform, and then up a long escalator to the surface. Emerging into the sunlight, you find yourself looking around at a scene that seems almost anachronistic.`
 			scene "scene/remnant remote spaceport"
@@ -186,43 +187,15 @@ mission "Remnant: Celebration 1"
 			`	As the two of you join the flow of people, Taely gestures once again. "If you would like, I could provide you with some commentary and explanation, but it is more about feeling than doing anything specific. Together, we remember and celebrate through free-form dance mixed with singing and music. You are welcome to participate, but try not to disrupt or impede others in the way you join the dancing."`
 			choice
 				`	"No, that is alright. I will just experience it."`
+					goto celebrationbegin
 				`	"Yes, that would be appreciated."`
-					goto celebrationannotated
-			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually emerging from the typical hallways into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up toward the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sound of drips or traces of lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
-			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
-			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually: a slow, steady rhythm.`
-			`	"Thump."`
-			`	"Thump."`
-			`	"Thump."`
-			`	"Thump."`
-			choice
-				`	(Look around the room.)`
-				`	(Move in time with the beat.)`
-			`	The beat echoes in the cavern, but you quickly manage to locate the source: an elderly Remnant using her hands to drum against a polished stalagmite that, judging by the resonance, appears to be hollow. As you watch, a child steps up next to her and starts also hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
-			`	"Thump-thump."`
-			`	"Thump-thump."`
-			`	"Thump-thump."`
-			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, and some are nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
-			`	Out of the chaos you hear a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming:`
-			`	"...6...5...4...Ignition...2...1...Liftoff!"`
-			choice
-				`	(Look around with anticipation.)`
-					goto countdown
-				`	(Look around nervously.)`
-			`	Taely notices your anxiety and gestures reassuringly: "All is well."`
-			label countdown
-			`	On the final word the chant ends and dozens of deep voices join together in a roaring crescendo before fading away, replaced by many new voices expressing tones of wonder. At this point, it seems that almost every single person in the room is drumming, dancing, or singing - many seem to be doing several simultaneously.`
-			`	As the stars wheel through the night sky above the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of words, but the emotion conveyed in the singing is clear. The early tone of anticipation shifts to the roar of excitement and then on to a peaceful tone of wonder.`
-			`	As the ceremony continues, this shifts again to a steady, almost mechanical feel, which is in turn abruptly penetrated by a piercing thread of excitement, leading to the entire tone of the song becoming one of curiosity over another driving beat. The melody then seems to wander more, caught in duel tones of regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other deeply emotional pairings before finally culminating in a return to the original, unified heartbeat as the singers' voices come together, reaching upwards in hope before finally everything trails off into silence.`
-			choice
-				`	(Stand still and absorb the moment.)`
-				`	(Look around to see what is happening next.)`
-			`	Around you, everyone has gone still. Most look exhausted, and some are sitting on the floor or leaning against the walls. A few people look like they have been crying, and those nearby are hugging them or simply touching their shoulder. Most of the people you can see have reverent and joyful expressions. After the silence lingers for what feels like several minutes, the doors open and people start to leave. In short order the cave is nearly empty.`
-				goto celebrationend
-			label celebrationannotated
+			action
+				set "remnant: celebration: annotated"
+			label celebrationbegin
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually emerging from the typical hallways into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sound of drips or traces of lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
+				to display
+					has "remnant: celebration: annotated"
 			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
 			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually: a slow, steady rhythm.`
 			`	"Thump."`
@@ -233,104 +206,119 @@ mission "Remnant: Celebration 1"
 				`	(Look around the room.)`
 				`	(Move in time with the beat.)`
 			`	At your side, Taely gestures again. "Existence starts with the patterns of the universe, and our story starts with life."`
+				to display
+					has "remnant: celebration: annotated"
 			`	The beat echoes in the cavern, but you quickly manage to locate the source: an elderly Remnant using her hands to drum against a polished stalagmite that, judging by the resonance, appears to be hollow. As you watch, a child steps up next to her and starts also hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, and some are nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Out of the chaos you hear a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming:`
+				to display
+					not "remnant: celebration: annotated"
 			`	Out of the chaos you hear a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming but not overwhelming either:`
+				to display
+					has "remnant: celebration: annotated"
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
 				`	(Look around with anticipation.)`
-					goto countdownannotated
+					goto countdown
 				`	(Look around nervously.)`
+			`	Taely notices your anxiety and gestures reassuringly: "All is well."`
+				to display
+					not "remnant: celebration: annotated"
 			`	Taely notices your anxiety and gestures reassuringly. "They sing of the days of humanity's infancy; when we first ventured out of the cradle."`
-			label countdownannotated
+				to display
+					has "remnant: celebration: annotated"
+			label countdown
 			`	On the final word the chant ends and dozens of deep voices join together in a roaring crescendo before fading away, replaced by many new voices expressing tones of wonder. At this point, it seems that almost every single person in the room is drumming, dancing, or singing - many seem to be doing several simultaneously.`
 			`	As the stars wheel through the night sky above the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of words, but the emotion conveyed in the singing is clear. The early tone of anticipation shifts to the roar of excitement and then on to a peaceful tone of wonder.`
 			`	As the ceremony continues, this shifts again to a steady, almost mechanical feel, which is in turn abruptly penetrated by a piercing thread of excitement, leading to the entire tone of the song becoming one of curiosity over another driving beat. The melody then seems to wander more, caught in dual tones of regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other deeply emotional pairings before finally culminating in a return to the original, unified heartbeat as the singers' voices come together, reaching upwards in hope before finally everything trails off into silence.`
 			`	Through it all, Taely offers a running commentary on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is rather familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact, strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that, despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
+				to display
+					has "remnant: celebration: annotated"
 			choice
 				`	(Stand still and absorb the moment.)`
 				`	(Look around to see what is happening next.)`
 			`	Around you, everyone has gone still. Most look exhausted, and some are sitting on the floor or leaning against the walls. A few people look like they have been crying, and those nearby are hugging them or simply touching their shoulder. Most of the people you can see have reverent and joyful expressions. After the silence lingers for what feels like several minutes, the doors open and people start to leave. In short order the cave is nearly empty.`
-			label celebrationend
 			`	"I always find these Celebrations of Remembrance to be invigorating," Taely says. "What did you think of it, <first>?"`
+			label celebrationquestions
 			choice
 				`	"I think I will have to get back to you on that later."`
 					goto celebrationrequest
 				`	"That was awe-inspiring."`
+					to display
+						not "celebrationawestruck"
 					goto awestruck
 				`	"Why were some of the people crying?"`
+					to display
+						not "celebrationaskedcrying"
 					goto askcrying
 				`	"Who leads these ceremonies?"`
+					to display
+						not "celebrationaskedleader"
+						not "celebrationaskedomitted"
 					goto ceremonyleader
 				`	"That seemed both well-rehearsed and very disorganized."`
-			label celebrationrehearsed
-			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, though most people take part in only one every few weeks. Most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation and style is entirely up to them, so the details and feel of the group celebration as a whole are unique every time." After explaining this, she makes a singular gesture you have come to realize encompasses the idea, "If you have more questions, ask them."`
-			choice
-				`	"I think that is all for now."`
-					goto celebrationrequest
-				`	"That was awe-inspiring."`
-					goto awestruck
-				`	"Why were some of the people crying?"`
-					goto askcrying
-				`	"Who leads these ceremonies?"`
-			label ceremonyleader
-			`	Taely's gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment, based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
-			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to the story we tell. Memories of friends and family who are no longer with us are common as well."`
-			choice
-				`	"I think that is all for now."`
-					goto celebrationrequest
-				`	"That was awe-inspiring."`
-					goto awestruck
-				`	"Why were some of the people crying?"`
-					goto askcrying
-				`	"That seemed both well-rehearsed and very disorganized."`
+					to display
+						not "celebrationaskedrehearsed"
 					goto celebrationrehearsed
 				`	"You said 'virtually.' Who is omitted?"`
-			`	Taely scowls a bit at this. "Only those guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
-			choice
-				`	"I think that is all for now."`
-					goto celebrationrequest
-				`	"That was awe-inspiring."`
-					goto awestruck
-				`	"Why were some of the people crying?"`
-					goto askcrying
-				`	"That seemed both well-rehearsed and very disorganized."`
-					goto celebrationrehearsed
+					to display
+						has "celebrationaskedleader"
+						not "celebrationaskedomitted"
+					goto ceremonyomitted
 				`	"What constitutes your most serious crimes?"`
+					to display
+						has "celebrationaskedomitted"
+					goto celebrationcrime
+			label celebrationrehearsed
+			action
+				set "celebrationaskedrehearsed"
+				clear "celebrationaskedleader"
+				clear "celebrationawestruck"
+				clear "celebrationaskedomitted"
+			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, though most people take part in only one every few weeks. Most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation and style is entirely up to them, so the details and feel of the group celebration as a whole are unique every time." After explaining this, she makes a singular gesture you have come to realize encompasses the idea, "If you have more questions, ask them."`
+				goto celebrationquestions
+			label ceremonyleader
+			action
+				set "celebrationaskedleader"
+				clear "celebrationaskedrehearsed"
+				clear "celebrationaskedomitted"
+				clear "celebrationawestruck"
+			`	Taely's gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment, based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
+			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to the story we tell. Memories of friends and family who are no longer with us are common as well."`
+				goto celebrationquestions
+			label ceremonyomitted
+			action
+				clear "celebrationaskedleader"
+				set "celebrationaskedomitted"
+			`	Taely scowls a bit at this. "Only those guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
+				goto celebrationquestions
+			label celebrationcrime
+			action
+				clear "celebrationaskedomitted"
 			`	Taely gestures harshly. "Crimes against society, of course. Acting against the best interest of our collective well-being is the single most destructive and senseless act someone can perpetrate."`
-			choice
-				`	"I think that is all for now."`
-					goto celebrationrequest
-				`	"That was awe-inspiring."`
-					goto awestruck
-				`	"Why were some of the people crying?"`
-				`	"That seemed both well-rehearsed and very disorganized."`
-					goto celebrationrehearsed
+				goto celebrationquestions
 			label askcrying
+			action
+				set "celebrationaskedcrying"
+				clear "celebrationaskedrehearsed"
+				clear "celebrationaskedleader"
+				clear "celebrationawestruck"
+				clear "celebrationaskedomitted"
 			`	Taely gestures gently. "Many were friends of the crew of a ship that was recently destroyed while studying a black hole. They acquired ground-breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals. Sometimes the whole experience is simply overwhelming, and some of us still sorrow for other losses in our stories."`
-			choice
-				`	"I think that is all for now."`
-					goto celebrationrequest
-				`	"That was awe-inspiring."`
-				`	"Who leads these ceremonies?"`
-					goto ceremonyleader
-				`	"That seemed both well-rehearsed and very disorganized."`
-					goto celebrationrehearsed
+				goto celebrationquestions
 			label awestruck
+			action
+				set "celebrationawestruck"
+				clear "celebrationaskedcrying"
+				clear "celebrationaskedrehearsed"
+				clear "celebrationaskedleader"
+				clear "celebrationaskedomitted"
 			`	Taely nods in agreement and simply gestures expansively at the cavern around you, giving you a few moments to contemplate it. Eventually she gestures asking if you have any further questions.`
-			choice
-				`	"I think that is all for now."`
-					goto celebrationrequest
-				`	"Why were some of the people crying?"`
-					goto askcrying
-				`	"Who leads these ceremonies?"`
-					goto ceremonyleader
-				`	"That seemed both well-rehearsed and very disorganized."`
-					goto celebrationrehearsed
+				goto celebrationquestions
 			label celebrationrequest
 			`	Taely strides over to a console near the closest door and retrieves a crystal from a compartment within. She slips it into a case and turns back to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present at a particular event may still experience it too. This recording is destined for those working in Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
 			action
@@ -371,7 +359,7 @@ mission "Remnant: Teciimach Deployment"
 				`	"Yes."`
 				`	"Sorry, but I'm a bit busy at the moment."`
 					goto empno
-			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP torpedo canisters into place. "Well, you have probably seen us use EMP torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
+			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP Torpedo canisters into place. "Well, you have probably seen us use EMP Torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
 			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focused on the torpedoes themselves, others focused on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole structure. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
 			`	She looks at you and nods contemplatively. "One thing worth noting - you are making great strides in learning our language, so new items that appear in our outfitter will be listed under their proper name instead of substitutes from the ancestral tongue."`
 			choice
@@ -385,7 +373,7 @@ mission "Remnant: Teciimach Deployment"
 				`	"Thanks! Circling back to our earlier topic, what does 'Warren' mean?"`
 			`	"It is our term for the network of caves, tunnels, and spaces deep underground. All three of our main worlds have them in some form or another. We know a little about the original people who built them, but not nearly as much as we would like. They called themselves the Zitchal Maudrakoi, and one of the most distinguishing features we have been able to learn about them is that they do not seem to attach much importance to directionality. For example, in a control room we found, there were instruments and controls on every available surface, with just a scattering of handholds to support the operator." She shrugs. "Plume or Dusk would know more than I about them. I mostly focus on understanding their equipment."`
 			label empno
-			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on an a new bay.`
+			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on a new bay.`
 				accept
 	npc
 		government "Remnant"
@@ -407,7 +395,7 @@ mission "Remnant: Teciimach Deployment"
 		fleet "Korath Ember Waste Raid"
 	on complete
 		dialog
-			`Now that the most recent Korath raiders have been defeated, you decide to check your sensor logs to see how the new EMP torpedoes Taely talked about performed. You note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
+			`Now that the most recent Korath raiders have been defeated, you decide to check your sensor logs to see how the new EMP Torpedoes Taely talked about performed. You note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
 	on fail
 		dialog
 			`You recall Taely mentioning something about new weaponry, so you decide to check your logs to see what your sensors have recorded lately. Looking over the most recent combat details, you note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
@@ -433,21 +421,22 @@ mission "Remnant: Shattered Light 1"
 		conversation
 			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
 			`	"Well met, <first>, how goes your travels? Found anything interesting?"`
-			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the spaceport."`
+			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a Research Laboratory installed, and meet me in the spaceport."`
 
 
 
 mission "Remnant: Shattered Light 2"
 	name "Searching for Ghosts"
 	description "Take Ruach to find and scan the ghostly ship."
-	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory as well as 2 tons of cargo space and 1 free bunk."
+	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory installed on your flagship as well as 2 tons of cargo space and 1 free bunk."
 	cargo "equipment" 2
 	passengers 1
 	source "Viminal"
 	to offer
 		has "Remnant: Shattered Light 1: done"
+	to accept
+		has "outfit (flagship installed): Research Laboratory"
 	on offer
-		require "Research Laboratory"
 		conversation
 			`Your arrival in the spaceport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
 			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher."`
@@ -496,8 +485,8 @@ mission "Remnant: Shattered Light 3"
 				`	"Looks good. Start loading the <ship>!"`
 					accept
 				`	"Wait, 'Maudrakoi'?"`
-			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She looks around the room, then gestures. The hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like point defense turrets.`
-			`	"We do not have time for an in-depth presentation, but the short version is this: the Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
+			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She looks around the room, then gestures. The hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like Point Defense Turrets.`
+			`	"We do not have time for an in-depth presentation, but the short version is this: the Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archaeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
@@ -546,9 +535,10 @@ mission "Remnant: Shattered Light 4"
 					has "flagship model: Peregrine"
 					has "flagship model: Merganser"
 			`	With their confirmation, you quickly pull away from the approaching wreck and retreat to a safe distance.`
-				accept
+				goto cleared
 			label livingclear
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
+			label cleared
 			`	Eventually, you find a good vantage point, several kilometers away, where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse by the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air explode out from it, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
 			`	The dust and debris settle within a few minutes, and soon you and the <ship> are skimming over the vegetation. The approach gives you ample time to appreciate just how massive the Shattered Light is; everything that one could need to lay the foundations for a new colony is packed into a single ship. You note large gashes in the hull, massive sensor arrays, and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
 			`	As you slow to a hover alongside the ship, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the Primary Weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
@@ -613,7 +603,7 @@ mission "Remnant: Shattered Light 6"
 		has "Remnant: Shattered Light 5: done"
 	on offer
 		conversation
-			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
+			`On <origin>, the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
 			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd is gathered around them in animated conversation. They spot you and the crowd start waving their goodbyes as the group pick up their bags and head towards you.`
 			`	"Ah, <first>! Thank you for transporting us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
 				accept
@@ -725,7 +715,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	minor
 	landing
 	name "Sympathy For The Korath"
-	description "Travel to the <waypoints> system to disable a stranded Kas'lor Ik 582. Do not destroy or capture the ship, as it likely has a large civilian population."
+	description "Travel to the <waypoints> system to disable a stranded Dathnak A'awoj. Do not destroy or capture the ship, as it likely has a large civilian population."
 	source
 		government "Remnant"
 	waypoint "Vaticanus"
@@ -740,7 +730,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first>, I have a sensitive request for you.`
-			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Kas'lor Ik 582 to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
+			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Dathnak A'awoj to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
 			`	"Would you be up for disabling it, so the threat is eliminated while preserving the lives of the innocents on board?" His signs shift from a questioning tone to a confident one. "After you are done we can disarm the ship and fix their jump drive. If they adhere to their typical doctrine they should decide to head back home."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
@@ -756,7 +746,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		personality heroic target marked staying disables plunders
 		system "Vaticanus"
 		ship "Kas'lor Ik 582 (Stranded)" "Fligrookor"
-		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+		dialog `You have disabled the Dathnak A'awoj. Time to report back to <planet>.`
 	npc
 		government "Korath"
 		personality timid disables plunders swarming
@@ -771,11 +761,11 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They warn you they will not propose any more of the sort to you again.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Dathnak A'awoj without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2500000
 		conversation
 			`You find Chilia with a relieved look on his face when you land.`
-			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you." He signs with a content smile on his face.`
+			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you," he signs with a content smile on his face.`
 			`	"We must be careful not to let ignorance of Korath society result in the unnecessary destruction of similar ships. Now that you have shown you can handle these tasks with the proper finesse, you can expect these to turn up in the task board in the future." Chilia then walks away with a confident pace.`

@@ -22,9 +22,9 @@ ship "Emerald Sword"
 		"hull" 45000
 		"required crew" 86
 		"bunks" 302
-		"mass" 1520
-		"drag" 20
-		"heat dissipation" 0.45
+		"mass" 4360
+		"drag" 41
+		"heat dissipation" 0.22
 		"fuel capacity" 900
 		"cargo space" 169
 		"outfit space" 1190
@@ -106,21 +106,27 @@ ship "Emerald Sword"
 		angle 300
 		over
 		left
+	gun 0 -276 "Dragonflame Cannon"
 	turret -18 -41.5 "Particle Waveform Turret"
 	turret 18 -41.5 "Particle Waveform Turret"
 	turret -70 70.5 "Particle Waveform Turret"
 	turret 70 70.5 "Particle Waveform Turret"
+	turret 0 114 "Sheragi Anti-Missile"
 	turret -128.5 174 "Particle Waveform Turret"
 	turret 128.5 174 "Particle Waveform Turret"
-	turret 0 114 "Sheragi Anti-Missile"
 	turret 0 183 "Sheragi Anti-Missile"
-	gun 0 -276 "Dragonflame Cannon"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	bay "Fighter" 0 220.5 back
+		"launch effect" "sheragi launch"
 	explode "tiny explosion" 60
 	explode "small explosion" 26
 	explode "medium explosion" 47
@@ -148,15 +154,15 @@ ship "Emerald Sword" "Emerald Sword (Fixed)"
 		
 		"Fusion Drive"
 		"Jump Drive"
-	turret "Particle Waveform Turret"
-	turret "Particle Waveform Turret"
-	turret "Particle Waveform Turret"
-	turret "Particle Waveform Turret"
-	turret "Particle Waveform Turret"
-	turret "Particle Waveform Turret"
-	turret "Sheragi Anti-Missile"
-	turret "Sheragi Anti-Missile"
 	gun "Dragonflame Cannon"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Sheragi Anti-Missile"
+	turret "Particle Waveform Turret"
+	turret "Particle Waveform Turret"
+	turret "Sheragi Anti-Missile"
 
 ship "Black Diamond"
 	sprite "ship/blackdiamond"
@@ -168,9 +174,9 @@ ship "Black Diamond"
 		"shields" 1600
 		"hull" 3400
 		"automaton" 1
-		"mass" 50
-		"drag" .9
-		"heat dissipation" .86
+		"mass" 60
+		"drag" .95
+		"heat dissipation" .82
 		"outfit space" 152
 		"weapon capacity" 35
 		"engine capacity" 38

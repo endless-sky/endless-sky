@@ -1,18 +1,21 @@
-cmake_minimum_required(VERSION 3.16..3.25)
+cmake_minimum_required(VERSION 3.16...3.29)
 
 include(CMakeDependentOption)
-option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
+if(UNIX AND NOT APPLE AND NOT ES_STEAM)
+	option(ES_USE_VCPKG "Use vcpkg to get dependencies." OFF)
+else()
+	option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
+endif()
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
-cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
-cmake_dependent_option(ES_USE_OFFSCREEN
-	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
-cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable" OFF APPLE OFF)
+cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
+cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
+cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 
-# Use C++11 without any compiler specific extensions.
-set(CMAKE_CXX_STANDARD 11 CACHE STRING "")
+# Use C++20 without any compiler specific extensions.
+set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # Use LTO for Release builds only.
@@ -23,26 +26,28 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
-	include(utils/vcpkg_bootstrap.cmake)
-	x_vcpkg_bootstrap()
-
-	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
-	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
-	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 		CACHE STRING "Vcpkg toolchain file")
+	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
+	if(CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
+		include(utils/vcpkg_bootstrap.cmake)
+		x_vcpkg_bootstrap()
+	endif()
+
+	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
+	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
+	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 endif()
 
-if(ES_USE_SYSTEM_LIBRARIES)
-	if(UNIX AND NOT APPLE)
-		# If using the system libraries from a Linux distro, statically link every other library needed.
-		# This is to make sure that the resulting binary has no dependencies on libraries (other than
-		# the system ones) and can thus be distributed as a simple binary.
-		set(VCPKG_TARGET_TRIPLET "x64-linux")
-	endif()
-else()
-	# Tell vcpkg to use the required libraries.
+if(NOT ES_USE_SYSTEM_LIBRARIES)
+	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+endif()
+
+# Tell vcpkg to use system libraries that are missing in the Steam runtime.
+if(ES_STEAM)
+	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
 endif()
 
 # Various helpful options for IDEs.
@@ -50,7 +55,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.9.17
+project("Endless Sky" VERSION 0.10.9
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -99,6 +104,76 @@ endif()
 
 # Add the library target.
 add_subdirectory(source)
+
+# Create an interface library that contains common libraries for the game and unit tests.
+add_library(ExternalLibraries INTERFACE)
+target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
+
+# Enable sanitizers on debug builds, depending on platform support.
+if(NOT WIN32)
+	set(SANITIZER_OPTS "-g" "-fsanitize=address,undefined,pointer-compare,pointer-subtract,unreachable,builtin,integer-divide-by-zero,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow")
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr")
+	endif()
+endif()
+target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+
+# The 'mingw32' lib needs to be linked first.
+if(MINGW)
+	target_link_libraries(ExternalLibraries INTERFACE mingw32)
+endif()
+
+# Link with the general libraries.
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
+
+# Link the needed OS-specific dependencies, if any.
+if(WIN32)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+else()
+	target_link_libraries(ExternalLibraries INTERFACE pthread)
+endif()
+
+# Link with the UUID library, which is different for each OS.
+if(UNIX)
+	if(APPLE)
+		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
+		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
+		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
+		target_include_directories(ExternalLibraries INTERFACE "${UUID_INCLUDE}")
+	elseif(NOT ES_USE_VCPKG OR ES_USE_SYSTEM_LIBRARIES)
+		find_library(UUID_LIB uuid)
+		target_link_libraries(ExternalLibraries INTERFACE "${UUID_LIB}")
+	else()
+		find_package(unofficial-libuuid CONFIG REQUIRED)
+		target_link_libraries(ExternalLibraries INTERFACE unofficial::UUID::uuid)
+	endif()
+endif()
+
+# Link with OpenGL or OpenGL ES.
+if(ES_GLES)
+	find_package(OpenGL REQUIRED OpenGL EGL)
+	target_link_libraries(ExternalLibraries INTERFACE OpenGL::OpenGL OpenGL::EGL)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
+else()
+	# The Steam runtime can't rely on GLVND being available, so link against the legacy interface.
+	if(ES_STEAM)
+		set(OpenGL_GL_PREFERENCE "LEGACY")
+	endif()
+
+	find_package(OpenGL REQUIRED)
+	target_link_libraries(ExternalLibraries INTERFACE OpenGL::GL)
+
+	if(APPLE)
+		# Apple deprecated OpenGL in MacOS 10.14, but we don't care.
+		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
+	else()
+		# GLEW is only needed on Linux and Windows.
+		target_link_libraries(ExternalLibraries INTERFACE GLEW::glew)
+	endif()
+endif()
+
 # Setup for the testing frameworks.
 include(CTest)
 if(BUILD_TESTING)
@@ -111,6 +186,7 @@ if(APPLE AND ES_CREATE_BUNDLE)
 
 	# MacOS bundles are a bit special and need every resource specified when
 	# creating the executable.
+	# NOTE: This means that a reconfigure is needed if any assets are added/removed!
 	foreach(folder "data" "images" "sounds")
 		file(GLOB_RECURSE RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${folder}/*")
 		target_sources(EndlessSky PRIVATE "${RESOURCES}")
@@ -137,7 +213,7 @@ if(APPLE AND ES_CREATE_BUNDLE)
 			icons/endless-sky.iconset/icon_512x512.png icons/endless-sky.iconset/icon_512x512@2x.png
 		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" VERBATIM)
 
-	# Now do the same to standone files.
+	# Now do the same to standalone files.
 	foreach(file "license.txt" "keys.txt" "credits.txt" "copyright" "changelog" "icons/endless-sky.icns")
 		target_sources(EndlessSky PRIVATE ${file})
 		set_source_files_properties(${file} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/")
@@ -157,25 +233,7 @@ else()
 endif()
 
 # Link with the library dependencies.
-target_link_libraries(EndlessSky PRIVATE EndlessSkyLib $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
-
-# Link with OpenGL or OpenGL ES.
-if(ES_GLES)
-	find_package(OpenGL REQUIRED OpenGL EGL)
-	target_link_libraries(EndlessSky PRIVATE OpenGL::OpenGL OpenGL::EGL)
-	target_compile_definitions(EndlessSkyLib PUBLIC ES_GLES)
-else()
-	find_package(OpenGL REQUIRED)
-	target_link_libraries(EndlessSky PRIVATE OpenGL::GL)
-
-	if(APPLE)
-		# Apple deprecated OpenGL in MacOS 10.14, but we don't care.
-		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
-	else()
-		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(EndlessSky PRIVATE GLEW::GLEW)
-	endif()
-endif()
+target_link_libraries(EndlessSky PRIVATE ExternalLibraries EndlessSkyLib $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)
@@ -198,7 +256,7 @@ elseif(WIN32)
 
 	# The MinGW DLLs needed were already installed above, and vcpkg installs the library DLLs.
 
-	# Install the resouce files.
+	# Install the resource files.
 	install(DIRECTORY data DESTINATION .)
 	install(DIRECTORY images DESTINATION .)
 	install(DIRECTORY sounds DESTINATION .)
@@ -206,12 +264,13 @@ elseif(WIN32)
 	install(FILES keys.txt DESTINATION .)
 	install(FILES copyright DESTINATION .)
 	install(FILES changelog DESTINATION .)
+	install(FILES license.txt DESTINATION .)
 elseif(UNIX)
 	# Install the binary.
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)
 
 	# Install the desktop file.
-	install(FILES endless-sky.desktop DESTINATION share/applications)
+	install(FILES io.github.endless_sky.endless_sky.desktop DESTINATION share/applications)
 
 	# Install app center metadata.
 	install(FILES io.github.endless_sky.endless_sky.appdata.xml DESTINATION share/metainfo)
@@ -233,7 +292,7 @@ elseif(UNIX)
 	target_sources(EndlessSky PRIVATE endless-sky.6.gz)
 	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/endless-sky.6.gz DESTINATION share/man/man6)
 
-	# Install the resouce files.
+	# Install the resource files.
 	install(DIRECTORY data DESTINATION share/games/endless-sky)
 	install(DIRECTORY images DESTINATION share/games/endless-sky)
 	install(DIRECTORY sounds DESTINATION share/games/endless-sky)
@@ -241,4 +300,5 @@ elseif(UNIX)
 	install(FILES keys.txt DESTINATION share/games/endless-sky)
 	install(FILES copyright DESTINATION share/doc/endless-sky)
 	install(FILES changelog DESTINATION share/doc/endless-sky)
+	install(FILES license.txt DESTINATION share/doc/endless-sky)
 endif()

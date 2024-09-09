@@ -40,13 +40,6 @@ void ConditionsStore::DerivedProvider::SetGetFunction(function<int64_t(const str
 
 
 
-void ConditionsStore::DerivedProvider::SetHasFunction(function<bool(const string &)> newHasFun)
-{
-	hasFunction = std::move(newHasFun);
-}
-
-
-
 void ConditionsStore::DerivedProvider::SetSetFunction(function<bool(const string &, int64_t)> newSetFun)
 {
 	setFunction = std::move(newSetFun);
@@ -142,77 +135,6 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int
 
 
 
-ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt)
-	: condMapIt(it), condMapEnd(endIt)
-{
-	MoveToValueCondition();
-}
-
-
-
-pair<string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
-{
-	return itVal;
-}
-
-
-
-const pair<string, int64_t> *ConditionsStore::PrimariesIterator::operator->()
-{
-	return &itVal;
-}
-
-
-
-ConditionsStore::PrimariesIterator &ConditionsStore::PrimariesIterator::operator++()
-{
-	condMapIt++;
-	MoveToValueCondition();
-	return *this;
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator++(int)
-{
-	PrimariesIterator tmp = *this;
-	condMapIt++;
-	MoveToValueCondition();
-	return tmp;
-}
-
-
-
-// Equation operators, we can just compare the upstream iterators.
-bool ConditionsStore::PrimariesIterator::operator==(const ConditionsStore::PrimariesIterator &rhs) const
-{
-	return condMapIt == rhs.condMapIt;
-}
-
-
-
-bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::PrimariesIterator &rhs) const
-{
-	return condMapIt != rhs.condMapIt;
-}
-
-
-
-// Helper function to ensure that the primary-conditions iterator points
-// to a primary (value) condition or to the end-iterator value.
-void ConditionsStore::PrimariesIterator::MoveToValueCondition()
-{
-	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
-		condMapIt++;
-
-	// We have a valid value when we are not at the end, and callers should
-	// not try to dereference the value when we actually are at the end.
-	if(condMapIt != condMapEnd)
-		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
-}
-
-
-
 // Constructor with loading primary conditions from datanode.
 ConditionsStore::ConditionsStore(const DataNode &node)
 {
@@ -249,22 +171,23 @@ void ConditionsStore::Load(const DataNode &node)
 
 void ConditionsStore::Save(DataWriter &out) const
 {
-	if(PrimariesBegin() != PrimariesEnd())
+	out.Write("conditions");
+	out.BeginChild();
+	for(const auto &it : storage)
 	{
-		out.Write("conditions");
-		out.BeginChild();
-		{
-			for(auto it = PrimariesBegin(); it != PrimariesEnd(); ++it)
-			{
-				// If the condition's value is 1, don't bother writing the 1.
-				if(it->second == 1)
-					out.Write(it->first);
-				else if(it->second)
-					out.Write(it->first, it->second);
-			}
-		}
-		out.EndChild();
+		// We don't need to save derived conditions that have a provider.
+		if(it.second.provider)
+			continue;
+		// If the condition's value is 0, don't write it at all.
+		if(!it.second.value)
+			continue;
+		// If the condition's value is 1, don't bother writing the 1.
+		if(it.second.value == 1)
+			out.Write(it.first);
+		else
+			out.Write(it.first, it.second.value);
 	}
+	out.EndChild();
 }
 
 
@@ -282,41 +205,6 @@ int64_t ConditionsStore::Get(const string &name) const
 		return ce->value;
 
 	return ce->provider->getFunction(name);
-}
-
-
-
-bool ConditionsStore::Has(const string &name) const
-{
-	const ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return false;
-
-	if(!ce->provider)
-		return true;
-
-	return ce->provider->hasFunction(name);
-}
-
-
-
-// Returns a pair where the boolean indicates if the game has this condition set,
-// and an int64_t which contains the value if the condition was set.
-pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
-{
-	const ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return make_pair(false, 0);
-
-	if(!ce->provider)
-		return make_pair(true, ce->value);
-
-	bool has = ce->provider->hasFunction(name);
-	int64_t val = 0;
-	if(has)
-		val = ce->provider->getFunction(name);
-
-	return make_pair(has, val);
 }
 
 
@@ -393,27 +281,6 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 
 
 
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesBegin() const
-{
-	return PrimariesIterator(storage.begin(), storage.end());
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesEnd() const
-{
-	return PrimariesIterator(storage.end(), storage.end());
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesLowerBound(const string &key) const
-{
-	return PrimariesIterator(storage.lower_bound(key), storage.end());
-}
-
-
-
 // Build a provider for a given prefix.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
 {
@@ -474,6 +341,22 @@ void ConditionsStore::Clear()
 
 
 
+// Helper for testing; check how many primary conditions are registered.
+int64_t ConditionsStore::PrimariesSize() const
+{
+	int64_t result = 0;
+	for(const auto &it : storage)
+	{
+		// We only count primary conditions; conditions that don't have a provider.
+		if(it.second.provider)
+			continue;
+		++result;
+	}
+	return result;
+}
+
+
+
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	// Avoid code-duplication between const and non-const function.
@@ -494,7 +377,7 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 	--it;
 	// The entry is matching if we have an exact string match.
-	if(!name.compare(it->first))
+	if(name == it->first)
 		return &(it->second);
 
 	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.

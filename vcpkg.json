@@ -1,9 +1,15 @@
 {
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "openal-soft",
+      "platform": "osx"
+    }
+  ],
   "features": {
     "system-libs": {
       "description": "System libraries required to build ES.",
       "dependencies": [
+        "catch2",
         {
           "name": "glew",
           "platform": "!osx"
@@ -23,15 +29,14 @@
           ],
           "platform": "linux"
         },
-        "sdl2",
-        {
-          "name": "sdl2",
-          "features": [
-            "x11",
-            "wayland"
-          ],
-          "platform": "linux"
-        }
+        "sdl2"
+      ]
+    },
+    "steam-libs": {
+      "description": "System libraries not provided in the Steam Sniper Runtime.",
+      "dependencies": [
+        "libmad",
+        "catch2"
       ]
     }
   }

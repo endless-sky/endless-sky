@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_H_
-#define OUTFIT_H_
+#pragma once
 
 #include "Weapon.h"
 
@@ -55,6 +54,8 @@ public:
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
+	const std::string &Series() const;
+	const int Index() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -74,6 +75,8 @@ public:
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
+	// Add the licenses required by the given outfit to this outfit.
+	void AddLicenses(const Outfit &outfit);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
@@ -95,8 +98,16 @@ public:
 	const std::map<const Sound *, int> &JumpSounds() const;
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
+	// Get this outfit's scan sounds, if any.
+	const std::map<const Sound *, int> &CargoScanSounds() const;
+	const std::map<const Sound *, int> &OutfitScanSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
+
+
+private:
+	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+	void AddLicense(const std::string &name);
 
 
 private:
@@ -105,6 +116,10 @@ private:
 	std::string displayName;
 	std::string pluralName;
 	std::string category;
+	// The series that this outfit is a part of and its index within that series.
+	// Used for sorting within shops.
+	std::string series;
+	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
@@ -130,6 +145,8 @@ private:
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
+	std::map<const Sound *, int> cargoScanSounds;
+	std::map<const Sound *, int> outfitScanSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 
@@ -138,7 +155,3 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
-
-
-
-#endif

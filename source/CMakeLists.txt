@@ -1,46 +1,14 @@
-add_library(EndlessSkyLib STATIC EXCLUDE_FROM_ALL)
+add_library(EndlessSkyLib OBJECT)
 
 # Set the appropriate compiler flags.
 target_include_directories(EndlessSkyLib PUBLIC "${LIBMAD_INCLUDE_DIR}")
 if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
-		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
+		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/Oi>")
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
-endif()
-
-# The 'mingw32' lib needs to be linked first.
-if(MINGW)
-	target_link_libraries(EndlessSkyLib PUBLIC mingw32)
-endif()
-
-# Link with the general libraries.
-target_link_libraries(EndlessSkyLib PUBLIC SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
-	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
-
-# Link the needed OS-specific dependencies, if any.
-if(WIN32)
-	target_link_libraries(EndlessSkyLib PUBLIC rpcrt4 Winmm)
-else()
-	target_link_libraries(EndlessSkyLib PUBLIC pthread)
-endif()
-
-# Link with the UUID library, which is different for each OS.
-if(UNIX)
-	if(APPLE)
-		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
-		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
-		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
-		target_include_directories(EndlessSkyLib PUBLIC "${UUID_INCLUDE}")
-	elseif(ES_USE_SYSTEM_LIBRARIES)
-		find_library(UUID_LIB uuid)
-		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
-	else()
-		find_package(unofficial-libuuid CONFIG REQUIRED)
-		target_link_libraries(EndlessSkyLib PUBLIC unofficial::UUID::uuid)
-	endif()
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
@@ -56,12 +24,11 @@ target_sources(EndlessSkyLib PRIVATE
 	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
+	Animate.h
 	Armament.cpp
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
-	Audio.cpp
-	Audio.h
 	BankPanel.cpp
 	BankPanel.h
 	BatchDrawList.cpp
@@ -78,10 +45,15 @@ target_sources(EndlessSkyLib PRIVATE
 	CaptureOdds.h
 	CargoHold.cpp
 	CargoHold.h
+	CategoryList.cpp
+	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
+	Collision.cpp
+	Collision.h
 	CollisionSet.cpp
 	CollisionSet.h
+	CollisionType.h
 	Color.cpp
 	Color.h
 	Command.cpp
@@ -113,8 +85,12 @@ target_sources(EndlessSkyLib PRIVATE
 	Dialog.h
 	Dictionary.cpp
 	Dictionary.h
+	DistanceCalculationSettings.h
+	DistanceCalculationSettings.cpp
 	DistanceMap.cpp
 	DistanceMap.h
+	Distribution.cpp
+	Distribution.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
@@ -126,6 +102,7 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.cpp
 	EscortDisplay.h
 	ExclusiveItem.h
+	FighterHitHelper.h
 	File.cpp
 	File.h
 	Files.cpp
@@ -136,12 +113,16 @@ target_sources(EndlessSkyLib PRIVATE
 	FireCommand.h
 	Fleet.cpp
 	Fleet.h
+	FleetCargo.cpp
+	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
 	FogShader.cpp
 	FogShader.h
 	FormationPattern.cpp
 	FormationPattern.h
+	FormationPositioner.cpp
+	FormationPositioner.h
 	FrameTimer.cpp
 	FrameTimer.h
 	Galaxy.cpp
@@ -154,6 +135,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	Gamerules.cpp
+	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -166,10 +149,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
-	ImageBuffer.cpp
-	ImageBuffer.h
-	ImageSet.cpp
-	ImageSet.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -203,14 +182,12 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	MessageLogPanel.cpp
+	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
@@ -223,12 +200,14 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
-	Music.cpp
-	Music.h
 	NPC.cpp
 	NPC.h
+	NPCAction.cpp
+	NPCAction.h
 	News.cpp
 	News.h
+	Orders.cpp
+	Orders.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -239,6 +218,8 @@ target_sources(EndlessSkyLib PRIVATE
 	OutlineShader.h
 	Panel.cpp
 	Panel.h
+	Paragraphs.cpp
+	Paragraphs.h
 	Person.cpp
 	Person.h
 	Personality.cpp
@@ -255,12 +236,16 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
+	Plugins.cpp
+	Plugins.h
 	Point.cpp
 	Point.h
 	PointerShader.cpp
 	PointerShader.h
 	Politics.cpp
 	Politics.h
+	Port.cpp
+	Port.h
 	Preferences.cpp
 	Preferences.h
 	PreferencesPanel.cpp
@@ -271,11 +256,15 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RaidFleet.cpp
+	RaidFleet.h
 	Random.cpp
 	Random.h
 	RandomEvent.h
 	Rectangle.cpp
 	Rectangle.h
+	RenderBuffer.cpp
+	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
 	Sale.h
@@ -283,6 +272,7 @@ target_sources(EndlessSkyLib PRIVATE
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollVar.h
 	Set.h
 	Shader.cpp
 	Shader.h
@@ -296,20 +286,16 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipInfoPanel.h
 	ShipJumpNavigation.cpp
 	ShipJumpNavigation.h
+	ShipManager.cpp
+	ShipManager.h
+	ShipNameDialog.cpp
+	ShipNameDialog.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
 	ShopPanel.h
-	Sound.cpp
-	Sound.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	Sprite.cpp
-	Sprite.h
-	SpriteQueue.cpp
-	SpriteQueue.h
-	SpriteSet.cpp
-	SpriteSet.h
 	SpriteShader.cpp
 	SpriteShader.h
 	StarField.cpp
@@ -320,15 +306,15 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	StringInterner.cpp
+	StringInterner.h
 	System.cpp
 	System.h
 	SystemEntry.h
-	Test.cpp
-	Test.h
-	TestContext.cpp
-	TestContext.h
-	TestData.cpp
-	TestData.h
+	TaskQueue.cpp
+	TaskQueue.h
+	TextArea.cpp
+	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
 	Trade.cpp
@@ -350,12 +336,40 @@ target_sources(EndlessSkyLib PRIVATE
 	WeightedList.h
 	Wormhole.cpp
 	Wormhole.h
-	comparators/ByGivenOrder.h
-	comparators/ByName.h
+	WormholeStrategy.h
 	opengl.cpp
 	opengl.h
 	pi.h
 	shift.h
+	audio/Audio.cpp
+	audio/Audio.h
+	audio/Music.cpp
+	audio/Music.h
+	audio/Sound.cpp
+	audio/Sound.h
+	comparators/ByGivenOrder.h
+	comparators/ByName.h
+	comparators/BySeriesAndIndex.h
+	image/ImageBuffer.cpp
+	image/ImageBuffer.h
+	image/ImageSet.cpp
+	image/ImageSet.h
+	image/Mask.cpp
+	image/Mask.h
+	image/MaskManager.cpp
+	image/MaskManager.h
+	image/Sprite.cpp
+	image/Sprite.h
+	image/SpriteSet.cpp
+	image/SpriteSet.h
+	ship/ShipAICache.cpp
+	ship/ShipAICache.h
+	test/Test.cpp
+	test/Test.h
+	test/TestContext.cpp
+	test/TestContext.h
+	test/TestData.cpp
+	test/TestData.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

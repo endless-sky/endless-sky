@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MENU_PANEL_H_
-#define MENU_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -55,10 +54,6 @@ private:
 	const Interface *mainMenuUi;
 
 	std::vector<std::string> credits;
-	unsigned scroll = 0U;
+	long long int scroll = 0;
 	bool scrollingPaused = false;
 };
-
-
-
-#endif

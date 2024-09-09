@@ -434,7 +434,8 @@ mission "FW Defend Farpoint"
 		personality heroic
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -444,7 +445,8 @@ mission "FW Defend Farpoint"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -799,7 +801,7 @@ mission "FW Syndicate Capture 1B"
 	npc
 		system Ruchbah
 		government Syndicate
-		personality heroic staying nemesis
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
@@ -1036,7 +1038,7 @@ mission "FW Pug 2"
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
-	blocked `As you are landing, Alondo contacts you and says, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
+	blocked `As you are landing, Alondo contacts you and asks, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1099,16 +1101,16 @@ mission "FW Pug 2A"
 		log "Agreed to travel to Syndicate space through the one remaining hyperspace path that is still open, through the uninhabited star systems to the north."
 		conversation
 			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
-			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber asking the members of Parliament for more information, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they fear that the one remaining link will disappear any day now.`
+			`	Parliament is eager now to meet with you, and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber asking the members of Parliament for more information, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they fear that the one remaining link will disappear any day now.`
 			`	As the conversation continues, it eventually becomes clear why you have been called here: the Republic wants you to take on the risk none of them is willing to face, and travel through to Syndicate space to reason with their leaders.`
 			choice
 				`	"If this is what it takes to keep human space from being torn into fragments, I will risk my ship to go meet with the Syndicate."`
 					goto yes
 				`	"This sounds like a job for the Navy, not for me. I can't risk being trapped in hostile Syndicate space forever."`
 					goto no
-				`	"Did the Syndicate communicate anything to you before the links were cut, that might help us guess at their intentions?"`
+				`	"Did the Syndicate communicate anything to you before the links were cut that might help us guess at their intentions?"`
 			
-			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other, some sort of internal power struggle."`
+			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other. Some sort of internal power struggle."`
 			`	Another man speaks up and adds, "We had also been aware for some time that the Syndicate had gained access to alien technology, through encounters with a nomadic alien species currently inhabiting the galactic core. They may have found a way to use that technology to alter the links." From the surprised expressions on the faces of many of the other members of Parliament, it's clear that this information is new to them.`
 			choice
 				`	"Very well, we will accept this mission."`
@@ -1169,8 +1171,9 @@ mission "FW Pug 2B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Syndicate CEO claims that the disappearing hyperspace links are not their doing, and that in fact they are under attack by aliens. In fact, they say that the Syndicate has had contact with two different alien species in this region - raiders and scavengers known as the Korath coming from the galactic core, and an enigmatic and irrational species named the Pug who occupy the system adjacent to the ones that recently got cut off from human space."
+		log "The Syndicate CEO, Alastair Korban, claims that the disappearing hyperspace links are not their doing, and that in fact they are under attack by aliens. In fact, they say that the Syndicate has had contact with two different alien species in this region - raiders and scavengers known as the Korath coming from the galactic core, and an enigmatic and irrational species named the Pug who occupy the system adjacent to the ones that recently got cut off from human space."
 		log "By plundering the Korath raiders, the Syndicate has acquired some jump drives, which allow a ship to travel between systems that are not connected by hyperspace links. They are willing to part with one of these jump drives in order to prove the truth of their story to the rest of humanity."
+		log "People" "Alastair Korban" `CEO of the Syndicate Corporation for over two decades, Alastair Korban's tenure of the megacorporation has been capped by soaring profits owing to the human civil war. However, Korban has confirmed in speech what Sawyer brought forward to the Free Worlds and the Republic; that a "certain extremist faction" of the Syndicate were behind the bombings on Martini and Geminus.`
 		conversation
 			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
 			`	"Wait," says Alondo, "you're saying this whole thing is not the Syndicate's doing?"`
@@ -1241,6 +1244,7 @@ mission "FW Pug 2C: Hyperdrive"
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
+		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1271,6 +1275,7 @@ mission "FW Pug 2C: Scram Drive"
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
+		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1291,7 +1296,7 @@ mission "FW Pug 2C: Scram Drive"
 
 
 
-mission "FW Pug 2C: A Jump Drive"
+mission "FW Pug 2C: Jump Drive"
 	landing
 	name "Investigate the Pug"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
@@ -1301,18 +1306,17 @@ mission "FW Pug 2C: A Jump Drive"
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
+		has "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		outfit "Jump Drive" -1
 		conversation
 			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and asks if they can look over your ship; a few minutes later, one of them says in surprise, "You've already got a jump drive! How did you manage that?" Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
 				accept
 	
 	on accept
-		outfit "Jump Drive" 1
 		set "fw given jump drive"
 		set "already had jump drive"
 	on visit
@@ -2015,7 +2019,7 @@ mission "FW Pug 4C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "reconnected delta capricorni"
+		event "reconnected delta capricorni" 0
 		conversation
 			`Freya sent detailed instructions with the reflector for where it should be set up and how it should be adjusted to interface with the transmitter back in Pug space. You hand it over to a team of Syndicate engineers, who seem quite capable and confident that they can make it work; you suspect that these are the same engineers who have been playing with equipment stolen from the Korath, so they are no strangers to alien technology.`
 			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to reopen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in reopening the link.`
@@ -2133,14 +2137,16 @@ mission "FW Pug 5A"
 		system Sol
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2163,9 +2169,9 @@ mission "FW Pug 5B"
 	
 	on offer
 		log "Succeeded in rendezvousing with the Navy in the Sol system and reopening a link to the Pug territory. But now Shiver is under attack by a massive Pug fleet."
-		event "reconnected altair"
+		event "reconnected altair" 0
 		conversation
-			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam hones in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
+			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam homes in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
 			`	A second later your own communicator beeps. It's Freya. "Get back here quickly," she says. "Bring whatever reinforcements you can. A massive Pug fleet just appeared in orbit."`
 				accept
 	on visit
@@ -2176,14 +2182,16 @@ mission "FW Pug 5B"
 		personality escort disables waiting
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2231,7 +2239,7 @@ mission "FW Pug 6"
 				`	"Sure, with the Navy at our backs I think we've got a good chance."`
 				`	"As ready as I'll ever be, I guess."`
 			`	She laughs. "I suppose that's the best we can hope for. Do you mind if I ride in your ship tomorrow, rather than one of the others? If this is the end, I'd rather face it with people I know." You agree. She turns back to look out the window.`
-			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
+			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
 			`	Eventually morning comes, and you prepare your ship for the assault on the Pug homeworld...`
 				accept
 	
@@ -2240,14 +2248,16 @@ mission "FW Pug 6"
 		personality disables waiting
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2258,14 +2268,16 @@ mission "FW Pug 6"
 		personality disables
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2395,6 +2407,7 @@ mission "FW Syndicate Extremists 1A"
 	
 	on offer
 		log "With the Pug defeated, it is finally time to deal with the Syndicate extremists and the Alphas that they allied with. The extremists are armed with nuclear missiles, but the Syndicate CEO has agreed to provide a cloaking device that will make it possible to dodge the missiles."
+		log "People" "Alastair Korban" `Following the defeat of the Pug, Korban has revealed that the "extremist faction" of the Syndicate collaborated with Alphas in starting the human civil war, ostensibly to prevent humanity from entering a new dark age. This revelation has resulted in his resignation from his position as CEO of the Syndicate.`
 		conversation
 			`The presence of a Navy Cruiser in orbit seldom goes unnoticed, especially a Cruiser captained by someone as famous as William Danforth. As soon as you land, a Syndicate employee meets you and escorts you, Freya, and Danforth to the office of Alastair Korban, the CEO. He does not seem very happy to see you. "I only just got word that the aliens were defeated a few days ago," he says. "I'm surprised you're back here already."`
 			`	Danforth says, "I've got a whole Navy fleet just a few jumps away from here who are itching to destroy something. So here's the deal. You name me some targets: the men who were responsible for the terrorist attack. Then I will do you a favor and take them off your hands. Fair enough?"`
@@ -2434,7 +2447,7 @@ mission "FW Syndicate Extremists 1A"
 			
 			`	"I don't see why not," says Danforth, fixing Alastair with a piercing gaze. "It's certainly better than leaving it in Syndicate hands."`
 			label end
-			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas."`
+			`	Alastair tells you that the device is being kept on Hephaestus, and the engineers there can install it in your ship. Meanwhile, Danforth will call in the rest of his Oathkeeper fleet. "And when we're through with this, I'll be seeing to it that this Oracle is destroyed so that this can never happen again," says Danforth. Alastair gives a meek nod in agreement. "Now, where are the Alphas?"`
 			`	"The Alphas are holed up on Buccaneer Bay," says Alastair, "an old pirate world. Good luck in defeating them."`
 				accept
 	
@@ -2524,7 +2537,8 @@ mission "FW Syndicate Extremists 1B"
 		personality heroic escort
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)" 3
 				"Lance" 12
@@ -2571,7 +2585,7 @@ mission "FW Syndicate Extremists 1C"
 	on complete
 		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations that ended when the Free Worlds were able to present credible evidence denying any involvement in the terrorist attacks. After the Free Worlds joined the effort to drive out the Pug invaders, the Republic officially recognized the Free Worlds and diplomatic relations were established.`
-		log "Factions" "Syndicate" `It was exposed that the bombings of Gemini and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
+		log "Factions" "Syndicate" `It was exposed that the bombings of Geminus and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
 		payment 5000000
 		event "stack core for sale"
 		"salary: Free Worlds" = 8900

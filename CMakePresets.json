@@ -28,6 +28,9 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
+        "ES_USE_VCPKG": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF"
       },
       "condition": {
@@ -48,6 +51,8 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
+        "ES_USE_VCPKG": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF",
         "BUILD_TESTING": "OFF"
       },
@@ -147,6 +152,7 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
         "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
       },
       "condition": {
@@ -167,6 +173,7 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "x86-mingw-dynamic",
         "VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
       },
       "condition": {
@@ -181,7 +188,9 @@
       "description": "Builds for Linux for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "linux64-release"
+        "VCPKG_HOST_TRIPLET": "linux64-release",
+        "VCPKG_TARGET_TRIPLET": "linux64-release",
+        "ES_USE_OFFSCREEN": "ON"
       }
     },
     {
@@ -190,8 +199,10 @@
       "description": "Builds for Linux GLES for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "VCPKG_HOST_TRIPLET": "linux64-release",
         "VCPKG_TARGET_TRIPLET": "linux64-release",
-        "ES_GLES": "ON"
+        "ES_GLES": "ON",
+        "ES_USE_OFFSCREEN": "ON"
       }
     },
     {
@@ -200,10 +211,10 @@
       "description": "Builds for MacOS for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "13"
       }
     },
     {
@@ -212,6 +223,7 @@
       "description": "Builds with clang-cl for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
+        "VCPKG_HOST_TRIPLET": "x64-windows-release",
         "VCPKG_TARGET_TRIPLET": "x64-windows-release",
         "CMAKE_CXX_COMPILER": "clang-cl.exe"
       }
@@ -224,18 +236,19 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "win64-release",
         "VCPKG_TARGET_TRIPLET": "win64-release"
       }
     },
     {
-      "name": "mingw32-ci",
-      "displayName": "MinGW x86 CI",
-      "description": "Builds with MinGW x86 for CI purposes",
-      "inherits": "ci",
+      "name": "linux-release",
+      "displayName": "Linux Release",
+      "description": "Builds for Linux like an official release",
+      "inherits": "release",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
-        "CMAKE_RC_COMPILER": "windres",
-        "VCPKG_TARGET_TRIPLET": "win32-release"
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_HOST_TRIPLET": "linux64-release",
+        "VCPKG_TARGET_TRIPLET": "linux64-release"
       }
     },
     {
@@ -246,9 +259,10 @@
       "cacheVariables": {
         "ES_CREATE_BUNDLE": "ON",
         "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "13"
       }
     },
     {
@@ -263,9 +277,37 @@
       "cacheVariables": {
         "ES_CREATE_BUNDLE": "ON",
         "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos-arm64-release",
         "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "13"
+      }
+    },
+    {
+      "name": "mingw-release",
+      "displayName": "MacOS Release",
+      "description": "Builds for MinGW like an official release",
+      "inherits": "release",
+      "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "win64-release",
+        "VCPKG_TARGET_TRIPLET": "win64-release"
+      }
+    },
+    {
+      "name": "mingw32-release",
+      "displayName": "MacOS Release",
+      "description": "Builds for MinGW x86 like an official release",
+      "inherits": "release",
+      "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
+        "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "win64-release",
+        "VCPKG_TARGET_TRIPLET": "win32-release"
       }
     }
   ],
@@ -405,9 +447,9 @@
       "inherits": "ci"
     },
     {
-      "name": "mingw32-ci",
-      "displayName": "MinGW x86 CI build",
-      "configurePreset": "mingw32-ci",
+      "name": "linux-ci-release",
+      "displayName": "Linux release build",
+      "configurePreset": "linux-release",
       "inherits": "ci"
     },
     {
@@ -421,6 +463,18 @@
       "displayName": "MacOS ARM release build",
       "configurePreset": "macos-arm-release",
       "inherits": "ci"
+    },
+    {
+      "name": "mingw-ci-release",
+      "displayName": "MinGW release build",
+      "configurePreset": "mingw-release",
+      "inherits": "ci"
+    },
+    {
+      "name": "mingw32-ci-release",
+      "displayName": "MinGW x86 release build",
+      "configurePreset": "mingw32-release",
+      "inherits": "ci"
     }
   ],
   "testPresets": [
@@ -428,6 +482,20 @@
       "name": "test",
       "hidden": true,
       "configuration": "Debug",
+      "output": {
+        "shortProgress": true,
+        "outputOnFailure": true
+      },
+      "filter": {
+        "include": {
+          "label": "unit"
+        }
+      }
+    },
+    {
+      "name": "test-release",
+      "hidden": true,
+      "configuration": "Release",
       "output": {
         "shortProgress": true,
         "outputOnFailure": true
@@ -543,6 +611,12 @@
       "inherits": "test"
     },
     {
+      "name": "linux-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "linux",
+      "inherits": "test-release"
+    },
+    {
       "name": "linux-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "linux",
@@ -562,9 +636,15 @@
     },
     {
       "name": "linux-gles-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "linux-gles",
       "inherits": "test"
+    },
+    {
+      "name": "linux-gles-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "linux-gles",
+      "inherits": "test-release"
     },
     {
       "name": "linux-gles-benchmark",
@@ -586,15 +666,27 @@
     },
     {
       "name": "macos-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "macos",
       "inherits": "test"
+    },
+    {
+      "name": "macos-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "macos",
+      "inherits": "test-release"
     },
     {
       "name": "macos-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "macos",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "macos",
+      "inherits": "integration"
     },
     {
       "name": "macos-integration-debug",
@@ -604,15 +696,27 @@
     },
     {
       "name": "macos-arm-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "macos-arm",
       "inherits": "test"
+    },
+    {
+      "name": "macos-arm-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "macos-arm",
+      "inherits": "test-release"
     },
     {
       "name": "macos-arm-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "macos-arm",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-arm-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "macos-arm",
+      "inherits": "integration"
     },
     {
       "name": "macos-arm-integration-debug",
@@ -622,15 +726,27 @@
     },
     {
       "name": "clang-cl-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "clang-cl",
       "inherits": "test"
+    },
+    {
+      "name": "clang-cl-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "clang-cl",
+      "inherits": "test-release"
     },
     {
       "name": "clang-cl-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "clang-cl",
       "inherits": "benchmark"
+    },
+    {
+      "name": "clang-cl-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "clang-cl",
+      "inherits": "integration"
     },
     {
       "name": "clang-cl-integration-debug",
@@ -640,15 +756,27 @@
     },
     {
       "name": "mingw-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "mingw",
       "inherits": "test"
+    },
+    {
+      "name": "mingw-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "mingw",
+      "inherits": "test-release"
     },
     {
       "name": "mingw-benchmark",
       "displayName": "Benchmarks",
       "configurePreset": "mingw",
       "inherits": "benchmark"
+    },
+    {
+      "name": "mingw-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "mingw",
+      "inherits": "integration"
     },
     {
       "name": "mingw-integration-debug",
@@ -658,9 +786,15 @@
     },
     {
       "name": "mingw32-test",
-      "displayName": "Tests",
+      "displayName": "Unit Tests",
       "configurePreset": "mingw32",
       "inherits": "test"
+    },
+    {
+      "name": "mingw32-test-release",
+      "displayName": "Unit Tests (Release)",
+      "configurePreset": "mingw32",
+      "inherits": "test-release"
     },
     {
       "name": "mingw32-benchmark",
@@ -702,7 +836,7 @@
       "name": "macos-ci",
       "displayName": "MacOS CI Tests",
       "configurePreset": "macos-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "macos-ci-benchmark",
@@ -714,7 +848,7 @@
       "name": "clang-cl-ci",
       "displayName": "VS CI Tests",
       "configurePreset": "clang-cl-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "clang-cl-ci-benchmark",
@@ -726,7 +860,7 @@
       "name": "mingw-ci",
       "displayName": "Mingw CI Tests",
       "configurePreset": "mingw-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "mingw-ci-benchmark",

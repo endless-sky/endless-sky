@@ -1,5 +1,5 @@
 # Copyright (c) 2022 by Saugia
-
+#
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later version.
@@ -11,13 +11,22 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-shipyard "Gegno Ships"
-	"Conglomerate"
+
+# Gegno Civilians
+
+shipyard "Gegno Basic"
 	"Dolomite"
 	"Shale"
-	"Gypsum"
 
-outfitter "Gegno Outfits"
+shipyard "Gegno Intermediate"
+	"Conglomerate"
+	"Granofel"
+
+shipyard "Gegno Advanced"
+	"Gypsum"
+	"Corundum"
+
+outfitter "Gegno Basic"
 	"C3 Scrap Cell"
 	"C7 Brawl Cell"
 	"Hyperdrive"
@@ -25,65 +34,91 @@ outfitter "Gegno Outfits"
 	"R01 Skirmish Battery"
 	"RG15 Torch Steering"
 	"RG15 Torch Thruster"
-
-shipyard "Gegno Vi Ships"
-	"Diorite"
-	"Dunite"
-	"Eclogite"
-	"Gneiss"
-	"Hornfel"
-	"Granulite"
-	"Schist"
-	"Slate"
 	
+outfitter "Gegno Intermediate"
+	"R02 Battlezone Battery"
+	"RG18 Torch Steering"
+	"RG18 Torch Thruster"
 
-outfitter "Gegno Vi Outfits"
-	"Ballistic Cannon"
-	"Ballistic Cannon Turret"
-	"C17 Warzone Core"
-	"C27 Campaign Core"
+
+# Gegno Vi
+
+shipyard "Vi Cargo"
+	"Slate"
+	"Schist"
+
+shipyard "Vi Warships I"
+	"Hornfel"
+	"Gneiss"
+
+shipyard "Vi Warships II"
+	"Eclogite"
+	"Diorite"
+
+shipyard "Vi Utility"
+	"Granulite"
+
+outfitter "Vi Basic"
 	"C3 Scrap Cell"
 	"C7 Brawl Cell"
-	"Choleric Cannon"
-	"Choleric Cannon Turret"
 	"Hyperdrive"
 	"Irate Cannon"
 	"Irate Cannon Turret"
 	"Local Map"
 	"R01 Skirmish Battery"
 	"R02 Battlezone Battery"
-	"R03 Warforge Battery"
-	"R04 Crusade Battery"
 	"RG15 Torch Steering"
 	"RG15 Torch Thruster"
 	"RG18 Torch Steering"
 	"RG18 Torch Thruster"
+
+outfitter "Vi Intermediate"
+	"C17 Warzone Core"
+	"C27 Campaign Core"
+	"Choleric Cannon"
+	"Choleric Cannon Turret"
+	"Ballistic Cannon"
+	"Ballistic Cannon Turret"
 	"RG3 Torch Steering"
 	"RG3 Torch Thruster"
+	"R03 Warforge Battery"
+	"R04 Crusade Battery"
 
-shipyard "Gegno Scin Ships"
-	"Coesite"
-	"Feldspar"
-	"Felsic"
-	"Halite"
+
+# Gegno Scin
+
+shipyard "Scin Cargo"
 	"Mica"
+	"Felsic"
+	
+shipyard "Scin Warships"
+	"Coesite"
+	"Felsic"
+	"Feldspar"
+	
+shipyard "Scin Utility"
+	"Halite"
 	"Epidote"
 	"Tridymite"
-
-outfitter "Gegno Scin Outfits"
-	"Acuit Artillery"
-	"Astuit Battery"
-	"Guile Pulse Laser"
+	
+outfitter "Scin Basic"
 	"Hyperdrive"
-	"I70 Ameliorate Cell"
 	"Local Map"
 	"R01 Skirmish Battery"
 	"R02 Battlezone Battery"
-	"R03 Warforge Battery"
-	"R04 Crusade Battery"
-	"SC-1 Plasma Engines"
 	"SC-12 Plasma Steering"
 	"SC-12 Plasma Thruster"
 	"SC-14 Plasma Steering"
 	"SC-14 Plasma Thruster"
+
+outfitter "Scin Intermediate"
+	"Acuit Artillery"
+	"Astuit Battery"
+	"R03 Warforge Battery"
+	"R04 Crusade Battery"
+	
+outfitter "Scin Advanced"
+	"Guile Pulse Laser"
+	"I70 Ameliorate Cell"
+	"SC-1 Plasma Engines"
 	"SC-15 Plasma Thrusters"

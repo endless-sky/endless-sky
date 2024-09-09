@@ -32,7 +32,7 @@ mission "FW Epilogue: Ijs and Katya"
 					goto excitement
 				`	"It's kind of hard to adjust to civilian life."`
 					goto adjust
-				`	"I want to explore the rest of the galaxy, but apparently that part of the game hasn't been implemented yet."`
+				`	"I want to explore the rest of the galaxy, but apparently that part of the game hasn't been fully implemented yet."`
 					goto game
 			
 			label excitement
@@ -45,7 +45,7 @@ mission "FW Epilogue: Ijs and Katya"
 			
 			label game
 			`	"Whoops," says Ijs, "now you've done it, there goes the fourth wall."`
-			`	Katya laughs. "If you're so eager to explore the rest of the galaxy, <first>, maybe you should volunteer to help out with creating the stories to populate it. This is an open source game after all, and it would be a sad thing for it to remain the product of only one person's imagination."`
+			`	Katya laughs. "Well, there's already lots beyond human space to see, and I'm sure you can find more things to do out there as well as closer to home. If you're so eager to explore more of the galaxy, <first>, or to discover what new adventures it has to offer, maybe you should volunteer to help out with creating the stories to populate it. This is an open source game after all, and it relies on people like you to bring it to life."`
 				goto end
 			
 			label end
@@ -63,6 +63,9 @@ mission "FW Epilogue: Alondo"
 		or
 			not "Paradise Fortune 3: done"
 			has "Paradise Fortune 4: offered"
+		or
+			not "hr: secret leaks"
+			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
@@ -186,7 +189,7 @@ mission "FW Epilogue: Danforth"
 			
 			label next
 			`	"Are the pirates giving you any trouble?" you ask.`
-			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the South. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
+			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds mostly driving them out of the South. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
 			
 			branch checkmate2
 				has "free worlds checkmate"
@@ -211,17 +214,15 @@ mission "FW Epilogue: Edward"
 		has "free worlds plot completed"
 	on offer
 		conversation "edward epilogue"
-	npc save disable
+	npc disable save
 		government "Test Dummy"
 		personality disables heroic staying
 		ship "Leviathan (Plasma Repeater)" "Hunk"
 	on decline
 		event "plasma repeater advanced" 95
-		event "plasma repeater basics" 155
 	on complete
-		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the plasma cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
+		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the Plasma Cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
 		event "plasma repeater advanced" 45
-		event "plasma repeater basics" 105
 		conversation "edward epilogue"
 
 
@@ -229,13 +230,13 @@ mission "FW Epilogue: Edward"
 conversation "edward epilogue"
 	branch completed
 		has "FW Epilogue: Edward: done"
-	`As you complete your landing procedure, you recall having come here to assist in some testing for new weapons, back in the thick of the war. Do you want to check in on Barmy Edwards, the lead engineer?`
+	`As you complete your landing procedure, you recall having come here to assist in some testing for new weapons, back in the thick of the war. Do you want to check in on Barmy Edward, the lead engineer?`
 	choice
 		`	(Yes.)`
 		`	(No.)`
 			defer
 	scene "scene/loc0"
-	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified plasma cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?"`
+	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified Plasma Cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?"`
 	choice
 		`	"I'm not sure about this. What would you have me do?"`
 		`	"Being a target for experimental weapons? Just tell me what you need!"`
@@ -250,7 +251,7 @@ conversation "edward epilogue"
 	`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
 		accept
 	label catchup
-	`	"I see. Well, I'm sure we can find someone else up to the task. Regardless, Captain <last>, I assure you this new weapon vastly improves on the outdated plasma cannon. This'll put Kraz Cybernetics in the big leagues!"`
+	`	"I see. Well, I'm sure we can find someone else up to the task. Regardless, Captain <last>, I assure you this new weapon vastly improves on the outdated Plasma Cannon. This'll put Kraz Cybernetics in the big leagues!"`
 	`	"How about we get out of here, <first>? My work is done for today, and I know a homely little bar that's only a short walk."`
 	choice
 		`	"Of course. It's not like there's a war to worry about anymore."`
@@ -259,14 +260,14 @@ conversation "edward epilogue"
 	
 	label completed
 	scene "scene/plasma scene"
-	`You head to the hangar to meet up with Barmy Edward, and find him tinkering with the modified plasma cannon you saw when you first entered. "It runs much hotter, you see," he explains. "But the results are impressive."`
+	`You head to the hangar to meet up with Barmy Edward, and find him tinkering with the modified Plasma Cannon you saw when you first entered. "It runs much hotter, you see," he explains. "But the results are impressive."`
 	choice
 		`	"Was that a plasma cannon? Or something else?"`
 			goto what
 		`	"It's not winning any damage records, that's for sure."`
 			goto damage
 	label what
-	`	"Heh, it's been a while since we've seen a good upgrade to the cannon," he says. "That was the plasma repeater. Of course, it wasn't easy to make a better iteration of something that countless fools have failed to improve on."`
+	`	"Heh, it's been a while since we've seen a good upgrade to the cannon," he says. "That was the Plasma Repeater. Of course, it wasn't easy to make a better iteration of something that countless fools have failed to improve on."`
 	`	"When will it be available for sale?" you ask.`
 		goto available
 	label damage
@@ -295,8 +296,4 @@ conversation "edward epilogue"
 
 event "plasma repeater advanced"
 	outfitter "Kraz Advanced"
-		"Plasma Repeater"
-
-event "plasma repeater basics"
-	outfitter "Kraz Basics"
 		"Plasma Repeater"

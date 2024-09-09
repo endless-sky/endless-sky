@@ -28,7 +28,7 @@ outfit "Water Coolant System"
 	"mass" 10
 	"outfit space" -10
 	"cooling" 12
-	description "This system is a step up from ordinary cooling ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
+	description "This system is a step up from ordinary Cooling Ducts; it circulates water in between an external radiator and your ship's hottest internal components to keep them from overheating."
 
 outfit "Liquid Nitrogen Cooler"
 	category "Systems"
@@ -97,7 +97,7 @@ outfit "D94-YV Shield Generator"
 	"outfit space" -60
 	"shield generation" 1.31
 	"shield energy" 1.31
-	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV shield generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
+	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV Shield Generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
 outfit "S-270 Regenerator"
 	category "Systems"
@@ -151,7 +151,7 @@ outfit "Ramscoop"
 	"outfit space" -10
 	"ramscoop" 1
 	description "In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refill your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
-	description "	Different kinds of stars will generate varying levels of fuel in the solar wind, but in all cases the closer you are to the star, the faster fuel will accumulate."
+	description "	Different kinds of stars will generate varying levels of fuel in the solar wind, but in all cases the closer you are to the star, the faster fuel will accumulate. As a safety measure, all ships are able to harvest tiny amounts of fuel by flying close to a star, but this outfit allows you to accumulate fuel much more quickly."
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
@@ -213,7 +213,7 @@ outfit "Cargo Scanner"
 	"mass" 1
 	"outfit space" -1
 	"cargo scan power" 9
-	"cargo scan speed" 5
+	"cargo scan efficiency" 5
 	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
 outfit "Outfit Scanner"
@@ -223,12 +223,12 @@ outfit "Outfit Scanner"
 	"mass" 2
 	"outfit space" -2
 	"outfit scan power" 25
-	"outfit scan speed" 15
+	"outfit scan efficiency" 15
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
 outfit "Asteroid Scanner"
 	category "Systems"
-	cost 122000
+	cost 61000
 	thumbnail "outfit/asteroid scanner"
 	"mass" 6
 	"outfit space" -6
@@ -251,9 +251,9 @@ outfit "Surveillance Pod"
 	"mass" 5
 	"outfit space" -5
 	"outfit scan power" 16
-	"outfit scan speed" 2
+	"outfit scan efficiency" 20
 	"cargo scan power" 4
-	"cargo scan speed" 2
+	"cargo scan efficiency" 10
 	"atmosphere scan" 100
 	"tactical scan power" 9
 	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
@@ -267,6 +267,7 @@ outfit "Cloaking Device"
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
+	"unique" 1
 	"unplunderable" 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
@@ -279,7 +280,7 @@ outfit "Outfits Expansion"
 	"outfit space" 15
 	"cargo space" -20
 	"cooling inefficiency" 1
-	"heat dissipation" -.01
+	"heat dissipation" -.0065
 	"unplunderable" 1
 	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
 	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
@@ -394,10 +395,31 @@ outfit "Nerve Gas"
 	"unplunderable" 1
 	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
+outfit "Mug"
+	category "Hand to Hand"
+	cost 50
+	thumbnail "outfit/mug"
+	"capture attack" .1
+	"unique" 1
+	"unplunderable" 1
+	description "You can throw it in a pinch, you guess."
 
-outfit `"Puny"`
-	category "Unique"
+outfit "Antigrav Glass"
+	category "Hand to Hand"
+	plural "Antigrav Glasses"
+	cost 25
 	thumbnail "outfit/unknown"
+	"capture attack" .2
+	"unique" 1
+	"unplunderable" 1
+	description "This glass has had a miniature repulsor attached to it, similar to those found on drones, anti-grav trolleys, and spaceships. When it is activated it allows you to drink your beverage without holding it by way of levitation."
+	description "	The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you suspect this one will be marginally more effective than anything else you've got."
+
+outfit "Puny"
+	category "Unique"
+	"display name" `"Puny"`
+	thumbnail "outfit/unknown"
+	"unique" 1
 	description `A poodle you rescued from a dubious racing complex on Freedom. She appears to have formed a strong bond with you, willing to stick by your side.`
 	description `	Her history matches with Pookie's, but Pookie's owner claimed that Puny was not hers. Puny is also vastly less urine-prone; you suspect that the race organizers may have toilet-trained her.`
 
@@ -405,6 +427,7 @@ outfit "Tear of Skade"
 	category "Unique"
 	thumbnail "outfit/skadetear"
 	"cooling" 4
+	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
 

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_DATA_H_
-#define GAME_DATA_H_
+#pragma once
 
 #include "CategoryTypes.h"
 #include "Sale.h"
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Color;
 class ConditionsStore;
 class Conversation;
@@ -38,6 +38,7 @@ class Fleet;
 class FormationPattern;
 class Galaxy;
 class GameEvent;
+class Gamerules;
 class Government;
 class Hazard;
 class ImageSet;
@@ -57,9 +58,11 @@ class Sprite;
 class StarField;
 class StartConditions;
 class System;
+class TaskQueue;
 class Test;
 class TestData;
 class TextReplacements;
+class UniverseObjects;
 class Wormhole;
 
 
@@ -72,23 +75,24 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
+	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
-	static void LoadShaders(bool useShaderSwizzle);
+	static void LoadSettings();
+	static void LoadShaders();
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
-	static void Preload(const Sprite *sprite);
-	static void ProcessSprites();
-	// Wait until all pending sprite uploads are completed.
-	static void FinishLoadingSprites();
+	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
+
+	// Get a reference to the UniverseObjects object.
+	static UniverseObjects &Objects();
 
 	// Revert any changes that have been made to the universe.
 	static void Revert();
@@ -154,8 +158,8 @@ public:
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
-	// Strings for ship, bay type, and outfit categories.
-	static const std::vector<std::string> &Category(const CategoryType type);
+	// Collections for ship, bay type, outfit, and other categories.
+	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
@@ -164,21 +168,17 @@ public:
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 
-	static const std::map<std::string, std::string> &PluginAboutText();
-
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	static const Gamerules &GetGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
 
 
 private:
-	static void LoadSources();
+	static void LoadSources(TaskQueue &queue);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 };
-
-
-
-#endif

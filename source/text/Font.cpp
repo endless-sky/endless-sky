@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "alignment.hpp"
 #include "../Color.h"
 #include "DisplayText.h"
-#include "../ImageBuffer.h"
+#include "../image/ImageBuffer.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
@@ -459,7 +459,7 @@ string Font::TruncateBack(const string &str, int &width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
+		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);
@@ -510,7 +510,7 @@ string Font::TruncateFront(const string &str, int &width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
+		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);
@@ -561,7 +561,7 @@ string Font::TruncateMiddle(const string &str, int &width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
+		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);

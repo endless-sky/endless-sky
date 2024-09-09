@@ -22,18 +22,50 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <vector>
 
 using namespace std;
+
+namespace {
+	string TriggerToText(NPC::Trigger trigger)
+	{
+		switch(trigger)
+		{
+			case NPC::Trigger::ASSIST:
+				return "on assist";
+			case NPC::Trigger::SCAN_CARGO:
+				return "on 'scan cargo'";
+			case NPC::Trigger::SCAN_OUTFITS:
+				return "on 'scan outfits'";
+			case NPC::Trigger::PROVOKE:
+				return "on provoke";
+			case NPC::Trigger::DISABLE:
+				return "on disable";
+			case NPC::Trigger::BOARD:
+				return "on board";
+			case NPC::Trigger::CAPTURE:
+				return "on capture";
+			case NPC::Trigger::DESTROY:
+				return "on destroy";
+			case NPC::Trigger::KILL:
+				return "on kill";
+			case NPC::Trigger::ENCOUNTER:
+				return "on encounter";
+			default:
+				return "unknown trigger";
+		}
+	}
+}
 
 
 
@@ -115,6 +147,11 @@ void NPC::Load(const DataNode &node)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
+		else if(child.Token(0) == "cargo settings" && child.HasChildren())
+		{
+			cargo.Load(child);
+			overrideFleetCargo = true;
+		}
 		else if(child.Token(0) == "dialog")
 		{
 			bool hasValue = (child.Size() > 1);
@@ -151,6 +188,26 @@ void NPC::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(child.Token(0) == "on" && child.Size() >= 2)
+		{
+			static const map<string, Trigger> trigger = {
+				{"assist", Trigger::ASSIST},
+				{"scan cargo", Trigger::SCAN_CARGO},
+				{"scan outfits", Trigger::SCAN_OUTFITS},
+				{"provoke", Trigger::PROVOKE},
+				{"disable", Trigger::DISABLE},
+				{"board", Trigger::BOARD},
+				{"capture", Trigger::CAPTURE},
+				{"destroy", Trigger::DESTROY},
+				{"kill", Trigger::KILL},
+				{"encounter", Trigger::ENCOUNTER},
+			};
+			auto it = trigger.find(child.Token(1));
+			if(it != trigger.end())
+				npcActions[it->second].Load(child);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 		else if(child.Token(0) == "ship")
 		{
 			if(child.HasChildren() && child.Size() == 2)
@@ -160,7 +217,7 @@ void NPC::Load(const DataNode &node)
 				ships.emplace_back(make_shared<Ship>(child));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
-						actions[ships.back().get()] = grand.Value(1);
+						shipEvents[ships.back().get()] = grand.Value(1);
 			}
 			else if(child.Size() >= 2)
 			{
@@ -266,6 +323,9 @@ void NPC::Save(DataWriter &out) const
 			out.EndChild();
 		}
 
+		for(auto &it : npcActions)
+			it.second.Save(out);
+
 		if(government)
 			out.Write("government", government->GetTrueName());
 		personality.Save(out);
@@ -287,8 +347,8 @@ void NPC::Save(DataWriter &out) const
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			ship->Save(out);
-			auto it = actions.find(ship.get());
-			if(it != actions.end() && it->second)
+			auto it = shipEvents.find(ship.get());
+			if(it != shipEvents.end() && it->second)
 			{
 				// Append an "actions" tag to the end of the ship data.
 				out.BeginChild();
@@ -395,7 +455,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 // Handle the given ShipEvent.
-void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
+void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
 {
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
@@ -416,7 +476,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 				Ship *copy = new Ship(*ptr);
 				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
-				actions[copy] = actions[ptr.get()];
+				shipEvents[copy] = shipEvents[ptr.get()];
 				// Count this ship as destroyed, as well as captured.
 				type |= ShipEvent::DESTROY;
 				ptr.reset(copy);
@@ -434,7 +494,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 
 	// If this event was "ASSIST", the ship is now known as not disabled.
 	if(type == ShipEvent::ASSIST)
-		actions[ship.get()] &= ~(ShipEvent::DISABLE);
+		shipEvents[ship.get()] &= ~(ShipEvent::DISABLE);
 
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.
@@ -442,21 +502,27 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST
 				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 
+	// Determine if this event is new for this ship.
+	bool newEvent = ~(shipEvents[ship.get()]) & type;
 	// Apply this event to the ship and any ships it is carrying.
-	actions[ship.get()] |= type;
+	shipEvents[ship.get()] |= type;
 	for(const Ship::Bay &bay : ship->Bays())
 		if(bay.ship)
-			actions[bay.ship.get()] |= type;
+			shipEvents[bay.ship.get()] |= type;
+
+	// Run any mission actions that trigger on this event.
+	DoActions(event, newEvent, player, ui, caller);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed.", Messages::Importance::Highest);
+		Messages::Add("Mission failed" + (caller ? ": \"" + caller->Name() + "\"" : "") + ".",
+			Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
 		if(!conversation->IsEmpty())
-			ui->Push(new ConversationPanel(player, *conversation, nullptr, ship));
+			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
@@ -483,12 +549,12 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			auto it = actions.find(ship.get());
+			auto it = shipEvents.find(ship.get());
 			// If a derelict ship has not received any ShipEvents, it is immobile.
 			bool isImmobile = ship->GetPersonality().IsDerelict();
 			// The success status calculation can only be based on recorded
 			// events (and the current system).
-			if(it != actions.end())
+			if(it != shipEvents.end())
 			{
 				// Captured or destroyed ships have either succeeded or no longer count.
 				if(it->second & (ShipEvent::DESTROY | ShipEvent::CAPTURE))
@@ -499,7 +565,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 				isImmobile |= ship->GetPersonality().IsDerelict()
 					&& !(it->second & ShipEvent::ASSIST);
 			}
-			bool isHere = false;
+			bool isHere;
 			// If this ship is being carried, check the parent's system.
 			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
@@ -514,8 +580,8 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		auto it = actions.find(ship.get());
-		if(it == actions.end() || (it->second & succeedIf) != succeedIf)
+		auto it = shipEvents.find(ship.get());
+		if(it == shipEvents.end() || (it->second & succeedIf) != succeedIf)
 			return false;
 	}
 
@@ -548,7 +614,7 @@ bool NPC::HasFailed() const
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
 
-	for(const auto &it : actions)
+	for(const auto &it : shipEvents)
 	{
 		if(it.second & failIf)
 			return true;
@@ -566,8 +632,10 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		const map<string, const System *> &landmarkSystems, const map<string, const Planet *> &landmarkPlanets) const
+NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs,
+		const System *origin, const System *destination, int jumps, int payload,
+		const map<string, const System *> &landmarkSystems, const map<string,
+		const Planet *> &landmarkPlanets) const
 {
 	NPC result;
 	result.government = government;
@@ -582,6 +650,24 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
+
+	// Instantiate the actions.
+	string reason;
+	auto ait = npcActions.begin();
+	for( ; ait != npcActions.end(); ++ait)
+	{
+		reason = ait->second.Validate();
+		if(!reason.empty())
+			break;
+	}
+	if(ait != npcActions.end())
+	{
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
+				"\" in NPC uses invalid " + std::move(reason));
+		return result;
+	}
+	for(const auto &it : npcActions)
+		result.npcActions[it.first] = it.second.Instantiate(player.Conditions(), subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -601,17 +687,20 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true);
+		ship->FinishLoading(true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
+	map<string, string> playerSubs;
+	player.AddPlayerSubstitutions(playerSubs);
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(*nameIt);
+		result.ships.back()->SetName(Format::Replace(Format::Replace(
+			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
-		fleet->Place(*result.system, result.ships, false);
+		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
@@ -633,17 +722,101 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			Fleet::Place(*result.system, *ship);
 	}
 
+	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
+	if(overrideFleetCargo)
+		for(const auto &ship : result.ships)
+			cargo.SetCargo(&*ship);
+
 	// String replacement:
 	if(!result.ships.empty())
+	{
 		subs["<npc>"] = result.ships.front()->Name();
-
+		subs["<npc model>"] = result.ships.front()->DisplayModelName();
+	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
-		result.dialogText = Format::Replace(dialogText, subs);
+		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
+}
+
+
+
+// Handle any NPC mission actions that may have been triggered by a ShipEvent.
+void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller)
+{
+	// Map the ShipEvent that was received to the Triggers it could flip.
+	static const map<int, vector<Trigger>> eventTriggers = {
+		{ShipEvent::ASSIST, {Trigger::ASSIST}},
+		{ShipEvent::SCAN_CARGO, {Trigger::SCAN_CARGO}},
+		{ShipEvent::SCAN_OUTFITS, {Trigger::SCAN_OUTFITS}},
+		{ShipEvent::PROVOKE, {Trigger::PROVOKE}},
+		{ShipEvent::DISABLE, {Trigger::DISABLE}},
+		{ShipEvent::BOARD, {Trigger::BOARD}},
+		{ShipEvent::CAPTURE, {Trigger::CAPTURE, Trigger::KILL}},
+		{ShipEvent::DESTROY, {Trigger::DESTROY, Trigger::KILL}},
+		{ShipEvent::ENCOUNTER, {Trigger::ENCOUNTER}},
+	};
+
+	int type = event.Type();
+
+	// Ships are capable of receiving multiple DESTROY events. Only
+	// handle the first such event, because a ship can't actually be
+	// destroyed multiple times.
+	if((type & ShipEvent::DESTROY) && !newEvent)
+		type &= ~ShipEvent::DESTROY;
+
+	// Get the actions for the Triggers that could potentially run.
+	set<Trigger> triggers;
+	for(const auto &it : eventTriggers)
+		if(type & it.first)
+			triggers.insert(it.second.begin(), it.second.end());
+
+	for(Trigger trigger : triggers)
+	{
+		auto it = npcActions.find(trigger);
+		if(it == npcActions.end())
+			continue;
+
+		static const map<Trigger, int> triggerRequirements = {
+			{Trigger::ASSIST, ShipEvent::ASSIST},
+			{Trigger::SCAN_CARGO, ShipEvent::SCAN_CARGO},
+			{Trigger::SCAN_OUTFITS, ShipEvent::SCAN_OUTFITS},
+			{Trigger::PROVOKE, ShipEvent::PROVOKE},
+			{Trigger::DISABLE, ShipEvent::DISABLE},
+			{Trigger::BOARD, ShipEvent::BOARD},
+			{Trigger::CAPTURE, ShipEvent::CAPTURE},
+			{Trigger::DESTROY, ShipEvent::DESTROY},
+			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
+			{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
+		};
+
+		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
+		// If any of the ships were captured, the DESTROY trigger will not run.
+		static const map<Trigger, int> triggerExclusions = {
+			{Trigger::DESTROY, ShipEvent::CAPTURE}
+		};
+
+		const auto requiredIt = triggerRequirements.find(trigger);
+		const int requiredEvents = requiredIt == triggerRequirements.end() ? 0 : requiredIt->second;
+		const auto excludedIt = triggerExclusions.find(trigger);
+		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
+
+		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
+		// event in order to run. All other Triggers require that all ships
+		// be affected.
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+				[&](const shared_ptr<Ship> &ship) -> bool
+				{
+					auto it = shipEvents.find(ship.get());
+					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
+				}))
+		{
+			it->second.Do(player, ui, caller);
+		}
+	}
 }

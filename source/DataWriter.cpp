@@ -30,7 +30,16 @@ const string DataWriter::space = " ";
 
 // Constructor, specifying the file to save.
 DataWriter::DataWriter(const string &path)
-	: path(path), before(&indent)
+	: DataWriter()
+{
+	this->path = path;
+}
+
+
+
+// Constructor for a DataWriter that will not save its contents automatically
+DataWriter::DataWriter()
+	: before(&indent)
 {
 	out.precision(8);
 }
@@ -40,7 +49,24 @@ DataWriter::DataWriter(const string &path)
 // Destructor, which saves the file all in one block.
 DataWriter::~DataWriter()
 {
-	Files::Write(path, out.str());
+	if(!path.empty())
+		SaveToPath(path);
+}
+
+
+
+// Save the contents to a file.
+void DataWriter::SaveToPath(const std::string &filepath)
+{
+	Files::Write(filepath, out.str());
+}
+
+
+
+// Get the contents as a string.
+string DataWriter::SaveToString()
+{
+	return out.str();
 }
 
 
@@ -95,7 +121,8 @@ void DataWriter::EndChild()
 // Write a comment line, at the current indentation level.
 void DataWriter::WriteComment(const string &str)
 {
-	out << indent << "# " << str << '\n';
+	out << *before << "# " << str;
+	Write();
 }
 
 
@@ -103,23 +130,16 @@ void DataWriter::WriteComment(const string &str)
 // Write a token, given as a character string.
 void DataWriter::WriteToken(const char *a)
 {
-	// Figure out what kind of quotation marks need to be used for this string.
-	bool needsQuoting = !*a || *a == '#';
-	bool hasQuote = false;
-	for(const char *it = a; *it; ++it)
-	{
-		needsQuoting |= (*it <= ' ' && *it >= 0);
-		hasQuote |= (*it == '"');
-	}
+	WriteToken(string(a));
+}
 
-	// Write the token, enclosed in quotes if necessary.
+
+
+// Write a token, given as a string object.
+void DataWriter::WriteToken(const string &a)
+{
 	out << *before;
-	if(needsQuoting && hasQuote)
-		out << '`' << a << '`';
-	else if(needsQuoting)
-		out << '"' << a << '"';
-	else
-		out << a;
+	out << Quote(a);
 
 	// The next token written will not be the first one on this line, so it only
 	// needs to have a single space before it.
@@ -128,8 +148,19 @@ void DataWriter::WriteToken(const char *a)
 
 
 
-// Write a token, given as a string object.
-void DataWriter::WriteToken(const string &a)
+string DataWriter::Quote(const std::string &a)
 {
-	WriteToken(a.c_str());
+	// Figure out what kind of quotation marks need to be used for this string.
+	bool hasSpace = any_of(a.begin(), a.end(), [](unsigned char c) { return isspace(c); });
+	bool hasQuote = any_of(a.begin(), a.end(), [](char c) { return (c == '"'); });
+	bool hasBacktick = any_of(a.begin(), a.end(), [](char c) { return (c == '`'); });
+	// If the token is an empty string, it needs to be wrapped in quotes as if it had a space.
+	hasSpace |= a.empty();
+
+	if(hasQuote)
+		return '`' + a + '`';
+	else if(hasSpace || hasBacktick)
+		return '"' + a + '"';
+	else
+		return a;
 }

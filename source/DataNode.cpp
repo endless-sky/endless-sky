@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
@@ -39,7 +40,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
+	: children(other.children), tokens(other.tokens), lineNumber(std::move(other.lineNumber))
 {
 	Reparent();
 }
@@ -51,7 +52,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
-	lineNumber = other.lineNumber;
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }
@@ -59,7 +60,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 DataNode::DataNode(DataNode &&other) noexcept
-	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
@@ -70,7 +71,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 {
 	children.swap(other.children);
 	tokens.swap(other.tokens);
-	lineNumber = std::move(other.lineNumber);
+	lineNumber = other.lineNumber;
 	Reparent();
 	return *this;
 }
@@ -89,6 +90,14 @@ int DataNode::Size() const noexcept
 const vector<string> &DataNode::Tokens() const noexcept
 {
 	return tokens;
+}
+
+
+
+// Add tokens to the node.
+void DataNode::AddToken(const std::string &token)
+{
+	tokens.emplace_back(token);
 }
 
 
@@ -221,6 +230,55 @@ bool DataNode::IsNumber(const string &token)
 
 
 
+// Convert the token at the given index to a boolean. This returns false
+// and prints an error if the index is out of range or the token cannot
+// be interpreted as a number.
+bool DataNode::BoolValue(int index) const
+{
+	// Check for empty strings and out-of-bounds indices.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+	else if(!IsBool(tokens[index]))
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a boolean:");
+	else
+	{
+		const string &token = tokens[index];
+		return token == "true" || token == "1";
+	}
+
+	return false;
+}
+
+
+
+// Check if the token at the given index is a boolean, i.e. "true"/"1" or "false"/"0"
+// as a string.
+bool DataNode::IsBool(int index) const
+{
+	// Make sure this token exists and is not empty.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return false;
+
+	return IsBool(tokens[index]);
+}
+
+
+
+bool DataNode::IsBool(const string &token)
+{
+	return token == "true" || token == "1" || token == "false" || token == "0";
+}
+
+
+
+// Add a new child. The child's parent must be this node.
+void DataNode::AddChild(const DataNode &child)
+{
+	children.emplace_back(child);
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const noexcept
 {
@@ -266,13 +324,7 @@ int DataNode::PrintTrace(const string &message) const
 	{
 		if(&token != &tokens.front())
 			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
+		line += DataWriter::Quote(token);
 	}
 	Logger::LogError(line);
 

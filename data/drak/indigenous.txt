@@ -20,13 +20,13 @@ ship "Subsidurial"
 		category "Light Freighter"
 		"hull" 11600
 		"automaton" 1
-		"mass" 700
+		"mass" 1050
 		"cargo space" 70
-		"drag" 8.2
-		"heat dissipation" .8
+		"drag" 12.3
+		"heat dissipation" .54
 		"fuel capacity" 100
-		"thrust" 10
-		"turn" 800
+		"thrust" 15
+		"turn" 1200
 		"hull repair rate" 3
 		"ion protection" 3
 		"scramble protection" 3
@@ -72,13 +72,13 @@ ship "Void Sprite"
 		"hull" 9600
 		"required crew" 4
 		"bunks" 4
-		"mass" 460
-		"drag" 8.2
-		"heat dissipation" .8
+		"mass" 700
+		"drag" 12.3
+		"heat dissipation" .54
 		"cargo space" 40
 		"outfit space" 20
-		"thrust" 20
-		"turn" 900
+		"thrust" 30
+		"turn" 1350
 		"hull repair rate" 3
 		"ion protection" 3
 		"scramble protection" 3
@@ -129,13 +129,13 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
-		"mass" 190
-		"drag" 5.4
-		"heat dissipation" .9
+		"mass" 290
+		"drag" 7.7
+		"heat dissipation" .6
 		"cargo space" 20
 		"outfit space" 10
-		"thrust" 18
-		"turn" 450
+		"thrust" 27
+		"turn" 675
 		"hull repair rate" 1
 		"ion protection" 3
 		"scramble protection" 3
@@ -176,14 +176,14 @@ ship "Ember Waste Node"
 		"shields" 5000
 		"required crew" 5
 		"bunks" 5
-		"mass" 1000
-		"drag" 8.2
-		"heat dissipation" 1
+		"mass" 1500
+		"drag" 12.3
+		"heat dissipation" .67
 		"fuel capacity" 250
 		"cargo space" 39
 		"outfit space" 0
-		"thrust" 80
-		"turn" 3500
+		"thrust" 120
+		"turn" 4750
 		"hull repair rate" 3
 		"ion protection" 3
 		"scramble protection" 3
@@ -198,7 +198,7 @@ ship "Ember Waste Node"
 		"cloak" .05
 		"quantum keystone" 1
 		"outfit scan power" 12
-		"outfit scan speed" 25
+		"outfit scan efficiency" 25
 		"tactical scan power" 50
 		"asteroid scan power" 50
 		"inscrutable" 1
@@ -208,11 +208,11 @@ ship "Ember Waste Node"
 		"jump drive" 1
 	outfits
 		Mouthparts? 5
-	gun 3 -83.5 Mouthparts?
-	gun -3 -83.5 Mouthparts?
-	gun 9 -104 Mouthparts?
 	gun -9 -104 Mouthparts?
+	gun 9 -104 Mouthparts?
 	gun 0 -84 Mouthparts?
+	gun -3 -83.5 Mouthparts?
+	gun 3 -83.5 Mouthparts?
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
@@ -233,13 +233,13 @@ ship "Embershade"
 		"hull" 9600
 		"required crew" 1
 		"bunks" 1
-		"mass" 220
-		"drag" 4.2
-		"heat dissipation" .8
+		"mass" 330
+		"drag" 6.3
+		"heat dissipation" .54
 		"cargo space" 40
 		"fuel capacity" 100
-		"thrust" 20
-		"turn" 900
+		"thrust" 30
+		"turn" 1350
 		"energy capacity" 500
 		"energy generation" 6
 		"hull repair rate" 3
@@ -264,23 +264,24 @@ ship "Embershade"
 ship "Embersylph"
 	noun "creature"
 	sprite "ship/embersylph/embersylph"
+		"center" 0 -80
 		"frame rate" 34
 		"random start frame"
 	"never disabled"
 	attributes
 		category "Light Warship"
-		"shields" 7200
-		"hull" 1800
+		"shields" 4400
+		"hull" 900
 		"required crew" 1
 		"bunks" 1
-		"mass" 140
-		"drag" 3.2
-		"heat dissipation" .7
+		"mass" 210
+		"drag" 4.8
+		"heat dissipation" .47
 		"cargo space" 0
 		"fuel capacity" 100
-		"thrust" 8
-		"reverse thrust" 3
-		"turn" 90
+		"thrust" 15
+		"reverse thrust" 4.5
+		"turn" 150
 		"energy capacity" 800
 		"energy generation" 7
 		"hull repair rate" 2
@@ -292,27 +293,13 @@ ship "Embersylph"
 		"gaslining" 1
 		"inscrutable" 1
 		"atmospheric scan" 1000
-		"shield resistance" 1
+		"ion resistance" 1
 	outfits
 		"Absorption Organ" 1
 	turret 0 0 "Absorption Organ"
 	leak "blood" 2
 	explode "blood" 1
-	description "Ember Ray."
-
-
-
-ship "Embersylph" "Embersylph (Small)"
-	sprite "ship/embersylph/embersylph"
-		"frame rate" 36
-		"random start frame"
-		"scale" 0.5
-	"never disabled"
-	add attributes
-		"shields" -2800
-		"hull" -900
-		"thrust" 2
-		"turn" 10
+	description "Embersylphs are notably strange creatures, even compared to other known space fauna. Glowing in various hues while gracefully swinging several long appendages in a strangely methodical motion, the only consistent behavior these creatures are known to display is curiosity for other life."
 
 
 
@@ -463,26 +450,16 @@ fleet "Embershades"
 
 
 fleet "Embersylphs"
-	government "Indigenous Lifeform"
+	government "Ember Waste"
 	cargo 0
 	personality
 		timid mute swarming unconstrained
-	variant 11
-		"Embersylph (Small)" 2
-	variant 7
-		"Embersylph (Small)" 3
-	variant 5
-		"Embersylph (Small)" 2
-		"Embersylph"
-	variant 3
-		"Embersylph (Small)" 4
-	variant 2
-		"Embersylph (Small)" 5
-	variant 1
-		"Embersylph (Small)" 3
-		"Embersylph"
-	variant 1
+	variant 12
 		"Embersylph" 1
+	variant 4
+		"Embersylph" 2
+	variant 1
+		"Embersylph" 3
 
 
 

@@ -45,17 +45,13 @@ namespace {
 		"(very high)"
 	};
 
-	const int MIN_X = -310;
-	const int MAX_X = 190;
-
-	const int NAME_X = -290;
-	const int PRICE_X = -150;
-	const int LEVEL_X = -110;
-	const int BUY_X = 0;
-	const int SELL_X = 60;
-	const int HOLD_X = 120;
-
-	const int FIRST_Y = 80;
+	const int NAME_X = 20;
+	const int PRICE_X = 140;
+	const int LEVEL_X = 180;
+	const int PROFIT_X = 260;
+	const int BUY_X = 310;
+	const int SELL_X = 370;
+	const int HOLD_X = 430;
 }
 
 
@@ -72,13 +68,12 @@ TradingPanel::~TradingPanel()
 {
 	if(profit)
 	{
-		string message = "You sold " + to_string(tonsSold)
-			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+		string message = "You sold " + Format::CargoString(tonsSold, "cargo ");
 
 		if(profit < 0)
-			message += "at a loss of " + Format::Credits(-profit) + " credits.";
+			message += "at a loss of " + Format::CreditString(-profit) + ".";
 		else
-			message += "for a total profit of " + Format::Credits(profit) + " credits.";
+			message += "for a total profit of " + Format::CreditString(profit) + ".";
 
 		Messages::Add(message, Messages::Importance::High);
 	}
@@ -95,29 +90,38 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Rectangle box = tradeUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
-		FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
+	{
+		const Point center(MIN_X + box.Width() / 2, FIRST_Y + 20 * selectedRow + 33);
+		const Point dimensions(box.Width() - 20., 20.);
+		FillShader::Fill(center, dimensions, back);
+	}
 
 	const Font &font = FontSet::Get(14);
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
 
 	int y = FIRST_Y;
-	font.Draw("Commodity", Point(NAME_X, y), selected);
-	font.Draw("Price", Point(PRICE_X, y), selected);
+	font.Draw("Commodity", Point(MIN_X + NAME_X, y), selected);
+	font.Draw("Price", Point(MIN_X + PRICE_X, y), selected);
 
 	string mod = "x " + to_string(Modifier());
-	font.Draw(mod, Point(BUY_X, y), unselected);
-	font.Draw(mod, Point(SELL_X, y), unselected);
+	font.Draw(mod, Point(MIN_X + BUY_X, y), unselected);
+	font.Draw(mod, Point(MIN_X + SELL_X, y), unselected);
 
-	font.Draw("In Hold", Point(HOLD_X, y), selected);
+	font.Draw("In Hold", Point(MIN_X + HOLD_X, y), selected);
 
 	y += 5;
 	int lastY = y + 20 * COMMODITY_COUNT + 25;
-	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
-	font.Draw(to_string(player.Cargo().Free()), Point(HOLD_X, lastY), selected);
+	font.Draw("free:", Point(MIN_X + SELL_X + 5, lastY), selected);
+	font.Draw(to_string(player.Cargo().Free()), Point(MIN_X + HOLD_X, lastY), selected);
 
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
@@ -125,35 +129,35 @@ void TradingPanel::Draw()
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		bool hasOutfits = false;
-		bool hasUninstallable = false;
+		bool hasMinables = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool notInstallable = (it.first->Get("installable") < 0.);
-				(notInstallable ? hasUninstallable : hasOutfits) = true;
+				bool isMinable = it.first->Get("minable");
+				(isMinable ? hasMinables : hasOutfits) = true;
 			}
-		sellOutfits = (hasOutfits && !hasUninstallable);
+		sellOutfits = (hasOutfits && !hasMinables);
 
-		string str = to_string(outfits + missionCargo);
-		str += (outfits + missionCargo == 1) ? " ton of " : " tons of ";
-		if(hasUninstallable && missionCargo)
+		string str = Format::MassString(outfits + missionCargo) + " of ";
+		if(hasMinables && missionCargo)
 			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(hasOutfits && hasUninstallable)
+		else if(hasOutfits && hasMinables)
 			str += "outfits and special commodities.";
 		else if(hasOutfits)
 			str += "outfits.";
-		else if(hasUninstallable)
+		else if(hasMinables)
 			str += "special commodities.";
 		else
 			str += "mission cargo.";
-		font.Draw(str, Point(NAME_X, lastY), unselected);
+		font.Draw(str, Point(MIN_X + NAME_X, lastY), unselected);
 	}
 
 	int i = 0;
 	bool canSell = false;
 	bool canBuy = false;
+	bool showProfit = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
@@ -162,49 +166,49 @@ void TradingPanel::Draw()
 
 		bool isSelected = (i++ == selectedRow);
 		const Color &color = (isSelected ? selected : unselected);
-		font.Draw(commodity.name, Point(NAME_X, y), color);
+		font.Draw(commodity.name, Point(MIN_X + NAME_X, y), color);
 
 		if(price)
 		{
 			canBuy |= isSelected;
-			font.Draw(to_string(price), Point(PRICE_X, y), color);
+			font.Draw(to_string(price), Point(MIN_X + PRICE_X, y), color);
 
 			int basis = player.GetBasis(commodity.name);
 			if(basis && basis != price && hold)
 			{
-				string profit = "(profit: " + to_string(price - basis) + ")";
-				font.Draw(profit, Point(LEVEL_X, y), color);
+				string profit = to_string(price - basis);
+				font.Draw(profit, Point(MIN_X + PROFIT_X, y), color);
+				showProfit = true;
 			}
+			int level = (price - commodity.low);
+			if(level < 0)
+				level = 0;
+			else if(level >= (commodity.high - commodity.low))
+				level = 4;
 			else
-			{
-				int level = (price - commodity.low);
-				if(level < 0)
-					level = 0;
-				else if(level >= (commodity.high - commodity.low))
-					level = 4;
-				else
-					level = (5 * level) / (commodity.high - commodity.low);
-				font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
-			}
+				level = (5 * level) / (commodity.high - commodity.low);
+			font.Draw(TRADE_LEVEL[level], Point(MIN_X + LEVEL_X, y), color);
 
-			font.Draw("[buy]", Point(BUY_X, y), color);
-			font.Draw("[sell]", Point(SELL_X, y), color);
+			font.Draw("[buy]", Point(MIN_X + BUY_X, y), color);
+			font.Draw("[sell]", Point(MIN_X + SELL_X, y), color);
 		}
 		else
 		{
-			font.Draw("----", Point(PRICE_X, y), color);
-			font.Draw("(not for sale)", Point(LEVEL_X, y), color);
+			font.Draw("----", Point(MIN_X + PRICE_X, y), color);
+			font.Draw("(not for sale)", Point(MIN_X + LEVEL_X, y), color);
 		}
 
 		if(hold)
 		{
 			sellOutfits = false;
 			canSell |= (price != 0);
-			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
+			font.Draw(to_string(hold), Point(MIN_X + HOLD_X, y), selected);
 		}
 	}
 
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	if(showProfit)
+		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
+
 	Information info;
 	if(sellOutfits)
 		info.SetCondition("can sell outfits");
@@ -220,7 +224,9 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_UP)
+	if(command.Has(Command::HELP))
+		DoHelp("trading", true);
+	else if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
@@ -228,39 +234,42 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
-		for(const auto &it : GameData::Commodities())
+		for(const auto &it : player.Cargo().Commodities())
 		{
-			int64_t amount = player.Cargo().Get(it.name);
-			int64_t price = system.Trade(it.name);
+			const string &commodity = it.first;
+			const int64_t &amount = it.second;
+			int64_t price = system.Trade(commodity);
 			if(!price || !amount)
 				continue;
 
-			int64_t basis = player.GetBasis(it.name, -amount);
-			player.AdjustBasis(it.name, basis);
+			int64_t basis = player.GetBasis(commodity, -amount);
 			profit += amount * price + basis;
 			tonsSold += amount;
 
-			player.Cargo().Remove(it.name, amount);
+			GameData::AddPurchase(system, commodity, -amount);
+			player.AdjustBasis(commodity, basis);
 			player.Accounts().AddCredits(amount * price);
-			GameData::AddPurchase(system, it.name, -amount);
+			player.Cargo().Remove(commodity, amount);
 		}
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("installable") >= 0. && !sellOutfits)
+			const Outfit * const outfit = it.first;
+			const int64_t &amount = it.second;
+			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
-			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
 			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Mass());
+			tonsSold += static_cast<int>(amount * outfit->Mass());
 
-			player.AddStock(it.first, it.second);
+			player.AddStock(outfit, amount);
 			player.Accounts().AddCredits(value);
-			player.Cargo().Remove(it.first, it.second);
+			player.Cargo().Remove(outfit, amount);
 		}
 	}
 	else if(command.Has(Command::MAP))
@@ -275,13 +284,18 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 bool TradingPanel::Click(int x, int y, int clicks)
 {
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Rectangle box = tradeUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
 	int maxY = FIRST_Y + 25 + 20 * COMMODITY_COUNT;
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
 		player.SetMapColoring((y - FIRST_Y - 25) / 20);
-		if(x >= BUY_X && x < SELL_X)
+		if(x >= MIN_X + BUY_X && x < MIN_X + SELL_X)
 			Buy(1);
-		else if(x >= SELL_X && x < HOLD_X)
+		else if(x >= MIN_X + SELL_X && x < MIN_X + HOLD_X)
 			Buy(-1);
 	}
 	else

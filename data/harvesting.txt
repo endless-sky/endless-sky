@@ -16,6 +16,7 @@ minable "aluminum"
 	hull 900
 	"random hull" 200
 	payload "Aluminum" 40
+		"toughness" 6500
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -37,6 +38,7 @@ minable "copper"
 	hull 1080
 	"random hull" 240
 	payload "Copper" 20
+		"toughness" 7200
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -58,6 +60,7 @@ minable "gold"
 	hull 2520
 	"random hull" 560
 	payload "Gold" 16
+		"toughness" 43200
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -79,6 +82,7 @@ minable "iron"
 	hull 1440
 	"random hull" 320
 	payload "Iron" 50
+		"toughness" 9600
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -100,6 +104,7 @@ minable "lead"
 	hull 720
 	"random hull" 160
 	payload "Lead" 32
+		"toughness" 4400
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -121,6 +126,7 @@ minable "neodymium"
 	hull 3240
 	"random hull" 720
 	payload "Neodymium" 40
+		"toughness" 77000
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -142,6 +148,7 @@ minable "platinum"
 	hull 3600
 	"random hull" 800
 	payload "Platinum" 16
+		"toughness" 133000
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -163,6 +170,7 @@ minable "silicon"
 	hull 360
 	"random hull" 80
 	payload "Silicon" 50
+		"toughness" 1900
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -184,6 +192,7 @@ minable "silver"
 	hull 1800
 	"random hull" 400
 	payload "Silver" 20
+		"toughness" 30850
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -197,7 +206,7 @@ outfit "Silver"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "Although not as pricy as gold, silver is used not just in jewelry but in electronics, disinfectants, and high-quality mirrors, and as a chemical catalyst."
+	description "Although not as pricey as gold, silver is used not just in jewelry but in electronics, disinfectants, and high-quality mirrors, and as a chemical catalyst."
 
 
 minable "titanium"
@@ -205,6 +214,7 @@ minable "titanium"
 	hull 2160
 	"random hull" 480
 	payload "Titanium" 32
+		"toughness" 22800
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -226,6 +236,7 @@ minable "tungsten"
 	hull 4320
 	"random hull" 960
 	payload "Tungsten" 24
+		"toughness" 57000
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -247,6 +258,7 @@ minable "uranium"
 	hull 2880
 	"random hull" 640
 	payload "Uranium" 24
+		"toughness" 49400
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -268,6 +280,7 @@ minable "yottrite"
 	hull 18000
 	"random hull" 4000
 	payload "Yottrite" 7
+		"toughness" 1377500
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -281,7 +294,7 @@ outfit "Yottrite"
 	"mass" 3.14
 	"installable" -1
 	"minable" 1
-	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate Yottrite in an alloy."
+	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate yottrite in an alloy."
 
 
 
@@ -293,15 +306,18 @@ minable "plant"
 	hull 2520
 	"random hull" 560
 	payload "Void Orchid" 21
+		"toughness" 59920
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
 
 minable "plant2"
+	"display name" "Plant"
 	sprite "asteroid/plant2/plant2"
 	hull 2340
 	"random hull" 520
 	payload "Void Orchid" 20
+		"toughness" 55640
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -311,6 +327,7 @@ minable "plant cluster"
 	hull 1080
 	"random hull" 240
 	payload "Void Orchid" 11
+		"toughness" 25680
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "final explosion small"
@@ -320,15 +337,18 @@ minable "large plant"
 	hull 3420
 	"random hull" 760
 	payload "Void Orchid" 41
+		"toughness" 81320
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
 
 minable "large plant2"
+	"display name" "Large Plant"
 	sprite "asteroid/large plant2/large plant2"
 	hull 3240
 	"random hull" 720
 	payload "Void Orchid" 41
+		"toughness" 77040
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
@@ -338,6 +358,7 @@ minable "large plant cluster"
 	hull 1980
 	"random hull" 440
 	payload "Void Orchid" 22
+		"toughness" 47080
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
@@ -347,6 +368,7 @@ minable "live crystal"
 	hull 900
 	"random hull" 200
 	payload "Void Orchid" 8
+		"toughness" 21400
 	explode "smoke" 15
 	explode "bolide" 10
 	explode "final explosion small"
@@ -356,6 +378,7 @@ minable "space flora"
 	hull 900
 	"random hull" 200
 	payload "Void Orchid" 8
+		"toughness" 21400
 	explode "smoke" 15
 	explode "bolide" 10
 	explode "final explosion small"
@@ -365,6 +388,7 @@ minable "large space flora"
 	hull 1800
 	"random hull" 400
 	payload "Void Orchid" 16
+		"toughness" 42800
 	explode "smoke" 25
 	explode "bolide" 20
 	explode "final explosion medium"
@@ -379,4 +403,17 @@ outfit "Void Orchid"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "'Void orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+	description "'Void Orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+
+
+
+# Acheron Space-life Asteroids
+
+minable "unknown"
+	sprite "asteroid/bioroid/spin"
+	hull 1600
+	"random hull" 810
+	explode "smoke" 10
+	explode "bolide" 20
+	explode "blood" 10
+	explode "final explosion medium"

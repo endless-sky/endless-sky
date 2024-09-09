@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameAction.h"
 
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -23,9 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -33,16 +36,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
-	{
-		if(model->ModelName().empty())
-			return;
-
-		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
-			, Messages::Importance::High);
-	}
-
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
 		// Maps are not transferrable; they represent the player's spatial awareness.
@@ -65,7 +58,7 @@ namespace {
 		string message;
 		if(isSingle)
 		{
-			char c = tolower(nameWas.front());
+			char c = tolower(static_cast<unsigned char>(nameWas.front()));
 			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
 			message = (isVowel ? "An " : "A ");
 		}
@@ -132,23 +125,23 @@ namespace {
 
 
 // Construct and Load() at the same time.
-GameAction::GameAction(const DataNode &node, const string &missionName)
+GameAction::GameAction(const DataNode &node)
 {
-	Load(node, missionName);
+	Load(node);
 }
 
 
 
-void GameAction::Load(const DataNode &node, const string &missionName)
+void GameAction::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
-		LoadSingle(child, missionName);
+		LoadSingle(child);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadSingle(const DataNode &child, const string &missionName)
+void GameAction::LoadSingle(const DataNode &child)
 {
 	isEmpty = false;
 
@@ -162,12 +155,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			specialLogText[child.Token(1)][child.Token(2)] : logText);
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
-	else if(key == "give" && hasValue)
+	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
-		if(child.Token(1) == "ship" && child.Size() >= 3)
-			giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
-		else
-			child.PrintTrace("Error: Skipping unsupported \"give\" syntax:");
+		giftShips.emplace_back();
+		giftShips.back().Load(child);
 	}
 	else if(key == "outfit" && hasValue)
 	{
@@ -194,26 +185,41 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		else
 			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
+	else if(key == "debt" && hasValue)
+	{
+		GameAction::Debt &debtEntry = debt.emplace_back(max<int64_t>(0, child.Value(1)));
+		for(const DataNode &grand : child)
+		{
+			const string &grandKey = grand.Token(0);
+			bool grandHasValue = (grand.Size() > 1);
+			if(grandKey == "term" && grandHasValue)
+				debtEntry.term = max<int>(1, grand.Value(1));
+			else if(grandKey == "interest" && grandHasValue)
+				debtEntry.interest = clamp(grand.Value(1), 0., 0.999);
+			else
+				grand.PrintTrace("Error: Skipping unrecognized \"debt\" attribute:");
+		}
+	}
 	else if(key == "event" && hasValue)
 	{
-		int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
+		int minDays = (child.Size() >= 3 ? child.Value(2) : 1);
 		int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
 		if(maxDays < minDays)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
+	else if(key == "music" && hasValue)
+		music = child.Token(1);
+	else if(key == "mute")
+		music = "";
+	else if(key == "mark" && hasValue)
+		mark.insert(GameData::Systems().Get(child.Token(1)));
+	else if(key == "unmark" && hasValue)
+		unmark.insert(GameData::Systems().Get(child.Token(1)));
+	else if(key == "fail" && hasValue)
+		fail.insert(child.Token(1));
 	else if(key == "fail")
-	{
-		string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
-		if(toFail.empty())
-			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
-		else
-		{
-			fail.insert(toFail);
-			// Create a GameData reference to this mission name.
-			GameData::Missions().Get(toFail);
-		}
-	}
+		failCaller = true;
 	else
 		conditions.Add(child);
 }
@@ -246,17 +252,41 @@ void GameAction::Save(DataWriter &out) const
 			out.EndChild();
 		}
 	for(auto &&it : giftShips)
-		out.Write("give", "ship", it.first->VariantName(), it.second);
+		it.Save(out);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->TrueName(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
+	for(auto &&debtEntry : debt)
+	{
+		out.Write("debt", debtEntry.amount);
+		out.BeginChild();
+		{
+			if(debtEntry.interest)
+				out.Write("interest", *debtEntry.interest);
+			out.Write("term", debtEntry.term);
+		}
+		out.EndChild();
+	}
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+	for(const System *system : mark)
+		out.Write("mark", system->Name());
+	for(const System *system : unmark)
+		out.Write("unmark", system->Name());
 	for(const string &name : fail)
 		out.Write("fail", name);
+	if(failCaller)
+		out.Write("fail");
+	if(music.has_value())
+	{
+		if(music->empty())
+			out.Write("mute");
+		else
+			out.Write("music", music.value());
+	}
 
 	conditions.Save(out);
 }
@@ -277,11 +307,19 @@ string GameAction::Validate() const
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
-		if(!it.first->IsValid())
-			return "gift ship model \"" + it.first->VariantName() + "\"";
+		if(!it.ShipModel()->IsValid())
+			return "gift ship model \"" + it.ShipModel()->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
+
+	// Marked and unmarked system must be valid.
+	for(auto &&system : mark)
+		if(!system->IsValid())
+			return "system \"" + system->Name() + "\"";
+	for(auto &&system : unmark)
+		if(!system->IsValid())
+			return "system \"" + system->Name() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -318,8 +356,15 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
+const vector<ShipManager> &GameAction::Ships() const noexcept
+{
+	return giftShips;
+}
+
+
+
 // Perform the specified tasks.
-void GameAction::Do(PlayerInfo &player, UI *ui) const
+void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -327,16 +372,20 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 
+	// If multiple outfits, ships are being transferred, first remove the ships,
+	// then the outfits, before adding any new ones.
 	for(auto &&it : giftShips)
-		DoGift(player, it.first, it.second);
-	// If multiple outfits are being transferred, first remove them before
-	// adding any new ones.
+		if(!it.Giving())
+			it.Do(player);
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
 			DoGift(player, it.first, it.second, ui);
+	for(auto &&it : giftShips)
+		if(it.Giving())
+			it.Do(player);
 
 	if(payment)
 	{
@@ -356,9 +405,16 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	}
 	if(fine)
 		player.Accounts().AddFine(fine);
+	for(const auto &debtEntry : debt)
+		player.Accounts().AddDebt(debtEntry.amount, debtEntry.interest, debtEntry.term);
 
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
+
+	for(const System *system : mark)
+		caller->Mark(system);
+	for(const System *system : unmark)
+		caller->Unmark(system);
 
 	if(!fail.empty())
 	{
@@ -366,8 +422,22 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.contains(mission.Identifier()))
 				player.FailMission(mission);
+	}
+	if(failCaller && caller)
+		player.FailMission(*caller);
+	if(music.has_value())
+	{
+		if(*music == "<ambient>")
+		{
+			if(player.GetPlanet())
+				Audio::PlayMusic(player.GetPlanet()->MusicName());
+			else
+				Audio::PlayMusic(player.GetSystem()->MusicName());
+		}
+		else
+			Audio::PlayMusic(music.value());
 	}
 
 	// Check if applying the conditions changes the player's reputations.
@@ -391,18 +461,20 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	}
 
 	for(auto &&it : giftShips)
-		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
+		result.giftShips.push_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
+
+	result.music = music;
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
-			+ (result.payment == 1 ? " credit" : " credits");
+		subs["<payment>"] = Format::CreditString(abs(result.payment));
 
 	result.fine = fine;
 	if(result.fine)
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
+		subs["<fine>"] = Format::CreditString(result.fine);
+
+	result.debt = debt;
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
@@ -411,8 +483,12 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 
 	result.fail = fail;
+	result.failCaller = failCaller;
 
 	result.conditions = conditions;
+
+	result.mark = mark;
+	result.unmark = unmark;
 
 	return result;
 }

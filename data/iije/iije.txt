@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Creatures:
-	
+
 ship "Jje"
 	plural "Jje"
 	noun "creature"
@@ -26,9 +26,9 @@ ship "Jje"
 		"hull" 4000
 		"required crew" 2
 		"bunks" 2
-		"mass" 100
-		"drag" 10
-		"heat dissipation" 20
+		"mass" 150
+		"drag" 15
+		"heat dissipation" 14
 		"engine capacity" 200
 		"cargo space" 10
 		"outfit space" 10
@@ -41,9 +41,9 @@ ship "Jje"
 		"energy capacity" 400
 		"energy generation" 4
 		
-		"thrust" 8
+		"thrust" 12
 		"flare sound" "jje"
-		"turn" 60
+		"turn" 90
 		"steering flare sound" "jje"
 		
 		"burn protection" 2
@@ -63,7 +63,7 @@ ship "Jje"
 	engine 0 0
 	"steering engine" 0 0
 	"final explode" "jje boom"
-	description "This is an adolescent form of the Iije, having recently consumed quanities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
+	description "This is an adolescent form of the Iije, having recently consumed quantities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
 
 ship "Ayym"
 	plural "Ayym"
@@ -78,9 +78,9 @@ ship "Ayym"
 		"hull" 6000
 		"required crew" 4
 		"bunks" 4
-		"mass" 200
-		"drag" 20
-		"heat dissipation" 20
+		"mass" 300
+		"drag" 30
+		"heat dissipation" 14
 		"engine capacity" 200
 		"fuel capacity" 100
 		"cargo space" 10
@@ -95,9 +95,9 @@ ship "Ayym"
 		"atmosphere scan" 10
 		"inscrutable" 1
 		
-		"thrust" 14
+		"thrust" 21
 		"flare sound" "ayym"
-		"turn" 80
+		"turn" 120
 		"steering flare sound" "ayym"
 		
 		"jump fuel" 100
@@ -181,7 +181,7 @@ effect "ayym boom"
 # Fleets:
 
 fleet "Iije (Uninterested)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid unconstrained uninterested mute
@@ -222,7 +222,7 @@ fleet "Iije (Uninterested)"
 		"Jje" 9
 		
 fleet "Iije (Swarming)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid unconstrained swarming mute
@@ -263,7 +263,7 @@ fleet "Iije (Swarming)"
 		"Jje" 9
 		
 fleet "Iije (Surveillance)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid unconstrained surveillance mute
@@ -302,5 +302,3 @@ fleet "Iije (Surveillance)"
 	variant 1
 		"Ayym"
 		"Jje" 9
-		
-

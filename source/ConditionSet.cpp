@@ -69,7 +69,7 @@ namespace {
 		static const set<string> comparison = {
 			"==", "!=", "<", ">", "<=", ">="
 		};
-		return comparison.count(op);
+		return comparison.contains(op);
 	}
 
 	bool IsAssignment(const string &op)
@@ -77,7 +77,7 @@ namespace {
 		static const set<string> assignment = {
 			"=", "+=", "-=", "*=", "/=", "<?=", ">?="
 		};
-		return assignment.count(op);
+		return assignment.contains(op);
 	}
 
 	bool IsSimple(const string &op)
@@ -85,7 +85,7 @@ namespace {
 		static const set<string> simple = {
 			"(", ")", "+", "-", "*", "/", "%"
 		};
-		return simple.count(op);
+		return simple.contains(op);
 	}
 
 	int Precedence(const string &op)
@@ -106,7 +106,7 @@ namespace {
 			"||", "&&", "&=", "|=", "<<", ">>"
 		};
 		for(const string &str : tokens)
-			if(invalids.count(str))
+			if(invalids.contains(str))
 				return true;
 		return false;
 	}
@@ -167,14 +167,14 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				const auto temp = created.HasGet(str);
-				if(temp.first)
-					value = temp.second;
+				const auto temp = created.Get(str);
+				if(temp)
+					value = temp;
 				else
 				{
-					const auto perm = conditions.HasGet(str);
-					if(perm.first)
-						value = perm.second;
+					const auto perm = conditions.Get(str);
+					if(perm)
+						value = perm;
 				}
 			}
 			result.emplace_back(value);
@@ -439,6 +439,23 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 
 	for(const ConditionSet &child : children)
 		child.Apply(conditions);
+}
+
+
+
+// Get the names of the conditions that are relevant for this ConditionSet.
+set<string> ConditionSet::RelevantConditions() const
+{
+	set<std::string> result;
+	// Add the names from the expressions.
+	// TODO: also sub-expressions?
+	for(const auto &expr : expressions)
+		result.emplace(expr.Name());
+	// Add the names from the children.
+	for(const auto &child : children)
+		for(const auto &rc : child.RelevantConditions())
+			result.emplace(rc);
+	return result;
 }
 
 

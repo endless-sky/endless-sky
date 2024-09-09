@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_WRITER_H_
-#define DATA_WRITER_H_
+#pragma once
 
 #include <algorithm>
 #include <map>
@@ -35,6 +34,8 @@ class DataWriter {
 public:
 	// Constructor, specifying the file to write.
 	explicit DataWriter(const std::string &path);
+	// Constructor for a DataWriter that will not save its contents automatically
+	DataWriter();
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
@@ -42,6 +43,11 @@ public:
 	// The file is not actually saved until the destructor is called. This makes
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();
+
+	// Save the contents to a file.
+	void SaveToPath(const std::string &path);
+	// Get the contents as a string.
+	std::string SaveToString();
 
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
@@ -70,9 +76,12 @@ public:
 	template <class A>
 	void WriteToken(const A &a);
 
+	// Enclose a string in the correct quotation marks.
+	static std::string Quote(const std::string &text);
+
 
 private:
-	// Save path (in UTF-8).
+	// Save path (in UTF-8). Empty string for in-memory DataWriter.
 	std::string path;
 	// Current indentation level.
 	std::string indent;
@@ -103,7 +112,7 @@ void DataWriter::Write(const A &a, B... others)
 template <class A>
 void DataWriter::WriteToken(const A &a)
 {
-	static_assert(std::is_arithmetic<A>::value,
+	static_assert(std::is_arithmetic_v<A>,
 		"DataWriter cannot output anything but strings and arithmetic types.");
 
 	out << *before << a;
@@ -139,7 +148,3 @@ void WriteSorted(const std::map<const K *, V, Args...> &container, A sortFn, B w
 	for(const auto &sit : sorted)
 		writeFn(*sit);
 }
-
-
-
-#endif

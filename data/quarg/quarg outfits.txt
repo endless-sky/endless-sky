@@ -30,7 +30,7 @@ outfit "Antimatter Core"
 	"energy generation" 80
 	"heat generation" 20
 	"unplunderable" 1
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient antimatter core, producing extreme amounts of energy with surprisingly little waste heat."
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
 	
 
 outfit "Quarg Skylance"
@@ -114,7 +114,7 @@ outfit "Medium Graviton Thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
-	"thrust" 80
+	"thrust" 120
 	"thrusting energy" 20
 	"thrusting heat" 2
 	"force protection" 0.15
@@ -130,7 +130,7 @@ outfit "Medium Graviton Steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
-	"turn" 1600
+	"turn" 2400
 	"turning energy" 10
 	"turning heat" 1
 	"force protection" 0.15
