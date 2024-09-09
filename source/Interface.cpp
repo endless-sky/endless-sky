@@ -521,6 +521,39 @@ const Sprite *Interface::ImageElement::GetSprite(const Information &info, int st
 
 // Members of the TextElement class:
 
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::TextElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "size" && node.Size() >= 2)
+		fontSize = node.Value(1);
+	else if(node.Token(0) == "color" && node.Size() >= 2)
+		color[Element::ACTIVE] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "inactive" && node.Size() >= 2)
+		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "hover" && node.Size() >= 2)
+		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "truncate" && node.Size() >= 2)
+	{
+		if(node.Token(1) == "none")
+			truncate = Truncate::NONE;
+		else if(node.Token(1) == "front")
+			truncate = Truncate::FRONT;
+		else if(node.Token(1) == "middle")
+			truncate = Truncate::MIDDLE;
+		else if(node.Token(1) == "back")
+			truncate = Truncate::BACK;
+		else
+			return false;
+	}
+	else
+		return false;
+
+	return true;
+}
+
+
+
 // Add any click handlers needed for this element. This will only be
 // called if the element is visible and active.
 void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
@@ -594,39 +627,6 @@ Interface::BasicTextElement::BasicTextElement(const DataNode &node, const Point 
 
 
 
-// Parse the given data line: one that is not recognized by Element
-// itself. This returns false if it does not recognize the line, either.
-bool Interface::BasicTextElement::ParseLine(const DataNode &node)
-{
-	if(node.Token(0) == "size" && node.Size() >= 2)
-		fontSize = node.Value(1);
-	else if(node.Token(0) == "color" && node.Size() >= 2)
-		color[Element::ACTIVE] = GameData::Colors().Get(node.Token(1));
-	else if(node.Token(0) == "inactive" && node.Size() >= 2)
-		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
-	else if(node.Token(0) == "hover" && node.Size() >= 2)
-		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
-	else if(node.Token(0) == "truncate" && node.Size() >= 2)
-	{
-		if(node.Token(1) == "none")
-			truncate = Truncate::NONE;
-		else if(node.Token(1) == "front")
-			truncate = Truncate::FRONT;
-		else if(node.Token(1) == "middle")
-			truncate = Truncate::MIDDLE;
-		else if(node.Token(1) == "back")
-			truncate = Truncate::BACK;
-		else
-			return false;
-	}
-	else
-		return false;
-
-	return true;
-}
-
-
-
 // Report the actual dimensions of the object that will be drawn.
 Point Interface::BasicTextElement::NativeDimensions(const Information &info, int state) const
 {
@@ -685,27 +685,8 @@ Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Po
 // itself. This returns false if it does not recognize the line, either.
 bool Interface::WrappedTextElement::ParseLine(const DataNode &node)
 {
-	if(node.Token(0) == "size" && node.Size() >= 2)
-		fontSize = node.Value(1);
-	else if(node.Token(0) == "color" && node.Size() >= 2)
-		color[Element::ACTIVE] = GameData::Colors().Get(node.Token(1));
-	else if(node.Token(0) == "inactive" && node.Size() >= 2)
-		color[Element::INACTIVE] = GameData::Colors().Get(node.Token(1));
-	else if(node.Token(0) == "hover" && node.Size() >= 2)
-		color[Element::HOVER] = GameData::Colors().Get(node.Token(1));
-	else if(node.Token(0) == "truncate" && node.Size() >= 2)
-	{
-		if(node.Token(1) == "none")
-			truncate = Truncate::NONE;
-		else if(node.Token(1) == "front")
-			truncate = Truncate::FRONT;
-		else if(node.Token(1) == "middle")
-			truncate = Truncate::MIDDLE;
-		else if(node.Token(1) == "back")
-			truncate = Truncate::BACK;
-		else
-			return false;
-	}
+	if(TextElement::ParseLine(node))
+		return true;
 	else if(node.Token(0) == "alignment")
 	{
 		if(node.Token(1) == "left")

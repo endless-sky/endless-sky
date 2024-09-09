@@ -156,6 +156,9 @@ private:
 	// This class contains common members of both text element categories.
 	class TextElement : public Element {
 	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
 		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
@@ -182,9 +185,6 @@ private:
 		BasicTextElement(const DataNode &node, const Point &globalAnchor);
 
 	protected:
-		// Parse the given data line: one that is not recognized by Element
-		// itself. This returns false if it does not recognize the line, either.
-		virtual bool ParseLine(const DataNode &node) override;
 		// Report the actual dimensions of the object that will be drawn.
 		virtual Point NativeDimensions(const Information &info, int state) const override;
 		// Draw this element in the given rectangle.
