@@ -116,6 +116,11 @@ public:
 
 
 private:
+	// Handle any NPC mission actions that may have been triggered by a ShipEvent.
+	void DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller);
+
+
+private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
 	Personality personality;
