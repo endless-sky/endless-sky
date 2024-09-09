@@ -78,7 +78,7 @@ public:
 
 	bool IsValid() const;
 	const std::string &TrueName() const;
-	void SetTrueName(const std::string &name);
+	void SetName(const std::string &name);
 	// Get this system's name and position (in the star map).
 	const std::string &DisplayName() const;
 	const Point &Position() const;

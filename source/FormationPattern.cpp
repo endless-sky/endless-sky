@@ -243,7 +243,7 @@ const string &FormationPattern::Name() const
 
 
 
-void FormationPattern::SetTrueName(const std::string &name)
+void FormationPattern::SetName(const std::string &name)
 {
 	this->name = name;
 }

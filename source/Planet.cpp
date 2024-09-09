@@ -340,7 +340,7 @@ const string &Planet::TrueName() const
 
 
 
-void Planet::SetTrueName(const string &name)
+void Planet::SetName(const string &name)
 {
 	trueName = name;
 	if(displayName.empty())

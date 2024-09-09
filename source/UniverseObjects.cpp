@@ -201,7 +201,7 @@ void UniverseObjects::CheckReferences()
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
 	{
 		if(deferred.contains(it.first))
-			it.second.SetTrueName(it.first);
+			it.second.SetName(it.first);
 		else
 			return false;
 
@@ -210,7 +210,7 @@ void UniverseObjects::CheckReferences()
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	auto NameAndWarn = [=](const string &noun, auto &it)
 	{
-		it.second.SetTrueName(it.first);
+		it.second.SetName(it.first);
 		Warn(noun, it.first);
 	};
 	// Parse all GameEvents for object definitions.

@@ -65,7 +65,7 @@ public:
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &TrueName() const;
-	void SetTrueName(const std::string &name);
+	void SetName(const std::string &name);
 	// Get the display name of the planet (all wormholes use the same name).
 	const std::string &DisplayName() const;
 	// Return the description text for the planet, but not the spaceport:

@@ -56,7 +56,7 @@ public:
 	void Disable();
 
 	const std::string &Name() const;
-	void SetTrueName(const std::string &name);
+	void SetName(const std::string &name);
 
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.

@@ -41,7 +41,7 @@ public:
 	// double Zoom() const;
 
 	const std::string &Name() const;
-	void SetTrueName(const std::string &name);
+	void SetName(const std::string &name);
 
 	void Load(const DataNode &node);
 

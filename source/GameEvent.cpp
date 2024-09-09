@@ -173,7 +173,7 @@ const string &GameEvent::Name() const
 
 
 // "Stock" GameEvents require a name to be serialized with an accepted mission.
-void GameEvent::SetTrueName(const string &name)
+void GameEvent::SetName(const string &name)
 {
 	this->name = name;
 }

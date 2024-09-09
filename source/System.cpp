@@ -579,7 +579,7 @@ const string &System::TrueName() const
 
 
 
-void System::SetTrueName(const string &name)
+void System::SetName(const string &name)
 {
 	trueName = name;
 	if(displayName.empty())

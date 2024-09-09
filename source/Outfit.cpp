@@ -405,9 +405,9 @@ const string &Outfit::DisplayName() const
 
 
 
-void Outfit::SetTrueName(const string &name)
+void Outfit::SetName(const string &name)
 {
-	trueName = name;
+	this->trueName = name;
 }
 
 

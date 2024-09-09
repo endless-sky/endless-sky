@@ -423,9 +423,9 @@ const string &Government::GetName() const
 
 
 // Set / Get the name used for this government in the data files.
-void Government::SetTrueName(const string &name)
+void Government::SetName(const string &trueName)
 {
-	this->name = name;
+	this->name = trueName;
 }
 
 
