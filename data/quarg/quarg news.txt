@@ -469,6 +469,7 @@ news "ringworld quarg"
 		attributes "quarg"
 		attributes "station"
 		not planet "Lagrange"
+		not planet "Ruelogakk"
 	name
 		word
 			"Quarg"
