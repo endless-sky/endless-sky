@@ -2373,64 +2373,6 @@ news "Clandestine"
 		word
 			"Whatever is going on, your ship appears unscathed."
 
-news "Raiders returning to Mordente-Bridi"
-	location
-		planet "Mordente-Bridi"
-	name
-		word
-			"Repairs"
-	message
-		word
-			"Watching the microgravity section of the spaceport from the bar, you "
-		word
-			"observe "
-			"notice "
-			"spot "
-			"spy "
-		word
-			"a Bastion "
-			"a Firebird "
-			"a Falcon "
-			"a Leviathan "
-		word
-			"returning from a raid, "
-		phrase
-			"Raiders returning to Mordente-Bridi - serious damage"
-			"Raiders returning to Mordente-Bridi - light damage"
-
-phrase "Raiders returning to Mordente-Bridi - serious damage"
-	word
-		"with thousands of perforations. Turnabout is, apparently, fair game with Gatling Guns"
-		"chunks battered heavily or missing altogether. They almost certainly didn't have enough anti-missile"
-		"its hull covered in gashes and burns from Plasma Cannons"
-	word
-		". "
-	word
-		"As it comes to a stop in the maintenance bay, the Bridi engineering shuttles begin "
-	word
-		"buzzing "
-		"zipping "
-	word
-		"around it, assessing the damage and beginning the work on repairs. "
-	word
-		"They'll be working for the rest of the shift on this one."
-
-phrase "Raiders returning to Mordente-Bridi - light damage"
-	word
-		"pockmarked with laser burns but with no apparent serious damage"
-		"lightly dented in a way that suggests that a Proton Gun was to blame"
-	word
-		". "
-	word
-		"As it comes to a stop in the maintenance bay, the Bridi engineering shuttles begin "
-	word
-		"buzzing "
-		"fluttering "
-	word
-		"around it, assessing the damage and beginning the work on repairs. "
-	word
-		"The work won't take the shuttles long."
-
 news "Betelgeuse Stolen Ship Advisory"
 	location
 		attributes "shipyard"
