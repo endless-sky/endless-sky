@@ -596,13 +596,6 @@ const string &System::DisplayName() const
 
 
 
-void System::SetDisplayName(const std::string &name)
-{
-	displayName = name;
-}
-
-
-
 // Get this system's position in the star map.
 const Point &System::Position() const
 {

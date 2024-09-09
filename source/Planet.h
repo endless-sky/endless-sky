@@ -68,7 +68,6 @@ public:
 	void SetTrueName(const std::string &name);
 	// Get the display name of the planet (all wormholes use the same name).
 	const std::string &DisplayName() const;
-	void SetDisplayName(const std::string &name);
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.

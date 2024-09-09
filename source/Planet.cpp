@@ -357,13 +357,6 @@ const string &Planet::DisplayName() const
 
 
 
-void Planet::SetDisplayName(const string &name)
-{
-	displayName = name;
-}
-
-
-
 // Get the planet's descriptive text.
 const Paragraphs &Planet::Description() const
 {

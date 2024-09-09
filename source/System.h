@@ -81,7 +81,6 @@ public:
 	void SetTrueName(const std::string &name);
 	// Get this system's name and position (in the star map).
 	const std::string &DisplayName() const;
-	void SetDisplayName(const std::string &name);
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
