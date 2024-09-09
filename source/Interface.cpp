@@ -672,7 +672,7 @@ Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Po
 	Load(node, globalAnchor);
 
 	// Initialize the WrappedText.
-	text.SetAlignment(alignment);
+	text.SetAlignment(textAlignment);
 	text.SetTruncate(truncate);
 	text.SetWrapWidth(Bounds().Width());
 
@@ -709,13 +709,13 @@ bool Interface::WrappedTextElement::ParseLine(const DataNode &node)
 	else if(node.Token(0) == "alignment")
 	{
 		if(node.Token(1) == "left")
-			alignment = Alignment::LEFT;
+			textAlignment = Alignment::LEFT;
 		else if(node.Token(1) == "center")
-			alignment = Alignment::CENTER;
+			textAlignment = Alignment::CENTER;
 		else if(node.Token(1) == "right")
-			alignment = Alignment::RIGHT;
+			textAlignment = Alignment::RIGHT;
 		else if(node.Token(1) == "justified")
-			alignment = Alignment::JUSTIFIED;
+			textAlignment = Alignment::JUSTIFIED;
 		else
 			return false;
 	}

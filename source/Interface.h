@@ -208,7 +208,7 @@ private:
 
 	private:
 		mutable WrappedText text;
-		Alignment alignment = Alignment::LEFT;
+		Alignment textAlignment = Alignment::LEFT;
 	};
 
 	// This class handles "bar" and "ring" elements.
