@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
 # Colors used to reflect the active or hovered interface button.
 color "hover" 1. 1. 1. 0.
 color "active" .75 .75 .75 0.
@@ -193,6 +194,11 @@ color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
+
+# Colors used for the routing issue text in the map panel when
+# a route to the selected system cannot be determined.
+color "map route error text" 1. 0. 0. 1.
+color "map route error shadow" 0. 0. 0. 1.
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
@@ -1430,6 +1436,16 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+
+	anchor top
+	string "route error"
+		center 1 59
+		size 18
+		color "map route error shadow"
+	string "route error"
+		center 0 58
+		size 18
+		color "map route error text"
 
 
 
