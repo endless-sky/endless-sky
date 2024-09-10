@@ -360,13 +360,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		// Split target->Outfits() into categories, then iterate over them in order.
 		vector<string> categories;
 		for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
-			categories.push_back(category.Name());
+				categories.push_back(category.Name());
 		auto comparator = ByGivenOrder<string>(categories);
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			if(it.first->IsDefined() && !it.first->Category().empty() && !outfitNameForDisplay.empty())
+				outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
 		{
