@@ -7510,6 +7510,11 @@ mission "Syndicate Business 1"
 			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
+		on kill
+			conversation
+				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`
+				choice
+					`	Best not to dwell on these things.`
 	npc save assist
 		government "Independent"
 		personality derelict target quiet escort
