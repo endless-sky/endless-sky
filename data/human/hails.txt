@@ -2864,10 +2864,12 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"because of their dental insurance."
-		"since they'll cover my tuition."
-		"to see if I can get my hands on one of their warships."
-		"because they offer childcare assistance."
+		"because of their dental insurance"
+		"since they'll cover my tuition"
+		"to see if I can get my hands on one of their warships"
+		"because they offer childcare assistance"
+	word
+		"."
 
 phrase "friendly navy"
 	word
