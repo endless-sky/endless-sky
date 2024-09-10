@@ -7464,7 +7464,7 @@ mission "Syndicate Business 1"
 	to offer
 		random < 40
 		credits > 5000000
-		"combat rating" > 350
+		"combat rating" > 50
 	source
 		government "Syndicate"
 		attributes "core"
@@ -7511,6 +7511,7 @@ mission "Syndicate Business 1"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		on kill
+			set "syndicate bus golden jewel dead"
 			conversation
 				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`
 				choice
@@ -7520,6 +7521,11 @@ mission "Syndicate Business 1"
 		personality derelict target quiet escort
 		system "Moktar"
 		ship "Shuttle" "Escape Pod 001"
+		on kill
+			conversation
+				`You watch as the escape pod you're racing to save explodes into a cloud of debris, all hope snuffed out in an instant.`
+				choice
+					`	Better not to linger on what could have been.`
 		conversation
 			`You board the shuttle to see it's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
