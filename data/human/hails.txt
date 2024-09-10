@@ -2852,7 +2852,7 @@ phrase "friendly civilian"
 	word
 		"mounts overcharged Twin Blasters on a modded Argosy"
 		"shoots up a security station with dual laser pistols"
-		"dodges quad blaster turrets in a stolen Flivver"
+		"dodges Quad Blaster Turrets in a stolen Flivver"
 	word
 		"? So cool."
 
