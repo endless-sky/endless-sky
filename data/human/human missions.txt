@@ -7623,7 +7623,7 @@ mission "Syndicate Business 3"
 				`	(Ignore and delete the message.)`
 					decline
 			`You immediately receive an automated response:`
-			`	"Dear Valued Contact,
+			`	"Dear Valued Contact,`
 			`	Thank you for reaching out to Howard Vendeur. I am currently out of the office and will respond to your message as soon as possible.`
 			`	For urgent matters, please contact our support team.`
 			`		Howard Vendeur`
@@ -7652,10 +7652,10 @@ mission "Syndicate Business 3"
 				`	"You have 2 offices?"`
 					goto offices
 				`	"I don't care about prying eyes! What do you want and what do I get?"`
-			`	Howard raises an eyebrow and then waves you off with a chuckle. "All in good time, my friend," he says, leaning back. "It's nothing you can't handle. I'll fill you in once we're safely on Sunracer, and let's just say it'll be worth your while."
+			`	Howard raises an eyebrow and then waves you off with a chuckle. "All in good time, my friend," he says, leaning back. "It's nothing you can't handle. I'll fill you in once we're safely on Sunracer, and let's just say it'll be worth your while."`
 				goto next2
 			label offices
-			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I keep reserved for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."
+			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I keep reserved for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
 			label next2
 			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. It's clear that, for now, that Howard is finished with you and you'll get no more information.`
 
@@ -7700,7 +7700,7 @@ mission "Syndicate Business 5"
 		conversation
 			`Even amidst the mix of landing pads, hangars, and cranes, it's hard to miss the Megaparsec corporate office. After a short walk, you reach the towering building. The lobby is sleek and modern, filled with the quiet hum of efficiency. To your surprise the receptionist waves you on and you take an elevator up to the 8th floor, where Howard awaits.`
 			`	The office reminds you of the one you were in on Hephaestus, though more understated. Howard's office is a modest yet modern space, featuring a smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Minimalist decor hints at ambition, with a single digital screen displaying market data.`
-			`	"Glad you could make it," Howard says, extending his hand. "Apologies for the inconvenience, but it's better to discuss these matters away from potentially 'interested' parties." He motions for you to join him at one of the few sleek chairs in the center of the room.
+			`	"Glad you could make it," Howard says, extending his hand. "Apologies for the inconvenience, but it's better to discuss these matters away from potentially 'interested' parties." He motions for you to join him at one of the few sleek chairs in the center of the room.`
 			choice
 				`	Take a seat.`
 				`	Remain standing.`
@@ -7742,7 +7742,7 @@ mission "Syndicate Business 5"
 				`	"Alright, I'm in. Let's discuss it more after Oblate."`
 					goto accepting
 				`	"Why would a shipyard have refueling stations?"`
-				`	"None of those option sound good to me. I'm out."
+				`	"None of those option sound good to me. I'm out."`
 					decline
 			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for shipping the Quicksilver's Particle Cannons! Don't even get me started on the Mantas! Ada's a long ways away, but we sure love Lovelace Labs products...`
 			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic."`
@@ -7750,14 +7750,14 @@ mission "Syndicate Business 5"
 			`	"In fact, the ancillary benefits are largely why there's such discretion in how the expansion will go. The aggressive and conservative fueling options both offer R&D and partnership benefits that are more than the project's directs returns."`
 			choice
 				`	"That makes sense. Let's discuss the deal more after Oblate."`
-				`	"Thanks for the overview, but I'm still not interested. I'm out."
+				`	"Thanks for the overview, but I'm still not interested. I'm out."`
 					decline
 			label accepting
-			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated." 
+			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated."`
 			branch blewupgolden
 				has "syndicate bus golden jewel dead"
 			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around."`
-				goto ending			
+				goto ending
 			label blewupgolden
 			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship, cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met."`
 			label ending
@@ -7790,7 +7790,7 @@ mission "Syndicate Business 5"
 		on kill
 			set "syndicate bus golden jewel dead"
 			conversation
-				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`					
+				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`
 				choice
 					`	Best not to dwell on these things.`
 
@@ -7832,7 +7832,7 @@ mission "Syndicate Business 5"
 			`	"Excellent. The price for this investment is 10 million credits for a solid 2000 credit a day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
 			`	He slides a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
-				`	"Sounds good."
+				`	"Sounds good."`
 					goto nextynice
 				`	"I'm done with these deals, I'm leaving."`
 					decline
@@ -7840,10 +7840,10 @@ mission "Syndicate Business 5"
 			`	Howard's tone carries a hint of impatience. "Alright then. The price for this investment is 11 million credits for a 2000 credit a day return. I've managed to arrange a loan through the bank, so you won't need to come up with the cash immediately. Just sign these documents to formalize the arrangement."`
 			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
-				`	"Sounds good."
+				`	"Sounds good."`
 					goto nextymean
 				`	"I'm done with these deals, I'm leaving."`
-					decline	
+					decline
 			label nexynice
 			action
 				debt 10000000
@@ -7852,7 +7852,7 @@ mission "Syndicate Business 5"
 				
 			goto nexty
 			label nextymean
-			action 
+			action
 				debt 11000000
 					interest 0.04
 					term 3650
@@ -7863,7 +7863,6 @@ mission "Syndicate Business 5"
 			`	Howard pauses, waiting to see if you're interested in taking the conversation further.`
 			choice
 				`	"Sounds like a good plan to me."`
-					set "Syndicate Business expansion 10m neutral"
 					goto choseplana
 				`	"What would it take to boost profits even more?"`
 					goto planb
@@ -7879,7 +7878,7 @@ mission "Syndicate Business 5"
 				`	"And if I have concerns about the environmental impact?"`
 					goto planc
 			label planb
-			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile--one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 2700 credits a day, or 9-10% a year."
+			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile--one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 2700 credits a day, or 9-10% a year."`
 			choice
 				`	"Bring on the profits, this unregulated option is the one for me"`
 					goto choseplanb
@@ -7888,7 +7887,7 @@ mission "Syndicate Business 5"
 				`	"And if I have concerns about the environmental impact?"`
 					goto planc
 			label planc
-			`	"There's also the eco-friendly route. We'd invest in green energy technologies and refining processes that minimize environmental impact and implement best-in-class workplace safety protocols. It's the most expensive option, and it'll slow our expansion, but it would reduce our environmental liabilities and might give us some goodwill. Easily the worst returns with around 1500 credits a day expected, or just around 5% a year."
+			`	"There's also the eco-friendly route. We'd invest in green energy technologies and refining processes that minimize environmental impact and implement best-in-class workplace safety protocols. It's the most expensive option, and it'll slow our expansion, but it would reduce our environmental liabilities and might give us some goodwill. Easily the worst returns with around 1500 credits a day expected, or just around 5% a year."`
 			choice
 				`	"This environmental and safety focused option is the one for me"`
 					goto choseplanc
