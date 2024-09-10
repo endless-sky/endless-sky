@@ -2788,6 +2788,7 @@ phrase "friendly civilian"
 	word
 		"Energy Blasters"
 		"Particle Cannons"
+		"Plasma Cannons"
 		"Proton Guns"
 	word
 		" than "
