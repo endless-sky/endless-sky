@@ -2738,7 +2738,7 @@ phrase "friendly civilian"
 		"Vail"
 		"Vinci"
 	word
-		" "
+		" playing "
 	word
 		"blackjack."
 		"poker."
