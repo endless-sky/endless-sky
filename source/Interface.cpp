@@ -521,6 +521,25 @@ const Sprite *Interface::ImageElement::GetSprite(const Information &info, int st
 
 // Members of the TextElement class:
 
+// Constructor.
+Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnchor)
+{
+	if(node.Size() < 2)
+		return;
+
+	isDynamic = (node.Token(0).ends_with("string") || node.Token(0).ends_with("dynamic button"));
+	if(node.Token(0).ends_with("button") || node.Token(0).ends_with("dynamic button"))
+	{
+		buttonKey = node.Token(1).front();
+		if(node.Size() >= 3)
+			str = node.Token(2);
+	}
+	else
+		str = node.Token(1);
+}
+
+
+
 // Parse the given data line: one that is not recognized by Element
 // itself. This returns false if it does not recognize the line, either.
 bool Interface::TextElement::ParseLine(const DataNode &node)
@@ -605,20 +624,8 @@ string Interface::TextElement::GetString(const Information &info) const
 
 // Constructor.
 Interface::BasicTextElement::BasicTextElement(const DataNode &node, const Point &globalAnchor)
+	: TextElement(node, globalAnchor)
 {
-	if(node.Size() < 2)
-		return;
-
-	isDynamic = (node.Token(0) == "string" || node.Token(0) == "dynamic button");
-	if(node.Token(0) == "button" || node.Token(0) == "dynamic button")
-	{
-		buttonKey = node.Token(1).front();
-		if(node.Size() >= 3)
-			str = node.Token(2);
-	}
-	else
-		str = node.Token(1);
-
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 
@@ -654,29 +661,17 @@ void Interface::BasicTextElement::Draw(const Rectangle &rect, const Information 
 
 // Constructor.
 Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Point &globalAnchor)
+	: TextElement(node, globalAnchor)
 {
-	if(node.Size() < 2)
-		return;
-
-	isDynamic = (node.Token(0) == "wrapped string" || node.Token(0) == "wrapped dynamic button");
-	if(node.Token(0) == "wrapped button" || node.Token(0) == "wrapped dynamic button")
-	{
-		buttonKey = node.Token(1).front();
-		if(node.Size() >= 3)
-			str = node.Token(2);
-	}
-	else
-		str = node.Token(1);
-
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
+
+	FinishLoadingColors();
 
 	// Initialize the WrappedText.
 	text.SetAlignment(textAlignment);
 	text.SetTruncate(truncate);
 	text.SetWrapWidth(Bounds().Width());
-
-	FinishLoadingColors();
 }
 
 

@@ -155,6 +155,9 @@ private:
 
 	// This class contains common members of both text element categories.
 	class TextElement : public Element {
+	public:
+		TextElement(const DataNode &node, const Point &globalAnchor);
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
