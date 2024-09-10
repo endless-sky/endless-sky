@@ -467,20 +467,20 @@ bool GameWindow::GetMod(Mods mod)
 {
 	switch(mod)
 	{
-	case Mods::SHIFT:
-		return sdlMod & KMOD_SHIFT;
-	case Mods::CAPS:
-		return sdlMod & KMOD_CAPS;
-	case Mods::ALT:
-		return sdlMod & KMOD_ALT;
-	case Mods::CTRL:
-		return sdlMod & KMOD_CTRL;
-	case Mods::GUI:
-		return sdlMod & KMOD_GUI;
-	case Mods::CTRL_GUI:
-		return sdlMod & (KMOD_CTRL | KMOD_GUI);
-	default:
-		return false;
+		case Mods::SHIFT:
+			return sdlMod & KMOD_SHIFT;
+		case Mods::CAPS:
+			return sdlMod & KMOD_CAPS;
+		case Mods::ALT:
+			return sdlMod & KMOD_ALT;
+		case Mods::CTRL:
+			return sdlMod & KMOD_CTRL;
+		case Mods::GUI:
+			return sdlMod & KMOD_GUI;
+		case Mods::CTRL_GUI:
+			return sdlMod & (KMOD_CTRL | KMOD_GUI);
+		default:
+			return false;
 	}
 }
 
