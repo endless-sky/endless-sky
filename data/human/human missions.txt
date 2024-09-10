@@ -7744,7 +7744,7 @@ mission "Syndicate Business 5"
 				`	"Why would a shipyard have refueling stations?"`
 				`	"None of those option sound good to me. I'm out."
 					decline
-			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for the freighters carrying the Quicksilver's signature Particle Cannons from Lovelace Labs on Ada!`
+			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for shipping the Quicksilver's Particle Cannons! Don't even get me started on the Mantas! Ada's a long ways away, but we sure love Lovelace Labs products...`
 			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic."`
 			`	"There are, of course, ancillary benefits as well. For R&D, we can test the impact of different fuel mixtures on our ships prior to entering the market. For partnerships, we can include fueling rights in large-scale sales agreements. At our largest logistics hubs the economies of scale even allow us to competitively offer refueling services on the open market, giving us a diversified revenue stream."`
 			`	"In fact, the ancillary benefits are largely why there's such discretion in how the expansion will go. The aggressive and conservative fueling options both offer R&D and partnership benefits that are more than the project's directs returns."`
@@ -7753,8 +7753,47 @@ mission "Syndicate Business 5"
 				`	"Thanks for the overview, but I'm still not interested. I'm out."
 					decline
 			label accepting
-			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated." He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship, cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met."`
+			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated." 
+			branch blewupgolden
+				has "syndicate bus golden jewel dead"
+			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around."`
+				goto ending			
+			label blewupgolden
+			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship, cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met."`
+			label ending
 				accept
+
+	on enter "Moktar"
+		"reputation: Independent (Killable)" = -1000
+	npc
+		government "Independent (Killable)"
+		personality heroic staying vindictive
+			confusion 20
+		system "Moktar"
+		ship "Vanguard" "Golden Jewel"
+		to despawn
+			has "syndicate bus golden jewel dead"
+		on encounter
+			conversation
+				`When you enter <waypoints>, your sensors detect the same pirate Vanguard from when you first rescued Howard. Your ship is immediately hailed, and the pirate opens communication.`
+				`	"I should have destroyed you when I had the chance. Prepare to meet your end!"`
+				choice
+					`	"Maybe I should have destroyed you!"`
+					`	"Uhhh... who are you again?"`
+						goto whomst
+				`	"Argh, you slithering, spineless snake! I'll tear your ship apart piece by piece!"`
+					goto power
+				label whomst
+				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
+				label power
+				`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+		on kill
+			set "syndicate bus golden jewel dead"
+			conversation
+				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`					
+				choice
+					`	Best not to dwell on these things.`
+
 	on enter "Oblate"
 		"reputation: Independent (Killable)" = -1000
 	npc disable
@@ -7794,11 +7833,7 @@ mission "Syndicate Business 5"
 			`	He slides a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
 				`	"Sounds good."
-					action
-						debt 10000000
-							interest 0.03
-							term 3650
-					goto nexty
+					goto nextynice
 				`	"I'm done with these deals, I'm leaving."`
 					decline
 			label upcharge
@@ -7806,19 +7841,28 @@ mission "Syndicate Business 5"
 			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
 				`	"Sounds good."
-					debt 11000000
-						interest 0.04
-						term 3650
-					goto nexty
+					goto nextymean
 				`	"I'm done with these deals, I'm leaving."`
-					decline
+					decline	
+			label nexynice
+			action
+				debt 10000000
+					interest 0.03
+					term 3650
+				
+			goto nexty
+			label nextymean
+			action 
+				debt 11000000
+					interest 0.04
+					term 3650
+			goto nexty
 			label nexty
 			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 2200 credits a day, or around 7-8% a year."`
 			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan." `
 			`	Howard pauses, waiting to see if you're interested in taking the conversation further.`
 			choice
 				`	"Sounds like a good plan to me."`
-					"salary: Syndicate Business10m" = 2200
 					set "Syndicate Business expansion 10m neutral"
 					goto choseplana
 				`	"What would it take to boost profits even more?"`
@@ -7829,8 +7873,6 @@ mission "Syndicate Business 5"
 			`	The conventional expansion is anything but. We'd work with licensed suppliers and build it by the book. Of course, Crossroads is already a radioactive wasteland of sandstorms, so the book's pretty light, all things considered. It's a solid investment with good returns and minimal risk. Nothing too flashy, but reliable returns of about 2200 credits a day, or around 7-8% a year."`
 			choice
 				`	"Sounds like a good plan to me."`
-					"salary: Syndicate Business10m" = 2200
-					set "Syndicate Business expansion 10m neutral"
 					goto choseplana
 				`	"What would it take to boost profits even more?"`
 					goto planb
@@ -7840,8 +7882,6 @@ mission "Syndicate Business 5"
 			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile--one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 2700 credits a day, or 9-10% a year."
 			choice
 				`	"Bring on the profits, this unregulated option is the one for me"`
-					"salary: Syndicate Business10m" = 2700
-					set "Syndicate Business expansion 10m evil"
 					goto choseplanb
 				`	"Tell me about the conventional expansion again."`
 					goto plana
@@ -7851,20 +7891,27 @@ mission "Syndicate Business 5"
 			`	"There's also the eco-friendly route. We'd invest in green energy technologies and refining processes that minimize environmental impact and implement best-in-class workplace safety protocols. It's the most expensive option, and it'll slow our expansion, but it would reduce our environmental liabilities and might give us some goodwill. Easily the worst returns with around 1500 credits a day expected, or just around 5% a year."
 			choice
 				`	"This environmental and safety focused option is the one for me"`
-					"salary: Syndicate Business10m" = 1500
-					set "Syndicate Business expansion 10m good"
 					goto choseplanc
 				`	"Tell me about the conventional expansion again."`
 					goto plana
 				`	"What would it take to boost profits even more?"`
 					goto planb
 			label choseplana
+			action
+				"salary: Syndicate Business" += 2200
+				set "Syndicate Business expansion 10m neutral"
 			`	"Excellent choice. The conventional expansion is a safe bet with solid returns. It's not the flashiest option, but the steady stream of ships passing through Crossroads will ensure consistent profits. The only drawback is that it won't make headlines--but it'll keep the credits flowing smoothly".`
 				goto ending
 			label choseplanb
+			action
+				"salary: Syndicate Business" += 2700
+				set "Syndicate Business expansion 10m evil"
 			`	"Well done. The unregulated option is bold and ambitious--exactly the kind of move the Syndicate prizes. The volatility of this fuel isn't for the faint of heart, but some bad PR is well worth the profits and potential learnings we'll achieve. High risk often means high reward."`
 				goto ending
 			label choseplanc
+			action
+				"salary: Syndicate Business" += 1500
+				set "Syndicate Business expansion 10m good"
 			`	"An admirable decision. The eco-friendly route won't make the most credits, but it's a forward-thinking investment. It could pay off in other ways, like reduced turnover and environmental liabilities. Objectively the worst investment from a returns perspective, but I suppose you value other things more."`
 			label ending
 			choice
