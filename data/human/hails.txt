@@ -2786,9 +2786,9 @@ phrase "friendly civilian"
 	word
 		"I'm no weapons expert, but it feels better firing "
 	word
-		"energy blasters"
-		"particle cannons"
-		"proton guns"
+		"Energy Blasters"
+		"Particle Cannons"
+		"Proton Guns"
 	word
 		" than "
 	word
