@@ -2850,7 +2850,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"mounts overcharged twin blasters on a modded Argosy"
+		"mounts overcharged Twin Blasters on a modded Argosy"
 		"shoots up a security station with dual laser pistols"
 		"dodges quad blaster turrets in a stolen Flivver"
 	word
