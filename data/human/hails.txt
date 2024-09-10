@@ -2792,8 +2792,8 @@ phrase "friendly civilian"
 	word
 		" than "
 	word
-		"beam lasers."
-		"heavy lasers."
+		"Beam Lasers."
+		"Heavy Lasers."
 
 phrase "friendly civilian"
 	word
