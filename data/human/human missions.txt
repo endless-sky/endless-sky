@@ -7491,7 +7491,7 @@ mission "Syndicate Business 1"
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <waypoints>, your sensors detect a pirate Vanguard, and a derelict shuttle aimlessly drifting near the coordinates in the original message. Your ship is immediately hailed, and the pirate opens communication.`
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard, and a derelict escape pod aimlessly drifting near the coordinates in the original message. Your ship is immediately hailed, and the pirate opens communication.`
 			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
@@ -7527,7 +7527,7 @@ mission "Syndicate Business 1"
 				choice
 					`	Better not to linger on what could have been.`
 		conversation
-			`You board the shuttle to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
+			`You board the escape pod to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
@@ -7537,7 +7537,7 @@ mission "Syndicate Business 1"
 		"reputation: Independent (Killable)" = 10
 		event "end of independent violence"
 		conversation
-			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the shuttle. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the escape pod. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
 			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase a perpetual bond of Megaparsec Inc I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
