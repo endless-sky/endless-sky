@@ -2289,10 +2289,10 @@ news "careless landing"
 			"A Wasp"
 			"A Scrapper"
 		word
-			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${Pronoun} vessel, but the captain "
+			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${pronoun} vessel, but the captain "
 		phrase
-			"Careless Ends Well"
-			"Careless Ends Poorly"
+			"careless ends well"
+			"careless ends poorly"
 
 phrase "ccor song description"
 	word
@@ -2331,8 +2331,8 @@ news "Discontent"
 		word
 			"The rioters are "
 		word
-			"singing ${CCOR Song Description}. "
-			"chanting a list of their demands, including ${Worker's Demands}. "
+			"singing ${ccor song description}. "
+			"chanting a list of their demands, including ${worker's demands}. "
 			"sizing up the planetary security forces. "
 		word
 			"Security eventually steps in, "
