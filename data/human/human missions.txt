@@ -7733,7 +7733,7 @@ mission "Syndicate Business 5"
 				`	"And where does that promised investment opportunity fit in?"`
 					goto investingop
 				`	"I'm still not interested."`
-					goto decline
+					decline
 			label investingop
 			`	His face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least 10, maybe 12 million credits to get in on this one."`
 			`	He leans forward. "We're looking to fund a refueling station expansion at our logistics hub on Crossroads. We're between an aggressive option, a more conventional expansion, and a more conservative one."`
@@ -7844,19 +7844,19 @@ mission "Syndicate Business 5"
 					goto nextymean
 				`	"I'm done with these deals, I'm leaving."`
 					decline
-			label nexynice
+			label nextynice
 			action
 				debt 10000000
 					interest 0.03
 					term 3650
 				
-			goto nexty
+				goto nexty
 			label nextymean
 			action
 				debt 11000000
 					interest 0.04
 					term 3650
-			goto nexty
+				goto nexty
 			label nexty
 			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 2200 credits a day, or around 7-8% a year."`
 			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan." `
