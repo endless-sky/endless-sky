@@ -7849,13 +7849,14 @@ mission "Syndicate Business 5"
 				debt 10000000
 					interest 0.03
 					term 3650
-				
+			`	He takes the document from you and you see the loan terms on the screen behind him: 10M Credits, 10 years, 12% rate`
 				goto nexty
 			label nextymean
 			action
 				debt 11000000
 					interest 0.04
 					term 3650
+			`	He snatches the document from you with a wicked smile and you see the loan terms on the screen behind him: 11M Credits, 10 years, 16% rate`
 				goto nexty
 			label nexty
 			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 2200 credits a day, or around 7-8% a year."`
