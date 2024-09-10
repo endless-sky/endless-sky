@@ -7527,7 +7527,7 @@ mission "Syndicate Business 1"
 				choice
 					`	Better not to linger on what could have been.`
 		conversation
-			`You board the shuttle to see it's desperate and nearly incoherent occupant: "Oh thank the stars, THANK YOU! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
+			`You board the shuttle to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
