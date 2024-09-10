@@ -2275,7 +2275,7 @@ news "careless landing"
 		planet "Jakobsen"
 	name
 		word
-			"Recklessness"
+			"Ship landing"
 	message
 		word
 			"A Sparrow"
