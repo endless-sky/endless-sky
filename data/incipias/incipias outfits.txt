@@ -146,7 +146,7 @@ effect "star tail hit"
 	sprite "effect/star tail hit"
 		"no repeat"
 		"frame rate" 40
-	sound "star tail hit"
+	sound "explosion small"
 	"lifetime" 30
 	"velocity scale" 0.
 

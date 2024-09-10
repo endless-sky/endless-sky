@@ -1182,6 +1182,9 @@ event "remnant: teciimach deployment"
 		add "Teciimach Pod"
 		add "Teciimach Canister"
 		add "Teciimach Canister Rack"
+	outfitter "Remnant Core"
+		remove "EMP Torpedo"
+		add "Teciimach Canister"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser (II)" 2

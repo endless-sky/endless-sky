@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "alignment.hpp"
 #include "../Color.h"
 #include "DisplayText.h"
-#include "../ImageBuffer.h"
+#include "../image/ImageBuffer.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"

@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 

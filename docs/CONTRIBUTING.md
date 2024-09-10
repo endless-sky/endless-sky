@@ -17,6 +17,7 @@ If you are posting a pull request, please:
 * Do not combine multiple unrelated changes.
 * Check the diff and make sure the pull request does not contain unintended changes.
 * If changing the C++ code, follow the [coding standard](https://endless-sky.github.io/styleguide/styleguide.xml).
+* When adding content that could impact the main game, keep in mind the guidelines from the [quality checklist](https://github.com/endless-sky/endless-sky/wiki/QualityChecklist) and [style goals](https://github.com/endless-sky/endless-sky/wiki/StyleGoals) documents.
 
 If proposing a major pull request, start by posting an issue and discussing the best way to implement it. Often the first strategy that occurs to you will not be the cleanest or most effective way to implement a new feature.
 

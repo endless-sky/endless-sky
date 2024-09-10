@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 #include "Wormhole.h"
 

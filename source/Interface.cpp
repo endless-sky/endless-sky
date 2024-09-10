@@ -31,8 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "RingShader.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 

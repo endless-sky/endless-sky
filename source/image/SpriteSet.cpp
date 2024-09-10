@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteSet.h"
 
-#include "Logger.h"
+#include "../Logger.h"
 #include "Sprite.h"
 
 #include <map>

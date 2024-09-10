@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>

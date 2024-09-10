@@ -42,6 +42,10 @@ public:
 	static int Width();
 	static int Height();
 
+	// Last known drawable width & height.
+	static int DrawWidth();
+	static int DrawHeight();
+
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
