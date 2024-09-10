@@ -7520,7 +7520,7 @@ mission "Syndicate Business 1"
 		government "Independent"
 		personality derelict target quiet escort
 		system "Moktar"
-		ship "Shuttle" "Escape Pod 001"
+		ship "Escape Pod" "Escape Pod 001"
 		on kill
 			conversation
 				`You watch as the escape pod you're racing to save explodes into a cloud of debris, all hope snuffed out in an instant.`
@@ -7585,6 +7585,48 @@ event "end of independent violence"
 	government "Independent"
 		"attitude toward"
 			"Independent (Killable)" 0
+
+ship "Escape Pod"
+	sprite "ship/escape pod"
+		"frame time" 4
+		"delay" 14
+		"random start frame"
+	thumbnail "thumbnail/shuttle"
+	attributes
+		category "Transport"
+		"cost" 180000
+		"shields" 500
+		"hull" 600
+		"required crew" 1
+		"bunks" 6
+		"mass" 80
+		"drag" 1.8
+		"heat dissipation" .77
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 120
+		"weapon capacity" 10
+		"engine capacity" 60
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -6 30
+	engine 6 30
+	gun 0 -31
+	leak "leak" 60 50
+	explode "tiny explosion" 10
+	explode "small explosion" 5
 
 
 mission "Syndicate Business 2"
