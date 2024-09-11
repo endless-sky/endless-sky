@@ -30,8 +30,12 @@ using namespace std;
 
 // Initializer based on the formation pattern to follow.
 FormationPositioner::FormationPositioner(const Body *formationLead, const FormationPattern *pattern)
-	: formationLead(formationLead), pattern(pattern), direction(formationLead->Facing())
+	: formationLead(formationLead), pattern(pattern)
 {
+	if(!pattern->Rotatable())
+		direction = 0;
+	else
+		direction = formationLead->Facing();
 }
 
 
@@ -151,6 +155,10 @@ void FormationPositioner::CalculatePositions()
 
 void FormationPositioner::CalculateDirection()
 {
+	// Any direction is fine, just keep initial direction.
+	if(!pattern->Rotatable())
+		return;
+
 	// Calculate new direction. If the formationLead is moving, then we use the movement vector,
 	// otherwise use the facing vector.
 	Point velocity = formationLead->Velocity();
@@ -158,14 +166,14 @@ void FormationPositioner::CalculateDirection()
 
 	Angle deltaDir = desiredDir - direction;
 
-	// Change the desired direction according to rotational settings if that fits better.
+	// Change the desired direction according to rotational settings if that fits well.
 	double symRot = pattern->Rotatable();
-	if(symRot > 0 && fabs(deltaDir.Degrees()) > symRot / 2)
+	if(symRot > 0.)
 	{
 		if(deltaDir.Degrees() > 0)
 			symRot = -symRot;
 
-		while(fabs(deltaDir.Degrees() + symRot) < fabs(deltaDir.Degrees()))
+		while(fabs(deltaDir.Degrees()) > fabs(symRot / 2))
 		{
 			desiredDir += Angle(symRot);
 			deltaDir = desiredDir - direction;
@@ -192,7 +200,7 @@ void FormationPositioner::CalculateDirection()
 			positionsTimer = 0;
 		}
 	}
-	else if(symRot != 0)
+	else
 	{
 		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
 		// about 12 seconds.
