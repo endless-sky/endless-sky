@@ -1430,13 +1430,10 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
+					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.75));
 				starBatch.Add(starBody);
 			}
 		}
-
-		starBatch.Draw();
-		starBatch.Clear();
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1451,6 +1448,8 @@ void MapPanel::DrawSystems()
 				it->second = min(it->second, distance);
 		}
 	}
+	starBatch.Draw();
+	starBatch.Clear();
 }
 
 
