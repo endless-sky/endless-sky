@@ -7624,7 +7624,7 @@ mission "Syndicate Business 3"
 					decline
 			`You immediately receive an automated response:`
 			`	"Dear Valued Contact,`
-			`	Thank you for reaching out to Howard Vendeur. I am currently out of the office and will respond to your message as soon as possible.`
+			`	Thank you for reaching out. I am currently out of the office and will respond to your message as soon as possible.`
 			`	For urgent matters, please contact our support team."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
