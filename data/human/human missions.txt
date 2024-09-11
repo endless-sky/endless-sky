@@ -7458,7 +7458,7 @@ mission "Adelita 5"
 
 
 mission "Syndicate Business 1"
-	name "Rescue Kidnapped Man in <waypoints>"
+	name "Rescue kidnapped man in <waypoints>"
 	description "You have received a mysterious distress call from an alleged abductee in the <waypoints> system. Head there to see if you can find the signal's source."
 	minor
 	to offer
