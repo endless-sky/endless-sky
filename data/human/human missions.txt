@@ -7630,7 +7630,7 @@ ship "Escape Pod"
 
 
 mission "Syndicate Business 2"
-	name "Purchase Bond on <planet>"
+	name "Purchase bond on <planet>"
 	description "Bring Howard to <destination> in order to finish the paperwork you'll need to finalize your bond agreement with Megaparsec Incorporated."
 	passengers 1
 	source "Sunracer"
