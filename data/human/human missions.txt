@@ -7761,6 +7761,7 @@ mission "Syndicate Business 5"
 			label blewupgolden
 			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship, cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met."`
 			label ending
+			`	"Well, that's all I have for you. Goodbye and good luck!"`
 				accept
 
 	on enter "Moktar"
