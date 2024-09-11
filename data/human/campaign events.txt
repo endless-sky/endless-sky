@@ -171,7 +171,7 @@ mission "event: war begins"
 			action
 				set "bombing witness"
 			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. A liaison officer is herding a group of civilians toward a low bunker beside a nearby landing pad. On the landing pad itself, soldiers are struggling to set up a heavy plasma cannon mounted on an anti-aircraft turret.`
-			`	The civilians safely in the bunker, the liaison officer turns to face you. "I'm sorry, Captain, but I'm going to have to ask you to leave the planet. We've got a Carrier squadron coming in, and we need all the pads free."`
+			`	With the civilians safely in the bunker, the liaison officer turns to face you. "I'm sorry, Captain, but I'm going to have to ask you to leave the planet. We've got a Carrier squadron coming in, and we need all the pads free."`
 			choice
 				`	"Of course."`
 					goto summary
