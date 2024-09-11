@@ -102,7 +102,7 @@ mission "Successors: First Contact 1"
 		event "label successor space"
 		event "successors: first contact wait" 8
 		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to Staja-Kella-Oa in eight days, when their government will decide what to do about my arrival.`
-		log "Factions" "Successors" "The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy; amphibious octopods approximately three meters tall. They are governed by their High Houses, institutions built around several noble families whose scions wield political and military power. They have not encountered humans since 1500 years ago, at which time their Predecessors were exploring much of the galaxy."
+		log "Factions" "Successors" `The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy; amphibious octopods approximately three meters tall. They are governed by their High Houses, institutions built around several noble families whose scions wield political and military power. They have not encountered humans since 1500 years ago, at which time their Predecessors were exploring much of the galaxy.`
 		"reputation: Successor" += 1
 		"reputation: House Chydiyi" += 1
 		"reputation: House Myurej" += 1
@@ -324,7 +324,7 @@ mission "Successors: First Contact 2"
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 			label end
-			decline
+				decline
 
 mission "Successors: First Contact 3"
 	priority
@@ -853,7 +853,7 @@ mission "Successors: Kaatrij First Contact 1"
 				clear "Successors: kijran"
 				clear "Successors: saajret"
 				clear "Successors: sioeora"
-				log "Summoned by Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral keepers of the animals that I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
+				log "Summoned by the Successor High House Kaatrij to their homeworld, where it was explained that they are the ancestral keepers of the animals that I refused to capture for House Sioeora. Was rewarded for keeping the animals from Sioeora with a translation device and cultural data, which open up many of the Successors' worlds to me. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
 				set "known to the successors"
 				set "successors kaatrij patron"
 				event "successors: trust 1"
@@ -919,8 +919,8 @@ mission "Successors: Trusted"
 		"reputation: House Chydiyi" += 1
 		set "trusted by the successors"
 		event "successors: trust 2"
-		log "Summoned to meet with the Successor High Houses in council, and given the right to purchase their civilian technology."
-		log "Factions" "Successors" "The High Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general."
+		log "Summoned to meet with the Successor High Houses in council and given the right to purchase their civilian technology."
+		log "Factions" "Successors" `The High Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general.`
 		conversation
 			`Once you have sat down at the spaceport, you are met by another group of Successor naval officers. You notice that this group appears even more diverse than the last, representing several different uniform styles and liveries. Unifying them all is a small white and blue pin attached to their outfits; one that does not correspond to the insignia of any of the High Houses. The officers guide you, politely but firmly, to one of the monorail trains snaking out from the spaceport to other installations on the planet, and you all shuffle together into one of the cars, which appears to have been completely cleared of normal passengers, if it even carried those in the first place.`
 			`	Several minutes later, the monorail deposits you at an especially large and well-decorated complex that swarms with both military and well-dressed civilians, some of whom appear so opulent and bejeweled that you suspect their personal effects are worth more than your ship. Each of them without exception wears the same white and blue insignia as your escorts, though many have incorporated it into their clothes' design or even display it as a pattern in skin coloration.`

@@ -502,7 +502,7 @@ mission "Successors: Graffiti"
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script placed alongside a rather crude depiction of your face. The translation device struggles to interpret the non-standard glyphs, but it eventually resolves the text as "'Erjn'-Fool! No quills, no brain!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
 
-mission "Successors: People's Houses, First Contact"
+mission "Successors: People's Houses: First Contact"
 	landing
 	source "Kasii-Tuur-Saqru"
 	to offer
@@ -592,7 +592,7 @@ mission "Successors: Unified Defense"
 			branch "populated language"
 				has "language: Successor"
 			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad, their weapons trained on your vessel. As several interceptors begin to hover over your ship as well with their weapons ready, you are forced to take off.`
-				launch
+				flee
 			label "populated language"
 			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad.`
 			`	You soon receive a transmission routed through the local spaceport. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
@@ -628,12 +628,13 @@ mission "Successors: Unified Defense"
 			label end
 			branch "uninhabited end"
 			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
-				launch
+				flee
 			label "uninhabited end"
+				decline
 		
 	npc
 		government "New Houses"
-		personality heroic vindictive staying
+		personality heroic staying vindictive
 		system Kella-Uoasa
 		ship "Aaulqra" "Kijria-Sol"
 		ship "Aaulqra" "Aret-I"
