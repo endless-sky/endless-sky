@@ -7743,7 +7743,7 @@ mission "Syndicate Business 5"
 				`	"I'm still not interested."`
 					decline
 			label investingop
-			`	His face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least ten and maybe twelve million credits to get in on this one."`
+			`	His face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least ten or maybe twelve million credits to get in on this one."`
 			`	He leans forward. "We're looking to fund a refueling station expansion at our logistics hub on Crossroads. We're between an aggressive option, a more conventional expansion, and a more conservative one."`
 			`	Howard pauses, gauging your reaction before continuing. "All of the options have their merits, though investors usually prefer the one with the most returns. But the choice is yours if you're in, I'll make sure you get the full details once we're done with this little favor on Oblate."`
 			choice
