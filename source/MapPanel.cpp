@@ -69,7 +69,7 @@ namespace {
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
-	static const int MAX_STARS = 5;
+	const int MAX_STARS = 5;
 
 	// Struct to track per system how many pointers are drawn and still
 	// need to be drawn.
@@ -1110,7 +1110,6 @@ void MapPanel::UpdateCache()
 		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
 
 		const bool canViewSystem = player.CanView(system);
-
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
@@ -1398,9 +1397,8 @@ void MapPanel::DrawSystems()
 		closeGovernments.clear();
 
 	// Draw the circles for the systems.
-	double zoom = Zoom();
 	BatchDrawList starBatch;
-
+	double zoom = Zoom();
 	const float ringFade = mapIsStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
