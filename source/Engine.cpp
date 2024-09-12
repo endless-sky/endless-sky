@@ -2440,7 +2440,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	int free = collector->Cargo().Free();
 	int total = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(!ship->IsParked() && ship->GetSystem() == player.GetSystem())
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == player.GetSystem())
 			total += ship->Cargo().Free();
 
 	message += " (" + Format::CargoString(free, "free space") + " remaining";
