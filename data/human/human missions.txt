@@ -7598,9 +7598,9 @@ ship "Escape Pod"
 		"mass" 65
 		"drag" 1.7
 		"heat dissipation" .7
-		"fuel capacity" 0
-		"cargo space" 15
-		"outfit space" 34
+		"fuel capacity" 100
+		"cargo space" 20
+		"outfit space" 39
 		"weapon capacity" 0
 		"engine capacity" 20
 		weapon
@@ -7611,15 +7611,18 @@ ship "Escape Pod"
 	outfits
 		"KP-6 Photovoltaic Panel" 2
 		"LP036a Battery Pack"
+		"Outfits Expansion"
 		
 		"X1050 Ion Engines"
+
+		"Hyperdrive"
 		
 	engine 0 26
 		zoom 1.4
 	leak "leak" 40 50
 	explode "tiny explosion" 5
 	explode "small explosion" 1
-	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits and does not come with a hyperdrive installed."
+	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits. While escape pods usually do not come with a hyperdrive installed, this one has been modified in order to fit one in."
 
 
 
