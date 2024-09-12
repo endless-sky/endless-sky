@@ -7614,7 +7614,7 @@ mission "Syndicate Business 3"
 		credits > 40000000
 	on offer
 		conversation
-			`After an uneventful trip to the spaceport you return to <ship> and see a message from Howard, the Megaparsec salesman who sold you a 1 million credit bond. The message says:`
+			`After an uneventful trip to the spaceport you return to the <ship> and see a message from Howard, the Megaparsec salesman who sold you a 1 million credit bond. The message says:`
 			`	"<first> <last>! My Bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my office on <planet> to talk about it."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
@@ -7657,7 +7657,7 @@ mission "Syndicate Business 3"
 			label offices
 			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I keep reserved for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
 			label next2
-			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. It's clear that, for now, that Howard is finished with you and you'll get no more information.`
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
 event "howard back at sunracer"
 
@@ -7699,9 +7699,12 @@ mission "Syndicate Business 5"
 	description "Howard from Megaparsec Inc. wants you to disable a Marauder ship in exchange for an investment opportunity."
 	minor
 	to offer
-		has "Syndicate Business 4: done"
-	source
-		planet "Sunracer"
+		or
+			has "Syndicate Business 4: done"
+			and
+				not "Syndicate Business 4: failed"
+				has "Syndicate Business 4: declined"
+	source "Sunracer"
 	waypoint "Oblate"
 	destination "Sunracer"
 	on offer
@@ -7718,14 +7721,14 @@ mission "Syndicate Business 5"
 			label shrug
 			`	Howard shrugs and takes a seat anyway.`
 			label familiar
-			`	Once settled, Howard leans back in his chair and gives you a serious look. "Tell me," he says, "are you familiar with Marauder ships?"`
+			`	Once settled, he leans back in his chair and gives you a serious look. "Tell me," he says, "are you familiar with Marauder ships?"`
 			choice
 				`	"Yes, of course."`
 					goto ask
 				`	"No, I can't say I'm familiar."`
 			`	Howard raises an eyebrow. "Marauder ships are nasty pieces of work," he explains. "They're ships with numerous modifications - mostly with combat in mind. More shields, weapons, engines, and outfit space, with enough firepower to tear through a lot of defenses before anyone knows what hit them. They're often used by rogue groups that operate outside the law, preying on vulnerable targets."`
 			label ask
-			`	Howard pauses for a moment before continuing. "Megaparsec is interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted on Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
+			`	Howard pauses for a moment before continuing. "Megaparsec is interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted in Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
 			`	He gives you a pointed look. "Think you can handle that?"`
 			choice
 				`	"You got it."`
@@ -7745,16 +7748,16 @@ mission "Syndicate Business 5"
 			label investingop
 			`	His face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least ten or maybe twelve million credits to get in on this one."`
 			`	He leans forward. "We're looking to fund a refueling station expansion at our logistics hub on Crossroads. We're between an aggressive option, a more conventional expansion, and a more conservative one."`
-			`	Howard pauses, gauging your reaction before continuing. "All of the options have their merits, though investors usually prefer the one with the most returns. But the choice is yours if you're in, I'll make sure you get the full details once we're done with this little favor on Oblate."`
+			`	Howard pauses, gauging your reaction before continuing. "All of the options have their merits, though investors usually prefer the one with the most returns. But the choice is yours if you're in. I'll make sure you get the full details once we're done with this little favor in Oblate."`
 			choice
 				`	"Alright, I'm in. Let's discuss it more after Oblate."`
 					goto accepting
 				`	"Why would a shipyard have refueling stations?"`
-				`	"None of those option sound good to me. I'm out."`
+				`	"None of those options sound good to me. I'm out."`
 					decline
 			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for shipping the Quicksilver's Particle Cannons! Don't even get me started on the Mantas! Ada's a long ways away, but we sure love Lovelace Labs products...`
-			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic."`
-			`	"There are, of course, ancillary benefits as well. For R&D, we can test the impact of different fuel mixtures on our ships prior to entering the market. For partnerships, we can include fueling rights in large-scale sales agreements. At our largest logistics hubs the economies of scale even allow us to competitively offer refueling services on the open market, giving us a diversified revenue stream."`
+			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic.`
+			`	"There are, of course, ancillary benefits as well. For R&D, we can test the impact of different fuel mixtures on our ships prior to entering the market. For partnerships, we can include fueling rights in large-scale sales agreements. At our largest logistics hubs the economies of scale even allow us to competitively offer refueling services on the open market, giving us a diversified revenue stream.`
 			`	"In fact, the ancillary benefits are largely why there's such discretion in how the expansion will go. The aggressive and conservative fueling options both offer R&D and partnership benefits that are more than the project's directs returns."`
 			choice
 				`	"That makes sense. Let's discuss the deal more after Oblate."`
@@ -7764,10 +7767,10 @@ mission "Syndicate Business 5"
 			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated."`
 			branch blewupgolden
 				has "syndicate bus golden jewel dead"
-			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around."`
+			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around.`
 				goto ending
 			label blewupgolden
-			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship. Cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met."`
+			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship. Cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met.`
 			label ending
 			`	"Well, that's all I have for you. Goodbye and good luck!"`
 				accept
@@ -7820,8 +7823,8 @@ mission "Syndicate Business 5"
 	on complete
 		event "10m investment done" 180
 		conversation
-			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the 8th floor.`
-			`	Howard greets you with a smile as you step into his office. The room is as you left it -- modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job on Oblate went smoothly?"`
+			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the eighth floor.`
+			`	Howard greets you with a smile as you step into his office. The room is as you left it -- modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job in Oblate went smoothly?"`
 			choice
 				`	"Of course."`
 					goto next1
@@ -7832,6 +7835,7 @@ mission "Syndicate Business 5"
 			`	Howard pulls up a holographic display on the digital screen behind him. Various charts and projections flash by. "Ready for the pitch?"`
 			choice
 				`	"You know it."`
+				`	"Of course."`
 			`	"Here's what we're looking at. Megaparsec Incorporated is expanding a refueling station on Crossroads, and we're likely going to go with a conventional expansion. But don't let the term 'conventional' fool you, Megaparsec rarely expands its refueling stations--this is the first time in over a decade. When we do, it's because we've identified a strategic location that will skyrocket profits. These opportunities are as rare as they come, and most investors never even hear about them. But you've proven yourself, and that's why you're getting a seat at the table."`
 			`	He pauses, letting the weight of his words sink in. "Getting in on this is a once-in-a-lifetime chance. We're talking about a key hub on a high-traffic trade route, with a captive market of ships desperate for fuel. The returns will be solid... and dependable. Opportunities like this don't just come around, and when they do, they go fast."`
 			choice
@@ -7869,7 +7873,7 @@ mission "Syndicate Business 5"
 				goto nexty
 			label nexty
 			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 2200 credits a day, or around 7-8% a year."`
-			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan." `
+			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan."`
 			`	Howard pauses, waiting to see if you're interested in taking the conversation further.`
 			choice
 				`	"Sounds like a good plan to me."`
