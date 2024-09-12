@@ -7619,7 +7619,7 @@ ship "Escape Pod"
 	leak "leak" 40 50
 	explode "tiny explosion" 5
 	explode "small explosion" 1
-	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people  it can carry to safety, but has very little space for outfits and does not come with a hyperdrive installed."
+	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits and does not come with a hyperdrive installed."
 
 
 mission "Syndicate Business 2"
