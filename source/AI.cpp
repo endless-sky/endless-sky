@@ -1380,6 +1380,11 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, con
 	if(!ship.IsDisabled() && ((needsFuel && !helper.CanRefuel(ship)) || (needsEnergy && !helper.CanGiveEnergy(ship))))
 		return false;
 
+	// For player's escorts, check if the player knows the helper's language.
+	if(ship.IsYours() && !helper.GetGovernment()->Language().empty()
+			&& !player.Conditions().Get("language: " + helper.GetGovernment()->Language()))
+		return false;
+
 	return true;
 }
 
