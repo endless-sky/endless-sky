@@ -307,6 +307,7 @@ public:
 	bool SelectShips(const Rectangle &box, bool hasShift);
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
+	void UnselectShip(const std::shared_ptr<Ship> ship);
 	void SelectGroup(int group, bool hasShift);
 	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetGroup(int group);

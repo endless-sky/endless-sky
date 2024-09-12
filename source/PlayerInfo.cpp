@@ -2777,6 +2777,18 @@ void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
 
 
 
+void PlayerInfo::UnselectShip(const shared_ptr<Ship> ship)
+{
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
+		if(it->lock() == ship)
+		{
+			selectedShips.erase(it);
+			return;
+		}
+}
+
+
+
 void PlayerInfo::SelectGroup(int group, bool hasShift)
 {
 	int bit = (1 << group);
