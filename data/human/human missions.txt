@@ -7615,7 +7615,7 @@ mission "Syndicate Business 3"
 	on offer
 		conversation
 			`After an uneventful trip to the spaceport you return to the <ship> and see a message from Howard, the Megaparsec salesman who sold you a 1 million credit bond. The message says:`
-			`	"<first> <last>! My Bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my office on <planet> to talk about it."`
+			`	"<first> <last>! My bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my office on <planet> to talk about it."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			choice
