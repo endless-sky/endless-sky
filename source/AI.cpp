@@ -4835,7 +4835,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked())
+			if(it.get() != player.Flagship() && !it->IsParked() && !it->IsDestroyed())
 				ships.push_back(it.get());
 		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
 	}
