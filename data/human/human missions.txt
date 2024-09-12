@@ -7622,6 +7622,7 @@ ship "Escape Pod"
 	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits and does not come with a hyperdrive installed."
 
 
+
 mission "Syndicate Business 2"
 	name "Purchase bond on <planet>"
 	description "Bring Howard to <destination> in order to finish the paperwork you'll need to finalize your bond agreement with Megaparsec Incorporated."
