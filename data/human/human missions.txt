@@ -7588,45 +7588,38 @@ event "end of independent violence"
 
 ship "Escape Pod"
 	sprite "ship/escape pod"
-		"frame time" 4
-		"delay" 14
-		"random start frame"
-	thumbnail "thumbnail/shuttle"
 	attributes
-		category "Transport"
-		"cost" 180000
-		"shields" 500
+		category "Utility"
+		"cost" 45000
+		"shields" 300
 		"hull" 600
 		"required crew" 1
-		"bunks" 6
-		"mass" 80
-		"drag" 1.8
-		"heat dissipation" .77
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 120
-		"weapon capacity" 10
-		"engine capacity" 60
+		"bunks" 10
+		"mass" 65
+		"drag" 1.7
+		"heat dissipation" .7
+		"fuel capacity" 0
+		"cargo space" 15
+		"outfit space" 34
+		"weapon capacity" 0
+		"engine capacity" 20
 		weapon
-			"blast radius" 12
-			"shield damage" 120
-			"hull damage" 60
-			"hit force" 180
+			"blast radius" 9
+			"shield damage" 90
+			"hull damage" 45
+			"hit force" 135
 	outfits
-		"nGVF-AA Fuel Cell"
+		"KP-6 Photovoltaic Panel" 2
 		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
+		"X1050 Ion Engines"
 		
-	engine -6 30
-	engine 6 30
-	gun 0 -31
-	leak "leak" 60 50
-	explode "tiny explosion" 10
-	explode "small explosion" 5
+	engine 0 26
+		zoom 1.4
+	leak "leak" 40 50
+	explode "tiny explosion" 5
+	explode "small explosion" 1
+	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people  it can carry to safety, but has very little space for outfits and does not come with a hyperdrive installed."
 
 
 mission "Syndicate Business 2"
