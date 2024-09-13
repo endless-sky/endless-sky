@@ -346,8 +346,8 @@ mission "Successors: First Contact 3"
 		"<tranq h2h>" "Pug staff"
 		"<tranq h2h>" "Heliarch staff"
 			has "outfit: Enforcer Riot Staff"
-		"<tranq h2h long>" "Pug Peacekeeping Staff"
-		"<tranq h2h long>" "Enforcer Riot Staff"
+		"<a tranq h2h long>" "a Pug Peacekeeping Staff"
+		"<a tranq h2h long>" "an Enforcer Riot Staff"
 			has "outfit: Enforcer Riot Staff"
 	on offer
 		conversation
@@ -464,7 +464,7 @@ mission "Successors: First Contact 3"
 			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 				goto approach
 			label "retrieve tranqs"
-			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage, along with a <tranq h2h long> as an improvised tranquilizer weapon. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
+			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage, along with <a tranq h2h long> as an improvised tranquilizer weapon. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 			label approach
 			choice
 				`	(Approach the location.)`
