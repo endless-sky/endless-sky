@@ -2777,7 +2777,7 @@ void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
 
 
 
-void PlayerInfo::UnselectShip(const shared_ptr<Ship> ship)
+void PlayerInfo::DeselectShip(const shared_ptr<Ship> ship)
 {
 	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
 		if(it->lock() == ship)

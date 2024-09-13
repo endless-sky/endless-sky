@@ -1702,7 +1702,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
 			// If this is a player ship, make sure it's no longer selected.
 			if(ship->IsYours())
-				player.UnselectShip(ship);
+				player.DeselectShip(ship);
 		}
 		return;
 	}
