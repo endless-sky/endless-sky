@@ -14,18 +14,16 @@
 mission "Successors: Entering the Scar"
 	invisible
 	landing
-	destination
-		attributes "predecessor"
+	to complete
+		never
 	to fail
 		has "Successors: Safe at Last: failed"
 	on enter
 		system
 			attributes "predecessor"
+		fail
 		dialog
 			`Shortly after you enter this system, your ship's sensors begin to register small but progressive damage to the hull and internal systems, despite there being no other ships around. Equally confusing, your jump drive seems to still be partially active.`
-	on complete
-		dialog
-			`The mass of the planet seems to be shielding you from whatever is damaging your ship in space, offering you an opportunity to rest and repair.`
 
 mission "Successors: Safe at Last"
 	invisible
