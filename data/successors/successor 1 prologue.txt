@@ -384,7 +384,7 @@ mission "Successors: First Contact 3"
 			label kijra-pet
 			action
 				set "Successors: kijra-pet"
-			`	Sieasej shivers a little, and choses their words slowly. "The Kijran are quite well-discussed in the history of our people. 'Twere favored pets and hunting beasts among... a few of our Predecessors in their time. The larva is the scale of a... hm, of thy head, though, give or take; with a delicate body and glassy skin, and wings of finest silk. But if it mates and lays its eggs, it gives itself some sundry molts till'ts larger and more fearsome to defend its nascent brood. The Kijran-Riitaa - the Kijra-'pets' - are the young of these, and the Kijran-Khora the dread adults. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't capture the young and nothing else."`
+			`	Sieasej shivers a little, and chooses their words slowly. "The Kijran are quite well-discussed in the history of our people. 'Twere favored pets and hunting beasts among... a few of our Predecessors in their time. The larva is the scale of a... hm, of thy head, though, give or take; with a delicate body and glassy skin, and wings of finest silk. But if it mates and lays its eggs, it gives itself some sundry molts till'ts larger and more fearsome to defend its nascent brood. The Kijran-Riitaa - the Kijra-'pets' - are the young of these, and the Kijran-Khora the dread adults. If thou art wise," Sieasej emphasizes this with a wave of color, "thou shoulds't capture the young and nothing else."`
 				goto questions
 			label knowledge
 			action
@@ -510,7 +510,7 @@ mission "Successors: First Contact 3"
 			action
 				set "Successors FC3: nonviolent kijra-pet capture"
 			`	You retrieve a morsel of food and offer it to the Kijra-pet, which sniffs it extensively before starting to eat, trilling quietly as it takes a couple of small bites. It tucks its wings behind its body like a dragonfly and unfurls two long feather-like antennae from its head, which join its legs in feeling your skin and clothing. Soon, it hops on your arm while sniffing at your pockets, cooing and probing deeper into the one where you kept the food. You begin the walk back to your ship as it continues to explore your pockets, careful to not frighten the animal with any sudden movements.`
-			`	"'Tis no surprise," Sieasej says, "that 'twere such valued pets if their demeanor is so docile and agreeable." They tuck their triangulation device away in a pocket of their own and slither alongside you you.`
+			`	"'Tis no surprise," Sieasej says, "that 'twere such valued pets if their demeanor is so docile and agreeable." They tuck their triangulation device away in a pocket of their own and slither alongside you.`
 				goto ambush
 			label "tranq friends"
 			`	While the animal is distracted, you take aim and fire a shot from your <tranq h2h> at it. It briefly jumps to escape but soon plummets to the ground in a puff of leaves and dusty feathers.`
