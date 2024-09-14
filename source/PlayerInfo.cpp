@@ -2777,10 +2777,10 @@ void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
 
 
 
-void PlayerInfo::DeselectShip(const shared_ptr<Ship> ship)
+void PlayerInfo::DeselectShip(const Ship *ship)
 {
 	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
-		if(it->lock() == ship)
+		if(it->lock().get() == ship)
 		{
 			selectedShips.erase(it);
 			return;
