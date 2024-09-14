@@ -1,0 +1,5 @@
+name "Vanilla Content"
+about `All the stuff in vanilla Endless Sky.`
+version 0.0.1-alpha
+authors
+	Ben

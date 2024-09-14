@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: The Embrace
+Upstream-Contact: Ben (https://github.com/alwaysblank)
+Source: https://github.com/alwaysblank/the-embrace
+
+Copyright: Ben (https://github.com/alwaysblank)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
