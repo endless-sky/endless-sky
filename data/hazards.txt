@@ -110,6 +110,26 @@ hazard "Neutron Star Magnetic Field"
 		"dropoff modifier" 0
 		"shield damage" 6
 
+hazard "Magnetar Magnetic Field"
+	"constant strength"
+	"range" 1800
+	weapon
+		"damage dropoff" 0 1800
+		"dropoff modifier" 0
+		"disruption damage" 0.5
+		"discharge damage" 1
+
+hazard "Magnetar Induction"
+	"constant strength"
+	"range" 900
+	weapon
+		"gravitational"
+		"damage dropoff" 0 900
+		"dropoff modifier" 0
+		"heat damage" 24
+		"slowing damage" 0.3
+		"hit force" 12
+
 
 
 hazard "Rulei Gravity Field"
@@ -124,3 +144,38 @@ hazard "Rulei Gravity Field"
 
 effect "gravity well"
 	"sound" "gravity well"
+
+
+
+hazard "Microwave Power Transmission"
+	"constant strength"
+	"range" 600
+	"environmental effect" "power beaming" 12
+	weapon
+		"damage dropoff" 0 600
+		"relative energy damage" -0.03
+		"target effect" "power beaming" 24
+
+effect "power beaming"
+	sprite "effect/spark"
+		"scale" 0.25
+		"frame rate" 5
+		"random start frame"
+		"rewind"
+	"lifetime" 30
+	"random lifetime" 30
+	"random angle" 180
+	"random velocity" 1
+	"random spin" 10
+	"random frame rate" 5
+
+
+
+hazard "Smoke Ring Drag"
+	range 2000 2600
+	"constant strength"
+	weapon
+		"shield damage" 0.6
+		"heat damage" 6
+		"relative heat damage" 0.006
+
