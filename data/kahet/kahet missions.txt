@@ -1004,7 +1004,7 @@ mission "Ka'het: Patir Mystery 8A"
 				accept
 	on stopover
 		dialog
-			`Dusk's coordinates indicate the border of a large canyon near the equator of <planet>. Unlike most cracks on the surface, this one shows signs of geological activity: you only narrowly avoid a stream ejecting from a geyser in the canyon as you pass overhead. As you land, a row of Remnant structures are clearly visible running parallel to the cliff.`
+			`Dusk's coordinates indicate the border of a large canyon near the equator of <stopovers>. Unlike most cracks on the surface, this one shows signs of geological activity: you only narrowly avoid a stream ejecting from a geyser in the canyon as you pass overhead. As you land, a row of Remnant structures are clearly visible running parallel to the cliff.`
 			`	The local crew assist in loading the modular laboratory split across three pallets; with them arrives a separate package, containing a surveillance satellite to be deployed near Patir to scan the Ka'sei from orbit.`
 	on abort
 		# Do nothing.
@@ -1807,7 +1807,7 @@ conversation "end of Patir 2 - on enter"
 conversation "end of Patir 2 - on complete"
 	`A large crowd has quickly gathered around your landing pad, eagerly waiting your arrival. After all this time between the stars, setting foot on a planet with an actual atmosphere is incredibly refreshing. Ignoring the cold weather for a moment, you take the biggest breath you can to make up for the past weeks of recycled atmosphere.`
 	`	Before you've even reached the end of the ramp, the people on the ground are already signing questions to you and the rest of the team about your journey. You do your best to reply, but in the overall mix of confusion and excitement you aren't sure anyone understood what you just said.`
-	`	Between the chaos, you hear a familiar voice calling your name: a few meters on your left, you notice Chilia with his arm raised and a large grin greeting you back. Moving across the crowd not without some difficulty, you follow him through a narrow door inside a cramped room right next to the pad.`
+	`	Between the chaos, you hear a familiar voice singing your name: a few meters on your left, you notice Chilia with his arm raised and a large grin greeting you back. Moving across the crowd not without some difficulty, you follow him through a narrow door inside a cramped room right next to the pad.`
 	`	"I prefer this spaceport when it is more hushed," he remarks with a sigh, "but after the past weeks some frenzy is understandable. We will have to make do with this warehouse for now." He invites you to take a seat. "So, <first>, would you tell me about your journey?"`
 	`	By the time you're done, more than an hour must have passed. Chilia paces aimlessly around the room, reflecting on your recounting of the events. As silence falls, you notice that calm seems to have returned on the pad as well.`
 	choice
