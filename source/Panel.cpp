@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
@@ -112,6 +112,12 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 // so, apply that zone's action and return true.
 bool Panel::ZoneClick(const Point &point)
 {
+	for(auto it = children.rbegin(); it != children.rend(); ++it)
+	{
+		if((*it)->ZoneClick(point))
+			return true;
+	}
+
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
 		{
@@ -132,6 +138,32 @@ bool Panel::ZoneClick(const Point &point)
 bool Panel::AllowsFastForward() const noexcept
 {
 	return false;
+}
+
+
+
+void Panel::AddOrRemove()
+{
+	for(auto &panel : childrenToAdd)
+		if(panel)
+			children.emplace_back(std::move(panel));
+	childrenToAdd.clear();
+
+	for(auto *panel : childrenToRemove)
+	{
+		for(auto it = children.begin(); it != children.end(); ++it)
+		{
+			if(it->get() == panel)
+			{
+				children.erase(it);
+				break;
+			}
+		}
+	}
+	childrenToRemove.clear();
+
+	for(auto &child : children)
+		child->AddOrRemove();
 }
 
 
@@ -182,6 +214,64 @@ bool Panel::Scroll(double dx, double dy)
 bool Panel::Release(int x, int y)
 {
 	return false;
+}
+
+
+
+bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
+}
+
+
+
+bool Panel::DoClick(int x, int y, int clicks)
+{
+	return EventVisit(&Panel::Click, x, y, clicks);
+}
+
+
+
+bool Panel::DoRClick(int x, int y)
+{
+	return EventVisit(&Panel::RClick, x, y);
+}
+
+
+
+bool Panel::DoHover(int x, int y)
+{
+	return EventVisit(&Panel::Hover, x, y);
+}
+
+
+
+bool Panel::DoDrag(double dx, double dy)
+{
+	return EventVisit(&Panel::Drag, dx, dy);
+}
+
+
+
+bool Panel::DoRelease(int x, int y)
+{
+	return EventVisit(&Panel::Release, x, y);
+}
+
+
+
+bool Panel::DoScroll(double dx, double dy)
+{
+	return EventVisit(&Panel::Scroll, dx, dy);
+}
+
+
+
+void Panel::DoDraw()
+{
+	Draw();
+	for(auto &child : children)
+		child->DoDraw();
 }
 
 
@@ -280,4 +370,18 @@ bool Panel::DoHelp(const string &name, bool force) const
 void Panel::SetUI(UI *ui)
 {
 	this->ui = ui;
+}
+
+
+
+void Panel::AddChild(const shared_ptr<Panel> &panel)
+{
+	childrenToAdd.push_back(panel);
+}
+
+
+
+void Panel::RemoveChild(const Panel *panel)
+{
+	childrenToRemove.push_back(panel);
 }

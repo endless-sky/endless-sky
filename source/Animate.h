@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ANIMATE_H_INCLUDED
-#define ANIMATE_H_INCLUDED
+#pragma once
 
 
 
@@ -41,6 +40,8 @@ public:
 	const T &Value() const;
 	// Synonym for Value().
 	operator const T &() const;
+	// Returns true if there are no more animation steps pending.
+	bool IsAnimationDone() const;
 
 	// Shortcut mathematical operators for convenience.
 	Animate &operator=(const T &v);
@@ -114,6 +115,14 @@ Animate<T>::operator const T &() const
 
 
 template <typename T>
+bool Animate<T>::IsAnimationDone() const
+{
+	return steps == 0;
+}
+
+
+
+template <typename T>
 Animate<T> &Animate<T>::operator=(const T &v)
 {
 	Set(v);
@@ -137,7 +146,3 @@ Animate<T> &Animate<T>::operator-=(const T &v)
 	Set(target - v);
 	return *this;
 }
-
-
-
-#endif

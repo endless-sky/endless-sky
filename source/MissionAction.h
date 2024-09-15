@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_ACTION_H_
-#define MISSION_ACTION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
@@ -62,7 +61,8 @@ public:
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
-	bool CanBeDone(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	// It can also not be done if the mission is failed, and teh trigger doesn't support it.
+	bool CanBeDone(const PlayerInfo &player, bool isFailed, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Check if this action requires this ship to exist in order to ever be completed.
 	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
@@ -98,6 +98,9 @@ private:
 
 
 private:
+	// Whether this action can be triggered after the mission has failed.
+	bool runsWhenFailed = false;
+
 	std::string trigger;
 	std::string system;
 	LocationFilter systemFilter;
@@ -116,7 +119,3 @@ private:
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;
 };
-
-
-
-#endif
