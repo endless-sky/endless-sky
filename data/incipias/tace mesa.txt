@@ -57,6 +57,7 @@ ship "Tace Mesa"
 		"solar collection" 200
 		"fuel capacity" 200
 
+		"inscrutable" 1
 		"heat dissipation" 0.47
 		"energy capacity" 1000
 
