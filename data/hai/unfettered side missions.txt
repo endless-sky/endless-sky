@@ -442,7 +442,7 @@ mission "Undeserved Anomalocaris"
 		attributes "unfettered"
 	to offer
 		has "ship model: Anomalocaris"
-		"reputation: Hai (Unfettered)" <= 0
+		"reputation: Hai (Unfettered)" < 0
 		not "Hai Legacy 2: active"
 	on offer
 		conversation
