@@ -738,11 +738,12 @@ government "Heliarch"
 	"hostile hail" "hostile heliarch"
 	"hostile disabled hail" "hostile disabled heliarch"
 	"attitude toward"
-		"Quarg" -.01
-		"Quarg (Hai)" -.01
-		"Quarg (Kor Efret)" -.01
-		"Quarg (Gegno)" -.01
 		"Coalition" 1
+		"Quarg" -.01
+		"Quarg (Gegno)" -.01
+		"Quarg (Hai)" -.01
+		"Quarg (Incipias)" -.01
+		"Quarg (Kor Efret)" -.01
 
 government "Heliarch Test Dummy"
 	"display name" "Heliarch"
