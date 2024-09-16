@@ -3570,7 +3570,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 		has "Remnant: Expanded Horizons Astral 1: done"
 	on offer
 		require
-		 	has "flagship attribute: jump drive"
+			has "flagship attribute: jump drive"
 			has "outfit (flagship installed): Research Laboratory"
 		conversation
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
