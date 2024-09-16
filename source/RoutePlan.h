@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DistanceMap;
-class Planet;
 class PlayerInfo;
 class Ship;
 class System;

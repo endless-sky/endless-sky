@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DistanceMap.h"
 
-#include <utility>
-
 using namespace std;
 
 
@@ -99,7 +97,7 @@ int RoutePlan::RequiredFuel() const
 // Get the list of jumps to take to get to the destination.
 vector<const System *> RoutePlan::Plan() const
 {
-	auto steps = vector<const System *>{};
+	vector<const System *> steps;
 	for(const auto &it : plan)
 		steps.push_back(it.first);
 	return steps;
@@ -110,7 +108,7 @@ vector<const System *> RoutePlan::Plan() const
 // How much fuel is needed to travel to this system along the route.
 vector<pair<const System *, int>> RoutePlan::FuelCosts() const
 {
-	auto steps = vector<pair<const System *, int>>{};
+	vector<pair<const System *, int>> steps;
 	for(const auto &it : plan)
 		steps.emplace_back(it.first, it.second.fuel);
 	return steps;

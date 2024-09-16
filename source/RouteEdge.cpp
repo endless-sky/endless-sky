@@ -30,10 +30,10 @@ RouteEdge::RouteEdge(const System *system)
 bool RouteEdge::operator<(const RouteEdge &other) const
 {
 	if(fuel != other.fuel)
-		return (fuel > other.fuel);
+		return fuel > other.fuel;
 
 	if(days != other.days)
-		return (days > other.days);
+		return days > other.days;
 
-	return (danger > other.danger);
+	return danger > other.danger;
 }

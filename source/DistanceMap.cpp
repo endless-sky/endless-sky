@@ -130,7 +130,7 @@ set<const System *> DistanceMap::Systems() const
 // Get the planned route from center to this system.
 vector<const System *> DistanceMap::Plan(const System &target) const
 {
-	auto plan = vector<const System *>{};
+	vector<const System *> plan;
 	if(!HasRoute(target))
 		return plan;
 
