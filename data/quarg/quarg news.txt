@@ -467,8 +467,7 @@ news "quarg anywhere"
 news "ringworld quarg"
 	location
 		attributes "quarg"
-		attributes "station"
-		not planet "Lagrange"
+		attributes "ringworld"
 	name
 		word
 			"Quarg"

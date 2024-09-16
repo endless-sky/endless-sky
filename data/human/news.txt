@@ -2392,3 +2392,237 @@ news "graffiti on spaceport wall"
 			"Because I could not stop for Death - He kindly stopped for me - The Shuttle held but just one bunk - Most Peacefully. / We slowly flew; He knew no haste - And I had put away - My labor and my leisure too, - For His Civility." # Based on Emily Dickinson's "Because I could not stop for Death"
 			"We passed the Carrier, where Soldiers strove - In Fighters; in the Void - We passed the Bays with Docked Drones - We passed the Hardened Hull. / Or rather; It passed Us - The Dew drew quivering and Chill - For decompressed, my spacesuit - My tether, torn away." # Based on Emily Dickinson's "Because I could not stop for Death"
 			"We paused before a House that seemed - A Cylinder to be launched - The Roof was scarcely visible - The Flag; covering around. / Since then, 'tis Centuries, and yet - Feels shorter than the Day - I first surmised the Torpedo Bay - Aimed toward Eternity." # Based on Emily Dickinson's "Because I could not stop for Death"
+
+news "high tension situation"
+	location
+		attributes "ccor"
+	name
+		word
+			"Standoff"
+	message
+		word
+			"On the corner "
+			"By a landing pad "
+			"At the entrance to the spaceport market, "
+		word
+			"some CCOR guerrillas are "
+			"there's a group of people in CCOR colors "
+		word
+			"distributing pamphlets"
+			"handing out literature"
+			"delivering aid"
+			"rallying against the local authorities"
+			"supporting local protests"
+		word
+			". "
+		word
+			"When "
+		word
+			"the planetary authorities "
+			"a gang of local pirates "
+		word
+			"accost "
+			"confront "
+		word
+			"them and demand that they "
+		word
+			"disperse"
+			"make themselves scarce"
+			"abandon their objective"
+		word
+			", "
+		word
+			"the guerrillas "
+			"the group "
+		word
+			"bluster at them "
+			"saber-rattle "
+		word
+			"in response"
+		word
+			", but they end up dispersing."
+			", and the two groups back down."
+
+phrase "pronoun"
+	word
+		"his"
+		"her"
+		"their"
+
+phrase "careless ends well"
+	word
+		"turns around to reenter the ship"
+	word
+		" as it's struck by a wave, nudging it close to the edge of the platform. The captain then moves the ship to a lowerable pad."
+		", moving it to a lowerable pad before it could be caught by a wave."
+
+phrase "careless ends poorly"
+	word
+		"ignores air traffic control and heads to the bar. The ship"
+		"argues with the controller about their landing. The ship"
+		"turns around to reenter the ship. However, it"
+	word
+		" is "
+	word
+		"struck "
+		"caught "
+	word
+		"by a wave and "
+	word
+		"swept into the sea."
+		"pushed off the pad."
+
+news "careless landing"
+	location
+		planet "Jakobsen"
+	name
+		word
+			"Ship landing"
+	message
+		word
+			"A Sparrow"
+			"An Enforcer"
+			"A Shuttle"
+			"A Heavy Shuttle"
+			"A Star Barge"
+			"A Berserker"
+			"A Fury"
+			"A Hawk"
+			"A Wasp"
+			"A Scrapper"
+		word
+			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${pronoun} vessel, but the captain "
+		phrase
+			"careless ends well"
+			"careless ends poorly"
+
+phrase "ccor song description"
+	word
+		"a song about "
+	word
+		"community and everyone pitching in where they can"
+		"the tyranny of a man name Bailey, until he was overthrown"
+		"the CCOR, praising their accomplishments"
+		"resistance and opposition to the current planetary administration"
+
+phrase "worker's demands"
+	word
+		"safety regulations"
+		"increased pay"
+		"restoration of the CCOR"
+		"justice against planetary security brutality"
+		"immediate repositioning of the spaceport"
+
+news "Discontent"
+	location
+		planet "Bailey"
+	name
+		word
+			"Conflict"
+	message
+		word
+			"Allegations that planetary authorities will no longer move the spaceport has provoked "
+		word
+			"large scale "
+			"mass "
+			"moderate "
+			"scattered "
+		word
+			"riots. "
+			"protests. %"
+		word
+			"The rioters are "
+		word
+			"singing ${ccor song description}. "
+			"chanting a list of their demands, including ${worker's demands}. "
+			"sizing up the planetary security forces. "
+		word
+			"Security eventually steps in, "
+		word
+			"but they're pushed back."
+			"but they're routed."
+			"and they disperse the demonstrators."
+			"and the demonstrators scatter but don't appear dissuaded."
+		replace
+			"%The rioters" "The protesters"
+			"%" ""
+
+news "clandestine"
+	location
+		planet "Alvorada"
+	name
+		word
+			"Observation"
+	message
+		word
+			"You can't escape the feeling of being watched. It"
+		word
+			"'s probably the security cameras; most of them are still running."
+			" feels like there are eyes around every corner."
+			"'s the pirates; a small number of them seem to be observing you."
+		word
+			" After some time of this "
+		word
+			"a silent alarm tells you that your should check on your ship. "
+			"you feel it may be wise to make sure no one's tampering with your ship. "
+		word
+			"You find "
+		word
+			"a lone pirate prodding the ship with rudimentary tools. "
+			"a few pirates watching but not apparently touching it. "
+			"no one there. The area around your ship is almost suspiciously devoid of people. "
+		word
+			"Whatever is going on, your ship appears unscathed."
+
+news "betelgeuse stolen ship advisory"
+	location
+		attributes "shipyard"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	name
+		word
+			"Message on an interactive screen"
+			"Audio broadcast"
+			"Televised message"
+	message
+		word
+			`"How do you know that your Betelgeuse ship`
+		word
+			" "
+		word
+			"has the time-tested quality that Betelgeuse is known for"
+			"will live up to your high expectations"
+			"is the genuine article"
+		word
+			"? "
+		word
+			"Ensure that when buying new you do so from a reputable dealer"
+			"Buy your ships direct from a Betelgeuse-affiliated shipyard"
+			"Give yourself peace of mind by purchasing your Betelgeuse ship from a reputable shipyard"
+			"Request the certificate of authenticity from the seller with your purchase"
+		word
+			". "
+		word
+			"These simple precautions will ensure that"
+		word
+			" you're not "
+		word
+			"duped into buying a"
+			"conned with a counterfeit"
+			"purchasing a"
+		word
+			" ship assembled from refuse by "
+			" ship assembled with inferior materials by "
+			" stolen ship from "
+			" hijacked ship from "
+			" patchy ship from "
+		word
+			"a gang of "
+			"a bunch of "
+			"some unsavory "
+			"some untrustworthy "
+		word
+			"pirates. "
+			"bootleggers. "
+			"criminals. "
+		word
+			`Buy a genuine Betelgeuse ship today!"`
