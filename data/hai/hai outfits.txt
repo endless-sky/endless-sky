@@ -17,13 +17,11 @@ outfit "Phantom Pallet"
 	thumbnail "outfit/phantom pallet"
 	"mass" 0.2
 	"unplunderable" 1
-	"energy consumption" 0.016667
-	"heat generation" 0.03334
-
+	"energy consumption" 0.015
+	"heat generation" 0.03
 	# Replacing 30% of your cargo bay with these triples your cargo scan time.
 	"cargo space" -1
 	"cargo scan opacity" 15
-
 	description `Hai holographic outfits are made up of a set of individual "holopads" which work together to create a larger scene. The Phantom Pallet is an Unfettered variation of these holopads, durable enough to survive a firefight and easily hidden under floors, in walls, or in ceilings while remaining undetected. An enterprising privateer might pad their cargo bay with these and project fake cargo as sensor ghosts, confusing scanners into scanning empty space instead of contraband; that extra time has been known to make the difference between seized cargo and delivering needed supplies.`
 
 outfit "Holovid Zone"
