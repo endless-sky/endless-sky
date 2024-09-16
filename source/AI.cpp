@@ -2888,8 +2888,11 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 			toDump -= dumped;
 		}
 
-	Messages::Add(ship->GetGovernment()->GetName() + " " + ship->Noun() + " \"" + ship->Name()
-		+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
+	const Government *government = ship->GetGovernment();
+	const string &language = government->Language();
+	if(language.empty() || player.Conditions().Get("language: " + language))
+		Messages::Add(government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
 
 	*threshold = (1. - health) + .1;
 }
