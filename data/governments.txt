@@ -322,7 +322,7 @@ government "Free Worlds"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Free Worlds that won't enter wormhole"
 	"display name" "Free Worlds"
@@ -343,7 +343,7 @@ government "Free Worlds that won't enter wormhole"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 
 government "Gegno"
@@ -796,7 +796,7 @@ government "Independent"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
-	raid "Large Southern Pirates"
+	raiders "Large Southern Pirates"
 
 # A government used for "Independent" ships that the player is allowed to kill without consequences.
 government "Independent (Killable)"
@@ -1112,7 +1112,7 @@ government "Neutral"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Parrot"
 	swizzle 2
@@ -1142,7 +1142,7 @@ government "Pirate"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Pirate (Devil-Run Gang)"
 	swizzle 6
@@ -1185,7 +1185,7 @@ government "Pirate (Rival)"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
-	raid "pirate raid"
+	raiders "pirates"
 
 color "governments: Pug" .99 .89 .70
 
@@ -1474,7 +1474,7 @@ government "Republic"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Republic Intelligence"
 	swizzle 0
@@ -1510,7 +1510,7 @@ government "Republic that won't enter wormhole"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Republic (Friendly)"
 	"display name" "Republic"
@@ -1625,7 +1625,7 @@ government "Syndicate"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile syndicate"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Syndicate (Extremist)"
 	swizzle 1
