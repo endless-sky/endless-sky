@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
 		{
 			if(checkImages)
 			{
-				Audio::Init(GameData::Sources());
+				Audio::LoadSounds(GameData::Sources());
 				while(GameData::GetProgress() < 1.)
 				{
 					queue.ProcessSyncTasks();
@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
 					// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
 					// e.g. due to capitalization errors or other typos.
 					SpriteSet::CheckReferences();
-					Audio::CheckReferences();
+					Audio::CheckReferences(true);
 				}
 			}
 

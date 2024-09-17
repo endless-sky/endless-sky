@@ -141,7 +141,28 @@ void Audio::Init(const vector<string> &sources)
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 
-	// Get all the sound files in the game data and all plugins.
+	LoadSounds(sources);
+
+	// Create the music-streaming threads.
+	currentTrack.reset(new Music());
+	previousTrack.reset(new Music());
+	alGenSources(1, &musicSource);
+	alGenBuffers(MUSIC_BUFFERS, musicBuffers);
+	for(unsigned buffer : musicBuffers)
+	{
+		// Queue up blocks of silence to start out with.
+		const vector<int16_t> &chunk = currentTrack->NextChunk();
+		alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
+	}
+	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
+	alSourcePlay(musicSource);
+}
+
+
+
+// Get all the sound files in the game data and all plugins.
+void Audio::LoadSounds(const vector<string> &sources)
+{
 	for(const string &source : sources)
 	{
 		string root = source + "sounds/";
@@ -162,27 +183,13 @@ void Audio::Init(const vector<string> &sources)
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
-
-	// Create the music-streaming threads.
-	currentTrack.reset(new Music());
-	previousTrack.reset(new Music());
-	alGenSources(1, &musicSource);
-	alGenBuffers(MUSIC_BUFFERS, musicBuffers);
-	for(unsigned buffer : musicBuffers)
-	{
-		// Queue up blocks of silence to start out with.
-		const vector<int16_t> &chunk = currentTrack->NextChunk();
-		alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
-	}
-	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
-	alSourcePlay(musicSource);
 }
 
 
 
-void Audio::CheckReferences()
+void Audio::CheckReferences(bool parseOnly)
 {
-	if(!isInitialized)
+	if(!isInitialized && !parseOnly)
 	{
 		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
 		return;
