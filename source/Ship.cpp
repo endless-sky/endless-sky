@@ -4254,24 +4254,8 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 
 void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 {
-	if(jettisoned.empty())
-		return;
-	// If this ship is currently being carried by another, transfer Flotsam to be jettisoned to the carrier.
-	if(!currentSystem)
-	{
-		shared_ptr<Ship> carrier = parent.lock();
-		if(!carrier)
-			return;
-		for(const auto &bay : carrier->Bays())
-		{
-			if(bay.ship.get() != this)
-				continue;
-			carrier->jettisoned.splice(carrier->jettisoned.end(), jettisoned);
-			break;
-		}
-	}
 	// Jettisoned cargo effects (only for ships in the current system).
-	else if(!forget)
+	if(!jettisoned.empty() && !forget)
 	{
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
