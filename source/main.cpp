@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
+	bool checkImages = false;
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
@@ -120,6 +121,8 @@ int main(int argc, char *argv[])
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
+		else if(arg == "--parse-images")
+			checkImages = true;
 		else if(arg == "--test" && *++it)
 			testToRunName = *it;
 		else if(arg == "--tests")
@@ -141,11 +144,11 @@ int main(int argc, char *argv[])
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
-			isConsoleOnly || (isTesting && !debugMode));
+			isConsoleOnly || checkImages || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
-		if(isConsoleOnly || isTesting)
+		if(isConsoleOnly || checkImages || isTesting)
 			dataFuture.wait();
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
@@ -166,8 +169,25 @@ int main(int argc, char *argv[])
 		}
 
 		PlayerInfo player;
-		if(loadOnly)
+		if(loadOnly || checkImages)
 		{
+			if(checkImages)
+			{
+				Audio::Init(GameData::Sources());
+				while(GameData::GetProgress() < 1.)
+				{
+					queue.ProcessSyncTasks();
+					std::this_thread::yield();
+				}
+				if(GameData::IsLoaded())
+				{
+					// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
+					// e.g. due to capitalization errors or other typos.
+					SpriteSet::CheckReferences();
+					Audio::CheckReferences();
+				}
+			}
+
 			// Set the game's initial internal state.
 			GameData::FinishLoading();
 
@@ -176,6 +196,8 @@ int main(int argc, char *argv[])
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
+			if(checkImages)
+				Audio::Quit();
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
