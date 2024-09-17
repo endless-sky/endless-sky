@@ -247,7 +247,9 @@ news "local news quiet"
 		not attributes "station" "uninhabited"
 	name
 		word
-			"Local News Report"
+			"Local news report"
+			"News report"
+			"News program"
 	message
 		word
 			"A broadcast quietly lists out the details of a recent weather control unit failure, which resulted in a brief evacuation but no injuries. A photo shows a few dozen Successors gathered together along a shoreline while several ships swarm in the distance."

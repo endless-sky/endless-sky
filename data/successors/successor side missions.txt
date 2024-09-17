@@ -119,7 +119,7 @@ mission "Successors: Predecessor Research 1"
 		conversation
 			branch has-deferred
 				has "Successors: Predecessor Research 1: deferred"
-			`As you land on the spaceport pad, you see a familiar face approaching; it is Sieasej, the Successor scholar who translated for you during your first contact with the Successors and assisted you during your mission for House Sioeora. They are moving towards you with a small group of similarly-dressed individuals, who you assume are also scholars of some sort.`
+			`As you land on the spaceport pad, you see a familiar face approaching; it is Sieasej, the Successor scholar who translated for you during your first contact with the Successors and assisted you during your mission for House Sioeora. They are moving towards you with a small group of similarly-dressed individuals, whom you assume are also scholars of some sort.`
 			`	"Captain! I delight to see thy return; I came here with haste as soon as I saw that thou was to arrive!"`
 			`	You greet Sieasej, and they explain that the scholars with them are researchers of the Predecessors seeking transport on a wormhole-traveling vessel.`
 			`	"The ship modifications necessary are woefully expensive," one of the researchers continues. "Were we to petition Sioeora and the Academy to offer us a properly-equipped vessel, we might be forced to wait for years, a pace that's far too slow for our research. If thou were't to transport us instead, even for a short time, it would advance our study greatly."`

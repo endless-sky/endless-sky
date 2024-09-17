@@ -25,7 +25,7 @@ phrase "successor friendly hail" # Wary hails
 	word
 		" / "
 	word
-		"I note thy presence but remain thee wary."
+		"I note thy presence but remain'f thee wary."
 		"If corrupted be thy soul, then prithee keep thy distance."
 		"If thou art friend to me, so I shall be to thee."
 		"What is thy goal within these stars? To wander in delight?"
@@ -118,7 +118,7 @@ phrase "successor hostile hail"
 		"So sorry thou shalt meet a violent end."
 		"The Houses will unburden thee of life."
 		"Prepare to shuffle off thy mortal coil."
-		"The gentle hand of Death close up thy eye."
+		"The gentle hand of Death doth close thine eye."
 		"No satisfaction lives in our reprisal."
 
 
@@ -173,11 +173,11 @@ phrase "high houses friendly hail"
 
 phrase "high houses friendly hail"
 	word
-		"By noble lineage do we exalt us all"
-		"With joyful strength and honest might we fly"
-		"No evil shall impede our noble goal"
+		"By noble lineage do we exalt us all,"
+		"With joyful strength and honest might we fly,"
+		"No evil shall impede our noble goal:"
 		"Our goal's a true and simple thing:"
-		"With watching eyes and gallant hearts"
+		"With watching eyes and gallant hearts,"
 	word
 		" / "
 	word
@@ -239,9 +239,9 @@ phrase "high houses hostile disabled hail" 2
 phrase "high houses hostile disabled hail"
 	word
 		"From void's heart, we stab at thee! / For the good of hate, we spit our last breaths at thee!" # Moby-Dick
-		"Cowards die many times before their deaths, / But the valiant never taste of death but once!" # Julius Caesar, Act 2, scene 2
-		"Woe, destruction, ruin and decay; / The worst is death, and death will have its day." # Richard II, Act 3, scene 2
-		"Cur, keep back, or else embrace thy death; / Come not within the measure of my wrath." # The Two Gentlemen of Verona, Act 5, scene 4
+		"Cowards die many times before their deaths, / But the valiant never taste of death but once!" # Julius Caesar, Act 2, Scene 2
+		"Woe, destruction, ruin and decay; / The worst is death, and death will have its day." # Richard II, Act 3, Scene 2
+		"Cur, keep back, or else embrace thy death; / Come not within the measure of my wrath." # The Two Gentlemen of Verona, Act 5, Scene 4
 
 # High Houses: Old Houses
 
@@ -391,4 +391,4 @@ phrase "people's houses hostile hail"
 		"I hope thy pain is great and everlasting."
 		"Allow me to unburden thee of mortality."
 		"Prepare to shuffle off thy mortal coil."
-		"The sudden hand of Death close up thine eye."
+		"The sudden hand of Death shalt close thine eye."
