@@ -232,3 +232,6 @@ jobs:
     - name: Parse Integration Test Data
       run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
       shell: bash
+    - name: Parse All Resources
+      run: "'./Endless Sky.exe' --parse-images"
+      shell: bash
