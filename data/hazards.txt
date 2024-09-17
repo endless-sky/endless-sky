@@ -126,6 +126,7 @@ effect "gravity well"
 	"sound" "gravity well"
 
 
+
 hazard "Predecessors Base Spatial Decay"
 	"duration" 1 200
 	"strength" 0.25 1.75
