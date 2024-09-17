@@ -20,7 +20,7 @@ phrase "successor friendly hail" # Wary hails
 		"Art thou the fiendish creature that hails from distant lands?"
 		"Art thou the strange-ish traveler that hails from distant stars?"
 		"Art thou the alien visitor within our noble lands?"
-		"Art thou the creature'f history returned to seek the present?"
+		"Art thou the creature'f history, returned to seek the present?"
 		"Thy ship and countenance seem strange-ish and bizarre,"
 	word
 		" / "
@@ -56,6 +56,7 @@ phrase "successor friendly hail" # Brag hails 1
 		"The dark of space is lightened by its presence."
 		"There's little point in taking off without it."
 
+
 phrase "successor friendly hail" # Job hails
 	word
 		"My "
@@ -72,13 +73,14 @@ phrase "successor friendly hail" # Job hails
 	phrase
 		"successor occupation"
 	word
-		" / "
+		", / "
 	word
 		"With these long days, I wish that they were me."
 		"A noble job, and yet not one for me."
 		"It's not my place to give critique, and yet..."
 		"I hope that I will see them soon again."
 		"Hast thou met them? Do they carry any news?"
+
 
 phrase "successor friendly hail" # Conspiracy hails
 	word
@@ -162,7 +164,7 @@ phrase "high houses friendly hail"
 		`"Honored guest," within our skies thou art`
 		`"Regal sojourner," thy name shall be with us`
 	word
-		" / "
+		", / "
 	word
 		"So that thou might enjoy our pleasant worlds."
 		"So that thou might enjoy our verdant worlds."
@@ -197,8 +199,8 @@ phrase "high houses hostile hail"
 	word
 		" / "
 	word
-		"Our duty shall relieve thee of thy life."
-		"May thou in death find peace thou lacked in life."
+		"Our duty shalt relieve thee of thy life."
+		"May thou in death find the peace thou lacked in life."
 		"May thy death be valorous and quick."
 		"May, in death, thou recognize thy wrongs."
 		"Enlightened now, we are to thy malignity."
@@ -333,7 +335,7 @@ phrase "new houses friendly hail" 2
 
 phrase "kaatrij friendly hail"
 	word
-		"On gossamer wings with fang'ed claws / our noble house flies unhindered."
+		"On gossamer wings with fang'ed claws / Our noble house flies unhindered."
 		"In our diversity we are united / and in our unity we find our strength."
 		"Remember the fallen."
 		"We endure, together."
@@ -347,7 +349,7 @@ phrase "kaatrij friendly hail"
 
 phrase "seineq friendly hail"
 	word
-		"For ten thousand years / for ten thousand more!"
+		"For ten thousand years / For ten thousand more!"
 		"Our alliance shall endure."
 
 

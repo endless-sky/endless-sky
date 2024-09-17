@@ -25,6 +25,9 @@ news "high houses emissary"
 			"Emissary of a High House"
 			"Official of a High House"
 			"Agent of a High House"
+			"High House Emissary"
+			"High House Offical"
+			"High House Agent"
 	message
 		word
 			`"`
@@ -85,6 +88,7 @@ news "successor student"
 		not attributes "uninhabited"
 	name
 		word
+			"Student"
 			"Successor student"
 	message
 		word
@@ -94,7 +98,7 @@ news "successor student"
 			"Hath I forgot my geographic terms?"
 			"Hath I forgot my chemical reagents?"
 			"Hyperspace Mechanics hurts my brain,"
-			"Predecessor His'try's is a bore,"
+			"Predecessor His'try is a bore,"
 			"Plasma Flow Dynamics is a drag,"
 			"Particle Kinetics is a pain,"
 		word
@@ -150,14 +154,14 @@ news "successor merchant"
 			"captain, "
 			"ranger, "
 		word
-			"but alas "
+			"but alas, "
 		word
 			"now's planetside I shall remain."
 			"'twas never brave enough to stay."
 			"I was a space sick little knave."
 			"it's down at earth I feel at home."
 			"it's selling items that's for me."
-			"my family needed me return."
+			"my family needed my return."
 			"possessed of talent I was not."
 		word
 			`"`
@@ -200,12 +204,12 @@ news "high houses propaganda"
 		word
 			"High House broadcast"
 			"Government broadcast"
-			"Spaceport video screen"
+			"Video screen"
 			"Official broadcast"
 	message
 		word
 			"An advertisement shows a Successor warship performing a variety of deftly-executed maneuvers before encouraging the viewer to enlist in the armed forces of one of the High Houses."
-			"An advertisement plays showing a group of Successors standing close together against a factory backdrop, their skins all tinted a happy green. It is followed by a voiceover noting that wages have been recently increased."
+			"An advertisement plays, showing a group of Successors standing close together against a factory backdrop, their skins all tinted a happy green. It is followed by a voiceover noting that wages have been recently increased."
 			"A short video plays showing the construction of a new spaceport on the surface of a prospering Successor planet. Several warships of the High Houses painted in ceremonial livery pass across the screen, showing clearly who is to be thanked."
 			`A proud-looking Successor naval officer stands before an imposing-looking warship: "Enlist!" the caption reads. "See the stars today!"`
 			`Several short vignettes play: a group of Successors unearthing ruins, the inside of a laboratory, a calm pastoral scene. A voiceover speaks: "Uncovering our heritage; bettering our lives." Meticulously-dressed officials of the High Houses are present in each situation, presented as supportive overseers.`
@@ -220,7 +224,7 @@ news "successor advertisements"
 	name
 		word
 			"Advertisement" 2
-			"Spaceport video screen"
+			"Video screen"
 			"Commercial advertisement"
 	message
 		word
