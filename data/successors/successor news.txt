@@ -26,7 +26,7 @@ news "high houses emissary"
 			"Official of a High House"
 			"Agent of a High House"
 			"High House Emissary"
-			"High House Offical"
+			"High House Official"
 			"High House Agent"
 	message
 		word
