@@ -377,7 +377,7 @@ string Format::PlayTime(double timeVal)
 
 
 
-// Cnovert an ammo count into a short string for use in the ammo display.
+// Convert an ammo count into a short string for use in the ammo display.
 // Only the absolute value of a negative number is considered.
 string Format::AmmoCount(int64_t value)
 {
