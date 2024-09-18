@@ -115,7 +115,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 			continue;
 
 		string amount = Format::AmmoCount(it.second);
-		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
+		Point textPos = pos + textOff + Point(5. - font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 }
