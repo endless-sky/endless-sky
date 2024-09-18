@@ -234,6 +234,7 @@ private:
 	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
+	bool targetWasInactive = false;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
 	std::vector<Outline> outlines;
