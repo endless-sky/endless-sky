@@ -46,6 +46,9 @@ public:
 	// Get the next audio buffer to play.
 	const std::vector<int16_t> &NextChunk();
 
+	bool IsFinished() const;
+	void Finish();
+
 
 private:
 	// This is the entry point for the decoding thread.
@@ -67,6 +70,7 @@ private:
 	FILE *nextFile = nullptr;
 	bool hasNewFile = false;
 	bool done = false;
+	bool finished = true;
 
 	std::thread thread;
 	std::mutex decodeMutex;

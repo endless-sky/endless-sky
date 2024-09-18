@@ -38,12 +38,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "audio/Playlist.h"
 #include "Ship.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "test/Test.h"
 #include "test/TestData.h"
 #include "TextReplacements.h"
+#include "audio/Track.h"
 #include "Trade.h"
 #include "Wormhole.h"
 
@@ -117,10 +119,12 @@ private:
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
+	Set<Playlist> playlists;
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
+	Set<Track> tracks;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
