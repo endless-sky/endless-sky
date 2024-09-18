@@ -543,7 +543,7 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
-	// Helper function for jettisonning flotsam.
+	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 
