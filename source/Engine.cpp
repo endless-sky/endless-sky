@@ -837,8 +837,18 @@ void Engine::Step(bool isActive)
 		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
+		// Only update the "active" state shown for the target if it is
+		// in the current system and targetable, or owned by the player.
 		int targetType = RadarType(*target, step);
-		info.SetOutlineColor(GetTargetOutlineColor(targetType));
+		if(targetType == Radar::BLINK)
+			info.SetOutlineColor(GetTargetOutlineColor(targetType));
+		else if((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours())
+			targetWasInactive = targetType == Radar::INACTIVE;
+		if(!targetWasInactive)
+			info.SetOutlineColor(GetTargetOutlineColor(targetType));
+		else
+			info.SetOutlineColor(GetTargetOutlineColor(Radar::INACTIVE));
+
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
 			info.SetBar("target shields", target->Shields());
