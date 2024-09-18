@@ -14,7 +14,7 @@
 mission "Remnant: Cognizance 1"
 	minor
 	name "Follow-up Observations"
-	description "Plume would like you to use a 'gaslined' ship to do a follow-up visit to the planets in Nenia."
+	description `Plume would like you to use a "gaslined" ship to do a follow-up visit to the planets in Nenia.`
 	source "Aventine"
 	stopover "Nasqueron"
 	stopover "Slylandro"
