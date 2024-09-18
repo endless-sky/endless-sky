@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
@@ -113,7 +114,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 		if(it.second < 0)
 			continue;
 
-		string amount = to_string(it.second);
+		string amount = Format::AmmoCount(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
