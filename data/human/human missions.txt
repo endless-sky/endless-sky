@@ -7491,7 +7491,7 @@ mission "Syndicate Business 1"
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <waypoints>, your sensors detect a pirate Vanguard, and a derelict escape pod aimlessly drifting near the coordinates in the original message. Your ship is immediately hailed, and the pirate opens communication.`
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard and a derelict escape pod aimlessly drifting near the coordinates in the original message. Your ship is immediately hailed, and the pirate opens communication.`
 			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
@@ -7538,7 +7538,7 @@ mission "Syndicate Business 1"
 		event "end of independent violence"
 		conversation
 			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the escape pod. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
-			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase a perpetual bond of Megaparsec Inc I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
+			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc. perpetual bond. To purchase a perpetual bond of Megaparsec Inc. I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
@@ -7640,7 +7640,7 @@ mission "Syndicate Business 2"
 			`You visit the office address Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
 			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are 20% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
-				`	"Sure, here's the 1 million credits."`
+				`	"Sure, here's the one million credits."`
 					goto doit
 				`	"No, I won't become an investor."`
 					decline
@@ -7653,11 +7653,11 @@ mission "Syndicate Business 2"
 		conversation
 			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled out, and after scanning your fingerprint, retinas, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places one more set of documents on the table and taps the stack of papers.`
 			`	"New regulations dictate that we inform you that the proceeds of this bond may be used in high risk activities such as strip mining, clearing endangered habitats, or doing business on worlds with alleged human rights violations. All boilerplate language, of course, but you have to disclose every possibility these days." He shrugs.`
-			`	He then taps the documents the documents again and says, "This is your final decision and set of paperwork. I would also like to disclose that your initial deposit covering the full 1 million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
+			`	He then taps the documents the documents again and says, "This is your final decision and set of paperwork. I would also like to disclose that your initial deposit covering the full one million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
 			choice
 				`	"Of course."`
 					goto high
-				`	"I'm backing out, I can't ethically invest in this."`
+				`	"I'm backing out. I can't ethically invest in this."`
 			`	Howard nods. "I get it, ethics are important and I respect your decision. Unfortunately, the initial deposit is non-refundable, nothing I can do there. Best of luck finding another investment that suits you."`
 				decline
 			label high
