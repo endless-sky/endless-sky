@@ -7568,7 +7568,7 @@ mission "Syndicate Business 1"
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
 			action
 				payment 91951
-				set "mean to Howard"
+				set "syndicate business: mean to Howard"
 
 event "start of independent violence"
 	government "Independent (Killable)"
