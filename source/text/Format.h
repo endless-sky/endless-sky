@@ -47,6 +47,9 @@ public:
 	static std::string CargoString(double amount, const std::string &cargo);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
+	// Cnovert an ammo count into a short string for use in the ammo display.
+	// Only the absolute value of a negative number is considered.
+	static std::string AmmoCount(int64_t value);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
