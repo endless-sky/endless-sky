@@ -403,7 +403,6 @@ string Format::AmmoCount(int64_t value)
 	for(size_t i = 0; i < SUFFIX.size(); ++i)
 		if(absolute >= THRESHOLD[i])
 		{
-			//result += SUFFIX[i];
 			int head = absolute / THRESHOLD[i];
 			int tail = absolute % THRESHOLD[i];
 			do {
