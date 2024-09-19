@@ -404,9 +404,9 @@ string Format::AmmoCount(int64_t value)
 		if(absolute >= THRESHOLD[i])
 		{
 			int head = absolute / THRESHOLD[i];
-			int tail = absolute % THRESHOLD[i];
+			int64_t tail = absolute % THRESHOLD[i];
 			do {
-				result += '0' + (head % 10);
+				result += '0' + head % 10;
 				head /= 10;
 			} while(head > 0);
 			reverse(result.begin(), result.end());
@@ -415,13 +415,13 @@ string Format::AmmoCount(int64_t value)
 				case 1:
 					tail /= THRESHOLD[i] / 100;
 					result += '.';
-					result += ('0' + (tail / 10));
-					result += ('0' + (tail % 10));
+					result += '0' + tail / 10;
+					result += '0' + tail % 10;
 					break;
 				case 2:
 					tail /= THRESHOLD[i] / 10;
 					result += '.';
-					result += ('0' + tail);
+					result += '0' + tail;
 					break;
 				default:
 					break;
