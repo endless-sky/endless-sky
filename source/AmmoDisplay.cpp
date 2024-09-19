@@ -91,7 +91,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 	auto pos = Point(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
 	// These offsets are relative to that corner.
 	auto boxOff = Point(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
-	auto textOff = Point(ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
+	auto textOff = Point(5. + ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
 	auto iconOff = Point(.5 * ammoIconHeight, .5 * ammoIconHeight);
 	const double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
 	for(const auto &it : ammo)
@@ -115,7 +115,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 			continue;
 
 		string amount = Format::AmmoCount(it.second);
-		Point textPos = pos + textOff + Point(5. - font.Width(amount), 0.);
+		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 }
