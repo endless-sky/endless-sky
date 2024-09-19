@@ -844,10 +844,10 @@ void Engine::Step(bool isActive)
 			info.SetOutlineColor(GetTargetOutlineColor(targetType));
 		else if((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours())
 			targetWasInactive = targetType == Radar::INACTIVE;
-		if(!targetWasInactive)
-			info.SetOutlineColor(GetTargetOutlineColor(targetType));
-		else
+		if(targetWasInactive)
 			info.SetOutlineColor(GetTargetOutlineColor(Radar::INACTIVE));
+		else
+			info.SetOutlineColor(GetTargetOutlineColor(targetType));
 
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
