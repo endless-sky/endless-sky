@@ -3865,6 +3865,12 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			for(shared_ptr<Flotsam> &it : jettisoned)
 				it->Place(*this);
 			flotsam.splice(flotsam.end(), jettisoned);
+			for(auto &it : jettisonedFromBay)
+			{
+				it.first->Place(*this, it.second);
+				flotsam.emplace_back(it.first);
+			}
+			jettisonedFromBay.clear();
 
 			// Any ships that failed to launch from this ship are destroyed.
 			for(Bay &bay : bays)
@@ -4255,11 +4261,21 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 
 void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 {
+	if(forget)
+		return;
 	// Jettisoned cargo effects (only for ships in the current system).
-	if(!jettisoned.empty() && !forget)
+	if(!jettisoned.empty())
 	{
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
+		return;
+	}
+	if(!jettisonedFromBay.empty())
+	{
+		auto &it = jettisonedFromBay.front();
+		it.first->Place(*this, it.second);
+		flotsam.emplace_back(it.first);
+		jettisonedFromBay.pop_front();
 	}
 }
 
