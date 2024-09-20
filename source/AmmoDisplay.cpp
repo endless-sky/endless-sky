@@ -24,8 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 
 using namespace std;
@@ -39,9 +39,16 @@ AmmoDisplay::AmmoDisplay(PlayerInfo &player)
 
 
 
-void AmmoDisplay::Update(const Ship &flagship)
+void AmmoDisplay::Reset()
 {
 	ammo.clear();
+}
+
+
+
+void AmmoDisplay::Update(const Ship &flagship)
+{
+	Reset();
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
@@ -144,4 +151,3 @@ bool AmmoDisplay::Click(const Rectangle &clickBox)
 		}
 	return reselected;
 }
-

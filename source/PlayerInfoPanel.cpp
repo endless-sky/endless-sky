@@ -59,7 +59,7 @@ namespace {
 
 		if(otherCount > 0 && maxCount > 0)
 		{
-			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " Others)";
+			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " others)";
 			while(otherCount--)
 			{
 				list[maxCount - 1].first += list.back().first;
@@ -361,7 +361,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			}
 			else if(shift)
 			{
-				if(panelState.AllSelected().count(selectedIndex))
+				if(panelState.AllSelected().contains(selectedIndex))
 					panelState.Deselect(panelState.SelectedIndex());
 				if(isValidIndex)
 					panelState.SetSelectedIndex(selectedIndex);
@@ -522,7 +522,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	if(panelState.CanEdit() && (shift || control || clicks < 2))
 	{
 		// If the control+click was on an already selected ship, deselect it.
-		if(control && panelState.AllSelected().count(hoverIndex))
+		if(control && panelState.AllSelected().contains(hoverIndex))
 			panelState.Deselect(hoverIndex);
 		else
 		{
@@ -536,7 +536,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 				panelState.SelectMany(start, end + 1);
 				panelState.SetSelectedIndex(hoverIndex);
 			}
-			else if(panelState.AllSelected().count(hoverIndex))
+			else if(panelState.AllSelected().contains(hoverIndex))
 			{
 				// If the click is on an already selected line, start dragging
 				// but do not change the selection.
@@ -664,13 +664,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	vector<pair<int64_t, string>> salary;
 	for(const auto &it : player.Accounts().SalariesIncome())
 		salary.emplace_back(it.second, it.first);
-	sort(salary.begin(), salary.end());
+	sort(salary.begin(), salary.end(), std::greater<>());
 	DrawList(salary, table, "salary:", 4);
 
 	vector<pair<int64_t, string>> tribute;
 	for(const auto &it : player.GetTribute())
 		tribute.emplace_back(it.second, it.first->TrueName());
-	sort(tribute.begin(), tribute.end());
+	sort(tribute.begin(), tribute.end(), std::greater<>());
 	DrawList(tribute, table, "tribute:", 4);
 
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
@@ -741,7 +741,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// Check if this row is selected.
 		if(panelState.SelectedIndex() == index)
 			table.DrawHighlight(selectedBack);
-		else if(panelState.AllSelected().count(index))
+		else if(panelState.AllSelected().contains(index))
 			table.DrawHighlight(back);
 
 		// Find out if the mouse is hovering over the ship

@@ -8,10 +8,11 @@ if(NOT MSVC)
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
+find_package(Catch2 CONFIG REQUIRED)
+
 # Every source file (and header file) should be listed here.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
-	unit/include/catch.hpp
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
 	unit/include/output-capture.hpp
@@ -26,6 +27,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
+	unit/src/test_datawriter.cpp
 	unit/src/test_dictionary.cpp
 	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
@@ -38,6 +40,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_scrollVar.cpp
 	unit/src/test_set.cpp
 	unit/src/test_ship.cpp
+	unit/src/test_stringInterner.cpp
 	unit/src/test_template.txt
 	unit/src/test_weightedList.cpp
 	unit/src/text/test_alignment.cpp
@@ -71,7 +74,11 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
+target_link_libraries(EndlessSkyTests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
+
+target_compile_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
+target_link_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
