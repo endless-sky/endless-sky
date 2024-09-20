@@ -2543,7 +2543,7 @@ planet Kasi-Osolaa-Sossa
 	attributes quiet successor
 	landscape land/myrabella8
 	description `By far the most isolated and remote planet in Successor space, Kasi-Osolaa-Sossa is populated mainly by those who enjoy the peace and quiet that comes with solitude. For the highly familial Successors, this is a relatively small proportion, and consequently the planet only supports around twenty thousand inhabitants, though it has the highest population growth of any planet in Successor space. Most agree that this is a result of disinterest in the sometimes-painful political division of the larger Successor worlds, but it is commonly joked that it is instead a consequence of supposed especially amorous tendencies among the local population.`
-	spaceport `The mountainside spaceport here is tiny and almost deserted, and the Successors who guide your ship to its dirt landing pad seem to disappear entirely, immediately after you touch down. While there are a few small shops and trading posts scattered around the area, none of them make any effort to get your attention, and a few are even completely automated, with nothing more than a few inoffensively blinking lights indicating that they are functional and open for business.`
+	spaceport `The mountainside spaceport here is tiny and almost deserted, and the Successors who guide your ship to its dirt landing pad seem to disappear entirely immediately after you touch down. While there are a few small shops and trading posts scattered around the area, none of them make any effort to get your attention, and a few are even completely automated, with nothing more than a few inoffensively blinking lights indicating that they are functional and open for business.`
 	government Successor
 	outfitter "Successor Basics"
 	"required reputation" 3
@@ -2600,7 +2600,7 @@ planet Khora-Vasa-Reyyaa
 	landscape land/nasa2
 	description `Much of Successor technology relies on advanced composite materials, from their extremely durable ship hulls to their high-performance kinetic weapons. This planet contains rich natural deposits of the raw materials required for the manufacturing of their composites, and consequently, it serves as both a center for the mining of these materials and as the industrial core of Successor space.`
 	description `	Because Khora-Vasa-Reyyaa falls within the sphere of influence of the Old Houses, many in the New Houses are very concerned about the power imbalance this creates, and several treaties are in place ensuring fair and open exports from the planet.`
-	spaceport `The spaceport here is perhaps the most militarized of any you have visited in Successor space. Large industrial buildings rise up around the landing pads, casting them into deep shadow, and several small Successor warships stand ready on fast-launch pads, ready to enter orbit at a moment's notice. You pass through a security checkpoint on your way into the spaceport proper, and while the security officers have clearly been briefed to expect alien visitors, they still regard you with some degree of scrutiny.`
+	spaceport `The spaceport here is perhaps the most militarized of any you have visited in Successor space. Large industrial buildings rise up around the landing pads, casting them into deep shadow, and several small Successor warships stand ready on fast-launch pads, prepared to enter orbit at a moment's notice. You pass through a security checkpoint on your way into the spaceport proper, and while the security officers have clearly been briefed to expect alien visitors, they still regard you with some degree of scrutiny.`
 	spaceport `	The trading posts, outfitters, and shipyard inside are all quite impressive, and the Successors you meet are all very curt and professional, including the merchant captains.`
 	government "House Chydiyi"
 	shipyard "High Houses Heavy"
@@ -2979,12 +2979,12 @@ planet Maspa-Viir-Kella
 	government Uninhabited
 
 planet Mavra-Sol-Kvel
-	attributes wealthy successor
+	attributes successor wealthy
 	landscape land/fields14
 	description `This green and well-populated moon enjoys a temperate climate and spectacular vistas, both of its own surface and of the gas giant it orbits. The gravity here is quite low, and the Successors you see here tower over you even more noticeably than on other worlds. There are several cities on the surface, most along the equator.`
 		to display
 			not "known to the successors"
-	description `Shielded by the persistent asteroid impacts of this system by its parent gas giant, Mavra-Sol-Kvel enjoys a temperate climate and spectacular vistas. The low gravity here is greatly appreciated by the Successors, and consequently the moon supports a sizable population despite its small size, most of whom live in several cities along the equator. It also allows for a number of towering mountain ranges, many containing cliffs and canyons several kilometers high that are frequently visited by tourists and thrill-seeker pilots alike.`
+	description `Shielded from the persistent asteroid impacts of this system by its parent gas giant, Mavra-Sol-Kvel enjoys a temperate climate and spectacular vistas. The low gravity here is greatly appreciated by the Successors, and consequently the moon supports a substantial population despite its small size, most of whom live in several cities along the equator. It also allows for a number of towering mountain ranges, many containing cliffs and canyons several kilometers high that are frequently visited by tourists and thrill-seeker pilots alike.`
 		to display
 			has "known to the successors"
 	spaceport `The spaceport is large but efficient, and plastered in bright and friendly colors, much like the landscape surrounding it. Most of the buildings are organic in shape, arcing and bubbling from place to place like seafoam, and despite the fanciful design, they also appear to be servicing a large volume of travellers, merchants, and military personnel, with color-coded lines leading to different areas.`
@@ -3190,6 +3190,7 @@ planet Mosaa-Oa-Vyret
 			not "known to the successors"
 	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
 		to display
+			not "known to the successors"
 	spaceport `The spaceport is large and busy, situated at the foot of a mountain, and seems more haphazard than most Successor spaceports you've seen. Small shops and tents sit abreast advertisements for the latest generation of Pulse Laser and statues of important figures in the high houses, many of which seem weather-worn and unmaintained.`
 		to display
 			has "known to the successors"
@@ -3236,7 +3237,7 @@ planet Myiara-Sola-Tej
 	description `This abandoned station appears to remain technically habitable, if one doesn't mind breathing the poorly-recycled and dusty air.`
 		to display
 			not "known to the successors"
-	description `This industrial station was constructed during the arrival of the New Houses to exploit the mineral wealth of this system, but was abandoned when richer and more accessible mineral deposits were found planetside. It still remains technically habitable, but none of the High Houses have had an interest in refurbishing it since cheaper and easier industrial and habitation projects are consistently available.`
+	description `This industrial station was constructed during the arrival of the New Houses to exploit the mineral wealth of this system, but was abandoned when richer and more accessible mineral deposits were found planetside. It still remains technically habitable, but none of the High Houses have had an interest in refurbishing it, since cheaper and easier industrial and habitation projects are consistently available.`
 		to display
 			has "known to the successors"
 	government Uninhabited
@@ -3705,11 +3706,11 @@ planet "Oup Je"
 	security 0
 
 planet O-Vasa-Oa
-	attributes wealthy successor urban
+	attributes successor urban wealthy
 	landscape land/hills4
 	description `This binary planet is the collective seat of what are known as the New Houses, the noble families who traveled through the wormhole to this region of space during the collapse of the Predecessors' empire. Many within the New Houses object to that moniker, arguing that their family lines are in fact the more extensive and noble and that they should be categorized by that, rather than their time of arrival.`
 	description `	Despite population surges in recent years, O-Vasa-Oa remains relatively sparsely populated. The tidal forces from its binary partner create high winds that sweep across the landscape, making settlement challenging in undeveloped areas, and expensive even in those that have the infrastructure to support it.`
-	spaceport `The spaceport is built right on top of a large shipyard, allowing visitors to look on at the impressive manufacturing apparatus of the New Houses while going about their business. Despite its relatively small size, the spaceport is very busy, with ships constantly launching and landing and a general air of haste among all the Successors you see.`
+	spaceport `The spaceport is built right beside a large shipyard, allowing visitors to look on at the impressive manufacturing apparatus of the New Houses while going about their business. Despite its relatively small size, the spaceport is very busy, with ships constantly launching and landing and a general air of haste among all the Successors you see.`
 	government "New Houses"
 	shipyard "New Houses Light"
 	shipyard "High Houses Heavy"
@@ -3955,10 +3956,10 @@ planet Quirinal
 planet Raaqa-Kvelq-Ryuit
 	attributes education successor urban
 	landscape land/fields6
-	description `This planet seems to host a larger population than any other you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, and both terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
+	description `This planet seems to host a larger population than any other world you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, and both terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
 		to display
 			not "known to the successors"
-	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over five hundred million inhabitants, the largest of any planet in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
+	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over five hundred million inhabitants, the largest of any world in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
 		to display
 			has "known to the successors"
 	spaceport `The spaceport is located right on the equator and is a massive, sprawling affair with several enormous racks of cargo containers stretching out into the distance, clearly awaiting transport on soon-arriving freighters. The ground is wet from a sprinkler system that maintains a constant thin film of water all throughout the spaceport's exterior. The Successors, lacking shoes, must appreciate this for reducing friction between their arms and the relatively rough and uncomfortable concrete.`
@@ -3972,6 +3973,7 @@ planet Raaqa-Puan-Uuoru
 	description `After the collapse, many Successors found themselves without a family, or without the knowledge of unbroken lineage that others took comfort in. House Kaatrij, which had lost many of its scions in the collapse, took the previously unprecedented step of welcoming these otherwise-outcasts into its familial order, earning a reputation as the most diverse of the various Houses. Many of its members still pledge a ceremonial allegiance to their defunct Houses under Kaatrij, which remains small but well-supported and a key member of the New Houses alliance.`
 	description `	This, its home planet, is small, rainy, and mostly covered by ocean. Widely regarded as one of the most beautiful planets in Successor space, settlement here is tightly regulated by House Kaatrij.`
 	spaceport `Upon setting down, the landing pad releases a billowing sheet of clear water-repellant material that covers your ship, presumably as some sort of protection against the rain. The spaceport itself is low and small and decorated with strips of the same material that gently ruffle in the wind, almost like the sails of an ancient ocean-going ship. The water collects in carefully-sculpted channels that run all over the surface of the building, occasionally collecting in small pools or spreading out into delicate branch-like networks built into the ground.`
+	government "House Kaatrij"
 	shipyard "High Houses Light"
 	shipyard "New Houses Light"
 	shipyard "Successor Basics"
@@ -3980,7 +3982,6 @@ planet Raaqa-Puan-Uuoru
 	outfitter "Successor Heavy"
 	outfitter "Successor High Tech"
 	"required reputation" 2
-	government "House Kaatrij"
 	bribe 0
 
 planet Raaqa-Uur-Kaav
@@ -4729,7 +4730,7 @@ planet "Ssil Vida"
 		description `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
 
 planet Staja-Kella-Oa
-	attributes education wealthy successor
+	attributes education successor wealthy
 	landscape land/fog12
 	description `The easternmost planet in Successor space, Staja-Kella-Oa is mostly covered in dense forest with only a few small cities. The planet hosts at least one academy under the auspices of the noble House Sioeora. Further from your landing site, there is evidence of ongoing archaeological work.`
 		to display
@@ -5151,6 +5152,7 @@ planet "Turra"
 	attributes "requires: gaslining"
 	landscape land/turra
 	description `Turra's thick atmosphere makes this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing the little light that shines on them.`
+	government Uninhabited
 
 planet Tuur-Aasa-Kaska
 	attributes successor

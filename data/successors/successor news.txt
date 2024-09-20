@@ -156,7 +156,7 @@ news "successor merchant"
 		word
 			"but alas, "
 		word
-			"now's planetside I shall remain."
+			"now 'tis planetside I shall remain."
 			"'twas never brave enough to stay."
 			"I was a space sick little knave."
 			"it's down at earth I feel at home."

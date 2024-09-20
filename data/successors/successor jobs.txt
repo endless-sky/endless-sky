@@ -91,7 +91,7 @@ phrase "predecessor researchers out"
 		`scientists `
 		`scholars `
 	word
-		`to <planet stopovers> where they `
+		`to <planet stopovers>, where they `
 	word
 		`promptly `
 		`immediately `
@@ -123,7 +123,7 @@ phrase "successor researchers out"
 		`scientists `
 		`experimenters `
 	word
-		`to <planet stopovers> where they `
+		`to <planet stopovers>, where they `
 	word
 		`promptly `
 		`immediately `

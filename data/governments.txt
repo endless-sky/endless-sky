@@ -833,7 +833,6 @@ government "House Myurej"
 		"People's Houses (Hostile)" -0.01
 	"penalty for"
 		assist 0
-
 	"friendly hail" "myurej friendly hail"
 	"friendly disabled hail" "successor friendly disabled hail"
 	"hostile hail" "high houses hostile hail"

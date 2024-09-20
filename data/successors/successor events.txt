@@ -49,7 +49,7 @@ event "successors: trust 1"
 
 event "successors: trust 2"
 	# Associated with "Successors: Trusted" mission.
-	# Replace "naive" variants in shipyards.
+	# Replace "Naive" variants in shipyards.
 	shipyard "Successor Basics"
 		remove "Kvelqde (Naive)"
 		remove "Stolsaqra (Naive)"
