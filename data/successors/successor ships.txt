@@ -307,8 +307,6 @@ ship "Kvelqde"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Successor Pulse Laser"
-
 		`1-"Uurau" Betavoltaic Cell` 2
 		`"Ej" Shield Cortex`
 
@@ -317,7 +315,7 @@ ship "Kvelqde"
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
 
-	gun 0 -32 "Successor Pulse Laser"
+	gun 0 -32
 	turret 0 0
 	engine -8 28
 	engine 8 28
