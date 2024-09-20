@@ -224,7 +224,7 @@ news "successor advertisements"
 	name
 		word
 			"Advertisement" 2
-			"Video screen"
+			"Video display"
 			"Commercial advertisement"
 	message
 		word
@@ -232,7 +232,7 @@ news "successor advertisements"
 			"A cluster of small recreational sailing ships are shown on a pristine lake at sunset, their Successor crew either manning them or splashing happily in the water. A caption at the bottom encourages the viewer to purchase their own."
 			"An advertisement plays for the Successor Pulse Laser: it is shown being constructed in a clean, bright factory, installed on a ship, and extracting minerals from asteroids. It is never shown in a combat situation."
 			"An advertisement plays showing a variety of attractive and expensive-looking jewellery, made of gold, silver, and other stranger metals which you cannot recognize. A variety of models display it wrapped around their arms or other parts of their body, gently undulating as the camera moves."
-			"A display shows an advertisement for one of the Successor universities, showing elegant, sculptural buildings emerging from the ground under a rain-soaked sky."
+			"A screen shows an advertisement for one of the Successor universities, showing elegant, sculptural buildings emerging from the ground under a rain-soaked sky."
 			"A field of large, floral plants are shown growing long strings of gleaming metal which are quickly harvested by agricultural robots."
 			"A series of images of Successor models flash one after another so quickly that it is hard to tell what they are actually advertising."
 			"A short video clip is shown advertising a performance in a local concert hall. The stage is divided into two sections: one is underwater and the other is dry."
