@@ -5084,7 +5084,7 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 	shared_ptr<Ship> carrier = parent.lock();
 	if(!carrier)
 		return;
-	int bayIndex = 0;
+	size_t bayIndex = 0;
 	for(const auto &bay : carrier->Bays())
 	{
 		if(bay.ship.get() == this)

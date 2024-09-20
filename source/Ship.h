@@ -623,7 +623,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
-	std::list<std::pair<std::shared_ptr<Flotsam>, int>> jettisonedFromBay;
+	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
 
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
