@@ -1388,6 +1388,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
+	jettisonedFromBay.clear();
 	hyperspaceCount = 0;
 	forget = 1;
 	targetShip.reset();
@@ -5067,11 +5068,14 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 	shared_ptr<Ship> carrier = parent.lock();
 	if(!carrier)
 		return;
+	int bayIndex = 0;
 	for(const auto &bay : carrier->Bays())
 	{
-		if(bay.ship.get() != this)
-			continue;
-		carrier->jettisoned.emplace_back(toJettison);
-		break;
+		if(bay.ship.get() == this)
+		{
+			carrier->jettisonedFromBay.emplace_back(toJettison, bayIndex);
+			break;
+		}
+		++bayIndex;
 	}
 }
