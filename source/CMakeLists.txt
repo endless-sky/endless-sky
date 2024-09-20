@@ -272,6 +272,8 @@ target_sources(EndlessSkyLib PRIVATE
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollBar.cpp
+	ScrollBar.h
 	ScrollVar.h
 	Set.h
 	Shader.cpp

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Panel.h"
+#include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "text/WrappedText.h"
 
@@ -75,4 +76,6 @@ private:
 	ScrollVar<double> scroll;
 	bool dragging = false;
 	bool hovering = false;
+
+	ScrollBar scrollBar;
 };
