@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UI_H_
-#define UI_H_
+#pragma once
 
 #include "Panel.h"
 #include "Point.h"
@@ -115,7 +114,3 @@ private:
 	bool activeAxisIsPositive = false;
 	int16_t lastAxisValue = 0;
 };
-
-
-
-#endif

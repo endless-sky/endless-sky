@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -81,11 +81,16 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
-		// Check if the player is out of fuel.
+		// Check if the player is out of fuel or energy.
 		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*flagship) && canAssistPlayer;
+		}
+		if(flagship->NeedsEnergy())
+		{
+			playerNeedsHelp = true;
+			canGiveEnergy = ship->CanGiveEnergy(*flagship) && canAssistPlayer;
 		}
 		// Check if the player is disabled.
 		if(flagship->IsDisabled())
@@ -112,6 +117,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 				helpOffer += "give you some fuel?";
 			else if(canRepair)
 				helpOffer += "patch you up?";
+			else if(canGiveEnergy)
+				helpOffer += "recharge you?";
 			SetMessage(helpOffer);
 		}
 		else if(playerNeedsHelp && !canAssistPlayer)
@@ -321,15 +328,27 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(ship->GetPersonality().IsSurveillance())
 				SetMessage("Sorry, I'm too busy to help you right now.");
-			else if(canGiveFuel || canRepair)
+			else if(canGiveFuel || canRepair || canGiveEnergy)
 			{
 				ship->SetShipToAssist(player.FlagshipPtr());
 				SetMessage("Hang on, we'll be there in a minute.");
 			}
-			else if(ship->Fuel())
-				SetMessage("Sorry, but if we give you fuel we won't have enough to make it to the next system.");
-			else
-				SetMessage("Sorry, we don't have any fuel.");
+			else if(player.Flagship()->NeedsFuel(false))
+			{
+				if(ship->Fuel())
+					SetMessage("Sorry, but if we give you fuel we won't have enough to make it to the next system.");
+				else
+					SetMessage("Sorry, we don't have any fuel.");
+			}
+			else if(player.Flagship()->NeedsEnergy())
+			{
+				if(ship->Energy())
+					SetMessage("Sorry, but if we give you energy we won't have enough for our ship.");
+				else
+					SetMessage("Sorry, we don't have any energy.");
+			}
+			else // shouldn't happen
+				SetMessage("Sorry, we are unable to assist you.");
 		}
 		else
 		{

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TRADING_PANEL_H_
-#define TRADING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 #include "Dropdown.h"
@@ -65,7 +64,3 @@ private:
 	Dropdown sellMultiplier;
 	bool quantityIsModifier = false;
 };
-
-
-
-#endif

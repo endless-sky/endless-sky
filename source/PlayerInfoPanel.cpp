@@ -365,7 +365,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			}
 			else if(shift)
 			{
-				if(panelState.AllSelected().count(selectedIndex))
+				if(panelState.AllSelected().contains(selectedIndex))
 					panelState.Deselect(panelState.SelectedIndex());
 				if(isValidIndex)
 					panelState.SetSelectedIndex(selectedIndex);
@@ -764,7 +764,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// Check if this row is selected.
 		if(panelState.SelectedIndex() == index)
 			table.DrawHighlight(selectedBack);
-		else if(panelState.AllSelected().count(index))
+		else if(panelState.AllSelected().contains(index))
 			table.DrawHighlight(back);
 
 		// Find out if the mouse is hovering over the ship

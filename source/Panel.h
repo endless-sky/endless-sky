@@ -13,15 +13,17 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PANEL_H_
-#define PANEL_H_
+#pragma once
 
 #include "Rectangle.h"
 #include "Command.h"
 
 #include <functional>
 #include <list>
+#include <memory>
+#include <mutex>
 #include <string>
+#include <vector>
 
 #include <SDL2/SDL.h>
 
@@ -125,6 +127,9 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 
+	UI *GetUI() const noexcept;
+	void SetUI(UI *ui);
+
 	// This is not for overriding, but for calling KeyDown with only one or two
 	// arguments. In this form, the command is never set, so you can call this
 	// with a key representing a known keyboard shortcut without worrying that a
@@ -137,6 +142,13 @@ protected:
 	// Display the given help message if it has not yet been shown
 	// (or if force is set to true). Return true if the message was displayed.
 	bool DoHelp(const std::string &name, bool force = false) const;
+
+	// Add a child. Deferred until next frame.
+	void AddChild(const std::shared_ptr<Panel> &panel);
+	// Remove a child. Deferred until next frame.
+	void RemoveChild(const Panel *panel);
+	// Handle deferred add/remove child operations.
+	void AddOrRemove();
 
 private:
 	class Zone : public Rectangle {
@@ -234,9 +246,24 @@ private:
 		float radius = 0;
 	};
 
+	// The UI class will not directly call the virtual methods, but will call
+	// these instead. These methods will recursively allow child panels to
+	// handle the event first, before calling the virtual method for the derived
+	// class to handle it.
+	bool DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
+	bool DoClick(int x, int y, int clicks);
+	bool DoRClick(int x, int y);
+	bool DoHover(int x, int y);
+	bool DoDrag(double dx, double dy);
+	bool DoRelease(int x, int y);
+	bool DoScroll(double dx, double dy);
 
-private:
-	void SetUI(UI *ui);
+	void DoDraw();
+
+	// Call a method on all the children in reverse order, and then on this
+	// object. Recursion stops as soon as any child returns true.
+	template<typename...FARGS, typename...ARGS>
+	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
 
 
 private:
@@ -248,9 +275,23 @@ private:
 
 	std::list<Zone> zones;
 
+	std::vector<std::shared_ptr<Panel>> children;
+	std::vector<std::shared_ptr<Panel>> childrenToAdd;
+	std::vector<const Panel *> childrenToRemove;
+
 	friend class UI;
 };
 
 
 
-#endif
+template<typename ...FARGS, typename ...ARGS>
+bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
+{
+	// Check if a child panel will consume this event first.
+	for(auto it = children.rbegin(); it != children.rend(); ++it)
+		if((*it)->EventVisit(f, args...))
+			return true;
+
+	// If none of our children handled this event, then it could be for us.
+	return (this->*f)(args...);
+}

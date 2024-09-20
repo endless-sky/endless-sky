@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef POINT_H_
-#define POINT_H_
+#pragma once
 
 #ifdef __SSE3__
 #include <pmmintrin.h>
@@ -150,7 +149,3 @@ inline const double &Point::Y() const noexcept
 	return y;
 #endif
 }
-
-
-
-#endif

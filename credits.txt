@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.8
+version 0.10.9-alpha
 
 The player's manual and other
 resources are available at:
@@ -59,6 +59,7 @@ Storyline & Faction Authors
   MasterOfGrey
   Peter van der Meer
   Pointedstick
+  RisingLeaf
   Saugia
   TheUnfetteredOne
   Zitchas

@@ -40,8 +40,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -439,7 +439,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 
-			if(!playerShips.count(playerShip))
+			if(!playerShips.contains(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 		else
@@ -453,7 +453,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 
-			if(!playerShips.count(playerShip))
+			if(!playerShips.contains(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 	}
@@ -939,6 +939,7 @@ const Outfit *ShopPanel::Zone::GetOutfit() const
 void ShopPanel::DrawShipsSidebar()
 {
 	const Font &font = FontSet::Get(14);
+	const Color &dark = *GameData::Colors().Get("dark");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &bg = *GameData::Colors().Get("panel background");
@@ -994,7 +995,7 @@ void ShopPanel::DrawShipsSidebar()
 			point.Y() += ICON_TILE;
 		}
 
-		bool isSelected = playerShips.count(ship.get());
+		bool isSelected = playerShips.contains(ship.get());
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
@@ -1022,7 +1023,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
-			shipName = ship->Name();
+			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			hoverPoint = shipZones.back().TopLeft();
 		}
 
@@ -1039,6 +1040,13 @@ void ShopPanel::DrawShipsSidebar()
 		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
 			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
 				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
+
+		if(ship->IsParked())
+		{
+			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
+			FillShader::Fill(point + CORNER, Point(6., 6.), dark);
+			FillShader::Fill(point + CORNER, Point(4., 4.), isSelected ? bright : medium);
+		}
 
 		point.X() += ICON_TILE;
 	}
@@ -1302,7 +1310,7 @@ void ShopPanel::DrawMain()
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 
-		bool isCollapsed = collapsed.count(category);
+		bool isCollapsed = collapsed.contains(category);
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
@@ -1363,7 +1371,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.count("description"), true);
+	shipInfo.Update(*playerShip, player, collapsed.contains("description"), true);
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
@@ -1503,7 +1511,7 @@ void ShopPanel::SideSelect(Ship *ship)
 		}
 		// playerShips.clear(); // deferred until we know if it was a long click
 	}
-	else if(playerShips.count(ship))
+	else if(playerShips.contains(ship))
 	{
 		lastShipClickTime = -1;
 		playerShips.erase(ship);

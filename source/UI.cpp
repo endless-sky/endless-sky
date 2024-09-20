@@ -62,11 +62,11 @@ bool UI::Handle(const SDL_Event &event)
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
-				handled = (*it)->Drag(
+				handled = (*it)->DoDrag(
 					event.motion.xrel * 100. / Screen::Zoom(),
 					event.motion.yrel * 100. / Screen::Zoom());
 			else
-				handled = (*it)->Hover(
+				handled = (*it)->DoHover(
 					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
 					Screen::Top() + event.motion.y * 100 / Screen::Zoom());
 		}
@@ -78,10 +78,10 @@ bool UI::Handle(const SDL_Event &event)
 			{
 				handled = (*it)->ZoneMouseDown(Point(x, y), event.button.which);
 				if(!handled)
-					handled = (*it)->Click(x, y, event.button.clicks);
+					handled = (*it)->DoClick(x, y, event.button.clicks);
 			}
 			else if(event.button.button == 3)
-				handled = (*it)->RClick(x, y);
+				handled = (*it)->DoRClick(x, y);
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
@@ -89,10 +89,10 @@ bool UI::Handle(const SDL_Event &event)
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			handled = (*it)->HasZone(Point(x, y));
 			if(!handled)
-				handled = (*it)->Release(x, y);
+				handled = (*it)->DoRelease(x, y);
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
-			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);
+			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
 		else if(event.type == SDL_FINGERDOWN)
 		{
 			// finger coordinates are 0 to 1, normalize to screen coordinates
@@ -166,7 +166,7 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == SDL_KEYDOWN)
 		{
 			Command command(event.key.keysym.sym);
-			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
+			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
 		else if(event.type == Command::EventID())
 		{
@@ -307,7 +307,7 @@ void UI::DrawAll()
 			break;
 
 	for( ; it != stack.end(); ++it)
-		(*it)->Draw();
+		(*it)->DoDraw();
 
 	// If the panel has a valid ui element selected, draw a rotating indicator
 	// around it
@@ -326,8 +326,8 @@ void UI::Push(Panel *panel)
 
 void UI::Push(const shared_ptr<Panel> &panel)
 {
-	panel->SetUI(this);
 	toPush.push_back(panel);
+	panel->SetUI(this);
 }
 
 
@@ -539,6 +539,10 @@ void UI::PushOrPop()
 			}
 	}
 	toPop.clear();
+
+	// Each panel potentially has its own children, which could be modified.
+	for(auto &panel : stack)
+		panel->AddOrRemove();
 }
 
 

@@ -316,4 +316,3 @@ effect "antimatter dust"
 	"random spin" 50
 	"random velocity" 12
 	"velocity scale" .1
-

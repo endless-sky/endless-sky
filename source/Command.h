@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMMAND_H_
-#define COMMAND_H_
+#pragma once
 
 #include <SDL2/SDL_events.h>
 
@@ -79,7 +78,8 @@ public:
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
-	static const Command HOLD;
+	static const Command HOLD_FIRE;
+	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
 	// This command is given in combination with JUMP or LAND and tells a ship
@@ -196,7 +196,3 @@ private:
 	static std::atomic<uint64_t> simulated_command_once;
 	static bool simulated_command_skip;
 };
-
-
-
-#endif

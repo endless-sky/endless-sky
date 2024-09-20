@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INTERFACE_H_
-#define INTERFACE_H_
+#pragma once
 
 #include "Color.h"
 #include "Command.h"
@@ -309,7 +308,3 @@ private:
 	std::map<std::string, double> values;
 	std::map<std::string, std::vector<double>> lists;
 };
-
-
-
-#endif

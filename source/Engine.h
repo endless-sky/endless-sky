@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENGINE_H_
-#define ENGINE_H_
+#pragma once
 
 #include "AI.h"
 #include "AlertLabel.h"
@@ -253,6 +252,7 @@ private:
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;
 
 	int step = 0;
@@ -310,7 +310,3 @@ private:
 	int loadCount = 0;
 	double loadSum = 0.;
 };
-
-
-
-#endif

@@ -15,8 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
-#include "Audio.h"
-#include "CrashState.h"
+#include "audio/Audio.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -26,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "Screen.h"
+
+#include "CrashState.h"
 #include <SDL2/SDL_log.h>
 
 #ifdef __linux__

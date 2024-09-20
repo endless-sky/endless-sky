@@ -78,7 +78,7 @@ bool Plugin::PluginDependencies::IsValid() const
 	// Check and log collisions between optional and required dependencies.
 	for(const string &dependency : optional)
 	{
-		if(required.count(dependency))
+		if(required.contains(dependency))
 			dependencyCollisions += dependency + ", ";
 	}
 	if(!dependencyCollisions.empty())
@@ -93,7 +93,7 @@ bool Plugin::PluginDependencies::IsValid() const
 	// Check and log collisions between conflicted and required dependencies.
 	for(const string &dependency : conflicted)
 	{
-		if(required.count(dependency))
+		if(required.contains(dependency))
 		{
 			isValid = false;
 			dependencyCollisions += dependency + ", ";
@@ -111,7 +111,7 @@ bool Plugin::PluginDependencies::IsValid() const
 	// Check and log collisions between optional and conflicted dependencies.
 	for(const string &dependency : conflicted)
 	{
-		if(optional.count(dependency))
+		if(optional.contains(dependency))
 		{
 			isValid = false;
 			dependencyCollisions += dependency + ", ";

@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
-#include "Preferences.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -28,15 +27,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "shift.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
-#include <SDL2/SDL_keyboard.h>
 #include <cmath>
 #include <utility>
 
@@ -136,11 +133,9 @@ void Dialog::Draw()
 	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
 	Point textPos(Width() * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
-	
 
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
-	Point scrollUpPos(pos.X() + Width()/2.0 - 6, pos.Y() - 9);
 	SpriteShader::Draw(top, pos);
 	pos.Y() += top->Height() * .5;
 
@@ -155,7 +150,6 @@ void Dialog::Draw()
 	// Draw the bottom section.
 	const Font &font = FontSet::Get(14);
 	pos.Y() += bottom->Height() * .5;
-	Point scrollDownPos(pos.X() + Width()/2.0 - 6, pos.Y() - 12);
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += bottom->Height() * .5 - 25.;
 
@@ -169,27 +163,22 @@ void Dialog::Draw()
 		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(isWide ? 110. : 10., 0.);
 		SpriteShader::Draw(cancel, cancelPos);
-		Point labelSize(font.Width(cancelText), font.Height());
-		Point labelPos = cancelPos - (labelSize / 2);
+		Point labelPos(
+			cancelPos.X() - .5 * font.Width(cancelText),
+			cancelPos.Y() - .5 * font.Height());
 		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
-		AddZone(Rectangle(cancelPos, labelSize), [this]() { Click(cancelPos.X(), cancelPos.Y(), 1); });
 	}
 	string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point(isWide ? 190. : 90., 0.);
-	Point labelSize(font.Width(okText), font.Height());
-	Point labelPos = okPos - .5 * labelSize;
+	Point labelPos(
+		okPos.X() - .5 * font.Width(okText),
+		okPos.Y() - .5 * font.Height());
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
-	AddZone(Rectangle(okPos, labelSize), [this]() { Click(okPos.X(), okPos.Y(), 1); });
-
-	// Draw the text.
-	text.Draw(textPos, dim);
 
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		Point inputSize = Point(Width() - 20., 20.);
-		FillShader::Fill(inputPos, inputSize, back);
-		AddZone(Rectangle(inputPos, inputSize), [this, inputPos]() { Click(inputPos.X(), inputPos.Y(), 1); });
+		FillShader::Fill(inputPos, Point(Width() - 20., 20.), back);
 
 		Point stringPos(
 			inputPos.X() - (Width() - 20) * .5 + 5.,
@@ -199,17 +188,6 @@ void Dialog::Draw()
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
-	}
-
-	bool canScrollUp = text.CanScrollUp();
-	bool canScrollDown = text.CanScrollDown();
-	if(canScrollUp || canScrollDown)
-	{
-		PointerShader::Draw(scrollUpPos, Point(0., -1.), 10.f, 10.f, 5.f, Color(canScrollUp ? .8f : .2f, 0.f));
-		PointerShader::Draw(scrollDownPos, Point(0., 1.), 10.f, 10.f, 5.f, Color(canScrollDown ? .8f : .2f, 0.f));
-
-		AddZone(Rectangle(scrollUpPos, {20.0, 20.0}), [this]() { text.DoScroll(-Preferences::ScrollSpeed()); });
-		AddZone(Rectangle(scrollDownPos, {20.0, 20.0}), [this]() { text.DoScroll(Preferences::ScrollSpeed()); });
 	}
 }
 
@@ -277,10 +255,6 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_UP)
-		text.DoScroll(-Preferences::ScrollSpeed());
-	else if(key == SDLK_DOWN)
-		text.DoScroll(Preferences::ScrollSpeed());
 	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || isCloseRequest
 			|| (isMission && (key == 'a' || key == 'd')))
 	{
@@ -327,14 +301,6 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::Scroll(double dx, double dy)
-{
-	text.DoScroll(-dy * Preferences::ScrollSpeed());
-	return true;
-}
-
-
-
 bool Dialog::Click(int x, int y, int clicks)
 {
 	Point clickPos(x, y);
@@ -356,20 +322,12 @@ bool Dialog::Click(int x, int y, int clicks)
 		}
 	}
 
-	if (intFun || stringFun)
+g	if (intFun || stringFun)
 	{
 		// Clicked on edit field. popup touchscreen keyboard if needed.
 		SDL_StartTextInput();
 	}
 
-	return true;
-}
-
-
-
-bool Dialog::Drag(double dx, double dy)
-{
-	text.DoScroll(-dy);
 	return true;
 }
 
@@ -385,45 +343,65 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	okIsActive = true;
 	isWide = false;
 
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(Width() - 20);
-	text.SetFont(FontSet::Get(14));
-	text.SetTruncate(truncate);
-
-	text.Wrap(message);
+	Point textRectSize(Width() - 20, 0);
+	text = std::make_shared<TextArea>();
+	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetRect(Rectangle(Point(), textRectSize));
+	text->SetFont(FontSet::Get(14));
+	text->SetTruncate(truncate);
+	text->SetText(message);
+	AddChild(text);
 
 	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
-	if(text.Height() > maxHeight)
+	if(text->GetTextHeight() > maxHeight)
 	{
+		textRectSize.Y() = maxHeight;
 		isWide = true;
 		// Re-wrap with the new width
-		text.SetWrapWidth(Width() - 20);
-		text.Wrap(message);
+		textRectSize.X() = Width() - 20;
+		text->SetRect(Rectangle(Point{}, textRectSize));
 
-		if(text.LongestLineWidth() <= WIDTH)
+		if(text->GetLongestLineWidth() <= WIDTH)
 		{
 			// Formatted text is long and skinny (e.g. scan result dialog). Go back
 			// to using the default width, since the wide width doesn't help.
 			isWide = false;
-			text.SetWrapWidth(Width() - 20);
-			text.Wrap(message);
-			text.SetVisibleHeight(maxHeight);
+			textRectSize.X() = Width() - 20;
+			text->SetRect(Rectangle(Point{}, textRectSize));
 		}
-		else if(text.Height() > maxHeight)
-			text.SetVisibleHeight(maxHeight); // Still too tall
 	}
+	else
+		textRectSize.Y() = text->GetTextHeight();
 
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
-	// 5 pixels because it includes its own padding at the bottom. If there is a
+	// 6 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.VisibleHeight() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
+	height = 10 + (textRectSize.Y() - 6) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;
 	else
 		height = (height - 40) / 40;
+
+	// Now that we know how big we want to render the text, position the text
+	// area and add it to the UI.
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
+
+	// Get the position of the top of this dialog, and of the text and input.
+	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
+	Point textPos(Width() * -.5 + 10., pos.Y() + 20.);
+	// Resize textRectSize to match the visual height of the dialog, which will
+	// be rounded up from the actual text height by the number of panels that
+	// were added. This helps correctly position the TextArea scroll buttons.
+	// The text height was over-reported by 6 pixels, so we add those pixels back for consistency.
+	textRectSize.Y() = 60 + height * 40 + 6 - 30 * (!isMission && (intFun || stringFun));
+
+	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	text->SetRect(textRect);
 }
 
 

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILE_H_
-#define ES_FILE_H_
+#pragma once
 
 #include <cstdio>
 #include <string>
@@ -42,7 +41,3 @@ public:
 private:
 	struct SDL_RWops *file = nullptr;
 };
-
-
-
-#endif

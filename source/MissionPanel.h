@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_PANEL_H_
-#define MISSION_PANEL_H_
+#pragma once
 
 #include "MapPanel.h"
 
@@ -100,7 +99,3 @@ private:
 
 	bool returnGamepadCursorToAvailableMissions = false;
 };
-
-
-
-#endif
