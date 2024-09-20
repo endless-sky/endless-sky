@@ -39,7 +39,7 @@ mission "Successors: Safe at Last"
 
 mission "Successors: First Contact 1"
 	landing
-	name "Octopod first contact"
+	name "First Contact with Octopods"
 	description "The aliens in this area of space have indicated that you should travel to a system to the east."
 	source
 		attributes "successor"
@@ -89,11 +89,11 @@ mission "Successors: First Contact 1"
 		ship "Stolsaqra (Mission Escort)" "Seqra-saqra"
 
 	on fail
-		dialog `At least one of the Successor interceptors escorting has been destroyed. If you want to continue the Successors' story line, revert to an earlier save.`
+		dialog `At least one of the Successor interceptors escorting you has been destroyed. If you want to continue the Successors' story line, revert to an earlier save.`
 
 	on visit
 		conversation
-			`Without your Successor escorts, you are refused landing permission at the <planet> spaceport and must return to orbit until they arrive.`
+			`Without your Successor escorts, you are refused landing permission at <planet>'s spaceport and must return to orbit until they arrive.`
 				launch
 
 	on complete
@@ -220,12 +220,12 @@ mission "Successors: First Contact 2 Prompt"
 		has "Successors: Unified Defense: offered"
 		has "Successors: First Contact 2: offered"
 	on offer
+		event "successors: tardy for sioeora" 14
 		conversation
 			`As you exit the <ship>, you notice that a group of uniformed Successors are standing at attention on the landing pad. The lead officer approaches you and hands you a small metallic sphere much like the map device you were offered previously. Rather than projecting a map, however, the sphere begins to play a recording when you touch it.`
 			`	"Captain <first> <last>! I've been instructed to inform thee that our most honored scions of noble House Sioeora want that thou woulds't before them appear to render 'them thy service and thine aid. They, hm... demand that thee make haste to our fair world once more, and prepare thyself as pleaseth thou for an audience before them. In confirmation of this message, I do myself attest: Vijaat Ojniis Sieasej, an honored scholar of the third iret in service to our noble House."`
 			`	The recording ends there, and the sphere changes to display a star map as before.`
 				accept
-		event "successors: tardy for sioeora" 14
 
 mission "Successors: First Contact 2"
 	landing
@@ -258,9 +258,9 @@ mission "Successors: First Contact 2"
 			`	One of the adorned individuals looks at you and speaks, and Sieasej translates a moment later.`
 			branch "tardy"
 				has "event: successors: tardy for sioeora"
-			`	"Hail, captain! We appreciate thy promptness in complying 'thour request. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
+			`	"Hail, captain! We appreciate thy promptness in complying 'thour request. I am Riijaaora, an honored scion of House Sioeora. I shall speak for today for my fellows and the House."`
 				goto greet
-			label "tardy"
+			label tardy
 				`	"Hail, captain! Thy tardiness reflects poorly upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
 			label greet
 			choice
@@ -294,14 +294,14 @@ mission "Successors: First Contact 2"
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label gift
-			`	"The one who speaks these words to thee know'th well the value language doth confer, and we suspect 'tis true that thee knoweth this as well. There's a world within the scar of shrouded systems to the north th'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, thou shall'st have our reward of language and all that it bestows.`
+			`	"The one who speaks these words to thee know'th well the value language doth confer, and we suspect 'tis true that thee knoweth this as well. There's a world within the scar of shrouded systems to the north th'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, thou shall'st have our reward of language and all that it bestows."`
 			choice
 				`	"I accept."`
 					goto accepted
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label rude
-				`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, a hm... consumer of our grace. Thy compliance is expected; in return, our generosity.`
+				`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, hm... consumer of our grace. Thy compliance is expected; in return, our generosity."`
 			choice
 				`	"I apologize."`
 				`	"I have no desire to be your servant."`
@@ -310,17 +310,18 @@ mission "Successors: First Contact 2"
 				goto task
 			label accepted
 			action
-				log "Met with the leaders of Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Accepted their offer."
+				log "Met with the leaders of the Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Accepted their offer."
 			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st travel there when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But prithee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee an enemy and levy upon thee every harm that we can muster."`
 				goto end
 			label rejected
 			action
-				log "Met with the leaders of Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Did not accept."
-				set "rejected: Successors: First Contact 2"
+				log "Met with the leaders of the Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Rejected."
+				set "Successors: First Contact 2: rejected"
 				"reputation: House Sioeora" <?= 0
 			`	A ripple of color runs up the body of Sieasej and several of the other Successors. The scion gives their response slowly. "Then our act of grace today shall be t'allow thee to depart this noble place still possessed o'thy freedom and belongings. Thou shalt receive no further aid nor comfort from this House, and shalt be banished at the pleasure of its scions from whatever worlds lie under our dominion."`
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
+				flee
 			label end
 				decline
 
@@ -329,8 +330,7 @@ mission "Successors: First Contact 3"
 	description `The scions of House Sioeora have instructed you to visit the planet <planet stopovers> and capture a "Kijra-riitaa" to safely return to them at <planet>. Return by <date> or they will consider you to have kidnapped Sieasej.`
 	source "Staja-Kella-Oa"
 	to offer
-		has "event: successors: first contact wait"
-		not "rejected: Successors: First Contact 2"
+		not "Successors: First Contact 2: rejected"
 	to fail
 		has "Successors: Unified Defense: offered"
 	deadline 30
@@ -357,7 +357,7 @@ mission "Successors: First Contact 3"
 			`	"I see," you say. "I suppose I am too."`
 			`	"Fret not," Sieasej says, "for elegance of thine address was neither expected nor required. It's all that has a place and time where's needed, and a place and time where's not."`
 			label task
-			`	Sieasej shuffles their arms beneath them. "Ah. I must again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall thee provide a marker for the system we are to journey to. On the second planet's second moon, we are to land and find a Kijra-riitaa, a Kijra-'pet,' a beast of sorts, as the scions told thee prior."`
+			`	Sieasej shuffles their arms beneath them. "Ah. I must again speak on behalf of Sioeora." They produce another metallic data-sphere from a pouch on their outfit and offer it to you. "This sphere shall thee provide a marker for the system we're to journey to. On the second planet's second moon, we are to land and find a Kijra-riitaa, a Kijra-'pet,' a beast of sorts, as the scions told thee prior in thine audience with them."`
 			label questions
 			choice
 				`	"We'd better get started, then."`
@@ -412,7 +412,7 @@ mission "Successors: First Contact 3"
 				goto questions
 			label "watch out"
 				set "Successors: watch out"
-			`	"The House hast warned me of the dangers which that space entails. Thy vessel must've endured enough to make it here intact, so I must trust that it shall be enduring once again.`
+			`	"The House hast warned me of the dangers which that space entails. Thy vessel must've endured enough to make it here intact, so I must trust that it shall be enduring once again."`
 				goto questions
 			label "jump drives"
 				set "Successors: jump drives"
@@ -456,8 +456,8 @@ mission "Successors: First Contact 3"
 			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown, vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
 			branch "retrieve tranqs"
 				or
-					has "outfit: Enforcer Riot Staff"
-					has "outfit: Pug Peacekeeping Staff"
+					has "outfit (flagship installed): Enforcer Riot Staff"
+					has "outfit (flagship installed): Pug Peacekeeping Staff"
 			`	You set the <ship> down on one of the landing pads and exit onto the surface, though not before retrieving a net from storage. You are accompanied by Sieasej, who holds aloft a cylindrical device which they wave in the air for several seconds. "It hears calls of the creatures on the wind, gentler than our ears would notice. So we're fortunate, captain. We will not have to travel far." They wave their device around some more, making slower but wider motions, before they eventually speak again. "The nearest among them lies to the west, a hundred meters, more or less."`
 				goto approach
 			label "retrieve tranqs"
@@ -475,8 +475,8 @@ mission "Successors: First Contact 3"
 					goto tranq
 					to display
 						or
-							has "outfit: Enforcer Riot Staff"
-							has "outfit: Pug Peacekeeping Staff"
+							has "outfit (flagship installed): Enforcer Riot Staff"
+							has "outfit (flagship installed): Pug Peacekeeping Staff"
 				`	(Try to catch it with a net.)`
 					goto net
 				`	(Stay still and try to capture it without aggression.)`
@@ -493,15 +493,15 @@ mission "Successors: First Contact 3"
 			`	You toss a net over the animal and it falls to the ground, where it shrieks for a duration before going quiet. The shriek is soon echoed by similar ones from other animals in the area, and once those go quiet as well, your ears are pierced by a loud, warbling wail in the distance.`
 				goto escape
 			label lure
-			`	The animal remains stationary as well, examining you closely. Its eyes are large and furtive, with bright-red irises and the same hourglass-shaped pupils as the Successors. After it looks you over, it eventually approaches your hand, sniffing it gently and brushing its downy forelimbs against your skin.`
+			`	The animal remains stationary as well, examining you closely. Its eyes are large and furtive, with bright red irises and the same hourglass-shaped pupils as the Successors. After it looks you over, it eventually approaches your hand, sniffing it gently and brushing its downy forelimbs against your skin.`
 			choice
 				`	(Try to bring it back with food alone.)`
 				`	(Tranquilize it now.)`
 					goto "tranq friends"
 					to display
 						or
-							has "outfit: Enforcer Riot Staff"
-							has "outfit: Pug Peacekeeping Staff"
+							has "outfit (flagship installed): Enforcer Riot Staff"
+							has "outfit (flagship installed): Pug Peacekeeping Staff"
 				`	(Catch it with a net.)`
 					goto "net friends alarmed"
 			action
@@ -533,7 +533,7 @@ mission "Successors: First Contact 3"
 			label ambush
 			`	When you arrive, however, you find that blocking your entry to the <ship> are two large creatures. Their glassy skin resembles that of the smaller creature you captured, but they are each several meters in size. Their feelers, rather than soft and downy, are whiplike and serrated and tipped with vicious-looking barbs that they thrust towards you and Sieasej upon noticing your presence. Their many eyes flick back and forth between you and the animal that you captured, and the two let out a loud wail in unison. Waves of red and blue run down Sieasej's body, probably an expression of fear.`
 			choice
-				`	(Run for it!)`
+				`	(Run past them.)`
 				`	(Shoot them with your sidearm.)`
 					goto shoot
 				`	(Order your crew to fire a turret at them.)`
@@ -642,7 +642,7 @@ mission "Successors: First Contact 3"
 				"reputation: People's Houses" += 2
 				log "Captured and returned the animal House Sioeora requested that I bring to them. Was rewarded with a translation device and historical data that allows me to land on most Successor worlds. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before, who direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
-			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou returns from thy hunt successful!"`
+			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou hast returned from thy hunt successful!"`
 			choice
 				`	"Yes, I have."`
 				`	"Of course."`
@@ -748,7 +748,7 @@ mission "Successors: Kaatrij First Contact 1"
 			`		AUDIENCE OF HUMAN CAPTAIN, HOUSE KAATRIJ REQUESTS`
 				goto end
 			label "message hai"
-			`		HOUSE KAATRIJ [REQUESTS/REQUIRES] AUDIENCE OF HUMAN CAPTAIN`
+			`		HOUSE KAATRIJ [REQUESTS, REQUIRES] AUDIENCE OF HUMAN CAPTAIN`
 			label end
 			`	The sphere slowly switches back and forth between displaying this message and a map to a system in western Successor space.`
 				accept
@@ -823,7 +823,7 @@ mission "Successors: Kaatrij First Contact 1"
 			`	Saajret pauses for a moment to straighten some aspects of their clothing, before gesturing to a small wooden pin affixed to an outer layer of fabric. "We keep a number of these devices, full of sound and language, but very few for thine own tongue: this is the only one for which that we possess. I'm told it is an art piece, commissioned for a performance of thine own Shakespeare's Tempest so that our Predecessors could experience the work in its original form. 'Tis far too old and rare for it t'marry with our equipment; and so the need to contact thee in the words of another."`
 			`	Saajret plucks the device from their outfit and offers it to you.`
 			choice
-				`	(Take it).`
+				`	(Take it.)`
 			action
 				set "language: Successor"
 			`	The device is made of carved wood, or at least something that appears like it, depicting in well-varnished grain a sailing ship washed against rocks. As you pin it on your jacket, the ship begins to gently rock in place.`
@@ -838,7 +838,7 @@ mission "Successors: Kaatrij First Contact 1"
 			action
 				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society."
 				set "Successors: saajret"
-			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij, member of the somber noble line of House Sejra, which no longer stands as naught but a banner under Kaatrij's watchful wings. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more were lost forever, their families splintered and histories broken. Kaatrij absorbed the citizens of some into itself, and now'ts a patchwork that reminds us that we're all patchworks, metamorphic and composed. My roles in it are many, but first among them, I am an archivist, of sorts. I am t'preserve the old technology that still remains in our possession and, when necessary, put it to use, as best as we can judge it can be."`
+			`	A wave of pink cascades along Saajret's arms before they reply. "I am Saajret, honored citizen of noble House Kaatrij, member of the somber noble line of House Sejra, which no longer stands as naught but a banner under Kaatrij's watchful wings. Ah. Not all our Houses survived the fall: Jaasii, Vejret, Ijridanii, Sejra, and many more were lost forever, their families splintered and histories broken. Kaatrij absorbed the citizens of some into itself, and now'ts a patchwork that reminds us that we're all patchworks, metamorphic and composed. My roles in it are many, but first among them, I am an archivist, of sorts. I am t'preserve the old technology that still remains in our possession and, when necessary, put it to use, as best as we judge it can be."`
 				goto questions
 			label premature
 			`	Deciding that you've waited long enough, you activate the <ship>'s repulsor thrusters and return to orbit.`
@@ -903,7 +903,7 @@ mission "Successors: Trusted"
 		"reputation: New Houses" += 1
 		conversation
 			`Soon after you set down in the spaceport here, you are approached by a group of Successors in naval uniforms, clearly and surprisingly in the employ of multiple various High Houses; there is some variance in the design of the uniforms of different members. Their leader addresses you in a calm tone with the unmistakable coolness that military officers seem to hold regardless of species, their skin remaining a flat gray throughout.`
-			`	"Captain <last>. The High Houses have noted thine actions in their space, and, wishing to make thee a stronger ally to their cause, have summoned thee to meet them in council. Thou art encouraged to make haste to the Uuoru-Kella system.`
+			`	"Captain <last>. The High Houses have noted thine actions in their space, and, wishing to make thee a stronger ally to their cause, have summoned thee to meet them in council. Thou art encouraged to make haste to the <system> system.`
 			choice
 				`	"Thank you for telling me. I'll prepare to travel there immediately."`
 					accept
