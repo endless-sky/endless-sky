@@ -67,6 +67,17 @@ void Flotsam::Place(const Ship &source)
 
 
 
+// Place this flotsam with its starting position at the specified bay of the source ship,
+// instead of the centre of the ship.
+void Flotsam::Place(const Ship &source, int bayIndex)
+{
+	Place(source);
+	const auto it = std::next(source.Bays().begin(), bayIndex);
+	this->position += it->point;
+}
+
+
+
 // Place flotsam coming from something other than a ship. Optionally specify
 // the maximum relative velocity, or the exact relative velocity as a vector.
 void Flotsam::Place(const Body &source, double maxVelocity)
