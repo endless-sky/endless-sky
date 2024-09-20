@@ -68,7 +68,7 @@ void Flotsam::Place(const Ship &source)
 
 
 // Place this flotsam with its starting position at the specified bay of the source ship,
-// instead of the centre of the ship.
+// instead of the center of the ship.
 void Flotsam::Place(const Ship &source, int bayIndex)
 {
 	Place(source);

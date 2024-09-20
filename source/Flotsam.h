@@ -48,7 +48,7 @@ public:
 	// several frames before it finishes dumping it all.
 	void Place(const Ship &source);
 	// Place this flotsam with its starting position at the specified bay of the source ship,
-	// instead of the centre of the ship.
+	// instead of the center of the ship.
 	void Place(const Ship &source, int bayIndex);
 	// Place flotsam coming from something other than a ship. Optionally specify
 	// the maximum relative velocity, or the exact relative velocity as a vector.
