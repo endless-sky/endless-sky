@@ -181,7 +181,7 @@ void NPC::Load(const DataNode &node)
 			// mission's destination will be used.
 			if(!child.HasChildren())
 			{
-				// Given "stopover" or "destination <planet 1> ... <planet N>".
+				// Given "stopover" or "destination <planet 1> ... <planet N>"
 				if(child.Size() == 1)
 					missingStopover = true;
 				else
