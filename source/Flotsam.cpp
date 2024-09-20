@@ -72,8 +72,8 @@ void Flotsam::Place(const Ship &source)
 void Flotsam::Place(const Ship &source, int bayIndex)
 {
 	Place(source);
-	const auto it = std::next(source.Bays().begin(), bayIndex);
-	this->position += it->point;
+	if(source.Bays().size() > bayIndex)
+		this->position += source.Bays().at(bayIndex).point;
 }
 
 
