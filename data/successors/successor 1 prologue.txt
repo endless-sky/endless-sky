@@ -691,6 +691,22 @@ mission "Successors: First Contact 3"
 			`	"Good. We bid thee good farewells, then, and good tidings in thy travels." Riijaaora and the other scions turn around to face their backs towards you and the officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
 			label exit
 
+mission "Successors: Kaatrij Monoglot Prompt"
+	landing
+	invisible
+	to offer
+		has "event: successors: released kijra-pet wait"
+		not "Successors: First Contact 3: failed"
+		and
+			not "language: Hai"
+			not "language: Coalition"
+	to fail
+		has "Successors: Unified Defense: offered"
+	on offer
+		conversation
+			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
+				decline
+
 mission "Successors: Kaatrij First Contact 1"
 	landing
 	clearance
@@ -861,22 +877,6 @@ mission "Successors: Kaatrij First Contact 1"
 				"reputation: House Kaatrij" += 2
 				"reputation: House Seineq" += 2
 				"reputation: People's Houses" += 2
-
-mission "Successors: Kaatrij Monoglot Prompt"
-	landing
-	invisible
-	to offer
-		has "event: successors: released kijra-pet wait"
-		not "Successors: First Contact 3: failed"
-		and
-			not "language: Hai"
-			not "language: Coalition"
-	to fail
-		has "Successors: Unified Defense: offered"
-	on offer
-		conversation
-			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
-				decline
 
 mission "Successors: Trusted"
 	landing
