@@ -13404,15 +13404,16 @@ system "Eta Carinae"
 	asteroids "large metal" 1 2.55
 	haze _menu/haze-tear
 	object
-		sprite star/o-supergiant
+		sprite star/wr
+			scale 2.0
 		distance 200
 		period 300
 		offset 180
 		object
-			sprite star/nova
+			sprite star/o-supergiant
 	object
 		sprite star/o-giant
-		distance 1200
+		distance 400
 		period 300
 
 system Eteron
@@ -34938,7 +34939,7 @@ system Uuoru-Sossa
 		sprite star/void-scar
 			scale 8.0
 		distance 2200
-		period 32
+		period 2000
 		hazard "Predecessors Void Scar Erosion" 6
 	object
 		sprite star/f0
