@@ -52,8 +52,8 @@ outfit `"Ojet" Bimodal Coilgun`
 		"hit force" 120
 		"cluster"
 		"submunition" "Bimodal Switch" 3
-	description `Precise and deadly, the "Ojet" Bimodal Coilgun has been the High Houses' armament of choice since long before humans ever took to the stars. It was designed quite simply as a perfect weapon; it is said that by the time the empire of the Predecessors fell, they had seen no need to install any other weapon on their ships for over a thousand years.`
-	description `	The "Ojet" fires hyperdense packets of charged particles that disperse as they travel: up close the concentrated bolt pierces armor, while at a distance the ionic spray destabilizes shielding. Together, a ship equipped with these weapons can adjust its damage profile just by changing its engagement range, allowing it to be highly effective against any foe.`
+	description `Precise and deadly, the Ojet Bimodal Coilgun has been the High Houses' armament of choice since long before humans ever took to the stars. It was designed quite simply as a perfect weapon; it is said that by the time the empire of the Predecessors fell, they had seen no need to install any other weapon on their ships for over a thousand years.`
+	description `	The Ojet fires hyperdense packets of charged particles that disperse as they travel: up close the concentrated bolt pierces armor, while at a distance the ionic spray destabilizes shielding. Together, a ship equipped with these weapons can adjust its damage profile just by changing its engagement range, allowing it to be highly effective against any foe.`
 
 outfit "Bimodal Coilgun Turret"
 	category "Turrets"
@@ -93,7 +93,7 @@ outfit "Bimodal Coilgun Turret"
 		"hit force" 120
 		"cluster"
 		"submunition" "Bimodal Switch" 3
-	description `Successor warships have traditionally relied on fixed weaponry to deal with their foes, but the High Houses do produce a turreted platform for the "Ojet" Coilgun so that their larger and slower vessels can maintain their combat effectiveness against more maneuverable targets. It mounts two of the weapons side by side, rigged to fire double the amount of shots per burst to keep them in sync with the fixed hardpoints.`
+	description `Successor warships have traditionally relied on fixed weaponry to deal with their foes, but the High Houses do produce a turreted platform for the Ojet Coilgun so that their larger and slower vessels can maintain their combat effectiveness against more maneuverable targets. It mounts two of the weapons side by side, rigged to fire double the amount of shots per burst to keep them in sync with the fixed hardpoints.`
 
 effect "bimodal impact"
 	sprite "effect/bimodal impact"
@@ -150,7 +150,7 @@ outfit "Drag Cannon"
 		"cluster"
 		"submunition" "Drag Projectile" 3
 	description `The Successors have a historical affinity for projectile weaponry which persists to the modern day. The Drag Cannon fires a short-ranged, highly inaccurate blast of projectiles that not only deal substantial damage but also temporarily disrupt the target's engines.`
-	description `	While it is an inelegant design in comparison to the time-tested "Ojet" Coilgun, and consequently less appreciated, the Drag Cannon has found a place on the Successors' fast attack craft primarily as a tool for slowing down enemy vessels so that they can be engaged by a larger fleet.`
+	description `	While it is an inelegant design in comparison to the time-tested Ojet Coilgun, and consequently less appreciated, the Drag Cannon has found a place on the Successors' fast attack craft primarily as a tool for slowing down enemy vessels so that they can be engaged by a larger fleet.`
 
 outfit "Drag Projectile"
 	weapon
@@ -369,7 +369,7 @@ outfit "High-Velocity Spike"
 	thumbnail "outfit/hv spike"
 	"mass" .5
 	"spike capacity" -1
-	description `The projectiles fired by the "Sjeja" Kinetic Lance are too large to be synthesized on-the-fly from the ship's reserves, and must be carried separately.`
+	description `The projectiles fired by the Sjeja Kinetic Lance are too large to be synthesized on-the-fly from the ship's reserves, and must be carried separately.`
 
 outfit "High-Velocity Spike Rack"
 	category "Ammunition"
@@ -383,4 +383,4 @@ outfit "High-Velocity Spike Rack"
 	"outfit space" -12
 	"energy capacity" 800
 	"spike capacity" 16
-	description `Though the built-in ammunition reserves of the "Sjeja" Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the "Sjeja."`
+	description `Though the built-in ammunition reserves of the Sjeja Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the Sjeja.`

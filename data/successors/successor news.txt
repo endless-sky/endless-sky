@@ -54,7 +54,7 @@ news "port official"
 		word
 			`"`
 		word
-			"The Houses welcome thee as 'guest' among our people; "
+			"The Houses welcome thee as a guest among our people; "
 			"Please remain in concord with our people; "
 			"Informed, am I, of thy recent arrival; "
 			"Can I provide assistance, honored traveler? "
@@ -106,7 +106,7 @@ news "successor student"
 		word
 			"I know not sleep nor food nor meager rest"
 			"I wish that I could learn while I'm asleep"
-			"I don't know how I even stay awake"
+			"I know not how I even stay awake"
 			"I wish I knew some better study tricks"
 		word
 			"."
@@ -158,7 +158,7 @@ news "successor merchant"
 		word
 			"now 'tis planetside I shall remain."
 			"'twas never brave enough to stay."
-			"I was a space sick little knave."
+			"I was a spacesick little knave."
 			"it's down at earth I feel at home."
 			"it's selling items that's for me."
 			"my family needed my return."
