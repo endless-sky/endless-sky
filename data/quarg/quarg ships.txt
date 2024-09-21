@@ -26,7 +26,7 @@ ship "Quarg Skylark"
 		"heat dissipation" .47
 		"fuel capacity" 1000
 		"cargo space" 200
-		"outfit space" 600
+		"outfit space" 575
 		"weapon capacity" 200
 		"engine capacity" 120
 		"hull repair rate" 5
@@ -80,7 +80,7 @@ ship "Quarg Wardragon"
 		"heat dissipation" .34
 		"fuel capacity" 800
 		"cargo space" 50
-		"outfit space" 600
+		"outfit space" 575
 		"weapon capacity" 200
 		"engine capacity" 120
 		"hull repair rate" 5
