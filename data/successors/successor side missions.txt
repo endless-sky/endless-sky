@@ -196,7 +196,7 @@ mission "Successors: Predecessor Research 1"
 				set "Successors: collapse"
 			`	The researcher sighs. "We do not know; or better put, the fullness of the truth yet remains obscured. The flesh of space itself was rent, distorted; the effects of this remain today: the holes embedded in the skies, the dying-out of light and even of the hyperlanes. It was a warring time; the Houses turned upon each other or they fled, and space itself was set alight with the blinks of shots and drives..."`
 			`	The researcher stops for a moment, composing themself.`
-			`	"I digress and do apologize. T'is challenging to separate the truth from fiction in this regard. Our Predecessors wielded power far beyond our modern imitations, the sort that sows the seeds of peace or chaos deep within the fabric of the world, the sort of things that poke and prod at places that must remain untouched. 'What caused the collapse?' you ask? Hubris, methinks."`
+			`	"I digress and do apologize. 'Tis challenging to separate the truth from fiction in this regard. Our Predecessors wielded power far beyond our modern imitations, the sort that sows the seeds of peace or chaos deep within the fabric of the world, the sort of things that poke and prod at places that must remain untouched. 'What caused the collapse?' you ask? Hubris, methinks."`
 				goto questions
 			label empire
 			action
@@ -321,7 +321,7 @@ mission "Successors: Buskers"
 				`	(Ignore it.)`
 					decline
 			`	You walk over the water-covered floor to the group, and as you start to grow closer, you begin to hear music coming from the pool: a strange, lilting melody, which is filled with notes that seem impossibly high or low or both at once. As you squeeze your way through the crowd, you see that in the pool there is a trio of submerged Successors, each of whom has their arms wrapped around one or several wildly distinct metal devices which protrude through the surface of the water. It is from these devices that the music emanates.`
-			`	One of the Successors in the pool begins to sing; at least, singing is the best way you could describe it: they press one of the longer and more cylindrical instruments up to their head and it begins producing an accompaniment to the other instruments' melody that your translation device occasionally recognizes as words:`
+			`	One of the Successors in the pool begins to sing - at least, singing is the best way you could describe it; they press one of the longer and more cylindrical instruments up to their head and it begins producing an accompaniment to the other instruments' melody that your translation device occasionally recognizes as words:`
 			`	"... sweetest child... never want... not so... somber current... endure..."`
 			`	It is not clear whether or not this represents the entire lyric content of the performance or simply if the translation device is unable to parse the more tonal phrases. The submerged singer displays a variety of colors and textures on their skin, changing with each successive phrase; green and rough on a splittingly high note, pink and smooth-looking on a strangely growl-like low section. Several in the crowd emulate this in their own skin patterning; the group pulses in color and pattern in time with the melody of the music.`
 			choice
@@ -407,7 +407,7 @@ mission "Successors: Stargazing 1"
 	on stopover
 		conversation
 			`Nnesa and Jaasora have been simply enthralled on the journey here; the inseparable pair has spent seemingly every waking moment peering out the <ship>'s windows to watch the stars stream past. Upon arrival in the Maspa-Mavra system, however, their excitement dwindled to what you would call a subdued awe at the sight of the entire galaxy splayed out in the sky.`
-			`	Khosa-Kella-Oa itself is cold, dark and rocky, for all purposes functionally identical to any of the other innumerable uninhabited airless worlds in the galaxy. Your passengers seem pleased with it, though; Nnesa remarks that the local star "is so dim that there's hardly any glare!" and Jaasora energetically agrees. They activate their cart of folded equipment within the <ship>'s cargo bay, which slowly inflates and unfolds into something halfway between a tent and a repulsor lift. It skids over the floor like melting ice, gently bumping the inside walls a couple times before Jaasora manages to quiet its movement.`
+			`	Khosa-Kella-Oa itself is cold, dark and rocky: for all purposes functionally identical to any of the other innumerable uninhabited airless worlds in the galaxy. Your passengers seem pleased with it, though; Nnesa remarks that the local star "is so dim that there's hardly any glare!" and Jaasora energetically agrees. They activate their cart of folded equipment within the <ship>'s cargo bay, which slowly inflates and unfolds into something halfway between a tent and a repulsor lift. It skids over the floor like melting ice, gently bumping the inside walls a couple times before Jaasora manages to quiet its movement.`
 			`	"Our thanks again, captain, for transporting us," says Jaasora as they load a bundle of telescopes inside.`
 			`	"Oh! The planet's perfect; no air to muddy the view nor other ships to cloud the skies-"`
 			`	"We should be back in a couple hours. Please wait for us."`
@@ -542,7 +542,7 @@ mission "Successors: People's Houses: First Contact"
 			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
 				decline
 			label who
-			`	"They are the outcasts of the Houses New, who, like the rest, were forced here when the old empire crumbled into ash. But while the rest of the New Houses had ample wealth to move and grow into their new domains, not all of us were able to escape this intermediary place they shoved us while we waited. A thousand years and still they paint us with their scorn and demonize our yearning to be free."`
+			`	"They are the outcasts of the Houses New, who, like the rest, were forced here when the old empire crumbled into ash. But while the rest of the New Houses had ample wealth to move and grow into their new domains, not all of us were able to escape this intermediary place they shoved us into while we waited. A thousand years and still they paint us with their scorn and demonize our yearning to be free."`
 			choice
 				`	"Free?"`
 					goto free

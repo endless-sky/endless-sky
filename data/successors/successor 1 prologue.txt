@@ -100,13 +100,13 @@ mission "Successors: First Contact 1"
 		event "label successor space"
 		event "successors: first contact wait" 8
 		log `Made contact with a group of aliens to the far south of the Graveyard calling themselves "the Successors." Was instructed to return to Staja-Kella-Oa in eight days, when their government will decide what to do about my arrival.`
-		log "Factions" "Successors" `The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy; amphibious octopods approximately three meters tall. They are governed by their High Houses, institutions built around several noble families whose scions wield political and military power. They have not encountered humans since 1500 years ago, at which time their Predecessors were exploring much of the galaxy.`
+		log "Factions" "Successors" `The Successors are a society of aliens occupying a territory on the southeastern outer rim of the galaxy; amphibious octopods approximately three meters tall. They are governed by their High Houses, institutions built around several noble families whose scions wield political and military power. They have not encountered humans for 1500 years, at which time their Predecessors were exploring much of the galaxy.`
 		"reputation: Successor" += 1
 		"reputation: House Chydiyi" += 1
 		"reputation: House Myurej" += 1
 		"reputation: House Sioeora" += 1
 		conversation
-			`Like last time, you are escorted by the interceptors to a landing pad on this planet's spaceport. Here, however, they guide you to a small, out-of-the way area at great distance from the main complex, where several uniformed aliens are gathered on the landing pad, standing at attention.`
+			`Like last time, you are escorted by the interceptors to a landing pad on this planet's spaceport. Here, however, they guide you to a small, out-of-the way area at a great distance from the main complex, where several uniformed aliens are gathered on the landing pad, standing at attention.`
 			`	After waiting for several minutes, a shuttle lands on the pad beside yours and several individuals emerge from it. Two of them move in front of the rest, where they are allowed to pass by the guards and approach you. The one on the left is a uniformed officer wearing what appears to be heavy body armor with shimmering metallic plates that sparkle in the light. On the right is a smaller alien who is wrapped up in a dark, cocoon-like outfit from which their head and arms emerge. The officer says something to the smaller one, who quietly replies and then pulls from a pocket on their outfit a smooth sheet which they inspect several times before haltingly addressing you.`
 			`	"Hark... noble visitor! We bid thee... welcome and good tidings." The two eye you closely as they wait for a response.`
 			choice
@@ -284,7 +284,7 @@ mission "Successors: First Contact 2"
 				`	"What sort of task?"`
 				`	"What sort of gift?"`
 					goto gift
-				`	"I do not appreciate being demanded about."`
+				`	"I do not appreciate being bossed around."`
 					goto rude
 			label task
 			`	"'Tis a world within the scar of shrouded systems to the north th'twas once by name Raaqa-Uur-Kaav. We require thee to visit there, where'pon its surface, thou shall'st go and find a certain beast t'return to us, undamaged and unspoil't. The scholar, Sieasej, shall escort thee: an envoy of this House t'assist and monitor thine efforts. And if thou'rt successful in the fetching of thine quarry, we shall see fit to thee bestow the peerless gift of language, so that thou might'st not evermore require the use of a translator, as doth thou, here and now."`
@@ -452,8 +452,8 @@ mission "Successors: First Contact 3"
 				accept
 	on stopover
 		conversation
-			`Some minutes after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a place where once the beasts were bred. When last our vessels traveled here, 'twas this location were they noted many Kijran-Riitaa."`
-			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown, vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
+			`Some minutes after you enter the system, Sieasej enters your ship's cockpit and directs you to a location in the planet's southern hemisphere, on the edge of one of the smaller continents. "Here, captain," they say, "'twas a place where once the beasts were bred. When last our vessels traveled here, 'twas this location where they noted many Kijran-Riitaa."`
+			`	As you approach the coordinates to land, you see that it contains the remains of a substantial complex; over a dozen large buildings and several disused landing pads are present, connected by paths of smooth, untarnished metal. The materials show a curious quality of being both unblemished and overgrown - vines cling to otherwise-spotless walls, and the various walkways, though often shaded by large plants, do not show any debris or detritus on their surfaces.`
 			branch "retrieve tranqs"
 				or
 					has "outfit (flagship installed): Enforcer Riot Staff"
@@ -641,7 +641,7 @@ mission "Successors: First Contact 3"
 				"reputation: House Seineq" += 2
 				"reputation: People's Houses" += 2
 				log "Captured and returned the animal House Sioeora requested that I bring to them. Was rewarded with a translation device and historical data that allows me to land on most Successor worlds. Was told that assisting in jobs and missions for the Successors would eventually allow me to purchase some of their technology."
-			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before, who direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
+			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. Before leaving, you retrieve the caged Kijra-riitaa from the <ship>'s cargo bay. The animal looks a little pitiful with its wings folded up and body curled into a ball, but appears otherwise undamaged. You and Sieasej are given fewer escorts than before; what escorts you do have direct you deeper into the complex. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
 			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "We see that thou hast returned from thy hunt successful!"`
 			choice
 				`	"Yes, I have."`
@@ -688,7 +688,7 @@ mission "Successors: First Contact 3"
 			action
 				clear "Successors: animal"
 				clear "Successors: others"
-			`	"Good. We bid thee good farewells, then, and good tidings in thy travels." Riijaaora and the other scions turn around to face their backs towards you and the officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
+			`	"Good. We bid thee good farewells, then, and good tidings in thy travels." Riijaaora and the other scions turn around to face their backs towards you. The officers who escorted you in escort you back out to your ship through the various sculptural passages of Sioeora's complex.`
 			label exit
 
 mission "Successors: Kaatrij Monoglot Prompt"
@@ -788,7 +788,7 @@ mission "Successors: Kaatrij First Contact 1"
 				`	(Step outside.)`
 				`	(Leave.)`
 					goto premature
-			`	The minutes of the night wear on and, curious, you step out on your ship's boarding ramp to get a better view of your surroundings, to no avail, but you continue to wait. Eventually, after the night has worn on a little more, you hear the sound of water rushing; a small vehicle emerges from the lake and parks itself alongside your ship. A couple of Successors get out, one of whom approaches you.`
+			`	The minutes of the night wear on and, curious, you step out on your ship's boarding ramp to get a better view of your surroundings, to no avail. Despite this, you continue to wait. Eventually, after the night has worn on a little more, you hear the sound of water rushing; a small vehicle emerges from the lake and parks itself alongside your ship. A couple of Successors get out, one of whom approaches you.`
 			`	"Captain <first> <last>," they say. Their voice sounds strange, like their words are being carried from a great distance on the wind; the sounds ripple and bend as they speak them.`
 			choice
 				`	"That's right."`
