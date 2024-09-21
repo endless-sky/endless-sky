@@ -264,7 +264,6 @@ outfit "Overcharged Pulse Laser"
 			"frame rate" 8
 			"rewind"
 		sound "overcharged pulse laser"
-		"fire effect" "moonbeam fleck" 3
 		"hit effect" "overcharged pulse laser impact"
 		"inaccuracy" 5.5
 		"velocity" 490
@@ -300,7 +299,6 @@ outfit "Overcharged Laser Turret"
 		"hardpoint sprite" "hardpoint/overcharged pulse laser turret"
 		"hardpoint offset" 8
 		sound "overcharged pulse laser"
-		"fire effect" "moonbeam fleck" 3
 		"hit effect" "overcharged pulse laser impact"
 		"inaccuracy" 5.5
 		"velocity" 490
@@ -346,7 +344,6 @@ outfit `"Sjeja" Kinetic Lance`
 		"fire effect" "moonbeam fleck" 20
 		"fire effect" "electron impact"
 		"hit effect" "torpedo hit"
-		"die effect" "tiny explosion"
 		"cluster"
 		"velocity" 320
 		"lifetime" 8
