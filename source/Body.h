@@ -110,6 +110,7 @@ protected:
 	float scale = 1.f;
 
 	double alpha = 1.;
+	// The maximum distance at which the body is visible, and at which it becomes invisible again.
 	double distanceVisible = 0.;
 	double distanceInvisible = 0.;
 
