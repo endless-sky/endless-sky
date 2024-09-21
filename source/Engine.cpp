@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "MapPanel.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -59,8 +59,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StellarObject.h"
@@ -690,7 +690,7 @@ void Engine::Step(bool isActive)
 					break;
 				}
 			const System *system = escort->GetSystem();
-			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
+			escorts.Add(*escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
@@ -1701,6 +1701,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			for(const auto &bay : ship->Bays())
 				if(bay.ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
+			// If this is a player ship, make sure it's no longer selected.
+			if(ship->IsYours())
+				player.DeselectShip(ship.get());
 		}
 		return;
 	}
@@ -1828,7 +1831,7 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// Although an attempt to spawn a person is specified by a gamerule,
 	// that attempt can still fail due to an added weight for no person to spawn.
 	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
@@ -2435,12 +2438,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Unless something went wrong while forming the message, display it.
-	if(!message.empty())
-	{
-		int free = collector->Cargo().Free();
-		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
-		Messages::Add(message, Messages::Importance::High);
-	}
+	if(message.empty())
+		return;
+
+	int free = collector->Cargo().Free();
+	int total = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == player.GetSystem())
+			total += ship->Cargo().Free();
+
+	message += " (" + Format::CargoString(free, "free space") + " remaining";
+	if(free == total)
+		message += ".)";
+	else
+		message += ", " + Format::MassString(total) + " in fleet.)";
+	Messages::Add(message, Messages::Importance::High);
 }
 
 
