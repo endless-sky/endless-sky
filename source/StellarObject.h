@@ -80,6 +80,7 @@ public:
 private:
 	const Planet *planet;
 
+	// The base values that are used to generate the visibility distances in Body.
 	double trueDistanceVisible = 0.;
 	double trueDistanceInvisible = -1.;
 
