@@ -16,7 +16,7 @@ planet Aava-Aasa-Khora
 	landscape land/canyon15
 	description `This planet is the collective seat of what are known as the Old Houses, the noble families who held territorial claims to this region of space before the collapse of the Predecessors' empire and the arrival of the so-called New Houses fleeing their crumbling society.`
 	description `	While today the planet is geologically stable, it has experienced major tectonic shifts in the past, folding the planet's surface into a number of visually spectacular canyons and mountain ranges. Since it serves such an important political role, tectonic activity on this planet is closely monitored, and even though there have been no major earthquakes since the Successors settled here, most of the buildings here are built to withstand even large and destructive geological shifts.`
-	spaceport `Surprisingly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildings made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
+	spaceport `Unexpectedly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildings made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
 	spaceport `	The inside of the spaceport is very similar, with soft, rounded shapes, and flexible building materials. The floor seems to sink a little as you step on it, almost like it is actually a viscous liquid rather than a solid material.`
 	government "Old Houses"
 	shipyard "High Houses Light"
@@ -652,7 +652,7 @@ planet Cassandra
 planet Cavaasa-Vasa-Tej
 	attributes predecessor uninhabited
 	landscape land/lava8
-	description `This planet is hot and dry, and holds on to only a tenuous atmosphere. Several enormous alien installations are present on its surface; semicircular bubbles that smoothly emerge from the rock as if they were grown from it, dotted with small pores, which are each large enough for a starship. Inside them, the temperature is surprisingly quite habitable and you can observe the remains of what look like mines and industrial facilities within.`
+	description `This planet is hot and dry, and holds on to only a tenuous atmosphere. Several enormous alien installations are present on its surface: semicircular bubbles that smoothly emerge from the rock as if they were grown from it, dotted with small pores which are each large enough for a starship. Inside them, the temperature is surprisingly quite habitable and you can observe the remains of what look like mines and industrial facilities within.`
 		to display
 			not "trusted by the successors"
 	description `Once an important industrial planet for the High Houses of the core systems, Cavasaa-Vasa-Tej was a hub for the mining of rare elements and for the growth of exotic metal in the superheated corona of the Kasii-Cavaasa star. Shipments from here continued even as the hyperspace links from it started to deteriorate, leaving many freighters stranded in deep space after they fell out mid-jump. Without maintenance, most of the stellar metallic gardens here have long since fallen into Kasii-Cavaasa's outer layers, but the few that have survived by chance are now completely overgrown with threads of hyperdense alloy; enough to supply the facilities of Cavaasa-Vasa-Tej's industry for years, if they were still operational.`
@@ -751,7 +751,7 @@ planet Chyyra-Raaqa-Tuur
 	description `This snow-covered planet orbits a dim star, making its surface dark and bitterly cold. Near the north pole, there are signs of large-scale excavation, possibly for materials to construct the station that orbits it.`
 		to display
 			not "known to the successors"
-	description `During the arrival of the New Houses, this planet was briefly considered as a location for permanent habitation. However, the dim star it orbits produces very little heat and makes the planet uncomfortably cold, even for the cold-tolerant Successors. Furthermore, its lack of substantial natural resources exempted it from use as an industrial or mining planet, and it continues to remain uninhabited.`
+	description `During the arrival of the New Houses, this planet was briefly considered as a location for permanent habitation. However, the dim star it orbits produces very little heat and makes the planet uncomfortably frigid, even for the cold-tolerant Successors. Furthermore, its lack of substantial natural resources exempted it from use as an industrial or mining planet, and it continues to remain uninhabited.`
 		to display
 			has "known to the successors"
 	government Uninhabited
@@ -2510,7 +2510,7 @@ planet "Kasichara Fet"
 planet Kasii-Cavasaa-Oa
 	attributes successor
 	landscape land/snow25
-	description `Although inhospitable by human standards, the snow-covered Kasii-Cavasaa-Oa falls comfortably, if on the low end of comfortable, within the Successors' tolerances. Beneath the permafrost lie rich deposits of rare earth elements and heavy metals that have supported the highly self-contained economy of House Aqrabe; entire production lines from raw material to final product are contained upon this single planet. Since many of the minerals mined here are integral for the production of the Successors' advanced composite materials, Aqrabe and the other New Houses keep a tight grip here, funneling many of the end products into their shipyards and construction projects.`
+	description `Although inhospitable by human standards, the snow-covered Kasii-Cavasaa-Oa falls comfortably within the Successors' tolerances, if on the low end of that range. Beneath the permafrost lie rich deposits of rare earth elements and heavy metals that have supported the highly self-contained economy of House Aqrabe; entire production lines from raw material to final product are contained upon this single planet. Since many of the minerals mined here are integral for the production of the Successors' advanced composite materials, Aqrabe and the other New Houses keep a tight grip here, funneling many of the end products into their shipyards and construction projects.`
 	spaceport `Far from beautiful, but impressive in its scale and technology, Kasii-Cavasaa-Oa's spaceport looms over the blindingly-white snow hills like an obsidian outcrop. There is a substantial military presence here, guarding the valuable freight convoys of the New Houses; even in these relatively peaceful times, the Successors have clearly not forgotten their fraught and warlike past.`
 	spaceport `	You gain a similar feeling from your interaction with the Successors here; they are courteous, polite, and just as cold as the biting winds. This a not a place for idle chatter or bright-eyed tourists.`
 	government "House Aqrabe"
@@ -2527,7 +2527,7 @@ planet Kasii-Tuur-Saqru
 	landscape land/station42
 	description `While some of the High Houses of the Predecessors managed to immigrate to this star cluster in their political entirety, others collapsed along the way. Some of their former citizens were folded into House Kaatriij, but the rest, the majority, were to temporarily habitate here. Now, many years later, their descendants largely still do.`
 	description `	The station, by now crowded and in disrepair, is technically the property of the Old Houses, but is far outside their jurisdiction, leaving it de facto stateless like its inhabitants. Without a claim to any other citizenship, those inhabitants have formed the so-called "People's Houses," semi-familial groups that they laud as effective democratic governments but which are denigrated by most in the High Houses as little more than gangs of populist outlaws shielded by stale treaties.`
-	spaceport `You wouldn't really call the landing area here a "spaceport:" it seems to be just an especially large cargo bay refitted to hold a handful of ships. In sharp contrast to most of the Successor facilities you've visited, it is grimy, dingy, and uncomfortably claustrophobic - throngs of Successors squeeze in between crowded starships, overflowing cargo containers, and strewn-about equipment, and most of these items display bullet holes, scorch marks, or other conditions not evocative of confidence.`
+	spaceport `You wouldn't really call the landing area here a "spaceport": it seems to be just an especially large cargo bay refitted to hold a handful of ships. In sharp contrast to most of the Successor facilities you've visited, it is grimy, dingy, and uncomfortably claustrophobic - throngs of Successors squeeze in between crowded starships, overflowing cargo containers, and strewn-about equipment, and most of these items display bullet holes, scorch marks, or other conditions not evocative of confidence.`
 	spaceport `	At the edges of the spaceport, several semi-obfuscated elevators and blast doors lead out into the rest of the station. While most of these, you presume, lead to residential areas, some seem to be servicing the seedier side of the population, and you can't help but wonder how much of the spaceport's operations are taking place behind closed doors.`
 	government "People's Houses"
 	shipyard "People's Houses"
@@ -2555,7 +2555,7 @@ planet Kella-Uuoru-Sossa
 	description `This planet is an ecological catastrophe. Its surface has been scoured by radiation and by what must have been an orbital bombardment; no organic life remains. Many large cities dot the surface, several of which have been leveled or damaged by weapon strikes, and far more which are nearly entirely intact. All are equally empty. Persistent clouds of caustic dust choke the atmosphere, and your ship's sensors alert you to the presence of several dust storms at other locations on the planet's surface. It would be wise not to get caught in one.`
 		to display
 			not "trusted by the successors"
-	description `This is the ancestral homeworld of the Successor species. The spatial anomalies that now dominate this system have scoured its surface with radiation and evaporated most of its once-extensive oceans. The great cities of the Predecessors' empire are now devoid of all organic life; many of them remain as pristine and gleaming as the on the days they were abandoned. Caustic dust chokes the lower atmosphere of the planet, and your ship's sensors alert you to the presence of several sandstorms at other locations on the planet's surface. It would be wise not to get caught in one.`
+	description `This is the ancestral homeworld of the Successor species. The spatial anomalies that now dominate this system have scoured its surface with radiation and evaporated most of its once-extensive oceans. The great cities of the Predecessors' empire are now devoid of all organic life; many of them remain as pristine and gleaming as on the days they were abandoned. Caustic dust chokes the lower atmosphere of the planet, and your ship's sensors alert you to the presence of several sandstorms at other locations on the planet's surface. It would be wise not to get caught in one.`
 		to display
 			has "trusted by the successors"
 	port "Spaceport"
@@ -2975,7 +2975,7 @@ planet Martini
 planet Maspa-Viir-Kella
 	attributes successor uninhabited
 	landscape land/clouds_03
-	description `This planet is about as large as a terrestrial planet can be before it is considered a gas giant. It is surrounded by an extremely thick atmosphere that is just barely within the tolerances of traditional shipbuilding techniques, and that buffets your vessel with high winds before you even make landing. It is hard to see anything at any distance on the ground; the fog is simply too thick.`
+	description `This planet is about as large as a terrestrial planet can be before it is considered a gas giant. It is surrounded by an extremely thick atmosphere that is just barely within the tolerances of traditional shipbuilding techniques, which buffets your vessel with high winds before you even make landing. It is hard to see anything at any distance on the ground; the fog is simply too thick.`
 	government Uninhabited
 
 planet Mavra-Sol-Kvel
@@ -2987,7 +2987,7 @@ planet Mavra-Sol-Kvel
 	description `Shielded from the persistent asteroid impacts of this system by its parent gas giant, Mavra-Sol-Kvel enjoys a temperate climate and spectacular vistas. The low gravity here is greatly appreciated by the Successors, and consequently the moon supports a substantial population despite its small size, most of whom live in several cities along the equator. It also allows for a number of towering mountain ranges, many containing cliffs and canyons several kilometers high that are frequently visited by tourists and thrill-seeker pilots alike.`
 		to display
 			has "known to the successors"
-	spaceport `The spaceport is large but efficient, and plastered in bright and friendly colors, much like the landscape surrounding it. Most of the buildings are organic in shape, arcing and bubbling from place to place like seafoam, and despite the fanciful design, they also appear to be servicing a large volume of travellers, merchants, and military personnel, with color-coded lines leading to different areas.`
+	spaceport `The spaceport is large but efficient, plastered in bright and friendly colors much like the landscape surrounding it. Most of the buildings are organic in shape, arcing and bubbling from place to place like seafoam. Despite the fanciful design, they also appear to be servicing a large volume of travellers, merchants, and military personnel, with color-coded lines leading to different areas.`
 	"required reputation" 1
 	bribe 0
 
@@ -3176,7 +3176,7 @@ planet Mordente-Bridi
 planet Mosaa-Oa-Vyret
 	attributes successor
 	landscape land/mountain14-sfiera
-	description `This small planet hosts a population of towering octopus-like aliens. They have built several cities across its surface that are highly symmetrical and filled with organic-looking curved buildings draped in colorful fabrics that shimmer in the light. The air is damp and chilly; rainstorms blanket a significant portion of the planet's surface and many of the sleek-looking vessels that set down in the spaceport discharge streams of water upon landing.`
+	description `This small planet hosts a population of towering octopus-like aliens. They have built several cities across its surface that are highly symmetrical, filled with organic-looking curved buildings draped in colorful fabrics that shimmer in the light. The air is damp and chilly; rainstorms blanket a significant portion of the planet's surface and many of the sleek-looking vessels that set down in the spaceport discharge streams of water upon landing.`
 		to display
 			not "known to the successors"
 	description `Mosaa-Oa-Vyret's location in the only hyperspace link between the northern and southern parts of Successor territory has made it a hub for interstellar trade and the center of Successor commerce.`
@@ -3248,7 +3248,7 @@ planet Myiara-Aret-Iir
 	description `In contrast to the pristine emptiness of the other formerly-inhabited planets in this area of space, this world teems with signs of chaos. The remains of hastily-built weather-control towers dot much of its surface, and the cities upon it are neither majestic nor well-maintained; none are very large, but most are surrounded by vast expanses of fabric and radiation-bleached temporary constructions.`
 		to display
 			not "trusted by the successors"
-	description `Once a minor colony world, what would come to be known as Myiara-Aret-Iir was the last stop of all those hoping to escape the decay of the Predecessors' space by traveling through the wormhole. Those who had wealthy patrons that could finance prompt transport spent little time here, but those without often found the blossoming shanty towns of the planet to be their new homes. With the denouement of the Predecessors' last inter-Houses war and the final push to evacuate, most of those living here eventually made it through. The rest probably perished long ago.`
+	description `Once a minor colony world, what would come to be known as Myiara-Aret-Iir was the last stop of all those hoping to escape the decay of the Predecessors' space by traveling through the wormhole. Those who had wealthy patrons that could finance prompt transport spent little time here, but those without often found the blossoming shanty towns of the planet to be their new homes. With the denouement of the Predecessors' last inter-House war and the final push to evacuate, most of those living here eventually made it through. The rest probably perished long ago.`
 		to display
 			has "trusted by the successors"
 	government Predecessor
@@ -3956,7 +3956,7 @@ planet Quirinal
 planet Raaqa-Kvelq-Ryuit
 	attributes education successor urban
 	landscape land/fields6
-	description `This planet seems to host a larger population than any other world you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, and both terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
+	description `This planet seems to host a larger population than any other world you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
 		to display
 			not "known to the successors"
 	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over five hundred million inhabitants, the largest of any world in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
