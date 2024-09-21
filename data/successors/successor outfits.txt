@@ -610,24 +610,24 @@ effect "tiny successor afterburner"
 		"frame rate" 20
 		"scale" 0.20
 	lifetime 1
-	sound "plasma tiny"
+	sound "successor afterburner tiny"
 
 effect "small successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
 		"frame rate" 20
 		"scale" 0.36
 	lifetime 1
-	sound "plasma tiny"
+	sound "successor afterburner small"
 
 effect "medium successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
 		"frame rate" 20
 		"scale" 0.6
 	lifetime 1
-	sound "plasma small"
+	sound "successor afterburner medium"
 
 effect "large successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
 		"frame rate" 20
 	lifetime 1
-	sound "plasma medium"
+	sound "successor afterburner large"
