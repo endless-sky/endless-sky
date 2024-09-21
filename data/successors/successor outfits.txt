@@ -40,7 +40,7 @@ outfit `"Byiaa" Shield Cortex`
 	"shield protection" -0.33
 	"shield energy" 2.92
 	"shield connection point" 1
-	description "At their peak, the Predecessors were feared not by how quickly they could overpower their enemies, but by how effectively they could outlast them. Many generations later, this philosophy is still reflected in modern Successor shield cortices, which are exceptionally powerful for their size but weaken the shield's resistance to incoming fire, allowing Successor ships to recover quickly from sustained damage, even if they are slightly more vulnerable to it."
+	description "At their peak, the Predecessors were feared not by how quickly they could overpower their enemies, but by how effectively they could outlast them. Many generations later, this philosophy is still reflected in modern Successor shield cortices, which are exceptionally powerful for their size but weaken the shield's resistance to incoming fire. This allows Successor ships to recover quickly from sustained damage, even if they are slightly more vulnerable to it."
 
 outfit `"Ej" Shield Cortex`
 	category "Systems"
@@ -494,7 +494,7 @@ outfit `"Veusa" Inductive Thruster`
 	"flare sprite" "effect/successor flare/large"
 		"frame rate" 20
 	"flare sound" "ion large"
-	description `The largest of the Successors' pulsed inductive thrusters, the "Veusa" is used primarily to propel their large warships and freighters. While its high-performance mode is powerful enough to accelerate even the largest vessels to high speeds, it also drains shield power remarkably quickly; this is clearly meant to be paired with one of the Successors' fast-recharging shield generators.`
+	description `The largest of the Successors' pulsed inductive thrusters, the Veusa is used primarily to propel their large warships and freighters. While its high-performance mode is powerful enough to accelerate even the largest vessels to high speeds, it also drains shield power remarkably quickly; this is clearly meant to be paired with one of the Successors' fast-recharging shield generators.`
 
 outfit `"Veusa" Inductive Steering`
 	category "Engines"
@@ -514,7 +514,7 @@ outfit `"Veusa" Inductive Steering`
 	"steering flare sprite" "effect/successor flare/large"
 		"frame rate" 20
 	"steering flare sound" "ion large"
-	description `The "Veusa" series of Successor steering units is significantly smaller than comparable human engines, allowing the Successors to gain some flexibility in the engine layouts of their large ships.`
+	description `The Veusa series of Successor steering units is significantly smaller than comparable human engines, allowing the Successors to gain some flexibility in the engine layouts of their large ships.`
 
 outfit `"Veusa" Inductive Reverser`
 	category "Engines"
