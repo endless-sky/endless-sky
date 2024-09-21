@@ -989,21 +989,21 @@ ship "Veusade"
 	"steering engine" -40 28
 		left
 		angle 90
-		zoom .6
+		zoom .5
 		over
 	"steering engine" 40 28
 		right
 		angle 270
-		zoom .6
+		zoom .5
 		over
 	"steering engine" -7 -71
 		right
 		angle 90
-		zoom .6
+		zoom .5
 	"steering engine" 7 -71
 		left
 		angle 270
-		zoom .6
+		zoom .5
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
