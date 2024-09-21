@@ -1585,7 +1585,7 @@ mission "Ka'het: Patir Mystery 12D"
 			names "ka'sei"
 			cargo 3
 			variant
-				"Asteroid Adult (Patir 12A)"
+				"Asteroid Large (Patir 12A)"
 		dialog
 			`The giant creature stands before you, slowly pulsating in a pale pink halo. The bubbles that interrupt the asteroid-like surface are slightly semitransparent, giving you a brief look at the crystalline structure inside; but your mind soon returns to your time limited mission, and you decide to move ahead before it's too late.`
 
@@ -1666,7 +1666,7 @@ ship "Fetri'sei" "Fetri'sei (Patir 12A)"
 	"final explode" "final explosion small"
 	description "The Fetri is a self replicating probe, built to harvest iridium away from the Graveyard and transport it back to the Builders."
 
-ship "???" "Asteroid Adult (Patir 12A)"
+ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
 	sprite "ship/asteroid adult"
 	thumbnail "thumbnail/asteroid adult"
 	attributes
