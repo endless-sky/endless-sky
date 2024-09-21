@@ -897,7 +897,7 @@ color "governments: Korath Exiles" .8 .5 .1
 government "Ka'sei (12A)"
 	"display name" "Ka'sei"
 	swizzle 0
-	language "???"
+	language "Ka'het"
 	
 	"penalty for"
 		assist 0
