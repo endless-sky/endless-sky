@@ -384,7 +384,7 @@ outfit `"Aqra" Inductive Steering`
 	"steering flare sprite" "effect/successor flare/small"
 		"frame rate" 20
 	"steering flare sound" "ion small"
-	description "Since their steering thrusters lack the mode switch emblematic of their linear propulsion, the Successors have invested their efforts into making these thrusters both powerful for their size and relatively efficient. In addition, recurrent power streams from the steering thrusters feed back into the ship's linear engines during afterburning modes, reducing or even reversing the additional energy cost associated with using these."
+	description "Since their steering thrusters lack the mode switch emblematic of their linear propulsion, the Successors have invested their efforts into making these thrusters both powerful for their size and relatively efficient. In addition, recurrent power streams from the steering thrusters feed back into the ship's linear engines during afterburning modes, reducing or even reversing the additional energy cost associated with using afterburners."
 
 outfit `"Aqra" Inductive Reverser`
 	category "Engines"
