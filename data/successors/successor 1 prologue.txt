@@ -73,6 +73,8 @@ mission "Successors: First Contact 1"
 				`	(Take the device.)`
 				`	(Refuse.)`
 					goto refused
+			action
+				log "Made contact with a group of aliens to the far south of the Graveyard. Took a device from them which marked a system a couple of jumps the east."
 			`	You take the device from the alien. It liquefies the moment it touches your skin before freezing in mid-splash to project a small but detailed holographic star map of the surrounding systems. A star system a few jumps east of here is highlighted amidst a sea of alien lettering. The individual standing opposite you grunts energetically as the trio of interceptors begins to hover in preparation for takeoff: it would appear that these people, whoever they are, want you to travel there.`
 				accept
 			label refused
@@ -920,7 +922,7 @@ mission "Successors: Trusted"
 		log "Factions" "Successors" `The High Houses are organized into two large alliances called the Old and New Houses, which have historically been in tension with each other. The Houses cooperate in council with their allies and the other Houses in general.`
 		conversation
 			`Once you have sat down at the spaceport, you are met by another group of Successor naval officers. You notice that this group appears even more diverse than the last, representing several different uniform styles and liveries. Unifying them all is a small white and blue pin attached to their outfits; one that does not correspond to the insignia of any of the High Houses. The officers guide you, politely but firmly, to one of the monorail trains snaking out from the spaceport to other installations on the planet, and you all shuffle together into one of the cars, which appears to have been completely cleared of normal passengers, if it even carried those in the first place.`
-			`	Several minutes later, the monorail deposits you at an especially large and well-decorated complex that swarms with both military and well-dressed civilians, some of whom appear so opulent and bejeweled that you suspect their personal effects are worth more than your ship. Each of them without exception wears the same white and blue insignia as your escorts, though many have incorporated it into their clothes' design or even display it as a pattern in skin coloration.`
+			`	Several minutes later, the monorail deposits you at an especially large and well-decorated complex that swarms with both military and well-dressed civilians, some of whom appear so opulent and bejeweled that you suspect their personal effects are worth more than most starships. Each of them without exception wears the same white and blue insignia as your escorts, though many have incorporated it into their clothes' design or even display it as a pattern in skin coloration.`
 			`	As your escort peels off into the crowd, you see a familiar face in the distance: Sieasej, the Successor scholar, who visibly perks up when they see you and then approaches.`
 			`	"Captain! Well-met again! Thou hast arrived at a fortunate hour, for there's still some minutes 'fore this day's meetings are scheduled to begin."`
 			label questions
