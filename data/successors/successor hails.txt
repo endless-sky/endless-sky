@@ -17,7 +17,7 @@ phrase "successor friendly hail" # Wary hails
 	word
 		`Art thou the "noble visitor" of whom the Houses speak?`
 		`Art thou the "honored guest" the Houses do parade?`
-		"Art thou the fiendish creature that hails from distant lands?"
+		"Art thou the eerie creature that hails from distant lands?"
 		"Art thou the strange-ish traveler that hails from distant stars?"
 		"Art thou the alien visitor within our noble lands?"
 		"Art thou the creature'f history, returned to seek the present?"

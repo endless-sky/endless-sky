@@ -606,6 +606,7 @@ ship "Nnaatej"
 	description `Owing to their amphibious nature, a substantial portion of the Successor population lives underwater. Most of their ships are built with this in mind and are capable of some degree of underwater operation. However, the "Nnaatej" is a specialist vessel built specifically for this purpose, shuttling passengers from deep ocean to deep space and back again. It is designed with a denser, pressure-stable hull, built-in maintenance systems, and increased resistance to corrosion and slowing effects. These features come at the cost of making it a heavy and expensive ship for its size, but are considered well worth it to ensure the safety and comfort of its passengers and cargo.`
 
 
+
 ship "Nnesaarau"
 	plural "Nnesaaraun"
 	sprite "ship/nnesaarau"

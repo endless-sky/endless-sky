@@ -151,7 +151,7 @@ phrase "successor researchers transfer"
 	word
 		`The researchers readily embark for the symposium, but not before giving you <payment> in payment.`
 
-mission "Successor: Tourists Out 1"
+mission "Successors: Tourists Out 1"
 	job
 	repeat
 	name "Vacationers to <planet>"
@@ -178,7 +178,7 @@ mission "Successor: Tourists Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Tourists Out 2"
+mission "Successors: Tourists Out 2"
 	job
 	repeat
 	name "Vacationers to <planet>"
@@ -205,7 +205,7 @@ mission "Successor: Tourists Out 2"
 		"successor jobs" ++
 
 
-mission "Successor: Bold Tourists Round Trip"
+mission "Successors: Bold Tourists Round Trip"
 	job
 	repeat
 	name "Extreme sightseeing on <planet stopovers>"
@@ -233,7 +233,7 @@ mission "Successor: Bold Tourists Round Trip"
 		"successor jobs" ++
 
 
-mission "Successor: Tourist Expedition"
+mission "Successors: Tourist Expedition"
 	job
 	repeat
 	name "Sightseeing expedition"
@@ -273,7 +273,7 @@ mission "Successor: Tourist Expedition"
 		"successor jobs" ++
 
 
-mission "Successor: Students Out"
+mission "Successors: Students Out"
 	job
 	repeat
 	name "Students on break to <planet>"
@@ -300,7 +300,7 @@ mission "Successor: Students Out"
 		"successor jobs" ++
 
 
-mission "Successor: Students In"
+mission "Successors: Students In"
 	job
 	repeat
 	name "Students returning to <planet>"
@@ -328,7 +328,7 @@ mission "Successor: Students In"
 		"successor jobs" ++
 
 
-mission "Successor: Workers Out 1"
+mission "Successors: Workers Out 1"
 	job
 	repeat
 	name "Successor workers to <planet>"
@@ -354,7 +354,7 @@ mission "Successor: Workers Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Workers Out 2"
+mission "Successors: Workers Out 2"
 	job
 	repeat
 	name "Successor workers to <planet>"
@@ -380,7 +380,7 @@ mission "Successor: Workers Out 2"
 		"successor jobs" ++
 
 
-mission "Successor: Delivery Out 1"
+mission "Successors: Delivery Out 1"
 	job
 	repeat
 	name "Shipment to <planet>"
@@ -406,7 +406,7 @@ mission "Successor: Delivery Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Delivery Out 2"
+mission "Successors: Delivery Out 2"
 	job
 	repeat
 	name "Shipment to <planet>"
@@ -432,7 +432,7 @@ mission "Successor: Delivery Out 2"
 		"successor jobs" ++
 
 
-mission "Successor: High Value Delivery Out"
+mission "Successors: High Value Delivery Out"
 	job
 	repeat
 	name "Valuables to <planet>"
@@ -460,7 +460,7 @@ mission "Successor: High Value Delivery Out"
 		"successor jobs" ++
 
 
-mission "Successor: Aid Delivery Out 1"
+mission "Successors: Aid Delivery Out 1"
 	job
 	repeat
 	name "Aid shipment to <planet>"
@@ -489,7 +489,7 @@ mission "Successor: Aid Delivery Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Large Delivery Out 1"
+mission "Successors: Large Delivery Out 1"
 	job
 	repeat
 	name "Bulk shipment to <planet>"
@@ -515,7 +515,7 @@ mission "Successor: Large Delivery Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Large Delivery Out 2"
+mission "Successors: Large Delivery Out 2"
 	job
 	repeat
 	name "Bulk shipment to <planet>"
@@ -541,7 +541,7 @@ mission "Successor: Large Delivery Out 2"
 		"successor jobs" ++
 
 
-mission "Successor: Rush Delivery Out 1"
+mission "Successors: Rush Delivery Out 1"
 	job
 	repeat
 	name "Rush shipment to <planet>"
@@ -568,7 +568,7 @@ mission "Successor: Rush Delivery Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Large Rush Delivery Out 1"
+mission "Successors: Large Rush Delivery Out 1"
 	job
 	repeat
 	name "Large rush shipment to <planet>"
@@ -595,7 +595,7 @@ mission "Successor: Large Rush Delivery Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Seismic Stabilizers"
+mission "Successors: Seismic Stabilizers"
 	job
 	repeat
 	name "Seismic stabilizers to <planet>"
@@ -623,7 +623,7 @@ mission "Successor: Seismic Stabilizers"
 		"successor jobs" ++
 
 
-mission "Successor: Data Courier 1"
+mission "Successors: Data Courier 1"
 	job
 	repeat
 	name "Data courier to <planet>"
@@ -652,7 +652,7 @@ mission "Successor: Data Courier 1"
 		"successor jobs" ++
 
 
-mission "Successor: Researchers Out 1"
+mission "Successors: Researchers Out 1"
 	job
 	repeat
 	name "Researchers to <planet stopovers>"
@@ -678,7 +678,7 @@ mission "Successor: Researchers Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Large Researchers Out 1"
+mission "Successors: Large Researchers Out 1"
 	job
 	repeat
 	name "Researchers to <planet stopovers>"
@@ -704,7 +704,7 @@ mission "Successor: Large Researchers Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Home Researchers Out 1"
+mission "Successors: Home Researchers Out 1"
 	job
 	repeat
 	name "Researchers to <planet stopovers>"
@@ -732,7 +732,7 @@ mission "Successor: Home Researchers Out 1"
 		"successor jobs" ++
 
 
-mission "Successor: Researchers Transfer"
+mission "Successors: Researchers Transfer"
 	job
 	repeat
 	name "Symposium on <planet>"
@@ -760,7 +760,7 @@ mission "Successor: Researchers Transfer"
 		"successor jobs" ++
 
 
-mission "Successor: Old Houses Rush Delivery"
+mission "Successors: Old Houses Rush Delivery"
 	job
 	repeat
 	clearance "After a moment of checking your delivery ID against their manifests, flight control clears you for landing."
@@ -787,7 +787,7 @@ mission "Successor: Old Houses Rush Delivery"
 		"old houses jobs" ++
 
 
-mission "Successor: New Houses Rush Delivery"
+mission "Successors: New Houses Rush Delivery"
 	job
 	repeat
 	clearance "After a moment of checking your delivery ID against their manifests, flight control clears you for landing."
