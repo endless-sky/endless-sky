@@ -2039,8 +2039,6 @@ ship "Gunboat"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
-		"Cargo Scanner"
-		"Outfit Scanner"
 		"Tactical Scanner"
 		"Brig"
 		

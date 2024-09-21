@@ -3885,6 +3885,7 @@ system Algorel
 	fleet "Small Republic" 3000
 	fleet "Small Southern Pirates" 1600
 	fleet "Large Southern Pirates" 5000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/k8
 		period 10
@@ -4080,6 +4081,7 @@ system Alioth
 	fleet "Small Militia" 900
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2400
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/k3
 		period 10
@@ -4391,6 +4393,7 @@ system Alnasl
 	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 4000
 	fleet "Derelict Southern" 30000
+	fleet "Navy Surveillance" 1200
 	object
 		sprite star/k5-old
 		distance 31.6761
@@ -4661,6 +4664,7 @@ system "Alpha Arae"
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 9000
 	fleet "Derelict Southern" 30000
+	fleet "Navy Surveillance" 1200
 	object
 		sprite star/g5
 		distance 37.4834
@@ -4911,6 +4915,7 @@ system Alphecca
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 3000
 	fleet "Small Militia" 5000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g0
 		distance 27.9652
@@ -5666,6 +5671,7 @@ system Arcturus
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 5000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/k8
 		period 10
@@ -7218,6 +7224,7 @@ system Boral
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
 	fleet "Derelict Southern" 10000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/m3
 		period 10
@@ -8216,6 +8223,7 @@ system Cebalrai
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 4000
 	fleet "Small Southern Pirates" 4000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g5
 		period 10
@@ -9022,6 +9030,7 @@ system "Cor Caroli"
 	fleet "Small Republic" 10000
 	fleet "Small Militia" 7000
 	fleet "Human Miners" 3000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g0
 		period 10
@@ -10511,6 +10520,7 @@ system "Delta Velorum"
 	fleet "Large Southern Pirates" 5000
 	fleet "Small Republic" 12000
 	fleet "Human Miners" 2000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g0
 		period 10
@@ -11114,6 +11124,7 @@ system Dschubba
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
 	fleet "Human Miners" 2000
+	fleet "Navy Surveillance" 800
 	object
 		sprite star/k8
 		distance 26.0027
@@ -11489,6 +11500,7 @@ system Eber
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	fleet "Derelict Southern" 10000
+	fleet "Navy Surveillance" 1200
 	object
 		sprite star/k5-old
 		period 10
@@ -13560,6 +13572,7 @@ system Fala
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 2000
 	fleet "Derelict Northern" 30000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/g5-old
 		period 10
@@ -15064,6 +15077,7 @@ system Gacrux
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 15000
 	fleet "Derelict Northern" 30000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/k8
 		distance 28.8811
@@ -17037,6 +17051,7 @@ system Holeb
 	fleet "Small Southern Pirates" 5000
 	fleet "Small Militia" 5000
 	fleet "Derelict Southern" 30000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/f5-old
 		period 10
@@ -18132,6 +18147,7 @@ system Ipsing
 	fleet "Small Southern Merchants" 2000
 	fleet "Small Southern Pirates" 3000
 	fleet "Derelict Northern" 10000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/g0-old
 		distance 20.2927
@@ -19605,6 +19621,7 @@ system "Kaus Borealis"
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 8000
 	fleet "Small Southern Pirates" 5000
+	fleet "Navy Surveillance" 1200
 	object
 		sprite star/k3
 		distance 25.2576
@@ -21294,6 +21311,7 @@ system Lesath
 	fleet "Large Southern Pirates" 4000
 	fleet "Small Militia" 5000
 	fleet "Derelict Southern" 30000
+
 	object
 		sprite star/f5
 		period 10
@@ -23152,6 +23170,7 @@ system Menkent
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Republic" 3000
 	fleet "Human Miners" 2000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/f5
 		distance 31.0781
@@ -23970,6 +23989,7 @@ system Mizar
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
 	fleet "Derelict Northern" 30000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/g0
 		period 10
@@ -24211,6 +24231,7 @@ system Mora
 	fleet "Small Republic" 20000
 	fleet "Human Miners" 2000
 	fleet "Derelict Northern" 30000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/k5
 		period 10
@@ -24291,6 +24312,7 @@ system Muhlifain
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/k3
 		period 10
@@ -24345,6 +24367,7 @@ system Muphrid
 	fleet "Small Southern Pirates" 6000
 	fleet "Small Republic" 5000
 	fleet "Derelict Northern" 30000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/g5-old
 		distance 19.407
@@ -27104,6 +27127,7 @@ system Porrima
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Republic" 8000
 	fleet "Small Southern Pirates" 6000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/g5
 		distance 14.2483
@@ -28108,6 +28132,7 @@ system Rasalhague
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 8000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/k3
 		period 10
@@ -28971,6 +28996,7 @@ system Rutilicus
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 6000
 	fleet "Human Miners" 3000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g5
 		period 10
@@ -29502,6 +29528,7 @@ system Sargas
 	fleet "Large Southern Pirates" 4000
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 7000
+	fleet "Navy Surveillance" 800
 	object
 		sprite star/k0
 		distance 58.3263
@@ -29551,6 +29578,7 @@ system Sarin
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 6000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g0
 		period 10
@@ -29991,6 +30019,7 @@ system Seginus
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
 	fleet "Small Southern Pirates" 5000
+	fleet "Navy Surveillance" 1200
 	object
 		sprite star/m8
 		period 10
@@ -32349,6 +32378,7 @@ system "Tania Australis"
 	fleet "Small Republic" 3000
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 9000
+	fleet "Navy Surveillance" 2000
 	object
 		sprite star/g0
 		period 10
@@ -33053,6 +33083,7 @@ system Turais
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 7000
 	fleet "Human Miners" 2000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/m8
 		period 10
@@ -34162,6 +34193,7 @@ system Vindemiatrix
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
+	fleet "Navy Surveillance" 1600
 	object
 		sprite star/g0
 		period 10
@@ -34737,6 +34769,7 @@ system Wei
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
 	fleet "Derelict Southern" 30000
+	fleet "Navy Surveillance" 1200
 	object
 		sprite star/k3
 		period 10
