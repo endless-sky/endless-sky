@@ -813,16 +813,26 @@ ship "Seiitej"
 	engine 25 44
 	"reverse engine" -25 -35
 		zoom .7
-	"steering engine" -25 -35
-		left
-		angle 180
-		zoom .7
 	"reverse engine" 25 -35
 		zoom .7
-	"steering engine" 25 -35
+	"steering engine" -44 34
+		left
+		angle 90
+		zoom .5
+		over
+	"steering engine" 44 34
 		right
-		angle 180
-		zoom .7
+		angle 270
+		zoom .5
+		over
+	"steering engine" -5 -89
+		right
+		angle 90
+		zoom .4
+	"steering engine" 5 -89
+		left
+		angle 270
+		zoom .4
 	leak "leak" 50 50
 	leak "flame" 30 80
 	explode "tiny explosion" 18
