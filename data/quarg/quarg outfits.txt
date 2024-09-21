@@ -19,7 +19,7 @@ outfit "Nanotech Battery"
 	"mass" 25
 	"outfit space" -25
 	"energy capacity" 60000
-	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being less than a third the size."
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
 
 outfit "Antimatter Core"
 	category "Power"
