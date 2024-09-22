@@ -330,7 +330,7 @@ outfit `"Niis" Inductive Engines`
 	"afterburner thrust" 25.2
 	"afterburner shields" 3.0
 	"afterburner heat" 1.6
-	"afterburner effect" "tiny successor afterburner"
+	"afterburner effect" "successor afterburner tiny"
 	"flare sprite" "effect/successor flare/tiny"
 		"frame rate" 20
 	"flare sound" "successor engine tiny"
@@ -360,7 +360,7 @@ outfit `"Aqra" Inductive Thruster`
 	"afterburner shields" 4.5
 	"afterburner heat" 2.2
 	"afterburner energy" 1.74
-	"afterburner effect" "small successor afterburner"
+	"afterburner effect" "successor afterburner small"
 	"flare sprite" "effect/successor flare/small"
 		"frame rate" 20
 	"flare sound" "successor engine small"
@@ -425,7 +425,7 @@ outfit `"Chyyra" Inductive Thruster`
 	"afterburner shields" 8.0
 	"afterburner heat" 4.0
 	"afterburner energy" 2.7
-	"afterburner effect" "medium successor afterburner"
+	"afterburner effect" "successor afterburner medium"
 	"flare sprite" "effect/successor flare/medium"
 		"frame rate" 20
 	"flare sound" "successor engine medium"
@@ -490,7 +490,7 @@ outfit `"Veusa" Inductive Thruster`
 	"afterburner shields" 12.2
 	"afterburner heat" 8.3
 	"afterburner energy" 4.8
-	"afterburner effect" "large successor afterburner"
+	"afterburner effect" "successor afterburner large"
 	"flare sprite" "effect/successor flare/large"
 		"frame rate" 20
 	"flare sound" "successor engine large"
