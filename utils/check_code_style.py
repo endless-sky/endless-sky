@@ -103,7 +103,7 @@ segment_exclude = [re.compile(regex) for regex in [
 	"^(public|protected|private|default):$"
 ]]
 # Precompiled  helper regexes
-after_comment = re.compile("[^\\s#]")
+after_comment = re.compile("[^\\s#]|[^\\\n]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
 
@@ -239,7 +239,7 @@ def sanitize(lines, skip_checks=False):
 					i += 1
 					start_index = i + 1
 				continue
-			if (not is_string) and first_two == "//" and line[i:i + 4] != "///\n":
+			if (not is_string) and first_two == "//":
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
 					# Checking for space after comment
