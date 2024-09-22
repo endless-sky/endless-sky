@@ -23,11 +23,11 @@ class Sprite;
 
 
 
-// Class for drawing sprites. You can optionally draw a sprite with a custom
-// zoom level or color swizzle. A more complicated function is also provided for
-// adjusting the scale, rotation, clipping, fading, etc. of a sprite; this is
-// most often just for use by the DrawList class, which calculates those input
-// parameters based on an object's rotation, animation frame, etc.
+/// Class for drawing sprites. You can optionally draw a sprite with a custom
+/// zoom level or color swizzle. A more complicated function is also provided for
+/// adjusting the scale, rotation, clipping, fading, etc. of a sprite; this is
+/// most often just for use by the DrawList class, which calculates those input
+/// parameters based on an object's rotation, animation frame, etc.
 class SpriteShader {
 public:
 	class Item {
@@ -46,10 +46,12 @@ public:
 
 
 public:
-	// Initialize the shaders.
+	///
+	/// Initialize the shaders.
 	static void Init();
 
-	// Draw a sprite.
+	///
+	/// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f,
 		int swizzle = 0, float frame = 0.f, const Point &unit = Point(0., -1.));
 	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f,

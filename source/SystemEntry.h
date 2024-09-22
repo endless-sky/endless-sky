@@ -17,7 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// All possible means of entering a system.
+///
+/// All possible means of entering a system.
 enum class SystemEntry {
 	TAKE_OFF,
 	HYPERDRIVE,

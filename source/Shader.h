@@ -19,10 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class representing a shader, i.e. a compiled GLSL program that the GPU uses
-// in order to draw something. In modern GPL, everything is drawn with shaders.
-// In general, rather than using this class directly, drawing code will use one
-// of the classes representing a particular shader.
+/// Class representing a shader, i.e. a compiled GLSL program that the GPU uses
+/// in order to draw something. In modern GPL, everything is drawn with shaders.
+/// In general, rather than using this class directly, drawing code will use one
+/// of the classes representing a particular shader.
 class Shader {
 public:
 	Shader() noexcept = default;

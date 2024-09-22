@@ -15,7 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-// Include whichever header is used for OpenGL on this operating system.
+///
+/// Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
 #include <OpenGL/GL3.h>
 #else
@@ -26,7 +27,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 #endif
 
-// A helper class for various OpenGL platform specific calls.
+///
+/// A helper class for various OpenGL platform specific calls.
 class OpenGL
 {
 public:

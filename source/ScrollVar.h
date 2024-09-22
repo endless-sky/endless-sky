@@ -19,10 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// This class allows you to set a scroll value and provides animation
-// interpolation between the old and new values, while clamping the value to a
-// suitable range. The Animate methods will return negative values, as they are
-// meant to be added as an offset to the draw position.
+/// This class allows you to set a scroll value and provides animation
+/// interpolation between the old and new values, while clamping the value to a
+/// suitable range. The Animate methods will return negative values, as they are
+/// meant to be added as an offset to the draw position.
 template <typename T>
 class ScrollVar: public Animate<T>
 {
@@ -30,35 +30,46 @@ public:
 	ScrollVar() = default;
 	ScrollVar(const T &maxVal, const T &displaySize);
 
-	// Set the maximum size of the scroll content.
+	///
+	/// Set the maximum size of the scroll content.
 	void SetMaxValue(const T &value);
-	// Get the maximum size of the scroll content.
+	///
+	/// Get the maximum size of the scroll content.
 	const T &MaxValue() const;
-	// Set the size of the displayable scroll area.
+	///
+	/// Set the size of the displayable scroll area.
 	void SetDisplaySize(const T &size);
-	// Get the size of the displayable scroll area.
+	///
+	/// Get the size of the displayable scroll area.
 	const T &DisplaySize() const;
-	// Returns true if scroll buttons are needed.
+	///
+	/// Returns true if scroll buttons are needed.
 	bool Scrollable() const;
-	// Returns true if the value is at the minimum.
+	///
+	/// Returns true if the value is at the minimum.
 	bool IsScrollAtMin() const;
-	// Returns true if the value is at the maximum.
+	///
+	/// Returns true if the value is at the maximum.
 	bool IsScrollAtMax() const;
-	// Modifies the scroll value by dy, then clamps it to a suitable range.
+	///
+	/// Modifies the scroll value by dy, then clamps it to a suitable range.
 	void Scroll(const T &dy, int steps = 5);
 
 	double AnimatedScrollFraction() const;
 	double ScrollFraction() const;
 
-	// Sets the scroll value directly, then clamps it to a suitable range.
+	///
+	/// Sets the scroll value directly, then clamps it to a suitable range.
 	virtual void Set(const T &current, int steps = 5) override;
 
-	// Shortcut mathematical operators for convenience.
+	///
+	/// Shortcut mathematical operators for convenience.
 	ScrollVar &operator=(const T &v);
 
 
 private:
-	// Makes sure the animation value stays in range.
+	///
+	/// Makes sure the animation value stays in range.
 	void Clamp(int steps);
 
 	T maxVal{};

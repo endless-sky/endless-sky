@@ -19,14 +19,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Strategies that a DistanceMap can use to determine which wormholes to make use of
-// when plotting a course to a destination, if any.
+/// Strategies that a DistanceMap can use to determine which wormholes to make use of
+/// when plotting a course to a destination, if any.
 enum class WormholeStrategy : int_fast8_t {
-	// Disallow use of any wormholes.
+	///
+	/// Disallow use of any wormholes.
 	NONE,
-	// Disallow use of wormholes which the player cannot access, such as in
-	// the case of a wormhole that requires an attribute to use.
+	/// Disallow use of wormholes which the player cannot access, such as in
+	/// the case of a wormhole that requires an attribute to use.
 	ONLY_UNRESTRICTED,
-	// Allow use of all wormholes.
+	///
+	/// Allow use of all wormholes.
 	ALL,
 };

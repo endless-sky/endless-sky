@@ -26,35 +26,39 @@ class Ship;
 class System;
 
 
-// Orders represent commands that have been given to the player's escorts.
+///
+/// Orders represent commands that have been given to the player's escorts.
 class Orders {
 public:
 	enum OrderType : int {
 		HOLD_POSITION,
-		// HOLD_ACTIVE is the same command as HOLD_POSITION, but it is given when a ship
-		// actively needs to move back to the position it was holding.
+		/// HOLD_ACTIVE is the same command as HOLD_POSITION, but it is given when a ship
+		/// actively needs to move back to the position it was holding.
 		HOLD_ACTIVE,
 		HOLD_FIRE,
 		MOVE_TO,
 		KEEP_STATION,
 		GATHER,
 		ATTACK,
-		// FINISH_OFF is used to ATTACK ships that are disabled.
+		///
+		/// FINISH_OFF is used to ATTACK ships that are disabled.
 		FINISH_OFF,
-		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
-		// to chase and attack the asteroid.
+		/// MINE is for fleet targeting the asteroid for mining. ATTACK is used
+		/// to chase and attack the asteroid.
 		MINE,
-		// HARVEST is related to MINE and is for picking up flotsam after
-		// ATTACK.
+		/// HARVEST is related to MINE and is for picking up flotsam after
+		/// ATTACK.
 		HARVEST,
 
-		// This must be last to define the size of the bitset.
+		///
+		/// This must be last to define the size of the bitset.
 		TYPES_COUNT
 	};
 
 
 public:
-	// Set and get the active order types on this order.
+	///
+	/// Set and get the active order types on this order.
 	void SetHoldPosition();
 	void SetHoldActive();
 	void SetHoldFire();
@@ -79,7 +83,8 @@ public:
 
 	bool IsEmpty() const;
 
-	// Set and get targeting information for this order.
+	///
+	/// Set and get targeting information for this order.
 	void SetTargetShip(std::shared_ptr<Ship> ship);
 	void SetTargetAsteroid(std::shared_ptr<Minable> asteroid);
 	void SetTargetPoint(const Point &point);
@@ -89,20 +94,21 @@ public:
 	const Point &GetTargetPoint() const;
 	const System *GetTargetSystem() const;
 
-	// Determine if this order must update itself in any way
-	// given changes that have occurred to its targets.
+	/// Determine if this order must update itself in any way
+	/// given changes that have occurred to its targets.
 	void UpdateOrder(const Ship *ship, const System *flagshipSystem);
-	// Merge this order with another order.
+	///
+	/// Merge this order with another order.
 	void MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHarvesting, int &orderOperation);
 
 
 private:
-	// Apply the new order type to the existing orders. The operation parameter
-	// determines if the new order bit should be reset, set, or flipped based on whether
-	// the parameter value is 0, 1, or 2.
-	// If the order bit is being changed to true, a bitmask is applied to cancel any
-	// conflicting orders.
-	// Returns the status of the changed order bit.
+	/// Apply the new order type to the existing orders. The operation parameter
+	/// determines if the new order bit should be reset, set, or flipped based on whether
+	/// the parameter value is 0, 1, or 2.
+	/// If the order bit is being changed to true, a bitmask is applied to cancel any
+	/// conflicting orders.
+	/// Returns the status of the changed order bit.
 	bool ApplyOrder(OrderType newOrder, int operation = 1);
 
 

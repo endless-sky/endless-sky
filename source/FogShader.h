@@ -20,7 +20,8 @@ class Point;
 
 
 
-// Shader for drawing a "fog of war" overlay on the map.
+///
+/// Shader for drawing a "fog of war" overlay on the map.
 class FogShader {
 public:
 	static void Init();

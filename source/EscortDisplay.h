@@ -28,18 +28,19 @@ class Sprite;
 
 
 
-// This class stores a list of escorts, sorted according to their value and
-// stacked if necessary to get them to all fit on screen.
+/// This class stores a list of escorts, sorted according to their value and
+/// stacked if necessary to get them to all fit on screen.
 class EscortDisplay {
 public:
 	void Clear();
 	void Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected);
 
-	// Draw as many escort icons as will fit in the given bounding box.
+	///
+	/// Draw as many escort icons as will fit in the given bounding box.
 	void Draw(const Rectangle &bounds) const;
 
-	// Check if the given point is a click on an escort icon. If so, return the
-	// stack of ships represented by the icon. Otherwise, return an empty stack.
+	/// Check if the given point is a click on an escort icon. If so, return the
+	/// stack of ships represented by the icon. Otherwise, return an empty stack.
 	const std::vector<const Ship *> &Click(const Point &point) const;
 
 
@@ -49,7 +50,8 @@ private:
 		Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
 				int basicHeight, int systemLabelHeight);
 
-		// Sorting operator.
+		///
+		/// Sorting operator.
 		bool operator<(const Icon &other) const;
 
 		int Height() const;

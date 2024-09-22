@@ -35,9 +35,9 @@ class Rectangle;
 
 
 
-// This panel displays detailed information about one of the player's ships. If
-// they are landed on a planet, it also allows the player to change weapon
-// hardpoints. In flight, this panel allows them to jettison cargo.
+/// This panel displays detailed information about one of the player's ships. If
+/// they are landed on a planet, it also allows the player to change weapon
+/// hardpoints. In flight, this panel allows them to jettison cargo.
 class ShipInfoPanel : public Panel {
 public:
 	explicit ShipInfoPanel(PlayerInfo &player);
@@ -48,7 +48,8 @@ public:
 
 
 protected:
-	// Only override the ones you need; the default action is to return false.
+	///
+	/// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
@@ -57,17 +58,20 @@ protected:
 
 
 private:
-	// Handle a change to what ship is shown.
+	///
+	/// Handle a change to what ship is shown.
 	void UpdateInfo();
 	void ClearZones();
 
-	// Draw the ship tab (and its subsections).
+	///
+	/// Draw the ship tab (and its subsections).
 	void DrawShipStats(const Rectangle &bounds);
 	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
 	void DrawWeapons(const Rectangle &bounds);
 	void DrawCargo(const Rectangle &bounds);
 
-	// Helper functions.
+	///
+	/// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
 	void Rename(const std::string &name);
@@ -80,27 +84,32 @@ private:
 
 private:
 	PlayerInfo &player;
-	// This is the currently selected ship.
+	///
+	/// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
 
-	// Information about the currently selected ship.
+	///
+	/// Information about the currently selected ship.
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 
-	// Track all the clickable parts of the UI (other than the buttons).
+	///
+	/// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
-	// Keep track of which item the mouse is hovering over and which item is
-	// currently being dragged.
+	/// Keep track of which item the mouse is hovering over and which item is
+	/// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
 
 	InfoPanelState panelState;
 
-	// Track the current mouse location.
+	///
+	/// Track the current mouse location.
 	Point hoverPoint;
-	// Track whether a commodity or plundered outfit is selected to jettison.
+	///
+	/// Track whether a commodity or plundered outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
 };
