@@ -1,6 +1,6 @@
 (The lines in parentheses (like this one) are instructions for filling out this template. These lines can be deleted.)
 (The lines in double curly brackets ({{}}) should be replaced as it describes.)
-(You can open a PR to add or improve this template, if you find it lacking!)
+(You can open a PR to add to or improve this template, if you find it lacking!)
 
 (Choose one heading, or add your own.)
 **Content (Artwork / Missions / Jobs)**

@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "pi.h"
@@ -1378,6 +1378,11 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, con
 
 	// If the helper has insufficient fuel or energy, it cannot help this ship unless this ship is also disabled.
 	if(!ship.IsDisabled() && ((needsFuel && !helper.CanRefuel(ship)) || (needsEnergy && !helper.CanGiveEnergy(ship))))
+		return false;
+
+	// For player's escorts, check if the player knows the helper's language.
+	if(ship.IsYours() && !helper.GetGovernment()->Language().empty()
+			&& !player.Conditions().Get("language: " + helper.GetGovernment()->Language()))
 		return false;
 
 	return true;
@@ -3087,7 +3092,7 @@ void AI::DoMining(Ship &ship, Command &command)
 {
 	// This function is only called for ships that are in the player's system.
 	// Update the radius that the ship is searching for asteroids at.
-	bool isNew = !miningAngle.count(&ship);
+	bool isNew = !miningAngle.contains(&ship);
 	Angle &angle = miningAngle[&ship];
 	if(isNew)
 	{
@@ -3141,7 +3146,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
 	// Don't try to chase flotsam that are already being pulled toward the ship by a tractor beam.
 	const set<const Flotsam *> &avoid = ship.GetTractorFlotsam();
-	if(target && (!ship.CanPickUp(*target) || avoid.count(target.get())))
+	if(target && (!ship.CanPickUp(*target) || avoid.contains(target.get())))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -3156,7 +3161,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(!ship.CanPickUp(*it) || avoid.count(it.get()))
+			if(!ship.CanPickUp(*it) || avoid.contains(it.get()))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward. Player escorts should
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
@@ -3282,7 +3287,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			// TODO: This could use an "Avoid" method, to account for other in-system hazards.
 			// Simple approximation: move equally away from both the system center and the
 			// nearest enemy, until the constrainment boundary is reached.
-			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.contains(&ship))
 				safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
 			else
 				safety = -ship.Position().Unit();
@@ -3408,7 +3413,7 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 		if(distance < maxScanRange)
 		{
 			Point away;
-			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.contains(&ship))
 				away = pos - scanningPos;
 			else
 				away = -pos;
@@ -4767,7 +4772,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 				// "Know your enemies."
 				enemyStrength[gov.first] += enemy.second;
 				for(const auto &ally : strength)
-					if(ally.first->IsEnemy(enemy.first) && !allies.count(ally.first))
+					if(ally.first->IsEnemy(enemy.first) && !allies.contains(ally.first))
 					{
 						// "The enemy of my enemy is my friend."
 						allyStrength[gov.first] += ally.second;
@@ -4782,7 +4787,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 		const Government *gov = it->GetGovernment();
 
 		// Check if this ship's government has the authority to enforce scans & fines in this system.
-		if(!scanPermissions.count(gov))
+		if(!scanPermissions.contains(gov))
 			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
 
 		// Only have ships update their strength estimate once per second on average.
@@ -4832,25 +4837,42 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
+	size_t destroyedCount = 0;
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
 			if(it.get() != player.Flagship() && !it->IsParked())
-				ships.push_back(it.get());
-		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
+			{
+				if(it->IsDestroyed())
+					++destroyedCount;
+				else
+					ships.push_back(it.get());
+			}
+		who = (ships.empty() ? destroyedCount : ships.size()) > 1
+			? "Your fleet is " : "Your escort is ";
 	}
 	else
 	{
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship)
+			if(!ship)
+				continue;
+			if(ship->IsDestroyed())
+				++destroyedCount;
+			else
 				ships.push_back(ship.get());
 		}
-		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";
+		who = (ships.empty() ? destroyedCount : ships.size()) > 1
+			? "The selected escorts are " : "The selected escort is ";
 	}
 	if(ships.empty())
+	{
+		if(destroyedCount)
+			Messages::Add(who + "destroyed and unable to execute your orders.",
+				Messages::Importance::High);
 		return;
+	}
 
 	Point centerOfGravity;
 	bool isMoveOrder = (newOrders.HasMoveTo());
@@ -4894,7 +4916,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 				continue;
 
 			gaveOrder = true;
-			hasMismatch |= !orders.count(ship);
+			hasMismatch |= !orders.contains(ship);
 
 			Orders &existing = orders[ship];
 			existing.MergeOrders(newOrders, hasMismatch, alreadyHarvesting, orderOperation);
