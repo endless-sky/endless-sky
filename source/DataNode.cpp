@@ -274,13 +274,12 @@ bool DataNode::IsBool(const string &token)
 
 bool DataNode::IsConditionName(const string &token)
 {
-	// Condition names start with an alphabetic character, and can be followed by spaces, colons, all kinds of brackets,
-	// dashes, single-quotes, alphabetic and numeric characters.
-	static auto validConditionRegex = regex("[[:alpha:]]([-:.\\(\\)\\[\\]<>'\\?,/ [:alnum:]])*");
-
 	// Required for backwards compatibility (used for illegal tokens).
 	if(token == "'")
 		return true;
+
+	// Condition names start with an alphabetic character, and that is all we check for now.
+	static auto validConditionRegex = regex("[[:alpha:]].*");
 
 	return regex_match(token, validConditionRegex) && !IsBool(token);
 }
