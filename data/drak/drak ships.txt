@@ -50,6 +50,8 @@ ship "Archon"
 		"turn" 2400
 		"turning energy" 10
 		"turning heat" 5
+		"outfit scan power" 250
+		"outfit scan efficiency" 150
 		weapon
 			"blast radius" 500
 			"shield damage" 10000
