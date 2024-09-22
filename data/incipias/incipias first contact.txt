@@ -320,8 +320,7 @@ mission "Incipias: Help The Stranded 2"
 	name "Take Incipias back to <planet>"
 	description "You rescued some Incipias on <origin>. Take them back to <destination>, their home."
 	passengers 5
-	source
-		planet Turra
+	source Turra
 	destination "Pon'tes"
 	to offer
 		has "Incipias: Help The Stranded 1: done"
