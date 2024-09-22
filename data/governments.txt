@@ -254,6 +254,32 @@ government "Drak (Incipias)"
 		"Conlatio" 1
 		"Incipias Civilian" 1
 
+government "Drak (Nenia)"
+	"display name" "Drak"
+	swizzle 0
+	color 1 1 1
+	"player reputation" 1
+	"attitude toward"
+		"Indigenous Lifeform" 1
+		"Ember Waste" 1
+	illegals
+		ignore "Nerve Gas"
+	atrocities
+		ship "Albatross"
+		ship "Modified Dromedary"
+		ship "Gull"
+		ship "Heron"
+		ship "Ibis"
+		ship "Merganser"
+		ship "Pelican"
+		ship "Penguin"
+		ship "Peregrine"
+		ship "Petrel"
+		ship "Puffin"
+		ship "Smew"
+		ship "Starling"
+		ship "Tern"
+
 government "Elenctic Commune"
 	swizzle 0
 	color "governments: Neutral"
