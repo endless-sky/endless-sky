@@ -22,9 +22,9 @@ class Sprite;
 
 
 
-/// This is any object that should be drawn as a backdrop to the map. Multiple
-/// galaxies can be handled by just spacing them out so widely that the player
-/// will never accidentally scroll the view from one to the other.
+// This is any object that should be drawn as a backdrop to the map. Multiple
+// galaxies can be handled by just spacing them out so widely that the player
+// will never accidentally scroll the view from one to the other.
 class Galaxy {
 public:
 	void Load(const DataNode &node);

@@ -25,31 +25,27 @@ class Table;
 
 
 
-/// Class representing three panels of information about a given item. One shows
-/// a text description, one shows the item's attributes, and a third may be
-/// different depending on what kind of item it is (a ship or an outfit).
+// Class representing three panels of information about a given item. One shows
+// a text description, one shows the item's attributes, and a third may be
+// different depending on what kind of item it is (a ship or an outfit).
 class ItemInfoDisplay {
 public:
 	ItemInfoDisplay();
 	virtual ~ItemInfoDisplay() = default;
 
-	/// Get the panel width.
-	///
+	// Get the panel width.
 	static int PanelWidth();
-	/// Get the height of each of the panels.
-	///
+	// Get the height of each of the panels.
 	int MaximumHeight() const;
 	int DescriptionHeight() const;
 	int AttributesHeight() const;
 
-	/// Draw each of the panels.
-	///
+	// Draw each of the panels.
 	void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const;
 	void DrawTooltips() const;
 
-	/// Update the location where the mouse is hovering.
-	///
+	// Update the location where the mouse is hovering.
 	void Hover(const Point &point);
 	void ClearHover();
 
@@ -72,8 +68,7 @@ protected:
 
 	int maximumHeight = 0;
 
-	/// For tooltips:
-	///
+	// For tooltips:
 	Point hoverPoint;
 	mutable std::string hover;
 	mutable int hoverCount = 0;

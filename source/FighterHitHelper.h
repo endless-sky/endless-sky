@@ -24,8 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class FighterHitHelper
 {
 public:
-	/// Checks whether the given ship is a valid target for non-targeted projectiles.
-	///
+	// Checks whether the given ship is a valid target for non-targeted projectiles.
 	static inline bool IsValidTarget(const Ship *ship)
 	{
 		if(!ship->CanBeCarried() || !ship->IsDisabled())

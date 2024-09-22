@@ -22,19 +22,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// This is a simple template class defining a rectangular region in the UI that
-/// may take action if it is clicked on. The region stores a single data object
-/// that identifies it or identifies the action to take.
+// This is a simple template class defining a rectangular region in the UI that
+// may take action if it is clicked on. The region stores a single data object
+// that identifies it or identifies the action to take.
 template <class Type>
 class ClickZone : public Rectangle {
 public:
-	/// Constructor. The "dimensions" are the full width and height of the zone.
-	///
+	// Constructor. The "dimensions" are the full width and height of the zone.
 	explicit ClickZone(const Rectangle &rect, Type value = 0);
 	ClickZone(Point center, Point dimensions, Type value = 0);
 
-	/// Retrieve the value associated with this zone.
-	///
+	// Retrieve the value associated with this zone.
 	Type Value() const noexcept;
 
 

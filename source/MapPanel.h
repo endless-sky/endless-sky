@@ -36,14 +36,13 @@ class System;
 
 
 
-/// This class provides the base class for both the "map details" panel and the
-/// missions panel, and handles drawing of the underlying starmap and coloring
-/// the systems based on a selected criterion. It also handles finding and
-/// drawing routes in between systems.
+// This class provides the base class for both the "map details" panel and the
+// missions panel, and handles drawing of the underlying starmap and coloring
+// the systems based on a selected criterion. It also handles finding and
+// drawing routes in between systems.
 class MapPanel : public Panel {
 public:
-	/// Enumeration for how the systems should be colored:
-	///
+	// Enumeration for how the systems should be colored:
 	static const int SHOW_SHIPYARD = -1;
 	static const int SHOW_OUTFITTER = -2;
 	static const int SHOW_VISITED = -3;
@@ -59,14 +58,11 @@ public:
 
 	class SystemTooltipData {
 	public:
-		/// Number of ships that are in flight
-		///
+		// Number of ships that are in flight
 		unsigned activeShips = 0;
-		/// Number of ships that are parked
-		///
+		// Number of ships that are parked
 		unsigned parkedShips = 0;
-		/// Maps planet to number of outfits on that planet
-		///
+		// Maps planet to number of outfits on that planet
 		std::map<const Planet *, unsigned> outfits;
 	};
 
@@ -78,29 +74,26 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	/// Draw elements common for all map panels that need to be placed
-	/// on top of everything else. This includes distance info, map mode buttons,
-	/// escort/storage tooltips, and the non-routable system warning.
+	// Draw elements common for all map panels that need to be placed
+	// on top of everything else. This includes distance info, map mode buttons,
+	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
 
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 
-	/// Map panels allow fast-forward to stay active.
-	///
+	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
 
 
 protected:
-	/// Only override the ones you need; the default action is to return false.
-	///
+	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	/// Get the color mapping for various system attributes.
-	///
+	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
@@ -115,13 +108,12 @@ protected:
 
 	double Zoom() const;
 
-	/// Check whether the NPC and waypoint conditions of the given mission have
-	/// been satisfied.
+	// Check whether the NPC and waypoint conditions of the given mission have
+	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
 	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
 
-	/// Returns if previous->next can be done with a known travel type.
-	///
+	// Returns if previous->next can be done with a known travel type.
 	bool GetTravelInfo(const System *previous, const System *next, double jumpRange, bool &isJump,
 		bool &isWormhole, bool &isMappable, Color *wormholeColor) const;
 
@@ -131,17 +123,13 @@ protected:
 
 	DistanceMap distance;
 
-	/// The system in which the player is located.
-	///
+	// The system in which the player is located.
 	const System &playerSystem;
-	/// The (non-null) system which is currently selected.
-	///
+	// The (non-null) system which is currently selected.
 	const System *selectedSystem;
-	/// The selected planet, if any.
-	///
+	// The selected planet, if any.
 	const Planet *selectedPlanet = nullptr;
-	/// A system associated with a dialog or conversation.
-	///
+	// A system associated with a dialog or conversation.
 	const System *specialSystem;
 
 	double playerJumpDistance;
@@ -153,43 +141,38 @@ protected:
 	int step = 0;
 	std::string buttonCondition;
 
-	/// Distance from the screen center to the nearest owned system,
-	/// for use in determining which governments are in the legend.
+	// Distance from the screen center to the nearest owned system,
+	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
-	/// Systems in which your (active and parked) escorts and stored outfits are located.
-	///
+	// Systems in which your (active and parked) escorts and stored outfits are located.
 	std::map<const System *, SystemTooltipData> escortSystems;
-	/// Center the view on the given system (may actually be slightly offset
-	/// to account for panels on the screen).
+	// Center the view on the given system (may actually be slightly offset
+	// to account for panels on the screen).
 	void CenterOnSystem(const System *system, bool immediate = false);
 
-	/// Cache the map layout, so it doesn't have to be re-calculated every frame.
-	/// The cache must be updated when the coloring mode changes.
+	// Cache the map layout, so it doesn't have to be re-calculated every frame.
+	// The cache must be updated when the coloring mode changes.
 	void UpdateCache();
 
-	/// For tooltips:
-	///
+	// For tooltips:
 	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
 	WrappedText hoverText;
 
-	/// An X offset in pixels to be applied to the selected system UI if something
-	/// else gets in the way of its default position.
+	// An X offset in pixels to be applied to the selected system UI if something
+	// else gets in the way of its default position.
 	int selectedSystemOffset = 0;
 
 private:
 	void DrawTravelPlan();
-	/// Display the name of and distance to the selected system.
-	///
+	// Display the name of and distance to the selected system.
 	void DrawSelectedSystem();
-	/// Indicate which other systems have player escorts.
-	///
+	// Indicate which other systems have player escorts.
 	void DrawEscorts();
 	void DrawWormholes();
 	void DrawLinks();
-	/// Draw systems in accordance to the set commodity color scheme.
-	///
+	// Draw systems in accordance to the set commodity color scheme.
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
@@ -199,8 +182,7 @@ private:
 
 
 private:
-	/// This is the coloring mode currently used in the cache.
-	///
+	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
 
 	class Node {

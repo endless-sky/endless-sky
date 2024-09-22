@@ -21,18 +21,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// Helper class for easily creating/handling/drawing scrollbars.
-///
-/// Useable as a panel, with special considerations:
-/// - Scroll percentage/start/end will have to be manually updated when needed.
-/// - Changes will have to be checked every frame, as there is no way to notify parents on change.
-///
-/// Otherwise, manually use the functions inside the regular panel update cycle.
-///
-/// If not using as a child panel, it is recommended to use the scrollbar with a `ScrollVar`, and use the
-/// Sync* versions of the methods to automatically update the `ScrollVar` on changes.
-///
-/// Check existing uses for more in-depth examples.
+// Helper class for easily creating/handling/drawing scrollbars.
+//
+// Useable as a panel, with special considerations:
+// - Scroll percentage/start/end will have to be manually updated when needed.
+// - Changes will have to be checked every frame, as there is no way to notify parents on change.
+//
+// Otherwise, manually use the functions inside the regular panel update cycle.
+//
+// If not using as a child panel, it is recommended to use the scrollbar with a `ScrollVar`, and use the
+// Sync* versions of the methods to automatically update the `ScrollVar` on changes.
+//
+// Check existing uses for more in-depth examples.
 class ScrollBar : public Panel {
 public:
 	ScrollBar(float fraction, float displaySizeFraction, const Point &from, const Point &to,
@@ -41,31 +41,26 @@ public:
 	ScrollBar() noexcept;
 
 	void Draw() override;
-	/// Draw at a point, overriding the stored 'from' position. Useful for RenderBuffers to be drawn
-	/// without affecting the input handling.
+	// Draw at a point, overriding the stored 'from' position. Useful for RenderBuffers to be drawn
+	// without affecting the input handling.
 	void DrawAt(const Point &from);
 	bool Hover(int x, int y) override;
 	bool Drag(double dx, double dy) override;
 	bool Click(int x, int y, int clicks) override;
 
-	/// Match the state of this scrollbar with the state from the ScrollVar.
-	///
+	// Match the state of this scrollbar with the state from the ScrollVar.
 	template<typename T>
 	void SyncFrom(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
-	/// Match the state of the ScrollVar with the state from this scrollbar.
-	///
+	// Match the state of the ScrollVar with the state from this scrollbar.
 	template<typename T>
 	void SyncInto(ScrollVar<T> &scroll, int steps = 5);
-	/// Draw a scrollbar with a start, end, and state, syncing automatically.
-	///
+	// Draw a scrollbar with a start, end, and state, syncing automatically.
 	template<typename T>
 	void SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
-	/// Handle a click event, automatically syncing into the given ScrollVar if anything changed.
-	///
+	// Handle a click event, automatically syncing into the given ScrollVar if anything changed.
 	template<typename T>
 	bool SyncClick(ScrollVar<T> &scroll, int x, int y, int clicks);
-	/// Handle a drag event, automatically syncing into the given ScrollVar if anything changed.
-	///
+	// Handle a drag event, automatically syncing into the given ScrollVar if anything changed.
 	template<typename T>
 	bool SyncDrag(ScrollVar<T> &scroll, double dx, double dy);
 

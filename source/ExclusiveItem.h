@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// This class provides "data template" classes with abstracted access to an object that
-/// is either a reference to a shared, "stock" data or is a locally customized instance.
+// This class provides "data template" classes with abstracted access to an object that
+// is either a reference to a shared, "stock" data or is a locally customized instance.
 template <class Type>
 class ExclusiveItem {
 public:

@@ -28,61 +28,52 @@ class Font;
 
 
 
-/// Class for calculating word positions in wrapped text. You can specify various
-/// parameters of the formatting, including text alignment.
+// Class for calculating word positions in wrapped text. You can specify various
+// parameters of the formatting, including text alignment.
 class WrappedText {
 public:
 	WrappedText() = default;
 	explicit WrappedText(const Font &font);
 
-	/// Set the alignment mode.
-	///
+	// Set the alignment mode.
 	void SetAlignment(Alignment align);
 
-	/// Set the truncate mode.
-	/// Apply the truncation to a word only if a line has a single word.
+	// Set the truncate mode.
+	// Apply the truncation to a word only if a line has a single word.
 	void SetTruncate(Truncate trunc);
 
-	/// Set the wrap width. This does not include any margins.
-	///
+	// Set the wrap width. This does not include any margins.
 	int WrapWidth() const;
 	void SetWrapWidth(int width);
 
-	/// Set the font to use. This will also set sensible defaults for the tab
-	/// width, line height, and paragraph break. You must specify the wrap width
-	/// and the alignment separately.
+	// Set the font to use. This will also set sensible defaults for the tab
+	// width, line height, and paragraph break. You must specify the wrap width
+	// and the alignment separately.
 	void SetFont(const Font &font);
 
-	/// Set the width in pixels of a single '\t' character.
-	///
+	// Set the width in pixels of a single '\t' character.
 	int TabWidth() const;
 	void SetTabWidth(int width);
 
-	/// Set the height in pixels of one line of text within a paragraph.
-	///
+	// Set the height in pixels of one line of text within a paragraph.
 	int LineHeight() const;
 	void SetLineHeight(int height);
 
-	/// Set the extra spacing in pixels to be added in between paragraphs.
-	///
+	// Set the extra spacing in pixels to be added in between paragraphs.
 	int ParagraphBreak() const;
 	void SetParagraphBreak(int height);
 
-	/// Wrap the given text. Use Draw() to draw it.
-	///
+	// Wrap the given text. Use Draw() to draw it.
 	void Wrap(const std::string &str);
 	void Wrap(const char *str);
 
-	/// Get the height of the wrapped text.
-	///
+	// Get the height of the wrapped text.
 	int Height() const;
 
-	/// Return the width of the longest line of the wrapped text.
-	///
+	// Return the width of the longest line of the wrapped text.
 	int LongestLineWidth() const;
 
-	/// Draw the text.
-	///
+	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
 
 
@@ -94,8 +85,7 @@ private:
 
 
 private:
-	/// The returned text is a series of words and (x, y) positions:
-	///
+	// The returned text is a series of words and (x, y) positions:
 	class Word {
 	public:
 		Word() = default;

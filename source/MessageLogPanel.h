@@ -21,8 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// User interface panel that displays the message log.
-///
+// User interface panel that displays the message log.
 class MessageLogPanel : public Panel {
 public:
 	MessageLogPanel();
@@ -31,8 +30,7 @@ public:
 
 
 protected:
-	/// Event handlers.
-	///
+	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -43,8 +41,7 @@ private:
 	const std::deque<std::pair<std::string, Messages::Importance>> &messages;
 
 	const double width;
-	/// Current scroll:
-	///
+	// Current scroll:
 	double scroll = 0.;
 	double maxScroll = 0.;
 };

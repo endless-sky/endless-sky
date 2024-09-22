@@ -25,16 +25,16 @@ class DataNode;
 
 
 
-/// A CategoryList is a list of names that are associated to a Category of items (e.g. ships
-/// or outfits). Categories within the list are sorted by the precedence of each Category.
-/// Any conflicting precedences are resolved by sorting the names of the Categories
-/// alphabetically.
+// A CategoryList is a list of names that are associated to a Category of items (e.g. ships
+// or outfits). Categories within the list are sorted by the precedence of each Category.
+// Any conflicting precedences are resolved by sorting the names of the Categories
+// alphabetically.
 class CategoryList {
 public:
-	/// A Category is a string with some precedence to it. The precedence is used to sort
-	/// the Category within the CategoryList. Only the CategoryList has access to the
-	/// precedence of each Category. All outside classes can only see the Category's
-	/// name.
+	// A Category is a string with some precedence to it. The precedence is used to sort
+	// the Category within the CategoryList. Only the CategoryList has access to the
+	// precedence of each Category. All outside classes can only see the Category's
+	// name.
 	class Category {
 	public:
 		Category(const std::string &name, int precedence) : name(name), precedence(precedence) {}
@@ -57,12 +57,11 @@ public:
 
 	void Load(const DataNode &node);
 
-	/// Sort the CategoryList. Categories are sorted by precedence. If multiple Categories
-	/// share the same precedence then they are sorted alphabetically.
+	// Sort the CategoryList. Categories are sorted by precedence. If multiple Categories
+	// share the same precedence then they are sorted alphabetically.
 	void Sort();
 
-	/// Determine if the CategoryList contains a Category with the given name.
-	///
+	// Determine if the CategoryList contains a Category with the given name.
 	bool Contains(const std::string &name) const;
 
 	const Category GetCategory(const std::string &name) const;

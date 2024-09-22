@@ -29,57 +29,49 @@ class Visual;
 
 
 
-/// A single weapon hardpoint on the ship (i.e. a gun port or turret mount),
-/// which may or may not have a weapon installed.
+// A single weapon hardpoint on the ship (i.e. a gun port or turret mount),
+// which may or may not have a weapon installed.
 class Hardpoint {
 public:
-	/// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
-	///
+	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	struct BaseAttributes {
-		/// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
-		/// The turret should point to this angle when idling.
+		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
+		// The turret should point to this angle when idling.
 		Angle baseAngle;
-		/// Indicates if this hardpoint disallows converging (guns and the idle position of turrets).
-		///
+		// Indicates if this hardpoint disallows converging (guns and the idle position of turrets).
 		bool isParallel;
-		/// An omnidirectional turret can rotate infinitely.
-		///
+		// An omnidirectional turret can rotate infinitely.
 		bool isOmnidirectional;
-		/// Range over which the turret can turn, from leftmost position to rightmost position.
-		/// (directional turret only)
+		// Range over which the turret can turn, from leftmost position to rightmost position.
+		// (directional turret only)
 		Angle minArc;
 		Angle maxArc;
 	};
 
 
 public:
-	/// Constructor. Hardpoints may or may not specify what weapon is in them.
-	///
+	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
 		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
 
-	/// Get the weapon installed in this hardpoint (or null if there is none).
-	///
+	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
-	/// Get the location, relative to the center of the ship, from which
-	/// projectiles of this weapon should originate. This point must be
-	/// rotated to take the ship's current facing direction into account.
+	// Get the location, relative to the center of the ship, from which
+	// projectiles of this weapon should originate. This point must be
+	// rotated to take the ship's current facing direction into account.
 	const Point &GetPoint() const;
-	/// Get the angle that this weapon is aimed at, relative to the ship.
-	///
+	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
-	/// Get the angle of a turret when idling, relative to the ship.
-	/// For guns, this function is equal to GetAngle().
+	// Get the angle of a turret when idling, relative to the ship.
+	// For guns, this function is equal to GetAngle().
 	const Angle &GetIdleAngle() const;
-	/// Get the arc of fire if this is a directional turret,
-	/// otherwise a pair of 180 degrees + baseAngle.
+	// Get the arc of fire if this is a directional turret,
+	// otherwise a pair of 180 degrees + baseAngle.
 	const Angle &GetMinArc() const;
 	const Angle &GetMaxArc() const;
-	/// Get the angle this weapon ought to point at for ideal gun harmonization.
-	///
+	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
-	/// Shortcuts for querying weapon characteristics.
-	///
+	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
 	bool IsParallel() const;
 	bool IsOmnidirectional() const;
@@ -88,99 +80,77 @@ public:
 	bool IsSpecial() const;
 	bool CanAim() const;
 
-	/// Check if this weapon is ready to fire.
-	///
+	// Check if this weapon is ready to fire.
 	bool IsReady() const;
-	/// Check if this weapon was firing in the previous step.
-	///
+	// Check if this weapon was firing in the previous step.
 	bool WasFiring() const;
-	/// If this is a burst weapon, get the number of shots left in the burst.
-	///
+	// If this is a burst weapon, get the number of shots left in the burst.
 	int BurstRemaining() const;
-	/// Perform one step (i.e. decrement the reload count).
-	///
+	// Perform one step (i.e. decrement the reload count).
 	void Step();
 
-	/// Adjust this weapon's aim by the given amount, relative to its maximum
-	/// "turret turn" rate.
+	// Adjust this weapon's aim by the given amount, relative to its maximum
+	// "turret turn" rate.
 	void Aim(double amount);
-	/// Fire this weapon. If it is a turret, it automatically points toward
-	/// the given ship's target. If the weapon requires ammunition, it will
-	/// be subtracted from the given ship.
+	// Fire this weapon. If it is a turret, it automatically points toward
+	// the given ship's target. If the weapon requires ammunition, it will
+	// be subtracted from the given ship.
 	void Fire(Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
-	/// Fire an anti-missile. Returns true if the missile should be killed.
-	///
+	// Fire an anti-missile. Returns true if the missile should be killed.
 	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
-	/// Fire a tractor beam. Returns true if the flotsam was hit.
-	///
+	// Fire a tractor beam. Returns true if the flotsam was hit.
 	bool FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals);
-	/// This weapon jammed. Increase its reload counters, but don't fire.
-	///
+	// This weapon jammed. Increase its reload counters, but don't fire.
 	void Jam();
 
-	/// Install a weapon here (assuming it is empty). This is only for
-	/// Armament to call internally.
+	// Install a weapon here (assuming it is empty). This is only for
+	// Armament to call internally.
 	void Install(const Outfit *outfit);
-	/// Reload this weapon.
-	///
+	// Reload this weapon.
 	void Reload();
-	/// Uninstall the outfit from this port (if it has one).
-	///
+	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 
-	/// Get the attributes that can be used as a parameter of the constructor when cloning this.
-	///
+	// Get the attributes that can be used as a parameter of the constructor when cloning this.
 	const BaseAttributes &GetBaseAttributes() const;
 
 
 private:
-	/// Check whether a projectile or flotsam is within the range of the anti-missile
-	/// or tractor beam system and create visuals if it is.
+	// Check whether a projectile or flotsam is within the range of the anti-missile
+	// or tractor beam system and create visuals if it is.
 	bool FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visual> &visuals);
-	/// Reset the reload counters and expend ammunition, if any.
-	///
+	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 
-	/// The arc depends on both the base hardpoint and the installed outfit.
-	///
+	// The arc depends on both the base hardpoint and the installed outfit.
 	void UpdateArc();
 
 
 private:
-	/// The weapon installed in this hardpoint.
-	///
+	// The weapon installed in this hardpoint.
 	const Outfit *outfit = nullptr;
-	/// Hardpoint location, in world coordinates relative to the ship's center.
-	///
+	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
-	/// Angle of firing direction (guns) or idle position (turret).
-	///
+	// Angle of firing direction (guns) or idle position (turret).
 	Angle baseAngle;
-	/// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
-	/// otherwise a pair of 180 degrees + baseAngle.
+	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
+	// otherwise a pair of 180 degrees + baseAngle.
 	Angle minArc;
 	Angle maxArc;
-	/// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
-	///
+	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	BaseAttributes baseAttributes;
-	/// This hardpoint is for a turret or a gun.
-	///
+	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
-	/// Indicates if this hardpoint disallows converging (guns only).
-	///
+	// Indicates if this hardpoint disallows converging (guns only).
 	bool isParallel = false;
-	/// Indicates if this hardpoint is omnidirectional (turret only).
-	///
+	// Indicates if this hardpoint is omnidirectional (turret only).
 	bool isOmnidirectional = true;
-	/// Indicates whether the hardpoint sprite is drawn under the ship.
-	///
+	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
 
-	/// Angle adjustment for convergence.
-	///
+	// Angle adjustment for convergence.
 	Angle angle;
-	/// Reload timers and other attributes.
-	///
+	// Reload timers and other attributes.
 	double reload = 0.;
 	double burstReload = 0.;
 	int burstCount = 0;

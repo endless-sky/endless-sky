@@ -27,8 +27,8 @@ class UI;
 
 
 
-/// Class representing the loading menu, which is shown when loading resources
-/// (like game data and save files).
+// Class representing the loading menu, which is shown when loading resources
+// (like game data and save files).
 class GameLoadingPanel final : public Panel {
 public:
 	GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
@@ -45,11 +45,9 @@ private:
 	UI &gamePanels;
 	bool &finishedLoading;
 
-	/// The circular loading indicator shows 60 tick marks when all game data is loaded.
-	///
+	// The circular loading indicator shows 60 tick marks when all game data is loaded.
 	const int MAX_TICKS = 60;
 	const double ANGLE_OFFSET;
-	/// The current number of ticks to be displayed.
-	///
+	// The current number of ticks to be displayed.
 	int progress = 0;
 };

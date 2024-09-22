@@ -17,8 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// All possible jump methods for a ship.
-///
+// All possible jump methods for a ship.
 enum class JumpType : int {
 	NONE,
 	HYPERDRIVE,

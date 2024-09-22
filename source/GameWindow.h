@@ -19,37 +19,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
-/// This class is a collection of global functions for handling SDL_Windows.
-///
+// This class is a collection of global functions for handling SDL_Windows.
 class GameWindow {
 public:
 	static std::string SDLVersions();
 	static bool Init(bool headless);
 	static void Quit();
 
-	/// Paint the next frame in the main window.
-	///
+	// Paint the next frame in the main window.
 	static void Step();
 
-	/// Ensure the proper icon is set on the main window.
-	///
+	// Ensure the proper icon is set on the main window.
 	static void SetIcon();
 
-	/// Handle resize events of the main window.
-	///
+	// Handle resize events of the main window.
 	static void AdjustViewport();
 
-	/// Attempt to set the game's VSync setting.
-	///
+	// Attempt to set the game's VSync setting.
 	static bool SetVSync(Preferences::VSync state);
 
-	/// Last known windowed-mode width & height.
-	///
+	// Last known windowed-mode width & height.
 	static int Width();
 	static int Height();
 
-	/// Last known drawable width & height.
-	///
+	// Last known drawable width & height.
 	static int DrawWidth();
 	static int DrawHeight();
 
@@ -57,7 +50,7 @@ public:
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
 
-	/// Print the error message in the terminal, error file, and message box.
-	/// Checks for video system errors and records those as well.
+	// Print the error message in the terminal, error file, and message box.
+	// Checks for video system errors and records those as well.
 	static void ExitWithError(const std::string& message, bool doPopUp = true);
 };

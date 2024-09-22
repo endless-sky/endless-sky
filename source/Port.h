@@ -27,13 +27,12 @@ class DataNode;
 
 
 
-/// Class representing a port on a planet and its capabilities, such as what properties
-/// of a ship it can recharge and what services (e.g. banking, trading) it can provide.
+// Class representing a port on a planet and its capabilities, such as what properties
+// of a ship it can recharge and what services (e.g. banking, trading) it can provide.
 class Port
 {
 public:
-	/// The different ship properties that can be recharged by a port.
-	///
+	// The different ship properties that can be recharged by a port.
 	class RechargeType
 	{
 	public:
@@ -45,8 +44,7 @@ public:
 		static constexpr int All = Shields | Hull | Energy | Fuel;
 	};
 
-	/// The different services available on this port.
-	///
+	// The different services available on this port.
 	class ServicesType
 	{
 	public:
@@ -61,63 +59,51 @@ public:
 
 
 public:
-	/// Load a port's description from a node.
-	///
+	// Load a port's description from a node.
 	void Load(const DataNode &node);
 	void LoadDefaultSpaceport();
 	void LoadUninhabitedSpaceport();
 
-	/// Load a port's description text paragraphs from the planet spaceport description.
-	///
+	// Load a port's description text paragraphs from the planet spaceport description.
 	void LoadDescription(const DataNode &node);
 
-	/// Whether this port was loaded from the Load function.
-	///
+	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;
 
-	/// Whether this port has any services available.
-	///
+	// Whether this port has any services available.
 	bool HasServices() const;
 
-	/// Get all the possible sources that can get recharged at this port.
-	///
+	// Get all the possible sources that can get recharged at this port.
 	int GetRecharges() const;
 
 	const std::string &Name() const;
 	const Paragraphs &Description() const;
 
-	/// Check whether the given recharging is possible.
-	///
+	// Check whether the given recharging is possible.
 	bool CanRecharge(int type) const;
-	/// Check whether the given service is available.
-	///
+	// Check whether the given service is available.
 	bool HasService(int type) const;
 
 	bool HasNews() const;
 
 
 private:
-	/// Whether this port was loaded from the Load function.
-	///
+	// Whether this port was loaded from the Load function.
 	bool loaded = false;
 
-	/// The name of this port.
-	///
+	// The name of this port.
 	std::string name;
 
-	/// The description of this port. Shown when clicking on the
-	/// port button on the planet panel.
+	// The description of this port. Shown when clicking on the
+	// port button on the planet panel.
 	Paragraphs description;
 
-	/// What is recharged when landing on this port.
-	///
+	// What is recharged when landing on this port.
 	int recharge = RechargeType::None;
 
-	/// What services are available on this port.
-	///
+	// What services are available on this port.
 	int services = ServicesType::None;
 
-	/// Whether this port has news.
-	///
+	// Whether this port has news.
 	bool hasNews = false;
 };

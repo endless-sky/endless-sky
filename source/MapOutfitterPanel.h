@@ -27,9 +27,9 @@ class Sprite;
 
 
 
-/// A panel that displays the galaxy star map, along with a side panel showing
-/// all outfits that are for sale in known systems. You can click on one of them
-/// to see which systems it is available in.
+// A panel that displays the galaxy star map, along with a side panel showing
+// all outfits that are for sale in known systems. You can click on one of them
+// to see which systems it is available in.
 class MapOutfitterPanel : public MapSalesPanel {
 public:
 	explicit MapOutfitterPanel(PlayerInfo &player);
@@ -56,11 +56,10 @@ private:
 
 
 private:
-	/// Maps category names to list of outfits in that category, sorted
-	/// alphabetically by name.
+	// Maps category names to list of outfits in that category, sorted
+	// alphabetically by name.
 	std::map<std::string, std::vector<const Outfit *>> catalog;
-	/// Flat list of all outfits shown.
-	///
+	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
 
 	const Outfit *selected = nullptr;

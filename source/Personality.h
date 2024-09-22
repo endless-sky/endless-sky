@@ -25,10 +25,10 @@ class DataWriter;
 
 
 
-/// Class defining an AI "personality": what actions it takes, and how skilled
-/// and aggressive it is in combat. This also includes some more specialized
-/// behaviors, like plundering ships or launching surveillance drones, that are
-/// used to make some fleets noticeably different from others.
+// Class defining an AI "personality": what actions it takes, and how skilled
+// and aggressive it is in combat. This also includes some more specialized
+// behaviors, like plundering ships or launching surveillance drones, that are
+// used to make some fleets noticeably different from others.
 class Personality {
 public:
 	Personality() noexcept;
@@ -38,8 +38,7 @@ public:
 
 	bool IsDefined() const;
 
-	/// Who a ship decides to attack:
-	///
+	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
@@ -47,8 +46,7 @@ public:
 	bool IsNemesis() const;
 	bool IsDaring() const;
 
-	/// How they fight:
-	///
+	// How they fight:
 	bool IsFrugal() const;
 	bool Disables() const;
 	bool Plunders() const;
@@ -62,8 +60,7 @@ public:
 	bool IsMerciful() const;
 	bool IsRamming() const;
 
-	/// Mission NPC states:
-	///
+	// Mission NPC states:
 	bool IsStaying() const;
 	bool IsEntering() const;
 	bool IsWaiting() const;
@@ -72,8 +69,7 @@ public:
 	bool IsDerelict() const;
 	bool IsUninterested() const;
 
-	/// Non-combat goals:
-	///
+	// Non-combat goals:
 	bool IsSurveillance() const;
 	bool IsMining() const;
 	bool Harvests() const;
@@ -81,8 +77,7 @@ public:
 	bool IsLingering() const;
 	bool IsSecretive() const;
 
-	/// Special flags:
-	///
+	// Special flags:
 	bool IsEscort() const;
 	bool IsTarget() const;
 	bool IsMarked() const;
@@ -90,13 +85,11 @@ public:
 	bool IsDecloaked() const;
 	bool IsQuiet() const;
 
-	/// Current inaccuracy in this ship's targeting:
-	///
+	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);
 
-	/// Personality to use for ships defending a planet from domination:
-	///
+	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
 	static Personality DefenderFighter();
 
@@ -106,8 +99,8 @@ private:
 
 
 private:
-	/// Make sure this matches the number of items in PersonalityTrait,
-	/// or the build will fail.
+	// Make sure this matches the number of items in PersonalityTrait,
+	// or the build will fail.
 	static const int PERSONALITY_COUNT = 37;
 
 	bool isDefined = false;

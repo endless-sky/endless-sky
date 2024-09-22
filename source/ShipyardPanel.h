@@ -27,11 +27,11 @@ class Ship;
 
 
 
-/// Class representing the shipyard UI panel, which allows you to buy new ships
-/// or to sell any of the ones you own. For certain ships, you may need to have a
-/// certain license to buy them, in which case the cost of the license is added
-/// to the cost of the ship. (This is intended to be an annoyance, representing
-/// a government that is particularly repressive of independent pilots.)
+// Class representing the shipyard UI panel, which allows you to buy new ships
+// or to sell any of the ones you own. For certain ships, you may need to have a
+// certain license to buy them, in which case the cost of the license is added
+// to the cost of the ship. (This is intended to be an annoyance, representing
+// a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
 	explicit ShipyardPanel(PlayerInfo &player);

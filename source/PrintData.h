@@ -15,8 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-/// A class containing methods used to print ship and outfit stats to the console.
-///
+// A class containing methods used to print ship and outfit stats to the console.
 class PrintData {
 public:
 	static bool IsPrintDataArgument(const char *const *argv);

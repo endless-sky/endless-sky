@@ -22,21 +22,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// File paths and file handling are different on each operating system. This
-/// class stores the path, on each operating system, to the game's resources -
-/// images, data files, etc. - and also to the "configuration" directory where
-/// saved games and other user-specific information can be stored. It also
-/// provides an interface for file operations so that the rest of the code can
-/// be completely platform-agnostic.
+// File paths and file handling are different on each operating system. This
+// class stores the path, on each operating system, to the game's resources -
+// images, data files, etc. - and also to the "configuration" directory where
+// saved games and other user-specific information can be stored. It also
+// provides an interface for file operations so that the rest of the code can
+// be completely platform-agnostic.
 class Files {
 public:
 	static void Init(const char * const *argv);
 
-	/// The game's installation directory, or whichever directory was passed on the command line via `--resources`
-	///
+	// The game's installation directory, or whichever directory was passed on the command line via `--resources`
 	static const std::string &Resources();
-	/// The user-specific configuration directory, or whichever directory was passed on the command line via `--config`
-	///
+	// The user-specific configuration directory, or whichever directory was passed on the command line via `--config`
 	static const std::string &Config();
 
 	static const std::string &Data();
@@ -45,14 +43,12 @@ public:
 	static const std::string &Saves();
 	static const std::string &Tests();
 
-	/// Get a list of all regular files in the given directory.
-	///
+	// Get a list of all regular files in the given directory.
 	static std::vector<std::string> List(std::string directory);
-	/// Get a list of any directories in the given directory.
-	///
+	// Get a list of any directories in the given directory.
 	static std::vector<std::string> ListDirectories(std::string directory);
-	/// Get a list of all regular files in the given directory or any directory
-	/// that it contains, recursively.
+	// Get a list of all regular files in the given directory or any directory
+	// that it contains, recursively.
 	static std::vector<std::string> RecursiveList(const std::string &directory);
 	static void RecursiveList(std::string directory, std::vector<std::string> *list);
 
@@ -62,12 +58,10 @@ public:
 	static void Move(const std::string &from, const std::string &to);
 	static void Delete(const std::string &filePath);
 
-	/// Get the filename from a path.
-	///
+	// Get the filename from a path.
 	static std::string Name(const std::string &path);
 
-	/// File IO.
-	///
+	// File IO.
 	static FILE *Open(const std::string &path, bool write = false);
 	static std::string Read(const std::string &path);
 	static std::string Read(FILE *file);
@@ -75,15 +69,13 @@ public:
 	static void Write(FILE *file, const std::string &data);
 	static void CreateFolder(const std::string &path);
 
-	/// Open this user's plugins directory in their native file explorer.
-	///
+	// Open this user's plugins directory in their native file explorer.
 	static void OpenUserPluginFolder();
-	/// Open this user's save file directory in their native file explorer.
-	///
+	// Open this user's save file directory in their native file explorer.
 	static void OpenUserSavesFolder();
 
-	/// Logging to the error-log. Actual calls should be done through Logger
-	/// and not directly here to ensure that other logging actions also
-	/// happen (and to ensure thread safety on the logging).
+	// Logging to the error-log. Actual calls should be done through Logger
+	// and not directly here to ensure that other logging actions also
+	// happen (and to ensure thread safety on the logging).
 	static void LogErrorToFile(const std::string &message);
 };

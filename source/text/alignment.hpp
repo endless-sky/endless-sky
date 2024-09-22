@@ -15,8 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-/// Ways in which text may be aligned.
-///
+// Ways in which text may be aligned.
 enum class Alignment : int {
 	LEFT,
 	CENTER,

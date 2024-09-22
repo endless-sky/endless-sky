@@ -22,52 +22,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// Class representing a bitset with a dynamic size.
-///
+// Class representing a bitset with a dynamic size.
 class Bitset {
 public:
-	/// Returns the number of bits this bitset can hold.
-	///
+	// Returns the number of bits this bitset can hold.
 	size_t Size() const noexcept;
-	/// Returns the number of bits this bitset has reserved.
-	///
+	// Returns the number of bits this bitset has reserved.
 	size_t Capacity() const noexcept;
 
-	/// Resizes the bitset to hold at least the specific amount of bits.
-	///
+	// Resizes the bitset to hold at least the specific amount of bits.
 	void Resize(size_t size);
-	/// Clears the bitset. After this call this bitset is empty.
-	///
+	// Clears the bitset. After this call this bitset is empty.
 	void Clear() noexcept;
 
-	/// Whether the given bitset has any bits that are also set in this bitset.
-	///
+	// Whether the given bitset has any bits that are also set in this bitset.
 	bool Intersects(const Bitset &other) const noexcept;
-	/// Returns the value of the bit at the specified index.
-	///
+	// Returns the value of the bit at the specified index.
 	bool Test(size_t index) const noexcept;
-	/// Sets the bit at the specified index.
-	///
+	// Sets the bit at the specified index.
 	void Set(size_t index) noexcept;
-	/// Resets all bits in the bitset.
-	///
+	// Resets all bits in the bitset.
 	void Reset() noexcept;
-	/// Whether any bits are set.
-	///
+	// Whether any bits are set.
 	bool Any() const noexcept;
-	/// Whether no bits are set.
-	///
+	// Whether no bits are set.
 	bool None() const noexcept;
 
-	/// Fills the current bitset with the bits of other.
-	///
+	// Fills the current bitset with the bits of other.
 	void UpdateWith(const Bitset &other);
 
 
 private:
 	static constexpr size_t BITS_PER_BLOCK = std::numeric_limits<uint64_t>::digits;
 
-	/// Stores the bits of the bitset.
-	///
+	// Stores the bits of the bitset.
 	std::vector<uint64_t> bits;
 };

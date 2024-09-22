@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// Information for the font rendering code that controls how a given piece of text
-/// should behave on screen, especially with regards to its alignment and maximum width.
+// Information for the font rendering code that controls how a given piece of text
+// should behave on screen, especially with regards to its alignment and maximum width.
 class Layout {
 public:
 	Layout() noexcept = default;
@@ -32,8 +32,8 @@ public:
 	Layout(int width, Truncate truncateType) noexcept;
 	Layout(int width, Alignment alignment, Truncate truncateType) noexcept;
 
-	/// A negative width implies infinite width is allowed (e.g. a wrappable string, or
-	/// one which we can guarantee will not overflow its drawing bounds).
+	// A negative width implies infinite width is allowed (e.g. a wrappable string, or
+	// one which we can guarantee will not overflow its drawing bounds).
 	int width = -1;
 	Alignment align = Alignment::LEFT;
 	Truncate truncate = Truncate::NONE;

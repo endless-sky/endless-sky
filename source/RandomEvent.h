@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// A class representing an event that triggers randomly
-/// in a given internal, for example fleets or hazards.
+// A class representing an event that triggers randomly
+// in a given internal, for example fleets or hazards.
 template <typename T>
 class RandomEvent {
 public:

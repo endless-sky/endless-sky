@@ -20,21 +20,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-/// Class that can redirect all drawing commands to an internal texture.
-/// This buffer uses coordinates from (0, 0) in the top left, to (width, height)
-/// in the bottom right.
+// Class that can redirect all drawing commands to an internal texture.
+// This buffer uses coordinates from (0, 0) in the top left, to (width, height)
+// in the bottom right.
 class RenderBuffer
 {
 public:
-	/// RAII wrapper to prevent accidentally not unbinding the render target.
-	///
+	// RAII wrapper to prevent accidentally not unbinding the render target.
 	class RenderTargetGuard final
 	{
 	public:
 		~RenderTargetGuard();
 
-		/// Explicitly deactivate render target;
-		///
+		// Explicitly deactivate render target;
 		void Deactivate();
 
 
@@ -50,24 +48,20 @@ public:
 
 
 public:
-	/// Create a texture of the given size that can be used as a render target.
-	///
+	// Create a texture of the given size that can be used as a render target.
 	RenderBuffer(const Point &dimensions);
 	virtual ~RenderBuffer();
 
-	/// Initialize the shaders used internally.
-	///
+	// Initialize the shaders used internally.
 	static void Init();
 
-	/// Turn this buffer on as a render target. The render target is restored if
-	/// the Activation object goes out of scope.
+	// Turn this buffer on as a render target. The render target is restored if
+	// the Activation object goes out of scope.
 	[[nodiscard]] RenderTargetGuard SetTarget();
 
-	/// Draw the contents of this buffer at the specified position.
-	///
+	// Draw the contents of this buffer at the specified position.
 	void Draw(const Point &position);
-	/// Draw the contents of this buffer at the specified position, clipping the contents.
-	///
+	// Draw the contents of this buffer at the specified position, clipping the contents.
 	void Draw(const Point &position, const Point &clipsize, const Point &srcposition = Point());
 
 	double Top() const;

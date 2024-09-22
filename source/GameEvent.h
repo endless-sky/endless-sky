@@ -32,45 +32,42 @@ class System;
 
 
 
-/// This represents something that happens that changes the universe. For
-/// example, a system may be taken over by a different government, or a new type
-/// of ship or weapon may become available for purchase. Events that do not
-/// specify a date on which they occur will happen in response to missions. An
-/// event always sets the "event: <name>" condition when it occurs, which allows
-/// you to use the mission framework to specify a message that can be shown to
-/// the player the next time they land on a planet after that event happens.
+// This represents something that happens that changes the universe. For
+// example, a system may be taken over by a different government, or a new type
+// of ship or weapon may become available for purchase. Events that do not
+// specify a date on which they occur will happen in response to missions. An
+// event always sets the "event: <name>" condition when it occurs, which allows
+// you to use the mission framework to specify a message that can be shown to
+// the player the next time they land on a planet after that event happens.
 class GameEvent {
 public:
-	/// Determine the universe object definitions that are defined by the given list of changes.
-	///
+	// Determine the universe object definitions that are defined by the given list of changes.
 	static std::map<std::string, std::set<std::string>> DeferredDefinitions(const std::list<DataNode> &changes);
 
 
 public:
 	GameEvent() = default;
-	/// Construct and Load() at the same time.
-	///
+	// Construct and Load() at the same time.
 	explicit GameEvent(const DataNode &node);
 
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	/// If disabled, an event will not Apply() or Save().
-	///
+	// If disabled, an event will not Apply() or Save().
 	void Disable();
 
 	const std::string &Name() const;
 	void SetName(const std::string &name);
 
-	/// Check if this GameEvent has been loaded (vs. simply referred to) and
-	/// if it references any items that have not been defined.
-	/// Returns an empty string if it is valid. If not, a reason will be given in the string.
+	// Check if this GameEvent has been loaded (vs. simply referred to) and
+	// if it references any items that have not been defined.
+	// Returns an empty string if it is valid. If not, a reason will be given in the string.
 	std::string IsValid() const;
 
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
 
-	/// Apply this event's changes to the player. Returns a list of data changes that need to
-	/// be applied in a batch with other events that are applied at the same time.
+	// Apply this event's changes to the player. Returns a list of data changes that need to
+	// be applied in a batch with other events that are applied at the same time.
 	std::list<DataNode> Apply(PlayerInfo &player);
 
 	const std::list<DataNode> &Changes() const;

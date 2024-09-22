@@ -27,9 +27,9 @@ class Sprite;
 
 
 
-/// A panel that displays the galaxy star map, along with a side panel showing
-/// all ships that are for sale in known systems. You can click on one of them
-/// to see which systems it is available in.
+// A panel that displays the galaxy star map, along with a side panel showing
+// all ships that are for sale in known systems. You can click on one of them
+// to see which systems it is available in.
 class MapShipyardPanel : public MapSalesPanel {
 public:
 	explicit MapShipyardPanel(PlayerInfo &player);
