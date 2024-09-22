@@ -105,10 +105,28 @@ mission "Drak guarding Void Sprites"
 	repeat
 	to offer
 		not "Drak guarding Void Sprites: active"
+		not "Chill Drak guarding Void Sprites: active"
+		"Drak Sleeping Dragon chill" <= 0
 	to complete
-		never
+		"Drak Sleeping Dragon chill" >= 1
 	npc save
-		government Drak
+		government "Drak (Nenia)"
+		personality heroic vindictive staying frugal
+		system Nenia
+		ship "Archon (Cloaked)" "Sleeping Dragon"
+
+mission "Chill Drak guarding Void Sprites"
+	invisible
+	landing
+	repeat
+	to offer
+		not "Drak guarding Void Sprites: active"
+		not "Chill Drak guarding Void Sprites: active"
+		"Drak Sleeping Dragon chill" >= 1
+	to complete
+		"Drak Sleeping Dragon chill" <= 0
+	npc save
+		government "Drak"
 		personality heroic vindictive staying frugal
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
