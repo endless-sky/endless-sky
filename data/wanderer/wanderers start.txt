@@ -555,8 +555,9 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 
 
 mission "Wanderers: Defend Vara Ke'sok"
-	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	landing
+	name "Defend <planet>"
+	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Conversation: offered"
@@ -579,7 +580,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 				`	"I will help drive the Unfettered away."`
 					goto yes
 				`	"Why do I need to help? I only accepted a transport mission."`
-			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failures] if you do not help. Will you aid us now?"`
 			label choice
 			choice
 				`	"Yes, I will help drive the Unfettered away."`
