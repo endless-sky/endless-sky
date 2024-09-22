@@ -709,6 +709,7 @@ mission "Remnant: Void Sprites 3"
 	on accept
 		event "remnant: puffin"
 		give ship "Puffin" "Shadow in the Depths"
+		"Drak Sleeping Dragon chill"++
 	npc
 		government "Drak (Hostile)"
 		system "Nenia"
@@ -722,6 +723,7 @@ mission "Remnant: Void Sprites 3"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
+		"Drak Sleeping Dragon chill"--
 		event "remnant: void sprite research" 20
 		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
 		log "Factions" "Archons" `Archons are partly biological, but do not seem to be naturally evolved creatures. Some of their biological characteristics may have been based on the "void sprites" that inhabit the Ember Waste.`
@@ -1994,6 +1996,7 @@ mission "Remnant: Return the Samples"
 		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
+		"Drak Sleeping Dragon chill"++
 		conversation
 			`As you are walking through the spaceport, the researcher you previously assisted with the studies on the void sprites approaches you in a hustle. "We have made some new discoveries!" he exclaims in a trill. "Some of the samples that we took all those years ago are actually eggs of some kind. So the Archon must view our previous research as being disruptive to the void sprites' lifecycles.`
 			`	"We have been storing these eggs in a cryogenic stasis tank, so they should still be viable and intact. Well, most of them, anyway." His notes trail off on a mournful tone.`
@@ -2022,6 +2025,7 @@ mission "Remnant: Return the Samples"
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
+		"Drak Sleeping Dragon chill"--
 		conversation
 			`Back on the ground, you report on how the release went. The researcher is pleased to hear that the void sprites responded to their presence. "We will give them a few weeks, then try sending another ship to monitor them. Hopefully the Archon will be pacified by this. Meet me in the alien environments lab just off the spaceport if you are interested in pursuing this."`
 
@@ -2035,6 +2039,7 @@ mission "Remnant: Return the Samples 2"
 	to offer
 		has "Remnant: Return the Samples: done"
 	on offer
+		"Drak Sleeping Dragon chill"++
 		conversation
 			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last-ditch preparation in case they need to hide the entrance from a raid.`
 			`	The lab itself is a microcosm of Remnant development. The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would say that this lab was the result of several different families of technology, only one of which was human.`
