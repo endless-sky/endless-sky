@@ -11,7 +11,7 @@ for path in paths:
             lines = None
             with open(path + filename, 'r') as file:
                 lines = file.readlines()
-            
+
             newLines = []
             commentLines = []
 
@@ -23,7 +23,7 @@ for path in paths:
                 prefix = ""
                 identationLevel = len(line) - len(line.lstrip('\t'))
                 prefix += "\t" * identationLevel
-    
+
                 if line.startswith(prefix + "//") and not inCommentBlock:
                     counter += 1
                     inCommentBlock = True
@@ -42,10 +42,10 @@ for path in paths:
                     commentLines.append(line)
                 else:
                     newLines.append(line)
-            
+
             with open(path + filename, 'w') as file:
                 for line in newLines:
                     file.write(line)
-            
+
             print("Converted comments in: " + path + filename + " , " + str(counter) + " comments got converted.")
 
