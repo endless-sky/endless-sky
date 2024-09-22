@@ -86,6 +86,20 @@ void Orders::SetMoveTo()
 
 
 
+void Orders::SetTravelTo()
+{
+	ApplyOrder(OrderType::TRAVEL_TO);
+}
+
+
+
+void Orders::SetLandOn()
+{
+	ApplyOrder(OrderType::LAND_ON);
+}
+
+
+
 void Orders::SetKeepStation()
 {
 	ApplyOrder(OrderType::KEEP_STATION);
@@ -152,6 +166,20 @@ bool Orders::HasHoldFire() const
 bool Orders::HasMoveTo() const
 {
 	return activeOrders.test(OrderType::MOVE_TO);
+}
+
+
+
+bool Orders::HasTravelTo() const
+{
+	return activeOrders.test(OrderType::TRAVEL_TO);
+}
+
+
+
+bool Orders::HasLandOn() const
+{
+	return activeOrders.test(OrderType::LAND_ON);
 }
 
 
@@ -240,6 +268,13 @@ void Orders::SetTargetSystem(const System *system)
 
 
 
+void Orders::SetTargetPlanet(const Planet *planet)
+{
+	targetPlanet = planet;
+}
+
+
+
 shared_ptr<Minable> Orders::GetTargetAsteroid() const
 {
 	return targetAsteroid.lock();
@@ -257,6 +292,13 @@ const Point &Orders::GetTargetPoint() const
 const System *Orders::GetTargetSystem() const
 {
 	return targetSystem;
+}
+
+
+
+const Planet *Orders::GetTargetPlanet() const
+{
+	return targetPlanet;
 }
 
 
