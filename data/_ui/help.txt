@@ -187,4 +187,4 @@ help "fighter fleet logistics"
 	`	Fleet refueling if your fighters have fuel and ramscoop.`
 
 help "try out fighter fleet logistics"
-	`You have a carrier which can support your fleet through logistics. In Preferences and Settings under AI section, turn on "Figher fleet logistics" to learn more.`
+	`You have a carrier which can support your fleet through logistics. In Preferences and Settings under the AI section, turn on "Fighter fleet logistics" to learn more.`

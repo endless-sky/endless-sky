@@ -35,4 +35,4 @@ conversation "flight check: overheating!"
 conversation "flight check: low battery!"
 	scene "scene/engine"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
-	`	As you're looking through the status checks of your carried ships, you notice they're not equipped with enough battery for sustained flight. You'll either need to increase its power generation or battery capacity to solve the issue.`
+	`	As you're looking through the status checks of your carried ships, you notice they're not all equipped with enough battery for sustained flight. You'll either need to increase their power generation or battery capacity to solve the issue.`
