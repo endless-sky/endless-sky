@@ -47,7 +47,7 @@ fleet "Wanderer Freight"
 	names "wanderer"
 	cargo 3
 	personality
-		timid
+		appeasing timid
 	variant
 		"Deep River 0"
 	variant
