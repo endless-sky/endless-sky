@@ -103,7 +103,7 @@ segment_exclude = [re.compile(regex) for regex in [
 	"^(public|protected|private|default):$"
 ]]
 # Precompiled  helper regexes
-after_comment = re.compile("[^\\s#]|[^\\]")
+after_comment = re.compile("[^\\s#]|[^\]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
 
