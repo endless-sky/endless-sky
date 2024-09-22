@@ -94,6 +94,7 @@ private:
 	bool flippedY = false;
 
 	/// Status variable used to track if ships still participate in the formation.
-	/// TODO: This method of tracking shouldn't be needed; ships themselves should have a state to show what they are doing.
+	/// TODO: This method of tracking shouldn't be needed; ships themselves should
+	/// have a state to show what they are doing.
 	bool tickTock = true;
 };
