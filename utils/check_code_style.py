@@ -239,7 +239,7 @@ def sanitize(lines, skip_checks=False):
 					i += 1
 					start_index = i + 1
 				continue
-			if (not is_string) and first_two == "//":
+			if (not is_string) and first_two == "//" and line[i:i + 4] != "///\n":
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
 					# Checking for space after comment
