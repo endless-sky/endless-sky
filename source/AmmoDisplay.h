@@ -28,7 +28,8 @@ class Ship;
 
 
 
-// A class for handling the secondary weapon icons displayed in the HUD.
+/// A class for handling the secondary weapon icons displayed in the HUD.
+///
 class AmmoDisplay {
 public:
 	explicit AmmoDisplay(PlayerInfo &player);

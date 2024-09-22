@@ -38,28 +38,32 @@ class UI;
 
 
 
-// A GameAction represents what happens when a Mission or Conversation reaches
-// a certain milestone. This can include when the Mission is offered, accepted,
-// declined, completed, or failed, or when a Conversation reaches an "action" node.
-// GameActions might include giving the player payment or a special item,
-// modifying condition flags, or queueing a GameEvent to occur. Any new mechanics
-// added to GameAction should be able to be safely executed while in a
-// Conversation.
+/// A GameAction represents what happens when a Mission or Conversation reaches
+/// a certain milestone. This can include when the Mission is offered, accepted,
+/// declined, completed, or failed, or when a Conversation reaches an "action" node.
+/// GameActions might include giving the player payment or a special item,
+/// modifying condition flags, or queueing a GameEvent to occur. Any new mechanics
+/// added to GameAction should be able to be safely executed while in a
+/// Conversation.
 class GameAction {
 public:
 	GameAction() = default;
-	// Construct and Load() at the same time.
+	/// Construct and Load() at the same time.
+	///
 	GameAction(const DataNode &node);
 
 	void Load(const DataNode &node);
-	// Process a single sibling node.
+	/// Process a single sibling node.
+	///
 	void LoadSingle(const DataNode &child);
 	void Save(DataWriter &out) const;
 
-	// Determine if this GameAction references content that is not fully defined.
+	/// Determine if this GameAction references content that is not fully defined.
+	///
 	std::string Validate() const;
 
-	// Whether this action instance contains any tasks to perform.
+	/// Whether this action instance contains any tasks to perform.
+	///
 	bool IsEmpty() const noexcept;
 
 	int64_t Payment() const noexcept;
@@ -67,11 +71,12 @@ public:
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
 	const std::vector<ShipManager> &Ships() const noexcept;
 
-	// Perform this action.
+	/// Perform this action.
+	///
 	void Do(PlayerInfo &player, UI *ui, const Mission *caller) const;
 
-	// "Instantiate" this action by filling in the wildcard data for the actual
-	// payment, event delay, etc.
+	/// "Instantiate" this action by filling in the wildcard data for the actual
+	/// payment, event delay, etc.
 	GameAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 
 
@@ -104,9 +109,11 @@ private:
 	std::set<const System *> mark;
 	std::set<const System *> unmark;
 
-	// When this action is performed, the missions with these names fail.
+	/// When this action is performed, the missions with these names fail.
+	///
 	std::set<std::string> fail;
-	// When this action is performed, the mission that called this action is failed.
+	/// When this action is performed, the mission that called this action is failed.
+	///
 	bool failCaller = false;
 
 	ConditionSet conditions;

@@ -30,34 +30,42 @@ class System;
 
 
 
-// A unique individual who may appear at random times in the game.
+/// A unique individual who may appear at random times in the game.
+///
 class Person {
 public:
 	void Load(const DataNode &node);
-	// Finish loading all the ships in this person specification.
+	/// Finish loading all the ships in this person specification.
+	///
 	void FinishLoading();
-	// Prevent this person from being spawned in any system.
+	/// Prevent this person from being spawned in any system.
+	///
 	void NeverSpawn();
 
-	// Find out how often this person should appear in the given system. If this
-	// person is dead or already active, this will return zero.
+	/// Find out how often this person should appear in the given system. If this
+	/// person is dead or already active, this will return zero.
 	int Frequency(const System *system) const;
 
-	// Get the person's characteristics. The ship object is persistent, i.e. it
-	// will be recycled every time this person appears.
+	/// Get the person's characteristics. The ship object is persistent, i.e. it
+	/// will be recycled every time this person appears.
 	const std::list<std::shared_ptr<Ship>> &Ships() const;
 	const Government *GetGovernment() const;
 	const Personality &GetPersonality() const;
 	const Phrase &GetHail() const;
-	// Check if a person has been destroyed or captured.
+	/// Check if a person has been destroyed or captured.
+	///
 	bool IsDestroyed() const;
-	// Mark this person as destroyed.
+	/// Mark this person as destroyed.
+	///
 	void Destroy();
-	// Mark this person as no longer destroyed.
+	/// Mark this person as no longer destroyed.
+	///
 	void Restore();
-	// Check if a person is already placed somewhere.
+	/// Check if a person is already placed somewhere.
+	///
 	bool IsPlaced() const;
-	// Mark this person as being no longer "placed" somewhere.
+	/// Mark this person as being no longer "placed" somewhere.
+	///
 	void ClearPlacement();
 
 

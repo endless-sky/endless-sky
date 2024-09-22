@@ -23,7 +23,8 @@ class Ship;
 
 
 
-// A collection of cargo settings to be applied to ships from a Fleet or NPC.
+/// A collection of cargo settings to be applied to ships from a Fleet or NPC.
+///
 class FleetCargo {
 public:
 	void Load(const DataNode &node);
@@ -33,7 +34,8 @@ public:
 
 
 private:
-	// The number of different items this object can assign to ships.
+	/// The number of different items this object can assign to ships.
+	///
 	int cargo = 3;
 	std::vector<std::string> commodities;
 	std::set<const Sale<Outfit> *> outfitters;

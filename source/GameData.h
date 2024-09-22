@@ -67,52 +67,60 @@ class Wormhole;
 
 
 
-// Class storing all the data used in the game: sprites, data files, etc. This
-// data is globally accessible, but can only be modified in certain ways.
-// Events that occur over the course of the game may change the state of the
-// game data, so we must revert to the initial state when loading a new player
-// and then apply whatever changes have happened in that particular player's
-// universe.
+/// Class storing all the data used in the game: sprites, data files, etc. This
+/// data is globally accessible, but can only be modified in certain ways.
+/// Events that occur over the course of the game may change the state of the
+/// game data, so we must revert to the initial state when loading a new player
+/// and then apply whatever changes have happened in that particular player's
+/// universe.
 class GameData {
 public:
 	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
-	// Check for objects that are referred to but never defined.
+	/// Check for objects that are referred to but never defined.
+	///
 	static void CheckReferences();
 	static void LoadSettings();
 	static void LoadShaders();
 	static double GetProgress();
-	// Whether initial game loading is complete (data, sprites and audio are loaded).
+	/// Whether initial game loading is complete (data, sprites and audio are loaded).
+	///
 	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
+	/// Begin loading a sprite that was previously deferred. Currently this is
+	/// done with all landscapes to speed up the program's startup.
 	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
-	// Get the list of resource sources (i.e. plugin folders).
+	/// Get the list of resource sources (i.e. plugin folders).
+	///
 	static const std::vector<std::string> &Sources();
 
-	// Get a reference to the UniverseObjects object.
+	/// Get a reference to the UniverseObjects object.
+	///
 	static UniverseObjects &Objects();
 
-	// Revert any changes that have been made to the universe.
+	/// Revert any changes that have been made to the universe.
+	///
 	static void Revert();
 	static void SetDate(const Date &date);
-	// Functions for the dynamic economy.
+	/// Functions for the dynamic economy.
+	///
 	static void ReadEconomy(const DataNode &node);
 	static void WriteEconomy(DataWriter &out);
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
-	// Apply the given change to the universe.
+	/// Apply the given change to the universe.
+	///
 	static void Change(const DataNode &node);
-	// Update the neighbor lists and other information for all the systems.
-	// This must be done any time that a change creates or moves a system.
+	/// Update the neighbor lists and other information for all the systems.
+	/// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
 	static void AddJumpRange(double neighborDistance);
 
-	// Re-activate any special persons that were created previously but that are
-	// still alive.
+	/// Re-activate any special persons that were created previously but that are
+	/// still alive.
 	static void ResetPersons();
-	// Mark all persons in the given list as dead.
+	/// Mark all persons in the given list as dead.
+	///
 	static void DestroyPersons(std::vector<std::string> &names);
 
 	static const Set<Color> &Colors();
@@ -149,16 +157,20 @@ public:
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
 
-	// Custom messages to be shown when trying to land on certain stellar objects.
+	/// Custom messages to be shown when trying to land on certain stellar objects.
+	///
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
-	// Get the solar power and wind output of the given stellar object sprite.
+	/// Get the solar power and wind output of the given stellar object sprite.
+	///
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
 
-	// Strings for combat rating levels, etc.
+	/// Strings for combat rating levels, etc.
+	///
 	static const std::string &Rating(const std::string &type, int level);
-	// Collections for ship, bay type, outfit, and other categories.
+	/// Collections for ship, bay type, outfit, and other categories.
+	///
 	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
@@ -174,7 +186,8 @@ public:
 
 	static const Gamerules &GetGamerules();
 
-	// Thread-safe way to draw the menu background.
+	/// Thread-safe way to draw the menu background.
+	///
 	static void DrawMenuBackground(Panel *panel);
 
 

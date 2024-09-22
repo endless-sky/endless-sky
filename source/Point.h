@@ -21,24 +21,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class representing a 2D point with functions for a variety of vector operations.
-// A Point can represent either a location or a vector (e.g. a velocity, or a
-// distance between two points, or a unit vector representing a direction). All
-// basic mathematical operations that make sense for vectors are supported.
-// Internally the coordinates are stored in a SSE vector and the processor's vector
-// extensions are used to optimize all operations.
+/// Class representing a 2D point with functions for a variety of vector operations.
+/// A Point can represent either a location or a vector (e.g. a velocity, or a
+/// distance between two points, or a unit vector representing a direction). All
+/// basic mathematical operations that make sense for vectors are supported.
+/// Internally the coordinates are stored in a SSE vector and the processor's vector
+/// extensions are used to optimize all operations.
 class Point {
 public:
 	Point() noexcept;
 	Point(double x, double y) noexcept;
 
-	// Check if the point is anything but (0, 0).
+	/// Check if the point is anything but (0, 0).
+	///
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
 
-	// No comparison operators are provided because I never expect to use them
-	// and because comparisons with doubles are inherently unsafe due to the
-	// possibility of rounding errors and imprecision.
+	/// No comparison operators are provided because I never expect to use them
+	/// and because comparisons with doubles are inherently unsafe due to the
+	/// possibility of rounding errors and imprecision.
 
 	Point operator+(const Point &point) const;
 	Point &operator+=(const Point &point);
@@ -52,7 +53,8 @@ public:
 	Point operator/(double scalar) const;
 	Point &operator/=(double scalar);
 
-	// Multiply the respective components of each Point.
+	/// Multiply the respective components of each Point.
+	///
 	Point operator*(const Point &other) const;
 	Point &operator*=(const Point &other);
 
@@ -63,7 +65,8 @@ public:
 
 	void Set(double x, double y);
 
-	// Operations that treat this point as a vector from (0, 0):
+	/// Operations that treat this point as a vector from (0, 0):
+	///
 	double Dot(const Point &point) const;
 	double Cross(const Point &point) const;
 
@@ -76,17 +79,21 @@ public:
 
 	Point Lerp(const Point &to, const double c) const;
 
-	// Take the absolute value of both coordinates.
+	/// Take the absolute value of both coordinates.
+	///
 	friend Point abs(const Point &p);
-	// Use the min of each x and each y coordinates.
+	/// Use the min of each x and each y coordinates.
+	///
 	friend Point min(const Point &p, const Point &q);
-	// Use the max of each x and each y coordinates.
+	/// Use the max of each x and each y coordinates.
+	///
 	friend Point max(const Point &p, const Point &q);
 
 
 private:
 #ifdef __SSE3__
-	// Private constructor, using a vector.
+	/// Private constructor, using a vector.
+	///
 	explicit Point(const __m128d &v);
 
 
@@ -107,7 +114,8 @@ private:
 
 
 
-// Inline accessor functions, for speed:
+/// Inline accessor functions, for speed:
+///
 inline double &Point::X()
 {
 #ifdef __SSE3__

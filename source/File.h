@@ -20,7 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// RAII wrapper for FILE, to make sure it gets closed if an error occurs.
+/// RAII wrapper for FILE, to make sure it gets closed if an error occurs.
+///
 class File {
 public:
 	File() noexcept = default;
@@ -29,9 +30,11 @@ public:
 	File(File &&other) noexcept;
 	~File() noexcept;
 
-	// Do not allow copying the FILE pointer.
+	/// Do not allow copying the FILE pointer.
+	///
 	File &operator=(const File &) = delete;
-	// Move assignment is OK though.
+	/// Move assignment is OK though.
+	///
 	File &operator=(File &&) noexcept;
 
 	explicit operator bool() const;

@@ -42,7 +42,8 @@ public:
 
 
 protected:
-	// Only override the ones you need; the default action is to return false.
+	/// Only override the ones you need; the default action is to return false.
+	///
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override final;
 	virtual bool Click(int x, int y, int clicks) override final;
 	virtual bool Hover(int x, int y) override final;
@@ -59,19 +60,25 @@ private:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
-	// The panel to close when a scenario is chosen.
+	/// The panel to close when a scenario is chosen.
+	///
 	const Panel *parent;
-	// The list of starting scenarios to pick from.
+	/// The list of starting scenarios to pick from.
+	///
 	StartConditionsList scenarios;
-	// The currently selected starting scenario.
+	/// The currently selected starting scenario.
+	///
 	StartConditionsList::iterator startIt;
-	// Colors with which to draw text.
+	/// Colors with which to draw text.
+	///
 	const Color &bright;
 	const Color &medium;
 	const Color &selectedBackground;
-	// The selected scenario's description.
+	/// The selected scenario's description.
+	///
 	WrappedText description;
-	// Displayed information for the selected scenario.
+	/// Displayed information for the selected scenario.
+	///
 	Information info;
 
 	bool hasHover = false;
@@ -80,10 +87,12 @@ private:
 	double entriesScroll = 0.;
 	double descriptionScroll = 0.;
 
-	// This is a map that will let us figure out which start conditions item the user clicked on.
+	/// This is a map that will let us figure out which start conditions item the user clicked on.
+	///
 	std::vector<ClickZone<StartConditionsList::iterator>> startConditionsClickZones;
 
-	// Interface-controlled positions & dimensions.
+	/// Interface-controlled positions & dimensions.
+	///
 	Rectangle descriptionBox;
 	Rectangle entryBox;
 	Rectangle entriesContainer;

@@ -24,10 +24,10 @@ class Ship;
 
 
 
-// This class is responsible for storing the state
-// between PlayerInfoPanel and ShipInfoPanel so that
-// things like scroll position, selection and sort are
-// saved when the user is switching between the panels.
+/// This class is responsible for storing the state
+/// between PlayerInfoPanel and ShipInfoPanel so that
+/// things like scroll position, selection and sort are
+/// saved when the user is switching between the panels.
 class InfoPanelState {
 public:
 	using ShipComparator = bool(const std::shared_ptr<Ship> &, const std::shared_ptr<Ship> &);
@@ -66,22 +66,27 @@ private:
 private:
 	PlayerInfo &player;
 
-	// Most recent selected ship index.
+	/// Most recent selected ship index.
+	///
 	int selectedIndex = -1;
 
-	// Indices of selected ships.
+	/// Indices of selected ships.
+	///
 	std::set<int> allSelected;
 
-	// A copy of PlayerInfo.ships for viewing and manipulating.
+	/// A copy of PlayerInfo.ships for viewing and manipulating.
+	///
 	std::vector<std::shared_ptr<Ship>> ships;
 
-	// When the player is landed, they are able to
-	// change their flagship and reorder their fleet.
+	/// When the player is landed, they are able to
+	/// change their flagship and reorder their fleet.
 	const bool canEdit = false;
 
-	// Index of the ship at the top of the fleet listing.
+	/// Index of the ship at the top of the fleet listing.
+	///
 	int scroll = 0;
 
-	// Keep track of whether the ships are sorted.
+	/// Keep track of whether the ships are sorted.
+	///
 	ShipComparator *currentSort = nullptr;
 };

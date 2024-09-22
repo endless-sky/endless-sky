@@ -32,18 +32,21 @@ struct Plugin;
 
 
 
-// UI panel for editing preferences, especially the key mappings.
+/// UI panel for editing preferences, especially the key mappings.
+///
 class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel();
 	virtual ~PreferencesPanel();
 
-	// Draw this panel.
+	/// Draw this panel.
+	///
 	virtual void Draw() override;
 
 
 protected:
-	// Only override the ones you need; the default action is to return false.
+	/// Only override the ones you need; the default action is to return false.
+	///
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
@@ -70,7 +73,8 @@ private:
 	void HandleDown();
 	void HandleConfirm();
 
-	// Scroll the plugin list until the selected plugin is visible.
+	/// Scroll the plugin list until the selected plugin is visible.
+	///
 	void ScrollSelectedPlugin();
 
 
@@ -81,7 +85,8 @@ private:
 	int oldSelected;
 	int oldHover;
 	int latest;
-	// Which page of the preferences we're on.
+	/// Which page of the preferences we're on.
+	///
 	char page = 'c';
 
 	Point hoverPoint;

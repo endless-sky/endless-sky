@@ -19,7 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 #if defined(_WIN32)
-// Don't include <windows.h>, which will shadow our Rectangle class.
+/// Don't include <windows.h>, which will shadow our Rectangle class.
+///
 #define RPC_NO_WINDOWS_H
 #include <rpc.h>
 #else
@@ -28,10 +29,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class wrapping IETF v4 GUIDs, providing lazy initialization.
+/// Class wrapping IETF v4 GUIDs, providing lazy initialization.
+///
 class EsUuid final {
 public:
-	// Used to represent a UUID across supported platforms.
+	/// Used to represent a UUID across supported platforms.
+	///
 	struct UuidType final {
 		UuidType() = default;
 		UuidType(UuidType &&) = default;
@@ -52,32 +55,40 @@ public:
 	static EsUuid FromString(const std::string &input);
 	EsUuid() noexcept = default;
 	~EsUuid() noexcept = default;
-	// Copying a UUID does not copy its value. (This allows us to use simple copy operations on stock
-	// ship definitions when spawning fleets, etc.)
+	/// Copying a UUID does not copy its value. (This allows us to use simple copy operations on stock
+	/// ship definitions when spawning fleets, etc.)
 	EsUuid(const EsUuid &other) noexcept : value{} {};
-	// Copy-assigning also results in an empty UUID.
+	/// Copy-assigning also results in an empty UUID.
+	///
 	EsUuid &operator=(const EsUuid &other) noexcept { return *this = EsUuid(other); };
-	// UUIDs can be move-constructed as-is.
+	/// UUIDs can be move-constructed as-is.
+	///
 	EsUuid(EsUuid &&) noexcept = default;
-	// UUIDs can be move-assigned as-is.
+	/// UUIDs can be move-assigned as-is.
+	///
 	EsUuid &operator=(EsUuid &&) noexcept = default;
 
-	// UUIDs can be compared against other UUIDs.
+	/// UUIDs can be compared against other UUIDs.
+	///
 	bool operator==(const EsUuid &other) const noexcept(false);
 	bool operator!=(const EsUuid &other) const noexcept(false);
 	bool operator<(const EsUuid &other) const noexcept(false);
 
-	// Explicitly clone this UUID.
+	/// Explicitly clone this UUID.
+	///
 	void clone(const EsUuid &other);
 
-	// Get a string representation of this ID, e.g. for serialization.
+	/// Get a string representation of this ID, e.g. for serialization.
+	///
 	std::string ToString() const noexcept(false);
 
 
 private:
-	// Internal constructor, from a string.
+	/// Internal constructor, from a string.
+	///
 	explicit EsUuid(const std::string &input);
-	// Lazy initialization getter.
+	/// Lazy initialization getter.
+	///
 	const UuidType &Value() const;
 
 
@@ -89,17 +100,19 @@ private:
 
 template <class T>
 struct UUIDComparator {
-	// Comparator for collections of shared_ptr<T>
+	/// Comparator for collections of shared_ptr<T>
+	///
 	bool operator() (const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)
 	{
 		return a->UUID() < b->UUID();
 	}
 
-	// Comparator for collections of T*, e.g. set<T *>
+	/// Comparator for collections of T*, e.g. set<T *>
+	///
 	bool operator()(const T *a, const T *b) const noexcept(false)
 	{
 		return a->UUID() < b->UUID();
 	}
-	// No comparator for collections of T, as std containers generally perform copy operations
-	// and copying this class will eventually be disabled.
+	/// No comparator for collections of T, as std containers generally perform copy operations
+	/// and copying this class will eventually be disabled.
 };

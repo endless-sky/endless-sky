@@ -26,8 +26,8 @@ class DataNode;
 
 
 
-// Stores a list of description paragraphs, and a condition under which each should be shown.
-// See the planet and spaceport description code for examples.
+/// Stores a list of description paragraphs, and a condition under which each should be shown.
+/// See the planet and spaceport description code for examples.
 class Paragraphs {
 public:
 	using ConditionalText = std::vector<std::pair<ConditionSet, std::string>>;
@@ -35,23 +35,28 @@ public:
 
 
 public:
-	// Load one line of text and possible conditions from the given node.
+	/// Load one line of text and possible conditions from the given node.
+	///
 	void Load(const DataNode &node);
 
-	// Discard all description lines.
+	/// Discard all description lines.
+	///
 	void Clear();
 
-	// Is this object totally void of all information?
+	/// Is this object totally void of all information?
+	///
 	bool IsEmpty() const;
 
-	// Are there any lines which match these vars?
+	/// Are there any lines which match these vars?
+	///
 	bool IsEmptyFor(const ConditionsStore &vars) const;
 
-	// Concatenate all lines which match these vars.
+	/// Concatenate all lines which match these vars.
+	///
 	std::string ToString(const ConditionsStore &vars) const;
 
-	// Iterate over all text. Needed to support PrintData.
-	// These must use standard naming conventions (begin, end) for compatibility with range-based for loops.
+	/// Iterate over all text. Needed to support PrintData.
+	/// These must use standard naming conventions (begin, end) for compatibility with range-based for loops.
 	ConstIterator begin() const;
 	ConstIterator end() const;
 

@@ -39,37 +39,42 @@ class System;
 
 
 
-// A fleet represents a collection of ships that may enter a system or be used
-// as NPCs in a mission. Each fleet contains one or more "variants," each of
-// which can occur with a different probability, and each of those variants
-// lists one or more ships. All the ships in a fleet share a certain government,
-// AI personality, and set of friendly and hostile "hail" messages, and the ship
-// names are chosen based on a given random "phrase" generator.
+/// A fleet represents a collection of ships that may enter a system or be used
+/// as NPCs in a mission. Each fleet contains one or more "variants," each of
+/// which can occur with a different probability, and each of those variants
+/// lists one or more ships. All the ships in a fleet share a certain government,
+/// AI personality, and set of friendly and hostile "hail" messages, and the ship
+/// names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
 	Fleet() = default;
-	// Construct and Load() at the same time.
+	/// Construct and Load() at the same time.
+	///
 	Fleet(const DataNode &node);
 
 	void Load(const DataNode &node);
 
-	// Determine if this fleet template uses well-defined data.
+	/// Determine if this fleet template uses well-defined data.
+	///
 	bool IsValid(bool requireGovernment = true) const;
-	// Ensure any variant selected during gameplay will have at least one ship to spawn.
+	/// Ensure any variant selected during gameplay will have at least one ship to spawn.
+	///
 	void RemoveInvalidVariants();
 
-	// Get the government of this fleet.
+	/// Get the government of this fleet.
+	///
 	const Government *GetGovernment() const;
 
-	// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
+	/// Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
+	///
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
-	// Place a fleet in the given system, already "in action." If the carried flag is set, only
-	// uncarried ships will be added to the list (as any carriables will be stored in bays).
+	/// Place a fleet in the given system, already "in action." If the carried flag is set, only
+	/// uncarried ships will be added to the list (as any carriables will be stored in bays).
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
 			bool carried = true, bool addCargo = true) const;
 
-	// Do the randomization to make a ship enter or be in the given system.
-	// Return the system that was chosen for the ship to enter from.
+	/// Do the randomization to make a ship enter or be in the given system.
+	/// Return the system that was chosen for the ship to enter from.
 	static const System *Enter(const System &system, Ship &ship, const System *source = nullptr);
 	static void Place(const System &system, Ship &ship);
 
@@ -89,7 +94,8 @@ private:
 	const Phrase *fighterNames = nullptr;
 	const FormationPattern *formation = nullptr;
 	WeightedList<Variant> variants;
-	// The cargo ships in this fleet will carry.
+	/// The cargo ships in this fleet will carry.
+	///
 	FleetCargo cargo;
 
 	Personality personality;

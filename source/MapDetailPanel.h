@@ -31,10 +31,10 @@ class System;
 
 
 
-// A panel that displays the galaxy star map, with options for color-coding the
-// stars based on attitude towards the player, government, or commodity price.
-// This panel also lets you view what planets are in each system, and you can
-// click on a planet to view its description.
+/// A panel that displays the galaxy star map, with options for color-coding the
+/// stars based on attitude towards the player, government, or commodity price.
+/// This panel also lets you view what planets are in each system, and you can
+/// click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
 	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
@@ -50,15 +50,18 @@ public:
 
 
 protected:
-	// Navigates through the shown planets panel, and drags them around.
+	/// Navigates through the shown planets panel, and drags them around.
+	///
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
+	/// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
+	///
 	virtual bool Click(int x, int y, int clicks) override;
-	// Handle right-clicks within the "orbits" display.
+	/// Handle right-clicks within the "orbits" display.
+	///
 	virtual bool RClick(int x, int y) override;
 
 
@@ -68,7 +71,8 @@ private:
 	void DrawInfo();
 	void DrawOrbits();
 
-	// Set the commodity coloring, and update the player info as well.
+	/// Set the commodity coloring, and update the player info as well.
+	///
 	void SetCommodity(int index);
 
 
@@ -76,20 +80,24 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 
-	// Which panel is being hovered over and should be affected by up and down keys.
+	/// Which panel is being hovered over and should be affected by up and down keys.
+	///
 	bool isPlanetViewSelected = false;
 
 	ScrollVar<double> scroll;
 	ScrollBar scrollbar;
 
-	// Default display scaling for orbits within the currently displayed system.
+	/// Default display scaling for orbits within the currently displayed system.
+	///
 	double scale = .03;
 
-	// The system currently displayed, it should be the same as the system selected at all times.
+	/// The system currently displayed, it should be the same as the system selected at all times.
+	///
 	const System *shownSystem = nullptr;
 
 	static double planetPanelHeight;
 	std::vector<MapPlanetCard> planetCards;
-	// Vector offsets from the center of the "orbits" UI.
+	/// Vector offsets from the center of the "orbits" UI.
+	///
 	std::map<const Planet *, Point> planets;
 };

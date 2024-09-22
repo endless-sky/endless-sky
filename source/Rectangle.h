@@ -19,33 +19,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class representing a rectangle.
+/// Class representing a rectangle.
+///
 class Rectangle {
 public:
-	// Construct a rectangle by specifying the two corners rather than the
-	// center and the dimensions. The two corners need not be in any order.
+	/// Construct a rectangle by specifying the two corners rather than the
+	/// center and the dimensions. The two corners need not be in any order.
 	static Rectangle WithCorners(const Point &from, const Point &to);
-	// Construct a rectangle beginning at the given point and having the given
-	// dimensions (which are allowed to be negative).
+	/// Construct a rectangle beginning at the given point and having the given
+	/// dimensions (which are allowed to be negative).
 	static Rectangle FromCorner(const Point &corner, const Point &dimensions);
 
-	// Default constructor.
+	/// Default constructor.
+	///
 	Rectangle() = default;
-	// Constructor, specifying the center and the dimensions.
+	/// Constructor, specifying the center and the dimensions.
+	///
 	Rectangle(const Point &center, const Point &dimensions);
-	// Copy constructor.
+	/// Copy constructor.
+	///
 	Rectangle(const Rectangle &other) = default;
 
-	// Assignment operator.
+	/// Assignment operator.
+	///
 	Rectangle &operator=(const Rectangle &other) = default;
 
-	// Translation operators.
+	/// Translation operators.
+	///
 	Rectangle operator+(const Point &offset) const;
 	Rectangle &operator+=(const Point &offset);
 	Rectangle operator-(const Point &offset) const;
 	Rectangle &operator-=(const Point &offset);
 
-	// Query the attributes of the rectangle.
+	/// Query the attributes of the rectangle.
+	///
 	Point Center() const;
 	Point Dimensions() const;
 	double Width() const;
@@ -57,14 +64,17 @@ public:
 	Point TopLeft() const;
 	Point BottomRight() const;
 
-	// Check if a point is inside this rectangle.
+	/// Check if a point is inside this rectangle.
+	///
 	bool Contains(const Point &point) const;
-	// Check if the given rectangle is inside this one. If one of its edges is
-	// touching the edge of this one, that still counts.
+	/// Check if the given rectangle is inside this one. If one of its edges is
+	/// touching the edge of this one, that still counts.
 	bool Contains(const Rectangle &other) const;
-	// Check if the given rectangle overlaps with this one.
+	/// Check if the given rectangle overlaps with this one.
+	///
 	bool Overlaps(const Rectangle &other) const;
-	// Check if the given circle overlaps with this rectangle.
+	/// Check if the given circle overlaps with this rectangle.
+	///
 	bool Overlaps(const Point &center, double radius) const;
 
 

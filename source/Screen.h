@@ -19,20 +19,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class that simply holds the screen dimensions. This is really just a wrapper
-// around some global variables, which means that no one but the drawing thread
-// is allowed to use it.
+/// Class that simply holds the screen dimensions. This is really just a wrapper
+/// around some global variables, which means that no one but the drawing thread
+/// is allowed to use it.
 class Screen {
 public:
-	// Use RAII to define the scope of a temporary screen size change.
+	/// Use RAII to define the scope of a temporary screen size change.
+	///
 	class ScreenDimensionsGuard final
 	{
 	public:
-		// Constructor that changes the screen size on creation.
+		/// Constructor that changes the screen size on creation.
+		///
 		ScreenDimensionsGuard(int width, int height);
-		// Destructor, which restores the expected screen size.
+		/// Destructor, which restores the expected screen size.
+		///
 		~ScreenDimensionsGuard();
-		// Restore the screen settings.
+		/// Restore the screen settings.
+		///
 		void Deactivate();
 
 	private:
@@ -45,15 +49,19 @@ public:
 public:
 	static void SetRaw(int width, int height);
 
-	// Zoom level as specified by the user.
+	/// Zoom level as specified by the user.
+	///
 	static int UserZoom();
-	// Effective zoom level, as restricted by the current resolution / window size.
+	/// Effective zoom level, as restricted by the current resolution / window size.
+	///
 	static int Zoom();
 	static void SetZoom(int percent);
 
-	// Specify that this is a high-DPI window.
+	/// Specify that this is a high-DPI window.
+	///
 	static void SetHighDPI(bool isHighDPI = true);
-	// This is true if the screen is high DPI, or if the zoom is above 100%.
+	/// This is true if the screen is high DPI, or if the zoom is above 100%.
+	///
 	static bool IsHighResolution();
 
 	static Point Dimensions();
@@ -63,7 +71,8 @@ public:
 	static int RawWidth();
 	static int RawHeight();
 
-	// Get the positions of the edges and corners of the viewport.
+	/// Get the positions of the edges and corners of the viewport.
+	///
 	static int Left();
 	static int Top();
 	static int Right();

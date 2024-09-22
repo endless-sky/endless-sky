@@ -29,23 +29,25 @@ class System;
 
 
 
-// This class represents the cargo and passengers that a ship can carry. That
-// can include ordinary commodities, plundered outfits, and mission cargo. When
-// you land on a planet, all your cargo is pooled into a single collection, not
-// tied to any one ship, so you retain it even if you sell off all your ships.
-// When you take off, cargo is distributed among your ships, and if some of it
-// will not fit it must be sold off.
+/// This class represents the cargo and passengers that a ship can carry. That
+/// can include ordinary commodities, plundered outfits, and mission cargo. When
+/// you land on a planet, all your cargo is pooled into a single collection, not
+/// tied to any one ship, so you retain it even if you sell off all your ships.
+/// When you take off, cargo is distributed among your ships, and if some of it
+/// will not fit it must be sold off.
 class CargoHold {
 public:
 	void Clear();
 
-	// Load the cargo manifest from a DataFile. This must be done after the
-	// GameData is loaded, so that the sizes of any outfits are known.
+	/// Load the cargo manifest from a DataFile. This must be done after the
+	/// GameData is loaded, so that the sizes of any outfits are known.
 	void Load(const DataNode &node);
-	// Save the cargo manifest to a file.
+	/// Save the cargo manifest to a file.
+	///
 	void Save(DataWriter &out) const;
 
-	// Set the capacity of this cargo hold.
+	/// Set the capacity of this cargo hold.
+	///
 	void SetSize(int tons);
 	int Size() const;
 	int Free() const;
@@ -60,68 +62,77 @@ public:
 	bool HasMissionCargo() const;
 	bool IsEmpty() const;
 
-	// Set the number of free bunks for passengers.
+	/// Set the number of free bunks for passengers.
+	///
 	void SetBunks(int count);
 	int BunksFree() const;
 	int Passengers() const;
 
-	// Normal cargo:
+	/// Normal cargo:
+	///
 	int Get(const std::string &commodity) const;
-	// Spare outfits:
+	/// Spare outfits:
+	///
 	int Get(const Outfit *outfit) const;
-	// Mission cargo:
+	/// Mission cargo:
+	///
 	int Get(const Mission *mission) const;
 	int GetPassengers(const Mission *mission) const;
 
 	const std::map<std::string, int> &Commodities() const;
 	const std::map<const Outfit *, int> &Outfits() const;
-	// Note: some missions may have cargo that takes up 0 space, but should
-	// still show up on the cargo listing.
+	/// Note: some missions may have cargo that takes up 0 space, but should
+	/// still show up on the cargo listing.
 	const std::map<const Mission *, int> &MissionCargo() const;
 	const std::map<const Mission *, int> &PassengerList() const;
 
-	// For all the transfer functions, the "other" can be null if you simply want
-	// the commodity to "disappear" or, if the "amount" is negative, to have an
-	// unlimited supply. The return value is the actual number transferred.
+	/// For all the transfer functions, the "other" can be null if you simply want
+	/// the commodity to "disappear" or, if the "amount" is negative, to have an
+	/// unlimited supply. The return value is the actual number transferred.
 	int Transfer(const std::string &commodity, int amount, CargoHold &to);
 	int Transfer(const Outfit *outfit, int amount, CargoHold &to);
 	int Transfer(const Mission *mission, int amount, CargoHold &to);
 	int TransferPassengers(const Mission *mission, int amount, CargoHold &to);
-	// Transfer as much as the given cargo hold has capacity for. The priority is
-	// first mission cargo, then spare outfits, then ordinary commodities.
+	/// Transfer as much as the given cargo hold has capacity for. The priority is
+	/// first mission cargo, then spare outfits, then ordinary commodities.
 	void TransferAll(CargoHold &to, bool transferPassengers = true);
 
-	// These functions do the same thing as Transfer() with no destination
-	// specified, but they have clearer names to make the code more readable.
+	/// These functions do the same thing as Transfer() with no destination
+	/// specified, but they have clearer names to make the code more readable.
 	int Add(const std::string &commodity, int amount = 1);
 	int Add(const Outfit *outfit, int amount = 1);
 	int Remove(const std::string &commodity, int amount = 1);
 	int Remove(const Outfit *outfit, int amount = 1);
 
-	// Add or remove any cargo or passengers associated with the given mission.
+	/// Add or remove any cargo or passengers associated with the given mission.
+	///
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);
 
-	// Get the total value of all this cargo, in the given system.
+	/// Get the total value of all this cargo, in the given system.
+	///
 	int64_t Value(const System *system) const;
 
-	// If anything you are carrying is illegal, return the maximum fine you can
-	// be charged for any illegal outfits plus the sum of the fines for all
-	// missions. If the returned value is negative, you are carrying something
-	// or someone that warrants a death sentence for you.
+	/// If anything you are carrying is illegal, return the maximum fine you can
+	/// be charged for any illegal outfits plus the sum of the fines for all
+	/// missions. If the returned value is negative, you are carrying something
+	/// or someone that warrants a death sentence for you.
 	int IllegalCargoFine(const Government *government, const PlayerInfo &player) const;
 	int IllegalPassengersFine(const Government *government, const PlayerInfo &player) const;
 
-	// Returns the amount tons of illegal cargo.
+	/// Returns the amount tons of illegal cargo.
+	///
 	int IllegalCargoAmount() const;
 
 
 private:
-	// Use -1 to indicate unlimited capacity.
+	/// Use -1 to indicate unlimited capacity.
+	///
 	int size = -1;
 	int bunks = -1;
 
-	// Track how many objects of each type are being carried:
+	/// Track how many objects of each type are being carried:
+	///
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
 	std::map<const Mission *, int> missionCargo;

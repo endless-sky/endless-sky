@@ -26,29 +26,32 @@ class UI;
 
 
 
-// A wrapper for a MissionAction that can be triggered by an NPC. Records whether
-// the action has already been done previously, which NPC checks to prevent
-// the action from being done more than once.
-// More functionality to come later, such as changing the personality of an NPC
-// on the fly.
+/// A wrapper for a MissionAction that can be triggered by an NPC. Records whether
+/// the action has already been done previously, which NPC checks to prevent
+/// the action from being done more than once.
+/// More functionality to come later, such as changing the personality of an NPC
+/// on the fly.
 class NPCAction {
 public:
 	NPCAction() = default;
-	// Construct and Load() at the same time.
+	/// Construct and Load() at the same time.
+	///
 	explicit NPCAction(const DataNode &node);
 
 	void Load(const DataNode &node);
-	// Note: the Save() function can assume this is an instantiated mission, not
-	// a template, so it only has to save a subset of the data.
+	/// Note: the Save() function can assume this is an instantiated mission, not
+	/// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
-	// Determine if this NPCAction references content that is not fully defined.
+	/// Determine if this NPCAction references content that is not fully defined.
+	///
 	std::string Validate() const;
 
-	// Perform this action.
+	/// Perform this action.
+	///
 	void Do(PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr);
 
-	// "Instantiate" this action by filling in the wildcard text for the actual
-	// destination, payment, cargo, etc.
+	/// "Instantiate" this action by filling in the wildcard text for the actual
+	/// destination, payment, cargo, etc.
 	NPCAction Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
 		const System *origin, int jumps, int64_t payload) const;
 
@@ -57,6 +60,7 @@ private:
 	std::string trigger;
 	bool triggered = false;
 
-	// Tasks this NPC action performs, such as modifying accounts, inventory, or conditions.
+	/// Tasks this NPC action performs, such as modifying accounts, inventory, or conditions.
+	///
 	MissionAction action;
 };

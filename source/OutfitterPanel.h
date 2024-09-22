@@ -31,13 +31,13 @@ class Ship;
 
 
 
-// Class representing the Outfitter UI panel, which allows you to buy new
-// outfits to install in your ship or to sell the ones you own. Any outfit you
-// sell is available to be bought again until you close this panel, even if it
-// is not normally sold here. You can also directly install any outfit that you
-// have plundered from another ship and are storing in your cargo bay. This
-// panel makes an attempt to ensure that you do not leave with a ship that is
-// configured in such a way that it cannot fly (e.g. no engines or steering).
+/// Class representing the Outfitter UI panel, which allows you to buy new
+/// outfits to install in your ship or to sell the ones you own. Any outfit you
+/// sell is available to be bought again until you close this panel, even if it
+/// is not normally sold here. You can also directly install any outfit that you
+/// have plundered from another ship and are storing in your cargo bay. This
+/// panel makes an attempt to ensure that you do not leave with a ship that is
+/// configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
 	explicit OutfitterPanel(PlayerInfo &player);
@@ -75,23 +75,28 @@ private:
 	std::string LicenseRoot(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
-	// Shared code for reducing the selected ships to those that have the
-	// same quantity of the selected outfit.
+	/// Shared code for reducing the selected ships to those that have the
+	/// same quantity of the selected outfit.
 	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
 
 private:
-	// Record whether we've checked if the player needs ammo refilled.
+	/// Record whether we've checked if the player needs ammo refilled.
+	///
 	bool checkedRefill = false;
-	// Allow toggling whether outfits that are for sale are shown.
+	/// Allow toggling whether outfits that are for sale are shown.
+	///
 	bool showForSale = true;
-	// Allow toggling whether stored outfits are shown.
+	/// Allow toggling whether stored outfits are shown.
+	///
 	bool showStorage = true;
-	// Allow toggling whether outfits in cargo are shown.
+	/// Allow toggling whether outfits in cargo are shown.
+	///
 	bool showCargo = true;
 
 	Sale<Outfit> outfitter;
 
-	// Keep track of how many of the outfitter help screens have been shown
+	/// Keep track of how many of the outfitter help screens have been shown
+	///
 	bool checkedHelp = false;
 
 	int shipsHere = 0;

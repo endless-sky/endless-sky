@@ -25,80 +25,92 @@ class DataNode;
 
 
 
-// This class writes data in a hierarchical format, where an indented line is
-// considered the "child" of the first line above it that is less indented. By
-// using this class, you can have a function add data to the file without having
-// to tell that function what indentation level it is at. This class also
-// automatically adds quotation marks around strings if they contain whitespace.
+/// This class writes data in a hierarchical format, where an indented line is
+/// considered the "child" of the first line above it that is less indented. By
+/// using this class, you can have a function add data to the file without having
+/// to tell that function what indentation level it is at. This class also
+/// automatically adds quotation marks around strings if they contain whitespace.
 class DataWriter {
 public:
-	// Constructor, specifying the file to write.
+	/// Constructor, specifying the file to write.
+	///
 	explicit DataWriter(const std::string &path);
-	// Constructor for a DataWriter that will not save its contents automatically
+	/// Constructor for a DataWriter that will not save its contents automatically
+	///
 	DataWriter();
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
 	DataWriter operator=(DataWriter &&) = delete;
-	// The file is not actually saved until the destructor is called. This makes
-	// it possible to write the whole file in a single chunk.
+	/// The file is not actually saved until the destructor is called. This makes
+	/// it possible to write the whole file in a single chunk.
 	~DataWriter();
 
-	// Save the contents to a file.
+	/// Save the contents to a file.
+	///
 	void SaveToPath(const std::string &path);
-	// Get the contents as a string.
+	/// Get the contents as a string.
+	///
 	std::string SaveToString();
 
-	// The Write() function can take any number of arguments. Each argument is
-	// converted to a token. Arguments may be strings or numeric values.
+	/// The Write() function can take any number of arguments. Each argument is
+	/// converted to a token. Arguments may be strings or numeric values.
 	template <class A, class ...B>
 	void Write(const A &a, B... others);
-	// Write the entire structure represented by a DataNode, including any
-	// children that it has.
+	/// Write the entire structure represented by a DataNode, including any
+	/// children that it has.
 	void Write(const DataNode &node);
-	// End the current line. This can be used to add line breaks or to terminate
-	// a line you have been writing token by token with WriteToken().
+	/// End the current line. This can be used to add line breaks or to terminate
+	/// a line you have been writing token by token with WriteToken().
 	void Write();
 
-	// Begin a new line that is a "child" of the previous line.
+	/// Begin a new line that is a "child" of the previous line.
+	///
 	void BeginChild();
-	// Finish writing a block of child nodes and decrease the indentation.
+	/// Finish writing a block of child nodes and decrease the indentation.
+	///
 	void EndChild();
 
-	// Write a comment. It will be at the current indentation level, and will
-	// have "# " inserted before it.
+	/// Write a comment. It will be at the current indentation level, and will
+	/// have "# " inserted before it.
 	void WriteComment(const std::string &str);
 
-	// Write a token, without writing a whole line. Use this very carefully.
+	/// Write a token, without writing a whole line. Use this very carefully.
+	///
 	void WriteToken(const char *a);
 	void WriteToken(const std::string &a);
-	// Write a token of any arithmetic type.
+	/// Write a token of any arithmetic type.
+	///
 	template <class A>
 	void WriteToken(const A &a);
 
-	// Enclose a string in the correct quotation marks.
+	/// Enclose a string in the correct quotation marks.
+	///
 	static std::string Quote(const std::string &text);
 
 
 private:
-	// Save path (in UTF-8). Empty string for in-memory DataWriter.
+	/// Save path (in UTF-8). Empty string for in-memory DataWriter.
+	///
 	std::string path;
-	// Current indentation level.
+	/// Current indentation level.
+	///
 	std::string indent;
-	// Before writing each token, we will write either the indentation string
-	// above, or this string.
+	/// Before writing each token, we will write either the indentation string
+	/// above, or this string.
 	static const std::string space;
-	// Remember which string should be written before the next token. This is
-	// "indent" for the first token in a line and "space" for subsequent tokens.
+	/// Remember which string should be written before the next token. This is
+	/// "indent" for the first token in a line and "space" for subsequent tokens.
 	const std::string *before;
-	// Compose the output in memory before writing it to file.
+	/// Compose the output in memory before writing it to file.
+	///
 	std::ostringstream out;
 };
 
 
 
-// The Write() function can take any number of arguments, each of which becomes
-// a token. They must be either strings or numeric types.
+/// The Write() function can take any number of arguments, each of which becomes
+/// a token. They must be either strings or numeric types.
 template <class A, class ...B>
 void DataWriter::Write(const A &a, B... others)
 {
@@ -108,7 +120,8 @@ void DataWriter::Write(const A &a, B... others)
 
 
 
-// Write any numeric type as a single token.
+/// Write any numeric type as a single token.
+///
 template <class A>
 void DataWriter::WriteToken(const A &a)
 {
@@ -121,9 +134,9 @@ void DataWriter::WriteToken(const A &a)
 
 
 
-// Encapsulate the logic for writing the contents of a collection in a sorted manner. The caller
-// should provide a sorting method; it will be called with pointers to the type of the container.
-// The provided write method will be called for each element of the container.
+/// Encapsulate the logic for writing the contents of a collection in a sorted manner. The caller
+/// should provide a sorting method; it will be called with pointers to the type of the container.
+/// The provided write method will be called for each element of the container.
 template <class T, template<class, class...> class C, class... Args, typename A, typename B>
 void WriteSorted(const C<T, Args...> &container, A sortFn, B writeFn)
 {

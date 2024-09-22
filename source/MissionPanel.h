@@ -27,10 +27,10 @@ class PlayerInfo;
 
 
 
-// A panel that displays a list of missions (accepted missions, and also the
-// available "jobs" to accept if any) and a map of their destinations. You can
-// accept any "jobs" that are available, and can also abort any mission that you
-// have previously accepted.
+/// A panel that displays a list of missions (accepted missions, and also the
+/// available "jobs" to accept if any) and a map of their destinations. You can
+/// accept any "jobs" that are available, and can also abort any mission that you
+/// have previously accepted.
 class MissionPanel : public MapPanel {
 public:
 	explicit MissionPanel(PlayerInfo &player);
@@ -41,7 +41,8 @@ public:
 
 
 protected:
-	// Only override the ones you need; the default action is to return false.
+	/// Only override the ones you need; the default action is to return false.
+	///
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -50,16 +51,20 @@ protected:
 
 
 private:
-	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
-	// CenterOnSystem will either pan to the system or immediately jump to it.
+	/// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
+	/// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
-	// Display and explain the various pointers that may appear on the map.
+	/// Display and explain the various pointers that may appear on the map.
+	///
 	void DrawKey() const;
-	// Draw rings around systems that need to be visited for the given mission.
+	/// Draw rings around systems that need to be visited for the given mission.
+	///
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
-	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
+	/// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
+	///
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
-	// Draw the display names of the given missions, using the reference point.
+	/// Draw the display names of the given missions, using the reference point.
+	///
 	Point DrawList(const std::list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
 		bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
@@ -72,13 +77,14 @@ private:
 
 	int AcceptedVisible() const;
 
-	// Updates availableIt and acceptedIt to select the first available or
-	// accepted mission in the given system. Returns true if a mission was found.
+	/// Updates availableIt and acceptedIt to select the first available or
+	/// accepted mission in the given system. Returns true if a mission was found.
 	bool FindMissionForSystem(const System *system);
-	// Selects the first available or accepted mission if no mission is already
-	// selected. Returns true if the selection was changed.
+	/// Selects the first available or accepted mission if no mission is already
+	/// selected. Returns true if the selection was changed.
 	bool SelectAnyMission();
-	// Centers on the next involved system for the clicked mission from the mission list
+	/// Centers on the next involved system for the clicked mission from the mission list
+	///
 	void CycleInvolvedSystems(const Mission &mission);
 
 private:

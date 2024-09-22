@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Compare Ts according to the order specified at construction time.
-// Unknown Ts are considered larger than any known one.
+/// Compare Ts according to the order specified at construction time.
+/// Unknown Ts are considered larger than any known one.
 template<class T>
 class ByGivenOrder {
 public:
@@ -36,12 +36,14 @@ public:
 
 		if(find_a == order.end() && find_b == order.end())
 		{
-			// Neither a nor b is a known value. Fall back to default comparison.
+			/// Neither a nor b is a known value. Fall back to default comparison.
+			///
 			return (a < b);
 		}
 		else
 		{
-			// Whichever is first in the array is considered smaller.
+			/// Whichever is first in the array is considered smaller.
+			///
 			return (find_a < find_b);
 		}
 	}

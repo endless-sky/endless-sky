@@ -19,11 +19,12 @@ class DataNode;
 
 
 
-// Gamerules contains a list of constants and booleans that define game behavior,
-// for example, the spawnrate of person ships or whether universal ramscoops are active.
+/// Gamerules contains a list of constants and booleans that define game behavior,
+/// for example, the spawnrate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
-	// Defines which disabled fighters can dodge stray projectiles.
+	/// Defines which disabled fighters can dodge stray projectiles.
+	///
 	enum class FighterDodgePolicy
 	{
 		ALL, NONE, ONLY_PLAYER
@@ -33,7 +34,8 @@ public:
 public:
 	Gamerules() = default;
 
-	// Load a gamerules node.
+	/// Load a gamerules node.
+	///
 	void Load(const DataNode &node);
 
 	bool UniversalRamscoopActive() const;

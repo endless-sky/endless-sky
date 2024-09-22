@@ -17,33 +17,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Smoothly change a variable from one value to another. Used to smooth out
-// scrolling and panning.
+/// Smoothly change a variable from one value to another. Used to smooth out
+/// scrolling and panning.
 template <typename T>
 class Animate
 {
 public:
 	virtual ~Animate() = default;
-	// Set the next target value of this variable, linearly interpolated along
-	// the given number of frames.
+	/// Set the next target value of this variable, linearly interpolated along
+	/// the given number of frames.
 	virtual void Set(const T &current, int steps = 5);
 
-	// Reset the pending number of frames to zero. This makes the interpolated
-	// value jump straight to the target value.
+	/// Reset the pending number of frames to zero. This makes the interpolated
+	/// value jump straight to the target value.
 	void EndAnimation();
-	// Compute the next interpolated value. This needs to be called once per frame.
+	/// Compute the next interpolated value. This needs to be called once per frame.
+	///
 	void Step();
 
-	// Returns the interpolated value.
+	/// Returns the interpolated value.
+	///
 	const T &AnimatedValue() const;
-	// Returns the actual value.
+	/// Returns the actual value.
+	///
 	const T &Value() const;
-	// Synonym for Value().
+	/// Synonym for Value().
+	///
 	operator const T &() const;
-	// Returns true if there are no more animation steps pending.
+	/// Returns true if there are no more animation steps pending.
+	///
 	bool IsAnimationDone() const;
 
-	// Shortcut mathematical operators for convenience.
+	/// Shortcut mathematical operators for convenience.
+	///
 	Animate &operator=(const T &v);
 	Animate &operator+=(const T &v);
 	Animate &operator-=(const T &v);

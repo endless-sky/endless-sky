@@ -25,11 +25,11 @@ class Color;
 
 
 
-// Class representing messages that should be shown to the user. The messages
-// gradually fade as the game steps forward, so each one must remember the game
-// step when it came into being. If a new message is added that exactly matches
-// an old one, the old version is removed before the new one is added; this is
-// to keep repeated messages from filling up the whole screen.
+/// Class representing messages that should be shown to the user. The messages
+/// gradually fade as the game steps forward, so each one must remember the game
+/// step when it came into being. If a new message is added that exactly matches
+/// an old one, the old version is removed before the new one is added; this is
+/// to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
 	enum class Importance : uint_least8_t {
@@ -52,21 +52,24 @@ public:
 	};
 
 public:
-	// Add a message to the list along with its level of importance
+	/// Add a message to the list along with its level of importance
+	///
 	static void Add(const std::string &message, Importance importance = Importance::Low);
-	// Add a message to the log. For messages meant to be shown
-	// also on the main panel, use Add instead.
+	/// Add a message to the log. For messages meant to be shown
+	/// also on the main panel, use Add instead.
 	static void AddLog(const std::string &message, Importance importance = Importance::Low);
 
-	// Get the messages for the given game step. Any messages that are too old
-	// will be culled out, and new ones that have just been added will have
-	// their "step" set to the given value.
+	/// Get the messages for the given game step. Any messages that are too old
+	/// will be culled out, and new ones that have just been added will have
+	/// their "step" set to the given value.
 	static const std::vector<Entry> &Get(int step);
 	static const std::deque<std::pair<std::string, Messages::Importance>> &GetLog();
 
-	// Reset the messages (i.e. because a new game was loaded).
+	/// Reset the messages (i.e. because a new game was loaded).
+	///
 	static void Reset();
 
-	// Get color that should be used for drawing messages of given importance.
+	/// Get color that should be used for drawing messages of given importance.
+	///
 	static const Color *GetColor(Importance importance, bool isLogPanel);
 };
