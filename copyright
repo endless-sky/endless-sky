@@ -3617,11 +3617,11 @@ License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
 
 Files:
- images/effect/successor?flare/*
  images/effect/bimodal?impact*
  images/effect/bimodal?switch?impact*
  images/effect/drag?cannon?impact*
  images/effect/overcharged?pulse?laser?impact*
+ images/effect/successor?flare/*
  images/effect/successor?pulse?laser?impact*
  images/effect/void?spark*
  images/hardpoint/bimodal?turret*
