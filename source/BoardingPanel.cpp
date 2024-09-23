@@ -344,7 +344,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 						{
 							++yourCasualties;
 							you->AddCrew(-1);
-							if(!you->Crew())
+							if(you->Crew() <= 1)
 								break;
 						}
 						else
