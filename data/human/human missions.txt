@@ -7562,7 +7562,7 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork, so the deal won't be ready today, but feel free to come back to my office here at the spaceport anytime afterwards to execute the purchase. Remember, you'll need to have at least one million credits for the bond purchase and to take care of a few other administrative tasks."`
+			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork, so the deal won't be ready today, but feel free to come back to my kiosk here at the spaceport anytime afterwards to execute the purchase. Remember, you'll need to have at least one million credits for the bond purchase and to take care of a few other administrative tasks."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
@@ -7586,6 +7586,7 @@ event "end of independent violence"
 		"attitude toward"
 			"Independent (Killable)" 0
 
+# Feel free to change this escape pod to a different ship once escape pod mechanics are implemented.
 ship "Escape Pod"
 	sprite "ship/escape pod"
 	attributes
@@ -7637,7 +7638,7 @@ mission "Syndicate Business 2"
 		credits > 1000000
 	on offer
 		conversation
-			`You visit the office address Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
+			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
 			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are 20% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
 				`	"Sure, here's the one million credits."`
