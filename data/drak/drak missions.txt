@@ -111,7 +111,7 @@ mission "Drak guarding Void Sprites"
 		"Drak Sleeping Dragon chill" >= 1
 	npc save
 		government "Drak (Nenia)"
-		personality heroic vindictive staying frugal
+		personality heroic vindictive staying frugal surveillance
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
 
@@ -127,7 +127,7 @@ mission "Chill Drak guarding Void Sprites"
 		"Drak Sleeping Dragon chill" <= 0
 	npc save
 		government "Drak"
-		personality heroic vindictive staying frugal
+		personality heroic vindictive staying frugal surveillance
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
 
