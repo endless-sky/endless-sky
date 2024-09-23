@@ -27,7 +27,7 @@ mission "Remnant: Bounty"
 			not "flagship planet: Ssil Vida"
 		random < 60
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality coward target uninterested marked waiting
 		system
 			distance 1 2
@@ -60,7 +60,7 @@ mission "Remnant: Bounty 2"
 			not "flagship planet: Ssil Vida"
 		random < 50
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -148,7 +148,7 @@ mission "Remnant: Bounty 3"
 		not "Remnant: Cognizance 4: aborted"
 		random < 40
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -178,7 +178,7 @@ mission "Remnant: Bounty 4"
 		has "Remnant: Cognizance 14: done"
 		random < 30
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -211,7 +211,7 @@ mission "Remnant: Bounty 5"
 			not "flagship planet: Ssil Vida"
 		random < 5
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target marked staying
 		system
 			attributes "ember waste"

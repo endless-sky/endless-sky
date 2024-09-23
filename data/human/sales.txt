@@ -145,6 +145,56 @@ shipyard "Luxury Ships"
 	"Star Queen"
 	"Flivver"
 
+# For a few decades, New Tortuga has had advanced technology, Syndicate defectors, and a steady supply of poached employees. One of their top priorities has been technological advancement. They are only one planet though, so even with help from an advanced species, their success has been limited. Thus, this list is restricted low-to-mid-range tech from older companies. This is with the exception of the Syndicate, for which they already had access to top technology.
+shipyard "Independent (Korath-Allied)"
+	# Advanced Southern Pirates without the Osprey or Falcon:
+	"Modified Argosy"
+
+	# Commonly available from multiple sellers:
+	"Hauler"
+
+	# Common pirate fighter:
+	"Lance"
+
+	# Syndicate Advanced without the Container Transport or Arrow:
+	"Bulk Freighter"
+
+	# Non-modified versions of pirate-modified ships:
+	"Blackbird"
+	"Bastion"
+	"Behemoth"
+	"Bounder"
+
+	# Pirate modifications of standard ships:
+	"Marauder Bounder"
+	"Nighthawk (New Tortuga)"
+	"Valkyrie"
+	"Cutthroat"
+	"Mammoth"
+
+
+# See note above about capabilities and limitations of "Independent (Korath-Allied)"
+outfitter "Independent (Korath-Allied)"
+	# Primitive versions of Korath technology:
+	"Capybara Reverse Thruster"
+	"Impala Plasma Thruster"
+	"Impala Plasma Steering"
+	"Orca Plasma Thruster"
+	"Orca Plasma Steering"
+
+	# Widely available
+	"S3 Thermionic"
+	"Anti-Missile Turret"
+	"Heavy Laser"
+	"A120 Atomic Thruster"
+	"A125 Atomic Steering"
+	"Tactical Scanner"
+
+	# Upgrades to or modifications of widely-available tech
+	"AR120 Reverse Thruster"
+	"Breeder Reactor"
+	"nGVF-DD Fuel Cell"
+	"Liquid Nitrogen Cooler"
 
 outfitter "Basic Outfits"
 	"Energy Blaster"

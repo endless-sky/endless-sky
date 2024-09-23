@@ -2650,6 +2650,30 @@ ship "Manta" "Manta (Proton)"
 	gun "Proton Gun"
 
 
+ship "Manta" "Manta (Miner)"
+	outfits
+		"Cargo Expansion"
+		"D23-QP Shield Generator"
+		"Heavy Laser" 4
+		Hyperdrive
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Laser Rifle"
+		"Meteor Missile" 60
+		"Meteor Missile Launcher" 2
+		"NT-200 Nucleovoltaic"
+		Supercapacitor 4
+		"X1700 Ion Thruster"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
 
 ship "Marauder Bounder" "Marauder Bounder (Hai)"
 	outfits
@@ -2953,6 +2977,26 @@ ship "Nest" "Nest (Sidewinder)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
+
+
+ship "Nighthawk" "Nighthawk (New Tortuga)"
+	outfits
+		"A370 Atomic Thruster"
+		"Cooling Ducts"
+		"D41-HY Shield Generator"
+		"Fission Reactor"
+		"Fragmentation Grenades" 16
+		"Laser Rifle" 24
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+		"Ramscoop"
+		"Proton Turret" 2
+		"Tactical Scanner"
+		"Water Coolant System"
+	description `This expensive modification of the Blackbird was not invented at New Tortuga, but is a reproduction. The first New Tortuga Nighthawk was seized from slavers who used it for kidnappings. Seeing the obvious uses for smuggling, the local shipyards reproduced them for their own purposes. Ironically, this means the Nighthawks, originally designed for enslavement, are used just as often for freeing slaves.`
 
 
 ship "Nighthawk" "Nighthawk (Raider)"
