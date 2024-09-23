@@ -623,7 +623,7 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 {
 	if(buttonKey && panel)
-		panel->AddZone(bounds, buttonKey);
+		panel->AddZone(bounds, buttonKey, activeIf);
 }
 
 

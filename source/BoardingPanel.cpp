@@ -156,7 +156,7 @@ void BoardingPanel::Draw()
 	}
 
 	// Set which buttons are active.
-	Information info;
+	info.ClearConditions();
 	if(CanExit())
 		info.SetCondition("can exit");
 	if(CanTake())
