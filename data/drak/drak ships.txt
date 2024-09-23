@@ -113,7 +113,7 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
-		"cloaked scanning"
+		"cloaked scanning" 1
 		"outfit scan power" 250
 		"outfit scan efficiency" 150
 	"final explode" "archon c teleport"
