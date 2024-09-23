@@ -305,9 +305,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// to your ship in peace. That is to allow the player to "cancel" if
 		// they did not really mean to try to capture the ship.
 		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
-		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
-		if(isFirstCaptureAction && !youAttack)
-			enemyAttacks = false;
+		bool enemyAttacks = !isFirstCaptureAction && defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		isFirstCaptureAction = false;
 
 		// If neither side attacks, combat ends.
@@ -335,19 +333,21 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 				// Your chance of winning this round is equal to the ratio of
 				// your power to the enemy's power.
-				double yourPower = (youAttack ?
-					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
-				double enemyPower = (enemyAttacks ?
-					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
+				double attackPower = attackOdds.AttackerPower(yourCrew);
+				double enemyDefensePower = attackOdds.DefenderPower(enemyCrew);
+				double yourTotal = attackPower + enemyDefensePower;
 
-				double total = yourPower + enemyPower;
-				if(!total)
+				double defensePower = defenseOdds.DefenderPower(yourCrew);
+				double enemyAttackPower = defenseOdds.AttackerPower(enemyCrew);
+				double enemyTotal = enemyAttackPower + defensePower;
+
+				if(!yourTotal || !enemyTotal)
 					break;
 
-				if(Random::Real() * total >= yourPower)
-					you->AddCrew(-1);
-				else
+				if(Random::Real() * yourTotal >= enemyDefensePower)
 					victim->AddCrew(-1);
+				if(Random::Real() * enemyTotal >= defensePower)
+					you->AddCrew(-1);
 			}
 
 			// Report how many casualties each side suffered.
