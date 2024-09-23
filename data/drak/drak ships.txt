@@ -50,8 +50,6 @@ ship "Archon"
 		"turn" 2400
 		"turning energy" 10
 		"turning heat" 5
-		"outfit scan power" 250
-		"outfit scan efficiency" 150
 		weapon
 			"blast radius" 500
 			"shield damage" 10000
@@ -115,6 +113,9 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
+		"cloaked scanning"
+		"outfit scan power" 250
+		"outfit scan efficiency" 150
 	"final explode" "archon c teleport"
 
 ship "Archon" "Archon (Hyperdrive Cloaked)"
