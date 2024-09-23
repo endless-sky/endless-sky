@@ -103,7 +103,7 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 void Panel::AddZone(const Rectangle &rect, SDL_Keycode key, const vector<string> &conditions)
 {
-	AddZone(rect, [this, key, &conditions]()
+	AddZone(rect, [this, key, conditions]()
 	{
 		for(const string &condition : conditions)
 			if(!info.HasCondition(condition))
