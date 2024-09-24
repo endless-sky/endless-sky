@@ -7891,7 +7891,7 @@ mission "Syndicate Business 5"
 
 	on enter "Oblate"
 		"reputation: Independent (Killable)" = -1000
-	npc disable
+	npc disable save
 		government "Independent (Killable)"
 		personality heroic staying vindictive
 			confusion 20
@@ -7956,7 +7956,7 @@ mission "Syndicate Business 5"
 			label nextymean
 			action
 				debt 11000000
-					interest 0.010
+					interest 0.10
 					term 3650
 			`	He snatches the document from you with a wicked smile and you see the loan terms on the screen behind him: 11M credits, 10 years, 44% rate.`
 				goto nexty
