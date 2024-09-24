@@ -389,35 +389,98 @@ target_sources(EndlessSkyLib PRIVATE
 	text/alignment.hpp
 	text/layout.hpp
 	text/truncate.hpp
-	discord_game_sdk/achievement_manager.cpp
-	discord_game_sdk/achievement_manager.h
-	discord_game_sdk/activity_manager.cpp
-	discord_game_sdk/activity_manager.h
-	discord_game_sdk/application_manager.cpp
-	discord_game_sdk/application_manager.h
-	discord_game_sdk/core.cpp
-	discord_game_sdk/core.h
-	discord_game_sdk/discord.h
-	discord_game_sdk/event.h
-	discord_game_sdk/ffi.h
-	discord_game_sdk/image_manager.cpp
-	discord_game_sdk/image_manager.h
-	discord_game_sdk/lobby_manager.cpp
-	discord_game_sdk/lobby_manager.h
-	discord_game_sdk/network_manager.cpp
-	discord_game_sdk/network_manager.h
-	discord_game_sdk/overlay_manager.cpp
-	discord_game_sdk/overlay_manager.h
-	discord_game_sdk/relationship_manager.cpp
-	discord_game_sdk/relationship_manager.h
-	discord_game_sdk/storage_manager.cpp
-	discord_game_sdk/storage_manager.h
-	discord_game_sdk/store_manager.cpp
-	discord_game_sdk/store_manager.h
-	discord_game_sdk/types.cpp
-	discord_game_sdk/types.h
-	discord_game_sdk/user_manager.cpp
-	discord_game_sdk/user_manager.h
-	discord_game_sdk/voice_manager.cpp
-	discord_game_sdk/voice_manager.h
+	DiscordRPC.cpp
+	DiscordRPC.h
+)
+
+
+# Set Discord RPC platform-specific sources
+if(WIN32)
+	set(DISCORD_RPC_PLATFORM_SOURCES
+		discord_rpc/connection_win.cpp
+		discord_rpc/discord_register_win.cpp
+		discord_rpc/dllmain.cpp
+	)
+elseif(APPLE)
+	set(DISCORD_RPC_PLATFORM_SOURCES
+		discord_rpc/connection_unix.cpp
+		discord_rpc/discord_register_osx.m
+	)
+else()
+	# For Linux or Unix-like systems
+	set(DISCORD_RPC_PLATFORM_SOURCES
+		discord_rpc/connection_unix.cpp
+		discord_rpc/discord_register_linux.cpp
+	)
+endif()
+
+# Set common Discord RPC sources
+set(DISCORD_RPC_COMMON_SOURCES
+	discord_rpc/backoff.h
+	discord_rpc/connection.h
+	discord_rpc/discord_register.h
+	discord_rpc/discord_rpc.cpp
+	discord_rpc/discord_rpc.h
+	discord_rpc/msg_queue.h
+	discord_rpc/rpc_connection.cpp
+	discord_rpc/rpc_connection.h
+	discord_rpc/serialization.cpp
+	discord_rpc/serialization.h
+	discord_rpc/rapidjson/error/en.h
+	discord_rpc/rapidjson/error/error.h
+	discord_rpc/rapidjson/internal/biginteger.h
+	discord_rpc/rapidjson/internal/diyfp.h
+	discord_rpc/rapidjson/internal/dtoa.h
+	discord_rpc/rapidjson/internal/ieee754.h
+	discord_rpc/rapidjson/internal/itoa.h
+	discord_rpc/rapidjson/internal/meta.h
+	discord_rpc/rapidjson/internal/pow10.h
+	discord_rpc/rapidjson/internal/regex.h
+	discord_rpc/rapidjson/internal/stack.h
+	discord_rpc/rapidjson/internal/strfunc.h
+	discord_rpc/rapidjson/internal/strtod.h
+	discord_rpc/rapidjson/internal/swap.h
+	discord_rpc/rapidjson/msinttypes/inttypes.h
+	discord_rpc/rapidjson/msinttypes/stdint.h
+	discord_rpc/rapidjson/allocators.h
+	discord_rpc/rapidjson/document.h
+	discord_rpc/rapidjson/encodedstream.h
+	discord_rpc/rapidjson/encodings.h
+	discord_rpc/rapidjson/filereadstream.h
+	discord_rpc/rapidjson/filewritestream.h
+	discord_rpc/rapidjson/fwd.h
+	discord_rpc/rapidjson/istreamwrapper.h
+	discord_rpc/rapidjson/memorybuffer.h
+	discord_rpc/rapidjson/memorystream.h
+	discord_rpc/rapidjson/ostreamwrapper.h
+	discord_rpc/rapidjson/pointer.h
+	discord_rpc/rapidjson/prettywriter.h
+	discord_rpc/rapidjson/rapidjson.h
+	discord_rpc/rapidjson/reader.h
+	discord_rpc/rapidjson/schema.h
+	discord_rpc/rapidjson/stream.h
+	discord_rpc/rapidjson/stringbuffer.h
+	discord_rpc/rapidjson/writer.h
+	discord_rpc/rapidjson/error/en.h
+	discord_rpc/rapidjson/error/error.h
+	discord_rpc/rapidjson/internal/biginteger.h
+	discord_rpc/rapidjson/internal/diyfp.h
+	discord_rpc/rapidjson/internal/dtoa.h
+	discord_rpc/rapidjson/internal/ieee754.h
+	discord_rpc/rapidjson/internal/itoa.h
+	discord_rpc/rapidjson/internal/meta.h
+	discord_rpc/rapidjson/internal/pow10.h
+	discord_rpc/rapidjson/internal/regex.h
+	discord_rpc/rapidjson/internal/stack.h
+	discord_rpc/rapidjson/internal/strfunc.h
+	discord_rpc/rapidjson/internal/strtod.h
+	discord_rpc/rapidjson/internal/swap.h
+	discord_rpc/rapidjson/msinttypes/inttypes.h
+	discord_rpc/rapidjson/msinttypes/stdint.h
+)
+
+# Add platform-specific and common sources to target
+target_sources(EndlessSkyLib PRIVATE
+	${DISCORD_RPC_COMMON_SOURCES}
+	${DISCORD_RPC_PLATFORM_SOURCES}
 )

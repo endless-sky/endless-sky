@@ -128,32 +128,6 @@ endif()
 target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
-# Add Discord SDK linking logic
-if(WIN32)
-    # On Windows, link the Discord SDK .lib file
-    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-        # 64-bit
-        target_link_libraries(EndlessSkyLib PUBLIC "${CMAKE_SOURCE_DIR}/discord_sdk/x86_64/discord_game_sdk.dll.lib")
-    else()
-        # 32-bit
-        target_link_libraries(EndlessSkyLib PUBLIC "${CMAKE_SOURCE_DIR}/discord_sdk/x86/discord_game_sdk.dll.lib")
-    endif()
-
-
-
-elseif(APPLE)
-    # On macOS, link the .dylib file
-    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-        target_link_libraries(EndlessSkyLib PUBLIC "${CMAKE_SOURCE_DIR}/discord_sdk/x86_64/discord_game_sdk.dylib")
-    else()
-        target_link_libraries(EndlessSkyLib PUBLIC "${CMAKE_SOURCE_DIR}/discord_sdk/aarch64/discord_game_sdk.dylib")
-    endif()
-
-elseif(UNIX)
-    # On Linux, link the .so file
-    target_link_libraries(EndlessSkyLib PUBLIC "${CMAKE_SOURCE_DIR}/discord_sdk/x86_64/discord_game_sdk.so")
-endif()
-
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
@@ -253,11 +227,6 @@ if(APPLE AND ES_CREATE_BUNDLE)
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
-
-	add_custom_command(TARGET EndlessSky POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_SOURCE_DIR}/discord_sdk/x86_64/discord_game_sdk.dll"
-        $<TARGET_FILE_DIR:EndlessSky>)
 else()
 	add_executable(EndlessSky source/main.cpp)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "endless-sky")
