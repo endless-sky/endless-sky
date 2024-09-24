@@ -120,6 +120,7 @@ mission "Successors: Predecessor Research 1"
 			`	"Glorious and beautiful, it was; as much a sort of art as of engineering. Our Predecessors' works were envied even by the Quarg, whose mastery of art and science only few may equal. T'were exotic in their natures and unique in applications; living metal grown in stars, subtle points to pierce space itself. We have descriptions, enough to make rudimentary imitations of their processes, but even if we had a perfect understanding of wha'twas, the space of our new systems seems unsuitable to manifest that mastery. We fail even to replicate the heirlooms kept by the High Houses; the materials and techniques they use are always out of reach."`
 				goto questions
 			label end
+			`	You leave the researchers to study their findings.`
 			action
 				clear "Successors: who"
 				clear "Successors: collapse"
@@ -205,6 +206,7 @@ mission "Successors: Biology Research 1"
 			`	"Thou asks at a fortuitous time! This planet, and the life that lives upon it, may provide to us a better answer to that question. Many of the stars here are hot and young and therefore harsh to nascent life, and yet thou hast surely seen the verdant worlds that orbit them! While some of this results from early settlement during the old empire, much of it does not and therefore remains a vexing point. How could life develop here? If we can track the path taken by the life of this planet, we may find the answer both you and I seek."`
 				goto questions
 			label end
+			`	You leave Katiiora to their business and make your preparations to take off, when ready.`
 			action
 				clear "Successors: successor"
 				clear "Successors: predecessor"
