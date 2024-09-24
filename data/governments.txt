@@ -264,6 +264,7 @@ government "Drak (Nenia)"
 		"Ember Waste" 1
 	illegals
 		ignore "Nerve Gas"
+		ignore "Microbot Defense Station"
 	atrocities
 		ship "Albatross"
 		ship "Modified Dromedary"
