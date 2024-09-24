@@ -169,7 +169,7 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 	// the last character before the frame number (if one is specified).
 	string name = path.stem().string();
 	size_t pos = name.length();
-	if(pos > 3 && name.ends_with("@2x"))
+	if(pos > 3 && !name.compare(pos - 3, 3, "@2x"))
 		pos -= 3;
 	while(--pos)
 		if(name[pos] < '0' || name[pos] > '9')
