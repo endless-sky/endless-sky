@@ -116,6 +116,7 @@ ship "Archon" "Archon (Cloaked)"
 		"cloaked scanning" 1
 		"outfit scan power" 250
 		"outfit scan efficiency" 150
+		"hyperdrive sound" "no sound"
 	"final explode" "archon c teleport"
 
 ship "Archon" "Archon (Hyperdrive Cloaked)"
