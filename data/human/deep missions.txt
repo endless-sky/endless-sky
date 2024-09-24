@@ -52,7 +52,8 @@ mission "Deep: Syndicate Convoy"
 		government "Merchant"
 		personality timid
 		fleet
-			fighters "civilian"
+			fighters
+				names "civilian"
 			variant
 				"Dagger"
 			variant
@@ -141,7 +142,8 @@ mission "Deep: Tarazed Convoy"
 		government "Merchant"
 		personality timid
 		fleet
-			fighters "civilian"
+			fighters
+				names "civilian"
 			variant
 				"Dagger" 2
 			variant
@@ -473,7 +475,8 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		personality heroic escort vindictive
 		fleet
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Mule"
 				"Raven" 2
@@ -490,7 +493,8 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		government "Republic"
 		personality timid
 		fleet
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Combat Drone" 4
 
@@ -561,7 +565,8 @@ mission "Deep: Mystery Cubes 4"
 		personality heroic opportunistic escort entering
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Combat Drone" 6
@@ -581,7 +586,8 @@ mission "Deep: Mystery Cubes 4"
 		system destination
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -592,7 +598,8 @@ mission "Deep: Mystery Cubes 4"
 		system destination
 		fleet
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Aerie" 2
 				"Dagger" 4
@@ -603,7 +610,8 @@ mission "Deep: Mystery Cubes 4"
 		system Sol
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Cruiser" 2
@@ -794,6 +802,9 @@ mission "Deep: Interrogation"
 		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
@@ -1078,7 +1089,7 @@ mission "Deep: Project Hawking"
 	on complete
 		"reputation: Independent (Killable)" = 10
 		payment 1500000
-		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
+		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crash-landed into the ground, triggering an earthquake.`
 		conversation
 			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere." He directs you toward the mountains.`
 			branch know
@@ -1703,6 +1714,9 @@ mission "Deep: Remnant: Continue Research"
 	to offer
 		has "event: deep: remnant: rest period"
 		has "deep: did reveal remnant"
+		# If the player received subsequent missions prior to the addition of this one in v0.9.15, do not offer this one.
+		not "Deep: Remnant: Engines: offered"
+
 	on offer
 		conversation
 			`You receive a message from Ivan, the Deep scientist who you helped to discover the Remnant in the Ember Waste. "Captain <last>, it's been so long. The Deep has finally finished reviewing our research in the Ember Waste, and we've been approved for further funding! Please meet us on <destination> if you wish to assist us again. Your help would be appreciated, but we will make progress even if you're unable to help."`
@@ -1938,7 +1952,7 @@ mission "Deep: Scientist Rescue 0"
 		attributes "deep"
 		not attributes "station"
 	destination "Valhalla"
-	waypoint "Betelgeuse"
+	mark "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
 		or
@@ -1975,8 +1989,11 @@ mission "Deep: Scientist Rescue 0"
 					accept
 				`	"Sorry, but this doesn't sound worth it to me."`
 					decline
-
+	on enter "Betelgeuse"
+		unmark "Betelgeuse"
+		dialog `Upon entering Betelgeuse, you fail to see any trace of the Star Queen. The pirates must have captured it and escaped to a nearby system.`
 	on enter "Arneb"
+		unmark "Betelgeuse"
 		set "found star queen"
 		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Paris on <destination> for further instruction.`
 	on visit
@@ -2182,7 +2199,8 @@ mission "Deep: Scientist Rescue 1: Escorts"
 		personality heroic escort
 		fleet 3
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Aerie"
 				"Dagger" 2
@@ -2222,7 +2240,8 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 		personality heroic escort
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -2462,27 +2481,74 @@ mission "Stone of our Fathers 1"
 			`Helheim's spaceport has all the constant hustle and bustle of a boomtown. It's dirty, lively, and packed with workers. As you walk through the spaceport, an aged man in a worn and weathered roustabout jacket waves his arm toward you and approaches you.`
 			`	"You've got the look of one who knows a ship inside and out," he says. "Name's Skaldgar, ain't much for ships; earth, soil, and rock are my domain. But I do got a need to travel." He pauses as a wistful look briefly passes over his face. "I left, you see, decades ago. No goodbye. No note. Just... left. Living with others, taking care of others, hard on a man like me. I like solitude, peace, and work. But now my bones are brittle: the radiation, earth-rot as we call it, has taken hold and my time is running out. And I find, I don't want to be alone anymore."`
 			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
+			label choice
 			choice
 				`	"If you have coin, I have room."`
 				`	"I guess I can take a small detour."`
+				`	"Why are you calling me 'ser'?"`
+					goto ser
+					to display
+						not "Stone of our Fathers: ser"
+				`	"Does 'ser' just apply to men?"`
+					goto "ser 2"
+					to display
+						has "Stone of our Fathers: ser"
+						not "Stone of our Fathers: ser 2"
+				`	"Is 'ser' different from 'sir'?"`
+					goto "ser 3"
+					to display
+						has "Stone of our Fathers: ser"
+						not "Stone of our Fathers: ser 2"
 				`	(Shake my head. I have better things to do than bus old men around.)`
 					goto decline
+
+			action
+				clear "Stone of our Fathers: ser"
+				clear "Stone of our Fathers: ser 2"
 			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
 				accept
+
+			label ser
+			action
+				set "Stone of our Fathers: ser"
+			`	"You're not from around here, are ya? Ser's just what decent folk call each other in the Deep. Sign of respect and the like. Though I am hearing it less and less these days. Old ways being forgotten, but ain't that the way of things?"`
+			`	He pauses for a moment as if reflecting on this, then says, "Well, what do you say? <payment> for transportation to <planet>?"`
+				goto choice
+
+			label "ser 2"
+			action
+				set "Stone of our Fathers: ser 2"
+			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+				goto "back to the point"
+
+			label "ser 3"
+			action
+				set "Stone of our Fathers: ser 2"
+			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+
+			label "back to the point"
+			`	"Now, I'd like to know whether you can take me to <planet>."`
+				goto choice
+
 			label decline
+			action
+				clear "Stone of our Fathers: ser"
+				clear "Stone of our Fathers: ser 2"
 			`	With a disappointed look on his face, he nods once and slides back into the endless sea of people.`
 				decline
+
 	on visit
 		dialog `You have reached <planet>, but your escort carrying Skaldgar has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+
 	on complete
 		payment 15000
 		event "Stone waiting" 30
 		dialog `Skaldgar is as clean as you've seen him: scrubbed, shaved and wearing clothes that are respectable, if a few decades out of style. His eyes glisten, and he turns to you.`
 			`	"I've made a lot of mistakes in my life. Comin' home, even if I'm hated - or worse, forgotten - ain't one of them. Thank ya kindly for the passage."`
 			`	You wish the old codger a joyful homecoming, and watch as he disappears into the sleepy spaceport.`
-		
-event "Stone waiting"
 
+
+event "Stone waiting"
 
 
 mission "Stone of our Fathers 2"
@@ -2531,7 +2597,7 @@ mission "Stone of our Fathers 3"
 	on offer
 		conversation
 			`As always, Helheim is packed to the brim with transient workers coming and going, with dreams of either getting rich or getting out. A youngish looking man in a dirty roustabout jacket waves at you and approaches.`
-			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, " Ol' Skaldgar always had a way with words, he did."`
+			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, "Ol' Skaldgar always had a way with words, he did."`
 			`	The young man then looks down, somberly, and pulls from his pocket a small, well-worn stone with some strange markings on it and holds it out to you.`
 			`	"He wanted," he begins haltingly, "he wanted you, only you, to take this back to his folk on Norn." He swallows. "It's the old ways, it is. This, it needs to be returned, and not by a stranger." The young man then shrugs. "Best to let'cha know, I ain't have no money to pay you. This would be a favor for the ol' man."`
 			choice
@@ -2542,7 +2608,7 @@ mission "Stone of our Fathers 3"
 				decline
 			label accept
 			`	You're surprised at how cool the smooth stone feels in your palm.`
-			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	And with that, the man disappears into the crowd.`
 				accept
 	on complete
@@ -3070,7 +3136,7 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
 			choice
-				`	(Head to the shuttle)`
+				`	(Head to the shuttle.)`
 					goto shuttle
 				`	(Take a moment to investigate Goddess-Stone.)`
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
@@ -3387,8 +3453,9 @@ mission "Mani Refit"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from the Transport Union:`
-			`	"The fleet is ready for its inspirational journey. Please return to Mani.`
-			`		-Jayden, Mani Administrator, Transport Union"`
+			``
+			`	The fleet is ready for its inspirational journey. Please return to Mani.`
+			`				Jayden, Mani Administrator, Transport Union`
 				accept
 
 
@@ -3403,7 +3470,7 @@ mission "Home for Skadenga 6"
 		has "Mani Refit: done"
 	on offer
 		conversation
-			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
+			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crew members leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
 			choice
 				`	"Let's get this over with."`
 				`	"Don't worry, your ships are in good hands."`
@@ -3506,15 +3573,15 @@ mission "Skadenga Call 2"
 				`	"What do you want from me?"`
 				`	"Who are these people?"`
 					goto who
-			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
+			`	Hjlod glares at you. "From you? Everything. For that is vhat you took from us.`
 			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
+			`	She looks away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget who they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
-			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They will steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
+			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They vill steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
 			choice
 				`	"I will help you."`
 					goto help
@@ -3534,12 +3601,12 @@ mission "Skadenga Call 2"
 			`	You return to Hjlod, who is surprised that you came back at all, and let her know that you going to help them.`
 			label help
 			`	Hearing this, the slumped and depressed dredges in the hall stir and rise from their stupor. Hurriedly, some gather items while others race off further into the dark, unused parts of the spaceport.`
-			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and will pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and vill pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
 			choice
 				`	(Follow Hjlod.)`
 			`	Once you're back in the operational spaceport, you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship. "Everyone on, quickly!" Hjlod barks at her people.`
 			`	A few moments later, they are all on board. "Asdis, headcount!" Hjlod orders. As you're waiting, two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hjlod. "Ondurdis, 48 total."`
-			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he was too far."`
+			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he vas too far."`
 			`	A commotion boils up from a few terminals down, and you see some civil servants and local police officers heading your way. Asdis is also watching. "They could still be coming."`
 			`	"It's too late for them." Hjlod shuts the hatch. "<first>, if ever ve vere friends. Take off, now."`
 			choice
@@ -3734,10 +3801,11 @@ mission "Home for Skadenga 10"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
-			`	"Everything is ready. Get back here.`
-			`				-Hroar`
+			``
+			`	Everything is ready. Get back here.`
+			`				Hroar`
 			`			CEO of Hardy Hroar's Haulers`
-			`			'We're an unstoppable force that has never met an immovable object!'"`
+			`			We're an unstoppable force that has never met an immovable object!`
 				accept
 
 
@@ -3997,7 +4065,7 @@ mission "Stones of Skadenga 2"
 		has "Stones of Skadenga 1: done"
 	on offer
 		dialog
-			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <destination> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
+			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <stopovers> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
 	on stopover
 		dialog
 			`The eight Skadenga solmenly make their way off your ship and into the icy lands of Nifel. After a few hours they return, cold, and eager to return home to Windblaine.`
@@ -4058,9 +4126,10 @@ mission "Hjlod Remembers Windblain"
 	on offer
 		dialog
 			`Your inbox hums with a new message from <planet>:`
-			`	"Dear <first>,`
+			``
+			`Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod"`
+			`				Signed, Hjlod`
 	on complete
 		outfit "Tear of Skade"
 		conversation
@@ -4088,9 +4157,10 @@ mission "Hjlod Remembers Nifel"
 	on offer
 		dialog
 			`Your inbox hums with a new message from Nifel.`
-			`	"Dear <first>,`
+			``
+			`Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod"`
+			`				Signed, Hjlod`
 			
 	on complete
 		outfit "Tear of Skade"
@@ -4112,8 +4182,7 @@ mission "The Book of Skadenga"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 10
-		or
-			has "event: the book"
+		has "event: the book"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`

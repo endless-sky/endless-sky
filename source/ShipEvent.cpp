@@ -69,7 +69,6 @@ const Government *ShipEvent::TargetGovernment() const
 
 
 
-
 int ShipEvent::Type() const
 {
 	return type;

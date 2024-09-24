@@ -16,14 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 
 #include "DataNode.h"
-#include "DataWriter.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 
 #include <algorithm>
@@ -88,7 +87,7 @@ void StartConditions::Load(const DataNode &node)
 				ships.clear();
 			else if(key == "ship" && hasValue)
 				ships.erase(remove_if(ships.begin(), ships.end(),
-					[&value](const Ship &s) noexcept -> bool { return s.ModelName() == value; }),
+					[&value](const Ship &s) noexcept -> bool { return s.TrueModelName() == value; }),
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();

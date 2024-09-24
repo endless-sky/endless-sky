@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MenuPanel.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -31,9 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
-#include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
@@ -66,7 +65,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		for(const auto &source : GameData::Sources())
 		{
 			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
-			if((credit.size() > 1) || (credit.front() != ""))
+			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
 				credits.insert(credits.end(), 15, "");
@@ -92,6 +91,9 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(player.GetPlanet())
 		Audio::PlayMusic(player.GetPlanet()->MusicName());
+
+	if(!scrollSpeed)
+		scrollSpeed = 1;
 }
 
 

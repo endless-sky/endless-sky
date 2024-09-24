@@ -68,7 +68,7 @@ mission "First Contact: Bunrodea (Hostile)"
 				`	(Sit down.)`
 					goto sit
 				`	(Turn around and re-enter my ship.)`
-			`	You reenter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship, buzzing with energy. You attempt to take off, but your ship's repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
+			`	You re-enter your ship, and the aliens don't move to stop you. You decide to turn your ship back on and attempt to take off, but just as you try to activate the repulsor engines, you hear a loud buzzing sound coming from outside. You look out the nearest window, and see that the aliens have moved some sort of vehicle near your ship, buzzing with energy. You attempt to take off, but your ship's repulsor engines aren't moving you anywhere. The vehicle seems like it is deactivating any nearby repulsors.`
 			choice
 				`	(Blast the vehicle with a turret.)`
 					to display
@@ -205,15 +205,15 @@ mission "First Contact: Bunrodea (Hostile)"
 			
 			label apologize
 			`	As the small creature translates for you, the Queen looks as if she is smiling. "An apology. Such an... unexpected response," the creature continues to translate for the Queen. "Normally, those who have offended the Queen attempt to make excuses for themselves. Your apology is accepted."`
-			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since you have apologized, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
+			`	The Queen motions to one of the guards and says something to them that the creature does not translate. She then speaks to you, and the creature translates: "Since you have apologized, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
 				goto end
 			
 			label threatened
-			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since I have shown you mercy, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
+			`	The Queen motions to one of the guards and says something to them that the creature does not translate. She then speaks to you, and the creature translates: "Since I have shown you mercy, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
 				goto end
 			
 			label slighted
-			`	The Queen motions to one of the guards and says something to it that the creature does not translate. She then speaks to you, and the creature translates: "Since it is my guards that have shown you disrespect, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
+			`	The Queen motions to one of the guards and says something to them that the creature does not translate. She then speaks to you, and the creature translates: "Since it is my guards that have shown you disrespect, you will be allowed to live. My guards have been ordered to leave you be, and you may come and go on a small number of our worlds. But this is only so that you do not cause further trouble, and to allow you to refuel if you are passing through my systems. Your presence will only be tolerated, not welcomed. Now please leave my court."`
 			
 			label end
 			`	You're escorted out of the throne room and told by the small creature to leave as soon as you reach your ship. You exit the palace, and realize that you must once again face the stairs. You take a deep breath, and prepare yourself for the long journey down.`

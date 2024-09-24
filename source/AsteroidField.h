@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ASTEROID_FIELD_H_
-#define ASTEROID_FIELD_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class Collision;
 class DrawList;
 class Flotsam;
 class Minable;
@@ -58,9 +58,11 @@ public:
 	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);
 	// Draw the asteroid field, with the field of view centered on the given point.
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
-	// Check if the given projectile has hit any of the asteroids, using the information
-	// in the collision sets. If a collision occurs, returns a pointer to the hit body.
-	Body *Collide(const Projectile &projectile, double *closestHit);
+
+	// Check if the given projectile collides with any asteroids. This excludes minables.
+	void CollideAsteroids(const Projectile &projectile, std::vector<Collision> &result) const;
+	// Check if the given projectile collides with any minables.
+	void CollideMinables(const Projectile &projectile, std::vector<Collision> &result) const;
 
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;
@@ -89,7 +91,3 @@ private:
 	CollisionSet asteroidCollisions;
 	CollisionSet minableCollisions;
 };
-
-
-
-#endif

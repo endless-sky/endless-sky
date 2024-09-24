@@ -21,7 +21,7 @@ mission "Sad Gamblers - Republic"
 		random < 1
 	on offer
 		conversation
-			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two day's worth of standard pay.`
+			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two days' worth of standard pay.`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
 				decline
 
@@ -34,7 +34,7 @@ mission "Sad Gamblers - Syndicate"
 		random < 1
 	on offer
 		conversation
-			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two day's worth of standard pay.`
+			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two days' worth of standard pay.`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
 				decline
 
@@ -65,8 +65,8 @@ mission "Gift Store Interaction"
 		random < 1
 	on offer
 		conversation
-			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<origin>" printed underneath an attractive, stylized representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
-			`	Two young adults wander into the aisle just a couple of meters away, conversing in a language that you don't understand, one that is perhaps local to the Deep. They're cooing over an item they've found, but when one flips it over to look at the price tag, there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a head-shake.`
+			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "Peace, Prosperity, Progress" printed underneath the insignia of the Deep and pick it up to see how it feels. The handle is solid, not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
+			`	Two young adults wander into the aisle just a couple of meters away, conversing in a language that you don't understand, one that is perhaps local to the Deep. They're cooing over an item they've found, but when one flips it over to look at the price tag, there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a headshake.`
 			branch broke
 				credits < 50
 			`	Curious, you turn over your own mug and see that it is indeed at least five times what you would expect to pay for a mug, even a good one: 50 credits. Still, it is certainly a novelty...`
@@ -87,14 +87,6 @@ mission "Gift Store Interaction"
 			label broke
 			`	Curious, you turn over your own mug, and when you spot the 50 credit price tag your heart sinks. You could never afford such an expensive mug. You put it back and walk away while pondering your financial situation.`
 				decline
-
-outfit "Mug"
-	category "Hand to Hand"
-	cost 50
-	thumbnail "outfit/unknown"
-	"capture attack" .1
-	"unplunderable" 1
-	description "You can throw it in a pinch, you guess."
 
 
 
@@ -143,7 +135,8 @@ mission "Trash Fire Crops"
 	minor
 	source
 		government "Republic"
-		attributes "dirt belt" "farming"
+		attributes "dirt belt"
+		attributes "farming"
 		not attributes "station"
 	to offer
 		random < 1
@@ -236,7 +229,7 @@ mission "Curious Waiter"
 
 
 
-mission "Syndicate Security Troops"
+mission "Syndicated Security Troops"
 	minor
 	source
 		government "Syndicate"
@@ -425,7 +418,7 @@ mission "Tarazed Ship Christening"
 			choice
 				`	(Take a closer look.)`
 					goto investigate
-				`	(Shout well wishes as I pass by)`
+				`	(Shout well wishes as I pass by.)`
 					goto passby
 				`	(Ignore them, I have more important things to do.)`
 			`	You hurry past the rowdy group, annoyed by the disturbance.`
@@ -555,15 +548,15 @@ mission "Scientists at the Pub after a Conference"
 					decline
 			label "overheard scientists 1"
 			`	Fragments of conversation make their way to you through the din of the pub.`
-			` `
+			``
 			`	Two of the younger attendees are looking a bit nervous. "I'm so glad to have my presentation over with. I was so worried about having to present on the first day, but now I can finally just relax and actually listen to the other talks!"`
 			`	"Oh definitely! I probably shouldn't even be here - I should really be rehearsing... Oh! Waiter, another beer, please!"`
 			`	"Got your slide deck ready for tomorrow?"`
 			`	"Yeah, but I'm still terrified. I hate public speaking."`
 			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
-			` `
+			``
 			`	Another scientist is rolling his eyes after a post-mortem of the day's events. "Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
-			` `
+			``
 			`	An exasperated academic is speaking emphatically to her friend about what you infer to be a presentation they both heard earlier. "I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
 			choice
 				`	(Order another beverage and continue listening.)`
@@ -573,12 +566,12 @@ mission "Scientists at the Pub after a Conference"
 			label "overheard scientists 2"
 			`	The group's conversation grows louder by virtue of both passion for the subject as well as the influence of a few drinks.`
 			`	"Look, the analysis might be fine, but if they can't even be bothered to provide the version numbers for their analytical software, then it isn't reproducible and that's an automatic 'reject' from me."`
-			` `
+			``
 			`	One person is looking slightly shell-shocked after considering what might have been. "Can you believe my computer crashed right before I had to present? Good thing I had backups. Two is one and one is none."`
-			` `
+			``
 			`	A group seem to be discussing some other colleagues in the field who are, presumably, not present this evening. "Singh and Esterhazy are such arrogant jerks. Their work is okay, I guess, but not enough to justify their wannabe rockstar personalities!"`
 			`	"Sure, but they aren't just arrogant jerks, they're charismatic arrogant jerks. Charisma attracts good grad students to their lab, who produce good papers, who they put their name on. It's a positive feedback loop."`
-			` `
+			``
 			`	Grant applications seem to be a common subject. "The Republic Medical Research Agency said my work is too theoretical, but the University of Chiron Department of Microbiology says it's too applied!"`
 			`	"That's a conundrum, alright. Maybe you could find some funding from industry? The Syndicate might be interested in your work."`
 			`	"Yeah, but I'm not sure yet if I'm willing to give up my academic freedom."`
@@ -590,7 +583,7 @@ mission "Scientists at the Pub after a Conference"
 			label "overheard scientists 3"
 			`	Two attendees compare gripes about job demands. "Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
 			`	"That's funny! Teaching undergrads is my one respite from grant-writing!"`
-			` `
+			``
 			`	A sociable but exhausted-looking man is sitting back in his chair. "These conferences only last three or four days, but it always feels like it ages you a year."`
 			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
 				decline
@@ -622,3 +615,179 @@ mission "Sol-Bound Shuttle"
 			label end
 			`	You say your goodbyes as you board your ships. Although you are both captains, the trajectory of your lives have taken very different courses.`
 				decline
+
+# Note about Earth Day and Earth Hour:
+# Earth Day (in 2023) is a day of awareness about climate change and occurs every 22nd of April. Earth Hour is an hour
+# of blackout around cities worldwide, also to bring awareness to climate change, and it's observed on the last Saturday
+# of March.
+
+# Since Earth Day has become a quasi-'national day' for Earthlings in Endless Sky, it would be interesting to have Earth
+# Hour be conflated with Earth Day as well, to demonstrate how people in a thousand years' time observe what we observe
+# today and how its meaning has changed.
+mission "Earth Day Blackout"
+	minor
+	landing
+	source "Earth"
+	to offer
+		day == 22
+		month == 5
+	on offer
+		conversation
+			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off. What was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark; not a light is on for kilometers.`
+			`	Despite this, the spaceport seems to still be operational, because the automated procedures of signing landing documents, refueling, and checking your ship's spaceworthiness are completed as you land. In the spaceport terminal, there are wax candles spaced out to bring some light into the now dark corridors. It's a strange sight for the most populated planet in human space.`
+			choice
+				`	(Find someone and ask.)`
+				`	(The blackout will probably pass.)`
+					goto pass
+			branch attendant tourist
+				random > 50
+
+			label attendant
+			`	You approach an information desk in the terminal's atrium that, given the situation, doesn't seem to be as busy as expected. After a moment you get to the attendant behind the counter.`
+			choice
+				`	"What's with the blackout?"`
+				`	"When is the blackout going to be fixed?"`
+			`	The attendant chuckles to himself. "I should've expected that question from your accent. Today's Earth Day, when all the cities of Earth - and I mean all of them - participate in a total blackout. Even the Parliament building was out today. It makes us think about our origins; that we once lived on the soil without electricity, all confined to just this one planet here, divided and uncertain. Of course, people like me still have to keep working, but for other people it's a day off to enjoy what little wildlife and Earth us Earthlings have left, ironically. Do you have any other questions?`
+			choice
+				`	"When did this tradition start?"`
+				`	"Thank you for telling me."`
+					goto pass
+			`	"Well, my old history class tells me that the first Earth Day was around the 20th century, a few years after we landed on the Moon for the first time. Back then, there were a bunch of conflicts and disputes over resources and how we were fighting all over and digging it all up to power all those dirty, primitive cars, power plants, and factories we had back then. So as a show of unity against that people started celebrating Earth's natural beauty by bringing us back to our past."`
+			`	As he finishes, the ceiling lights flash back on. "Ah, well, there you go. Too bad I missed the celebrations, but that's the end of Earth Day and my night shift. I hope you had a good Earth Day, and have a good night!"`
+				decline
+
+			label tourist
+			`	You approach a woman with a bunch of oversized bags clustered around her seat. She's tapping rapidly on her datapad, but nonetheless she looks up when you approach. "Excuse me, Captain, I was just trying to figure out when the metro starts up again. Do you know?"`
+			choice
+				`	"I know just as much as you, sorry."`
+				`	"Maybe it's to do with the blackout?"`
+					goto "way in"
+			`	"Ha, they shut everything down for Earth Day and then assume all us offworlders get the idea. What do you know..."`
+			choice
+				`	"Earth Day?"`
+				`	"Shut everything down?"`
+			`	"Didn't you see what was happening outside on your way in? It's something to do with Earth Day. Back in those old days before humans were able to get off this planet, they were stuck in a chain of issues and disputes over energy. You know, they didn't have fusion reactors back then. Awfully primitive times.`
+				goto decided
+
+			label "way in"
+			`	"Yes, I suppose you must have seen what's happening outside on your way in. It's something to do with Earth Day. Back in those old days before humans were able to get off this planet, they were stuck in a chain of issues and disputes over energy. You know, they didn't have fusion reactors back then. Awfully primitive times.`
+
+			label decided
+			`	"So they decided that, on the 22nd of April each year, all of Earth would go into total blackout to symbolize that they didn't have enough energy to sustain themselves, and to remind them that the only way to advance was to keep pushing themselves forward, find new pathways to power, lest those blackouts became longer and more frequent. Fascinating, huh?"`
+			choice
+				`	"It seems a bit backwards."`
+				`	"It is fascinating, thanks."`
+					goto pass
+			`	"Well, perhaps. But Earth is like that sometimes. It's survived through so much, and without Earth Day to remind our ancestors that we must keep looking forward, maybe you wouldn't be in your fancy little spaceship, would you?"`
+			`	The lights in the spaceport turn back on as she says that, and she turns to look at her data pad again. "Oh, it's twelve o'clock. I've got to see if the metro's opened so I can get to my accommodation. Safe travels!"`
+				decline
+
+			label pass
+			`	After the clock passes midnight, the lights in the spaceport come back on, followed by the signage and lights of the city surrounding it. A few workers come and snuff out the candles before putting them away in unseen closets.`
+				decline
+
+mission "Burthen Triathlon"
+	minor
+	source
+		planet "Burthen"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Thanks to the planet's high gravity, Burthen is not a common destination, but today the spaceport seems to have a lot of visitors. Many of the usually empty landing pads are occupied, and you notice a sizable crowd at the edge of the spaceport as you step out onto its rather untarnished apron. Some members of the crowd are obviously from offworld judging by their height, and there's even a few media crews standing by, although it looks like their camera drones are struggling with Burthen's gravity.`
+			choice
+				`	(See what's going on.)`
+				`	(Avoid the commotion and tend to your own business.)`
+					decline
+			`	Each step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way, it looks like the "Burthen Triathlon" is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
+			choice
+				`	(Walk over to the catering tent.)`
+				`	(Stay outside.)`
+					goto outside
+				`	(Return to your ship.)`
+					decline
+
+			`	Thankfully, the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdily-built to allow offworlders to pull themselves up, but cushioned as to not make it uncomfortable to sit in. A small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby, and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthenians and offworlders, are mingling about here.`
+			`	There's a counter in the corner with two levels, apparently so that the Burthenian attending it can serve both offwolders and locals. Alongside the typical drinks you've seen in spaceport bars and some local to the southern Core, the counter also offers a local drink called the "Antigrav" that claims to "ease visitors from Burthen's natural pull," and comes in a specially made glass, all for 30 credits.`
+			branch "no credits"
+				credits < 2
+			choice
+				`	(Order a regular drink from the counter.)`
+				`	(Order the Antigrav from the counter.)`
+					goto antigrav
+					to display
+						credits >= 30
+				`	(Don't order anything and leave the tent.)`
+					goto "leave tent"
+
+			action
+				payment -2
+			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go. The Burthenian at the counter advises you not to drink too much of it at once, and not to drop the cup "unless you want a munted foot for a few weeks."`
+				goto "leave tent"
+
+			label antigrav
+			action
+				payment -30
+				outfit "Antigrav Glass"
+			`	It turns out the glass the Antigrav comes with has a miniature repulsor installed so that you don't need to hold it while drinking it. The drink itself is a highly carbonated soda that tastes like something in between lingonberry and raspberry, made from the native berries found in Westland, the district the spaceport is located in. The Burthenian at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
+				goto "leave tent"
+
+			label "no credits"
+			`	Unfortunately, it looks like all the drinks are too pricy for you.`
+			choice
+				`	(Leave the tent.)`
+
+			label "leave tent"
+			`	The crowd is a bit more active when you return outside, and over the heads of the locals you see on a large, portable screen that the leading triathlete is a particularly stocky Burthenian, wearing a white helmet and tight, dark sportswear.`
+				goto "after tent"
+
+			label outside
+			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthenians and offworlders, with Burthenians wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthenian apparently doing his eleventh Burthen Triathlon. Meanwhile, the leading offworlder is five hundred meters behind him, a competitor from Martini named Caldarone. Apparently, they've been at it for over 11 hours, beginning with a 1.5 kilometer swim, then a 40 kilometer bicycle ride, and finally a 10 kilometer run.`
+			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather overly enthusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
+				goto end
+
+			label "after tent"
+			`	As he nears the finish line the Burthenians' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
+
+			label "end"
+			`	Abernathy doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`
+				decline
+
+mission "CCOR Guerrilla Standoff"
+	minor
+	source "Gagarin"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars. Still, it appears much like any other old, slightly run-down Southern spaceport, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
+			`	But as you make your way into the central hall, you notice that, where you'd expect the greatest activity, everything has stopped. Even the ever-roving antigrav trolleys of cargo and supplies are backed up and motionless, and everybody's attention is directed at some sort of commotion in the very center of the spaceport.`
+			choice
+				`	(Take a look.)`
+				`	(Go back to your ship.)`
+					decline
+			`	Stepping through the gaps within the established crowd you end up next to a spaceport gendarme. He appears as if he's meant to be on patrol duty but is too busy watching the distraction to do his job right now. Looking over the banisters beside him, you see first the enormous and oddly empty space in the middle of the hall, then a team of overalls-wearing men armed with drills and brushes. Surrounding them is a cordon of guerrillas in their rosy CCOR uniforms, sizing up the public and the spaceport security around them with their rifles and pistols.`
+			`	The painting guerrillas are busily finishing off the touches of what appears to be a statue of the burgundy and white emblem of the Confederated Councils, while a pile of rubble beside it suggests that a symbol of the local government once stood in its place. As they step away from the statue, a lone man in a much better-kept uniform than the others steps forward in front of their work. You can feel the air chilling as he raises his head to speak.`
+			choice
+				`	(Listen in.)`
+				`	(Step away before he makes his speech.)`
+					decline
+			`	You don't see any amplification equipment, yet his voice fills the room without effort.`
+			`	"Gagarians and offworlders. Captains and travellers. Servicemen and farmers.`
+			`	"The worlds of the Outer Rim, and indeed, those of the Republic and the entirety of humanity, have and continue to be despoiled and devastated by ruthless profiteering.`
+			`	"The executives of the Syndicate and the landed gentry of the Paradise Worlds steal the efforts of tens of billions of men, women, and children, from Prime to Foundry; from Valhalla to Earth; from Bourne to Hestia, and beyond. And for near a century they have colluded to impose their designs on our worlds! The corporate insurrection in Novo Minho and the gang wars in the northern Outer Rim are an obvious extension of the arm of people like Alastair Korban, only leading to further suffering and bitter destruction in our region!`
+			`	"But there is still hope. We can bring about the independence of Gagarin and unify this world that has been lost to the Syndicate-sponsored oligarchs and their cronies and puppet officials. We can reunite the Outer Rim and restore the prosperity stolen from us. We can form a new Confederated Councils and once again shine the light of Belenos across the entire galaxy!"`
+			`	The gendarmes look around and consider the response of the crowd around them as the man finishes his speech to scattered applause. The speaker steps down and orders his guerrillas into formation before marching them out of the still crowd and into the back of a dusty, burgundy army van you hadn't noticed before, leaving the remains of the old statue scattered around the empty space.`
+			`	You turn around and see the gendarme you ended up next to. He meets your eyes and recognizes your off-world air.`
+			`	"Just an everyday interruption, Captain," he says. "Only nostalgists for the old cause. We get a dozen of these incidents a month." He seems to be interrupted by a buzz from the radio receiver at his hip and strides off into the crowd, leaving you on the ledge.`
+			`	Slowly but surely, the spaceport snaps out of its shock and picks up its previous momentum, although as you turn around you pass two government-branded trucks mounted with cranes, almost certainly there to carry off the newly installed statue and to clean up the mess left behind by the guerrillas.`
+
+mission "Raider returning to Mordente-Bridi"
+	source "Mordente-Bridi"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
+			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs. Meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
+			`	Within the hour the work shuttles scatter from the ship as they finish patching up its battered hull, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`

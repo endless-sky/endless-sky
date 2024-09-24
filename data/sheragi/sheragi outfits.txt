@@ -20,6 +20,7 @@ outfit "Small EM Battery"
 	thumbnail "outfit/small embattery"
 	"mass" 14
 	"outfit space" -14
+	"unique" 1
 	"shield generation" 0.14
 	"shield energy" 0.14
 	"shield heat" 0.14
@@ -33,6 +34,7 @@ outfit "Large EM Battery"
 	thumbnail "outfit/embattery"
 	"mass" 150
 	"outfit space" -150
+	"unique" 1
 	"shield generation" 0.8
 	"shield energy" 0.8
 	"shield heat" 0.8
@@ -45,6 +47,7 @@ outfit "Small Hybrid Cooling"
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
 	"outfit space" -8
+	"unique" 1
 	"cooling" 9
 	"active cooling" 17
 	"cooling energy" 3.1
@@ -56,6 +59,7 @@ outfit "Large Hybrid Cooling"
 	thumbnail "outfit/sheragicooling"
 	"mass" 40
 	"outfit space" -40
+	"unique" 1
 	"cooling" 24
 	"active cooling" 128
 	"cooling energy" 16.2
@@ -69,12 +73,13 @@ outfit "Fission Drive"
 	"mass" 71
 	"outfit space" -71
 	"engine capacity" -38
+	"unique" 1
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 15.47
+	"thrust" 26.7
 	"thrusting energy" 1.508
 	"thrusting heat" 2.86
-	"turn" 319.8
+	"turn" 479.7
 	"turning energy" 0.585
 	"turning heat" 1.365
 	"flare sprite" "effect/fissionflare"
@@ -94,17 +99,18 @@ outfit "Fusion Drive"
 	"mass" 480
 	"outfit space" -480
 	"engine capacity" -230
+	"unique" 1
 	"jump speed" 0.2
 	"hyperdrive" 1
 	"energy generation" 54
 	"heat generation" 156
-	"turn" 2496.0
+	"turn" 3744.0
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 190
+	"thrust" 270.75
 	"thrusting energy" 11
 	"thrusting heat" 33
-	"reverse thrust" 44.8
+	"reverse thrust" 63.9
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
 	"flare sprite" "effect/fusionflare"
@@ -128,6 +134,7 @@ outfit "Electronic Warfare System"
 	thumbnail "outfit/sheragi ews"
 	"mass" 6
 	"outfit space" -6
+	"unique" 1
 	"radar jamming" 10
 	"tactical scan power" 25
 	"scan interference" 2
@@ -146,6 +153,7 @@ outfit "Dragonflame Cannon"
 	"required crew" 10
 	"gun ports" -1
 	"spinal mount" -1
+	"unique" 1
 	weapon
 		sound "dragonflame"
 		icon "icon/dragonflame"
@@ -159,13 +167,13 @@ outfit "Dragonflame Cannon"
 		"firing energy" 16000
 		"firing fuel" 200
 		"firing heat" 40000
-		"firing force" 1000
-		"hit force" 2000
+		"firing force" 1500
+		"hit force" 3000
 		"shield damage" 25000
 		"hull damage" 15000
 		"heat damage" 50000
 		"piercing" 0.4
-		"blast radius" 50
+		"penetration count" 20
 	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
 
 effect "dragonflame"
@@ -215,6 +223,7 @@ outfit "Sheragi Anti-Missile"
 	"outfit space" -35
 	"weapon capacity" -35
 	"turret mounts" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/sheragiam"
 		"hardpoint offset" 1.5
@@ -244,6 +253,7 @@ outfit "Particle Waveform Turret"
 	"weapon capacity" -47
 	"turret mounts" -1
 	"required crew" 1
+	"unique" 1
 	weapon
 		sprite "projectile/pwavecannon"
 			"frame rate" 20
@@ -291,6 +301,7 @@ outfit "Shard Fabricator"
 	"weapon capacity" -7
 	"fuel capacity" 36
 	"gun ports" -1
+	"unique" 1
 	"operating costs" 150
 	weapon
 		sprite "projectile/shardactive"
@@ -328,7 +339,7 @@ outfit "Shard inactive"
 		"die effect" "missile death"
 		"lifetime" 60
 		"random lifetime" 40
-		"hit force" 20
+		"hit force" 30
 		"shield damage" 110
 		"hull damage" 160
 
@@ -348,6 +359,7 @@ outfit "Heavy Ion Cyclotron"
 	"outfit space" -33
 	"weapon capacity" -21
 	"gun ports" -1
+	"unique" 1
 	weapon
 		sprite "projectile/hion"
 			"frame rate" 30
@@ -359,7 +371,7 @@ outfit "Heavy Ion Cyclotron"
 		"reload" 1
 		"firing energy" 2.9
 		"firing heat" 12.2
-		"firing force" 9
+		"firing force" 13.5
 	description "The main weapon of the Sheragi fighters is a particle accelerator not unlike the ones used by the Republic Navy and the Syndicate. However, this one produces a dense stream of heavy metal ions instead of bursts of lighter ones, resulting in high damage with intense recoil. Because the particle accelerator itself can be mounted elsewhere, it saves on weapon space."
 
 outfit "Heavy Ion Fragment"
@@ -374,6 +386,6 @@ outfit "Heavy Ion Fragment"
 		"random lifetime" 8
 		"acceleration" 0.001
 		"drag" .02
-		"hit force" 3
+		"hit force" 4.5
 		"shield damage" 1.79
 		"hull damage" 1.47

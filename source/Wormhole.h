@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WORMHOLE_H_
-#define WORMHOLE_H_
+#pragma once
 
 #include "Color.h"
 #include "ExclusiveItem.h"
@@ -76,7 +75,3 @@ private:
 	ExclusiveItem<Color> linkColor;
 	std::unordered_map<const System *, const System *> links;
 };
-
-
-
-#endif

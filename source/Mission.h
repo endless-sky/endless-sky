@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_H_
-#define MISSION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "Date.h"
@@ -58,7 +57,7 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	Mission(const DataNode &node);
+	explicit Mission(const DataNode &node);
 
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
@@ -97,10 +96,14 @@ public:
 	const std::set<const System *> &VisitedWaypoints() const;
 	const std::set<const Planet *> &Stopovers() const;
 	const std::set<const Planet *> &VisitedStopovers() const;
+	const std::set<const System *> &MarkedSystems() const;
+	const std::set<const System *> &UnmarkedSystems() const;
+	void Mark(const System *system) const;
+	void Unmark(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int IllegalCargoFine() const;
-	std::string IllegalCargoMessage() const;
+	int Fine() const;
+	std::string FineMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
 	int64_t DisplayedPayment() const;
@@ -132,8 +135,7 @@ public:
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
-	bool HasFailed(const PlayerInfo &player) const;
-	bool IsFailed() const;
+	bool IsFailed(const PlayerInfo &player) const;
 	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
@@ -154,7 +156,7 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player
@@ -167,6 +169,7 @@ public:
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	bool RequiresGiftedShip(const std::string &shipId) const;
 
 	// Get the internal name used for this mission. This name is unique and is
 	// never modified by string substitution, so it can be used in condition
@@ -220,8 +223,8 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	int illegalCargoFine = 0;
-	std::string illegalCargoMessage;
+	int fine = 0;
+	std::string fineMessage;
 	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
@@ -247,6 +250,10 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	// Systems that don't need to be visited, but which the mission still
+	// wants to highlight for the player.
+	mutable std::set<const System *> markedSystems;
+	mutable std::set<const System *> unmarkedSystems;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;
@@ -263,7 +270,3 @@ private:
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
 };
-
-
-
-#endif

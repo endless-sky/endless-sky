@@ -16,11 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Phrase.h"
-#include "pi.h"
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
@@ -87,8 +87,21 @@ void Fleet::Load(const DataNode &node)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
-		else if(key == "fighters" && hasValue)
-			fighterNames = GameData::Phrases().Get(child.Token(1));
+		else if(key == "fighters" && (hasValue || child.HasChildren()))
+		{
+			if(hasValue)
+				fighterNames = GameData::Phrases().Get(child.Token(1));
+			for(const DataNode &grand : child)
+			{
+				const string &fighterKey = grand.Token(0);
+				if(fighterKey == "names" && grand.Size() >= 2)
+					fighterNames = GameData::Phrases().Get(grand.Token(1));
+				else if(fighterKey == "personality")
+					fighterPersonality.Load(grand);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(key == "cargo settings" && child.HasChildren())
 			cargo.Load(child);
 		// Allow certain individual cargo settings to be direct children
@@ -97,6 +110,8 @@ void Fleet::Load(const DataNode &node)
 			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
+		else if(key == "formation" && hasValue)
+			formation = GameData::Formations().Get(child.Token(1));
 		else if(key == "variant" && !remove)
 		{
 			if(resetVariants && !add)
@@ -188,6 +203,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	Point position;
 	double radius = 1000.;
 
+	// The chosen stellar object the fleet will depart from, if any.
+	const StellarObject *object = nullptr;
 	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
@@ -212,6 +229,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(ship->JumpNavigation().HasHyperdrive())
 				hasHyper = true;
 		}
+		const bool unrestricted = personality.IsUnrestricted();
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		if(hasJump || hasHyper)
@@ -219,6 +237,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
+				if(!unrestricted && government->IsRestrictedFrom(*neighbor))
+					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
 				// so attack fleets don't come from what ought to be a safe direction.)
@@ -230,23 +250,26 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		}
 
 		// Find all the inhabited planets this fleet could take off from.
-		vector<const Planet *> planetVector;
+		vector<const StellarObject *> stellarVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
+						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					planetVector.push_back(object.GetPlanet());
+					stellarVector.push_back(&object);
 
 		// If there is nowhere for this fleet to come from, don't create it.
-		size_t options = linkVector.size() + planetVector.size();
+		size_t options = linkVector.size() + stellarVector.size();
 		if(!options)
 		{
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					planetVector.push_back(object.GetPlanet());
-			options = planetVector.size();
+				if(object.HasValidPlanet()
+						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
+						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					stellarVector.push_back(&object);
+			options = stellarVector.size();
 			if(!options)
 				return;
 		}
@@ -257,7 +280,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{
-			planet = planetVector[choice - linkVector.size()];
+			object = stellarVector[choice - linkVector.size()];
+			planet = object->GetPlanet();
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
@@ -272,19 +296,34 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	for(auto &ship : placed)
 		PlaceFighter(ship, placed);
 
-	// Find the stellar object for this planet, and place the ships there.
+	// Find the stellar object for this planet if necessary, and place the ships there.
 	if(planet)
 	{
-		const StellarObject *object = system.FindStellar(planet);
 		if(!object)
 		{
-			// Log this error.
-			Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
-			return;
+			// Search the stellar object associated with the given planet.
+			// If there are many possible candidates (for example for ringworlds),
+			// then choose a random one.
+			vector<const StellarObject *> stellarObjects;
+			for(const auto &object : system.Objects())
+				if(object.GetPlanet() == planet)
+					stellarObjects.push_back(&object);
+
+			// If the source planet isn't in the source for some reason, bail out.
+			if(stellarObjects.empty())
+			{
+				// Log this error.
+				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
+					+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+				return;
+			}
+
+			object = stellarObjects[Random::Int(stellarObjects.size())];
 		}
+
+
 		// To take off from the planet, all non-carried ships must be able to access it.
-		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+		if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
 				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
 		{
 			position = object->Position();
@@ -389,7 +428,14 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	if(system.Links().empty() || (source && !system.Links().count(source)))
+	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
+		[&ship](const System *link) noexcept -> bool
+		{
+			return !ship.IsRestrictedFrom(*link);
+		}
+	));
+
+	if(!canEnter || system.Links().empty() || (source && !system.Links().contains(source)))
 	{
 		Place(system, ship);
 		return &system;
@@ -398,8 +444,12 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		auto it = system.Links().cbegin();
-		advance(it, Random::Int(system.Links().size()));
+		vector<const System *> validSystems;
+		for(const System *link : system.Links())
+			if(!ship.IsRestrictedFrom(*link))
+				validSystems.emplace_back(link);
+		auto it = validSystems.cbegin();
+		advance(it, Random::Int(validSystems.size()));
 		source = *it;
 	}
 
@@ -443,7 +493,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited())
 			centers.emplace_back(object.Position(), object.Radius());
 
 	if(centers.empty())
@@ -461,7 +511,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
 				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
@@ -469,11 +519,16 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 
-		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
+		bool canBeCarried = ship->CanBeCarried();
+		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
-		ship->SetPersonality(personality);
+		if(canBeCarried && fighterPersonality.IsDefined())
+			ship->SetPersonality(fighterPersonality);
+		else
+			ship->SetPersonality(personality);
+		ship->SetFormationPattern(formation);
 
 		placed.push_back(ship);
 	}

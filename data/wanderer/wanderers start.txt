@@ -65,14 +65,14 @@ mission "First Contact: Wanderer"
 			label hai
 			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai. The difficulty it has producing the sounds lends it a rather coarse accent, but it is almost certainly Hai.`
 			`	"Hai, you speak the Hai language?" you ask. You cup your hands above your ears to mimic the large, rodent-like ears of the Hai.`
-			`	"Iy, ka'hai!" says the alien, rustling its wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes its talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
+			`	"Iy, ka'hai!" says the alien, rustling their wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes their talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
 			choice
 				`	"Sorry, I don't speak their language."`
 				`	"Are there any Hai here?"`
-			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think it is telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
+			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think they are telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
 				accept
 	on visit
-		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
+		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" they seem to ask, once again mimicking the rodent-like ears of the Hai with their feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
 
 
 
@@ -213,7 +213,7 @@ mission "Wanderers: Diplomacy"
 	on accept
 		fail "First Contact: Wanderer"
 	on visit
-		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You attempt to gesture to Sayari, but become embarrassed when you realize that you left her on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
+		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" they seem to ask, once again mimicking the rodent-like ears of the Hai with their feathered limbs. You attempt to gesture to Sayari, but become embarrassed when you realize that you left her on one of your escorts that hasn't yet entered the system. Better depart and wait for it to arrive.`
 
 
 
@@ -233,7 +233,7 @@ mission "Wanderers: Translation Machine"
 				`	(Ask her what they are talking about.)`
 				`	(Wait for a break in the conversation.)`
 			`	She holds up a paw to you while speaking a few more sentences to them, then says, "They are saying that the Hai are attacking them, and they want to know why. It must be the Unfettered who are raiding them, and I am trying to explain that the Unfettered do not represent the Hai people as a whole."`
-			`	They continue talking for a while, and then the Wanderers ask you a question. Sayari translates, "They want to know what human beings want, and why you have come to their territory."`
+			`	They continue talking for a while, and then the Wanderers ask you a question. Sayari translates, "They want to know what humans want, and why you have come to their territory."`
 			choice
 				`	"I'm just an individual explorer. I don't represent my species or their governments."`
 					goto explorer
@@ -449,6 +449,19 @@ mission "Wanderers Conversation"
 			`	"Those are questions that we do not ask," he says. "It is a [taboo? religion? mystery?] for us."`
 			`	You ask a few other questions, but do not gain much more information. He does mention that the other Wanderer worlds have agreed to sell you some of their technology, and that you will be allowed to "[view, admire, envy]" their ships, but not to purchase them. You thank him for his time and his willingness to trust a member of an entirely unknown species, and return to your ship.`
 				decline
+
+
+
+# Compatibility patch for pilots that did the above missions before 0.9.7.
+mission "Wanderers: Outfit License Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Conversation: offered"
+		not "license: Wanderer Outfits"
+	on offer
+		set "license: Wanderer Outfits"
+		fail
 
 
 
@@ -1773,6 +1786,7 @@ mission "Wanderers Invaded 3"
 		has "Wanderers Invaded 2: done"
 	on offer
 		log "Helped to defend a Wanderer planet from an Unfettered attack. But, the Wanderers now plan to abandon that planet. The Wanderers seem very hesitant to actually stand their ground and fight back."
+		event "wanderers: varu mer'ek evacuated"
 		conversation
 			`It appears that the very last of the civilians are ready for transport to <planet>; a large crowd is gathered in the spaceport, but nearly all the buildings are vacant. Incongruously, a few Wanderers are busy sweeping the sidewalks, watering plants, and making other efforts to tidy up the port, as if to make it as presentable as possible for the Unfettered when they land.`
 			`	Isai greets you and asks if she can ride along with you. "These are the last of the civilians," she says. "The [warriors, defenders] will remain behind until everyone is [safe, away], then they will join us on <planet>. But most important is that the transports reach <planet> unharmed. Will you escort them?"`
@@ -1789,7 +1803,7 @@ mission "Wanderers Invaded 3"
 			`	"Okay," you say, "I'll help protect the transports."`
 			label end
 			`	"Thank you," she says. "As before, do not [wait, tarry] or join in the fighting. Just bring our people safely to <planet>."`
-				accept
+				launch
 	on accept
 		event "capture of ik'kara'ka" 2
 	
@@ -1803,6 +1817,16 @@ mission "Wanderers Invaded 3"
 	on visit
 		dialog
 			`You have reached <planet>, but the Wanderer transports, or your ship carrying Isai, have not all arrived yet. You should take off and wait for them to catch up with you.`
+
+
+
+event "wanderers: varu mer'ek evacuated"
+	planet "Varu Mer'ek"
+		remove spaceport
+		remove shipyard
+		remove outfitter
+		remove "required reputation"
+		remove tribute
 
 
 
@@ -2265,9 +2289,10 @@ mission "Wanderers Evacuation 1B"
 	to offer
 		has "Wanderers Evacuation 1: done"
 	on offer
+		event "wanderers: vara ke'stai evacuated"
 		conversation
 			`The Wanderer transports land in the spaceport and begin loading passengers. The village appears to be almost empty; all but the last few stragglers have already left. As on Varu Mer'ek before it was captured, they seem to have taken pains to leave their village as neat and tidy as possible. In similar circumstances, a human government would probably have chosen to burn everything of value to the ground rather than let it fall into enemy hands.`
-				accept
+				launch
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -2283,6 +2308,12 @@ mission "Wanderers Evacuation 1B"
 	on visit
 		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
+event "wanderers: vara ke'stai evacuated"
+	planet "Vara Ke'stai"
+		remove spaceport
+		remove outfitter
+		remove "required reputation"
+		remove tribute
 
 
 mission "Wanderers Evacuation 1C"
@@ -2388,8 +2419,21 @@ mission "Wanderers Defend Sich'ka'ara"
 	on complete
 		log "Helped to defend a Wanderer world from yet another Unfettered attack. Meanwhile, the Wanderers are trying to move as many civilians as possible back to their home world, where they will be safe. But, their strategy seems to be based on the hope that sometime soon a wormhole will open and allow the Wanderer people to flee to a new territory and leave their old planets behind for the Unfettered to claim."
 		event "battle for sich'ka'ara ends"
+		event "solifuge deployment"
 		conversation
 			`The Unfettered fleet has been driven off. Tele'ek thanks you for taking part in defending this world. "Unfortunately," he says, "I just received news that this was only half of the Unfettered [assault, attack]. An equally large fleet attacked the Chirr'ay'akai system, and overwhelmed the defenses there so [quickly, unexpectedly] that some of our people did not have time to [escape, evacuate] and have been forced into hiding. If you're willing to help rescue them, please meet me in the spaceport once I am done [debriefing, informing] the warriors."`
+
+# Compatibility patch for users who completed "Wanderers Defend Sich'ka'ara"
+# before 0.10.3 when the "solifuge deployment" event was added.
+mission "Solifuge Shipyards Patch"
+	landing
+	invisible
+	to offer
+		has "event: battle for sich'ka'ara ends"
+		not "event: solifuge deployment"
+	on offer
+		event "solifuge deployment"
+		fail
 
 event "battle for sich'ka'ara ends"
 	system "Sich'ka'ara"
@@ -2409,6 +2453,11 @@ event "battle for sich'ka'ara ends"
 	planet "Kort Vek'kri"
 		attributes "unfettered"
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
+	
+event "solifuge deployment"
+	shipyard "Mon Ki o'Uden Advanced"
+		add "Solifuge"
+		add "Violin Spider"
 	fleet "Large Unfettered"
 		add variant 3
 			"Solifuge"

@@ -166,6 +166,9 @@ star "star/m-supergiant"
 	wind 3.1
 
 # Special stars.
+star "star/a-eater"
+	power 1.84
+	wind 0.45
 star "star/carbon"
 	power 0.1
 	wind 10
@@ -196,6 +199,10 @@ star "planet/rogue-radiating"
 star "star/neutron"
 	power 4
 	wind 0.4
+
+star "star/neutron-small"
+	power 2
+	wind 0.2
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
@@ -229,19 +236,19 @@ star "star/l-dwarf"
 star "planet/browndwarf-l"
 	power 0.4
 	wind 0.5
-star "planet/browndwarf-l-rouge"
+star "planet/browndwarf-l-rogue"
 	power 0.4
 	wind 0.5
 star "planet/browndwarf-t"
 	power 0.3
 	wind 0.4
-star "planet/browndwarf-t-rouge"
+star "planet/browndwarf-t-rogue"
 	power 0.3
 	wind 0.4
 star "planet/browndwarf-y"
 	power 0.1
 	wind 0.3
-star "planet/browndwarf-y-rouge"
+star "planet/browndwarf-y-rogue"
 	power 0.1
 	wind 0.3
 

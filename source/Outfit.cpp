@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -36,11 +36,9 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
-		{"shield generation", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
-		{"hull repair rate", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -133,6 +131,15 @@ namespace {
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
 
+		{"cloaking energy", 0.},
+		{"cloaking fuel", 0.},
+		{"cloaking heat", 0.},
+		{"cloaking hull", 0.},
+		{"cloaking repair delay", 0.},
+		{"cloaking shields", 0.},
+		{"cloaking shield delay", 0.},
+		{"cloaked firing", 0.},
+
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},
 		{"hull protection", -0.99},
@@ -153,14 +160,18 @@ namespace {
 		{"slowing protection", -0.99},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
+		{"hull multiplier", -1. },
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.}
+		{"shield heat multiplier", -1.},
+		{"acceleration multiplier", -1.},
+		{"turn multiplier", -1.}
 	};
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
@@ -168,7 +179,8 @@ namespace {
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
 			[&it](const pair<Body, int> &flare)
 			{
-				return it.first.GetSprite() == flare.first.GetSprite();
+				return (it.first.GetSprite() == flare.first.GetSprite()
+					&& it.first.Scale() == flare.first.Scale());
 			}
 		);
 
@@ -250,6 +262,10 @@ void Outfit::Load(const DataNode &node)
 			++jumpInSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
 			++jumpOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "cargo scan sound" && child.Size() >= 2)
+			++cargoScanSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "outfit scan sound" && child.Size() >= 2)
+			++outfitScanSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -274,20 +290,15 @@ void Outfit::Load(const DataNode &node)
 			mass = child.Value(1);
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
-			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-				return find(c.begin(), c.end(), val) == c.end();
-			};
 			// Add any new licenses that were specified "inline".
 			if(child.Size() >= 2)
 			{
 				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
-					if(isNewLicense(licenses, *it))
-						licenses.push_back(*it);
+					AddLicense(*it);
 			}
 			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
-				if(isNewLicense(licenses, grand.Token(0)))
-					licenses.push_back(grand.Token(0));
+				AddLicense(grand.Token(0));
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
@@ -324,7 +335,8 @@ void Outfit::Load(const DataNode &node)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
+		&& !AntiMissile() && !TractorBeam())
 	{
 		SetTurretTurn(4.);
 		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
@@ -537,6 +549,16 @@ void Outfit::Add(const Outfit &other, int count)
 	MergeMaps(jumpSounds, other.jumpSounds, count);
 	MergeMaps(jumpInSounds, other.jumpInSounds, count);
 	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
+	MergeMaps(cargoScanSounds, other.cargoScanSounds, count);
+	MergeMaps(outfitScanSounds, other.outfitScanSounds, count);
+}
+
+
+
+void Outfit::AddLicenses(const Outfit &other)
+{
+	for(const auto &license : other.licenses)
+		AddLicense(license);
 }
 
 
@@ -650,8 +672,32 @@ const map<const Sound *, int> &Outfit::JumpOutSounds() const
 
 
 
+const map<const Sound *, int> &Outfit::CargoScanSounds() const
+{
+	return cargoScanSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::OutfitScanSounds() const
+{
+	return outfitScanSounds;
+}
+
+
+
 // Get the sprite this outfit uses when dumped into space.
 const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
+}
+
+
+
+// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+void Outfit::AddLicense(const string &name)
+{
+	const auto it = find(licenses.begin(), licenses.end(), name);
+	if(it == licenses.end())
+		licenses.push_back(name);
 }

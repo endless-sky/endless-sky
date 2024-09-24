@@ -23,6 +23,16 @@ indent_style = unset
 indent_style = space
 indent_size = 2
 
+# Copyright file
+[copyright]
+indent_style = space
+indent_size = 1
+
+# Credits file
+[credits.txt]
+indent_style = space
+indent_size = 2
+
 # Markdown
 [*.md]
 trim_trailing_whitespace = false
