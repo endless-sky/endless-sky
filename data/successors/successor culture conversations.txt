@@ -1,0 +1,205 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Successors: First Contact Exploration: Kua-Oa-Aava"
+	landing
+	minor
+	source "Kua-Oa-Aava"
+	to offer
+		has "Successors: First Contact 1: done"
+		not "Successors: First Contact 2: done"
+	on offer
+		conversation
+			`You watch for a couple of minutes as the spaceport crew here attempt to find a fuel adapter that fits your ship. After some time, a group of military officers is called over; they scan the side of the <ship> thoroughly and input their results into a datapad. Eventually the leader produces another one of the Successors' morphic metal spheres; they briefly connect it to the datapad and it rapidly squishes into a shape that lets it interface with both your ship and the fuel hose.`
+				decline
+
+mission "Successors: First Contact Exploration: Raaqa-Kvelq-Ryuit"
+	minor
+	source "Raaqa-Kvelq-Ryuit"
+	to offer
+		has "Successors: First Contact 1: done"
+		not "Successors: First Contact 2: done"
+	on offer
+		conversation
+			`One of the Successors in the spaceport here seems to be offering small morsels of food to the others; short cooked strips of a dark green plant vaguely resembling a succulent, impaled on a wooden stick. Though most of the individuals here keep their distance from you, this one takes notice and offers you a stick.`
+			choice
+				`	(Take it.)`
+				`	(Decline.)`
+					goto refused
+			`	You take the stick from them and a wave of color runs up their body before they slither away to a different part of the spaceport.`
+			choice
+				`	(Try a bite.)`
+				`	(Hide it away.)`
+					goto hidden
+			`	Though you only take a small bite, the food tastes vile enough for you to gag: it is tough and fishy and far too salty for your palate. You discreetly spit out what little you consumed and consider yourself lucky that you didn't have to pay anything for it.`
+				decline
+			label refused
+			`	After a couple of seconds the Successor retracts their arm and slithers off to a different part of the spaceport.`
+				decline
+			label hidden
+			`	You hold the stick behind your back until you head back inside the <ship> and place it in a waste receptacle.`
+				decline
+
+mission "Successors: First Contact Exploration: Iyra-Ijasa-Iret"
+	minor
+	source "Iyra-Ijasa-Iret"
+	to offer
+		has "Successors: First Contact 1: done"
+		not "Successors: First Contact 2: done"
+	on offer
+		conversation
+			`You've never seen a spaceport that's entirely underwater before. Next to your landing pad, there's a massive window into what you might call an aquarium but what seems to be some sort of lounge for the Successors, who swim around and organize themselves around several multi-layered tables.`
+				decline
+
+mission "Successors: First Contact Exploration: Mavra-Sol-Kvel"
+	minor
+	source "Mavra-Sol-Kvel"
+	to offer
+		has "Successors: First Contact 1: done"
+		not "Successors: First Contact 2: done"
+	on offer
+		conversation
+			`Your ship draws a bit of a crowd when you land here, though most are kept at bay by a set of pre-arranged barriers set up around your landing pad and the occasional patrolling guard. While walking by the barrier, one Successor offers one of their data-spheres to you.`
+			choice
+				`	(Take it.)`
+					goto taken
+				`	(Refuse.)`
+					goto refused
+			label taken
+			action
+				outfit "Local Map" 1
+			`	The Successor trills warmly when you take the sphere, though they are quickly pushed back by one of the guards. Like previously, the sphere expands into a small star map as soon as you touch it, though this one seems to contain some cultural data in addition to stellar coordinates.`
+				decline
+			label refused
+			`	You hold up your hands and step away from the individual offering you the data-sphere, and they are quickly pushed back by one of the guards.`
+				decline
+
+mission "Successors: First Contact Exploration: Mosaa-Oa-Vyret"
+	minor
+	source "Mosaa-Oa-Vyret"
+	to offer
+		or
+			and
+				has "Successors: First Contact 1: done"
+				not "Successors: First Contact 2: done"
+			and
+				has "Successors: First Contact 2: done"
+				random < 10
+	on offer
+		conversation
+			`Near to your landing pad in the spaceport here, you see a large circular pool with several Successors milling about in it. Some relax against the edges while others appear deep in conversation; one trio of individuals is followed by a small salamander-like animal that swims behind them and plays between and around their arms, making soft splashing noises as it jumps in and out of the water.`
+				decline
+
+mission "Successors: Buskers"
+	minor
+	source
+		attributes "successor"
+		not attributes "crime" "quiet" "uninhabited"
+	to offer
+		has "known to the successors"
+		random < 40
+	on offer
+		conversation
+			`While waiting in the spaceport for the <ship> to be refueled, you notice that a small crowd of Successors is gathering around one of the pools of water that surround the starship hangars. Many are moving excitedly towards the commotion or, having already made it there, undulate strangely in the water.`
+			choice
+				`	(Investigate the gathering.)`
+				`	(Ignore it.)`
+					decline
+			`	You walk over the water-covered floor to the group, and as you start to grow closer, you begin to hear music coming from the pool: a strange, lilting melody, which is filled with notes that seem impossibly high or low or both at once. As you squeeze your way through the crowd, you see that in the pool there is a trio of submerged Successors, each of whom has their arms wrapped around one or several wildly distinct metal devices which protrude through the surface of the water. It is from these devices that the music emanates.`
+			`	One of the Successors in the pool begins to sing - at least, singing is the best way you could describe it; they press one of the longer and more cylindrical instruments up to their head and it begins producing an accompaniment to the other instruments' melody that your translation device occasionally recognizes as words:`
+			`	"... sweetest child... never want... not so... somber current... endure..."`
+			`	It is not clear whether or not this represents the entire lyric content of the performance or simply if the translation device is unable to parse the more tonal phrases. The submerged singer displays a variety of colors and textures on their skin, changing with each successive phrase; green and rough on a splittingly high note, pink and smooth-looking on a strangely growl-like low section. Several in the crowd emulate this in their own skin patterning; the group pulses in color and pattern in time with the melody of the music.`
+			choice
+				`	(Continue listening.)`
+				`	(Return to your ship.)`
+					goto unappreciative
+			`	The music eventually crescendos with a long, droning wail of instrumentation accompanied by a rapid, high-pitched vocal performance that sees the water in the pool sloshing from side to side as the trio within move rapturously, circling around each other faster and faster before suddenly stopping. The performance comes to a close with a gentler and more playful section that sees the performers blowing bubbles to the surface of the pool and producing short, semi-random notes on their bizarre instruments.`
+			`	The Successors around you produce a dull, low hum after the piece's conclusion.`
+			choice
+				`	(Applaud.)`
+					goto applaud
+				`	(Try to hum yourself.)`
+					goto hum
+				`	(Return to your ship.)`
+					decline
+			label applaud
+			`	The Successors around you seem a little surprised or perhaps confused by your display, but do not express any offense at it, as far as you can tell. The trio of performers eventually emerge from the pool, gently tucking their instruments into various equally oddly-shaped cases before chatting with some of the few remaining members of the crowd and then departing.`
+				decline
+			label hum
+			`	The Successors around you seem amused by your attempt to emulate the humming; some briefly display a bluish-green wave of color across their skin before quickly returning to their base shade. Nonetheless, no one here seems to take any significant offense at the gesture. The performers eventually emerge from the pool, gently tucking their instruments into equally oddly-shaped cases before chatting with some of the few remaining members of the crowd and then departing.`
+				decline
+			label unappreciative
+			`	You return to your ship, gently extricating yourself from the throng of spellbound Successors, who continue to shimmer and sway in the distance until the performance eventually ends and they disperse to go their separate ways.`
+				decline
+
+mission "Successors: Graffiti"
+	minor
+	source
+		attributes "successor"
+		not attributes "uninhabited"
+	to offer
+		has "known to the successors"
+		random < 15
+	on offer
+		conversation
+			`Shortly after you disembark the <ship> for the spaceport on <origin>, you hear a quiet but noticeable clattering from behind you near where your ship is being refueled.`
+			choice
+				`	(Investigate the sound.)`
+				`	(Ignore it.)`
+					goto ignored
+			`	Upon approaching the source of the clattering, you catch a trio of Successors in the process of smearing the hull of the <ship> with globs of a colorful, foul-smelling solution. It is so pungent you can barely approach them without retching, but the Successors seem not to notice, or not to care.`
+			choice
+				`	"What are you doing to my ship?"`
+					goto what
+				`	"Excuse me, are you all part of the repair crew?"`
+			`	The three Successors startle at the sound of your voice, arms whipping around as they turn to face you. One makes a move to run away, but one of the others clamps onto their arm and reels them back alongside them. All three slowly turn a shade of dull purple and their skin seems to contract over the underlying musculature. One of them eventually replies. "Yes, correct thou art! We've orders to apply this ... hull solution to repair a spot of damage here."`
+			`	Waves of color run up the bodies of the others, and the tips of their arms undulate gently.`
+			choice
+				`	"I've never seen a solution like that before. How does it work?"`
+					goto how
+				`	"I'm sorry to interrupt in that case. Carry on."`
+					goto fooled
+			label what
+			`	The three Successors startle at the sound of your voice, their arms whipping around as they turn to face you. One makes a move to run away, but one of the others clamps onto their arm and reels them back alongside them. All three slowly turn a shade of dull purple and their skin seems to contract over the underlying musculature. One of them eventually replies. "We... ah... we're part of the repair crew! We've orders to apply this... hull solution to repair a spot of damage here."`
+			`	Waves of color run up the bodies of the others, and the tips of their arms undulate gently.`
+			choice
+				`	"I've never seen a solution like that before. How does it work?"`
+					goto how
+				`	"I'm sorry to interrupt in that case. Carry on."`
+					goto fooled
+			label how
+			`	The group look around at each other before the same one replies again. "The... ah... solution seeps into the cracks and strains within the hull and when it dries it seals them. Beyond that, we do not know; we just apply it as directed by the port authority."`
+			`	One of the other ones pipes up, cheerfully adding, "We don't know anything!" before the others give them a dark look.`
+			choice
+				`	"And it's so colorful too! Are you sure it's not a paint of some sort?"`
+				`	"Fascinating. Carry on."`
+					goto fooled
+			`	"Oh, that's for... ah... safety. Yes, 'tis very dangerous to touch if thou'r'nt trained, so 'tis bright in color as a warning." None of the three are wearing any sort of protective equipment that you can see, and by now most of the group have changed color to what you might characterize as a mirthful shade of pink. This is something which one or two are clearly trying to suppress, their skin shifting in gradients in an effort to maintain their previous dull purple hue. One of the others is trying to hide a bag filled with more cans of "hull solution" behind their arms.`
+			choice
+				`	"Well, if you're working on behalf of the port, then surely I can ask you to remove it as well."`
+				`	"Nice try, but you and I both know what's going on here."`
+				`	"I think my ship's hull has been well enough repaired. It might be best for you to attend to whatever other vessels are on your list."`
+					goto complicit
+				`	"Thanks for answering my questions. Please carry on."`
+					goto fooled
+			`	The trio seem rather deflated at hearing this, but after quite a bit of milling amongst themselves eventually relent and agree to remove the solution so long as you don't inform the port authority about their actions. While they put good effort into removing it - or at least act the part - they can't seem to scrub away the most dried-on parts, and you eventually let them go after it becomes apparent that some of the paint has permanently bonded to the hull.`
+				decline
+			label complicit
+			`	The trio brighten up at hearing this, and after some milling amongst themselves eventually glide off into the spaceport with their cans of solution in tow, though not before leaving one with you for "emergency repairs," though considering how terrible it smells it's not certain if you could ever stand trying to apply it.`
+				decline
+			label ignored
+			`	Upon returning from the spaceport some time later, you find that an area on the side of the <ship> has been covered in a thick, colorful solution with an incredibly noxious smell so potent you can hardly bear to approach it. The pattern forms some words in the Successor script, and while the translation device struggles to interpret the non-standard glyphs, it eventually offers a translation along the lines of "Ryiaa was here! And friends." The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
+				decline
+			label fooled
+			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script placed alongside a rather crude depiction of your face. The translation device struggles to interpret the non-standard glyphs, but it eventually resolves the text as "'Erjn'-Fool! No quills, no brain!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
+				decline

@@ -457,3 +457,26 @@ effect "sheragi launch"
 
 effect "scin launch"
 	sound "scin launch"
+
+effect "spatial hazard"
+	sprite "effect/jump drive"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.05
+
+effect "void spark"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 6
+		"random start frame"
+		scale 10.0
+	"lifetime" 36
+
+effect "void spark tiny"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 6
+		"random start frame"
+	"lifetime" 36
