@@ -100,6 +100,13 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
+	// TODO(C++20): Replace `Prune` with `erase_if` lambdas.
+	//
+	// constexpr auto PrunePointers = [](auto &objects) { erase_if(objects,
+	// 		[](const auto &obj) { return obj->ShouldBeRemoved(); }); };
+	// constexpr auto Prune = [](auto &objects) { erase_if(objects,
+	// 		[](const auto &obj) { return obj.ShouldBeRemoved(); }); };
+
 	template <class Type>
 	void Prune(vector<Type> &objects)
 	{
