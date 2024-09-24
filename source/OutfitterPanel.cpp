@@ -69,7 +69,7 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.contains(outfit))
+			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
@@ -255,7 +255,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.contains(DESCRIPTION));
+		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -276,7 +276,8 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 		if(hasDescription)
 		{
-			if(!collapsed.contains(DESCRIPTION))
+			// Maintenance note: This can be replaced with collapsed.contains() in C++20
+			if(!collapsed.count(DESCRIPTION))
 			{
 				descriptionOffset = outfitInfo.DescriptionHeight();
 				outfitInfo.DrawDescription(startPoint);

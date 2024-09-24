@@ -92,7 +92,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		removeAll |= (!add && !remove && hasValue && value == "clear");
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.contains(key));
+		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.count(key));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
@@ -240,7 +240,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	// uninhabited spaceport.
 	if(HasNamedPort() && !port.CustomLoaded())
 	{
-		if(attributes.contains("uninhabited"))
+		if(attributes.count("uninhabited"))
 			port.LoadUninhabitedSpaceport();
 		else
 			port.LoadDefaultSpaceport();
@@ -289,7 +289,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
+	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 

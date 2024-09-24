@@ -128,7 +128,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.contains(DESCRIPTION), true);
+		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
@@ -151,7 +151,8 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 		if(hasDescription)
 		{
-			if(!collapsed.contains(DESCRIPTION))
+			// Maintenance note: This can be replaced with collapsed.contains() in C++20
+			if(!collapsed.count(DESCRIPTION))
 			{
 				descriptionOffset = shipInfo.DescriptionHeight();
 				shipInfo.DrawDescription(startPoint);

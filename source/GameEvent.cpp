@@ -48,7 +48,7 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 	auto definitions = map<string, set<string>> {};
 
 	for(auto &&node : changes)
-		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.contains(node.Token(0)))
+		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.count(node.Token(0)))
 		{
 			const string &key = node.Token(0);
 			const string &name = node.Token(1);
@@ -116,7 +116,7 @@ void GameEvent::Load(const DataNode &node)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(key == "visit planet" && child.Size() >= 2)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
-		else if(allowedChanges.contains(key))
+		else if(allowedChanges.count(key))
 			changes.push_back(child);
 		else
 			conditionsToApply.Add(child);
@@ -199,11 +199,11 @@ string GameEvent::IsValid() const
 
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
-			if(!system->IsValid() && !deferred["system"].contains(system->Name()))
+			if(!system->IsValid() && !deferred["system"].count(system->Name()))
 				return "contains invalid system \"" + system->Name() + "\".";
 	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
 		for(auto &&planet : planets)
-			if(!planet->IsValid() && !deferred["planet"].contains(planet->TrueName()))
+			if(!planet->IsValid() && !deferred["planet"].count(planet->TrueName()))
 				return "contains invalid planet \"" + planet->TrueName() + "\".";
 
 	return isDefined ? "" : "not defined";

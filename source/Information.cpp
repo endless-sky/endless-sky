@@ -138,7 +138,7 @@ bool Information::HasCondition(const string &condition) const
 	if(condition.front() == '!')
 		return !HasCondition(condition.substr(1));
 
-	return conditions.contains(condition);
+	return conditions.count(condition);
 }
 
 

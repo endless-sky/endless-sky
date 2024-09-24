@@ -69,7 +69,7 @@ namespace {
 		static const set<string> comparison = {
 			"==", "!=", "<", ">", "<=", ">="
 		};
-		return comparison.contains(op);
+		return comparison.count(op);
 	}
 
 	bool IsAssignment(const string &op)
@@ -77,7 +77,7 @@ namespace {
 		static const set<string> assignment = {
 			"=", "+=", "-=", "*=", "/=", "<?=", ">?="
 		};
-		return assignment.contains(op);
+		return assignment.count(op);
 	}
 
 	bool IsSimple(const string &op)
@@ -85,7 +85,7 @@ namespace {
 		static const set<string> simple = {
 			"(", ")", "+", "-", "*", "/", "%"
 		};
-		return simple.contains(op);
+		return simple.count(op);
 	}
 
 	int Precedence(const string &op)
@@ -106,7 +106,7 @@ namespace {
 			"||", "&&", "&=", "|=", "<<", ">>"
 		};
 		for(const string &str : tokens)
-			if(invalids.contains(str))
+			if(invalids.count(str))
 				return true;
 		return false;
 	}

@@ -421,7 +421,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 
-			if(!playerShips.contains(playerShip))
+			if(!playerShips.count(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 		else
@@ -435,7 +435,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 
-			if(!playerShips.contains(playerShip))
+			if(!playerShips.count(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 	}
@@ -760,7 +760,7 @@ void ShopPanel::DrawShipsSidebar()
 			point.Y() += ICON_TILE;
 		}
 
-		bool isSelected = playerShips.contains(ship.get());
+		bool isSelected = playerShips.count(ship.get());
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
@@ -1020,7 +1020,7 @@ void ShopPanel::DrawMain()
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 
-		bool isCollapsed = collapsed.contains(category);
+		bool isCollapsed = collapsed.count(category);
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
@@ -1086,7 +1086,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.contains("description"), true);
+	shipInfo.Update(*playerShip, player, collapsed.count("description"), true);
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
@@ -1212,7 +1212,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	}
 	else if(!control)
 		playerShips.clear();
-	else if(playerShips.contains(ship))
+	else if(playerShips.count(ship))
 	{
 		playerShips.erase(ship);
 		if(playerShip == ship)

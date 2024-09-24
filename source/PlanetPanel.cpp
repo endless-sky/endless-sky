@@ -354,7 +354,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
-				if(jumpWarnings.contains(warning))
+				if(jumpWarnings.count(warning))
 				{
 					++nonJumpCount;
 					break;

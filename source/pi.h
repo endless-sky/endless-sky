@@ -15,10 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <numbers>
 
 
-
-constexpr double PI = std::numbers::pi;
+// Constants to replace M_PI (which is not available on all operating systems).
+constexpr double PI = 3.14159265358979323846;
 constexpr double TO_RAD = PI / 180.;
 constexpr double TO_DEG = 180. / PI;

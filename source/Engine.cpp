@@ -100,10 +100,36 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	constexpr auto PrunePointers = [](auto &objects) { erase_if(objects,
-			[](const auto &obj) { return obj->ShouldBeRemoved(); }); };
-	constexpr auto Prune = [](auto &objects) { erase_if(objects,
-			[](const auto &obj) { return obj.ShouldBeRemoved(); }); };
+	template <class Type>
+	void Prune(vector<Type> &objects)
+	{
+		// First, erase any of the old objects that should be removed.
+		typename vector<Type>::iterator in = objects.begin();
+		while(in != objects.end() && !in->ShouldBeRemoved())
+			++in;
+
+		typename vector<Type>::iterator out = in;
+		while(in != objects.end())
+		{
+			if(!in->ShouldBeRemoved())
+				*out++ = std::move(*in);
+			++in;
+		}
+		if(out != objects.end())
+			objects.erase(out, objects.end());
+	}
+
+	template <class Type>
+	void Prune(list<shared_ptr<Type>> &objects)
+	{
+		for(auto it = objects.begin(); it != objects.end(); )
+		{
+			if((*it)->ShouldBeRemoved())
+				it = objects.erase(it);
+			else
+				++it;
+		}
+	}
 
 	template <class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
@@ -963,7 +989,7 @@ void Engine::Step(bool isActive)
 				bool inRange = offset.LengthSquared() <= scanRangeMetric;
 
 				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
-				if(shouldCatalogAsteroids && !asteroidsScanned.contains(minable->DisplayName()))
+				if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
 				{
 					scanComplete = false;
 					if(!Random::Int(10) && inRange)
@@ -1493,7 +1519,7 @@ void Engine::CalculateStep()
 		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
-	PrunePointers(ships);
+	Prune(ships);
 
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
@@ -1503,7 +1529,7 @@ void Engine::CalculateStep()
 	// checks if any ship has picked it up.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		it->Move(newVisuals);
-	PrunePointers(flotsam);
+	Prune(flotsam);
 
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
@@ -2651,7 +2677,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
-	if(grudge.contains(attacker))
+	if(grudge.count(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		// If the previous ship is destroyed, or was able to send a
