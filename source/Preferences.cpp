@@ -143,7 +143,7 @@ namespace {
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
-	int previousSaveCount = 3;
+	int previousSaveCount = 10;
 }
 
 
@@ -219,7 +219,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
-			previousSaveCount = max<int>(3, node.Value(1));
+			previousSaveCount = max<int>(10, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else
