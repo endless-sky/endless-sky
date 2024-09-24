@@ -113,7 +113,6 @@ int Hazard::RandomDuration() const
 
 
 
-
 // Generates a random double between the minimum and maximum strength of this hazard.
 double Hazard::RandomStrength() const
 {

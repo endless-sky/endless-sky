@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"
@@ -35,35 +35,34 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Hazard.h"
-#include "ImageSet.h"
+#include "image/ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
-#include "MaskManager.h"
+#include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
-#include "Music.h"
+#include "audio/Music.h"
 #include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
 #include "RingShader.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
@@ -532,9 +531,9 @@ void GameData::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // This must be done any time that a change creates or moves a system.
-void GameData::UpdateSystems(const PlayerInfo *player)
+void GameData::UpdateSystems()
 {
-	objects.UpdateSystems(player);
+	objects.UpdateSystems();
 }
 
 
@@ -778,7 +777,7 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.landingMessages.count(sprite);
+	return objects.landingMessages.contains(sprite);
 }
 
 

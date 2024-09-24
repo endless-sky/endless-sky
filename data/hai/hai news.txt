@@ -60,6 +60,7 @@ news "trading in Hai space"
 			"If I had known there was such high demand for human-made products around here, I would've started making trips years ago!"
 			"One day I'll finally retire from my life as a merchant, and when that happens I know no better place than in Hai space."
 			"Plenty of businessmen come by curious of what I have in my hold, but I'll never tell them about my stash of industrial-sized shampoo bottles that I bring in on each visit to Hai space."
+			"The early Firebird gets the wormhole."
 		word
 			`"`
 

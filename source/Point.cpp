@@ -299,6 +299,13 @@ double Point::DistanceSquared(const Point &point) const
 
 
 
+Point Point::Lerp(const Point &to, const double c) const
+{
+	return *this + (to - *this) * c;
+}
+
+
+
 // Absolute value of both coordinates.
 Point abs(const Point &p)
 {

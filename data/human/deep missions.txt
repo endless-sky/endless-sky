@@ -802,6 +802,9 @@ mission "Deep: Interrogation"
 		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
@@ -1711,6 +1714,9 @@ mission "Deep: Remnant: Continue Research"
 	to offer
 		has "event: deep: remnant: rest period"
 		has "deep: did reveal remnant"
+		# If the player received subsequent missions prior to the addition of this one in v0.9.15, do not offer this one.
+		not "Deep: Remnant: Engines: offered"
+
 	on offer
 		conversation
 			`You receive a message from Ivan, the Deep scientist who you helped to discover the Remnant in the Ember Waste. "Captain <last>, it's been so long. The Deep has finally finished reviewing our research in the Ember Waste, and we've been approved for further funding! Please meet us on <destination> if you wish to assist us again. Your help would be appreciated, but we will make progress even if you're unable to help."`
@@ -1946,7 +1952,7 @@ mission "Deep: Scientist Rescue 0"
 		attributes "deep"
 		not attributes "station"
 	destination "Valhalla"
-	waypoint "Betelgeuse"
+	mark "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
 		or
@@ -1983,8 +1989,11 @@ mission "Deep: Scientist Rescue 0"
 					accept
 				`	"Sorry, but this doesn't sound worth it to me."`
 					decline
-
+	on enter "Betelgeuse"
+		unmark "Betelgeuse"
+		dialog `Upon entering Betelgeuse, you fail to see any trace of the Star Queen. The pirates must have captured it and escaped to a nearby system.`
 	on enter "Arneb"
+		unmark "Betelgeuse"
 		set "found star queen"
 		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Paris on <destination> for further instruction.`
 	on visit
@@ -2515,7 +2524,7 @@ mission "Stone of our Fathers 1"
 			label "ser 3"
 			action
 				set "Stone of our Fathers: ser 2"
-			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn."`
+			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
 
 			label "back to the point"
 			`	"Now, I'd like to know whether you can take me to <planet>."`
@@ -2599,7 +2608,7 @@ mission "Stone of our Fathers 3"
 				decline
 			label accept
 			`	You're surprised at how cool the smooth stone feels in your palm.`
-			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	And with that, the man disappears into the crowd.`
 				accept
 	on complete

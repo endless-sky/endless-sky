@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "Information.h"
 #include "Logger.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "TaskQueue.h"
 
 #include <algorithm>
@@ -168,14 +168,14 @@ void UniverseObjects::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // (This must be done any time a GameEvent creates or moves a system.)
-void UniverseObjects::UpdateSystems(const PlayerInfo *player)
+void UniverseObjects::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateSystem(systems, neighborDistances, player);
+		it.second.UpdateSystem(systems, neighborDistances);
 
 		// If there were changes to a system there might have been a change to a legacy
 		// wormhole which we must handle.
@@ -200,7 +200,7 @@ void UniverseObjects::CheckReferences()
 	// Class objects with a deferred definition should still get named when content is loaded.
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
 	{
-		if(deferred.count(it.first))
+		if(deferred.contains(it.first))
 			it.second.SetName(it.first);
 		else
 			return false;
@@ -246,7 +246,7 @@ void UniverseObjects::CheckReferences()
 		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
 		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
 		it.second.RemoveInvalidVariants();
-		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
+		if(!it.second.IsValid() && !deferred["fleet"].contains(it.first))
 			Warn("fleet", it.first);
 	}
 	// Government names are used in mission NPC blocks and LocationFilters.
@@ -271,7 +271,7 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("outfit", it);
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].count(it.first))
+		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
 			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
@@ -290,7 +290,7 @@ void UniverseObjects::CheckReferences()
 		}
 	// Shipyards are never serialized.
 	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].count(it.first))
+		if(it.second.empty() && !deferred["shipyard"].contains(it.first))
 			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
@@ -304,7 +304,6 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : wormholes)
 		if(it.second.Name().empty())
 			Warn("wormhole", it.first);
-
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
 		if(it.second.Name().empty())
@@ -476,7 +475,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
 			const string &category = node.Token(1);
-			if(canDisable.count(category))
+			if(canDisable.contains(category))
 			{
 				if(node.HasChildren())
 					for(const DataNode &child : node)
