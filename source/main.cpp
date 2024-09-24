@@ -14,6 +14,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
+#define _CRT_SECURE_NO_WARNINGS
 
 #include "audio/Audio.h"
 #include "Command.h"
@@ -39,10 +40,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "SpriteShader.h"
+#include "System.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"
 #include "UI.h"
+
+#include "discord_game_sdk/discord.h"
 
 #include <chrono>
 #include <iostream>
@@ -52,6 +56,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <future>
 #include <exception>
 #include <string>
+
+#include <iostream>
+#include <memory>
+#include <thread>
 
 #ifdef _WIN32
 #define STRICT
@@ -63,6 +71,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+
+
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
@@ -73,7 +83,68 @@ void PrintTestsTable();
 void InitConsole();
 #endif
 
+struct DiscordState {
+    std::unique_ptr<discord::Core> core;
+    discord::User currentUser;
+};
 
+DiscordState state;
+
+void InitializeDiscord() {
+    discord::Core* core{};
+    auto result = discord::Core::Create(1287535358178758708, DiscordCreateFlags_Default, &core);
+    state.core.reset(core);
+    
+    if (!state.core) {
+        std::cerr << "Failed to initialize Discord Core! (err " << static_cast<int>(result) << ")\n";
+        return;
+    }
+
+    state.core->SetLogHook(discord::LogLevel::Debug, [](discord::LogLevel level, const char* message) {
+        std::cerr << "Discord Log(" << static_cast<uint32_t>(level) << "): " << message << "\n";
+    });
+
+    state.core->UserManager().OnCurrentUserUpdate.Connect([]() {
+        state.core->UserManager().GetCurrentUser(&state.currentUser);
+        std::cout << "Logged in as: " << state.currentUser.GetUsername() << "#" 
+                  << state.currentUser.GetDiscriminator() << "\n";
+    });
+}
+
+std::string GetCurrentSystemName(const PlayerInfo &playerInfo)
+{
+    const System *currentSystem = playerInfo.GetSystem();
+
+    if (currentSystem)
+        return currentSystem->Name();
+    else
+        return "Unknown";
+}
+
+void UpdateDiscordActivity(const std::string& system) {
+    if (!state.core)
+        return;
+
+    discord::Activity activity{};
+    activity.SetDetails(("Exploring system: " + system).c_str());
+    
+    activity.GetAssets().SetLargeImage("endless_sky_icon");
+    activity.GetAssets().SetLargeText("Endless Sky");
+    
+    state.core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
+        if (result == discord::Result::Ok) {
+            std::cout << "Discord Rich Presence updated successfully.\n";
+        } else {
+            std::cerr << "Failed to update Discord Rich Presence.\n";
+        }
+    });
+}
+
+void RunDiscordCallbacks() {
+    if (state.core) {
+        state.core->RunCallbacks();
+    }
+}
 
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
@@ -211,6 +282,8 @@ int main(int argc, char *argv[])
 
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0);
+
+		InitializeDiscord();
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
@@ -405,6 +478,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();
+
+			// Discord RPC stuff
+			const std::string currentSystem = GetCurrentSystemName(player);
+			UpdateDiscordActivity(currentSystem);
+			RunDiscordCallbacks();
 
 			// Lock the game loop to 60 FPS.
 			timer.Wait();
