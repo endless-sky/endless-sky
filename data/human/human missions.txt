@@ -7459,13 +7459,13 @@ mission "Adelita 5"
 
 
 mission "Syndicate Business 1"
-	name "Rescue Kidnapped Man in <waypoints>"
-	description "A mysterious man has been kidnapped by a heavy pirate warship in <waypoints>. Destroy the ship to rescue him."
+	name "Rescue kidnapped man in <waypoints>"
+	description "You have received a mysterious distress call from an alleged abductee in the <waypoints> system. Head there to see if you can find the signal's source."
 	minor
 	to offer
 		random < 40
 		credits > 5000000
-		"combat rating" > 350
+		"combat rating" > 50
 	source
 		government "Syndicate"
 		attributes "core"
@@ -7473,56 +7473,73 @@ mission "Syndicate Business 1"
 	destination "Sunracer"
 	on offer
 		conversation
-			`You are walking near the spaceport and suddenly a computer terminal starts blinking and beeping when you pass it.`
+			`As you are walking through the spaceport, you are startled by a sudden loud beeping from a nearby computer terminal. The computer is unattended and the screen is blinking on and off.`
 			choice
 				`	(Check it out.)`
 				`	(Ignore it.)`
 					decline
 			`	When you approach, you are greeted by plain text on the terminal's screen:`
-			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: -1.18143560, -0.01575673, 0.00755328. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
-			`	You note that the message doesn't have any information about the sender, but there wouldn't be if what the message contains is true. There are no shortage of pirates in <waypoints>.`
+			`	"SOS: Kidnapped by pirates, can't respond. <waypoints> standard coordinates: RAD AU 30.12 LAT 0.2 LON 303.9. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
+			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>.`
 			choice
 				`	"To <waypoints>!"`
 				`	(Ignore it and walk away.)`
 					decline
 			`	You return to your ship and prepare to leave.`
 				accept
-
+	on accept
+		event "start of independent violence"
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <waypoints>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
-			`	The voice of the apparent captain of the <npc> sends you a hail. "You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard and a derelict escape pod aimlessly drifting near the coordinates in the original message. Your ship is immediately hailed, and the pirate opens communication.`
+			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
 				`	"I don't negotiate with pirates!"`
 					goto negotiate
 				`	"You can take him, but I don't know where he is."`
-			label who
 			`	"Bah, you spineless buffoon! Your lies won't save you or that useless salesman. I'll find him in your ship's wreckage!"`
 				goto power
 			label negotiate
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
 			`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
-	npc kill
+	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
 			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
+		on kill
+			set "syndicate bus golden jewel dead"
+			conversation
+				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`
+				choice
+					`	Best not to dwell on these things.`
+	npc save assist
+		government "Independent"
+		personality derelict target quiet escort
+		system "Moktar"
+		ship "Escape Pod" "Escape Pod 001"
+		on kill
+			conversation
+				`You watch as the escape pod you're racing to save explodes into a cloud of debris, all hope snuffed out in an instant.`
+				choice
+					`	Better not to linger on what could have been.`
 		conversation
-			`The <npc> has been destroyed. You receive a hail from a small escape pod drifting nearby. "Thank you, Captain, you've saved my life. I'm Howard. I can promise you a reward if you pick me up from this tin can and drop me off at <destination>."`
+			`You board the escape pod to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
 				`	"What's the deal with you and that pirate?"`
-			`	"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <planet>.`
+			`	Howard takes a breath and seems to calm himself. "That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to get back to <planet>.`
 	on complete
 		"reputation: Independent (Killable)" = 10
+		event "end of independent violence"
 		conversation
-			`When you land on <planet>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
-			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc perpetual bond. To purchase 1 perpetual bond of Megaparsec Inc I will need 1 million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
+			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the escape pod. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc. perpetual bond. To purchase a perpetual bond of Megaparsec Inc. I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of 20% per annum expected, of course, to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
@@ -7540,24 +7557,80 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label placement
-			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Megaparsec Incorporated. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest with us?"`
+			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Megaparsec Incorporated. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with high returns, I might add. Would you like to invest with us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. To purchase 1 bond in Megaparsec Incorporated I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the bond sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here at the spaceport anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the bond purchase."`
+			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork, so the deal won't be ready today, but feel free to come back to my kiosk here at the spaceport anytime afterwards to execute the purchase. Remember, you'll need to have at least one million credits for the bond purchase and to take care of a few other administrative tasks."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
 			action
 				payment 91951
-				set "mean to Howard"
+				set "syndicate business: mean to Howard"
+
+event "start of independent violence"
+	government "Independent (Killable)"
+		"attitude toward"
+			"Independent" -.2
+	government "Independent"
+		"attitude toward"
+			"Independent (Killable)" -.2
+
+event "end of independent violence"
+	government "Independent (Killable)"
+		"attitude toward"
+			"Independent" 0
+	government "Independent"
+		"attitude toward"
+			"Independent (Killable)" 0
+
+# Feel free to change this escape pod to a different ship once escape pod mechanics are implemented.
+ship "Escape Pod"
+	sprite "ship/escape pod"
+	attributes
+		category "Utility"
+		"cost" 45000
+		"shields" 300
+		"hull" 600
+		"required crew" 1
+		"bunks" 10
+		"mass" 65
+		"drag" 1.7
+		"heat dissipation" .7
+		"fuel capacity" 100
+		"cargo space" 20
+		"outfit space" 39
+		"weapon capacity" 0
+		"engine capacity" 20
+		weapon
+			"blast radius" 9
+			"shield damage" 90
+			"hull damage" 45
+			"hit force" 135
+	outfits
+		"KP-6 Photovoltaic Panel" 2
+		"LP036a Battery Pack"
+		"Outfits Expansion"
+		
+		"X1050 Ion Engines"
+
+		"Hyperdrive"
+		
+	engine 0 26
+		zoom 1.4
+	leak "leak" 40 50
+	explode "tiny explosion" 5
+	explode "small explosion" 1
+	description "This escape pod is a custom-built Shuttle, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits. While escape pods usually do not come with a hyperdrive installed, this one has been modified in order to fit one in."
+
 
 
 mission "Syndicate Business 2"
-	name "Purchase Bond on <planet>"
-	description "Howard from Megaparsec Incorporated is letting you buy a bond in the company for 1 million credits."
+	name "Purchase bond on <planet>"
+	description "Bring Howard to <destination> in order to finish the paperwork you'll need to finalize your bond agreement with Megaparsec Incorporated."
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
@@ -7566,15 +7639,15 @@ mission "Syndicate Business 2"
 		credits > 1000000
 	on offer
 		conversation
-			`You visit the office address Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
-			`	"To reiterate, to purchase 1 perpetual bond of Megaparsec Incorporated I will need 1 million credits and for you to sign a few documents. Our promised returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
+			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
+			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are 20% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
-				`	"Sure, here's the 1 million credits."`
+				`	"Sure, here's the one million credits."`
 					goto doit
 				`	"No, I won't become an investor."`
 					decline
 			label doit
-			`After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. This particular investment is in partnership with Syndicated Systems, so we'll need to submit this first set of paperwork to their office and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
+			`	After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. This particular investment is in partnership with Syndicated Systems, so we'll need to submit this first set of paperwork to their office and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
 				accept
 	on accept
 		payment -1000000
@@ -7582,13 +7655,13 @@ mission "Syndicate Business 2"
 		conversation
 			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled out, and after scanning your fingerprint, retinas, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places one more set of documents on the table and taps the stack of papers.`
 			`	"New regulations dictate that we inform you that the proceeds of this bond may be used in high risk activities such as strip mining, clearing endangered habitats, or doing business on worlds with alleged human rights violations. All boilerplate language, of course, but you have to disclose every possibility these days." He shrugs.`
-			`	He then taps the documents the documents again and says, "This is your final decision and set of paperwork. I would also like to disclose that your initial deposit covering the full 1 million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
+			`	He then taps the documents the documents again and says, "This is your final decision and set of paperwork. I would also like to disclose that your initial deposit covering the full one million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
 			choice
 				`	"Of course."`
 					goto high
-				`	"I'm backing out, I can't ethically invest in this."`
-					decline
-			
+				`	"I'm backing out. I can't ethically invest in this."`
+			`	Howard nods. "I get it, ethics are important and I respect your decision. Unfortunately, the initial deposit is non-refundable, nothing I can do there. Best of luck finding another investment that suits you."`
+				decline
 			label high
 			action
 				"salary: Syndicate Business" = 500
@@ -7637,7 +7710,7 @@ mission "Syndicate Business 3"
 			choice
 				`	(Take a seat in the lobby.)`
 			branch makeemwait
-				has "mean to Howard"
+				has "syndicate business: mean to Howard"
 			`	Much to your surprise, the wait is brief. Within minutes, Howard emerges with a warm smile, extending a hand as he welcomes you into his office, clearly eager to discuss the next big deal.`
 				goto next
 			label makeemwait
@@ -7820,6 +7893,12 @@ mission "Syndicate Business 5"
 				`	"<first> <last>, you've done it again! Meet back at <destination> to discuss."`
 				`		Howard Vendeur`
 				`		Investor Relations Manager, Megaparsec Incorporated`
+		on kill
+			conversation
+				`The ship has been destroyed. Like before, you almost immediately receive a message from Howard:`
+				`	"What have you done, I said disable the ship! You've completely destroyed my plans, cost us millions, and ruined any chance of salvaging this operation--how could you possibly mess this up so badly? Don't come back, we're done."`
+				`		Howard Vendeur`
+				`		Investor Relations Manager, Megaparsec Incorporated`
 	on complete
 		event "10m investment done" 180
 		conversation
@@ -7841,7 +7920,7 @@ mission "Syndicate Business 5"
 			choice
 				`	"Okay."`
 			branch upcharge
-				has "mean to Howard"
+				has "syndicate business: mean to Howard"
 			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
 			`	He slides a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
