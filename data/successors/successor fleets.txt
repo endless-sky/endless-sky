@@ -15,6 +15,7 @@ fleet "Light Successor Freight"
 	government "Successor"
 	names "successor"
 	cargo 3
+	outfitters "Successor Basics"
 	personality
 		appeasing timid
 		confusion 30
@@ -35,6 +36,7 @@ fleet "Medium Successor Freight"
 	government "Successor"
 	names "successor"
 	cargo 3
+	outfitters "Successor Civilian"
 	personality
 		appeasing timid
 		confusion 30
@@ -55,7 +57,7 @@ fleet "Medium Successor Freight"
 fleet "Small Successor Transport"
 	government "Successor"
 	names "successor"
-	cargo 2
+	cargo 0
 	personality
 		timid
 		confusion 30
@@ -120,6 +122,7 @@ fleet "People's Houses"
 	government "People's Houses"
 	names "successor"
 	cargo 3
+	outfitters "Successor Basics"
 	personality
 		disables harvests mining plunders
 		confusion 20
