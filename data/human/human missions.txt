@@ -7687,12 +7687,13 @@ mission "Syndicate Business 3"
 		credits > 40000000
 	on offer
 		conversation
-			`After an uneventful trip to the spaceport you return to the <ship> and see a message from Howard, the Megaparsec salesman who sold you a 1 million credit bond. The message says:`
-			`	"<first> <last>! My bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my office on <planet> to talk about it."`
+			`After an uneventful trip to the spaceport you return to the <ship> and see a message from Howard, the Megaparsec salesman who sold you a one million credit bond. The message says:`
+			`	"<first> <last>! My bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my new office on <planet> (note the address, I've moved up since my promotion). Looking forward to chat!"`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			choice
 				`	(Message him back that you're on the way.)`
+				`	(Send a message congratulating him on the promotion.)`
 				`	(Ignore and delete the message.)`
 					decline
 			`You immediately receive an automated response:`
@@ -7703,10 +7704,9 @@ mission "Syndicate Business 3"
 			`		Investor Relations Manager, Megaparsec Incorporated`
 				accept
 	on complete
-		event "howard back at sunracer" 14
 		conversation
 			`You land <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the Syndicate's headquarters.`
-			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from minutes to hours.`
+			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from minutes to hours.`
 			choice
 				`	(Take a seat in the lobby.)`
 			branch makeemwait
@@ -7718,7 +7718,7 @@ mission "Syndicate Business 3"
 			label next
 			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress, but it's clear this is more for show than substance.`
 			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
-			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings over the next few days, but I'll be back at my other office on Sunracer in a couple weeks. I'll explain everything once you get there."`
+			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings today, but meet me at the spaceport tomorrow. I'll fly in my shuttle as your escort to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
 			choice
 				`	"Sure thing, I'll see you later."`
 					goto next2
@@ -7728,42 +7728,52 @@ mission "Syndicate Business 3"
 			`	Howard raises an eyebrow and then waves you off with a chuckle. "All in good time, my friend," he says, leaning back. "It's nothing you can't handle. I'll fill you in once we're safely on Sunracer, and let's just say it'll be worth your while."`
 				goto next2
 			label offices
-			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I keep reserved for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
+			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I can reserve for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
+			choice
+				`	"Can't wait."`
+					goto next2
+				`	"Is that a glorified conference room too?"`
+			`	Howard's smile falters slightly. He forces a light chuckle, though the tension is noticeable. "Well, if I'm being honest, the Sunracer office is... also technically reservable," he admits, rubbing his neck and looking almost pained. "But just as nice! And, uh... look, my real office is technically a cubicle, but compared to the kiosk last time we met? It's a big step up." He shrugs, trying to brush it off. "But hey, we don't need fancy spaces to make serious deals. Let's get back on track, yeah?" He clears his throat.`
 			label next2
-			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. It's clear that, for now, Howard is finished with you and you'll get no more information.`
-
-event "howard back at sunracer"
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. As he walks off he turns and mouths two words to you: "Spaceport... Tomorrow..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
 mission "Syndicate Business 4"
-	landing
-	name "Meet Howard on <planet>"
-	description "Meet Howard from Megaparsec Inc. on <planet> to complete a favor in exchange for an investment opportunity."
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
-		near Sol 100
+	name "Escort Howard to <planet>"
+	description "Escort Howard from Megaparsec Inc. to <planet> to learn what favor is needed in exchange for an investment opportunity."
+	source "Hephaestus"
 	to offer
-		has "event: howard back at sunracer"
 		has "Syndicate Business 3: done"
 	destination "Sunracer"
 	on offer
 		conversation
-			branch sunracer
-				has "flagship planet: Sunracer"
-			`You see a message from Howard just after landing the <ship>:`
-			`	"<first> <last>! I've just settled back in on <planet>! Meet me at my office on <planet> to continue our conversation."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-				accept
-			label sunracer
-			`You see a message from Howard just after landing the <ship>:`
-			`	"Hello <first> <last>! Nice to see you're on <origin>! Meet me at my office in the spaceport to talk about the investment opportunity."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-				decline
+			`You meet Howard at the spaceport. He's standing on a nearby landing pad by his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
+			`	"Good to see you're on time," Howard says, glancing at his wrist terminal. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your <model> ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his shuttle's ramp, already shifting his attention back to his wrist terminal. "Let's get moving."`
+				launch
+	npc accompany save
+		government "Syndicate"
+		personality escort timid
+		ship "Shuttle" "Gallant Knight"
+		on kill
+			conversation
+				`You watch as Howard's shuttle explodes into a cloud of debris along with any hope of that investment opportunity.`
+				choice
+					`	Best not to think on what could have been.`
+	npc
+		government "Pirate"
+		personality nemesis staying harvests plunders
+			confusion 40
+		system destination
+		fleet
+			names "pirate"
+			variant
+				"Wasp" 3
+			variant
+				"Quicksilver"
+
 	on complete
 		conversation
-			`As soon as you land, you see yet another message from Howard:`
-			`	"<first> <last>! My people tell me you've landed on <planet>! Meet me at my office near the spaceport to discuss."`
+			`As soon as you land, you see a message from Howard:`
+			`	"<first> <last>! Looks like I landed first on <planet>! Meet me at my office near the spaceport to discuss."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 
@@ -7783,7 +7793,7 @@ mission "Syndicate Business 5"
 	on offer
 		conversation
 			`Even amidst the mix of landing pads, hangars, and cranes, it's hard to miss the Megaparsec corporate office. After a short walk, you reach the towering building. The lobby is sleek and modern, filled with the quiet hum of efficiency. To your surprise the receptionist waves you on and you take an elevator up to the eighth floor, where Howard awaits.`
-			`	The office reminds you of the one you were in on Hephaestus, though more understated. Howard's office is a modest yet modern space, featuring a smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Minimalist decor hints at ambition, with a single digital screen displaying market data.`
+			`	The office reminds you of the one you were in on Hephaestus, though more understated. Howard's office is a modest yet modern space, featuring a smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. You can't help noticing that, like the Hephaestus office, the minimalist decor hints more at style than substance.`
 			`	"Glad you could make it," Howard says, extending his hand. "Apologies for the inconvenience, but it's better to discuss these matters away from potentially 'interested' parties." He motions for you to join him at one of the few sleek chairs in the center of the room.`
 			choice
 				`	(Take a seat.)`
@@ -7871,7 +7881,7 @@ mission "Syndicate Business 5"
 				label whomst
 				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
 				label power
-				`	The Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+				`	You can't help feeling a sense of déjà vu as the Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
 		on kill
 			set "syndicate bus golden jewel dead"
 			conversation
