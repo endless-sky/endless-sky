@@ -7556,7 +7556,7 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label placement
-			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Megaparsec Incorporated. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest with us?"`
+			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Megaparsec Incorporated. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with high returns, I might add. Would you like to invest with us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 				`	"Nope, I'll stick with the 90k."`
