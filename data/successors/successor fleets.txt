@@ -14,6 +14,7 @@
 fleet "Light Successor Freight"
 	government "Successor"
 	names "successor"
+	cargo 3
 	personality
 		appeasing timid
 		confusion 30
@@ -33,6 +34,7 @@ fleet "Light Successor Freight"
 fleet "Medium Successor Freight"
 	government "Successor"
 	names "successor"
+	cargo 3
 	personality
 		appeasing timid
 		confusion 30
@@ -53,6 +55,7 @@ fleet "Medium Successor Freight"
 fleet "Small Successor Transport"
 	government "Successor"
 	names "successor"
+	cargo 2
 	personality
 		timid
 		confusion 30
@@ -78,6 +81,7 @@ fleet "Small Successor Transport"
 fleet "Successor Miners"
 	government "Successor"
 	names "successor"
+	cargo 0
 	personality
 		appeasing frugal harvests mining staying
 		confusion 30
@@ -96,6 +100,7 @@ fleet "Successor Miners"
 fleet "Successor Miners (Well-Defended)"
 	government "Successor"
 	names "successor"
+	cargo 0
 	personality
 		appeasing frugal harvests mining staying
 		confusion 30
@@ -114,6 +119,7 @@ fleet "Successor Miners (Well-Defended)"
 fleet "People's Houses"
 	government "People's Houses"
 	names "successor"
+	cargo 3
 	personality
 		disables harvests mining plunders
 		confusion 20
@@ -144,6 +150,7 @@ fleet "People's Houses"
 fleet "People's Houses Raiders"
 	government "People's Houses (Hostile)"
 	names "successor"
+	cargo 0
 	personality
 		disables harvests plunders
 		confusion 20
@@ -165,6 +172,7 @@ fleet "Small Old Houses"
 		heroic
 	government "Old Houses"
 	names "high houses"
+	cargo 0
 	variant 6
 		"Stolsaqra (Military)"
 	variant 2
@@ -184,6 +192,7 @@ fleet "Small Old Houses"
 fleet "Large Old Houses"
 	government "Old Houses"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
@@ -199,6 +208,7 @@ fleet "Large Old Houses"
 fleet "Old Houses Surveillance"
 	government "Old Houses"
 	names "high houses"
+	cargo 0
 	personality
 		heroic opportunistic
 	variant 10
@@ -209,10 +219,11 @@ fleet "Old Houses Surveillance"
 		"Stolsaqra (Military)" 2
 
 fleet "Small New Houses"
-	personality
-		heroic
 	government "New Houses"
 	names "high houses"
+	cargo 0
+	personality
+		heroic
 	variant 10
 		"Stolsaqra (Military)"
 	variant 10
@@ -239,6 +250,7 @@ fleet "Small New Houses"
 fleet "Large New Houses"
 	government "New Houses"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
@@ -273,6 +285,7 @@ fleet "Large New Houses"
 fleet "New Houses Surveillance"
 	government "New Houses"
 	names "high houses"
+	cargo 0
 	personality
 		heroic opportunistic
 	variant 5
@@ -287,6 +300,7 @@ fleet "New Houses Surveillance"
 fleet "Kaatrij Home"
 	government "House Kaatrij"
 	names "high houses"
+	cargo 0
 	personality
 		heroic opportunistic
 	variant 10
@@ -305,6 +319,7 @@ fleet "Kaatrij Home"
 fleet "Aqrabe Home"
 	government "House Aqrabe"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
@@ -321,6 +336,7 @@ fleet "Aqrabe Home"
 fleet "Seineq Home"
 	government "House Seineq"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
@@ -338,6 +354,7 @@ fleet "Seineq Home"
 fleet "Chydiyi Home"
 	government "House Chydiyi"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
@@ -361,6 +378,7 @@ fleet "Chydiyi Home"
 fleet "Myurej Home"
 	government "House Myurej"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
@@ -379,6 +397,7 @@ fleet "Myurej Home"
 fleet "Sioeora Home"
 	government "House Sioeora"
 	names "high houses"
+	cargo 0
 	personality
 		heroic
 	variant 10
