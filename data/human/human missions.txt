@@ -7747,7 +7747,7 @@ mission "Syndicate Business 4"
 	on offer
 		conversation
 			`You meet Howard at the spaceport. He's standing on a nearby landing pad by his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
-			`	"Good to see you're on time," Howard says, glancing at his wrist terminal. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your <model> ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his shuttle's ramp, already shifting his attention back to his wrist terminal. "Let's get moving."`
+			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your <model> ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
 				launch
 	npc accompany save
 		government "Syndicate"
