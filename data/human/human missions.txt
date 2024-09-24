@@ -7881,7 +7881,7 @@ mission "Syndicate Business 5"
 				label whomst
 				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
 				label power
-				`	You can't help feeling a sense of déjà vu as the Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
 		on kill
 			set "syndicate bus golden jewel dead"
 			conversation
