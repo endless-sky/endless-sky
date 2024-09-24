@@ -15,6 +15,7 @@ fleet "Light Successor Freight"
 	government "Successor"
 	names "successor"
 	cargo 3
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Successor Basics"
 	personality
 		appeasing timid
@@ -36,6 +37,7 @@ fleet "Medium Successor Freight"
 	government "Successor"
 	names "successor"
 	cargo 3
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals" "Luxury Goods"
 	outfitters "Successor Civilian"
 	personality
 		appeasing timid
@@ -57,7 +59,8 @@ fleet "Medium Successor Freight"
 fleet "Small Successor Transport"
 	government "Successor"
 	names "successor"
-	cargo 0
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals" "Luxury Goods"
+	cargo 3
 	personality
 		timid
 		confusion 30
@@ -122,6 +125,7 @@ fleet "People's Houses"
 	government "People's Houses"
 	names "successor"
 	cargo 3
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Successor Basics"
 	personality
 		disables harvests mining plunders
