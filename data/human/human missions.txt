@@ -7718,7 +7718,7 @@ mission "Syndicate Business 3"
 			label next
 			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress, but it's clear this is more for show than substance.`
 			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
-			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings today, but meet me at the spaceport tomorrow. I'll fly in my shuttle as your escort to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
+			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings today, but meet me at the spaceport later. I'll fly in my shuttle as your escort to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
 			choice
 				`	"Sure thing, I'll see you later."`
 					goto next2
@@ -7735,7 +7735,7 @@ mission "Syndicate Business 3"
 				`	"Is that a glorified conference room too?"`
 			`	Howard's smile falters slightly. He forces a light chuckle, though the tension is noticeable. "Well, if I'm being honest, the Sunracer office is... also technically reservable," he admits, rubbing his neck and looking almost pained. "But just as nice! And, uh... look, my real office is technically a cubicle, but compared to the kiosk last time we met? It's a big step up." He shrugs, trying to brush it off. "But hey, we don't need fancy spaces to make serious deals. Let's get back on track, yeah?" He clears his throat.`
 			label next2
-			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. As he walks off he turns and mouths two words to you: "Spaceport... tomorrow..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. As he walks off he turns and mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
