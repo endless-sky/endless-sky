@@ -7696,7 +7696,7 @@ mission "Syndicate Business 3"
 				`	(Send a message congratulating him on the promotion.)`
 				`	(Ignore and delete the message.)`
 					decline
-			`You immediately receive an automated response:`
+			`	You immediately receive an automated response:`
 			`	"Dear Valued Contact,`
 			`	Thank you for reaching out. I am currently out of the office and will respond to your message as soon as possible.`
 			`	For urgent matters, please contact our support team."`
