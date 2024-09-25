@@ -206,7 +206,7 @@ mission "Successors: Biology Research 1"
 			`	"Thou asks at a fortuitous time! This planet, and the life that lives upon it, may provide to us a better answer to that question. Many of the stars here are hot and young and therefore harsh to nascent life, and yet thou hast surely seen the verdant worlds that orbit them! While some of this results from early settlement during the old empire, much of it does not and therefore remains a vexing point. How could life develop here? If we can track the path taken by the life of this planet, we may find the answer both you and I seek."`
 				goto questions
 			label end
-			`	You leave Katiiora to their business and make your preparations to take off, when ready.`
+			`	You leave Katiiora to their business and make your preparations to take off when ready.`
 			action
 				clear "Successors: successor"
 				clear "Successors: predecessor"
