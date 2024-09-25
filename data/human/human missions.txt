@@ -7688,7 +7688,7 @@ mission "Syndicate Business 3"
 	on offer
 		conversation
 			`After an uneventful trip to the spaceport you return to the <ship> and see a message from Howard, the Megaparsec salesman who sold you a one million credit bond. The message says:`
-			`	"<first> <last>! My bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my new office on <planet> (note the address, I've moved up since my promotion). Looking forward to chat!"`
+			`	"<first> <last>! My bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my new office on <planet> (note the address, I've moved up since my promotion). Looking forward to chatting with you!"`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			choice
@@ -7705,7 +7705,7 @@ mission "Syndicate Business 3"
 				accept
 	on complete
 		conversation
-			`You land <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the Syndicate's headquarters.`
+			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the Syndicate's headquarters.`
 			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from minutes to hours.`
 			choice
 				`	(Take a seat in the lobby.)`
@@ -7735,7 +7735,7 @@ mission "Syndicate Business 3"
 				`	"Is that a glorified conference room too?"`
 			`	Howard's smile falters slightly. He forces a light chuckle, though the tension is noticeable. "Well, if I'm being honest, the Sunracer office is... also technically reservable," he admits, rubbing his neck and looking almost pained. "But just as nice! And, uh... look, my real office is technically a cubicle, but compared to the kiosk last time we met? It's a big step up." He shrugs, trying to brush it off. "But hey, we don't need fancy spaces to make serious deals. Let's get back on track, yeah?" He clears his throat.`
 			label next2
-			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. As he walks off he turns and mouths two words to you: "Spaceport... Tomorrow..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. As he walks off he turns and mouths two words to you: "Spaceport... tomorrow..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
@@ -7755,12 +7755,12 @@ mission "Syndicate Business 4"
 		ship "Shuttle" "Gallant Knight"
 		on kill
 			conversation
-				`You watch as Howard's shuttle explodes into a cloud of debris along with any hope of that investment opportunity.`
+				`You watch as Howard's shuttle explodes into a cloud of debris along with any hope of an investment opportunity.`
 				choice
 					`	Best not to think on what could have been.`
 	npc
 		government "Pirate"
-		personality nemesis staying harvests plunders
+		personality harvests nemesis plunders staying
 			confusion 40
 		system destination
 		fleet
@@ -7773,7 +7773,7 @@ mission "Syndicate Business 4"
 	on complete
 		conversation
 			`As soon as you land, you see a message from Howard:`
-			`	"<first> <last>! Looks like I landed first on <planet>! Meet me at my office near the spaceport to discuss."`
+			`	"<first> <last>! Looks like I beat you landing on <planet>! Meet me at my office near the spaceport to talk further."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 
@@ -7808,7 +7808,7 @@ mission "Syndicate Business 5"
 			choice
 				`	"Yes, of course."`
 					goto ask
-				`	"No, I can't say I'm familiar."`
+				`	"No, I can't say I am."`
 			`	Howard raises an eyebrow. "Marauder ships are nasty pieces of work," he explains. "They're ships with numerous modifications - mostly with combat in mind. More shields, weapons, engines, and outfit space, with enough firepower to tear through a lot of defenses before anyone knows what hit them. They're often used by rogue groups that operate outside the law, preying on vulnerable targets."`
 			label ask
 			`	Howard pauses for a moment before continuing. "Megaparsec is interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted in Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
@@ -7881,7 +7881,7 @@ mission "Syndicate Business 5"
 				label whomst
 				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
 				label power
-				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life as you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see over half a dozen fixed guns take aim at your ship, ready to strike.`
 		on kill
 			set "syndicate bus golden jewel dead"
 			conversation
@@ -7911,6 +7911,7 @@ mission "Syndicate Business 5"
 				`		Investor Relations Manager, Megaparsec Incorporated`
 	on complete
 		event "10m investment done" 180
+		payment 175000
 		conversation
 			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the eighth floor.`
 			`	Howard greets you with a smile as you step into his office. The room is as you left it -- modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job in Oblate went smoothly?"`
@@ -7918,7 +7919,7 @@ mission "Syndicate Business 5"
 				`	"Of course."`
 					goto next1
 				`	"Didn't you message me as soon as I did it?"`
-			`	"True enough, just making conversation," he says with a grin. "The important thing is that the job's done. Now, let's get down to business."`
+			`	"True enough, just making conversation," he says with a grin. "The important thing is that the job's done. Now, let's get down to business.`
 			label next1
 			`	"Our recovery team is already retrieving the ship as we speak. You've done well. Now, let's talk about that investment opportunity."`
 			`	Howard pulls up a holographic display on the digital screen behind him. Various charts and projections flash by. "Ready for the pitch?"`
@@ -7959,7 +7960,6 @@ mission "Syndicate Business 5"
 					interest 0.10
 					term 3650
 			`	He snatches the document from you with a wicked smile and you see the loan terms on the screen behind him: 11M credits, 10 years, 44% rate.`
-				goto nexty
 			label nexty
 			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 2700 credits a day, or around 10% a year."`
 			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan."`
