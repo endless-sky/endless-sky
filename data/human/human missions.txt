@@ -7714,7 +7714,7 @@ mission "Syndicate Business 3"
 			`	Much to your surprise, the wait is brief. Within minutes, Howard emerges with a warm smile, extending a hand as he welcomes you into his office, clearly eager to discuss the next big deal.`
 				goto next
 			label makeemwait
-			`	Hours crawl by as the polished receptionist offers increasingly strained reassurances. Finally, Howard arrives, barely masking his annoyance, and motions for you to follow with a curt nod, clearly viewing this meeting as an inconvenience.`
+			`	Hours crawl by as the polished receptionist offers increasingly strained reassurances. Finally, Howard arrives, barely masking his annoyance, and motions for you to follow with a curt nod, clearly viewing you with disdain.`
 			label next
 			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress anybody who comes in, but it's clear this is more for show than substance.`
 			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
