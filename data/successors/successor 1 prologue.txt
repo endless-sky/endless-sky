@@ -927,7 +927,7 @@ mission "Successors: Trusted"
 			`	"Captain! Well-met again! Thou hast arrived at a fortunate hour, for there's still some minutes 'fore this day's meetings are scheduled to begin."`
 			label questions
 			choice
-				`	"We'd better get started then.`
+				`	"We'd better get started, then."`
 					goto start
 				`	"Can you explain what's going on here?"`
 					to display

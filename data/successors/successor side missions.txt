@@ -307,7 +307,7 @@ mission "Successors: Stargazing 1"
 		"successor jobs" += 2
 		payment 78000
 		conversation
-			`	Nnesa and Jaasora have continued to marvel at the stars on the way back home, in addition to spending a substantial amount of time poring over their mutual collection of photos, drawings, and maps from Maspa-Mavra. "Our deepest thanks, captain," Jaasora says to you once you have landed in the spaceport as Nnesa wrestles with the tent and cart. "'Twas a true and joyful voyage." Nnesa calls them over; the tent clearly requires at least two to handle. Jaasora presents you with your payment of <payment> and goes to help, and the two of them maneuver their equipment out of your cargo bay before shouting a hasty but good-humored farewell.`
+			`Nnesa and Jaasora have continued to marvel at the stars on the way back home, in addition to spending a substantial amount of time poring over their mutual collection of photos, drawings, and maps from Maspa-Mavra. "Our deepest thanks, captain," Jaasora says to you once you have landed in the spaceport as Nnesa wrestles with the tent and cart. "'Twas a true and joyful voyage." Nnesa calls them over; the tent clearly requires at least two to handle. Jaasora presents you with your payment of <payment> and goes to help, and the two of them maneuver their equipment out of your cargo bay before shouting a hasty but good-humored farewell.`
 
 mission "Successors: People's Houses: First Contact"
 	landing
