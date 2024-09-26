@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
@@ -39,8 +39,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "audio/Sound.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -4502,7 +4502,18 @@ bool Ship::DoLandingLogic()
 			}
 			else if(!isSpecial || personality.IsFleeing())
 			{
-				MarkForRemoval();
+				bool escortsLanded = true;
+				for(const auto &it : escorts)
+				{
+					const auto escort = it.lock();
+					// Check if escorts are also landed, or destroyed.
+					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+						continue;
+					escortsLanded = false;
+					break;
+				}
+				if(escortsLanded)
+					MarkForRemoval();
 				return true;
 			}
 

@@ -14,6 +14,7 @@ on:
     - '.github/workflows/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - Doxyfile
     - keys.txt
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
@@ -25,6 +26,7 @@ on:
     - '.github/workflows/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - Doxyfile
     - keys.txt
 
 
@@ -60,8 +62,15 @@ jobs:
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache/sccache
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -86,8 +95,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -122,8 +138,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
@@ -148,8 +171,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
     - name: Setup sccache
-      uses: ./.github/sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
     - uses: lukka/get-cmake@latest
@@ -163,6 +193,25 @@ jobs:
         testPreset: 'macos-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
+
+
+  build_documentation_doxygen:
+    name: Documentation Doxygen
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.doxygen_config == 'true' || needs.changed.outputs.ci_config == 'true'}}
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Install development dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends doxygen graphviz clang
+    - name: Run Doxygen
+      run: doxygen
 
 
   test-parse:

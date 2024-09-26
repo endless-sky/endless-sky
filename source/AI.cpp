@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpTypes.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "pi.h"
@@ -1380,6 +1380,11 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, con
 	if(!ship.IsDisabled() && ((needsFuel && !helper.CanRefuel(ship)) || (needsEnergy && !helper.CanGiveEnergy(ship))))
 		return false;
 
+	// For player's escorts, check if the player knows the helper's language.
+	if(ship.IsYours() && !helper.GetGovernment()->Language().empty()
+			&& !player.Conditions().Get("language: " + helper.GetGovernment()->Language()))
+		return false;
+
 	return true;
 }
 
@@ -2126,7 +2131,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	// "parent" to land (because the parent may not be planning on landing).
 	else if(systemHasFuel && needsFuel)
 		Refuel(ship, command);
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere)
+	else if((parent.Commands().Has(Command::LAND) || parent.IsLanding()) && parentIsHere && planetIsHere)
 	{
 		if(parentPlanet->CanLand(ship))
 		{
@@ -4832,25 +4837,42 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 
 	// Figure out what ships we are giving orders to.
 	vector<const Ship *> ships;
+	size_t destroyedCount = 0;
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
 			if(it.get() != player.Flagship() && !it->IsParked())
-				ships.push_back(it.get());
-		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
+			{
+				if(it->IsDestroyed())
+					++destroyedCount;
+				else
+					ships.push_back(it.get());
+			}
+		who = (ships.empty() ? destroyedCount : ships.size()) > 1
+			? "Your fleet is " : "Your escort is ";
 	}
 	else
 	{
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship)
+			if(!ship)
+				continue;
+			if(ship->IsDestroyed())
+				++destroyedCount;
+			else
 				ships.push_back(ship.get());
 		}
-		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";
+		who = (ships.empty() ? destroyedCount : ships.size()) > 1
+			? "The selected escorts are " : "The selected escort is ";
 	}
 	if(ships.empty())
+	{
+		if(destroyedCount)
+			Messages::Add(who + "destroyed and unable to execute your orders.",
+				Messages::Importance::High);
 		return;
+	}
 
 	Point centerOfGravity;
 	bool isMoveOrder = (newOrders.HasMoveTo());
