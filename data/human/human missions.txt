@@ -7736,10 +7736,10 @@ mission "Syndicate Business 3"
 			choice
 				`	"Absolutely."`
 					goto next2
-				`	"Howard, a promotion's a big deal. The office doesn't matter--your work speaks for itself."
+				`	"Howard, a promotion's a big deal. The office doesn't matter--your work speaks for itself."`
 					goto kindy
 				`	"Howard, your a cubicle is still pathetic. Now, let's get back on track."`
-			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`	
+			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`
 			action
 				"syndicate business: mean to Howard" ++
 			decline
@@ -7937,11 +7937,11 @@ mission "Syndicate Business 5"
 				"25,000?! You must have forgotten a zero there, you cheapskate!"
 					goto cheapskate
 				"I appreciate the offer, but there's no need for payment this time. Consider it purely a favor--I'm happy to help."
-			`	"That's generous of you, and I appreciate it."`
 			action
 				"syndicate business: mean to Howard" --
 				payment -25000
-			goto investmentopps
+			`	"That's generous of you, and I appreciate it."`
+				goto investmentopps
 			label cheapskate
 			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated."`
 			action
