@@ -8051,6 +8051,6 @@ mission "Syndicate Business 5"
 			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
 			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to the <ship>.`
 			action
-				log `Made a second investment in Megaparsec Incorporated with Howard Vendeur, this time for 10 million credits.`
+				log `Made a second investment in Megaparsec Incorporated with Howard Vendeur, this time for ten million credits.`
 
 event "10m investment done"
