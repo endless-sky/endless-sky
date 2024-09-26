@@ -397,7 +397,7 @@ void Projectile::BreakTarget()
 // guided missiles.
 void Projectile::CheckLock(const Ship &target)
 {
-	double base = hasLock ? 1. : .15;
+	double base = hasLock ? 1. : .01;
 	hasLock = false;
 
 	// For each tracking type, calculate the probability twice every second that a
