@@ -7739,10 +7739,10 @@ mission "Syndicate Business 3"
 				`	"Howard, a promotion's a big deal. The office doesn't matter--your work speaks for itself."
 					goto kindy
 				`	"Howard, your a cubicle is still pathetic. Now, let's get back on track."`
-			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`			
+			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`	
 			action
 				"syndicate business: mean to Howard" ++
-				decline
+			decline
 			label kindy
 			action
 				"syndicate business: mean to Howard" --
@@ -7941,7 +7941,7 @@ mission "Syndicate Business 5"
 			action
 				"syndicate business: mean to Howard" --
 				payment -25000
-				goto investmentopps
+			goto investmentopps
 			label cheapskate
 			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated."`
 			action
@@ -8050,6 +8050,7 @@ mission "Syndicate Business 5"
 				`	(Sign the paperwork.)`
 			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
 			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to the <ship>.`
-			log `Made a second investment in Megaparsec Incorporated with Howard Vendeur, this time for 10 million credits.`
+			action
+				log `Made a second investment in Megaparsec Incorporated with Howard Vendeur, this time for 10 million credits.`
 
 event "10m investment done"
