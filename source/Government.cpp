@@ -284,7 +284,9 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "remove")
+					if(grand.Token(0) == "ignore by default")
+						ignoreUniversalIllegals = grand.BoolValue(1);
+					else if(grand.Token(0) == "remove")
 					{
 						if(grand.Size() >= 3 && grand.Token(1) == "ship")
 						{
@@ -317,7 +319,9 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "remove")
+					if(grand.Token(0) == "ignore by default")
+						ignoreUniversalAtrocities = grand.BoolValue(1);
+					else if(grand.Token(0) == "remove")
 					{
 						if(grand.Size() >= 3 && grand.Token(1) == "ship")
 						{
@@ -657,7 +661,10 @@ bool Government::Condemns(const Outfit *outfit) const
 {
 	const auto isAtrocity = atrocityOutfits.find(outfit);
 	bool found = isAtrocity != atrocityOutfits.cend();
-	return (found && isAtrocity->second) || (!found && outfit->Get("atrocity") > 0.);
+	if(found)
+		return isAtrocity->second;
+	else
+		return !ignoreUniversalAtrocities && outfit->Get("atrocity") > 0.;
 }
 
 
@@ -666,35 +673,52 @@ bool Government::Condemns(const Ship *ship) const
 {
 	const auto isAtrocity = atrocityShips.find(ship->TrueModelName());
 	bool found = isAtrocity != atrocityShips.cend();
-	return (found && isAtrocity->second) || (!found && ship->BaseAttributes().Get("atrocity") > 0.);
+	if(found)
+		return isAtrocity->second;
+	else
+		return !ignoreUniversalAtrocities && ship->BaseAttributes().Get("atrocity") > 0.;
+}
+
+
+
+bool Government::IgnoresUniversalAtrocities() const
+{
+	return ignoreUniversalAtrocities;
 }
 
 
 
 int Government::Fines(const Outfit *outfit) const
 {
-	// If this government doesn't fine anything it won't fine this outfit.
+	// If this government doesn't fine anything, it won't fine this outfit.
 	if(!fine)
 		return 0;
 
 	for(const auto &it : illegalOutfits)
 		if(it.first == outfit)
 			return it.second;
-	return outfit->Get("illegal");
+	return ignoreUniversalIllegals ? 0 : outfit->Get("illegal");
 }
 
 
 
 int Government::Fines(const Ship *ship) const
 {
-	// If this government doesn't fine anything it won't fine this ship.
+	// If this government doesn't fine anything, it won't fine this ship.
 	if(!fine)
 		return 0;
 
 	for(const auto &it : illegalShips)
 		if(it.first == ship->TrueModelName())
 			return it.second;
-	return ship->BaseAttributes().Get("illegal");
+	return ignoreUniversalIllegals ? 0 : ship->BaseAttributes().Get("illegal");
+}
+
+
+
+bool Government::IgnoresUniversalIllegals() const
+{
+	return ignoreUniversalIllegals;
 }
 
 

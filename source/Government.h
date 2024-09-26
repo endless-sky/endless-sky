@@ -122,9 +122,11 @@ public:
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
 	bool Condemns(const Outfit *outfit) const;
 	bool Condemns(const Ship *ship) const;
+	bool IgnoresUniversalAtrocities() const;
 	// Returns the fine for given item for this government.
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
+	bool IgnoresUniversalIllegals() const;
 	// Check if given ship has illegal outfits or cargo.
 	bool FinesContents(const Ship *ship, const PlayerInfo &player) const;
 
@@ -163,8 +165,10 @@ private:
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
+	bool ignoreUniversalIllegals = false;
 	std::map<const Outfit*, bool> atrocityOutfits;
 	std::map<std::string, bool> atrocityShips;
+	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
