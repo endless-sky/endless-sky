@@ -332,7 +332,7 @@ mission "Successors: First Contact 3"
 	description `The scions of House Sioeora have instructed you to visit the planet <planet stopovers> and capture a "Kijra-riitaa" to safely return to them at <planet>. Return by <date> or they will consider you to have kidnapped Sieasej.`
 	source "Staja-Kella-Oa"
 	to offer
-		has "Successors: First Contact 2: done"
+		has "Successors: First Contact 2: declined"
 		not "Successors: First Contact 2: rejected"
 	to fail
 		has "Successors: Unified Defense: offered"
