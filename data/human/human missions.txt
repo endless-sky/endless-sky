@@ -7742,13 +7742,16 @@ mission "Syndicate Business 3"
 			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`
 			action
 				"syndicate business: mean to Howard" ++
-			decline
+			choice
+				`(Leave.)`
+					decline
 			label kindy
 			action
 				"syndicate business: mean to Howard" --
-			`	"Thanks, that means a lot. Now, let's focus on what's next."`
+			`	"Thanks, that means a lot. Now, let's focus on future."`
 			label next2
 			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
+
 
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
@@ -7760,7 +7763,7 @@ mission "Syndicate Business 4"
 	on offer
 		conversation
 			`You meet Howard at the spaceport. He's standing on a nearby landing pad by his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
-			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your ship ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
+			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your ship ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his Shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
 				launch
 	npc accompany save
 		government "Syndicate"
@@ -7786,7 +7789,7 @@ mission "Syndicate Business 4"
 	on complete
 		conversation
 			`As soon as you land, you see a message from Howard:`
-			`	"<first> <last>! Looks like I beat you landing on <planet>! Meet me at my office near the spaceport to talk further."`
+			`	"<first> <last>! Looks like I beat you landing on <planet>! Meet me at my office near the spaceport to talk further. (Again, note the address change.)"`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 
@@ -7960,7 +7963,7 @@ mission "Syndicate Business 5"
 			branch upcharge
 				"syndicate business: mean to Howard" > 0
 			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
-			`	He slides a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
+			`	He slides a document over to you, with a sleek pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
 				`	"Sounds good."`
 					goto nextynice
@@ -8045,7 +8048,7 @@ mission "Syndicate Business 5"
 			label ending
 			choice
 				`	"Thanks."`
-			`	"Alright, now that we've settled on your investment, let's get the rest of the paperwork squared away." He slides a stack of documents across the desk. "These cover the remaining loan terms, the investment agreement, and the usual legal fine print. Nothing too complicated, just a few signatures to make it all official." He hands you a sleek pen, his expression all business. "Once this is done, you'll be a stakeholder in one of Megaparsec's most promising expansions."`
+			`	"Alright, now that we've settled on your investment, let's get the rest of the paperwork squared away." He slides a stack of documents across the desk. "These cover the remaining loan terms, the investment agreement, and the usual legal fine print. Nothing too complicated, just a few signatures to make it all official." He hands you the same sleek pen from earlier, his expression all business. "Once this is done, you'll be a stakeholder in one of Megaparsec's most promising expansions."`
 			choice
 				`	(Sign the paperwork.)`
 			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
