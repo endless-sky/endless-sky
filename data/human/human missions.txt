@@ -7668,10 +7668,10 @@ mission "Syndicate Business 2"
 			`	"Excellent. As a bond owner of Megaparsec Incorporated, you will now receive a daily dividend. I have some work to attend to with our major shareholders, but it was a pleasure doing business with you, Captain."`
 
 # Part 2
-# Best case: 10m, 2700 per day best case out of the negative after almost 10.1 years
-# Worst case: 11m, 1500 per day worst case out of the negative after 20 years
-# Super Worst case: 11m, 1500 per day worst case out of the negative after 38 years
-# Driven by if you were mean to Howard, which of 3 investment options picked, and if you pay off debt ASAP
+# Best case: 10m, 4100 per day best case out of the negative after ~6.7 years
+# Worst case: 11m, 2000 per day worst case out of the negative after ~15 years (13.7 years, plus a little longer for 10M-->11M)
+# Super Worst case: 11m, 2000 per day worst case out of the negative after over 40 years if you don't pay off the debt
+# Driven by if you were mean to Howard in part 1 and part 2, which of 3 investment options picked, and if you pay off debt ASAP
 
 mission "Syndicate Business 3"
 	name "Visit Howard on <planet>"
@@ -7734,8 +7734,22 @@ mission "Syndicate Business 3"
 					goto next2
 				`	"Is that a glorified conference room too?"`
 			`	Howard's smile falters slightly. He forces a light chuckle, though the tension is noticeable. "Well, if I'm being honest, the Sunracer office is... also technically reservable," he admits, rubbing his neck and looking almost pained. "But just as nice! And, uh... look, my real office is technically a cubicle, but compared to the kiosk last time we met? It's a big step up." He shrugs, trying to brush it off. "But hey, we don't need fancy spaces to make serious deals. Let's get back on track, yeah?" He clears his throat.`
+			choice
+				`	"Absolutely."`
+					goto next2
+				`	"Howard, a promotion's a big deal. The office doesn't matter--your work speaks for itself."
+					goto kindy
+				`	"Howard, your a cubicle is still pathetic. Now, let's get back on track."`
+			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`			
+			action
+				"syndicate business: mean to Howard" ++
+				decline
+			label kindy
+			action
+				"syndicate business: mean to Howard" --
+			`	Thanks, that means a lot. Now, let's focus on what's next.`
 			label next2
-			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. As he walks off he turns and mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
@@ -7907,7 +7921,7 @@ mission "Syndicate Business 5"
 				`		Investor Relations Manager, Megaparsec Incorporated`
 	on complete
 		event "10m investment done" 180
-		payment 175000
+		payment 25000
 		conversation
 			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the eighth floor.`
 			`	Howard greets you with a smile as you step into his office. The room is as you left it -- modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job in Oblate went smoothly?"`
@@ -7917,7 +7931,25 @@ mission "Syndicate Business 5"
 				`	"Didn't you message me as soon as I did it?"`
 			`	"True enough, just making conversation," he says with a grin. "The important thing is that the job's done. Now, let's get down to business.`
 			label next1
-			`	"Our recovery team is already retrieving the ship as we speak. You've done well. Now, let's talk about that investment opportunity."`
+			`	"Our recovery team is already retrieving the ship as we speak. You've done well. Here's a payment for that favor, 25,000 credits."`
+			choice
+				"Thanks."
+					goto investmentopps
+				"25,000?! You must have forgotten a zero there, you cheapskate!"
+					goto cheapskate
+				"I appreciate the offer, but there's no need for payment this time. Consider it purely a favor--I'm happy to help."
+			`	"That's generous of you, and I appreciate it."`
+			action
+				"syndicate business: mean to Howard" --
+				payment -25000
+				goto investmentopps
+			label cheapskate
+			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated."`
+			action
+				"syndicate business: mean to Howard" ++
+				payment 175000
+			label investmentopps
+			`	Now, let's talk about that investment opportunity."`
 			`	Howard pulls up a holographic display on the digital screen behind him. Various charts and projections flash by. "Ready for the pitch?"`
 			choice
 				`	"You know it."`
@@ -7927,7 +7959,7 @@ mission "Syndicate Business 5"
 			choice
 				`	"Okay."`
 			branch upcharge
-				has "syndicate business: mean to Howard"
+				"syndicate business: mean to Howard" > 0
 			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
 			`	He slides a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
@@ -8019,5 +8051,6 @@ mission "Syndicate Business 5"
 				`	(Sign the paperwork.)`
 			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
 			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to the <ship>.`
+			log `Made a second investment in Megaparsec Incorporated with Howard Vendeur, this time for 10 million credits.`
 
 event "10m investment done"
