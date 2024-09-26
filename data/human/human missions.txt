@@ -7746,7 +7746,7 @@ mission "Syndicate Business 3"
 			label kindy
 			action
 				"syndicate business: mean to Howard" --
-			`	Thanks, that means a lot. Now, let's focus on what's next.`
+			`	"Thanks, that means a lot. Now, let's focus on what's next."`
 			label next2
 			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
@@ -7943,12 +7943,12 @@ mission "Syndicate Business 5"
 			`	"That's generous of you, and I appreciate it."`
 				goto investmentopps
 			label cheapskate
-			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated."`
+			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated.`
 			action
 				"syndicate business: mean to Howard" ++
 				payment 175000
 			label investmentopps
-			`	Now, let's talk about that investment opportunity."`
+			`	"Now, let's talk about that investment opportunity."`
 			`	Howard pulls up a holographic display on the digital screen behind him. Various charts and projections flash by. "Ready for the pitch?"`
 			choice
 				`	"You know it."`
