@@ -791,3 +791,13 @@ mission "Raider returning to Mordente-Bridi"
 			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
 			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs. Meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
 			`	Within the hour the work shuttles scatter from the ship as they finish patching up its battered hull, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`
+
+mission "Militia returning to Solace"
+	source "Solace"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Wandering around the spaceport of Solace, you notice that Delta V is building a private spaceport near their main company offices. It seems the work has been going on for a long while but has only just been unveiled, because there is a crowd of gawking spectators at the perimeter of the fence.`
+			`	Suddenly, an Argosy comes streaking out of the sky, almost crashing on smaller ships in the main spaceport before swerving to go toward the far end of the new rows of landing pads. There are shouts from the onlookers, who seem to think this was a stunt, but your more practiced eye tells you that there are Gatling Gun marks on the Argosy's hull, and it was a miscalculation by the pilot that almost caused an explosion.`
+			`	Soon afterwards, an announcement is made from a large speaker telling all bystanders that the accident was avoided and they can go home now. Many questions arise from the crowd, but eventually they disperse grumbling. You stick around for a while and soon notice the Argosy come flying back into view, seemingly as good as new, and land in the main spaceport.`
