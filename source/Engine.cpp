@@ -719,7 +719,8 @@ void Engine::Step(bool isActive)
 						continue;
 					turretOverlays.emplace_back(
 						(flagship->Position() - center
-							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint())) * zoom,
+							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
+							* static_cast<double>(zoom),
 						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
 						flagship->Zoom() * static_cast<double>(zoom),
 						isBlind
