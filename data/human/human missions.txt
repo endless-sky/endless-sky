@@ -7739,16 +7739,14 @@ mission "Syndicate Business 3"
 				`	"Howard, a promotion's a big deal. The office doesn't matter--your work speaks for itself."`
 					goto kindy
 				`	"Howard, your cubicle is still pathetic. Now, let's get back on track."`
-			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`
 			action
 				"syndicate business: mean to Howard" ++
-			choice
-				`	(Leave.)`
-					decline
+			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`
+				decline
 			label kindy
 			action
 				"syndicate business: mean to Howard" --
-			`	"Thanks, that means a lot. Now, let's focus on future."`
+			`	"Thanks, that means a lot. Now, back to work."`
 			label next2
 			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
