@@ -695,6 +695,7 @@ void Engine::Step(bool isActive)
 
 	statuses.clear();
 	missileLabels.clear();
+	turretOverlays.clear();
 	if(isActive)
 	{
 		// Create the status overlays.
@@ -708,6 +709,22 @@ void Engine::Step(bool isActive)
 						&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
 					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 			}
+		// Create overlays for flagship turrets with blindspots.
+		if(Preferences::GetTurretOverlays() != Preferences::TurretOverlays::OFF)
+			for(const Hardpoint &hardpoint : flagship->Weapons())
+				if(!hardpoint.GetBaseAttributes().blindspots.empty())
+				{
+					bool isBlind = hardpoint.IsBlind();
+					if(Preferences::GetTurretOverlays() == Preferences::TurretOverlays::BLINDSPOTS_ONLY && !isBlind)
+						continue;
+					turretOverlays.emplace_back(
+						(flagship->Position() - center
+							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint())) * zoom,
+						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
+						flagship->Zoom() * zoom,
+						isBlind
+					);
+				}
 		// Update the planet label positions.
 		for(PlanetLabel &label : labels)
 			label.Update(center, zoom);
@@ -1094,6 +1111,18 @@ void Engine::Draw() const
 			continue;
 		Point size(outline.sprite->Width(), outline.sprite->Height());
 		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
+	}
+
+	// Draw turret overlays.
+	if(!turretOverlays.empty())
+	{
+		const Color &blindspot = *GameData::Colors().Get("overlay turret blindspot");
+		const Color &normal = *GameData::Colors().Get("overlay turret");
+		PointerShader::Bind();
+		for(const TurretOverlay &it : turretOverlays)
+			PointerShader::Add(it.position, it.angle, 8 * it.scale, 24 * it.scale, 24 * it.scale,
+				it.isBlind ? blindspot : normal);
+		PointerShader::Unbind();
 	}
 
 	if(flash)

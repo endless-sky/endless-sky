@@ -121,6 +121,9 @@ namespace {
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
+	const vector<string> TURRET_OVERLAYS_SETTINGS = {"off", "always on", "blindspots only"};
+	int turretOverlaysIndex = 2;
+
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
@@ -204,6 +207,8 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::ENEMY].SetState(node.Value(1));
 		else if(node.Token(0) == "Show neutral overlays")
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
+		else if(node.Token(0) == "Turret overlays")
+			turretOverlaysIndex = clamp<int>(node.Value(1), 0, TURRET_OVERLAYS_SETTINGS.size() - 1);
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic firing")
@@ -278,6 +283,7 @@ void Preferences::Save()
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
+	out.Write("Turret overlays", turretOverlaysIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
@@ -587,6 +593,27 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 			return DISABLED.ToString();
 	}
 	return statusOverlaySettings[type].ToString();
+}
+
+
+
+void Preferences::ToggleTurretOverlays()
+{
+	turretOverlaysIndex = (turretOverlaysIndex + 1) % TURRET_OVERLAYS_SETTINGS.size();
+}
+
+
+
+Preferences::TurretOverlays Preferences::GetTurretOverlays()
+{
+	return static_cast<TurretOverlays>(turretOverlaysIndex);
+}
+
+
+
+const string &Preferences::TurretOverlaysSetting()
+{
+	return TURRET_OVERLAYS_SETTINGS[turretOverlaysIndex];
 }
 
 

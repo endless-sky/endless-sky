@@ -1384,6 +1384,9 @@ tip "   Show neutral overlays"
 tip "Show missile overlays"
 	`Display an overlay on hostile missiles. The overlay indicates the danger of the missiles, with more powerful missiles relative to your flagship's HP being indicated more intensely.`
 
+tip "Turret overlays"
+	`Display overlays on your flagship's turrets with blindspots. Setting this to "blindspots only" shows the overlays only when the blindspots are blocking the turret's fire.`
+
 tip "Show asteroid scanner overlay"
 	`If an asteroid scanner is installed on your flagship, display an overlay for nearby asteroids.`
 
