@@ -38,8 +38,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
@@ -236,9 +236,9 @@ void MissionPanel::Draw()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 5.f, routeColor);
+			LineShader::Draw(from, to, 3.f, routeColor);
 	}
 
 	const Color &availableColor = *colors.Get("available back");
