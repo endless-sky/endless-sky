@@ -7770,10 +7770,7 @@ mission "Syndicate Business 4"
 		personality escort timid
 		ship "Shuttle" "Gallant Knight"
 		on kill
-			conversation
-				`You watch as Howard's shuttle explodes into a cloud of debris along with any hope of an investment opportunity.`
-				choice
-					`	Best not to think on what could have been.`
+			dialog "You watch as Howard's shuttle explodes into a cloud of debris along with any hope of an investment opportunity."
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders staying
@@ -7896,10 +7893,7 @@ mission "Syndicate Business 5"
 				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see over half a dozen fixed guns take aim at your ship, ready to strike.`
 		on kill
 			set "syndicate bus golden jewel dead"
-			conversation
-				`The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby.`
-				choice
-					`	Best not to dwell on these things.`
+			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
 
 	on enter "Oblate"
 		"reputation: Independent (Killable)" = -1000
