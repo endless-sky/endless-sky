@@ -55,11 +55,11 @@ outfit "D14-RN Shield Generator"
 	thumbnail "outfit/tiny shield"
 	"mass" 15
 	"outfit space" -15
-	"shield generation" .2
-	"shield energy" .2
+	"shield generation" .14
+	"shield energy" .14
 	"shield delay" 240
-	"delayed shield generation" .4
-	"delayed shield energy" .4
+	"delayed shield generation" .28
+	"delayed shield energy" .28
 	description "This is the standard shield generator for fighters and interceptors, as well as for many non-combat starships. Although it is possible for a ship to have no shield generator at all, recharging its shield matrix only when landed in a hospitable spaceport, life in deep space is unpredictable enough that most pilots find shield generators to be well worth the space they take up."
 
 outfit "D23-QP Shield Generator"
@@ -68,11 +68,11 @@ outfit "D23-QP Shield Generator"
 	thumbnail "outfit/small shield"
 	"mass" 22
 	"outfit space" -22
-	"shield generation" .32
-	"shield energy" .32
+	"shield generation" .23
+	"shield energy" .23
 	"shield delay" 240
-	"delayed shield generation" .45
-	"delayed shield energy" .45
+	"delayed shield generation" .32
+	"delayed shield energy" .32
 	description "This is a slightly more powerful shield generator than the standard model installed in most small ships. If combat lasts long enough, the increased recharge rate is enough to give you an edge, but recharging your shields completely will still take a long time."
 
 outfit "D41-HY Shield Generator"
@@ -81,11 +81,11 @@ outfit "D41-HY Shield Generator"
 	thumbnail "outfit/medium shield"
 	"mass" 30
 	"outfit space" -30
-	"shield generation" .51
-	"shield energy" .51
+	"shield generation" .36
+	"shield energy" .36
 	"shield delay" 240
-	"delayed shield generation" .5
-	"delayed shield energy" .5
+	"delayed shield generation" .35
+	"delayed shield energy" .35
 	description "This is a more powerful shield generator designed for ships that are likely to see frequent combat, or that have such a large shield capacity that recharging them would take a long time with a smaller generator."
 
 outfit "D67-TM Shield Generator"
@@ -94,11 +94,11 @@ outfit "D67-TM Shield Generator"
 	thumbnail "outfit/large shield"
 	"mass" 45
 	"outfit space" -45
-	"shield generation" .82
-	"shield energy" .82
+	"shield generation" .58
+	"shield energy" .58
 	"shield delay" 240
-	"delayed shield generation" .6
-	"delayed shield energy" .6
+	"delayed shield generation" .43
+	"delayed shield energy" .43
 	description "This shield generator is powerful enough that in combat against some particularly weak ships, they may not even be capable of depleting your shields as fast as they recharge."
 
 outfit "D94-YV Shield Generator"
@@ -107,11 +107,11 @@ outfit "D94-YV Shield Generator"
 	thumbnail "outfit/huge shield"
 	"mass" 60
 	"outfit space" -60
-	"shield generation" 1.31
-	"shield energy" 1.31
+	"shield generation" .98
+	"shield energy" .98
 	"shield delay" 240
-	"delayed shield generation" .5
-	"delayed shield energy" .5
+	"delayed shield generation" .35
+	"delayed shield energy" .35
 	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV Shield Generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
 outfit "S-270 Regenerator"
