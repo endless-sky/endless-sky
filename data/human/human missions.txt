@@ -7511,7 +7511,7 @@ mission "Syndicate Business 1"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		on kill
-			set "syndicate bus golden jewel dead"
+			set "syndicate business: golden jewel dead"
 			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
 	npc save assist
 		government "Independent"
@@ -7658,4 +7658,5 @@ mission "Syndicate Business 2"
 			label high
 			action
 				"salary: Syndicate Business" = 500
+				log `Made an investment in Megaparsec Incorporated with Howard Vendeur, purchasing a bond for one million credits.`
 			`	"Excellent. As a bond owner of Megaparsec Incorporated, you will now receive a daily dividend. I have some work to attend to with our major shareholders, but it was a pleasure doing business with you, Captain."`
