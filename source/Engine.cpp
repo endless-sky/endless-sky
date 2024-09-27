@@ -721,7 +721,7 @@ void Engine::Step(bool isActive)
 						(flagship->Position() - center
 							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint())) * zoom,
 						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
-						flagship->Zoom() * zoom,
+						flagship->Zoom() * static_cast<double>(zoom),
 						isBlind
 					);
 				}
