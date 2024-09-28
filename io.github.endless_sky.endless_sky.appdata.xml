@@ -63,7 +63,7 @@
     <release version="0.10.9" date="2024-9-28" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
-        <p>This release includes two new groups of systems each with their own faction:<p>
+        <p>This release includes two new groups of systems, each with their own faction:</p>
         <ul>
           <li>The Incipias, who live in gas giants and have not yet achieved faster than light travel.</li>
           <li>The Successors, in the south, an amphibious race.</li>
