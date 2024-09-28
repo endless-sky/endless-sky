@@ -60,6 +60,22 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.9" date="2024-9-28" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>This release includes two new groups of systems each with their own faction:<p>
+        <ul>
+          <li>The Incipias, who live in gas giants and have not yet achieved faster than light travel.</li>
+          <li>The Successors, in the south, an amphibious race.</li>
+        ,/ul>
+        <p>Some other notable additions and changes to content and mechanics are:</p>
+        <ul>
+          <li></li>        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the ??? people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.9/changelog</url>
+    </release>
     <release version="0.10.8" date="2024-6-22">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
