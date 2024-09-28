@@ -1,6 +1,6 @@
 Version 0.10.9
   * Big changes:
-    * Added an alien faction dwelling in a gas giant in the galactic Northeast. (@RisingLeaf, @GefullteTaubenbrust2)
+    * Added an alien faction dwelling in a gas giant in the galactic Northeast. (@RisingLeaf, @GefullteTaubenbrust2, @roadrunner56)
     * Added a faction of amphibious aliens to the galactic south. (@Daeridanii1)
     * Added Corroboration I, a new mission chain for the Gegno. (@Saugia)
     * During hand to hand combat, if both sides choose to attack, two rounds of combat are run, one with the player's attack against the enemy's defense and one with the enemy's attack against the player's defense, instead of using the player's attack against the enemy's attack. (@petervdmeer, @Hurleveur)
