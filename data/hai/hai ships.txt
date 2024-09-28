@@ -1065,7 +1065,6 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
-	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`
@@ -1076,7 +1075,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Hai Williwaw Cooling" 4
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 36
+		"Pulse Rifle" 15
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
