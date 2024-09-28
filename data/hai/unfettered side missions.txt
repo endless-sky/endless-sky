@@ -452,7 +452,7 @@ mission "Undeserved Anomalocaris"
 			`	One standing behind them then chimes in. "You wasted your opportunity for a glorious battle to earn that right! We know of what you've failed!"`
 				to display
 					has "Hai Legacy 3: offered"
-			`	A more important-looking Unfettered then steps up close to you, speaking in a menacing tone. "You must surrender the ship to us immediately, along with the weapons of the savages, if you did not already rob us of those." For a moment, they look down in thought, then speak to you once more. "We will give you another ship so you can leave, but you must leave the Anomalocaris with us!"`
+			`	A more important-looking Unfettered then steps up close to you, speaking in a menacing tone. "You must surrender the ship to us immediately, along with the weapons of the savages, if you did not already rob us of those." For a moment, they look down in thought, then speak to you once more. "We will give you another ship so you can leave, but you must give us the Anomalocaris!"`
 			choice
 				`	(Hand over the Anomalocaris.)`
 				`	(Decline their request and leave.)`
