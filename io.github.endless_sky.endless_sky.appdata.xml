@@ -60,6 +60,45 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.8" date="2024-6-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>These changes include:</p>
+        <ul>
+          <li>Fixed various crashes, including ones that could occur when sorting ships or when using the flagship outline or new cloaked settings.</li>
+          <li>The flagship will no longer move through wormholes ahead of escorts when using fleet jumping.</li>
+          <li>Reduced the difficulty of the battle in "Wanderers: Mind 6".</li>
+          <li>Added a gamerule for controlling the disabled fighter projectile collision behavior introduced in v0.10.7.</li>
+          <li>Illegal mission passengers can now be detected by planetary security. Previously, missions with only illegal passengers could never result in a fine.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.8/changelog</url>
+    </release>
+    <release version="0.10.7" date="2024-5-25" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>One of the biggest changes is a rebalance of all ship masses.</p>
+        <ul>
+          <li>Alongside this is a 50% increase in thrust, turn, reverse thrust, and afterburner thrust across the board.</li>
+          <li>While newly instantiated ships have higher masses, ships already in save files will now be considerably faster. Have fun!</li>
+        </ul>
+        <p>Some other notable additions and changes to content and mechanics are:</p>
+        <ul>
+          <li>Various new short mission chains, including one involving the Wanderers and Mereti.</li>
+          <li>The changes to initial velocity and acceleration of missiles in v0.10.0 have been reverted.</li>
+          <li>There are now many new uninhabited planets and stations in human space.</li>
+          <li>Disabled fighters and drones will no longer be hit by stray projectiles; only weapons fire that specifically targets them.</li>
+          <li>Missions can "mark" systems of importance without requiring the player to visit them, and leave them marked after the player has visited.</li>
+          <li>Mission triggers and conversation actions can do various new things, including playing music, giving the player debt, and applying events immediately, instead of after at least one day.</li>
+          <li>The firing arc for a turret hardpoint can now be limited.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 42 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.7/changelog</url>
+    </release>
     <release version="0.10.6" date="2024-2-17">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>

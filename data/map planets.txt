@@ -11,6 +11,23 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+planet Aava-Aasa-Khora
+	attributes successor wealthy
+	landscape land/canyon15
+	description `This planet is the collective seat of what are known as the Old Houses, the noble families who held territorial claims to this region of space before the collapse of the Predecessors' empire and the arrival of the so-called New Houses fleeing their crumbling society.`
+	description `	While today the planet is geologically stable, it has experienced major tectonic shifts in the past, folding the planet's surface into a number of visually spectacular canyons and mountain ranges. Since it serves such an important political role, tectonic activity on this planet is closely monitored, and even though there have been no major earthquakes since the Successors settled here, most of the buildings here are built to withstand even large and destructive geological shifts.`
+	spaceport `Unexpectedly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildings made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
+	spaceport `	The inside of the spaceport is very similar, with soft, rounded shapes, and flexible building materials. The floor seems to sink a little as you step on it, almost like it is actually a viscous liquid rather than a solid material.`
+	government "Old Houses"
+	shipyard "High Houses Light"
+	shipyard "Successor Basics"
+	shipyard "Successor Civilian"
+	outfitter "High Houses Light"
+	outfitter "Successor Basics"
+	outfitter "Successor Civilian"
+	"required reputation" 1
+	bribe 0
+
 planet "Ablub's Invention"
 	attributes arach factory
 	landscape land/sky3
@@ -43,6 +60,12 @@ planet Ada
 	tribute 4200
 		threshold 8000
 		fleet "Large Republic" 16
+
+planet Aera
+	attributes "requires: gaslining"
+	landscape land/aera
+	description `Aera is a large tidally locked ice giant close to its parent star. Its methane atmosphere is dominated by a titanic hurricane covering the dayside half of the planet, the result of tidal forces drawing streams of air and clouds into a planet-sized storm. The eye of the hurricane is surprisingly calm, but the heat of perpetual daylight drives temperatures higher than what is habitable for most life.`
+	government Uninhabited
 
 planet Aetuah
 	attributes "gas giant" "requires: gaslining" uninhabited
@@ -80,6 +103,7 @@ planet Albatross
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -20
 	security 0
@@ -180,6 +204,17 @@ planet Antipode
 	tribute 600
 		threshold 2500
 		fleet "Small Syndicate" 7
+
+planet Aqra-Kvel-Taaq
+	attributes successor uninhabited
+	landscape land/snow20
+	description `While this planet may have a rocky surface deep down, it is covered by kilometers-thick glaciers composed of water ice. Near the equator, a ring of craters push the ice up into circular ridges that cast long shadows across the landscape.`
+		to display
+			not "known to the successors"
+	description `Covered in glaciers miles thick and bitterly cold, this planet is little more than a bleak ball of ice too far from its sun to be habitable. In the past, the Successors attempted to set up a shipyard here, but it eventually proved too costly to maintain and too poorly positioned to make up for it. Since it was abandoned, the Successors have made no further attempts to establish facilities here.`
+		to display
+			has "known to the successors"
+	government Uninhabited
 
 planet Arabia
 	attributes "dirt belt" oil
@@ -377,6 +412,7 @@ planet Bloodsea
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
@@ -504,6 +540,8 @@ planet "Buccaneer Bay"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	security 0
 	tribute 800
@@ -611,6 +649,17 @@ planet Cassandra
 	description `	The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occurred during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
 	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
 
+planet Cavaasa-Vasa-Tej
+	attributes predecessor uninhabited
+	landscape land/lava8
+	description `This planet is hot and dry, and holds on to only a tenuous atmosphere. Several enormous alien installations are present on its surface: semicircular bubbles that smoothly emerge from the rock as if they were grown from it, dotted with small pores which are each large enough for a starship. Inside them, the temperature is surprisingly quite habitable and you can observe the remains of what look like mines and industrial facilities within.`
+		to display
+			not "trusted by the successors"
+	description `Once an important industrial planet for the High Houses of the core systems, Cavasaa-Vasa-Tej was a hub for the mining of rare elements and for the growth of exotic metal in the superheated corona of the Kasii-Cavaasa star. Shipments from here continued even as the hyperspace links from it started to deteriorate, leaving many freighters stranded in deep space after they fell out mid-jump. Without maintenance, most of the stellar metallic gardens here have long since fallen into Kasii-Cavaasa's outer layers, but the few that have survived by chance are now completely overgrown with threads of hyperdense alloy; enough to supply the facilities of Cavaasa-Vasa-Tej's industry for years, if they were still operational.`
+		to display
+			has "trusted by the successors"
+	government Predecessor
+
 planet "Ceaseless Toil"
 	attributes factory saryd uninhabited
 	landscape land/canyon01
@@ -695,6 +744,17 @@ planet "Chosen Nexus"
 	shipyard Saryd
 	outfitter "Coalition Advanced"
 	security 0.6
+
+planet Chyyra-Raaqa-Tuur
+	attributes successor uninhabited
+	landscape land/snow7
+	description `This snow-covered planet orbits a dim star, making its surface dark and bitterly cold. Near the north pole, there are signs of large-scale excavation, possibly for materials to construct the station that orbits it.`
+		to display
+			not "known to the successors"
+	description `During the arrival of the New Houses, this planet was briefly considered as a location for permanent habitation. However, the dim star it orbits produces very little heat and makes the planet uncomfortably frigid, even for the cold-tolerant Successors. Furthermore, its lack of substantial natural resources exempted it from use as an industrial or mining planet, and it continues to remain uninhabited.`
+		to display
+			has "known to the successors"
+	government Uninhabited
 
 planet Cipi
 	attributes gegno moon scin
@@ -784,6 +844,8 @@ planet Covert
 	shipyard "Core Pirates"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	"required reputation" 10
 	bribe 0.1
@@ -863,7 +925,7 @@ planet Darkrest
 	attributes hai station uninhabited
 	landscape land/station34
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	An immediately obvious difference between this station and the others in Hai space is the presence of a solemn plaque that takes up a sizable portion of the nearest wall. Upon further inspection, it seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
+	description `	The presence of a solemn plaque that takes up a sizable portion of the nearest wall seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -893,6 +955,7 @@ planet "Deadman's Cove"
 	spaceport `Your ship is on a landing pad only a few meters above the pounding surf, and you can't help worrying about what might happen if the tide rises any higher. If nothing else, the salt water is bound to corrode your hull if you stay here too long. You make your way to a bar where a cage hanging from the ceiling holds an actual parrot. After trying for a while to get it to talk to you, you realize that it is dead, stuffed and nailed to its perch.`
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.03
 	security 0
@@ -1632,6 +1695,8 @@ planet Freedom
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	"required reputation" -10
 	security 0
 	tribute 500
@@ -1669,6 +1734,7 @@ planet Gagarin
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.07
 	security 0
@@ -1688,7 +1754,7 @@ planet "Garden Empyreal"
 	attributes "coalition station" kimek shipping tourism wealthy
 	landscape land/clouds_03
 	description `Not including the trio of Quarg ringworlds, this is the largest megastructure in Coalition space. Arrays of gigantic metal pyramids lay at every angle, each nearly a dozen times larger than the average space station. Spread out over the planet's upper atmosphere, these so-called "hubs" are connected by long, inextensible, and extremely sturdy wires, ensuring no part of the structure is destabilized.`
-	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
+	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently, about two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
 	spaceport `When not in "harvest season," the hubs are relatively quiet, and serve mostly as a tourist destination. Many come for the unique, close-up view of a sea of clouds, swarming with furious storms and dotted with more of the silver pyramids in the distance.`
 	spaceport `	Each hub shares the same overall design in general, but the decoration pieces, services, and local amenities for each one have grown in their own way over the centuries. The only common thing they have between all of them is the signature restaurant, which serves a variety of dishes, drinks, and even desserts all based on the processed, scooped up produce.`
 	"required reputation" 20
@@ -1769,6 +1835,23 @@ planet "Giaru Gegno"
 	bribe 0
 	security 1
 
+planet Giiq-Oj-Sol
+	attributes "bold tourism" successor uninhabited
+	landscape land/lava14
+	description `The specific atmosphere of this planet combined with its volcanic activity have combined to make the perfect conditions for the geological production of strands of natural glass, which are thrown into the atmosphere by volcanoes and then carried by high winds all over the planet. This makes stepping outside of one's ship without some sort of protection a very bad idea, as the ground is littered with sharp fragments and the air is filled with microscopic glass particles, both capable of rapidly destroying living tissue.`
+	government Uninhabited
+
+planet Giiq-Sou-Kella
+	attributes successor uninhabited
+	landscape land/sea2
+	description `Small, atmospherically placid, and tectonically stable, this planet is completely covered in a global ocean composed of liquid methane. A few small rock outcrops emerge above the offgassing waves, but there are no dry landmasses larger than a square kilometer or so.`
+		to display
+			not "known to the successors"
+	description `Small, atmospherically placid, and tectonically stable, this planet is completely covered in a global ocean composed of liquid methane. The inherent toxicity of this environmental feature, combined with the frigid temperatures on its surface and the tiny amount of dry land, have made it unsuitable for long-term habitation.`
+		to display
+			has "known to the successors"
+	government Uninhabited
+
 planet Giverstone
 	attributes hai mining
 	landscape land/mountain19-harro
@@ -1797,6 +1880,12 @@ planet Glaze
 	tribute 1700
 		threshold 3500
 		fleet "Large Militia" 25
+
+planet Gliese
+	attributes "requires: gaslining"
+	landscape land/gliese
+	description `A shine of magenta emanates from the depths of this planet, suggesting the presence of a strong heat source in the core of Gliese. While the color is pleasant at first, its brightness gets nauseating over time. The winds are calm and no storms are in sight, and if you look closely you can see creatures that look like very small jellyfish emitting a soft glow.`
+	government Uninhabited
 
 planet "Glittering Ice"
 	attributes frozen saryd
@@ -1897,6 +1986,8 @@ planet Greenrock
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
 	bribe 0.05
@@ -2011,6 +2102,8 @@ planet Haven
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "Northern Explorers"
 	bribe 0.03
@@ -2183,6 +2276,12 @@ planet Humanika
 		threshold 8000
 		fleet Quarg 2
 
+planet Humo
+	attributes "requires: gaslining"
+	landscape land/humo
+	description `Interestingly, this gas giant is not only made from gaseous elements; sand is being pushed around in the air and accumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for the presence of sand in the upper atmosphere. While the sand itself is not dangerous, it may pile up in your ship's mechanics if you stay here for too long.`
+	government Uninhabited
+
 planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
@@ -2236,6 +2335,12 @@ planet "Iemn Eitch"
 	"required reputation" 2
 	bribe 0
 	security 0
+
+planet "Igna"
+	landscape land/igna
+	attributes "requires: gaslining"
+	description `This gas giant has an extremely hot atmosphere due to its proximity to the system's star. The clouds emit a warm, orange glow, enabling good visibility even in deeper layers. Occasional storms break the almost peaceful atmosphere, raging violently but disappearing as quickly as they appeared.`
+	government Uninhabited
 
 planet "Illbo Avo"
 	attributes bunrodea military moon
@@ -2316,6 +2421,19 @@ planet Ironfirth
 	bribe 0
 	security 0
 
+planet Iyra-Ijasa-Iret
+	attributes successor
+	landscape land/sea10-sfiera
+	description `As far as you can tell, Iyra-Ijasa-Iret is a purely water world, with no solid land anywhere upon its surface. Despite this, it has several underwater settlements and cities. Most dot the shallows, but you notice that several pressure-resistant ships dive much deeper into the ocean, suggesting that some inhabitants may live at more significant depths.`
+		to display
+			not "known to the successors"
+	description `Iyra-Ijasa-Iret is a pure water world, with no solid land anywhere upon its surface. Despite this, it hosts a relatively sizable population of Successors, most living in several sprawling underwater cities that dot the shallows, but some in much deeper and more pressure-resistant enclaves closer to the ocean floor. The moon is revered throughout Successor space for its undersea beauty; on the side of the moon that faces the gas giant which it orbits, huge plumes of bioluminescent plankton stream up towards the surface from the deep ocean in a daily feeding cycle the Successors call the "Ribbons of Iret."`
+		to display
+			has "known to the successors"
+	spaceport `The spaceport resembles a group of enormous bubbles in the ocean near the equator; translucent, hemi-spherical hangars protrude from the water, cracking open like the petals of flowers to allow ships to enter and depart. Once inside, all the hangars are connected by a dense web of corridors and small, spherical rooms. Many are just as water-filled as the port's surroundings, and about half of the Successors you see throughout the spaceport are partially or entirely submerged.`
+	"required reputation" 1
+	bribe 0
+
 planet Jakobsen
 	attributes ccor farming frontier pirate south "south pirate"
 	landscape land/sea23
@@ -2324,6 +2442,8 @@ planet Jakobsen
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Ammo South"
 	security 0
 	tribute 300
@@ -2387,6 +2507,66 @@ planet "Kasichara Fet"
 	landscape land/sky8
 	description `This planet appears to have suffered irradiation when the neighboring star of Peresedersi went nova. The local flora and fauna are alive but still struggling to recover from the loss. Several large Korath cities remain. It seems that they were not able, or not willing, to evacuate the entire population in time to escape the nova's gamma radiation; sun-bleached bones are scattered in the streets of the largest cities.`
 
+planet Kasii-Cavasaa-Oa
+	attributes successor
+	landscape land/snow25
+	description `Although inhospitable by human standards, the snow-covered Kasii-Cavasaa-Oa falls comfortably within the Successors' tolerances, if on the low end of that range. Beneath the permafrost lie rich deposits of rare earth elements and heavy metals that have supported the highly self-contained economy of House Aqrabe; entire production lines from raw material to final product are contained upon this single planet. Since many of the minerals mined here are integral for the production of the Successors' advanced composite materials, Aqrabe and the other New Houses keep a tight grip here, funneling many of the end products into their shipyards and construction projects.`
+	spaceport `Far from beautiful, but impressive in its scale and technology, Kasii-Cavasaa-Oa's spaceport looms over the blindingly-white snow hills like an obsidian outcrop. There is a substantial military presence here, guarding the valuable freight convoys of the New Houses; even in these relatively peaceful times, the Successors have clearly not forgotten their fraught and warlike past.`
+	spaceport `	You gain a similar feeling from your interaction with the Successors here; they are courteous, polite, and just as cold as the biting winds. This a not a place for idle chatter or bright-eyed tourists.`
+	government "House Aqrabe"
+	shipyard "Successor Civilian"
+	shipyard "New Houses Light"
+	outfitter "Successor Civilian"
+	outfitter "High Houses Light"
+	outfitter "High Houses Heavy"
+	"required reputation" 2
+	bribe 0
+
+planet Kasii-Tuur-Saqru
+	attributes crime station successor
+	landscape land/station42
+	description `While some of the High Houses of the Predecessors managed to immigrate to this star cluster in their political entirety, others collapsed along the way. Some of their former citizens were folded into House Kaatriij, but the rest, the majority, were to temporarily habitate here. Now, many years later, their descendants largely still do.`
+	description `	The station, by now crowded and in disrepair, is technically the property of the Old Houses, but is far outside their jurisdiction, leaving it de facto stateless like its inhabitants. Without a claim to any other citizenship, those inhabitants have formed the so-called "People's Houses," semi-familial groups that they laud as effective democratic governments but which are denigrated by most in the High Houses as little more than gangs of populist outlaws shielded by stale treaties.`
+	spaceport `You wouldn't really call the landing area here a "spaceport": it seems to be just an especially large cargo bay refitted to hold a handful of ships. In sharp contrast to most of the Successor facilities you've visited, it is grimy, dingy, and uncomfortably claustrophobic - throngs of Successors squeeze in between crowded starships, overflowing cargo containers, and strewn-about equipment, and most of these items display bullet holes, scorch marks, or other conditions not evocative of confidence.`
+	spaceport `	At the edges of the spaceport, several semi-obfuscated elevators and blast doors lead out into the rest of the station. While most of these, you presume, lead to residential areas, some seem to be servicing the seedier side of the population, and you can't help but wonder how much of the spaceport's operations are taking place behind closed doors.`
+	government "People's Houses"
+	shipyard "People's Houses"
+	shipyard "Successor Basics"
+	outfitter "People's Houses"
+	outfitter "Successor Basics"
+	outfitter "Successor Civilian"
+	outfitter "Successor Weapons Heavy"
+	"required reputation" 2
+	bribe 0
+
+planet Kasi-Osolaa-Sossa
+	attributes quiet successor
+	landscape land/myrabella8
+	description `By far the most isolated and remote planet in Successor space, Kasi-Osolaa-Sossa is populated mainly by those who enjoy the peace and quiet that comes with solitude. For the highly familial Successors, this is a relatively small proportion, and consequently the planet only supports around twenty thousand inhabitants, though it has the highest population growth of any planet in Successor space. Most agree that this is a result of disinterest in the sometimes-painful political division of the larger Successor worlds, but it is commonly joked that it is instead a consequence of supposed especially amorous tendencies among the local population.`
+	spaceport `The mountainside spaceport here is tiny and almost deserted, and the Successors who guide your ship to its dirt landing pad seem to disappear entirely immediately after you touch down. While there are a few small shops and trading posts scattered around the area, none of them make any effort to get your attention, and a few are even completely automated, with nothing more than a few inoffensively blinking lights indicating that they are functional and open for business.`
+	government Successor
+	outfitter "Successor Basics"
+	"required reputation" 3
+	bribe 0
+
+planet Kella-Uuoru-Sossa
+	attributes predecessor uninhabited
+	landscape land/badlands0
+	description `This planet is an ecological catastrophe. Its surface has been scoured by radiation and by what must have been an orbital bombardment; no organic life remains. Many large cities dot the surface, several of which have been leveled or damaged by weapon strikes, and far more which are nearly entirely intact. All are equally empty. Persistent clouds of caustic dust choke the atmosphere, and your ship's sensors alert you to the presence of several dust storms at other locations on the planet's surface. It would be wise not to get caught in one.`
+		to display
+			not "trusted by the successors"
+	description `This is the ancestral homeworld of the Successor species. The spatial anomalies that now dominate this system have scoured its surface with radiation and evaporated most of its once-extensive oceans. The great cities of the Predecessors' empire are now devoid of all organic life; many of them remain as pristine and gleaming as on the days they were abandoned. Caustic dust chokes the lower atmosphere of the planet, and your ship's sensors alert you to the presence of several sandstorms at other locations on the planet's surface. It would be wise not to get caught in one.`
+		to display
+			has "trusted by the successors"
+	port "Spaceport"
+		description `A massive spaceport on the surface stands proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters up above your ship, some scarred by weapons fire, others distorted by heat or radiation. A couple of small cleaning drones attempt to polish the weather-worn floors, while others wander aimlessly, devoid of purpose and direction.`
+			to display
+				not "trusted by the successors"
+		description `The planet's main spaceport endures proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters above your ship, some scarred by weapons fire, others distorted by heat or radiation. One flock of small cleaning drones continually polishes the sand-worn floors, while others wander about aimlessly, devoid of purpose or direction.`
+			to display
+				has "trusted by the successors"
+	government Predecessor
+
 planet "Keneska Fek"
 	attributes korath
 	landscape land/desert10-harro
@@ -2403,6 +2583,46 @@ planet "Kessel Sepret"
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
 	security 0
+
+planet Khora-Uurau-Uuoru
+	attributes successor uninhabited
+	landscape land/desert3
+	description `This moon appears to have been used as an ancient weapons testing site. The scars of violence still mar its surface, and its tenuous atmosphere clings desperately to its surface, almost as if it is still terrified of being stripped away.`
+		to display
+			not "known to the successors"
+	description `Thousands of years ago, during the reign of the Predecessors' empire, this moon was used as a weapons testing site. Since the Successors have not invented any novel weapons requiring an entire moon to test since the collapse of the old empire, Khora-Uurau-Uuoru has remained unbombarded since then. Even so, the scars of ancient violence still mar its surface, and its tenuous atmosphere clings desperately to its surface, almost as if it is still terrified of being stripped away.`
+		to display
+			has "known to the successors"
+	government Uninhabited
+
+planet Khora-Vasa-Reyyaa
+	attributes manufacturing military mining successor wealthy
+	landscape land/nasa2
+	description `Much of Successor technology relies on advanced composite materials, from their extremely durable ship hulls to their high-performance kinetic weapons. This planet contains rich natural deposits of the raw materials required for the manufacturing of their composites, and consequently, it serves as both a center for the mining of these materials and as the industrial core of Successor space.`
+	description `	Because Khora-Vasa-Reyyaa falls within the sphere of influence of the Old Houses, many in the New Houses are very concerned about the power imbalance this creates, and several treaties are in place ensuring fair and open exports from the planet.`
+	spaceport `The spaceport here is perhaps the most militarized of any you have visited in Successor space. Large industrial buildings rise up around the landing pads, casting them into deep shadow, and several small Successor warships stand ready on fast-launch pads, prepared to enter orbit at a moment's notice. You pass through a security checkpoint on your way into the spaceport proper, and while the security officers have clearly been briefed to expect alien visitors, they still regard you with some degree of scrutiny.`
+	spaceport `	The trading posts, outfitters, and shipyard inside are all quite impressive, and the Successors you meet are all very curt and professional, including the merchant captains.`
+	government "House Chydiyi"
+	shipyard "High Houses Heavy"
+	shipyard "Successor Heavy"
+	outfitter "High Houses Light"
+	outfitter "High Houses Heavy"
+	outfitter "Successor Civilian"
+	outfitter "Successor Heavy"
+	outfitter "Successor High Tech"
+	"required reputation" 3
+	bribe 0
+	security 0.8
+
+planet Khosa-Kella-Oa
+	attributes successor uninhabited
+	landscape land/mars1
+	description `Devoid of atmosphere, this small and rocky world sits at the very edge of the galaxy. This may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
+		to display
+			not "known to the successors"
+	description `Devoid of atmosphere, this small and rocky world sits at the eastern end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
+		to display
+			has "known to the successors"
 
 planet "Ki Patek Ka"
 	attributes farming folklore kimek tourism urban
@@ -2449,6 +2669,9 @@ planet "Kort Kehai"
 	spaceport `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
 	"required reputation" 2
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 3
 
 planet "Kort Vek'kri"
 	attributes wanderer
@@ -2457,6 +2680,9 @@ planet "Kort Vek'kri"
 	spaceport `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
 	"required reputation" 2
 	bribe 0
+	tribute 500
+		threshold 2000
+		fleet "Wanderer Defense" 4
 
 planet "Kraken Station"
 	attributes "near earth" station
@@ -2470,6 +2696,37 @@ planet "Kraken Station"
 	tribute 500
 		threshold 3500
 		fleet "Small Syndicate" 7
+
+planet Kua-Oa-Aava
+	attributes quiet station successor
+	landscape land/space2
+	description `This small moon hosts only a few surface installations; most are much larger than the public spaceport and are frequented exclusively by military craft. Beyond these, the moon is barren and undeveloped and your ship's sensors detect nothing of interest beyond the spaceport limits.`
+		to display
+			not "known to the successors"
+	description `The Old Houses have established several refueling and restock facilities on Aava-Aasa-Khora's moon to increase the speed at which they can service their warships by taking advantage of the additional space and low gravity the moon provides. While nominally open to the public, the vast majority of the facilities here are devoted entirely to military use, and the civilian areas are mostly intended to make sure that no ships without clearance will become stranded in this system.`
+		to display
+			has "known to the successors"
+	spaceport `The spaceport here is tiny and barebones, offering only minimal services. Most of the few Successors you see here are wearing military uniforms, and while they do not react to you with any discernible surprise, most keep a close eye on you as you walk through the facility.`
+		to display
+			not "known to the successors"
+	spaceport `The spaceport here is tiny and barebones, offering only minimal services. The few Successors you see are wearing military uniforms and remain polite and courteous to you, even as an alien.`
+		to display
+			has "known to the successors"
+	spaceport `	Several tunnels from this spaceport lead off into the distance, though they are guarded by military personnel and identification equipment. You presume that they lead to some of the facilities established elsewhere on the moon's surface.`
+	government Successor
+	"required reputation" 1
+	bribe 0
+
+planet Kuj-Sol-Nnesa
+	attributes "bold tourism" successor uninhabited
+	landscape land/desert13
+	description `This hot and arid world hosts giant millipede-like creatures that roam the sand during the twilight hours, hunting anything that moves.`
+		to display
+			not "known to the successors"
+	description `This desert planet is far too hot and arid for the Successors' environmental needs, and its lack of any meaningful deposits of natural resources has precluded its exploitation by mining or industry. It is occasionally visited by Successor researchers, primarily to study the local fauna; giant millipede-like creatures are known to roam the sand here during the twilight hours, hunting anything that moves.`
+		to display
+			has "known to the successors"
+	government Uninhabited
 
 planet Kumkapi
 	attributes moon uninhabited
@@ -2715,6 +2972,25 @@ planet Martini
 		threshold 8500
 		fleet "Large Republic" 22
 
+planet Maspa-Viir-Kella
+	attributes successor uninhabited
+	landscape land/clouds_03
+	description `This planet is about as large as a terrestrial planet can be before it is considered a gas giant. It is surrounded by an extremely thick atmosphere that is just barely within the tolerances of traditional shipbuilding techniques, which buffets your vessel with high winds before you even make landing. It is hard to see anything at any distance on the ground; the fog is simply too thick.`
+	government Uninhabited
+
+planet Mavra-Sol-Kvel
+	attributes successor wealthy
+	landscape land/fields14
+	description `This green and well-populated moon enjoys a temperate climate and spectacular vistas, both of its own surface and of the gas giant it orbits. The gravity here is quite low, and the Successors you see here tower over you even more noticeably than on other worlds. There are several cities on the surface, most along the equator.`
+		to display
+			not "known to the successors"
+	description `Shielded from the persistent asteroid impacts of this system by its parent gas giant, Mavra-Sol-Kvel enjoys a temperate climate and spectacular vistas. The low gravity here is greatly appreciated by the Successors, and consequently the moon supports a substantial population despite its small size, most of whom live in several cities along the equator. It also allows for a number of towering mountain ranges, many containing cliffs and canyons several kilometers high that are frequently visited by tourists and thrill-seeker pilots alike.`
+		to display
+			has "known to the successors"
+	spaceport `The spaceport is large but efficient, plastered in bright and friendly colors much like the landscape surrounding it. Most of the buildings are organic in shape, arcing and bubbling from place to place like seafoam. Despite the fanciful design, they also appear to be servicing a large volume of travellers, merchants, and military personnel, with color-coded lines leading to different areas.`
+	"required reputation" 1
+	bribe 0
+
 planet "Mebla's Portion"
 	attributes arach urban
 	landscape land/fog5
@@ -2786,6 +3062,13 @@ planet "Mereti Station"
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet Methuselah
+	attributes "requires: gaslining"
+	landscape land/methuselah
+	description `This world feels ancient, and the air is calm as if the last storm ended millennia ago. A continuous deep sound from below seems to tell a story from the early days of the universe - memories of hotter and faster times.`
+	description `	From time to time giant creatures can be seen floating through the atmosphere in total peace.`
+	government Uninhabited
 
 planet "Miblulub's Plenty"
 	attributes arach farming folklore longcows
@@ -2879,6 +3162,8 @@ planet Mordente-Bridi
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
 	bribe 0.08
@@ -2887,6 +3172,33 @@ planet Mordente-Bridi
 		threshold 2500
 		fleet "Small CCOR" 14
 		fleet "Large CCOR" 4
+
+planet Mosaa-Oa-Vyret
+	attributes successor
+	landscape land/mountain14-sfiera
+	description `This small planet hosts a population of towering octopus-like aliens. They have built several cities across its surface that are highly symmetrical, filled with organic-looking curved buildings draped in colorful fabrics that shimmer in the light. The air is damp and chilly; rainstorms blanket a significant portion of the planet's surface and many of the sleek-looking vessels that set down in the spaceport discharge streams of water upon landing.`
+		to display
+			not "known to the successors"
+	description `Mosaa-Oa-Vyret's location in the only hyperspace link between the northern and southern parts of Successor territory has made it a hub for interstellar trade and the center of Successor commerce.`
+		to display
+			has "known to the successors"
+	description `	Unique among all Successor planets, its primary employer is not one of the High Houses but an independent corporation responsible for manufacturing, among other things, the Pulse Laser. The High Houses are understandably somewhat perturbed by this autonomy, but have allowed independent commerce to continue here in exchange for levying modest taxes on transactions that do not go through their official channels.`
+		to display
+			has "known to the successors"
+	spaceport `The spaceport is large and busy, and sits situated at the foot of a mountain. Small shops and tents sit abreast advertisements and large metallic statues of various sorts, many of which seem weather-worn and unmaintained.`
+		to display
+			not "known to the successors"
+	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
+		to display
+			not "known to the successors"
+	spaceport `The spaceport is large and busy, situated at the foot of a mountain, and seems more haphazard than most Successor spaceports you've seen. Small shops and tents sit abreast advertisements for the latest generation of Pulse Laser and statues of important figures in the high houses, many of which seem weather-worn and unmaintained.`
+		to display
+			has "known to the successors"
+	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
+		to display
+			has "known to the successors"
+	government Successor
+	bribe 0
 
 planet "Muninn Station"
 	attributes deep military station
@@ -2919,11 +3231,44 @@ planet Mutiny
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
 
+planet Myiara-Sola-Tej
+	attributes crime station successor uninhabited
+	landscape land/station25
+	description `This abandoned station appears to remain technically habitable, if one doesn't mind breathing the poorly-recycled and dusty air.`
+		to display
+			not "known to the successors"
+	description `This industrial station was constructed during the arrival of the New Houses to exploit the mineral wealth of this system, but was abandoned when richer and more accessible mineral deposits were found planetside. It still remains technically habitable, but none of the High Houses have had an interest in refurbishing it, since cheaper and easier industrial and habitation projects are consistently available.`
+		to display
+			has "known to the successors"
+	government Uninhabited
+
+planet Myiara-Aret-Iir
+	attributes predecessor uninhabited
+	landscape land/badlands4
+	description `In contrast to the pristine emptiness of the other formerly-inhabited planets in this area of space, this world teems with signs of chaos. The remains of hastily-built weather-control towers dot much of its surface, and the cities upon it are neither majestic nor well-maintained; none are very large, but most are surrounded by vast expanses of fabric and radiation-bleached temporary constructions.`
+		to display
+			not "trusted by the successors"
+	description `Once a minor colony world, what would come to be known as Myiara-Aret-Iir was the last stop of all those hoping to escape the decay of the Predecessors' space by traveling through the wormhole. Those who had wealthy patrons that could finance prompt transport spent little time here, but those without often found the blossoming shanty towns of the planet to be their new homes. With the denouement of the Predecessors' last inter-House war and the final push to evacuate, most of those living here eventually made it through. The rest probably perished long ago.`
+		to display
+			has "trusted by the successors"
+	government Predecessor
+
 planet Mystery
 	attributes moon saryd uninhabited
 	landscape land/canyon05
 	description `The Saryd culture's fascination with the movement of the stars and planets can perhaps be attributed to the fact that their homeworld is orbited by two moons, which cause a complex and seemingly unpredictable cycle of tides as well as a variety of subtle effects on the circadian rhythms of the creatures that evolved on Saros. Saryd homes on other worlds often have night lighting cycles designed to mimic the moons of their homeworld.`
 	"required reputation" 15
+
+planet Naph-Naap-Kella
+	attributes "bold tourism" successor uninhabited
+	landscape land/lava1
+	description `This planet is deep in the throes of its early history, with a thick sulfurous atmosphere concealing an unstable and volcanically active surface. Mineral-rich pools simmer next to lava flows and crumbling ejecta, and the atmosphere is repeatedly lit up by enormous cloud-to-cloud lightning discharges that leave the hull of your ship crackling with static electricity.`
+		to display
+			not "known to the successors"
+	description `This planet is deep in the throes of its early history, with a thick sulfurous atmosphere concealing an unstable and volcanically active surface. Despite that, the Successors have discovered very simple life forms here, possibly the very first life that has developed on this planet. Consequently, it is of some interest to Successor biologists, or at least the ones willing to brave the toxic and destructive conditions on the surface.`
+		to display
+			has "known to the successors"
+	government Uninhabited
 
 planet Nasqueron
 	attributes "requires: gaslining"
@@ -3160,6 +3505,8 @@ planet "New Tortuga"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
@@ -3289,6 +3636,12 @@ planet Oblivion
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet "Occupas"
+	attributes "requires: gaslining"
+	landscape land/occupas
+	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
+	government Uninhabited
+
 planet Ochrescoop
 	attributes hai station
 	landscape land/station43
@@ -3331,6 +3684,17 @@ planet Osaeli
 	landscape land/fields15
 	description `An Earth-like planet with high biodiversity, at first glance Osaeli appears to be an idyllic world where no lifeform ever became predominant; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered across large areas, and scans reveal many underground bunkers, partly destroyed and filled with water.`
 
+planet Osolaa-Val-Mavra
+	attributes predecessor uninhabited
+	landscape land/dmottl1
+	description `This moon is covered in a constant veil of frost that coats the sparse and hardy vegetation on its surface in delicate ice crystals. On the side of the moon that faces its parent gas giant, a massive circular trench, kilometers-deep, has been carved into the earth. Within it, huge terraced complexes have been built into the walls; empty residential areas, shipyards, and public spaces jut into the trench's open air where they are adorned by the constant snowfall.`
+		to display
+			not "trusted by the successors"
+	description `The moon of Osolaa-Val-Mavra was one of the first worlds of the Predecessors to evacuate as a consequence of the deterioration of their space. House Sejra ran massive transport ships for seven years to and from the surface in an effort to move its citizens offworld and into neighboring systems. By the time they were done, Sejra's coffers were dry and its government on the brink of collapse, and the citizens it had gone to such effort to relocate were stranded in systems that were starting to show the same signs of decay as their one-time home. The desolate habitation trench and ice-covered surface of the moon are testaments to Sejra's folly; of trying to escape something they did not understand and had no hope of stopping.`
+		to display
+			has "trusted by the successors"
+	government Predecessor
+
 planet "Oup Je"
 	attributes gegno scin
 	landscape land/canyon4
@@ -3340,6 +3704,21 @@ planet "Oup Je"
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet O-Vasa-Oa
+	attributes successor urban wealthy
+	landscape land/hills4
+	description `This binary planet is the collective seat of what are known as the New Houses, the noble families who traveled through the wormhole to this region of space during the collapse of the Predecessors' empire. Many within the New Houses object to that moniker, arguing that their family lines are in fact the more extensive and noble and that they should be categorized by that, rather than their time of arrival.`
+	description `	Despite population surges in recent years, O-Vasa-Oa remains relatively sparsely populated. The tidal forces from its binary partner create high winds that sweep across the landscape, making settlement challenging in undeveloped areas, and expensive even in those that have the infrastructure to support it.`
+	spaceport `The spaceport is built right beside a large shipyard, allowing visitors to look on at the impressive manufacturing apparatus of the New Houses while going about their business. Despite its relatively small size, the spaceport is very busy, with ships constantly launching and landing and a general air of haste among all the Successors you see.`
+	government "New Houses"
+	shipyard "New Houses Light"
+	shipyard "High Houses Heavy"
+	shipyard "Successor Heavy"
+	outfitter "High Houses Light"
+	outfitter "Successor Civilian"
+	"required reputation" 1
+	bribe 0
 
 planet Palarei
 	attributes ka'het uninhabited
@@ -3473,6 +3852,17 @@ planet Poisonwood
 		threshold 2000
 		fleet "Large Militia" 7
 
+planet "Pon'tes"
+	landscape land/station16
+	description `Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping.`
+	description `	Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through its tube-like hallways.`
+	spaceport `The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains.`
+	spaceport `	Most of the ships are delivering minerals, but some also deliver supplies from Redias. In a small area separated from the rest there is a constant buzzing of small transport ships transporting civilians in both directions.`
+	outfitter "Hicemus"
+	shipyard "Hicemus"
+	"required reputation" 10
+	government "Hicemus"
+
 planet Poseidos
 	attributes fishing rim
 	landscape land/sea9
@@ -3519,6 +3909,7 @@ planet Pugglemug
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
 	spaceport `The primary spaceport here is marked by an enormous collection of arches forming an open-air dome. Based on the power cables and devices attached to the sides of the arches, you suspect that the entire dome can be protected by an energy shield if necessary. Inside it, landing platforms jut out from the arches at many different levels.`
 	"required reputation" 2
+	"bribe" 0
 	security 1
 
 planet Pugglequat
@@ -3526,6 +3917,7 @@ planet Pugglequat
 	description `This planet has a handful of Pug cities on it, full of tall, graceful spires and arches. However, most of the land area is either left in its natural state, or in use for mining; it seems to abound in both oil reserves and metal ore. The climate is somewhat cold by human standards, but still quite livable. You are not sure if that is because the Pug were just lucky enough to have a star system with two hospitable planets, or whether they have employed some sort of terraforming.`
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
 	"required reputation" 2
+	"bribe" 0
 	security 1
 
 planet Pyriphlegethon
@@ -3533,6 +3925,12 @@ planet Pyriphlegethon
 	landscape land/clouds_02
 	description `Despite its poorly received name, Pyriphlegethon was famous in the early history of human interstellar travel as the first "hot Jupiter" to be explored in detail. Colorful images of its incandescent clouds and glowing night sky became some of the most iconic images of space in the 23rd century, when the invention of the hyperdrive was still recent.`
 	description `	Even on the planet's night side, everything is washed in a deep red glow that seems to come from all directions at once. You are glad that gaslining technology protects your ship from the extreme temperatures outside, keeping your own atmosphere from becoming similarly incandescent to the one outside.`
+	government Uninhabited
+
+planet Qasa-Sija-Iri
+	attributes successor uninhabited
+	landscape land/mountain26
+	description `Though this moon is massive enough to have accrued a thin, oxygenated atmosphere, it is otherwise remarkable only for providing striking views of its parent planet's ring system. The rocky surface is slightly warm, radiating a small amount of heat generated by tidal forces from deeper inside.`
 	government Uninhabited
 
 planet Quicksilver
@@ -3555,6 +3953,55 @@ planet Quirinal
 	government Uninhabited
 	security 0
 
+planet Raaqa-Kvelq-Ryuit
+	attributes education successor urban
+	landscape land/fields6
+	description `This planet seems to host a larger population than any other world you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
+		to display
+			not "known to the successors"
+	description `Raaqa-Kvelq-Ryuit was the very first planet in this area of space to be colonized by the Successors' ancestors, and today it boasts a population of over five hundred million inhabitants, the largest of any world in Successor space. Its famously mild and forgiving weather supports a strong agricultural economy, and the landscape is dotted with farms both large and small. The primary export of the planet is a long, stringy plant most reminiscent of seaweed, which the Successors consider a staple and consume great quantities of.`
+		to display
+			has "known to the successors"
+	spaceport `The spaceport is located right on the equator and is a massive, sprawling affair with several enormous racks of cargo containers stretching out into the distance, clearly awaiting transport on soon-arriving freighters. The ground is wet from a sprinkler system that maintains a constant thin film of water all throughout the spaceport's exterior. The Successors, lacking shoes, must appreciate this for reducing friction between their arms and the relatively rough and uncomfortable concrete.`
+	government "House Myurej"
+	"required reputation" 1
+	bribe 0
+
+planet Raaqa-Puan-Uuoru
+	attributes quiet successor wealthy
+	landscape land/beach3
+	description `After the collapse, many Successors found themselves without a family, or without the knowledge of unbroken lineage that others took comfort in. House Kaatrij, which had lost many of its scions in the collapse, took the previously unprecedented step of welcoming these otherwise-outcasts into its familial order, earning a reputation as the most diverse of the various Houses. Many of its members still pledge a ceremonial allegiance to their defunct Houses under Kaatrij, which remains small but well-supported and a key member of the New Houses alliance.`
+	description `	This, its home planet, is small, rainy, and mostly covered by ocean. Widely regarded as one of the most beautiful planets in Successor space, settlement here is tightly regulated by House Kaatrij.`
+	spaceport `Upon setting down, the landing pad releases a billowing sheet of clear water-repellant material that covers your ship, presumably as some sort of protection against the rain. The spaceport itself is low and small and decorated with strips of the same material that gently ruffle in the wind, almost like the sails of an ancient ocean-going ship. The water collects in carefully-sculpted channels that run all over the surface of the building, occasionally collecting in small pools or spreading out into delicate branch-like networks built into the ground.`
+	government "House Kaatrij"
+	shipyard "High Houses Light"
+	shipyard "New Houses Light"
+	shipyard "Successor Basics"
+	outfitter "High Houses Light"
+	outfitter "Successor Civilian"
+	outfitter "Successor Heavy"
+	outfitter "Successor High Tech"
+	"required reputation" 2
+	bribe 0
+
+planet Raaqa-Uur-Kaav
+	attributes predecessor uninhabited
+	landscape land/forest3
+	description `Unlike most of the planets in this area of space, this moon remains relatively habitable. Large forests have flourished throughout it in the absence of sapient life, and the stark remains of abandoned cities are slowly being reclaimed by the nature that surrounds them. While the materials which compose the buildings have not decayed an iota over the eons, the tender shoots of green life nonetheless adhere to their twisting surfaces and flourish within their unmaintained interiors.`
+		to display
+			not "trusted by the successors"
+	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have flourished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nonetheless quietly demonstrate their supremacy over the unmaintained artificial.`
+		to display
+			has "trusted by the successors"
+	port "Spaceport"
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
+			to display
+				not "trusted by the successors"
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
+			to display
+				has "trusted by the successors"
+	government Predecessor
+
 planet Rand
 	attributes "dirt belt" mining
 	landscape land/valley7
@@ -3565,6 +4012,16 @@ planet Rand
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet "Redias"
+	attributes "requires: gaslining"
+	landscape land/redias
+	description `The home planet of the Incipias is ruled by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed.`
+	description `	The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds.`
+	spaceport `Because of the size of their homeworld, the Incipias have built not one but four spaceports. These spaceports are the only platforms on the planet with fixed positions. They were built at an atmospheric level where the planet's storms are not so strong, but they still require a great deal of energy to be held in place.`
+	spaceport `	The spaceports themselves are giant circular platforms with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land at each spaceport at a time.`
+	"required reputation" 10
+	government "Conlatio"
 
 planet Redwatch
 	attributes hai station uninhabited
@@ -3814,6 +4271,17 @@ planet "Sasirka Gatru"
 	landscape land/desert7
 	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
 
+planet Saska-Aa-Noorr
+	attributes station successor wealthy
+	landscape land/space7
+	description `Though the Successors invest in few truly massive constructions, this station is one of them. Originally built over three thousand years ago as a support platform for the Predecessors' early colonization efforts, Saska-Aa-Noorr has been a consistent fixture of the star cluster and one of House Myurej's most important assets.`
+	description `	In the present day it serves a primarily residential role, housing almost five million Successors in rotating cylindrical segments of its arms. The gentler gravity and tightly controlled climate these offer makes living stationside quite desirable to many Successors, but the limited space available combined with the high taxes that House Myurej levies here mean that usually only the wealthiest Successors can afford to take up residence.`
+	spaceport `The spaceport takes full advantage of its zero-gravity nature; loading docks extend into the distance at all angles and magnetic cargo trains circle and arch around the interior. Most of the walkable areas of the port are enclosed in a giant cylindrical shell rotating around the docks such that you can watch your docked ship pass by overhead every couple of minutes.`
+	spaceport `	There is no "dry" access to any of the residential areas of the station; instead of normal corridors or elevators, large tubes of gently circulating water carry the Successors to other sections. The station directory indicates that outfitting services are among those separated from the main port by one of these tubes; unfortunately, it doesn't seem like they're going to be accessible to you.`
+	government "House Myurej"
+	"required reputation" 3
+	bribe 0
+
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_04
@@ -3991,6 +4459,16 @@ planet Shangri-La
 		threshold 4000
 		fleet "Large Syndicate" 7
 
+planet Shassa-Wyra-Orrou
+	attributes mining quiet successor tourism
+	landscape land/lava3
+	description `Despite its favorable location in Successor space, Shassa-Wyra-Orrou is only sparsely inhabited: the hot stars it orbits make its surface temperature a little too warm for most Successors. Even so, there are some small settlements in the polar regions, mostly populated by mining families taking advantage of the rich mineral wealth of both the planet and the surrounding system.`
+	spaceport `The spaceport is built on a large rock beach in the northern hemisphere, with a number of large fabric shades covering important areas. A substantial portion of the port is devoted to offloading mined items, and surprisingly, there is also a large and healthily-populated tourist section, which is displaying several particularly attractive stones, no doubt locally mined.`
+	government Successor
+	outfitter "Successor Basics"
+	"required reputation" 2
+	bribe 0
+
 planet "Shifting Sand"
 	attributes saryd
 	landscape land/dune6-harro
@@ -4154,6 +4632,8 @@ planet "Smuggler's Den"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	outfitter "South Pirate Advanced"
 	bribe 0.06
@@ -4214,6 +4694,15 @@ planet Sopoyra
 	bribe 0
 	security 0
 
+planet "Spec Inci"
+	attributes "incipias quarg" quarg
+	landscape land/sky7
+	description `This small moon seems to be used mainly as a shipment and processing base, run with the typical efficiency of the Quarg. You wouldn't have even noticed the freighters dropping off large amounts of raw ore for processing if it were not for their large size, as they are surprisingly silent when working. Other ships load the processed materials and fly away.`
+	spaceport `The spaceport is fully automated, and you can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the moon's many hangars. One section of the spaceport is restricted, where a large amount of warships are being lowered into what is presumably a Quarg military base.`
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
+
 planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands11
@@ -4239,6 +4728,28 @@ planet "Ssil Vida"
 		recharges all
 		services "offers missions"
 		description `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
+
+planet Staja-Kella-Oa
+	attributes education successor wealthy
+	landscape land/fog12
+	description `The easternmost planet in Successor space, Staja-Kella-Oa is mostly covered in dense forest with only a few small cities. The planet hosts at least one academy under the auspices of the noble House Sioeora. Further from your landing site, there is evidence of ongoing archaeological work.`
+		to display
+			not "known to the successors"
+	description `Staja-Kella-Oa is widely recognized as the location of the best educational institutions in Successor space, most of which are funded by the Old Houses but accept applications from all Successors regardless of birthplace or family history.`
+		to display
+			has "known to the successors"
+	description `	The planet itself is densely forested with a few small cities. Part of the reason that it continues to be a center for education is that it has a rich archaeological history: this planet was home to a now presumed-extinct sapient species roughly one hundred thousand years ago, and there is a great deal of interest in uncovering the details of their society.`
+		to display
+			has "known to the successors"
+	spaceport `The dense tree cover shades the landing pads of the spaceport and casts the whole area in dappled light that reflects softly off the moving ships. Much of the traffic at the spaceport is small shuttles and transports carrying youthful-looking groups of Successors to and from the planet; the interiors of the buildings are clean and colorful.`
+		to display
+			not "known to the successors"
+	spaceport `The dense tree cover shades the landing pads of the spaceport and casts the whole area in dappled light that reflects softly off the moving ships. Much of the traffic at the spaceport is small shuttles and transports carrying Successor students to and from the planet; the interior of it is clean and colorful, and seems directed towards its more youthful audience, with several recruiting posters for the fleets of the various High Houses plastered on the walls.`
+		to display
+			has "known to the successors"
+	government "House Sioeora"
+	"required reputation" 1
+	bribe 0
 
 planet Starcross
 	attributes farming rim
@@ -4296,11 +4807,13 @@ planet Stonebreak
 planet Stormhold
 	attributes core "core pirate" forest frontier pirate
 	landscape land/fog11
-	description `A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
+	description `Stormhold is a cold planet, with a dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
 	spaceport `The spaceport is a large town, with a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	bribe 0.03
 	security 0
@@ -4317,6 +4830,18 @@ planet "Stronghold of Flugbu"
 	outfitter "Coalition Advanced"
 	"required reputation" 25
 	security 0.5
+
+planet "Successor Wormhole"
+	spaceport ``
+	attributes "requires: quantum keystone"
+	wormhole "Successor Wormhole"
+	government Uninhabited
+
+wormhole "Successor Wormhole"
+	link "Myruet-Kvelq" "Oublaa-Khora"
+	link "Oublaa-Khora" "Myruet-Kvelq"
+	color "wormholes: Ember Waste"
+	mappable
 
 planet Sundive
 	attributes core farming forest frontier research
@@ -4465,6 +4990,8 @@ planet Thule
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	outfitter "Pirate Advanced"
 	bribe 0.05
 	security 0.6
@@ -4495,10 +5022,13 @@ planet "Tik Klai"
 	attributes research wanderer
 	landscape land/badlands2
 	description `This world is uncomfortably hot, even for the Wanderers, and so close to its star that the surface is bathed in dangerous levels of ultraviolet light. The few Wanderer installations here are buried underground, with only a few access hatches and storage buildings on the surface.`
-	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
+	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the Wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
 	spaceport `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
 	"required reputation" 35
 	bribe 0
+	tribute 600
+		threshold 3500
+		fleet "Wanderer Defense" 4
 
 planet Tinker
 	attributes factory mining "near earth"
@@ -4527,6 +5057,12 @@ planet Topkapi
 	government Uninhabited
 	security 0
 
+planet Treser
+	attributes "requires: gaslining"
+	landscape land/treser
+	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the light that hits this planet, resulting in an enormous amount of heat in the gas giant's atmosphere. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
+	government Uninhabited
+
 planet Trinket
 	attributes south tourism
 	landscape land/beach3
@@ -4539,6 +5075,7 @@ planet Trinket
 	outfitter "Kraz Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
 	bribe 0.02
 	security 0.4
@@ -4611,6 +5148,28 @@ planet "Turquoise Four"
 	spaceport `The boats docked in this spaceport city are more numerous than the space ships, and some of them are considerably larger, as well. Almost half of the city is built on piers that extend out into the harbor with broad canals between them, but the largest and fanciest dwellings are on land, built along a ridge of hills that overlook the ocean. The air is full of the cries of gulls and the smell of fish and salt and drying seaweed.`
 	"required reputation" 15
 
+planet "Turra"
+	attributes "requires: gaslining"
+	landscape land/turra
+	description `Turra's thick atmosphere makes this gas giant a dark world. From time to time the wall of haze gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are primitive and mostly plantlike; some of them look like dark flowers, absorbing the little light that shines on them.`
+	government Uninhabited
+
+planet Tuur-Aasa-Kaska
+	attributes successor
+	landscape land/nasa7
+	description `As it was only very recently settled by the Successors, this large and rocky moon supports only a small population, most of whom are military personnel for the Old Houses and who live underground to avoid the powerful electrical storms on the surface. Though an undeniably hostile and uncomfortable place, the location of its star system has made it an ideal staging point for the fleets of the Old Houses to keep an eye on trade in nearby systems, and the persistent electrical storms on the surface serve to mask the energy signatures of their vessels.`
+	spaceport `As a civilian, you are directed to a smaller port off to the side of one of the larger military ones. As soon as your ship touches down, the landing pad is lowered into an underground hangar and sealed off from the violent atmosphere. While this is an effective protection against the storms, you can't help but notice how it also means that you are trapped here until traffic control decides to release you.`
+	government "Old Houses"
+	shipyard "Successor Basics"
+	outfitter "High Houses Light"
+	"required reputation" 15
+
+planet Tuur-Oa-Sola
+	attributes "bold tourism" successor uninhabited
+	landscape land/mars2
+	description `The atmosphere of this moon is thin but toxic, and its surface is riddled with fissures that spew hot gases kilometers up into space. It appears to be falling below the Roche limit of the gas giant it orbits, and will probably be torn apart into a ring system within a few thousand years.`
+	government Uninhabited
+
 planet Twinstar
 	attributes frontier moon south tourism
 	landscape land/lava3
@@ -4632,6 +5191,51 @@ planet "Typhon Station"
 	tribute 500
 		threshold 2000
 		fleet "Large Militia" 8
+
+planet Uo-Oraa-Vayya
+	attributes quiet successor
+	landscape land/snow24
+	description `This small planet is in the midst of an ice age, and nearly its entire surface is covered in ice sheets several kilometers thick. There are next to no permanent inhabitants, but the Successors maintain a significant research presence here to study the planet's unique conditions.`
+	description `	It is rumored that the navies of the New Houses will send recruits on missions here to test their fortitude, though that is unequivocally denied by official sources.`
+	spaceport `The spaceport, if you can call it that, is nothing more than an approximately flat area in a mountain valley with a small research base serving as a control tower. The air outside is bitterly cold, and while the Successors do not seem to mind it as much as you, even they express discomfort at being out in the open for too long.`
+	government Successor
+	"required reputation" 2
+	bribe 0
+
+planet "Ut Divitas"
+	attributes "incipias quarg" quarg
+	landscape land/canyon13
+	description `The surface here is bare, and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, and the architecture is abstract, elegant, and unlike anything humans have ever built.`
+	spaceport `The spaceport is a small one, consisting of only a few landing pads. Ships parked here appear to be mostly civilian, and the few Quarg working here seem to be confused by your presence.`
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
+
+planet Uuoru-Veldt-Stir
+	attributes successor uninhabited
+	landscape land/hills0
+	description `The landscape on this planet is marked by gently rolling hills and the occasional pond. Your sensors remark that the atmosphere outside, while oxygen-rich, is too thin to safely breathe, and while you see a preponderance of hardy plant life, there are no animals to be seen.`
+	government Uninhabited
+
+planet "Uye Mpi"
+	attributes uninhabited
+	landscape land/bwerner6
+	description `Spanning lands of dust and bulky rock formations make up a majority of this world's details. However, unlike many other desert worlds, there are many basins of spring water and surprisingly calm weather patterns. The clear blue skies and tame wildlife commonly found on the planet give it a sense of serenity and beauty.`
+	description `	Nearby conflict between the warring Gegno factions often results in engagements within this system, though neither group has yet to commit to any large-scale foundation on the surface of this planet. A majority of skirmishes either occur in orbit above or follow the Gegno to neighboring systems.`
+	government Uninhabited
+
+planet Vade-Osolaa-Kaska
+	attributes crime station successor uninhabited
+	landscape land/loc3
+	description `This station appears abandoned; it is old and decaying, and while the automated systems maintain a breathable atmosphere in some areas, there are no signs of permanent habitation.`
+		to display
+			not "known to the successors"
+	description `Although briefly used as a small-scale shipyard several hundred years ago, this station was eventually abandoned by the High Houses because of its inconvenient location and altogether poor construction. There are occasional rumors about criminals using it as a bolt-hole or a place to hide contraband, but few among the Successors have the desire to go and check.`
+		to display
+			has "known to the successors"
+	port "Spaceport"
+		description `The spaceport here is cavernous but empty, riddled with voids where vast pieces of machinery have been removed. A layer of dust covers the ground; it is disturbed in some locations with what look like trails, suggesting that this place may not be entirely unused.`
+	government Uninhabited
 
 planet Vail
 	attributes farming paradise tourism
@@ -4688,6 +5292,9 @@ planet "Var' Kar'i'i"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 1700
+		threshold 5000
+		fleet "Wanderer Defense" 7
 
 planet "Var' Kayi"
 	attributes urban wanderer
@@ -4699,6 +5306,9 @@ planet "Var' Kayi"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 4500
+		threshold 12500
+		fleet "Wanderer Defense" 12
 
 planet "Var' Roi"
 	attributes frozen moon research wanderer
@@ -4707,6 +5317,9 @@ planet "Var' Roi"
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
 	"required reputation" 25
 	bribe 0
+	tribute 100
+		threshold 1500
+		fleet "Wanderer Defense" 4
 
 planet "Vara K'chrai"
 	attributes urban wanderer
@@ -4717,6 +5330,9 @@ planet "Vara K'chrai"
 	shipyard "Wanderer Advanced"
 	outfitter "Wanderer Advanced"
 	bribe 0
+	tribute 8000
+		threshold 14000
+		fleet "Wanderer Defense" 17
 
 planet "Vara Ke'sok"
 	attributes fishing wanderer
@@ -4725,6 +5341,9 @@ planet "Vara Ke'sok"
 	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
 	"required reputation" 5
 	bribe 0
+	tribute 500
+		threshold 2500
+		fleet "Wanderer Defense" 4
 
 planet "Vara Ke'stai"
 	attributes farming wanderer
@@ -4734,6 +5353,9 @@ planet "Vara Ke'stai"
 	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
+	tribute 650
+		threshold 4300
+		fleet "Wanderer Defense" 3
 
 planet "Vara Kehi'ki"
 	attributes farming research wanderer
@@ -4743,6 +5365,9 @@ planet "Vara Kehi'ki"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 900
+		threshold 3500
+		fleet "Wanderer Defense" 5
 
 planet "Vara Pug"
 	attributes pug
@@ -4763,6 +5388,9 @@ planet "Vara Rakak"
 	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
+	tribute 2300
+		threshold 6500
+		fleet "Wanderer Defense" 5
 
 planet "Varu Ek'lak'lai"
 	attributes mining wanderer
@@ -4773,6 +5401,9 @@ planet "Varu Ek'lak'lai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 1300
+		threshold 3400
+		fleet "Wanderer Defense" 4
 
 planet "Varu K'est"
 	attributes military wanderer
@@ -4783,6 +5414,9 @@ planet "Varu K'est"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 5500
+		fleet "Wanderer Defense" 16
 
 planet "Varu K'prai"
 	attributes oil wanderer
@@ -4792,6 +5426,10 @@ planet "Varu K'prai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 800
+		threshold 1800
+		fleet "Wanderer Defense" 2
+		fleet "Wanderer Freight" 4
 
 planet "Varu Mer'ek"
 	attributes factory wanderer
@@ -4802,6 +5440,9 @@ planet "Varu Mer'ek"
 	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
+	tribute 1600
+		threshold 3200
+		fleet "Wanderer Defense" 3
 
 planet "Varu Tek'kai"
 	attributes factory moon wanderer
@@ -4811,6 +5452,9 @@ planet "Varu Tek'kai"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 200
+		threshold 1700
+		fleet "Wanderer Defense" 4
 
 planet "Varu Tev'kei"
 	attributes factory wanderer
@@ -4820,6 +5464,9 @@ planet "Varu Tev'kei"
 	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+	tribute 500
+		threshold 1950
+		fleet "Wanderer Defense" 5
 
 planet Vatican
 	attributes lava uninhabited
@@ -4893,6 +5540,33 @@ planet "Vivid Aether"
 	landscape land/nasa29
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
+	government Uninhabited
+
+planet Vulpa
+	attributes "requires: gaslining"
+	landscape land/vulpa
+	description `At first sight this planet looks fairly hospitable for a gas giant. The blue tones suggest an ocean world, but looks can be deceiving; its clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them, but it is advisable not to stay here for too long.`
+
+planet Vyraa-Giiq-Sora
+	attributes "bold tourism" successor uninhabited
+	landscape land/myrabella0
+	description `It's not clear why this planet remains uninhabited, as it possesses a breathable atmosphere and temperate climate; the surface is covered in indigenous lifeforms, many of which exhibit some degree of bioluminescence.`
+		to display
+			not "known to the successors"
+	description `Despite the verdant and often bioluminescent life on its surface, the atmosphere of this planet is highly toxic to the Successors' biochemistry, and so they have made no permanent settlements here. While it is occasionally visited by the odd few tourists who don't mind having to wear an isolation suit, its distance from the majority of Successor space means that the Successors largely leave it alone.`
+		to display
+			has "known to the successors"
+	government Uninhabited
+
+planet Vyraa-Viir-Kella
+	attributes successor uninhabited
+	landscape land/water4
+	description `This planet has a clear, oxygen-rich atmosphere, and a cool and watery surface with many large lakes. There appear to be no sites of permanent habitation, though a couple of landing pads and associated temporary shelters have been built on islands in the southern hemisphere.`
+		to display
+			not "known to the successors"
+	description `This planet is being surveyed to establish its potential as a new settlement location for the New Houses. Although its gravity is somewhat high for Successor tastes, it has a clear, oxygen-rich atmosphere, and a cool and watery surface. The first groups of settlers are scheduled to arrive here in a few years, once the planetary surveys are complete and have declared it safe and geologically stable.`
+		to display
+			has "known to the successors"
 	government Uninhabited
 
 planet Warfeed
@@ -5084,6 +5758,22 @@ planet "Yniu Ena"
 	description `Like its parent planet below, Yniu Ena has a thick purple-reddish web of unnatural material spread across its surface, forming rivers and large lakes. While most of these lakes are rather small relative to the planet's surface, there are a few as large as oceans that give the appearance of scars on the planet.`
 	government Uninhabited
 
+planet Yoqqa-Vasa-Vasa
+	attributes manufacturing successor tourism
+	landscape land/forest5
+	description `Yoqqa-Vasa-Vasa's atmosphere is unusually thick for a planet of its size, and contains a very high concentration of carbon monoxide, which, while harmless to the Successors because of their different biochemistry, is highly toxic to humans. The planet supports a rich and biodiverse planetary ecosystem, with large jungles straddling its equatorial regions that give way to strikingly beautiful mountain ranges near the poles.`
+	description `	It also serves as the planetary bastion of House Seineq, an especially old and noble House from the old empire that immigrated here during the collapse, soon allying with Houses Aqrabe and Kaatrij to assert its claim to the surrounding systems. This alliance between the so-called New Houses persists to the present day, where Seineq is widely considered the first among equals within it.`
+	spaceport `You take care to equip a respirator before exiting your ship.`
+	spaceport `	The spaceport here is large and busy, situated on a platform suspended on poles above one of the equatorial jungles. Because of the thick atmosphere, much of the transport in and out is by air, and there is a near-constant drone of airplane and airship engines layered over the normal spaceport chatter. Several large tourist groups are moving to and fro, and while some regard you with surprise, most take no notice of you or your ship, already focused on their upcoming tour or expedition.`
+	government "House Seineq"
+	shipyard "New Houses Light"
+	shipyard "High Houses Heavy"
+	shipyard "Successor Civilian"
+	outfitter "Successor Civilian"
+	outfitter "Successor Weapons Basics"
+	"required reputation" 2
+	bribe 0
+
 planet Zenith
 	attributes frontier north "north pirate" pirate
 	landscape land/water4
@@ -5091,6 +5781,8 @@ planet Zenith
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous concrete fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
 	bribe 0.04
 	security 0
 	tribute 400

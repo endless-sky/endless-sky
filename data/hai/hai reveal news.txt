@@ -392,8 +392,7 @@ phrase "paranoia: media creators are aliens"
 		" the set designer is"
 		" the producer is"
 	word
-		" an alien"
-		" an alien"
+		" an alien" 2
 		" some kind of alien"
 	word
 		" in disguise."
