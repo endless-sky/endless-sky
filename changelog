@@ -87,11 +87,10 @@ Version 0.10.9
     * New mechanics:
       * Dialog text, and planet and spaceport descriptions can now have "to display" condition sets. (@UnorderedSigh)
       * References to phrases and other substitutions will now be expanded in custom substitutions, and NPC and gift ship names. (@UnorderedSigh)
-      * Added formation flying with simple patterns. (@petervdmeer)
+      * Added fleet formations. (@petervdmeer)
       * Outfits can now specify custom scan sounds. (@TomGoodIdea)
       * Added "<model>" text replacement for model name of the flagship. (@TomGoodIdea)
       * Made ships snap to formation. (@tibetiroka)
-      * Complex fleet formations. (@petervdmeer)
       * Added a "Hold Fire" command for escort ships. (@Hurleveur)
     * Mechanics changes:
       * Mission actions no longer run after failure unless given a "can trigger after failure" child node. (@tibetiroka)
