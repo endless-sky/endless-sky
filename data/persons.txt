@@ -2128,7 +2128,7 @@ person "Danau"
 		word
 			" "
 		word
-			"Avoid crashes of the game!"
+			"Avoid game crashes!"
 			"Improve the quality of our codebase!"
 			"Get new features into the game faster!"
 			"Have more time for good reviews!"
@@ -2215,4 +2215,4 @@ ship "Modified Hauler VI"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Hauler cargo ships were considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."
+	description "The Hauler cargo ships are considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."
