@@ -7674,7 +7674,7 @@ mission "Syndicate Business 2"
 
 mission "Syndicate Business 3"
 	name "Visit Howard on <planet>"
-	description "Howard, from Megaparsec Inc., wants to tell you about an investment opportunity."
+	description "Howard wants to tell you about another investment opportunity."
 	source
 		government "Syndicate"
 		attributes "core"
@@ -7754,6 +7754,7 @@ mission "Syndicate Business 3"
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
 	description "Escort Howard from Megaparsec Inc. to <planet> to learn what favor is needed in exchange for an investment opportunity."
+	priority
 	source "Hephaestus"
 	to offer
 		has "Syndicate Business 3: done"
@@ -7791,8 +7792,8 @@ mission "Syndicate Business 4"
 
 mission "Syndicate Business 5"
 	name "Disable a Marauder ship on <planet>"
-	description "Howard from Megaparsec Inc. wants you to disable a Marauder ship in exchange for an investment opportunity."
-	minor
+	description "Howard wants you to disable a Marauder ship in exchange for an investment opportunity."
+	priority
 	to offer
 		has "Syndicate Business 4: done"
 	source "Sunracer"
@@ -7878,7 +7879,7 @@ mission "Syndicate Business 5"
 			has "syndicate business golden jewel dead"
 		on encounter
 			conversation
-				`When you enter <waypoints>, your sensors detect the same pirate Vanguard from when you first rescued Howard. Your ship is immediately hailed, and the pirate opens communication.`
+				`When you enter Moktar, your sensors detect the same pirate Vanguard from when you first rescued Howard. Your ship is immediately hailed, and the pirate opens communication.`
 				`	"I should have destroyed you when I had the chance. Prepare to meet your end!"`
 				choice
 					`	"Maybe I should have destroyed you!"`
@@ -8025,18 +8026,21 @@ mission "Syndicate Business 5"
 			action
 				"salary: Syndicate Business" += 2700
 				set "Syndicate Business expansion 10m neutral"
+				log "After disabling a Marauder for Howard, you were able to make another investment with Megaparsec, for ten million credits. Out of three investment options, you ended up choosing the conventional approach."
 			`	"Excellent choice. The conventional expansion is a safe bet with solid returns. It's not the flashiest option, but the steady stream of ships passing through Crossroads will ensure consistent profits. The only drawback is that it won't make headlines--but it'll keep the credits flowing smoothly."`
 				goto ending
 			label choseplanb
 			action
 				"salary: Syndicate Business" += 4100
 				set "Syndicate Business expansion 10m evil"
+				log "After disabling a Marauder for Howard, you were able to make another investment with Megaparsec, for ten million credits. Out of three investment options, you ended up choosing the profitable approach."
 			`	"Well done. The unregulated option is bold and ambitious--exactly the kind of move the Syndicate prizes. The volatility of this fuel isn't for the faint of heart, but some bad PR is well worth the profits and potential learnings we'll achieve. High risk often means high reward."`
 				goto ending
 			label choseplanc
 			action
 				"salary: Syndicate Business" += 2000
 				set "Syndicate Business expansion 10m good"
+				log "After disabling a Marauder for Howard, you were able to make another investment with Megaparsec, for ten million credits. Out of three investment options, you ended up choosing the eco-friendly approach."
 			`	"An admirable decision. The eco-friendly route won't make the most credits, but it's a forward-thinking investment. It could pay off in other ways, like reduced turnover and environmental liabilities. Objectively the worst investment from a returns perspective, but I suppose you value other things more."`
 			label ending
 			choice
@@ -8046,7 +8050,5 @@ mission "Syndicate Business 5"
 				`	(Sign the paperwork.)`
 			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
 			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to the <ship>.`
-			action
-				log `Made a second investment in Megaparsec Incorporated with Howard Vendeur, this time for ten million credits.`
 
 event "10m investment done"
