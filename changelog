@@ -136,6 +136,7 @@ Version 0.10.9
     * Updated codespell exclusions. (@tibetiroka)
     * Updated Steam Linux and Mac Release CD. (@tibetiroka)
     * Workflows now use the official sccache action. (@tibetiroka)
+    * Added a simple Doxygen configuration. (@petervdmeer)
 
 Version 0.10.8
   * Bug fixes:
