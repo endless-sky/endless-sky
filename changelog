@@ -1,3 +1,142 @@
+Version 0.10.9
+  * Big changes:
+    * Added an alien faction dwelling in a gas giant in the galactic Northeast. (@RisingLeaf, @GefullteTaubenbrust2)
+    * Added a faction of amphibious alien to the galactic south. (@Daeridanii1)
+    * Added Corroboration I, a new mission chain for the Gegno. (@Saugia)
+    * When attempting to capture a ship, an attacker's "attack" rating will always be pitted against the opposition "defense" rating, instead of only when the opposition chooses to defend. (@petervdmeer, @Hurleveur)
+    * Deprecated the use of "~" to denote half-additive image files, to avoid conflicts with Windows NT 8.3 file name compatibility. Half-additivity is now denoted with the "^" symbol. (@tibetiroka)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Quantumshark, @RisingLeaf, @stefanct, @Tangle10, @TheGiraffe3, @tibetiroka, @ziproot)
+      * Restricted certain Quarg conversations to Human and Hai Quarg. (@roadrunner56)
+      * Fixed "Hold position" tooltip text. (@tibetiroka)
+      * Updated the name of a Korath World-Ship in a Remnant mission. (@TheGiraffe3)
+      * Added "Pirate Basics" outfitter to all pirate outfitters and reimplemented "Pirate Outfits" outfitter for plugin compatibility. (@bene-dictator)
+      * Standardized line breaks in the human/variants.txt file. (@TheGiraffe3)
+      * The Pug planets in Deneb can no longer be bribed. (@TheGiraffe3)
+      * Fixed various issues in Gegno missions. (@Saugia)
+      * Fixed an issue when updating the spaceport description of Esquiline in an event. (@TheGiraffe3)
+      * Fixed conversation flow in "Incipias: Help the Stranded 1". (@Saugia)
+      * Fixed a missing space in the definition of the Teciimach. (@TheGiraffe3)
+      * Fixed "has", "not" and assign condition usage in data files. (@petervdmeer)
+      * Removed a reference to a non-existent sound. (@tibetiroka)
+      * Limited ringworld quarg news to ringworlds. (@Arachi-Lover)
+      * Made the "Tace Mesa" inscrutable. (@reticent-rem)
+      * The Heliarch now have the correct attitude towards "Quarg (Incipias)" and their attitudes are now alphabetized. (@TheGiraffe3)
+      * Fixed delayed hull repair on "Black Diamonds" by correcting an attribute name. (@reticent-rem)
+      * Options that have already been chosen in "Lunarium: Quarg Interview" will now disappear correctly. (@TheGiraffe3)
+      * Updated the description of the "Nanotech Battery" to be more accurate. (@TheGiraffe3)
+    * Engine bugs:
+      * Escorts will no longer follow orders after the flagship dies. (@petervdmeer)
+      * Removed some assert statements that have become extraneous. (@eebop)
+      * Corrected parsing of "add description/spaceport" planet child nodes. (@tibetiroka)
+      * Corrected accounting for WrappedText padding when calculating maximum height available in dialogs. (@tibetiroka)
+      * Fixed an unnecessary floating-point comparison. (@RisingLeaf)
+      * Fixed extended jump effects. (@TomGoodIdea)
+      * Fixed formatting of large numbers. (@tibetiroka)
+      * Fixed a null pointer dereference in Engine::Step. (@petervdmeer)
+      * Fixed a rare crash during wormhole link generation. (@tibetiroka)
+      * RanderBuffer now better accounts for DPI scaling on MacOS. (@implicitfield)
+      * "EMP Torpedoes" in the "Remnant Core" outfitter are now also replaced with "Teciimach Canisters" when they are introduced. (@Alex Rov)
+      * Improved handling of orders when the selected escort is destroyed. (@TomGoodIdea)
+      * The cargo capacity of destroyed ships is no longer counted towards the fleet's total in the flotsam collection message. (@TomGoodIdea)
+      * Fixed the handling of spaceports marked/unmarked as uninhabited with the "uninhabited" attribute. (@TomGoodIdea)
+      * NPC escorts will now be landed when their parent lands. (@petervdmeer)
+  * Game content:
+    * New content:
+      * Added more Commodities. (@TheGiraffe3)
+      * Added defense fleets to Wanderer worlds. (@TheGiraffe3)
+      * Made systems in the Umbral Reach shrouded and added a flavor mission. (@Saugia)
+      * Added some new news messages. (@petervdmeer)
+      * Adjusted some fleets and minables in Gegno space. (@Saugia)
+      * Added log entries for the Incipias. (@roadrunner56)
+      * Added the battle of Zydee and a new planet in Gegno space, along with various tweaks. (@Saugia)
+      * Added more hostile disabled pirate hails. (@blue-four-seven)
+      * Added Quarg poems about the Incipias and Successors. (@Arachi-Lover)
+      * Added more friendly Hai hails. (@blue-four-seven)
+      * Added unique conversations for Geminus and Martini during the bombings. (@mOctave)
+      * Added spaceport news and culture conversations to CCOR worlds. (@Ebreus, @bene-dictator)
+      * Added some new friendly civilian hails. (@blue-four-seven)
+    * Graphics:
+      * Added a variety of new Landscape Images. (@tekker2234)
+      * Reverted changes to the "land/water4" image. (@ziproot)
+    * Balance:
+      * Adjusted the integrated stats of the Penguin. (@ziproot)
+        * "heat dissipation": 0.82 -> 0.88
+        * Added "energy generation": 0.6
+        * Added "heat generation": 1
+        * "thrust": 4.2 -> 6.3
+        * Added "thrusting energy": 0.6
+        * Added "thrusting heat": 0.55
+        * "turn": 80 -> 120
+        * Added "turning energy": 0.22
+        * Added "turning heat": 0.24
+        * "reverse thrust": 4.2 -> 6.3
+        * Added "reverse thrusting energy": 0.55
+        * Added "reverse thrusting heat": 0.55
+      * Gave the Fetri'sei logical stats for its category and description, replacing stats copied from the Maeri’het. (@Quantumshark)
+      * Made the Dragonflame penetrate instead of having a blast radius. (@AvianGeneticist)
+      * Reduced the power of the Merganser, the Peregrine and the Bellows-class Afterburner. (@Azure_)
+    * Other:
+      * Adjusted wording in "Pookie, Part 2" to more accurately reflect the behaviour of dogs. (@aradapilot)
+      * Doubled the average interval for "person" ship spawns. (@Saugia)
+      * Added formation patterns for person ships. (@petervdmeer)
+      * Edited the description of Ghneoe. (@TheGiraffe3)
+      * The "Wanderer Freight" fleet now has the "appeasing" personality. (@warp-core)
+  * Game mechanics:
+    * New mechanics:
+      * Dialog text, and planet and spaceport descriptions can now have "to display" condition sets. (@UnorderedSigh)
+      * References to phrases and other substitutions will now be expanded in custom substitutions, and NPC and gift ship names. (@UnorderedSigh)
+      * Added formation flying with simple patterns. (@petervdmeer)
+      * Outfits can now specify custom scan sounds. (@TomGoodIdea)
+      * Added "<model>" text replacement for model name of the flagship. (@TomGoodIdea)
+      * Make ships snap to formation. (@tibetiroka)
+      * Complex fleet formations. (@petervdmeer)
+      * Added a "Hold Fire" command for escort ships. (@Hurleveur)
+    * Mechanics changes:
+      * Mission actions no longer run after failure unless given a "can trigger after failure" child node. (@tibetiroka)
+      * Assisting/boarding ships are now able to recharge batteries. (@tibetiroka)
+      * Weapons can now specify if their submunitions should spawn at the end of their lifetime, when the projectile is killed by an anti-missile, or both. (@TomGoodIdea)
+      * Governments no longer assist player escorts if the player doesn't know their language. (@TomGoodIdea)
+  * User interface:
+    * Player ship tooltips in the shpyard and outfitter now also indicate if the ship is parked. (@nickshanks)
+    * Added a marker to player ship icons in the shipyard and outfitter to indicate if they are parked. (@nickshanks)
+    * The "Extra fleet status messages" preference no longer affects messages about ship destructions, but does now hide messages about escorts collecting flotsam. (@nickshanks)
+    * The message log will now display placeholder text when it is empty. (@TomGoodIdea)
+    * Unpark a ship that is dragged to the first slot. (@moonliiiqhte)
+    * The harvesting message now includes the free cargo space of the entire fleet. (@SomeTroglodyte)
+    * Add random name button when renaming a ship through the ship info panel. (@nickshanks)
+    * Added scrollbars to various panels. (@Koranir)
+    * LineShader now uses distance functions and draws sharper lines. (@Koranir)
+  * Under the hood:
+    * Moved the String Interner from Dictionary to its own class. (@petervdmeer)
+    * Slightly refactored DataWriter. (@tibetiroka)
+    * Added TextArea for auto-scrollable wrapped text support. (@thewierdnut)
+    * Removed unused Has functionality for derived conditions. (@petervdmeer)
+    * Removed cached collision lists. (@tibetiroka)
+    * Refactored escort orders to allow for multiple orders to be active at once. (@Amazinite)
+    * Moved source code files related to audio, images, and integration tests each to their own subdirectories. (@tibetiroka)
+    * Migrated to C++20. (@tibetiroka)
+    * Replaced header guards with "#pragma once". (@tibetiroka)
+    * Alphabetized forward class declarations. (@TomGoodIdea)
+    * Refactored various pieced of code to use C++20 features. (@tibetiroka)
+    * ImageSet and ImageBuffer now use std::filesystem for file paths. (@tibetiroka)
+    * Switched from PopThrough to Pop in Dialog. (@TomGoodIdea)
+    * Moved code for writing route error message to 'map' interface. (@nickshanks)
+  * Documentation:
+    * Added Catch2 dependency to the developer documentation. (@tibetiroka)
+    * Added links to the quality checklist and style goals wiki pages in CONTRIBUTING.md. (@reticent-rem)
+    * Mentioned ccache to speed-up rebuilds in the build instructions. (@petervdmeer)
+    * Clarified the required version of mingw. (@TomGoodIdea)
+    * Added GOG to the readme file. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Bumped runner versions. (@tibetiroka)
+    * Updated expected values in integration tests to match game data. (@tibetiroka)
+    * Enabled sanitizers for debug builds. (@tibetiroka)
+    * Updated codespell exclusions. (@tibetiroka)
+    * Updated Steam Linux and Mac Release CD. (@tibetiroka)
+    * Workflows now use the official sccache action. (@tibetiroka)
+
 Version 0.10.8
   * Bug fixes:
     * Content bugs:
