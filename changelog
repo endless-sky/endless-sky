@@ -37,7 +37,7 @@ Version 0.10.9
       * Fixed a null pointer dereference in Engine::Step. (@petervdmeer)
       * Fixed a rare crash during wormhole link generation. (@tibetiroka)
       * RanderBuffer now better accounts for DPI scaling on MacOS. (@implicitfield)
-      * "EMP Torpedoes" in the "Remnant Core" outfitter are now also replaced with "Teciimach Canisters" when they are introduced. (@Alex Rov)
+      * "EMP Torpedoes" in the "Remnant Core" outfitter are now also replaced with "Teciimach Canisters" when they are introduced. (@alexrovw)
       * Improved handling of orders when the selected escort is destroyed. (@TomGoodIdea)
       * The cargo capacity of destroyed ships is no longer counted towards the fleet's total in the flotsam collection message. (@TomGoodIdea)
       * Fixed the handling of spaceports marked/unmarked as uninhabited with the "uninhabited" attribute. (@TomGoodIdea)
