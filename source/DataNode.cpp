@@ -271,6 +271,23 @@ bool DataNode::IsBool(const string &token)
 
 
 
+bool DataNode::IsConditionName(const string &token)
+{
+	// For now check if condition names start with an alphabetic character, and that is all we check for now.
+	// Token "'" is required for backwards compatibility (used for illegal tokens).
+	// Boolean keywords are not valid conditionNames, so we also check for that.
+	return
+		!token.empty() &&
+		!IsBool(token) &&
+		(
+			(token == "'") ||
+			(token[0] >= 'a' && token[0] <= 'z') ||
+			(token[0] >= 'A' && token[0] <= 'Z')
+		);
+}
+
+
+
 // Add a new child. The child's parent must be this node.
 void DataNode::AddChild(const DataNode &child)
 {
