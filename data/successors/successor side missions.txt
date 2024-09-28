@@ -435,6 +435,7 @@ mission "Successors: Unified Defense"
 			`	A wave of bristling black runs over the Successor's body before they end the transmission.`
 			label end
 			branch "uninhabited end"
+				has "flagship planet attribute: uninhabited"
 			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
 				flee
 			label "uninhabited end"
