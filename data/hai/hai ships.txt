@@ -36,20 +36,20 @@ ship "Anomalocaris"
 			"hull damage" 1050
 			"hit force" 3150
 	outfits
+		"Chameleon Anti-Missile" 2
+		"Ion Cannon"
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 20
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Boulder Reactor"
-		"Chameleon Anti-Missile" 2
-		"Hai Diamond Regenerator"
-		"Hai Ravine Batteries"
-		"Hai Williwaw Cooling" 3
 		Hyperdrive
-		"Ion Cannon"
-		"Pebble Core"
-		"Pulse Cannon"
-		"Pulse Rifle" 20
-		"Pulse Turret" 2
-		"Quantum Keystone"
 	gun -24 -89.5
 	gun 24 -89.5
 	turret -40 -28
@@ -78,19 +78,19 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 	add attributes
 		"threshold percentage" 0.4
 	outfits
-		"Korath Detainer" 2
 		"Bullfrog Anti-Missile" 2
+		"Korath Detainer" 2
 		"Hai Williwaw Cooling"
 		"Boulder Reactor"
-		"Value Detector"
 		"Hai Valley Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
+		"Value Detector"
+		"Pulse Rifle" 20
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
-		"Pulse Rifle" 20
 	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
 
 ship "Aphid"
