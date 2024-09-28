@@ -131,7 +131,6 @@ namespace {
 	}
 
 	const Color black(0.f, 1.f);
-	const Color red(1.f, 0.f, 0.f, 1.f);
 
 	// Hovering an escort pip for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
@@ -411,13 +410,11 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
-		const Font &font = FontSet::Get(18);
-
 		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		Point point(-font.Width(message) / 2, Screen::Top() + 40);
-		font.Draw(message, point + Point(1, 1), black);
-		font.Draw(message, point, red);
+		info.SetString("route error", message);
 	}
+
+	mapInterface->Draw(info, this);
 }
 
 
@@ -1212,9 +1209,9 @@ void MapPanel::DrawTravelPlan()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 1.6f, drawColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 3.f, drawColor);
+			LineShader::Draw(from, to, 1.6f, drawColor);
 	}
 }
 

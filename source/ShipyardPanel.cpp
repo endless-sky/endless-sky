@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipNameDialog.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -48,42 +49,6 @@ using namespace std;
 namespace {
 	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
-
-	// The name entry dialog should include a "Random" button to choose a random
-	// name using the civilian ship name generator.
-	class NameDialog : public Dialog {
-	public:
-		NameDialog(ShipyardPanel *panel, void (ShipyardPanel::*fun)(const string &), const string &message)
-			: Dialog(panel, fun, message) {}
-
-		virtual void Draw() override
-		{
-			Dialog::Draw();
-
-			randomPos = cancelPos - Point(80., 0.);
-			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
-
-			const Font &font = FontSet::Get(14);
-			static const string label = "Random";
-			Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
-			font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
-		}
-
-	protected:
-		virtual bool Click(int x, int y, int clicks) override
-		{
-			Point off = Point(x, y) - randomPos;
-			if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
-			{
-				input = GameData::Phrases().Get("civilian")->Get();
-				return true;
-			}
-			return Dialog::Click(x, y, clicks);
-		}
-
-	private:
-		Point randomPos;
-	};
 }
 
 
@@ -289,7 +254,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
 }
 
 
