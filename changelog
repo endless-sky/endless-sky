@@ -1,9 +1,9 @@
 Version 0.10.9
   * Big changes:
     * Added an alien faction dwelling in a gas giant in the galactic Northeast. (@RisingLeaf, @GefullteTaubenbrust2)
-    * Added a faction of amphibious alien to the galactic south. (@Daeridanii1)
+    * Added a faction of amphibious aliens to the galactic south. (@Daeridanii1)
     * Added Corroboration I, a new mission chain for the Gegno. (@Saugia)
-    * When attempting to capture a ship, an attacker's "attack" rating will always be pitted against the opposition "defense" rating, instead of only when the opposition chooses to defend. (@petervdmeer, @Hurleveur)
+    * During hand to hand combat, if both sides choose to attack, two rounds of combat are run, one with the player's attack against the enemy's defense and one with the enemy's attack against the player's defense, instead of using the player's attack against the enemy's attack. (@petervdmeer, @Hurleveur)
     * Deprecated the use of "~" to denote half-additive image files, to avoid conflicts with Windows NT 8.3 file name compatibility. Half-additivity is now denoted with the "^" symbol. (@tibetiroka)
   * Bug fixes:
     * Content bugs:
@@ -20,7 +20,7 @@ Version 0.10.9
       * Fixed a missing space in the definition of the Teciimach. (@TheGiraffe3)
       * Fixed "has", "not" and assign condition usage in data files. (@petervdmeer)
       * Removed a reference to a non-existent sound. (@tibetiroka)
-      * Limited ringworld quarg news to ringworlds. (@Arachi-Lover)
+      * Limited ringworld Quarg news to ringworlds. (@Arachi-Lover)
       * Made the "Tace Mesa" inscrutable. (@reticent-rem)
       * The Heliarch now have the correct attitude towards "Quarg (Incipias)" and their attitudes are now alphabetized. (@TheGiraffe3)
       * Fixed delayed hull repair on "Black Diamonds" by correcting an attribute name. (@reticent-rem)
@@ -44,7 +44,7 @@ Version 0.10.9
       * NPC escorts will now be landed when their parent lands. (@petervdmeer)
   * Game content:
     * New content:
-      * Added more Commodities. (@TheGiraffe3)
+      * Added more commodities. (@TheGiraffe3)
       * Added defense fleets to Wanderer worlds. (@TheGiraffe3)
       * Made systems in the Umbral Reach shrouded and added a flavor mission. (@Saugia)
       * Added some new news messages. (@petervdmeer)
@@ -74,11 +74,11 @@ Version 0.10.9
         * "reverse thrust": 4.2 -> 6.3
         * Added "reverse thrusting energy": 0.55
         * Added "reverse thrusting heat": 0.55
-      * Gave the Fetri'sei logical stats for its category and description, replacing stats copied from the Maeri’het. (@Quantumshark)
+      * Gave the Fetri'sei logical stats for its category and description, replacing stats copied from the Maeri'het. (@Quantumshark)
       * Made the Dragonflame penetrate instead of having a blast radius. (@AvianGeneticist)
       * Reduced the power of the Merganser, the Peregrine and the Bellows-class Afterburner. (@Azure_)
     * Other:
-      * Adjusted wording in "Pookie, Part 2" to more accurately reflect the behaviour of dogs. (@aradapilot)
+      * Adjusted wording in "Pookie, Part 2" to more accurately reflect the behavior of dogs. (@aradapilot)
       * Doubled the average interval for "person" ship spawns. (@Saugia)
       * Added formation patterns for person ships. (@petervdmeer)
       * Edited the description of Ghneoe. (@TheGiraffe3)
@@ -90,7 +90,7 @@ Version 0.10.9
       * Added formation flying with simple patterns. (@petervdmeer)
       * Outfits can now specify custom scan sounds. (@TomGoodIdea)
       * Added "<model>" text replacement for model name of the flagship. (@TomGoodIdea)
-      * Make ships snap to formation. (@tibetiroka)
+      * Made ships snap to formation. (@tibetiroka)
       * Complex fleet formations. (@petervdmeer)
       * Added a "Hold Fire" command for escort ships. (@Hurleveur)
     * Mechanics changes:
@@ -119,7 +119,7 @@ Version 0.10.9
     * Migrated to C++20. (@tibetiroka)
     * Replaced header guards with "#pragma once". (@tibetiroka)
     * Alphabetized forward class declarations. (@TomGoodIdea)
-    * Refactored various pieced of code to use C++20 features. (@tibetiroka)
+    * Refactored various pieces of code to use C++20 features. (@tibetiroka)
     * ImageSet and ImageBuffer now use std::filesystem for file paths. (@tibetiroka)
     * Switched from PopThrough to Pop in Dialog. (@TomGoodIdea)
     * Moved code for writing route error message to 'map' interface. (@nickshanks)
