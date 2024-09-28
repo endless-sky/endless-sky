@@ -105,6 +105,7 @@ namespace {
 
 PreferencesPanel::PreferencesPanel()
 	: editing(-1), selected(0), hover(-1)
+	, controlTypeDropdown{new Dropdown}
 {
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
@@ -121,18 +122,19 @@ PreferencesPanel::PreferencesPanel()
 	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
 
-	controlTypeDropdown.SetPadding(0);
-	controlTypeDropdown.ShowDropIcon(true);
-	controlTypeDropdown.SetFontSize(14);
-	controlTypeDropdown.SetOptions({
+	controlTypeDropdown->SetPadding(0);
+	controlTypeDropdown->ShowDropIcon(true);
+	controlTypeDropdown->SetFontSize(14);
+	controlTypeDropdown->SetOptions({
 		SHOW_KEYS,
 		SHOW_GESTURES,
 		SHOW_GAMEPAD
 	});
-	controlTypeDropdown.SetBgColor(*GameData::Colors().Get("conversation background"));
+	controlTypeDropdown->SetBgColor(*GameData::Colors().Get("conversation background"));
+	AddChild(controlTypeDropdown);
 
 #ifdef __ANDROID__
-	controlTypeDropdown.SetSelected(SHOW_GESTURES);
+	controlTypeDropdown->SetSelected(SHOW_GESTURES);
 #endif
 
 	// Set the initial plugin list and description scroll ranges.
@@ -218,7 +220,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
-		controlTypeDropdown.SetSelected(SHOW_KEYS);
+		controlTypeDropdown->SetSelected(SHOW_KEYS);
 		EndEditing();
 		return true;
 	}
@@ -330,9 +332,9 @@ bool PreferencesPanel::FingerDown(int x, int y, int fid)
 {
 	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
 	{
-		if(controlTypeDropdown.GetSelected() == SHOW_GESTURES)
+		if(controlTypeDropdown->GetSelected() == SHOW_GESTURES)
 			Command::SetGesture(zones[editing].Value(), Gesture::NONE);
-		else if(controlTypeDropdown.GetSelected() == SHOW_GAMEPAD)
+		else if(controlTypeDropdown->GetSelected() == SHOW_GAMEPAD)
 		{
 			Command::SetControllerButton(zones[editing].Value(), SDL_CONTROLLER_BUTTON_INVALID);
 			Command::SetControllerTrigger(zones[editing].Value(), SDL_CONTROLLER_AXIS_INVALID, true);
@@ -515,7 +517,7 @@ bool PreferencesPanel::Gesture(Gesture::GestureEnum gesture)
 	if(editingGesture >= 0 && editingGesture < static_cast<ssize_t>(zones.size()))
 	{
 		Command::SetGesture(zones[editingGesture].Value(), gesture);
-		controlTypeDropdown.SetSelected(SHOW_GESTURES);
+		controlTypeDropdown->SetSelected(SHOW_GESTURES);
 		EndEditing();
 	}
 	return true;
@@ -532,7 +534,7 @@ bool PreferencesPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, boo
 			axis != SDL_CONTROLLER_AXIS_LEFTY)
 		{
 			Command::SetControllerTrigger(zones[editing].Value(), axis, positive);
-			controlTypeDropdown.SetSelected(SHOW_GAMEPAD);
+			controlTypeDropdown->SetSelected(SHOW_GAMEPAD);
 			EndEditing();
 			return true;
 		}
@@ -552,7 +554,7 @@ bool PreferencesPanel::ControllerButtonDown(SDL_GameControllerButton button)
 		if(button != SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
 		{
 			Command::SetControllerButton(zones[editing].Value(), button);
-			controlTypeDropdown.SetSelected(SHOW_GAMEPAD);
+			controlTypeDropdown->SetSelected(SHOW_GAMEPAD);
 			EndEditing();
 		}
 		return true;
@@ -735,9 +737,9 @@ void PreferencesPanel::DrawControls()
 
 			table.Draw(command.Description(), medium);
 			std::string controlName = "(None)";
-			if(controlTypeDropdown.GetSelected() == SHOW_GESTURES)
+			if(controlTypeDropdown->GetSelected() == SHOW_GESTURES)
 				controlName = command.GestureName();
-			else if(controlTypeDropdown.GetSelected() == SHOW_GAMEPAD)
+			else if(controlTypeDropdown->GetSelected() == SHOW_GAMEPAD)
 				controlName = command.ButtonName();
 			else
 				controlName = command.KeyName();
@@ -783,8 +785,7 @@ void PreferencesPanel::DrawControls()
 
 	// Dropdown for displayed control type
 	Rectangle controlTypeRect = ui->GetBox("control type");
-	controlTypeDropdown.SetPosition(controlTypeRect);
-	controlTypeDropdown.Draw(this);
+	controlTypeDropdown->SetPosition(controlTypeRect);
 }
 
 

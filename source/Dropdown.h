@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 /**
  * Handles drawing and input for a traditional dropdown control
  */
-class Dropdown
+class Dropdown: public Panel
 {
 public:
 	virtual ~Dropdown() = default;
@@ -41,7 +41,7 @@ public:
 	const std::string& GetSelected() const { return selected_string; }
 	int GetSelectedIndex() const { return selected_index; }
 
-	void Draw(Panel* parent);
+	virtual void Draw() override;
 
 	enum ALIGN { LEFT, CENTER, RIGHT };
 	void SetAlign(ALIGN a) { alignment = a; }
@@ -57,7 +57,7 @@ public:
 	void SetCallback(ChangedCallback cb) { changed_callback = cb; }
 
 protected:
-	void DoDropdown(Panel* parent, const Point& pos);
+	void DoDropdown(const Point& pos);
 
 private:
 	int IdxFromPoint(int x, int y) const;

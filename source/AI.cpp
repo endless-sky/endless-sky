@@ -4920,7 +4920,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 			{
 				// For touchscreen targets, apply fight commands to the flagship too.
 				if (!(Preferences::Has("Show buttons on map") &&
-					 (newOrders.type == Orders::FINISH_OFF || newOrders.type == Orders::ATTACK)))
+					 (newOrders.HasFinishOff() || newOrders.HasAttack())))
 				{
 					continue;
 				}

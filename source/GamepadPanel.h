@@ -58,9 +58,9 @@ protected:
 	void UpdateUserMessage();
 
 private:
-	Dropdown gamepadList;
-	Dropdown deadZoneList;
-	Dropdown triggerThresholdList;
+	std::shared_ptr<Dropdown> gamepadList;
+	std::shared_ptr<Dropdown> deadZoneList;
+	std::shared_ptr<Dropdown> triggerThresholdList;
 
 	bool reloadGamepad = true;
 	bool startRemap = false;

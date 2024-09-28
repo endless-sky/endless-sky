@@ -103,10 +103,6 @@ private:
 	std::vector<const Panel *> toPop;
 
 	uint32_t lastTap = 0;
-	// Track which finger was used for zone/panels, so we send followup motion/
-	// finger controls to the correct one.
-	int zoneFingerId = -1;
-	int panelFingerId = -1;
 
 	// Track active axis value so that we can simulate button presses from
 	// triggers

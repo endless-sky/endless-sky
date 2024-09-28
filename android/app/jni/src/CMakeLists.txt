@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.0)
 
 project(endless_mobile)
 
-set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
+# We aren't using a new enough cmake to use c++20 this way. Hardwire the
+# standard directly instead.
+# set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
+set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -std=c11")
+
+# SDL requires c89 compliance, but their android code is written against
+# C99. This isn't fixed until 2.30
+set(HAVE_GCC_WDECLARATION_AFTER_STATEMENT 0)
 
 option(ENABLE_SHARED "" FALSE)
 option(ENABLED_STATIC "" TRUE)
@@ -75,7 +83,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Angle.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Armament.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AsteroidField.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Audio.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/Audio.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BankPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BatchDrawList.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BatchShader.cpp
@@ -121,6 +129,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Flotsam.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FogShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FormationPattern.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/FormationPositioner.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FrameTimer.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Galaxy.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/GameAction.cpp
@@ -138,13 +147,13 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Hardpoint.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Hazard.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/HiringPanel.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/ImageBuffer.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/ImageSet.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/ImageBuffer.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/ImageSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/InfoPanelState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Information.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Interface.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ItemInfoDisplay.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/KtxFile.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/KtxFile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LineShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LoadPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LocationFilter.cpp
@@ -158,8 +167,8 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/MapPlanetCard.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MapSalesPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MapShipyardPanel.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Mask.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/MaskManager.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/Mask.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/MaskManager.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MenuAnimationPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MenuPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MessageLogPanel.cpp
@@ -169,16 +178,18 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/MissionAction.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MissionPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Mortgage.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Music_stub.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/Music_stub.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/News.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/NPC.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/NPCAction.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/opengl.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Orders.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Outfit.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitterPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutlineShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Panel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Paragraphs.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Person.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Personality.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Phrase.cpp
@@ -215,20 +226,22 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/ShipyardPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ship/ShipAICache.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShopPanel.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Sound.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/Sound.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SpaceportPanel.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Sprite.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/SpriteSet.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/Sprite.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/SpriteSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SpriteShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ShipNameDialog.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StarField.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StartConditions.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StartConditionsPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StellarObject.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/StringInterner.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/System.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TaskQueue.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Test.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/TestContext.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/TestData.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/test/Test.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/test/TestContext.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/test/TestData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TouchScreen.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/DisplayText.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/Font.cpp
@@ -237,6 +250,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/text/Table.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/Utf8.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/WrappedText.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/TextArea.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TextReplacements.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Trade.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TradingPanel.cpp

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../File.h"
 
 #include <SDL2/SDL_rwops.h>
+#include "../Files.h"
 
 #include <AL/al.h>
 
@@ -213,7 +214,7 @@ namespace {
 	{
 		mp3dec_t mp3d;
 		mp3dec_init(&mp3d);
-
+		
 		auto raw_data = Files::Read(in);
 		const uint8_t* p = reinterpret_cast<const uint8_t*>(raw_data.data());
 		const uint8_t* pend = p + raw_data.size();

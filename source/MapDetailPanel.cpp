@@ -126,7 +126,7 @@ void MapDetailPanel::Step()
 
 	// If a new description is being shown, then we want to make sure the panel
 	// isn't covering the planet under consideration
-	bool descriptionShown = selectedPlanet && !selectedPlanet->Description().empty() &&
+	bool descriptionShown = selectedPlanet && !selectedPlanet->Description().IsEmpty() &&
 	                        player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole();
 	if(descriptionShown && !descriptionPreviouslyShown)
 	{

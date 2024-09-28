@@ -61,15 +61,20 @@ TradingPanel::TradingPanel(PlayerInfo &player)
 {
 	SetTrapAllEvents(false);
 
-	buyMultiplier.SetAlign(Dropdown::LEFT);
-	buyMultiplier.SetFontSize(14);
-	buyMultiplier.SetPadding(0);
-	buyMultiplier.SetOptions({"x 1", "x 10", "x 100", "x 1000"});
+	buyMultiplier = std::make_shared<Dropdown>();
+	buyMultiplier->SetAlign(Dropdown::LEFT);
+	buyMultiplier->SetFontSize(14);
+	buyMultiplier->SetPadding(0);
+	buyMultiplier->SetOptions({"x 1", "x 10", "x 100", "x 1000"});
+	AddChild(buyMultiplier);
 
-	sellMultiplier.SetAlign(Dropdown::LEFT);
-	sellMultiplier.SetFontSize(14);
-	sellMultiplier.SetPadding(0);
-	sellMultiplier.SetOptions({"x 1", "x 10", "x 100", "x 1000"});
+	sellMultiplier = std::make_shared<Dropdown>();
+	sellMultiplier->SetAlign(Dropdown::LEFT);
+	sellMultiplier->SetFontSize(14);
+	sellMultiplier->SetPadding(0);
+	sellMultiplier->SetOptions({"x 1", "x 10", "x 100", "x 1000"});
+	AddChild(sellMultiplier);
+
 }
 
 
@@ -126,21 +131,19 @@ void TradingPanel::Draw()
 	int modifier = Modifier();
 	if (modifier != 1)
 	{
-		buyMultiplier.SetSelected("x " + std::to_string(modifier));
-		sellMultiplier.SetSelected("x " + std::to_string(modifier));
+		buyMultiplier->SetSelected("x " + std::to_string(modifier));
+		sellMultiplier->SetSelected("x " + std::to_string(modifier));
 		quantityIsModifier = true;
 	}
 	else if (quantityIsModifier)
 	{
 		quantityIsModifier = false;
-		buyMultiplier.SetSelected("x 1");
-		sellMultiplier.SetSelected("x 1");
+		buyMultiplier->SetSelected("x 1");
+		sellMultiplier->SetSelected("x 1");
 	}
 
-	buyMultiplier.SetPosition(Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(58, 16)));
-	buyMultiplier.Draw(this);
-	sellMultiplier.SetPosition(Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(58, 16)));
-	sellMultiplier.Draw(this);
+	buyMultiplier->SetPosition(Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(58, 16)));
+	sellMultiplier->SetPosition(Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(58, 16)));
 	
 	font.Draw("In Hold", Point(MIN_X + HOLD_X, y), selected);
 
@@ -365,9 +368,9 @@ void TradingPanel::Buy(int64_t amount)
 		return;
 
 	if(amount > 0)
-		amount *= std::stoi(buyMultiplier.GetSelected().substr(2));
+		amount *= std::stoi(buyMultiplier->GetSelected().substr(2));
 	else
-		amount *= std::stoi(sellMultiplier.GetSelected().substr(2));
+		amount *= std::stoi(sellMultiplier->GetSelected().substr(2));
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int64_t price = system.Trade(type);
 	if(!price)

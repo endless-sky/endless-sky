@@ -189,9 +189,9 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	Dropdown selected_quantity;
+	std::shared_ptr<Dropdown> selected_quantity;
 	bool quantity_is_modifier = false;
-	Dropdown outfit_disposition;
+	std::shared_ptr<Dropdown> outfit_disposition;
 
 
 private:

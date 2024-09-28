@@ -1,6 +1,6 @@
 #include "KtxFile.h"
 
-#include "opengl.h"
+#include "../opengl.h"
 
 #include <cstdint>
 #include <cstring>

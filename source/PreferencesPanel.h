@@ -114,5 +114,5 @@ private:
 	ScrollVar<double> pluginDescriptionScroll;
 	int pluginListHeight = 0;
 
-	Dropdown controlTypeDropdown;
+	std::shared_ptr<Dropdown> controlTypeDropdown;
 };

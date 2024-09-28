@@ -60,7 +60,7 @@ private:
 	int tonsSold = 0;
 	int64_t profit = 0;
 
-	Dropdown buyMultiplier;
-	Dropdown sellMultiplier;
+	std::shared_ptr<Dropdown> buyMultiplier;
+	std::shared_ptr<Dropdown> sellMultiplier;
 	bool quantityIsModifier = false;
 };

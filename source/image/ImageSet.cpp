@@ -21,7 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "MaskManager.h"
 #include "Sprite.h"
-#include "Preferences.h"
+
+#include "../Preferences.h"
 
 #include <algorithm>
 #include <cassert>

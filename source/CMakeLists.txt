@@ -8,7 +8,7 @@ if(MSVC)
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" ) # "-fno-rtti")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
@@ -170,8 +170,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
 	JumpTypes.h
-	KtxFile.cpp
-	KtxFile.h
 	Logger.cpp
 	Logger.h
 	LineShader.cpp
@@ -384,6 +382,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/Sprite.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
+	image/KtxFile.cpp
+	image/KtxFile.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

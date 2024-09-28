@@ -93,6 +93,7 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
+	// TODO: delete this when DropDown gets rewritten
 	// Return UI associated with this panel
 	UI *GetUI() const noexcept;
 
@@ -127,7 +128,8 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 
-	UI *GetUI() const noexcept;
+	// TODO: put this back after DropDown gets rewritten
+	//UI *GetUI() const noexcept;
 	void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two
@@ -257,6 +259,16 @@ private:
 	bool DoDrag(double dx, double dy);
 	bool DoRelease(int x, int y);
 	bool DoScroll(double dx, double dy);
+	bool DoFingerDown(int x, int y, int fid, int clicks);
+	bool DoFingerMove(int x, int y, double dx, double dy, int fid);
+	bool DoFingerUp(int x, int y, int fid);
+	bool DoGesture(Gesture::GestureEnum gesture);
+	bool DoControllersChanged();
+	bool DoControllerButtonDown(SDL_GameControllerButton button);
+	bool DoControllerButtonUp(SDL_GameControllerButton button);
+	bool DoControllerAxis(SDL_GameControllerAxis axis, int position);
+	bool DoControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	bool DoControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 
 	void DoDraw();
 
@@ -278,6 +290,9 @@ private:
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
+
+	static int zoneFingerId;
+	static int panelFingerId;
 
 	friend class UI;
 };

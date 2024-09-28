@@ -9,7 +9,7 @@ else {
 
 android {
     compileSdkVersion 26
-    ndkVersion "19.2.5345600"
+    ndkVersion "26.3.11579264"
     defaultConfig {
         if (buildAsApplication) {
             applicationId "com.github.thewierdnut.endless_mobile"

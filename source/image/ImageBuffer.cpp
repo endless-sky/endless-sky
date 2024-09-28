@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 #include "Etc2RGBA.h"
-#include "Files.h"
+#include "../Files.h"
 #include "KtxFile.h"
 #include <cassert>
 #include <cstring>
@@ -238,7 +238,7 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 		return false;
 
 	if (isKTX) // KTX files are always premultiplied
-		return true
+		return true;
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
@@ -446,7 +446,7 @@ namespace {
 
 
 
-	bool ReadKTX(const string &path, ImageBuffer &buffer)
+	bool ReadKTX(const filesystem::path &path, ImageBuffer &buffer)
 	{
 		File file(path);
 		if(!file)

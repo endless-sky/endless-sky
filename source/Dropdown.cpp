@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Rectangle.h"
 #include "Screen.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -32,6 +32,7 @@ class Dropdown::DroppedPanel: public Panel
 {
 public:
 	DroppedPanel(Dropdown* parent);
+	virtual ~DroppedPanel() = default;
 
 	void SetMousePos(const Point& p) { mouse_pos = p; }
 
@@ -115,7 +116,7 @@ Point AlignText(Dropdown::ALIGN alignment, const Font& font, const Rectangle& po
 
 
 
-void Dropdown::Draw(Panel* parent)
+void Dropdown::Draw()
 {
 	if(!visible)
 		return;
@@ -147,16 +148,16 @@ void Dropdown::Draw(Panel* parent)
 	}
 
 	if(enabled)
-		parent->AddZone(position, [this, parent](const Panel::Event &e){ DoDropdown(parent, e.pos); });
+		AddZone(position, [this](const Panel::Event &e){ DoDropdown(e.pos); });
 }
 
 
 
-void Dropdown::DoDropdown(Panel* parent, const Point &pos)
+void Dropdown::DoDropdown(const Point &pos)
 {
-	DroppedPanel *p = new DroppedPanel(this);
+	auto p = std::make_shared<DroppedPanel>(this);
+	AddChild(p);
 	p->SetMousePos(pos);
-	parent->GetUI()->Push(p);
 }
 
 
@@ -207,9 +208,12 @@ bool Dropdown::DroppedPanel::Click(int x, int y, int clicks)
 			dd->changed_callback(dd->selected_index, dd->selected_string);
 	}
 
-	GetUI()->Pop(this);
+	dd->RemoveChild(this);
+	// this pointer no longer safe to access.
 
-	return true; // mark it as handled whether it was in our popup or not
+	// We have to return true since we mutated the child list. Otherwise it will
+	// attempt to keep parsing through it and potentially explode.
+	return true;
 }
 
 
@@ -241,7 +245,8 @@ bool Dropdown::DroppedPanel::Release(int x, int y)
 			if (dd->changed_callback)
 				dd->changed_callback(dd->selected_index, dd->selected_string);
 		}
-		GetUI()->Pop(this);
+		dd->RemoveChild(this);
+		// this pointer no longer safe to access.
 	}
 	return true;
 }

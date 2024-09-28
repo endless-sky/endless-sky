@@ -268,7 +268,7 @@ void GameData::LoadSettings()
 	Command::SetGesture(Command::STOP, Gesture::CARET_DOWN);
 	Command::SetGesture(Command::BOARD, Gesture::CARET_UP);
 	Command::SetGesture(Command::GATHER, Gesture::CIRCLE);
-	Command::SetGesture(Command::HOLD, Gesture::X);
+	Command::SetGesture(Command::HOLD_POSITION, Gesture::X);
 
 	Command::SetControllerButton(Command::LAND, SDL_CONTROLLER_BUTTON_A);
 	Command::SetControllerButton(Command::HAIL, SDL_CONTROLLER_BUTTON_B);

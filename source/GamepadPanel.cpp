@@ -74,37 +74,46 @@ namespace
 }
 
 GamepadPanel::GamepadPanel():
+	gamepadList{new Dropdown},
+	deadZoneList{new Dropdown},
+	triggerThresholdList{new Dropdown},
 	ui(GameData::Interfaces().Get("gamepad panel"))
 {
-	gamepadList.SetPadding(0);
-	gamepadList.ShowDropIcon(true);
-	gamepadList.SetOptions(NO_CONTROLLERS);
-	gamepadList.SetCallback([this](int idx, const std::string&) { GamePad::SetControllerIdx(idx); reloadGamepad = true; });
-	gamepadList.SetBgColor(*GameData::Colors().Get("shop info panel background"));
+	
 
-	deadZoneList.SetPadding(0);
-	deadZoneList.ShowDropIcon(true);
+	gamepadList->SetPadding(0);
+	gamepadList->ShowDropIcon(true);
+	gamepadList->SetOptions(NO_CONTROLLERS);
+	gamepadList->SetCallback([this](int idx, const std::string&) { GamePad::SetControllerIdx(idx); reloadGamepad = true; });
+	gamepadList->SetBgColor(*GameData::Colors().Get("shop info panel background"));
+
+	deadZoneList->SetPadding(0);
+	deadZoneList->ShowDropIcon(true);
 	std::vector<std::string> deadZoneStrings;
 	for (int i = 0; i < 60; i += 5)
 		deadZoneStrings.push_back(std::to_string(i) + " %");
-	deadZoneList.SetOptions(deadZoneStrings);
-	deadZoneList.SetBgColor(*GameData::Colors().Get("shop info panel background"));
-	deadZoneList.SetCallback([](int idx, const std::string& s) {
+	deadZoneList->SetOptions(deadZoneStrings);
+	deadZoneList->SetBgColor(*GameData::Colors().Get("shop info panel background"));
+	deadZoneList->SetCallback([](int idx, const std::string& s) {
 		GamePad::SetDeadZone(atoi(s.c_str()) * 32767.0 / 100 + .5);
 	});
-	deadZoneList.SetSelected(std::to_string(static_cast<int>(GamePad::DeadZone() * 100.0 / 32767 + .5)) + " %");
+	deadZoneList->SetSelected(std::to_string(static_cast<int>(GamePad::DeadZone() * 100.0 / 32767 + .5)) + " %");
 
-	triggerThresholdList.SetPadding(0);
-	triggerThresholdList.ShowDropIcon(true);
+	triggerThresholdList->SetPadding(0);
+	triggerThresholdList->ShowDropIcon(true);
 	std::vector<std::string> triggerThresholdStrings;
 	for (int i = 50; i < 100; i += 5)
 		triggerThresholdStrings.push_back(std::to_string(i) + " %");
-	triggerThresholdList.SetOptions(triggerThresholdStrings);
-	triggerThresholdList.SetBgColor(*GameData::Colors().Get("shop info panel background"));
-	triggerThresholdList.SetCallback([](int idx, const std::string& s) {
+	triggerThresholdList->SetOptions(triggerThresholdStrings);
+	triggerThresholdList->SetBgColor(*GameData::Colors().Get("shop info panel background"));
+	triggerThresholdList->SetCallback([](int idx, const std::string& s) {
 		GamePad::SetAxisIsButtonPressThreshold(atoi(s.c_str()) * 32767.0 / 100 + .5);
 	});
-	triggerThresholdList.SetSelected(std::to_string(static_cast<int>(GamePad::AxisIsButtonPressThreshold() * 100.0 / 32767 + .5)) + " %");
+	triggerThresholdList->SetSelected(std::to_string(static_cast<int>(GamePad::AxisIsButtonPressThreshold() * 100.0 / 32767 + .5)) + " %");
+
+	AddChild(gamepadList);
+	AddChild(deadZoneList);
+	AddChild(triggerThresholdList);
 }
 
 void GamepadPanel::Step()
@@ -117,13 +126,13 @@ void GamepadPanel::Step()
 		auto controller_list = GamePad::GetControllerList();
 		if(controller_list.empty())
 		{
-			gamepadList.SetOptions(NO_CONTROLLERS);
-			gamepadList.SetSelectedIndex(0);
+			gamepadList->SetOptions(NO_CONTROLLERS);
+			gamepadList->SetSelectedIndex(0);
 		}
 		else
 		{
-			gamepadList.SetOptions(controller_list);
-			gamepadList.SetSelectedIndex(GamePad::CurrentControllerIdx());
+			gamepadList->SetOptions(controller_list);
+			gamepadList->SetSelectedIndex(GamePad::CurrentControllerIdx());
 		}
 
 		reloadGamepad = false;
@@ -266,7 +275,7 @@ void GamepadPanel::Draw()
 		}
 	}
 
-	if(gamepadList.GetSelected() != NO_CONTROLLERS.front() && remapIdx == -1)
+	if(gamepadList->GetSelected() != NO_CONTROLLERS.front() && remapIdx == -1)
 		info.SetCondition("has controller");
 
 	ui->Draw(info, this);
@@ -318,16 +327,13 @@ void GamepadPanel::Draw()
 	}
 
 	auto gamepadListRect = ui->GetBox("Gamepad Dropdown");
-	gamepadList.SetPosition(gamepadListRect);
-	gamepadList.Draw(this);
+	gamepadList->SetPosition(gamepadListRect);
 
 	auto deadZoneListRect = ui->GetBox("Deadzone Dropdown");
-	deadZoneList.SetPosition(deadZoneListRect);
-	deadZoneList.Draw(this);
+	deadZoneList->SetPosition(deadZoneListRect);
 
 	auto triggerThresholdListRect = ui->GetBox("Trigger Threshold Dropdown");
-	triggerThresholdList.SetPosition(triggerThresholdListRect);
-	triggerThresholdList.Draw(this);
+	triggerThresholdList->SetPosition(triggerThresholdListRect);
 
 	// This is probably temporary debug code.
 	if (Preferences::Has("Show CPU / GPU load"))

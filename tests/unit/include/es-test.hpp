@@ -25,4 +25,4 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define CATCH_CONFIG_WINDOWS_CRTDBG
 #endif
 
-#include <catch2/catch_all.hpp>
+#include <catch2/catch.hpp>

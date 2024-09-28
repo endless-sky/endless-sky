@@ -107,17 +107,22 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 
-	selected_quantity.SetAlign(Dropdown::LEFT);
-	selected_quantity.SetFontSize(14);
-	selected_quantity.SetPadding(0);
-	selected_quantity.SetOptions({"1", "10", "100", "1000"});
+	selected_quantity = std::make_shared<Dropdown>();
+	selected_quantity->SetAlign(Dropdown::LEFT);
+	selected_quantity->SetFontSize(14);
+	selected_quantity->SetPadding(0);
+	selected_quantity->SetOptions({"1", "10", "100", "1000"});
 
-	outfit_disposition.SetVisible(isOutfitter);
-	outfit_disposition.SetAlign(Dropdown::LEFT);
-	outfit_disposition.SetFontSize(14);
-	outfit_disposition.SetPadding(0);
-	outfit_disposition.SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO, MOVE_TO_STORAGE});
-	outfit_disposition.SetCallback([this](int, const std::string& value) { this->DispositionChanged(value); });
+	outfit_disposition = std::make_shared<Dropdown>();
+	outfit_disposition->SetVisible(isOutfitter);
+	outfit_disposition->SetAlign(Dropdown::LEFT);
+	outfit_disposition->SetFontSize(14);
+	outfit_disposition->SetPadding(0);
+	outfit_disposition->SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO, MOVE_TO_STORAGE});
+	outfit_disposition->SetCallback([this](int, const std::string& value) { this->DispositionChanged(value); });
+
+	AddChild(selected_quantity);
+	AddChild(outfit_disposition);
 
 	// Default pane is main, which does its own higlighting, so disable the
 	// cursor. Set the default button though for when the side pane is set
@@ -361,13 +366,13 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 's' || toStorage)
 	{
-		if (outfit_disposition.GetSelected() == MOVE_TO_STORAGE)
+		if (outfit_disposition->GetSelected() == MOVE_TO_STORAGE)
 			toStorage = true;
 		if(!CanSell(toStorage))
 			FailSell(toStorage);
 		else
 		{
-			int modifier = CanSellMultiple() ? stoi(selected_quantity.GetSelected()) : 1;
+			int modifier = CanSellMultiple() ? stoi(selected_quantity->GetSelected()) : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
 			if(isOutfitter)
@@ -828,7 +833,7 @@ bool ShopPanel::Release(int x, int y)
 					{
 						playerShips.clear();
 						playerShips.insert(playerShip);
-						outfit_disposition.SetSelected(INSTALL_IN_SHIP);
+						outfit_disposition->SetSelected(INSTALL_IN_SHIP);
 					}
 				}
 				else
@@ -1052,7 +1057,7 @@ void ShopPanel::DrawShipsSidebar()
 	}
 	point.Y() += ICON_TILE;
 
-	if(outfit_disposition.GetSelected() == MOVE_TO_STORAGE)
+	if(outfit_disposition->GetSelected() == MOVE_TO_STORAGE)
 	{
 		CargoHold& storage = player.Storage();
 		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
@@ -1197,7 +1202,7 @@ void ShopPanel::DrawButtons()
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
-	const string SELL = outfit_disposition.GetSelected() == MOVE_TO_STORAGE ? "Move" : "_Sell";
+	const string SELL = outfit_disposition->GetSelected() == MOVE_TO_STORAGE ? "Move" : "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
@@ -1225,25 +1230,23 @@ void ShopPanel::DrawButtons()
 	if(modifier > 1)
 	{
 		string mod = "x " + to_string(modifier);
-		selected_quantity.SetSelected(to_string(modifier));
+		selected_quantity->SetSelected(to_string(modifier));
 		quantity_is_modifier = true;
 	}
 	else if (quantity_is_modifier)
 	{
 		// User has released modifier keys. Reset quantity dropdown to 1x
-		selected_quantity.SetSelected("1");
+		selected_quantity->SetSelected("1");
 		quantity_is_modifier = false;
 	}
 
 	font.Draw("Quantity:", Screen::BottomRight() - Point(240, 68), dim);
 
 	const Point sqCenter = Screen::BottomRight() - Point(150, 60);
-	selected_quantity.SetPosition(Rectangle(sqCenter, {45, 20}));
-	selected_quantity.Draw(this);
+	selected_quantity->SetPosition(Rectangle(sqCenter, {45, 20}));
 
 	const Point odCenter = Screen::BottomRight() - Point(65, 60);
-	outfit_disposition.SetPosition(Rectangle(odCenter, {110, 20}));
-	outfit_disposition.Draw(this);
+	outfit_disposition->SetPosition(Rectangle(odCenter, {110, 20}));
 
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
@@ -1495,7 +1498,7 @@ void ShopPanel::SideSelect(Ship *ship)
 			else if(on)
 			{
 				playerShips.insert(other.get());
-				outfit_disposition.SetSelected(INSTALL_IN_SHIP);
+				outfit_disposition->SetSelected(INSTALL_IN_SHIP);
 			}
 		}
 	}
@@ -1529,7 +1532,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	{
 		playerShips.insert(playerShip);
 		CheckSelection();
-		outfit_disposition.SetSelected(INSTALL_IN_SHIP);
+		outfit_disposition->SetSelected(INSTALL_IN_SHIP);
 	}
 }
 

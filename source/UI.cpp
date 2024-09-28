@@ -72,6 +72,7 @@ bool UI::Handle(const SDL_Event &event)
 		}
 		else if(event.type == SDL_MOUSEBUTTONDOWN)
 		{
+			// TODO: move this zone then click logic into DoClick()
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			if(event.button.button == 1)
@@ -85,6 +86,7 @@ bool UI::Handle(const SDL_Event &event)
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
+			// TODO: move this zone then click logic into DoRelease()
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			handled = (*it)->HasZone(Point(x, y));
@@ -99,46 +101,19 @@ bool UI::Handle(const SDL_Event &event)
 			int x = (event.tfinger.x - .5) * Screen::Width();
 			int y = (event.tfinger.y - .5) * Screen::Height();
 
-			// Order:
-			//   1. Zones (these will be buttons)
-			//   2. Finger down events (this will be game controls)
-			//      2.5 Trigger a hover as well, as some ui's use this to
-			//          determine where a drag begins from.
-			//   3. Clicks (fallback to mouse click)
-			if(!handled)
-			{
-				if((handled = (*it)->ZoneFingerDown(Point(x, y), event.tfinger.fingerId)))
-					zoneFingerId = event.tfinger.fingerId;
-			}
-			if(!handled)
-			{
-				(*it)->Hover(x, y);
-				handled = (*it)->FingerDown(x, y, event.tfinger.fingerId);
-			}
-			if(!handled)
-			{
-				uint32_t now = SDL_GetTicks();
-				if((handled = (*it)->Click(x, y, (now - lastTap) > 500 ? 1 : 2)))
-					panelFingerId = event.tfinger.fingerId;
-				lastTap = now;
-			}
+			uint32_t now = SDL_GetTicks();
+			handled = (*it)->DoFingerDown(x, y, event.tfinger.fingerId, (now - lastTap) > 500 ? 1 : 2);
+			lastTap = now;
 		}
 		else if(event.type == SDL_FINGERMOTION)
 		{
 			// finger coordinates are 0 to 1, normalize to screen coordinates
 			int x = (event.tfinger.x - .5) * Screen::Width();
 			int y = (event.tfinger.y - .5) * Screen::Height();
-			int dx = (event.tfinger.dx) * Screen::Width();
-			int dy = (event.tfinger.dy) * Screen::Height();
+			double dx = (event.tfinger.dx) * Screen::Width();
+			double dy = (event.tfinger.dy) * Screen::Height();
 
-			// Order:
-			//   1. FingerMove events (These will be game controls)
-			//   2. Drag (ui events)
-
-			if(!handled)
-				handled = (*it)->FingerMove(x, y, event.tfinger.fingerId);
-			if(!handled && panelFingerId == event.tfinger.fingerId)
-				handled = (*it)->Drag(dx, dy);
+			handled = (*it)->DoFingerMove(x, y, dx, dy, event.tfinger.fingerId);
 		}
 		else if(event.type == SDL_FINGERUP)
 		{
@@ -146,22 +121,7 @@ bool UI::Handle(const SDL_Event &event)
 			int x = (event.tfinger.x - .5) * Screen::Width();
 			int y = (event.tfinger.y - .5) * Screen::Height();
 
-			// Order:
-			//   1. Zones (these will be buttons)
-			//   2. Finger down events (this will be game controls)
-			//   3. Clicks (fallback to mouse click)
-			if(!handled && zoneFingerId == event.tfinger.fingerId)
-			{
-				handled = (*it)->HasZone(Point(x, y));
-				zoneFingerId = -1;
-			}
-			if(!handled)
-				handled = (*it)->FingerUp(x, y, event.tfinger.fingerId);
-			if(!handled && panelFingerId == event.tfinger.fingerId)
-			{
-				handled = (*it)->Release(x, y);
-				panelFingerId = -1;
-			}
+			handled = (*it)->DoFingerUp(x, y, event.tfinger.fingerId);
 		}
 		else if(event.type == SDL_KEYDOWN)
 		{
@@ -172,7 +132,7 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			Command command(event);
 			if(reinterpret_cast<const CommandEvent&>(event).pressed == SDL_PRESSED)
-				handled = (*it)->KeyDown(0, 0, command, true);
+				handled = (*it)->DoKeyDown(0, 0, command, true);
 		}
 		else if(event.type == Gesture::EventID())
 		{
@@ -180,11 +140,11 @@ bool UI::Handle(const SDL_Event &event)
 
 			// if the panel doesn't want the gesture, convert it to a
 			// command, and try again
-			if(!(handled = (*it)->Gesture(gesture_type)))
+			if(!(handled = (*it)->DoGesture(gesture_type)))
 			{
 				Command command(gesture_type);
 				Command::InjectOnce(command);
-				handled = (*it)->KeyDown(0, 0, command, true);
+				handled = (*it)->DoKeyDown(0, 0, command, true);
 			}
 		}
 		else if(event.type == SDL_CONTROLLERDEVICEADDED ||
@@ -212,7 +172,7 @@ bool UI::Handle(const SDL_Event &event)
 						{
 							Command command = Command::FromTrigger(event.caxis.axis, activeAxisIsPositive);
 							if(!(command == Command()))
-								handled = (*it)->KeyDown(0, 0, command, true);
+								handled = (*it)->DoKeyDown(0, 0, command, true);
 							if(!handled)
 							{
 								// By default, convert the right joystick into a scroll event.
@@ -241,12 +201,12 @@ bool UI::Handle(const SDL_Event &event)
 			if(!handled)
 			{
 				Command command = Command::FromButton(event.cbutton.button);
-				handled = (*it)->KeyDown(0, 0, command, true);
+				handled = (*it)->DoKeyDown(0, 0, command, true);
 			}
 		}
 		else if(event.type == SDL_CONTROLLERBUTTONUP)
 		{
-			handled = (*it)->ControllerButtonUp(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+			handled = (*it)->DoControllerButtonUp(static_cast<SDL_GameControllerButton>(event.cbutton.button));
 		}
 
 		// If this panel does not want anything below it to receive events, do

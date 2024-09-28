@@ -986,7 +986,7 @@ void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *pa
 	if(!panel)
 		return;
 
-	auto OnTrigger = [=](const Panel::Event& e) {
+	auto OnTrigger = [this, panel, bounds, info](const Panel::Event& e) {
 		RadialSelectionPanel* radial_selection = new RadialSelectionPanel;
 		radial_selection->SetPosition(bounds.Center());
 		radial_selection->SetStartAngle(start_angle);

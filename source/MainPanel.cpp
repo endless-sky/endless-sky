@@ -46,7 +46,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -57,6 +56,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <sstream>
 #include <string>
+
+#include "image/SpriteSet.h"
 
 using namespace std;
 
@@ -564,7 +565,7 @@ bool MainPanel::ControllerButtonDown(SDL_GameControllerButton	button)
 		{
 			selection->AddOption(Command::FIGHT);
 			selection->AddOption(Command::GATHER);
-			selection->AddOption(Command::HOLD);
+			selection->AddOption(Command::HOLD_POSITION);
 			selection->AddOption(Command::HARVEST);
 		}
 		if(hasFighters)

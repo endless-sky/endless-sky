@@ -499,7 +499,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 		return;
 	}
 
-	int modifier = stoi(selected_quantity.GetSelected());
+	int modifier = stoi(selected_quantity->GetSelected());
 	for(int i = 0; i < modifier && CanBuy(onlyOwned); ++i)
 	{
 		// Buying into cargo, either from storage or from stock/supply.
