@@ -954,3 +954,6 @@ trade
 		"lithium-7"
 		"tritium pellets"
 		"tritium"
+
+	commodity "Avgi Storage Media"
+		"memory diamond"
