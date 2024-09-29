@@ -60,7 +60,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
         show-progress: false
     - uses: codespell-project/actions-codespell@master
       with:
