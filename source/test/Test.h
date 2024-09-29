@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../Command.h"
+#include "../ConditionAssignments.h"
 #include "../ConditionSet.h"
 
 #include <SDL2/SDL.h>
@@ -84,9 +85,10 @@ public:
 		// Variables for travelpan/navigate steps.
 		std::vector<const System *> travelPlan;
 		const Planet *travelDestination = nullptr;
-		// For applying condition changes, branching based on conditions or
-		// checking asserts (similar to Conversations).
-		ConditionSet conditions;
+		// For applying condition changes.
+		ConditionAssignments assignConditions;
+		// For branching based on conditions or checking asserts (similar to Conversations).
+		ConditionSet checkConditions;
 		// Labels to jump to in case of branches. We could optimize during
 		// load to look up the step numbers (and provide integer step numbers
 		// here), but we can also use the textual information during error/
