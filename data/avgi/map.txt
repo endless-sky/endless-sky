@@ -1427,6 +1427,7 @@ system Ensemble
 	fleet "Avgi Patrol" 2400
 	fleet "Avgi Core Defense" 6000
 	fleet "Avgi Fleetgroup" 12000
+	fleet "Avgi Twilight Guard Logistics" 3600
 	fleet "Small Avgi Merchants" 2400
 	fleet "Large Avgi Merchants" 4200
 	fleet "Small Dissonance Merchants" 4200
@@ -2216,6 +2217,7 @@ system Concerto
 	fleet "Avgi Core Defense" 2700
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Fleetgroup" 3600
+	fleet "Avgi Twilight Guard Logistics" 3600
 	fleet "Small Avgi Merchants" 2400
 	fleet "Large Avgi Merchants" 3000
 	fleet "Avgi Miners" 4200
@@ -2495,6 +2497,7 @@ system Symphony
 	fleet "Avgi Core Defense" 3600
 	fleet "Avgi Patrol" 6000
 	fleet "Avgi Fleetgroup" 3600
+	fleet "Avgi Twilight Guard Logistics" 4200
 	fleet "Small Avgi Merchants" 3000
 	fleet "Large Avgi Merchants" 2700
 	fleet "Avgi Miners" 6000
@@ -3076,6 +3079,8 @@ system Arche
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 4200
+	fleet "Avgi Fleetgroup" 9000
+	fleet "Avgi Twilight Guard Logistics" 4200
 	fleet "Small Aberrant" 2400
 	fleet "Large Aberrant" 3600
 	object
@@ -3989,6 +3994,7 @@ system O-16
 	asteroids "large rock" 1 4.043
 	fleet "Small Avgi Merchants" 7200
 	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
@@ -4035,6 +4041,7 @@ system Li-7
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4092,6 +4099,7 @@ system Ne-20
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4143,6 +4151,7 @@ system S-32
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 9000
 	object
@@ -4173,6 +4182,7 @@ system Be-9
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
+	fleet "Avgi Twilight Guard Logistics" 9000
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 9000
 	object
@@ -4231,6 +4241,7 @@ system Br-80
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 48000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -4289,6 +4300,7 @@ system H-1
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4354,6 +4366,7 @@ system B-11
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
+	fleet "Avgi Twilight Guard Logistics" 9000
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 9000
 	object
@@ -4394,6 +4407,7 @@ system Ge-73
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 8400
 	object
@@ -4424,6 +4438,7 @@ system Mg-24
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 8400
 	object
@@ -4477,6 +4492,7 @@ system As-75
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 45000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -4520,6 +4536,7 @@ system Na-23
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4574,6 +4591,7 @@ system Ca-40
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 48000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -4614,6 +4632,7 @@ system F-19
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 6000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 45000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -4651,6 +4670,7 @@ system P-31
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 45000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -4682,6 +4702,7 @@ system Cl-35
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4717,6 +4738,7 @@ system K-39
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 8400
 	object
@@ -4743,6 +4765,7 @@ system C-12
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4777,6 +4800,7 @@ system He-4
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 12000
+	fleet "Avgi Twilight Guard Logistics" 9000
 	fleet "Small Aberrant" 3000
 	fleet "Large Aberrant" 6000
 	object
@@ -4821,6 +4845,7 @@ system Si-28
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 9000
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 8400
 	object
@@ -4883,6 +4908,7 @@ system Kr-84
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 48000
 	fleet "Small Aberrant" 24000
 	fleet "Large Aberrant" 36000
 	object
@@ -4923,13 +4949,15 @@ system Ar-40
 	asteroids "small metal" 6 1.624
 	asteroids "large metal" 3 2.8
 	minables silver 7 3.762
-	minables copper 3 3.762
+	minables copper 3 2.311
+	minables neodymium 5 5.232
 	fleet "Small Avgi Merchants" 7200
 	fleet "Large Avgi Merchants" 12000
 	fleet "Avgi Miners" 7200
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
+	fleet "Avgi Twilight Guard Logistics" 9000
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 9000
 	object
@@ -4953,8 +4981,8 @@ system Ar-40
 			sprite planet/dust5-b
 			distance 190
 			period 68.541
-	object
-		sprite planet/gas1-b
+	object "Outpost Leto"
+		sprite planet/station-asteroid-a3
 		distance 5456.727
 		period 12734.3
 
@@ -4976,6 +5004,7 @@ system N-14
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 6000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 42000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -5008,6 +5037,7 @@ system Rhapsody
 	minables silver 1 5.54
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Avgi Merchants" 6000
 	fleet "Large Avgi Merchants" 12000
 	fleet "Avgi Miners" 6000
@@ -5058,6 +5088,7 @@ system Acapella
 	asteroids "large metal" 6 1.921
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Avgi Merchants" 6000
 	fleet "Large Avgi Merchants" 12000
 	fleet "Small Aberrant" 42000
@@ -5124,6 +5155,7 @@ system Anthem
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -5178,6 +5210,7 @@ system Madrigal
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
+	fleet "Avgi Twilight Guard Logistics" 42000
 	fleet "Small Aberrant" 30000
 	fleet "Large Aberrant" 36000
 	object
@@ -5232,6 +5265,7 @@ system Ballad
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -5291,6 +5325,7 @@ system Cantata
 	fleet "Avgi Patrol" 2400
 	fleet "Avgi Strike Group" 6000
 	fleet "Avgi Fleetgroup" 12000
+	fleet "Avgi Twilight Guard Logistics" 7200
 	fleet "Small Aberrant" 24000
 	fleet "Large Aberrant" 30000
 	object
@@ -5342,6 +5377,7 @@ system Sonata
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
+	fleet "Avgi Twilight Guard Logistics" 12000
 	fleet "Small Aberrant" 24000
 	fleet "Large Aberrant" 30000
 	object
@@ -5440,6 +5476,7 @@ system Serenade
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
@@ -5484,6 +5521,7 @@ system Chorale
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
+	fleet "Avgi Twilight Guard Logistics" 9000
 	fleet "Small Aberrant" 24000
 	fleet "Large Aberrant" 30000
 	object
