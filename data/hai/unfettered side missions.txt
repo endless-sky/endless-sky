@@ -197,7 +197,7 @@ mission "Hai Legacy 1"
 				`	(Go back to the shipyard.)`
 					goto leave
 				`	"Why would they mind a different ship?"`
-			`	"As this ship is ancient they will try to preserve it."`
+			`	"As this ship is ancient, they will try to preserve it. The same might not be true for other ships."`
 			label leave
 			`	They walk away until you cannot hear them speak anymore, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to pilot the ship without any complications.`
 				accept
@@ -222,7 +222,7 @@ mission "Hai Legacy 1"
 	on accept
 		clear "unfettered: ocean dialog"
 		clear "unfettered: pilot dialog"
-		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris. It seems to still be in a good state to fly."
+		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris. It seems to still be in a good enough state to fly."
 
 
 
@@ -313,8 +313,8 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out," says a third.`
 			label scare
-			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules, even if there are no official ones. We would assume everyone knows them, but since you are an outsider I will explain them to you," He says as he moves away from the group with you.`
-			`	"Naturally, this is a duel nobody other than us may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all. To the victor go the spoils, so looting is allowed, but do not attempt to steal our ships. Do so, and all the Unfettered will be against you!"`
+			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules, even if there are no official ones. We would assume everyone knows them, but since you are an outsider I will explain them to you," he says as he moves away from the group with you.`
+			`	"Naturally, because this is a duel, nobody other than us may interfere, but you should also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all. To the victor go the spoils, so looting is allowed, but do not attempt to steal our ships. Do so, and all the Unfettered will be against you!"`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He then looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you."`
 				to display
