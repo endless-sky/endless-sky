@@ -216,6 +216,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/RingShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SavedGame.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Screen.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ScrollBar.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Shader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Ship.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipEvent.cpp

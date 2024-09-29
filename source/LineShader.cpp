@@ -43,6 +43,8 @@ void LineShader::Init()
 {
 	static const char *vertexCode =
 		"// vertex line shader\n"
+		"precision mediump float;\n"
+		"precision mediump int;\n"
 
 		"uniform vec2 scale;\n"
 
@@ -60,10 +62,10 @@ void LineShader::Init()
 		// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
 		"    vec2 origin = vert.y > 0.0 ? start : end;\n"
 		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
-		"    float widthOffset = width + 1;\n"
+		"    float widthOffset = width + 1.0;\n"
 		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
 		//     "width" from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
-		"    float capOffset = (cap == 1) ? widthOffset : 1;\n"
+		"    float capOffset = (cap == 1) ? widthOffset : 1.0;\n"
 		// The vertex position is the originating position plus an offset away from the line.
 		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset
 		//     that is flipped into a different direction for each vertex, resulting in a rectangle that tightly
@@ -79,6 +81,7 @@ void LineShader::Init()
 	static const char *fragmentCode =
 		"// fragment line shader\n"
 		"precision mediump float;\n"
+		"precision mediump int;\n"
 
 		"uniform vec2 start;\n"
 		"uniform vec2 end;\n"

@@ -148,7 +148,7 @@ protected:
 	// Add a child. Deferred until next frame.
 	void AddChild(const std::shared_ptr<Panel> &panel);
 	// Remove a child. Deferred until next frame.
-	void RemoveChild(const Panel *panel);
+	void RemoveChild(Panel *panel);
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
@@ -290,9 +290,10 @@ private:
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
+	Panel* parent = nullptr;
 
-	static int zoneFingerId;
-	static int panelFingerId;
+	int zoneFingerId = -1;
+	int panelFingerId = -1;
 
 	friend class UI;
 };

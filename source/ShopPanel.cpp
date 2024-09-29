@@ -89,9 +89,16 @@ namespace {
 		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
 		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
-==== BASE ====
-}
-==== BASE ====
+
+
+	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
+		ScrollVar<double> &scroll, bool animate)
+	{
+		if(!op(scrollbar))
+			return false;
+		scrollbar.SyncInto(scroll, animate ? 5 : 0);
+		return true;
+	};
 
 	// disposition menu options
 	const string INSTALL_IN_SHIP = "Install in ship";
@@ -1120,7 +1127,7 @@ void ShopPanel::DrawShipsSidebar()
 	if(sidebarScroll.Scrollable())
 	{
 		Point top(Screen::Right() - 3, Screen::Top() + 10);
-		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
+		Point bottom(Screen::Right() - 3, Screen::Bottom() - BUTTON_HEIGHT - 10);
 
 		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
 	}

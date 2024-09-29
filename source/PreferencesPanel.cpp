@@ -247,6 +247,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
 			RenderPluginDescription(selectedPlugin);
 		}
+		controlTypeDropdown->SetVisible(page == 'c');
 	}
 #ifdef __ANDROID__
 	else if (page == 'p' && key == 'i')
@@ -856,7 +857,6 @@ void PreferencesPanel::DrawSettings()
 		"Show buttons on map",
 		"\n",
 		"Gameplay",
-		"Control ship with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
 		"Automatic chase",

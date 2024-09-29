@@ -34,8 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-int Panel::zoneFingerId = -1;
-int Panel::panelFingerId = -1;
 
 
 Panel::Panel() noexcept
@@ -617,7 +615,7 @@ void Panel::DrawBackdrop() const
 
 UI *Panel::GetUI() const noexcept
 {
-	return ui;
+	return parent ? parent->GetUI() : ui;
 }
 
 
@@ -681,12 +679,14 @@ void Panel::SetUI(UI *ui)
 
 void Panel::AddChild(const shared_ptr<Panel> &panel)
 {
+	panel->parent = this;
 	childrenToAdd.push_back(panel);
 }
 
 
 
-void Panel::RemoveChild(const Panel *panel)
+void Panel::RemoveChild(Panel *panel)
 {
+	panel->parent = nullptr;
 	childrenToRemove.push_back(panel);
 }

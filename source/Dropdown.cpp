@@ -156,7 +156,7 @@ void Dropdown::Draw()
 void Dropdown::DoDropdown(const Point &pos)
 {
 	auto p = std::make_shared<DroppedPanel>(this);
-	AddChild(p);
+	GetUI()->Push(p);
 	p->SetMousePos(pos);
 }
 
@@ -208,11 +208,9 @@ bool Dropdown::DroppedPanel::Click(int x, int y, int clicks)
 			dd->changed_callback(dd->selected_index, dd->selected_string);
 	}
 
-	dd->RemoveChild(this);
+	GetUI()->Pop(this);
 	// this pointer no longer safe to access.
 
-	// We have to return true since we mutated the child list. Otherwise it will
-	// attempt to keep parsing through it and potentially explode.
 	return true;
 }
 
@@ -245,7 +243,7 @@ bool Dropdown::DroppedPanel::Release(int x, int y)
 			if (dd->changed_callback)
 				dd->changed_callback(dd->selected_index, dd->selected_string);
 		}
-		dd->RemoveChild(this);
+		GetUI()->Pop(this);
 		// this pointer no longer safe to access.
 	}
 	return true;
