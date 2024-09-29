@@ -12,27 +12,308 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-# JD only rush delivery
-
-# Government/military freight transport job
-
-# Retrieval merchant jobs: can pick up cargo from any station in the shroud, as long as you return it in time
-
-# Private merchant hauling job
-
-# Private crew transport job (fast)
-
-# Private fleet escort job
-
-# Drakium loot recovery job
-
-# Search and rescue
-
-# Rescue pod recovery job
-
-# Heavy metal mining jobs
+# Cargo Jobs
 
 
+# Transport Jobs
+
+phrase "avgi specialists description"
+	word
+		`Take these <bunks>`
+	word
+		`engineers`
+		`doctors`
+		`scientists`
+		`researchers`
+		`mechanics`
+		`technicians`
+		`specialists`
+		`experts`
+		`academics`
+	word
+		` to conduct specialized work on <planet> in exchange for <payment>.`
+
+phrase "avgi specialists complete"
+	word
+		`You drop off the specialists as they chatter excitedly about their subjects of expertise, collecting <payment> in payment.`
+
+mission "Avgi: Specialized Workers 1"
+	job
+	repeat
+	name "Workers to the <planet>"
+	description "avgi specialists description"
+	passengers 6 3 .45
+	to offer
+		random < 30
+	source
+		government "Avgi (Consonance)"
+	destination
+		government "Avgi (Consonance)" "Avgi (Dissonance)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 6000 300
+
+mission "Avgi: Specialized Workers 2"
+	job
+	repeat
+	name "Workers to the <planet>"
+	description "avgi specialists description"
+	passengers 3 3 .3
+	to offer
+		random < 15
+	source
+		government "Avgi (Consonance)"
+	destination
+		government "Avgi (Consonance)" "Avgi (Dissonance)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 6000 300
+
+
+# Special Jobs
+
+phrase "avgi cylinder materials"
+	word
+		`You drop off the cylinder construction materials and collect <payment> in payment.`
+
+mission "Avgi: Cylinder Materials"
+	job
+	repeat
+	name "Construction materials to the <planet>"
+	description "Bring <cargo> from <origin> to the <planet> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Industrial" 60 12 .3
+	to offer
+		has "avgi: aktina cylinder supply jobs"
+		random < 30
+	source
+		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
+	destination "Aktina Cylinder"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"cylinder deliveries" ++
+		payment 12000
+		dialog phrase "avgi cylinder materials"
+
+mission "Avgi: Bulk Cylinder Materials"
+	job
+	repeat
+	name "Bulk materials to the <planet>"
+	description "Bring <cargo> from <origin> to the <planet> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Megaconstruction" 60 6 .03
+	to offer
+		has "avgi: aktina cylinder supply jobs"
+		random < 30
+	source
+		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
+	destination "Aktina Cylinder"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"cylinder deliveries" ++
+		payment 9000
+		dialog phrase "avgi cylinder materials"
+
+
+phrase "avgi nuclear materials"
+	word
+		`You deliver the <cargo> to a heavily armed security detail and collect <payment> in payment.`
+
+mission "Avgi: Special Nuclear Material Shipment 1"
+	job
+	repeat
+	name "Special nuclear materials to <planet>"
+	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	deadline
+	cargo "Avgi Radioisotopes" 3 6 .3
+	to offer
+		has "avgi: nuclear material supply jobs"
+		not "avgi: fissiles shortage"
+		random < 9
+	source
+		government "Avgi (Twilight Guard)"
+	destination
+		government "Avgi (Twilight Guard)"
+	npc
+		government "Avgi (Dissonance)"
+		personality coward harvests timid secretive surveillance
+			confusion 20
+		system
+			distance 1 2
+		fleet "Small Dissonance Merchants"
+	npc
+		government "Avgi (Dissonance)"
+		personality coward harvests timid secretive surveillance
+			confusion 20
+		system
+			distance 1 2
+		fleet "Small Dissonance Merchants"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 30000
+		dialog phrase "avgi cylinder materials"
+
+mission "Avgi: Special Nuclear Material Shipment 2"
+	job
+	repeat
+	name "Special nuclear materials to <planet>"
+	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	deadline
+	cargo "Avgi Radioisotopes" 3 6 .3
+	to offer
+		has "avgi: nuclear material transport jobs"
+		not "avgi: fissiles shortage"
+		random < 9
+	source
+		government "Avgi (Twilight Guard)"
+	destination
+		government "Avgi (Twilight Guard)"
+	npc
+		government "Avgi (Dissonance Angry)"
+		personality coward nemesis harvests plunders
+			confusion 20
+		system
+			distance 1 2
+		fleet "Large Dissonance Pirates"
+	npc
+		government "Avgi (Dissonance)"
+		personality coward harvests timid secretive surveillance
+			confusion 20
+		system
+			distance 1 2
+		fleet "Small Dissonance Merchants"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 30000
+		dialog phrase "avgi cylinder materials"
+
+
+phrase "avgi infocourier delivery"
+	word
+		`You drop off the `
+	word
+		`bricks`
+		`slabs`
+		`rods`
+		`tiles`
+	word
+		` of `
+	word
+		`<commodity> at a designated terminal and recieve <payment> in payment.`
+
+mission "Avgi: Information Courier"
+	job
+	repeat
+	name "Information courier to <planet>"
+	description "Bring <cargo> storage media to update <planet>'s local network by <date> in exchange for <payment>."
+	deadline
+	cargo "Avgi Storage Media" 3 6 .3
+	to offer
+		has "avgi: infocourier jobs"
+		random < 15
+	source
+		government "Avgi (Consonance)" "Avgi (Twilight Guard)"
+	destination
+		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 12000 300
+		dialog phrase "avgi infocourier delivery"
+
+mission "Avgi: Information Courier Rush"
+	job
+	repeat
+	name "Information courier to <planet>"
+	description "Bring <cargo> storage media to update <planet>'s local network by <date> in exchange for <payment>."
+	deadline 1 1
+	cargo "Avgi Storage Media" 3 6 .3
+	to offer
+		has "avgi: infocourier jobs"
+		random < 15
+	source
+		government "Avgi (Consonance)" "Avgi (Twilight Guard)"
+	destination
+		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 12000 300
+		dialog phrase "avgi infocourier delivery"
+
+
+phrase "avgi twilight guards dropoff"
+	word
+		`You say your goodbyes to the Twilight Guardsmen and recieve <payment> in payment.`
+
+mission "Avgi: Twilight Guardsmen Transport"
+	name "Twilight Guardsmen to <planet>"
+	job
+	repeat
+	description "These <bunks> Twilight Guardsmen need transportation to <destination>. They are willing to pay you <payment> in exchange."
+	passengers 3 3 .3
+	to offer
+		has "avgi: twilight guard transport jobs"
+		random < 60
+	source
+		attributes "twilight guard"
+		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
+	destination
+		attributes "twilight guard"
+		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 6000 150
+		dialog phrase "avgi twilight guards dropoff"
+
+mission "Avgi: Twilight Guard Officers Transport"
+	name "Twilight Guard Officers to <planet>"
+	job
+	repeat
+	description "These <bunks> Twilight Guard officers need comfortable transportation to <destination>. They are willing to pay you <payment> in exchange."
+	passengers 3 3 .3
+	to offer
+		has "avgi: twilight guard transport jobs"
+		random < 30
+	source
+		attributes "twilight guard"
+		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
+	destination
+		attributes "twilight guard"
+		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 9000 300
+		dialog phrase "avgi twilight guards dropoff"
+
+mission "Avgi: Twilight Guard Flag Officers Transport"
+	name "Twilight Guard Flag Officers to <planet>"
+	job
+	repeat
+	description "These <bunks> Twilight Guard flag officers need comfortable transportation to <destination>. They are willing to pay you <payment> in exchange."
+	passengers 0 3 .6
+	to offer
+		has "avgi: twilight guard transport jobs"
+		random < 15
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "twilight guard"
+		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
+	destination
+		attributes "twilight guard"
+		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 12000 600
+		dialog phrase "avgi twilight guards dropoff"
 
 
 
