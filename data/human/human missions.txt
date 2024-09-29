@@ -7910,12 +7910,14 @@ mission "Syndicate Business 5"
 				`		Howard Vendeur`
 				`		Investor Relations Manager, Megaparsec Incorporated`
 		on kill
+			"reputation: Independent (Killable)" = 0
 			conversation
 				`The ship has been destroyed. Like before, you almost immediately receive a message from Howard:`
 				`	"What have you done, I said disable the ship! You've completely destroyed my plans, cost us millions, and ruined any chance of salvaging this operation--how could you possibly mess this up so badly? Don't come back, we're done."`
 				`		Howard Vendeur`
 				`		Investor Relations Manager, Megaparsec Incorporated`
 	on complete
+		"reputation: Independent (Killable)" = 0
 		event "10m investment done" 180
 		payment 25000
 		conversation
