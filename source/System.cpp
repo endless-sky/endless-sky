@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "image/SpriteSet.h"
 
@@ -691,7 +692,7 @@ bool System::Hidden() const
 // Defines whether a system can be remembered when out of view.
 bool System::Shrouded() const
 {
-	return shrouded;
+	return shrouded && !Preferences::Has("Ignore 'shrouded' property");
 }
 
 

@@ -821,7 +821,8 @@ void PreferencesPanel::DrawSettings()
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		"Show parenthesis",
-		NOTIFY_ON_DEST
+		NOTIFY_ON_DEST,
+		"Ignore 'shrouded' property"
 #ifdef _WIN32
 		, "",
 		"Windows Options",
