@@ -43,7 +43,7 @@ void LineShader::Init()
 {
 	static const char *vertexCode =
 		"// vertex line shader\n"
-		"precision mediump float;\n"
+		"precision highp float;\n"
 		"precision mediump int;\n"
 
 		"uniform vec2 scale;\n"
@@ -80,7 +80,7 @@ void LineShader::Init()
 
 	static const char *fragmentCode =
 		"// fragment line shader\n"
-		"precision mediump float;\n"
+		"precision highp float;\n"
 		"precision mediump int;\n"
 
 		"uniform vec2 start;\n"
