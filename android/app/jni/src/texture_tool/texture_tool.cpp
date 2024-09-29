@@ -58,19 +58,29 @@ public:
 		in.read(buffer.data(), file_size);
 		in.close();
 
-		if (path.substr(path.size()-4) == ".png")
+		std::string extlower;
+		for (size_t i = path.find_last_of('.'); i < path.size(); ++i)
+			extlower += std::tolower(path[i]);
+
+		if (extlower == ".png")
 		{
 			if (!ReadPNG(buffer))
 			{
 				m_pixels.clear();
+				throw std::runtime_error("Unable to read " + path);
 			}
 		}
-		else if (path.substr(path.size() - 4) == ".jpg")
+		else if (extlower == ".jpg" || extlower == ".jpeg")
 		{
 			if (!ReadJPG(buffer))
 			{
 				m_pixels.clear();
+				throw std::runtime_error("Unable to read " + path);
 			}
+		}
+		else
+		{
+			throw std::runtime_error("Unknown file format for " + path);
 		}
 	}
 
@@ -602,7 +612,7 @@ public:
 				// endless sky uses a naming convention that looks like this:
 				// file[blendmode[frame_index]], where blendmode looks like:
 				//    + Additive blending mode
-				//    ~ in-between blending mode
+				//    ^ in-between blending mode (It used tobe ~)
 				//    - normal blending mode (the default if absent)
 				//    = premultiplied blending mode
 				// If the blending mode is absent, then any number is just part
@@ -620,7 +630,7 @@ public:
 							ktx.mode = KtxFile::PREMULTIPLY;
 						else if (match[3] == '+')
 							ktx.mode = KtxFile::ADDITIVE;
-						else if (match[3] == '~')
+						else if (match[3] == '~' || match[3] == '^')
 							ktx.mode = KtxFile::PREMULTIPLY_DIV_4;
 						else if (match[3] == '=')
 							ktx.mode = KtxFile::NONE;
