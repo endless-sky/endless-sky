@@ -4504,7 +4504,18 @@ bool Ship::DoLandingLogic()
 			}
 			else if(!isSpecial || personality.IsFleeing())
 			{
-				MarkForRemoval();
+				bool escortsLanded = true;
+				for(const auto &it : escorts)
+				{
+					const auto escort = it.lock();
+					// Check if escorts are also landed, or destroyed.
+					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+						continue;
+					escortsLanded = false;
+					break;
+				}
+				if(escortsLanded)
+					MarkForRemoval();
 				return true;
 			}
 

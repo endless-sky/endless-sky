@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 #include "Dropdown.h"
@@ -137,12 +138,14 @@ protected:
 
 
 protected:
-	static const int SIDEBAR_WIDTH = 250;
-	static const int INFOBAR_WIDTH = 300;
-	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static const int BUTTON_HEIGHT = 100;
-	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 183;
+	static constexpr int SIDEBAR_PADDING = 5;
+	static constexpr int SIDEBAR_CONTENT = 250;
+	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
+	static constexpr int INFOBAR_WIDTH = 300;
+	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
+	static constexpr int BUTTON_HEIGHT = 100;
+	static constexpr int SHIP_SIZE = 250;
+	static constexpr int OUTFIT_SIZE = 183;
 
 
 protected:
@@ -175,6 +178,10 @@ protected:
 	ScrollVar<double> infobarScroll;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
+
+	ScrollBar mainScrollbar;
+	ScrollBar sidebarScrollbar;
+	ScrollBar infobarScrollbar;
 
 	double previousX = 0.;
 

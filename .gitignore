@@ -32,6 +32,9 @@ scons-local*
 # Test Reports
 test-report.xml
 
+# Generated documentation
+docs/api/
+
 # User-installed plugins
 /plugins/
 

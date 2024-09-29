@@ -2778,6 +2778,18 @@ void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
 
 
 
+void PlayerInfo::DeselectShip(const Ship *ship)
+{
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
+		if(it->lock().get() == ship)
+		{
+			selectedShips.erase(it);
+			return;
+		}
+}
+
+
+
 void PlayerInfo::SelectGroup(int group, bool hasShift)
 {
 	int bit = (1 << group);
