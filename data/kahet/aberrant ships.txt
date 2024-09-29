@@ -283,7 +283,7 @@ ship "Aberrant Hugger"
 	"final explode" "nuke explosion"
 	"final explode" "nuke residue fast" 50
 	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "This variant in particular seems to be lighter and capable of higher speeds than most other Aberrant ships, while still carrying an enlarged armament."
+	description "This variant in particular seems to be lighter and capable of higher speeds than most other Aberrant ships, yet it still carries an enlarged armament."
 
 
 ship "Aberrant Hugger" "Aberrant Hugger (Disable-able)"
@@ -576,7 +576,7 @@ ship "Aberrant Traincar"
 	"final explode" "nuke explosion"
 	"final explode" "nuke residue fast" 50
 	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "This variant in particular seems to be in the process of growing more elongated, and has a tougher hull than usual."
+	description "This variant in particular seems to be in the process of growing more elongated, and has a tougher hull than most other variants."
 
 
 ship "Aberrant Traincar" "Aberrant Traincar (Disable-able)"

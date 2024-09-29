@@ -135,7 +135,7 @@ planet Calesi
 planet Iconil
 	attributes uninhabited
 	landscape land/snow25
-	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and clearly visible ice deposits, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the final stretch to settle Livoula, the Avgi's first interstellar colony.`
+	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and clearly visible ice deposits, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livoula: the Avgi's first interstellar colony.`
 	government Uninhabited
 
 
@@ -279,7 +279,7 @@ planet Rolion
 planet Orodens
 	attributes moon mining
 	landscape land/mountain26
-	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy metals. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material to orbit, where it could be shipped to other systems. Before the recent invention of the gravity repulsor, rows of mass drivers fired streams of raw material into orbit, where it would be collected by waiting ships.`
+	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material to orbit, where it could be shipped to other systems. Before the recent invention of the gravity repulsor, rows of mass drivers fired streams of raw material into orbit, where it would be collected by waiting ships.`
 	description `This was once the largest single source of fissile elements in Avgi space, but since the Incursion the mass drivers have gone quiet. Automated mining drones continue to watch over the last batch of excavated material.`
 	government Uninhabited
 	security 0
@@ -334,8 +334,8 @@ planet Kapnos
 planet Vanikos
 	attributes ocean uninhabited
 	landscape land/beach18
-	description `A young, primordial world, Vanikos is a cold and watery moon still freshly formed, with freshwater oceans dominated by strong tides and volcanism. Hydrothermal vents, fueled by the powerful tidal forces acting on the moon, bleed warmth into what are otherwise frigid seas. Life has yet to develop around these temperate islands of heat, but the abundance of water and organic compounds means it is only a matter of time before it takes hold.`
-	description `Of course, with Avgi exploration having taken note Vanikos years ago for its liquid water and relatively hospitable temperatures, life may first emerge here as a result of eventual terraforming efforts before it can naturally evolve.`
+	description `A young, primordial world, Vanikos is a cold and watery moon still newly formed, with freshwater oceans dominated by strong tides and volcanism. Hydrothermal vents, fueled by the powerful tidal forces acting on the moon, bleed warmth into what are otherwise frigid seas. Life has yet to develop around these temperate islands of heat, but the abundance of water and organic compounds means it is only a matter of time before it takes hold.`
+	description `Of course, with Avgi exploration having taken note of Vanikos years ago for its liquid water and relatively hospitable temperatures, life may first emerge here as a result of eventual terraforming efforts before it can naturally evolve.`
 	government Uninhabited
 
 
@@ -349,7 +349,7 @@ planet Kalakil
 planet Janalos
 	attributes forest uninhabited
 	landscape land/forest14
-	description `From orbit, Janalos is a lush, forested world with a thriving ecosystem, ripe for colonization. It is only from the surface that it becomes apparent that this thriving ecosystem is in fact dominated by a mind-boggling variety of insects, large and small. The bugs are everywhere, permeating every part of the planet, and recent colonization efforts were thrwarted by just how inconvenient they make life on this planet. Insecticides are quickly adapted to, eggs and larvae can lie dormant for years before re-emerging, and the swarms of insects devour anything they can sink their chitinous teeth into.`
+	description `From orbit, Janalos is a lush, forested world with a thriving ecosystem, ripe for colonization. It is only from the surface that it becomes apparent that this thriving ecosystem is in fact dominated by a mind-boggling variety of insects, large and small. The bugs are everywhere, permeating every part of the planet, and recent colonization efforts were thrwarted by just how inconvenient they make life on this world. Insecticides are quickly adapted to, eggs and larvae can lie dormant for years before re-emerging, and the swarms of insects devour anything they can sink their chitinous teeth into.`
 	description `Even an unsanctioned atomic sterilization of a small valley, in a desperate attempt to clear a foothold for settlers, proved ineffective after only a few short months.`
 	government Uninhabited
 
@@ -387,16 +387,16 @@ planet Anatrefo
 planet Gamla
 	attributes predecessor moon uninhabited
 	landscape land/desert19
-	description `Unlike as with most fictional portrayals of precursor species, the previous inhabitants of this dry, salty moon did not leave behind any ancient technological ruins or monolithic stone constructs. Instead, the evidence of their past existence is in the form of tapped mineral veins, concentrations of unmistakably artificial radioisotopes, and a wide belt of orbiting debris degraded to little more than lumps of metal and dust.`
+	description `Unlike most fictional portrayals of precursor species, the previous inhabitants of this dry, salty moon did not leave behind any ancient technological ruins or monolithic stone constructs. Instead, the evidence of their past existence is in the form of tapped mineral veins, concentrations of unmistakably artificial radioisotopes, and a wide belt of orbiting debris degraded to little more than lumps of metal and dust.`
 	description `Before they were able to penetrate deeper into the Ember Waste, Gamla was the first evidence the Avgi found of the Predecessors, a species thought to have inhabited the eastern part of their space millions of years ago. While the moon contains no surviving examples of Predecessor technology, it engrossed xenoarcheologists for years.`
 	government Uninhabited
-	
-	
+
+
 planet Masada
 	attributes predecessor uninhabited
 	landscape land/canyon18
-	description `Masada is an old world, one that was dying long before humanity was born. Its tectonic activity ended long ago, and the eons of erosion has worn the surface down to the bedrock. Most of the surface is bone dry, with the only water trapped in a small chain of cold, brackish seas near the equator. Little rain falls outside their drainage basins, but what does fall is bitter and alkaline. The broken remains of what might have once been cities, worn down to little more than circular arrangements of rubble, hints that there is much history here - but no future.`
-	description `In orbit, the Avgi left behind a series of satellites to map the surface. The lack of anything in orbit left by the planet's original inhabitants is a reminder of just how old this world is - old enough for even the highest orbits to decay.`
+	description `Masada is an old world, one that was dying long before humanity was born. Its tectonic activity ended long ago, and the eons of erosion has worn its terrain down to the bedrock. Most of the surface is bone dry, with the only water trapped in a small chain of cold, brackish seas near the equator. Little rain falls outside their drainage basins, but what does is bitter and alkaline. The broken remains of what might have once been cities, worn down to little more than circular arrangements of rubble, hints that there is much history here - but no future.`
+	description `In orbit, the Avgi left behind a constellation of satellites to map the surface, but little else. The lack of anything left by the planet's original inhabitants is a reminder of just how old this world is - old enough for even the highest orbits to decay.`
 	government Uninhabited
 
 
@@ -404,7 +404,7 @@ planet Silwan
 	attributes predecessor forest uninhabited
 	landscape land/fog12
 	description `Silwan is a wet, misty world shrouded in a permanent blanket of fog, which covers the entire planet year-round. The little light that makes it to the surface reveals a bleak landscape, eroded to a nearly uniform flatness from the eons of constant rains. Only at the equator is the layer of fog burned off by sunlight, feeding humid forests of fern-like trees.`
-	description `Even less evidence of the Predecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plant life and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
+	description `Even less evidence of the Predecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plants and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
 	government Uninhabited
 
 
@@ -461,7 +461,7 @@ planet "Navigeo Yards"
 	attributes avgi "avgi diaspora" station "twilight guard" military
 	landscape land/station57
 	description `Navigeo is a station designed to be a dedicated shipyard, with dozens of modular dry docks capable of quickly laying down new ships or repairing damaged ones. Overall, almost all of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability.`
-	description `	Due to its importance and nature as a directly government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost.`
+	description `	Due to its importance and nature as a government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost.`
 	spaceport `The spaceport is closer to being a giant array of dry docks than a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day.`
 	government "Avgi (Twilight Guard)"
 	"required reputation" 10
@@ -505,7 +505,7 @@ planet "Dokimi Range"
 planet Weledos
 	attributes avgi "avgi diaspora" frontier
 	landscape land/water3
-	description `Weledos was colonized even before the Avgi evacuated their orbital assets to the Tangled Shroud. A few brave pioneers were willing to settle within the unpredictable systems of the Shroud, largely to escape the planetary governments of core Avgi space. In secret, they are said to have surveyed and colonized the planet before most explorers had even reached the entrance Shroud, surprising early scouts with their presence.`
+	description `Weledos was colonized even before the Avgi evacuated their orbital assets to the Tangled Shroud. A few brave pioneers were willing to settle within the unpredictable systems of the Shroud, largely to escape the planetary governments of core Avgi space. In secret, they are said to have surveyed and colonized the planet before most explorers had even reached the entrance to the Shroud, surprising early scouts with their presence.`
 	description `	Unfortunately, Weledos and the Ensemble system in general are poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system has forced the Avgi diaspora to settle deeper into the Tangled Shroud, despite calls to deposit more civilians here.`
 	spaceport `The spaceport here is large but spartan, equipped as a midway point for convoys and warships transiting between the front lines of the war and the depths of the Tangled Shroud.`
 	"required reputation" 10
@@ -545,14 +545,11 @@ planet "Aktina Cylinder"
 planet "Outpost Enka"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	landscape land/station27
-	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one of them also contains significant numbers of pressurized tunnels filled with farms and large green spaces.`
+	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
 	description `Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
 	spaceport `The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment.`
 	government "Avgi (Dissonance)"
 	"required reputation" 10
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
-	shipyard "Avgi Dissonance Basics"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -586,9 +583,8 @@ planet "Outpost Tekis"
 
 planet "Outpost Leto"
 	attributes avgi "avgi diaspora" dissonance station asteroid
-	landscape land/station28
-	description "WIP"
+	landscape land/station30
+	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot its icy surface, which is slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
 	"required reputation" 10
 	government "Avgi (Dissonance)"
 	"required reputation" 10
-

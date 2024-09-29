@@ -147,7 +147,7 @@ mission "Avgi: First Contact"
 				goto transmission
 
 			label silent
-			`	Unsure of the intentions of the alien vessel, you remain silent. However, it seems the aliens have other intentions, as you shortly receive a transmission with an encoding your ship's computer is able to interpret, in a standard human data format. Perhaps these aliens have encountered humans before? The message is short and direct:`
+			`	Unsure of the intentions of the alien vessel, you remain silent. However, it seems the aliens have other intentions, as you shortly receive a transmission with an encoding your ship's computer is able to interpret, in a standard human data format. The message is short and direct:`
 				goto transmission
 
 			label transmission
@@ -192,7 +192,7 @@ mission "Avgi: First Contact"
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek-looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
-			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, a meter and a half long on average and with six limbs and wings. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
+			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe closer to a damselfly - a meter and a half long on average, and with six limbs and wings. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
 			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons. As you step out of the <ship>, noticing the lighter gravity, a small group quickly moves forward to meet you.`
 			choice
 				`	"I come in peace."`
@@ -216,11 +216,11 @@ mission "Avgi: First Contact"
 
 			`	"Reassurance. All of your questions will be answered in time, Captain <last>. Please, now follow."`
 			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. After exiting through a downward sloping ramp set in the floor, you then follow a long passageway that seems to perpetually curve upwards. You're reminded of older space stations, ones that relied on spin gravity before gravity plating became commonplace.`
-			`	Eventually, after a number of turns and descents, you pass through an open archway into some kind of conference room. Large and circular, with a high ceiling, it is occupied by a trio of multicolored dragonfly aliens, each perched on a metal ring running around a circular table.`
+			`	Eventually, after a number of turns and descents, you pass through an open archway into some kind of conference room. Large and circular with a high, rounded ceiling, it is occupied by a trio of multicolored dragonfly aliens, each perched on a metal ring running around a circular table.`
 			choice
 				`	"Hello."`
 				`	"Who are you?"`
-			`	The alien directly across from you, gray-white in color, begins speaking with the aid of another of the translator devices, this time taking on a feminine voice.`
+			`	The alien directly across from you, gray-white in color, begins speaking with the aid of another of the translator devices - this time taking on a feminine voice.`
 			`	"Invitation. I apologize for the inconvenience of traveling so far from your ship to meet us, but I was advised against being present for your arrival for fear of any unexpected hostilities, as small as such chances were estimated. My name, for lack of a direct translation, is 'Asime,' and with me are Speakers Prasinos and Galano. Together, we represent the Avgi Consonance as the First Speakers of the Assembly of Polities."`
 			`	Prasinos, grass-green in color, and Galano, a frail-looking milky-white Avgi, both wave at you with their forelimbs in a somewhat surreal imitation of the human gesture.`
 			choice
@@ -584,10 +584,6 @@ mission "Avgi: Defend Ensemble 2"
 			`	"What do you suggest?" you ask.`
 			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's an entire second branch of the Tangled Shroud, mostly ran by miners and small-time shipbuilders, the kind of people who talk a lot among themselves about rumors and tall tales. The official story behind the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
 
-	on decline
-		conversation
-			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
-
 
 mission "Avgi: Scout Rescue"
 	name "Search and Rescue"
@@ -645,10 +641,6 @@ mission "Avgi: Scout Rescue"
 			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
-
-	on decline
-		conversation
-			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
 
 
 mission "Avgi: Frontline Combat"
@@ -764,7 +756,6 @@ mission "Avgi: Dissonance Outreach"
 		conversation
 			`	Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."`
 			choice
-				`	"Pleased to meet you."`
 				`	"Who are you negotiating with exactly? Aren't the Avgi united under the Consonance?"`
 			`	He thrums in laughter. "One can only wish our species was that unified. No, membership in the Consonance is purely at-will, and many polities have chosen to go it alone even with the current crisis. Regret. The initial evacuation into the Tangled Shroud was haphazard to say the least, as much of it was, and still is, unmapped. Many captains took their ships down differing paths, meeting up with each other and forming alliances just to survive. In a way, it's a miracle that the Consonance was even able to reconstitute itself at all."`
 			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."`
@@ -774,7 +765,7 @@ mission "Avgi: Dissonance Outreach"
 				accept
 	on complete
 		conversation
-			`	Outpost Tekis is a large station built into a large asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
+			`	Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
 			`	You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
 			choice
 				`	"What are they saying?"`
@@ -847,7 +838,7 @@ mission "Avgi: Twilight Escape 1"
 			`	Leon stares for a moment, then swears. "That damn magnetar was there the entire time? I was there for years. Years!"`
 			`	"We all were. And you wouldn't have been able to do anything with it without <first>'s jump drive," reminds Sora.`
 			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
-			`	"Drop me off on Vinci first" interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
+			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
 		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
@@ -872,7 +863,7 @@ mission "Avgi: Twilight Escape 2"
 		has "Avgi: Twilight Escape 1: done"
 	on offer
 		conversation
-			`You find Darius and Sora sitting outside a cafe, sipping coffee. "Been a long time since we've had a good cup" explains Sora, pulling a chair out for you.`
+			`You find Darius and Sora sitting outside a cafe, sipping coffee. "Been a long time since we've had a good cup," explains Sora, pulling a chair out for you.`
 			`	"What, no coffee in Avgi space?" you joke.`
 			`	"Nah, but you should try their drinks sometime. Man, they're something else."`
 			`	"There's nothing like being back, though," Darius says, quiet as he takes in the bustling spaceport around you. "It's hard to believe I'm really here. Harder to understand why it was I that made it out of there when so many who followed me didn't."`
@@ -936,8 +927,8 @@ mission "Avgi: Twilight Escape 3"
 			`	Katrina looks at you curiously. "Aliens, huh? You don't look like an alien."`
 			choice
 				`	"Huh?"`
-				`	"That's because I'm not"`
-				`	"Yeah, these skinsuits are pretty good"`
+				`	"That's because I'm not."`
+				`	"Yeah, these skinsuits are pretty good."`
 			`	She bursts out laughing. "I wouldn't believe it if anyone else had told me. I mean, men come up with all sorts of excuses for coming home late, but this is something else!" Her tone suddenly turns serious. "It'll be a headache, working all this out with the government. They gave me the money for this place as recompense for your supposed 'death,' no matter how much I insisted you were still alive."`
 			`	"We'll work it out. They owe me backpay anyway," jokes Darius, still in Katrina's arms.`
 			`	As the pair move to the door, you say your goodbyes, and Darius promises he will keep in touch with you about the Avgi. Neither of you have forgotten the aliens fighting to survive at the edge of the galaxy, and now that you know of a safe way in and out of their space, you can go back without fear of becoming trapped.`

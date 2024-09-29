@@ -159,7 +159,7 @@ outfit "Green Optical Laser"
 		"lifetime" 1
 		"firing energy" 6
 		"firing heat" 6
-	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret seems designed to hold a beam on target at an extreme distance for a longer period of time using its precise optics, making it better suited for defending and supporting other ships from afar."
+	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret's precise optics seems designed to hold a beam on target at an extreme distance for a longer period of time, making it better suited for defending and supporting other ships from afar."
 	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
 
 
@@ -175,7 +175,6 @@ outfit "Blue Optical Laser"
 	"outfit space" -9
 	"weapon capacity" -9
 	"turret mounts" -1
-	"optical jamming" 12
 	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/avgi blue laser"
@@ -277,7 +276,7 @@ outfit "Ultrarelativistic Electron Beam"
 		"firing scramble" 4.5
 		"reload" 18
 		"burst count" 1
-		"inaccuracy" 6
+		"inaccuracy" 3
 			"narrow"
 		"velocity override" 300
 		"piercing" 0.3
@@ -294,7 +293,7 @@ outfit "Electron Bunch"
 		"random velocity" -240
 		"lifetime" 9
 		"random lifetime" 3
-		"inaccuracy" 0.3
+		"inaccuracy" 0.6
 		"shield damage" 1.2
 		"hull damage" 1.8
 		"ion damage" 0.006
@@ -401,7 +400,7 @@ outfit "External Launch Tube"
 		"missile strength" 9
 		"stream"
 		"submunition" "Orchid Active"
-	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missile to be deployed with considerable initial velocity."
+	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missiles to be deployed with considerable initial velocity."
 
 
 outfit "Vertical Launch Array"
@@ -467,7 +466,7 @@ outfit "Nettle Magazine"
 	"outfit space" -12
 	"nettle capacity" 60
 	ammo `"Nettle" KKV`
-	description "Nettle storage"
+	description "To improve the combat endurance of ships relying on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
 
 
 outfit "Nettle Active"
@@ -550,7 +549,7 @@ outfit "Orchid Magazine"
 	"outfit space" -12
 	"orchid capacity" 3
 	ammo `"Orchid" Nuclear Missile`
-	description "Orchid storage"
+	description "This large ammunition storage loads new Orchid Missiles into the launch tubes with little more than a few cables, actuators, and solenoids. Designed to be as minimalistic as possible, the sheer size of each Orchid nonetheless makes this magazine rather bulky for the number of missiles it stores."
 
 
 outfit "Orchid Active"

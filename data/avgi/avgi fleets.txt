@@ -98,11 +98,87 @@ fleet "Avgi Patrol"
 		"Tremoros" 2
 
 
+fleet "Avgi Twilight Guard Logistics"
+	government "Avgi (Twilight Guard)"
+	names "avgi military names"
+	cargo 4
+	commodities "Food" "Equipment" "Medical" "Heavy Metals"
+	fighters
+		names "avgi fighter names"
+		personality
+			swarming
+	personality
+		confusion 20
+		timid merciful opportunistic
+	variant 10
+		"Koryfi" 3
+		"Frequentia"
+		"Tremoros" 2
+	variant 10
+		"Avlaki" 3
+		"Frequentia"
+		"Tremoros" 2
+	variant 10
+		"Koryfi" 3
+		"Interferos" 2
+	variant 10
+		"Avlaki" 3
+		"Interferos" 2
+	variant 10
+		"Melodikos"
+		"Tremoros" 4
+		"Frequentia"
+	variant 10
+		"Melodikos"
+		"Tremoros" 2
+		"Frequentia"
+	variant 10
+		"Harmonikos"
+		"Tremoros" 4
+	variant 10
+		"Harmonikos"
+		"Tremoros" 2
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+		"Tremoros" 4
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+		"Tremoros" 6
+	variant 10
+		"Undsyni (Tanker)"
+		"Sonikis (Tanker)" 4
+		"Tremoros" 4
+	variant 10
+		"Undsyni (Tanker)"
+		"Sonikis (Tanker)" 4
+		"Tremoros" 6
+	variant 10
+		"Koryfi" 2
+		"Tremoros" 4
+	variant 10
+		"Avlaki" 2
+		"Tremoros" 4
+	variant 10
+		"Harmonikos"
+		"Melodikos"
+		"Interferos"
+		"Tremoros" 6
+	variant 5
+		"Harmonikos"
+		"Melodikos"
+		"Undsyni (Tanker)"
+		"Sonikis (Tanker)" 4
+		"Interferos" 2
+		"Tremoros" 6
+
+
 fleet "Avgi Scouts"
 	government "Avgi (Twilight Guard)"
 	names "avgi civilian names"
 	cargo 3
-	commodities "Food" "Equipment" "Medical"
+	commodities
 	fighters
 		names "avgi fighter names"
 	personality
@@ -166,8 +242,8 @@ fleet "Avgi Fleetgroup"
 		personality
 			hunting disables swarming
 	personality
-		confusion 10
 		heroic
+		confusion 10
 	variant 5
 		"Atenuatia"
 		"Vibratia" 18
