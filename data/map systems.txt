@@ -4774,18 +4774,18 @@ system "Alpha Centauri"
 	pos -429 125
 	government Republic
 	attributes "near earth"
-	arrival 1190
+	arrival 5000
 	habitable 1190
-	belt 1116
+	belt 16500
 	haze _menu/haze-67
 	link Sol
 	asteroids "small rock" 1 1.944
-	asteroids "medium rock" 2 5.04
+	asteroids "medium rock" 1 5.04
 	asteroids "large rock" 1 1.8
-	asteroids "medium metal" 10 4.428
+	asteroids "medium metal" 3 4.428
 	asteroids "large metal" 1 3.168
-	minables copper 1 5.07974
-	minables lead 4 6.13217
+	minables copper 20 5.07974
+	minables lead 80 6.13217
 	trade Clothing 262
 	trade Electronics 695
 	trade Equipment 523
@@ -4802,37 +4802,37 @@ system "Alpha Centauri"
 	fleet "Large Republic" 6000
 	object
 		sprite star/g3
-		distance 38.238
-		period 10.3766
+		distance 8400
+		period 29133.07
 		offset 180
+		object
+			sprite planet/desert2
+			distance 846.547
+			period 74.8048
+		object Chiron
+			sprite planet/forest1
+			distance 1676.197
+			period 423.665
+			object
+				sprite planet/rock17
+				distance 186
+				period 14.7361
+		object
+			sprite planet/gas13
+			distance 4280.61
+			period 3022.55
 	object
 		sprite star/k0
-		distance 54.6257
-		period 10.3766
-	object
-		sprite planet/desert2
-		distance 346.547
-		period 74.8048
-	object
-		sprite planet/oberon
-		distance 749.037
-		period 237.706
-	object Chiron
-		sprite planet/forest1
-		distance 976.197
-		period 353.665
+		distance 25200
+		period 29133.07
 		object
-			sprite planet/rock17
-			distance 126
-			period 14.7361
-	object
-		sprite planet/rock15-b
-		distance 1718.2
-		period 825.842
-	object
-		sprite planet/gas13
-		distance 4080.61
-		period 3022.55
+			sprite planet/oberon
+			distance 1149.037
+			period 337.706
+		object
+			sprite planet/rock15-b
+			distance 2718.2
+			period 825.842
 
 system "Alpha Hydri"
 	pos -97 98
