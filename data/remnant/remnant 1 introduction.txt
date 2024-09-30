@@ -1260,7 +1260,7 @@ mission "Remnant: Deep Surveillance"
 				has "Deep: Remnant Research: offered"
 			
 			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the twentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
-			`	"Who is it?" Ivan says before peaking out the blinds. "Oh! Captain <last>! Please, come in."`
+			`	"Who is it?" Ivan says before peeking out the blinds. "Oh! Captain <last>! Please, come in."`
 			`	Ivan opens the door and lets you inside. The office is cramped, the walls almost entirely obscured by filing cabinets. Ivan walks over to a desk that he barely has space to get behind, picking up a collection of papers and shoving them into the nearest cabinet. "Sorry about the mess," he says nervously. "I didn't know you were coming. Is there something I can help you with?"`
 			choice
 				`	"I was wondering if you'd found out anything new about the anomaly in Terminus."`

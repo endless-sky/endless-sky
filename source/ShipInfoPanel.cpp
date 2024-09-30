@@ -643,10 +643,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 
-	LineShader::Draw(from, mid, 3.5f, black);
-	LineShader::Draw(mid, to, 3.5f, black);
-	LineShader::Draw(from, mid, 1.5f, color);
-	LineShader::Draw(mid, to, 1.5f, color);
+	LineShader::Draw(from, mid, 2.f, black);
+	LineShader::Draw(mid, to, 2.f, black);
+	LineShader::Draw(from, mid, 1.f, color);
+	LineShader::Draw(mid, to, 1.f, color);
 }
 
 

@@ -2131,7 +2131,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	// "parent" to land (because the parent may not be planning on landing).
 	else if(systemHasFuel && needsFuel)
 		Refuel(ship, command);
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere)
+	else if((parent.Commands().Has(Command::LAND) || parent.IsLanding()) && parentIsHere && planetIsHere)
 	{
 		if(parentPlanet->CanLand(ship))
 		{

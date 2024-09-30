@@ -186,8 +186,8 @@ ship "Black Diamond"
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
-		"hull repair rate" 1
-		"hull delay" 60
+		"delayed hull repair rate" 1
+		"repair delay" 60
 		weapon
 			"blast radius" 24
 			"shield damage" 240
