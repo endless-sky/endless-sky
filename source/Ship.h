@@ -58,7 +58,7 @@ class Visual;
 // Class representing a ship (either a model for sale or an instance of it). A
 // ship's information can be saved to a file, so that it can later be read back
 // in exactly the same state. The same class is used for the player's ship as
-// for all other ships, so their capabilities are exactly the same  within the
+// for all other ships, so their capabilities are exactly the same within the
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
@@ -149,8 +149,9 @@ public:
 	// Set / Get the name of this model of ship.
 	void SetTrueModelName(const std::string &model);
 	const std::string &TrueModelName() const;
-	const std::string &DisplayModelName() const;
+	const std::string &DisplayModelName(bool showCategoryCode = false) const;
 	const std::string &PluralModelName() const;
+	const std::string &CategoryCode() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
@@ -558,6 +559,8 @@ private:
 	const Ship *base = nullptr;
 	std::string trueModelName;
 	std::string displayModelName;
+	std::string displayModelNameWithCategoryCode;
+	std::string categoryCode;
 	std::string pluralModelName;
 	std::string variantName;
 	std::string noun;
