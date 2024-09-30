@@ -29,7 +29,7 @@ See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/Player
 
 ## Installing the game
 
-Releases of Endless Sky Delta are available as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky-delta/releases/latest), while the official vanilla releases are on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/), on [GOG](https://gog.com/game/endless_sky), and on [Flathub](https://flathub.org/apps/details/io.github.endless_sky.endless_sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
+Releases of Endless Sky Delta are available as direct downloads from [GitHub](https://github.com/endless-sky/Endless-Sky-Delta/releases/latest), while the official vanilla releases are on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/), on [GOG](https://gog.com/game/endless_sky), and on [Flathub](https://flathub.org/apps/details/io.github.endless_sky.endless_sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
 
 
 ## System Requirements
@@ -50,10 +50,10 @@ For full installation instructions, consult the [Build Instructions](docs/readme
 
 ## Contributing
 
-As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](docs/CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki). The best place to ask questions or discuss ideas is GitHub's [discussion zone](https://github.com/endless-sky/endless-sky-delta/discussions).
+As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](docs/CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki). The best place to ask questions or discuss ideas is GitHub's [discussion zone](https://github.com/endless-sky/Endless-Sky-Delta/discussions).
 
 Endless Sky's main discussion and development area was once [Google Groups](https://groups.google.com/g/endless-sky), but due to factors outside our control, it is now inaccessible to new users, and should not be used anymore.
 
 ## Licensing
 
-Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/endless-sky-delta/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons (and similarly permissive) licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/endless-sky-delta/blob/master/copyright).)
+Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/Endless-Sky-Delta/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons (and similarly permissive) licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/Endless-Sky-Delta/blob/master/copyright).)

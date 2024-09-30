@@ -146,7 +146,7 @@ namespace {
 	const vector<string> FLAGSHIP_VELOCITY_SETTING = { "off", "ghost", "arrow", "both" };
 	int flagshipVelocityIndicatorIndex = 3;
 
-	int previousSaveCount = 3;
+	int previousSaveCount = 5;
 }
 
 
@@ -223,8 +223,8 @@ void Preferences::Load()
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "flagship velocity indicator")
 			flagshipVelocityIndicatorIndex = max<int>(0, min<int>(node.Value(1), FLAGSHIP_VELOCITY_SETTING.size() - 1));
-		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
-			previousSaveCount = max<int>(3, node.Value(1));
+		else if(node.Token(0) == "previous saves" && node.Size() >= 4)
+			previousSaveCount = max<int>(5, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else
