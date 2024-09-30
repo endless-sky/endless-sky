@@ -6899,13 +6899,13 @@ fleet "Hogshead"
 	cargo 2
 	personality
 		confusion 30
-		timid frugal appeasing
-	variant 1
+		appeasing frugal timid
+	variant
 		"Hogshead"
 
 phrase "Shippy McShipface names"
 	word
-		"Shippy McShipface"
+		"Shippy McShipface" 5
 		"It's Dark Here"
 		"What Asteroid"
 
