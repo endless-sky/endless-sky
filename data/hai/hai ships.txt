@@ -112,7 +112,6 @@ ship "Centipede"
 		"Hai Williwaw Cooling" 3
 		"Hai Cuttlefish Jammer" 2
 		"Luxury Accommodations"
-		"Holovid Zone"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
 		`"Biroo" Atomic Steering`
@@ -135,6 +134,24 @@ ship "Centipede"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
+
+ship "Centipede" "Centipede (Holovid)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hai Cuttlefish Jammer" 2
+		"Luxury Accommodations"
+		"Holovid Zone"
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
 
 ship "Centipede" "Centipede (Pulse)"
 	outfits

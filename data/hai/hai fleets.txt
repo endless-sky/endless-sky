@@ -32,7 +32,7 @@ fleet "Small Hai"
 	variant 1
 		"Grasshopper"
 		"Grasshopper (Tracker)"
-		"Centipede"
+		"Centipede (Holovid)"
 	variant 1
 		"Lightning Bug" 2
 		"Grasshopper"
@@ -93,7 +93,7 @@ fleet "Large Hai"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
 	variant 2
-		"Centipede"
+		"Centipede (Holovid)"
 		"Shield Beetle (Pulse)" 2
 		"Shield Beetle (Tracker)"
 	variant 1
@@ -234,7 +234,7 @@ fleet "Small Hai Merchant"
 		"Lightning Bug (Pulse)"
 		"Aphid" 5
 	variant 2
-		"Centipede"
+		"Centipede (Holovid)"
 	variant 3
 		"Aphid (Armed)" 3
 		"Centipede"
@@ -245,26 +245,26 @@ fleet "Small Hai Merchant"
 		"Centipede" 2
 		"Centipede (Pulse)" 3
 	variant 1
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 2
 	variant 2
 		"Centipede" 2
 		"Water Bug"
 	variant 1
-		"Centipede"
+		"Centipede (Holovid)"
 		"Lightning Bug" 2
 	variant 1
 		"Centipede"
 		"Aphid (Armed)" 5
 	variant 1
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 2
 	variant 1
 		"Centipede" 2
 		"Lightning Bug"
 	variant 1
 		"Grasshopper"
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 	variant 1
 		"Grasshopper"
 		"Scarab" 2
@@ -293,11 +293,11 @@ fleet "Large Hai Merchant"
 		"Water Bug" 3
 	variant 1
 		"Shield Beetle (Tracker)"
-		"Centipede" 3
+		"Centipede (Holovid)" 3
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Cicada" 2
-		"Centipede" 1
+		"Centipede (Holovid)" 1
 	variant 2
 		"Water Bug" 3
 		"Centipede" 2
@@ -307,12 +307,12 @@ fleet "Large Hai Merchant"
 	variant 2
 		"Water Bug" 3
 		"Cicada"
-		"Centipede" 1
+		"Centipede (Holovid)" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
 	variant 3
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 3
 		"Water Bug"
 	variant 2
@@ -329,7 +329,7 @@ fleet "Large Hai Merchant"
 		"Aphid" 2
 		"Aphid (Armed)"
 	variant 1
-		"Centipede"
+		"Centipede (Holovid)"
 		"Geocoris (Tracker)"
 		"Lightning Bug"
 		"Water Bug"
@@ -388,13 +388,13 @@ fleet "Small Hai Merchant (Sympathizers)"
 		"Centipede" 2
 		"Lightning Bug" 2
 	variant 2
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Water Bug"
 	variant 1
 		"Centipede"
 		"Lightning Bug" 2
 	variant 1
-		"Centipede"
+		"Centipede (Holovid)"
 		"Aphid (Armed)" 5
 	variant 1
 		"Centipede" 2
@@ -432,12 +432,12 @@ fleet "Large Hai Merchant (Sympathizers)"
 	variant 2
 		"Water Bug" 3
 		"Cicada"
-		"Centipede" 1
+		"Centipede (Holovid)" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
 	variant 3
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 3
 		"Water Bug"
 	variant 2
