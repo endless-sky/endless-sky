@@ -242,7 +242,7 @@ private:
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;
-	double invisibleFenceRadius = 10000.;
+	double invisibleFenceRadius = 64000.; // vanilla is 10000
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;

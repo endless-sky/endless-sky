@@ -32232,9 +32232,10 @@ system Sol
 	pos -400 100
 	government Republic
 	attributes "near earth"
-	arrival 1080
-	habitable 1080
-	belt 1529
+	arrival 4300
+	departure 4189
+	habitable 1496
+	belt 4189 100
 	haze _menu/haze-67
 	link "Alpha Centauri"
 	link Altair
@@ -32242,11 +32243,14 @@ system Sol
 	link Denebola
 	link Sirius
 	link Vega
-	asteroids "small rock" 30 2.691
-	asteroids "large rock" 50 5.0508
-	asteroids "medium metal" 4 2.8566
-	asteroids "large metal" 1 2.2356
-	minables iron 8 4.64499
+	# asteroids "small rock" 30 2.691
+	# asteroids "large rock" 50 5.0508
+	# asteroids "medium metal" 4 2.8566
+	# asteroids "large metal" 1 2.2356
+	minables iron 500 4.64499
+	minables aluminum 200 3
+	minables gold 20 25
+	minables silicon 300 2
 	trade Clothing 282
 	trade Electronics 745
 	trade Equipment 491
@@ -32268,17 +32272,17 @@ system Sol
 	object
 		sprite star/g0
 		period 10
-	object
+	object Mercury
 		sprite planet/mercury
-		distance 289.647
+		distance 673
 		period 60.0000
-	object
+	object Venus
 		sprite planet/venus
-		distance 533.534
+		distance 1085
 		period 150.000
 	object Earth
 		sprite planet/earth
-		distance 965.669
+		distance 1496
 		period 365.250
 		object Luna
 			sprite planet/luna
@@ -32286,17 +32290,17 @@ system Sol
 			period 27.3
 	object Mars
 		sprite planet/mars
-		distance 1471.43
+		distance 2281
 		period 687.001
 	object Jupiter
 		sprite planet/jupiter
-		distance 3339
+		distance 7787
 		period 2348.40
 		object
 			sprite planet/io
 			distance 238.221
 			period 10.614
-		object
+		object Europa
 			sprite planet/europa
 			distance 379.078
 			period 21.306
@@ -32308,9 +32312,9 @@ system Sol
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
-	object
+	object Saturn
 		sprite planet/saturn
-		distance 5562
+		distance 14362
 		period 5048.87
 		object
 			sprite planet/tethys
@@ -32320,26 +32324,38 @@ system Sol
 			sprite planet/rhea
 			distance 791
 			period 4.5
-		object
+		object Titan
 			sprite planet/titan
 			distance 1222
 			period 16
-	object
+	object Uranus
 		sprite planet/uranus
-		distance 10373
+		distance 28723
 		period 12858.9
-		object
+		object Miranda
 			sprite planet/miranda
 			distance 195
 			period 1.4
-		object
+		object Oberon
 			sprite planet/oberon
 			distance 584
 			period 13
-	object
+	object Neptune
 		sprite planet/neptune
-		distance 15730
+		distance 45179
 		period 24012.7
+		object Triton
+			sprite planet/tethys
+			distance 195
+			period -5.8
+	object Pluto
+		sprite planet/neptune
+		distance 59062
+		period 90498.1
+		object Charon
+			sprite planet/tethys
+			distance 195
+			period 5.8
 
 system "Sol Arach"
 	pos -711.587 649.051

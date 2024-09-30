@@ -440,6 +440,30 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
 				+ Format::MassString(engineSpace) + " free.";
 
+		int propulsionAccessorySlotNeeded = -selectedOutfit->Get("engine mod space");
+		int propulsionAccessorySlotFree = playerShip->Attributes().Get("engine mod space");
+		if(propulsionAccessorySlotNeeded && !propulsionAccessorySlotFree)
+			return "This afterbuner is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused propulsion accessory slots available.";
+
+		int reverseThrusterSlotNeeded = -selectedOutfit->Get("reverse thruster slot");
+		int reverseThrusterSlotFree = playerShip->Attributes().Get("reverse thruster slot");
+		if(reverseThrusterSlotNeeded && !reverseThrusterSlotFree)
+			return "This reverse thruster is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused reverse thruster slots available.";
+
+		int steeringSlotNeeded = -selectedOutfit->Get("steering slot");
+		int steeringSlotFree = playerShip->Attributes().Get("steering slot");
+		if(steeringSlotNeeded && !steeringSlotFree)
+			return "This steering is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused steering slots available.";
+
+		int thrusterSlotNeeded = -selectedOutfit->Get("thruster slot");
+		int thrusterSlotFree = playerShip->Attributes().Get("thruster slot");
+		if(thrusterSlotNeeded && !thrusterSlotFree)
+			return "This thruster is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused thruster slots available.";
+
 		if(selectedOutfit->Category() == "Ammunition")
 			return !playerShip->OutfitCount(selectedOutfit) ?
 				"This outfit is ammunition for a weapon. "

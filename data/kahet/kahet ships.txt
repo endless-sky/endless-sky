@@ -23,7 +23,7 @@ ship "Maeri'het"
 		"hull" 23100
 		"required crew" 1
 		"bunks" 1
-		"mass" 620
+		"mass" 780
 		"drag" 5.0
 		"heat dissipation" .31
 		"overheat damage threshold" 0.2
@@ -34,6 +34,9 @@ ship "Maeri'het"
 		"outfit space" 383
 		"weapon capacity" 184
 		"engine capacity" 86
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"energy capacity" 10000
 		"energy generation" 28.3
 		"heat generation" 32
@@ -126,7 +129,7 @@ ship "Telis'het"
 		"hull" 21300
 		"required crew" 1
 		"bunks" 1
-		"mass" 1570
+		"mass" 3280
 		"drag" 10.3
 		"heat dissipation" .24
 		"overheat damage threshold" 0.2
@@ -137,6 +140,9 @@ ship "Telis'het"
 		"outfit space" 673
 		"weapon capacity" 254
 		"engine capacity" 138
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"energy capacity" 28000
 		"energy generation" 37.4
 		"heat generation" 40
@@ -265,7 +271,7 @@ ship "Vareti'het"
 		"hull" 25800
 		"required crew" 1
 		"bunks" 1
-		"mass" 3220
+		"mass" 12160
 		"drag" 20.2
 		"heat dissipation" 0.18
 		"overheat damage threshold" 0.2
@@ -276,6 +282,9 @@ ship "Vareti'het"
 		"outfit space" 914
 		"weapon capacity" 372
 		"engine capacity" 150
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"energy capacity" 41000
 		"energy generation" 61.2
 		"heat generation" 46
@@ -469,6 +478,9 @@ ship "Selii'mar"
 		"outfit space" 77
 		"weapon capacity" 18
 		"engine capacity" 21
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -500,6 +512,9 @@ ship "Faes'mar"
 		"cargo space" 102
 		"outfit space" 113
 		"engine capacity" 21
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 52
 			"shield damage" 410
@@ -548,6 +563,9 @@ ship "Fetri'sei"
 		"cargo space" 62
 		"outfit space" 173
 		"weapon capacity" 54
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"engine capacity" 46
 		"energy capacity" 6000
 		"energy generation" 16.6

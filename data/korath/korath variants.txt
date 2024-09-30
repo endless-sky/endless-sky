@@ -60,9 +60,9 @@ ship "Rano'erek" "Rano'erek (Crippled)"
 		
 		"Reverser (Lunar Class)"
 		"Steering (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Hyperdrive"
 		"Jump Drive (Broken)"
 		
@@ -232,9 +232,9 @@ ship "Palavret" "Palavret (Crippled)"
 		"Outfits Expansion"
 		
 		"Bow Drive (Meteor Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Thruster (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Steering (Lunar Class)"
 		"Afterburner (Asteroid Class)"
 		"Jump Drive (Broken)"
@@ -405,7 +405,7 @@ ship "Tubfalet" "Tubfalet (Crippler)"
 		"Thermal Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
+		# "Thruster (Lunar Class)" # Extra thruster
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
@@ -487,11 +487,11 @@ ship "'olofez" "'olofez (World-Ship)"
 		"atmosphere scan" 1
 	outfits
 		"Generator (Candle Class)"
-		"Systems Core (Tiny)"
+		# "Systems Core (Tiny)" Removed in favor of the Engine for compatibility with the slots system. If the Korath had a smaller generator (<=9, then using that instead of the candle would be better)
 		"Small Bunk Room"
 		"Thermal Repeater Rifle" 3
 		
-		"Steering (Asteroid Class)"
+		"Engine (Meteor Class)"
 		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
 
@@ -534,7 +534,7 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 		"Microbot Defense Station" 13
 		
 		"Afterburner (Comet Class)"
-		"Bow Drive (Meteor Class)"
+		# "Bow Drive (Meteor Class)" Extra reverse thruster
 		"Reverser (Planetary Class)"
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -571,10 +571,10 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 		"Systems Core (Small)"
 		
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Steering (Lunar Class)"
-		"Steering (Comet Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Comet Class)" # Extra steering
+		# "Steering (Asteroid Class)" # Extra steering
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
@@ -839,9 +839,9 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
 		"Thermal Repeater Rifle" 351
 		
 		"Steering (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Jump Drive (Broken)"
 
 	turret "Langrage Hyper-Heaver"
@@ -967,7 +967,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 		"Microbot Defense Station" 15
 
 		"Reverser (Lunar Class)"
-		"Bow Drive (Meteor Class)"
+		# "Bow Drive (Meteor Class)" # Extra reverse thruster
 		"Afterburner (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1327,7 +1327,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Steering (Stellar Class)"
 		Hyperdrive
 	
@@ -1473,7 +1473,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
-		"Steering (Comet Class)"
+		# "Steering (Comet Class)" # Extra steering
 		"Hyperdrive"
 	
 	gun "Korath Detainer"

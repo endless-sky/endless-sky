@@ -24,14 +24,17 @@ ship "Korath Dredger"
 		"hull" 16500
 		"required crew" 137
 		"bunks" 357
-		"mass" 2636
-		"drag" 25.6
-		"heat dissipation" .3
+		"mass" 12024
+		"drag" 17.1
+		"heat dissipation" .45
 		"fuel capacity" 900
 		"cargo space" 675
 		"outfit space" 763
 		"weapon capacity" 276
 		"engine capacity" 206
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 4600
@@ -101,14 +104,17 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 1468
-		"drag" 18
-		"heat dissipation" .33
+		"mass" 2880
+		"drag" 12
+		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
 		"outfit space" 777
 		"weapon capacity" 339
 		"engine capacity" 159
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -179,6 +185,9 @@ ship "Korath Chaser"
 		"outfit space" 92
 		"weapon capacity" 25
 		"engine capacity" 30
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -212,14 +221,17 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 3022
-		"drag" 31.5
-		"heat dissipation" .27
+		"mass" 13880
+		"drag" 21
+		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
 		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -333,9 +345,9 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		
 		"Reverser (Lunar Class)"
 		"Steering (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Hyperdrive"
 		"Jump Drive (Broken)"
 		
@@ -502,9 +514,9 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Outfits Expansion"
 		
 		"Bow Drive (Meteor Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Thruster (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Steering (Lunar Class)"
 		"Afterburner (Asteroid Class)"
 		"Jump Drive (Broken)"
@@ -683,11 +695,12 @@ ship "Korath Chaser" "Korath Chaser (World-Ship)"
 		"atmosphere scan" 1
 	outfits
 		"Generator (Candle Class)"
-		"Systems Core (Tiny)"
+		# "Systems Core (Tiny)" # To make space for a thruster
 		"Small Bunk Room"
 		"Korath Repeater Rifle" 3
 		
 		"Steering (Asteroid Class)"
+		"Thruster (Asteroid Class)"
 		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
 
