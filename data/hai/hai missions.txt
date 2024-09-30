@@ -1591,7 +1591,7 @@ mission "Hai Translator Ban Lifted"
 			`Nearby, you see a store with a big sign, "Hai Speaking Devices: New Reduced Price: 1200 credits!" A Hai saleswoman under the sign is holding a strange orb and waving at you. Do you want to check it out?`
 			choice
 				`	(Yes.)`
-				`	(No.)`
+				`	(Not now.)`
 					defer
 				`	(Never.)`
 					decline
