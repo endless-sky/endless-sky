@@ -1257,26 +1257,35 @@ interface "trade"
 		center -60 95
 		dimensions 480 1
 
+	sprite "ui/trading panel bottom"
+		center 99 357
+
 	active if "can buy"
-	sprite "ui/dialog cancel"
-		center 40 355
-	button u "B_uy All"
-		center 40 355
+	sprite "ui/embedded small button"
+		center 55 355
+	button B "Buy All"
+		center 55 355
 		dimensions 70 30
-	
-	sprite "ui/wide button"
-		center 130 355
-	
+
 	active if "can sell"
-	visible if "!can sell outfits"
-	button e "S_ell All"
-		center 130 355
+	sprite "ui/embedded small button"
+		center 141 355
+	button S "Sell All"
+		center 141 355
+		dimensions 70 30
+
+	active if "can sell specials"
+	sprite "ui/wide button"
+		center -145 355
+	button P "Sell Specials"
+		center -145 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 130 355
+	sprite "ui/wide button"
+		center -250 355
+	button L "Sell Outfits"
+		center -250 355
 		dimensions 90 30
 
 
