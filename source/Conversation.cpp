@@ -597,7 +597,7 @@ bool Conversation::LoadDestinations(const DataNode &node)
 				}
 			}
 			else
-				child.PrintTrace("Warning: Expected goto, to show, or endpoint in conversation, found this:");
+				child.PrintTrace("Warning: Expected goto, to display, or endpoint in conversation, found this:");
 		}
 	}
 	return hasGoto || hasCondition;
