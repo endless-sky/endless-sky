@@ -172,7 +172,7 @@ help "stranded"
 help "trading"
 	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
 	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
-	`Sell other items in your cargo hold with the buttons to the left. "Sell Outfits" sells any outfitter items in your cargo hold. "Sell Specials" sells materials you mine from asteroids.`
+	`Sell other items in your cargo hold with the buttons to the left. "Sell Specials" sells materials you mine from asteroids. "Sell Outfits" sells any other outfitter items in your cargo hold.`
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
