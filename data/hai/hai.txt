@@ -165,7 +165,6 @@ outfitter "Hai Advanced"
 	"Sand Cell"
 
 outfitter "Hai-home Only"
-	# You never know what naughty things those humans will watch.
 	"Holovid Zone"
 
 outfitter "Hai Security"
