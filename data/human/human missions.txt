@@ -6890,6 +6890,24 @@ mission "Hogshead's Dilemma"
 				decline
 
 event "hogshead poll"
+	system "Sol"
+		add fleet "Hogshead" 3000
+
+fleet "Hogshead"
+	government "Merchant"
+	names "Shippy McShipface names"
+	cargo 2
+	personality
+		confusion 30
+		timid frugal appeasing
+	variant 1
+		"Hogshead"
+
+phrase "Shippy McShipface names"
+	word
+		"Shippy McShipface"
+		"It's Dark Here"
+		"What Asteroid"
 
 mission "Hogshead's Dilemma II"
 	invisible
