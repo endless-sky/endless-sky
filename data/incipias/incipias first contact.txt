@@ -194,7 +194,7 @@ mission "Incipias: The Derelict"
 mission "Incipias: Help The Stranded 1"
 	landing
 	name "Go to the Incipias"
-	description "Go to the Incipias planet <planet>, in the <system> system, to see what they have to say about helping a disabled Incipias ship."
+	description "Ask the Incipias for help to save one of their ships."
 	source
 		government "Quarg (Incipias)"
 	destination "Pon'tes"
@@ -317,8 +317,8 @@ mission "Incipias: No Help For The Stranded"
 
 mission "Incipias: Help The Stranded 2"
 	landing
-	name "Take Incipias back to <planet>"
-	description "You rescued some Incipias on <origin>. Take them back to <destination>, their home."
+	name "Bring Incipias back to <planet>"
+	description "Bring the rescued Incipias back home to <destination>"
 	passengers 5
 	source Turra
 	destination "Pon'tes"
