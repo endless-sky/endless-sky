@@ -37436,7 +37436,7 @@ system Zubenelgenubi
 		sprite planet/desert9
 		distance 730.693
 		period 250.467
-	object
+	object Donya
 		sprite planet/cloud0
 		distance 1318.13
 		period 606.856
