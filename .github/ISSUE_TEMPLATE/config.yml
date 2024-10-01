@@ -1,5 +1,1 @@
 blank_issues_enabled: false
-contact_links:
-  - name: Endless Sky Mobile
-    url: https://github.com/thewierdnut/endless-mobile/issues/
-    about: Please report any issues related to the mobile port here.
