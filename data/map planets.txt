@@ -1102,7 +1102,8 @@ planet "Dlia Jzaur"
 planet "Donya"
 	attributes uninhabited
 	landscape land/fields29
-	description `Donya is a lush, green, Earth-like world filled with vegetation and growing matter. With clouds and a blue sky, it was idyllic to the eyes of early settlers. Despite that, it remains unsettled as rains of poisonous acid fall on regular timeframes, rendering the planet uninhabitable to human life. The foliage planted by the initial wave of colonists seems to have adjusted to the terrible rain quite well unlike their masters, who left at the first opportunity.`
+	description `Donya is a lush, green, Earth-like world filled with vegetation and growing matter. With clouds and a blue sky, it was idyllic in the eyes of early settlers and the billionaire philanthropists who funded them.`
+	description `	Despite the beauty and the funding, it remains unsettled, as rains of poisonous acid fall on regular timeframes, rendering the planet uninhabitable to human life. The foliage planted by the initial wave of colonists to scrub the skies of the rain seems to have adjusted to the terrible liquid quite well, although it hasn't managed to entirely eliminate it. The planters, who couldn't bear the dreadful weather, left when they discovered that they couldn't stop the rains.`
 	government Uninhabited
 
 planet "Double Haze"
