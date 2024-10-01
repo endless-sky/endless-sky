@@ -248,6 +248,7 @@ mission "Ringworld Debris: Quarg"
 	source
 		attributes "quarg"
 		not attributes "gegno quarg"
+		not attributes "incipias quarg"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
