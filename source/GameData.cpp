@@ -265,30 +265,33 @@ void GameData::CheckReferences()
 void GameData::LoadSettings()
 {
 	// If there is no user-defined config, then set some defaults
-	Command::SetGesture(Command::STOP, Gesture::CARET_DOWN);
-	Command::SetGesture(Command::BOARD, Gesture::CARET_UP);
-	Command::SetGesture(Command::GATHER, Gesture::CIRCLE);
-	Command::SetGesture(Command::HOLD_POSITION, Gesture::X);
+	if(!Files::Exists(Files::Config() + "keys.txt"))
+	{
+		Command::SetGesture(Command::STOP, Gesture::CARET_DOWN);
+		Command::SetGesture(Command::BOARD, Gesture::CARET_UP);
+		Command::SetGesture(Command::GATHER, Gesture::CIRCLE);
+		Command::SetGesture(Command::HOLD_POSITION, Gesture::X);
 
-	Command::SetControllerButton(Command::LAND, SDL_CONTROLLER_BUTTON_A);
-	Command::SetControllerButton(Command::HAIL, SDL_CONTROLLER_BUTTON_B);
-	Command::SetControllerButton(Command::SCAN, SDL_CONTROLLER_BUTTON_X);
-	Command::SetControllerButton(Command::JUMP, SDL_CONTROLLER_BUTTON_Y);
-	Command::SetControllerButton(Command::INFO, SDL_CONTROLLER_BUTTON_BACK);
-	Command::SetControllerButton(Command::MENU, SDL_CONTROLLER_BUTTON_GUIDE);
-	Command::SetControllerButton(Command::MAP, SDL_CONTROLLER_BUTTON_START);
-	Command::SetControllerButton(Command::STOP, SDL_CONTROLLER_BUTTON_LEFTSTICK);
-	Command::SetControllerButton(Command::NEAREST_ASTEROID, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
-	Command::SetControllerButton(Command::SELECT, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
-	Command::SetControllerButton(Command::DEPLOY, SDL_CONTROLLER_BUTTON_DPAD_UP);
-	Command::SetControllerButton(Command::BOARD, SDL_CONTROLLER_BUTTON_DPAD_DOWN);
-	Command::SetControllerButton(Command::CLOAK, SDL_CONTROLLER_BUTTON_DPAD_LEFT);
-	Command::SetControllerButton(Command::FASTFORWARD, SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+		Command::SetControllerButton(Command::LAND, SDL_CONTROLLER_BUTTON_A);
+		Command::SetControllerButton(Command::HAIL, SDL_CONTROLLER_BUTTON_B);
+		Command::SetControllerButton(Command::SCAN, SDL_CONTROLLER_BUTTON_X);
+		Command::SetControllerButton(Command::JUMP, SDL_CONTROLLER_BUTTON_Y);
+		Command::SetControllerButton(Command::INFO, SDL_CONTROLLER_BUTTON_BACK);
+		Command::SetControllerButton(Command::MENU, SDL_CONTROLLER_BUTTON_GUIDE);
+		Command::SetControllerButton(Command::MAP, SDL_CONTROLLER_BUTTON_START);
+		Command::SetControllerButton(Command::STOP, SDL_CONTROLLER_BUTTON_LEFTSTICK);
+		Command::SetControllerButton(Command::NEAREST_ASTEROID, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
+		Command::SetControllerButton(Command::SELECT, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+		Command::SetControllerButton(Command::DEPLOY, SDL_CONTROLLER_BUTTON_DPAD_UP);
+		Command::SetControllerButton(Command::BOARD, SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+		Command::SetControllerButton(Command::CLOAK, SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+		Command::SetControllerButton(Command::FASTFORWARD, SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
 
-	Command::SetControllerTrigger(Command::TARGET, SDL_CONTROLLER_AXIS_RIGHTX, false);
-	Command::SetControllerTrigger(Command::NEAREST, SDL_CONTROLLER_AXIS_RIGHTX, true);
-	Command::SetControllerTrigger(Command::PRIMARY, SDL_CONTROLLER_AXIS_TRIGGERLEFT, true);
-	Command::SetControllerTrigger(Command::SECONDARY, SDL_CONTROLLER_AXIS_TRIGGERRIGHT, true);
+		Command::SetControllerTrigger(Command::TARGET, SDL_CONTROLLER_AXIS_RIGHTX, false);
+		Command::SetControllerTrigger(Command::NEAREST, SDL_CONTROLLER_AXIS_RIGHTX, true);
+		Command::SetControllerTrigger(Command::PRIMARY, SDL_CONTROLLER_AXIS_TRIGGERLEFT, true);
+		Command::SetControllerTrigger(Command::SECONDARY, SDL_CONTROLLER_AXIS_TRIGGERRIGHT, true);
+	}
 	
 	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
