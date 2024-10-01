@@ -224,6 +224,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
+	isCloseRequest |= key == SDLK_AC_BACK;
 	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
@@ -275,11 +276,21 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
+				if (intFun || stringFun)
+				{
+					SDL_StopTextInput();
+				}
 				GetUI()->Pop(this);
 			}
 		}
 		else
-			GetUI()->Pop(this);
+		{
+			if (intFun || stringFun)
+			{
+				SDL_StopTextInput();
+			}
+ 			GetUI()->Pop(this);
+		}
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));
@@ -310,6 +321,12 @@ bool Dialog::Click(int x, int y, int clicks)
 			okIsActive = false;
 			return DoKey(SDLK_RETURN);
 		}
+	}
+
+	if (intFun || stringFun)
+	{
+		// Clicked on edit field. popup touchscreen keyboard if needed.
+		SDL_StartTextInput();
 	}
 
 	return true;
