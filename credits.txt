@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.10-delta
+version 0.10.09-delta
 
 The player's manual and other
 resources are available at:
