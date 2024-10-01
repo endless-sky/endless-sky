@@ -3682,6 +3682,27 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 
 
+std::shared_ptr<SpawnedFleet> Ship::GetSpawnedFleet()
+{
+	return spawnedFleet;
+}
+
+
+
+std::shared_ptr<const SpawnedFleet> Ship::GetSpawnedFleet() const
+{
+	return spawnedFleet;
+}
+
+
+
+void Ship::SetSpawnedFleet(std::shared_ptr<SpawnedFleet> fleet)
+{
+	spawnedFleet = fleet;
+}
+
+
+
 // Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
 // or fuel it uses and add whatever heat it generates). Assume that CanFire()
 // is true.

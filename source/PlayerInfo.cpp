@@ -128,6 +128,10 @@ namespace {
 
 
 
+const string PlayerInfo::UPDATE_FLEET_COUNTERS_CONDITION_NAME = "update fleet counters";
+
+
+
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
 void PlayerInfo::Clear()
@@ -3018,6 +3022,21 @@ set<string> &PlayerInfo::Collapsed(const string &name)
 
 
 
+unordered_map<string, int64_t> &PlayerInfo::FleetCounters()
+{
+	return fleetCounters;
+}
+
+
+
+const unordered_map<string, int64_t> &PlayerInfo::FleetCounters() const
+{
+	return fleetCounters;
+}
+
+
+
+
 // Apply any "changes" saved in this player info to the global game state.
 void PlayerInfo::ApplyChanges()
 {
@@ -3895,6 +3914,26 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!gov)
 			return false;
 		gov->SetReputation(value);
+		return true;
+	});
+
+	auto &&fleetCountProvider = conditions.GetProviderPrefixed("fleet count by name: ");
+	fleetCountProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		string fleetName = name.substr(strlen("fleet count by name: "));
+		auto found = fleetCounters.find(fleetName);
+		return found == fleetCounters.end() ? 0 : found->second;
+	});
+	fleetCountProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
+	{
+		string fleetName = name.substr(strlen("fleet count by name: "));
+		fleetCounters[fleetName] = value;
+		return true;
+	});
+	fleetCountProvider.SetEraseFunction([this](const string &name) -> bool
+	{
+		string fleetName = name.substr(strlen("fleet count by name: "));
+		fleetCounters.erase(fleetName);
 		return true;
 	});
 

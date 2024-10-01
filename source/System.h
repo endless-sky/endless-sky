@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Hazard.h"
+#include "LimitedEvents.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -165,7 +166,7 @@ public:
 	double Exports(const std::string &commodity) const;
 
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<RandomEvent<Fleet>> &Fleets() const;
+	const std::vector<LimitedEvents<Fleet>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
@@ -185,6 +186,9 @@ private:
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, double distance);
+
+	// Utility function for Load()
+	void LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events);
 
 
 private:
@@ -238,7 +242,7 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<LimitedEvents<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;

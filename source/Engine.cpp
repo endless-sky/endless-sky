@@ -1423,6 +1423,8 @@ void Engine::EnterSystem()
 	if(!flagship)
 		return;
 
+	updateFleetCounters = player.Conditions().Get(PlayerInfo::UPDATE_FLEET_COUNTERS_CONDITION_NAME);
+
 	doEnter = true;
 	doEnterLabels = true;
 	player.IncrementDate();
@@ -1492,14 +1494,35 @@ void Engine::EnterSystem()
 
 	// Clear any active weather events
 	activeWeather.clear();
+
+	// If any fleets have an initial spawn count, spawn them.
+	for(const auto &fleet : system->Fleets())
+		if(fleet.InitialCount() > 0 && !fleet.Category().empty())
+		{
+			size_t toPlace = FleetPlacementLimit(fleet, 0, true);
+			for(size_t i = 0; i < toPlace ; ++i)
+			{
+				fleetShips.clear();
+				fleet.Get()->Place(*system, fleetShips, true);
+				AddSpawnedFleet(fleet);
+			}
+		}
+
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60)
-				fleet.Get()->Place(*system, newShips);
+			// Skip fleets that don't want to spawn on system entry,
+			// or fleets whose limits have already been reached.
+			if(!fleet.GetFlags(Fleet::SKIP_SYSTEM_ENTRY) &&
+				FleetPlacementLimit(fleet, 60, true))
+			{
+				fleetShips.clear();
+				fleet.Get()->Place(*system, fleetShips, true);
+				AddSpawnedFleet(fleet);
+			}
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1675,6 +1698,9 @@ void Engine::CalculateStep()
 	for(Visual &visual : visuals)
 		visual.Move();
 	Prune(visuals);
+
+	// Remove destroyed ships and fleets from the spawnedFleets list.
+	PruneSpawnedFleets();
 
 	// Perform various minor actions.
 	SpawnFleets();
@@ -1952,20 +1978,25 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()))
+		if(FleetPlacementLimit(fleet, 1, true) > 0)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
 				continue;
 
-			// Don't spawn a fleet if its allies in-system already far outnumber
-			// its enemies. This is to avoid having a system get mobbed with
-			// massive numbers of "reinforcements" during a battle.
-			int64_t enemyStrength = ai.EnemyStrength(gov);
-			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
-				continue;
+			if(!fleet.GetFlags(Fleet::IGNORE_ENEMY_STRENGTH))
+			{
+				// Don't spawn a fleet if its allies in-system already far outnumber
+				// its enemies. This is to avoid having a system get mobbed with
+				// massive numbers of "reinforcements" during a battle.
+				int64_t enemyStrength = ai.EnemyStrength(gov);
+				if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
+					continue;
+			}
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips);
+			fleetShips.clear();
+			fleet.Get()->Enter(*player.GetSystem(), fleetShips, nullptr);
+			AddSpawnedFleet(fleet);
 		}
 }
 
@@ -2879,6 +2910,112 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message += ". Please assist us!";
 	}
 	SendMessage(target, message);
+}
+
+
+
+size_t Engine::FleetPlacementLimit(const LimitedEvents<Fleet> &fleet, unsigned frames, bool requireGovernment)
+{
+	// frames = how many frames worth of ships to place:
+	//    0 = used to indicate the fleet.InitialCount() number of fleets should
+	//        be spawned if they aren't already present
+	//   60 = used immediately after that, five times when entering the system to
+	//        spawn five seconds of ships
+	//    1 = the normal value, used when spawning random event ships
+
+	if(requireGovernment && !fleet.Get()->GetGovernment())
+		// Fleet has no government, but caller required one.
+		return 0;
+	else if(frames && Random::Int(fleet.Period()) >= frames)
+		// It is not yet time to place this fleet.
+		return 0;
+	else if(frames && !fleet.HasLimit() && !fleet.HasNonDisabledLimit())
+		// This is not an initalCount spawn, and the fleet is unlimited.
+		return numeric_limits<int>::max();
+	else if(!frames && fleet.InitialCount() <= 0)
+		// During an initialCount spawn, if the initialCount is 0, there's nothing to spawn.
+		return 0;
+	else if(!frames)
+		return static_cast<size_t>(max<int>(0, fleet.InitialCount() -
+			CountFleetsWithCategory(fleet.Category())));
+
+	int available = numeric_limits<int>::max();
+
+	// Count the disabled & non-disabled ships together first since that is a cheap calculation.
+	if(fleet.HasLimit())
+		available = max<int>(0, fleet.Limit() - CountFleetsWithCategory(fleet.Category()));
+
+	// More expensive non-disabled count is last, if requested:
+	if(available && fleet.HasNonDisabledLimit())
+		available = min<int>(available, max<int>(0, fleet.NonDisabledLimit() -
+			CountNonDisabledFleetsWithCategory(fleet.Category())));
+
+	return static_cast<size_t>(available);
+}
+
+
+
+size_t Engine::CountFleetsWithCategory(const string &category)
+{
+	return category.empty() ? 0 : spawnedFleets.count(category);
+}
+
+
+
+size_t Engine::CountNonDisabledFleetsWithCategory(const string &category)
+{
+	if(category.empty())
+		return 0;
+	auto range = spawnedFleets.equal_range(category);
+	size_t count = 0;
+	for(auto it = range.first; it != range.second; it++)
+		try {
+			shared_ptr<SpawnedFleet> fleet(it->second);
+			if(fleet->CountNonDisabledShips())
+				// Some ships are not yet disabled or destroyed
+				count++;
+		}
+		catch(const bad_weak_ptr &bwp)
+		{
+		}
+	return count;
+}
+
+
+
+void Engine::PruneSpawnedFleets()
+{
+	for(auto it = spawnedFleets.begin(); it != spawnedFleets.end();)
+		try {
+			shared_ptr<SpawnedFleet> fleet(it->second);
+			fleet->PruneShips();
+			if(fleet->CountShips())
+				// some ships remain
+				++it;
+			else
+				it = spawnedFleets.erase(it);
+		}
+		catch(const bad_weak_ptr &bwp)
+		{
+			it = spawnedFleets.erase(it);
+		}
+}
+
+
+
+void Engine::AddSpawnedFleet(const LimitedEvents<Fleet> &fleetEvent)
+{
+	const std::string &category = fleetEvent.Category();
+	shared_ptr<SpawnedFleet> fleet = make_shared<SpawnedFleet>(category, fleetShips);
+	fleet->ConnectToShips();
+	spawnedFleets.emplace(category, fleet);
+	newShips.splice(newShips.end(), fleetShips);
+	if(updateFleetCounters)
+	{
+		const std::string &name = fleetEvent.Get()->Name();
+		if(!name.empty())
+			player.FleetCounters()[name]++;
+	}
 }
 
 
