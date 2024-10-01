@@ -7715,9 +7715,9 @@ mission "Syndicate Business 3"
 			label makeemwait
 			`	Hours crawl by as the polished receptionist offers increasingly strained reassurances. Finally, Howard arrives, barely masking his annoyance, and motions for you to follow with a curt nod, clearly viewing you with disdain.`
 			label next
-			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress anybody who comes in, but it's clear this is more for show than substance.`
+			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress anybody who comes in, but it's clear that this is more for show than substance.`
 			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
-			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings today, but meet me at the spaceport later. I'll fly in my shuttle as your escort to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
+			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings, but meet me at the spaceport later. I'll fly in my Shuttle as your escort to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
 			choice
 				`	"Sure thing, I'll see you later."`
 					goto next2
@@ -7727,7 +7727,7 @@ mission "Syndicate Business 3"
 			`	Howard raises an eyebrow and then waves you off with a chuckle. "All in good time, my friend," he says, leaning back. "It's nothing you can't handle. I'll fill you in once we're safely on Sunracer, and let's just say it'll be worth your while."`
 				goto next2
 			label offices
-			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room I can reserve for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
+			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room that I can reserve for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
 			choice
 				`	"Can't wait."`
 					goto next2
@@ -7769,10 +7769,22 @@ mission "Syndicate Business 4"
 		personality escort timid
 		ship "Shuttle" "Gallant Knight"
 		on kill
-			dialog "You watch as Howard's shuttle explodes into a cloud of debris along with any hope of an investment opportunity."
+			dialog "You watch as Howard's Shuttle explodes into a cloud of debris along with any hope of an investment opportunity."
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders staying
+			confusion 40
+		system destination
+		fleet
+			names "pirate"
+			variant
+				"Wasp" 3
+			variant
+				"Quicksilver"
+
+	npc
+		government "Pirate"
+		personality harvests nemesis plunders
 			confusion 40
 		system destination
 		fleet
@@ -7847,7 +7859,7 @@ mission "Syndicate Business 5"
 				`	"Why would a shipyard have refueling stations?"`
 				`	"None of those options sound good to me. I'm out."`
 					decline
-			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for shipping the Quicksilver's Particle Cannons! Don't even get me started on the Mantas! Ada's a long ways away, but we sure love Lovelace Labs products...`
+			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace -- heck, we have a dedicated logistics hanger on Crossroads just for shipping the Quicksilver's Particle Cannons! Don't even get me started on the Mantas! Ada's a long ways away, but we sure love Lovelace Labs' products...`
 			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic.`
 			`	"There are, of course, ancillary benefits as well. For R&D, we can test the impact of different fuel mixtures on our ships prior to entering the market. For partnerships, we can include fueling rights in large-scale sales agreements. At our largest logistics hubs the economies of scale even allow us to competitively offer refueling services on the open market, giving us a diversified revenue stream.`
 			`	"In fact, the ancillary benefits are largely why there's such discretion in how the expansion will go. The aggressive and conservative fueling options both offer R&D and partnership benefits that are more than the project's direct returns."`
@@ -7958,7 +7970,7 @@ mission "Syndicate Business 5"
 				`	"Okay."`
 			branch upcharge
 				"syndicate business: mean to Howard" > 0
-			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
+			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you through our Finance Division, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
 			`	He slides a document over to you, with a sleek pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
 				`	"Sounds good."`
@@ -7966,7 +7978,7 @@ mission "Syndicate Business 5"
 				`	"I'm done with these deals, I'm leaving."`
 					decline
 			label upcharge
-			`	Howard's tone carries a hint of impatience. "Alright then. The price for this investment is eleven million credits for a 2700 credit per day return. I've managed to arrange a loan through the bank, so you won't need to come up with the cash immediately. Just sign these documents to formalize the arrangement."`
+			`	Howard's tone carries a hint of impatience. "Alright then. The price for this investment is eleven million credits for a 2700 credit per day return. I've managed to arrange a loan through the bank and our Finance Division, so you won't need to come up with the cash immediately. Just sign these documents to formalize the arrangement."`
 			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
 			choice
 				`	"Sounds good."`
