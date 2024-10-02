@@ -44,6 +44,7 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 	# Add the testing libraries
 	cmake_host_system_information(RESULT HOST_VERSION QUERY OS_RELEASE)
+	message("Version: ${HOST_VERSION}\n")
 	if(NOT APPLE OR HOST_VERSION VERSION_GREATER_EQUAL 16)
 		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
 	endif()
