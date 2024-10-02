@@ -69,6 +69,9 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	thumbnail "thumbnail/marrowe"
 	add attributes
 		"engine capacity" 20
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Laser" 2
 		
@@ -175,6 +178,9 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	thumbnail "thumbnail/mboundere"
 	add attributes
 		"engine capacity" 15
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Rocket Pod"
 		"Heavy Rocket" 2
@@ -299,6 +305,9 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	thumbnail "thumbnail/mfalcone"
 	add attributes
 		"engine capacity" 25
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Proton Gun" 4
 		"Modified Blaster Turret" 2
@@ -436,6 +445,9 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	thumbnail "thumbnail/mfirebirds"
 	add attributes
 		"engine capacity" 20
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Plasma Cannon" 4
 		"Quad Blaster Turret"
@@ -563,6 +575,9 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	thumbnail "thumbnail/mleviathane"
 	add attributes
 		"engine capacity" 40
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Rocket Launcher" 4
 		"Heavy Rocket" 80
@@ -693,6 +708,9 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	thumbnail "thumbnail/mmantae"
 	add attributes
 		"engine capacity" 20
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
@@ -823,6 +841,9 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
 		"engine capacity" 40
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -851,6 +872,9 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
 	add attributes
 		"engine capacity" 40
 		"self destruct" -.25
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -989,6 +1013,9 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	thumbnail "thumbnail/mravene"
 	add attributes
 		"engine capacity" 20
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Laser" 4
 		"Quad Blaster Turret"
@@ -1106,6 +1133,9 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	thumbnail "thumbnail/msplintere"
 	add attributes
 		"engine capacity" 20
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Plasma Cannon" 2
 		"Quad Blaster Turret" 2
