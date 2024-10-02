@@ -43,6 +43,10 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+	# Add the testing libraries on macos >= 10.12
+	if(NOT APPLE OR CMAKE_HOST_SYSTEM_VERSION VERSION_GREATER_EQUAL 16)
+		list(APPEND VCPKG_MANIFEST_FEATURES "testing")
+	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
