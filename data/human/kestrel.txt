@@ -407,8 +407,11 @@ ship "Kestrel" "Kestrel (More Engines)"
 	thumbnail "thumbnail/kestrele"
 	add attributes
 		"drag" -1.9
-		"fuel capacity" 100
 		"engine capacity" 30
+		"fuel capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	engine 13 170
 	engine -13 170
 	engine 24.5 160 0.4
