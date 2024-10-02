@@ -212,7 +212,7 @@
       "inherits": "ci",
       "cacheVariables": {
         "VCPKG_HOST_TRIPLET": "macos64-ci",
-        "VCPKG_TARGET_TRIPLET": "macos64-ci",
+        "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
         "CMAKE_OSX_DEPLOYMENT_TARGET": "10.12"
       }
