@@ -44,7 +44,7 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 	# Add the testing libraries
-	if(NOT APPLE OR CMAKE_HOST_SYSTEM_VERSION VERSION_GREATER_EQUAL 16)
+	if(NOT APPLE OR CMAKE_HOST_SYSTEM_VERSION VERSION_GREATER_EQUAL 10.12)
 		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
 	endif()
 endif()
