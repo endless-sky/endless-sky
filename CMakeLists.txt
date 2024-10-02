@@ -40,13 +40,15 @@ if(ES_USE_VCPKG)
 	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 endif()
 
-message("Version: " ${CMAKE_HOST_SYSTEM_VERSION} "\n")
+message("Version: \n")
+include(CMakePrintHelpers)
+cmake_print_variables(CMAKE_HOST_SYSTEM_VERSION)
 if(ES_USE_VCPKG OR NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 	# Add the testing libraries
 	if(NOT APPLE OR CMAKE_HOST_SYSTEM_VERSION VERSION_GREATER_EQUAL 10.12)
-		message("Version: " ${CMAKE_HOST_SYSTEM_VERSION} "\n")
+		cmake_print_variables(CMAKE_HOST_SYSTEM_VERSION)
 		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
 	endif()
 endif()
