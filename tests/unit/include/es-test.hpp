@@ -18,10 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define CATCH_CONFIG_ENABLE_BENCHMARKING
 #endif
 
-#ifdef __APPLE__
-#define CATCH_CONFIG_NO_CPP17_UNCAUGHT_EXCEPTIONS
-#endif
-
 #ifdef _WIN32
 // We require SEH for Windows builds, so we test with SEH support too.
 #define CATCH_CONFIG_WINDOWS_SEH
