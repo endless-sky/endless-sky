@@ -128,6 +128,15 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 bool MapSalesPanel::Click(int x, int y, int clicks)
 {
+	static const int KEY_ROW_COUNT = 4;
+	static const Point KEY_ROW_SIZE(140., 20.);
+	static const Point KEY_ROWS_SIZE = Point(KEY_ROW_SIZE.X(), KEY_ROW_SIZE.Y() * KEY_ROW_COUNT);
+	static const Point KEY_ROWS_INSET(30., 40.);
+
+	const Sprite *key = SpriteSet::Get("ui/sales key");
+	const Point keyRowsTopLeft = Screen::BottomLeft() + Point(WIDTH + 40., -key->Height()) + KEY_ROWS_INSET;
+	const Rectangle keyRows(keyRowsTopLeft + .5 * KEY_ROWS_SIZE, KEY_ROWS_SIZE);
+
 	if(x < Screen::Left() + WIDTH)
 	{
 		const Point point(x, y);
@@ -147,23 +156,23 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		else if(zone->Value() != selected)
 			Compare(compare = zone->Value());
 	}
-	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
+	else if(keyRows.Contains(Point(x, y)))
 	{
-		// This click was in the map key.
-		if(y < Screen::Top() + 42 || y >= Screen::Top() + 82)
-		{
-			onlyShowSoldHere = false;
-			onlyShowStorageHere = false;
-		}
-		else if(y < Screen::Top() + 62)
+		int clickRow = (y - keyRows.Top()) / KEY_ROW_SIZE.Y() + 1;
+		if(clickRow == 3)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
 		}
-		else
+		else if(clickRow == 4)
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = !onlyShowStorageHere;
+		}
+		else
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = false;
 		}
 	}
 	else
@@ -225,13 +234,15 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
-	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	const Point backPos = Screen::BottomLeft() + Point(WIDTH + 40., -back->Height());
+	SpriteShader::Draw(back, backPos + back->Center());
 
 	Color bright(.6f, .6f);
 	Color dim(.3f, .3f);
 	const Font &font = FontSet::Get(14);
 
-	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
+	static const Point PADDING(40., 48.);
+	Point pos = backPos + PADDING;
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
