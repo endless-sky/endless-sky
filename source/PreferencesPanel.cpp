@@ -652,6 +652,7 @@ void PreferencesPanel::DrawControls()
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
+		Command::MOUSE_TURNING_HOLD,
 		Command::STOP,
 		Command::NONE,
 		Command::NONE,
@@ -854,12 +855,11 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"Show buttons on map",
 		"\n",
 		"Gameplay",
+		"Control ship with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		"Automatic chase",
 		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
@@ -869,7 +869,6 @@ void PreferencesPanel::DrawSettings()
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
-		"Onscreen Joystick",
 		"",
 		"Map",
 		"Deadline blink by distance",
@@ -884,7 +883,12 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
-		DATE_FORMAT
+		DATE_FORMAT,
+		"",
+		"Touchscreen",
+		"Automatic chase",
+		"Show buttons on map",
+		"Onscreen Joystick",
 	};
 
 	bool isCategory = true;
