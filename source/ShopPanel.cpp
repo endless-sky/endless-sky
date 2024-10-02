@@ -1532,14 +1532,6 @@ void ShopPanel::SideSelect(Ship *ship)
 	}
 	else if(!control)
 	{
-		// if we clicked on the only ship selected, then unselect it
-		if (playerShips.size() == 1 && *playerShips.begin() == ship)
-		{
-			lastShipClickTime = -1;
-			playerShips.clear();
-			playerShip = nullptr;
-			return;
-		}
 		// playerShips.clear(); // deferred until we know if it was a long click
 	}
 	else if(playerShips.contains(ship))
