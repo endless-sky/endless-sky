@@ -39,18 +39,9 @@ if(ES_USE_VCPKG)
 	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 endif()
-
-message("Version: \n")
-include(CMakePrintHelpers)
-cmake_print_variables(CMAKE_HOST_SYSTEM_VERSION)
-if(ES_USE_VCPKG OR NOT ES_USE_SYSTEM_LIBRARIES)
+if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
-	# Add the testing libraries
-	if(NOT APPLE OR CMAKE_HOST_SYSTEM_VERSION VERSION_GREATER_EQUAL 10.12)
-		cmake_print_variables(CMAKE_HOST_SYSTEM_VERSION)
-		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
-	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
@@ -67,6 +58,14 @@ project("Endless Sky" VERSION 0.10.9
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
+
+if(NOT ES_USE_SYSTEM_LIBRARIES)
+	# Add the testing libraries
+	message("Version: ${CMAKE_HOST_SYSTEM_VERSION}\n")
+	if(NOT APPLE OR CMAKE_HOST_SYSTEM_VERSION VERSION_GREATER_EQUAL 16)
+		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
+	endif()
+endif()
 
 # Find the needed library dependencies.
 find_package(SDL2 CONFIG REQUIRED)
