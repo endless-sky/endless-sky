@@ -359,7 +359,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				cursorTime = 0;
 
 			// Touch debugging hooks
-#define TOUCH_DEBUGGING
+//#define TOUCH_DEBUGGING
 #ifdef TOUCH_DEBUGGING
 			if(event.type == SDL_MOUSEBUTTONDOWN)
 			{

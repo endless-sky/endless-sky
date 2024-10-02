@@ -14,10 +14,10 @@ android {
         if (buildAsApplication) {
             applicationId "com.github.thewierdnut.endless_mobile"
         }
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 44
-        versionName "0.10.8-44"
+        versionCode 45
+        versionName "0.10.9-45"
         externalNativeBuild {
             // ndkBuild {
             //     arguments "APP_PLATFORM=android-18"
