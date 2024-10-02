@@ -2,8 +2,6 @@ name: CD
 
 on:
   push:
-    branches:
-      - *
   pull_request:
     types:
       - synchronize
