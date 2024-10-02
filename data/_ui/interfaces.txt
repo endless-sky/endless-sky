@@ -586,7 +586,7 @@ interface "preferences"
 		from 280.5 15
 		dimensions 0 -200
 		color "energy"
-		size 3
+		size 2
 
 
 
