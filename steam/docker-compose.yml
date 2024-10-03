@@ -27,4 +27,4 @@ services:
         cd build/steam-x64
         ninja
         ./endless-sky --version
-        ctest --label-exclude "(benchmark|integration-debug)"
+        ctest --label-exclude "integration-debug"

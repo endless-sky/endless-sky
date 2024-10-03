@@ -14,6 +14,9 @@ unit_tests:
 integration_tests:
   - 'tests/integration/config/plugins/integration-tests/**'
 
+steam:
+  - 'steam/**'
+
 doxygen_config:
   - 'Doxyfile'
 
@@ -52,6 +55,16 @@ changelog:
 
 ci_config:
   - '.github/workflows/ci.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'
+
+cd_config:
+  - '.github/workflows/cd.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'
+
+release_config:
+  - '.github/workflows/cd_release.yml'
   - '.github/path-filters.yml'
   - '.github/workflows/compute-changes.yml'
 
