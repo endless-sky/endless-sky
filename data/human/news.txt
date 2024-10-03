@@ -286,7 +286,7 @@ news "New Tortuga citizen"
 			`"`
 		word
 			`There are pirate-run black markets here in designated 'free trade zones'. You can buy nearly anything there.`
-			`How many places will let you do {drugs} and study cooling systems in the same week?`
+			`How many places will let you do ${drugs} and study cooling systems in the same week?`
 			`I ate food from a different culture each meal this week. I've never seen such diverse restaurants anywhere but Earth.`
 			`This year, I've played 37 expensive holo-games that I got for only two credits. On Calda, they cost 100 credits each!`
 			`Last weekend, after Sunday worship, I practiced throwing grenades in a pirate-run shooting gallery.`
