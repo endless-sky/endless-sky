@@ -422,7 +422,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.contains(mission.Identifier()))
 				player.FailMission(mission);
 	}
 	if(failCaller && caller)
@@ -460,7 +460,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		result.events[it.first] = make_pair(day, day);
 	}
 
-	result.giftShips = giftShips;
+	for(auto &&it : giftShips)
+		result.giftShips.push_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
 
 	result.music = music;
