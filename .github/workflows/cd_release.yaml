@@ -153,6 +153,10 @@ jobs:
       run: |
         cd steam
         docker compose run steam-x64
+    - name: Test Endless Sky
+      run: |
+        cd steam
+        docker compose run test-steam-x64
     - name: Prepare binary
       run: cp build/steam-x64/endless-sky .
     - name: Upload Steam Depot
