@@ -647,7 +647,7 @@ planet Cassandra
 	landscape land/mars4
 	description `In the late 2300s, Cassandra was the subject of one of the most ambitious terraforming projects performed by humanity up to that point; an attempt to rapidly modify its biosphere and jumpstart the process of making the planet more than perfect for human habitation.`
 	description `	The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occurred during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
-	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
+	description `	This appears to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
 
 planet Cavaasa-Vasa-Tej
 	attributes predecessor uninhabited

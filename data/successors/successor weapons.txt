@@ -67,6 +67,7 @@ outfit "Bimodal Coilgun Turret"
 	"outfit space" -55
 	"weapon capacity" -55
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		"hardpoint sprite" "hardpoint/bimodal turret"
 		"hardpoint offset" 12
@@ -217,6 +218,7 @@ outfit "Pulse Laser Turret"
 	"outfit space" -30
 	"weapon capacity" -30
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/successor pulse laser"
 			"random start frame"
@@ -291,6 +293,7 @@ outfit "Overcharged Laser Turret"
 	"outfit space" -24
 	"weapon capacity" -24
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/successor pulse laser"
 			"start frame" 2
