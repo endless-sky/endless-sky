@@ -34,6 +34,11 @@ ship "Venta"
 		"engine capacity" 130
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 20
+			"shield damage" 200
+			"hull damage" 100
+			"hit force" 300
 	outfits
 		"Liquid-Class Shield"
 		"Liquid-Class Shield"
@@ -86,6 +91,11 @@ ship "Nimbus"
 		"engine capacity" 85
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 50
+			"hit force" 150
 	outfits
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -152,7 +162,11 @@ ship "Nimbo Stratus"
 		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
-
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -189,6 +203,11 @@ ship "Nimbo Cirrus"
 		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 22.5
+			"shield damage" 225
+			"hull damage" 113
+			"hit force" 350
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -223,6 +242,11 @@ ship "Gero"
 		"engine capacity" 54
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 26.5
+			"shield damage" 265
+			"hull damage" 133
+			"hit force" 400
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
