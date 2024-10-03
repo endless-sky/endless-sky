@@ -1,6 +1,7 @@
 name: Release CD
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       release_version:
