@@ -1278,12 +1278,13 @@ void MapPanel::DrawEscorts()
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
+					constexpr float INDICATOR_LINE_RADIUS = 1.6f;
+
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
-					constexpr float width = 1.6f;
-					Point from = pos + angle.Unit() * (OUTER + width);
-					Point to = from + angle.Unit() * (4.f - width);
-					LineShader::Draw(from, to, width, active);
+					Point from = pos + angle.Unit() * (OUTER + INDICATOR_LINE_RADIUS);
+					Point to = from + angle.Unit() * (4.f - INDICATOR_LINE_RADIUS);
+					LineShader::Draw(from, to, INDICATOR_LINE_RADIUS, active);
 				}
 		}
 }
