@@ -1,9 +1,6 @@
 name: Release CD
 
 on:
-  push:
-  pull_request:
-    types: [opened, synchronize]
   workflow_dispatch:
     inputs:
       release_version:
