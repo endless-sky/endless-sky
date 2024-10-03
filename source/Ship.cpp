@@ -905,10 +905,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 
 	// If it is required to show a category code in a model name for panels without scrolling
-	const string& full_category = BaseAttributes().Category();
+	const string &full_category = BaseAttributes().Category();
 	string category_code;
 
-	if (full_category.find(' ') != string::npos)
+	if(full_category.find(' ') != string::npos)
 		category_code = full_category.substr(0, 1) + full_category.substr(full_category.find(' ') + 1, 1);
 	else
 		category_code = full_category.substr(0, 2);
@@ -1209,7 +1209,8 @@ const string &Ship::PluralModelName() const
 }
 
 
-const string& Ship::CategoryCode() const
+
+const string &Ship::CategoryCode() const
 {
 	return categoryCode;
 }

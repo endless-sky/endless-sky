@@ -145,7 +145,6 @@ two fighter bays plus a decent armament of its own. Variations on this same ship
 in use in the Deep for almost half a millennium, but this model comes with the very latest \
 in generator and weapon technology.\""
 	);
-	
 	GIVEN( "ship tests" ) {
 		auto ship = Ship(ship_node);
 		ship.FinishLoading(true);
