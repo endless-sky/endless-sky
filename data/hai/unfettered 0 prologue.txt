@@ -1,5 +1,5 @@
 # Copyright (c) 2014 by Michael Zahniser for the first 5 missions
-# Copyright (c) 2024 by Hurleveur and Ejo Thims for the rest
+# Copyright (c) 2024 by Hurleveur and EjoThims for the rest
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
