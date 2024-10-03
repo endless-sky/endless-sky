@@ -58,16 +58,6 @@ ci_config:
   - '.github/path-filters.yml'
   - '.github/workflows/compute-changes.yml'
 
-cd_config:
-  - '.github/workflows/cd.yml'
-  - '.github/path-filters.yml'
-  - '.github/workflows/compute-changes.yml'
-
-release_config:
-  - '.github/workflows/cd_release.yml'
-  - '.github/path-filters.yml'
-  - '.github/workflows/compute-changes.yml'
-
 projects_check_config:
   - '.github/workflows/projects_check.yml'
   - '.github/path-filters.yml'

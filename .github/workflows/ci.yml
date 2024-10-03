@@ -2,14 +2,15 @@ name: CI
 
 on:
   push:
-    # Run for pushes to master or a release branch, e.g. a PR was merged ...
+    # Run for pushes to master, e.g. a PR was merged ...
     branches:
       - master
-      - releases/v[0-9]+.[0-9]+.[0-9]+
     # ... and only when we've possibly changed how the game will function.
     paths:
     - 'source/**'
     - 'data/**'
+    - 'images/**'
+    - 'sounds/**'
     - 'tests/**'
     - '.github/workflows/**'
     - '.github/path-filters.yml'
@@ -23,6 +24,8 @@ on:
     paths:
     - 'source/**'
     - 'data/**'
+    - 'images/**'
+    - 'sounds/**'
     - 'tests/**'
     - '.github/workflows/**'
     - '.github/path-filters.yml'
