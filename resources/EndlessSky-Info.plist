@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>endless-sky</string>
 	<key>CFBundleIdentifier</key>
-	<string>${PRODUCT_BUNDLE_IDENTIFIER}</string>
+	<string>io.github.endless-sky</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
