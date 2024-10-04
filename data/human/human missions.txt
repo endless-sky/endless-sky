@@ -8705,7 +8705,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 		conversation
 			`You feel the pressure of many unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium, where everything and everyone is for sale.`
 			`	Greenrock looks a little more civil than when you were racing around saving captured freighter fleets, but only just a little. There is a wildness here and violence simmers just beneath the surface of every interaction. Luckily, no one seems to remember or care about the fleet you destroyed.`
-			to display
+				to display
 				has "Timothy Radrickson 3d: Return to Rand: done"
 			`	The civic infrastructure leaves something to be desired; you can pretty much taste the city's squalid sewer in the air. While trying to get a sense of the area, you weave past various hucksters all trying to get your attention for whatever or whoever they're selling.`
 			`	Finally you reach the center of the emporium and discover a crudely drawn map of the spaceport. It's not much, but at least it tells you where you can find what you're looking for.`
