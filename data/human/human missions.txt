@@ -7992,6 +7992,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 
 			label deserved
 			`	You launch into a speech about how you alone are special. How most people are cold and empty robots, but that a fire burns inside your breast. That you are the linchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
+				goto mingle
 
 			label skip
 			action
