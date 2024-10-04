@@ -555,7 +555,7 @@ bool Conversation::ElementIsValid(int node, int element) const
 
 
 // Parse the children of the given node to see if then contain any "gotos," or
-// "to shows." If so, link them up properly. Return true if gotos or
+// "to displays." If so, link them up properly. Return true if gotos or
 // conditions were found.
 bool Conversation::LoadDestinations(const DataNode &node)
 {
