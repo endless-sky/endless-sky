@@ -9254,6 +9254,7 @@ mission "Timothy Radrickson 7: Grave"
 					goto rise
 					to display
 						not "rise"
+						has "Timothy Radrickson 3d: Return to Rand: done"
 				`	(Think about Timothy's demise.)`
 					goto demise
 					to display
