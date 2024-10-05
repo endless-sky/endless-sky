@@ -2782,7 +2782,7 @@ ship "Manta"
 		"engine capacity" 100
 		"reverse thruster slot" 1
 		"steering slot" 1
-		"thruster slot" 1
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800

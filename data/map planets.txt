@@ -2035,11 +2035,12 @@ planet Greenwater
 	security 0.4
 
 planet "Gresku Fodar"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station29
 	music ambient/machinery
 	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
 	spaceport `The bacterial soup that is being served in the food court has a texture like wet silt and an unpardonably bland flavor. Someone who could supply the Korath with a steady stream of the right sorts of spices could make a killing in trade here.`
+	government "Korath (Station)"
 	security 0
 
 planet Greymoon
@@ -2595,11 +2596,12 @@ planet "Keneska Fek"
 	security 0
 
 planet "Kessel Sepret"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station1
 	music ambient/machinery
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
+	government "Korath (Station)"
 	security 0
 
 planet Khora-Uurau-Uuoru
@@ -2762,6 +2764,25 @@ planet "Kuwaru Efreti"
 	spaceport `	Although the spaceport offers all the usual amenities, including a small merchant's exchange for trading goods, you feel slightly self-conscious about breaking the silence of the station to speak to anyone.`
 	bribe 0
 	security 1
+
+planet "La'ab Bamen"
+	attributes korath "korath exile" "slavery ban" "Independent (Korath-Allied)"
+	landscape land/monterey-bay-aquarium
+	# This station was constructed by the Korath, hence the large size and advanced technology.
+	# The fish within are from the New Tortuga Korath fish trade. You're looking at the
+	# juvenile and adult forms, swimming in the extremely specific environment they require
+	# to survive.
+	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains precise conditions, including typical ocean temperatures and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
+	description `At the surface of the asteroid, there are hidden hangar doors disguised as craters, leading to bays designed for ships larger than anything the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
+	spaceport `This spaceport is tightly compartmentalized, with zones carefully marked out for certain purposes. Each zone can only be accessed by an elevator-like system that moves both horizontally and vertically. With this setup, it is nearly impossible for one group of visitors to see another inside the spaceport. The only shared area is the gigantic hangar bays, which are few in number, but those too seem to be divided by purpose.`
+	government "Independent (Korath-Allied) Restricted"
+	"required reputation" 100
+	bribe 0.04
+	security 0
+	tribute 1200
+		threshold 7000
+		fleet "Independent (Korath-Allied) Defense" 7
+		fleet "Korath Tribute Response (Humanika Rafeki)" 3
 
 planet Lagrange
 	attributes "human quarg" quarg station tourism
@@ -3544,19 +3565,24 @@ planet "New Tibet"
 	security 0.1
 
 planet "New Tortuga"
-	attributes core "core pirate" factory pirate religious
+	# Although New Tortuga is not a pirate-run planet, there are pirates, so it has to retain the pirate-related attributes.
+	# The planet is self-sufficient, hence the many other attributes.
+	attributes core "core pirate" factory pirate religious fishing research mining "slavery ban" "pirate-friendly" "Independent (Korath-Allied)"
 	landscape land/fog6
-	description `A planet of violent storms and frequent earthquakes, New Tortuga does not have a lot to offer the average spacefarer. The most significant settlements on the planet are built predominantly underground, far from any fault lines, with only obscure, hardened access areas. Combined with the fortress-like blast doors that blockade the spaceport entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
-	description `	Most of the inhabitants of this planet are Syndicate dissidents who mainly support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets do not find the monetary cost of venturing as far as New Tortuga worth the benefit. Here, shipyards, factories, and outfitters provide a continuous supply of goods and services for the system.`
+	# This description barely fits; any new hyphens or commas will break it.
+	description `A planet of violent storms and frequent earthquakes, New Tortuga looks on the surface to be uninhabitable. The few cities on the planet are built underground, far from any fault lines, with only obscure, hardened access areas. With fortress-like blast doors protecting all entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
+	description `	Underneath the surface resides a diverse culture of former slaves and Syndicate dissidents. Their economy is mostly self-sufficient, smuggling high-value manufactured goods to pay for niche needs and luxuries. The Syndicate often destroys pirate factories at their borders, but they cannot strike as deep as New Tortuga. Here, shipyards, factories, and outfitters provide a continuous supply of goods and services. Rumors abound of shadowy research groups advancing unknown objectives.`
 	spaceport `As you walk through the spaceport, scattered amidst the bars and black-markets, you notice a surprising number of religious buildings. There are a variety of churches, synagogues, mosques, temples, and others you can't quite remember the names of. Most of the shops are run not by pirates, but by ordinary folk, many wearing religious garb. The citizens here interact with pirates with friendliness and warmth, rather than the hostility and fear you see on other pirate worlds.`
 	spaceport `	The relative peace is frequently broken by a pirate band wandering through the spaceport. While perhaps an auditory nuisance, the pirates here are generally more obedient and disciplined than those seen on other planets. Their ships are more advanced too, judging by the armaments and engines you noticed in the hangar.`
 	shipyard "Basic Ships"
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
+	shipyard "Advanced Northern Pirates"
 	shipyard "Northern Pirates"
-	shipyard "Megaparsec Basics"
-	outfitter "Basic Outfits"
+	shipyard "Syndicate Basics"
+	shipyard "Independent (Korath-Allied)"
+	outfitter "Independent (Korath-Allied)"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
@@ -3565,13 +3591,14 @@ planet "New Tortuga"
 	outfitter "Pirate Advanced"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
+	outfitter "Northern Explorers"
 	"required reputation" -10
 	bribe 0.03
 	security 0
-	tribute 1400
-		threshold 5000
-		fleet "Large Core Pirates" 10
-		fleet "Small Core Pirates" 15
+	tribute 6000
+		threshold 10000
+		fleet "Independent (Korath-Allied) Defense" 25
+		fleet "Korath Civilian Delivery" 2
 
 planet "New Wales"
 	attributes "dirt belt" mining
@@ -4076,6 +4103,13 @@ planet Raaqa-Uur-Kaav
 				has "trusted by the successors"
 	government Predecessor
 
+planet "Rabasot Pa'ah"
+	attributes ocean uninhabited fishing korath "korath exiles"
+	landscape land/rough-seas
+	description `This tectonically active ocean world has unpredictable weather, frequent tsunamis, and unusual electrical activity. Although there are a few islands, the terrain is so harsh that it is nearly impossible to land and the atmosphere is bathed in radiation from Kor Ak'Mari's death throes. There's almost no vegetation in sight, but the sea is filled with microscopic lifeforms. It seems the violent conditions on this planet have held back evolution.`
+	government Uninhabited
+	security 0
+
 planet Rand
 	attributes "dirt belt" mining
 	landscape land/valley7
@@ -4281,12 +4315,13 @@ planet "Sabira Eseskrai"
 	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
 
 planet "Safaresk Enlai"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station17
 	music ambient/machinery
 	description `It is unclear what the primary purpose of this station is. The station contains numerous greenhouses where a wide variety of plants, and even some small animals, are kept. Other parts of the station are closed off to non-Korath visitors.`
 	spaceport `This spaceport is relatively unpopulated for a station of this size, and the few Korath who are here are wandering about with the sort of deeply absorbed attitude you would expect from a scientist or an academic.`
 	spaceport `	In one corner of the spaceport is a cage housing several large rodents and some small shrubs, lit by a warm sun-lamp. The rodents are quite acrobatic.`
+	government "Korath (Station)"
 	security 0
 
 planet Sandsnap
@@ -4441,19 +4476,21 @@ planet Seli'het
 	government Builder
 
 planet "Separa Tiklar"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/space1
 	music ambient/machinery
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
 	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	government "Korath (Station)"
 	security 0
 
 planet "Septar Lorku"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/loc0
 	music ambient/machinery
 	description `This system has a high concentration of metallic asteroids, which the Korath are harvesting to provide iron ore for their space ships and fissionable materials for their reactor cores. Smelting metal in a high-temperature blast furnace in the interior of a space station is, of course, an incredibly risky proposition.`
 	spaceport `Despite your lack of knowledge of Korath health and anatomy, it is clear that the inhabitants of this station are under-fed and overworked. Also, an alarming number of them are missing fingers, hands, or entire limbs. It is quite possible that the work in the refineries is even more dangerous than the job of the raiders attacking human space.`
+	government "Korath (Station)"
 	security 0
 
 planet Seraglio
@@ -4484,11 +4521,12 @@ planet Servian
 	security 0
 
 planet "Sessiliki Far"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/loc2
 	music ambient/machinery
 	description `This is a Korath mining station, where ore extracted from asteroids is refined and processed. The Korath seem to have an aversion to harvesting raw materials from actual planets, preferring to work with lifeless asteroids instead.`
 	spaceport `A smelter is never a safe place to work, and some of the machinery looks very old, but you get the feeling that the Korath on this station are in relatively good spirits nonetheless. The cafe in the spaceport is bustling, and every few hours a bell rings and about a third of the workers leave the factory floor and are replaced by fresh and rested ones.`
+	government "Korath (Station)"
 	security 0
 
 planet "Sestor Ikfar"
