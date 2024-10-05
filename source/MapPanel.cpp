@@ -1282,7 +1282,7 @@ void MapPanel::DrawEscorts()
 
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
-					// Account for how rounded caps extend out by an additional WIDTH. 
+					// Account for how rounded caps extend out by an additional WIDTH.
 					Point from = pos + angle.Unit() * (OUTER + WIDTH);
 					Point to = from + angle.Unit() * (4.f - WIDTH);
 					LineShader::Draw(from, to, INDICATOR_LINE_RADIUS, active);
