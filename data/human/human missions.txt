@@ -7626,6 +7626,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 			choice
 				`	(Play the message.)`
 			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
+				accept
 
 	on complete
 		conversation
