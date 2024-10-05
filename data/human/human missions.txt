@@ -7641,7 +7641,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 	deadline 7
 	clearance
 	to offer
-		has "Timothy Radrickson 3: Invitation to Rand: done"
+		has "Timothy Radrickson 3: Governor Notification: done"
 	on offer
 		conversation
 			`Regina, her driver, and a sleek black vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
