@@ -8962,6 +8962,10 @@ mission "Timothy Radrickson 5d: Greenrock"
 				clear "id2"
 			`	It's never wise to linger in a place like this, especially aimlessly. With your business concluded you leave Greenrock's stalls behind.`
 				decline
+	to fail
+		or
+			has "Timothy Radrickson 5a: Timshank Redemption: done"
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
 
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
