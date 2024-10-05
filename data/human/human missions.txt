@@ -7635,7 +7635,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 
 mission "Timothy Radrickson 3a: Rescue the Convoy"
 	name "Rescue <origin> convoy"
-	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy passed by Lesath, and it looks like they went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
+	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
 	source "Rand"
 	priority
 	destination "Greenrock"
