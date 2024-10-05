@@ -108,7 +108,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 		else if(endExcess > 0)
 			v -= endExcess * v.Unit();
 
-		LineShader::Draw(start + center, start + v + center, .4f, line.color, false);
+		LineShader::Draw(start + center, start + v + center, 1.f, line.color);
 	}
 
 	// Draw StellarObjects and ships.
