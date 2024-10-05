@@ -7719,7 +7719,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 
 			label agreehelp
 			`	Color returns to Timothy's face and he immediately straightens up. "Hroar's Haulers were contracted to deliver our freight to Wayfarer. We lost contact with them in the Peacock system. There was a report from some local merchants who sighted a large group of marauders in Lesath escorting a freighter fleet in merchant colors. They tracked their movements to Shaula."`
-			`	He frowns as he considers something, then says, "If you hurry, you might be able to get there before they've had time to move the goods or deal with their crews... but who knows, they're pirates." Timothy hits a few more buttons on his display screen, then he continues, "I've just sent your ship the tracking beacon for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
+			`	He frowns as he considers something, then says, "If you hurry, you might be able to get there before they've had time to move the goods or deal with their crews... no more than a week at most... but who knows, they're pirates." Timothy hits a few more buttons on his display screen, then he continues, "I've just sent your ship the tracking beacon for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
 			`	"I am sorry I can't offer you more help." He stands up and hits the button opening up the exit door. "But, please, save that fleet."`
 				accept
 
