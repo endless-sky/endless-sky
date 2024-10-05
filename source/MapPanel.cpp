@@ -1285,7 +1285,7 @@ void MapPanel::DrawEscorts()
 					// Account for how rounded caps extend out by an additional WIDTH.
 					Point from = pos + angle.Unit() * (OUTER + WIDTH);
 					Point to = from + angle.Unit() * (4.f - WIDTH);
-					LineShader::Draw(from, to, INDICATOR_LINE_RADIUS, active);
+					LineShader::Draw(from, to, WIDTH, active);
 				}
 		}
 }
