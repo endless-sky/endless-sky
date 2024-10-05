@@ -7829,6 +7829,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
+	name "Escort the Convoy"
 	source "Greenrock"
 	destination "Wayfarer"
 	to offer
@@ -7892,6 +7893,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	She looks back at her ships, whistles, and points toward the ships. A group of Haulers turn and run toward them, preparing them for takeoff. She then looks back at you. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships, while a number of crew are draining the base's deuterium tanks and filling up the ships inside.`
 			`	"Hazard pay," Hrodny says, winking at you. "You head back your ship, and by the time you get there we'll be ready to launch. We'll follow ya out."`
 			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
+				accept
 
 	on complete
 		conversation
@@ -7935,6 +7937,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 
 mission "Timothy Radrickson 3d: Return to Rand"
 	landing
+	name "Return to Rand"
 	source "Wayfarer"
 	destination "Rand"
 	to offer
@@ -8081,7 +8084,7 @@ mission "Timothy Radrickson 4: Imprisoned"
 mission "Timothy Radrickson 5: Oblivion Meeting"
 	landing
 	to offer
-		random < 25
+		random < 90
 		has "Timothy Radrickson 4: Imprisoned: active"
 	source "Oblivion"
 	deadline 1
@@ -8279,6 +8282,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 mission "Timothy Radrickson 5b: New Britain"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find detoxification medication for Tim."
 	landing
+	name "Supplies on New Britain"
 	source "Rand"
 	destination "New Britain"
 	to offer
@@ -8331,7 +8335,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				goto options
 			
 			label haggle
-				`The salesman's eyes narrow and his face suddenly looks vaguely reptilian. "I'm already giving you the best price. The literal shirt off my back!"`
+			`The salesman's eyes narrow and his face suddenly looks vaguely reptilian. "I'm already giving you the best price. The literal shirt off my back!"`
 			choice
 				`	(Offer 60,000 for the meds.)`
 				`	(Offer 120,000 for the meds.)`
@@ -8351,7 +8355,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				goto options
 
 			label justright
-				`	The salesman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
+			`	The salesman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
 					goto "med 120"
 
 			label med2
@@ -8462,8 +8466,8 @@ mission "Timothy Radrickson 5b: New Britain"
 					goto options
 			
 			label hookmeup
-				`	The three of them look at each other and then give you a carnivorous grin.`
-				`	"Sure thing," he smirks. "Easy as rain. It'll cost ya 'bout 20,000 cred." They look at you expectantly.`
+			`	The three of them look at each other and then give you a carnivorous grin.`
+			`	"Sure thing," he smirks. "Easy as rain. It'll cost ya 'bout 20,000 cred." They look at you expectantly.`
 			choice
 				`	(Give them the credits.)`
 					goto buyid
@@ -8518,6 +8522,7 @@ mission "Timothy Radrickson 5b: New Britain"
 
 mission "Timothy Radrickson 5c: Dancer"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a survival suit for Tim."
+	name "Supplies on Dancer"
 	landing
 	source "Rand"
 	destination "Dancer"
@@ -8583,8 +8588,8 @@ mission "Timothy Radrickson 5c: Dancer"
 				goto danceroptions
 			
 			label haggle
-				`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling, hun. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
-				`	She folds her arms. "Now, it's 300,000 credits or nothing."`
+			`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling, hun. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
+			`	She folds her arms. "Now, it's 300,000 credits or nothing."`
 			choice
 				`	(Purchase the survival suit for Tim.)`
 					goto getsuit
