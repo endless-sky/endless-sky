@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
-#include "ConversationPanel.h"
+#include "ui/panel/ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "ui/panel/DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
-#include "UI.h"
+#include "ui/UI.h"
 
 #include <algorithm>
 #include <vector>
@@ -173,7 +173,7 @@ void NPC::Load(const DataNode &node)
 					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
 			else
-				Dialog::ParseTextNode(child, 1, dialogText);
+				DialogPanel::ParseTextNode(child, 1, dialogText);
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(Conversation(child));
@@ -524,7 +524,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 		if(!conversation->IsEmpty())
 			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialogText.empty())
-			ui->Push(new Dialog(dialogText));
+			ui->Push(new DialogPanel(dialogText));
 	}
 }
 

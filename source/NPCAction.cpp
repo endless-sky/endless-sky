@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "PlayerInfo.h"
 #include "System.h"
-#include "UI.h"
+#include "ui/UI.h"
 
 using namespace std;
 

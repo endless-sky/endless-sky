@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
-#include "MapDetailPanel.h"
+#include "ui/panel/MapDetailPanel.h"
 #include "Planet.h"
 #include "Point.h"
 #include "PointerShader.h"

@@ -29,16 +29,12 @@ target_sources(EndlessSkyLib PRIVATE
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
-	BankPanel.cpp
-	BankPanel.h
 	BatchDrawList.cpp
 	BatchDrawList.h
 	BatchShader.cpp
 	BatchShader.h
 	Bitset.cpp
 	Bitset.h
-	BoardingPanel.cpp
-	BoardingPanel.h
 	Body.cpp
 	Body.h
 	CaptureOdds.cpp
@@ -64,8 +60,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionsStore.h
 	Conversation.cpp
 	Conversation.h
-	ConversationPanel.cpp
-	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
 	DamageDealt.h
@@ -81,8 +75,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
-	Dialog.cpp
-	Dialog.h
 	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h
@@ -133,22 +125,16 @@ target_sources(EndlessSkyLib PRIVATE
 	GameData.h
 	GameEvent.cpp
 	GameEvent.h
-	GameLoadingPanel.cpp
-	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
 	Government.h
-	HailPanel.cpp
-	HailPanel.h
 	Hardpoint.cpp
 	Hardpoint.h
 	Hazard.cpp
 	Hazard.h
-	HiringPanel.cpp
-	HiringPanel.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -162,32 +148,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Logger.h
 	LineShader.cpp
 	LineShader.h
-	LoadPanel.cpp
-	LoadPanel.h
 	LocationFilter.cpp
 	LocationFilter.h
-	LogbookPanel.cpp
-	LogbookPanel.h
-	MainPanel.cpp
-	MainPanel.h
-	MapDetailPanel.cpp
-	MapDetailPanel.h
-	MapOutfitterPanel.cpp
-	MapOutfitterPanel.h
-	MapPanel.cpp
-	MapPanel.h
 	MapPlanetCard.cpp
 	MapPlanetCard.h
-	MapSalesPanel.cpp
-	MapSalesPanel.h
-	MapShipyardPanel.cpp
-	MapShipyardPanel.h
-	MenuAnimationPanel.cpp
-	MenuAnimationPanel.h
-	MenuPanel.cpp
-	MenuPanel.h
-	MessageLogPanel.cpp
-	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
@@ -196,8 +160,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
-	MissionPanel.cpp
-	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
 	NPC.cpp
@@ -212,12 +174,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Outfit.h
 	OutfitInfoDisplay.cpp
 	OutfitInfoDisplay.h
-	OutfitterPanel.cpp
-	OutfitterPanel.h
 	OutlineShader.cpp
 	OutlineShader.h
-	Panel.cpp
-	Panel.h
 	Paragraphs.cpp
 	Paragraphs.h
 	Person.cpp
@@ -230,12 +188,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Planet.h
 	PlanetLabel.cpp
 	PlanetLabel.h
-	PlanetPanel.cpp
-	PlanetPanel.h
 	PlayerInfo.cpp
 	PlayerInfo.h
-	PlayerInfoPanel.cpp
-	PlayerInfoPanel.h
 	Plugins.cpp
 	Plugins.h
 	Point.cpp
@@ -248,8 +202,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Port.h
 	Preferences.cpp
 	Preferences.h
-	PreferencesPanel.cpp
-	PreferencesPanel.h
 	PrintData.cpp
 	PrintData.h
 	Projectile.cpp
@@ -284,28 +236,16 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipEvent.h
 	ShipInfoDisplay.cpp
 	ShipInfoDisplay.h
-	ShipInfoPanel.cpp
-	ShipInfoPanel.h
 	ShipJumpNavigation.cpp
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
-	ShipNameDialog.cpp
-	ShipNameDialog.h
-	ShipyardPanel.cpp
-	ShipyardPanel.h
-	ShopPanel.cpp
-	ShopPanel.h
-	SpaceportPanel.cpp
-	SpaceportPanel.h
 	SpriteShader.cpp
 	SpriteShader.h
 	StarField.cpp
 	StarField.h
 	StartConditions.cpp
 	StartConditions.h
-	StartConditionsPanel.cpp
-	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
 	StringInterner.cpp
@@ -315,16 +255,10 @@ target_sources(EndlessSkyLib PRIVATE
 	SystemEntry.h
 	TaskQueue.cpp
 	TaskQueue.h
-	TextArea.cpp
-	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
 	Trade.cpp
 	Trade.h
-	TradingPanel.cpp
-	TradingPanel.h
-	UI.cpp
-	UI.h
 	UniverseObjects.cpp
 	UniverseObjects.h
 	Variant.cpp
@@ -389,4 +323,70 @@ target_sources(EndlessSkyLib PRIVATE
 	text/alignment.hpp
 	text/layout.hpp
 	text/truncate.hpp
+	ui/UI.cpp
+	ui/UI.h
+	ui/panel/BankPanel.cpp
+	ui/panel/BankPanel.h
+	ui/panel/BoardingPanel.cpp
+	ui/panel/BoardingPanel.h
+	ui/panel/ConversationPanel.cpp
+	ui/panel/ConversationPanel.h
+	ui/panel/DialogPanel.cpp
+	ui/panel/DialogPanel.h
+	ui/panel/GameLoadingPanel.cpp
+	ui/panel/GameLoadingPanel.h
+	ui/panel/HailPanel.cpp
+	ui/panel/HailPanel.h
+	ui/panel/HiringPanel.cpp
+	ui/panel/HiringPanel.h
+	ui/panel/LoadPanel.cpp
+	ui/panel/LoadPanel.h
+	ui/panel/LogbookPanel.cpp
+	ui/panel/LogbookPanel.h
+	ui/panel/MainPanel.cpp
+	ui/panel/MainPanel.h
+	ui/panel/MapDetailPanel.cpp
+	ui/panel/MapDetailPanel.h
+	ui/panel/MapOutfitterPanel.cpp
+	ui/panel/MapOutfitterPanel.h
+	ui/panel/MapPanel.cpp
+	ui/panel/MapPanel.h
+	ui/panel/MapSalesPanel.cpp
+	ui/panel/MapSalesPanel.h
+	ui/panel/MapShipyardPanel.cpp
+	ui/panel/MapShipyardPanel.h
+	ui/panel/MenuAnimationPanel.cpp
+	ui/panel/MenuAnimationPanel.h
+	ui/panel/MenuPanel.cpp
+	ui/panel/MenuPanel.h
+	ui/panel/MessageLogPanel.cpp
+	ui/panel/MessageLogPanel.h
+	ui/panel/MissionPanel.cpp
+	ui/panel/MissionPanel.h
+	ui/panel/OutfitterPanel.cpp
+	ui/panel/OutfitterPanel.h
+	ui/panel/Panel.cpp
+	ui/panel/Panel.h
+	ui/panel/PlanetPanel.cpp
+	ui/panel/PlanetPanel.h
+	ui/panel/PlayerInfoPanel.cpp
+	ui/panel/PlayerInfoPanel.h
+	ui/panel/PreferencesPanel.cpp
+	ui/panel/PreferencesPanel.h
+	ui/panel/ShipInfoPanel.cpp
+	ui/panel/ShipInfoPanel.h
+	ui/panel/ShipNameDialogPanel.cpp
+	ui/panel/ShipNameDialogPanel.h
+	ui/panel/ShipyardPanel.cpp
+	ui/panel/ShipyardPanel.h
+	ui/panel/ShopPanel.cpp
+	ui/panel/ShopPanel.h
+	ui/panel/SpaceportPanel.cpp
+	ui/panel/SpaceportPanel.h
+	ui/panel/StartConditionsPanel.cpp
+	ui/panel/StartConditionsPanel.h
+	ui/panel/TextAreaPanel.cpp
+	ui/panel/TextAreaPanel.h
+	ui/panel/TradingPanel.cpp
+	ui/panel/TradingPanel.h
 )

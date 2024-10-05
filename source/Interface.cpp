@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "LineShader.h"
 #include "OutlineShader.h"
-#include "Panel.h"
+#include "ui/panel/Panel.h"
 #include "PointerShader.h"
 #include "Rectangle.h"
 #include "RingShader.h"
@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "SpriteShader.h"
-#include "UI.h"
+#include "ui/UI.h"
 
 #include <algorithm>
 #include <cmath>
