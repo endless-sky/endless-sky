@@ -2801,7 +2801,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// This isn't perfect, but it works well enough.
 	else if((facing >= 0. && direction.Length() > diameter)
 			|| (ship.Velocity().Dot(direction) < 0. &&
-				facing) >= .9) 
+				facing) >= .9)
 	{
 		command |= Command::FORWARD;
 		// Use afterburner, if applicable.
