@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Point.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 
 #include <cstdint>
 #include <vector>

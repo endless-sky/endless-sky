@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BatchDrawList.h"
 
-#include "BatchShader.h"
+#include "shader/BatchShader.h"
 #include "Body.h"
 #include "Screen.h"
 #include "image/Sprite.h"

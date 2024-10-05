@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Ship.h"
 #include "image/SpriteSet.h"
 #include "StarField.h"
