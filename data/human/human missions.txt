@@ -8525,6 +8525,10 @@ mission "Timothy Radrickson 5b: New Britain"
 				clear "id1"
 			`	After a long day of walking about the New British spaceport and wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
 				decline
+	to fail
+		or
+			has "Timothy Radrickson 5a: Timshank Redemption: done"
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
 
 
 mission "Timothy Radrickson 5c: Dancer"
@@ -8703,7 +8707,11 @@ mission "Timothy Radrickson 5c: Dancer"
 				clear "id2"
 			`	Bertha gives you a friendly nod as you make your way back outside into Dancer's foreboding weather, and the rest of the spaceport.`
 				decline
-			
+	to fail
+		or
+			has "Timothy Radrickson 5a: Timshank Redemption: done"
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
+
 
 mission "Timothy Radrickson 5d: Greenrock"
 	name "Supplies on <planet>"
