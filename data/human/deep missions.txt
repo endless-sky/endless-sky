@@ -1952,7 +1952,7 @@ mission "Deep: Scientist Rescue 0"
 		attributes "deep"
 		not attributes "station"
 	destination "Valhalla"
-	waypoint "Betelgeuse"
+	mark "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
 		or
@@ -1989,8 +1989,11 @@ mission "Deep: Scientist Rescue 0"
 					accept
 				`	"Sorry, but this doesn't sound worth it to me."`
 					decline
-
+	on enter "Betelgeuse"
+		unmark "Betelgeuse"
+		dialog `Upon entering Betelgeuse, you fail to see any trace of the Star Queen. The pirates must have captured it and escaped to a nearby system.`
 	on enter "Arneb"
+		unmark "Betelgeuse"
 		set "found star queen"
 		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Paris on <destination> for further instruction.`
 	on visit
@@ -2605,7 +2608,7 @@ mission "Stone of our Fathers 3"
 				decline
 			label accept
 			`	You're surprised at how cool the smooth stone feels in your palm.`
-			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	And with that, the man disappears into the crowd.`
 				accept
 	on complete
@@ -2712,7 +2715,7 @@ mission "Stone of our Fathers 4"
 			label treasure
 			`	You could always use a little extra money, and this trip, while engaging, has certainly not made you any richer, so you ask about hidden treasures. Helm and Thorleif both grin at this and glance at each other knowingly. They launch into tales of the riches of lost civilizations, or forgotten pirate hoards, or even early human kingdoms. It's easy to lose things on a fog-covered ocean world with floating islands, all too easy.`
 			`	When they are done regaling you with tales, they mention to you that maybe some other time they'll take you out into the deep ocean and perhaps you'll find what you're looking for. They smile wolfishly at that, and you think they might be putting you on. "Have you ever found treasure out here?" you ask.`
-			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our descendants felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
+			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our antecedents felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
 			label family
 			`	As the conversation winds down and the hour grows late Helm excuses himself to bed, for he, like the rest of you, is dog tired after the day's events. You stand too, feeling your own need for sleep.`
 			`	"<first>," Thorleif says without looking up from the fire. "I've been thinking. I can never forgive my father for what he did. Leaving me and mom like that. But I can, I think, make peace with it. I can accept the stone." He looks up and smiles, "You brought some luck with you, and a man should never argue with luck."`
