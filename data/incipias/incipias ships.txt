@@ -32,6 +32,9 @@ ship "Venta"
 		"outfit space" 552
 		"weapon capacity" 240
 		"engine capacity" 130
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
@@ -84,6 +87,9 @@ ship "Nimbus"
 		"outfit space" 450
 		"weapon capacity" 120
 		"engine capacity" 85
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
@@ -150,9 +156,11 @@ ship "Nimbo Stratus"
 		"outfit space" 270
 		"weapon capacity" 50
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
-
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -187,6 +195,9 @@ ship "Nimbo Cirrus"
 		"cargo space" 200
 		"outfit space" 160
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
@@ -221,6 +232,9 @@ ship "Gero"
 		"cargo space" 20
 		"outfit space" 158
 		"engine capacity" 54
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
