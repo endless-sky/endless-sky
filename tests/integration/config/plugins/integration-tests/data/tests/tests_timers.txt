@@ -1,0 +1,47 @@
+# Copyright (c) 2023 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Timer Test Mission"
+	category mission
+	contents
+		mission "10 second timer"
+			landing
+			timer "why do I have a name"
+				time 600
+				reset "leave system"
+				on timeup
+					set "test: timer condition"
+
+
+test "Timer - Simple 10 seconds timer"
+	status active
+	description "Tests if a timer will trigger a mission event in 10 seconds as planned."
+	sequence
+		inject "Three Earthly Barges Save"
+		inject "Timer Test Mission"
+		call "Load First Savegame"
+		# Trigger the mission
+		call "Depart"
+		call "Land"
+		call "Depart"
+		apply
+			"test: steps to wait" = 30 * 60
+		label "floating"
+		# empty input to make 10 seconds and one frame pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" >= 0
+		assert
+			"test: timer condition" == 1
