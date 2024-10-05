@@ -8896,6 +8896,7 @@ system Citadelle
 
 system Clepsydra
 	pos 264 -874
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 4050
 	habitable 4050
@@ -9359,6 +9360,7 @@ system "Cura Dic"
 
 system Currus
 	pos 260.583 -987.75
+	government Uninhabited
 	arrival 500
 	habitable 10
 	belt 1198 4
@@ -12896,6 +12898,7 @@ system "Epsilon Leonis"
 
 system Equus
 	pos 313.25 -1051.08
+	government Uninhabited
 	attributes "neutron" "notable star"
 	arrival 500
 	habitable 405
@@ -17354,6 +17357,7 @@ system Host
 
 system Hui'uc
 	pos 248.933 -792.506
+	government Uninhabited
 	arrival 1505
 	habitable 1505
 	belt 1246
@@ -17529,6 +17533,7 @@ system Huud
 
 system Ianua
 	pos 371.917 -995.75
+	government Uninhabited
 	arrival 500
 	habitable 35
 	belt 1472
@@ -26977,6 +26982,7 @@ system Peacock
 
 system "Pedita Pri"
 	pos 207.333 -936
+	government Uninhabited
 	arrival 5000
 	habitable 10030
 	belt 1909
@@ -27023,6 +27029,7 @@ system "Pedita Pri"
 
 system "Pedita Sec"
 	pos 185.333 -888
+	government Uninhabited
 	arrival 1080
 	habitable 1080
 	belt 1554
@@ -28172,6 +28179,7 @@ system Porrima
 
 system "Porta Terra"
 	pos 202.6 -825.506
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
@@ -29863,6 +29871,7 @@ system Ritilas
 
 system Rota
 	pos 193.25 -1029.75
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 7160
@@ -30936,6 +30945,7 @@ system Scija
 
 system Sedes
 	pos 301.917 -948.417
+	government Uninhabited
 	attributes "bright star" "giant star" "notable star"
 	arrival 500
 	habitable 100
@@ -33303,6 +33313,7 @@ system Sumprast
 
 system Supra
 	pos 319 -820
+	government Uninhabited
 	arrival 5000
 	habitable 11635
 	belt 1481
@@ -33681,6 +33692,7 @@ system Tebuteb
 
 system Tectum
 	pos 399.25 -933.083
+	government Uninhabited
 	arrival 5000
 	habitable 29300
 	belt 1350 7
