@@ -284,11 +284,11 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "ignore by default")
-						ignoreUniversalIllegals = grand.BoolValue(1);
-					else if(grand.Token(0) == "remove")
+					if(grand.Token(0) == "remove")
 					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+						if(grand.Token(0) == "ignore universal")
+							ignoreUniversalIllegals = grand.BoolValue(1);
+						else if(grand.Size() >= 3 && grand.Token(1) == "ship")
 						{
 							if(!illegalShips.erase(grand.Token(2)))
 								grand.PrintTrace("Invalid remove, ship not found in existing illegals:");
@@ -296,6 +296,8 @@ void Government::Load(const DataNode &node)
 						else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
 					}
+					else if(grand.Token(0) == "ignore universal")
+						ignoreUniversalIllegals = grand.BoolValue(1);
 					else if(grand.Token(0) == "ignore")
 					{
 						if(grand.Size() >= 3 && grand.Token(1) == "ship")
@@ -319,11 +321,11 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "ignore by default")
-						ignoreUniversalAtrocities = grand.BoolValue(1);
-					else if(grand.Token(0) == "remove")
+					if(grand.Token(0) == "remove")
 					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+						if(grand.Token(0) == "ignore universal")
+							ignoreUniversalAtrocities = grand.BoolValue(1);
+						else if(grand.Size() >= 3 && grand.Token(1) == "ship")
 						{
 							if(!atrocityShips.erase(grand.Token(2)))
 								grand.PrintTrace("Invalid remove, ship not found in existing atrocities:");
@@ -331,6 +333,8 @@ void Government::Load(const DataNode &node)
 						else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 							grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 					}
+					else if(grand.Token(0) == "ignore universal")
+						ignoreUniversalAtrocities = grand.BoolValue(1);
 					else if(grand.Token(0) == "ignore")
 					{
 						if(grand.Size() >= 3 && grand.Token(1) == "ship")
