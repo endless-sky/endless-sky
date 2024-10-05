@@ -35,10 +35,10 @@ ship "Venta"
 		"gaslining" 1
 		"fuel capacity" 200
 		weapon
-			"blast radius" 20
-			"shield damage" 200
-			"hull damage" 100
-			"hit force" 300
+			"blast radius" 224
+			"shield damage" 2240
+			"hull damage" 1120
+			"hit force" 3360
 	outfits
 		"Liquid-Class Shield"
 		"Liquid-Class Shield"
@@ -92,10 +92,10 @@ ship "Nimbus"
 		"gaslining" 1
 		"fuel capacity" 200
 		weapon
-			"blast radius" 10
-			"shield damage" 100
-			"hull damage" 50
-			"hit force" 150
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
 	outfits
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
