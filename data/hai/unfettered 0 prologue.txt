@@ -195,6 +195,7 @@ mission "Unfettered Jump Drive 1"
 		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
+		"reputation: Hai (Unfettered Raiders)" >?= 10
 
 
 
