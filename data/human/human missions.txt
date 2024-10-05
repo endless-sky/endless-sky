@@ -7637,6 +7637,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 	name "Rescue <origin> convoy"
 	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy passed by Lesath, and it looks like they went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
 	source "Rand"
+	priority
 	destination "Greenrock"
 	deadline 7
 	clearance
@@ -7806,6 +7807,8 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Quicksilver" 2
 				"Headhunter"
 				"Fury (Gatling)" 3
+		on kill
+					dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 	
 	npc kill
 		to spawn
@@ -7825,7 +7828,8 @@ mission "Timothy Radrickson 3b: Pirate Base"
 
 				"Hawk (Plasma)"
 				"Fury (Gatling)"
-
+		on kill
+					dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
@@ -8079,7 +8083,8 @@ mission "Timothy Radrickson 4: Imprisoned"
 			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years. Anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
-
+	to complete
+		never
 
 mission "Timothy Radrickson 5: Oblivion Meeting"
 	landing
@@ -8103,6 +8108,8 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
 			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
 				accept
+	to complete
+		never
 
 
 mission "Timothy Radrickson 5a: Timshank Redemption"
@@ -8954,7 +8961,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: done"
 	on offer
-		"timothy radrickson preparedness" = "timothy radrickson	medicine" + "timothy radrickson suit" + "timothy radrickson id"
+		"timothy radrickson zpreparedness" = "timothy radrickson	medicine" + "timothy radrickson suit" + "timothy radrickson id"
 		conversation
 			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
 			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood-red eyes rise to meet yours, and despite their milky gloss, a glimmer of hope burns within them.`
@@ -8968,14 +8975,14 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
-				"timothy radrickson preparedness" < 6
+				"timothy radrickson zpreparedness" < 6
 
 			branch "decently prepared"
-				"timothy radrickson preparedness" >= 6
-				"timothy radrickson preparedness" <= 7
+				"timothy radrickson zpreparedness" >= 6
+				"timothy radrickson zpreparedness" <= 7
 
 			branch "well prepared"
-				"timothy radrickson preparedness" > 7
+				"timothy radrickson zpreparedness" > 7
 
 			label unprepared
 			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He seems to deflate a little.`
@@ -9020,7 +9027,7 @@ mission "Timothy Radrickson 7: Monk"
 	to offer
 		random < 25
 		has "event: timothy radrickson forever"
-		"timothy radrickson preparedness" > 7
+		"timothy radrickson zpreparedness" > 7
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
@@ -9111,8 +9118,8 @@ mission "Timothy Radrickson 7: Monk"
 mission "Timothy Radrickson 7: Hospice"
 	source "New Tibet"
 	to offer
-		"timothy radrickson preparedness" >= 6
-		"timothy radrickson preparedness" <= 7
+		"timothy radrickson zpreparedness" >= 6
+		"timothy radrickson zpreparedness" <= 7
 		random < 25
 		has "event: timothy radrickson forever"
 	on offer
@@ -9204,7 +9211,6 @@ mission "Timothy Radrickson 7: Hospice"
 			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room.`
 			`	"His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
 			`	He leads you back to the train station, and from there you take the brief journey back to New Tibet's spaceport.`
-				decline
 
 
 mission "Timothy Radrickson 7: Grave"
@@ -9213,7 +9219,7 @@ mission "Timothy Radrickson 7: Grave"
 		random < 25
 		has "event: timothy radrickson forever"
 		or
-			"timothy radrickson preparedness" < 6
+			"timothy radrickson zpreparedness" < 6
 			has "Timothy Radrickson 5a: Timshank Redemption: failed"
 	on offer
 		conversation
