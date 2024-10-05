@@ -8541,7 +8541,7 @@ mission "Tavish and Kormak 7"
 			`	Kormak and Tavish have changed back into their three piece suits and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of people dressed in a similar fashion come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
 			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
 			`	"This is where we part ways, Captain <last>." Tavish says with a hint of sadness. "It was truly an adventure. Perhaps some day we will meet again."`
-			`	Tavish's sniffs, "Apololgies. Allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you we are instead bequeathing to you some salvaged equipment we found. We scanned it pretty thoroughly and we don't believe it as additional scientific value, however we think a collector would pay well for it. Quite well."`
+			`	Tavish's sniffs, "Apololgies. Allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you we are instead bequeathing to you some salvaged equipment we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value, however we think a collector would pay well for it. Quite well."`
 			`	He hands you a piece of paper with a name on it, "We've had dealings with this fellow from time to time. He calls himself Weland and I am certain he'd be willing to buy it. You can find him on Wayfarer."`
 			choice
 				`	"Thanks, Tavish. It's been grand."`
