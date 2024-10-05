@@ -40,8 +40,9 @@ namespace {
 
 
 
-MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
-	: number(number), hasVisited(hasVisited), planetName(object.DisplayName())
+MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
+		const MapDetailPanel *parent)
+	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
@@ -293,7 +294,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 double MapPlanetCard::AvailableTopSpace() const
 {
 	const double height = Height();
-	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
+	return min(height, max(0., (number + 1) * height - parent->GetScroll()));
 }
 
 
