@@ -7508,10 +7508,10 @@ mission "Timothy Radrickson 1: Stowaway"
 
 			`	"T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owed money. I had nothing. Please. Any other world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back, I swear. I swear. I will. I swear."`
 			choice
-				`	"Fine. I'll drop you off at the next port."`
-					goto port
 				`	"Is there somewhere you'd like to go?"`
 					goto somewhere
+				`	"Fine. I'll drop you off at the next port."`
+					goto port
 				`	"I know where you're going. The airlock."`
 
 			action
