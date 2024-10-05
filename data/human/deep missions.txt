@@ -2715,7 +2715,7 @@ mission "Stone of our Fathers 4"
 			label treasure
 			`	You could always use a little extra money, and this trip, while engaging, has certainly not made you any richer, so you ask about hidden treasures. Helm and Thorleif both grin at this and glance at each other knowingly. They launch into tales of the riches of lost civilizations, or forgotten pirate hoards, or even early human kingdoms. It's easy to lose things on a fog-covered ocean world with floating islands, all too easy.`
 			`	When they are done regaling you with tales, they mention to you that maybe some other time they'll take you out into the deep ocean and perhaps you'll find what you're looking for. They smile wolfishly at that, and you think they might be putting you on. "Have you ever found treasure out here?" you ask.`
-			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our descendants felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
+			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our antecedents felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
 			label family
 			`	As the conversation winds down and the hour grows late Helm excuses himself to bed, for he, like the rest of you, is dog tired after the day's events. You stand too, feeling your own need for sleep.`
 			`	"<first>," Thorleif says without looking up from the fire. "I've been thinking. I can never forgive my father for what he did. Leaving me and mom like that. But I can, I think, make peace with it. I can accept the stone." He looks up and smiles, "You brought some luck with you, and a man should never argue with luck."`

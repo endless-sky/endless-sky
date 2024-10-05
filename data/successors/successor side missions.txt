@@ -16,6 +16,7 @@ mission "Successors: Predecessor Research 1"
 	landing
 	name "Assist Predecessor Research"
 	description "Transport these <bunks> scholars researching the Predecessors to <planet stopovers> and back home to <destination> by <date>."
+	clearance
 	passengers 7
 	deadline 30
 	to offer

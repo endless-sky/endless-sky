@@ -6886,7 +6886,7 @@ mission "Hogshead's Dilemma"
 				`	What Asteroid`
 			action
 				event "hogshead poll" 7
-			`	After you made your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
+			`	After you make your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
 				decline
 
 event "hogshead poll"
@@ -6899,7 +6899,6 @@ mission "Hogshead's Dilemma II"
 		has "Hogshead's Dilemma: offered"
 		has "event: hogshead poll"
 	on offer
-		clear "hogshead poll"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
