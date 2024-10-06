@@ -6918,13 +6918,13 @@ mission "Dragon Tech 1"
 		conversation
 			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Electronic Warfare System, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
+			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
-				`	(Keep the Electronic Warfare System.)`
+				`	(Keep the Fusion Afterburner.)`
 					goto keep
-				`	(Sell the Electronic Warfare System.)`
+				`	(Sell the Fusion Afterburner.)`
 			`	Weland looks feverish. "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
 			action
 				payment 40000000
@@ -6934,7 +6934,7 @@ mission "Dragon Tech 1"
 			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
 			`	"I'll miss having it around. Made the place feel mysterious." You say your goodbyes, and head back to your ship.`
 			action
-				outfit "Retrofitted Electronic Warfare System" 1
+				outfit "Retrofitted Fusion Afterburner" 1
 				payment -6000000
 
 
@@ -6965,13 +6965,13 @@ mission "Dragon Tech 1b"
 		conversation
 			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Electronic Warfare System, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
+			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
-				`	(Keep the Electronic Warfare System.)`
+				`	(Keep the Fusion Afterburner.)`
 					goto keep
-				`	(Sell the Electronic Warfare System.)`
+				`	(Sell the Fusion Afterburner.)`
 			`	Weland looks feverish. "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
 			action
 				payment 5000000
@@ -6981,7 +6981,7 @@ mission "Dragon Tech 1b"
 			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 			action
-				outfit "Retrofitted Electronic Warfare System" 1
+				outfit "Retrofitted Fusion Afterburner" 1
 			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
 			`	"But, here you are, flying free with one on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Blood of Surtr' stone of yours?"`
 			choice
@@ -7047,13 +7047,13 @@ mission "Dragon Tech 1c"
 		conversation
 			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Electronic Warfare System, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
+			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
-				`	(Keep the Electronic Warfare System.)`
+				`	(Keep the Fusion Afterburner.)`
 					goto keep
-				`	(Sell the Electronic Warfare System.)`
+				`	(Sell the Fusion Afterburner.)`
 			`	Weland looks feverish. "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
 			action
 				payment 40000000
@@ -7063,7 +7063,7 @@ mission "Dragon Tech 1c"
 			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship assumin' you have the space." He hobbles over to you and shakes your hand.`
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 			action
-				outfit "Retrofitted Electronic Warfare System" 1
+				outfit "Retrofitted Fusion Afterburner" 1
 			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Tear of Skade' stone of yours?"`
 			choice
@@ -7129,13 +7129,13 @@ mission "Dragon Tech 1d"
 		conversation
 			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur t#o life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
+			`	"Now, what we have here is an Fusion Afterburner, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
-				`	(Keep the Electronic Warfare System.)`
+				`	(Keep the Fusion Afterburner.)`
 					goto keep
-				`	(Sell the Electronic Warfare System.)`
+				`	(Sell the Fusion Afterburner.)`
 			`	Weland looks feverish. "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
 			action
 				payment 40000000
@@ -7145,7 +7145,7 @@ mission "Dragon Tech 1d"
 			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 			action
-				outfit "Retrofitted Electronic Warfare System" 1
+				outfit "Retrofitted Fusion Afterburner" 1
 			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
 			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for one of those stones of yours?"`
 			choice
