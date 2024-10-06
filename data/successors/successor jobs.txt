@@ -783,6 +783,7 @@ mission "Successors: Old Houses Rush Delivery"
 		attributes "successor"
 	destination
 		government "Old Houses" "House Chydiyi" "House Myurej" "House Sioeora"
+		distance 2 20
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -810,6 +811,7 @@ mission "Successors: New Houses Rush Delivery"
 		attributes "successor"
 	destination
 		government "New Houses" "House Kaatrij" "House Seineq" "House Aqrabe"
+		distance 2 20
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
