@@ -1,6 +1,7 @@
 name: Release CD
 
 on:
+  pull_request:
   workflow_dispatch:
     inputs:
       release_version:
