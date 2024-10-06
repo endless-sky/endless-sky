@@ -227,6 +227,7 @@
         "strategy": "external"
       },
       "cacheVariables": {
+        "ES_CREATE_BUNDLE": "ON",
         "VCPKG_HOST_TRIPLET": "macos-arm64-ci",
         "VCPKG_TARGET_TRIPLET": "macos-arm64-ci",
         "CMAKE_OSX_ARCHITECTURES": "arm64",
