@@ -867,6 +867,18 @@
       "inherits": "ci-benchmark"
     },
     {
+      "name": "macos-arm-ci",
+      "displayName": "MacOS CI Tests",
+      "configurePreset": "macos-arm-ci",
+      "inherits": "ci-integration"
+    },
+    {
+      "name": "macos-arm-ci-benchmark",
+      "displayName": "MacOS ARM CI Benchmarks",
+      "configurePreset": "macos-arm-ci",
+      "inherits": "ci-benchmark"
+    }
+    {
       "name": "clang-cl-ci",
       "displayName": "VS CI Tests",
       "configurePreset": "clang-cl-ci",
