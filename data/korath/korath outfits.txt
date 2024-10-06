@@ -896,7 +896,7 @@ outfit "Microbot Defense Station"
 	thumbnail "outfit/microbot defense station"
 	mass 2
 	"outfit space" -3
-	"capture defense" 45
+	"capture defense" 18
 	illegal 10000000
 	"energy consumption" 0.01
 	"heat generation" 0.1
