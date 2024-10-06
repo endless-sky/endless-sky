@@ -1725,13 +1725,14 @@ mission "Wanderers: Sestor Attack"
 	npc
 		government "Kor Mereti"
 		personality heroic
-		system "Faronektu"
+		system "Mekislepti"
 		fleet
 			names "kor mereti"
 			variant
 				"Model 512"
 				"Model 256"
 				"Model 64"
+				"Model 16" 3
 				
 
 
