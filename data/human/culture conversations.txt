@@ -791,3 +791,233 @@ mission "Raider returning to Mordente-Bridi"
 			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
 			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs. Meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
 			`	Within the hour the work shuttles scatter from the ship as they finish patching up its battered hull, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`
+
+mission "Syndicate Business 5.1 A 10m Expansion Update"
+	landing
+	to offer
+		has "Syndicate Business 5: done"
+		has "event: 10m investment done"
+		or
+			has "Syndicate Business expansion 10m good"
+			has "Syndicate Business expansion 10m neutral"
+			has "Syndicate Business expansion 10m evil"
+	source
+		near Ruchbah 0 20
+	on offer
+		conversation
+			`As you are landing your <model>, you see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
+			branch meanopening
+				"syndicate business: mean to Howard" > 0
+			`	"Hey <first>,`
+			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included--check out Section 3, Part C, Paragraph 6 for the details."`
+				goto openingchoice
+			label meanopening
+			`	"Captain <first> <last>,`
+			`		"Here's the interim Megaparsec report, sent because your investment is included for the first time. You can find the relevant information in Section 3, Part C, Paragraph 6."`
+			label openingchoice
+			branch goodchoice
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice
+				has "Syndicate Business expansion 10m evil"
+			# neutral
+			`		Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higherups like the consistency--keeps me in their good graces.`
+				goto howardbye
+			label goodchoice
+			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled--they think I'm working magic here.`
+				goto howardbye
+			label evilchoice
+			`		"There was a... noteworthy incident involving some employees, so it might draw more attention than we'd like. Nothing that'll derail the returns, though, just some bad press to manage. Everything's still on track, and either way, no one can argue with the numbers."`
+			label howardbye
+			branch alreadyrich
+				"credits" >= 300000000
+			`		"Anyway, here's the mentioned area of that report. I have another investment opportunity coming up, but if my bank contact is correct you have some hustling to do if you want in. Maybe three or four hundred million credits ought to do it. Keep in touch."`
+				goto signoff
+			label alreadyrich
+			`		"Anyway, here's the mentioned area of that report. As long as you stay rich I'll have another investment opportunity for you soon. Keep in touch."`
+			label signoff
+			`			Howard Vendeur`
+			`			Investor Relations Manager, Megaparsec Incorporated`
+			choice
+				`	(Open Section 3, Part C, Paragraph 6 of the attached report.)`
+					goto sectionmarked
+				`	(Take a look at the main report.)`
+				`	(Close out of the message.)`
+					decline
+			# This report has 2 purposes beyond being a peek behind the curtain of Megaparsec's operations
+			# 1. This should be dull and impersonal enough that a reader could easily gloss over Megaparsec's morally questionable actions listed in the report and to be a stark contrast to the human aspect of the other culture mission.
+			# 2. This should be long enough that Megaparsec feels overwhelming in size and scope, and that the player's actions/investments feels like a footnote in comparison.
+			`	Megaparsec Incorporated is a leading multi-sector company specializing in shipbuilding, performance vehicles, industrial solutions and exacting systems, and financial services. With a commitment to innovation and customer satisfaction, we aim to provide top-tier products and services across various markets. Our workforce comprises millions of skilled employees across the Republic. Established over 60 years ago in 2953, Megaparsec has quickly positioned itself as a key player in the aerospace and transportation industries. References to "Megaparsec Inc.," the "Company," "we," "our," and "us" in this report refer to Megaparsec Incorporated and its consolidated subsidiaries.`
+			`	Our operations are organized into four distinct operating segments: Megaparsec Shipyards, Megaparsec Performance Vehicles, Megaparsec Industrial & Systems, which represent our manufacturing businesses, and Megaparsec Finance, which represents our finance business. Our business segments include operations that are unincorporated divisions of Megaparsec Inc. and others that are separately incorporated subsidiaries. Public sector and other non-corporate activities are not required to be disclosed in interim financial reports, and as such are not covered within this report. Each segment plays a crucial role in driving our growth and profitability, and a description of the business of each of our segments is set forth below. Financial performance and information by segment can be found in Note 5 of the Consolidated Financial Statements on pages 20 through 22 of this report. Readers are encouraged to review this information in conjunction with "Management's Discussion and Analysis of Financial Condition and Results of Operations" on pages 10 through 18.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Try to get through the report's overview of business segments.)`
+				`	(That's enough financial report for one day.)`
+					decline
+			`	Megaparsec Shipyards Segment`
+			`		Megaparsec Shipyards is at the forefront of advanced shipbuilding, focusing on designing and constructing lightweight, high-performance vessels for commercial and military applications. Megaparsec Shipyards is a leading shipyard based on unit sales with two principal lines of business: spacecraft sales and aftermarket services. Spacecraft sales include a diverse portfolio of ships such as the Quicksilver, Bounder, Manta, and Splinter; as well as Hauler and Hauler II designs. Aftermarket services include outfitting, parts, maintenance, inspection and repair services. Our shipyards leverage cutting-edge technology and innovative design principles to enhance efficiency and reduce costs. Revenue in this segment accounted for approximately 45% of our total revenue in the last fiscal year, showcasing our strong market position.`
+			`		Megaparsec Shipyards' aggressive cost-cutting measures and streamlined workplace safety protocols allow us to maintain superior margins. We maintain a close relationship with Parliament to better anticipate and shape legislative actions to be beneficial to the Company.`
+			`		Megaparsec Shipyards markets its products galaxy-wide through its own sales force, as well as through a network of authorized independent sales representatives, depending upon the product line. Megaparsec Shipyards has several competitors within the Syndicate and across Republic space in various market segments. Megaparsec Shipyards' spacecraft compete with other spacecraft that vary in size, speed, range, capacity and handling characteristics on the basis of price, product quality and reliability, product support and reputation.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Continue through the report to the Megaparsec Performance Vehicles Segment.)`
+				`	(Now that's definitely enough financial report for one day.)`
+					decline
+			`	Megaparsec Performance Vehicles Segment`
+			`		Megaparsec Performance Vehicles is one of the leading suppliers of military and commercial aviation and repulser solutions in all of Syndicate and Republic space. This segment includes Megaparsec jets, racing hovercraft, utility vehicles, and various repulser solutions tailored for personal, commercial, and military use. Through its commercial business, Megaparsec Performance Vehicles is a leading supplier of commercially certified aviation and hovercraft support to corporate, on-world petroleum exploration and development, utility, charter, police, fire, rescue, and emergency medical hovercraft operators. Our commitment to the development of high-performance, lightweight vehicles that maximize efficiency and agility while delivering superior speed and operational excellence drives innovation within this segment, allowing us to capture a growing market of discerning consumers. Revenues from this segment contributed approximately 30% of our total revenue, reflecting our success in attracting new customers.`
+			`		For both its military programs and its commercial products, Megaparsec Performance Vehicles provides post-sale support and service for its installed base of millions of vehicles through a network of Megaparsec Performance Vehicles-owned service sites, service and parts facilities co-located with Megaparsec Shipyards, thousands of independent service centers and sixteen logistics hubs that are located across the galaxy. Collectively, these service sites offer a complete range of logistics support, including parts, support equipment, technical data, training devices, pilot and maintenance training, component repair and overhaul, engine repair and overhaul, aircraft modifications, aircraft customizing, accessory manufacturing, contractor maintenance, field service and product support engineering.`
+			`		Megaparsec is able to leverage its specialization to control a majority of several of the aforementioned markets with relatively inelastic demand, providing significantly higher margins in the police, fire, rescue, and emergency medical segments.`
+			`		Megaparsec Performance Vehicles competes against a number of competitors based in the Syndicate and Republic for its performance vehicles business, and its parts and support business competes against numerous competitors. Competition is based primarily on price, product quality and reliability, product support, performance and reputation.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Continue through the report to the Megaparsec Industrial & Systems Segment.)`
+				`	(Half of the business segments is enough.)`
+					decline
+			`	Megaparsec Industrial and Systems Segment`
+			`		Megaparsec Industrial and Systems focuses on providing comprehensive solutions for various industries, including energy, construction, and logistics. We manufacture industrial equipment, fuel systems, functional components, and other systems designed to enhance productivity and reduce operational costs. This segment also covers miscellaneous lines such as Megaparsec's external refueling sales, logistics services, mission support, and others. This segment has seen steady growth, contributing around 20% of our overall revenue as we continue to expand our market presence and capitalize on emerging opportunities.`
+			`		Our strategic partnerships with external regions that have favorable regulatory environments help minimize disruption from labor or environmental concerns, enabling us to maximize productivity at the lowest possible cost.`
+			`		Our Industrial and Systems Segment has a number of competitors across space. Competition typically is based on a number of factors including price, product quality and reliability, prior experience and available manufacturing capacity.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Finish the business segment overview with Megaparsec Finance.)`
+				`	(Finally close out this report.)`
+					decline
+			`	Megaparsec Finance Segment`
+			`		Megaparsec Finance offers a range of financial services, including investment and leasing solutions tailored to the needs of our customers across all segments of the marketplace. This division supports our operational growth by providing essential capital and financial expertise, allowing us to navigate market fluctuations effectively. The Finance segment accounted for about 5% of our total revenue, highlighting our commitment to delivering integrated financial solutions.`
+			`		Megaparsec Finance maximizes returns by strategically navigating complex financial regulations and directly engaging with investors and customers. By leveraging aggressive financial instruments while staying within legal boundaries, we ensure strong profits with minimal regulatory interference.`
+			`		The commercial finance business traditionally is extremely competitive. Our Finance segment is subject to competition from various types of financing institutions, including banks, leasing companies, commercial finance companies and finance operations of equipment vendors. Competition within the commercial finance industry primarily is focused on price, term, structure and service.`
+			`		Megaparsec's diverse portfolio and commitment to innovation position us well for future growth, and we remain dedicated to enhancing value for our shareholders while serving our customers' needs.`
+			`	You've finally gotten through the report's opening statements. That's more than enough of the main report to go through.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Close out the report now that you've gone through the main overview.)`
+					decline
+			label sectionmarked
+			`	You open the attached report to the area indicated by Howard:`
+			branch goodchoicesec2
+				has "Syndicate Business expansion 10m good"
+			branch evilchoicesec2
+				has "Syndicate Business expansion 10m evil"
+			# neutral 2
+			`	Crossroads refueling station investments continue to meet projections, with healthy margins and steady returns. Following several modest investments in operational efficiency, returns are tracking slightly above baseline forecasts, ensuring a consistent annualized return to investors. The station's strategic position on the centrally located planet continues to generate strong traffic, further solidifying its long-term profitability.`
+				goto reportend
+			label goodchoicesec2
+			`	Investment returns from the Crossroads refueling station are currently below comparable benchmarks. However, environmental-related legal actions have been significantly lower than anticipated, resulting in reduced provisions for legal fees. Additionally, localized employee turnover has halved during this period, contributing to enhanced operational stability and providing a favorable outlook for the coming quarters.`
+				goto reportend
+			label evilchoicesec2
+			`	A serious accident at the Crossroads refueling station resulted in injuries to two dozen employees and one fatality. While the legal ramifications are being addressed, the station's outsized returns have more than compensated for the legal fees incurred due to this unfortunate and unpredictable occurrence. Financial projections remain strong, with returns far exceeding expectations.`
+			label reportend
+			`	That marks the end of where the report covers your investment. You wonder what upcoming "investment opportunity" Howard has in mind.`
+				decline
+
+mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
+	# landing   not landing because expansion is by spaceport
+	to offer
+		has "Syndicate Business 5: done"
+		has "event: 10m investment done"
+		or
+			has "Syndicate Business expansion 10m good"
+			has "Syndicate Business expansion 10m neutral"
+			has "Syndicate Business expansion 10m evil"
+	source "Crossroads"
+	on offer
+		conversation
+			`As you are walking around the low stone buildings of the spaceport, you remember that you invested in a refueling station expansion at Megaparsec's logistics hub on Crossroads.`
+			choice
+				`	(Check it out.)`
+				`	(Skip visiting the refueling station.)`
+					decline
+			`	You make your way towards the refueling station on a bulky vehicle closed off from the radioactive air. Nevertheless, you still feel a faint metallic taste in the back of your throat as you see blue and purple tumbleweeds drift with the sand out the window. Eventually you pull up to the depot and refueling station.`
+			`	The structure looms in front of you--sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsers, and a series of elevated walkways crisscrossing the area.`
+			choice
+				`	(Get out of the bulky vehicle.)`
+			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsers zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
+			branch goodchoice
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice
+				has "Syndicate Business expansion 10m evil"
+			# neutral
+			`	As you start to approach the platform, you notice a worker sitting on the edge of a low retaining wall, just outside the main operation zone. He's leaned back, catching his breath and wiping the sweat from his brow. The worker looks up as you near, his expression neutral but open, perhaps surprised to see someone from management on-site. His break seems brief, but he's got a minute or two before heading back to work--giving you the option to engage in conversation or simply move on.`
+				goto hellothere
+			label goodchoice
+			`	As your approach to the platform begins, you notice a worker sitting on the edge of a low retaining wall, just outside the bustling refueling zone. He's leaned back with a relaxed smile on his face as he whistles a cheerful tune, clearly enjoying a well-earned break. The worker's uniform is crisp, and his overall demeanor suggests high morale, perhaps a reflection of your choice to invest in excellent workplace safety and labor conditions. He glances up as you near, offering a friendly nod, clearly at ease. With a few minutes left in his break, you have the chance to strike up a conversation or continue on your way.`
+				goto hellothere
+			label evilchoice
+			`	As you start your approach towards the platform, you notice a worker sitting on the edge of a low retaining wall, staring at a small memorial plaque embedded in the ground just outside the main refueling zone. Next to the plaque, two small, unmarked rocks have been carefully placed side by side.`
+			`	The worker seems lost in thought, occasionally wiping the sweat from his brow. He shifts slightly as you draw nearer, offering a subtle nod of acknowledgment, giving you the chance to either continue on or start a conversation with him. The reasons behind the plaque and the stones remain unclear, though their presence feels somber. You think back to Howard's message about your aggressive investment choice causing a "noteworthy incident."`
+			label hellothere
+			choice
+				`(Say hello.)`
+				`(Let the moment pass and continue on towards the platform.)`
+					goto facilitytour
+			branch goodchoice2
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice2
+				has "Syndicate Business expansion 10m evil"
+			# neutral 2
+			`	You decide to strike up a conversation, and after a brief exchange, the worker relaxes when you clarify that you're not from management. His face softens as he shares his story. He grew up poor in the Dirt Belt, and came to Crossroads hoping for something better.`
+			`	"I've been working hard, trying to give my kid a life I didn't have."`
+			`	He shrugs as he says "Sure, the hours are long and it's tough sometimes, but it beats what you hear about some Syndicate jobs--unsafe, grueling work. At least here, the work's steady and it puts food on the table. That's more than I ever had growing up in the Dirt Belt." He checks the time and stands, dusting off his uniform.`
+			`	"Thanks for the chat, but I've got a long night ahead. It's my kid's birthday, and I'm putting in extra hours so I can get them a cake. They're gonna love it."`
+			`	With a tired but determined smile, he heads back to work, leaving you with a glimpse of the reality behind the "conventional" station's daily grind.`
+				goto hellothere2
+			label goodchoice2
+			`	You decide to strike up a conversation, and as you exchange pleasantries, the worker mentions how he grew up in the Dirt Belt. He talks about how tough life was back then, scraping by with whatever work he could find before coming to Crossroads in search of something better.`
+			`	"I've been incredibly lucky," he says with a genuine smile. "This job--good pay, safe working conditions, benefits for my family--it's more than I ever imagined. I've heard stories about jobs in the Syndicate, how unsafe and grueling they can be. Heck, I've heard of other refueling stations at this very same logistics hub where people get injured and they're left to starve--can you imagine? I count my blessings every day."`
+			`	He glances at his datapad and stands up, brushing off his uniform. "Thanks for the chat," he says warmly. "I've got to head back in. Calling it an early day today--need to grab a cake and set up a surprise birthday party for my kid. They're going to be thrilled!"`
+			`	With a quick wave, he heads back toward the fueling bay, whistling his tune once again.`
+				goto hellothere2
+			label evilchoice2
+			`	You decide to say hello and ask about the plaque, and the worker lets out a sharp, bitter scoff. "Management put it up after a fuel explosion killed someone," he says in a cold tone. "Injured dozens more, too. They have us handling some incredibly dangerous fuel, no safety gear, and quotas that are impossible to meet. We all knew it was a disaster waiting to happen. But management?" He pauses to wipe his brow.`
+			`	"They didn't care. They just wanted the job done fast." He glances at the two small rocks, then shifts his gaze to the plaque again beside them. "He was one of the lucky ones."`
+			choice
+				`	"How so?"`
+				`	(Say nothing.)`
+			`	He nods toward the rocks. "Some of the others weren't so lucky to die immediately. They got hurt bad enough that they couldn't keep working, and the burns covering their bodies left them in agony for days. Megaparsec didn't lift a finger to help, no medicine, no credits, nothing. We tried, but they didn't make it."`
+			`	"Management won't admit they had anything to do with it, won't help their families or put their names on a plaque or anything. So a few of us put those stones there. Our own little way of remembering."`
+			`	You take in his words, the weight of them heavy in the air.`
+			choice
+				`	(Try to change the subject and ask if he has any family.)`
+				`	(Say nothing.)`
+					goto evilchoice2workerleaves
+			`	The worker turns back to the stones, staring at them for a long, uncomfortable silence. Finally, he shakes his head, his voice barely above a whisper.`
+			`	"No."`
+			label evilchoice2workerleaves
+			`	With that, he pushes himself to his feet and heads back to work without another word.`
+			label hellothere2
+			choice
+				`(Continue on towards the platform.)`
+				`(Return to your <model> to leave.)`
+					decline
+			label facilitytour
+			`You continue on through the narrow steps leading to get to the platform overlooking the main fueling bay, and go through the doors at the top of the steps to enter the main facility.`
+			branch goodchoice3
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice3
+				has "Syndicate Business expansion 10m evil"
+			# neutral 3
+			`	At the top of platform, you take in the sight below of hurried workers and a massive Container Transport docking, its intermodal containers full of Particle Cannons likely destined for Megaparsec Quicksilvers.`
+			`	Fueling crews move quickly but with a certain impatience, functional but clearly worn gear clanking as they connect the repulsor-mounted refueling hoses to the Container Transport's ports. There's a faint tension in the air, an unspoken acknowledgment that time is money, as the fueling process proceeds with the workers more focused on speed than safety.`
+			`	You take a breath of air that feels thick and grimy, carrying the faint stench of fuel. The environmental controls seem poorly maintained, leaving the atmosphere heavy and uncomfortable. The hum of machinery blends with the occasional cough from workers, who seem used to the less-than-ideal conditions. You see the worker from outside, who gives you a short nod before coughing into his arm and rushing to the next fueling hose.`
+				goto hellothere3
+			label goodchoice3
+			`	At the top of platform, the sight below is one of smooth coordination and efficiency. A massive Container Transport docks relatively gracefully, its intermodal containers full of Particle Cannons likely destined for Megaparsec Quicksilvers.`
+			`	Workers outfitted in sleek safety gear move with precision, guiding repulsor-mounted refueling hoses to the Container Transport's ports. There's an air of confidence here--a clear, practiced rhythm, as the fueling process proceeds with checks and double-checks.`
+			`	You take a deep breath of clean, crisp air. Even the environmental controls seem well-maintained, keeping the air cleaner than you'd expect at a station of this scale. It's almost serene, the hum of machinery blending with the low chatter of workers who seem genuinely at ease, knowing they're well-protected. You catch the eye of the worker you saw earlier outside, and he gives you a wave before turning his attention back to the fueling hoses.`
+				goto hellothere3
+			label evilchoice3
+			`	Through the doors at the top of platform, the air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
+			`	What little safety gear you see appears to be an afterthought--you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy hoses attached to worn repulsers that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
+			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Each worker appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
+				goto hellothere3
+			label hellothere3
+			choice
+				`	(Take in the scene.)`
+			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulser engine.`
+			choice
+				`	(Get in the vehicle.)`
+			`	The long journey back to the spaceport gives you plenty of time to quietly reflect on the impact you've seen your decision have on the people here.`
