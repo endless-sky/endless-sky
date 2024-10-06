@@ -451,6 +451,12 @@
       "inherits": "ci"
     },
     {
+      "name": "macos-arm-ci",
+      "displayName": "MacOS ARM CI build",
+      "configurePreset": "macos-arm-ci",
+      "inherits": "ci"
+	},
+    {
       "name": "clang-cl-ci",
       "displayName": "VS CI build",
       "configurePreset": "clang-cl-ci",
