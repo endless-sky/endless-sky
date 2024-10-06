@@ -877,7 +877,7 @@
       "displayName": "MacOS ARM CI Benchmarks",
       "configurePreset": "macos-arm-ci",
       "inherits": "ci-benchmark"
-    }
+    },
     {
       "name": "clang-cl-ci",
       "displayName": "VS CI Tests",
