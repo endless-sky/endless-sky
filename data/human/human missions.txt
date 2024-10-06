@@ -8191,6 +8191,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 					goto timsbud
 				`	"I'm the Hero of Rand!"`
 					goto timsbud
+					to display
+						has "Timothy Radrickson 3d: Return to Rand: done"
 				`	"I'm just a merchant! My name's Captain <last>!"`
 					goto timsbud
 				`	"Mind your own business, I answer to no one!"`
@@ -8226,6 +8228,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			label right
 			`	Despite not being able to see your potential assailants you can feel an immediate shift in the tension.`
 			`	"Good," one of them says, seemingly more to themselves than to you. "That's real good." You hear a loud sigh and then, "Alright, Hero of Rand, you're good to approach. The boss wants to see you."`
+				to display
+					has "Timothy Radrickson 3d: Return to Rand: done"
 			`	Dark shapes materialize from the corners of the entrance, and one of them gently ushers you forward further into the oppressive atmosphere of the old mine.`
 			choice
 				`	(Follow them into the mine.)`
@@ -9089,6 +9093,7 @@ mission "Timothy Radrickson 7: Monk"
 					goto offer
 					to display
 						not "offers"
+						has "Timothy Radrickson 3d: Return to Rand: done"
 				`	(Shake his hand and say goodbye.)`
 					goto shake
 				`	(Give him a hug and say goodbye.)`
@@ -9182,6 +9187,7 @@ mission "Timothy Radrickson 7: Hospice"
 					goto offer
 					to display
 						not "offers"
+						has "Timothy Radrickson 3d: Return to Rand: done"
 				`	(Shake his hand and say goodbye.)`
 					goto shake
 				`	(Give him a hug and say goodbye.)`
