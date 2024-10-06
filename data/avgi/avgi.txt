@@ -35,7 +35,7 @@ phrase "avgi military names"
 
 phrase "avgi fighter names"
 	phrase
-		"letter"
+		"avgi letters"
 	word
 		" - "
 	phrase
@@ -53,6 +53,33 @@ phrase "avgi digits"
 		3
 		4
 		5
+
+phrase "avgi letters"
+	word
+		"Alkos"
+		"Bia"
+		"Gekos"
+		"Dia"
+		"Yenke"
+		"Zekis"
+		"Enka"
+		"Tekis"
+		"Isi"
+		"Keto"
+		"Leto"
+		"Minis"
+		"Nunis"
+		"Ski"
+		"Oki"
+		"Pilos"
+		"Rek"
+		"Sek"
+		"Sftekis"
+		"Ulos"
+		"Sfpilos"
+		"Chana"
+		"Pisi"
+		"Aika"
 
 phrase "avgi colors"
 	word

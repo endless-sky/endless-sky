@@ -17,9 +17,9 @@
 
 # Transport Jobs
 
-phrase "avgi specialists description"
+phrase "avgi specialists complete"
 	word
-		`Take these <bunks>`
+		`You drop off the `
 	word
 		`engineers`
 		`doctors`
@@ -31,17 +31,13 @@ phrase "avgi specialists description"
 		`experts`
 		`academics`
 	word
-		` to conduct specialized work on <planet> in exchange for <payment>.`
-
-phrase "avgi specialists complete"
-	word
-		`You drop off the specialists as they chatter excitedly about their subjects of expertise, collecting <payment> in payment.`
+		` on <planet> as they chatter excitedly about their subjects of expertise, collecting <payment> in payment.`
 
 mission "Avgi: Specialized Workers 1"
 	job
 	repeat
-	name "Workers to the <planet>"
-	description "avgi specialists description"
+	name "Workers to <planet>"
+	description "Take these <bunks> to <planet> to provide rapid subject matter expertise in exchange for <payment>."
 	passengers 6 3 .45
 	to offer
 		random < 30
@@ -50,15 +46,15 @@ mission "Avgi: Specialized Workers 1"
 	destination
 		government "Avgi (Consonance)" "Avgi (Dissonance)"
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "avgi specialists complete"
 	on complete
 		payment 6000 300
 
 mission "Avgi: Specialized Workers 2"
 	job
 	repeat
-	name "Workers to the <planet>"
-	description "avgi specialists description"
+	name "Workers to <planet>"
+	description "Take these <bunks> to <planet> to provide rapid subject matter expertise in exchange for <payment>."
 	passengers 3 3 .3
 	to offer
 		random < 15
@@ -67,7 +63,7 @@ mission "Avgi: Specialized Workers 2"
 	destination
 		government "Avgi (Consonance)" "Avgi (Dissonance)"
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "avgi specialists complete"
 	on complete
 		payment 6000 300
 
@@ -85,7 +81,7 @@ mission "Avgi: Cylinder Materials"
 	description "Bring <cargo> from <origin> to the <planet> to support the construction of the <destination> in exchange for <payment>."
 	cargo "Avgi Industrial" 60 12 .3
 	to offer
-		has "avgi: aktina cylinder supply jobs"
+		has "Avgi: Aktina Cylinder Supply Jobs"
 		random < 30
 	source
 		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
@@ -104,7 +100,7 @@ mission "Avgi: Bulk Cylinder Materials"
 	description "Bring <cargo> from <origin> to the <planet> to support the construction of the <destination> in exchange for <payment>."
 	cargo "Avgi Megaconstruction" 60 6 .03
 	to offer
-		has "avgi: aktina cylinder supply jobs"
+		has "Avgi: Aktina Cylinder Supply Jobs"
 		random < 30
 	source
 		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
@@ -129,8 +125,8 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 	deadline
 	cargo "Avgi Radioisotopes" 3 6 .3
 	to offer
-		has "avgi: nuclear material supply jobs"
-		not "avgi: fissiles shortage"
+		has "Avgi: Nuclear Material Supply Jobs"
+		not "Avgi: Fissiles Shortage"
 		random < 9
 	source
 		government "Avgi (Twilight Guard)"
@@ -164,9 +160,9 @@ mission "Avgi: Special Nuclear Material Shipment 2"
 	deadline
 	cargo "Avgi Radioisotopes" 3 6 .3
 	to offer
-		has "avgi: nuclear material transport jobs"
-		not "avgi: fissiles shortage"
-		random < 9
+		has "Avgi: Nuclear Material Transport Jobs"
+		not "Avgi: Fissiles Shortage"
+		random < 6
 	source
 		government "Avgi (Twilight Guard)"
 	destination
@@ -213,7 +209,7 @@ mission "Avgi: Information Courier"
 	deadline
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
-		has "avgi: infocourier jobs"
+		has "Avgi: Infocourier Jobs"
 		random < 15
 	source
 		government "Avgi (Consonance)" "Avgi (Twilight Guard)"
@@ -233,7 +229,7 @@ mission "Avgi: Information Courier Rush"
 	deadline 1 1
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
-		has "avgi: infocourier jobs"
+		has "Avgi: Infocourier Jobs"
 		random < 15
 	source
 		government "Avgi (Consonance)" "Avgi (Twilight Guard)"
@@ -278,7 +274,7 @@ mission "Avgi: Twilight Guard Officers Transport"
 	description "These <bunks> Twilight Guard officers need comfortable transportation to <destination>. They are willing to pay you <payment> in exchange."
 	passengers 3 3 .3
 	to offer
-		has "avgi: twilight guard transport jobs"
+		has "Avgi: Twilight Guard Transport Jobs"
 		random < 30
 	source
 		attributes "twilight guard"
@@ -299,7 +295,7 @@ mission "Avgi: Twilight Guard Flag Officers Transport"
 	description "These <bunks> Twilight Guard flag officers need comfortable transportation to <destination>. They are willing to pay you <payment> in exchange."
 	passengers 0 3 .6
 	to offer
-		has "avgi: twilight guard transport jobs"
+		has "Avgi: Twilight Guard Transport Jobs"
 		random < 15
 	to accept
 		has "outfit (installed): Luxury Accommodations"

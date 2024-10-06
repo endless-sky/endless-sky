@@ -296,7 +296,7 @@ outfit "Electron Bunch"
 		"inaccuracy" 0.6
 		"shield damage" 1.2
 		"hull damage" 1.8
-		"ion damage" 0.006
+		"scramble damage" 0.006
 		"piercing" 0.3
 		"penetration count" 3
 
@@ -479,7 +479,7 @@ outfit "Nettle Active"
 		"lifetime" 300
 		"split range" 180
 		"acceleration" 0.3
-		"drag" .03
+		"drag" .024
 		"turn" 6
 		"homing" 4
 		"infrared tracking" 0.9
@@ -488,7 +488,6 @@ outfit "Nettle Active"
 		"hull damage" -162
 		"missile strength" 12
 		"submunition" "Nettle Flecks" 36
-
 
 outfit "Nettle Flecks"
 	plural "Nettle Flecks"

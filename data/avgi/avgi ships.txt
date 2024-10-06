@@ -46,7 +46,7 @@ ship "Koryfi"
 		"Diffuse Deflector"
 		"Luxury Accommodations"
 		"Multispectral Scanner"
-		"Electromotive Rifle" 2
+		"Optical Laser Rifle" 2
 
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
@@ -159,7 +159,7 @@ ship "Melodikos"
 		"Optical Lasing Generator"
 		"Luxury Accommodations"
 		"Multispectral Scanner" 3
-		"Electromotive Rifle" 6
+		"Optical Laser Rifle" 6
 
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
@@ -301,7 +301,7 @@ ship "Avlaki"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Multispectral Scanner"
-		"Electromotive Rifle" 2
+		"Optical Laser Rifle" 2
 
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
@@ -413,7 +413,7 @@ ship "Harmonikos"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 3
-		"Electromotive Rifle" 6
+		"Optical Laser Rifle" 6
 
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
@@ -614,7 +614,7 @@ ship "Frequentia"
 		"Multispectral Scanner"
 		"Cryogenic Deuterium Tank" 6
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 2
+		"Optical Laser Rifle" 2
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -692,7 +692,7 @@ ship "Polari"
 		"Heatsink Partition"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 9
+		"Optical Laser Rifle" 9
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -774,7 +774,7 @@ ship "Entasi"
 		"Optical Lasing Generator" 2
 		"Multispectral Scanner" 6
 		"Spectrometer Array" 12
-		"Electromotive Rifle" 9
+		"Optical Laser Rifle" 9
 
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
@@ -894,7 +894,7 @@ ship "Undsyni"
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Electromotive Rifle" 24
+		"Optical Laser Rifle" 24
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank" 3
@@ -967,7 +967,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Electromotive Rifle" 24
+		"Optical Laser Rifle" 24
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank" 3
@@ -1026,7 +1026,7 @@ ship "Modified Tachytia"
 		"Electrostatic Ramscoop" 3
 		"Concealment Lamina"
 		"Radiative Lamina"
-		"Electromotive Rifle" 600
+		"Optical Laser Rifle" 600
 		
 		`Z-3600 "Beam" Antimatter Torch`
 		"Inductive Extractor" 6
@@ -1222,7 +1222,7 @@ ship "Prismaios"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		"Optical Lasing Generator"
-		"Electromotive Rifle" 6
+		"Optical Laser Rifle" 6
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1282,7 +1282,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 6
+		"Optical Laser Rifle" 6
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1447,7 +1447,7 @@ ship "Diaspersi"
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 36
+		"Optical Laser Rifle" 36
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1527,7 +1527,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 36
+		"Optical Laser Rifle" 36
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1586,7 +1586,7 @@ ship "Difraktos"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 42
+		"Optical Laser Rifle" 42
 
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
@@ -1664,7 +1664,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 42
+		"Optical Laser Rifle" 42
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor" 1
@@ -1697,7 +1697,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Electrostatic Ramscoop"
-		"Electromotive Rifle" 42
+		"Optical Laser Rifle" 42
 
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
@@ -1761,7 +1761,7 @@ ship "Refraktos"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		"Heatsink Partition"
-		"Electromotive Rifle" 24
+		"Optical Laser Rifle" 24
 		
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 5
@@ -1863,7 +1863,7 @@ ship "Atenuatia"
 		"Optical Lasing Generator" 3
 		"Electrostatic Ramscoop"
 		"Multispectral Scanner" 9
-		"Electromotive Rifle" 90
+		"Optical Laser Rifle" 90
 		
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 3
@@ -1968,7 +1968,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Optical Lasing Generator" 3
 		"Electrostatic Ramscoop"
 		"Multispectral Scanner" 6
-		"Electromotive Rifle" 90
+		"Optical Laser Rifle" 90
 		
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
@@ -2000,8 +2000,8 @@ ship "Akoustiki"
 		"shields" 180
 		"hull" 1200
 		"required crew" 1
-		"bunks" 2
-		"mass" 36
+		"bunks" 6
+		"mass" 60
 		"drag" 1.8
 		"heat dissipation" 0.9
 		"fuel capacity" 120
@@ -2022,7 +2022,7 @@ ship "Akoustiki"
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		"Spectrometer Array"
-		"Electromotive Rifle" 2
+		"Optical Laser Rifle" 2
 		
 		"Magnetoplasma Drive" 2
 

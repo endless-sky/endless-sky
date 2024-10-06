@@ -249,7 +249,7 @@ outfit "Lantern Fission Core"
 outfit "Ultracapacitor Cell"
 	category "Power"
 	cost 20400
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ultracapacitor cell"
 	"mass" 1
 	"outfit space" -3
 	"energy capacity" 1500
@@ -261,7 +261,7 @@ outfit "Ultracapacitor Cell"
 outfit "Ultracapacitor Bank"
 	category "Power"
 	cost 200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ultracapacitor bank"
 	"mass" 6
 	"outfit space" -18
 	"energy capacity" 10800
@@ -311,7 +311,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	licenses
 		"Twilight Guard"
 	"cost" 660000
-	thumbnail "outfit/fusion engine small"
+	thumbnail "outfit/spark fusion torch"
 	"mass" 99
 	"outfit space" -33
 	"engine capacity" -33
@@ -319,7 +319,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"thrusting energy" 9
 	"thrusting heat" 45
 	"thrusting fuel" 0.09
-	"drag reduction" 0.3
+	"drag reduction" 1
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 		"scale" 0.75
@@ -337,7 +337,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	licenses
 		"Twilight Guard"
 	"cost" 1440000
-	thumbnail "outfit/fusion engine medium"
+	thumbnail "outfit/zap fusion torch"
 	"mass" 198
 	"outfit space" -66
 	"engine capacity" -66
@@ -345,7 +345,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"thrusting energy" 18
 	"thrusting heat" 90
 	"thrusting fuel" 0.18
-	"drag reduction" 0.6
+	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 	"flare sound" "zpinch"
@@ -362,7 +362,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	licenses
 		"Twilight Guard"
 	"cost" 2760000
-	thumbnail "outfit/fusion engine large"
+	thumbnail "outfit/arc fusion torch"
 	"mass" 297
 	"outfit space" -99
 	"engine capacity" -99
@@ -370,7 +370,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"thrusting energy" 27
 	"thrusting heat" 135
 	"thrusting fuel" 0.27
-	"drag reduction" 0.9
+	"drag reduction" 3
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
@@ -493,7 +493,7 @@ outfit "XY-360 Radial Thrusters"
 	licenses
 		"Twilight Guard"
 	"cost" 473000
-	thumbnail "outfit/rcs large"
+	thumbnail "outfit/rcs medium"
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
@@ -522,7 +522,7 @@ outfit "XY-720 Radial Thrusters"
 	licenses
 		"Twilight Guard"
 	"cost" 1077000
-	thumbnail "outfit/rcs huge"
+	thumbnail "outfit/rcs large"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
@@ -573,26 +573,47 @@ outfit `Z-3600 "Beam" Antimatter Torch`
 
 # Special:
 
+
+outfit "Optical Laser Rifle"
+	category "Hand to Hand"
+	licenses
+		"Avgi Civilian"
+	cost 24000
+	thumbnail "outfit/unknown"
+	"capture attack" 0.9
+	"capture defense" 1.8
+	"unplunderable" 1
+	description "This slim laser rifle can be tuned to produce a beam across a wide spectrum of settings, resulting in a versatile small arm suitable for both ground combat and boarding operations. A solid-state emitter works anywhere between the near-infrared to blue-green, and with a wide range of power and pulse length settings. While the low end of the near-infrared range is nominally eye-safe, even a diffuse reflection of the visible light beam can cause instant blindness, so users of this rifle must wear specialized goggles that darken when exposed to bright light. Incidentally, this makes the Optical Laser Rifle especially dangerous for unprepared foes, such as unwelcome intruders or enemy boarding parties."
+
+
 outfit "Anomalous Mass"
 	plural "Anomalous Masses"
 	category "Special"
-	cost 600000
+	cost 900000
 	thumbnail "outfit/unknown"
 	"flotsam chance" 0.5
 	"unplunderable" 1
 	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, and resists any attempts to probe its makeup."
 
 
-outfit "Electromotive Rifle"
-	category "Hand to Hand"
-	licenses
-		"Avgi Civilian"
-	cost 53000
-	thumbnail "outfit/unknown"
-	"capture attack" 0.6
-	"capture defense" 1.2
+outfit "Trefoil Board"
+	category "Unique"
+	cost 300
+	thumbnail "outfit/trefoil board"
+	"capture attack" 0.3
+	"capture defense" 0.6
+	"unique" 1
 	"unplunderable" 1
-	description "This slim coilgun rifle fires a small metallic glass flechette with deadly accuracy. While those intended for ground combat can easily achieve muzzle velocities in the high hypersonic regime, this version, adapted for shipboard combat, is deliberately undervolted to reduce the risk of overpenetrating and breaching a ship's hull."
+	description "A fine board for the Avgi game of Trefoil, handcrafted from rare Integral Wood and gifted to you by Wisteria. The wood is engraved and inlaid with silver, while the three sets of stones are made from polished lapis, jade, and garnet, well-worn from countless games."
+	description "You suppose the dense wood would make an adequate blunt weapon in a pinch, though it would be a shame to damage such a fine piece in something so crass as melee combat."
+
+
+outfit "Damselflyman"
+	thumbnail "outfit/void sprite parts"
+	"capture attack" 30
+	"capture defense" 60
+	"unplunderable" 1
+	description "This mysterious radioactive tumor, while benign, has grown unnaturally in the center of your chest, creating a glowing dragonfly-shaped patch in the middle of your sternum. Enemies panic and flee at the sight of it, but only when possession of a disabled starship is contested. Also, you really shouldn't be able to see this."
 
 
 outfit "Lancet Adamant"
@@ -608,14 +629,6 @@ outfit "Lancet Adamant"
 outfit "Twilight Guard License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
-
-# outfit "Avgi Starfarer License"
-# 	category "Licenses"
-# 	thumbnail "outfit/unknown"
-
-# outfit "Avgi Starship License"
-# 	category "Licenses"
-# 	thumbnail "outfit/unknown"
 
 outfit "Avgi Atomics License"
 	category "Licenses"

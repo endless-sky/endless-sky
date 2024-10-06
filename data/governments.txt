@@ -52,7 +52,7 @@ color "governments: Avgi" 0 0.72 0.84
 
 government "Avgi"
 	swizzle 15
-	language Avgi
+	language "Avgi"
 	color "governments: Avgi"
 
 	"player reputation" 1
@@ -71,7 +71,7 @@ government "Avgi"
 government "Avgi (Consonance)"
 	"display name" "Consonance"
 	swizzle 15
-	language Avgi
+	language "Avgi"
 	color "governments: Avgi"
 
 	"player reputation" 1
@@ -94,7 +94,7 @@ government "Avgi (Consonance)"
 government "Avgi (Twilight Guard)"
 	"display name" "Twilight Guard"
 	swizzle 12
-	language Avgi
+	language "Avgi"
 	color "governments: Avgi"
 
 	"player reputation" 1
@@ -122,7 +122,7 @@ color "governments: Dissonance" 1 0 0.588
 government "Avgi (Dissonance)"
 	"display name" "Dissonance"
 	swizzle 1
-	language Avgi
+	language "Avgi"
 	color "governments: Dissonance"
 
 	"player reputation" 1
@@ -148,7 +148,7 @@ government "Avgi (Dissonance)"
 government "Avgi (Dissonance Angry)"
 	"display name" "Dissonance"
 	swizzle 1
-	language Avgi
+	language "Avgi"
 	color "governments: Dissonance"
 	"player reputation" 0
 
@@ -169,7 +169,7 @@ government "Avgi (Dissonance Angry)"
 government "Avgi (Wandering Fleet)"
 	"display name" "Wandering Fleet"
 	swizzle 6
-	language Avgi
+	language "Avgi"
 	color "governments: Avgi"
 
 	"player reputation" 0

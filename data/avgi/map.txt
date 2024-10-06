@@ -89,7 +89,7 @@ system Anax
 		offset 30
 		hazard "Microwave Power Transmission" 1
 	object
-		sprite planet/station-solar-broken-a0
+		sprite planet/station-solar-a0-broken
 			scale 0.5
 		distance 812
 		period 197.325
@@ -102,7 +102,7 @@ system Anax
 		offset 150
 		hazard "Microwave Power Transmission" 1
 	object
-		sprite planet/station-solar-broken-a1
+		sprite planet/station-solar-a1-broken
 			scale 0.5
 		distance 812
 		period 197.325
@@ -241,7 +241,7 @@ system Anax
 		distance 2400
 		period 1002.687
 		object
-			sprite planet/telescope-a0
+			sprite planet/station-telescope-a0
 				scale 0.25
 			distance 240
 			period 60
@@ -481,31 +481,31 @@ system Anax
 			distance 576
 			period 522.558
 	object
-		sprite planet/station-cylinder-broken
+		sprite planet/station-cylinder-a0-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
 		offset 50
 	object
-		sprite planet/station-cylinder-incomplete
+		sprite planet/station-cylinder-a0-incomplete
 			scale 0.5
 		distance 7258.824
 		period 5274.096
 		offset 55
 	object "Nisos Cylinder"
-		sprite planet/station-cylinder
+		sprite planet/station-cylinder-a0
 			scale 0.5
 		distance 7258.824
 		period 5274.096
 		offset 60
 	object
-		sprite planet/station-cylinder-broken
+		sprite planet/station-cylinder-a0-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
 		offset 65
 	object
-		sprite planet/station-cylinder-broken
+		sprite planet/station-cylinder-a0-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
@@ -529,7 +529,7 @@ system Anax
 		distance 15027.451
 		period 15710.016
 		object
-			sprite planet/telescope-a1
+			sprite planet/station-telescope-a1
 				scale 0.5
 			distance 423.741
 			period 60
@@ -606,11 +606,11 @@ system Clip
 		distance 1540.213
 		period 967.144
 	object
-		sprite planet/station-solar-broken-a1
+		sprite planet/station-solar-a1-broken
 		distance 348
 		period 103.87
 	object
-		sprite planet/station-solar-broken-a0
+		sprite planet/station-solar-a0-broken
 		distance 348
 		period 103.87
 		offset 90
@@ -2249,7 +2249,7 @@ system Concerto
 			period 120
 			offset 180
 		object Peripheria
-			sprite planet/station-disk-a0
+			sprite planet/station-disk
 			distance 400
 			period 120
 	object
@@ -2287,7 +2287,7 @@ system Concerto
 			distance 412
 			period 316.116
 	object "Aktina Cylinder"
-		sprite planet/station-cylinder-incomplete
+		sprite planet/station-cylinder-a0-incomplete
 			scale 0.5
 		distance 4775.99
 		period 2185.288
@@ -2759,7 +2759,7 @@ system Pinnacle
 		distance 5725.101
 		period 2868.06
 		object "Alonis Observatory"
-			sprite planet/telescope-a1
+			sprite planet/station-telescope-a1
 				scale 0.5
 			distance 560.581
 			period 36
@@ -4936,7 +4936,7 @@ system Ar-40
 	shrouded
 	pos -598 1049
 	government Uninhabited
-	attributes "tangled shroud"
+	attributes avgi dissonance "tangled shroud"
 	habitable 160.312
 	belt 1885 3
 	belt 2084 8
@@ -4981,10 +4981,15 @@ system Ar-40
 			sprite planet/dust5-b
 			distance 190
 			period 68.541
-	object "Outpost Leto"
-		sprite planet/station-asteroid-a3
+	object
+		sprite planet/gas1-b
 		distance 5456.727
 		period 12734.3
+	object "Outpost Leto"
+		sprite planet/station-asteroid-a3
+			scale 0.5
+		distance 18387.3
+		period 78768.5
 
 system N-14
 	hidden

@@ -116,7 +116,7 @@ outfit "Pollen"
 outfit "Jamfruit"
 	category "Minerals"
 	cost 36000
-	thumbnail "outfit/jamfruit"
+	thumbnail "outfit/jamfruit pod"
 	"mass" 0.3
 	"flotsam chance" 0.3
 	description "Yum."
