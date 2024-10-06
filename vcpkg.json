@@ -39,7 +39,7 @@
       ]
     },
     "test-libs": {
-      "description": "Dependencies used for testing.",
+      "description": "Dependencies used for unit testing.",
       "dependencies": [
         "catch2"
       ]
