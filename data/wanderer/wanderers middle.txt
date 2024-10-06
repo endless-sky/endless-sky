@@ -1706,16 +1706,14 @@ mission "Wanderers: Sestor Attack"
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf"
+				"Autumn Leaf" 2
 	npc
 		government "Wanderer"
 		personality heroic
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf" 3
+				"Autumn Leaf" 4
 		fleet
 			names "wanderer"
 			variant
