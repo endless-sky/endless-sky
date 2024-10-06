@@ -222,6 +222,10 @@
       "displayName": "MacOS ARM CI",
       "description": "Builds for MacOS ARM for CI purposes",
       "inherits": "ci",
+      "architecture": {
+        "value": "arm64",
+        "strategy": "external"
+      },
       "cacheVariables": {
         "VCPKG_HOST_TRIPLET": "macos-arm64-ci",
         "VCPKG_TARGET_TRIPLET": "macos-arm64-ci",
