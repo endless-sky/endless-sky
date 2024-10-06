@@ -1,4 +1,4 @@
-/* TextArea.h
+/* TextAreaPanel.h
 Copyright (c) 2024 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

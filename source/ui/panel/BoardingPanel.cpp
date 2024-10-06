@@ -287,8 +287,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
-			GetUI()->Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
-				" They appear to have set off their self-destruct sequence..."));
+			GetUI()->Push(new DialogPanel(
+				"The moment you blast through the airlock, a series of explosions rocks the enemy ship."
+				" They appear to have set off their self-destruct sequence...")
+			);
 			return true;
 		}
 		isCapturing = true;
