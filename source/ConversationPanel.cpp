@@ -66,7 +66,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
-	PATH_LENGTH = Files::Saves().size();
+	PATH_LENGTH = Files::Saves().string().size();
 #endif
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.

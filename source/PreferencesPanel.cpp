@@ -1153,7 +1153,7 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	Command::SaveSettings(Files::Config() + "keys.txt");
+	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	GetUI()->Pop(this);
 }
