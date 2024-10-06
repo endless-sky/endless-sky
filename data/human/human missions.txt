@@ -6892,7 +6892,7 @@ mission "Hogshead's Dilemma II"
 				decline
 
 
-mission "Large Bone 5"
+mission "Dragon Tech 1"
 	name "Return to Weland on Wayfarer"
 	description "Weland's done working on your artifact, and has requested you return to Wayfarer and meet him."
 	source 
@@ -6900,9 +6900,9 @@ mission "Large Bone 5"
 	destination "Wayfarer"
 	to offer
 		has "event: welandwait2"
-		not "Large Bone 5b: offered"
-		not "Large Bone 5c: offered"
-		not "Large Bone 5d: offered"
+		not "Dragon Tech 1b: offered"
+		not "Dragon Tech 1c: offered"
+		not "Dragon Tech 1d: offered"
 	on offer
 		require "Blood of Surtr" 0
 		require "Tear of Skade" 0
@@ -6940,7 +6940,7 @@ mission "Large Bone 5"
 
 event "welandstone"
 
-mission "Large Bone 5b"
+mission "Dragon Tech 1b"
 	name "Return to Weland on Wayfarer"
 	description "Weland's done working on your artifact, and has requested you return to Wayfarer and meet him."
 	source 
@@ -6948,9 +6948,9 @@ mission "Large Bone 5b"
 	destination "Wayfarer"
 	to offer
 		has "event: welandwait2"
-		not "Large Bone 5: offered"
-		not "Large Bone 5c: offered"
-		not "Large Bone 5d: offered"
+		not "Dragon Tech 1: offered"
+		not "Dragon Tech 1c: offered"
+		not "Dragon Tech 1d: offered"
 	on offer
 		require "Blood of Surtr" 
 		require "Tear of Skade" 0
@@ -7022,7 +7022,7 @@ mission "Large Bone 5b"
 
 event "welandwait3surtr"
 
-mission "Large Bone 5c"
+mission "Dragon Tech 1c"
 	name "Return to Weland on Wayfarer"
 	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
 	source 
@@ -7030,9 +7030,9 @@ mission "Large Bone 5c"
 	destination "Wayfarer"
 	to offer
 		has "event: welandwait2"
-		not "Large Bone 5b: offered"
-		not "Large Bone 5: offered"
-		not "Large Bone 5d: offered"
+		not "Dragon Tech 1b: offered"
+		not "Dragon Tech 1: offered"
+		not "Dragon Tech 1d: offered"
 	on offer
 		require "Blood of Surtr" 0
 		require "Tear of Skade" 
@@ -7104,7 +7104,7 @@ mission "Large Bone 5c"
 
 event "welandwait3skade"
 
-mission "Large Bone 5d"
+mission "Dragon Tech 1d"
 	name "Return to Weland on Wayfarer"
 	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
 	source 
@@ -7112,9 +7112,9 @@ mission "Large Bone 5d"
 	destination "Wayfarer"
 	to offer
 		has "event: welandwait2"
-		not "Large Bone 5b: offered"
-		not "Large Bone 5c: offered"
-		not "Large Bone 5: offered"
+		not "Dragon Tech 1b: offered"
+		not "Dragon Tech 1c: offered"
+		not "Dragon Tech 1: offered"
 	on offer
 		require "Blood of Surtr" 
 		require "Tear of Skade" 
@@ -7210,7 +7210,7 @@ mission "Stone Harmonization a"
 	destination "Wayfarer"
 	landing
 	to offer
-		has "Large Bone 5: offered"
+		has "Dragon Tech 1: offered"
 		has "event: welandstone"
 		random < 10
 	on offer
