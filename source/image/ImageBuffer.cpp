@@ -28,8 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
-	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
+	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
+	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
 }
 
@@ -151,13 +151,10 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-bool ImageBuffer::Read(const string &path, int frame)
+bool ImageBuffer::Read(const filesystem::path &path, int frame)
 {
 	// First, make sure this is a JPG or PNG file.
-	if(path.length() < 4)
-		return false;
-
-	string extension = path.substr(path.length() - 4);
+	filesystem::path extension = path.extension();
 	bool isPNG = (extension == ".png" || extension == ".PNG");
 	bool isJPG = (extension == ".jpg" || extension == ".JPG");
 	if(!isPNG && !isJPG)
@@ -170,17 +167,21 @@ bool ImageBuffer::Read(const string &path, int frame)
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
-	int pos = path.length() - 4;
-	if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
+	string name = path.stem().string();
+	size_t pos = name.length();
+	if(pos > 3 && name.ends_with("@2x"))
 		pos -= 3;
 	while(--pos)
-		if(path[pos] < '0' || path[pos] > '9')
+		if(name[pos] < '0' || name[pos] > '9')
 			break;
+	if(name[pos] == '~')
+		Logger::LogError("Warning: file '" + path.string()
+				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.");
 	// Special case: if the image is already in premultiplied alpha format,
 	// there is no need to apply premultiplication here.
-	if(path[pos] != '=')
+	if(name[pos] != '=')
 	{
-		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
+		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~' || name[pos] == '^') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2))
 			Premultiply(*this, frame, additive);
 	}
@@ -190,10 +191,10 @@ bool ImageBuffer::Read(const string &path, int frame)
 
 
 namespace {
-	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame)
+	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
 		// Open the file, and make sure it really is a PNG.
-		File file(path);
+		File file(path.string());
 		if(!file)
 			return false;
 
@@ -230,7 +231,7 @@ namespace {
 		catch(const bad_alloc &)
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
-			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
 			Logger::LogError(message);
 			throw runtime_error(message);
 		}
@@ -238,7 +239,7 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
-			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
+			string message = "Skipped processing \"" + path.string() + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
 				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
@@ -290,9 +291,9 @@ namespace {
 
 
 
-	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame)
+	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		File file(path);
+		File file(path.string());
 		if(!file)
 			return false;
 
@@ -320,7 +321,7 @@ namespace {
 		catch(const bad_alloc &)
 		{
 			jpeg_destroy_decompress(&cinfo);
-			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
+			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
 			Logger::LogError(message);
 			throw runtime_error(message);
 		}
@@ -328,7 +329,7 @@ namespace {
 		if(!width || !height || width != buffer.Width() || height != buffer.Height())
 		{
 			jpeg_destroy_decompress(&cinfo);
-			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
+			string message = "Skipped processing \"" + path.string() + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
 				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
