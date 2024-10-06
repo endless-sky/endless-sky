@@ -54,5 +54,5 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-[utils.contentStyle.json]
+[utils/contentStyle.json]
 indent_style = tabs
