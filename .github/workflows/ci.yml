@@ -195,6 +195,41 @@ jobs:
       run: ctest --preset macos-ci-benchmark
 
 
+  build_macos-arm:
+    name: MacOS-ARM
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: macos-14
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - name: Install pkg-config
+      run: type -P pkg-config || brew install pkg-config
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'macos-arm'
+        buildPreset: 'macos-arm-ci'
+        testPreset: 'macos-arm-test'
+    - name: Run Benchmarks
+      run: ctest --preset macos-arm-benchmark
+
+
   build_documentation_doxygen:
     name: Documentation Doxygen
     needs: changed
