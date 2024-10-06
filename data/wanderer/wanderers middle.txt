@@ -3073,6 +3073,9 @@ mission "Wanderers: Sestor: Exiles 2"
 
 
 event "wanderers: exiles peaceful"
+	"reputation: Korath" += 15
+	"stored reputation: Korath" = "reputation: Korath"
+	"stored reputation: Korath (Civilian)" = "reputation: Korath (Civilian)"
 	"reputation: Korath" >?= 1
 	"reputation: Korath (Civilian)" >?= 1
 
@@ -3307,7 +3310,8 @@ mission "Wanderers: Sestor: Factory 3"
 
 
 event "wanderers: exiles hostile"
-	"reputation: Korath" = -1000
+	"reputation: Korath" <?= "stored reputation: Korath"
+	"reputation: Korath (Civilian)" <?= "stored reputation: Korath (Civilian)"
 
 event "wanderers: exiles have drones"
 	fleet "Korath Home"

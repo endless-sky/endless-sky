@@ -28,7 +28,7 @@ phrase "merchant names"
 
 news "merchant anywhere"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -234,6 +234,70 @@ news "textile worker"
 			"I'm just working here until I can save up enough money to buy my own spaceship, just like yours!"
 			"Almost everyone else here can't wait to get out, but I'm proud of the work I do. Without people like me, you wouldn't have anything to wear!"
 			"You should check the spaceport often. I might not be able to afford transport right now, but I'll need to leave this dirtball when I get enough money for college."
+		word
+			`"`
+
+
+
+news "humanika efreti worker"
+	location
+		planet "New Tortuga"
+	name
+		word
+			"Worker"
+			"Citizen"
+			"Local"
+	message
+		word
+			`"`
+		word
+			# All are copied from elsewhere in this file
+			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
+			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
+			"I've heard that miners who work on Clink are several times more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
+			"Everybody I know wound up working in the plant, so I guess I was gonna go, too. It was inevitable or something, right?"
+			"The plant's all right. I don't have to do much more than show up on time, and I can make a decent living. It's hard work, but I don't mind."
+			"Working around so many huge machines is exciting. Every day we build things that would have blown the mind of anyone a thousand years ago. We're the backbone of interstellar civilization!"
+			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
+			"Some of the stuff we make here ends up as one little part of a spaceship. Whenever you see a ship, always remember that it represents the effort of over a thousand of us workers."
+			"When things go wrong, somebody is responsible, and somebody gets blamed. Those somebodies are rarely the same person, unfortunately."
+			"Some people claim our universe is a simulation, but my job is so boring that I'm sure nobody would ever want to simulate it."
+			"Moving to this planet was the best thing I did; my commute changed from 3 hours spaceflight to just 15 minutes walking."
+			"My boss is great. If we suffer, then he makes sure he takes the heat as well."
+			"I moved here from a richer world and wouldn't ever go back."
+			"Did you eat today? Thank a farmer."
+			"I used to be a merchant captain like you. Bank account got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and gave the rest away. Best thing I ever did."
+			"You should check around spaceports often. You might find one of us needing a captain like you for a job."
+		word
+			`"`
+
+
+news "New Tortuga citizen"
+	location
+		planet "New Tortuga"
+	name
+		word
+			"Local citizen"
+			"Recent immigrant"
+			"Refugee"
+			"New Tortugan"
+	message
+		word
+			`"`
+		word
+			`There are pirate-run black markets here in designated 'free trade zones'. You can buy nearly anything there.`
+			`How many places will let you do ${drugs} and study cooling systems in the same week?`
+			`I ate food from a different culture each meal this week. I've never seen such diverse restaurants anywhere but Earth.`
+			`This year, I've played 37 expensive holo-games that I got for only two credits. On Calda, they cost 100 credits each!`
+			`Last weekend, after Sunday worship, I practiced throwing grenades in a pirate-run shooting gallery.`
+			`On Wednesday, I attended a Hindu wedding for the first time. The groom rode in on an elephant!`
+			`The people that live near me are from eleven different religions.`
+			`I think we should grant pirates greater access to the cities. They are the reason we can smuggle supplies past the Syndicate.`
+			`My father runs a pirate hotel in one of the free trade zones. You wouldn't believe some of the bizarre requests he gets.`
+			`The bunker city to the south-west is rumored to conceal powerful marauder groups.`
+			`Sometimes I have nightmares of the things pirates do off-planet.`
+			`I often volunteer to work at the emancipation shelters, where we rehabilitate victims. It helps them to meet someone who has recovered from the same ordeal.`
+			`On my trip over here, Syndicate ships intercepted us. Before they could get a shot off, one of those big ships jumped in from nowhere. The last thing I saw was a Syndicate Protector being boarded.`
 		word
 			`"`
 
@@ -473,7 +537,7 @@ news "unemployed youth"
 
 news "union organizer"
 	location
-		government "Syndicate"
+		government "Syndicate" "Independent (Korath-Allied) Port"
 		not attributes "research" "frontier"
 	name
 		word
@@ -510,7 +574,7 @@ phrase "small trash item"
 
 news "waste collector"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		attributes "dirt belt" "urban" "factory"
 		not attributes "paradise" "station"
 	name
@@ -536,7 +600,7 @@ news "waste collector"
 
 news "dock worker"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
@@ -730,6 +794,56 @@ news "loan officer"
 			`"`
 
 
+news "humanika efreti engineer"
+	location
+		planet "New Tortuga"
+	name
+		word
+			"Engineer"
+			"Inventor"
+			"Research engineer"
+	message
+		word
+			# These are copied from elsewhere in this file:
+			`"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."`
+			`"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."`
+			`"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space..." The engineer gives a long-winded and confusing explanation of hyperlanes.`
+			`"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there was a method to remove hyperspace lanes, though, whoever discovered it would effectively control human space."`
+			`"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."`
+			`"With the right equipment, you can see inside a planet as easily as if it were... um... a tomato held up in front of an arc lamp. Sorry, I'm awful at similes."`
+			`"I have equipment that would let me trigger an earthquake just by pressing a button. That's why they never allow me into the office when I'm drunk."`
+			`"A few times, I've traveled so deep underground that the rock felt warm to the touch. But I imagine that's nowhere near as exciting as traveling through space."`
+			`"My kids keep asking me to bring a bar of plutonium home for them to play with. Some stupid video convinced them that it would give them super powers."`
+
+			# Observing Korath tech or directly importing it.
+			`"The blast doors to our bunker cities are ten meters thick, made of the most durable armor we know of. Normally, it would be impossible to machine them that size, but we developed new techniques by reverse-engineering some imported machinery."`
+			`"I've never seen an alloy like we have on our drill heads. I wasn't able to drill half as deep back on New Wales."`
+			`"Our bunker cities use a lot of light-weight composites, which is why we're able to build them so large."`
+			`"A while back, we imported some machining tools that triple our engine manufacturing rate. I think we've almost caught up to Wayfarer in efficiency."`
+			`"We have a prototype ion engine that produces 50% more thrust, at triple the heat. Unfortunately, it tends to melt the ship's engine compartments and fly into the ship. I expect we'll have to cut down on thrust to compensate."`
+
+
+news "humanika efreti researcher"
+	location
+		planet "New Tortuga"
+	name
+		word
+			"Scientist"
+			"Researcher"
+	message
+		word
+			# These are copied from elsewhere in this file:
+			`"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."`
+			`"Don't ever forget that you have us to thank for humanity's ability to support our growing population."`
+			`"We've got student interns in the lab this month. A few of them are very bright!"`
+			`"Excuse me, captain, I have to resume work on a paper I'm co-authoring. Would you like an advance copy?"`
+			`"My research concerns force fields. No, not those kinds of force fields."`
+
+			# New ones, relating to observing the Korath
+			`"There's a really creative alloy we found recently, which can dissipate heat faster than anything we've ever seen. Standard techniques can't reproduce it, so we're trying some machinery smuggled from the Deep."`
+			`"Humanity has had nanofluids for centuries, but we've come upon a substance that quadruples the heat capacity of water. Unfortunately, the particles break down quickly, so we'll need to design a regenerative component before we can use it."`
+			`"You know those expensive microbots we use for organ repair? It turns out you can modify them to repair metal instead. The power requirements are enormous, so we'll have to develop new microgenerators first."`
+
 
 news "hyperspace relay engineer"
 	location
@@ -782,7 +896,7 @@ news "hyperspace scientist"
 
 news "geological engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
 		attributes "mining" "volcanic"
 	name
 		word
@@ -941,7 +1055,7 @@ news "economist"
 
 news "mechanic"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
@@ -983,7 +1097,7 @@ news "mechanic on frozen world"
 
 news "ship salesperson"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
 		attributes "shipyard"
 	name
 		word
@@ -1041,8 +1155,8 @@ news "nuclear technician"
 
 news "substance abuse counselor"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "poor" "dirt belt" "near earth" "south"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
+		attributes "poor" "dirt belt" "near earth" "south" "pirate-friendly"
 	name
 		word
 			"Substance abuse counselor"
@@ -1163,8 +1277,8 @@ news "actor"
 
 news "musician"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "south" "paradise" "near earth"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
+		attributes "south" "paradise" "near earth" "Independent (Korath-Allied)"
 	name
 		word
 			"Musician"
@@ -1537,6 +1651,46 @@ news "religious"
 
 
 
+news "proselytizing"
+	location
+		government "Pirate" "Independent (Korath-Allied) Port"
+		attributes "religious"
+	name
+		word
+			"Missionary"
+			"Sage"
+			"Mediator"
+			"Proselytizer"
+	message
+		word
+			`"`
+		word
+			# Actual quotes from about repentance and forgiveness, from religious texts or leaders.
+			# Do not change the wording or punctuation; they're all either original, or
+			# from widely-accepted translations. Every detail is how it is for a reason.
+			"Blessed is the one whose transgressions are forgiven, whose sins are covered."
+			"Hatred stirs old quarrels, but love overlooks insults."
+			"Every son of Adam sins, the best of the sinners are those who repent."
+			"Turn to God with sincere repentance, in the hope that your Lord will remove from you your ills and admit you to Gardens beneath which Rivers flow."
+			"Forgiveness is the might of the mighty; forgiveness is sacrifice; forgiveness is quiet of mind."
+			"Help thy brother's boat across, and Lo! Thine own has reached the shore."
+			"Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned."
+			"Better than a thousand hollow words, is one word that brings peace."
+			"You will not be punished for your anger, you will be punished by your anger."
+			"Who shows pity for humankind, the Heavens will pity in turn."
+			"When the time comes for an accounting of man's deeds, it is too late to do anything about them."
+			"Evil inclination is sweet at the start and bitter at the end."
+			"The human race will begin solving its problems on the day that it ceases taking itself so seriously."
+			"May you be free of The Curse of Greyface. May the Goddess put twinkles in your eyes. May you have the knowledge of a sage, and the wisdom of a child."
+
+			# These two are copied from "religious"
+			"The path to enlightenment is fraught with sacrifice."
+			"When we spend our lives chasing desire, we find that it turns to ashes in our mouths, and that which we seek most becomes a prison. What do you seek?"
+		word
+			`"`
+
+
+
 news "tourist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1800,9 +1954,10 @@ news "syndicate soldier"
 
 
 
-news "pirate"
+news "pirate (slavery ban)"
 	location
-		government "Pirate"
+		government "Pirate" "Independent (Korath-Allied) Port"
+		attributes "slavery ban"
 	name
 		word
 			"Pirate"
@@ -1816,59 +1971,100 @@ news "pirate"
 	message
 		word
 			`"`
-		word
-			"Next time we meet up, maybe I'll be plundering your ship."
-			"What are you looking at, punk?"
-			"Hobbes and Darwin got it right: it's a war of all against all, and only the strongest deserve to survive. Without that pistol at your side, I'd slit your throat right now and take everything you own."
-			"Slaves for sale! Slaves for sale! Here is an exotic beauty with eyes full of fire that you can buy!"
-			"Wanna buy some death sticks?"
-			"Sometimes I wonder if what I'm doing is wrong."
-			"Every morning I look in the mirror... and I like what I see."
-			"Why did I become a pirate? It's the only way to truly be free. I was born a slave, and look at me now! I command a fleet of warships. I pay no taxes. I obey no laws. What a life!"
-			"Just watch yourself, and maybe we'll let you live."
-			"At half your age, I was richer than you'll ever be. This is the life, baby."
-			"Don't look at me like that. You wouldn't survive five minutes of my life."
-			"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
-			"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
-			"Just a word of warning: don't fall asleep in the hotels here."
-			"Betcha I can name a combat use for every ship in the sky. Flivver? Might as well be a Sparrow. Freighter? Umm... it works as a great plundering vessel. Surveillance drone? Don't make me shoot you."
-			"Bah. How can you not gag at the suffocating rules that the Republic forces onto you? I mean, banning chickens with dynamite strapped to them? Ridiculous!"
-			"Yo, yo, yo, what's up, suckers! I'm high on ${contraband}! Wanna freebie? No? Coward!"
-			"You look like a good captain. I'd bet you'd be a better slave!"
-			"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
-			"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
-			"Look at me like that one more time, and I'll give you plastic surgery free of charge."
-			"Crime pays, and the hours are good!"
-			"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
-			"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
-			"Your credits or your life! Oh, you don't have either? Never mind then."
-			"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
-			"Did I attack you? Well, I've attacked many people, could you be a bit more specific?"
-			"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
-			"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
-			"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
-			"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
-			"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
-			"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
-			"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
-			"Living on the edge."
-			"You can't win the game if you're afraid to lose it."
-			"Good things come to those who wait, and then I rob those from them very quickly."
-			"Two heads are better than one, since you can put a spiked head on each side of the road if you have two."
-			"It takes two to make a bargain. Just kill the first fool that says no, and the second one will quickly agree to my demands."
-			"I fought the law, and I won."
-			"Sorry, need to take a call. 'Hi, this is Joe from Syndicate support. You seem to have a problem with your flight computer.'"
-			"Me a pirate? Come on! Do I look like the type of person that kills twenty-one colonists on a Corvette in Eltanin? Chops them up? Sells their remains as meat to local restaurants? And then goes and dines in one of those restaurants?"
-			"I kill people for money, but you are nice, so I'll kill you for free."
-			"Stop looking at me, or I will totally kill you dead."
+		phrase
+			"pirate news without slavery"
 		word
 			`"`
 
 
 
+news "pirate"
+	location
+		government "Pirate" "Independent (Korath-Allied) Port"
+		not attributes "slavery ban"
+	name
+		word
+			"Pirate"
+			"Renegade"
+			"Marauder"
+			"Looter"
+			"Buccaneer"
+			"Freebooter"
+			"Plunderer"
+			"Bandit"
+	message
+		word
+			`"`
+		phrase
+			# The 3 and 43 match the number of news stories in each phrase.
+			# Please update these if you change those phrases.
+			"pirate slavery news" 3
+			"pirate news without slavery" 43
+		word
+			`"`
+
+
+# The pirate news has been split into slavery and non-slavery news so
+# that planets with a slavery ban won't display the slavery news.
+
+phrase "pirate slavery news"
+	word
+		"Slaves for sale! Slaves for sale! Here is an exotic beauty with eyes full of fire that you can buy!"
+		"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
+		"You look like a good captain. I'd bet you'd be a better slave!"
+
+
+phrase "pirate news without slavery"
+	word
+		"Next time we meet up, maybe I'll be plundering your ship."
+		"What are you looking at, punk?"
+		"Hobbes and Darwin got it right: it's a war of all against all, and only the strongest deserve to survive. Without that pistol at your side, I'd slit your throat right now and take everything you own."
+		"Wanna buy some death sticks?"
+		"Sometimes I wonder if what I'm doing is wrong."
+		"Every morning I look in the mirror... and I like what I see."
+		"Why did I become a pirate? It's the only way to truly be free. I was born a slave, and look at me now! I command a fleet of warships. I pay no taxes. I obey no laws. What a life!"
+		"Just watch yourself, and maybe we'll let you live."
+		"At half your age, I was richer than you'll ever be. This is the life, baby."
+		"Don't look at me like that. You wouldn't survive five minutes of my life."
+		"Just knocked over a fat merchant ship. Can't wait to blow all this cash on slaves and drugs!"
+		"I used to be a soft-bellied merchant captain before my life took a turn. Gotta get tough or get dead in this galaxy."
+		"Just a word of warning: don't fall asleep in the hotels here."
+		"Betcha I can name a combat use for every ship in the sky. Flivver? Might as well be a Sparrow. Freighter? Umm... it works as a great plundering vessel. Surveillance drone? Don't make me shoot you."
+		"Bah. How can you not gag at the suffocating rules that the Republic forces onto you? I mean, banning chickens with dynamite strapped to them? Ridiculous!"
+		"Yo, yo, yo, what's up, suckers! I'm high on ${contraband}! Wanna freebie? No? Coward!"
+		"You look like a good captain. I'd bet you'd be a better slave!"
+		"Hmph. You 'freelancers' have it easy, relying on the Navy as a crutch. If you wanna be your own captain, you've gotta strike out on your own!"
+		"Ever heard of the game Mafia? My life's a real-life version of that, 'cept instead of a town, there's merchants, and instead of a mafia, there's us, and the town has no way to survive!"
+		"Look at me like that one more time, and I'll give you plastic surgery free of charge."
+		"Crime pays, and the hours are good!"
+		"I'll retire as a security adviser in the Paradise Worlds. You know the saying: An old poacher makes the best gamekeeper."
+		"Hey, that's a very nice ship you have there. Would be a shame if something happened to it. Do you want to make a donation to the System Safety Fund?"
+		"Your credits or your life! Oh, you don't have either? Never mind then."
+		"Don't count on the Navy to save you if me or any of my friends attack you. Those Navy goons only hang around near the rich planets."
+		"Did I attack you? Well, I've attacked many people, could you be a bit more specific?"
+		"The size of my crimes no longer matter; one may as well hang for a sheep as for a lamb."
+		"Hey! We have this new Piracy As A Service offering. Want someone ambushed without incriminating yourself? Just tell me who, where, and how much it's worth to you."
+		"I don't get it; if I donate a kidney, then I'm some sort of hero. But if I donate 7 kidneys, then suddenly I'm some sort of monster."
+		"I wasn't close to my parents when they died. Which was quite fortunate, since they died in an exploding ship."
+		"I hate double standards; burn a body in a crematorium and you're a professional, burn a body in a spaceship and you're a criminal."
+		"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
+		"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
+		"Living on the edge."
+		"You can't win the game if you're afraid to lose it."
+		"Good things come to those who wait, and then I rob those from them very quickly."
+		"Two heads are better than one, since you can put a spiked head on each side of the road if you have two."
+		"It takes two to make a bargain. Just kill the first fool that says no, and the second one will quickly agree to my demands."
+		"I fought the law, and I won."
+		"Sorry, need to take a call. 'Hi, this is Joe from Syndicate support. You seem to have a problem with your flight computer.'"
+		"Me a pirate? Come on! Do I look like the type of person that kills twenty-one colonists on a Corvette in Eltanin? Chops them up? Sells their remains as meat to local restaurants? And then goes and dines in one of those restaurants?"
+		"I kill people for money, but you are nice, so I'll kill you for free."
+		"Stop looking at me, or I will totally kill you dead."
+
+
+
 news "merchant in pirate space"
 	location
-		government "Pirate"
+		government "Pirate" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 	name
 		phrase
 			"merchant names"
@@ -2324,7 +2520,7 @@ news "safety posters"
 
 news "graffiti on spaceport wall"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 	name
 		word
 			"Graffiti painted on a wall"

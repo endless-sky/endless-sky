@@ -479,6 +479,7 @@ void Hardpoint::UpdateArc()
 	// Restore the initial value (from baseAttributes).
 	isOmnidirectional = baseAttributes.isOmnidirectional;
 	baseAngle = baseAttributes.baseAngle;
+
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
