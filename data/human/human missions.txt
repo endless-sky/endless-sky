@@ -8476,12 +8476,12 @@ mission "Tavish and Kormak 6"
 			`	Tavish approaches you before you make the trek back to your ship. "I have one final request before you go, Captain <last>.`
 			`	He nods back to jutting black rock he believes is part of an ancient ship. "We're going to spend two months here on our dig. If you could come back in that time to give us one final ride, we'd appreciate it."`
 			`	"Appreciate it." Kormak echoes.`
-			`	Tavish looks a little apprehensive, "We still don't have any money. So it may be difficult for us to convince another ship to transport us via radio. So please do come back in two months."`
+			`	Tavish looks a little apprehensive, "Without your aid our predicament will be most perilous. Between the wreckage and our equipment I hypothesize we will have at least 90 tons of cargo to transplant. However, we are still penniless. It may prove challenging to persuade another ship to transport us via radio. So please do come back in two months."`
 			choice
 				`	"I'll come back. Don't worry."`
 				`	"We'll see. No promises."`
 				`	"I do what I want."`
-			`	Tavish nods, "In that case we quite a bit of work to do, Captain. Take care."`
+			`	Tavish nods, "In that case we've quite a bit of work to do, Captain. Take care."`
 			`	He working on prepping the dig site, while Kormak escorts you back to your ship.`
 			`	Kormak takes your hand in his, "May stone guide you." he says, and then disappears back into the jungle.`
 
@@ -8498,7 +8498,7 @@ mission "Tavish and Kormak 7"
 	source "New India"
 	destination "Alexandria"
 	passengers 2
-	cargo "Scientific Research Equipment" 25
+	cargo "Scientific Research Equipment" 90
 	on offer
 		conversation
 			`	As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
@@ -8528,21 +8528,22 @@ mission "Tavish and Kormak 7"
 			`	The two explorers give eachother a knowing nod. Clearly pleased they could depend on you, and then begin the process of loading up your ship.`
 			`	Along with their weathered equipment they have a few boxes of artifacts they managed to pull from the ship.`
 			`	"Can't wait for the Society to see what we found!" Tavish beams.`
-			`	Finally, there is a huge piece of ancient equipment that must weigh many tons being carried by most of the robotic dollies onto your ship.`
-			`	Tavish grins as he watches it get loaded. "The main ship itself was bricked. Old and mostly destroyed before it even hit the planet. But that piece broke off and was in slightly better shape. It's a little too big to show off to our fellows, but I do believe it will be worth a fair bit of credits to right buyer. But we can talk about that more when we arrive."`
+			`	Finally, there is a huge lump of black and twisted alien wreckage that must weigh over 50 tons. It is being carried carefully by an army of strained robotic dollies onto your ship.`
+			`	Tavish grins as he watches it get loaded. "The main ship itself was bricked. Old and mostly destroyed before it even hit the planet. But that piece broke off and was in slightly better shape. It's a little too big to show off to our fellows, but I do believe it will be worth a fair bit of credits to right patron. But we can talk about that more when we arrive."`
 			`	With that everything and everyone is on board.`
-			`	"To Alexandria!" Tavish shouts with obvious excitement.`
+			`	"Hup! Hup! To Alexandria!" Tavish shouts with obvious excitement.`
+			`	Kormak cracks his knuckles and grins, "Finally."`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		outfit "Salvaged Artifact" 1 # needs a name
 		conversation
-			`	Kormak and Tavish have changed back into their three piece suits and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of people dressed in a similar fashion come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
+			`	Kormak and Tavish have changed back into their gentlemanly attire and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of similarly overdressed people have come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
 			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
-			`	"This is where we part ways, Captain <last>." Tavish says with a hint of sadness. "It was truly an adventure. Perhaps some day we will meet again."`
-			`	Tavish's sniffs, "Apololgies. Allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you we are instead bequeathing to you some salvaged equipment we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value, however we think a collector would pay well for it. Quite well."`
-			`	He hands you a piece of paper with a name on it, "We've had dealings with this fellow from time to time. He calls himself Weland and I am certain he'd be willing to buy it. You can find him on Wayfarer."`
+			`	"This is where we part ways, Captain <last>." Tavish says with a hint of sadness. "It was truly an adventure. Perhaps one day our paths will cross again."`
+			`	Tavish's sniffs, "Apololgies, allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you we are instead bequeathing to you a large artifact we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value, however we think a collector would pay well for it. Quite well."`
+			`	He hands you a piece of paper with a name on it, "We've had dealings with this eccentric fellow from time to time. He calls himself Weland and I am certain he'd be willing to purchase it. You can find him on Wayfarer."`
 			choice
 				`	"Thanks, Tavish. It's been grand."`
 				`	"This better be worth it."`
