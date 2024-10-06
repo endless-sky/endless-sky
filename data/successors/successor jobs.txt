@@ -666,6 +666,9 @@ mission "Successors: Researchers Out 1"
 	source
 		attributes "successor"
 		attributes "education"
+	"distance calculation settings"
+		"all wormholes"
+		"assumes jump drive"
 	stopover
 		government "Predecessor"
 	on stopover
@@ -692,6 +695,9 @@ mission "Successors: Large Researchers Out 1"
 	source
 		attributes "successor"
 		attributes "education"
+	"distance calculation settings"
+		"all wormholes"
+		"assumes jump drive"
 	stopover
 		government "Predecessor"
 	on stopover
