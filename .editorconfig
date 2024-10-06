@@ -49,3 +49,7 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
+
+[*.json]
+indent_size = 2
+indent_style = space
