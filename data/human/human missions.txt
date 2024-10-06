@@ -7589,7 +7589,7 @@ mission "Tavish and Kormak 2"
 	on offer
 		conversation
 			`The layout of the crowded spaceport is... slipshod, at best. It's robustly evident that its growing needs have consistantly outpaced its capacity and materials. Dead ends, unfinished pathways, incorrectly labeled buildings and maps all conspire to slow your progress.`
-			`	Despite the spaceport's best efforts you manage to successfully work your way to the SpaceFork storage facility, which has moved twice from its earlier warehouses that each still bear its name, and instead is now housed what is still being called the Pentacorps Mercentile Cooperative structure.`
+			`	Despite the spaceport's best efforts you manage to successfully work your way to the SpaceFork storage facility, which has moved twice from its earlier warehouses that each still bear its name, and instead is now housed in what is still being called the Pentacorps Mercentile Cooperative structure.`
 			`	You approach a clearly unhappy Tavish and Kormak arguing with a certified SpaceFork associate.`
 			`	"I am sorry, sirs. But without your SpaceFork Stop-N-Drop credentials there is no way I can provide you access to the facility. The employee handbook is very clear on the matter." The SpaceFork associate jabs a finger at the open manual in their hands.`
 			choice
@@ -7597,14 +7597,14 @@ mission "Tavish and Kormak 2"
 				`	(Say nothing.)`
 					goto nothing
 
-			`	Kormak's thick, meaty hand is suddenly on your shoulder. His grip is like iron, but he does not squeeze hard enough to hurt you. `
+			`	Kormak's thick, meaty hand is suddenly on your shoulder. His grip is like iron, but he does not squeeze hard enough to hurt you.`
 			`	"Wait," is all the lumbering giant says.`
 
 			label nothing
-			`	A subtle change seems sweep over Tavish. The whole way he carries himself as shifted and suddenly he seems taller, more dignified, more important. His bright eyes soften and somehow seems warmer than before.`
+			`	A subtle change seems to sweep over Tavish. The way he carries himself shifts and suddenly he seems taller, more dignified, more important. His bright eyes soften and somehow seems warmer than before.`
 			`	He steps closer to the SpaceFork associate, "Todd, believe me, I completely understand. I know you're the kind of chap who always follows the rules, because without rules there's chaos."`
 			`	Todd, the associate, nods slowly.`
-			`	"We need more good fellows like you, Todd. Imagine how much better run Clark would be if more people took their duties seriously." Tavish's says in a conspiritorial voice.`
+			`	"We need more good fellows like you, Todd. Imagine how much better run Clark would be if more people took their duties seriously." Tavish says in a conspiritorial voice.`
 			`	Todd again nods, this time with some vigor.`
 			`	Tavish then launches into a monologue about systems and rules and how important the human element is to correcting those systems. At one point Tavish pulls out an ID and proclaims he's the "Dean-Praetor of the Oxford-Harvard Science and Research Institute on Chiron."`
 			`	Finally, Tavish finishes his speech and places his hands on Todd's and looks the man square in the eyes. "Todd, my dear man, be the human element in the machine, and take us to our storage container. If not for me, than for science."`
@@ -7639,10 +7639,10 @@ mission "Tavish and Kormak 2"
 			`	Tavish sighs, holds his hands up and backs away. "Your turn." He mouths to Kormak.`
 			`	Kormak steps up to the kiosk, and eyes the still menacing guard.`
 			`	"Ser," he says to the woman, using the old Deep honorific, and then lightining quick, his hand lashes out and snatches the suprised guard by the throat. The guard squirms, gasping for air as Kormak holds him up a few inches from the ground. "Please, tell us everything you know about Hans Fuller and his ship, The Broken Record." `
-			`	The area around you is momentarily frozen, shocked by Kormak's quick and easy violence. "Tell us what we need. And this man will be fine. Call for help, or refuse us, and this will get messy for everyone."`
-			`	The guard is so red in the face it looks like he's about to pass out. "O-okay. Just don't hurt anyone, please!" The official moves to her terminal, strikes her keyboard for a few moments and then looks back up. "It s-says he's been impounded multiple times by for selling contrband from Deadman's Cove. Th-that's it." `
+			`	Everyone freezes, shocked by Kormak's quick and easy violence. "Tell us what we need. And this man be fine. Call for help and this get messy for everyone."`
+			`	The guard's face has turned a deep shape of red and it looks like he's about to pass out. "O-okay. Just don't hurt anyone, please!" The official moves to her terminal, strikes her keyboard for a few moments and then looks back up. "It s-says he's been impounded multiple times by for selling contrband from Deadman's Cove. Th-that's it." `
 			`	Kormak lets the now unconscious guard's body slump to the floor. "Thank you, ser." Kormak tips his hat to her and turns to Tavish.`
-			`	Tavish shrugs, "Splendid work, though I do think we should run now."`
+			`	Tavish sighs, "Splendid work, though I do think we should run now."`
 			`	He turns to you. "We'll meet you at your ship."`
 			`	The two of them then sprint off before the authorities have time to respond.`
 			choice
@@ -7660,7 +7660,7 @@ mission "Tavish and Kormak 2"
 			`	Tavish holds out his hands, "True! Most true! And we categorically thank you for your bottomless hospitality so far."`
 			`	"Bottomless." Kormak affirms.`
 			`	"But our grand adventure has just begun and surely you don't want to leave now before you've seen how it all unfolds." Tavish gives you a winning smile.`
-			`	"What's a few extra jumps compared to learning the most profound secrets of the universe? Come now, old chap, now is not the time to withdraw from the expedition!" `
+			`	"What's a few extra jumps compared to learning the most profound secrets of the universe? Come now, old chap, let's not allow some minor discomfort deter you from this adventure." `
 			choice
 				`	"Fine, but first you need to answer some question."`
 					goto questions
@@ -7668,7 +7668,7 @@ mission "Tavish and Kormak 2"
 
 			label quit
 			`	Tavish frowns and sighs, but says nothing. He looks at Kormak and then begins to wander away.`
-			`	Kormak glares at you and then says, "We could have had fun."`
+			`	Kormak glares at you and then says, "Could have had fun."`
 			`	The large man turns and follows Tavish back into Clark's wild spaceport.`
 				decline
 			
@@ -7691,7 +7691,7 @@ mission "Tavish and Kormak 2"
 					goto equipment1
 					to display
 						not "equipment1"
-				`	"I have no more questions. But for now on I'm in charge. Now, let's go to Deadman's Cove."`
+				`	"I have no more questions. But for now on I decide how we handle situations. Now, let's go to Deadman's Cove."`
 					goto end
 
 			label who1
@@ -7701,7 +7701,7 @@ mission "Tavish and Kormak 2"
 			`	"Kormak and Tavish." Kormak corrects him.`
 			`	"And," Tavish says ignoring Kormak, "we are doctors, researchers, and most importantly, explorers!"`
 			`	Tavish pauses and levels a look at Kormak, "At least, I think we're both doctors."`
-			`	"From very small school in the Deep. Likely not heard of it." Kormak says nonchalantly.`
+			`	"Very small school in Deep. Likely not heard of." Kormak says nonchalantly.`
 			choice
 				`	"You're not the "Dean-Praetor of the Oxford-Harvard Science and Research Institue, though, are you?" `
 				`	"I am pretty sure you lied to that SpaceFork employee about being a "Dean-Praetor".`
@@ -7725,7 +7725,7 @@ mission "Tavish and Kormak 2"
 			action
 				set "india1"
 			`	Tavish clears his throat, and then says quietly, "New India is a very recently colonized world. It is filled with life, and the remnants of life that have yet to be discovered."`
-			`	He leans in and says even more quietly, "On a recent expedition Kormak and discovered what we believe to be remains of a crashed ship. A xeno-ship."`
+			`	He leans in and says even more quietly, "On a recent expedition Kormak and I discovered what we believe to be remains of a crashed ship. A xeno-ship."`
 			`	"Aliens." Kormak adds helpfully.`
 			`	Tavis straightens up, "That is what we're after, and why we need your help! So you see you really are on the cutting edge of discovery with us. A fellow adventurer and explorer!"`
 			`	"Soggy." Kormak affirms.`
@@ -7748,7 +7748,7 @@ mission "Tavish and Kormak 2"
 				goto questions2
 
 			label end
-			`	Tavish brightens as he says, "I knew an erudite fellow such as yourself would see the value of our work. And for now on we will check with you before we do anthing too untoward, right, Kormak?"`
+			`	Tavish brightens as he says, "I knew an erudite fellow such as yourself would see the value of our work. And for now on we will check with you before we do anything too untoward, right, Kormak?"`
 			`	The red-haired giant nods, "Ask first."`
 			`	"Grand." Tavish claps, "Now, let's see what we can discover at Deadman's Cove."`
 				accept
