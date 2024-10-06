@@ -1676,9 +1676,9 @@ mission "Wanderers: Sestor Attack"
 			fighters
 				names "kor sestor fighter"
 			variant
-				"Tek Far 109" 3
-				"Far Lek 14" 27
-				"Far Osk 27" 21
+				"Tek Far 109" 2
+				"Far Lek 14" 18
+				"Far Osk 27" 14
 		fleet
 			names "kor sestor"
 			fighters
@@ -1706,7 +1706,7 @@ mission "Wanderers: Sestor Attack"
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf" 4
+				"Autumn Leaf" 3
 	npc
 		government "Wanderer"
 		personality heroic
