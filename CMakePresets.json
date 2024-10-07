@@ -227,11 +227,10 @@
         "strategy": "external"
       },
       "cacheVariables": {
-        "ES_CREATE_BUNDLE": "ON",
         "VCPKG_HOST_TRIPLET": "macos-arm64-ci",
         "VCPKG_TARGET_TRIPLET": "macos-arm64-ci",
         "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.12"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "11"
       }
     },
     {
@@ -456,7 +455,7 @@
       "displayName": "MacOS ARM CI build",
       "configurePreset": "macos-arm-ci",
       "inherits": "ci"
-	},
+	  },
     {
       "name": "clang-cl-ci",
       "displayName": "VS CI build",

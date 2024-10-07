@@ -226,24 +226,9 @@ jobs:
       with:
         configurePreset: 'macos-arm-ci'
         buildPreset: 'macos-arm-ci'
-        #testPreset: 'macos-arm-ci'
-    - name: Package Application
-      run: |
-        mkdir "${{ env.OUTPUT }}"
-        cd build
-        cd ci
-        ls
-        cd ../..
-        cp -r "build/ci/Endless Sky.app" "${{ env.OUTPUT }}"
-        ln -s /Applications "${{ env.OUTPUT }}"
-        until hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"; do echo "hdiutil create failed, retrying..."; done
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ env.OUTPUT }}.dmg
-        path: ${{ env.OUTPUT }}.dmg
-    #- name: Run Benchmarks
-    #  run: ctest --preset macos-arm-benchmark
+        testPreset: 'macos-arm-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-arm-benchmark
 
 
   build_documentation_doxygen:
