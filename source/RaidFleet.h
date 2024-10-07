@@ -22,11 +22,13 @@ class Fleet;
 
 
 
-// Information about how a fleet intended for raiding behaves.
+///
+/// Information about how a fleet intended for raiding behaves.
 class RaidFleet {
 public:
 	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-	// Handles the addition and removal of raid fleets from the given vector.
+	///
+	/// Handles the addition and removal of raid fleets from the given vector.
 	static void Load(std::vector<RaidFleet> &raidFleets, const DataNode &node, bool remove, int valueIndex);
 	const Fleet *GetFleet() const;
 	double MinAttraction() const;

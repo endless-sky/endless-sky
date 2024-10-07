@@ -30,9 +30,9 @@ class WrappedText;
 
 
 
-// Represents a rect on the screen that needs to display text. The text can be
-// larger than the display area, in which case the class will allow the text
-// to scroll in response to use input.
+/// Represents a rect on the screen that needs to display text. The text can be
+/// larger than the display area, in which case the class will allow the text
+/// to scroll in response to use input.
 class TextArea : public Panel
 {
 public:

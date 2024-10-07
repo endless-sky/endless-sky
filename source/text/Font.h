@@ -28,10 +28,10 @@ class Point;
 
 
 
-// Class for drawing text in OpenGL. Each font is based on a single image with
-// glyphs for each character in ASCII order (not counting control characters).
-// The kerning between characters is automatically adjusted to look good. At the
-// moment only plain ASCII characters are supported, not Unicode.
+/// Class for drawing text in OpenGL. Each font is based on a single image with
+/// glyphs for each character in ASCII order (not counting control characters).
+/// The kerning between characters is automatically adjusted to look good. At the
+/// moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
 	Font() noexcept = default;
@@ -39,16 +39,20 @@ public:
 
 	void Load(const std::string &imagePath);
 
-	// Draw a text string, subject to the given layout and truncation strategy.
+	///
+	/// Draw a text string, subject to the given layout and truncation strategy.
 	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
 	void DrawAliased(const DisplayText &text, double x, double y, const Color &color) const;
-	// Draw the given text string, e.g. post-formatting (or without regard to formatting).
+	///
+	/// Draw the given text string, e.g. post-formatting (or without regard to formatting).
 	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 
-	// Determine the string's width, without considering formatting.
+	///
+	/// Determine the string's width, without considering formatting.
 	int Width(const std::string &str, char after = ' ') const;
-	// Get the width of the text while accounting for the desired layout and truncation strategy.
+	///
+	/// Get the width of the text while accounting for the desired layout and truncation strategy.
 	int FormattedWidth(const DisplayText &text, char after = ' ') const;
 
 	int Height() const noexcept;

@@ -27,10 +27,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Template representing a list of objects of a given type where each item in the
-// list is weighted with an integer. This list can be queried to randomly return
-// one object from the list where the probability of an object being returned is
-// the weight of the object over the sum of the weights of all objects in the list.
+/// Template representing a list of objects of a given type where each item in the
+/// list is weighted with an integer. This list can be queried to randomly return
+/// one object from the list where the probability of an object being returned is
+/// the weight of the object over the sum of the weights of all objects in the list.
 template <class Type>
 class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
@@ -44,14 +44,17 @@ public:
 	const Type &Get() const;
 	std::size_t TotalWeight() const noexcept { return total; }
 
-	// Average the result of the given function by the choices' weights.
+	///
+	/// Average the result of the given function by the choices' weights.
 	template <class Callable>
 	std::enable_if_t<
 		std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
-		// The return type of WeightedList::Average, if the above test passes:
+		///
+		/// The return type of WeightedList::Average, if the above test passes:
 		std::invoke_result_t<Callable&&, const Type&&>
 	> Average(Callable c) const;
-	// Supplying a callable that does not return an arithmetic value will fail to compile.
+	///
+	/// Supplying a callable that does not return an arithmetic value will fail to compile.
 
 	iterator begin() noexcept { return choices.begin(); }
 	const_iterator begin() const noexcept { return choices.begin(); }
@@ -160,7 +163,8 @@ template <class Type>
 template <class ...Args>
 Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 {
-	// All weights must be >= 1.
+	///
+	/// All weights must be >= 1.
 	if(weight < 1)
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
 

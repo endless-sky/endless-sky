@@ -32,9 +32,9 @@ class UI;
 
 
 
-// UI panel for loading and saving games. The game is automatically saved when
-// the player takes off from any planet, so if they want to be able to go back
-// to a previous game state they must save a "snapshot" of that state.
+/// UI panel for loading and saving games. The game is automatically saved when
+/// the player takes off from any planet, so if they want to be able to go back
+/// to a previous game state they must save a "snapshot" of that state.
 class LoadPanel : public Panel {
 public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
@@ -43,7 +43,8 @@ public:
 
 
 protected:
-	// Only override the ones you need; the default action is to return false.
+	///
+	/// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
@@ -54,12 +55,15 @@ protected:
 private:
 	void UpdateLists();
 
-	// Snapshot name callback.
+	///
+	/// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
 	void WriteSnapshot(const std::string &sourceFile, const std::string &snapshotName);
-	// Load snapshot callback.
+	///
+	/// Load snapshot callback.
 	void LoadCallback();
-	// Delete callbacks.
+	///
+	/// Delete callbacks.
 	void DeletePilot(const std::string &);
 	void DeleteSave();
 
@@ -72,7 +76,8 @@ private:
 	std::map<std::string, std::vector<std::pair<std::string, std::time_t>>> files;
 	std::string selectedPilot;
 	std::string selectedFile;
-	// If the player enters a filename that exists, prompt before overwriting it.
+	///
+	/// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
 
 	const Rectangle pilotBox;

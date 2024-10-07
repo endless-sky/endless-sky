@@ -103,14 +103,14 @@ segment_exclude = [re.compile(regex) for regex in [
 	"^(public|protected|private|default):$"
 ]]
 # Precompiled  helper regexes
-after_comment = re.compile("[^\\s#]")
+after_comment = re.compile("/?[^/\\s#]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
 
 # List of "" and <> includes to be treated as the other type;
 # that is, any listed "" include should be grouped with <> includes,
 # and vice versa.
-reversed_includes = ["\"opengl.h\""]
+reversed_includes = ["\"opengl.h\"", "\"../opengl.h\""]
 # The list of files for which the include checks are skipped.
 exclude_include_check = ["source/main.cpp"]
 

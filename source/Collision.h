@@ -20,21 +20,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Represents a collision between a projectile and a ship, asteroid, or minable.
+///
+/// Represents a collision between a projectile and a ship, asteroid, or minable.
 class Collision {
 public:
-	// Initialize a Collision.
+	///
+	/// Initialize a Collision.
 	Collision(Body *hit, CollisionType collisionType, double range);
 
-	// The Body that was hit for this collision. May be a nullptr if nothing
-	// was directly hit.
+	/// The Body that was hit for this collision. May be a nullptr if nothing
+	/// was directly hit.
 	Body *HitBody();
-	// The type of Body that was hit.
+	///
+	/// The type of Body that was hit.
 	CollisionType GetCollisionType() const;
-	// The intersection range at which the collision occurred with the Body.
+	///
+	/// The intersection range at which the collision occurred with the Body.
 	double IntersectionRange() const;
 
-	// Compare two Collisions by their intersection range.
+	///
+	/// Compare two Collisions by their intersection range.
 	bool operator<(const Collision &rhs) const;
 
 

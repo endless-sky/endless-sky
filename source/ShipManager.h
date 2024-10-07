@@ -27,27 +27,34 @@ class Ship;
 
 
 
-// Used to contain and manage gift/take ship, and owns commands.
+///
+/// Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 
-	// Returns if the player meets the conditions; if they have the ships ready to be taken.
+	///
+	/// Returns if the player meets the conditions; if they have the ships ready to be taken.
 	bool CanBeDone(const PlayerInfo &player) const;
-	// Give or take the ships.
+	///
+	/// Give or take the ships.
 	void Do(PlayerInfo &player) const;
-	// Expands phrases and substitutions in the ship name, into a new copy of this ShipManager
+	///
+	/// Expands phrases and substitutions in the ship name, into a new copy of this ShipManager
 	ShipManager Instantiate(const std::map<std::string, std::string> &subs) const;
-	// The model of the concerned ship.
+	///
+	/// The model of the concerned ship.
 	const Ship *ShipModel() const;
-	// The identifier that the given/taken ship will have.
+	///
+	/// The identifier that the given/taken ship will have.
 	const std::string &Id() const;
 	bool Giving() const;
 
 
 private:
-	// Get a list of ships that satisfies these conditions, to take them away later.
+	///
+	/// Get a list of ships that satisfies these conditions, to take them away later.
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player) const;
 
 

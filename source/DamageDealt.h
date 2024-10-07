@@ -21,28 +21,32 @@ class Weapon;
 
 
 
-// A class representing the exact damage dealt to a ship for all
-// damage types, passed to Ship so that it can be applied. Includes
-// the weapon used, damage scale, and whether the damage was from a
-// blast for Ship::TakeDamage to access.
+/// A class representing the exact damage dealt to a ship for all
+/// damage types, passed to Ship so that it can be applied. Includes
+/// the weapon used, damage scale, and whether the damage was from a
+/// blast for Ship::TakeDamage to access.
 class DamageDealt {
 public:
 	DamageDealt(const Weapon &weapon, double scaling)
 		: weapon(weapon), scaling(scaling) {}
 
-	// The weapon that dealt damage.
+	///
+	/// The weapon that dealt damage.
 	const Weapon &GetWeapon() const;
-	// The damage scaling that was used for this damage.
+	///
+	/// The damage scaling that was used for this damage.
 	double Scaling() const;
 
-	// Instantaneous damage types.
+	///
+	/// Instantaneous damage types.
 	double Shield() const noexcept;
 	double Hull() const noexcept;
 	double Energy() const noexcept;
 	double Heat() const noexcept;
 	double Fuel() const noexcept;
 
-	// DoT damage types with an instantaneous analog.
+	///
+	/// DoT damage types with an instantaneous analog.
 	double Discharge() const noexcept;
 	double Corrosion() const noexcept;
 	double Ion() const noexcept;
@@ -50,17 +54,19 @@ public:
 	double Burn() const noexcept;
 	double Leak() const noexcept;
 
-	// Unique special damage types.
+	///
+	/// Unique special damage types.
 	double Disruption() const noexcept;
 	double Slowing() const noexcept;
 
-	// Hit force applied as a point vector.
+	///
+	/// Hit force applied as a point vector.
 	const Point &HitForce() const noexcept;
 
 
 private:
-	// Friend of DamageProfile so that it can easily set all the damage
-	// values.
+	/// Friend of DamageProfile so that it can easily set all the damage
+	/// values.
 	friend class DamageProfile;
 
 	const Weapon &weapon;

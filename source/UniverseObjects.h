@@ -62,31 +62,37 @@ class TaskQueue;
 
 
 
-// This class contains all active game objects, representing the current state of the Endless Sky universe.
-// All pointers to game objects must refer to the same UniverseObjects instance.
+/// This class contains all active game objects, representing the current state of the Endless Sky universe.
+/// All pointers to game objects must refer to the same UniverseObjects instance.
 class UniverseObjects {
-	// GameData currently is the orchestrating controller for all game definitions.
+	///
+	/// GameData currently is the orchestrating controller for all game definitions.
 	friend class GameData;
 	friend class TestData;
 public:
-	// Load game objects from the given directories of definitions.
+	///
+	/// Load game objects from the given directories of definitions.
 	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::string> &sources, bool debugMode = false);
-	// Determine the fraction of data files read from disk.
+	///
+	/// Determine the fraction of data files read from disk.
 	double GetProgress() const;
-	// Resolve every game object dependency.
+	///
+	/// Resolve every game object dependency.
 	void FinishLoading();
 
-	// Apply the given change to the universe.
+	///
+	/// Apply the given change to the universe.
 	void Change(const DataNode &node);
-	// Update the neighbor lists and other information for all the systems.
-	// (This must be done any time a GameEvent creates or moves a system.)
+	/// Update the neighbor lists and other information for all the systems.
+	/// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
 
-	// Check for objects that are referred to but never defined.
+	///
+	/// Check for objects that are referred to but never defined.
 	void CheckReferences();
 
-	// Draws the current menu background. Unlike accessing the menu background
-	// through GameData, this function is thread-safe.
+	/// Draws the current menu background. Unlike accessing the menu background
+	/// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
 
 
@@ -95,7 +101,8 @@ private:
 
 
 private:
-	// A value in [0, 1] representing how many source files have been processed for content.
+	///
+	/// A value in [0, 1] representing how many source files have been processed for content.
 	std::atomic<double> progress;
 
 
@@ -140,7 +147,8 @@ private:
 	std::map<std::string, std::string> helpMessages;
 	std::map<std::string, std::set<std::string>> disabled;
 
-	// A local cache of the menu background interface for thread-safe access.
+	///
+	/// A local cache of the menu background interface for thread-safe access.
 	mutable std::mutex menuBackgroundMutex;
 	Interface menuBackgroundCache;
 };

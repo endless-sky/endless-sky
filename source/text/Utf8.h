@@ -24,19 +24,21 @@ namespace Utf8 {
 	std::string ToUTF8(const wchar_t *str);
 #endif
 
-	// Check if this character is the byte order mark (BOM) sequence.
+	///
+	/// Check if this character is the byte order mark (BOM) sequence.
 	bool IsBOM(char32_t c);
 
-	// Skip to the next unicode code point after pos in utf8.
-	// Return string::npos when there are no more code points.
+	/// Skip to the next unicode code point after pos in utf8.
+	/// Return string::npos when there are no more code points.
 	std::size_t NextCodePoint(const std::string &str, std::size_t pos);
 
-	// Returns the start of the unicode code point at pos in utf8.
+	///
+	/// Returns the start of the unicode code point at pos in utf8.
 	std::size_t CodePointStart(const std::string &str, std::size_t pos);
 
-	// Decodes a unicode code point in utf8.
-	// Invalid codepoints are converted to 0xFFFFFFFF.
-	// pos skips to the next unicode code point after pos in utf8,
-	// or is set string::npos when there are no more code points.
+	/// Decodes a unicode code point in utf8.
+	/// Invalid codepoints are converted to 0xFFFFFFFF.
+	/// pos skips to the next unicode code point after pos in utf8,
+	/// or is set string::npos when there are no more code points.
 	char32_t DecodeCodePoint(const std::string &str, std::size_t &pos);
 }

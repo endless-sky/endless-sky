@@ -38,8 +38,8 @@ class Ship;
 
 
 
-// Class representing the common elements of both the shipyard panel and the
-// outfitter panel (e.g. the sidebar with the ships you own).
+/// Class representing the common elements of both the shipyard panel and the
+/// outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
@@ -49,10 +49,10 @@ public:
 
 
 protected:
-	// BuyResult holds the result of an attempt to buy. It is implicitly
-	// created from a string or boolean in code. Any string indicates failure.
-	// True indicates success, of course, while false (without a string)
-	// indicates failure, but no need to pop up a message about it.
+	/// BuyResult holds the result of an attempt to buy. It is implicitly
+	/// created from a string or boolean in code. Any string indicates failure.
+	/// True indicates success, of course, while false (without a string)
+	/// indicates failure, but no need to pop up a message about it.
 	class BuyResult {
 	public:
 		BuyResult(const char *error) : success(false), message(error) {}
@@ -76,7 +76,8 @@ protected:
 
 	void CheckForMissions(Mission::Location location);
 
-	// These are for the individual shop panels to override.
+	///
+	/// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
 	virtual bool HasItem(const std::string &name) const = 0;
@@ -97,7 +98,8 @@ protected:
 	virtual void ToggleStorage();
 	virtual void ToggleCargo();
 
-	// Only override the ones you need; the default action is to return false.
+	///
+	/// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
@@ -146,25 +148,32 @@ protected:
 
 protected:
 	PlayerInfo &player;
-	// Remember the current day, for calculating depreciation.
+	///
+	/// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
 	const bool isOutfitter;
 
-	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
+	///
+	/// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
-	// The player-owned ship being reordered.
+	///
+	/// The player-owned ship being reordered.
 	Ship *dragShip = nullptr;
 	bool isDraggingShip = false;
 	Point dragPoint;
-	// The group of all selected, player-owned ships.
+	///
+	/// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
 
-	// The currently selected Ship, for the ShipyardPanel.
+	///
+	/// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
-	// The currently selected Outfit, for the OutfitterPanel.
+	///
+	/// The currently selected Outfit, for the OutfitterPanel.
 	const Outfit *selectedOutfit = nullptr;
-	// (It may be worth moving the above pointers into the derived classes in the future.)
+	///
+	/// (It may be worth moving the above pointers into the derived classes in the future.)
 
 	ScrollVar<double> mainScroll;
 	ScrollVar<double> sidebarScroll;
@@ -210,8 +219,8 @@ private:
 	void MainDown();
 	void CategoryAdvance(const std::string &category);
 	std::vector<Zone>::const_iterator Selected() const;
-	// Check if the given point is within the button zone, and if so return the
-	// letter of the button (or ' ' if it's not on a button).
+	/// Check if the given point is within the button zone, and if so return the
+	/// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
 
 

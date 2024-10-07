@@ -53,49 +53,56 @@ class Visual;
 class Weather;
 
 
-// Class representing the game engine: its job is to track all of the objects in
-// the game, and to move them, step by step. All the motion and collision
-// calculations are handled in a separate thread so that the graphics thread is
-// free to just work on drawing things; this means that the drawn state of the
-// game is always one step (1/60 second) behind what is being calculated. This
-// lag is too small to be detectable and means that the game can better handle
-// situations where there are many objects on screen at once.
+/// Class representing the game engine: its job is to track all of the objects in
+/// the game, and to move them, step by step. All the motion and collision
+/// calculations are handled in a separate thread so that the graphics thread is
+/// free to just work on drawing things; this means that the drawn state of the
+/// game is always one step (1/60 second) behind what is being calculated. This
+/// lag is too small to be detectable and means that the game can better handle
+/// situations where there are many objects on screen at once.
 class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
 	~Engine();
 
-	// Place all the player's ships, and "enter" the system the player is in.
+	///
+	/// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
-	// Place NPCs spawned by a mission that offers when the player is not landed.
+	///
+	/// Place NPCs spawned by a mission that offers when the player is not landed.
 	void Place(const std::list<NPC> &npcs, std::shared_ptr<Ship> flagship = nullptr);
 
-	// Wait for the previous calculations (if any) to be done.
+	///
+	/// Wait for the previous calculations (if any) to be done.
 	void Wait();
-	// Perform all the work that can only be done while the calculation thread
-	// is paused (for thread safety reasons).
+	/// Perform all the work that can only be done while the calculation thread
+	/// is paused (for thread safety reasons).
 	void Step(bool isActive);
-	// Begin the next step of calculations.
+	///
+	/// Begin the next step of calculations.
 	void Go();
 
-	// Give a command on behalf of the player, used for integration tests.
+	///
+	/// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);
 
-	// Get any special events that happened in this step.
-	// MainPanel::Step will clear this list.
+	/// Get any special events that happened in this step.
+	/// MainPanel::Step will clear this list.
 	std::list<ShipEvent> &Events();
 
-	// Draw a frame.
+	///
+	/// Draw a frame.
 	void Draw() const;
 
-	// Select the object the player clicked on.
+	///
+	/// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
-	// Break targeting on all projectiles between the player and the given
-	// government; gov projectiles stop targeting the player and player's
-	// projectiles stop targeting gov.
+	/// Break targeting on all projectiles between the player and the given
+	/// government; gov projectiles stop targeting the player and player's
+	/// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
 
 
@@ -196,14 +203,15 @@ private:
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
 
-	// New objects created within the latest step:
+	///
+	/// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
 	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
 	std::vector<Visual> newVisuals;
 
-	// Track which ships currently have anti-missiles or
-	// tractor beams ready to fire.
+	/// Track which ships currently have anti-missiles or
+	/// tractor beams ready to fire.
 	std::vector<Ship *> hasAntiMissile;
 	std::vector<Ship *> hasTractorBeam;
 
@@ -211,10 +219,10 @@ private:
 
 	TaskQueue queue;
 
-	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
-	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
-	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
-	// currently rendering buffer.
+	/// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
+	/// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
+	/// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
+	/// currently rendering buffer.
 	size_t currentCalcBuffer = 0;
 	size_t currentDrawBuffer = 0;
 	DrawList draw[2];
@@ -225,10 +233,12 @@ private:
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 
-	// Viewport position and velocity.
+	///
+	/// Viewport position and velocity.
 	Point center;
 	Point centerVelocity;
-	// Other information to display.
+	///
+	/// Other information to display.
 	Information info;
 	std::vector<Target> targets;
 	Point targetVector;
@@ -243,14 +253,16 @@ private:
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
-	// Flagship's hyperspace percentage converted to a [0, 1] double.
+	///
+	/// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;
 
 	int step = 0;
 
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
-	// Keep track of who has asked for help in fighting whom.
+	///
+	/// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
 
@@ -263,15 +275,18 @@ private:
 	bool doEnter = false;
 	bool hadHostiles = false;
 
-	// Commands that are currently active (and not yet handled). This is a combination
-	// of keyboard and mouse commands (and any other available input device).
+	/// Commands that are currently active (and not yet handled). This is a combination
+	/// of keyboard and mouse commands (and any other available input device).
 	Command activeCommands;
-	// Keyboard commands that were active in the previous step.
+	///
+	/// Keyboard commands that were active in the previous step.
 	Command keyHeld;
-	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
+	///
+	/// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
 	int keyInterval = 0;
 
-	// Inputs received from a mouse or other pointer device.
+	///
+	/// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
 	bool doClick = false;
 	bool hasShift = false;
@@ -283,12 +298,14 @@ private:
 	Rectangle clickBox;
 	int groupSelect = -1;
 
-	// Set of asteroids scanned in the current system.
+	///
+	/// Set of asteroids scanned in the current system.
 	std::set<std::string> asteroidsScanned;
 	bool isAsteroidCatalogComplete = false;
 
 	Zoom zoom;
-	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
+	///
+	/// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	Zoom nextZoom;
 
 	double load = 0.;

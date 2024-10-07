@@ -27,10 +27,10 @@ class ShipEvent;
 
 
 
-// Class representing the main panel (i.e. the view of your ship moving around).
-// The goal is that the Engine class will not need to know about displaying
-// panels or handling key presses; it instead focuses just on the calculations
-// needed to move the ships around and to figure out where they should be drawn.
+/// Class representing the main panel (i.e. the view of your ship moving around).
+/// The goal is that the Engine class will not need to know about displaying
+/// panels or handling key presses; it instead focuses just on the calculations
+/// needed to move the ships around and to figure out where they should be drawn.
 class MainPanel : public Panel {
 public:
 	explicit MainPanel(PlayerInfo &player);
@@ -38,20 +38,25 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	// The planet panel calls this when it closes.
+	///
+	/// The planet panel calls this when it closes.
 	void OnCallback();
-	// The hail panel calls this when it closes.
+	///
+	/// The hail panel calls this when it closes.
 	void OnBribeCallback(const Government *bribed);
 
-	// The main panel allows fast-forward.
+	///
+	/// The main panel allows fast-forward.
 	bool AllowsFastForward() const noexcept final;
 
-	// Get the underlying game engine used by the game.
+	///
+	/// Get the underlying game engine used by the game.
 	Engine &GetEngine();
 
 
 protected:
-	// Only override the ones you need; the default action is to return false.
+	///
+	/// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool RClick(int x, int y) override;
@@ -72,18 +77,21 @@ private:
 
 	Engine engine;
 
-	// These are the pending ShipEvents that have yet to be processed.
+	///
+	/// These are the pending ShipEvents that have yet to be processed.
 	std::list<ShipEvent> eventQueue;
 	bool handledFront = false;
 
 	Command show;
 
-	// For displaying the GPU load.
+	///
+	/// For displaying the GPU load.
 	double load = 0.;
 	double loadSum = 0.;
 	int loadCount = 0;
 
-	// Keep track of how long a starting player has spent drifting in deep space.
+	///
+	/// Keep track of how long a starting player has spent drifting in deep space.
 	int lostness = 0;
 	int lostCount = 0;
 

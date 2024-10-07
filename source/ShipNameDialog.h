@@ -23,10 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// A special version of Dialog for naming ships.
-// Contains a text entry field and an additional button, "Random",
-// which populates the text entry field with a randomly selected name
-// from the "civilian" phrase.
+/// A special version of Dialog for naming ships.
+/// Contains a text entry field and an additional button, "Random",
+/// which populates the text entry field with a randomly selected name
+/// from the "civilian" phrase.
 class ShipNameDialog : public Dialog {
 public:
 	template <class T>
