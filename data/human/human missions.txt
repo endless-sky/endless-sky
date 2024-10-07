@@ -7636,7 +7636,7 @@ mission "Dragon Tech 1c"
 				`	(Agree to sell the Tear of Skade.)`
 			`	Weland's grins like hyena, "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But with this stone, and the secrets it holds, who knows what I'll discover."`
 			`	He laughs, maniacally, and transfers the credits over to you.`
-			action 
+			action
 				payment 10000000
 				outfit "Tear of Skade" -1
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
@@ -7728,7 +7728,7 @@ mission "Dragon Tech 1d"
 			label soldskade
 			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
 			`	He laughs, maniacally, and transfers the credits over to you.`
-			action 
+			action
 				payment 10000000
 				outfit "Tear of Skade" -1
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
@@ -8147,7 +8147,7 @@ mission "Hullen-Freeze revenge"
 			label start
 			choice
 				`	(Take a seat.)`
-				`	(Stand.)`	
+				`	(Stand.)`
 			`	She fishes through her pocket, pulls out a picture and hands it to you. "Do you recognize this man?"`
 			`	It's Professor-Doctor Hullen-Freeze. He's standing in front of a some university wing named after him.`
 			choice
@@ -8193,12 +8193,12 @@ mission "Hullen-Freeze revenge"
 				`	"Tavish ordered Kormak to do it."`
 				`	"Tavish did it."`
 				`	"Kormak did it."`
+			action
+				event "prisontavish" 200
 			`	"Perfect." she says, "Perfect." She closes her notebook.`
 			`	"Julian Tavish is a known element here. He's thief and a conman who we've locked up more than a few times. Some years back Hullen-Freeze gave him a shot. Let him work for him. In the end Julian couldn't hack it going straight and ran off to run some new scams. I am sorry that you got caught up in his vendetta, but with this information we'll be able to finally take him down." She abruptly stands up.`
 			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
 			`	"You're free to go," she says, and they let you back out into the spaceport.`
-			action
-				event "prisontavish" 200
 				decline
 			
 			label liebaby
