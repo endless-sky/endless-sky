@@ -8059,7 +8059,7 @@ mission "Stone Harmonization 3surtr"
 		government "Bounty (Disguised)"
 		system "Naper"
 		personality entering staying target timid uninterested
-		ship "Falcon" "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
+		ship "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
 		dialog `It looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
 		dialog `You haven't dealt with the Aotrou.`
