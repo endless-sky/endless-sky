@@ -840,11 +840,12 @@ void Engine::Step(bool isActive)
 		// Only update the "active" state shown for the target if it is
 		// in the current system and targetable, or owned by the player.
 		int targetType = RadarType(*target, step);
-		if(targetType == Radar::BLINK)
-			info.SetOutlineColor(GetTargetOutlineColor(targetType));
-		else if((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours())
+		const bool blinking = targetType == Radar::BLINK;
+		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
 			targetWasInactive = targetType == Radar::INACTIVE;
-		if(targetWasInactive)
+		if(blinking)
+			info.SetOutlineColor(GetTargetOutlineColor(Radar::BLINK));
+		else if(targetWasInactive)
 			info.SetOutlineColor(GetTargetOutlineColor(Radar::INACTIVE));
 		else
 			info.SetOutlineColor(GetTargetOutlineColor(targetType));
