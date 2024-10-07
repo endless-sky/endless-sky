@@ -84,9 +84,9 @@ outfit "Mandible Cannon"
 		"burst reload" 5
 		"burst count" 2
 		"firing energy" 111
-		"firing force" 20
+		"firing force" 30
 		"firing heat" 60
-		"hit force" 140
+		"hit force" 210
 		"shield damage" 152
 		"hull damage" 98
 	description "The Mandible Cannon is a significant part of the Bunrodean arsenal due to its versatility. Its range exceeds that of smaller weapons, and its size allows it to be used in numbers on most Bunrodean ships. However, the energy draw required to fire is rather significant, particularly for Bunrodean ships that rely on solar cells."
@@ -119,9 +119,9 @@ outfit "Thorax Cannon"
 		"lifetime" 120
 		"reload" 120
 		"firing energy" 3150
-		"firing force" 1250
+		"firing force" 1875
 		"firing heat" 1905
-		"hit force" 2500
+		"hit force" 3750
 		"shield damage" 2870
 		"hull damage" 3430
 	description "The Thorax Cannon is a massive, slow-firing weapon that few ships can even support, not only because of its size but also because of the energy needed to fire it. It comes with its own energy capacitors to help alleviate the steep energy cost."
@@ -177,7 +177,7 @@ outfit "Swarm Clip"
 	"outfit space" -10
 	"swarm capacity" 200
 	ammo "Swarm Missile"
-	description "Swarm Clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectable 200 missiles able to be swiftly loaded into a launcher after its current clip is empty."
+	description "Swarm Clips provide a sizable increase in ammo capacity for Swarm Pods, holding a respectable 200 missiles able to be swiftly loaded into a launcher after its current clip is empty."
 
 outfit "Swarm Missile"
 	category "Ammunition"
@@ -201,7 +201,7 @@ outfit "Swarm Pod"
 			"frame rate" .01
 		sound "swarm missile"
 		ammo "Swarm Missile"
-		icon "icon/meteor"
+		icon "icon/swarm"
 		"die effect" "missile death"
 		"hit effect" "particle impact"
 		"live effect" "swarm flare" 1000000

@@ -743,7 +743,7 @@ mission "Burthen Triathlon"
 
 			label outside
 			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthenians and offworlders, with Burthenians wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthenian apparently doing his eleventh Burthen Triathlon. Meanwhile, the leading offworlder is five hundred meters behind him, a competitor from Martini named Caldarone. Apparently, they've been at it for over 11 hours, beginning with a 1.5 kilometer swim, then a 40 kilometer bicycle ride, and finally a 10 kilometer run.`
-			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather overly ethusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
+			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather overly enthusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight: Samuel Abernathy!"`
 				goto end
 
 			label "after tent"
@@ -752,3 +752,42 @@ mission "Burthen Triathlon"
 			label "end"
 			`	Abernathy doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`
 				decline
+
+mission "CCOR Guerrilla Standoff"
+	minor
+	source "Gagarin"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars. Still, it appears much like any other old, slightly run-down Southern spaceport, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
+			`	But as you make your way into the central hall, you notice that, where you'd expect the greatest activity, everything has stopped. Even the ever-roving antigrav trolleys of cargo and supplies are backed up and motionless, and everybody's attention is directed at some sort of commotion in the very center of the spaceport.`
+			choice
+				`	(Take a look.)`
+				`	(Go back to your ship.)`
+					decline
+			`	Stepping through the gaps within the established crowd you end up next to a spaceport gendarme. He appears as if he's meant to be on patrol duty but is too busy watching the distraction to do his job right now. Looking over the banisters beside him, you see first the enormous and oddly empty space in the middle of the hall, then a team of overalls-wearing men armed with drills and brushes. Surrounding them is a cordon of guerrillas in their rosy CCOR uniforms, sizing up the public and the spaceport security around them with their rifles and pistols.`
+			`	The painting guerrillas are busily finishing off the touches of what appears to be a statue of the burgundy and white emblem of the Confederated Councils, while a pile of rubble beside it suggests that a symbol of the local government once stood in its place. As they step away from the statue, a lone man in a much better-kept uniform than the others steps forward in front of their work. You can feel the air chilling as he raises his head to speak.`
+			choice
+				`	(Listen in.)`
+				`	(Step away before he makes his speech.)`
+					decline
+			`	You don't see any amplification equipment, yet his voice fills the room without effort.`
+			`	"Gagarians and offworlders. Captains and travellers. Servicemen and farmers.`
+			`	"The worlds of the Outer Rim, and indeed, those of the Republic and the entirety of humanity, have and continue to be despoiled and devastated by ruthless profiteering.`
+			`	"The executives of the Syndicate and the landed gentry of the Paradise Worlds steal the efforts of tens of billions of men, women, and children, from Prime to Foundry; from Valhalla to Earth; from Bourne to Hestia, and beyond. And for near a century they have colluded to impose their designs on our worlds! The corporate insurrection in Novo Minho and the gang wars in the northern Outer Rim are an obvious extension of the arm of people like Alastair Korban, only leading to further suffering and bitter destruction in our region!`
+			`	"But there is still hope. We can bring about the independence of Gagarin and unify this world that has been lost to the Syndicate-sponsored oligarchs and their cronies and puppet officials. We can reunite the Outer Rim and restore the prosperity stolen from us. We can form a new Confederated Councils and once again shine the light of Belenos across the entire galaxy!"`
+			`	The gendarmes look around and consider the response of the crowd around them as the man finishes his speech to scattered applause. The speaker steps down and orders his guerrillas into formation before marching them out of the still crowd and into the back of a dusty, burgundy army van you hadn't noticed before, leaving the remains of the old statue scattered around the empty space.`
+			`	You turn around and see the gendarme you ended up next to. He meets your eyes and recognizes your off-world air.`
+			`	"Just an everyday interruption, Captain," he says. "Only nostalgists for the old cause. We get a dozen of these incidents a month." He seems to be interrupted by a buzz from the radio receiver at his hip and strides off into the crowd, leaving you on the ledge.`
+			`	Slowly but surely, the spaceport snaps out of its shock and picks up its previous momentum, although as you turn around you pass two government-branded trucks mounted with cranes, almost certainly there to carry off the newly installed statue and to clean up the mess left behind by the guerrillas.`
+
+mission "Raider returning to Mordente-Bridi"
+	source "Mordente-Bridi"
+	to offer
+		random < 1
+	on offer
+		conversation
+			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
+			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs. Meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
+			`	Within the hour the work shuttles scatter from the ship as they finish patching up its battered hull, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`

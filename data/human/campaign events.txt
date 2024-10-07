@@ -155,11 +155,89 @@ mission "event: war begins"
 	on offer
 		log "Factions" "Free Worlds" `The Free Worlds is a collection of local governments in the southern galactic arm who have declared independence from the Republic after Parliament refused to address issues they raised about trade tariffs, taxation, and representation. They may be linked to the recent terrorist attacks on the Navy Yard and the galactic stock exchange, although they deny responsibility.`
 		conversation
+			branch geminus
+				has "flagship planet: Geminus"
+			
+			branch martini
+				has "flagship planet: Martini"
+
 			`The moment you step off your ship you realize something is very wrong. The spaceport is eerily quiet, and a large crowd of people is gathered around a video screen in the local bar.`
 			`	You ask what is happening, and someone explains. Recently, a collection of planetary governments in the southern galactic arm have sent the Republic what amounted to an ultimatum: a refusal to pay taxes until reforms are made in the election of planetary representatives. This group, calling itself the "Free Worlds," has also asked for immediate reevaluation of all existing trade tariffs and regulations concerning pilot registration. Parliament outright refused to consider any of these demands.`
 			`	Then, in the early morning, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
 			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
 				decline
+			
+			label geminus
+			action
+				set "bombing witness"
+			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. A liaison officer is herding a group of civilians toward a low bunker beside a nearby landing pad. On the landing pad itself, soldiers are struggling to set up a heavy plasma cannon mounted on an anti-aircraft turret.`
+			`	With the civilians safely in the bunker, the liaison officer turns to face you. "I'm sorry, Captain, but I'm going to have to ask you to leave the planet. We've got a Carrier squadron coming in, and we need all the pads free."`
+			choice
+				`	"Of course."`
+					goto summary
+				`	"What's happening?"`
+				`	"Is this some sort of training exercise?"`
+				`	"What makes you think you can just order me to leave?"`
+					goto noncompliance
+
+			`	The liaison officer sighs. "Captain, I'm afraid the planet is in a state of emergency. Yesterday, some rogue planets down south decided they wanted to secede from the Republic. Sent Parliament an ultimatum, wanted electoral and tax reform, free trade, all the same things they've been complaining about for years. No big deal. Three hours ago, though, the Navy Yard here on Geminus was bombed along with the Galactic Stock Exchange on Martini. We don't know if it's the work of the 'Free Worlds' rebels or not, and I can't promise you there aren't going to be more attacks. All I know is that whoever did this used nuclear weapons, so we've got three thousand injured people we need to get to off-planet medical care immediately."`
+			choice
+				`	"I'll get out of the way, then."`
+					goto end
+				`	"Sorry, I didn't know. I'll be out of your hair as soon as I can lift off."`
+					goto end
+				`	"Is there any way I can help?"`
+					goto help
+
+			label martini
+			action
+				set "bombing witness"
+
+			`	As you descend towards the surface of Martini, you are met by an uncharacteristic layer of thick cloud, almost smoky in appearance. The clouds completely obscure Martini's main spaceport, as well as the rest of the capital city. Perhaps because of this, the landing controller instructs you to make your way to an auxiliary spaceport about ten kilometers from the city limits.`
+			`	The moment you step off your ship you realize something is very wrong. Heavily armed Navy personnel flank either side of the spaceport building's exit, and more soldiers are patrolling the port. The main road to the city echoes with sirens, and a liaison officer is herding a group of civilians toward a military transport parked precariously in a nearby field. Still more people are stretched out on cots in a makeshift field hospital in the center of the spaceport.`
+			`	As soon as the last mobile civilian is safely aboard the transport, the liaison officer turns to face you. "I'm sorry, Captain, but I'm going to have to ask you to leave the planet. We've got another transport fleet coming in, and we need all the pads free."`
+			choice
+				`	"Of course."`
+					goto summary
+				`	"What's happening?"`
+				`	"What makes you think you can just order me to leave?"`
+					goto noncompliance
+
+			`	The liaison officer sighs. "Captain, I'm afraid the planet is in a state of emergency. Yesterday, some rogue planets down south decided they wanted to secede from the Republic. Sent Parliament an ultimatum, wanted electoral and tax reform, free trade, all the same things they've been complaining about for years. No big deal. Three hours ago, though, someone - quite possibly this same 'Free Worlds' group - dropped a nuclear bomb on the Galactic Stock Exchange right here on Martini. At least, we presume that the Stock Exchange was their target, since the bomb took about a quarter of the city with it, as well as the main spaceport and half of the planet's medical resources. We've got more than a million injured people here and another five million we need to evacuate. To top it off, the terrorists also bombed the Navy Yard on Geminus, which means we don't have enough personnel available to both run the evacuation and deal with other civilians."`
+			choice
+				`	"I'll get out of the way, then."`
+					goto end
+				`	"Sorry, I didn't know. I'll be out of your hair as soon as I can lift off."`
+					goto end
+				`	"Is there any way I can help?"`
+					goto help
+
+			label noncompliance
+			`	"Look, Captain. The government here on <planet> has declared a state of emergency, and that means that the spaceport is under martial law. I'm not sure how you managed to get landing clearance, but you shouldn't be here. We've got thousands of injured people to get off-planet, even if we ignore the potential for a major follow-up attack. If you refuse to comply, I will have you arrested by the military police, and your ship will be impounded. If your crew refuses to accept the change in captainship, they will be replaced by troops from the Naval Reserve Command. Think what you will, but we've got human lives to save here and we aren't going to stop just because some hotshot captain is feeling full of themself. Is that clear?"`
+			choice
+				`	"Yes, that's clear."`
+					goto summary
+				`	"Sorry, I didn't know. You won't have any trouble from me."`
+					goto summary
+				`	"Yeah, right. No way are you going to seize my ship."`
+			
+			`	The liaison officer glowers at you, then turns and signals to another soldier. Military police officers in full combat gear materialize behind you, grabbing you by the arms and handcuffing you tightly. As you're frogmarched toward a waiting bunker, you watch as the <ship> lifts off without you, leaving you stranded here. In the bunker, one of the soldiers who arrested you frisks you, seizing your pilot's license and handing it to a sergeant who stamps the words "Permanently Revoked" across it. With those two words, you are barred from space forever. It has been less than a year since you bought your ship, and already you have lost the right to use it as the galaxy falls apart on you.`
+				die
+
+			label summary
+			`	"Glad to hear it," they reply, turning to calm a group of hysterical Paradisians.`
+			`	Re-entering the <ship>, you take off and head for orbit, narrowly missing the Carrier squadron mentioned by the liaison officer. Only then do you see that you've left the video screen in your ship on, playing footage almost identical to what you saw on the ground not long ago. According to the newscaster, this debacle was all started yesterday, when a group of planets in the south of the galaxy sent the Republic Parliament an ultimatum: a refusal to pay taxes until reforms are made in the election of planetary representatives. This group, calling itself the "Free Worlds," has also asked for immediate reevaluation of all existing trade tariffs and regulations concerning pilot registration. Parliament outright refused to consider any of these demands.`
+			`	Then, only hours before you landed, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
+			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
+				flee
+
+			label end
+			`	The liaison officer responds with a curt thank-you and turns around to calm a hysterical Paradisian. You re-enter the <ship>, and prepare to take off. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
+				flee
+			
+			label help
+			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, I'm sure you have the best of intentions, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here is taking up extra space." The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
+				flee
 
 event "initial deployment 1"
 	date 24 7 3014
@@ -208,6 +286,7 @@ event "initial deployment 1"
 		fleet "Large Republic" 400
 		fleet "Small Northern Pirates" 4000
 		fleet "Large Northern Pirates" 8000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Phecda"
 		fleet "Small Northern Merchants" 900
@@ -242,6 +321,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 2500
 		fleet "Large Republic" 4000
 		fleet "Small Southern Pirates" 5000
+		fleet "Derelict Northern" 10000
 		fleet "Navy Surveillance" 2000
 	system "Mizar"
 		fleet "Small Southern Merchants" 1400
@@ -249,6 +329,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1400
 		fleet "Small Southern Pirates" 9000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Muphrid"
 		fleet "Small Southern Merchants" 1200
@@ -256,6 +337,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 1900
 		fleet "Small Southern Pirates" 9000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Menkent"
 		fleet "Small Southern Merchants" 700
@@ -316,8 +398,7 @@ event "initial deployment 2"
 		fleet "Large Southern Merchants" 1800
 		fleet "Small Free Worlds" 2200
 		fleet "Large Free Worlds" 3600
-		fleet "Small Southern Pirates" 4000
-		fleet "Large Southern Pirates" 7000
+		fleet "Derelict Southern" 25000
 	
 	system "Mora"
 		fleet "Small Southern Merchants" 2800
@@ -326,6 +407,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Delta Velorum"
 		fleet "Small Southern Merchants" 1000
@@ -350,6 +432,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Cor Caroli"
 		fleet "Small Southern Merchants" 700
@@ -395,6 +478,7 @@ event "initial deployment 2"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Arcturus"
 		fleet "Small Southern Merchants" 700
@@ -423,6 +507,7 @@ event "initial deployment 2"
 		fleet "Small Southern Pirates" 1500
 		fleet "Small Republic" 7000
 		fleet "Large Republic" 12000
+		fleet "Derelict Southern" 10000
 		fleet "Navy Surveillance" 1600
 	system "Cebalrai"
 		fleet "Small Southern Merchants" 600
@@ -440,6 +525,21 @@ event "initial deployment 2"
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
 
+# Compatibility patch event in case the pirates were added by the second deployment, pre-0.10.7
+event "remove pirates from Ildaria"
+	system Ildaria
+		remove fleet "Small Southern Pirates"
+		remove fleet "Large Southern Pirates"
+
+mission "Ildaria Pirates Compatibility"
+	invisible
+	landing
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "remove pirates from Ildaria"
+		fail
+
 event "initial deployment 3"
 	date 29 8 3014
 	system "Zubenelgenubi"
@@ -449,6 +549,7 @@ event "initial deployment 3"
 		fleet "Large Free Worlds" 1000
 		fleet "Small Southern Pirates" 5000
 		fleet "Large Southern Pirates" 8000
+		fleet "Derelict Southern" 30000
 	system "Unukalhai"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 3000
@@ -481,6 +582,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 800
 		fleet "Large Republic" 700
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Seginus"
 		fleet "Small Southern Merchants" 1200
@@ -495,6 +597,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Eber"
 		fleet "Small Southern Merchants" 1900
@@ -502,6 +605,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 3000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1500
+		fleet "Derelict Southern" 10000
 		fleet "Navy Surveillance" 1200
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 2100
@@ -510,6 +614,7 @@ event "initial deployment 3"
 		fleet "Large Southern Pirates" 13000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Kaus Borealis"
 		fleet "Small Southern Merchants" 900
@@ -518,6 +623,68 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+
+
+
+mission "Central Outfitters Expansion Trigger"
+	landing
+	invisible
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "central outfitters expansion" 45
+		fail
+
+event "central outfitters expansion"
+	planet "Earth"
+		add outfitter "Central Outfits Expansion"
+	planet "Luna"
+		add outfitter "Central Outfits Expansion"
+	planet "New China"
+		add outfitter "Central Outfits Expansion"
+	planet "New Wales"
+		add outfitter "Central Outfits Expansion"
+	planet "Heartland"
+		add outfitter "Central Outfits Expansion"
+
+mission "Central Outfitters Expansion"
+	outfitter
+	source
+		planet "Earth" "Heartland" "Luna" "New China" "New Wales"
+	to offer
+		has "event: central outfitters expansion"
+		not "event: start of hostilities"
+	on offer
+		conversation
+			`When you walk into <origin>'s outfitter, you notice it has a raft of new outfits for sale; cooling equipment, afterburners, even new generators. Strangely, almost all the new stock appears to be from Kraz Cybernetics and Delta V - companies you'd usually see selling along the Southern Rim, not far up here so close to the center of the Republic. It is especially strange as those companies have been vocal supporters of the Free Worlds secessionists.`
+			choice
+				`	(Ask the proprietor about the new outfits.)`
+				`	(Move on.)`
+					decline
+
+			`	The proprietor's busy at his desk inside the outfitter's small office, but as you approach he gets up and acknowledges you. "Hi, how can I help you today?"`
+			choice
+				`	"How come you're selling Kraz and Delta V outfits up here?"`
+				`	"It looks like you've got new stock."`
+					goto "new stock"
+				`	(Move on.)`
+					decline
+
+			`	"You're not the first to ask!" the proprietor responds overly brightly. "With piracy on the rise, the increased tensions, and - what everybody's assuming but not saying - impending conflict with the nuke-happy secessionists down in the Southern Rim, we've had a lot of requests to stock some more... specialized equipment."`
+			`	He walks you over to a crate of Javelins. "A load of this stuff comes from the Syndicate, you know. Apparently they already had a load of these missiles in production, but now that Kraz and Delta V are no longer companies operating in the Republic, they've snapped up all the rights to manufacture their products!" He chuckles. "It's great for captains who rely on Delta V equipment but can't go down to the Southern Rim to restock their gear."`
+				goto end
+
+			label "new stock"
+			`	"Yes, yes we do!" He walks up to you. "Nitrogen coolers, Heavy Rockets, radar jammers to ward off those pesky Lovelace Sidewinders, high-power afterburners, you name it. We've had a lot of requests to stock equipment from the Southern Rim, now with all the tension down there making it hard to do business."`
+			`	The proprietor leans in towards you a little and says in a softer tone, "But you know, it's wrong to get supplies from the people who did those bombings and killed tens of thousands of people. It's simply wrong. Morally and commercially.`
+			`	"Courtesy of Syndicated Systems, however, you can get southern gear here without supporting those secessionists! They saw an opportunity to get the rights for Delta V and Kraz equipment, and they took it. And you get to benefit," he chuckles.`
+
+			label end
+			`	He produces a brochure from his vest jacket and hands it to you. "Now, if you're interested in any of our new stock, just flag down one of our workers and we'll have it prepared and installed on your ship promptly.`
+			`	"I wish you safe travels," he says, and returns to his office.`
+				decline
+
+
 
 mission "Southern Carriers Trigger"
 	landing
@@ -712,6 +879,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 7000
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 800
 	system "Atria"
 		fleet "Small Southern Merchants" 700
@@ -747,6 +915,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 1600
 		fleet "Small Free Worlds" 4000
 		fleet "Large Free Worlds" 8000
+		fleet "Derelict Southern" 30000
 	system "Yed Prior"
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 1100
@@ -941,6 +1110,7 @@ event "oathkeepers founded"
 		fleet "Republic Logistics" 5400
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
+		fleet "Derelict Northern" 30000
 	system "Alnitak"
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
@@ -959,6 +1129,7 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 2000
 		fleet "Large Oathkeeper" 2000
 		fleet "Small Northern Merchants" 4000
+		fleet "Derelict Pirate" 30000
 	system "Almaaz"
 		fleet "Small Northern Pirates" 500
 		fleet "Large Northern Pirates" 600
@@ -968,11 +1139,13 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 1000
 		fleet "Large Oathkeeper" 4000
 		fleet "Small Northern Merchants" 8000
+		fleet "Derelict Pirate" 10000
 	system "Tortor"
 		fleet "Small Northern Pirates" 1000
 		fleet "Large Northern Pirates" 1000
 		fleet "Large Oathkeeper" 6000
 		fleet "Small Northern Merchants" 6000
+		fleet "Derelict Pirate" 10000
 	planet "Farpoint"
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
 		description `	Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
@@ -1148,6 +1321,13 @@ event "Greenrock recovered"
 		description `	The Free Worlds occupied this planet for a short while long ago, attempting to clean up the criminal hub, but almost all traces of the Free Worlds' influence on the planet is now long gone.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the slave markets, heavily guarded in case any visitors happen to find themselves in possession of a conscience. Nor are you shocked by the shady establishments catering to all manner of prurient interests. This is, after all, a pirate port, and everything is for sale here.`
 		spaceport `	Everything, in fact, including the very bizarre. You find one dark alley that has been completely fenced off from the rest of the spaceport, the howls of animals coming from behind the barrier. Beside the alley you see a sign for a shop called "Mike's Mustelids," promising the sale of "exotic animals from within Greenrock's urban spaceport jungle."`
+
+
+
+event "memorial on Deep"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The nine completed walls are already filled on both sides; it seems unlikely the other fourteen walls will last the war.`
 
 
 
@@ -1420,6 +1600,7 @@ event "normal in Alnasl"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Wei"
 		add fleet "Large Republic" 700
@@ -1434,6 +1615,7 @@ event "fw southern expansion"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 	system "Sargas"
 		fleet "Small Southern Merchants" 600
@@ -1503,6 +1685,13 @@ event "fw southern expansion"
 
 
 
+event "Deep memorial expansion 1"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The site has progressed from its original scale, with an outer ring being erected to hold fifty additional walls of names.`
+
+
+
 event "fw occupying the north"
 	system "Alioth"
 		fleet "Small Southern Merchants" 400
@@ -1523,6 +1712,7 @@ event "fw occupying the north"
 		fleet "Large Northern Merchants" 8000
 		fleet "Small Free Worlds" 1500
 		fleet "Large Free Worlds" 3800
+		fleet "Derelict Southern" 10000
 	system "Seginus"
 		fleet "Small Southern Merchants" 1200
 		fleet "Large Southern Merchants" 2700
@@ -1536,6 +1726,7 @@ event "fw occupying the north"
 		fleet "Large Southern Merchants" 2500
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 
 
@@ -1750,12 +1941,14 @@ event "fw expanded and cut"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 800
+		fleet "Derelict Southern" 30000
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 5000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 3000
+		fleet "Derelict Southern" 30000
 
 
 
@@ -1833,6 +2026,7 @@ event "fw armistice"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Kaus Borealis"
 		remove fleet "Republic Logistics"
@@ -1938,6 +2132,7 @@ event "navy out of rastaban"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 2100
@@ -1946,6 +2141,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 13000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 
 
@@ -2319,11 +2515,13 @@ event "pug flee"
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 7000
 		fleet "Small Northern Pirates" 2500
+		fleet "Derelict Northern" 10000
 	system "Orvala"
 		fleet "Small Southern Merchants" 3000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 3000
+		fleet "Derelict Southern" 10000
 	system "Deneb"
 		fleet "Small Core Merchants" 5000
 		add object "Pug Wormhole"
@@ -2380,8 +2578,10 @@ event "pug territory liberated"
 		fleet "Large Syndicate" 2000
 	planet "Pugglemug"
 		remove attributes
+		"bribe" 0.01
 	planet "Pugglequat"
 		remove attributes
+		"bribe" 0.01
 	planet "Rand"
 		security 0.05
 		tribute 500
@@ -2542,6 +2742,7 @@ event "fwc southern liberation"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 
 
@@ -3032,8 +3233,10 @@ event "fwc pug defeated"
 		government "Republic"
 	planet "Pugglemug"
 		remove attributes
+		"bribe" 0.01
 	planet "Pugglequat"
 		remove attributes
+		"bribe" 0.01
 	planet "Shiver"
 		security 0.1
 		tribute 300
@@ -3085,6 +3288,22 @@ event "syndicate tech available"
 		"Ionic Afterburner"
 		"S-270 Regenerator"
 		"S-970 Regenerator"
+
+
+
+event "Deep memorial completed"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. Two additional rings of walls have been constructed around both the first twenty-three walls and the fifty walls of the old outer ring.`
+
+mission "Deep Memorial Finished"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "Deep memorial completed"
+		fail
 
 
 

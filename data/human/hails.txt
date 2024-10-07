@@ -949,7 +949,12 @@ phrase "friendly civilian"
 		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
+		"How many Lunatics does it take to change a lightbulb? Don't bother, they light up with anger if you call them Lunatics."
+		"How many New Britons does it take to change a lightbulb? Many, they prefer selling instead of installing lightbulbs on their planet of shopkeepers."
+		`Someone met a djinn and said "leave me alone." That person is now stranded on an uninhabited planet.`
+		`Somebody met a genie and said "I don't want to see you," and then went blind.`
 		"Those Hogsheads! I can't believe they're still flying around with kegs for engines!"
+		"What is one small step for a person, but a giant leap for mankind? You leaving this system. Haha."
 	word
 		"" 2
 		" What? Not funny?"
@@ -1107,6 +1112,7 @@ phrase "friendly civilian"
 		"Some"
 		"A couple"
 		"A few"
+		"A bunch"
 	word
 		" of my "
 	word
@@ -1116,42 +1122,32 @@ phrase "friendly civilian"
 		"roomers"
 		"VIP passengers"
 	word
-		" " 4
-		" inexplicably "
-		" stupidly "
-	word
-		"decided to eat"
-		"went and ate"
-		"decided they would have"
-		"made the bad choice of having"
-		"ate"
-		"had"
-	word
-		" " 4
-		" a meal of "
-		" a serving of "
-	word
-		"asparagus"
-		"garlic"
-		"beans"
-	word
 		" "
 	word
-		"from my cargo hold."
-		"in the spaceport."
-		"in my ship."
+		"threw up after we exited hyperspace"
+		"puked up their dinner once we got into hyperspace"
+		"couldn't keep the contents of their stomach inside them"
+		"made a big mess in their rooms"
+		"absolutely ruined their rooms"
 	word
-		" "
+		" while I had them on my ship"
+		" while they stayed on my ship"
+		" and wouldn't admit to it"
+		" and tried to blame it on my crew"
+		" and tried to get out of cleaning it up"
+		"" 5
+	word
+		". "
 	word
 		"I'm gonna leave them at the closest inhabited planet"
 		"I'm happy they're leaving on the next stop"
 		"I've told them to leave at my next stop"
 		"I've got no choice but to leave them at my next stop"
 	word
-		"" 4
-		", let them reek in someone else's ship"
-		", I don't want them stinking my ship up"
-		", because the toilets are stinking, badly"
+		"" 3
+		", let them make a mess in someone else's ship instead"
+		", I don't want to clean up after them again"
+		", they better learn how to live on a spaceship"
 	word
 		"!"
 
@@ -1882,17 +1878,6 @@ phrase "friendly civilian"
 		"ship bad bands, than have your ship badly banned."
 		"be working hard at shipping, than have your ship hardly working."
 
-
-phrase "friendly civilian"
-	word
-		"Ey Comrade,"
-	word
-		" "
-	word
-		"your ship has loaded on a planet? I have loaded a planet onto my ship."
-		"you have cargo in your ship? I have ships in my cargo."
-		"you have fighters in your bays? We have bays in our fighters."
-
 phrase "friendly civilian"
 	word
 		"Somebody"
@@ -1905,7 +1890,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"a blue phonebooth"
+		"a blue phone booth"
 		"a silver car"
 	word
 		" "
@@ -1959,21 +1944,28 @@ phrase "friendly civilian"
 		"I read a rumor"
 		"I found out"
 		"I've learned"
+		"I live by the mantra"
+		"If you always ensure"
+		"You should know"
+		"You'll learn from experience"
 	word
 		" that if you have "
+		" that if you keep "
 	word
 		"at least ten spare bunks"
 		"space for at least ten passengers"
 		"at least 50 spare tons of cargo space"
 		"enough space for 50 tons of cargo"
 	word
-		" "
-	word
-		"then you'll be ready for anything life throws at you"
-		"then there isn't an odd job from the spaceport that you won't be able to do"
-		"then you might get lucky and have just enough room to help out some celebrities"
+		" then you'll be ready for anything life throws at you"
+		" then there isn't an odd job from the spaceport that you won't be able to do"
+		" then you might get lucky and have just enough room to help out some celebrities"
+		", you'll have enough extra slack to pick up any job"
 	word
 		"."
+	replace
+		"If you always ensure that if you have" "If you always ensure that you have"
+		"If you always ensure that if you keep" "If you always ensure that you keep"
 
 phrase "friendly civilian"
 	word
@@ -1982,24 +1974,183 @@ phrase "friendly civilian"
 		"Don't get on the bad side of the authorities. "
 		"I always try to be an honest captain. "
 		"Crime doesn't pay in the end. "
-		""
+		"You've got to be careful if you associate yourself with the wrong sorts. "
+		"" 6
 	word
 		"It's a fact"
 		"I've heard"
-		"I heard a rumor"
 		"You should know"
 		"They say"
 		"It's said"
+		"I know from experience"
+		"Once you've been on the starlanes long enough you know"
 	word
 		" that "
+		", "
 	word
-		"smugglers almost always get caught in the end."
-		"even the most powerful warship won't save you from a knife in the back."
-		"the Quarg will arrest you if they catch a whiff of any of their equipment on your ship."
-		"the Quarg imprison anyone they catch carrying their outfits."
-		"nine out of ten pirates die within their first year."
-		"Republic Intelligence has their eyes everywhere."
-		"the law will always catch up to those who try to bypass it."
+		"smuggling is a sure way to find yourself behind bars"
+		"even the most powerful warship won't save you from a knife in the back"
+		"nine out of ten pirates die within their first year"
+		"Republic Intelligence has their eyes everywhere"
+		"the law will always catch up to those who try to bypass it"
+		"just because it's risky doesn't mean it'll pay off"
+		"staying on the right side of the law is the better choice"
+	word
+		"."
+	replace
+		"enough you know," "enough, you know"
+
+phrase "friendly civilian"
+	word
+		"I've heard that the Quarg"
+		"It's said that the Quarg"
+		"It's a known fact that the Quarg"
+		"The Quarg are pretty strict with their technology. They"
+		"The Quarg don't mess around with their technology. They"
+		"The Quarg monitor their ships and outfits meticulously, and "
+		"The Quarg don't want their advanced technology to proliferate, and "
+		"The Quarg restrict their outfits to their own ships, and "
+		"You don't want to be caught with Quarg technology around Enif. The Quarg"
+		"You don't want to be caught near the Quarg with some of their technology. They"
+	word
+		" "
+	word
+		"will arrest you if they catch a whiff of any of their equipment on your ship"
+		"will put you behind bars forever if you've got one of their ships or outfits without permission"
+		"won't hesitate to take away your freedom if you've stolen one of their ships"
+		"don't take any chances when it comes to a misplaced ship or outfit of theirs"
+	word
+		"."
+
+phrase "friendly civilian"
+	word
+		"Have you ever "
+	word
+		"been down to Enif"
+		"stopped by Tarazed"
+		"gone to Tarazed"
+		"traveled through the Southern Rim"
+	word
+		" and "
+	word
+		"witnessed a Quarg Wardragon jump in with one of their jump drives?"
+		"looked over one of the Quarg's sleek Skylarks?"
+		"seen a Quarg Skylark up close?"
+		"seen the Quarg's Skylances in action?"
+		"seen how the Quarg decimate pirates with their Skylances?"
+		"seen how powerful those Quarg Skylances are?"
+	word
+		"" 3
+		" I wish the Quarg would share some of their technology with us."
+		" I'd love to get my hands on some Quarg tech."
+		" What I could do with some of that tech..."
+		" Maybe someday we'll reach their level of technology."
+		" It's scary how advanced their civilization is."
+		" There's no way humanity could stand up to them."
+		" I doubt the combined Navy Home Fleet at Sol could match the power of one of those."
+
+phrase "friendly civilian"
+	word
+		"What is with zero-g cricket?"
+		"I don't get that zero-g cricket they play in the Core."
+		"How are people into zero-g cricket?"
+		"How do people stay awake watching that zero-g cricket?"
+	word
+		" I mean, "
+		" Look, "
+		" Like, "
+	word
+		"all they're doing is"
+		"half the time they're just"
+		"they spend a week"
+		"you can't call a sport a sport if you're mostly "
+		"all you're watching is a bunch of guys"
+	word
+		" floating around "
+		" floating aimlessly "
+		" bouncing around a space station "
+	word
+		"trying to catch a ball"
+		"hitting a ball around a space station"
+		"while two of them go back and forth a bunch of times"
+		"and boosting about twenty meters back and forth every now and again"
+		"trying to hit a couple sticks off a few other sticks with a ball"
+	word
+		"!" 6
+		". I just don't get it, man!"
+		". It makes no sense!"
+		". Don't get me started on the rules!"
+		". Innings, outings, overs, it's ridiculous!"
+		". Who's in and who's out? They never tell you!"
+		". It's too bloody convoluted, the way people go in and out all the time!"
+		". It sounds like a sport only aliens would play!"
+		". Couldn't they speed it up a bit?"
+		". How do they make a game out of that?"
+		". And all they're playing for is a bunch of old burnt wood!"
+		`. And they're always up in arms about whether "underarm bowling" is legal!`
+		". Zero-g lacrosse makes a lot more sense!"
+	replace
+		"around a space station hitting a ball around a space station" "around hitting a ball around a space station"
+
+phrase "friendly civilian"
+	word
+		"I'm getting into zero-g cricket"
+		"I love watching zero-g cricket"
+		"You don't get a sport better than zero-g cricket"
+	word
+		". That adrenaline you get when the bowler boosts down the sphere to throw the ball"
+		". The exhilaration you feel when the batsman hits a perfect six"
+		". The way bowlers can control the ball to fool the batsman"
+		". That feeling you get when a fielder catches the batsman out with a well-timed boost"
+	word
+		" and the way the crowd roars as it happens"
+		", the crowd going wild"
+		", and the release you feel as you see the ball getting knocked right out of the sphere"
+		", how each test is full of tension and fortunes that are decided by each bowl and hit"
+		"" 6
+	word
+		"; there's nothing like it in the galaxy."
+		"; I don't get the hate for it."
+		"... there are some truly phenomenal players out there."
+		"... it's an amazing sport."
+		"... it's like chess played in space."
+		"..." 3
+
+phrase "friendly civilian"
+	word
+		"If you ever get the chance, you should"
+		"One thing I'd like to do before I kick the bucket is to"
+		"Before you die, you've got to"
+		"For my next trip, I'm going to"
+	word
+		" "
+	word
+		"see the Quarg ringworld in Enif. Isn't it amazing what they can do and we can't?"
+		"see the Quarg ringworld down south. It's such a magnificent feat of engineering"
+		"see the dragons of Skymoot"
+		"ski the slopes on Vail"
+		"go to Vail and do some skiing"
+		"go to Vail for a hoverboard course"
+		"go to New Switzerland. The slopes are much better there than Vail"
+		"go skiing on Antipode. It's not as busy as those overpriced resorts in Vail, not to mention cheaper"
+		"do some extreme rock climbing on Maelstrom"
+		"see the ancient cities of old Earth"
+		"tour through the megacities of Earth"
+		"see where our ancestors came from on old Earth"
+		"do a jungle trek through Amazon"
+		"tour the continents of Pearl and experience the biospheres of a hundred different planets"
+		"meet some of the Quarg around Tarazed"
+		"visit Luna and its enormous shipyard"
+		"see where Neil Armstrong, one of the first men to leave Earth, stepped foot on Luna"
+		"see the Plot Memorial on Chiron and take a look at the first hyperdrive ever made"
+		"watch the hovercraft races on Sunracer"
+		"relax at the hot springs on Calda"
+		"take a boat up the fjords of Flood"
+		"visit one of the pirate worlds, like Greenrock or Freedom, and experience life the way anarchists do it"
+	word
+		"."
+	replace
+		"?." "?"
 
 phrase "friendly civilian"
 	word
@@ -2201,6 +2352,11 @@ phrase "friendly civilian"
 		`You can often distract pirates with some cargo until the Navy rescues you. My old captain taught me this trick when we were ferrying in the Far North.`
 		`Pirates will always try to take your cargo, but if you drop some scrap their way, they let you keep the real valuables.`
 		`Whenever I see pirates, I immediately dump my freight. They would get it either way, but at least this lets me get away.`
+		"Ey Comrade, your ship has loaded on a planet? I have loaded a planet onto my ship."
+		"Ey Comrade, you have cargo in your ship? I have ships in my cargo."
+		"Ey Comrade, you have fighters in your bays? We have bays in our fighters."
+		"Ey Comrade, you have warships that fire missiles? We have missiles that fire warships."
+		"Ey Comrade, your ship has just fled from pirates? I have pirates who flee from me."
 
 phrase "friendly civilian"
 	word
@@ -2552,23 +2708,181 @@ phrase "friendly civilian"
 		"neodymium and neodymium" "neodymium"
 		"neodymium or neodymium" "neodymium"
 
+phrase "friendly civilian"
+	word
+		"Be careful of"
+		"A warning about"
+		"Be suspicious of"
+		"Don't trust"
+	word
+		" those space casinos. I blew "
+	word
+		"half a"
+		"a"
+		"two"
+		"three"
+		"four"
+		"five"
+	word
+		" million credits on "
+	word
+		"Ada"
+		"Calda"
+		"Farseer"
+		"Geminus"
+		"Glory"
+		"Hestia"
+		"Mainsail"
+		"Martini"
+		"Pearl"
+		"Vail"
+		"Vinci"
+	word
+		" playing "
+	word
+		"blackjack."
+		"poker."
+		"backgammon."
+		"baccarat."
+		"roulette."
+
+phrase "friendly civilian"
+	word
+		"Have you read the latest edition of "
+	word
+		"Cosmic Chronicles"
+		"Daring Discoveries"
+		"Norn Nebula News"
+		"Southern Rim Spacer News"
+		"Stars and Starships"
+		"Sunracer Stellar Spectacles"
+		"Tarazed Today"
+		"the Galactic Gazette"
+		"the New Moonshake"
+		"the Satellite Sentinel"
+	word
+		"? "
+	word
+		"It says"
+		"It claims"
+	word
+		" that "
+		" "
+	word
+		"pulse showers are good for your quantum pores"
+		"exposing yourself to neodymium increases your risk of spacepox"
+		"shoddily grown ion algae exhausts your psychic karma"
+		"laser acupuncture lets you communicate with nebula ghosts"
+		"star crystals bring luck to long distance relationships"
+		"consuming moon dust accelerates hair growth but causes lunacy"
+		"excessive exposure to zero gravity can lead to phantom limb syndrome"
+		"alien prosthetics often come with unexpected telepathic abilities"
+		"stardate tattoos increase your chances of alien abduction"
+	word
+		"."
+		"!"
+
+phrase "friendly civilian"
+	word
+		"I'm no weapons expert, but it feels better firing "
+	word
+		"Energy Blasters"
+		"Particle Cannons"
+		"Plasma Cannons"
+		"Proton Guns"
+	word
+		" than "
+	word
+		"Beam Lasers."
+		"Heavy Lasers."
+
+phrase "friendly civilian"
+	word
+		"I shouldn't have sold my old ship. It was just a "
+	word
+		"Shuttle"
+		"Star Barge"
+		"Sparrow"
+		"Heavy Shuttle"
+		"Freighter"
+		"Fury"
+	word
+		" but it never had "
+	word
+		"stalling engines."
+		"unstable shielding."
+		"overheating fuel cells."
+		"a glitchy HUD."
+		"faulty ship detection."
+
+phrase "friendly civilian"
+	word
+		"Finished cleaning my cargo hold"
+		"Cargo hold is all spick and span"
+		"Finished scrubbing the hold"
+	word
+		". The "
+	word
+		"freshener"
+		"perfume"
+		"spray"
+		"fragrance"
+	word
+		" I used makes it smell like "
+	word
+		"strawberries"
+		"bananas"
+		"peaches"
+		"roses"
+		"jasmine"
+		"lavender"
+	word
+		"."
+		"!"
+
+phrase "friendly civilian"
+	word
+		"Have you seen the holofilm where the "
+	word
+		"good guy"
+		"hero"
+		"bad guy"
+		"villain"
+	word
+		" "
+	word
+		"mounts overcharged Twin Blasters on a modded Argosy"
+		"shoots up a security station with dual laser pistols"
+		"dodges Quad Blaster Turrets in a stolen Flivver"
+	word
+		"? So cool."
+
+phrase "friendly civilian"
+	word
+		"Frankly, I'm thinking of joining the Navy"
+		"Honestly, I'm going to join the Navy"
+		"I'm enlisting in the Navy"
+	word
+		" "
+	word
+		"because of their dental insurance"
+		"since they'll cover my tuition"
+		"to see if I can get my hands on one of their warships"
+		"because they offer childcare assistance"
+	word
+		"."
+
 phrase "friendly navy"
 	word
 		"The Navy"
 	word
 		" is here to"
-		" is obligated to"
 		" is always ready to"
 		" is always here to"
 		" will never hesitate to"
 		" will always be here to"
 		" will always"
-		" will always be ready to"
-		" exists to"
-		"'s mission is to"
-		"'s goal is to"
 		"'s duty is to"
-		"'s directive is to"
 	word
 		" "
 	word
@@ -2633,13 +2947,10 @@ phrase "friendly navy"
 	word
 		" the "
 	word
-		"biggest"
 		"largest"
 		"greatest"
 		"most prestigious"
 		"most worthwhile"
-		"most honorable"
-		"most respected"
 		"most rewarding"
 	word
 		" "
@@ -2659,8 +2970,6 @@ phrase "friendly navy"
 	word
 		"in the galaxy"
 		"in the Republic"
-		"of all humanity"
-		"of all mankind"
 	word
 		"!"
 		
@@ -2679,14 +2988,9 @@ phrase "friendly navy"
 	word
 		" "
 	word
-		"a firefight"
-		"a dogfight"
 		"a conflict"
-		"a confrontation"
 		"an engagement"
 		"battle"
-		"space battle"
-		"war"
 		"combat"
 	word
 		" is "
@@ -2704,42 +3008,23 @@ phrase "friendly navy"
 		"if it helps us to"
 		"if that sacrifice helps us to"
 		"when it helps your brothers and sisters in arms to"
-		"when on duty to"
 		"when it helps us to"
 		"when we are able to"
 		"when that sacrifice helps us to"
-		"but our duty is to"
-		"but our real job is to"
-		"but our goal is to"
-		"but we are duty-bound to"
-		"but we must"
-		"but our mission is to"
-		"but our directive is to"
-		"but we must focus on"
 		"but only when it helps us to"
-		"but our focus should be to"
 		"but only if it helps the Navy to"
-		"but my commander expects me to"
-		"but we are expected to"
-		"but it would be more efficient if we"
-		"but the universe expects us to"
-		"but that is for nought if it does not help to"
-		"but it is wasted if it does not help to"
+		"but that is for nought if it does not help us to"
+		"but that sacrifice is wasted if it does not help to"
 		"but that sacrifice has greater meaning when it helps us to"
-		"but that sacrifice only means something when it helps us to"
 	word
 		" "
 	word
-		"destroy"
 		"imprison"
-		"detain"
 		"eliminate"
 		"expel"
 		"fend off"
 		"drive back"
 		"defeat"
-		"prevail over"
-		"thwart"
 	word
 		" "
 	word
@@ -2749,8 +3034,6 @@ phrase "friendly navy"
 		"criminals"
 		"terrorists"
 		"insurrectionists"
-		"seperatists"
-		"our adversaries"
 		"our enemies"
 		"our foes"
 		"enemies of freedom"
@@ -2808,7 +3091,24 @@ phrase "friendly navy"
 	word
 		"three centuries"
 		"three hundred years"
-		"ten generations"
+	word
+		"."
+
+phrase "friendly navy"
+	word
+		"For "
+	word
+		"three centuries"
+		"three hundred years"
+	word
+		", "
+	word
+		"the Republic"
+		"the Navy"
+	word
+		" has "
+	phrase
+		"navy protection hail"
 	word
 		"."
 
@@ -2850,7 +3150,6 @@ phrase "navy protection hail"
 phrase "navy protection hail"
 	word
 		"protected"
-		"guarded"
 		"defended"
 	word
 		" "
@@ -2895,7 +3194,7 @@ phrase "navy protection hail"
 
 phrase "navy protection hail"
 	word
-		"patroled"
+		"patrolled"
 		"policed"
 		"defended"
 		"guarded"
@@ -2918,19 +3217,11 @@ phrase "navy protection hail"
 
 phrase "navy protection hail"
 	word
-		"kept you safe"
-		"kept humanity safe"
-		"assisted you"
-		"been the guardian of humanity"
-		"been the protector of humanity"
-		"been the defender of humanity"
-
-phrase "navy protection hail"
-	word
 		"promoted"
 		"encouraged"
 		"advanced"
 		"given you"
+		"given humanity"
 		"striven for"
 	word
 		" "
@@ -2940,15 +3231,15 @@ phrase "navy protection hail"
 		"unity"
 		"harmony"
 		"security"
-		"hope"
 		"peace"
 	word
-		"" 5
+		"" 6
 		" and order"
 		" and justice"
 		" and concord"
 		" and safety"
 		" and liberty"
+		" and hope"
 
 phrase "friendly navy"
 	word
@@ -2974,7 +3265,6 @@ phrase "friendly navy"
 		"Do you "
 	word
 		"want"
-		"wish"
 		"desire"
 		"aspire"
 	word
@@ -2990,12 +3280,10 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"The Navy fights"
 		"The Navy is here"
 		"The Navy exists"
 		"The Navy's duty is"
 		"The Navy's purpose is"
-		"We fight"
 		"We are here"
 		"We exist"
 		"We patrol these skies"
@@ -3005,15 +3293,14 @@ phrase "friendly navy"
 	word
 		" to "
 	phrase
-		"navy purpose b" 4
-		"navy purpose c"
+		"navy purpose b"
 	word
 		"."
 	word
 		"" 5
 		" Your cooperation is greatly valued."
 		" We thank you for your cooperation."
-		" We appreciate your complicance."
+		" We appreciate your compliance."
 		" Be thankful for our protection."
 		" Be grateful for our protection."
 		" Be thankful for our sacrifice."
@@ -3156,23 +3443,6 @@ phrase "navy purpose b"
 		" and safety"
 		" and liberty"
 
-phrase "navy purpose c"
-	word
-		"ensure"
-		"maintain"
-		"uphold"
-		"defend"
-		"protect"
-	word
-		" the integrity of "
-		" the strength of "
-	word
-		"the Republic"
-		"Parliament's mandate"
-		"our laws"
-		"Republic law"
-		"Parliament"
-
 phrase "friendly navy"
 	word
 		"United, humanity stands. Divided we will fall."
@@ -3191,8 +3461,8 @@ phrase "friendly navy"
 		"The Republic"
 		"The Navy"
 	word
-		"'s goal:" 4
-		"'s motto:" 4
+		"'s goal:" 8
+		"'s motto:" 8
 		"'s goal is to create"
 		"'s goal is to ensure"
 		" wishes for"
@@ -3270,14 +3540,10 @@ phrase "friendly navy"
 		"border control officials"
 	word
 		" must "
+		" will "
 	word
 		"perform "
 		"conduct "
-		"run "
-	word
-		"random "
-		"regular "
-		""
 	word
 		"cargo"
 		"outfit"
@@ -3288,13 +3554,7 @@ phrase "friendly navy"
 		"scans"
 		"inspections"
 	word
-		" on "
-	word
-		"civilian"
-		"merchant"
-		"private"
-	word
-		" "
+		" on all "
 	word
 		"ships"
 		"vessels"
@@ -3329,9 +3589,10 @@ phrase "navy illegal acts"
 	word
 		" "
 	word
-		"illegal"
+		"illicit"
 		"unauthorized"
 		"unlicenced"
+		"dangerous"
 	word
 		" "
 	word
@@ -3343,15 +3604,16 @@ phrase "navy illegal acts"
 		"traffic"
 		"transport"
 		"smuggle"
+		"profit from the trade of"
 	word
 		" "
-	word
-		"${contraband}"
+	phrase
+		"contraband"
 
 phrase "navy illegal acts"
 	word
 		"engage in"
-		"become involved in"
+		"participate in"
 	word
 		" "
 	word
@@ -3361,21 +3623,8 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate"
-		"pilot"
-		"own"
-	word
-		" "
-	word
-		"an unlicensed"
-		"an unauthorized"
-		"an illegal"
-	word
-		" "
-	word
-		"ship"
-		"warship"
-		"vessel"
+		"possess chemical weaponry for any reason"
+		"pilot a ship without a pilot's license"
 
 phrase "navy illegal acts"
 	word
@@ -3408,31 +3657,16 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"interdict"
-		"attack"
-	word
-		" "
-	word
-		"merchant"
-		"civilian"
-	word
-		" "
-	word
-		"ships"
-		"activity"
-		"vessels"
-
-phrase "navy illegal acts"
-	word
 		"fly"
 		"display"
 	word
 		" "
 	word
-		"illegal"
 		"pirate"
 		"marauder"
 		"anarchist"
+	word
+		" "
 	word
 		"markings"
 		"colors"
@@ -4519,7 +4753,7 @@ phrase "friendly pirate"
 		"amazing "
 		"fantastic "
 		"incredible "
-		"facinating "
+		"fascinating "
 		""
 	phrase
 		"drugs"
@@ -4707,8 +4941,8 @@ phrase "friendly pirate"
 		" Talk to me for a contact."
 		" You'll find some on the nearest pirate planet."
 		" You'll find some on the nearest anarchist planet."
-		" You'll find some on the nearest planet not oppressed by the man."
-		" You'll find some wherever the man does not go."
+		" You'll find some on the nearest planet not oppressed by the Man."
+		" You'll find some wherever the Man does not go."
 
 phrase "friendly pirate"
 	word
@@ -4803,6 +5037,34 @@ phrase "friendly pirate"
 		" If only I was strong enough to stand up to them."
 		" I would have blasted them out of the sky if I could!"
 		" There were so many of them!"
+
+
+phrase "friendly disabled pirate"
+	word
+		"Could ya help a mate and"
+		"Could ya help a fellow pirate out and"
+		"Friend, could you do us a favor? Could ya"
+		"We've hit a snag, could ya"
+		"Friend, could ya"
+		"Can ya"
+	word
+		" "
+	word
+		"come over here and"
+		"come to us and"
+		"fly to us and"
+		"take a minute to"
+	word
+		" "
+	word
+		"patch us up"
+		"make some repairs on us"
+		"give us a boost"
+		"do some repairs"
+		"get this ship back online so we can get the hell outta Dodge"
+		"get us back up and plunderin' again"
+	word
+		"?"
 
 phrase "friendly author"
 	word
@@ -4909,8 +5171,7 @@ phrase "friendly disabled"
 		"could you render assistance"
 		"can we get some help patching up our ship"
 	word
-		", please?"
-		", please?"
+		", please?" 2
 		" so we can get out of here?"
 		" as soon as possible?"
 		"? I don't want to get stranded here!"
@@ -5210,12 +5471,6 @@ phrase "shakespearean insults"
 		"vassal"
 		"whey-face"
 		"wagtail"
-		
-phrase "hostile disabled pirate"
-	word
-		"Don't hurt me! Please!"
-		"Waaaaaa! Mommy!"
-		"Fire! Fire! Fire! Fire! Fire!"
 
 phrase "hostile civilian"
 	word
@@ -5513,7 +5768,6 @@ phrase "hostile navy"
 		" will always be ready to"
 		" was founded to"
 		"'s goal is to"
-		"'s directive is to"
 		"'s directive is to"
 		"'s mission is to"
 		"'s purpose is to"
@@ -5995,6 +6249,8 @@ phrase "hostile pirate"
 	word
 		"."
 
+
+
 phrase "hostile pirate"
 	word
 		"Plundering"
@@ -6234,7 +6490,7 @@ phrase "hostile pirate"
 		"walk you out the airlock"
 		"tear you in half"
 		"break your bones"
-		"paralyse you"
+		"paralyze you"
 		"take your credits"
 		"sell you to the slave markets"
 		"enslave you"
@@ -6259,7 +6515,7 @@ phrase "hostile pirate"
 		"sell you to Greenrock's fighting pits"
 		"make you fight in the pits"
 		"cover you in fire ants"
-		"operate on you without anaesthetic"
+		"operate on you without anesthetic"
 		"cut your heart out"
 		"use you as a test subject"
 		"sacrifice you"
@@ -6447,6 +6703,36 @@ phrase "hostile pirate"
 		" or get disintegrated"
 	word
 		"!"
+
+
+
+phrase "hostile disabled pirate"
+	word
+		"Why isn't the ship moving?!"
+		"Why aren't the engines working?"
+		"Move, you... ship!"
+		"Why aren't the guns firing?!"
+		"Fire! Fire! Fire the stupid guns! Why aren't you firing?"
+		"The guns... they've stopped!"
+		"Weapons systems critical! What does that mean?"
+		"No one told us pirates might die!"
+		"I told you guys not to get engines from the scrapyard!"
+		"Okay, okay! We'll pay our taxes."
+		"Wait! I forgot my last words."
+		"We didn't know piracy was bad!"
+		"Get away! My uncle is the CEO of the Syndicate."
+		"Forgive us! These guns were accidentally installed."
+		"Hey, you can't hurt a crew as stylish as ours."
+
+phrase "hostile disabled pirate"
+	word
+		"Don't hurt me! Please!"
+		"Waaaaaa! Mommy!"
+		"We're dying here! Stop firing!"
+		"Help! Stop firing!"
+		"We surrender!"
+		"Stop it! We surrender!"
+		"We're going to die out here, aren't we?"
 
 phrase "hostile bounty"
 	word
