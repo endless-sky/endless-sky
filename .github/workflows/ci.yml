@@ -231,7 +231,8 @@ jobs:
       run: |
         cd build/ci/
         ls
-        "'./endless-sky' -p"
+        cat endless-sky
+        ./endless-sky
     - name: Run Benchmarks
       run: ctest --preset macos-arm-benchmark
 
