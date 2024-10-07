@@ -36,7 +36,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "ShipNameDialog.h"
+#include "image/Sprite.h"
 #include "SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
@@ -162,7 +163,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
+		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -667,10 +668,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 
-	LineShader::Draw(from, mid, 3.5f, black);
-	LineShader::Draw(mid, to, 3.5f, black);
-	LineShader::Draw(from, mid, 1.5f, color);
-	LineShader::Draw(mid, to, 1.5f, color);
+	LineShader::Draw(from, mid, 2.f, black);
+	LineShader::Draw(mid, to, 2.f, black);
+	LineShader::Draw(from, mid, 1.f, color);
+	LineShader::Draw(mid, to, 1.f, color);
 }
 
 

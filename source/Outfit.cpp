@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
