@@ -1730,7 +1730,13 @@ mission "Wanderers: Sestor Attack"
 				"Model 512"
 				"Model 256"
 				"Model 64"
-				"Model 16" 3
+	npc
+		government "Kor Mereti"
+		personality heroic staying
+		fleet
+			names "kor mereti"
+			variant
+				"Model 16" 4
 				
 
 
