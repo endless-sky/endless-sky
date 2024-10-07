@@ -34,6 +34,9 @@ ship "Aaulqra"
 		"outfit space" 550
 		"weapon capacity" 240
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 2.75
 		"hull energy" 4.0
@@ -127,6 +130,9 @@ ship "Ejniisde"
 		"outfit space" 265
 		"weapon capacity" 85
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -205,6 +211,9 @@ ship "Kaskhorade"
 		"outfit space" 570
 		"weapon capacity" 280
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 2.25
 		"hull energy" 3.26
@@ -301,6 +310,9 @@ ship "Kvelqde"
 		"outfit space" 160
 		"weapon capacity" 55
 		"engine capacity" 45
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -382,6 +394,9 @@ ship "Kvelqde-Khora"
 		"outfit space" 197
 		"weapon capacity" 63
 		"engine capacity" 45
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -463,6 +478,9 @@ ship "Myaede"
 		"outfit space" 275
 		"weapon capacity" 125
 		"engine capacity" 130
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -546,6 +564,9 @@ ship "Nnaatej"
 		"outfit space" 220
 		"weapon capacity" 54
 		"engine capacity" 82
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"waterlining" 1
 		"corrosion resistance" 0.6
 		"slowing resistance" 0.6
@@ -628,6 +649,9 @@ ship "Nnesaarau"
 		"outfit space" 175
 		"weapon capacity" 30
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -700,6 +724,9 @@ ship "Ojde"
 		"outfit space" 330
 		"weapon capacity" 180
 		"engine capacity" 150
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -782,6 +809,9 @@ ship "Seiitej"
 		"outfit space" 370
 		"weapon capacity" 90
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 1.2
 		"hull energy" 1.74
@@ -867,6 +897,9 @@ ship "Stolsaqra"
 		"outfit space" 212
 		"weapon capacity" 90
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.3
 		"hull energy" 0.4
@@ -957,6 +990,9 @@ ship "Veusade"
 		"outfit space" 370
 		"weapon capacity" 96
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 1.45
 		"hull energy" 2.1
@@ -1052,6 +1088,9 @@ ship "Vujlet"
 		"outfit space" 280
 		"weapon capacity" 105
 		"engine capacity" 85
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"exclusive: Vujlet" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.875

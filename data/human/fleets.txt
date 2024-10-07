@@ -3483,3 +3483,163 @@ fleet "Human Wormhole Guards"
 		"Frigate (Mark II)"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
+
+# The New Tortugans have access to Syndicate hulls, and any Pirate tech,
+# and more varied objectives, so their ships are a quite a mix.
+fleet "Independent (Korath-Allied) Merchants"
+	government "Independent (Korath-Allied)"
+	names "civilian"
+	cargo 3
+	personality
+		timid frugal opportunistic
+		confusion 20
+	variant 10
+		"Bulk Freighter (Blaster)"
+		"Aerie"
+		"Dagger"
+		"Lance"
+	variant 3
+		"Mule (Heavy)"
+		"Manta (Proton)"
+		"Dagger" 2
+	variant 3
+		"Behemoth (Heavy)"
+		"Bastion (Laser)"
+	variant 7
+		"Blackbird"
+		"Quicksilver (Proton)"
+		"Quicksilver"
+		"Raven (Afterburner)"
+		"Blackbird" 2
+	variant 3
+		"Falcon (Heavy)"
+		"Freighter (Proton)"
+		"Freighter"
+	variant 3
+		"Argosy (Blaster)"
+		"Argosy (Laser)"
+		"Argosy (Turret)"
+	variant 7
+		"Behemoth (Speedy)"
+		"Clipper (Speedy)"
+		"Corvette (Speedy)"
+	variant 10
+		"Bulk Freighter (Heavy)"
+		"Firebird (Plasma)"
+		"Fury (Bomber)" 3
+	variant 2
+		"Hauler III"
+		"Leviathan (Particle Chaser)"
+		"Headhunter (Particle)" 2
+	variant 2
+		"Star Queen"
+		"Protector (Proton)"
+		"Splinter (Proton)"
+	variant 7
+		"Aerie"
+		"Dagger" 2
+		"Bounder" 2
+		"Fury (Missile)" 2
+
+# Asteroids beyond Alcyone are often much more durable, so the
+# ordinary mining ships are insufficient.
+fleet "Independent (Korath-Allied) Miners"
+	government "Independent (Korath-Allied)"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests
+	variant 3
+		"Manta (Miner)"
+	variant
+		"Firebird (Laser)"
+	variant
+		"Modified Argosy (Blaster)"
+	variant
+		"Splinter (Laser)"
+
+# The odd combination of defense comes from the association with
+# pirates and marauders; and their varied shipyard.
+fleet "Independent (Korath-Allied) Defense"
+	government "Independent (Korath-Allied)"
+	names "militia small"
+	cargo 1
+	personality
+		heroic frugal
+		confusion 20
+	variant 3
+		"Osprey (Missile)"
+		"Bastion"
+	variant 3
+		"Osprey (Laser)"
+		"Bastion (Heavy)"
+	variant 2
+		"Bastion (Laser)"
+		"Falcon"
+	variant 2
+		"Falcon (Laser)"
+		"Quicksilver" 2
+	variant 3
+		"Leviathan (Laser)"
+		"Quicksilver"
+		"Quicksilver (Proton)"
+	variant 3
+		"Leviathan (Heavy)"
+		"Quicksilver (Proton)" 2
+	variant 2
+		"Falcon (Heavy)"
+		"Splinter"
+		"Quicksilver (Proton)"
+	variant 3
+		"Manta (Proton)"
+		"Manta"
+	variant 2
+		"Protector (Laser)"
+		"Firebird"
+	variant 2
+		"Protector"
+		"Firebird (Missile)"
+	variant 2
+		"Vanguard (Particle)"
+		"Firebird (Plasma)"
+	variant 2
+		"Vanguard (Missile)"
+		"Protector (Proton)"
+	variant 2
+		"Vanguard"
+		"Firebird (Laser)"
+	variant 3
+		"Headhunter (Particle)"
+		"Headhunter (Strike)"
+	variant 2
+		"Headhunter (Particle)" 2
+		"Headhunter (Strike)"
+	variant 1
+		"Marauder Falcon"
+		"Marauder Firebird"
+		"Marauder Raven (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder (Engines)"
+	variant 1
+		"Marauder Leviathan"
+		"Marauder Firebird"
+		"Marauder Raven (Engines)"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+	variant
+		"Marauder Leviathan (Engines)"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant
+		"Marauder Leviathan (Weapons)"
+		"Firebird"
+		"Firebird (Plasma)"
+		"Firebird (Missile)"
+	variant
+		"Marauder Leviathan (Weapons)"
+		"Firebird (Laser)" 3
+		"Firebird (Missile)"

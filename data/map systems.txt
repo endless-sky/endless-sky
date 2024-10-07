@@ -13,7 +13,7 @@
 
 galaxy "Milky Way"
 	pos 112 22
-	sprite "ui/milky way"
+	sprite "map/milky way"
 
 galaxy "label arachi"
 	pos -750 615
@@ -3379,6 +3379,7 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	fleet "Korath Large Raid" 50000
+	fleet "Independent (Korath-Allied) Merchants" 7000
 	object
 		sprite star/m5
 		distance 49.6028
@@ -4323,8 +4324,9 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
+	fleet "Kor Isaha Raid" 90000
 	fleet "Korath Large Raid" 50000
-	fleet "Korath Miners" 25000
+	fleet "Korath Miners" 30000
 	object
 		sprite star/k8
 		period 10
@@ -4774,18 +4776,18 @@ system "Alpha Centauri"
 	pos -429 125
 	government Republic
 	attributes "near earth"
-	arrival 1190
+	arrival 5000
 	habitable 1190
-	belt 1116
+	belt 16500
 	haze _menu/haze-67
 	link Sol
 	asteroids "small rock" 1 1.944
-	asteroids "medium rock" 2 5.04
+	asteroids "medium rock" 1 5.04
 	asteroids "large rock" 1 1.8
-	asteroids "medium metal" 10 4.428
+	asteroids "medium metal" 3 4.428
 	asteroids "large metal" 1 3.168
-	minables copper 1 5.07974
-	minables lead 4 6.13217
+	minables copper 20 5.07974
+	minables lead 80 6.13217
 	trade Clothing 262
 	trade Electronics 695
 	trade Equipment 523
@@ -4802,37 +4804,37 @@ system "Alpha Centauri"
 	fleet "Large Republic" 6000
 	object
 		sprite star/g3
-		distance 38.238
-		period 10.3766
+		distance 8400
+		period 29133.07
 		offset 180
+		object
+			sprite planet/desert2
+			distance 846.547
+			period 74.8048
+		object Chiron
+			sprite planet/forest1
+			distance 1676.197
+			period 423.665
+			object
+				sprite planet/rock17
+				distance 186
+				period 14.7361
+		object
+			sprite planet/gas13
+			distance 4280.61
+			period 3022.55
 	object
 		sprite star/k0
-		distance 54.6257
-		period 10.3766
-	object
-		sprite planet/desert2
-		distance 346.547
-		period 74.8048
-	object
-		sprite planet/oberon
-		distance 749.037
-		period 237.706
-	object Chiron
-		sprite planet/forest1
-		distance 976.197
-		period 353.665
+		distance 25200
+		period 29133.07
 		object
-			sprite planet/rock17
-			distance 126
-			period 14.7361
-	object
-		sprite planet/rock15-b
-		distance 1718.2
-		period 825.842
-	object
-		sprite planet/gas13
-		distance 4080.61
-		period 3022.55
+			sprite planet/oberon
+			distance 1149.037
+			period 337.706
+		object
+			sprite planet/rock15-b
+			distance 2718.2
+			period 825.842
 
 system "Alpha Hydri"
 	pos -97 98
@@ -4862,7 +4864,6 @@ system "Alpha Hydri"
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
-	fleet "Korath Large Raid" 40000
 	object
 		sprite star/g0
 		distance 23.474
@@ -5800,7 +5801,8 @@ system Arculus
 	fleet "Small Remnant" 2200
 	fleet "Remnant Transport" 2200
 	fleet "Remnant Home Guard" 2000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Ember Waste Raid" 120000
+	fleet "Kor Alaji Raid" 60000
 	fleet "Korath Rescue" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
@@ -6141,10 +6143,10 @@ system Aspidiske
 
 system Atik
 	pos -66 -52
-	government Uninhabited
+	government "Independent (Korath-Allied) Restricted"
 	attributes "bright star" "core" "giant star" "multi-star" "notable star"
-	arrival 5000
-	habitable 15105
+	arrival 1800
+	habitable 1800
 	belt 1240
 	link Durax
 	asteroids "small rock" 36 1.99
@@ -6169,8 +6171,12 @@ system Atik
 	trade Plastic 416
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
-	fleet "Human Miners" 5000
+	fleet "Independent (Korath-Allied) Miners" 10000
+	fleet "Large Syndicate" 15000
+	fleet "Human Miners" 15000
 	fleet "Korath Miners" 15000
+	fleet "Korath Civilian Delivery" 30000
+	fleet "Independent (Korath-Allied) Merchants" 20000
 	fleet "Derelict Pirate" 10000
 	object
 		sprite star/b-giant
@@ -6198,9 +6204,14 @@ system Atik
 			distance 481
 			period 38.374
 	object
-		sprite planet/lava1
-		distance 1905.05
+		sprite planet/rock16
+		distance 2105.05
 		period 270.619
+		object "La'ab Bamen"
+			sprite planet/lumpy-moon
+			distance 155
+			period 19.114
+
 
 system Atria
 	pos -551 532
@@ -6695,6 +6706,7 @@ system Bellatrix
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 3000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/k3
 		distance 37.4638
@@ -7822,7 +7834,9 @@ system Caeculus
 	trade Medical 508
 	trade Metal 272
 	trade Plastic 289
-	fleet "Korath Ember Waste Raid" 20000
+	fleet "Kor Alaji Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
@@ -8089,6 +8103,8 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	fleet "Derelict Northern" 30000
 	object
 		sprite star/g0
@@ -8794,7 +8810,8 @@ system Cinxia
 	fleet "Small Remnant" 1800
 	fleet "Remnant Transport" 1800
 	fleet "Remnant Home Guard" 1600
-	fleet "Korath Ember Waste Raid" 30000
+	fleet "Kor Alaji Raid" 45000
+	fleet "Korath Ember Waste Raid" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -8966,7 +8983,9 @@ system Coluber
 	trade Medical 798
 	trade Metal 475
 	trade Plastic 362
-	fleet "Korath Ember Waste Raid" 10000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 20000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -9633,6 +9652,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	fleet "Independent (Korath-Allied) Miners" 8000
 	fleet "Derelict Pirate" 15000
 	object
 		sprite star/m8
@@ -11467,6 +11487,8 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
+	fleet "Independent (Korath-Allied) Miners" 5000
+	fleet "Independent (Korath-Allied) Merchants" 10000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/g0-old
@@ -11772,7 +11794,8 @@ system Edusa
 	fleet "Large Remnant" 3200
 	fleet "Small Remnant" 2400
 	fleet "Remnant Transport" 2400
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alaji Raid" 60000
+	fleet "Korath Ember Waste Raid" 120000
 	fleet "Korath Rescue" 90000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -13980,7 +14003,8 @@ system Farinus
 	fleet "Large Remnant" 14000
 	fleet "Small Remnant" 10000
 	fleet "Remnant Transport" 10000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alaji Raid" 60000
+	fleet "Korath Ember Waste Raid" 120000
 	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -20759,7 +20783,8 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 3600
+	fleet "Korath Raid" 4800
+	fleet "Kor Isaha Raid" 15000
 	fleet "Korath Miners" 7500
 	fleet "Korath Large Raid" 3600
 	fleet "Korath Defense" 3600
@@ -20785,13 +20810,13 @@ system "Kor Ak'Mari"
 		sprite planet/oberon
 		distance 1807.64
 		period 552.137
-	object
-		sprite planet/ocean6-b
+	object "Rabasot Pa'ah"
+		sprite planet/ocean-rabasot
 		distance 2874.19
 		period 1107.01
 		object
 			sprite planet/callisto-b
-			distance 166
+			distance 266
 			period 16.2305
 	object
 		sprite planet/ice0-b
@@ -20827,8 +20852,9 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 1250
+	fleet "Korath Raid" 1325
 	fleet "Korath Home" 720
+	fleet "Kor Isaha Raid" 24000
 	fleet "Korath Large Raid" 15000
 	fleet "Korath Surveillance" 32000
 	fleet "Korath Defense" 1775
@@ -20897,7 +20923,8 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 2050
+	fleet "Korath Raid" 2250
+	fleet "Kor Isaha Raid" 24000
 	fleet "Korath Home" 1200
 	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
@@ -20970,7 +20997,8 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
-	fleet "Korath Raid" 2040
+	fleet "Korath Raid" 2500
+	fleet "Kor Isaha Raid" 12000
 	fleet "Korath Defense" 2900
 	fleet "Korath Large Raid" 21000
 	fleet "Korath Surveillance" 46000
@@ -21040,7 +21068,9 @@ system "Kor Nor'peli"
 	trade Plastic 423
 	fleet "Korath Defense" 1700
 	fleet "Korath Large Raid" 16000
-	fleet "Korath Ember Waste Raid" 1350
+	fleet "Kor Alaji Raid" 5400
+	fleet "Kor Isaha Raid" 5400
+	fleet "Korath Ember Waste Raid" 2700
 	fleet "Korath Ember Waste Large Raid" 20000
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
@@ -21117,7 +21147,9 @@ system "Kor Tar'bei"
 	fleet "Korath Home" 1000
 	fleet "Korath Civilian Large" 1000
 	fleet "Korath Defense" 2600
-	fleet "Korath Ember Waste Raid" 3050
+	fleet "Kor Alaji Raid" 12200
+	fleet "Kor Isaha Raid" 12200
+	fleet "Korath Ember Waste Raid" 6100
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
 	fleet "Korsmanath A'awojs" 900
@@ -21172,7 +21204,8 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 1850
+	fleet "Korath Raid" 3700
+	fleet "Kor Isaha Raid" 3700
 	fleet "Korath Home" 1170
 	fleet "Korath Defense" 1660
 	fleet "Korath Large Raid" 16000
@@ -21788,7 +21821,9 @@ system Levana
 	trade Medical 736
 	trade Metal 407
 	trade Plastic 222
-	fleet "Korath Ember Waste Raid" 10000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -22231,7 +22266,9 @@ system Lucina
 	trade Medical 863
 	trade Metal 524
 	trade Plastic 410
-	fleet "Korath Ember Waste Raid" 20000
+	fleet "Kor Alaji Raid" 60000
+	fleet "Kor Isaha Raid" 15000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -23714,6 +23751,7 @@ system Menkar
 	fleet "Large Syndicate" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/k3
 		period 10
@@ -24401,6 +24439,7 @@ system Mirfak
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 1800
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/k8
 		period 10
@@ -24490,7 +24529,7 @@ system Mirzam
 
 system Misam
 	pos -9 -80
-	government Pirate
+	government "Independent (Korath-Allied) Port"
 	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
@@ -24517,11 +24556,14 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 5000
-	fleet "Korath Large Raid" 11000
-	fleet "Human Miners" 10000
-	fleet "Large Syndicate" 20000
+	fleet "Korath Raid" 6000
+	fleet "Kor Isaha Raid" 24000
+	fleet "Korath Large Raid" 12000
+	fleet "Korath Civilian Delivery" 50000
+	fleet "Independent (Korath-Allied) Miners" 7000
+	fleet "Large Syndicate" 15000
 	fleet "Korath Miners" 15000
+	fleet "Independent (Korath-Allied) Merchants" 3000
 	object
 		sprite star/f5-old
 		distance 50
@@ -24766,6 +24808,8 @@ system Moktar
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
 	fleet "Small Northern Pirates" 3000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	fleet "Derelict Core" 30000
 	object
 		sprite star/k8
@@ -25442,6 +25486,7 @@ system Nihal
 	fleet "Small Republic" 4000
 	fleet "Large Republic" 7000
 	fleet "Human Miners" 2000
+	fleet "Independent (Korath-Allied) Merchants" 10000
 	object
 		sprite star/k8
 		distance 26.8556
@@ -25899,6 +25944,10 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
+	fleet "Korath Raid" 30000
+	fleet "Korath Large Raid" 50000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/m-giant
@@ -26606,7 +26655,8 @@ system Pantica
 	fleet "Small Remnant" 1400
 	fleet "Remnant Transport" 1400
 	fleet "Remnant Home Guard" 1300
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alaji Raid" 60000
+	fleet "Korath Ember Waste Raid" 120000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -26664,7 +26714,9 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Korath Ember Waste Raid" 10000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 15000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -27241,7 +27293,9 @@ system Peragenor
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Alaji Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
@@ -27362,7 +27416,8 @@ system Perfica
 	fleet "Large Remnant" 10000
 	fleet "Small Remnant" 7500
 	fleet "Remnant Transport" 7500
-	fleet "Korath Ember Waste Raid" 30000
+	fleet "Kor Alaji Raid" 45000
+	fleet "Korath Ember Waste Raid" 90000
 	fleet "Korath Rescue" 45000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -31018,7 +31073,9 @@ system Segesta
 	trade Plastic 295
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Korath Ember Waste Raid" 80000
+	fleet "Kor Isaha Raid" 80000
+	fleet "Kor Alaji Raid" 80000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 15000
 	hazard "Ember Waste Base Heat" 100
@@ -32242,9 +32299,10 @@ system Sol
 	pos -400 100
 	government Republic
 	attributes "near earth"
-	arrival 1080
-	habitable 1080
-	belt 1529
+	arrival 4300
+	departure 4189
+	habitable 1496
+	belt 4189 100
 	haze _menu/haze-67
 	link "Alpha Centauri"
 	link Altair
@@ -32252,11 +32310,14 @@ system Sol
 	link Denebola
 	link Sirius
 	link Vega
-	asteroids "small rock" 30 2.691
-	asteroids "large rock" 50 5.0508
-	asteroids "medium metal" 4 2.8566
-	asteroids "large metal" 1 2.2356
-	minables iron 8 4.64499
+	# asteroids "small rock" 30 2.691
+	# asteroids "large rock" 50 5.0508
+	# asteroids "medium metal" 4 2.8566
+	# asteroids "large metal" 1 2.2356
+	minables iron 500 4.64499
+	minables aluminum 200 3
+	minables gold 20 25
+	minables silicon 300 2
 	trade Clothing 282
 	trade Electronics 745
 	trade Equipment 491
@@ -32278,17 +32339,17 @@ system Sol
 	object
 		sprite star/g0
 		period 10
-	object
+	object Mercury
 		sprite planet/mercury
-		distance 289.647
+		distance 673
 		period 60.0000
-	object
+	object Venus
 		sprite planet/venus
-		distance 533.534
+		distance 1085
 		period 150.000
 	object Earth
 		sprite planet/earth
-		distance 965.669
+		distance 1496
 		period 365.250
 		object Luna
 			sprite planet/luna
@@ -32296,17 +32357,17 @@ system Sol
 			period 27.3
 	object Mars
 		sprite planet/mars
-		distance 1471.43
+		distance 2281
 		period 687.001
 	object Jupiter
 		sprite planet/jupiter
-		distance 3339
+		distance 7787
 		period 2348.40
 		object
 			sprite planet/io
 			distance 238.221
 			period 10.614
-		object
+		object Europa
 			sprite planet/europa
 			distance 379.078
 			period 21.306
@@ -32318,9 +32379,9 @@ system Sol
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
-	object
+	object Saturn
 		sprite planet/saturn
-		distance 5562
+		distance 14362
 		period 5048.87
 		object
 			sprite planet/tethys
@@ -32330,26 +32391,38 @@ system Sol
 			sprite planet/rhea
 			distance 791
 			period 4.5
-		object
+		object Titan
 			sprite planet/titan
 			distance 1222
 			period 16
-	object
+	object Uranus
 		sprite planet/uranus
-		distance 10373
+		distance 28723
 		period 12858.9
-		object
+		object Miranda
 			sprite planet/miranda
 			distance 195
 			period 1.4
-		object
+		object Oberon
 			sprite planet/oberon
 			distance 584
 			period 13
-	object
+	object Neptune
 		sprite planet/neptune
-		distance 15730
+		distance 45179
 		period 24012.7
+		object Triton
+			sprite planet/tethys
+			distance 195
+			period -5.8
+	object Pluto
+		sprite planet/neptune
+		distance 59062
+		period 90498.1
+		object Charon
+			sprite planet/tethys
+			distance 195
+			period 5.8
 
 system "Sol Arach"
 	pos -711.587 649.051
@@ -32684,6 +32757,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	fleet "Derelict Northern" 10000
 	object
 		sprite star/wr
@@ -33004,7 +33078,9 @@ system Stercutus
 	trade Medical 536
 	trade Metal 299
 	trade Plastic 294
-	fleet "Korath Ember Waste Raid" 20000
+	fleet "Kor Alaji Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
@@ -35685,6 +35761,7 @@ system Volax
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
+	fleet "Independent (Korath-Allied) Merchants" 20000
 	fleet "Derelict Northern" 30000
 	object
 		sprite star/f5
@@ -36994,6 +37071,7 @@ system Zaurak
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
+	fleet "Independent (Korath-Allied) Merchants" 20000
 	object
 		sprite star/g5
 		period 10

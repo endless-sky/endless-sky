@@ -1,0 +1,184 @@
+# Copyright (c) 2024 by an anonymous author
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Spawn Limits Test"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+				"thrust" 100
+				"reverse thrust" 100
+				"turn" 1000
+				"energy generation" 10
+			outfits
+				Hyperdrive
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		conditions
+			"Ruin: Landing: offered"
+			"update fleet counters"
+		event
+			date 1 1 3012
+			system "Terra Incognita"
+				fleet "Disabled Aphid"
+					category test
+					period 1
+					limit 2
+					skip system entry
+				fleet "Staying Scarab"
+					category test
+					period 1
+					non-disabled limit 1
+				fleet "Disabled Shuttle"
+					category test
+					period 1
+					limit 2
+				fleet "Disabled Star Barge"
+					category test
+					period 100000000
+					limit 0
+					initial count 1
+				fleet "Expensive Ship"
+					period 1
+					limit 10
+					ignore enemy strength
+					skip system entry
+
+fleet "Disabled Aphid"
+	government "Merchant"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		staying derelict
+	variant
+		"Aphid"
+
+fleet "Staying Scarab"
+	government "Merchant"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		staying
+	variant
+		"Surveillance Drone"
+
+fleet "Disabled Shuttle"
+	government "Merchant"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		staying derelict
+	variant
+		"Shuttle"
+
+fleet "Disabled Star Barge"
+	government "Merchant"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		staying derelict
+	variant
+		"Star Barge"
+
+fleet "Expensive Ship"
+	government "Pirate"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		staying
+	variant
+		"Expensive Ship"
+
+ship "Archon" "Expensive Ship"
+	outfits
+		"Drak Anti-Missile Field" 2
+		"Drak Anti-Missile Field (Augmented)" 2
+		"Hyperdrive"
+		"Jump Drive"
+
+test "Spawn Limit Tests"
+	status active
+	description "Tests if random interval and system entry fleet spawn limits work."
+	sequence
+		inject "Spawn Limits Test"
+		call "Load First Savegame"
+		call "Depart"
+		apply
+			"test: steps to wait" = 20
+		label waiter
+		input
+		apply
+			"test: steps to wait" --
+		branch waiter
+			"test: steps to wait" > 0
+
+		apply
+			"test: fleet count by name Disabled Shuttle" = "fleet count by name: Disabled Shuttle"
+			"test: fleet count by name Expensive Ship" = "fleet count by name: Expensive Ship"
+			"test: fleet count by name Staying Scarab" = "fleet count by name: Staying Scarab"
+			"test: fleet count by name Disabled Aphid" = "fleet count by name: Disabled Aphid"
+			"test: fleet count by name Disabled Star Barge" = "fleet count by name: Disabled Star Barge"
+
+		# store the conditions in test variables so we know which one fails
+		apply
+			"Test fleet count by name: Staying Scarab" == "test: fleet count by name Staying Scarab"
+			"Test fleet count by name: Disabled Shuttle" == "test: fleet count by name Disabled Shuttle"
+			"Test fleet count by name: Disabled Aphid" == "test: fleet count by name Disabled Aphid"
+			"Test fleet count by name: Disabled Star Barge" == "test: fleet count by name Disabled Star Barge"
+			"Test fleet count by name: Expensive Ship" == "test: fleet count by name Expensive Ship"
+		assert
+			"test: fleet count by name Disabled Shuttle" == 0
+			"test: fleet count by name Expensive Ship" > 5
+			"test: fleet count by name Staying Scarab" == 1
+			"test: fleet count by name Disabled Aphid" == 0
+			"test: fleet count by name Disabled Star Barge" == 1

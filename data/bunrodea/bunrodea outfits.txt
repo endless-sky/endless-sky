@@ -223,10 +223,12 @@ outfit "Chiisana Rift Thruster"
 	category "Engines"
 	cost 130000
 	thumbnail "outfit/chiisana rift thruster"
+	"thruster slot" -1
+	"engine mod space" 0.76
 	"mass" 11
 	"outfit space" -11
 	"engine capacity" -11
-	"thrust" 11.6625
+	"thrust" 11
 	"thrusting energy" 1.15
 	"thrusting heat" 0.65
 	"flare sprite" "effect/bunrodea flare/large"
@@ -234,16 +236,26 @@ outfit "Chiisana Rift Thruster"
 		"rewind"
 		"scale" 0.3
 	"flare sound" "ion tiny"
+	"reverse thrust" 1.1
+	"reverse thrusting energy" 0.115
+	"reverse thrusting heat" 0.065
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.1
+	"reverse flare sound" "ion tiny"
 	description "While the Korath favor raw power in their engines, the Bunrodea favor efficiency, opting to make use of engines that produce less thrust for significantly less heat produced."
 
 outfit "Nami Rift Thruster"
 	category "Engines"
 	cost 262000
 	thumbnail "outfit/nami rift thruster"
+	"thruster slot" -1
+	"engine mod space" 0.86
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"thrust" 21.135
+	"thrust" 21
 	"thrusting energy" 2.3
 	"thrusting heat" 1.3
 	"flare sprite" "effect/bunrodea flare/large"
@@ -251,16 +263,26 @@ outfit "Nami Rift Thruster"
 		"rewind"
 		"scale" 0.6
 	"flare sound" "ion small"
+	"reverse thrust" 2.1
+	"reverse thrusting energy" 0.23
+	"reverse thrusting heat" 0.13
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.2
+	"reverse flare sound" "ion tiny"
 	description "Although rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even next to terribly inefficient Korath engines."
 
 outfit "Ookii Rift Thruster"
 	category "Engines"
 	cost 512000
 	thumbnail "outfit/ookii rift thruster"
+	"thruster slot" -1
+	"engine mod space" 1.05
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 37.455
+	"thrust" 37
 	"thrusting energy" 4.4
 	"thrusting heat" 2.5
 	"flare sprite" "effect/bunrodea flare/large"
@@ -268,32 +290,51 @@ outfit "Ookii Rift Thruster"
 		"rewind"
 		"scale" 0.8
 	"flare sound" "ion medium"
+	"reverse thrust" 3.7
+	"reverse thrusting energy" 0.44
+	"reverse thrusting heat" 0.25
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.3
+	"reverse flare sound" "ion tiny"
 	description "Even though the energy drawn per unit thrust of rift engines is poorer than that of Korath engines, the overall energy requirement of rift engines is still far lesser by comparison."
 
 outfit "Subarashii Rift Thruster"
 	category "Engines"
 	cost 1004000
 	thumbnail "outfit/subarashii rift thruster"
+	"thruster slot" -1
+	"engine mod space" 1.23
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"thrust" 69.75
+	"thrust" 69
 	"thrusting energy" 8.6
 	"thrusting heat" 4.9
 	"flare sprite" "effect/bunrodea flare/large"
 		"frame rate" 1
 		"rewind"
 	"flare sound" "ion large"
+	"reverse thrust" 6.9
+	"reverse thrusting energy" 0.86
+	"reverse thrusting heat" 0.49
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.4
+	"reverse flare sound" "ion tiny"
 	description "Given the lower size and thrust of rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines, more powerful than even those of the Korath, that would allow any ship to zip across the stars like a comet and chase down any potential target."
 
 outfit "Chiisana Rift Steering"
 	category "Engines"
 	cost 201000
 	thumbnail "outfit/chiisana rift steering"
+	"steering slot" -1
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
-	"turn" 808.5
+	"turn" 808
 	"turning energy" 2.6
 	"turning heat" 1
 	description "Given that Bunrodean ships are typically focused on making heavy use of their forward facing guns, the Bunrodea favor high turn rates much more than high speeds. As such, rift steering systems are larger than the respective thruster systems of the same size category."
@@ -302,10 +343,11 @@ outfit "Nami Rift Steering"
 	category "Engines"
 	cost 442000
 	thumbnail "outfit/nami rift steering"
+	"steering slot" -1
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
-	"turn" 1705.5
+	"turn" 1705
 	"turning energy" 5.3
 	"turning heat" 2.1
 	description "As with many Bunrodean systems, rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
@@ -314,10 +356,11 @@ outfit "Ookii Rift Steering"
 	category "Engines"
 	cost 940000
 	thumbnail "outfit/ookii rift steering"
+	"steering slot" -1
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
-	"turn" 3148.5
+	"turn" 3148
 	"turning energy" 9.2
 	"turning heat" 3.65
 	description "Although the focus on steering over thrust makes Bunrodean ships easy targets to track, the power of their weapons systems would leave anyone foolish to believe that they are sitting ducks."
@@ -326,6 +369,7 @@ outfit "Subarashii Rift Steering"
 	category "Engines"
 	cost 1577000
 	thumbnail "outfit/subarashii rift steering"
+	"steering slot" -1
 	"mass" 90
 	"outfit space" -90
 	"engine capacity" -90
