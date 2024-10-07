@@ -7455,10 +7455,11 @@ mission "Adelita 5"
 			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
 
 
+
 mission "Dragon Tech 1"
 	name "Return to Weland on Wayfarer"
-	description "Weland's done working on your artifact, and has requested you return to Wayfarer and meet him."
-	source 
+	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7470,16 +7471,16 @@ mission "Dragon Tech 1"
 		require "Blood of Surtr" 0
 		require "Tear of Skade" 0
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
-			`	Come pick it up, and pay for it at your earliest convenience.`
+			`	Come pick it up and pay for it at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		event "welandstone" 66
 		conversation
-			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
 			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
@@ -7505,8 +7506,8 @@ event "welandstone"
 
 mission "Dragon Tech 1b"
 	name "Return to Weland on Wayfarer"
-	description "Weland's done working on your artifact, and has requested you return to Wayfarer and meet him."
-	source 
+	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7515,18 +7516,18 @@ mission "Dragon Tech 1b"
 		not "Dragon Tech 1c: offered"
 		not "Dragon Tech 1d: offered"
 	on offer
-		require "Blood of Surtr" 
+		require "Blood of Surtr"
 		require "Tear of Skade" 0
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up, and pay for it, at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		conversation
-			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
 			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
@@ -7537,7 +7538,7 @@ mission "Dragon Tech 1b"
 				`	(Sell the Fusion Afterburner.)`
 			`	Weland looks feverish. "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
 			action
-				payment 5000000
+				payment 4000000
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business."`
 				goto money
 			label keep
@@ -7545,13 +7546,13 @@ mission "Dragon Tech 1b"
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 			action
 				outfit "Retrofitted Fusion Afterburner" 1
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are, flying free with one on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Blood of Surtr' stone of yours?"`
 			choice
 				`	(Refuse to sell the Blood of Surtr.)`
 					goto refuse
 				`	(Agree to sell the Blood of Surtr.)`
-			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
+			`	Weland grins like hyena, "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
 			`	He laughs, maniacally, and transfers the credits over to you.`
 			action
 				payment 10000000
@@ -7559,7 +7560,7 @@ mission "Dragon Tech 1b"
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
 				decline
 			label money
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
 			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto choice
@@ -7573,7 +7574,7 @@ mission "Dragon Tech 1b"
 					goto studyweland
 				`	(Refuse him.)`
 			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
-			`	He says nothing more and limps away into some back room chains dragging after him. You show yourself out.`
+			`	He says nothing more and limps away into some back room, chains dragging after him. You show yourself out.`
 				decline
 			label studyweland
 			`	Weland grins. "A little time's better than no time. Put 'er there."`
@@ -7587,8 +7588,8 @@ event "welandwait3surtr"
 
 mission "Dragon Tech 1c"
 	name "Return to Weland on Wayfarer"
-	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
-	source 
+	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7598,20 +7599,20 @@ mission "Dragon Tech 1c"
 		not "Dragon Tech 1d: offered"
 	on offer
 		require "Blood of Surtr" 0
-		require "Tear of Skade" 
+		require "Tear of Skade"
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up, and pay for it, at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		conversation
-			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
 			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
-			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
+			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship.`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
 				`	(Keep the Fusion Afterburner.)`
@@ -7627,7 +7628,7 @@ mission "Dragon Tech 1c"
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 			action
 				outfit "Retrofitted Fusion Afterburner" 1
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Tear of Skade' stone of yours?"`
 			choice
 				`	(Refuse to sell the Tear of Skade.)`
@@ -7635,13 +7636,13 @@ mission "Dragon Tech 1c"
 				`	(Agree to sell the Tear of Skade.)`
 			`	Weland's grins like hyena, "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But with this stone, and the secrets it holds, who knows what I'll discover."`
 			`	He laughs, maniacally, and transfers the credits over to you.`
-			action 
+			action
 				payment 10000000
 				outfit "Tear of Skade" -1
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
 				decline
 			label money
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
 			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto choice
@@ -7669,8 +7670,8 @@ event "welandwait3skade"
 
 mission "Dragon Tech 1d"
 	name "Return to Weland on Wayfarer"
-	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
-	source 
+	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7679,21 +7680,21 @@ mission "Dragon Tech 1d"
 		not "Dragon Tech 1c: offered"
 		not "Dragon Tech 1: offered"
 	on offer
-		require "Blood of Surtr" 
-		require "Tear of Skade" 
+		require "Blood of Surtr"
+		require "Tear of Skade"
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up, and pay for it, at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		conversation
-			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur t#o life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Fusion Afterburner, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
-			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
+			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
+			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship.`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
 				`	(Keep the Fusion Afterburner.)`
@@ -7709,7 +7710,7 @@ mission "Dragon Tech 1d"
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 			action
 				outfit "Retrofitted Fusion Afterburner" 1
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for one of those stones of yours?"`
 			choice
 				`	(Refuse to sell either stone.)`
@@ -7717,7 +7718,7 @@ mission "Dragon Tech 1d"
 				`	(Agree to sell the Tear of Skade.)`
 					goto soldskade
 				`	(Agree to sell the Blood of Surtr.)`
-			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
+			`	Weland grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
 			`	He laughs, maniacally, and transfers the credits over to you.`
 			action
 				payment 10000000
@@ -7727,13 +7728,13 @@ mission "Dragon Tech 1d"
 			label soldskade
 			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
 			`	He laughs, maniacally, and transfers the credits over to you.`
-			action 
+			action
 				payment 10000000
 				outfit "Tear of Skade" -1
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
 				decline
 			label money
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with not one, but two, on your ship doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but you just took most my cash.`
 			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto choice
@@ -7748,7 +7749,7 @@ mission "Dragon Tech 1d"
 				`	(Let Weland study the Blood of Surtr.)`
 					goto studysurtrweland
 				`	(Refuse him.)`
-			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
+			`	Crestfallen, Weland turns away from you. "They're your stones, your call."`
 			`	He says nothing more and limps off into some back room, chains dragging after him. You show yourself out.`
 				decline
 			label studyskadeweland
@@ -7768,7 +7769,7 @@ mission "Dragon Tech 1d"
 				outfit "Blood of Surtr" -1
 
 mission "Stone Harmonization a"
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	landing
@@ -7780,17 +7781,17 @@ mission "Stone Harmonization a"
 		require "Tear of Skade"
 		require "Blood of Surtr"
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, I was wanting to speak with you about something.`
 			`	Please stop by my shop on Wayfarer at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
+			`					Weland`
 	on complete
 		conversation
-			`	You find Weland tinkering away in his shop. He puts his inscrutable tools down and waves to you as you enter.`
+			`You find Weland tinkering away in his shop. He puts his inscrutable tools down and waves to you as you enter.`
 			`	"Ah, there you are. I am sure you're wonderin' yourself sick trying to divine why I called ya." He grins, and limps toward you, dragging metal chains behind his feet.`
-			`	"I heard word, from someone whose done crew work on your ship, that you're in possession of a couple of Deep Stones." He nearly whispers the last the two words.`
-			`	"I've been told you call 'em, the 'Tear of Skade', and the 'Blood of Surtr'". He watches your eyes carefully as he names off the stones. "Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"I heard word, from someone who's done crew work on your ship, that you're in possession of a couple of Deep Stones." He nearly whispers the last the two words.`
+			`	"I've been told you call 'em, the 'Tear of Skade', and the 'Blood of Surtr'". He watches your eyes carefully as he names off the stones. "Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but I don't have anywhere nears enough cash for one of those.`
 			`	"So, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I'd pay you 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
@@ -7822,38 +7823,38 @@ mission "Stone Harmonization a"
 
 mission "Stone Harmonization 2skade"
 	name "Return to Weland on Wayfarer"
-	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
-	source 
+	description "Weland has a mysterious problem and wants you to meet him on Wayfarer as soon as possible."
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
 		has "event: welandwait3skade"
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	'<name>, we have a problem. Get back here ASAP.`
-			`				-Weland`		
+			`				-Weland`
 	on complete
 		conversation
-			`	Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
+			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
 			`	A beaten and battered Weland is waiting for you in a wheelchair. His bloody leg chains, with what may be bone fragments, are heaped in a corner. A shadow haunts his face. "We cannot speak freely here. Meet me in the spaceport."`
 
 mission "Stone Harmonization 2surtr"
 	name "Return to Weland on Wayfarer"
-	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
-	source 
+	description "Weland has a mysterious problem and wants you to meet him on Wayfarer as soon as possible."
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
 		has "event: welandwait3surtr"
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Weland on Wayfarer.`
-			`	'<name>, we have a problem. Get back here ASAP.`
-			`				-Weland`		
+			`Your inbox blinks with a new message from Weland on Wayfarer.`
+			`	<name>, we have a problem. Get back here ASAP.`
+			`				-Weland`
 	on complete
 		conversation
-			`	Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
+			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
 			`	A beaten and battered Weland is waiting for you in a wheelchair. His bloody leg chains, with what may be bone fragments, are heaped in a corner. A shadow haunts his face. "We cannot speak freely here. Meet me in the spaceport."`
 
 ship "Falcon" "Falcon (Gwesklin Variant)"
@@ -7910,10 +7911,10 @@ mission "Stone Harmonization 3skade"
 		has "Stone Harmonization 2skade: done"
 	on offer
 		conversation
-			`	Weland's waiting for you outside a nearly empty eatery. He turns his wheel chair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am some else's property."`
+			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
+			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am someone else's property."`
 			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it."`
-			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered.. what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
+			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
 			`	"Still, they had their ways, the things they've implanted, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
 			`	"They took it. Took your stone. And this very minute they are hustling to get as far from Wayfarer as they can."`
@@ -7942,7 +7943,7 @@ mission "Stone Harmonization 3skade"
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
 			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us.`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -7950,15 +7951,14 @@ mission "Stone Harmonization 3skade"
 	npc board
 		government "Bounty (Disguised)"
 		system "Naper"
-		personality timid fleeing uninterested entering target staying
-		ship ship "Falcon" "Falcon (Gwesklin Variant)" "C.M.C.S. Aotrou"
-		dialog
-			`	Looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
+		personality entering target timid staying uninterested
+		ship "Falcon" "Falcon (Gwesklin Variant)" "C.M.C.S. Aotrou"
+		dialog `It looks like Captain Gwesklin took an escape pod and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
-		dialog   ` You haven't dealt with the Aotrou.`
+		dialog `You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 mission "Stone Harmonization 4skade"
 	source "Wayfarer"
@@ -7971,14 +7971,14 @@ mission "Stone Harmonization 4skade"
 		outfit "Tear of Skade" -1
 		outfit "Tear of Skade (Harmonized)" 1
 		conversation
-			`	Weland's laboratory has mostly been cleaned up, and repaired. Weland's waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
+			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
 			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The Crystalline lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
-			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland almost trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
+			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but it's an entire untapped field of study." Weland almost trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, "we", aren't you human?"`
 			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
 			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
-			`	Weland fiddles with his controls for a bit. "...I can return the stone to harmony."`
+			`	Weland fiddles with his controls for a bit. "... I can return the stone to harmony."`
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
 			`	"Ah ha! Hot damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's colder than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystal tonal architecture, ha, who woulda thought, alright."`
@@ -7992,7 +7992,6 @@ mission "Stone Harmonization 4skade"
 				`	"Why don't you just leave? I could take you off world."`
 					goto offworld
 				`	"Thanks for all you've done. I hope we meet again."`
-					goto bye
 				`	"So long."`
 			label bye
 			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved in spades. Take care now, and hopefully we'll meet again."`
@@ -8005,8 +8004,8 @@ mission "Stone Harmonization 4skade"
 			`	He shrugs, "Perhaps, some other time. On a different world, in different circumstances. But, not now, not here, and not like this."`
 				goto questions
 			label offworld
-			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are.. gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
-			`	His face briefly flashes with mirth, "For now, this is."`
+			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are... gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
+			`	His face briefly flashes with mirth, "For now, that is."`
 				goto questions
 
 mission "Stone Harmonization 3surtr"
@@ -8019,10 +8018,10 @@ mission "Stone Harmonization 3surtr"
 		has "Stone Harmonization 2surtr: done"
 	on offer
 		conversation
-			`	Weland's waiting for you outside a nearly empty eatery. He turns his wheel chair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am some else's property."`
+			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
+			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am someone else's property."`
 			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it."`
-			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered.. what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
+			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
 			`	"Still, they had their ways, the things they've implanted, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
 			`	"They took it. Took your stone. And this very minute they are hustling to get as far from Wayfarer as they can."`
@@ -8051,7 +8050,7 @@ mission "Stone Harmonization 3surtr"
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
 			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us.`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -8059,15 +8058,14 @@ mission "Stone Harmonization 3surtr"
 	npc board
 		government "Bounty (Disguised)"
 		system "Naper"
-		personality timid fleeing uninterested entering target staying
-		ship ship "Falcon" "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
-		dialog
-			`	Looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
+		personality entering staying target timid uninterested
+		ship "Falcon" "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
+		dialog `It looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
-		dialog   ` You haven't dealt with the Aotrou.`
+		dialog `You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 mission "Stone Harmonization 4surtr"
 	source "Wayfarer"
@@ -8080,14 +8078,14 @@ mission "Stone Harmonization 4surtr"
 		outfit "Blood of Surtr" -1
 		outfit "Blood of Surtr (Harmonized)" 1
 		conversation
-			`	Weland's laboratory has mostly been cleaned up, and repaired. Weland's waiting for you at his work bench, and gently places the Blood of Surtr on some sort of device.`
+			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Blood of Surtr on some sort of device.`
 			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The crystal lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
 			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland almost trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, "we", aren't you human?"`
 			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
 			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
-			`	Weland fiddles with his controls for a bit. "...I can return the stone to harmony."`
+			`	Weland fiddles with his controls for a bit. "... I can return the stone to harmony."`
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air.`
 			`	"Ah ha! Hot damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's more energetic than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystalline tonal architecture, ha, who woulda thought, alright."`
@@ -8101,21 +8099,20 @@ mission "Stone Harmonization 4surtr"
 				`	"Why don't you just leave? I could take you off world."`
 					goto offworld
 				`	"Thanks for all you've done. I hope we meet again."`
-					goto bye
 				`	"So long."`
 			label bye
 			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved in spades. Take care now, and hopefully we'll meet again."`
 				decline
 			label next
-			`	The injured man gets a distant look in eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide."`
+			`	The injured man gets a distant look in eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide here."`
 				goto questions
 			label harmonize
 			`	Weland looks at you wistfully, and then, with a tinge of sadness, shakes his head. "I wager it's a sight too dangerous for that. Each stone is grown, or sung differently, it would take me months to figure out how to harmonize another one. And in the meantime, I am still watched, still unable to leave, still the property of others. If you left somethin' that valuable with me again, they'd take it, and this time to somewhere you wouldn't find it."`
 			`	He shrugs, "Perhaps, some other time. On a different world, in different circumstances. But, not now, not here, and not like this."`
 				goto questions
 			label offworld
-			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are.. gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
-			`	His face briefly flashes with mirth, "For now, this is."`
+			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are... gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
+			`	His face briefly flashes with mirth, "For now, that is."`
 				goto questions
 
 
@@ -8126,54 +8123,54 @@ mission "Hullen-Freeze revenge"
 		random < 50
 	on offer
 		conversation
-			`	As you wander through the spaceport you notice someone is following you.`
+			`As you wander through the spaceport you notice someone is following you.`
 			choice
 				`	(Confront them.)`
 					goto confront
 				`	(Try to lose them.)`
-			`	You bob and weave through crowds, go up and down stairs, and finally duck into a vintage electronic shop. You notice they are selling an ancient lime green computer called an iMac. The clerk see you looking at it and explains to you it just has one working application, a game called Escape Velocity Nova. By now it's clear you've lost your tail. So you thank the clerk and return to the spaceport.`
+			`	You bob and weave through crowds, go up and down stairs, and finally duck into a vintage electronic shop. You notice the owner are selling an ancient lime green computer called an iMac. The clerk see you looking at it and explains to you it just has one working application, a game called Escape Velocity Nova. By now it's clear you've lost your tail. So you thank the clerk and return to the spaceport.`
 				defer
 			label confront
-			`	You turn to confront your pursuers. They quickly catch up to you. It's two men led by a tall hard faced gray hard woman.`
-			`	"Captain <last>, I'm Detective Song of the Oxford-Harvard Campus police and I'd like a moment of your time to discuss a recent incident on campus. Would please follow me to a private room?"`
+			`	You turn to confront your pursuers. They quickly catch up to you. It's two men led by a tall hard-faced gray hard woman.`
+			`	"Captain <last>, I'm Detective Song of the Oxford-Harvard Campus police and I'd like a moment of your time to discuss a recent incident on campus. Would you please follow me to a private room?"`
 			choice
 				`	"Sure, I've got nothing to hide."`
 					goto hide
 				`	"I demand a lawyer."`
 				`	"Sorry, I am really quite busy right now. Could we do this later?"`
 			`	She gives you a patronizing smile. "Absolutely. However, I really need you to answer a few questions."`
-			`	The two men with her each grab one of your arms. "Don't worry it'll quick and informal."`
-			`	They lead you to a small unadorned room in the spaceport. Dective Song and you enter it while the two men stand guard outside. There are two chairs in the room and Detective Song takes one and politely officers you the other.`
+			`	The two men with her each grab one of your arms. "Don't worry, it'll quick and informal."`
+			`	They lead you to a small unadorned room in the spaceport. Detective Song and you enter it while the two men stand guard outside. There are two chairs in the room. Detective Song takes one and politely offers you the other.`
 				goto start
 			label hide
-			`	"Excellent. I promise to make this brief. Now please follow me." She leads you to a small unadorned room in the spaceport. Dective Song and you enter it while the two men stand guard outside. There are two chairs in the room and Detective Song takes one and politely officers you the other.`
+			`	"Excellent. I promise to make this brief. Now please follow me." She leads you to a small unadorned room in the spaceport. Detective Song and you enter it while the two men stand guard outside. There are two chairs in the room. Detective Song takes one and politely offers you the other.`
 			label start
 			choice
-				`	(Take a Seat.)`
-				`	(Stand.)`			
-			`	She fishes through her pocket, pulls out a picture and hands to you "Do recognize this man?"`
-			`	It's Professor-Doctor Hullen-Freeze. He's stand in front of a some university wing named after him.`
+				`	(Take a seat.)`
+				`	(Stand.)`
+			`	She fishes through her pocket, pulls out a picture and hands it to you. "Do you recognize this man?"`
+			`	It's Professor-Doctor Hullen-Freeze. He's standing in front of a some university wing named after him.`
 			choice
 				`	"Yes. I met with him sometime back."`
 					goto truth
 				`	"No. I've never seen him in my life."`
 				`	"I refuse to answer without my lawyer present."`
 			`	"Huh. That's so interesting, because we have footage of you entering the building he works in." She pulls out a small screen that shows you, Tavish and Kormak walking into a building.`
-			`	"Are you sure you didn't see him inside? Perhaps you just passed him in the hall?" She looks at you with a open concerned expression.`
+			`	"Are you sure you didn't see him inside? Perhaps you just passed him in the hall?" She looks at you with an open concerned expression.`
 			choice
 				`	"Oh, that Dr. Hullen-Freeze. Yes I did meet with him."`
 					goto truth
-				`	"I enter lots of buildings. Doesn't meant I talk to everyone in them."`
+				`	"I enter lots of buildings. Doesn't mean I talk to everyone in them."`
 				`	"I refuse to answer without my lawyer present."`
 			`	"Maybe you ran into his executive secrety? A Ms. Starla Stearn?" She looks at you hopefully.`
 			choice
-				`	"Okay. Yes I did meet her, and I did see Dr. Hullen-Freeze."`
+				`	"Okay. Yes, I did meet her, and I did see Dr. Hullen-Freeze."`
 					goto truth
 				`	"Hmm, no. Doesn't ring a bell. Sorry I can't be more help."`
-				`	"I refuse to answer without my lawer present."`
-			`	"You see the reason I ask is she has submitted a signed affidavit saying she met with you, two other men, and that you forced your way past her into Dr. Hullen-Freeze's office." She guves you a helpless expression, "Come on now, Captain <last>, I can't help you if you don't help yourself."`
+				`	"I refuse to answer without my laywer present."`
+			`	"You see the reason I ask is she has submitted a signed affidavit saying she met with you, two other men, and that you forced your way past her into Dr. Hullen-Freeze's office." She gives you a helpless expression, "Come on now, Captain <last>, I can't help you if you don't help yourself."`
 			choice
-				`	"Okay, okay. Yes I met her and him, but I didn't force my way anywhere. She lead me to his office."`
+				`	"Okay, okay. Yes I met her and him, but I didn't force my way anywhere. She led me to his office."`
 					goto truth
 				`	"Sorry. She must have me confused for someone else. I just was in that building to use the restroom."`
 				`	"I refuse to answer without my lawer present."`
@@ -8190,42 +8187,41 @@ mission "Hullen-Freeze revenge"
 			`	Her notebook is out in a flash. "That's Doctor Julian Tavish, and I don't really have any records on this Kormak individual, what was his full name?"`
 			choice
 				`	"Gluniairn mac Kormakr, he's from the Deep. But I am not sure where exactly."`
-				`	Tavish just called him Kormak. I don't know anything else about him."`
+				`	"Tavish just called him Kormak. I don't know anything else about him."`
 			`	"And who actually carried out the murder?" She's furiously taking notes.`
 			choice
 				`	"Tavish ordered Kormak to do it."`
 				`	"Tavish did it."`
-			` 	"Perfect." she says, "Perfect." She closes her notebook.`
-			`	"Julian Tavish is a known element here. He's thief and a conman who we've locked up more than a few times. Some years back Hullen-Freeze gave him a shot. Let him work for him. In the end Julian couldn't hack it going straight and ran off to run some new scams. I am sorry that you got caught up in his vendetta, but with this information we'll be able to finally take him down." She abruptly stands up.`
-			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
-			`	"Your free to go." She says, and they let you back out into the spaceport.`
+				`	"Kormak did it."`
 			action
 				event "prisontavish" 200
+			`	"Perfect." she says, "Perfect." She closes her notebook.`
+			`	"Julian Tavish is a known element here. He's thief and a conman who we've locked up more than a few times. Some years back Hullen-Freeze gave him a shot. Let him work for him. In the end Julian couldn't hack it going straight and ran off to run some new scams. I am sorry that you got caught up in his vendetta, but with this information we'll be able to finally take him down." She abruptly stands up.`
+			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
+			`	"You're free to go," she says, and they let you back out into the spaceport.`
 				decline
 			
 			label liebaby
 			`	"That's it? You didn't see or notice anything unusual? There were no arguments or tension between Hullen-Freeze and Julian Tavish?"`
 			choice
 				`	"That's it. It was cordial and we left. Starla was acting odd though. You might want to check up on her."`
-				`	"Nothing else happened. We went in and we left. I saw nothing suspicious." `
-			`	Detective Song sighs and stands up, "Very well. You've been most helpful. If you remember anything, anything at all, please do not hesitate to conact my office here on Chiron. Especially if it relates to Dr. Julian Tavish."`
+				`	"Nothing else happened. We went in and we left. I saw nothing suspicious."`
+			`	Detective Song sighs and stands up, "Very well. You've been most helpful. If you remember anything, anything at all, please do not hesitate to contact my office here on Chiron. Especially if it relates to Dr. Julian Tavish."`
 			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
-			`	"Your free to go." She says, and they let you back out into the spaceport.`
+			`	"You're free to go," she says, and they let you back out into the spaceport.`
 				decline
 
 event "prisontavish"
 
 mission "Hullen-Freeze revenge 2"
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		has "event:prisontavish"
+		has "event: prisontavish"
 		random < 15
 	on offer
 		conversation
-			`	As you saunter through the spaceport you hear a familiar name playing on one of the video screens and look up.`
-			`	"After a month long manhunt Chiron authorities have captured the notrious murderer Julian Tavish. He is charged with the savage killing of beloved scientist and public speaker Dr. Hullen-Freeze. Dr. Hullen-Freeze had brought Julian in, despite his criminal past, in an attempt to rehabilitate the young man and was killed for it.`
-			`	The death of Dr. Hullen-Freeze is a tradgey not just for the Republic, but the entire human race. Stayed for more coverage after the break."`
+			`As you saunter through the spaceport you hear a familiar name playing on one of the video screens and look up.`
+			`	"After a month long manhunt Chiron authorities have captured the notorious murderer Julian Tavish. He is charged with the savage killing of the beloved scientist and public speaker Dr. Hullen-Freeze. Dr. Hullen-Freeze had brought Julian in, despite his criminal past, in an attempt to rehabilitate the young man, and was killed for it.`
+			`	The death of Dr. Hullen-Freeze is a tragedy not just for the Republic, but the entire human race. Stayed for more coverage after the break."`
 				decline
-
-
