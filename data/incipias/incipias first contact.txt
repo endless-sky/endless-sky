@@ -193,7 +193,7 @@ mission "Incipias: The Derelict"
 
 mission "Incipias: Help The Stranded 1"
 	landing
-	name "Go to the Incipias"
+	name "Seek help from the Incipias"
 	description "Ask the Incipias for help to save one of their ships."
 	source
 		government "Quarg (Incipias)"
