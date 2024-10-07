@@ -343,7 +343,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
-	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem(), &player))
 		return false;
 	return true;
 }
