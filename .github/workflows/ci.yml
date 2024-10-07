@@ -226,11 +226,7 @@ jobs:
       with:
         configurePreset: 'macos-arm-ci'
         buildPreset: 'macos-arm-ci'
-        #testPreset: 'macos-arm-ci'
-    - name: Test parse
-      run: |
-        cd build/ci/
-        ./endless-sky -p
+        testPreset: 'macos-arm-integration'
     - name: Run Benchmarks
       run: ctest --preset macos-arm-benchmark
 
