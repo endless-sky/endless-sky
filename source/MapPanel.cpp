@@ -1278,7 +1278,7 @@ void MapPanel::DrawEscorts()
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
-					constexpr static float WIDTH = 1.6f;
+					static constexpr float WIDTH = 1.6f;
 
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
