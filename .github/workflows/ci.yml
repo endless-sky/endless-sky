@@ -230,12 +230,11 @@ jobs:
     - name: Package Application
       run: |
         mkdir "${{ env.OUTPUT }}"
-        ls
         cd build
+        cd ci
         ls
-        cd release
-        ls
-        cp -r "build/release/Endless Sky.app" "${{ env.OUTPUT }}"
+        cd ../..
+        cp -r "build/ci/Endless Sky.app" "${{ env.OUTPUT }}"
         ln -s /Applications "${{ env.OUTPUT }}"
         until hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"; do echo "hdiutil create failed, retrying..."; done
     - name: Upload artifact
