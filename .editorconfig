@@ -14,9 +14,6 @@ indent_style = tab
 # Code files
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
-# Except any third-party libraries
-[catch.hpp]
-indent_style = unset
 
 # Changelog file
 [changelog]
