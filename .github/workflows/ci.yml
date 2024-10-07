@@ -230,9 +230,7 @@ jobs:
     - name: Test parse
       run: |
         cd build/ci/
-        ls
-        cat endless-sky
-        ./endless-sky
+        ./endless-sky -p
     - name: Run Benchmarks
       run: ctest --preset macos-arm-benchmark
 
