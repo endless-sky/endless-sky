@@ -38,8 +38,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
@@ -87,7 +87,7 @@ namespace {
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.
-	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
+	void ScrollMissionList(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
 		double &sideScroll, bool checkVisibility)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
@@ -236,9 +236,9 @@ void MissionPanel::Draw()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 5.f, routeColor);
+			LineShader::Draw(from, to, 3.f, routeColor);
 	}
 
 	const Color &availableColor = *colors.Get("available back");
@@ -531,9 +531,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 		// Scroll the relevant panel so that the mission highlighted is visible.
 		if(availableIt != available.end())
-			DoScroll(available, availableIt, availableScroll, false);
+			ScrollMissionList(available, availableIt, availableScroll, false);
 		else if(acceptedIt != accepted.end())
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
+			ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 
 	return true;
@@ -616,12 +616,12 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
+		ScrollMissionList(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 
 	// Center on the selected system.

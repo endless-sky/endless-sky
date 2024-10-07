@@ -610,16 +610,24 @@ int CargoHold::IllegalCargoFine(const Government *government, const PlayerInfo &
 	// and avoid the bulk of the penalties when fined.
 	for(const auto &it : missionCargo)
 	{
-		int fine = it.first->IllegalCargoFine();
+		int fine = it.first->Fine();
 		if(fine < 0)
 			return fine;
 		if(!it.first->IsFailed(player))
 			totalFine += fine;
 	}
 
+	return totalFine;
+}
+
+
+
+int CargoHold::IllegalPassengersFine(const Government *government, const PlayerInfo &player) const
+{
+	int totalFine = 0;
 	for(const auto &it : passengers)
 	{
-		int fine = it.first->IllegalCargoFine();
+		int fine = it.first->Fine();
 		if(fine < 0)
 			return fine;
 		if(!it.first->IsFailed(player))
@@ -643,7 +651,7 @@ int CargoHold::IllegalCargoAmount() const
 
 	// Find any illegal mission cargo.
 	for(const auto &it : missionCargo)
-		if(it.first->IllegalCargoFine())
+		if(it.first->Fine())
 			count += it.second;
 
 	return count;
