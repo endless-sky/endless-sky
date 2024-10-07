@@ -49,6 +49,7 @@ class Phrase;
 class Planet;
 class PlayerInfo;
 class Projectile;
+class SpawnedFleet;
 class StellarObject;
 class System;
 class Visual;
@@ -494,6 +495,10 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	std::shared_ptr<SpawnedFleet> GetSpawnedFleet();
+	std::shared_ptr<const SpawnedFleet> GetSpawnedFleet() const;
+	void SetSpawnedFleet(std::shared_ptr<SpawnedFleet> fleet);
+
 	// How many AI steps has this ship been lingering?
 	int GetLingerSteps() const;
 	// The AI wants the ship to linger for one AI step.
@@ -567,6 +572,9 @@ private:
 	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
+
+	// If this ship is part of a spawned fleet:
+	std::shared_ptr<SpawnedFleet> spawnedFleet;
 
 	int forget = 0;
 	bool isInSystem = true;
