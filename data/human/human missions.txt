@@ -7969,7 +7969,7 @@ mission "Tavish and Kormak 3"
 				payment -25000
 			`	Tavish and Kormak seem to deflate a little bit, but neither says anything. Kormak releases the man, and Hans rubs his wrists.`
 			`	"25,000 creds? Really? Man, I'd sell you my ma for that much cash. The Syndies took my entire haul and things are looking a little rough for me. Fiancially speaking, that is."`
-			`	"Listen, I wish I could just hand over that science junk to you right now. It's some weird stuff that most of the regular fences and pawnbrokers aren't into. But I can't, cuz the it was part of the haul the Syndies ate up. You gotta go to them on Hephaestus. There's an office where you can argue for some of your stuff back, been there plenty, but take it from me it never goes anywhere. They aren't in the business of giving, if you catch my drift."`
+			`	"Listen, I wish I could just hand over that science junk to you right now. It's some weird stuff that most of the regular fences and pawnbrokers aren't into. But I can't, cuz the Syndies ate it up when they nabbed me. Ya know, contraband this, wrong paperwork that. Blah-blah. Same old Syndies. You gotta go to them on Hephaestus. There's an office where you can argue for some of your stuff back, been there plenty, but take it from me it never goes anywhere. They aren't in the business of giving, if you catch my drift."`
 			`	"Sorry man, good luck with your science stuff or whatever. But that's all I know so I'm out of here."`
 			`	Hans waits until you transfer the money over to him, and then quickly retreats deeper into his ship.`
 			`	Tavish watches him go. "I dare say he didn't deserve additional recompense after what he did to us."`
@@ -8037,7 +8037,7 @@ mission "Tavish and Kormak 4"
 			action
 				set "tav"
 			`	Tavish steps up the window, "Salutations my good fellow. Of all the officials we've met today you're the only one who seems to get it. You're more than this place, more than a cog in the Syndicate's impressive machine."`
-			`	As Tavish talks the agent's eyes fall to his monitor and he begins tapping his keypad with a bored expression on his face. Here and there he responds to Tavish with unconvincing "Uh huh," or "Sure."`
+			`	As Tavish talks the agent's eyes fall to his monitor and he begins tapping his keypad with a bored expression on his face. Here and there he responds to Tavish with an unconvincing "Uh huh," or a bland "Sure."`
 			`	Tavish eventually loses steam and ends with, "So, what do you say, my good man? You ready help us out?"`
 			`	The agent looks up and blinks at him with a confused expression on his face, "I am sorry, what? Did you need something?"`
 			`	Tavish frowns, defeated, "Uh, no, nevermind."`
@@ -8055,9 +8055,11 @@ mission "Tavish and Kormak 4"
 				
 			label payup
 			action
+				clear "kor"
+				clear "tav"
 				payment -20000
 			`	You lean down and pick up the form. It's rather rudimentry and after a few moments you've successfully filled it out. You also attach the account information for a 20,000 credit transfer. You place the form in a tray that beneath the window that promptly swallows it up.`
-			`	The agent reads over the form and works at their keypad for a while before finally looking back up at you, "Thank you, the form and fee has been processed. I am now allowed to release the following information to you."`
+			`	The agent reads over the form and works at their keypad for a while before finally looking back up, "Thank you. The form and fee has been processed. I am now allowed to release the following information to you."`
 			`	They pause, as if for dramatic effect, and then continue, "Chiron Campus Oxford-Harvard Research Office. Department of Oddities. Doctor-Professor Dylan Hullen-Freeze. That is all the information I have. Good day."`
 			`	The window suddenly goes opaque.`
 			`	Tavish swallows, "This is most disconcerting."`
@@ -8096,7 +8098,7 @@ mission "Tavish Interlude"
 				decline
 
 			label talk
-			`	Tavish removes his bowler hat and holds it in his hands, "If we're going to confront Dr. Hullen-Freeze then there are a few things you should made aware of." `
+			`	Tavish removes his bowler cap and holds it in his hands, "If we're going to confront Dr. Hullen-Freeze then there are a few things you should be made aware of." `
 			`	Tavish fidgets with his hat, "We are former... acquaintances, and we did not leave things on the best of terms. Whatever he says, whatever he may say about me, I just want to ensure you Captain that I have been forthright with you, at least where it counts."`
 			`	He pauses then says, "I am a member of the Society of Gentlemanly Exemplary Exploration, and Kormak and I are on the hunt for Xeno-Cryptids. I have not tried to con you on that matter, and I do believe our work is vital to science and exploration."`
 			label options
@@ -8111,7 +8113,13 @@ mission "Tavish Interlude"
 						not "soggy"
 				`	"Don't worry. I trust you."`
 				`	"There's something about you I don't quite trust. But we've come this far and I intend to see this through."`
-			`	"Thanks Captain. I appreciate you hearing me out. I will not abuse your trust." Tavish puts his hat back on and leaves the bridge.`
+					goto end
+
+			label end
+			action
+				clear "soggy"
+				clear "relation"
+			`	"Thank you, Captain. I appreciate you hearing me out." Tavish puts his hat back on and leaves the bridge.`
 				decline
 			
 			label relation
@@ -8124,19 +8132,19 @@ mission "Tavish Interlude"
 			label soggy
 			action
 				set "soggy"
-			`	"It's a real organization, although it's been in decline for quite sometime. Back in its heyday it was one of the most prestigous clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs, " I am just glad Dr. Henry Forsyth isn't alive to see it in such a state."`
+			`	"It's a real organization, although it's been in decline for quite sometime. Back in its heyday it was one of the most prestigous clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs, " I am just glad the esteemed Dr. Henry Forsyth isn't alive to see it in such a sad state."`
 			choice
 				`	"Dr. Henry Forsyth?"`
 					goto henry
 				`	"So, it's a joke?"`
 			`	Tavish's face becomes very serious, "It's not a joke. Dr. Henry Forsyth saved millions, maybe bllions, of lives by going alone to the unexplored reaches of a hostile world. They all thought he was crazy, that there could be nothing of value in that frozen desolate place. But then he discovered the Ice-Witches of Nifel, and beguilded them with his stories of civilization. Their leader, someone called the Ornery-dress, fell in love with him and unwittingly led him to the cure of the Rigellian Plague."`
-			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following it."`
+			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following in his footsteps."`
 			`	Tavish pauses, "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
 			
 			label henry
 			`	"Dr. Henry Forsyth saved millions, maybe billions of lives, by ignoring the academic consesus of the day, and putting his life on the line by leading a daring expedition into the frozen wastes of a desolate world. There he discovered the barbaric Ice-Witches of Nifel, and seduced their wild and beautiful leader, the Ornery-dress. She would unwittingly lead him to the cure of the Rigellian Plague, and secure his position as a preeminent scholar, exlorer and hero of his time."`
-			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following it."`
+			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following his footsteps."`
 			`	Tavish pauses, "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
 
@@ -8184,7 +8192,7 @@ mission "Tavish and Kormak 5"
 				set "tavgirl"
 			`	Tavish leans against her desk, "Starla, we're not pedestrian fans here to ogle your patron. No, we're members of the Society of Gentlemanly Explorers, and we've come at a time of the greatest dire need. I can already tell you're a keen observer of human behavior, and not some cog in the wheel. See us for what we are and make the liberating choice to let us through."`
 			`	Tavish adds a few other flourishes about the great work they do here, and how her boss would be impressed with her ability to think for herself. Throughout all of this Starla's bored expression remained fixed.`
-			`	Finally she sighs and holds up a hand and says, "Enough! You think you're slick? You think you're smart? Do you know how many people like you come through these doors every day? So sure whatever pretensious project they are working and a few flashy words are all it takes to get past me?" She scowls at him.`
+			`	Finally she sighs and holds up a hand and says, "Enough! You think you're slick? You think you're smart? Do you know how many people like you come through these doors every day? So certain whatever pretensious project they are working and a few flashy words are all it takes to get past me?" She scowls at him.`
 			`	"You're lucky I am even willing to write your information down and pass it on. And I am starting to reconsider that offer." She crosses her arms.`
 			`	Tavish holds up both hands in defeat and backs away.`
 				goto talk
@@ -8209,16 +8217,16 @@ mission "Tavish and Kormak 5"
 			choice
 				`	(Follow her.)`
 			`	Starla stops outside a thick wooden door with a gilded plaque on it that says, "Doctor-Professor Hullen-Freeze. She looks at Kormak and whispers, "Good luck," before heading back to her desk.`
-			`	Tavish audibly gulps and then pushes through the door into the office. Kormak follows behind him.`
+			`	Tavish audibly gulps and then pushes through the door and into the office. Kormak follows behind him.`
 			choice
 				`	(Enter the office.)`
-			`	The office is large and filled with trophies, awards, certificates, and books. Behind a large wooden desk sits older clean shaven man with gray hair, in a felty sweatervest.`
+			`	The office is large and filled with trophies, awards, certificates, and books. Behind a thick wooden desk sits older clean shaven man with gray hair, in a felty sweatervest.`
 			`	"What? Who are you? What is the... oh, it's you." The surprise in his voice quickly gives way to amusement.`
 			`	"I knew it would only be a matter of time before you slithered your way back in here. Given up on your dreams, eh? No grand adventures for you? No Ice-Princesses or whatever? Ready to beg for my magnamonious scraps?"`
 			`	Tavish withers beneath Hullen-Freeze's barrage, "I... No..." he stammers.`
 			`	"Oh, Julian. Who would have believed you once were so eloquent. Normally I'd just have you tossed out like the trash you are, but you caught me in a good mood. Get down on all fours, crawl to me in contrition, and I'll consider letting you back into my light."`
 			`	Kormak steps in front of Tavish as though he is shielding him from the verbal torrent, and rumbles, "Enough! Swollow your tongue, nithling."`
-			`	Hullen-Freeze flinches, clearly taken aback. It's as though he hadn't even realized Tavish was not alone. He adjusts his purely cosmetic spectacles, and clears his throat.`
+			`	Hullen-Freeze flinches, clearly taken aback. It's as though he hadn't realized Tavish was not alone. He adjusts his purely cosmetic spectacles, and clears his throat.`
 			`	"Ni-Nithling, eh? W-what are you? One of those atavistic stone-agers from the Deep? I swear I heard they took care of all your kind." Hullen-Freeze's voice steadies as he speaks. Though he still eyes Kormak warily.`
 			`	"I'll give you this, Julian. You may not have found Forsyth's Ice-Princesses, but you did find yourself a troll." He takes his glasses off and wipes them.`
 			choice
@@ -8226,13 +8234,14 @@ mission "Tavish and Kormak 5"
 				`	"I don't care about you and whatever this thing you have going on with Tavish is. We're just here for the confiscated equipment from Hephaestus."`
 				`	"Do you know where the research equipment confiscated on Hephaestus is?"`
 			`	Hullen-Freeze narrows his eyes to peer at you as he continues to wipe his glasses, "What? Oh that eccletic junk?"`
-			`	He laughs, "Of course! Only Julian and his associates would use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good."`
-			`	"You don't know who you're really working with do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and conman. He thinks if he says a few big words and calls everyone chap they'll think he's somebody. That the only reason he isn't trash is because of me!"`
+			`	He laughs, "Of course! Only Julian and his uncouth associates would have use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good."`
+			`	"You don't know who you're really working with do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone "chap" they'll think he's important. But the only reason he isn't trash is because of me!"`
 			choice
 				`	"I don't care where Tavish came from, he's my friend. Now tell me where the equipment is!"`
 				`	"Just shut up. No one cares what you think. Just tell me where the equipment is."`
 				`	"Look. I am just here for the equipment. Tell me where it is and we'll go."`
-			`	"Fine. Why not? I don't need your worthless trinkets. But first I want to watch Julian crawl to me on all fours, and admit he's trash. Then I'll tell you where it's stored and you can be on your way." He holds up his palms, "Everyone wins."`
+			`	"Fine. Why not? I don't need your worthless trinkets. But I do want something. A small thing really, almost nothing all, I just want Julian's misplaced and out-sized self respect."`
+			`	Hullen-Freeze gives you a feral grin,"A little debasement, is all. Make him crawl to me on all fours, and admit he's trash. Then I'll tell you where its' stored and you can be on your way." He holds up his palms, "Everyone wins."`
 			label gotime
 			choice
 				`	(Make Tavish crawl to him.)`
@@ -8252,26 +8261,29 @@ mission "Tavish and Kormak 5"
 			action
 				set "tavtalk"
 			`	Tavish tries to speak, but his voice catches in his throat. Kormak puts a reassuring hand on his shoulder.`
-			`	"I... I am not trash. I saved you! You were in so much trouble when we first met. And then the research I did was good. It didn't matter... it doesn't matter where I am from. You stole it from me. Made me work in your shadow. I owe you nothing."`
+			`	"I... I am not trash. I saved you! You were in so much trouble when we first met. And the research -the research I did- was good. It didn't matter... it doesn't matter where I am from. You stole it from me. Made me work in your shadow. I owe you nothing."`
 			`	Tavish balls his fist, "The least you can do is give us back our equipment. You owe it to me!"`
 			`	Tavish is breathing hard, twitching with indignant rage.`
-			`	Hullen-Freeze gives him a queer look and then chuckles, "No, no that will not do at all. If you want the equipment you're going to have to crawl for it like the refuse you are. Although after that outburst I am even more excited to see you properly humbled."`
+			`	Hullen-Freeze gives him a queer look and then chuckles, "No, no that will not do at all. If you want the equipment you're going to have to crawl for it like the refuse you are. Humble yourself before your betters, Julian."`
 			`	He taps his wrist. "I don't have all day."`
 				goto gotime
 	
 			label payme
 			action
 				set "payme"
-			`	Hullen-Freeze blinks a few times and then gives you a pitying expression. "Your credits mean nothing to me. Who do you think I am that I can just be bought? I told you what I wanted, now give me satisfaction, not bribes."`
+			`	Hullen-Freeze blinks a few times and then gives you a pitying expression. "Your credits mean nothing to me. Who do you think I am that I can just be bought? This Chiron, not some Syndiate world. We have morals here! I told you what I wanted, now give me satisfaction, not bribes."`
 				goto gotime
 
 			label crawl
+			action
+				clear "tavtalk"
+				clear "payme"
 			`	Tavish wilts when he hears your command, but he does not argue. Humbly he nods to you, "It's my problem to resolve."`
 			`	Tavish's cheeks are wet as he drops to his knees. With painful awkward slowness he starts to bend over as to be on all fours.`
-			`	Before he is on his hands and knees though, he is stopped by the gentle hand of Kormak who pulls his companion to his feet.`
+			`	Before he is on his hands and knees, he is stopped by Kormak who pulls his companion to his feet.`
 			`	Kormak turns to you his face contorted in rage and says, "Bad friend."`
 			`	Kormak then stalks toward Hullen-Freeze.`
-			`	"Wa-wait! What is this? Stay back, savage! Starla! Starla, call secur..." Hullen-Freeze is cut off by the fist that slams into his face.`
+			`	"Wa-wait! What is this? Stay back, savage! Starla! Starla, call secur..." Hullen-Freeze is abruptly cut off as a heavy fist slams into his face.`
 			`	Kormak wastes no time, and holds nothing back. Hullen-Freeze is dead within a few seconds. Kormak searches through drawer and finds a key to Hullen-Freeze's equipment storage.`
 			`	Kormak turns back to you a final time and says, "We find new Captain. Better Captain."`
 			`	Dazed, Tavish holds onto Kormak's arm as he leads the two of them out of the office.`
@@ -8280,16 +8292,16 @@ mission "Tavish and Kormak 5"
 
 			label kortime
 			`	Kormak's grin is terrifying. He cracks his knuckles, and then takes off his suit jacket and places it on the chair. He rolls up his sleeves revealing swirling blue tattoos and red ragged scars.`
-			`	"I have killed monsters. Nightmares. Banshees. Horrors." He steps right up to Hullen-Freeze's desk. "But never have I killed a creature as foul and twisted as you."`
-			`	All the color drains out of Hullen-Freeze's face, he stammers, and then savagely hits a button under his desk.`
+			`	"I have killed monsters. Nightmares. Banshees. Horrors." He steps right up to Hullen-Freeze's desk. "But you worst monster of all."`
+			`	The color drains out of Hullen-Freeze's face, he stammers, and then savagely hits a button under his desk.`
 			`	Kormak reaches down and lifts the desk up over his head before sending it crashing down on the floor at Hullen-Freeze's feet.`
 			`	"I-idiotic savage! There will be consquences! I am an important man! You-you can't do this!" Hullen-Freeze screams as he clamors back away from the frothing giant and splintered desk.`
 			`	With one wide swipe Kormak knocks all of Hullen-Freeze's trophies and awards to the floor. He then crushes them beneath his feet.`
 			`	Hullen-Freeze has his arms up with his back against the wall. "You'll-you'll pay for this."`
 			`	Just then four armed security guards with electric batons burst into the room. "Finally, you laggards!" Hullen-Freeze shouts, "Subdue the madman! Now!"`
-			`	Kormak flows like water. Their batons are flailing uselessly in the air as with an uncanny ease he incapacites each of them one at a time, until all four of them lay at his feet.`
+			`	Kormak flows like water. The Sercurity guard's batons flail uselessly in the air as with an uncanny ease Kormak incapacites each of them one at a time. A heartbeat later all four of them lay unmoving at his feet.`
 			`	He turns his attention back to Hullen-Freeze who is now groveling, "Yes. Yes! I'll give you what you want." He starts digging through the ruins of his desk until he finds a keycard and with a shaking arm holds it out.`
-			`	"Here it is. The storage unit is in the spaceport. Take it, and go. It's what you wanted!"`
+			`	"Here it is. The storage unit is in the spaceport. Take it! Take it, and go. It's what you wanted!"`
 			`	Kormak ignores the keycard and instead grabs the man by his gray hair and forces him to the floor.`
 			`	"Crawl to Tavish. Tell Tavish who is garbage." Kormak growls in the horrified man's ear.`
 			`	"Yes, of course, anything." Hullen-Freeze whimpers as he proceeds to drag himself across to floor to Tavish's feet.`
@@ -8301,13 +8313,18 @@ mission "Tavish and Kormak 5"
 				`	"This trash doesn't deserve to live. Kill him."`
 			action
 				event "killhullen" 36
-			`	Kormak doesn't even hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
+				clear "tavtalk"
+				clear "payme"
+			`	Kormak doesn't hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
 			`	"Better without him." Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
 			`	The three of you leave together and head back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition.`
 				accept
 
 
 			label timetogo
+			action
+				clear "tavtalk"
+				clear "payme"
 			`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. She'd seen the whole thing.`
 			`	"Wh-what's that smell?" She asks quietly.`
 			`	Kormak looks back, sniffs, and then shrugs, "He wet himself."`
@@ -8321,7 +8338,7 @@ mission "Tavish and Kormak 5"
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		conversation 
-			`You arrive in the dusty, rowdy frontier spaceport where it all began. Tavish lets you know that he and Kormak are going to purchase some supplies from a local outfitter and asked you to meet him in the spaceport later.`
+			`You arrive in the dusty, rowdy frontier spaceport where it all began. Tavish lets you know that he and Kormak are going to pick up some supplies from a local outfitter and asked you to meet him in the spaceport later.`
 
 event "killhullen"
 
@@ -8354,18 +8371,18 @@ mission "Tavish and Kormak 6"
 		conversation
 			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The location for the coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
 			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There are nearly a dozen robotic dollies, and a handful of mobile robotic drills and shovels. Along with a handful of computers, chemical sensors, and power generators.`
-			`	They've also changed from their regular three piece suits into khaki pants and jackets with wide brimmed hats. Tavish has a machete and Kormak has what looks like an axe.`
+			`	They've also changed from their regular three piece suits into khaki pants and jackets with wide brimmed hats. Tavish has a machete and Kormak has what looks like a heavily modified axe.`
 			`	Kormak notices you looking and smiles, presses a button on his axe's handle and the blade suddenly crackles with electricity.`
 			`	"Equipment." He says with a grin and then walks to where the wall of trees begins.`
 			`	Tavish turns to you, "Shall we go?"`
 			choice
 				`	(Go.)`
 
-			`	As long as you don't look too hard at any one aspect of the jungle if feels normal. Like you're in a standard Earth biome. But the moment you concentrate on any one feature too long the alienness of the environment becomes unmistakable and unsettling. The trees here are nothing like the ones on the habitated continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
+			`	So long as you don't look too hard at the jungle it if perfectly feels normal. Like you're in a standard Earth biome. But the moment you concentrate on any one feature too long the alienness of the environment becomes unmistakable and unsettling. The trees here are nothing like the ones on the habitated continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
 			`	Thankfully the trees do not appear to have eyes, however each time one of them loses a branch to Kormak's electric axe their gasping orifices make a sharp hissing sound that could almost be confused for a scream.`
-			`	Unphased by the incessant wailing Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the terrifyingly unnatural trees.`
+			`	Unphased by the incessant wailing Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the terrifyingly unnatural forest.`
 			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
-			`	Tavish annouces that you've made it. But to you it just looks like more forest with an black overgrown rock jutting out between two trees.`
+			`	Finally, Tavish annouces that you've made it. Although it is hard for you to tell where exactly you've made it too. One acre of jungle looks remarkably like the next. The only distinguishing feature here being a black overgrown rock jutting out between two trees.`
 			`	Kormak begins clearing out the area while Tavish unloads the gear.`
 			choice
 				`	(Help Tavish unload the gear.)`
@@ -8374,14 +8391,14 @@ mission "Tavish and Kormak 6"
 					goto helpkor
 				`	(Sit and watch them work.)`
 
-			`	This isn't your expedition so you take a seat and relax while Kormak and Tavish prepare the camp site.`
+			`	This isn't your expedition so you take a seat and relax while Kormak and Tavish prepare the campsite.`
 			`	A few hours pass and the twin suns of New India begin to set on the horizion. Kormak has returned to from hacking, and Tavish has begun making a campfire.`
 				goto next
 			
 			label helptav
 			`	You help Tavish set up the ring of fire and the tents within it.`
-			`	After working quietly for a few moments Tavish says, "I was from Earth. Never knew my parents. Ran with street gangs for as long as I can recall. I stole, I lied, I did whatever it took to survive. Then one day I got my hands on tickets to Chiron. I should have taken them to my gangleader. She would have made good money off of them. But, I left everything behind and boarded that ship."`
-			`	Tavish pauses in his work and wipes some sweat off his brow, "On Chiron I tried to be a different person. To rehabilitate myself. I wasn't perfect, my skill set was quite specific. But I tried."`
+			`	After working quietly for a few moments Tavish says, "I was from Earth. Never knew my parents. Ran with street gangs for as long as I can recall. I stole, I lied, I did whatever it took to survive. Then one day I got my hands on a ticket to Chiron. I should have taken them to my gangleader. She would have made good money off of them. But, I left everything behind and boarded that ship."`
+			`	Tavish pauses in his work and wipes some sweat off his brow, "On Chiron I tried to be a different person. To rehabilitate myself. I wasn't perfect, my skillset was quite specific. But I tried."`
 			`	"I know Dr. Hullen-Freeze took advantage of me. He used me. But I did use him as well. I became more than a street-rat. I became, me." Tavish smiles sadly to himself.`
 			`	"I just wanted you to understand, Captain <last>, and to thank you." With that Tavish finishes his initial set up and starts making a campfire as the twin suns of New India begin to set.`
 				goto next
@@ -8389,12 +8406,12 @@ mission "Tavish and Kormak 6"
 			label helpkor
 			`	You follow Kormak has he hacks and slashes at various alien flora and pick up oozing remains he leaves behind.`
 			`	"You did good." Kormak says without turning to look at you.`
-			`	"Was important thing. Standing by Tavish. Honorable. Valuable." He continues as trees crack before him.`
+			`	"Was important thing. Standing by Tavish. Honorable." He continues as trees crack before him.`
 			`	"Skoll-Wolf ate my clan's sun, and the lying Dream Anuabhair brought them to new world with strange stars. It was hard, but my clan is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a man alive."`
-			` 	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. All worlds have monsters."`
+			` 	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. And all worlds have monsters."`
 			`	The large man turns from you and finishes chopping down the last wailing tree.`
-			`	With the area around the designated campground clear he turns to you and give you a smallest nod, "Trust."`
-			`	Over to the side Tavish has also finished his work and his making a campfire.`
+			`	With the area around the designated campground clear he faces you and gives you the smallest nod, "Trust."`
+			`	Over to the side Tavish has also finished his work and is making a campfire.`
 			`	"Come." Kormak says.`
 
 			label next
@@ -8411,15 +8428,17 @@ mission "Tavish and Kormak 6"
 				`	(Say nothing.)`
 					goto notathing
 
-			`	Kormak stops chewing and looks hard at you for a long moment before finally says, "It is forbidden for me to say."`
+			`	Kormak stops chewing and looks hard at you for a long moment before finally says, "It is forbidden."`
 			`	"Ah, about that," Tavish jumps in, "the thing is the Deep is more complex than most people realize. It is a society with three distinct layers."`
 			`	Tavish mimes peeling a fruit, "The top layer is the one everyone knows about. It's clean, fair, democratic, and technologically advanced. It's the Deep you hear about in holo-dramas, and see talked about on the news. Most of the Deep is a part of this layer.`
-			`	"And then," Tavish continues, "there's the middle layer. It is smaller and made up of people who practice what they call the old ways. Those who practice stone-funerals, or who pay some respect to the scattered God-Stones. It's people who still see themselves as the descendants of those first brave pilgrims that colonized the Deep."`
+			`	"And then," Tavish continues, "there's the middle layer. It is smaller and made up of people who practice what they call the old ways. Those who practice stone-funerals, or who pay some respect to the scattered God-Stones. It's people who still see themselves as the descendants of those first brave pilgrims that colonized the Deep. Like Hroar's Haulers."`
 			`	Tavish pinches his fingers together like he's holding his invisable fruit's core, "Finally, there's the lowest layer. Few are aware of it, and I think it may be an embarrassment to leaders of the Deep. It's made up of people like Kormak, or the Ice-Witches of Nifel." `
 			`	"The Ui Skathi." Kormak says, "Granddaughters of Skathi."`
-			`	"Was that what they called themselves?" Tavish shrugs, "Kormak's always a little sensative about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from? There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives. Or, well this is more of folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
-			`	"Not elves," Kormak interupts with a hint of annoyance,"the Dream Anuabhair. That how they are called in my clan's sagas. The exceedingly proud folk. Never to trust."`
-			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home." `
+			`	"Was that what they called themselves?" Tavish shrugs, "Kormak's always a little sensative about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from? There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives."`
+			`	Kormak frowns, "Lies.`
+			`	"Or, well this is more of folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
+			`	"Not elves," Kormak interupts with a hint of annoyance,"the Dream Anuabhair. That how they called in my clan's sagas. The exceedingly proud folk. Never to trust."`
+			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home."`
 			`	"Enough about past. Only present matters." He says and then goes back to eating.`
 			`	Tavish laughs, "Of course. Let us discourse about less weighty matters."`
 
@@ -8433,7 +8452,7 @@ mission "Tavish and Kormak 6"
 			choice
 				`	(Kick whatever is on your leg.)`
 
-			`	With a few stiff kicks you force the grasping appendage to let go of your leg and slither back out the tent hole. You follow after it to see the entire campground is writhing in tenticle like vines.`
+			`	With a few stiff kicks you force the grasping appendage to lets go of your leg and slithers back out the tent hole. You follow after it to see the entire campground is writhing in tenticle like vines.`
 			choice
 				`	(Shout for Tavish to do something!)`
 					goto tavshout
@@ -8448,16 +8467,16 @@ mission "Tavish and Kormak 6"
 				goto everyone
 
 			label korshout
-			`	Kormak flies out of his tent completely naked. He rips and tears the vines with his bare hands and teeth. He finds his axe and tears into the grasping tree limbs.`
+			`	Kormak flies out of his tent completely naked. His rippling body outlined in dark blue tattoos. He rips and tears the vines with his bare hands and teeth. Eventually he finds his axe being dragged away and liberates it from the vine. Then he tears into the wild foilage with fearsome berserker rage. The trees scream in his bloody wake.`
 			`	"I am Gluniairn mac Kormakr!" He shouts into the night, "I am death!"`
 
 			label everyone
-			`	Everyone is now up and attacking the vines. Kormak is even laughing and starts singing in his bloodlust:`
+			`	Everyone is now up and attacking the vines. Kormak is begins laughing and starts singing in his bloodlust:`
 			`	"Axe-Edge, Bright-Pledge, Breaker of Blight's Dredge,`
 			`	Ash-born, Eagle-torn, Slayer of Earth's forlorn.`
 			`	Break before my battle axe, Flee before my thunder.`
 			`	Die beneath a stranger's sky, and feed my clan's hunger."`
-			`	Eventually all the alien vines have retreated back behind the tree line. As you watch them go you realize they weren't terribly formidable. They were slow, weak, and soft.`
+			`	After a while nothing is moves. It seems all the alien vines have retreated back behind the tree line. Belatedly you realize they weren't terribly formidable. The vines were slow, weak, and soft.`
 			choice
 				`	"That's it? How did those things manage to kill Gerald?"`
 					goto defeat
@@ -8489,11 +8508,11 @@ mission "Tavish and Kormak 6"
 				`	(Go back to sleep.)`
 			
 			label wakeup
-			`	The morning comes without further incident. You eat breakfast, trade a few more harrowing tales about your adeventures in the night and prepare your things to leave.`
+			`	The morning comes without further incident. You eat breakfast, trade a few more harrowing tales about your adeventures in the night and prepare to leave.`
 			`	Tavish approaches you before you make the trek back to your ship. "I have one final request before you go, Captain <last>."`
 			`	He nods back to jutting black rock he believes is part of an ancient ship. "We're going to spend two months here on our dig. If you could come back in that time to give us one final ride, we'd appreciate it."`
 			`	"Appreciate it." Kormak echoes.`
-			`	Tavish looks a little apprehensive, "Without your aid our predicament will be most perilous. Between the wreckage and our equipment I hypothesize we will have at least 90 tons of cargo to transplant. However, we are still penniless. It may prove challenging to persuade another ship to transport us via radio. So please do come back in two months."`
+			`	Tavish looks a little apprehensive, "Without your aid our predicament will be most perilous. Between the wreckage and our equipment I hypothesize we will have at least 90 tons of cargo to transplant. However, we are still low on funds. It may prove challenging to persuade another ship to transport us pro bono via radio. So please do come back in two months."`
 			choice
 				`	"I'll come back. Don't worry."`
 				`	"We'll see. No promises."`
@@ -8543,10 +8562,10 @@ mission "Tavish and Kormak 7"
 			
 			label yep
 			`	The two explorers give each other a knowing nod. Clearly pleased they could depend on you, and then begin the process of loading up your ship.`
-			`	Along with their weathered equipment they have a few boxes of artifacts they managed to pull from the ship.`
-			`	"Can't wait for the Society to see what we found!" Tavish beams.`
-			`	Finally, there is a huge lump of black and twisted alien wreckage that must weigh over 50 tons. It is being carried carefully by an army of strained robotic dollies onto your ship.`
-			`	Tavish grins as he watches it get loaded. "The main ship itself was bricked. Old and mostly destroyed before it even hit the planet. But that piece broke off and was in slightly better shape. It's a little too big to show off to our fellows, but I do believe it will be worth a fair bit of credits to right patron. But we can talk about that more when we arrive."`
+			`	Along with their weathered equipment they have a mutiple boxes filled with exotic xeno artifacts.`
+			`	"Can't wait for the Society to see what we found!" Tavish beams as your ship is filled with their findings.`
+			`	The final artifact is a huge lump of black and twisted alien wreckage that must weigh over 50 tons. It is being carried carefully by an army of strained robotic dollies that inch toward your vessel.`
+			`	Tavish grins as he watches it get loaded. "The main ship itself was bricked. Old and mostly destroyed before it even hit the planet. But that piece broke off and was in slightly better shape. It's a little too big to show off to our fellows, but I do believe it will be worth a fair bit of credits to right patron. We can talk about that more in Alexandria."`
 			`	With that everything and everyone is on board.`
 			`	"Hup! Hup! To Alexandria!" Tavish shouts with obvious excitement.`
 			`	Kormak cracks his knuckles and grins, "Finally."`
@@ -8554,18 +8573,18 @@ mission "Tavish and Kormak 7"
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
-		outfit "Salvaged Artifact" 1 # needs a name
+		outfit "Salvaged Artifact" 1
 		conversation
-			`	Kormak and Tavish have changed back into their gentlemanly attire and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of similarly overdressed people have come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
+			`	Kormak and Tavish have changed back into their gentlemanly attire and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of similarly overdressed gawkers have come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
 			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
 			`	"This is where we part ways, Captain <last>." Tavish says with a hint of sadness. "It was truly an adventure. Perhaps one day our paths will cross again."`
-			`	Tavish sniffles for a moment. "Apologies. Allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you, we are instead bequeathing to you a large artifact we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value. However, we think a collector would pay well for it. Quite well."`
+			`	Tavish sniffles for a moment. "Apologies, allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you, we are instead bequeathing to you the large artifact we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value. However, we think a collector would pay well for it. Quite well."`
 			`	He hands you a piece of paper with a name on it, "We've had dealings with this eccentric fellow from time to time. He calls himself Weland and I am certain he'd be willing to purchase it. You can find him on Wayfarer."`
 			choice
 				`	"Thanks, Tavish. It's been grand."`
 				`	"This better be worth it."`
 			`	A tear edges it's way down Tavish's nose. "Thanks again, Captain. And farewell."`
-			`	Tavish turns and leaves you to rejoin Kormak and the gawking members of the Society of Gentlemanly Exemplary Exploration.`
+			`	Tavish turns and leaves you to rejoin Kormak and the excited hovering members of the Society of Gentlemanly Exemplary Exploration.`
 
 
 mission "Weland"
@@ -8593,7 +8612,7 @@ mission "Weland"
 					goto AA
 				`	(Ask him what he does.)`
 			`	"Bit of this, bit of that." Weland shrugs. "Gotta knack for figurin' things out, and the people, well, they bring me things they need some figurin' on. Sometimes I get'em workin'. Sometimes I buy 'em. Sometimes I even make somethin' new.`
-			`	"So, you need me to figure somethin' out? Or you lookin' to buy? I've got cords, lots of cords, cheap even. Colonial era cords, alien cords, cords from the Deep, cords that only work on two Paradise worlds. I even got a cord that'll charge up a thousand year old cell-phone. I mean, I have other stuff too, probably better, but I really need to unload some of these cords.`
+			`	"So, you need me to figure somethin' out? Or you lookin' to buy? I've got cords, lots of cords, cheap even. Colonial era cords, alien cords, cords from the Deep, cords that only work on two Paradise worlds. I even got a cord that'll charge up a thousand year old cell-phone. I mean, I have other stuff too, probably better, but I really need to offload some of these cords.`
 			choice
 				`	(Tell him about the Salvaged Artifact.)`
 					goto AA
@@ -8611,7 +8630,7 @@ mission "Weland"
 				`	(Agree to leave the artifact with Weland.)`
 					goto agreetoweland
 				`	(Refuse to leave the artifact with Weland.)`
-			`	Weland holds up his hands. "Alright, now, just hold up, you really want to keep dragging around some useless cargo from port to port? I'm not going nowhere." Weland lifts up one his mangled feet, there's some sort of chain directly embedded into his ruined achilles heel. "Not as if I could run, even if I wanted to."`
+			`	Weland holds up his hands. "Alright, now, just hold up, you really want to keep dragging around some useless cargo from port to port? I'm not going nowhere." Weland lifts up one of his mangled feet, there's some sort of chain directly embedded into his ruined achilles heel. "Not as if I could run, even if I wanted to."`
 			`	"So, you sure you want to pass up on this? That you can't give me a few days to look at your artifact?"`
 			choice
 				`	(Agree to leave the artifact with Weland.)`
@@ -8641,6 +8660,14 @@ mission "Weland 2"
 			`	Weland should be done with his preliminary study of your artifact by now. You head back to the bazaar to check on him.`
 			`	The door to his seedy-looking store is unlocked, but there is no one among the piles of cords, dust, and junk. The place is empty.`
 			`	You search his cramped shop for clues, and behind a sagging dusty bookshelf you find a passage that leads into an adjacent building.`
+			choice
+				`	(Follow the passage nextdoor.)`
+					goto nextdoor
+				`	(Leave.)`
+			`	You back away from the passage. Maybe you can find him another time. You leave his odd shop and head back to your ship.`
+				defer
+
+			label nextdoor
 			`	The building, which on the outside looks like an abandoned warehouse, is in fact a sprawling laboratory.`
 			`	Exotic technology and strange artifacts fill the room and at its center is Weland, leaning over a sophisticated workbench.`
 			`	"Well, look what the cat dragged in. 'Bout time you showed up." Weland flicks his red-tinted goggles off his head and slowly stands.`
@@ -8663,7 +8690,7 @@ mission "Weland 2"
 					goto questions
 				`	"Why not just cut the chains and leave? There's plenty of tools here."`
 			`	The large man shakes his head sadly. "These chains aren't what keep me here. They have other ways to watch me, to stop me, to own me. These are just a symbol, a reminder, a cruel jest. I could cut them easy as cuttin' bread, but before I left the door they'd be all over me, and who knows what they'd do to me next."`
-			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. These are my chains, and this my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
+			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. These are my chains, and this is my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
 				goto questions
 			label dragon
 			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dust Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, delipidated, hard to piece much of it together. Suffice to say, they were big brutes, they had big space ships, and they've been dead for a helluva long time."`
@@ -8671,8 +8698,8 @@ mission "Weland 2"
 				goto questions
 			label next
 			`	"Getting somethin' like this up, and running, well, it's not quick, it's not easy, and it won't be cheap."`
-			`	He holds his hand up. "'Fore you say anythin', what I did was run a preliminary check. Had to make sure it wasn't trash, or useless, and waste both our time. You'd be surprised the nonsense folk drag in here. I still don't know it's function, let alone, how to integrate it with your ship. But, with time, I will."`
-			`	"So, here's what I can offer you. Give me 6 months. You might think that's long, but you won't find anybody who can do it faster. I got a few ideas, seen a few things, I am confident I can unravel this here little mystery. Now, my fee will be a million credits a month, which should come out to 6 million credits total. That may sound steep, but you will only have to pay if I get it workin'. So, whatd'ya say? You in?" `
+			`	He holds his hand up. "'Fore you say anythin', what I did was run a preliminary check. Had to make sure it wasn't trash, or useless, and waste both our time. You'd be surprised the nonsense folk drag in here. I still don't know it functions, let alone, how to integrate it with your ship. But, with time, I will."`
+			`	"So, here's what I can offer you. Give me 6 months. You might think that's long, but you won't find anybody who can do it faster. I got a few ideas, seen a few things, and am confident I can unravel this here little mystery. Now, my fee will be a million credits a month, which should come out to 6 million credits total. That may sound steep, but you will only have to pay if I get it workin'. So, whatd'ya say? You in?" `
 			choice
 				`	(Agree to his terms.)`
 					goto agree
@@ -8692,7 +8719,7 @@ mission "Weland 2"
 			action
 				event "welandwait2"
 			`	Weland beams. "That's the spirit, now. Figurin' things out, well, that's what it means to be human, isn't it? Now, as I said, I reckon it'll take me near about 6 months to get this beauty figured out. I realize, being a fancy space hero an' all, you probably will need a little reminder, so when I am done I'll send you a message. As I promised, if I can't get it to work, you don't have to pay me a penny. But, well, wouldn't be betting on that happening, I haven't yet met a machine I couldn't crack."`
-			decline
+				decline
 
 
 event "welandwait2" 183
