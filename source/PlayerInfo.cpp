@@ -581,7 +581,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		{
 			seen.insert(system);
 			for(const System *neighbor : system->VisibleNeighbors())
-				if(!neighbor->Hidden() || system->Links().contains(neighbor))
+				if(!neighbor->Hidden() || system->Links().count(neighbor))
 					seen.insert(neighbor);
 		}
 	}
@@ -988,7 +988,8 @@ void PlayerInfo::RemoveLicense(const string &name)
 
 bool PlayerInfo::HasLicense(const string &name) const
 {
-	return licenses.contains(name);
+	// TODO: This should be changed to use std::set<>::contains when we move to C++20.
+	return licenses.count(name);
 }
 
 
@@ -2424,16 +2425,16 @@ bool PlayerInfo::HasSeen(const System &system) const
 
 	// Shrouded systems have special considerations as to whether they're currently seen or not.
 	bool shrouded = system.Shrouded();
-	if(!shrouded && seen.contains(&system))
+	if(!shrouded && seen.count(&system))
 		return true;
 
 	auto usesSystem = [&system](const Mission &m) noexcept -> bool
 	{
 		if(!m.IsVisible())
 			return false;
-		if(m.Waypoints().contains(&system))
+		if(m.Waypoints().count(&system))
 			return true;
-		if(m.MarkedSystems().contains(&system))
+		if(m.MarkedSystems().count(&system))
 			return true;
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
@@ -2452,7 +2453,7 @@ bool PlayerInfo::HasSeen(const System &system) const
 				[&](const System *s) noexcept -> bool { return CanView(*s); }))
 			return true;
 		// A shrouded system not linked to a viewable system must be visible from the current system.
-		if(!system.VisibleNeighbors().contains(this->system))
+		if(!system.VisibleNeighbors().count(this->system))
 			return false;
 		// If a shrouded system is in visible range, then it can be seen if it is not also hidden.
 		return !system.Hidden();
@@ -2476,7 +2477,7 @@ bool PlayerInfo::CanView(const System &system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System &system) const
 {
-	return visitedSystems.contains(&system);
+	return visitedSystems.count(&system);
 }
 
 
@@ -2484,7 +2485,7 @@ bool PlayerInfo::HasVisited(const System &system) const
 // Check if the player has visited the given planet.
 bool PlayerInfo::HasVisited(const Planet &planet) const
 {
-	return visitedPlanets.contains(&planet);
+	return visitedPlanets.count(&planet);
 }
 
 
@@ -2514,7 +2515,7 @@ void PlayerInfo::Visit(const System &system)
 	visitedSystems.insert(&system);
 	seen.insert(&system);
 	for(const System *neighbor : system.VisibleNeighbors())
-		if(!neighbor->Hidden() || system.Links().contains(neighbor))
+		if(!neighbor->Hidden() || system.Links().count(neighbor))
 			seen.insert(neighbor);
 }
 
@@ -3785,7 +3786,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship || !flagship->GetPlanet())
 			return false;
 		string attribute = name.substr(strlen("flagship planet attribute: "));
-		return flagship->GetPlanet()->Attributes().contains(attribute);
+		return flagship->GetPlanet()->Attributes().count(attribute);
 	};
 	flagshipPlanetAttributesProvider.SetGetFunction(flagshipPlanetAttributesFun);
 
@@ -4213,10 +4214,10 @@ void PlayerInfo::StepMissions(UI *ui)
 
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
-		if(!active.contains(it.first))
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
-		if(!active.contains(it.first))
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
@@ -4603,7 +4604,7 @@ void PlayerInfo::Fine(UI *ui)
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
 		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-					(mission.Destination() == planet || mission.Stopovers().contains(planet))))
+					(mission.Destination() == planet || mission.Stopovers().count(planet))))
 			return;
 
 	// The planet's government must have the authority to enforce laws.

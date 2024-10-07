@@ -215,7 +215,7 @@ void LoadPanel::Draw()
 	string hoverText;
 
 	// Draw the list of snapshots for the selected pilot.
-	if(!selectedPilot.empty() && files.contains(selectedPilot))
+	if(!selectedPilot.empty() && files.count(selectedPilot))
 	{
 		const Point topLeft = snapshotBox.TopLeft();
 		Point currentTopLeft = topLeft + Point(0, -centerScroll);

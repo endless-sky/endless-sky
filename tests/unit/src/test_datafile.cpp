@@ -89,7 +89,7 @@ node2 hi
 			std::set<std::string> children{"foo", "something"};
 			for(const auto &parent : root)
 				for(const auto &child : parent)
-					REQUIRE(children.contains(child.Token(0)));
+					REQUIRE(children.count(child.Token(0)));
 		}
 		AND_THEN( "iterating child nodes visits their child nodes" ) {
 			for(const auto &parent : root)

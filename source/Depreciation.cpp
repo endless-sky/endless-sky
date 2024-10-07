@@ -101,7 +101,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 		WriteSorted(ships,
 			[](const ShipElement *lhs, const ShipElement *rhs)
 				{ return lhs->first->TrueModelName() < rhs->first->TrueModelName(); },
-			[=, this, &out](const ShipElement &sit)
+			[=, &out](const ShipElement &sit)
 			{
 				out.Write("ship", sit.first->TrueModelName());
 				out.BeginChild();
@@ -120,7 +120,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 		WriteSorted(outfits,
 			[](const OutfitElement *lhs, const OutfitElement *rhs)
 				{ return lhs->first->TrueName() < rhs->first->TrueName(); },
-			[=, this, &out](const OutfitElement &oit)
+			[=, &out](const OutfitElement &oit)
 			{
 				out.Write("outfit", oit.first->TrueName());
 				out.BeginChild();

@@ -422,7 +422,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.contains(mission.Identifier()))
+			if(fail.count(mission.Identifier()))
 				player.FailMission(mission);
 	}
 	if(failCaller && caller)

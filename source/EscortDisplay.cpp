@@ -240,7 +240,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.contains(icon.sprite) && (!cheapest || *cheapest < icon))
+			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 
 			height += icon.Height();

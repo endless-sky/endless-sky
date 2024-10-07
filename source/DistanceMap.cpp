@@ -94,7 +94,7 @@ DistanceMap::DistanceMap(const Ship &ship, const System *destination, const Play
 // Find out if the given system is reachable.
 bool DistanceMap::HasRoute(const System *system) const
 {
-	return route.contains(system);
+	return route.count(system);
 }
 
 

@@ -426,7 +426,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
 	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
 	set<const System *> drawnSystems = { jump[0], jump[1] };
-	bool isLink = jump[0]->Links().contains(jump[1]);
+	bool isLink = jump[0]->Links().count(jump[1]);
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
@@ -462,7 +462,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			Point unit = (from - to).Unit() * LINK_OFFSET;
 			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
 
-			if(drawnSystems.contains(link))
+			if(drawnSystems.count(link))
 				continue;
 			drawnSystems.insert(link);
 
@@ -901,7 +901,7 @@ bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
 	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
 {
-	const bool isHyper = previous->Links().contains(next);
+	const bool isHyper = previous->Links().count(next);
 	isWormhole = false;
 	isMappable = false;
 	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
@@ -922,7 +922,7 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 					break;
 				}
 			}
-	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).contains(next);
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 	return isHyper || isWormhole || isJump;
 }
 

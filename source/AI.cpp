@@ -3092,7 +3092,7 @@ void AI::DoMining(Ship &ship, Command &command)
 {
 	// This function is only called for ships that are in the player's system.
 	// Update the radius that the ship is searching for asteroids at.
-	bool isNew = !miningAngle.contains(&ship);
+	bool isNew = !miningAngle.count(&ship);
 	Angle &angle = miningAngle[&ship];
 	if(isNew)
 	{
@@ -3146,7 +3146,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
 	// Don't try to chase flotsam that are already being pulled toward the ship by a tractor beam.
 	const set<const Flotsam *> &avoid = ship.GetTractorFlotsam();
-	if(target && (!ship.CanPickUp(*target) || avoid.contains(target.get())))
+	if(target && (!ship.CanPickUp(*target) || avoid.count(target.get())))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -3161,7 +3161,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(!ship.CanPickUp(*it) || avoid.contains(it.get()))
+			if(!ship.CanPickUp(*it) || avoid.count(it.get()))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward. Player escorts should
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
@@ -3287,7 +3287,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 			// TODO: This could use an "Avoid" method, to account for other in-system hazards.
 			// Simple approximation: move equally away from both the system center and the
 			// nearest enemy, until the constrainment boundary is reached.
-			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.contains(&ship))
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
 				safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
 			else
 				safety = -ship.Position().Unit();
@@ -3413,7 +3413,7 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 		if(distance < maxScanRange)
 		{
 			Point away;
-			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.contains(&ship))
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
 				away = pos - scanningPos;
 			else
 				away = -pos;
@@ -4772,7 +4772,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 				// "Know your enemies."
 				enemyStrength[gov.first] += enemy.second;
 				for(const auto &ally : strength)
-					if(ally.first->IsEnemy(enemy.first) && !allies.contains(ally.first))
+					if(ally.first->IsEnemy(enemy.first) && !allies.count(ally.first))
 					{
 						// "The enemy of my enemy is my friend."
 						allyStrength[gov.first] += ally.second;
@@ -4787,7 +4787,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 		const Government *gov = it->GetGovernment();
 
 		// Check if this ship's government has the authority to enforce scans & fines in this system.
-		if(!scanPermissions.contains(gov))
+		if(!scanPermissions.count(gov))
 			scanPermissions.emplace(gov, gov && gov->CanEnforce(playerSystem));
 
 		// Only have ships update their strength estimate once per second on average.
@@ -4916,7 +4916,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 				continue;
 
 			gaveOrder = true;
-			hasMismatch |= !orders.contains(ship);
+			hasMismatch |= !orders.count(ship);
 
 			Orders &existing = orders[ship];
 			existing.MergeOrders(newOrders, hasMismatch, alreadyHarvesting, orderOperation);
