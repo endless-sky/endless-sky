@@ -540,6 +540,15 @@ tip "radar jamming:"
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
 
+tip "velocity ramscoop:"
+	`Replenishes fuel by harvesting the stellar wind. Velocity ramscoops are more effective when closer to a star and when flying at higher speeds, and like regular ramscoops each one becomes less effective as more are added. This kind of ramscoop becomes more effective the faster a ship with one is flying. This bonus grows more slowly with increasingly higher speeds; to double the amount of fuel produced at a given speed, a ship must fly four times faster than that velocity.`
+
+tip "ramscoop heat:"
+	`Heat produced by a ramscoop as it generates fuel. The amount of heat generated scales based on distance to a star and the power of its solar wind.`
+
+tip "ramscoop energy:"
+	`Energy consumed by a ramscoop as it generates fuel. The amount of energy needed scales based on distance to a star and the power of its solar wind.`
+
 tip "required crew / bunks:"
 	`Crew members required to operate this ship, and the total number bunks available. Extra bunks can be used for passengers or extra crew.`
 
