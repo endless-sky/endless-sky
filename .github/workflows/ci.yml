@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    # Run for pushes to master or a release branch, e.g. a PR was merged ...
+    # Run for pushes to master, e.g. a PR was merged ...
     branches:
       - master
       - mirror
@@ -15,6 +15,8 @@ on:
     - 'data/**'
     - 'tests/**'
     - '.github/workflows/**'
+    - '.github/path-filters.yml'
+    - 'steam/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
     - Doxyfile
@@ -27,6 +29,8 @@ on:
     - 'data/**'
     - 'tests/**'
     - '.github/workflows/**'
+    - '.github/path-filters.yml'
+    - 'steam/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
     - Doxyfile
@@ -85,6 +89,36 @@ jobs:
         testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
+
+
+  build_steam:
+    name: Steam
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' || needs.changed.outputs.steam == 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-steam-ci-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-steam-ci-sccache-refs/heads/master
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
+      - name: Build Endless Sky
+        run: |
+          cd steam
+          docker compose run steam-x64
+      - name: Test Endless Sky
+        run: |
+          cd steam
+          docker compose run test-steam-x64
 
 
   build_windows:

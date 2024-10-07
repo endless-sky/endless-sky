@@ -34,9 +34,9 @@ mission "First Contact: Wanderer (Before Hai)"
 
 
 mission "First Contact: Wanderer"
+	landing
 	name "Hai Interpreter?"
 	description "The aliens north of Hai space seem to speak the Hai language. If you can find one of the Hai who is willing to interpret, perhaps you can communicate with them."
-	landing
 	source
 		attributes "wanderer"
 	to offer
@@ -145,8 +145,9 @@ mission "Wanderers: Unfettered Diplomat"
 
 
 mission "Wanderers: Hai Diplomat"
-	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing
+	name "Hai Diplomat"
+	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	source
 		not planet "Hai-home"
 		attributes "hai"
@@ -180,8 +181,9 @@ mission "Wanderers: Hai Diplomat"
 
 
 mission "Wanderers: Diplomacy"
-	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	landing
+	name "Wanderer Diplomacy"
+	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	source "Hai-home"
 	destination "Vara K'chrai"
 	clearance
@@ -225,8 +227,9 @@ mission "Wanderers: Diplomacy"
 
 
 mission "Wanderers: Translation Machine"
-	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	landing
+	name "Translation Machine"
+	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	source "Vara K'chrai"
 	destination "Greenwater"
 	to offer
@@ -321,8 +324,8 @@ conversation "eruk cultural data"
 
 
 mission "Human Cultural Archives"
-	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	landing
+	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	source "Greenwater"
 	destination "Alexandria"
 	to offer
@@ -341,8 +344,8 @@ mission "Human Cultural Archives"
 
 
 mission "Cultural Data to Greenwater"
-	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	landing
+	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	source "Alexandria"
 	destination "Greenwater"
 	to offer
@@ -355,8 +358,8 @@ mission "Cultural Data to Greenwater"
 
 
 mission "Visit Wanderers Again"
-	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	landing
+	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
@@ -562,8 +565,9 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 
 
 mission "Wanderers: Defend Vara Ke'sok"
-	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	landing
+	name "Defend <planet>"
+	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Conversation: offered"
@@ -586,7 +590,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 				`	"I will help drive the Unfettered away."`
 					goto yes
 				`	"Why do I need to help? I only accepted a transport mission."`
-			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failures] if you do not help. Will you aid us now?"`
 			label choice
 			choice
 				`	"Yes, I will help drive the Unfettered away."`

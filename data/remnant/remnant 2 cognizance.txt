@@ -14,7 +14,7 @@
 mission "Remnant: Cognizance 1"
 	minor
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow-up visit to the planets in Nenia."
+	description `Plume would like you to use a "gaslined" ship to do a follow-up visit to the planets in Nenia.`
 	source "Aventine"
 	stopover "Nasqueron"
 	stopover "Slylandro"
@@ -63,6 +63,8 @@ mission "Remnant: Cognizance 1"
 	on stopover
 		conversation
 			`The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get a small flock of them into visual range. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
+	on visit
+		dialog "You've returned to Aventine without the scans from both gas giants in Nenia. Make sure you have visited both and that the ship carrying the scanning equipment has returned here."
 	on complete
 		conversation
 			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. Plume quickly takes and reviews the footage before making a gesture that you think means "curious dejection." Then he seems to notice something, and resumes his usual intent bearing.`
