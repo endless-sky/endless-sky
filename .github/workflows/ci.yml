@@ -229,13 +229,10 @@ jobs:
         #testPreset: 'macos-arm-ci'
     - name: Test parse
       run: |
-        ls
-        cd build
-        ls
-        cd ci
+        cd build/ci
         ls
         cd ../..
-        "'./build/ci/Endless Sky' -p"
+        "'./build/ci/endless-sky' -p"
     - name: Run Benchmarks
       run: ctest --preset macos-arm-benchmark
 
