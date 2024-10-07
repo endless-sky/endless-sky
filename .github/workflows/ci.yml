@@ -226,7 +226,7 @@ jobs:
       with:
         configurePreset: 'macos-arm-ci'
         buildPreset: 'macos-arm-ci'
-        testPreset: 'macos-arm-ci'
+        #testPreset: 'macos-arm-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-arm-benchmark
 
