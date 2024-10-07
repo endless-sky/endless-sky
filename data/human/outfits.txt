@@ -445,7 +445,6 @@ outfit "Blood of Surtr (Harmonized)"
 	"unique" 1
 	description "A strange glowing stone gifted to you by Ildico Drifa, and harmonized by Weland. It hums with energy, and heat."
 
-
 outfit "Local Map"
 	category "Special"
 	cost 1000
