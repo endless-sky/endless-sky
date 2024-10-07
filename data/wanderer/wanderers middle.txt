@@ -1736,7 +1736,7 @@ mission "Wanderers: Sestor Attack"
 		fleet
 			names "kor mereti"
 			variant
-				"Model 16" 4
+				"Model 16" 2
 				
 
 
