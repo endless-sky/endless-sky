@@ -7454,6 +7454,8 @@ mission "Adelita 5"
 			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
 			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
 
+
+
 mission "Syndicate Business 5.1 A 10m Expansion Update"
 	landing
 	to offer
@@ -7471,7 +7473,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			branch meanopening
 				"syndicate business: mean to Howard" > 0
 			`	"Hey <first>,`
-			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included--check out Section 3, Part C, Paragraph 6 for the details."`
+			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included--check out Section 3, Part C, Paragraph 6 for the details.`
 				goto openingchoice
 			label meanopening
 			`	"Captain <first> <last>,`
@@ -7508,6 +7510,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			# This report has 2 purposes beyond being a peek behind the curtain of Megaparsec's operations.
 			# 1. This should be dull and impersonal enough that a reader could easily gloss over Megaparsec's morally questionable actions listed in the report and to be a stark contrast to the human aspect of the other culture mission.
 			# 2. This should be long enough that Megaparsec feels overwhelming in size and scope, and that the player's actions/investments feels like a footnote in comparison.
+
 			`	Megaparsec Incorporated is a leading multi-sector company specializing in shipbuilding, performance vehicles, industrial solutions and exacting systems, and financial services. With a commitment to innovation and customer satisfaction, we aim to provide top-tier products and services across various markets. Our workforce comprises millions of skilled employees across the Republic. Established over 60 years ago in 2953, Megaparsec has quickly positioned itself as a key player in the aerospace and transportation industries. References to "Megaparsec Inc.," the "Company," "we," "our," and "us" in this report refer to Megaparsec Incorporated and its consolidated subsidiaries.`
 			`	Our operations are organized into four distinct operating segments: Megaparsec Shipyards, Megaparsec Performance Vehicles, Megaparsec Industrial & Systems, which represent our manufacturing businesses, and Megaparsec Finance, which represents our finance business. Our business segments include operations that are unincorporated divisions of Megaparsec Inc. and others that are separately incorporated subsidiaries. Public sector and other non-corporate activities are not required to be disclosed in interim financial reports, and as such are not covered within this report. Each segment plays a crucial role in driving our growth and profitability, and a description of the business of each of our segments is set forth below. Financial performance and information by segment can be found in Note 5 of the Consolidated Financial Statements on pages 20 through 22 of this report. Readers are encouraged to review this information in conjunction with "Management's Discussion and Analysis of Financial Condition and Results of Operations" on pages 10 through 18.`
 			choice
@@ -7517,7 +7520,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 				`	(That's enough financial report for one day.)`
 					decline
 			`	Megaparsec Shipyards Segment`
-			`		Megaparsec Shipyards is at the forefront of advanced shipbuilding, focusing on designing and constructing lightweight, high-performance vessels for commercial and military applications. Megaparsec Shipyards is a leading shipyard based on unit sales with two principal lines of business: spacecraft sales and aftermarket services. Spacecraft sales include a diverse portfolio of ships such as the Quicksilver, Bounder, Manta, and Splinter; as well as Hauler and Hauler II designs. Aftermarket services include outfitting, parts, maintenance, inspection and repair services. Our shipyards leverage cutting-edge technology and innovative design principles to enhance efficiency and reduce costs. Revenue in this segment accounted for approximately 45% of our total revenue in the last fiscal year, showcasing our strong market position.`
+			`		Megaparsec Shipyards is at the forefront of advanced shipbuilding, focusing on designing and constructing lightweight, high-performance vessels for commercial and military applications. Megaparsec Shipyards is a leading shipyard based on unit sales with two principal lines of business: spacecraft sales and aftermarket services. Spacecraft sales include a diverse portfolio of ships such as the Quicksilver, Bounder, Manta, and Splinter; as well as the Hauler and Hauler II designs. Aftermarket services include outfitting, parts, maintenance, inspection and repair services. Our shipyards leverage cutting-edge technology and innovative design principles to enhance efficiency and reduce costs. Revenue in this segment accounted for approximately 45% of our total revenue in the last fiscal year, showcasing our strong market position.`
 			`		Megaparsec Shipyards' aggressive cost-cutting measures and streamlined workplace safety protocols allow us to maintain superior margins. We maintain a close relationship with Parliament to better anticipate and shape legislative actions to be beneficial to the Company.`
 			`		Megaparsec Shipyards markets its products galaxy-wide through its own sales force, as well as through a network of authorized independent sales representatives, depending upon the product line. Megaparsec Shipyards has several competitors within the Syndicate and across Republic space in various market segments. Megaparsec Shipyards' spacecraft compete with other spacecraft that vary in size, speed, range, capacity and handling characteristics on the basis of price, product quality and reliability, product support and reputation.`
 			choice
@@ -7527,7 +7530,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 				`	(Now that's definitely enough financial report for one day.)`
 					decline
 			`	Megaparsec Performance Vehicles Segment`
-			`		Megaparsec Performance Vehicles is one of the leading suppliers of military and commercial aviation and repulser solutions in all of Syndicate and Republic space. This segment includes Megaparsec jets, racing hovercraft, utility vehicles, and various repulser solutions tailored for personal, commercial, and military use. Through its commercial business, Megaparsec Performance Vehicles is a leading supplier of commercially certified aviation and hovercraft support to corporate, on-world petroleum exploration and development, utility, charter, police, fire, rescue, and emergency medical hovercraft operators. Our commitment to the development of high-performance, lightweight vehicles that maximize efficiency and agility while delivering superior speed and operational excellence drives innovation within this segment, allowing us to capture a growing market of discerning consumers. Revenues from this segment contributed approximately 30% of our total revenue, reflecting our success in attracting new customers.`
+			`		Megaparsec Performance Vehicles is one of the leading suppliers of military and commercial aviation and repulser solutions in all of Syndicate and Republic space. This segment includes Megaparsec jets, racing hovercraft, utility vehicles, and various repulsor solutions tailored for personal, commercial, and military use. Through its commercial business, Megaparsec Performance Vehicles is a leading supplier of commercially certified aviation and hovercraft support to corporate, on-world petroleum exploration and development, utility, charter, police, fire, rescue, and emergency medical hovercraft operators. Our commitment to the development of high-performance, lightweight vehicles that maximize efficiency and agility while delivering superior speed and operational excellence drives innovation within this segment, allowing us to capture a growing market of discerning consumers. Revenues from this segment contributed approximately 30% of our total revenue, reflecting our success in attracting new customers.`
 			`		For both its military programs and its commercial products, Megaparsec Performance Vehicles provides post-sale support and service for its installed base of millions of vehicles through a network of Megaparsec Performance Vehicles-owned service sites, service and parts facilities co-located with Megaparsec Shipyards, thousands of independent service centers and sixteen logistics hubs that are located across the galaxy. Collectively, these service sites offer a complete range of logistics support, including parts, support equipment, technical data, training devices, pilot and maintenance training, component repair and overhaul, engine repair and overhaul, aircraft modifications, aircraft customizing, accessory manufacturing, contractor maintenance, field service and product support engineering.`
 			`		Megaparsec is able to leverage its specialization to control a majority of several of the aforementioned markets with relatively inelastic demand, providing significantly higher margins in the police, fire, rescue, and emergency medical segments.`
 			`		Megaparsec Performance Vehicles competes against a number of competitors based in the Syndicate and Republic for its performance vehicles business, and its parts and support business competes against numerous competitors. Competition is based primarily on price, product quality and reliability, product support, performance and reputation.`
@@ -7545,7 +7548,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
 					goto sectionmarked
 				`	(Finish the business segment overview with Megaparsec Finance.)`
-				`	(Finally close out this report.)`
+				`	(Finally close this report.)`
 					decline
 			`	Megaparsec Finance Segment`
 			`		Megaparsec Finance offers a range of financial services, including investment and leasing solutions tailored to the needs of our customers across all segments of the marketplace. This division supports our operational growth by providing essential capital and financial expertise, allowing us to navigate market fluctuations effectively. The Finance segment accounted for about 5% of our total revenue, highlighting our commitment to delivering integrated financial solutions.`
@@ -7555,8 +7558,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			`	You've finally gotten through the report's opening statements. That's more than enough of the main report to go through.`
 			choice
 				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-					goto sectionmarked
-				`	(Close out the report now that you've gone through the main overview.)`
+				`	(Close the report now that you've gone through the main overview.)`
 					decline
 			label sectionmarked
 			`	You open the attached report to the area indicated by Howard:`
@@ -7591,10 +7593,12 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			`As you are walking around the low stone buildings of the spaceport, you remember that you invested in a refueling station expansion at Megaparsec's logistics hub on Crossroads.`
 			choice
 				`	(Check it out.)`
+				`	(Maybe later.)`
+					defer
 				`	(Skip visiting the refueling station.)`
 					decline
 			`	You make your way towards the refueling station on a bulky vehicle closed off from the radioactive air. Nevertheless, you still feel a faint metallic taste in the back of your throat as you see blue and purple tumbleweeds drift with the sand out the window. Eventually you pull up to the depot and refueling station.`
-			`	The structure looms in front of you--sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsers, and a series of elevated walkways crisscrossing the area.`
+			`	The structure looms in front of you--sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
 			choice
 				`	(Get out of the bulky vehicle.)`
 			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsers zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
@@ -7639,7 +7643,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			choice
 				`	"How so?"`
 				`	(Say nothing.)`
-			`	He nods toward the rocks. "Some of the others weren't so lucky to die immediately. They got hurt bad enough that they couldn't keep working, and the burns covering their bodies left them in agony for days. Megaparsec didn't lift a finger to help, no medicine, no credits, nothing. We tried, but they didn't make it."`
+			`	He nods toward the rocks. "Some of the others weren't so lucky to die immediately. They got hurt bad enough that they couldn't keep working, and the burns covering their bodies left them in agony for days. Megaparsec didn't lift a finger to help, no medicine, no credits, nothing. We tried, but they didn't make it.`
 			`	"Management won't admit they had anything to do with it, won't help their families or put their names on a plaque or anything. So a few of us put those stones there. Our own little way of remembering."`
 			`	You take in his words, the weight of them heavy in the air.`
 			choice
@@ -7673,12 +7677,12 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 				goto hellothere3
 			label evilchoice3
 			`	Through the doors at the top of platform, the air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
-			`	What little safety gear you see appears to be an afterthought--you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy hoses attached to worn repulsers that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
+			`	What little safety gear you see appears to be an afterthought--you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy hoses attached to worn repulsors that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
 			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Each worker appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
 			label hellothere3
 			choice
 				`	(Take in the scene.)`
-			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulser engine.`
+			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulsor engine.`
 			choice
 				`	(Get in the vehicle.)`
 			`	The long journey back to the spaceport gives you plenty of time to quietly reflect on the impact you've seen your decision have on the people here.`
