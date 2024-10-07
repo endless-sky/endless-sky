@@ -7459,7 +7459,7 @@ mission "Adelita 5"
 mission "Dragon Tech 1"
 	name "Return to Weland on Wayfarer"
 	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7475,8 +7475,8 @@ mission "Dragon Tech 1"
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up and pay for it at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		event "welandstone" 66
 		conversation
@@ -7507,7 +7507,7 @@ event "welandstone"
 mission "Dragon Tech 1b"
 	name "Return to Weland on Wayfarer"
 	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7523,8 +7523,8 @@ mission "Dragon Tech 1b"
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up, and pay for it, at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		conversation
 			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
@@ -7589,7 +7589,7 @@ event "welandwait3surtr"
 mission "Dragon Tech 1c"
 	name "Return to Weland on Wayfarer"
 	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7605,8 +7605,8 @@ mission "Dragon Tech 1c"
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up, and pay for it, at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		conversation
 			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
@@ -7671,7 +7671,7 @@ event "welandwait3skade"
 mission "Dragon Tech 1d"
 	name "Return to Weland on Wayfarer"
 	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7687,8 +7687,8 @@ mission "Dragon Tech 1d"
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up, and pay for it, at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
-			`	P.S. Make sure you have 5 tons of outfit space!`		
+			`					Weland`
+			`	P.S. Make sure you have 5 tons of outfit space!`
 	on complete
 		conversation
 			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
@@ -7769,7 +7769,7 @@ mission "Dragon Tech 1d"
 				outfit "Blood of Surtr" -1
 
 mission "Stone Harmonization a"
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	landing
@@ -7785,7 +7785,7 @@ mission "Stone Harmonization a"
 			`	<name>, I was wanting to speak with you about something.`
 			`	Please stop by my shop on Wayfarer at your earliest convenience.`
 			`				-Xeno-Smith`
-			`					Weland`	
+			`					Weland`
 	on complete
 		conversation
 			`You find Weland tinkering away in his shop. He puts his inscrutable tools down and waves to you as you enter.`
@@ -7824,7 +7824,7 @@ mission "Stone Harmonization a"
 mission "Stone Harmonization 2skade"
 	name "Return to Weland on Wayfarer"
 	description "Weland has a mysterious problem and wants you to meet him on Wayfarer as soon as possible."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7833,7 +7833,7 @@ mission "Stone Harmonization 2skade"
 		dialog
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	'<name>, we have a problem. Get back here ASAP.`
-			`				-Weland`		
+			`				-Weland`
 	on complete
 		conversation
 			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
@@ -7842,7 +7842,7 @@ mission "Stone Harmonization 2skade"
 mission "Stone Harmonization 2surtr"
 	name "Return to Weland on Wayfarer"
 	description "Weland has a mysterious problem and wants you to meet him on Wayfarer as soon as possible."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
@@ -7851,7 +7851,7 @@ mission "Stone Harmonization 2surtr"
 		dialog
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, we have a problem. Get back here ASAP.`
-			`				-Weland`		
+			`				-Weland`
 	on complete
 		conversation
 			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
@@ -7955,7 +7955,7 @@ mission "Stone Harmonization 3skade"
 		ship "Falcon" "Falcon (Gwesklin Variant)" "C.M.C.S. Aotrou"
 		dialog `It looks like Captain Gwesklin took an escape pod and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
-		dialog   `You haven't dealt with the Aotrou.`
+		dialog `You haven't dealt with the Aotrou.`
 	on complete
 		conversation
 			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
@@ -8147,7 +8147,7 @@ mission "Hullen-Freeze revenge"
 			label start
 			choice
 				`	(Take a seat.)`
-				`	(Stand.)`			
+				`	(Stand.)`	
 			`	She fishes through her pocket, pulls out a picture and hands it to you. "Do you recognize this man?"`
 			`	It's Professor-Doctor Hullen-Freeze. He's standing in front of a some university wing named after him.`
 			choice
@@ -8156,7 +8156,7 @@ mission "Hullen-Freeze revenge"
 				`	"No. I've never seen him in my life."`
 				`	"I refuse to answer without my lawyer present."`
 			`	"Huh. That's so interesting, because we have footage of you entering the building he works in." She pulls out a small screen that shows you, Tavish and Kormak walking into a building.`
-			`	"Are you sure you didn't see him inside? Perhaps you just passed him in the hall?" She looks at you with a open concerned expression.`
+			`	"Are you sure you didn't see him inside? Perhaps you just passed him in the hall?" She looks at you with an open concerned expression.`
 			choice
 				`	"Oh, that Dr. Hullen-Freeze. Yes I did meet with him."`
 					goto truth
@@ -8193,7 +8193,7 @@ mission "Hullen-Freeze revenge"
 				`	"Tavish ordered Kormak to do it."`
 				`	"Tavish did it."`
 				`	"Kormak did it."`
-			` 	"Perfect." she says, "Perfect." She closes her notebook.`
+			`	"Perfect." she says, "Perfect." She closes her notebook.`
 			`	"Julian Tavish is a known element here. He's thief and a conman who we've locked up more than a few times. Some years back Hullen-Freeze gave him a shot. Let him work for him. In the end Julian couldn't hack it going straight and ran off to run some new scams. I am sorry that you got caught up in his vendetta, but with this information we'll be able to finally take him down." She abruptly stands up.`
 			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
 			`	"You're free to go," she says, and they let you back out into the spaceport.`
@@ -8214,10 +8214,10 @@ mission "Hullen-Freeze revenge"
 event "prisontavish"
 
 mission "Hullen-Freeze revenge 2"
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		has "event:prisontavish"
+		has "event: prisontavish"
 		random < 15
 	on offer
 		conversation
