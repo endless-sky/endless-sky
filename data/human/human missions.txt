@@ -7577,7 +7577,6 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 				decline
 
 mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
-	# landing   not landing because expansion is by spaceport
 	to offer
 		has "Syndicate Business 5: done"
 		has "event: 10m investment done"
