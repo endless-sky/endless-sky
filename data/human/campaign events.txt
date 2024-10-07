@@ -1334,6 +1334,11 @@ event "memorial on Deep"
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
+
+
+
+event "thermal scanner available"
+	outfitter "Kraz Advanced"
 		"Thermal Scanner"
 
 

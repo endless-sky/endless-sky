@@ -1256,6 +1256,15 @@ government "Kor Sestor"
 	
 	"player reputation" -1000
 
+government "Kraz Cybernetics"
+	swizzle 2
+	color "governments: Free"
+	"player reputation" 0
+	"friendly hail" "friendly free worlds"
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "hostile free worlds"
+	"hostile disabled hail" "hostile disabled"
+
 government "Lunarium"
 	swizzle 2
 	"crew attack" 1.2
