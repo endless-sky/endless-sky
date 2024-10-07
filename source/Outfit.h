@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_H_
-#define OUTFIT_H_
+#pragma once
 
 #include "Weapon.h"
 
@@ -99,6 +98,9 @@ public:
 	const std::map<const Sound *, int> &JumpSounds() const;
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
+	// Get this outfit's scan sounds, if any.
+	const std::map<const Sound *, int> &CargoScanSounds() const;
+	const std::map<const Sound *, int> &OutfitScanSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
@@ -143,6 +145,8 @@ private:
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
+	std::map<const Sound *, int> cargoScanSounds;
+	std::map<const Sound *, int> outfitScanSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 
@@ -151,7 +155,3 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
-
-
-
-#endif

@@ -709,7 +709,7 @@ outfit `"Benga" Reverse Thruster`
 	"reverse thrusting heat" 4.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
-	"flare sound" "atomic tiny"
+	"reverse flare sound" "atomic tiny"
 	description "Considering them to be well worth the steep cost, many Hai freighter pilots install reverse thrusters such as these to supplement the often poor steering on larger Hai vessels."
 
 outfit `"Biroo" Reverse Thruster`

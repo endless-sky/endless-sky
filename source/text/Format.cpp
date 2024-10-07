@@ -19,12 +19,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <cstring>
+#include <functional>
 #include <sstream>
+#include <unordered_set>
 
 using namespace std;
 
 namespace {
-	const int64_t K = 1000;
+	// The greatest number displayed without switching to scientific notation.
+	constexpr int64_t SCIENTIFIC_THRESHOLD = 1e15;
+	constexpr int64_t K = 1000;
 	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
 		{ "quintillion", K * K * K * K * K * K },
 		{ "quadrillion", K * K * K * K * K },
@@ -134,9 +139,89 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
+	string StringSubstituter(const string &source,
+			function<const string *(const string &)> SubstitutionFor)
+	{
+		string target;
+		target.reserve(source.length());
+
+		string key;
+		size_t start = 0;
+		size_t search = start;
+		while(search < source.length())
+		{
+			size_t left = source.find('<', search);
+			if(left == string::npos)
+				break;
+
+			size_t right = source.find('>', left);
+			if(right == string::npos)
+				break;
+
+			++right;
+			size_t length = right - left;
+			key.assign(source, left, length);
+			const string *sub = SubstitutionFor(key);
+			if(sub)
+			{
+				target.append(source, start, left - start);
+				target.append(*sub, 0, string::npos);
+				start = right;
+				search = start;
+			}
+			else
+				search = left + 1;
+		}
+
+		target.append(source, start, source.length() - start);
+		return target;
+	}
+
+	// Helper function for Format::Expand, to recursively expand one key,
+	// detecting cycles in the graph (and thus avoiding infinite recursion).
+	void ExpandInto(const string &key, const string &oldValue, const map<string, string> &source,
+			map<string, string> &result, unordered_set<string> &keysBeingExpanded)
+	{
+		// Optimization for a common case: no substitutions in the substitution.
+		if(oldValue.find('<') == string::npos)
+		{
+			result.emplace(key, oldValue);
+			return;
+		}
+
+		// Declare our intention to process this key so a later attempt will
+		// detect recursion.
+		auto inserted = keysBeingExpanded.insert(key);
+
+		auto SubstitutionFor = [&](const string &request) -> const string *
+		{
+			auto hasResult = result.find(request);
+			// Already finished this one.
+			if(hasResult != result.end())
+				return &hasResult->second;
+			// Refuse to traverse a cycle in the graph.
+			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
+				return nullptr;
+			auto hasSource = source.find(request);
+			// Undefined key.
+			if(hasSource == source.end())
+				return nullptr;
+			// This key-value pair has not been expanded yet.
+			ExpandInto(request, hasSource->second, source, result, keysBeingExpanded);
+			hasResult = result.find(request);
+			return hasResult == result.end() ? nullptr : &hasResult->second;
+		};
+
+		string newValue = StringSubstituter(oldValue, SubstitutionFor);
+
+		// Success! Indicate we're done expanding this key, and provide its value.
+		keysBeingExpanded.erase(inserted.first);
+		result.emplace(key, newValue);
+	}
+
 	// Helper function for ExpandConditions.
 	//
-	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc)
+	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc.)
 	// source.substr(conditionStart, conditionSize) contains the condition name
 	//
 	// If formatStart or formatSize are string::npos, then there is no formatting.
@@ -191,10 +276,9 @@ namespace {
 string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
-	int64_t absolute = abs(value);
 
 	// If the value is above one quadrillion, show it in scientific notation.
-	if(absolute > 1000000000000000ll)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		ostringstream out;
 		out.precision(3);
@@ -205,6 +289,8 @@ string Format::Credits(int64_t value)
 	// Reserve enough space for something like "-123.456M".
 	string result;
 	result.reserve(8);
+
+	int64_t absolute = abs(value);
 
 	// Handle numbers bigger than a million.
 	static const vector<char> SUFFIX = {'T', 'B', 'M'};
@@ -301,6 +387,14 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
+	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	{
+		// Use scientific notation for excessively large numbers.
+		ostringstream out;
+		out.precision(3);
+		out << value;
+		return out.str();
+	}
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -485,41 +579,25 @@ double Format::Parse(const string &str)
 
 string Format::Replace(const string &source, const map<string, string> &keys)
 {
-	string result;
-	result.reserve(source.length());
-
-	size_t start = 0;
-	size_t search = start;
-	while(search < source.length())
+	auto SubstitutionFor = [&](const string &key) -> const string *
 	{
-		size_t left = source.find('<', search);
-		if(left == string::npos)
-			break;
+		auto found = keys.find(key);
+		return (found == keys.end()) ? nullptr : &found->second;
+	};
 
-		size_t right = source.find('>', left);
-		if(right == string::npos)
-			break;
+	return StringSubstituter(source, SubstitutionFor);
+}
 
-		bool matched = false;
-		++right;
-		size_t length = right - left;
-		for(const auto &it : keys)
-			if(!source.compare(left, length, it.first))
-			{
-				result.append(source, start, left - start);
-				result.append(it.second);
-				start = right;
-				search = start;
-				matched = true;
-				break;
-			}
 
-		if(!matched)
-			search = left + 1;
-	}
 
-	result.append(source, start, source.length() - start);
-	return result;
+void Format::Expand(map<string, string> &keys)
+{
+	map<string, string> newKeys;
+	unordered_set<string> keysBeingExpanded;
+	for(auto it = keys.begin(); it != keys.end(); ++it)
+		if(newKeys.find(it->first) == newKeys.end())
+			ExpandInto(it->first, it->second, keys, newKeys, keysBeingExpanded);
+	keys.swap(newKeys);
 }
 
 
@@ -559,12 +637,12 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(isspace(c))
+		if(isspace(static_cast<unsigned char>(c)))
 			first = true;
 		else
 		{
-			if(first && islower(c))
-				c = toupper(c);
+			if(first && islower(static_cast<unsigned char>(c)))
+				c = toupper(static_cast<unsigned char>(c));
 			first = false;
 		}
 	}
@@ -577,7 +655,7 @@ string Format::LowerCase(const string &str)
 {
 	string result = str;
 	for(char &c : result)
-		c = tolower(c);
+		c = tolower(static_cast<unsigned char>(c));
 	return result;
 }
 
@@ -719,6 +797,6 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 int Format::Search(const string &str, const string &sub)
 {
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
+		[](unsigned char a, unsigned char b) { return toupper(a) == toupper(b); });
 	return (it == str.end() ? -1 : it - str.begin());
 }

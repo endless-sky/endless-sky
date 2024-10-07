@@ -280,11 +280,8 @@ phrase "friendly ka'het"
 		""
 		"1"
 		"2"
-		"3"
-		"3"
-		"3"
-		"4"
-		"4"
+		"3" 3
+		"4" 2
 	phrase
 		"digit"
 	phrase
@@ -332,9 +329,7 @@ phrase "friendly ka'het"
 		". Estimated signal strength: "
 	word
 		"8"
-		"9"
-		"9"
-		"9"
+		"9" 3
 	phrase
 		"digit"
 	word

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef POLITICS_H_
-#define POLITICS_H_
+#pragma once
 
 #include <map>
 #include <set>
@@ -82,7 +81,3 @@ private:
 	std::set<const Planet *> dominatedPlanets;
 	std::set<const Government *> fined;
 };
-
-
-
-#endif
