@@ -1383,6 +1383,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	corrosion = 0.;
 	leakage = 0.;
 	burning = 0.;
+	dispersion = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -2552,6 +2553,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	corrosion = 0.;
 	leakage = 0.;
 	burning = 0.;
+	dispersion = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -3103,9 +3105,12 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	scrambling += damage.Scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
+	dispersion += damage.Dispersion();
 
 	disruption += damage.Disruption();
 	slowness += damage.Slowing();
+
+	cloak -= damage.Cloak();
 
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
@@ -4061,6 +4066,7 @@ void Ship::DoGeneration()
 	energy -= ionization;
 	fuel -= leakage;
 	heat += burning;
+	cloak -= dispersion;
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
@@ -4140,6 +4146,16 @@ void Ship::DoGeneration()
 		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
 		DoStatusEffect(isDisabled, burning, burnResistance,
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
+	}
+
+	if(dispersion)
+	{
+		double dispersionResistance = attributes.Get("dispersion resistance");
+		double dispersionEnergy = attributes.Get("dispersion resistance energy") / dispersionResistance;
+		double dispersionFuel = attributes.Get("dispersion resistance fuel") / dispersionResistance;
+		double dispersionHeat = attributes.Get("dispersion resistance heat") / dispersionResistance;
+		DoStatusEffect(isDisabled, dispersion, dispersionResistance,
+			energy, dispersionEnergy, fuel, dispersionFuel, heat, dispersionHeat);
 	}
 
 	// When ships recharge, what actually happens is that they can exceed their
@@ -4248,6 +4264,8 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
+	if(dispersion)
+		CreateSparks(visuals, "dispersion spark", dispersion * 50.);
 }
 
 

@@ -652,6 +652,8 @@ private:
 	double leakage = 0.;
 	// Accrued "burn damage" that will affect this ship's heat over time.
 	double burning = 0.;
+	// Accrued "dispersion damage" that will affect this ship's cloak over time.
+	double dispersion = 0.;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
