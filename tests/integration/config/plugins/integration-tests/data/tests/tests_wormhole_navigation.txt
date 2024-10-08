@@ -1,0 +1,506 @@
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Wormhole Navigation Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system Betelgeuse
+		planet Prime
+		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+			Korath 1
+		# What you own:
+		ship "Heron"
+			name "Wormhole Explorer"
+			sprite "ship/heron"
+			attributes
+				category "Transport"
+				licenses
+					"Remnant Capital"
+				"cost" 256375000
+				"shields" 250500
+				"hull" 250500
+				"required crew" 1000
+				"bunks" 3000
+				"mass" 5000
+				"drag" 25
+				"heat dissipation" .80
+				"fuel capacity" 2500
+				"ramscoop" 10
+				"cargo space" 1110
+				"outfit space" 21500
+				"weapon capacity" 4700
+				"engine capacity" 8000
+				"shield generation" 15
+				"shield energy" 1.8
+				"hull repair rate" 15
+				"hull energy" 0.75
+				"cloak" .05
+				"cloaking energy" 3
+				"cloaking fuel" .05
+				"gaslining" 1
+				"atmosphere scan" 100
+				"outfit scan power" 175
+				"outfit scan efficiency" 1
+				"tactical scan power" 350
+				"force protection" 1
+				"heat protection" 1.5
+				"ion resistance" 0.3
+				"scramble resistance" 0.3
+				"slowing resistance" 3
+				"remnant node" 11
+				weapon
+					"blast radius" 140
+					"shield damage" 1400
+					"hull damage" 700
+					"hit force" 2100
+			outfits
+				"Inhibitor Turret" 6
+				"Point Defense Turret" 3
+				"Aeon Cell" 4
+				"Crystal Capacitor" 10
+				"Emergency Ramscoop" 10
+				"Large Heat Shunt" 5
+				"Quantum Key Stone"
+				"Salvage Scanner" 5
+				"Thermoelectric Cooler" 5
+				"Bellows-Class Afterburner" 3
+				"Smelter-Class Thruster" 4
+				"Smelter-Class Steering" 5
+				"Hyperdrive"
+				"Jump Drive"
+				"Scram Drive"
+			crew 1000
+			hull 40000
+			fuel 1000
+			engine -111 307.5
+			engine 112 307.5
+			engine -86 289 1.5
+			engine 86 289 1.5
+			engine -52 274 1.5
+			engine 52 274 1.5
+			engine 0 328 1.5
+			gun 0 -325
+			gun -23.5 -302.5
+			gun 23.5 -302.5
+			turret -34.5 -134.5 "Inhibitor Turret"
+			turret 34.5 -134.5 "Inhibitor Turret"
+			turret -53 -17.5 "Inhibitor Turret"
+			turret 53 -17.5 "Inhibitor Turret"
+			turret -123.5 125.5 "Inhibitor Turret"
+			turret 123.5 125.5 "Inhibitor Turret"
+			turret 0 -240.5 "Point Defense Turret"
+			turret 0 0 "Point Defense Turret"
+			turret 0 250 "Point Defense Turret"
+			explode "small explosion" 40
+			explode "medium explosion" 30
+			explode "large explosion" 20
+			explode "huge explosion" 5
+			"final explode" "final explosion large"
+			system Betelgeuse
+			planet Prime
+		account
+			credits 10000000
+			score 400
+			history
+		visited Betelgeuse
+		visited Rigel
+		visited Hassaleh
+		visited Rajak
+		visited "Ultima Thule"
+		visited Waypoint
+		visited "Heia Due"
+		"visited planet" "Wormhole Alpha"
+
+test-data "Ember Wastes Navigation Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 12 3013
+		system "Tania Australis"
+		planet Ingot
+		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+			Korath 1
+		# What you own:
+		ship "Heron"
+			name "Wormhole Explorer"
+			sprite "ship/heron"
+			attributes
+				category "Transport"
+				licenses
+					"Remnant Capital"
+				"cost" 256375000
+				"shields" 250500
+				"hull" 250500
+				"required crew" 1000
+				"bunks" 3000
+				"mass" 5000
+				"drag" 25
+				"heat dissipation" .80
+				"fuel capacity" 2500
+				"ramscoop" 10
+				"cargo space" 1110
+				"outfit space" 2150
+				"weapon capacity" 470
+				"engine capacity" 800
+				"shield generation" 15
+				"shield energy" 1.8
+				"hull repair rate" 15
+				"hull energy" 0.75
+				"cloak" .05
+				"cloaking energy" 3
+				"cloaking fuel" .05
+				"gaslining" 1
+				"atmosphere scan" 100
+				"outfit scan power" 175
+				"outfit scan efficiency" 1
+				"tactical scan power" 350
+				"force protection" 1
+				"heat protection" 1.5
+				"ion resistance" 0.3
+				"scramble resistance" 0.3
+				"slowing resistance" 3
+				"remnant node" 11
+				weapon
+					"blast radius" 140
+					"shield damage" 1400
+					"hull damage" 700
+					"hit force" 2100
+			outfits
+				"Inhibitor Turret" 6
+				"Point Defense Turret" 3
+				"Aeon Cell" 4
+				"Crystal Capacitor" 10
+				"Emergency Ramscoop" 10
+				"Large Heat Shunt" 5
+				"Quantum Key Stone"
+				"Salvage Scanner" 5
+				"Thermoelectric Cooler" 5
+				"Bellows-Class Afterburner" 3
+				"Smelter-Class Thruster" 4
+				"Smelter-Class Steering" 5
+				"Hyperdrive"
+				"Jump Drive"
+				"Scram Drive"
+			crew 1000
+			hull 40000
+			fuel 1000
+			engine -111 307.5
+			engine 112 307.5
+			engine -86 289 1.5
+			engine 86 289 1.5
+			engine -52 274 1.5
+			engine 52 274 1.5
+			engine 0 328 1.5
+			gun 0 -325
+			gun -23.5 -302.5
+			gun 23.5 -302.5
+			turret -34.5 -134.5 "Inhibitor Turret"
+			turret 34.5 -134.5 "Inhibitor Turret"
+			turret -53 -17.5 "Inhibitor Turret"
+			turret 53 -17.5 "Inhibitor Turret"
+			turret -123.5 125.5 "Inhibitor Turret"
+			turret 123.5 125.5 "Inhibitor Turret"
+			turret 0 -240.5 "Point Defense Turret"
+			turret 0 0 "Point Defense Turret"
+			turret 0 250 "Point Defense Turret"
+			explode "small explosion" 40
+			explode "medium explosion" 30
+			explode "large explosion" 20
+			explode "huge explosion" 5
+			"final explode" "final explosion large"
+			system "Tania Australis"
+			planet Ingot
+		account
+			credits 10000000
+			score 400
+			history
+		visited "Tania Australis"
+		visited Mora
+		visited Terminus
+		visited Cardea
+		visited Insitor
+		visited Segesta
+		visited Stercutus
+		visited Peragenor
+		visited Edusa
+		visited Arculus
+		visited Aescolanus
+		"visited planet" "Ember Threshold"
+		"visited planet" "Ember Wormhole"
+		"visited planet" "Remnant Wormhole"
+
+test "Wormhole Navigation"
+	status active
+	description "Tests - Navigation to and from Hai space, to test wormhole functionality."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Wormhole Navigation Save"
+		call "Load First Savegame"
+		# Set desired travel plan.
+		navigate
+			travel Betelgeuse
+			travel Rigel
+			travel Hassaleh
+			travel Rajak
+			travel "Ultima Thule"
+			"travel destination" "Wormhole Alpha"
+			travel Waypoint
+			travel "Heia Due"
+			travel Waypoint
+			"travel destination" "Wormhole Alpha"
+			travel "Ultima Thule"
+			travel Rajak
+			travel Hassaleh
+			travel Rigel
+		call "Depart"
+		# Give jump command.
+		input
+			command jump
+		label notRigel1
+		branch notRigel1
+			not "flagship system: Rigel"
+		label notHassaleh1
+		branch notHassaleh1
+			not "flagship system: Hassaleh"
+		label notRajak1
+		branch notRajak1
+			not "flagship system: Rajak"
+		label notUltimaThule1
+		branch notUltimaThule1
+			not "flagship system: Ultima Thule"
+		label notWaypoint1
+		branch notWaypoint1
+			not "flagship system: Waypoint"
+		label notHeiaDue
+		branch notHeiaDue
+			not "flagship system: Heia Due"
+		label notWaypoint2
+		branch notWaypoint2
+			not "flagship system: Waypoint"
+		label notUltimaThule2
+		branch notUltimaThule2
+			not "flagship system: Ultima Thule"
+		label notRajak2
+		branch notRajak2
+			not "flagship system: Rajak"
+		label notHassaleh2
+		branch notHassaleh2
+			not "flagship system: Hassaleh"
+		label notRigel2
+		branch notRigel2
+			not "flagship system: Rigel"
+		label notBetelgeuse
+		branch notBetelgeuse
+			not "flagship system: Betelgeuse"
+
+test "Ember Wastes Navigation"
+	status active
+	description "Tests - Navigation to and from the Ember Wastes, testing wormholes that require outfits to land."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Ember Wastes Navigation Save"
+		call "Load First Savegame"
+		# Set desired travel plan.
+		navigate
+			travel "Tania Australis"
+			travel Mora
+			travel Limen
+			travel Terminus
+			"travel destination" "Ember Threshold"
+			travel Cardea
+			"travel destination" "Ember Wormhole"
+			travel Aescolanus
+			"travel destination" "Ember Wormhole"
+			travel Segesta
+			travel Stercutus
+			travel Peragenor
+			"travel destination" "Remnant Wormhole"
+			travel Edusa
+			travel Arculus
+			travel Edusa
+			travel Peragenor
+			"travel destination" "Remnant Wormhole"
+			travel Stercutus
+			travel Segesta
+			"travel destination" "Ember Wormhole"
+			travel Insitor
+			"travel destination" "Ember Wormhole"
+			travel Cardea
+			"travel destination" "Ember Threshold"
+			travel Terminus
+			travel Limen
+			travel Mora
+		assert
+			year == 3013
+			month == 12
+			day == 16
+		call "Depart"
+		# Give jump command.
+		assert
+			year == 3013
+			month == 12
+			day == 17
+		input
+			command jump
+		label notMora1
+		branch notMora1
+			not "flagship system: Mora"
+		assert
+			year == 3013
+			month == 12
+			day == 18
+		label notLimen1
+		branch notLimen1
+			not "flagship system: Limen"
+		assert
+			year == 3013
+			month == 12
+			day == 19
+		label notTerminus1
+		branch notTerminus1
+			not "flagship system: Terminus"
+		assert
+			year == 3013
+			month == 12
+			day == 20
+		label notCardea1
+		branch notCardea1
+			not "flagship system: Cardea"
+		assert
+			year == 3013
+			month == 12
+			day == 21
+		label notInsitor1
+		branch notInsitor1
+			not "flagship system: Insitor"
+		assert
+			year == 3013
+			month == 12
+			day == 22
+		label notSegesta
+		branch notSegesta
+			not "flagship system: Segesta"
+		assert
+			year == 3013
+			month == 12
+			day == 23
+		label notStercutus1
+		branch notStercutus1
+			not "flagship system: Stercutus"
+		assert
+			year == 3013
+			month == 12
+			day == 24
+		label notPeragenor1
+		branch notPeragenor1
+			not "flagship system: Peragenor"
+		assert
+			year == 3013
+			month == 12
+			day == 25
+		label notEdusa1
+		branch notEdusa1
+			not "flagship system: Edusa"
+		assert
+			year == 3013
+			month == 12
+			day == 26
+		label notArculus
+		branch notArculus
+			not "flagship system: Arculus"
+		assert
+			year == 3013
+			month == 12
+			day == 27
+		label notEdusa2
+		branch notEdusa2
+			not "flagship system: Edusa"
+		assert
+			year == 3013
+			month == 12
+			day == 28
+		label notPeragenor2
+		branch notPeragenor2
+			not "flagship system: Peragenor"
+		assert
+			year == 3013
+			month == 12
+			day == 29
+		label notStercutus2
+		branch notStercutus2
+			not "flagship system: Stercutus"
+		assert
+			year == 3013
+			month == 12
+			day == 30
+		label notSegesta2
+		branch notSegesta2
+			not "flagship system: Segesta"
+		assert
+			year == 3013
+			month == 12
+			day == 31
+		label notAescolanus
+		branch notAescolanus
+			not "flagship system: Aescolanus"
+		assert
+			year == 3014
+			month == 1
+			day == 1
+		label notCardea2
+		branch notCardea2
+			not "flagship system: Cardea"
+		assert
+			year == 3014
+			month == 1
+			day == 2
+		label notTerminus2
+		branch notTerminus2
+			not "flagship system: Terminus"
+		assert
+			year == 3014
+			month == 1
+			day == 3
+		label notLimen2
+		branch notLimen2
+			not "flagship system: Limen"
+		assert
+			year == 3014
+			month == 1
+			day == 4
+		label notMora2
+		branch notMora2
+			not "flagship system: Mora"
+		assert
+			year == 3014
+			month == 1
+			day == 5
+		label notTaniaAustralis
+		branch notTaniaAustralis
+			not "flagship system: Tania Australis"
+		assert
+			year == 3014
+			month == 1
+			day == 6

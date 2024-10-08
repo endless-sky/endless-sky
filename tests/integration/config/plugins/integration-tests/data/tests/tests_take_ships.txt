@@ -1,0 +1,292 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Checking For A Gifted Ship Test Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system Sol
+		planet Luna
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Sol
+			planet Luna
+		ship "Heavy Shuttle"
+			sprite "ship/heavy shuttle"
+			thumbnail "thumbnail/heavy shuttle"
+			attributes
+				category "Transport"
+				cost 470000
+				shields 700
+				hull 700
+				"required crew" 1
+				bunks 10
+				mass 90
+				drag 1.9
+				"heat dissipation" .8
+				"fuel capacity" 500
+				"cargo space" 40
+				"outfit space" 130
+				"weapon capacity" 16
+				"engine capacity" 65
+				weapon
+					"blast radius" 12
+					"shield damage" 120
+					"hull damage" 60
+					"hit force" 180
+			outfits
+				"nGVF-AA Fuel Cell"
+				"LP036a Battery Pack"
+				"D14-RN Shield Generator"
+				"X2700 Ion Thruster"
+				"X2200 Ion Steering"
+				"Hyperdrive"
+			crew 1
+			fuel 500
+			shields 700
+			hull 700
+			engine -6.5 38.5
+			engine 6.5 38.5
+			gun -3 -38.5
+			gun 3 -38.5
+			leak "leak" 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 5
+			system Sol
+			planet Luna
+		account
+			credits 700000
+			score 400
+			history
+
+test-data "Checking For A Gifted Ship Test Missions"
+	category mission
+	contents
+		mission "%TEST%: Check sparrow"
+			landing
+			on offer
+				take ship "Sparrow" "The Sparrow"
+					id "ship: sparrow"
+		mission "%TEST%: Switch"
+			landing
+			on offer
+				take ship "Star Barge"
+				give ship "Sparrow" "The Sparrow"
+					id "ship: sparrow"
+
+test "Checking For A Gifted Ship"
+	status active
+	description "Test losing a freighter, getting a sparrow and then verify the player has said (named) sparrow, after reloading the save."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Checking For A Gifted Ship Test Missions"
+		inject "Checking For A Gifted Ship Test Save"
+		call "Load First Savegame"
+		# Make the missions trigger by landing again.
+		call "Depart"
+		navigate
+			"travel destination" Earth
+		call "Land"
+		call "Depart"
+		assert
+			"ship model: Heavy Shuttle" == 1
+			"ship model: Star Barge" == 0
+			"ship model: Sparrow" == 1
+			"%TEST%: Switch: offered" == 1
+			"%TEST%: Check sparrow: offered" == 0
+		# Reload this to make sure the UUID is well stored into the savefile.
+		call "Open Menu"
+		call "Load First Savegame"
+		call "Depart"
+		navigate
+			"travel destination" Earth
+		call "Land"
+		assert
+			"ship model: Heavy Shuttle" == 1
+			"ship model: Star Barge" == 0
+			"ship model: Sparrow" == 0
+			"%TEST%: Switch: offered" == 1
+			"%TEST%: Check sparrow: offered" == 1
+
+
+test-data "Taking Ship With Outfits And Unconstrained Test Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system Sol
+		planet Earth
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Sol
+			planet Earth
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+			outfits
+				"Blaster Turret"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+				"D14-RN Shield Generator"
+				"Laser Rifle"
+				"Chipmunk Plasma Thruster"
+				"Chipmunk Plasma Steering"
+				"Hyperdrive"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Tania Australis"
+			planet Ingot
+		account
+			credits 0
+			score 400
+			history
+
+test-data "Taking Ship With Outfits And Unconstrained Test Missions"
+	category mission
+	contents
+		mission "%TEST%: Switch"
+			landing
+			on offer
+				# the ship is not here
+				take ship "Star Barge (Armed)"
+					"require outfits"
+		mission "%TEST%: Switch 2"
+			landing
+			on offer
+				# incorrect ship name
+				take ship "Star Barge (Armed)" "Well defended"
+					unconstrained
+		mission "%TEST%: Switch 3"
+			landing
+			on offer
+				# correct, takes the other ship
+				take ship "Star Barge (Armed)"
+					unconstrained
+					"require outfits"
+
+test "Taking Ship With Outfits And Unconstrained"
+	status active
+	description "Test taking variants ships with outfits, and with the unconstrained keyword or not."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Taking Ship With Outfits And Unconstrained Test Missions"
+		inject "Taking Ship With Outfits And Unconstrained Test Save"
+		call "Load First Savegame"
+		call "Depart"
+		# when we land the mission will trigger
+		navigate
+			"travel destination" Ingot
+		call "Land"
+		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,
+		# the first two tried to trigger before it.
+		assert
+			"flagship model: Star Barge" == 1
+			"ship model (all): Star Barge" == 1
+			"%TEST%: Switch: offered" == 0
+			"%TEST%: Switch 2: offered" == 0
+			"%TEST%: Switch 3: offered" == 1
