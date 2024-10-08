@@ -73,6 +73,7 @@ private:
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
+	void ResetPluginListRenderBuffers();
 
 private:
 	int editing;
@@ -82,7 +83,7 @@ private:
 	int oldHover;
 	int latest;
 	// Which page of the preferences we're on.
-	char page = 'c';
+	char page;
 
 	Point hoverPoint;
 	int hoverCount = 0;
