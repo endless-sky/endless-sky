@@ -824,7 +824,7 @@ system Quintessence
 			period 226.069
 
 system Decet
-	pos -149 603
+	pos -149 612
 	government Uninhabited
 	attributes magnetar neutron twilight
 	ramscoop

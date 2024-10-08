@@ -198,23 +198,23 @@ outfit "Specular Deflector"
 outfit "Concentrating Solar Cell"
 	category "Power"
 	cost 12600
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/concentrating solar cell"
 	"mass" 1
 	"outfit space" -3
 	"solar collection" 0.3
 	"solar heat" 0.12
-	description "This tiny set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving overall efficiency."
+	description "This tiny solar generator efficiently collects sunlight, turning it into usable energy. Thin mirrors concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving overall efficiency."
 
 
 outfit "Concentrating Solar Array"
 	category "Power"
 	cost 114000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/concentrating solar array"
 	"mass" 3
 	"outfit space" -18
 	"solar collection" 2.4
 	"solar heat" 1.02
-	description "This large set of concentrating solar cells collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving its effectiveness."
+	description "This large solar generator collects sunlight, turning it into usable energy. Thin mirrors concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving its effectiveness."
 	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
 
 

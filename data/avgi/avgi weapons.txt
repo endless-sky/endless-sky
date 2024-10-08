@@ -383,7 +383,7 @@ outfit "External Launch Tube"
 		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
-		sound "finisher"
+		sound "bounce"
 		ammo `"Orchid" Nuclear Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
@@ -532,7 +532,7 @@ outfit `"Orchid" Nuclear Missile`
 	"mass" 9
 	"orchid capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. They have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
-	description "This particular missile carries a compact thermonuclear warhead, a staged device with a far higher yield density than anything humanity has developed. It seems to be the product of centuries of development of nuclear arms, as opposed to humanity's long abstentation from nuclear weapons research."
+	description "This particular missile carries a compact thermonuclear warhead, a staged device with a far higher yield to weight ratio than anything humanity has developed. It seems to be the product of centuries of development of nuclear devices, as opposed to humanity's long abstentation from nuclear weapons research."
 	description "The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube or Orchid Magazine to store them in you cannot purchase or use Orchid Missiles."
 
 
@@ -667,7 +667,7 @@ effect "thermonuclear flash"
 		"no repeat"
 		"frame rate" 30
 		"scale" 2
-	sound "mcnuke"
+	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
 	"random spin" 5

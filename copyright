@@ -1619,9 +1619,24 @@ Files:
  images/outfit/optical?lasing generator*
  images/outfit/concentrating?solar?array*
  images/outfit/concentrating?solar?cell*
+ images/outfit/trefoil?board*
  images/planet/aviskir*
  images/projectile/nettle*
  images/projectile/nucleolysis*
+Copyright: Azure
+License: CC-BY-SA-4.0
+
+Files:
+ images/ui/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
+Files:
+ images/planet/station1q*
+ images/projectile/aberrant?spike*
+ images/projectile/fleck*
+ images/projectile/speck*
  images/ship/avgi?atenuatia@sw*
  images/ship/avgi?avlaki@sw*
  images/ship/avgi?diaspersi@sw*
@@ -1652,23 +1667,7 @@ Files:
  images/thumb/avgi?undsyni@sw*
 Copyright: Azure
 License: CC-BY-SA-4.0
-
-Files:
-  images/ui/milky?way*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by NASA and Michael Zahniser.
-
-Files:
-  images/planet/station1q*
-  images/projectile/aberrant?spike*
-  images/projectile/fleck*
-  images/projectile/speck*
-Copyright: Azure
-License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso.
-
-
 
 Files:
  images/star/smoke?ring*
@@ -2108,6 +2107,8 @@ Files:
  images/outfit/spectrometer?array*
  images/outfit/specular?deflector*
  images/outfit/telescopic?antimissile*
+ images/outfit/ultracapacitor?bank*
+  images/outfit/ultracapacitor?cell*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/forest7*
