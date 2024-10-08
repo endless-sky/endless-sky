@@ -7816,7 +7816,7 @@ mission "Tavish and Kormak 3"
 			`	"My good man, you seem like a discerning fellow. Always looking to make a deal with an eye out for profit, am I right?"`
 			`	The bartender looks piqued and slowly nods, "Aye."`
 			`	"You're probably wondering what a pompous overdressed man like me is doing in your quaint out-of-the-way boutique. Well, I was looking for just the sort of enterpising soul who knows a thing or two about making a shilling."`
-			`	Tavish proceedes to describe a long and complex scam utilizing unwitting pirates, corrupt Syndicate trade officials, and fabulously wealthy marks from the paradise world. As he talks, the barkeep leans further and further in, his eyes widening beneath a growing devious grin."`
+			`	Tavish proceeds to describe a long and complex scam utilizing unwitting pirates, corrupt Syndicate trade officials, and fabulously wealthy marks from the paradise world. As he talks, the barkeep leans further and further in, his eyes widening beneath a growing devious grin."`
 			`	Finally, Tavish concludes with, "We're kindred spirits, you and I, and that's why I know this will work. So what do you say? 30,000 credit buy in, plus the information on our first unwitting mark, and you're all set to be rich."`
 			`	"I'm in!" The bartender can't move fast enough, and immediately begins transferring the funds. "Who are you looking for?"`
 			choice
