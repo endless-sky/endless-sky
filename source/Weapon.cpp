@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -522,7 +523,19 @@ double Weapon::TotalLifetime() const
 
 double Weapon::Range() const
 {
-	return (rangeOverride > 0) ? rangeOverride : WeightedVelocity() * TotalLifetime();
+	if (rangeOverride > 0) return rangeOverride;
+	double time = TotalLifetime();
+	if (velocityOverride > 0) return velocityOverride * time;
+	if (acceleration == 0) return velocity * time;
+	// Without drag there is no terminal velocity, only lifetime limits range:
+	// Note the classic formula would subtract the `1` - but Projectile::Move applies acceleration _first_.
+	if (drag == 0) return time * velocity + time * (time+1) * acceleration / 2;
+	// Math to solve distance travelled as function of initial velocity, acceleration, drag and time elapsed
+	// adapted from https://physicscourses.colorado.edu/phys2210/phys2210_fa20/lecture/lec09-power-series/
+	// Problem: This calculates linearly, while Projectile::Move computes per frame, updating velocity first and then
+	// applying it as if it had been in effect the entire tick that just passed. Thus this formula falls short a little.
+	double terminalVelocity = acceleration / drag;
+	return terminalVelocity * time - (terminalVelocity - velocity) / drag * (1.0 - exp(-time * drag));
 }
 
 

@@ -388,7 +388,9 @@ inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::RandomVelocity() const { return randomVelocity; }
-inline double Weapon::WeightedVelocity() const { return (velocityOverride > 0.) ? velocityOverride : velocity; }
+inline double Weapon::WeightedVelocity() const {
+	return (velocityOverride > 0.) ? velocityOverride : (acceleration == 0.) ? velocity : Range() / TotalLifetime();
+}
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
