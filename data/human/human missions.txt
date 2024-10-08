@@ -7986,6 +7986,8 @@ mission "Tavish and Kormak 3"
 
 
 mission "Tavish and Kormak 4"
+	name "A journey to Chiron"
+	description "Transport Tavish and Kormak to <planet> to look for a man named Doctor-Professor Dylan Hullen-Freeze."
 	source "Hephaestus"
 	destination "Chiron"
 	passengers 2
@@ -8075,6 +8077,7 @@ mission "Tavish and Kormak 4"
 
 
 mission "Tavish Interlude"
+	name "A chat"
 	invisible
 	landing
 	source "Hephaestus"
@@ -8149,6 +8152,8 @@ mission "Tavish Interlude"
 
 
 mission "Tavish and Kormak 5"
+	name "New India at last"
+	description "Transport Tavish and Kormak to <planet> to resume their expedition."
 	source "Chiron"
 	destination "New India"
 	passengers 2
@@ -8342,6 +8347,8 @@ mission "Tavish and Kormak 5"
 event "killhullen"
 
 mission "Tavish and Kormak 6"
+	name "Enter Ashoka"
+	description "Transport Tavish and Kormak to daek continent of Ashoka on <planet>."
 	source "New India"
 	destination "New India"
 	passengers 2
@@ -8431,7 +8438,7 @@ mission "Tavish and Kormak 6"
 			`	"Ah, about that," Tavish jumps in, "the thing is the Deep is more complex than most people realize. It is a society with three distinct layers."`
 			`	Tavish mimes peeling a fruit, "The top layer is the one everyone knows about. It's clean, fair, democratic, and technologically advanced. It's the Deep you hear about in holo-dramas, and see talked about on the news. Most of the Deep is a part of this layer.`
 			`	"And then," Tavish continues, "there's the middle layer. It is smaller and made up of people who practice what they call the old ways. Those who practice stone-funerals, or who pay some respect to the scattered God-Stones. It's people who still see themselves as the descendants of those first brave pilgrims that colonized the Deep. Like Hroar's Haulers."`
-			`	Tavish pinches his fingers together like he's holding his invisable fruit's core, "Finally, there's the lowest layer. Few are aware of it, and I think it may be an embarrassment to leaders of the Deep. It's made up of people like Kormak, or the Ice-Witches of Nifel." `
+			`	Tavish pinches his fingers together like he's holding his invisible fruit's core, "Finally, there's the lowest layer. Few are aware of it, and I think it may be an embarrassment to leaders of the Deep. It's made up of people like Kormak, or the Ice-Witches of Nifel." `
 			`	"The Ui Skathi." Kormak says, "Granddaughters of Skathi."`
 			`	"Was that what they called themselves?" Tavish shrugs, "Kormak's always a little sensitive about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from? There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives."`
 			`	Kormak frowns, "Lies.`
@@ -8527,6 +8534,8 @@ event "Tavish and Kormak Expedition"
 
 
 mission "Tavish and Kormak 7"
+	name "Alexandria awaits"
+	description "Transport Tavish and Kormak and their cargo to <planet>."
 	to offer
 		has "event: Tavish and Kormak Expedition"
 	source "New India"
@@ -8577,7 +8586,7 @@ mission "Tavish and Kormak 7"
 			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
 			`	"This is where we part ways, Captain <last>." Tavish says with a hint of sadness. "It was truly an adventure. Perhaps one day our paths will cross again."`
 			`	Tavish sniffles for a moment. "Apologies, allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you, we are instead bequeathing to you the large artifact we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value. However, we think a collector would pay well for it. Quite well."`
-			`	He hands you a piece of paper with a name on it, "We've had dealings with this eccentric fellow from time to time. He calls himself Weland and I am certain he'd be willing to purchase it. You can find him on Wayfarer."`
+			`	He leans a little closer to you, "The best place to look for that sort of commerce is Wayfarer."`
 			choice
 				`	"Thanks, Tavish. It's been grand."`
 				`	"This better be worth it."`
@@ -8586,7 +8595,6 @@ mission "Tavish and Kormak 7"
 
 
 mission "Weland"
-	invisible
 	source "Wayfarer"
 	on offer
 		require "Salvaged Artifact"
@@ -8649,6 +8657,7 @@ event "welandwait1"
 
 
 mission "Weland 2"
+	invisible
 	source "Wayfarer"
 	landing
 	to offer
