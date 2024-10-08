@@ -7626,7 +7626,7 @@ mission "Tavish and Kormak 2"
 			`	"Told you so." Kormak says defiantly.`
 			`	"I know! But you have to admit the bird watching seminar we attended on New India instead was quite extraordinary!"`
 			`	"Lots of birds." Kormak admits.`
-			` 	Tavish takes a deep breath,"Okay, we know the captain's name and his ship's name. I am certain the spaceport authorities have some information about him."`
+			`	Tavish takes a deep breath,"Okay, we know the captain's name and his ship's name. I am certain the spaceport authorities have some information about him."`
 			`	"Confidential." Kormak says.`
 			`	"We'll see about that. Let's go." Tavish storms out of the ravished container.`
 			choice
@@ -7763,7 +7763,7 @@ mission "Tavish and Kormak 2"
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
-			
+
 	on complete
 		conversation
 			`	The foam surf crashes against the island only a few short meters from where your ship sets down. The thundering waves make it hard to hear anything as you step outside. If you're going to have any hope of finding Hans Fuller and the stolen equipment your best bet will be the spaceport. Hopefully the sea will be a little quieter there.`
@@ -8125,14 +8125,14 @@ mission "Tavish Interlude"
 			label relation
 			action
 				set "relation"
-				`	"I was his research assistant. I labored under him for years. He never respected me, and when I started to be successful he resented it. Ultimately he sabotaged my career and had me thrown out as a kook and a pariah. I doubt his opinion of me has changed much since then."`
-				`	Tavish gives you a somber shrug, "Everything else is irrelevant details."`
-					goto options
+			`	"I was his research assistant. I labored under him for years. He never respected me, and when I started to be successful he resented it. Ultimately he sabotaged my career and had me thrown out as a kook and a pariah. I doubt his opinion of me has changed much since then."`
+			`	Tavish gives you a somber shrug, "Everything else is irrelevant details."`
+				goto options
 			
 			label soggy
 			action
 				set "soggy"
-			`	"It's a real organization, although it's been in decline for quite sometime. Back in its heyday it was one of the most prestigious clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs, " I am just glad the esteemed Dr. Henry Forsyth isn't alive to see it in such a sad state."`
+			`	"It's a real organization, although it's been in decline for quite sometime. Back in its heyday it was one of the most prestigious clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs, "I am just glad the esteemed Dr. Henry Forsyth isn't alive to see it in such a sad state."`
 			choice
 				`	"Dr. Henry Forsyth?"`
 					goto henry
@@ -8172,9 +8172,9 @@ mission "Tavish and Kormak 5"
 			`	Tavish leads you in until you're standing in front of a mousy receptionist in a red sweater with various bookish pins and a plaque that says "Starla" on it.`
 			`	"Can I help you?" She tries to maintain a professional demeanor, but her eyes keep straying to Kormak.`
 			choice
-					`	"We're here to see Dr. Hullen-Freeze."`
-					`	"Yeah, take us to Hullen-Freeze."`
-					`	"Where can we find Hullen-Freeze?"`
+				`	"We're here to see Dr. Hullen-Freeze."`
+				`	"Yeah, take us to Hullen-Freeze."`
+				`	"Where can we find Hullen-Freeze?"`
 				
 			`	"The Doctor-Professor has no appointments scheduled for this evening. He's a very busy and important man and I am afraid he has no time for dropins. If you'd like you can leave your contact info with me and I'll see if he's willing to schedule something with you in the next couple of months?"`
 			`	She gives you an apologetic look. "Sorry."`
@@ -8216,7 +8216,7 @@ mission "Tavish and Kormak 5"
 			`	She turns and starts walking down the hallway with purpose. "Follow me."`
 			choice
 				`	(Follow her.)`
-			`	Starla stops outside a thick wooden door with a gilded plaque on it that says, "Doctor-Professor Hullen-Freeze. She looks at Kormak and whispers, "Good luck," before heading back to her desk.`
+			`	Starla stops outside a thick wooden door with a gilded plaque on it that says, "Doctor-Professor Hullen-Freeze." She looks at Kormak and whispers, "Good luck," before heading back to her desk.`
 			`	Tavish audibly gulps and then pushes through the door and into the office. Kormak follows behind him.`
 			choice
 				`	(Enter the office.)`
@@ -8235,7 +8235,7 @@ mission "Tavish and Kormak 5"
 				`	"Do you know where the research equipment confiscated on Hephaestus is?"`
 			`	Hullen-Freeze narrows his eyes to peer at you as he continues to wipe his glasses, "What? Oh that eccletic junk?"`
 			`	He laughs, "Of course! Only Julian and his uncouth associates would have use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good."`
-			`	"You don't know who you're really working with do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone "chap" they'll think he's important. But the only reason he isn't trash is because of me!"`
+			`	"You don't know who you're really working with, do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone 'chap' they'll think he's important. But the only reason he isn't trash is because of me!"`
 			choice
 				`	"I don't care where Tavish came from, he's my friend. Now tell me where the equipment is!"`
 				`	"Just shut up. No one cares what you think. Just tell me where the equipment is."`
@@ -8337,7 +8337,7 @@ mission "Tavish and Kormak 5"
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
-		conversation 
+		conversation
 			`You arrive in the dusty, rowdy frontier spaceport where it all began. Tavish lets you know that he and Kormak are going to pick up some supplies from a local outfitter and asked you to meet him in the spaceport later.`
 
 event "killhullen"
@@ -8361,7 +8361,7 @@ mission "Tavish and Kormak 6"
 			choice
 				`	"Let's go."`
 				`	"Adventure awaits!"`
-				`	"For Science!"`	
+				`	"For Science!"`
 				`	"Whatever."`
 				`	"For Gerald!"`
 				launch
@@ -8408,7 +8408,7 @@ mission "Tavish and Kormak 6"
 			`	"You did good." Kormak says without turning to look at you.`
 			`	"Was important thing. Standing by Tavish. Honorable." He continues as trees crack before him.`
 			`	"Skoll-Wolf ate my clan's sun, and the lying Dream Anuabhair brought them to new world with strange stars. It was hard, but my clan is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a man alive."`
-			` 	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. And all worlds have monsters."`
+			`	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. And all worlds have monsters."`
 			`	The large man turns from you and finishes chopping down the last wailing tree.`
 			`	With the area around the designated campground clear he faces you and gives you the smallest nod, "Trust."`
 			`	Over to the side Tavish has also finished his work and is making a campfire.`
@@ -8523,7 +8523,7 @@ mission "Tavish and Kormak 6"
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
-			
+
 
 event "Tavish and Kormak Expedition"
 
