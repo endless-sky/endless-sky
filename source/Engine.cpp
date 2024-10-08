@@ -710,7 +710,7 @@ void Engine::Step(bool isActive)
 					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 			}
 		// Create overlays for flagship turrets with blindspots.
-		if(Preferences::GetTurretOverlays() != Preferences::TurretOverlays::OFF)
+		if(flagship && Preferences::GetTurretOverlays() != Preferences::TurretOverlays::OFF)
 			for(const Hardpoint &hardpoint : flagship->Weapons())
 				if(!hardpoint.GetBaseAttributes().blindspots.empty())
 				{
