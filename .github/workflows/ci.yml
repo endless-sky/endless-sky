@@ -228,7 +228,7 @@ jobs:
         buildPreset: 'macos-arm-ci'
         testPreset: 'macos-arm-ci'
     - name: Run Benchmarks
-      run: ctest --preset macos-arm-benchmark
+      run: ctest --preset macos-arm-ci-benchmark
 
 
   build_documentation_doxygen:
