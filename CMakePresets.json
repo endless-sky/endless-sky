@@ -211,10 +211,10 @@
       "description": "Builds for MacOS for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "VCPKG_HOST_TRIPLET": "macos64-release",
-        "VCPKG_TARGET_TRIPLET": "macos64-release",
+        "VCPKG_HOST_TRIPLET": "macos64-ci",
+        "VCPKG_TARGET_TRIPLET": "macos64-ci",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.12"
       }
     },
     {
@@ -262,7 +262,7 @@
         "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.7"
       }
     },
     {
@@ -280,7 +280,7 @@
         "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos-arm64-release",
         "CMAKE_OSX_ARCHITECTURES": "arm64",
-        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "10.7"
       }
     },
     {
