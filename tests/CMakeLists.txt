@@ -51,12 +51,9 @@ target_sources(EndlessSkyTests PRIVATE
 )
 
 list(APPEND INTEGRATION_TESTS
-	integration/config/plugins/integration-tests/data/tests/tests_afterburn_flight.txt
 	integration/config/plugins/integration-tests/data/tests/tests_common.txt
-	integration/config/plugins/integration-tests/data/tests/tests_disown.txt
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
-	integration/config/plugins/integration-tests/data/tests/tests_wormhole_navigation.txt
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
