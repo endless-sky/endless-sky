@@ -3286,7 +3286,8 @@ Files:
  images/scene/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
-images/outfit/salvaged?artifact*
+Files:
+ images/outfit/salvaged?artifact*
 opyright: SpearDane (https://github.com/SpearDane)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Petersupes (under the same license).
