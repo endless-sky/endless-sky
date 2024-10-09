@@ -7,6 +7,7 @@
 **Balance**
 **Feature**
 **Bug fix**
+**Typo fix**
 **CI/CD/Testing**
 **Documentation**
 
