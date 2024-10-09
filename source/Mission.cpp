@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "ui/panel/DialogPanel.h"
 #include "DistanceMap.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -31,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
-#include "UI.h"
+#include "ui/UI.h"
 
 #include <cmath>
 #include <limits>
@@ -1058,7 +1058,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
 			{
-				ui->Push(new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
+				ui->Push(new DialogPanel("This is a stop for one of your missions, but you have left a ship behind."));
 				return false;
 			}
 
