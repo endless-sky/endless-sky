@@ -110,7 +110,15 @@ void Music::SetSource(const string &name)
 	if(path.empty())
 		nextFile = nullptr;
 	else
+	{
 		nextFile = Files::Open(path);
+		if(!nextFile)
+		{
+			Archive::GetArchiveFile(path, archiveHandle);
+			nextFile = archiveHandle.GetFile();
+		}
+	}
+
 	hasNewFile = true;
 
 	// Also clear any decoded data left over from the previous file.
@@ -284,5 +292,6 @@ void Music::Decode()
 		mad_frame_finish(&frame);
 		mad_stream_finish(&stream);
 		fclose(file);
+		archiveHandle.Clear();
 	}
 }
