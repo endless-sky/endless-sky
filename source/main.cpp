@@ -582,21 +582,21 @@ void InitConsole()
 	if(redirectStdout)
 	{
 		FILE *fstdout = nullptr;
-		freopen_s(&fstdout, "CONOUT$", "w", stdout);
+		freopen(&fstdout, "CONOUT$", "w", stdout);
 		if(fstdout)
 			setvbuf(stdout, nullptr, _IOFBF, 4096);
 	}
 	if(redirectStderr)
 	{
 		FILE *fstderr = nullptr;
-		freopen_s(&fstderr, "CONOUT$", "w", stderr);
+		freopen(&fstderr, "CONOUT$", "w", stderr);
 		if(fstderr)
 			setvbuf(stderr, nullptr, _IOLBF, 1024);
 	}
 	if(redirectStdin)
 	{
 		FILE *fstdin = nullptr;
-		freopen_s(&fstdin, "CONIN$", "r", stdin);
+		freopen(&fstdin, "CONIN$", "r", stdin);
 		if(fstdin)
 			setvbuf(stdin, nullptr, _IONBF, 0);
 	}

@@ -49,37 +49,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
+	// Return a setting to use for time formatting.
+	const char *TimestampFormatString(Preferences::DateFormat format)
 	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
 		switch(format)
 		{
 			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
+				return "%F %T";
 			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
+#ifdef _WIN32
+				return "%#I:%M %p on %b %#d, %Y";
+#else
+				return "%-I:%M %p on %b %-d, %Y";
+#endif
 			case Preferences::DateFormat::DMY:
 			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
+#ifdef _WIN32
+				return "%#I:%M %p on %#d %b %Y";
+#else
+				return "%-I:%M %p on %-d %b %Y";
+#endif
 		}
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
+		const char *format = TimestampFormatString(Preferences::GetDateFormat());
 		static const size_t BUF_SIZE = 25;
 		char str[BUF_SIZE];
 
-#ifdef _WIN32
-		tm date;
-		localtime_s(&date, &timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
-#else
 		const tm *date = localtime(&timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
-#endif
+		if(!date)
+			return "";
+		return string(str, strftime(str, BUF_SIZE, format, date));
 	}
 
 	// Extract the date from this pilot's most recent save.
