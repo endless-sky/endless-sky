@@ -2546,24 +2546,37 @@ void PlayerInfo::Unvisit(const Planet &planet)
 
 
 
-bool PlayerInfo::HasMapped(int mapSize) const
+bool PlayerInfo::HasMapped(int mapSize, bool showMinable) const
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			return false;
+			
+		if(showMinable)
+			for(const auto outfit : system->Payloads())
+				if(!harvested.contains(make_pair(system, outfit)))
+					return false;
+	}
 
 	return true;
 }
 
 
 
-void PlayerInfo::Map(int mapSize)
+void PlayerInfo::Map(int mapSize, bool showMinable)
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			Visit(*system);
+			
+		if(showMinable)
+			for(const auto outfit : system->Payloads())
+				harvested.insert(make_pair(system, outfit));
+	}
 }
 
 

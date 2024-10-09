@@ -882,6 +882,20 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get a list of all unique payload outfits in this system.
+const set<const Outfit *> System::Payloads() const
+{
+	set<const Outfit *> payloads;
+	for(const auto &asteroid : asteroids)
+		if(asteroid.Type())
+			for(const auto &payload : asteroid.Type()->GetPayload())
+				payloads.insert(payload.outfit);		
+				
+	return payloads;
+}
+
+
+
 // Get the background haze sprite for this system.
 const Sprite *System::Haze() const
 {
