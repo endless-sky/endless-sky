@@ -57,6 +57,12 @@ public:
 		NEUTRAL
 	};
 
+	enum class TurretOverlays : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		BLINDSPOTS_ONLY
+	};
+
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
@@ -147,6 +153,11 @@ public:
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
+
+	// Turret overlays setting, either "off", "always on", or "blindspots only".
+	static void ToggleTurretOverlays();
+	static TurretOverlays GetTurretOverlays();
+	static const std::string &TurretOverlaysSetting();
 
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
