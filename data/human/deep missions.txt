@@ -4653,7 +4653,7 @@ mission "Hroar's Haulers 6"
 				goto job
 			`	"Adhara?"`
 		`	Hroar frowns and then points straight up at the ceiling overhead. "Adhara, Canis Majoris A, ya know, the star this here rock orbits?"`
-		`	He shakes his head, "Woulda thought a spacer be a little more aware of where they are at. But, then again, supposin' you see hundreds of stars in your line of a work. Can be hard keeping them all straight. Anyways, we've chewed enough fat, lets get to the brass tax." `
+		`	He shakes his head, "Woulda thought a spacer be a little more aware of where they're at. But, then again, supposin' you see hundreds of stars in your line of a work. Can be hard keeping them all straight. Anyways, we've chewed enough fat, lets get to the brass tax." `
 
 		label job
 		`	Hroar finishes off his drink, "Your next stop is Midgard. Gonna need you to pick up 300 tons of mining and excavation equipment, and bring it right back here."`
@@ -5042,7 +5042,7 @@ mission "Hroar's Haulers 10"
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
 	on complete
 		dialog   
-			`"The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and caro trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the local watering hole, it's in the spaceport. See you there." The old spacer exits your ship.`
+			`"The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the local watering hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 
 
 
@@ -5069,7 +5069,7 @@ mission "Hroar's Haulers 12"
 			`	You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
 			`	He gives you a gruff nod as you arrive.`
 			`	"Smooth run so far. They mostly are. Pirate has to be a few stars short of a galaxy to take on a fleet as big as ours." Yngvar says as his eyes scan the crowd below.`
-			`	"Sometimes fights can break out between the guest-workers. Old scores, gambling gone bad on the trip, anything of the like. But so far everything looks good."`
+			`	"Sometimes fights break out 'tween the guest-workers. Old scores, gambling gone bad on the trip, anything of the like. But so far everything looks good."`
 			`	Yngvar takes in a deep breath, "Earth air. Doesn't smell like home. Just smells stale." `
 			choice
 				`	"So, what now?"`
@@ -5077,6 +5077,7 @@ mission "Hroar's Haulers 12"
 				`	"Not a fan of Earth?"`
 					goto earth
 				`	"If you're good here. I am going to head back my ship."`
+				`	"I got better things to do. I'll be at my ship if you need me."`
 			`	"Sure, sure." Yngvar says and waves you away. "We just gotta get folks destined for Maker loaded up and then we'll be heading there next. It's a Syndie world so there might be little more gravel at the spaceport. Anyways, I'll finish up here and meet'chya back at the <ship>."`
 				decline
 
@@ -5088,8 +5089,8 @@ mission "Hroar's Haulers 12"
 				`	"Generation ship?"`
 			action
 				set "generationship"
-			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. For four generations my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs."`
-			`	Yngvar's eyes gloss over as he talks,"Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes? Ah, we could never quite kick the knack for it after that. Always felt most at home between worlds. Which is one of the reasons why we became Haulers."`
+			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. For four generations my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs.`
+			`	Yngvar's eyes gloss over as he talks,"Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes? Ah, we could never quite kick the knack for it after that. Always felt most at home 'tween worlds. Which is one of the reasons why we became Haulers."`
 			`	The old man shakes his head, "That's enough of my wobblin' jaw. Let's get back to the matter at hand."`
 			`	He leans back over the railing and nods toward disembarking guest-workers.`	
 			label whatnow
@@ -5131,7 +5132,7 @@ mission "Hroar's Haulers 14"
 			`	(Enter the Watering Hole.)`
 		
 		label enterhole
-		`	You're hit by a boisterous wall of sound as you step into the establishment. Laughing, arguing, and frantic discussions all mesh together into an overwhelming cacophony of chatter. There's a large group of Haulers all standing next to the bar along with Captain Unferth and Captain Gunhilda. You also notice Yngvar and Captain Bolverka are seated in a table near the back.`
+		`	You're hit by a boisterous wall of sound as you step into the establishment. Laughing, arguing, and frantic discussions all mesh together into an overwhelming cacophony of chatter. There's a large group of Haulers all standing next to the bar along with Captain Unferth and Captain Gunhilda. Further back you catch sight of Yngvar and Captain Bolverka seated along the rooms fringe.`
 		choice
 			`	(Join Unferth & Gunhilda at the bar.)`
 				goto unferthjerk
@@ -5147,7 +5148,7 @@ mission "Hroar's Haulers 14"
 		label unferthjerk
 		`	Captain Unferth's eyes narrow when he sees you approach, "Thought you were too good to mingle with us lowly dust-hounds. S'posing I should be thanking you for deigning to grace us with your presence?"`
 		`	Gunhilda sighs, "Don't mind him. We're all happy to have you keeping an eye on our oversized convoy."`
-		`	Unferth gulps down a shot,"Mayhaps. You might be mean, but Hartha-Hroar has an eye for talent. I'll work with anyone that man tells me too. Just be remebering whose side you're on when pirates show up."`
+		`	Unferth gulps down a shot,"Mayhaps. You might be mean, but Hartha-Hroar has an eye for talent. I'll work with anyone that man tells me to. Just be remebering whose side you're on when pirates show up."`
 		choice
 			`	"Good. Glad you know your place."`
 			`	"I don't know why you're so upset. But you're lucky we're on the same side."`
@@ -5166,7 +5167,7 @@ mission "Hroar's Haulers 14"
 		label unferth
 		`	Captain Unferth's eyes light up when he sees you approach, "Why if it isn't the greenhorn, Captain <last>!" He slaps you on the back, "About time you joined us!"`
 		`	Gunhilda shakes her head, "Don't mind him. We're all happy to have you keeping an eye on our oversized convoy."`
-		`	Unferth gulps down a shot,"Aint that the truth! You might be green, but Hartha-Hroar has an eye for talent. Glad you're on our side."`
+		`	Unferth gulps down a shot, "Aint that the truth! You might be green, but Hartha-Hroar has an eye for talent. Glad you're on our side."`
 		label nicesolvi
 		`	He then slaps his glass down and offers you his hand, "I am Captain Unferth to my crew, but among fellow captains my first name will do, call me Solvi."`
 		choice
@@ -5189,9 +5190,9 @@ mission "Hroar's Haulers 14"
 		`	She leans a little a closer to you, the alcohol thick on her breath," So, what's a royal dreamer such as yourself doing amongst us lowly rusty-brown haulers?"`
 		choice
 			`	(Tell her your story.)`
-		`	She slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littliest of them all."`
-		`	She sips her beer, "Like most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up onto one off-red whole."`
-		`	"In other words, we're really just one large dysnfunctional family."`
+		`	She slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littlest of them all."`
+		`	She sips her beer, "As with most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up onto one off-red whole."`
+		`	Her eyes twinkle, "In other words, we're really just one large dysnfunctional family."`
 		choice
 			`	"I am not like Hroar."`
 				goto hroar
@@ -5200,12 +5201,12 @@ mission "Hroar's Haulers 14"
 			`	"So you're all related?"`
 		`	She laughs and pushes a strand of thick black hair back behind her ear, "Why, Captain <last>, it's a little early to be meeting my mom, isn't it?"`
 		`	Gunhilda downs her glass, her face flush with effects of alcohol, "Don't be so serious, my royal dreamer, I only kid. To answer your question; yes and no. It's all about your beginnings, you see."`
-		`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Or there are those who hear the call of the earth, and Gap above. The poor souls on overcrowded worlds, or stuck in uninteresting lives that find their way to one of our mines on Muspel or Helheim. Those guest workers who work there up and into our extended family."`
+		`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Or there are those who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, or trapped in beige tinted lives, that find their way to one of our mines on Muspel or Helheim. Those guest workers who work there up and into our extended family."`
 		`	"However," she pauses to gulp down some of her refilled beverage, "it's not long before the new Haulers marry the old Haulers, and we're back to where we started, one big cosmic family."`
 			goto gunext
 
 		label hroar
-		`	"Now, now, my royal dreamer, it's all about perspective, isn't it? To some, he may appear to be a prickly man in a dive bar on a forgrettable world. But to others, a Prince of a dynasty, a leader to a clan of earth-and-starborn children that yearn for more than life's fetid lot. A harbinger of change, and heir to a better future."`
+		`	"Now, now, my royal dreamer, it's all about perspective, isn't it? To some, he may appear to be a prickly man in a dive bar on a forgrettable world. But to others, a Prince of a dynasty, a leader to a clan of earth-and-starborn children that yearn for more than life's fetid lot. A harbinger of change, and heir to a better future. A royal dreamer."`
 		`	She laughs and pushes a strand of thick black hair back behind her ear, "You see now, Captain <last>? Does that really sound so different from yourself?"`
 		choice
 			`	"I see now."`
@@ -5216,7 +5217,7 @@ mission "Hroar's Haulers 14"
 
 		label red
 		`	"My, Hroar really does like his greenhorns tender. Here you are leading us around without knowing the first thing about us." She knocks back another drink," To most it simply means being born, or raised a Hauler. Whether that be in the mines, or on the Haul. But it is more than that, it's about letting the red into your soul. I can see it, you know, even now in the majesty of your purple and blue aura, there is small dull redness in the pit of your heart. Will you let it in, royal dreamer? Will you truly become one of us?"`
-		`	She winks at you, "As for me, my mother was a miner on Muspel, and I spent much of my childhood learning at her knee. Her aura was mix of red rocks and blue sky, of hard earth, and warm stars. And, I daresay, my aura is much the same. Just a child born on the red."`
+		`	She winks at you, "As for me, my mother was a miner on Muspel. I spent much of my childhood learning at her knee. Her aura was mix of red rocks and blue sky, of hard earth, and warm stars. And, I daresay, my aura is much the same. Just a child born on the red."`
 
 		label gunext
 		`	As Captain Gunhilda downs another drink your attention to drawn to loud arguing coming from the vicinity of Captain Unferth and his merry choir.`
@@ -5229,7 +5230,7 @@ mission "Hroar's Haulers 14"
 			`	(Try to help Gunhilda to the exit.)`
 				goto helpgun
 			`	(Stay with Gunhilda.)`
-		`	Gunhilda while nursing another drink, is talking aimlessly about the time she and her ma,  "found a motherlode on Muspel". The aruging and shouts draws nearer and nearer to you. Four riot-gear toting Syndicate Enforcers surround both of you.`
+		`	Gunhilda while nursing another drink, is talking aimlessly about the time she and her ma,  "found the motherlode on Muspel". The aruging and shouts draws nearer and nearer to you. Four riot-gear toting Syndicate Enforcers surround both of you.`
 		`	"You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment." The nearest one nearly shouts.`
 		choice
 			`	(Comply.)`
@@ -5242,12 +5243,12 @@ mission "Hroar's Haulers 14"
 		branch "50 percent chance"
 			random < 50
 		`	You quickly pull Gunhilda to her feet and drape an arm around her shoulder. "Wh-what are you...?"`
-		`	Unsteadily you are able to lead Gunhilda out of the bar even as the shouting and scuffling noises behind you reaches a crescendo.`
+		`	Unsteadily you are able to lead Gunhilda out of the bar even as the shouting and scuffling noises behind you reach a crescendo.`
 		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
 		`	"<last>." Yngvar says approvingly, "And Gunhilda, good. They've got Solvi and most his crew, but there's no point in picking a fight we can't win."`
 		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
-		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
-		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do your pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks. Let's see if we can wriggle our way outta this mess."`
 		`	Yngvar starts walking in the opposite direction of the departing haulers.`
 		choice
 			`	(Follow Yngvar.)`
