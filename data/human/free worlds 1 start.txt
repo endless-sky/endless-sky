@@ -1543,7 +1543,7 @@ mission "FW Pirates: Diplomacy 1"
 		not "fw first chapter done"
 		not "FW Refinery 1: offered"
 	to fail
-		has "FW Pirates: Attack 1: done"
+		has "event: battle for Greenrock"
 	
 	npc accompany save
 		government "Free Worlds"
