@@ -8348,7 +8348,7 @@ event "killhullen"
 
 mission "Tavish and Kormak 6"
 	name "Enter Ashoka"
-	description "Transport Tavish and Kormak to daek continent of Ashoka on <planet>."
+	description "Transport Tavish and Kormak to the dark continent of Ashoka on <planet>."
 	source "New India"
 	destination "New India"
 	passengers 2
