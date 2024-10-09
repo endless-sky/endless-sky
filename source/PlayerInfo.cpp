@@ -186,8 +186,9 @@ void PlayerInfo::New(const StartConditions &start)
 	RegisterDerivedConditions();
 	start.GetConditions().Apply(conditions);
 
-	// Generate missions that will be available on the first day.
+	// Generate missions and stock that will be available on the first day.
 	CreateMissions();
+	CreateRandomStock();
 
 	// Add to the list of events that should happen on certain days.
 	for(const auto &it : GameData::Events())
@@ -313,11 +314,18 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
+		// This node is called "stock" and not "outfit stock" for backwards compatibility.
 		else if(child.Token(0) == "stock")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+					outfitStock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+		}
+		else if(child.Token(0) == "ship stock")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					shipStock[GameData::Ships().Get(grand.Token(0))] += grand.Value(1);
 		}
 		else if(child.Token(0) == "fleet depreciation")
 			depreciation.Load(child);
@@ -1195,7 +1203,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 
 		depreciation.Buy(*model, day, &stockDepreciation);
 		for(const auto &it : model->Outfits())
-			stock[it.first] -= it.second;
+			outfitStock[it.first] -= it.second;
 
 		if(ships.back()->HasBays())
 			displayCarrierHelp = true;
@@ -1250,7 +1258,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 			else
 			{
 				for(const auto &it : selected->Outfits())
-					stock[it.first] += it.second;
+					outfitStock[it.first] += it.second;
 			}
 
 			accounts.AddCredits(cost);
@@ -1284,7 +1292,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 						if(outfit != model->Outfits().end())
 							amountToTake = max(it.second, outfit->second);
 					}
-					stock[it.first] += it.second - amountToTake;
+					outfitStock[it.first] += it.second - amountToTake;
 				}
 			ForgetGiftedShip(*it->get(), false);
 			ships.erase(it);
@@ -1601,9 +1609,12 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 
-	// Create whatever missions this planet has to offer.
+	// Create whatever missions and stock this planet has to offer.
 	if(!freshlyLoaded)
+	{
 		CreateMissions();
+		CreateRandomStock();
+	}
 	// Upon loading the game, prompt the player about any paused missions, but if there are many
 	// do not name them all (since this would overflow the screen).
 	else if(ui && !inactiveMissions.empty())
@@ -1663,7 +1674,8 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
-	stock.clear();
+	outfitStock.clear();
+	shipStock.clear();
 
 	// Special persons who appeared last time you left the planet, can appear again.
 	GameData::ResetPersons();
@@ -2880,31 +2892,31 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
-const map<const Outfit *, int> &PlayerInfo::GetStock() const
+const map<const Outfit *, int> &PlayerInfo::GetOutfitStock() const
 {
-	return stock;
+	return outfitStock;
 }
 
 
 
-int PlayerInfo::Stock(const Outfit *outfit) const
+int PlayerInfo::OutfitStock(const Outfit *outfit) const
 {
-	auto it = stock.find(outfit);
-	return (it == stock.end() ? 0 : it->second);
+	auto it = outfitStock.find(outfit);
+	return (it == outfitStock.end() ? 0 : it->second);
 }
 
 
 
 // Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, int count)
+void PlayerInfo::AddOutfitStock(const Outfit *outfit, int count)
 {
 	// If you sell an individual outfit that is not sold here and that you
 	// acquired by buying a ship here, have it appear as "in stock" in case you
 	// change your mind about selling it. (On the other hand, if you sell an
 	// entire ship right after buying it, its outfits will not be "in stock.")
-	if(count > 0 && stock[outfit] < 0)
-		stock[outfit] = 0;
-	stock[outfit] += count;
+	if(count > 0 && outfitStock[outfit] < 0)
+		outfitStock[outfit] = 0;
+	outfitStock[outfit] += count;
 
 	int day = date.DaysSinceEpoch();
 	if(count > 0)
@@ -2935,6 +2947,28 @@ const Depreciation &PlayerInfo::FleetDepreciation() const
 const Depreciation &PlayerInfo::StockDepreciation() const
 {
 	return stockDepreciation;
+}
+
+
+
+const map<const Ship *, int> &PlayerInfo::GetShipStock() const
+{
+	return shipStock;
+}
+
+
+
+int PlayerInfo::ShipStock(const Ship *ship) const
+{
+	auto it = shipStock.find(ship);
+	return (it == shipStock.end() ? 0 : it->second);
+}
+
+
+
+void PlayerInfo::RemoveShipStock(const Ship *ship)
+{
+	shipStock[ship] = max(shipStock[ship] - 1, 0);
 }
 
 
@@ -4005,6 +4039,31 @@ void PlayerInfo::CreateMissions()
 
 
 
+// New random stock is generated each time you land on a planet.
+void PlayerInfo::CreateRandomStock()
+{
+	int day = GetDate().DaysSinceEpoch();
+	for(const auto &rStock : planet->OutfitRandomStock())
+		for(const auto &stockItem : *rStock)
+			if(!planet->Outfitter().Has(stockItem.item) && Random::Int(100) < stockItem.probability)
+			{
+				outfitStock[stockItem.item] += stockItem.quantity;
+				for(unsigned int i = 0; i < stockItem.quantity; i++)
+					stockDepreciation.Buy(stockItem.item, day - stockItem.depreciation, nullptr);
+			}
+
+	for(const auto &rStock : planet->ShipRandomStock())
+		for(const auto &stockItem : *rStock)
+			if(!planet->Shipyard().Has(stockItem.item) && Random::Int(100) < stockItem.probability)
+			{
+				shipStock[stockItem.item] += stockItem.quantity;
+				for(unsigned int i = 0; i < stockItem.quantity; i++)
+					stockDepreciation.Buy(*stockItem.item, day - stockItem.depreciation, nullptr, false);
+			}
+}
+
+
+
 void PlayerInfo::SortAvailable()
 {
 	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
@@ -4379,13 +4438,14 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.EndChild();
 	}
 
-	if(!stock.empty())
+	if(!outfitStock.empty())
 	{
+		// This node is called "stock" and not "outfit stock" for backwards compatibility.
 		out.Write("stock");
 		out.BeginChild();
 		{
 			using StockElement = pair<const Outfit *const, int>;
-			WriteSorted(stock,
+			WriteSorted(outfitStock,
 				[](const StockElement *lhs, const StockElement *rhs)
 					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const StockElement &it)
@@ -4396,9 +4456,27 @@ void PlayerInfo::Save(DataWriter &out) const
 		}
 		out.EndChild();
 	}
+
+	if(!shipStock.empty())
+	{
+		out.Write("ship stock");
+		out.BeginChild();
+		{
+			using StockElement = pair<const Ship *const, int>;
+			WriteSorted(shipStock,
+				[](const StockElement *lhs, const StockElement *rhs)
+					{ return lhs->first->VariantName() < rhs->first->VariantName(); },
+				[&out](const StockElement &it)
+				{
+					if(it.second)
+						out.Write(it.first->VariantName(), it.second);
+				});
+		}
+		out.EndChild();
+	}
+
 	depreciation.Save(out, date.DaysSinceEpoch());
 	stockDepreciation.Save(out, date.DaysSinceEpoch());
-
 
 	// Records of things you have done or are doing, or have happened to you:
 	out.Write();

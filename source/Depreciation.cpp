@@ -63,6 +63,41 @@ double Depreciation::Full()
 
 
 
+// Calculate the value fraction for an item of the given age.
+double Depreciation::Depreciate(int age)
+{
+	if(age <= GracePeriod())
+		return 1.;
+
+	if(age >= MaxAge())
+		return Min();
+
+	double daily = pow(Daily(), age - GracePeriod());
+	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
+	return Min() + (1. - Min()) * daily * linear;
+}
+
+
+
+// Calculate how old an item needs to be for a target amount of depreciation, if possible.
+int Depreciation::AgeForDepreciation(double depreciation)
+{
+	if(depreciation <= Min())
+		return MaxAge();
+
+	if(depreciation >= 1)
+		return 0;
+
+	// Unfortunately, solving the depreciation function for age gives a horrible formula involving
+	// the Lambert W function. So instead, just increase age by 1 until the depreciation is right.
+	int age = -1;
+	while(Depreciate(++age) > depreciation)
+		continue;
+	return age;
+}
+
+
+
 // Load depreciation records.
 void Depreciation::Load(const DataNode &node)
 {
@@ -355,22 +390,6 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 	}
 	// For all items we don't have a record for, apply the default depreciation.
 	return sum + count * DefaultDepreciation();
-}
-
-
-
-// Calculate the value fraction for an item of the given age.
-double Depreciation::Depreciate(int age) const
-{
-	if(age <= GracePeriod())
-		return 1.;
-
-	if(age >= MaxAge())
-		return Min();
-
-	double daily = pow(Daily(), age - GracePeriod());
-	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
-	return Min() + (1. - Min()) * daily * linear;
 }
 
 
