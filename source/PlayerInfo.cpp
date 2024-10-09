@@ -2553,7 +2553,7 @@ bool PlayerInfo::HasMapped(int mapSize, bool showMinable) const
 	{
 		if(!HasVisited(*system))
 			return false;
-			
+
 		if(showMinable)
 			for(const auto outfit : system->Payloads())
 				if(!harvested.contains(make_pair(system, outfit)))
@@ -2572,7 +2572,7 @@ void PlayerInfo::Map(int mapSize, bool showMinable)
 	{
 		if(!HasVisited(*system))
 			Visit(*system);
-			
+
 		if(showMinable)
 			for(const auto outfit : system->Payloads())
 				harvested.insert(make_pair(system, outfit));

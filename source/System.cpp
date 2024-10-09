@@ -889,8 +889,8 @@ const set<const Outfit *> System::Payloads() const
 	for(const auto &asteroid : asteroids)
 		if(asteroid.Type())
 			for(const auto &payload : asteroid.Type()->GetPayload())
-				payloads.insert(payload.outfit);		
-				
+				payloads.insert(payload.outfit);
+
 	return payloads;
 }
 
