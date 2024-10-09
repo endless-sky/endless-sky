@@ -42,7 +42,7 @@ public:
 
 protected:
 	// Overrides from Panel.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool KeyDown(int32_t key, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -59,7 +59,7 @@ private:
 	bool CanAttack() const;
 
 	// Handle the keyboard scrolling and selection in the panel list.
-	void DoKeyboardNavigation(const SDL_Keycode key);
+	void DoKeyboardNavigation(const int32_t key);
 
 
 private:

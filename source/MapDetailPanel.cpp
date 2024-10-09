@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Interface.h"
 #include "text/layout.hpp"
@@ -197,7 +198,7 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 
 
 // Only override the ones you need; the default action is to return false.
-bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool MapDetailPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	const double planetCardHeight = MapPlanetCard::Height();
 	if(command.Has(Command::HELP))
@@ -219,7 +220,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		const System *source = plan.empty() ? player.GetSystem() : plan.front();
 		const System *next = nullptr;
 		Point previousUnit = Point(0., -1.);
-		if(!plan.empty() && !(mod & KMOD_SHIFT))
+		if(!plan.empty() && !GameWindow::GetMod(GameWindow::Mods::SHIFT))
 		{
 			previousUnit = plan.front()->Position();
 			plan.erase(plan.begin());
@@ -349,7 +350,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		}
 	}
 	else
-		return MapPanel::KeyDown(key, mod, command, isNewPress);
+		return MapPanel::KeyDown(key, command, isNewPress);
 
 	return true;
 }

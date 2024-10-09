@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Information.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -222,7 +223,7 @@ void TradingPanel::Draw()
 
 
 // Only override the ones you need; the default action is to return false.
-bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool TradingPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::HELP))
 		DoHelp("trading", true);
@@ -234,9 +235,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || key == 'B' || (key == 'b' && GameWindow::GetMod(GameWindow::Mods::SHIFT)))
 		Buy(1000000000);
-	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || key == 'S' || (key == 's' && GameWindow::GetMod(GameWindow::Mods::SHIFT)))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{

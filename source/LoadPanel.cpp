@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
@@ -270,7 +271,7 @@ void LoadPanel::Draw()
 
 
 
-bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool LoadPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(key == 'n')
 	{
@@ -321,7 +322,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'o')
 		Files::OpenUserSavesFolder();
-	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{
@@ -442,7 +443,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 				const bool sameSelected = selectedFile == it.first;
 				selectedFile = it.first;
 				if(sameSelected && clicks > 1)
-					KeyDown('l', 0, Command(), true);
+					KeyDown('l', Command(), true);
 				break;
 			}
 	}

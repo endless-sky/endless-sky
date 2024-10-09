@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Gamerules.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -2128,7 +2129,8 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	bool rightMouseButtonHeld = false;
 	int mousePosX;
 	int mousePosY;
-	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+	GameWindow::GetMousePos(mousePosX, mousePosY);
+	if(GameWindow::GetMouseButton(SDL_BUTTON_RMASK))
 		rightMouseButtonHeld = true;
 	double relX = mousePosX - Screen::RawWidth() / 2.0;
 	double relY = mousePosY - Screen::RawHeight() / 2.0;

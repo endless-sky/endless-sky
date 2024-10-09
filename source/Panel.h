@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_keycode.h>
 
 class Command;
 class Point;
@@ -68,7 +68,7 @@ public:
 	void ClearZones();
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
-	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	void AddZone(const Rectangle &rect, int32_t key);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
@@ -79,7 +79,7 @@ public:
 
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
+	virtual bool KeyDown(int32_t key, const Command &command, bool isNewPress);
 	virtual bool Click(int x, int y, int clicks);
 	virtual bool RClick(int x, int y);
 	virtual bool Hover(int x, int y);
@@ -104,7 +104,7 @@ protected:
 	// arguments. In this form, the command is never set, so you can call this
 	// with a key representing a known keyboard shortcut without worrying that a
 	// user-defined command key will override it.
-	bool DoKey(SDL_Keycode key, Uint16 mod = 0);
+	bool DoKey(int32_t key, uint16_t mod = 0);
 
 	// A lot of different UI elements allow a modifier to change the number of
 	// something you are buying, so the shared function is defined here:
@@ -135,7 +135,7 @@ private:
 	// these instead. These methods will recursively allow child panels to
 	// handle the event first, before calling the virtual method for the derived
 	// class to handle it.
-	bool DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
+	bool DoKeyDown(int32_t key, const Command &command, bool isNewPress);
 	bool DoClick(int x, int y, int clicks);
 	bool DoRClick(int x, int y);
 	bool DoHover(int x, int y);

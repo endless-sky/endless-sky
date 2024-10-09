@@ -55,7 +55,7 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool KeyDown(int32_t key, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
 	virtual bool Click(int x, int y, int clicks) override;
 	// Handle right-clicks within the "orbits" display.

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
@@ -543,11 +544,11 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 
 
-bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool MapPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+			|| (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
 		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
@@ -781,11 +782,10 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : &playerSystem;
 
-	auto mod = SDL_GetModState();
 	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
 	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
-	bool shift = (mod & KMOD_SHIFT) && !plan.empty();
-	if(mod & KMOD_CTRL)
+	bool shift = GameWindow::GetMod(GameWindow::Mods::SHIFT) && !plan.empty();
+	if(GameWindow::GetMod(GameWindow::Mods::CTRL))
 		return;
 	else if(system == source && !shift)
 	{

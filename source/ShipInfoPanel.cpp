@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
@@ -135,10 +136,10 @@ void ShipInfoPanel::Draw()
 
 
 
-bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
+bool ShipInfoPanel::KeyDown(int32_t key, const Command &command, bool /* isNewPress */)
 {
-	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
-	bool shift = (mod & KMOD_SHIFT);
+	bool control = GameWindow::GetMod(GameWindow::Mods::CTRL_GUI);
+	bool shift = GameWindow::GetMod(GameWindow::Mods::SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
 		GetUI()->Pop(this);
 	else if(command.Has(Command::HELP))

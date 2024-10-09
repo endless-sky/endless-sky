@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -45,7 +46,7 @@ namespace {
 
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
-	const map<SDL_Keycode, char> KEY_MAP = {
+	const map<int32_t, char> KEY_MAP = {
 		{SDLK_KP_0, '0'},
 		{SDLK_KP_1, '1'},
 		{SDLK_KP_2, '2'},
@@ -220,16 +221,16 @@ bool Dialog::AllowsFastForward() const noexcept
 
 
 
-bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool Dialog::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
-	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
+	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI));
 	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
-		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
+		char c = (GameWindow::GetMod(GameWindow::Mods::SHIFT) ? SHIFT[ascii] : ascii);
 		// Caps lock should shift letters, but not any other keys.
-		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
+		if(GameWindow::GetMod(GameWindow::Mods::CAPS) && c >= 'a' && c <= 'z')
 			c += 'A' - 'a';
 
 		if(stringFun)
