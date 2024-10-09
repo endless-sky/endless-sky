@@ -63,9 +63,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-std::chrono::time_point<std::chrono::system_clock> initialTime;
-
-void LogTime(const std::string &message = "");
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
@@ -99,20 +96,10 @@ int main(int argc, char *argv[])
 	// Ensure that we log errors to the errors.txt file.
 	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
 		static const string PARSING_PREFIX = "Parsing: ";
-		if(errorMessage.starts_with(PARSING_PREFIX))
-		{
-			// Not an error.
-		}
-		else if(errorMessage.starts_with("Time: "))
-		{
-			// Not an error.
-		}
-		else
+		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
 			hasErrors = true;
 		Files::LogErrorToFile(errorMessage);
 	});
-
-	initialTime = std::chrono::system_clock::now();
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -143,8 +130,6 @@ int main(int argc, char *argv[])
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
-	LogTime("Initialised files.");
-
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
@@ -157,8 +142,6 @@ int main(int argc, char *argv[])
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
 			isConsoleOnly || (isTesting && !debugMode));
-
-		LogTime("Created data loading future.");
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
@@ -211,12 +194,8 @@ int main(int argc, char *argv[])
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
 
-		LogTime("Loaded global conditions.");
-
 		if(!GameWindow::Init(isTesting && !debugMode))
 			return 1;
-
-		LogTime("Initialised game window.");
 
 		GameData::LoadSettings();
 
@@ -232,8 +211,6 @@ int main(int argc, char *argv[])
 
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0);
-
-		LogTime("Ready to gameloop.");
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
@@ -264,14 +241,6 @@ int main(int argc, char *argv[])
 
 
 
-void LogTime(const std::string &message)
-{
-	std::chrono::duration<double> elapsed = std::chrono::system_clock::now() - initialTime;
-	Logger::LogError("Time: " + to_string(elapsed.count()) + " " + message);
-}
-
-
-
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 		const string &testToRunName, bool debugMode)
 {
@@ -286,14 +255,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// game loading and game saving.
 	UI menuPanels;
 
-	LogTime("Pushing game loading panel.");
-
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
 	menuPanels.Push(new GameLoadingPanel(player, queue, conversation, gamePanels, dataFinishedLoading));
-
-	LogTime("Pushed game loading panel.");
 
 	bool showCursor = true;
 	int cursorTime = 0;
@@ -308,14 +273,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
 
-	LogTime("Preparing test context.");
-
 	// Data to track progress of testing if/when a test is running.
 	TestContext testContext;
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
-
-	LogTime("Prepared test context.");
 
 	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
@@ -456,7 +417,6 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// Game loop when running the game as part of an integration test.
 	else
 	{
-		LogTime("Entering test loop.");
 		int integrationStepCounter = 0;
 		while(!menuPanels.IsDone())
 		{
@@ -510,8 +470,6 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 		}
 	}
-
-	LogTime("Finished testing.");
 
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
