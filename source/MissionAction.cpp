@@ -310,7 +310,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 			bool needsUnmapped = it.second == 0;
 			// This action can't be done if it requires an unmapped region, but the region is
 			// mapped, or if it requires a mapped region but the region is not mapped.
-			if(needsUnmapped == player.HasMapped(mapSize))
+			if(needsUnmapped == player.HasMapped(mapSize, false))
 				return false;
 			continue;
 		}
