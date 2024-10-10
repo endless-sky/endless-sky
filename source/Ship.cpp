@@ -3865,10 +3865,10 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			for(shared_ptr<Flotsam> &it : jettisoned)
 				it->Place(*this);
 			flotsam.splice(flotsam.end(), jettisoned);
-			for(auto &it : jettisonedFromBay)
+			for(auto &[newFlotsam, bayIndex] : jettisonedFromBay)
 			{
-				it.first->Place(*this, it.second);
-				flotsam.emplace_back(it.first);
+				newFlotsam->Place(*this, bayIndex);
+				flotsam.emplace_back(std::move(newFlotsam));
 			}
 			jettisonedFromBay.clear();
 
