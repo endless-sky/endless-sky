@@ -4272,9 +4272,9 @@ void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 	}
 	if(!jettisonedFromBay.empty())
 	{
-		auto &it = jettisonedFromBay.front();
-		it.first->Place(*this, it.second);
-		flotsam.emplace_back(it.first);
+		auto &[newFlotsam, bayIndex] = jettisonedFromBay.front();
+		newFlotsam->Place(*this, bayIndex);
+		flotsam.emplace_back(std::move(newFlotsam));
 		jettisonedFromBay.pop_front();
 	}
 }
