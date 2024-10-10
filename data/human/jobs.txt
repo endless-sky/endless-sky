@@ -386,7 +386,7 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 			variant
 				"Behemoth"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -432,7 +432,7 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 			variant
 				"Behemoth"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -908,7 +908,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 			variant
 				"Container Transport"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -954,7 +954,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 			variant
 				"Container Transport"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -2319,7 +2319,7 @@ mission "Strike Breakers [large mining]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 130000 120
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [textile]"
@@ -2362,7 +2362,7 @@ mission "Strike Breakers [large textile]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 130000 120
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [factory]"
@@ -2405,7 +2405,7 @@ mission "Strike Breakers [large factory]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 130000 120
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Colonists [0]"
