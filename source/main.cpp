@@ -579,23 +579,11 @@ void InitConsole()
 		return;
 
 	// Perform console redirection.
-	if(redirectStdout)
-	{
-		FILE *fstdout = freopen("CONOUT$", "w", stdout);
-		if(fstdout)
-			setvbuf(stdout, nullptr, _IOFBF, 4096);
-	}
-	if(redirectStderr)
-	{
-		FILE *fstderr = freopen("CONOUT$", "w", stderr);
-		if(fstderr)
-			setvbuf(stderr, nullptr, _IOLBF, 1024);
-	}
-	if(redirectStdin)
-	{
-		FILE *fstdin = freopen("CONIN$", "r", stdin);
-		if(fstdin)
+	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+		setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+		setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(redirectStdin && freopen("CONIN$", "r", stdin))
 			setvbuf(stdin, nullptr, _IONBF, 0);
-	}
 }
 #endif
