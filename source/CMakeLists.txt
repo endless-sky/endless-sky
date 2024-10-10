@@ -353,21 +353,21 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
-    attribute/Attribute.cpp
-    attribute/Attribute.h
-    attribute/AttributeAccessor.cpp
-    attribute/AttributeAccessor.h
-    attribute/AttributeCategory.h
-    attribute/AttributeEffect.cpp
-    attribute/AttributeEffect.h
-    attribute/AttributeEffectType.h
-    attribute/Modifier.h
-    audio/Audio.cpp
-    audio/Audio.h
-    audio/Music.cpp
-    audio/Music.h
-    audio/Sound.cpp
-    audio/Sound.h
+	attribute/Attribute.cpp
+	attribute/Attribute.h
+	attribute/AttributeAccessor.cpp
+	attribute/AttributeAccessor.h
+	attribute/AttributeCategory.h
+	attribute/AttributeEffect.cpp
+	attribute/AttributeEffect.h
+	attribute/AttributeEffectType.h
+	attribute/Modifier.h
+	audio/Audio.cpp
+	audio/Audio.h
+	audio/Music.cpp
+	audio/Music.h
+	audio/Sound.cpp
+	audio/Sound.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
