@@ -73,7 +73,7 @@ void Flotsam::Place(const Ship &source, size_t bayIndex)
 {
 	Place(source);
 	if(source.Bays().size() > bayIndex)
-		position += source.Bays()[bayIndex].point;
+		position += source.Facing().Rotate(source.Bays()[bayIndex].point);
 }
 
 
