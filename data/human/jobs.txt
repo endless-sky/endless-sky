@@ -386,7 +386,7 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 			variant
 				"Behemoth"
 	on complete
-		payment 000
+		payment 120000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -432,7 +432,7 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 			variant
 				"Behemoth"
 	on complete
-		payment 000
+		payment 120000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -908,7 +908,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 			variant
 				"Container Transport"
 	on complete
-		payment 000
+		payment 120000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -954,7 +954,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 			variant
 				"Container Transport"
 	on complete
-		payment 000
+		payment 120000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
