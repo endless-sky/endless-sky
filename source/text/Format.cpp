@@ -381,10 +381,12 @@ string Format::PlayTime(double timeVal)
 // Only the absolute value of a negative number is considered.
 string Format::AmmoCount(int64_t value)
 {
-	if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	if(fabs(value) >= SCIENTIFIC_THRESHOLD)
 	{
+		if(abs(value) == SCIENTIFIC_THRESHOLD)
+			return "1e+15";
 		ostringstream out;
-		out.precision(2);
+		out.precision(1);
 		out << static_cast<double>(value);
 		return out.str();
 	}
