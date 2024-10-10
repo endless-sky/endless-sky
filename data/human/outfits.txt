@@ -430,6 +430,13 @@ outfit "Tear of Skade"
 	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
+outfit "Salvaged Artifact"
+	category "Unique"
+	thumbnail "outfit/salvaged artifact"
+	"cargo space" 60
+	"unique" 1
+	description "This black and twisted lump of inoperable alien technology was a gift to you by Tavish and Kormak. Hopefully it's worth something to someone."
+
 
 outfit "Local Map"
 	category "Special"

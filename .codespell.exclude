@@ -47,6 +47,7 @@
 			`	Cygnet strokes his mustache. "Tod Copper. Tod Copper. Tell you what, that name doesn' ring a bell. Heck, I don' even keep track of names 'less I get someone impor'ant. If ya lookin' for someone in particular to buy, can I get a description?"`
 					goto shotdown
 			label shotdown
+			`	"Wa-wait! What is this? Stay back, savage! Starla! Starla, call secur..." Hullen-Freeze is abruptly cut off as a heavy fist slams into his face.`
 		"ser"
 		"cach"
 		"oder"
