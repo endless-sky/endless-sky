@@ -44,7 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -131,7 +131,6 @@ namespace {
 	}
 
 	const Color black(0.f, 1.f);
-	const Color red(1.f, 0.f, 0.f, 1.f);
 
 	// Hovering an escort pip for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
@@ -411,13 +410,11 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
-		const Font &font = FontSet::Get(18);
-
 		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		Point point(-font.Width(message) / 2, Screen::Top() + 40);
-		font.Draw(message, point + Point(1, 1), black);
-		font.Draw(message, point, red);
+		info.SetString("route error", message);
 	}
+
+	mapInterface->Draw(info, this);
 }
 
 
@@ -429,7 +426,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
 	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
 	set<const System *> drawnSystems = { jump[0], jump[1] };
-	bool isLink = jump[0]->Links().count(jump[1]);
+	bool isLink = jump[0]->Links().contains(jump[1]);
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
@@ -465,7 +462,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			Point unit = (from - to).Unit() * LINK_OFFSET;
 			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
 
-			if(drawnSystems.count(link))
+			if(drawnSystems.contains(link))
 				continue;
 			drawnSystems.insert(link);
 
@@ -913,7 +910,7 @@ bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
 	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
 {
-	const bool isHyper = previous->Links().count(next);
+	const bool isHyper = previous->Links().contains(next);
 	isWormhole = false;
 	isMappable = false;
 	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
@@ -934,7 +931,7 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 					break;
 				}
 			}
-	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).contains(next);
 	return isHyper || isWormhole || isJump;
 }
 
@@ -1221,9 +1218,9 @@ void MapPanel::DrawTravelPlan()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 1.6f, drawColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 3.f, drawColor);
+			LineShader::Draw(from, to, 1.6f, drawColor);
 	}
 }
 
