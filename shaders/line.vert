@@ -1,0 +1,33 @@
+precision mediump float;
+precision mediump int;
+
+uniform vec2 scale;
+uniform highp vec2 start;
+uniform highp vec2 end;
+uniform float width;
+uniform int cap;
+
+in vec2 vert;
+out vec2 pos;
+
+void main() {
+	// Construct a rectangle around the line that can accommodate a line of width "width".
+	vec2 unit = normalize(end - start);
+	// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
+	highp vec2 origin = vert.y > 0.0 ? start : end;
+	// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
+	float widthOffset = width + 1.;
+	// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
+	// "width" from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
+	float capOffset = (cap == 1) ? widthOffset : 1.;
+	// The vertex position is the originating position plus an offset away from the line.
+	// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset
+	// that is flipped into a different direction for each vertex, resulting in a rectangle that tightly
+	// covers the bounds of the line.
+	pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * capOffset * vert.y;
+	// Transform the vertex position into es coordinates, so it can easily be consumed by the fragment shader,
+	// which has access to the start/end points of the line in es' coordinate system.
+	gl_Position = vec4(pos / scale, 0, 1);
+	gl_Position.y = -gl_Position.y;
+	gl_Position.xy *= 2.0;
+}
