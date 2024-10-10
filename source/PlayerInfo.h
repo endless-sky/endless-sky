@@ -280,9 +280,9 @@ public:
 	void Unvisit(const Planet &planet);
 
 	// Check whether the player has visited the <mapSize> systems around the current one.
-	bool HasMapped(int mapSize, bool showMinable) const;
+	bool HasMapped(int mapSize, bool mapMinable) const;
 	// Mark a whole map of systems as visited.
-	void Map(int mapSize, bool showMinable);
+	void Map(int mapSize, bool mapMinable);
 
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;

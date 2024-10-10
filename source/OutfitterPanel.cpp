@@ -165,7 +165,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	// Check if this outfit is a "license".
 	bool isLicense = IsLicense(name);
 	int mapSize = outfit->Get("map");
-	bool showMinable = outfit->Get("show minable");
+	bool mapMinable = outfit->Get("map minable");
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -176,7 +176,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(isLicense)
 			minCount = maxCount = player.HasLicense(LicenseRoot(name));
 		else if(mapSize)
-			minCount = maxCount = player.HasMapped(mapSize, showMinable);
+			minCount = maxCount = player.HasMapped(mapSize, mapMinable);
 		else
 		{
 			for(const Ship *ship : playerShips)
@@ -324,8 +324,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
-	bool showMinable = selectedOutfit->Get("show minable");
-	if(mapSize > 0 && player.HasMapped(mapSize, showMinable))
+	bool mapMinable = selectedOutfit->Get("map minable");
+	if(mapSize > 0 && player.HasMapped(mapSize, mapMinable))
 		return "You have already mapped all the systems shown by this map, "
 			"so there is no reason to buy another.";
 
@@ -486,10 +486,10 @@ void OutfitterPanel::Buy(bool onlyOwned)
 
 	// Special case: maps.
 	int mapSize = selectedOutfit->Get("map");
-	bool showMinable = selectedOutfit->Get("show minable");
+	bool mapMinable = selectedOutfit->Get("map minable");
 	if(mapSize)
 	{
-		player.Map(mapSize, showMinable);
+		player.Map(mapSize, mapMinable);
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;
 	}
