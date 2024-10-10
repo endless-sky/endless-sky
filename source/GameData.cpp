@@ -293,9 +293,9 @@ void GameData::LoadShaders()
 #endif
 				string name = relative(shader.parent_path() / shader.stem(), base).generic_string();
 				if(shader.extension() == ".vert")
-					loaded[name].first = shaderFile;
+					loaded[name].first = shaderFile.string();
 				else if(shader.extension() == ".frag")
-					loaded[name].second = shaderFile;
+					loaded[name].second = shaderFile.string();
 			}
 	}
 
