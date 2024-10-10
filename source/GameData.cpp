@@ -274,7 +274,7 @@ void GameData::LoadShaders()
 	// The found shader files. The first element is the vertex shader,
 	// the second is the fragment shader.
 	map<string, pair<string, string>> loaded;
-	for(const string &source: sources)
+	for(const string &source : sources)
 	{
 		// todo: remove conversions once we use std::filesystem everywhere
 		filesystem::path base = filesystem::path(source) / "shaders";
@@ -286,7 +286,7 @@ void GameData::LoadShaders()
 				// Allow specifying different shaders for GL and GLES.
 				// In this case, only the appropriate shader is loaded.
 				if(shaderFile.extension() == ".gles")
-					shader= shader.parent_path() / shader.stem();
+					shader = shader.parent_path() / shader.stem();
 #else
 				if(shaderFile.extension() == ".gl")
 					shader = shader.parent_path() / shader.stem();
