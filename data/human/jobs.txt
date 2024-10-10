@@ -386,7 +386,7 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 			variant
 				"Behemoth"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -432,7 +432,7 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 			variant
 				"Behemoth"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -908,7 +908,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 			variant
 				"Container Transport"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -954,7 +954,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 			variant
 				"Container Transport"
 	on complete
-		payment 120000
+		payment 000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -2308,7 +2308,8 @@ mission "Strike Breakers [large mining]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of mine workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < ( "passenger space" - 45 ) / 2
+		random < "passenger space" - 45
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2350,7 +2351,8 @@ mission "Strike Breakers [large textile]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of textile workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < ( "passenger space" - 45 ) / 2
+		random < "passenger space" - 45
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2392,7 +2394,8 @@ mission "Strike Breakers [large factory]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of factory workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < ( "passenger space" - 45 ) / 2
+		random < "passenger space" - 45
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
