@@ -172,4 +172,4 @@ void main() {
   else
     color = swizzleColor;
   finalColor = color * alpha;
-};
+}
