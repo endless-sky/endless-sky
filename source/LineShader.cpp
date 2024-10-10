@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LineShader.h"
 
 #include "Color.h"
+#include "GameData.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
@@ -25,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	Shader shader;
+	const Shader *shader;
 	GLint scaleI;
 	GLint startI;
 	GLint endI;
@@ -41,96 +42,13 @@ namespace {
 
 void LineShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex line shader\n"
-		"precision mediump float;\n"
-		"precision mediump int;\n"
-
-		"uniform vec2 scale;\n"
-
-		"uniform highp vec2 start;\n"
-		"uniform highp vec2 end;\n"
-		"uniform float width;\n"
-		"uniform int cap;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 pos;\n"
-
-		"void main() {\n"
-		// Construct a rectangle around the line that can accommodate a line of width "width".
-		"    vec2 unit = normalize(end - start);\n"
-		// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
-		"    highp vec2 origin = vert.y > 0.0 ? start : end;\n"
-		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
-		"    float widthOffset = width + 1.;\n"
-		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
-		//     "width" from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
-		"    float capOffset = (cap == 1) ? widthOffset : 1.;\n"
-		// The vertex position is the originating position plus an offset away from the line.
-		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset
-		//     that is flipped into a different direction for each vertex, resulting in a rectangle that tightly
-		//     covers the bounds of the line.
-		"    pos = origin + vec2(unit.y, -unit.x) * vert.x * widthOffset - unit * capOffset * vert.y;\n"
-		// Transform the vertex position into es coordinates, so it can easily be consumed by the fragment shader,
-		// which has access to the start/end points of the line in es' coordinate system.
-		"    gl_Position = vec4(pos / scale, 0, 1);\n"
-		"    gl_Position.y = -gl_Position.y;\n"
-		"    gl_Position.xy *= 2.0;\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment line shader\n"
-		"precision mediump float;\n"
-		"precision mediump int;\n"
-
-		"uniform highp vec2 start;\n"
-		"uniform highp vec2 end;\n"
-		"uniform float width;\n"
-		"uniform vec4 color;\n"
-		"uniform int cap;\n"
-
-		"in vec2 pos;\n"
-		"out vec4 finalColor;\n"
-
-		// From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
-
-		"float sdSegment(highp vec2 p, highp vec2 a, highp vec2 b) {\n"
-		"    highp vec2 ab = b - a;\n"
-		"    highp vec2 ap = p - a;\n"
-		"    float h = clamp(dot(ap, ab) / dot(ab, ab), 0.0, 1.0);\n"
-		"    return length(ap - h * ab);\n"
-		"}\n"
-
-		"float sdOrientedBox(highp vec2 p, highp vec2 a, highp vec2 b, highp float th) {\n"
-		"    float l = length(b - a);\n"
-		"    vec2  d = (b - a) / l;\n"
-		"    vec2  q = (p - (a + b) * 0.5);\n"
-		"          q = mat2(d.x, -d.y, d.y, d.x) * q;\n"
-		"          q = abs(q) - vec2(l, th) * 0.5;\n"
-		"    return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0);\n"
-		"}\n"
-
-		"void main() {\n"
-		"    float dist;\n"
-		"    if(cap == 1) {\n"
-		// Rounded caps can shortcut to a segment sdf.
-		// Segment sdf only provides a distance fromt the line itself so we manually subtract it from the width.
-		"        dist = width - sdSegment(pos, start, end);\n"
-		"    } else {\n"
-		// Subtract from 1 here to add some AA.
-		"        dist = 1. - sdOrientedBox(pos, start, end, width);\n"
-		"    }\n"
-		"    float alpha = clamp(dist, 0.0, 1.0);\n"
-		"    finalColor = color * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
-	scaleI = shader.Uniform("scale");
-	startI = shader.Uniform("start");
-	endI = shader.Uniform("end");
-	widthI = shader.Uniform("width");
-	colorI = shader.Uniform("color");
-	capI = shader.Uniform("cap");
+	shader = GameData::Shaders().Get("line");
+	scaleI = shader->Uniform("scale");
+	startI = shader->Uniform("start");
+	endI = shader->Uniform("end");
+	widthI = shader->Uniform("width");
+	colorI = shader->Uniform("color");
+	capI = shader->Uniform("cap");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -147,8 +65,8 @@ void LineShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	glEnableVertexAttribArray(shader->Attrib("vert"));
+	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -159,10 +77,10 @@ void LineShader::Init()
 
 void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap)
 {
-	if(!shader.Object())
+	if(!shader->Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
 
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindVertexArray(vao);
 
 	GLfloat scale[2] = {static_cast<GLfloat>(Screen::Width()), static_cast<GLfloat>(Screen::Height())};

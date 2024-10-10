@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "alignment.hpp"
 #include "../Color.h"
 #include "DisplayText.h"
+#include "../GameData.h"
 #include "../image/ImageBuffer.h"
 #include "../Point.h"
 #include "../Preferences.h"
@@ -33,49 +34,6 @@ using namespace std;
 
 namespace {
 	bool showUnderlines = false;
-
-	const char *vertexCode =
-		"// vertex font shader\n"
-		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
-		"uniform vec2 scale;\n"
-		// The (x, y) coordinates of the top left corner of the glyph.
-		"uniform vec2 position;\n"
-		// The glyph to draw. (ASCII value - 32).
-		"uniform int glyph;\n"
-		// Aspect ratio of rendered glyph (unity by default).
-		"uniform float aspect;\n"
-
-		// Inputs from the VBO.
-		"in vec2 vert;\n"
-		"in vec2 corner;\n"
-
-		// Output to the fragment shader.
-		"out vec2 texCoord;\n"
-
-		// Pick the proper glyph out of the texture.
-		"void main() {\n"
-		"  texCoord = vec2((float(glyph) + corner.x) / 98.f, corner.y);\n"
-		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0.f, 1.f);\n"
-		"}\n";
-
-	const char *fragmentCode =
-		"// fragment font shader\n"
-		"precision mediump float;\n"
-		// The user must supply a texture and a color (white by default).
-		"uniform sampler2D tex;\n"
-		"uniform vec4 color;\n"
-
-		// This comes from the vertex shader.
-		"in vec2 texCoord;\n"
-
-		// Output color.
-		"out vec4 finalColor;\n"
-
-		// Multiply the texture by the user-specified color (including alpha).
-		"void main() {\n"
-		"  finalColor = texture(tex, texCoord).a * color;\n"
-		"}\n";
-
 	const int KERN = 2;
 }
 
@@ -136,7 +94,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 
 void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
 
@@ -338,9 +296,9 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	glyphW *= .5f;
 	glyphH *= .5f;
 
-	shader = Shader(vertexCode, fragmentCode);
-	glUseProgram(shader.Object());
-	glUniform1i(shader.Uniform("tex"), 0);
+	shader = GameData::Shaders().Get("font");
+	glUseProgram(shader->Object());
+	glUniform1i(shader->Uniform("tex"), 0);
 	glUseProgram(0);
 
 	// Create the VAO and VBO.
@@ -360,11 +318,11 @@ void Font::SetUpShader(float glyphW, float glyphH)
 
 	// Connect the xy to the "vert" attribute of the vertex shader.
 	constexpr auto stride = 4 * sizeof(GLfloat);
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+	glEnableVertexAttribArray(shader->Attrib("vert"));
+	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 
-	glEnableVertexAttribArray(shader.Attrib("corner"));
-	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
+	glEnableVertexAttribArray(shader->Attrib("corner"));
+	glVertexAttribPointer(shader->Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
 		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -374,11 +332,11 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	screenWidth = 0;
 	screenHeight = 0;
 
-	colorI = shader.Uniform("color");
-	scaleI = shader.Uniform("scale");
-	glyphI = shader.Uniform("glyph");
-	aspectI = shader.Uniform("aspect");
-	positionI = shader.Uniform("position");
+	colorI = shader->Uniform("color");
+	scaleI = shader->Uniform("scale");
+	glyphI = shader->Uniform("glyph");
+	aspectI = shader->Uniform("aspect");
+	positionI = shader->Uniform("position");
 }
 
 

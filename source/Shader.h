@@ -26,7 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Shader {
 public:
 	Shader() noexcept = default;
-	Shader(const char *vertex, const char *fragment);
+
+	void Load(const char *vertex, const char *fragment);
 
 	GLuint Object() const noexcept;
 	GLint Attrib(const char *name) const;
