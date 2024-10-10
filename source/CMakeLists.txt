@@ -6,6 +6,7 @@ if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
 		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/Oi>")
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
+	target_compile_definitions(EndlessSkyLib PUBLIC "_CRT_SECURE_NO_WARNINGS")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
