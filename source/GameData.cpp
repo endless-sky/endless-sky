@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <atomic>
+#include <filesystem>
 #include <iostream>
 #include <queue>
 #include <utility>
@@ -270,8 +271,39 @@ void GameData::LoadSettings()
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
+	// The found shader files. The first element is the vertex shader,
+	// the second is the fragment shader.
+	map<string, pair<string, string>> loaded;
+	for(const string &source: sources)
+	{
+		// todo: remove conversions once we use std::filesystem everywhere
+		filesystem::path base = filesystem::path(source) / "shaders";
+		if(Files::Exists(base.generic_string()))
+			for(filesystem::path shaderFile : Files::RecursiveList(base.generic_string()))
+			{
+				filesystem::path shader = shaderFile;
+#ifdef ES_GLES
+				// Allow specifying different shaders for GL and GLES.
+				// In this case, only the appropriate shader is loaded.
+				if(shaderFile.extension() == ".gles")
+					shader= shader.parent_path() / shader.stem();
+#else
+				if(shaderFile.extension() == ".gl")
+					shader = shader.parent_path() / shader.stem();
+#endif
+				string name = relative(shader.parent_path() / shader.stem(), base).generic_string();
+				if(shader.extension() == ".vert")
+					loaded[name].first = shaderFile;
+				else if(shader.extension() == ".frag")
+					loaded[name].second = shaderFile;
+			}
+	}
+
+	// If there is both a fragment and a vertex shader available,
+	// it can be turned into a shader object.
+	for(const auto &[key, s] : loaded)
+		if(!s.first.empty() && !s.second.empty())
+			objects.shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
 
 	FillShader::Init();
 	FogShader::Init();
@@ -282,6 +314,9 @@ void GameData::LoadShaders()
 	SpriteShader::Init();
 	BatchShader::Init();
 	RenderBuffer::Init();
+
+	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
 
 	background.Init(16384, 4096);
 }
@@ -686,6 +721,13 @@ const Set<Phrase> &GameData::Phrases()
 const Set<Planet> &GameData::Planets()
 {
 	return objects.planets;
+}
+
+
+
+const Set<Shader> &GameData::Shaders()
+{
+	return objects.shaders;
 }
 
 
