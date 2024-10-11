@@ -69,7 +69,7 @@ public:
 
 
 public:
-	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr, bool fromMission = false);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -163,6 +163,8 @@ protected:
 	// An X offset in pixels to be applied to the selected system UI if something
 	// else gets in the way of its default position.
 	int selectedSystemOffset = 0;
+
+	bool fromMission = false;
 
 private:
 	void DrawTravelPlan();

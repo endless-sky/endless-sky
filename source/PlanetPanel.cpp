@@ -91,32 +91,11 @@ void PlanetPanel::Step()
 		return;
 	}
 
-	// If a player tries to open the job board, first offer any
-	// available job board missions.
-	const Panel *activePanel = selectedPanel ? selectedPanel : this;
-	if(GetUI()->IsTop(activePanel) && jobBoardQueued)
-	{
-		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
-
-		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
-		else
-			player.HandleBlockedMissions(Mission::JOB_BOARD, GetUI());
-		
-		// Determine if a Dialog or ConversationPanel is being drawn next frame.
-		isActive = (GetUI()->Top().get() == this);
-		if(isActive)
-		{
-			GetUI()->Push(new MissionPanel(player));
-			jobBoardQueued = false;
-			isActive = false;
-		}
-	}
-
 	// Handle missions for locations that aren't handled separately,
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
+	const Panel *activePanel = selectedPanel ? selectedPanel : this;
 	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
@@ -224,7 +203,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
-		jobBoardQueued = true;
+		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))

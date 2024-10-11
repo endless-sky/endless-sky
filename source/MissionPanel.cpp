@@ -200,6 +200,14 @@ void MissionPanel::Step()
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
+	if(GetUI()->IsTop(this) && !fromMission)
+	{
+		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedMissions(Mission::JOB_BOARD, GetUI());
+	}
 }
 
 
