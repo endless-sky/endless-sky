@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
-#include "Dictionary.h"
-
 #include <map>
 #include <string>
 #include <utility>
@@ -63,10 +61,6 @@ public:
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
-
-	double Get(const char *attribute) const;
-	double Get(const std::string &attribute) const;
-	const Dictionary &Attributes() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -126,8 +120,6 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
-
-	Dictionary attributes;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
