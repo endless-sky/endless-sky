@@ -7808,8 +7808,8 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Headhunter"
 				"Fury (Gatling)" 3
 		on kill
-					dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
-	
+				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+
 	npc kill
 		to spawn
 			has "diminished greenrock pirate fleet"
@@ -7829,7 +7829,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Hawk (Plasma)"
 				"Fury (Gatling)"
 		on kill
-					dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
@@ -8370,7 +8370,7 @@ mission "Timothy Radrickson 5b: New Britain"
 
 			label justright
 			`	The salesman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
-					goto "med 120"
+				goto "med 120"
 
 			label med2
 			action
@@ -9282,7 +9282,7 @@ mission "Timothy Radrickson 7: Grave"
 					goto end
 
 			`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poison ground, and you alone in the vast empty graveyard.`
-			`	Your thoughts drift to the man buried beneath your feet.`		
+			`	Your thoughts drift to the man buried beneath your feet.`
 			label end
 			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
 				decline
