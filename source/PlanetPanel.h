@@ -58,6 +58,8 @@ private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
+	bool jobBoardQueued = false;
+	bool isActive = false;
 
 	const Planet &planet;
 	const System &system;
