@@ -219,6 +219,7 @@ Point &Point::operator/=(const Point &other)
 	x /= other.x;
 	y /= other.y;
 #endif
+	return *this
 }
 
 Point &Point::operator/=(double scalar)
