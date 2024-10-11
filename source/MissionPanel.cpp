@@ -216,10 +216,13 @@ void MissionPanel::Step()
 			// the screen fully pans to the destination system.
 			canDrag = false;
 
-			// Only highlight the destination if the mission is visible.
+			// Only highlight and pan to the destination if the mission is visible.
+			// Otherwise, pan to the player's current system.
 			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
 			if(specialSystem)
 				CenterOnSystem(specialSystem);
+			else
+				CenterOnSystem(player.GetSystem());
 
 			mission->Do(Mission::OFFER, player, GetUI());
 		}
