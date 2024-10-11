@@ -14,6 +14,9 @@ unit_tests:
 integration_tests:
   - 'tests/integration/config/plugins/integration-tests/**'
 
+steam:
+  - 'steam/**'
+
 doxygen_config:
   - 'Doxyfile'
 

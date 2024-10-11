@@ -193,6 +193,8 @@ mission "Incipias: The Derelict"
 
 mission "Incipias: Help The Stranded 1"
 	landing
+	name "Seek help from the Incipias"
+	description "Ask the Incipias for help to save one of their ships."
 	source
 		government "Quarg (Incipias)"
 	destination "Pon'tes"
@@ -282,7 +284,7 @@ mission "Incipias: Help The Stranded 1"
 				`	"Greetings, Incipias. I am a human."`
 				`	"I thank you for your hospitality."`
 			`	Your translator begins rapidly flashing. The Incipias seem to respond to this - movement and colors begin to diffuse through the crowd like waves.`
-			`	The 'speaker' continues. "You are the first outer-being that ever communicated with us. Are you the only outer-being out there?"`
+			`	The "speaker" continues. "You are the first outer-being that ever communicated with us. Are you the only outer-being out there?"`
 			choice
 				`	"No, there are others too."`
 				`	"The galaxy is full of other beings."`
@@ -311,14 +313,14 @@ mission "Incipias: No Help For The Stranded"
 			not "Incipias: Help The Stranded 1: offered"
 	on offer
 		fail
-		dialog
-			`You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
+		dialog `You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
 
 mission "Incipias: Help The Stranded 2"
 	landing
+	name "Bring Incipias back to <planet>"
+	description "Bring the rescued Incipias back home to <destination>"
 	passengers 5
-	source
-		planet Turra
+	source Turra
 	destination "Pon'tes"
 	to offer
 		has "Incipias: Help The Stranded 1: done"
