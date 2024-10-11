@@ -9021,6 +9021,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 mission "Timothy Radrickson 6: News of Death"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "urban"
 	to offer
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
 		random < 5
