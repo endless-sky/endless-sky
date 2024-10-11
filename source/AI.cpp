@@ -522,6 +522,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(shift && activeCommands.Has(Command::GATHER))
 		IssueFormationChange(player);
 
+	if(activeCommands.Has(Command::FLEET_FORMATION))
+		IssueFormationChange(player);
+
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
 	Orders newOrders;

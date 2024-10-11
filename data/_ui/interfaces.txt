@@ -2099,6 +2099,7 @@ interface "main buttons" bottom right
 		"Fleet: Hold position"
 		"Fleet: Harvest flotsam"
 		"Fleet: Toggle ammo usage"
+		"Fleet: Toggle Formation"
 
 	# Overlayed on target display, but the hud doesn't have a panel, so to
 	# handle input, we put it here instead.

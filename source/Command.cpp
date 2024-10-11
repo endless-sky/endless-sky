@@ -92,6 +92,10 @@ const Command Command::WAIT(ONE << 35, "");
 const Command Command::STOP(ONE << 36, "Stop", "ui/icon_fleet_stop");
 const Command Command::SHIFT(ONE << 37, "");
 
+
+// Mobile specific
+const Command Command::FLEET_FORMATION(ONE << 63, "Fleet: Toggle Formation", "ui/icon_fleet_formation");
+
 std::atomic<uint64_t> Command::simulated_command{};
 std::atomic<uint64_t> Command::simulated_command_once{};
 bool Command::simulated_command_skip = false;
