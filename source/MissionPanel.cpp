@@ -197,6 +197,12 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+
+	// If a job or mission that launches the player triggers,
+	// immediately close the map.
+	if(player.ShouldLaunch())
+		GetUI()->Pop(this);
+
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
@@ -224,11 +230,6 @@ void MissionPanel::Step()
 			player.HandleBlockedMissions(Mission::JOB_BOARD, GetUI());
 		}
 	}
-
-	// If a job or mission that launches the player triggers,
-	// immediately close the map.
-	if(player.ShouldLaunch())
-		GetUI()->Pop(this);
 }
 
 
