@@ -1398,8 +1398,8 @@ void MapPanel::DrawSystems()
 		if(commodity == SHOW_GOVERNMENT &&
 			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
-			hasUnexplored |= !(node.government);
-			hasUninhabited |= !(node.isInhabited);
+			hasUnexplored |= !node.government;
+			hasUninhabited |= !node.isInhabited;
 			// Count the number of occurences of each government.
 			// Exclude ones that are uninhabited, unexplored, or aren't their true color.
 			if(node.government && node.isInhabited && node.color == GovernmentColor(node.government))
