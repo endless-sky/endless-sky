@@ -7533,6 +7533,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				accept
 
 	on complete
+		log `You discovered Timothy, a stowaway, in your ship. You decided to take him where he needed to go. You never knew what Timothy had been fleeing. Who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
 		conversation
 			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
@@ -7591,6 +7592,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 	to offer
 		has "event: timothy radrickson: on rand"
 	on offer
+		log `Despiting starting over with nothing, Timothy the Stowaway has sent you credits to pay you back for that passage you gave him over a year ago.`
 		payment 50000
 		event "timothy radrickson: governor" 3600
 		conversation
@@ -8002,6 +8004,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 
 			label skip
 			action
+				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
 				event "timothy radrickson imprisoned" 400
@@ -8013,6 +8016,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 
 			label mingle
 			action
+				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
 				event "timothy radrickson imprisoned" 400
@@ -8093,6 +8097,7 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 	deadline 1
 	invisible
 	on offer
+		log `Oblivion had not been kind to Timothy. Last time you saw him alive he had been dying the slow toxic death that world is famed for. He asked you to help him.`
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
@@ -9024,8 +9029,9 @@ mission "Timothy Radrickson 6: News of Death"
 		attributes "urban"
 	to offer
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
-		random < 5
+		random < 15
 	on offer
+		log "Timothy is dead. Or at least that is what is being reported in the news. But maybe you did enough to help him escape."
 		event "timothy radrickson forever"
 		conversation
 			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, and a familiar name leaps out at you. Your attention piqued, you turn to watch.`
@@ -9040,7 +9046,7 @@ event "timothy radrickson forever"
 mission "Timothy Radrickson 7: Monk"
 	source "New Tibet"
 	to offer
-		random < 25
+		random < 35
 		has "event: timothy radrickson forever"
 		"timothy radrickson zpreparedness" > 7
 	on offer
@@ -9122,6 +9128,7 @@ mission "Timothy Radrickson 7: Monk"
 			
 			label offer2
 			action
+				log "Timothy is alive and well on New Tibet. Living a simple, but happy life as a monk."
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
@@ -9220,6 +9227,7 @@ mission "Timothy Radrickson 7: Hospice"
 			
 			label offer2
 			action
+				log "Timothy is alive, but not in great shape. He thankful that you saved him, but maybe you could have done for him."
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for a hug.`
@@ -9264,6 +9272,7 @@ mission "Timothy Radrickson 7: Grave"
 				decline
 
 			label search
+			log "Timothy is dead. It seems you failed him."
 			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy to find Timothy's.`
 			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C."`
 			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
@@ -9273,47 +9282,7 @@ mission "Timothy Radrickson 7: Grave"
 					goto end
 
 			`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poison ground, and you alone in the vast empty graveyard.`
-			`	Your thoughts drift to the man buried beneath your feet.`
-			label stayawhile
-			choice
-				`	(Think about Timothy's past.)`
-					goto past
-					to display
-						not "past"
-				`	(Think about Timothy's rise.)`
-					goto rise
-					to display
-						not "rise"
-						has "Timothy Radrickson 3d: Return to Rand: done"
-				`	(Think about Timothy's demise.)`
-					goto demise
-					to display
-						not "demise"
-				`	(Leave the graveyard.)`
-					goto end
-
-			label past
-			action
-				set "past"
-			`	You never knew what Timothy had been fleeing when he first stowed away on your ship. Who he had been, or what he had done that lead him to such dire straits.`
-			`	You recall how starved he had been when you first met him, and then how determined he was to pay you back for a simple ride to Rand. Most people would have never looked back, but not Timothy.`
-				goto stayawhile
-			
-			label rise
-			action
-				set "rise"
-			`	Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
-			`	You recall his office wall covered in newspaper clippings of your own exploits, of how Timothy had quietly followed and cheered along your own career. And then there were the toasts, the speeches, and the rest of the dazzling night you spent as the most important person on Rand.`
-			`	Who knows how high Timothy could have climbed, who he could have been, had he not been sent to Oblivion.`
-				goto stayawhile
-			
-			label demise
-			action
-				set "demise"
-			`	Oblivion had not been kind to Timothy. Last time you saw him alive he had been dying the slow toxic death this world is famed for. Yet in every memory you have of him here he was working hard and diligently. Even as a dying prisoner Timothy had worked hard.`
-			`	Maybe there was something you could have done. Maybe if you had been faster, or bought him better equipment, he wouldn't be here now. He wouldn't be stuck on Oblivion forever.`
-				goto stayawhile
-			
+			`	Your thoughts drift to the man buried beneath your feet.`		
 			label end
 			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
 				decline
