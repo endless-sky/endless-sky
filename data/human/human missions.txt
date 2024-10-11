@@ -7592,7 +7592,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 	to offer
 		has "event: timothy radrickson: on rand"
 	on offer
-		log `Despiting starting over with nothing, Timothy the Stowaway has sent you credits to pay you back for that passage you gave him over a year ago.`
+		log `Despite starting over with nothing, Timothy the Stowaway has sent you credits to pay you back for that passage you gave him over a year ago.`
 		payment 50000
 		event "timothy radrickson: governor" 3600
 		conversation
