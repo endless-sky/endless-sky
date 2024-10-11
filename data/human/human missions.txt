@@ -227,15 +227,12 @@ mission "Immigrant Workers"
 
 mission "Pookie, Part 1"
 	minor
-	"job board"
-	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
 	source "Hestia"
 	destination "Shroud"
 	passengers 1
 	cargo "(reserved)" 1
-	
 	on offer
 		conversation
 			`As you walk through the spaceport, you hear a voice behind you, saying, "Excuse me, Captain." You turn around and see a woman trying to flag you down. Her hairdo is tall and somewhat confusing; her high heels are also tall and are giving her considerable trouble as she walks towards you.`
@@ -243,7 +240,7 @@ mission "Pookie, Part 1"
 			choice
 				"	(Accept.)"
 				"	(Decline.)"
-					launch
+					decline
 			"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the <system> system."
 				accept
 	on visit
