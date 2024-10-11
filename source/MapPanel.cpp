@@ -1209,9 +1209,9 @@ void MapPanel::DrawTravelPlan()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 1.6f, drawColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 3.f, drawColor);
+			LineShader::Draw(from, to, 1.6f, drawColor);
 	}
 }
 
