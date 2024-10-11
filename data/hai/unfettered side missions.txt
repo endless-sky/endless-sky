@@ -152,7 +152,7 @@ mission "Hai Legacy 1"
 			`	The second one replies, "We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
 			`	"This ship is our guarantee that nothing goes wrong, should you attempt something against us. After all, we are still not sure if we can trust you."`
-			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks in the walls, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This one, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
+			`	The two Hai then take you to a nearby cave. Crystals embedded in the walls cast a faint blue glow as you follow them, until you approach a large chamber where sunlight breaks through cracks, revealing another ship. The first Hai then speaks again. "That ship outside is not for sale. This one, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
 			scene "scene/cave scene"
 			choice
 				`	"What is this about?"`
@@ -197,7 +197,7 @@ mission "Hai Legacy 1"
 				`	(Go back to the shipyard.)`
 					goto leave
 				`	"Why would they mind a different ship?"`
-			`	"As this ship is ancient, they will try to preserve it. The same might not be true for other ships."`
+			`	"As this ship is ancient, the Unfettered will try to preserve it. The same might not be true for other ships."`
 			label leave
 			`	They walk away until you cannot hear them speak anymore, leaving you with the access codes to the ship so you can bring it to the shipyard. With the aid of the autopilot, you manage to pilot the ship without any complications.`
 				accept
@@ -207,7 +207,7 @@ mission "Hai Legacy 1"
 				random < 50
 			branch lucky?
 				random < 2
-			`	Your shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even if it is somewhat worn. The ship then shoots back at you, barely missing and causing a geyser of sand to erupt at you and force you to drop your weapon. One of the two Hai then approaches you, seemingly disappointed.`
+			`	Your shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even if it is somewhat worn. The ship then shoots back at you, barely missing and causing a geyser of sand to erupt at you, forcing you to drop your weapon. One of the two Hai then approaches you, seemingly disappointed.`
 			`	"You're lucky to still be alive, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
 				goto "train back"
 			label lucky?
@@ -285,8 +285,8 @@ mission "Hai Legacy 3"
 		conversation
 			`After delivering the supplies, you realize your ship is the center of attention. One Unfettered that looks like an engineer comes to speak to you, initially warmer than usual compared to your previous experiences with other Unfettered.`
 			`	"Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. You see, it is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use it."`
-			`	After a sigh, her tone then changes. "But I don't believe in any of that. What does matter to me is that ship is filled with valuable ancient technology and very durable.`
-			`	Her eyes light up as she focuses more on your ship. "I even see technology from those savage Korath that we fought valiantly to obtain!" `
+			`	After a sigh, her tone then changes. "But I don't believe in any of that. What does matter to me is that ship is both durable and filled with valuable ancient technology.`
+			`	Her eyes light up as she focuses more on your ship. "I even see weapons from those savage Korath that we fought valiantly to obtain!"`
 				to display
 					has "outfit (flagship installed): Korath Detainer"
 			`	All of a sudden, she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
@@ -304,7 +304,7 @@ mission "Hai Legacy 3"
 				`	"I accept."`
 				`	"I have nothing to prove to you. This is my ship now."`
 					goto headingout
-			`	Mera grins. "Good! I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brother and his crew the opportunity to prove themselves against a mighty human warrior!"`
+			`	Mera grins. "Good! I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brother and his crew the opportunity to prove themselves against a powerful human warrior!"`
 			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. One that appears to be their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
 			choice
@@ -313,7 +313,7 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out," says a third.`
 			label scare
-			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules, even if there are no official ones. We would assume everyone knows them, but since you are an outsider I will explain them to you," he says as he moves away from the group with you.`
+			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not so much a friendly competition as it is a fight for you to truly earn the right to fly this ship. You should know that this fight has a few... implicit rules, even if there are no official ones. We would assume everyone knows them, but since you are an outsider I will explain them to you," he says as he leads you away from the group.`
 			`	"Naturally, because this is a duel, nobody other than us may interfere, but you should also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve it, after all. To the victor go the spoils, so looting is allowed, but do not attempt to steal our ships. Do so, and all the Unfettered will be against you!"`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He then looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you."`
@@ -334,7 +334,7 @@ mission "Hai Legacy 3"
 				has "unfettered: fled with the relic"
 			branch "too many ships"
 				"total ships" > 1
-			`As you leave the planet's atmosphere, you see your challenger already waiting for you in the system, and they send you a hail as soon as you are in space. "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warriors should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
+			`As you leave the planet's atmosphere, you see your challenger already waiting for you in the system, and they send you a hail as soon as you are in space. "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warrior should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
 				accept
 			label fleeing
 			action
@@ -430,8 +430,8 @@ mission "Hai Legacy 3"
 			label challenge
 			`	"Oh, so their plan almost worked after all? Maybe I should have participated in the fight too."`
 			label next
-			`	"Well, congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. Remember, right now, your reputation with us is solely due to to that ship. If you somehow lose it because of incompetence on your own end, it would look pretty bad to us True Hai!"`
-			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some sort of respect for you, so long as you have the Anomalocaris.`
+			`	"Well, congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. Remember, right now, your reputation with us is solely due to to that ship. If you somehow lose it because of incompetence on your own end, it would look pretty bad to the True Hai."`
+			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some level of respect for you, so long as you have the Anomalocaris.`
 
 
 
@@ -448,7 +448,7 @@ mission "Undeserved Anomalocaris"
 		not "Hai Legacy 3: done"
 	on offer
 		conversation
-			`You land on this Unfettered world in possession of the Anomalocaris, and, as you do, countless Hai hastily head to your ship, each armed with several weapons. One of them points at you and makes a declaration in front of the crowd that is quickly forming, shouting loud enough for all to hear. "You do not deserve to fly this relic of old!"`
+			`As you land, countless Hai hastily head to your ship, each armed with several weapons. One of them points at you and makes a declaration in front of the crowd that is quickly forming, shouting loud enough for all to hear. "You do not deserve to fly this relic of old!"`
 			`	One standing behind them then chimes in. "You wasted your opportunity for a glorious battle to earn that right! We know of what you've failed!"`
 				to display
 					has "Hai Legacy 3: offered"
@@ -464,5 +464,5 @@ mission "Undeserved Anomalocaris"
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
-			`	The leader of the Unfettered group then has a few of them escort you to a farther out location. On your way there, some of them seemed to be holding back some frustration, and you could have sworn one wanted to attack you at any moment. Eventually you are lead to a landed Lightning Bug, and after some messy paperwork, the Unfettered leave it with you.`
+			`	The leader of the Unfettered group then has a few of them escort you to the edge of the spaceport. On your way there, some of them seemed to be holding back some frustration, and you could have sworn one wanted to attack you at any moment. Eventually you are lead to a landed Lightning Bug, and after some messy paperwork, the Unfettered leave it with you.`
 				decline
