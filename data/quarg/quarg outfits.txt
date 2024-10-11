@@ -103,7 +103,7 @@ outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
 	thumbnail "outfit/quarg countermeasures"
-	"capture defense" 60
+	"capture defense" 24
 	"unplunderable" 1
 	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
 
