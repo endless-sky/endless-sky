@@ -7537,7 +7537,7 @@ mission "Timothy Radrickson 1: Stowaway"
 		conversation
 			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
 			`	"I mean it, from the bottom of my heart. You've saved my life, and given me hope. I won't forget this; or you. I could never thank you enough."`
-			`	His eyes glistening, Timothy turns from you and exits your ship. Hopefully he finds what he is looking for on Rand.`
+			`	His eyes glistening, Timothy turns from you and exits your ship.`
 
 
 mission "Timothy Radrickson 1a: Accepted"
@@ -7582,7 +7582,7 @@ mission "Timothy Radrickson 2: Interlude"
 		conversation
 			`Blinking at the light, Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
 			`	Timothy opens the hatch and looks back at you. "You s-s-saved my life. I won't forget. I won't."`
-			`	With that, Timothy exits your ship and begins his new life. You hope everything works out for the best.`
+			`	With that, Timothy exits your ship and begins his new life.`
 
 
 mission "Timothy Radrickson 2: Good Interlude"
@@ -7643,8 +7643,8 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		has "Timothy Radrickson 3: Governor Notification: done"
 	on offer
 		conversation
-			`Regina, her driver, and a sleek black vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
-			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
+			`Regina, her driver, and a sleek black vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and thin topsoil is a terrible combination.`
+			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invade the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
 			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial gravity drives; the same sort of drives ships use to maintain gravity onboard, but for an entire estate.`
 			choice
 				`	(Say nothing.)`
@@ -7667,7 +7667,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			choice
 				`	(Enter the room.)`
 
-			`	You enter a large richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
+			`	You enter a large, richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
 			`	"Ah, Captain <last>. At last we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, for it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
 			`	"I was a stowaway on your ship. You found me in a food crate, and you took me here. I'm Timothy Radrickson, Governor Timothy Radrickson now."`
 			`	Timothy sits back down and indicates that you should do the same. "It took me some time. But through some good decisions, and quite a bit of luck, I've been able to claw my way to a level of respectability and wealth. I've really been able to make something of myself."`
@@ -7953,7 +7953,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				`	(Go to the Governor's Mansion.)`
 
 			`	In the evening the passing landscape is too dark to see, so instead you focus on the glittering stars overhead. Eventually your ride slows as you seem to be caught up in traffic near the Governor's mansion. As you approach you pass streets crowded with parked personal vehicles.`
-			`	The mansion is lit up with dozens of flood lights, and brimming with fabously dressed people. Wynnafrith turns her vehicle over to a valet and opens your door to let you out.`
+			`	The mansion is lit up with dozens of flood lights, and brimming with fabulously dressed people. Wynnafrith turns her vehicle over to a valet and opens your door to let you out.`
 			`	She gives you a mischievous grin. "Apologies, Captain <last>. I forgot to mention the Governor was holding a little get-together. Please follow me."`
 			choice
 				`	(Follow Wynnafrith.)`
@@ -7993,7 +7993,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				decline
 
 			label thankthem
-			`	You thank your host, and the assembled notables for their gracious fanfare. You note, however, that you are just one person. And you've done nothing that any one else in your shoes wouldn't have done. Kindness is contagious, and everyone is a hero in some way. You hope that the takeaway here is not that you are special, but instead that everyone should just do their part. The guests clap as you step away from the podium.`
+			`	You thank your host, and the assembled notables for their gracious fanfare. You note, however, that you are just one person, and you've done nothing that any one else in your shoes wouldn't have done. The guests clap as you step away from the podium.`
 				goto mingle
 
 			label deserved
@@ -8007,7 +8007,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				event "timothy radrickson imprisoned" 400
 			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence.`
 			`	After a while, a gentle knock on the door and Timothy pushes his way into the room.`
-			`	"I see you've found my office, Captain <last>. I'd like to apologize. I was hoping you'd appreciate the party, but, I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd, and there are things I've had to do for them I am not proud of..." he trails off.`
+			`	"I see you've found my office, Captain <last>. I'd like to apologize. I was hoping you'd appreciate the party, but, I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd, and there are things I've had to do for them I am not proud of..." He trails off.`
 			`	"But still, I'm glad you're here. Even tucked away in my office. I wanted to let you know that there are credits associated with tonight's prize. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me.`
 				goto jumpskip
 
@@ -8149,7 +8149,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	You shake your head slowly. "I'm sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."`
 			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out?" He almost laughs, "When I'm out!"`
 			`	He turns his face towards the truck, before looking back at you. "Goodbye, old friend."`
-			`	The weak, broken man returns to loading up the heavy equipment. Slower than before.`
+			`	The weak, broken man returns to loading up the heavy equipment, slower than before.`
 				decline
 
 			label agree
@@ -8260,7 +8260,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				die
 
 			label sayso
-				`	She shakes her head. "Well, why didn't you just say so! What does our Governor ask of us?" She holsters her sidearm.`
+				`	She shakes her head. "Well, why didn't you just say so? What does our Governor ask of us?" She holsters her sidearm.`
 
 			label Timmy
 			`	Union-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
@@ -8284,7 +8284,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Once again in the larger cavern she turns and points at the guard. "Grab our explosive and carefully accompany Captain <last> with it back to his ship."`
 			`	The guard frowns. "But it's our only one..."`
 			`	"Now!" She cuts him off, and watches as he sullenly slumps away.`
-			`	Without looking your way she continues, "It was a pleasure to see you, again Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
+			`	Without looking your way she continues, "It was a pleasure to see you again, Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
 			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 
 
@@ -8416,7 +8416,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			action
 				set "suit1"
 			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types. Hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
-			`	There's a store named "Explorers Element" not far from the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
+			`	There's a store named "Explorer's Element" not far from the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
 			choice
 				`	(Get the survival suit for Tim.)`
 					goto getsuit
@@ -8975,7 +8975,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: done"
 	on offer
-		"timothy radrickson zpreparedness" = "timothy radrickson	medicine" + "timothy radrickson suit" + "timothy radrickson id"
+		"timothy radrickson zpreparedness" = "timothy radrickson medicine" + "timothy radrickson suit" + "timothy radrickson id"
 		conversation
 			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
 			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood-red eyes rise to meet yours, and despite their milky gloss, a glimmer of hope burns within them.`
@@ -9104,7 +9104,7 @@ mission "Timothy Radrickson 7: Monk"
 			label shake
 			action
 				clear "offers"
-			`	You shake his hand; he swallows and clears his throat, trying to keep himself from crying; nods to you one last time, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+			`	You shake his hand; he swallows and clears his throat as he tries to keep himself from crying, nods to you one last time, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
 		
 			label offer
@@ -9175,7 +9175,7 @@ mission "Timothy Radrickson 7: Hospice"
 
 			`	Timothy Radrickson, former prison-worker on Oblivion, Governor of Rand, and stowaway of your ship, beckons you step closer to him with his good hand.`
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, not to mention my health, I can't leave here, and I can't send any messages." His eyes linger on you, as though he is taking a mental picture. Or just enjoying the sight of a good friend returned.`
-			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only weakly given his condition. He coughs a bit, and takes a few slow deep breaths before continuing.`
+			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only weakly given his condition. He coughs a bit, and takes a few slow, deep breaths before continuing.`
 			`	"It's still a little difficult for me to speak, but I feel much better than when last we met on Oblivion. I just wanted you to know you're my oldest and best friend. At my lowest points you were always there for me. So thank you for that."`
 			`	You spend the day in the hospital room chatting with with Timothy, before finally having to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
@@ -9192,7 +9192,7 @@ mission "Timothy Radrickson 7: Hospice"
 
 			action
 				clear "offers"
-			`	You lean over and give him partial hug in his sick bed. He wraps his one good arm around you and squeezes. When he finally breaks free you see a tear.`
+			`	You lean over and give him a partial hug in his sick bed. He wraps his one good arm around you and squeezes. When he finally breaks free you see a tear.`
 			`	You leave him bedridden in the hospital, and to your surprise you find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
 			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
 				decline
