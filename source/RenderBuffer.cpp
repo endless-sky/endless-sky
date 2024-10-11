@@ -41,7 +41,7 @@ namespace {
 // Initialize the shaders.
 void RenderBuffer::Init()
 {
-	shader = GameData::Shaders().Get("render");
+	shader = GameData::Shaders().Get("renderBuffer");
 	sizeI = shader->Uniform("size");
 	positionI = shader->Uniform("position");
 	scaleI = shader->Uniform("scale");
