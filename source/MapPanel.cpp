@@ -1396,7 +1396,7 @@ void MapPanel::DrawSystems()
 		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
 		// before counting it.
 		if(commodity == SHOW_GOVERNMENT &&
-			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
+			(pos / Screen::BottomRight()).LengthSquared() < 1)
 		{
 			hasUnexplored |= !node.government;
 			hasUninhabited |= !node.isInhabited;

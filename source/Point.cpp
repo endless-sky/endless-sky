@@ -200,7 +200,26 @@ Point operator/(double scalar, const Point &point)
 #endif
 }
 
+Point Point::operator/(const Point &other) const
+{
+#ifdef __SSE3__
+	Point result;
+	result.v = v / other.v;
+	return result;
+#else
+	return Point(x / other.x, y / other.y);
+#endif
+}
 
+Point &Point::operator/=(const Point &other)
+{
+#ifdef __SSE3__
+	v /= other.v;
+#else
+	x /= other.x;
+	y /= other.y;
+#endif
+}
 
 Point &Point::operator/=(double scalar)
 {

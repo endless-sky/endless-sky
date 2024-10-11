@@ -58,6 +58,10 @@ public:
 	Point operator*(const Point &other) const;
 	Point &operator*=(const Point &other);
 
+	// Divide the respective components by another Point
+	Point operator/(const Point &other) const;
+	Point &operator/=(const Point &other);
+
 	double &X();
 	const double &X() const noexcept;
 	double &Y();
