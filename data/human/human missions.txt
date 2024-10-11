@@ -7687,10 +7687,10 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			`	He pours the brown liquid in the cups and pushes one to you. "Things have gone well for me, and are only going to get better from here on out."`
 			`	He takes a sip and says, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes. "When it returns from Wayfarer, the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
 			choice
-				`	(Congratulate Timothy.)`
+				`	"Congratulations Timothy. You're really outdone yourself."`
 				`	(Take a sip from your glass.)`
-				`	(Complain about the living standards of workers on Rand.)`
-				`	(Complain about hand-outs for the poor of Rand.)`
+				`	"Don't forget your humble beginnings, Timothy. The workers here seem to be suffering, while the rich thrive."`
+				`	"You're proof that hard work is all it takes to succeed. I don't know how you can stand living on a world filled with lazy workers all demanding hand outs."`
 
 			`	His eyes refocus on you. "You'd be proud, <first>. I am going to make a real difference here..."`
 			`	Timothy is suddenly interrupted by an incessant notification coming from his desk. He glowers and says, "Excuse me for a moment, <last>," sits up straight, turns on his ear piece and answers the call.`
