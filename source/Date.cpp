@@ -81,15 +81,15 @@ const string &Date::ToString() const
 		static const string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-		const string &weekday_str = Weekday(day, month, year);
-		const string &month_str = MONTH[month - 1];
+		const string &weekdayStr = Weekday(day, month, year);
+		const string &monthStr = MONTH[month - 1];
 
 		if(dateFormat == Preferences::DateFormat::YMD)
 			str = to_string(year) + "-" + ZeroPad(month) + "-" + ZeroPad(day);
 		else if(dateFormat == Preferences::DateFormat::MDY)
-			str = weekday_str + " " + month_str + " " + to_string(day) + ", " + to_string(year);
+			str = weekdayStr + " " + monthStr + " " + to_string(day) + ", " + to_string(year);
 		else if(dateFormat == Preferences::DateFormat::DMY)
-			str = weekday_str + ", " + to_string(day) + " " + month_str + " " + to_string(year);
+			str = weekdayStr + ", " + to_string(day) + " " + monthStr + " " + to_string(year);
 	}
 
 	return str;
