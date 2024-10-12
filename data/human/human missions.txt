@@ -7465,7 +7465,7 @@ mission "Timothy Radrickson 1: Stowaway"
 	destination "Rand"
 	passengers 1
 	to offer
-		random < 10
+		random < 2
 	on enter
 
 	# You will see this conversation after the first jump you make.
@@ -7482,7 +7482,7 @@ mission "Timothy Radrickson 1: Stowaway"
 			action
 				fail
 				event "timothy radrickson: mummy" 41
-			`	It's almost certainly nothing, and you have more important things to do than chase down every little sensor glitch on your ship.`
+			`	You turn off the alarm and return your focus to piloting your ship.`
 				decline
 
 			label check
@@ -7533,7 +7533,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				accept
 
 	on complete
-		log `You discovered Timothy, a stowaway, in your ship. You decided to take him where he needed to go. You never knew what Timothy had been fleeing. Who he had been, or what he had done that lead him to such dire straits.`
+		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
 		conversation
 			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
@@ -7545,8 +7545,6 @@ mission "Timothy Radrickson 1a: Accepted"
 	landing
 	name "Stowaway to <planet>"
 	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
-	source
-		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
 	to offer
 		has "Timothy Radrickson 1: Stowaway: active"
@@ -7568,8 +7566,8 @@ mission "Timothy Radrickson 2: mummy"
 
 	on enter
 		conversation
-			`For days there's been an odd lingering scent filtering in from your pressurized cargo. The smell has finally permeated your command deck, and something had to be done. A ship-wide search has led you to a unopened foodstuff crate. Although the crate was unopened, the seal on it appeared tampered with and the conjecture was that the food had gone bad.`
-			`	Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway; the entire crate promptly found its way to your airlock. Despite the diligent work of your ship's air filters, you can't quite rid the ship of the smell.`
+			`For days there's been an odd lingering scent filtering in from your pressurized cargo, but finally the smell has permeated your command deck. A ship-wide search leads you to a unopened foodstuff crate. Although the crate is unopened, the seal on it appears tampered with and you surmise that the food has gone bad.`
+			`	Upon opening it you discover that is in fact, not the case. Instead you discover the decaying body of a dead and forgotten stowaway; the entire crate promptly finds its way to your airlock. Despite the diligent work of your ship's air filters, you can't quite rid the ship of the smell.`
 
 
 mission "Timothy Radrickson 2: Interlude"
@@ -7592,7 +7590,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 	to offer
 		has "event: timothy radrickson: on rand"
 	on offer
-		log `Despite starting over with nothing, Timothy the Stowaway has sent you credits to pay you back for that passage you gave him over a year ago.`
+		log `Despite starting over with nothing, Timothy the Stowaway has sent me credits to pay me back for that passage I gave him over a year ago.`
 		payment 50000
 		event "timothy radrickson: governor" 3600
 		conversation
@@ -7603,9 +7601,9 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
-			`	"By way of thanks," he continues, "I've included 50,000 credits with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
+			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
 			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
-			`	Timothy waves and then the video ends.`
+			`	Timothy waves, and the video ends.`
 				decline
 
 
