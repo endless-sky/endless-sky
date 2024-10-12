@@ -5421,7 +5421,7 @@ mission "Hroar's Haulers 14"
 			
 		label behavesolvi
 		action
-			"reputation: Syndicate -5"
+			"reputation: Syndicate <?= -5"
 			set "savedsolvi"
 		`	Working together you and Solvi manage to push your way past the mostly engaged Enforcers and out toward the establishment's exit.`
 		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
