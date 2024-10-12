@@ -227,7 +227,7 @@ void Mission::Load(const DataNode &node)
 			location = SHIPYARD;
 		else if(child.Token(0) == "outfitter")
 			location = OUTFITTER;
-		else if (child.Token(0) == "job board")
+		else if(child.Token(0) == "job board")
 			location = JOB_BOARD;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
@@ -382,7 +382,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("shipyard");
 		else if(location == OUTFITTER)
 			out.Write("outfitter");
-		else if (location == JOB_BOARD)
+		else if(location == JOB_BOARD)
 			out.Write("job board");
 		else if(location == ASSISTING)
 			out.Write("assisting");
