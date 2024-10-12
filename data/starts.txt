@@ -99,7 +99,6 @@ start "hai space"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	
 	action
 		event "not from boston" 0
 		event "grew up on greenwater" 0
@@ -171,7 +170,7 @@ conversation "hai intro"
 	name
 	action
 		set "hai space start: Grasshopper"
-		give ship "Grasshopper (Expensive)" "Pristine Jewel"
+		give ship "Grasshopper (Hai Start)" "Pristine Jewel"
 		payment -1132000
 	`	The Hai gives you the keys to the Grasshopper after you hand over the tablet and your payment. "Looks like this your first step to becoming an interstellar entrepreneur. I'd say we'll meet again someday, but I'd rather not lie. In all my years, I never did meet the captain who sold me my first ship again. Not that should matter, anyway; this is your story, not mine."`
 	`	He gives you one last salute before returning to the crowd to sell yet another ship.`
