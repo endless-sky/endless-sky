@@ -3878,7 +3878,7 @@ mission "Human to Hai Space"
 				decline
 			
 			label origin
-			`	He seems shocked. "You too? I can give you <payment> to get to <destination>."`
+			`	He seems shocked. "Really? I can give you <payment> to get to <planet>."`
 				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
@@ -4629,6 +4629,7 @@ mission "Hai Wormhole Warning"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 		not "hr: meet the team"
+		not "hai space start"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -4658,10 +4659,6 @@ mission "Hai Wormhole Warning"
 			`	"So what is it that you brought me here for?" you ask.`
 			`	The officer folds his hands together. "You've made contact with an alien species located to the north. Is this correct?"`
 			choice
-				`	"I didn't exactly 'make contact'. I grew up there."`
-					to display
-						has "hai space start"
-					goto grewup
 				`	"It is. Is that a problem?"`
 					goto yes
 				`	"Perhaps. Why do you ask?"`
@@ -4672,9 +4669,6 @@ mission "Hai Wormhole Warning"
 				goto secret
 			label maybe
 			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
-				goto secret
-			label grewup
-			`	"That's all the same to me.`
 				goto secret
 			label yes
 			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`
