@@ -185,7 +185,7 @@ conversation "hai intro"
 
 
 # This ship uses the most expensive loadout possible so its sell price is roughly equal to the buy price.
-ship "Grasshopper" "Grasshopper (Expensive)"
+ship "Grasshopper" "Grasshopper (Hai Start)"
 	outfits
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
@@ -211,7 +211,7 @@ event "grew up on greenwater"
 	planet "Greenwater"
 		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
 		description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those beyond the wormhole, the climate here is like a "Paradise Planet," even though it lacks the extensive terraforming common to those worlds.`
-		description `	Thanks to its high human population, human lanaguage is dominant on Greenwater, with Hai language limited to the poles of the planet where Hai merchants are more frequent.`
+		description `	Thanks to its high human population, human language is dominant on Greenwater, with Hai language limited to the poles of the planet where Hai merchants are more frequent.`
 		spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
 
 substitutions

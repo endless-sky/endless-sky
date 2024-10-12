@@ -218,7 +218,7 @@ mission "Hai Waypoint Warning"
 		fail
 		conversation
 			`As the <ship> drops out of hyperspace, your dashboard is filled with an array of warning lights. It isn't hard to find the cause; even from this distance, the light of the wormhole is as clear as crystal, tinting everything around it a pale purple. The arms of the vortex rotate seemingly lethargically, but you know that, close up, the bands of energy that make it up must be moving several orders of magnitude faster than the top speed of your ship.`
-			`	Your sightseeing is interupted by a hail on an encrypted frequency. You open it and are met with what you vaguely recognize as a short greeting in the Hai language.`
+			`	Your sightseeing is interrupted by a hail on an encrypted frequency. You open it and are met with what you vaguely recognize as a short greeting in the Hai language.`
 			choice
 				`	"Could you repeat that?"`
 				`	"Sorry, I don't speak Hai."`
