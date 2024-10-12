@@ -112,7 +112,7 @@ conversation "hai intro"
 	
 	`Going to the North Pole already makes you feel as if you're on another world; even within the berth for your ferry, you can see more Hai than there are in your entire hometown. After some parting words from the PA system, you and your fellow passengers disembark, the flow of humanity breaking against the Hai crowd.`
 	`	Making your way towards the shipyard, you pull up the human-language version of your loan agreement to review: You have borrowed 1.431 million credits to be repaid over the course of two years. Your interest rate is 0.3%, making your repayments 4,836 credits per day.`
-	`	You look up from your tablet just before running head-on into a gray-haired Hai wearing a flight suit, knocking him over. As you bend over to help, he takes a glance at your mortgage documents. "You're about to become a captain, aren't you?" he says after dusting himself off.`
+	`	You look up from your tablet just before running head-on into a gray-furred Hai wearing a flight suit, knocking him over. As you bend over to help, he takes a glance at your mortgage documents. "You're about to become a captain, aren't you?" he says after dusting himself off.`
 	
 	choice
 		`	"Yes, I am."`
