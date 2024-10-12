@@ -125,17 +125,6 @@ test "Go To Mission Panel"
 			key d
 
 
-test "End Missions"
-	status partial
-	description "Just skip a mission by pressing return twice."
-	sequence
-		# Press accept (or decline, depending on if it is shown) and then skip the dialog once.
-		input
-			key "Return"
-		input
-			key "Return"
-
-
 test "Exit Map"
 	status partial
 	description "Leave the map screen."
@@ -165,7 +154,7 @@ test "Job Board Mission From Planet Test"
 		apply
 			"%TEST%: JOB BOARD MISSION OFFER" = 1
 		call "Trigger Job Board Mission From Planet"
-		call "End Missions"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Job Board Mission"
 		assert
@@ -182,7 +171,7 @@ test "Job Board Mission From Map Test"
 		apply
 			"%TEST%: JOB BOARD MISSION OFFER" = 1
 		call "Trigger Job Board Mission From Map"
-		call "End Missions"
+		call "Skip Mission"
 		call "Exit Map"
 		call "Depart"
 		call "Test Job Board Mission"
@@ -201,7 +190,7 @@ test "Job Board During Mission Test"
 			"%TEST%: JOB BOARD MISSION OFFER" = 1
 		call "Trigger Job Board Mission From Planet"
 		call "Go To Mission Panel"
-		call "End Missions"
+		call "Skip Mission"
 		call "Exit Map"
 		call "Depart"
 		call "Test Job Board Mission"
