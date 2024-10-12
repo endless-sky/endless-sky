@@ -895,7 +895,7 @@ conversation "deep: questioning"
 		`	"He told me he was researching the Deep and he needed help conducting his research."`
 			goto work
 	
-	`	She frowns. "That status does not give you immunity from our investigation. It only increases our disappointment in your actions.`
+	`	She frowns. "That does not give you immunity from our investigation.`
 	`	"Now again: what exactly were you doing with Albert Foster?"`
 	
 	label first
@@ -1247,7 +1247,7 @@ mission "Deep: Project Hawking: Prime"
 		<history> "You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and begain your life as a merchant captain."
 			has "start: syndicate"
 		<response> `"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
-		<response> `"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first came to the Deep. Everyone was so quiet and withdrawn, and it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
+		<response> `"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first arrived. Compared to how welcoming the Dirt Belt is, it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
 			has "start: deep"
 		<response> `"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parent's businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
 			has "start: paradise"

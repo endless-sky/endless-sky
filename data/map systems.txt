@@ -26162,7 +26162,6 @@ system Phurad
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
-	fleet "Small Northern Pirates" 9000
 	object
 		sprite star/g0
 		period 10
