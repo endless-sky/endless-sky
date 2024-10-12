@@ -212,7 +212,7 @@ mission "Hai Legacy 1"
 				goto "train back"
 			label lucky?
 			`	You manage to land a shot, although it seems to do nothing to the large spacecraft before you. Then you hear a small explosion. You aren't sure whether the damaged ship's systems failed on their own, or if by some stroke of luck, your shot did something to it.`
-			`	Unfortunately, you do not get a chance to ponder it, as the ship abruptly explodes, taking you and everyone else on the beach down with it.`
+			`	Unfortunately, you do not get a chance to ponder your actions, as the ship abruptly explodes, taking you and everyone else on the beach down with it.`
 				die
 			label miss
 			`	You miss your shot. Neither the ship nor the two Hai react. You feel like you heard a chuckle, but you're not sure where it came from.`
@@ -334,7 +334,7 @@ mission "Hai Legacy 3"
 				has "unfettered: fled with the relic"
 			branch "too many ships"
 				"total ships" > 1
-			`As you leave the planet's atmosphere, you see your challenger already waiting for you in the system, and they send you a hail as soon as you are in space. "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warrior should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
+			`As you leave the planet's atmosphere, you see your challenger already waiting for you in the system, and they send you a hail as soon as you are in space. "Show us what you got, monkey! Show us that you control your weapons well, as any warrior should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
 				accept
 			label fleeing
 			action
