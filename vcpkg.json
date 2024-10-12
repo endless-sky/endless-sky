@@ -1,5 +1,10 @@
 {
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "openal-soft",
+      "platform": "osx"
+    }
+  ],
   "features": {
     "system-libs": {
       "description": "System libraries required to build ES.",
@@ -26,23 +31,17 @@
         "sdl2"
       ]
     },
-    "flatpak-libs": {
-      "description": "System libraries missing in the Flatpak runtime.",
-      "dependencies": [
-        "libmad",
-        "glew"
-      ]
-    },
     "steam-libs": {
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
-        "libmad"
+        "libmad",
+        "catch2"
       ]
     },
-    "macos-libs": {
-      "description": "System libraries that are always needed on MacOS.",
+    "test-libs": {
+      "description": "Dependencies used for unit testing.",
       "dependencies": [
-        "openal-soft"
+        "catch2"
       ]
     }
   }

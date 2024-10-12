@@ -14,7 +14,7 @@
 mission "Remnant: Cognizance 1"
 	minor
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow-up visit to the planets in Nenia."
+	description `Plume would like you to use a "gaslined" ship to do a follow-up visit to the planets in Nenia.`
 	source "Aventine"
 	stopover "Nasqueron"
 	stopover "Slylandro"
@@ -63,6 +63,8 @@ mission "Remnant: Cognizance 1"
 	on stopover
 		conversation
 			`The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get a small flock of them into visual range. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
+	on visit
+		dialog "You've returned to Aventine without the scans from both gas giants in Nenia. Make sure you have visited both and that the ship carrying the scanning equipment has returned here."
 	on complete
 		conversation
 			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. Plume quickly takes and reviews the footage before making a gesture that you think means "curious dejection." Then he seems to notice something, and resumes his usual intent bearing.`
@@ -143,7 +145,7 @@ mission "Remnant: Cognizance 3"
 mission "Remnant: Cognizance 4"
 	landing
 	name "Search for the Korath"
-	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
+	description "Prefect Chilia has asked you to track down a Korath fleet detected in the Ember Waste before returning to <destination>."
 	source "Caelian"
 	to offer
 		has "Remnant: Cognizance 2: done"
@@ -257,7 +259,7 @@ mission "Remnant: Cognizance 5"
 				"Petrel" 4
 				"Tern" 8
 	on enter "Aescolanus"
-		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
+		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... quickly.`
 	on enter "Nenia"
 		dialog `You have found the Korath fleet. Time to destroy them all as Prefect Chilia requested.`
 	on complete
@@ -819,7 +821,7 @@ mission "Remnant: Cognizance 21"
 			label missiontransition
 			`	Dusk smiles and signs apologetically. "My apologies for being overly detailed. I found the study of our ancestors to be an intriguing one, so I have spent much time searching out my families' history. That, in turn, has led to a detailed interest in the early years of our society." Dusk gestures towards the holographic projection of Ssil Vida. "But enough of history, the present calls to us."`
 			label missiondescription
-			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: we go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... Well, we will see what the data says and decide from there."`
+			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: we go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... well, we will see what the data says and decide from there."`
 				accept
 	on accept
 		set "remnant: dusk busy"
@@ -835,14 +837,14 @@ mission "Remnant: Cognizance 21"
 					goto scienceassistant
 				`	(Explore Ssil Vida.)`
 			action
-				explorationinterest ++
+				"exploration interest" ++
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
 			`	The first few corridors are marked with labels indicating the direction that other explorers traveled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
 			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
 				goto wrapup
 			label scienceassistant
 			action
-				scienceinterest ++
+				"science interest" ++
 			`	You follow Dusk over to the equipment, and ask if there is anything you can do to help. He looks surprised, but pleased. After thinking about it for a moment, he asks you if you can help monitor some diagnostics and do some preventative maintenance on some of the equipment. Over the following few hours, Dusk keeps you involved in the work, occasionally explaining what the various pieces of equipment do. The rest of the team quickly follows suit, and before long you feel like part of the team. By the time Dusk starts wrapping up the observations you have started to pick up some of the scientific vocabulary, along with a few of the basics behind how the equipment works.`
 			`	You help pack up the equipment, then head back to the main room where Dusk and several others are gathered.`
 				goto wrapup
@@ -865,6 +867,23 @@ mission "Remnant: Cognizance 21"
 		conversation
 			`The trip back to <destination> goes quickly but quietly, as all the Remnant seem to be focused on writing reports of their observations. From what you can tell, each member of the team writes up their own observations and experiences, and then Dusk assembles all the reports into an expedition report that includes each researcher's verbatim report as well as his own.`
 			`	The <ship> settles into the current landing pattern for the main spaceport on <destination> as you flip through the exterior camera feeds. In the distance, you notice that one of the research hangars has some activity going on around it, but otherwise, the spaceport seems to be humming along as usual. Dusk stops by the cockpit as you settle the <ship> into its berth. "Thank you for helping us, <first>. It will take us some time to analyze this data, but we will likely be mounting another expedition to Ssil Vida in the near future." He pauses, then adds, "I do not think we ever mentioned it, but, as is appropriate for your assistance, a logistics adjustment of <payment> has been applied to your account to cover your costs and provide resources to prepare for future endeavors." Dusk gives you a polite nod before heading off to help the other researchers unload the equipment.`
+
+
+
+mission "Remnant: Cognizance Interest Condition Patch"
+	landing
+	invisible
+	repeat
+	to offer
+		or
+			has "explorationinterest"
+			has "scienceinterest"
+	on offer
+		"exploration interest" += "explorationinterest"
+		clear "explorationinterest"
+		"science interest" += "scienceinterest"
+		clear "scienceinterest"
+		fail
 
 
 
@@ -965,7 +984,7 @@ mission "Remnant: Cognizance 22"
 	on complete
 		payment 250000
 		conversation
-			`You have barely cleared the security perimeter when your commlink chimes twice with a notification of a logistics credit of <payment> being deposited to your account, closely following a message to land on pad 3E5 near the research hanger Taely has been working in.`
+			`You have barely cleared the security perimeter when your commlink chimes twice with a notification of a logistics credit of <payment> being deposited to your account, closely following a message to land on pad 3E5 near the research hangar Taely has been working in.`
 
 
 
@@ -1012,7 +1031,7 @@ mission "Remnant: Cognizance 23"
 				`	"They are beautiful."`
 			`	Taely nods in agreement. "I am glad you can appreciate some of the things we have achieved here. It makes me think that you will appreciate some of my other projects too.`
 			label turndown
-			`	"Historically, we have relied on Starlings to fill multiple light combat roles here in the Ember Waste. Reconnaissance, sentry duty, escort, picket, patrol... They have filled so many roles." She pauses, glancing at a departing Starling. "Of course, we could just make more Starlings, but our pool of specialized crew is not infinite either. The solution I have is these Mergansers. They are sufficiently advanced that they only require a single person to operate and have significant range, enough to patrol large portions of the Ember Waste. This makes them ideal for escorting Gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
+			`	"Historically, we have relied on Starlings to fill multiple light combat roles here in the Ember Waste. Reconnaissance, sentry duty, escort, picket, patrol... they have filled so many roles." She pauses, glancing at a departing Starling. "Of course, we could just make more Starlings, but our pool of specialized crew is not infinite either. The solution I have is these Mergansers. They are sufficiently advanced that they only require a single person to operate and have significant range, enough to patrol large portions of the Ember Waste. This makes them ideal for escorting Gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
 			`	She frowns a bit at that. "Unfortunately, the weapons program is not moving as quickly as I would like, so the Merganser does not have the tackling ability that I was originally envisioning for it. But at least it is an adept hunter we can use to pursue our enemies."`
 			choice
 				`	"Interesting."`
@@ -1056,7 +1075,7 @@ mission "Remnant: Cognizance 23"
 	on complete
 		event "remnant: merganser fleet"
 		conversation
-			`You disembark to the sight of Taely striding across the tarmac, but she veers away from you at the last minute to pat the nose of one of the Mergansers. She runs a finger gently along a weapon score for a moment, then turns to face you. "So, the Korath are still capable fighters, I see." She pauses, her eyes take on a distant look for a second before she continues. "But you have returned with the flock intact. Come, join us for a meal and tell me how they fared." She leads you into the hanger where a bunch of engineers and technicians are gathered in one corner with a rack full of food trays. They enthusiastically greet you and the Merganser pilots, and quickly pull you into discussions of how the Mergansers handled their first patrol.`
+			`You disembark to the sight of Taely striding across the tarmac, but she veers away from you at the last minute to pat the nose of one of the Mergansers. She runs a finger gently along a weapon score for a moment, then turns to face you. "So, the Korath are still capable fighters, I see." She pauses, her eyes take on a distant look for a second before she continues. "But you have returned with the flock intact. Come, join us for a meal and tell me how they fared." She leads you into the hangar where a bunch of engineers and technicians are gathered in one corner with a rack full of food trays. They enthusiastically greet you and the Merganser pilots, and quickly pull you into discussions of how the Mergansers handled their first patrol.`
 			`	Before long the technicians and pilots are trading stories while the Mergansers overshadow the group. Sometimes they poke various engineers or technicians, and the technicians frequently share messages from their commlinks. Apparently they have them hooked up to the Mergansers, so the ships are sharing their own accounts of the patrol. After several hours of the festivities, Taely announces that everyone needs to get to sleep because tomorrow is a new day. As everyone bids their farewells, you note that they include the ships, with most people patting or stroking one or more of the ships on their way out.`
 			`	"Stop by the cafeteria tomorrow morning, <first>. There will be more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
 
@@ -1357,7 +1376,7 @@ mission "Remnant: Cognizance 31"
 
 mission "Remnant: Cognizance 32"
 	name "Pick Up Refined Fuel"
-	description "Chilia has asked you to pick up 58 tons of refined fuel from <planet> by <date>."
+	description "Chilia has asked you to pick up <tons> of refined fuel from <planet> by <date>."
 	source "Viminal"
 	destination "Clink"
 	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."

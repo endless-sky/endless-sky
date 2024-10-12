@@ -225,7 +225,6 @@ bool Personality::IsDaring() const
 
 
 
-
 bool Personality::IsFrugal() const
 {
 	return flags.test(FRUGAL);

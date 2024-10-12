@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -37,11 +37,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Screen.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestContext.h"
+#include "test/Test.h"
+#include "test/TestContext.h"
 #include "UI.h"
 
 #include <chrono>
@@ -504,7 +504,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.7-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.10-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -540,6 +540,7 @@ Conversation LoadConversation()
 		{"<passengers>", "[your passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
+		{"<model>", "[Ship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
