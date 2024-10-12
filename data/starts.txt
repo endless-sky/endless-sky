@@ -67,7 +67,7 @@ start "hai space"
 	planet "Greenwater"
 	date 16 11 3013
 	to reveal
-		has "Ask the Hai about the Unfettered"
+		has "Ask the Hai about the Unfettered: offered"
 	on reveal
 		name "Hai Origins"
 		description `You grew up on Greenwater, in one of the human cities built on the equator, where the climate is too hot for the Hai. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending locations in human space.`
@@ -79,7 +79,7 @@ start "hai space"
 		debt 1431000
 	to unlock
 		has "main plot completed"
-		has "Ask the Hai about the Unfettered"
+		has "Ask the Hai about the Unfettered: offered"
 		# TODO: think about what point of HR should unlock this once it's back in the game, if any
 		# has "event: hai-human resolution announced"
 	conversation "hai intro"
@@ -132,7 +132,7 @@ conversation "hai intro"
 	`	He scratches the back of his head. "Sorry. I was just trying to help, but if I'm causing too much trouble, I'll get out of your way.`
 	choice
 		`	"I don't mind."`
-				goto happy
+			goto happy
 		`	"I'd rather handle things myself."`
 			goto leave
 	label happy
@@ -149,7 +149,7 @@ conversation "hai intro"
 		`	"What about the other people here? Shouldn't they get first pick?"`
 			goto pick
 	
-	`	The Hai chuckles. "That would be nice, wouldn't it? Unfortunately, retirement ain't cheap. I'd be happy to part with her for 1.132 million credits, though; that's less than a Aphid, let alone a new Grasshopper.`
+	`	The Hai chuckles. "That would be nice, wouldn't it? Unfortunately, retirement isn't cheap. I'd be happy to part with her for 1.132 million credits, though; that's less than a Aphid, let alone a new Grasshopper.`
 		goto deal
 	
 	label freighter
@@ -172,7 +172,7 @@ conversation "hai intro"
 		set "hai space start: Grasshopper"
 		give ship "Grasshopper (Hai Start)" "Pristine Jewel"
 		payment -1132000
-	`	The Hai gives you the keys to the Grasshopper after you hand over the tablet and your payment. "Looks like this your first step to becoming an interstellar entrepreneur. I'd say we'll meet again someday, but I'd rather not lie. In all my years, I never did meet the captain who sold me my first ship again. Not that should matter, anyway; this is your story, not mine."`
+	`	The Hai gives you the keys to the Grasshopper after you hand over the tablet and your payment. "Looks like this your first step to becoming an interstellar entrepreneur. I'd say we'll meet again someday, but I'd rather not lie. In all my years, I never did meet the captain who sold me my first ship again. Not that that should matter, anyway; this is your story, not mine."`
 	`	He gives you one last salute before returning to the crowd to sell yet another ship.`
 		decline
 	

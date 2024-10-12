@@ -233,7 +233,7 @@ mission "Hai Waypoint Warning"
 				`	"Alright, I'll be on my way."`
 					goto easy
 				`	"I'm serious."`
-			`	While you can't see your conversation partner over the comlink, you get the feeling that they'd be pinching the bridge of their nose right now. "You know, just a few decades ago, you'd be hard-pressed to find any captain in Hai space who'd even consider revealing the Hai's presence as anything but a disaster. Nowadays, it feels like even Hai are clamoring for the chance to go public."`
+			`	While you can't see your conversation partner over the commlink, you get the feeling that they'd be pinching the bridge of their nose right now. "You know, just a few decades ago, you'd be hard-pressed to find any captain in Hai space who'd even consider revealing the Hai's presence as anything but a disaster. Nowadays, it feels like even Hai are clamoring for the chance to go public."`
 			choice
 				`	"Don't worry, I'll keep the Hai a secret."`
 					goto easy
