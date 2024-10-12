@@ -5421,6 +5421,7 @@ mission "Hroar's Haulers 14"
 			
 		label behavesolvi
 		action
+			"reputation: Syndicate -5"
 			set "savedsolvi"
 		`	Working together you and Solvi manage to push your way past the mostly engaged Enforcers and out toward the establishment's exit.`
 		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
@@ -5450,7 +5451,7 @@ mission "Hroar's Haulers 14"
 		`	"You know full well that we 'stoners' have just as much fun as anyone else, Yng. Besides, you're practically one yourself so stop with the act." Bolverka says with more affection than venom.`
 		label yngcont
 		`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an agrument they've had a hundred times before.`
-		`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old asteroid next to an Elf-Stone is about as stoner as it gets, with only the midlest of tweaks."`
+		`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old asteroid next to an Elf-Stone is about as stoner as it gets, with only the mildest of tweaks."`
 		`	Yngvar frowns, "A piece of high technology is as different from a stone as a dwarf planet from a sun."`
 		`	This time Bolverka rolls her eyes, "It's the symbolism that matters, not the... you know what? How about we ask the greenhorn? Let them weigh in on the matter. I hear they have some experience with us 'stoners'."`
 		`	"Fine." Yngvar grumbles, "What do you say, <last>? Are they the same thing? Or different?"`
@@ -5506,7 +5507,7 @@ mission "Hroar's Haulers 14"
 		`	Bolverka snorts, but says nothing else."`
 		`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they would be the survivors."`
 		`	"And how exactly did one generation ship, without FTL technology, manage to seed half a dozen systems with these survivors?" Bolverka says sharply.`
-		`	"Wormholes? I don't know, woman, I don't have all the answers. But it makes more sense then your elf theory!"`
+		`	"Wormholes? I don't know, woman, I don't have all the answers. But it makes more sense then elves!"`
 		`	Bolverka rolls her eyes, "Anyways, back to the topic at hand, we 'stoners' have just as much fun as anyone else, and you know it, Yng. Besides, you're practically one yourself so stop acting all superior."`
 			goto yngcont
 
