@@ -691,6 +691,9 @@ planet Charon
 	description `	For modern spacefarers, Charon is a research outpost home to some of Sol's largest telescopes and sensor arrays. It's most unusual feature is a pair of chasms that nearly encircle the planet, giving it the appearance of being ready to split in two.`
 	spaceport `This spaceport is a gaming haven. Obviously the researchers here have a penchant for computer games, and the walls are covered in posters of various spacefaring games. A model of what appears to be a glowing gyroscope set between two long metallic prongs sits on the bar next to a large collection of model ships.`
 	security 0.01
+	tribute 200
+		threshold 2100
+		fleet "Sol Defense Fleet" 4
 
 planet "Charon Station"
 	attributes south station
@@ -5226,6 +5229,9 @@ planet Triton
 	description `	Despite the early attention it received, Triton was too reluctant to give up its secrets. As extra-solar planets became more available and economic concerns started to dominate space travel, Triton's once thriving research base has shrunk to being a mere shadow of itself. Now it is home only to a few long-term scientists and the occasional graduate student, and the skeleton staff to keep it operational.`
 	spaceport `The spaceport bar was once a large food court, but most of it has been sealed off and is now home to only a single noodle shop. A small group of people sit at a table off to the side, loudly discussing humanity's problems. Several vocally proclaim that everything started going wrong when researchers started chasing money instead of data back in the 24th century. Several others roll their eyes as if they had heard this many times already.`
 	security 0.01
+	tribute 100
+		threshold 1200
+		fleet "Sol Defense Fleet" 2
 
 planet "Triton Station"
 	attributes military north station

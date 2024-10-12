@@ -3643,3 +3643,30 @@ fleet "Independent (Korath-Allied) Defense"
 		"Marauder Leviathan (Weapons)"
 		"Firebird (Laser)" 3
 		"Firebird (Missile)"
+
+fleet "Sol Defense Fleet"
+	government "Republic"
+	names "republic small"
+	fighters
+		names "republic fighter"
+	cargo 0
+	personality
+		heroic
+	variant 2
+		"Barb" 2
+	variant 2
+		"Combat Drone" 5
+	variant
+		"Combat Drone" 10
+	variant 2
+		"Dagger" 2
+	variant 2
+		"Gunboat"
+	variant 2
+		"Lance" 5
+	variant 4
+		"Lance" 3
+	variant 2
+		"Rainmaker"
+	variant
+		"Rainmaker" 2
