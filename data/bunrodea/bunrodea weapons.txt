@@ -201,7 +201,7 @@ outfit "Swarm Pod"
 			"frame rate" .01
 		sound "swarm missile"
 		ammo "Swarm Missile"
-		icon "icon/meteor"
+		icon "icon/swarm"
 		"die effect" "missile death"
 		"hit effect" "particle impact"
 		"live effect" "swarm flare" 1000000
