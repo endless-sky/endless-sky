@@ -1680,6 +1680,10 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 
 	Orders &order = it->second;
 
+	// If the only order is to hold fire, this method should not do anything.
+	if(order.HasHoldFire() && order.count() == 1)
+		return false;
+
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
 	if(!parent)
