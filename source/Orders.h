@@ -78,7 +78,7 @@ public:
 	bool HasHarvest() const;
 
 	bool IsEmpty() const;
-	size_t count() const;
+	size_t Count() const;
 
 	// Set and get targeting information for this order.
 	void SetTargetShip(std::shared_ptr<Ship> ship);

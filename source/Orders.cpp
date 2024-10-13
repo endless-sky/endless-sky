@@ -205,7 +205,7 @@ bool Orders::IsEmpty() const
 
 
 
-size_t Orders::count() const
+size_t Orders::Count() const
 {
 	return activeOrders.count();
 }
