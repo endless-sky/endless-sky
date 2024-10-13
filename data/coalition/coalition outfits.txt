@@ -431,7 +431,7 @@ outfit "Coalition License"
 	category "Licenses"
 	thumbnail "outfit/coalition license"
 	description "A digital chip in the form of a stylized badge, this document signifies the permission of the owner to browse, employ and deal in transactions involving civilian Coalition technology."
-	description "	There is a history of controversy surrounding this license, as throughout the millennia several Heliarch laws have been in a back and forth regarding the requirements that need to be met for someone to be issued one, starting with the third Civil Goods and Fares Act, just a few decades after the War of Independence, all the way to the relatively recent twenty-sixth addendum to the second article of the Ninth Rectification on Commerce and Traffic, which two hundred years ago made it much more flexible to acquire such a license."
+	description "	There is a history of controversy surrounding this license, as throughout the millennia several Heliarch laws have been in a back and forth regarding the conditions that need to be met for someone to be issued one, starting with the third Civil Goods and Fares Act, just a few decades after the War of Independence, all the way to the relatively recent twenty-sixth addendum to the second article of the Ninth Rectification on Commerce and Traffic, which two hundred years ago made the acquisition requirements for such a license much more flexible."
 
 outfit "Heliarch License"
 	category "Licenses"
