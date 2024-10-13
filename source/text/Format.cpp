@@ -399,7 +399,7 @@ string Format::AmmoCount(int64_t value)
 	string result;
 	result.reserve(5);
 
-	// Handle numbers bigger than a million.
+	// Handle numbers bigger than a thousand.
 	static const vector<char> SUFFIX = {'T', 'B', 'M', 'k'};
 	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll, 1000ll};
 	for(size_t i = 0; i < SUFFIX.size(); ++i)
