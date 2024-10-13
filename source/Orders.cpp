@@ -205,6 +205,13 @@ bool Orders::IsEmpty() const
 
 
 
+size_t Orders::count() const
+{
+	return activeOrders.count();
+}
+
+
+
 void Orders::SetTargetShip(shared_ptr<Ship> ship)
 {
 	targetShip = ship;
