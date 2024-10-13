@@ -780,7 +780,6 @@ TEST_CASE( "Format::AmmoCount", "[Format][AmmoCount]") {
 		CHECK( Format::AmmoCount(999990000000000000) == "1e+18" );
 		CHECK( Format::AmmoCount(1000000000000000000) == "1e+18" );
 	}
-
 }
 
 TEST_CASE( "Format::ExpandConditions", "[Format][ExpandConditions]") {
