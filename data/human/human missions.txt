@@ -7494,7 +7494,7 @@ mission "Syndicate Business 3"
 				accept
 	on complete
 		conversation
-			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the Syndicate's headquarters.`
+			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the galactic headquarters of Syndicated Systems.`
 			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from just a few minutes to many hours.`
 			choice
 				`	(Take a seat in the lobby.)`
