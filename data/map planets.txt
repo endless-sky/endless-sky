@@ -504,7 +504,7 @@ planet Bounty
 	description `All the land near Bounty's equator is desert, but closer to the poles, the weather is temperate and there is enough rain for farming. The land near the northern pole is sparsely populated, but the other hemisphere is quite well developed, with many of the inhabitants now working in factories that produce fancy watches and intricate electronic components.`
 	description `	The focus on skilled manufacturing has had a dramatic effect on both the local education system and the sports scene. One can garner great respect - and a sizable income - simply by being the best at folding tiny paper cranes by microscope.`
 	spaceport `The spaceport is not fancy, but it is serviceable: the landing pads are very level and show only minor signs of wear and tear, and the one warehouse is tiny but recently built, and its roof is in good repair. Next to it is a marketplace building, with three walls and a pitched roof, and the fourth side open for people and trucks to come and go. An enterprising cook is selling lamb kebabs from a small grill and cart in one corner of the building.`
-	spaceport `	A moderately-sized festival has been set up in commemoration of Remembrance Day. Both locals and foreigners have gathered to show off their precision origami skills, with displays ranging from miniature Firebirds to hundreds of thousands of paper cranes, each representing a life lost in the Alpha Wars.`
+	spaceport `	A moderately-sized festival has been set up in commemoration of Remembrance Day. Both locals and off-worlders have gathered to show off their precision origami skills, with displays ranging from miniature Firebirds to hundreds of thousands of paper cranes, each representing a life lost in the Alpha Wars.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -1817,7 +1817,7 @@ planet Gemstone
 	description `Gemstone is a hot and unpleasant world, mostly due to a smoggy atmosphere high in methane. Much of the surface is covered in rugged mountains, making ground transport very difficult. However, the powerful tectonic forces here have created rich deposits of diamonds, emeralds, and sapphires, which are mined for use in jewelry and certain electronic components.`
 	description `	Mining a tectonically active world is an insane project. Earthquakes cause frequent cave-ins, but the potential for riches draws miners here despite high mortality rates. Most miners are dirt poor as a result of being paid on commission for their finds, but they are full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit.`
 	spaceport `The spaceport is perched on top of a peak in an older and more stable mountain range. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low concrete buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
-	spaceport `	In commemoration of Remembrance Day, a few flags have been set up in the spaceport. You suspect that the risk of earthquake puts the locals off of setting up anything more elaborate.`
+	spaceport `	In commemoration of Remembrance Day, a few flags have been set up in the spaceport. You suspect that the risk of an earthquake puts the locals off of setting up anything more elaborate.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -2167,7 +2167,7 @@ planet Heartland
 	description `Heartland is a pleasant world, with a geography mostly consisting of low hills, plains, and oceans. The farms here produce bountiful crops, and as a result it has drawn tens of millions of settlers. Many of them now work in factories or assembly lines, in which most of the farm equipment used here and in the surrounding systems is built.`
 	description `	Tractors from Heartland are trusted to be well-built and sturdy, and easy to repair; some are still in use that were built over a century ago.`
 	spaceport `The spaceport is a cluster of low buildings. At the center of the port is a special, taller building with glass walls on all sides. It houses the tractor showroom. The farmers visiting the showroom look about as excited as you do when touring a large and well-appointed shipyard. There are tractors with rubber wheels, spiked wheels, and tracks; with plows, combines, balers, and chaser bins; tractors barely big enough to sit on and tractors the size of a small freighter. It's somewhat overwhelming.`
-	spaceport `	One section of the tractor showcase appears to currently be dedicated to antique tractors back from the Alpha Wars. On one landing pad, you spot some dock workers unloading a gigantic harvester out from a Bulk Freighter's hold.`
+	spaceport `	One section of the tractor showcase appears to currently be dedicated to antique tractors back from the Alpha Wars. On one landing pad, you spot some dock workers unloading a gigantic wheeled harvester out from a Bulk Freighter's hold.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -2280,7 +2280,7 @@ planet Hopper
 	description `	The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; Earth fish could not be introduced successfully here.`
 	spaceport `The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn.`
 	spaceport `	Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees.`
-	spaceport `	The inn has been repurposed for hosting Remembrance Day celebrations. A canvas just above its entrance reads, "For those who have fallen, and those who may fall." The canvas is already blotchy.`
+	spaceport `	The inn has been repurposed for hosting Remembrance Day celebrations. A canvas just above its entrance reads, "For those who have fallen, and those who may fall." It is already blotchy.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -3499,7 +3499,7 @@ planet "New India"
 	description `	The farms grow both food crops and cotton, and very recently they have begun manufacturing their own textiles instead of just shipping the raw cotton off-world for processing.`
 	spaceport `New India's spaceport is a ring of low wooden buildings around a wide landing area paved with concrete slabs. Around the perimeter carts of trade goods are driven, some being pulled by tractors and others, by horses or oxen. You even think you see a few carts being pulled by water buffalo.`
 	spaceport `	Most of the buildings are for storage, but from somewhere nearby you can smell fresh-baked bread.`
-	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occurring, with Alpha War shanties audible from one of the spaceport buildings.`
+	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occurring, with Alpha War ballads audible from one of the spaceport buildings.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -3949,7 +3949,7 @@ planet Poisonwood
 	description `	Today, most of the inhabitants are children of the liberated slaves, and like their parents they remain grateful and fiercely loyal to the Republic.`
 	spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals are unusually courteous and proud to welcome you to their planet.`
 	spaceport `	The tavern in the center of the port is named The Parting Glass. The walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away, and friends left behind. It is a strange feeling to sit here so deeply immersed in signs of a history that you had no part in.`
-	spaceport `	A sign adverties a Remembrance Day special for half-price drinks.`
+	spaceport `	A sign advertises a Remembrance Day special for half-price drinks.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -4117,7 +4117,7 @@ planet Rand
 	description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south.`
 	description `	Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 	spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
-	spaceport `	Remembrance Day celebrations on Rand are sparse. It appears that most people have opted to return to their families on other planets to celebrate the day, though in one corner of the spaceport, you can hear a group of friends singing Alpha Wars shanties.`
+	spaceport `	Remembrance Day celebrations on Rand are sparse. It appears that most people have opted to return to their families on other planets to celebrate the day, though in one corner of the spaceport, you can hear a group of friends singing Alpha Wars folk songs.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
