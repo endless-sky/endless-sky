@@ -323,8 +323,9 @@ void Hardpoint::Jam()
 	// const access), assume Armament checked that this is a valid call.
 
 	// Reset the reload count.
-	reload = outfit->Reload();
-	burstReload = outfit->BurstReload();
+	reload += outfit->Reload();
+	burstReload += outfit->BurstReload();
+	--burstCount;
 }
 
 
