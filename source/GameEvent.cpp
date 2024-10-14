@@ -251,3 +251,11 @@ const list<DataNode> &GameEvent::Changes() const
 {
 	return changes;
 }
+
+
+
+// Date comparison.
+bool GameEvent::operator<(const GameEvent &other) const
+{
+	return date < other.date;
+}
