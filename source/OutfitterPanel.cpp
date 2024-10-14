@@ -15,8 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OutfitterPanel.h"
 
+#include "text/alignment.hpp"
+#include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
 #include "Mission.h"
@@ -26,17 +32,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "SpriteShader.h"
-#include "UI.h"
-#include "comparators/BySeriesAndIndex.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "text/DisplayText.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
-#include "text/alignment.hpp"
+#include "SpriteShader.h"
 #include "text/truncate.hpp"
+#include "UI.h"
 
 #include <algorithm>
 #include <limits>
