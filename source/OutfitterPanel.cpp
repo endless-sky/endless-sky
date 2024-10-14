@@ -392,7 +392,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return errors[0];
 	else
 	{
-		string errorMessage = "There are multiple reasons you cannot buy this outfit:\n";
+		string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
 		for(size_t i = 0; i < errors.size(); ++i)
 			errorMessage += to_string(i + 1) + ". " + errors[i] + "\n";
 		return errorMessage;
