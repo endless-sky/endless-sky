@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-phrase "successor nouns"
+phrase "successor noun"
 	word
 		"Aar"
 		"Aasqa"
@@ -94,6 +94,40 @@ phrase "successor nouns"
 		"Vyyra"
 		"Yejn"
 
+phrase "successor noun (<5 letters)"
+	word
+		"Aar"
+		"Aasa"
+		"Aara"
+		"Aj"
+		"Boud"
+		"Ej"
+		"Eira"
+		"Giiq"
+		"Hiid"
+		"Iri"
+		"Iraa"
+		"Ijaj"
+		"Jara"
+		"Jorv"
+		"Kejn"
+		"Kelq"
+		"Lijn"
+		"Luue"
+		"Maaj"
+		"Muue"
+		"Naaq"
+		"Niis"
+		"Oj"
+		"Ret"
+		"Ryia"
+		"Sko"
+		"Sola"
+		"Sou"
+		"Uij"
+		"Viir"
+		"Yejn"
+
 phrase "successor locations"
 	word
 		"aaura"
@@ -143,7 +177,7 @@ phrase "successor adjectives"
 		"vasa"
 		"veusa"
 
-phrase "successor verb bases"
+phrase "successor verb base"
 	word
 		"bru"
 		"da"
@@ -171,13 +205,13 @@ phrase "successor verb bases"
 		"ve" 2
 		"yaa"
 
-phrase "successor verb tenses"
+phrase "successor verb tense"
 	word
 		"e"
 		"i"
 		"u"
 
-phrase "successor intermediates"
+phrase "successor intermediate"
 	word
 		"-" 8
 		"-ag"
@@ -219,29 +253,29 @@ phrase "successor end"
 
 phrase "successor"
 	phrase
-		"successor nouns"
+		"successor noun"
 
 phrase "successor"
 	phrase
-		"successor nouns"
+		"successor noun"
 	phrase
-		"successor intermediates"
+		"successor intermediate"
 	phrase
 		"successor end"
 
 phrase "successor"
 	phrase
-		"successor nouns"
+		"successor noun"
 	phrase
-		"successor intermediates"
+		"successor intermediate"
 	phrase
-		"successor verb bases"
+		"successor verb base"
 	phrase
-		"successor verb tenses"
+		"successor verb tense"
 
 phrase "successor"
 	phrase
-		"successor nouns"
+		"successor noun"
 	word
 		"-"
 	phrase
@@ -249,51 +283,51 @@ phrase "successor"
 
 phrase "successor"
 	phrase
-		"successor nouns"
+		"successor noun"
 	phrase
-		"successor intermediates"
+		"successor intermediate"
 	phrase
 		"successor locations"
 
 phrase "successor"
 	phrase
-		"successor nouns"
+		"successor noun"
 	phrase
-		"successor intermediates"
+		"successor intermediate"
 	phrase
 		"successor end"
 
 
 phrase "high houses start"
 	word
-		"Aasqa-"
-		"Aaul-"
-		"Chyyra-"
-		"Forel-"
-		"Iosola-"
-		"Iyiq-"
-		"Jorv-"
-		"Khas-"
-		"Khora-"
-		"Khosa-"
-		"Kijet-"
-		"Myiara-"
-		"Myuret-"
-		"Nosola-"
-		"Ojet-"
-		"Raaqa-"
-		"Rej-"
-		"Ruuv-"
-		"Seqa-"
-		"Seqra-"
-		"Sioe-"
-		"Stiidej-"
-		"Stiiqa-"
-		"Tordu-"
-		"Trij-"
-		"Val-"
-		"Valkkra-"
-		"Veusa-"
+		"Aasqa"
+		"Aaul"
+		"Chyyra"
+		"Forel"
+		"Iosola"
+		"Iyiq"
+		"Jorv"
+		"Khas"
+		"Khora"
+		"Khosa"
+		"Kijet"
+		"Myiara"
+		"Myuret"
+		"Nosola"
+		"Ojet"
+		"Raaqa"
+		"Rej"
+		"Ruuv"
+		"Seqa"
+		"Seqra"
+		"Sioe"
+		"Stiidej"
+		"Stiiqa"
+		"Tordu"
+		"Trij"
+		"Val"
+		"Valkkra"
+		"Veusa"
 
 phrase "high houses end"
 	word
@@ -335,8 +369,72 @@ phrase "high houses end"
 phrase "high houses"
 	phrase
 		"high houses start"
+	word
+		"-"
 	phrase
 		"high houses end"
+
+
+phrase "house kaatrij"
+	phrase
+		"high houses"
+
+phrase "house kaatrij"
+	phrase
+		"high houses start"
+	word
+		", "
+		", of "
+	word
+		"Adroit"
+		"Blinding"
+		"Brilliant"
+		"Childlike"
+		"Defiant"
+		"Dulcet"
+		"Elegant"
+		"Gentle"
+		"Honest"
+		"Living"
+		"Quiet"
+		"Searing"
+		"Sleeping"
+		"Somber"
+		"Verdant"
+		"Virtuous"
+		"Votive"
+		"Waiting"
+		"Winged"
+		"Wrathful"
+	word
+		" "
+	phrase
+		"successor noun (<5 letters)"
+
+
+phrase "house aqrabe"
+	phrase
+		"high houses"
+
+phrase "house aqrabe"
+	word
+		"First"
+		"Second"
+		"Third"
+		"Fourth"
+		"Fifth"
+		"Sixth"
+		"Seventh"
+		"Eighth"
+		"Ninth"
+		"Tenth"
+	word
+		" "
+	phrase
+		"high houses start"
+	phrase
+		"successor end"
+
 
 phrase "successor relation"
 	word
@@ -368,14 +466,56 @@ phrase "successor commodities (2-syllable)"
 	word
 		"armlets"
 		"bracelets"
+		"dishes"
 		"fabrics"
-		"fish-cubes"
 		"flooring"
 		"fossils"
 		"glassware"
 		"goblets"
+		"outfits"
 		"paintings"
+		"piercings"
 		"sculptures"
+
+phrase "successor media name"
+	word
+		"${shakespeare play}" 4
+		"Somber Current"
+		"Kaska's Folly"
+		"Chasing Iret"
+		"Red Gold Killers"
+		"The Kijran Connection"
+		"Odophorate"
+		"The Glass House"
+		"Void Furies"
+		"Secret Lore of the Fall"
+		"The Last Days of House Sejra"
+		"Sieoora's Buried Aliens"
+		"Salt Tide"
+		"We Are Ash"
+		"Secretly Quarg"
+		"Blatantly Quarg"
+		"Fall Rangers"
+		"Silver Rain"
+		"Beneath the Waves"
+		"Spies of Kaatrij"
+		"Lephiate Child"
+		"Rijas, Rijan, Rijara"
+
+phrase "shakespeare play"
+	word
+		"All's Well That Ends Well"
+		"As You Like It"
+		"Hamlet"
+		"Love's Labour Lost"
+		"Macbeth"
+		"Midsummer Night's Dream"
+		"Much Ado About Nothing"
+		"Romeo and Juliet"
+		"The Tempest"
+		"Titus Andronicus"
+		"Twelfth Night"
+		"Two Gentlemen of Verona"
 
 trade
 	commodity "Successor High Value"
