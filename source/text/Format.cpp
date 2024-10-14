@@ -293,11 +293,11 @@ string Format::Credits(int64_t value)
 	int64_t absolute = abs(value);
 
 	// Handle numbers bigger than a million.
-	static constexpr array<pair<int64_t, char>, 3> THRESHOLD_SUFFIX = {
+	static constexpr array<pair<int64_t, char>, 3> THRESHOLD_SUFFIX = {{
 		{1000000000000ll, 'T'},
 		{1000000000ll, 'B'},
 		{1000000ll, 'M'}
-	};
+	}};
 	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
 		if(absolute > threshold)
 		{
