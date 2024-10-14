@@ -7811,10 +7811,24 @@ mission "Syndicate Business 5"
 					goto choseplana
 				`	"What would it take to boost profits even more?"`
 					goto planb
+					to display
+						not "heardplanb"
 				`	"And if I have concerns about the environmental impact?"`
 					goto planc
+					to display
+						not "heardplanc"
+				`	"Could you remind me about the unregulated option?"`
+					goto planb
+					to display
+						has "heardplanb"
+				`	"Explain the eco-friendly choice once more."`
+					goto planc
+					to display
+						has "heardplanc"
 			label planb
 			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile--one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 4100 credits a day, or about 15% a year."`
+			action
+				set "heardplanb"
 			choice
 				`	"Bring on the profits, this unregulated option is the one for me."`
 					goto choseplanb
@@ -7822,8 +7836,16 @@ mission "Syndicate Business 5"
 					goto plana
 				`	"And if I have concerns about the environmental impact?"`
 					goto planc
+					to display
+						not "heardplanc"
+				`	"Explain the eco-friendly choice once more."`
+					goto planc
+					to display
+						has "heardplanc"
 			label planc
 			`	"There's also the eco-friendly route. We'd invest in green energy technologies and refining processes that minimize environmental impact and implement best-in-class workplace safety protocols. It's the most expensive option, and it'll slow our expansion, but it would reduce our environmental liabilities and might give us some goodwill. Easily the worst returns with around 2000 credits a day expected, or just around 7% a year."`
+			action
+				set "heardplanc"
 			choice
 				`	"This environmental and safety focused option is the one for me."`
 					goto choseplanc
@@ -7831,6 +7853,12 @@ mission "Syndicate Business 5"
 					goto plana
 				`	"What would it take to boost profits even more?"`
 					goto planb
+					to display
+						not "heardplanb"
+				`	"Could you remind me about the unregulated option?"`
+					goto planb
+					to display
+						has "heardplanb"
 			label choseplana
 			action
 				"salary: Syndicate Business" += 2700
@@ -7859,5 +7887,8 @@ mission "Syndicate Business 5"
 				`	(Sign the paperwork.)`
 			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
 			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to the <ship>.`
+			action
+				clear "heardplanb"
+				clear "heardplanc"
 
 event "10m investment done"
