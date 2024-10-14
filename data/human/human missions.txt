@@ -7622,7 +7622,13 @@ mission "Syndicate Business 5"
 			`	Howard raises an eyebrow. "Marauder ships are nasty pieces of work," he explains. "They're ships with numerous modifications - mostly with combat in mind. More shields, weapons, engines, and outfit space, with enough firepower to tear through a lot of defenses before anyone knows what hit them. They're often used by rogue groups that operate outside the law, preying on vulnerable targets."`
 			label ask
 			`	Howard pauses for a moment before continuing. "Megaparsec is interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted in Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
+			branch meanlook
+				"syndicate business: mean to Howard" > 0
+			`	He gives you a deliberate look. "Does that sounds like a plan?"`
+				goto endoflook
+			label meanlook
 			`	He gives you a pointed look. "Think you can handle that?"`
+			label endoflook
 			choice
 				`	"You got it."`
 					goto accepting
