@@ -7455,6 +7455,7 @@ mission "Adelita 5"
 			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
 
 
+
 # Part 2
 # Best case: 10m, 4100 per day best case out of the negative after ~6.7 years
 # Worst case: 11m, 2000 per day worst case out of the negative after ~15 years (13.7 years, plus a little longer for 10M-->11M)
@@ -7494,7 +7495,7 @@ mission "Syndicate Business 3"
 	on complete
 		conversation
 			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the Syndicate's headquarters.`
-			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from minutes to hours.`
+			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from just a few minutes to many hours.`
 			choice
 				`	(Take a seat in the lobby.)`
 			branch makeemwait
@@ -7506,7 +7507,7 @@ mission "Syndicate Business 3"
 			label next
 			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress anybody who comes in, but it's clear that this is more for show than substance.`
 			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
-			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there's too many prying eyes here. I'm wrapping up some meetings, but meet me at the spaceport later. I'll fly in my Shuttle as you escort me to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
+			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there are too many prying eyes here. I'm wrapping up some meetings, but meet me at the spaceport later. I'll fly in my Shuttle as you escort me to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
 			choice
 				`	"Sure thing, I'll see you later."`
 					goto next2
@@ -7537,7 +7538,7 @@ mission "Syndicate Business 3"
 				"syndicate business: mean to Howard" --
 			`	"Thanks, that means a lot. Now, I've got to get back to work."`
 			label next2
-			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone shifting seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone changing seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
 
 
 mission "Syndicate Business 4"
@@ -7621,10 +7622,10 @@ mission "Syndicate Business 5"
 				`	"No, I can't say I am."`
 			`	Howard raises an eyebrow. "Marauder ships are nasty pieces of work," he explains. "They're ships with numerous modifications - mostly with combat in mind. More shields, weapons, engines, and outfit space, with enough firepower to tear through a lot of defenses before anyone knows what hit them. They're often used by rogue groups that operate outside the law, preying on vulnerable targets."`
 			label ask
-			`	Howard pauses for a moment before continuing. "Megaparsec is interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted in Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
+			`	Howard pauses for a moment before continuing. "We at Megaparsec are interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted in Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
 			branch meanlook
 				"syndicate business: mean to Howard" > 0
-			`	He gives you a deliberate look. "Does that sounds like a plan?"`
+			`	He gives you a deliberate look. "Does that sound like a plan?"`
 				goto endoflook
 			label meanlook
 			`	He gives you a pointed look. "Think you can handle that?"`
@@ -7645,7 +7646,7 @@ mission "Syndicate Business 5"
 				`	"I'm still not interested."`
 					decline
 			label investingop
-			`	His face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least ten or maybe twelve million credits to get in on this one."`
+			`	Howard's face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least ten or maybe twelve million credits to get in on this one."`
 			`	He leans forward. "We're looking to fund a refueling station expansion at our logistics hub on Crossroads. We're between an aggressive option, a more conventional expansion, and a more conservative one."`
 			`	Howard pauses, gauging your reaction before continuing. "All of the options have their merits, though investors usually prefer the one with the most returns. But the choice is yours if you're in. I'll make sure you get the full details once we're done with this little favor in Oblate."`
 			choice
@@ -7669,7 +7670,7 @@ mission "Syndicate Business 5"
 			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around.`
 				goto ending
 			label blewupgolden
-			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship. Cripple it so we can study it, but don't blow it into oblivion like you did to that Vanguard when we first met.`
+			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship. Cripple it so we can study it, but don't blow it into oblivion like you did that Vanguard when we first met.`
 			label ending
 			`	"Well, that's all I have for you. Goodbye and good luck!"`
 				accept
@@ -7713,7 +7714,7 @@ mission "Syndicate Business 5"
 		on disable
 			conversation
 				`The ship has been disabled. You receive a message from Howard almost immediately:`
-				`	"<first> <last>, you've done it again! Meet back at <destination> to discuss."`
+				`	"<first> <last>, you've done it again! Meet me on <destination> to talk about this victory."`
 				`		Howard Vendeur`
 				`		Investor Relations Manager, Megaparsec Incorporated`
 		on kill
