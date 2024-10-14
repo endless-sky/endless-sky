@@ -1600,6 +1600,7 @@ mission "Sheragi Archaeology: Epilogue"
 	description "Return to Zug."
 	source "Valley of the Damned"
 	destination "Zug"
+	passengers 150
 	cargo "Outfitting Equipment" 25
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
