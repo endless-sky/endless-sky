@@ -3499,7 +3499,7 @@ planet "New India"
 	description `	The farms grow both food crops and cotton, and very recently they have begun manufacturing their own textiles instead of just shipping the raw cotton off-world for processing.`
 	spaceport `New India's spaceport is a ring of low wooden buildings around a wide landing area paved with concrete slabs. Around the perimeter carts of trade goods are driven, some being pulled by tractors and others, by horses or oxen. You even think you see a few carts being pulled by water buffalo.`
 	spaceport `	Most of the buildings are for storage, but from somewhere nearby you can smell fresh-baked bread.`
-	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occurring, with Alpha War ballads audible from one of the spaceport buildings.`
+	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occurring, with Alpha Wars ballads audible from one of the spaceport buildings.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
