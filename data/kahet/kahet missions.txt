@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Tommaso Becca
+# Copyright (c) 2019 by Tommaso Becca
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -925,8 +925,8 @@ mission "Ka'het: Patir Mystery 7"
 			`	You follow Dusk around the building, but the results are the same. The depot is full of empty, untouched containers and barren racks in an incredible state of preservation. After Dusk gathers the last samples, you follow him outside, where you join the other teams leaving the building with their samples. Next stop: <planet>.`
 				accept
 			label gardens
-				action
-					"patir: builder seeds" ++
+			action
+				"patir: builder seeds" ++
 			`	"I agree, it feels the most interesting of the two." The two of you follow the route indicated on the map for a while before reaching the entrance: a slender, sturdy-looking pillar roughly two meters wide with a circular opening on one side. Moving closer you can see the end of a shallow ramp right beyond the door, swirling upwards inside of the column and likely reaching the top of the dome.`
 			`	"If this is supposed to be the exit of the garden," Dusk says, "I fail to see where the entrance should be. We are going to have to walk up it instead."`
 			choice
@@ -1109,7 +1109,7 @@ mission "Ka'het: Patir Mystery 9"
 			`	You can't tell how much time has passed since the phenomenon began, but it finally starts to show signs that it's coming to an end: the streaks become shorter and last longer in the sky, and the number of stars you can see becomes less and less. You begin noticing more and more details; some streaks seem to end before reaching the horizon, while others follow a curved or even cyclical pattern around Patir. Eventually, the stars come to a standstill, and everything returns to normal.`
 			`	Still dizzy from the experience, you carefully walk back down outside to speak with the Remnant. By the time you've reached them, they seem to have recomposed themselves and have started studying some sort of holographic stellar map.`
 			choice
-				`	"What the hell was that?"`
+				`	"What was that?"`
 					goto what
 				`	"Is everyone okay?"`
 			`	"We are all shaken by the experience, but we have much bigger problems to think about now," Dusk replies. "Something is not right with the sky."`
@@ -1283,7 +1283,7 @@ mission "Ka'het: Patir Mystery 12A"
 				decline
 
 			label chanai
-			`	"Okay then. Most of the equipment we are going to need is the same equipment we used for Patir, so we will be ready to depart in just half an hour."`
+			`	"Okay then. Most of the equipment we are going to need is the same equipment we used for Patir, so we will be ready to depart in just half an hour." After helping them pack the last few items, you take off and set the course to the new destination: <stopovers>.`
 				launch
 	on enter Chanai
 		dialog
@@ -1582,7 +1582,6 @@ mission "Ka'het: Patir Mystery 12D"
 		government "Magic Asteroid"
 		personality coward fleeing harvests pacifist uninterested waiting
 		fleet
-			names "Magic Asteroid"
 			cargo 3
 			variant
 				"Asteroid Large (Patir 12A)"
@@ -1736,7 +1735,7 @@ mission "Ka'het: Patir Mystery 13A"
 			label options
 			`	"We are left with few alternatives. As I told you previously, the Chanai station is an interesting possibility, and could have influenced Patir's erratic behavior. At the same time, exploring the asteroid around Lathia may put us closer to understanding the inner workings of the beings and how they interact with the Ka'sei. It is quite dangerous, but visiting the space station is also an unknown, and maybe a more direct approach is what we need to accomplish our objective. Neither mission prevails over the other in a definite way, and our votes within the team are split evenly between the two, so if y-"`
 			`	Dusk halts mid phrase, looking behind you with an awestruck gaze. The sky has again turned black, and a few dim lines are already starting to appear in the distance. The whole team jumps to the windows, watching as the light show begins.`
-			`	While stars and galaxies zoom in the night sky, a few of the Remnant run around the lab, turning on various instruments. However, most of them remain with their faces stuck to the glass. The lights start converging toward a single point, forming a large, but rapidly shrinking mass in the background.`
+			`	While stars and galaxies zoom in the night sky, two Remnant keep running around the lab, turning on various instruments. However, the rest of them remain with their faces stuck to the glass with you. The lights start converging toward a single point, forming a large, but rapidly shrinking mass in the background.`
 			`	The stars begin to slow down before settling into their final positions. After all the time you have spent here, it isn't difficult to recognize that the sky has changed again. Next to you, the rest of the team is already analyzing the data gathered; Dusk seems to be writing down something from a chronometer.`
 			choice
 				`	"Are we back in the Milky Way?"`
@@ -1795,7 +1794,7 @@ mission "Ka'het: Patir Mystery 13B"
 	on enter
 		conversation "end of Patir 2 - on enter"
 	on complete
-		payment 370000
+		payment 1570000
 		clear "remnant: dusk busy"
 		set "initial patir exploration"
 		event "patir mystery 2 timer" 45

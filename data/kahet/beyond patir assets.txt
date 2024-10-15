@@ -2430,13 +2430,13 @@ mission "Asteroid guarding Lathia"
 		never
 	npc save
 		government "Magic Asteroid"
-		personality heroic vindictive staying frugal forbearing
+		personality forbearing frugal heroic staying vindictive
 		system Lathia
 		ship "Asteroid Planet" "Queen Asteroid"
 
 ship "Asteroid Planet"
 	attributes
-		category "Transport"
+		category "Heavy Warship"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 1350000000

@@ -511,7 +511,7 @@ outfit "Ka'het Compact Engine"
 outfit "Ka'het Electric Stunner"
 	category "Hand to Hand"
 	cost 103500
-	thumbnail "outfit/ka'het tazer"
+	thumbnail "outfit/ka'het taser"
 	"capture attack" 1.3
 	"capture defense" 8.5
 	"unplunderable" 1
