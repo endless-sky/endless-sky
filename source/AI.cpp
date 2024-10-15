@@ -2131,7 +2131,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	// "parent" to land (because the parent may not be planning on landing).
 	else if(systemHasFuel && needsFuel)
 		Refuel(ship, command);
-	else if(parent.Commands().Has(Command::LAND) && parentIsHere && planetIsHere)
+	else if((parent.Commands().Has(Command::LAND) || parent.IsLanding()) && parentIsHere && planetIsHere)
 	{
 		if(parentPlanet->CanLand(ship))
 		{
@@ -2888,10 +2888,16 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 			toDump -= dumped;
 		}
 
-	Messages::Add(ship->GetGovernment()->GetName() + " " + ship->Noun() + " \"" + ship->Name()
-		+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
-
 	*threshold = (1. - health) + .1;
+
+	if(ship->GetPersonality().IsMute())
+		return;
+	const Government *government = ship->GetGovernment();
+	const string &language = government->Language();
+	if(language.empty() || player.Conditions().Get("language: " + language))
+		Messages::Add(government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
+
 }
 
 
