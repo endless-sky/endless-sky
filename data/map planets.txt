@@ -798,7 +798,7 @@ planet Clark
 			or
 				"days since year start" <= 35
 				"days since year start" >= 55
-	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, bolstered further by Remembrance Day celebrations. Locals and tourists take turns downing as many beers as possible as their friends shout Alpha Wars shanties.`
+	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, bolstered further by Remembrance Day celebrations. Locals and tourists take turns downing as many beers as possible as their friends shout Alpha Wars folk songs.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -2422,7 +2422,7 @@ planet Ingot
 	description `	Because Ingot has almost no atmosphere to slow them down, meteorites are a constant danger to the colonists. The shells of the buildings have multiple layers, designed to be self-sealing in any but the largest of impacts. Most of the mining is done remotely by robotic vehicles, but someone still needs to be present to control them and to make repairs when something goes wrong.`
 	spaceport `In this spaceport, ships dock inside a hangar whose ceiling protects them from meteorite impacts. The hangar is not pressurized, so there are also landing tubes that connect to each of the visiting ships. Many of the people inside are carrying emergency oxygen masks in case a sudden impact ruptures the building.`
 	spaceport `	In addition to being the spaceport, this complex is also the repair and control center for the mining robots. There are a handful of buildings elsewhere on Ingot, but not many. You cannot imagine spending so much time with so little space or change of scenery.`
-	spaceport `	The decorations for Remembrance Day on this planet amount to a batch of flags placed near trading hub. The spirit of the locals, however, is undeniable; you can feel the sound of shanties echo through the port.`
+	spaceport `	The decorations for Remembrance Day on this planet amount to a batch of flags placed near trading hub. The spirit of the locals, however, is undeniable; you can feel folk songs echo through the metal corridors.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
