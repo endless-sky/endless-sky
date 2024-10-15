@@ -736,7 +736,7 @@ ship "Cloak Check"
 	turret 0 0
 
 outfit "Cloak Checker"
-	category "Turret"
+	category "Turrets"
 	thumbnail "outfit/unknown"
 	"turret mounts" -1
 	weapon
@@ -757,7 +757,7 @@ mission "Ka'het: Patir Mystery 6"
 		attributes "remnant primary"
 	destination "Builder Settlement"
 	passengers 5
-	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back <first>! We should be ready for the next Patir expedition, but we need at least 5 free bunks to attempt it."`
+	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back, <first>! We should be ready for the next Patir expedition, but we need at least five free bunks to attempt it."`
 	to offer
 		random < 60
 		has "event: patir mystery timer"
@@ -767,7 +767,7 @@ mission "Ka'het: Patir Mystery 6"
 			`It doesn't take long for you to be noticed in the crowded, yet quiet, starport of <origin>. You feel a tap on your shoulder and turn around to see Dusk, accompanied by a group of four. "Good to see you here again, <first>! Do you remember our exploration of the Patir black hole?"`
 			branch "atmospheric data"
 				has "atmospheric scan intact"
-			`	One of the other Remnant shows you a hologram of the system, with what looks like the Builder settlement you visited earlier highlighted by a yellow glow. "After studying the data we gathered during our last visit, we may have devised a way to enter the structure undisturbed! Based on our recordings, the Fetri'sei that attacked us in the structure was gathering materials from the asteroid belt with its fellow Ka'sei, and only moved inside the dome when they spotted us."`
+			`	One of the other Remnant shows you a hologram of the system, with what looks like the Builder settlement you visited earlier highlighted by a yellow glow. "After studying the data we gathered during our last visit, we may have devised a way to enter the structure undisturbed! Based on our recordings, the Fetri'sei that attacked us in the structure was gathering materials from the asteroid belt with its fellow Ka'sei, and only moved inside the dome when it spotted us."`
 				goto proposal
 
 			label "atmospheric data"
@@ -783,7 +783,7 @@ mission "Ka'het: Patir Mystery 6"
 			`	"It is a bit more complicated than that. We found that the pressure inside the complex was much, much lower than what we are used to - less than a sixteenth of an atmosphere. On most Earth-like planets, you would only find such pressures at over 20,000 meters. There are two possibilities: either the Builders were born in a thin atmosphere, or the life support system failed some time ago and the structure has been slowly losing air ever since. We hope to find the answer soon enough."`
 
 			label skipdialog
-			`	"On top of that, we have learned that the Fetri'sei that attacked us was not waiting in the structure when we first entered the system; it was gathering materials from the asteroid belt together with the rest of its fellow Ka'sei, and only moved inside the dome when they spotted us."`
+			`	"On top of that, we have learned that the Fetri'sei that attacked us was not waiting in the structure when we first entered the system; it was gathering materials from the asteroid belt together with the rest of its fellow Ka'sei, and only moved inside the dome when it spotted us."`
 
 			label proposal
 			choice
@@ -813,7 +813,7 @@ mission "Ka'het: Patir Mystery 6"
 			`As soon as you approach the <planet>, you see that the Ka'sei are following your ship. You won't be able to enter the settlement safely anymore.`
 	npc save
 		government "Test Dummy"
-		personality unconstrained heroic nemesis
+		personality heroic nemesis unconstrained
 		system "Patir"
 		fleet
 			variant
@@ -845,7 +845,7 @@ mission "Ka'het: Patir Mystery 7"
 				goto entrance
 
 			label inside
-			`	"Well, that is up to you. From the brief scans I made of the structure it does not seem to have particularly thick internal walls, so communication between us within the dome should be feasible. You could come with me inside the structure to help identify what we find, or if you prefer you could also remain near the airlocks and keep an eye for incoming Fetri'sei. As I said, the choice is yours."`
+			`	"Well, that is up to you. From the brief scans I made of the structure it does not seem to have particularly thick internal walls, so communication between us within the dome should be feasible. You could come with me inside the structure to help identify what we find, or if you prefer you could also remain near the airlocks and keep an eye out for incoming Fetri'sei. As I said, the choice is yours."`
 				goto entrance
 
 			label dusk
@@ -856,7 +856,7 @@ mission "Ka'het: Patir Mystery 7"
 			`	"Honestly? At this point, I am positive they will. The last time we came here, they had already found us and were probably starting to enter the dome. Right now, they are still in the asteroid belt continuing their mission. There's the possibility that the airlock will alert them of our arrival, but at this point it is unlikely. In either case, I will be sure to keep an eye on the airlock once we are inside the dome."`
 			label entrance
 			`	It doesn't take long to reach the airlock ring in front of the dome. The airlock you used last time is still open, and its control panel is visible next to it. Dusk, following your gaze, quickly stops you. "I doubt it would be a good idea to pass through the same airlock we used last time, <first>," he says. "It looks like the structure's automated systems patched up the hole left by the Ka'sei, but I would never trust it as a pressure vessel at this point. Plus, I count at least six more airlocks just here."`
-			`	He and a member of the group move to the opposite side of the control station next to the airlock, then flip one of the switches on the panel. Just like last time, a door opens next to them, revealing another on the opposite side of the small room. There is space only for three crew members at a time; you, Dusk, and another Remnant enter the airlock, while the other three wait their turn. The door closes, and Dusk flips the switch to begin the pressurization procedure. Suddenly, the lights inside the module turn on, emitting a bright, azure light.`
+			`	He and another member of the group move to the opposite side of the control station next to the airlock, then flip one of the switches on the panel. Just like last time, a door opens next to them, revealing another on the opposite side of the small room. There is space only for three crew members at a time; you, Dusk, and another Remnant enter the airlock, while the other three wait their turn. The door closes, and Dusk flips the switch to begin the pressurization procedure. Suddenly, the lights inside the module turn on, emitting a bright, azure light.`
 			choice
 				`	"Did you do that?"`
 				`	"What happened?"`
@@ -896,7 +896,7 @@ mission "Ka'het: Patir Mystery 7"
 				goto ending
 
 			label explain
-			`	As you tell him about the blinking light, his expression changes. "You should have called me! We could have died!" He moves to the console on the laser scanner, which stays dark. "The yellow light was an indicator that the battery was running out," he says. "I should have checked our equipment better. The starship airlock may have remained unwatched for hours now. We need to leave." Instead of going through a single airlock, the group splits, half going into one airlock and half into another. When you're finally all outside of the dome, the tense mood dissipates..`
+			`	As you tell him about the blinking light, his expression changes. "You should have called me! We could have died!" He moves to the console on the laser scanner, which stays dark. "The yellow light was an indicator that the battery was running out," he says. "I should have checked our equipment better. The starship airlock may have remained unwatched for hours now. We need to leave." Instead of going through a single airlock, the group splits, half going into one airlock and half into another. When you're finally all outside of the dome, the tense mood dissipates.`
 
 			label ending
 			`	While walking back to the ship, Dusk continues talking about the mission. He explains that they found that the Patir settlement had never been visited in its history - not even by the Builders themselves. "I did not expect to find a thriving colony inside, but this is perplexing. A possible theory is that the settlement was built by the Ka'sei themselves, but the variety of designs inside and the way everything was assembled contradicts everything we know about their capabilities. Perhaps the buildings were transported here together with them - or perhaps even the entire asteroid was brought here from a Graveyard system, though that seems unlikely. There is a lot we still have to learn about Patir."`
@@ -916,7 +916,7 @@ mission "Ka'het: Patir Mystery 7"
 				goto depot
 
 			label theory
-			`	"At first I thought they abandoned this place and took everything with them, but look: There is no dirt or dust anywhere I can see, and everything seems to be exactly where it should. It seems more as if it was never inhabited in first place. There are far too many unknowns about Patir and this settlement to be certain of anything, though." He pulls another instrument from a waist pouch, then begins gathering samples from around the depot, both from the ground and on the shelves. The procedure takes a few minutes; he then puts them in one of the cylinders on his back and starts moving to the next room, signing to follow him.`
+			`	"At first I thought they abandoned this place and took everything with them, but look: there is no dirt or dust anywhere I can see, and everything seems to be exactly where it should. It seems more as if it was never inhabited in first place. There are far too many unknowns about Patir and this settlement to be certain of anything, though." He pulls another instrument from a waist pouch, then begins gathering samples from around the depot, both from the ground and on the shelves. The procedure takes a few minutes; he then puts them in one of the cylinders on his back and starts moving to the next room, signing to follow him.`
 				goto depot
 
 			label samples
@@ -975,7 +975,7 @@ mission "Ka'het: Patir Mystery 7"
 				`	"Thank you. How do I use it?"`
 					goto outfit
 				`	"I'd rather be paid in credits instead."`
-			`"Oh, I have already transferred 50,000 credits to your account. I need to organize some things for our next mission; if you meet me in the spaceport a few hours from now, I should have everything ready.`
+			`	"Oh, I have already transferred 50,000 credits to your account. I need to organize some things for our next mission; if you meet me in the spaceport a few hours from now, I should have everything ready."`
 				accept
 
 			label outfit
@@ -993,7 +993,7 @@ mission "Ka'het: Patir Mystery 8A"
 	destination "Builder Settlement"
 	passengers 5
 	cargo "research lab and satellite" 97
-	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, I advise you that the next mission is going to require <capacity>.`
+	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, I advise you that the next mission is going to require <capacity>."`
 	to offer
 		has "Ka'het: Patir Mystery 7: done"
 	on offer
@@ -1117,12 +1117,12 @@ mission "Ka'het: Patir Mystery 9"
 			label what
 			`	"I wish I knew. And the worst may have yet to come," Dusk replies. "Something is not right with the sky."`
 			label constellation
-			`	He points at the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close enough to each other. While it is not visible from Earth, it should be recognizable from almost every system here, including Patir; but no longer. And that is not all. Nothing in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Wastes."`
+			`	He points at the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close to each other. While it is not visible from Earth, it should be recognizable from almost every system here, including Patir; but no longer. And that is not all. Nothing in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Wastes."`
 			choice
 				`	"How is that possible?"`
 				`	"Where are we then?"`
 				`	"How do we get back?"`
-				`	"Was that a hyperdrive jump then?"`
+				`	"Was that a hyperspace jump then?"`
 			`	"I have no idea, <first>. What I can tell you for now is that we need to get a clearer idea of what we have around before deciding the next step, and there is no way to get that from here. You need to explore as far as possible in this new sector, and return once you either find a way out or run out of systems. I promise we will have a plan ready by the time you're back."`
 				accept
 	on enter Chanai
@@ -1140,7 +1140,7 @@ event "Patir moves"
 	system Patir
 		pos 10059.5 10.5
 	planet "Builder Settlement"
-		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
+		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport consists only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
 
 mission "Ka'het: Patir Mystery 10"
@@ -1167,7 +1167,7 @@ mission "Ka'het: Patir Mystery 10"
 			label plan
 			`	"For now, only vague ideas. I was hoping we could determine a clear, identifiable origin of our accidental jump, but we have nothing of that sort for now. While you were away, we were able to re-enter the settlement and access the computers that control the structure, but unfortunately a lot of them are malfunctioning or broken. From what we were able to gather, they seem to be entirely unaware of what has happened.`
 			label lab
-			`	"The time spent inside the lab was more productive. After a few days, one of the creatures you have encountered jumped in - and a few minutes after, every Fetri'sei around us went dormant. They stopped their engines, ceased mining and just drifted without any sign of life. But as soon as the creature left the system, they returned to their normal activities as if nothing happened."`
+			`	"The time spent inside the lab was more productive. After a few days, one of the creatures you have encountered jumped in - and a few minutes after, every Fetri'sei around us went dormant. They stopped their engines, ceased mining and just drifted without any sign of life. But as soon as the creature left the system, they returned to their normal activities as if nothing happened.`
 			`	"Going forward, we need to determine a list of possible causes for the event that brought us here, and investigate the most likely one. If we dock to the satellite we launched at the beginning of this mission and recover everything it recorded during the encounter, it could help us understand them better than we can from the ground.`
 			`	"Besides that, we have also confirmed you no longer need to cloak when landing here: thanks to the presence of the lab, the Ka'sei cannot understand that you are coming to visit this settlement, as long as we explore the Builder base only when your spaceship isn't landed here. It should save you some fuel, hopefully. Any questions?"`
 			choice
@@ -1180,7 +1180,7 @@ mission "Ka'het: Patir Mystery 10"
 	npc assist save
 		system "Patir"
 		government "Remnant"
-		personality derelict target pacifist mute
+		personality derelict mute pacifist target
 		ship "Remnant Satellite" "Bright Ember Yonder"
 		dialog `From the open cargo bay, you watch as the satellite moves up inside your ship. You split up tasks between yourself and Dusk, keeping the satellite stabilized while he downloads the data. In a few minutes the process is over, and you can return the probe to its original mission.`
 		
@@ -1213,12 +1213,12 @@ mission "Ka'het: Patir Mystery 11"
 		conversation
 			`Compared to its cleanliness at the start of the mission, the lab is in chaos: pieces of Remnant devices and Builder objects lie all over the floor and tables, leaving only a small footpath to connect the various sections. The team is gathered on the opposite end of the hub, discussing the results of the mission with disappointed expressions.`
 			`	"Bad news, Captain," Dusk says, turning to you. "Both our ground scanners and the orbiting satellite recorded the same amount of information about these beings: nothing at all. For the entire duration of the encounter, the only information gathered on them was their position. Something in their construction makes it impossible to infer anything about their internal structure.`
-			`	"If we don't find a way learn more about them, we have little options left, and all rather dangerous."`
+			`	"If we do not find a way to learn more about them, we have few options left, and all rather dangerous."`
 			choice
 				`	"Do you have any ideas?"`
 				`	"Well, there's other places we could visit still."`
 			`	"We are evaluating our options. The Ghila ringworld is too large and distant; the risk of an accident overshadows the possibility of discovering anything useful. On the other hand, the station in Chanai is very close to where Patir is now - a couple jumps, both ways.`
-			`	"However, there are downsides. Exploring it would mean exposing ourselves to any device or trap inside the station; our exploration of Builder stations back in the Graveyard have had body counts." Dusk stops for a few seconds, immersed into his thoughts. "For now, boarding the station is too much of a risk."`
+			`	"However, there are downsides. Exploring it would mean exposing ourselves to any device or trap inside the station; our explorations of Builder stations back in the Graveyard have had body counts." Dusk stops for a few seconds, immersed into his thoughts. "For now, boarding the station is too much of a risk."`
 			`	After searching a large bag on the ground, one of the Remnant brings out another holographic projector. She tinkers with it for a bit until it focuses on the neutron star you visited earlier, Lathia. "This is our safest bet at learning more about these creatures," she signs. "According to your data, this system has by far the highest number and diversity of them. If you pass through the system cloaked and use our sensors, you may be able to obtain enough information without putting yourself at risk."`
 			choice
 				`	"If those scanners did not work on them here, why would it be different in Lathia?"`
@@ -1254,8 +1254,8 @@ mission "Ka'het: Patir Mystery 12A"
 		conversation
 			`The Remnant are already standing outside the lab, waiting for your arrival. Dusk meets you in the cockpit right as you've finished safing your ship.`
 			`	"It does not look promising, <first>. Just as with the satellite, nothing beyond basic orbital information was recorded by the scanners we gave you. Maybe we could understand something about these beings after in-depth analysis, but nothing that could help us in our search.`
-			`	"One of the few discoveries we could make is the existence of a particular asteroid around Lathia - an order of magnitude larger than the rest of the fleet, but still belonging to the same species. It appears to be completely still unlike its kindred, and does not show any external activity; this might make it fit for a surface expedition, but doing that on what appears to be a living being is nevertheless extremely dangerous.`
-			`	"Still, our options are limited. I have mentioned previously the possibility of exploring the station in Chanai; it would be doubtlessly risky, but it may be something we are unable to avoid if no safer alternative can be found. While you were away, however, part of the team developed a second mission plan. We came to the realization that if these beings can stop the Fetri'sei, there must be some sort of connection between them. If we could somehow intercept this link, it would let us study more than our sensors could, and perhaps even communicate with them."`
+			`	"One of the few discoveries we could make is the existence of a particular asteroid around Lathia - on an order of magnitude larger than the rest of the fleet, but still belonging to the same species. It appears to be completely still, unlike its kindred, and does not show any external activity; this might make it fit for a surface expedition, but doing that on what appears to be a living being is nevertheless extremely dangerous.`
+			`	"Still, our options are limited. I have mentioned previously the possibility of exploring the station in Chanai; it would doubtlessly be risky, but it may be something we are unable to avoid if no safer alternative can be found. While you were away, however, part of the team developed a second mission plan. We came to the realization that if these beings can stop the Fetri'sei, there must be some sort of connection between them. If we could somehow intercept this link, it would let us study more than our sensors could, and perhaps even communicate with them."`
 			choice
 				`	"How do you propose to do that?"`
 					goto how
@@ -1299,7 +1299,7 @@ mission "Ka'het: Patir Mystery 12A"
 				`	"Are you sure this is safe?"`
 			`	"As far as we can tell. The module is fully depressurized, and it seems to be completely inert from our scans - there are always uncertainties, of course, but this is the most easily accessible spot we could identify in the little time we had."`
 			label melting
-			`	A bright flash begins the boarding operations; one of the Remnant, handling the same torch you have seen earlier, slowly cuts a roughly circular hole into the module's whipple shield until it comes off handily. Moving the debris away, the process is then soon repeated with the next layer and again with one right after; the strong vibrations it imparts into the rest of the structure give you a clear hint about the power of this device. Eventually, the innermost layer is removed as well, and you follow the rest of the team inside the alien platform.`
+			`	A bright flash begins the boarding operations; one of the Remnant, handling the same torch you had seen earlier, slowly cuts a roughly circular hole into the module's whipple shield until it comes off handily. Moving the debris away, the process is then soon repeated with the next layer and again with one right after; the strong vibrations it imparts into the rest of the structure give you a clear hint about the power of this device. Eventually, the innermost layer is removed as well, and you follow the rest of the team inside the alien platform.`
 			`	Disconnecting from the tether to move further away, you immediately notice the module seems to have some peculiarities. Despite the microgravity in it, no handrails can be found near you, making movement very difficult; as you search for some inside with your torch, however, your attention is caught by something more bizarre: an ominous, featureless blob, hovering midair a few meters away from you.`
 			`	The object's surface, only interrupted by a few ripples moving cyclically across the surface, reflects and eerily distorts everything around the room. A complete silence has fallen over the room, as everyone seems to evaluate the situation. After a few seconds, Dusk and two Remnant start moving toward the phenomenon carrying a device in their hands.`
 			choice
@@ -1314,7 +1314,7 @@ mission "Ka'het: Patir Mystery 12A"
 			label thing
 			`	"Interesting," Dusk states, as if immersed into his thoughts. After checking that the device has started gathering data, he continues. "We seem to have entered the station from one of the fuel tanks. That sphere over there is made of some kind of propellant, though our instruments have some difficulties determining its exact composition.`
 			label continue
-			`	"All I can say for certain is that it is not the hyperdrive fuel we use - liquid deuterium would have boiled off long ago. Luckily, we don't need to know what it is; there should be enough space to pass through without touching the fuel." Scouting around the tank for a passage, the team quickly identifies a maintenance hatch, hopefully leading the crew section, and starts creating another hole to pass through. The whole process is slightly quicker than the first was, but by the time they're done more than a third of the oxygen reserves in your suit are gone.`
+			`	"All I can say for certain is that it is not the hyperdrive fuel we use - liquid deuterium would have boiled off long ago. Luckily, we don't need to know what it is; there should be enough space to pass through without touching the fuel." Scouting around the tank for a passage, the team quickly identifies a maintenance hatch, hopefully leading to the crew section, and starts creating another hole to pass through. The whole process is slightly quicker than the first was, but by the time they're done more than a third of the oxygen reserves in your suit are gone.`
 			`	Moving through the opening, you reach a long, cylindrical corridor, just as dark as the room you just came from. Based on the many handles and scaffolding attached to the surfaces around you, you guess this part of the station used to be inhabited. After following the group through the tunnel for a few minutes, you reach an intersection: the corridor splits into two lateral openings, each of them seemingly as small and endless as the one you're in.`
 			`	"We only have a limited amount of time for this expedition, <first>. You have seen us work a few times now on; can you explore the two tunnels on your own and reach us when you have completed it?" Dusk asks. "We will remain in radio contact the entire time."`
 			choice
@@ -1331,7 +1331,7 @@ mission "Ka'het: Patir Mystery 12A"
 					goto moving
 				`	(Inspect them closer.)`
 			`	Growing from the vase up to almost the ceiling, the plant you choose to analyze stands at nearly twice your height; despite this, the trunk is only a few millimeters thick, thanks to the lack of gravity aboard the spacecraft. Slender, needle-like leaves are spread across the entire stem, contrasting its okra with a red tint.`
-			`	As you try to take a better look at the fronds, the entire trunk breaks in half with minimal pressure. You try to pick up the upper segment before it flies away, but this only splits it into more parts; you decide to observe the resulting pieces from afar instead. To your surprise, the plant is completely hollow, leaving a large hole inside the stem. You take a few pictures and a couple samples of both the surface and of the vase, moving then to the next room.`
+			`	As you try to take a better look at the fronds, the entire trunk breaks in half with minimal pressure. You try to pick up the upper segment before it flies away, but this only splits it into more parts; you decide to observe the resulting pieces from afar instead. To your surprise, the plant is completely hollow, leaving a large hole inside the stem. You take a few pictures and a couple samples of both the surface and of the vase, then moving to the next room.`
 			label moving
 			`	The rest of the zone isn't as interesting. A series of holes in a wall attract your attention, but they prove too narrow to pass through and too profound to see their ends; similarly, the corridor at the end of the area is slightly smaller than your suit, preventing you from continuing. As you return back to the rest of the group, however, you notice an unusual drawing.`
 			`	Attached between various carvings, the canvas shows a series of points in a line with every color of the rainbow. While the lines are near the bottom of the mural, above them all shines what looks like a red sun, sending rays of light down to each of the colorful dots and surrounding them all in a crimson halo. Passing your glove over its surface, you notice every part is composed of a different material, smoother and more refined than the walls around it.`
@@ -1344,7 +1344,7 @@ mission "Ka'het: Patir Mystery 12A"
 				`	(Move closer to the barrel.)`
 			`	The sheer size of the frame is rather impressive: as you walk toward it, you estimate it must be at least a kilometer from one side to the opposite. At the very end, an enormous lens is attached to the last ring of the barrel; four holes near its center give it a slight resemblance to a cloth button.`
 			label place
-			`	"We are most likely in the exhaust chamber of this station's laser system," Dusk says, storing the vial inside a container. "It is impossible to say for certain what its purpose was - hopefully, it was not purely a military system. That being said, we have obtained some info that is far more relevant for our search. Let us get going toward the <ship> first, then I will show you everything we gathered."`
+			`	"We are most likely in the exhaust chamber of this station's laser system," Dusk says, putting the vial inside a container. "It is impossible to say for certain what its purpose was - hopefully, it was not purely a military system. That being said, we have obtained some info that is far more relevant for our search. Let us get going toward the <ship> first, then I will show you everything we have gathered."`
 				goto back
 
 			label vial
@@ -1352,7 +1352,7 @@ mission "Ka'het: Patir Mystery 12A"
 			label back
 			`	One at a time, the group enters back into the main tunnel, with Dusk at the rear and you right in front of him. You notice the passage at the end doesn't show any blowtorch marks; it seems that the Remnant found it already open when they arrived here.`
 			`	"While you were exploring that sector, we found a few more tunnels and split up into subgroups to explore each of them. This is how we found the path to the barrel, for instance, as well as many other peculiar areas. And, in one of them," he continues, clumsily passing you a data pad, "this is what we stumbled upon."`
-			`	Looking at the screen, you see a photograph of two Remnant standing in front of a large mural, three times as tall as them and far wider. Despite the picture being poorly lit and rather confusing, you recognize it as a two dimensional starmap, carved into the wall of the station. Near the bottom right, a set of circles and unfamiliar markers surround one of the systems indicated.`
+			`	Looking at the screen, you see a photograph of two Remnant standing in front of a large mural, three times as tall as them and far wider. Despite the picture being poorly lit and rather blurry, you recognize it as a two-dimensional starmap, carved into the wall of the station. Near the bottom right, a set of circles and unfamiliar markers surround one of the systems indicated.`
 			`	"Look at the orbital parameters of that system. It is, without a shadow of doubt, indicating Patir. A system they should not be aware of, if it only just arrived here, and one they were apparently interested in."`
 			choice
 				`	"It could be a coincidence."`
@@ -1465,13 +1465,13 @@ mission "Ka'het: Patir Mystery 12C"
 	to offer
 		has "Ka'het: Patir Mystery 12B: done"
 	on offer
-		event "no Patir spaceport and no Fetri spawn"
+		event "no Patir spaceport and no Fetri spawn" 0
 		conversation
 			`Dusk seems busier than usual as you descend towards the settlement, constantly communicating with the team on the ground while simultaneously checking the incoming telemetry. When you're hovering right above the landing pad, he turns to your console. "Keep the thrusters in standby, Captain," he signs hastily. "We are not here to stay. The satellites are working very well; in fact, the Thepa probe has just detected one of those beings jumping right in our direction. We have only a few hours to return to orbit, or we will waste this opportunity."`
-			`	On the ground, the whole team is outside the lab, their hands full of strange equipment and unwieldy machinery. You deploy your ship's ramp to deploy and quickly walk down with Dusk to help them carry the instruments aboard. "The approaching asteroid is of the small or medium kind, as far as I can tell. Considering your past interactions, or lack thereof, it is unlikely to cause any issue."`
+			`	On the ground, the whole team is outside the lab, their hands full of strange equipment and unwieldy machinery. You set your ship's ramp to deploy and quickly walk down to Dusk so you can help them carry the instruments aboard. "The approaching asteroid is of the small or medium kind, as far as I can tell. Considering your past interactions, or lack thereof, it is unlikely to cause any issue."`
 			`	"What should I do once in orbit?" you ask.`
 			`	"First, we will verify that all identifiable Ka'sei have entered a dormant state after the creature's arrival. Once that is confirmed, you will rendezvous with one of the deactivated Fetri'sei so that we can spacewalk to it. We will handle the rest from there.`
-			`	"Of course, this will be the first time in Remnant history boarding a Ka'sei; after all, it wasn't too long ago when we learned of their existence. But we have explored many kinds of Ka'het over the years with varying results, and with that experience I am confident we should be able to complete our mission."`
+			`	"Of course, this will be the first time in Remnant history boarding a Ka'sei; after all, it wasn't too long ago we learned of their existence. But we have explored many kinds of Ka'het over the years with varying results, and with that experience I am confident we should be able to complete our mission."`
 			choice
 				`	"Are you sure this will be safe?"`
 				`	"Let's go then."`
@@ -1481,17 +1481,17 @@ mission "Ka'het: Patir Mystery 12C"
 			`	As the last container is brought inside, the cargo ramp moves back, and the exit door follows suit. Glancing at the scanner telemetry, you realize the alien being has already started to exit hyperspace; with a button press, the engines roar back to life, and the ship starts gaining altitude.`
 				launch
 	on enter
-		event "Patir spaceport returns and Fetri spawn"
+		event "Patir spaceport returns and Fetri spawn" 1
 	npc assist
 		government "Ka'sei (12A)"
-		personality derelict uninterested waiting plunders mining harvests
+		personality derelict harvests mining plunders uninterested waiting
 		fleet
 			names "ka'sei"
 			cargo 3
 			variant
 				"Fetri'sei (Patir 12A)"
 		conversation
-			`The giant creature floats a few meters away from your cockpit, silent and motionless, but you know that inside the shell, the slug remains alive and well, ready to kill. Compared to some of the Ka'het back in the graveyard, this is one of the Builder's smaller creations, but its size is still impressive for what is, in essence, a single organism.`
+			`The giant creature floats a few meters away from your cockpit, silent and motionless, but you know that inside the shell, the slug remains alive and well, ready to kill. Compared to some of the Ka'het back in the graveyard, this is one of the Builders' smaller creations, but its size is still impressive for what is, in essence, a single organism.`
 			`	Before setting the <ship> to automatic station-keeping, you move your ship so that the main hatch is as close as possible to the Fetri'sei. The Remnant are already in the airlock donning in their extravehicular suits, and you join them shortly after.`
 			`	"When we are inside, there is a high probability we will not be able to communicate," advises Dusk. "Normally, the walls of the armored shell are too thick and dense for our signals to pass through, and the spaces we need to navigate prevent us from using a physical tether. This does not mean we will be unprotected, however. May I see your sidearm?"`
 			`	You draw your weapon out of the holster and hand it to him. After a quick examination, he nods and gives it back before continuing. "Once inside, one of our first operations will be connecting to the downlink of the Fetri's telemetry: it is not protected, in our experience, and easy to access. From there, we will be able to monitor the vessel's shields.`
@@ -1534,7 +1534,7 @@ mission "Ka'het: Patir Mystery 12C"
 				`	(Jump on the Ka'sei to call the Remnant aboard.)`
 			`	There's no time to waste. Without hesitation, you push yourself off the border of the airlock and toward the Fetri'sei. After remaining airborne for a few instants, you land right next to the leftmost engine nacelle, bouncing off its skin. A timely activation of the thrusters on your wrists helps you move back to its surface, however, and by grabbing a long spike attached to its back, you can finally stabilize and move further ahead.`
 			`	White noise starts coming from your communicator; moving your head up, you finally see the Remnant leaping out of the hatch, carrying a dozen faintly glowing cylindrical tubes under their arms. They notice you right when communication returns to normal, and their message arrives loud and clear: "Jump!"`
-			`	You leave the handles and use your feet to give you a good push away from the spacecraft. At the last second, you move to the right to avoid ending up behind one of its thrusters right as they roar to life. The Fetri'sei has awakened, and for an instant you see all of its systems activate at once - the engines, the steering, even the Ravagers.`
+			`	You leave the handles and use your feet to give you a good push away from the spacecraft. At the last second, you move to the right to avoid ending up behind one of its thrusters just as they roar to life. The Fetri'sei has awakened, and for an instant you see all of its systems activate at once - the engines, the steering, even the Ravagers.`
 				goto return
 
 			label shoot
@@ -1557,7 +1557,7 @@ mission "Ka'het: Patir Mystery 12C"
 # - two ships spawn, one disabled and one functional (but otherwise standing still);
 # - the player boards the disabled ship, with the mission happening before their eyes;
 # - the other ships jump away right after the mission, and the one the player boarded returns to its normal functions.
-# In order to achieve this, the asteroid ship has just over 200 fuel and a negative fuel generation, meaning that it will be unable to jump essentially right after it spawns; removing the spaceport means that it won't be able to refuel on the Builder settlement, and so it remains in space doing nothing but waiting. When the player boards the disabled NPC, it is repaired and returns to its functions; as it is an enemy of the asteroid ship, it will shoot it with every available weapon, including what has been hidden under "Ka'het Machinery": a negative fuel damage weapon, that will instantly refill its fuel reserves and let it jump. Giving it just a capacity of 200 would mean that the game would always think it is just infinitesimally under the threshold to jump, so I gave it 250 and everything works as it should with surprising consistency. Two peculiarities of this are that the player will be able to board the asteroid ship to refuel it, and that the Ka'sei could shoot the asteroid with its ravagers for a split second before it jumps if the position of the two is just right. Both of them are harmless: the health of the asteroid is orders of magnitude higher than the damage the ka'sei can inflict in that time, and as the player boarding the asteroid will give it exactly 200 fuel because of game mechanics, 1 single frame later it will be already unable to jump. However, in order to account for their oddity I added a small dialog to the asteroid's boarding screen to make it as if you were flying by it, and described at the end of the previous mission how for an instant the Ravagers ignite when the Ka'sei returns online, as if in an unintended burst.
+# In order to achieve this, the asteroid ship has just over 200 fuel and a negative fuel generation, meaning that it will be unable to jump essentially right after it spawns; removing the spaceport means that it won't be able to refuel on the Builder settlement, and so it remains in space doing nothing but waiting. When the player boards the disabled NPC, it is repaired and returns to its functions; as it is an enemy of the asteroid ship, it will shoot it with every available weapon, including what has been hidden under "Ka'het Machinery": a negative fuel damage weapon, that will instantly refill its fuel reserves and let it jump. Giving it just a capacity of 200 would mean that the game would always think it is just infinitesimally under the threshold to jump, so I gave it 250 and everything works as it should with surprising consistency. Two peculiarities of this are that the player will be able to board the asteroid ship to refuel it, and that the Ka'sei could shoot the asteroid with its ravagers for a split second before it jumps if the position of the two is just right. Both of them are harmless: the health of the asteroid is orders of magnitude higher than the damage the Ka'sei can inflict in that time, and as the player boarding the asteroid will give it exactly 200 fuel because of game mechanics, 1 single frame later it will be already unable to jump. However, in order to account for their oddity I added a small dialog to the asteroid's boarding screen to make it as if you were flying by it, and described at the end of the previous mission how for an instant the Ravagers ignite when the Ka'sei returns online, as if in an unintended burst.
 
 event "no Patir spaceport and no Fetri spawn"
 	system Patir
@@ -1580,14 +1580,16 @@ mission "Ka'het: Patir Mystery 12D"
 		has "Ka'het: Patir Mystery 12B: done"
 	npc assist
 		government "Magic Asteroid"
-		personality coward waiting pacifist harvests uninterested fleeing
+		personality coward fleeing harvests pacifist uninterested waiting
 		fleet
-			names "ka'sei"
+			names "Magic Asteroid"
 			cargo 3
 			variant
 				"Asteroid Large (Patir 12A)"
 		dialog
 			`The giant creature stands before you, slowly pulsating in a pale pink halo. The bubbles that interrupt the asteroid-like surface are slightly semitransparent, giving you a brief look at the crystalline structure inside; but your mind soon returns to your time limited mission, and you decide to move ahead before it's too late.`
+	to fail
+		has "Ka'het: Patir Mystery 12C: done"
 
 
 outfit "Ka'het Machinery"
@@ -1730,7 +1732,7 @@ mission "Ka'het: Patir Mystery 13A"
 				`	"Does this mean we need to repeat the mission?"`
 				`	"What are our options?"`
 					goto options
-			`	"We considered it briefly, but it would be quite ineffective. Our blocker is understanding the data itself, and having even more would do little to help us with that. On top of that, the risk would be extremely high, as we have seen just earlier. All things considered, we are at the same point we were a week ago.`
+			`	"We considered it briefly, but it would be quite ineffective. Our blocker is understanding the data itself, and having even more would do little to help us with that. On top of that, the risk would be extremely high, as we have seen. All things considered, we are at the same point we were a week ago.`
 			label options
 			`	"We are left with few alternatives. As I told you previously, the Chanai station is an interesting possibility, and could have influenced Patir's erratic behavior. At the same time, exploring the asteroid around Lathia may put us closer to understanding the inner workings of the beings and how they interact with the Ka'sei. It is quite dangerous, but visiting the space station is also an unknown, and maybe a more direct approach is what we need to accomplish our objective. Neither mission prevails over the other in a definite way, and our votes within the team are split evenly between the two, so if y-"`
 			`	Dusk halts mid phrase, looking behind you with an awestruck gaze. The sky has again turned black, and a few dim lines are already starting to appear in the distance. The whole team jumps to the windows, watching as the light show begins.`
