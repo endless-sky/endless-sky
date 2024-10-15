@@ -99,6 +99,8 @@ You can get a list of integration tests with `ctest --preset <preset>-integratio
 
 (You can also use the `<preset>-release` preset for a release build, and the output will be in the Release folder).
 
+If you want to build the game without any tests, add `--target EndlessSky` to the command.
+
 Replace `<preset>` with one of the following presets:
 
 - Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW), `mingw32` (builds with x86 MinGW)
