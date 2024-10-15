@@ -1961,7 +1961,7 @@ mission "Remnant: Taely Penguin Log"
 		has "Remnant: Taely Intro Log: failed"
 		has "Remnant: Face to Maw 2: done"
 	on offer
-		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
+		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		fail
 
 
