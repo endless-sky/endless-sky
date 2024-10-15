@@ -22,6 +22,7 @@
   <url type="help">https://github.com/endless-sky/endless-sky/wiki/PlayersManual</url>
   <url type="homepage">https://endless-sky.github.io/</url>
   <url type="vcs-browser">https://github.com/endless-sky/endless-sky</url>
+  <url type="vcs-git">https://github.com/endless-sky/endless-sky.git</url>
   <screenshots>
     <screenshot type="default">
       <image>https://cdn.cloudflare.steamstatic.com/steam/apps/404410/ss_af75baf860ad0dddcdc86f00dfb7b3ff3761133f.jpg</image>
