@@ -846,7 +846,7 @@ outfit "Meteor Missile Launcher"
 		"drag" .1
 		"turn" 1.8
 		"homing" 1
-		"infrared tracking" .65
+		"infrared tracking" .75
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
@@ -884,7 +884,7 @@ outfit "Meteor Missile Pod"
 		"drag" .1
 		"turn" 1.8
 		"homing" 1
-		"infrared tracking" .65
+		"infrared tracking" .75
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
@@ -1161,7 +1161,7 @@ outfit "Torpedo Launcher"
 		"drag" .025
 		"turn" 1.5
 		"homing" 3
-		"optical tracking" .8
+		"optical tracking" .9
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 450
@@ -1199,7 +1199,7 @@ outfit "Torpedo Pod"
 		"drag" .025
 		"turn" 1.5
 		"homing" 3
-		"optical tracking" .8
+		"optical tracking" .9
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 450
@@ -1262,7 +1262,7 @@ outfit "Typhoon Launcher"
 		"drag" .02
 		"turn" 1.5
 		"homing" 4
-		"optical tracking" .9
+		"optical tracking" .95
 		"shield damage" 1050
 		"hull damage" 1050
 		"hit force" 675
@@ -1300,7 +1300,7 @@ outfit "Typhoon Pod"
 		"drag" .02
 		"turn" 1.5
 		"homing" 4
-		"optical tracking" .9
+		"optical tracking" .95
 		"shield damage" 1050
 		"hull damage" 1050
 		"hit force" 675
