@@ -307,6 +307,7 @@ mission "Remnant: Cognizance 7"
 	description "Plume wants to witness firsthand what is going on in Nenia, and would like to visit <planet>."
 	source "Caelian"
 	destination "Nasqueron"
+	passengers 1
 	to offer
 		has "Remnant: Cognizance 6: done"
 	on offer
