@@ -435,7 +435,7 @@ outfit "Salvaged Artifact"
 	thumbnail "outfit/salvaged artifact"
 	"cargo space" 60
 	"unique" 1
-	description "This black and twisted lump of inoperable alien technology was a gift to you by Tavish and Kormak. Hopefully it's worth something to someone."
+	description "This black and twisted lump of inoperable alien technology was given as a gift from you by Tavish and Kormak. Hopefully it's worth something to someone."
 
 
 outfit "Local Map"
