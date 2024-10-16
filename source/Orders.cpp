@@ -37,22 +37,15 @@ namespace {
 	// the key order. If an order isn't present in the mask of the key order
 	// then it will be set to false when the key order is given to a ship.
 	const map<Orders::OrderType, OrderSet> ORDER_MASKS = {
-		{Orders::HOLD_POSITION, OrderSet(1 << Orders::HOLD_FIRE)},
-		{Orders::HOLD_ACTIVE, OrderSet(1 << Orders::HOLD_FIRE)},
-		{Orders::HOLD_FIRE, OrderSet(
-				(1 << Orders::HOLD_POSITION) +
-				(1 << Orders::HOLD_ACTIVE) +
-				(1 << Orders::MOVE_TO) +
-				(1 << Orders::KEEP_STATION) +
-				(1 << Orders::GATHER) +
-				(1 << Orders::HARVEST))},
-		{Orders::MOVE_TO, OrderSet(1 << Orders::HOLD_FIRE)},
-		{Orders::KEEP_STATION, OrderSet(1 << Orders::HOLD_FIRE)},
-		{Orders::GATHER, OrderSet(1 << Orders::HOLD_FIRE)},
+		{Orders::HOLD_POSITION, OrderSet(0)},
+		{Orders::HOLD_ACTIVE, OrderSet(0)},
+		{Orders::MOVE_TO, OrderSet(0)},
+		{Orders::KEEP_STATION, OrderSet(0)},
+		{Orders::GATHER, OrderSet(0)},
 		{Orders::ATTACK, OrderSet(0)},
 		{Orders::FINISH_OFF, OrderSet(0)},
 		{Orders::MINE, OrderSet(0)},
-		{Orders::HARVEST, OrderSet(1 << Orders::HOLD_FIRE)},
+		{Orders::HARVEST, OrderSet(0)},
 	};
 }
 
@@ -68,13 +61,6 @@ void Orders::SetHoldPosition()
 void Orders::SetHoldActive()
 {
 	ApplyOrder(OrderType::HOLD_ACTIVE);
-}
-
-
-
-void Orders::SetHoldFire()
-{
-	ApplyOrder(OrderType::HOLD_FIRE);
 }
 
 
@@ -138,13 +124,6 @@ bool Orders::HasHoldPosition() const
 bool Orders::HasHoldActive() const
 {
 	return activeOrders.test(OrderType::HOLD_ACTIVE);
-}
-
-
-
-bool Orders::HasHoldFire() const
-{
-	return activeOrders.test(OrderType::HOLD_FIRE);
 }
 
 
