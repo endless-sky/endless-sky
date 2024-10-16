@@ -154,7 +154,7 @@ planet Allhome
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space. More substantial urban settlements exist, particularly near the spaceport, but from the air they appear to exist within strict boundaries.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
-	spaceport `	Despite the distance from Republic space, some humans have set up decorations in celebration of Remembrance Day. A handful of the more curious Hai approach the humans, asking them what the fuss is all about.`
+	spaceport `	Despite the distance from Republic space, some humans have set up decorations in celebration of Remembrance Day. A handful of the more curious Hai mingle with the humans, asking them what the fuss is all about.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -232,7 +232,7 @@ planet Arabia
 	description `	Aside from hunting, most of the industry takes the form of harvesting and refining petrochemicals to make plastics, polymers, and oils. In some parts of Arabia, the pumpjacks outnumber the people a hundred to one.`
 	spaceport `The spaceport consists mostly of a wide, open field paved in asphalt, the cheapest material available here. The pavement shimmers with heat, and is pockmarked with divots where ships' landing gear has sunk several centimeters in to the surface.`
 	spaceport `	At the center of the pavement is a small cluster of refrigerated sheds and stacks of crates carrying various goods for trade; a few armed guards patrol around them to prevent theft. A food truck is parked nearby, serving burgers and tacos to the port workers and to the crews of the few starships that are parked here at the moment.`
-	spaceport `	Despite the climate, a small procession, consisting mainly of security guards and port workers, is gathered in the spaceport to celebrate Remembrance Day.`
+	spaceport `	Despite the climate, a small procession of security guards and port workers is gathered in the spaceport to celebrate Remembrance Day.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -395,7 +395,7 @@ planet "Big Sky"
 	description `	The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These "ubergoats" pose so great a threat to the typical biosphere that they are export-controlled as biological weapons.`
 	spaceport `The landing pads here are being gradually consumed by the local plant life. In most places grass and ivy has crept out to cover at least a meter of the pad on all sides, and every small crack or crevice has been colonized by moss and by the roots of larger plants.`
 	spaceport `	In places the forest has been cleared to make roads leading to the nearby farming villages, but in most directions all you see is green. It is a beautiful sight, and oddly peaceful, but you know what a nuisance these plants are to the locals.`
-	spaceport `	A large gathering of locals is congregated around a memorial in the spaceport to commemorate Remembrance Day. The plaque and the surrounding path have been scoured clean of the native flora.`
+	spaceport `	A large number of locals have congregated around a memorial in the spaceport in order to commemorate Remembrance Day. The plaque and the surrounding path have been scoured clean of the native flora.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -798,7 +798,7 @@ planet Clark
 			or
 				"days since year start" <= 35
 				"days since year start" >= 55
-	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, bolstered further by Remembrance Day celebrations. Locals and tourists take turns downing as many beers as possible as their friends shout Alpha Wars folk songs.`
+	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, bolstered further by the local Remembrance Day celebrations. Locals and tourists take turns downing as many beers as possible as their friends shout Alpha Wars folk songs.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -2167,7 +2167,7 @@ planet Heartland
 	description `Heartland is a pleasant world, with a geography mostly consisting of low hills, plains, and oceans. The farms here produce bountiful crops, and as a result it has drawn tens of millions of settlers. Many of them now work in factories or assembly lines, in which most of the farm equipment used here and in the surrounding systems is built.`
 	description `	Tractors from Heartland are trusted to be well-built and sturdy, and easy to repair; some are still in use that were built over a century ago.`
 	spaceport `The spaceport is a cluster of low buildings. At the center of the port is a special, taller building with glass walls on all sides. It houses the tractor showroom. The farmers visiting the showroom look about as excited as you do when touring a large and well-appointed shipyard. There are tractors with rubber wheels, spiked wheels, and tracks; with plows, combines, balers, and chaser bins; tractors barely big enough to sit on and tractors the size of a small freighter. It's somewhat overwhelming.`
-	spaceport `	One section of the tractor showcase appears to currently be dedicated to antique tractors back from the Alpha Wars. On one landing pad, you spot some dock workers unloading a gigantic wheeled harvester out from a Bulk Freighter's hold.`
+	spaceport `	One section of the tractor showcase appears to currently be dedicated to antique tractors back from the Alpha Wars. On one landing pad, you spot some dock workers unloading a gigantic wheeled harvester out of a Bulk Freighter's hold.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -2422,7 +2422,7 @@ planet Ingot
 	description `	Because Ingot has almost no atmosphere to slow them down, meteorites are a constant danger to the colonists. The shells of the buildings have multiple layers, designed to be self-sealing in any but the largest of impacts. Most of the mining is done remotely by robotic vehicles, but someone still needs to be present to control them and to make repairs when something goes wrong.`
 	spaceport `In this spaceport, ships dock inside a hangar whose ceiling protects them from meteorite impacts. The hangar is not pressurized, so there are also landing tubes that connect to each of the visiting ships. Many of the people inside are carrying emergency oxygen masks in case a sudden impact ruptures the building.`
 	spaceport `	In addition to being the spaceport, this complex is also the repair and control center for the mining robots. There are a handful of buildings elsewhere on Ingot, but not many. You cannot imagine spending so much time with so little space or change of scenery.`
-	spaceport `	The decorations for Remembrance Day on this planet amount to a batch of flags placed near trading hub. The spirit of the locals, however, is undeniable; you can feel folk songs echo through the metal corridors.`
+	spaceport `	The decorations for Remembrance Day on this planet amount to a batch of flags placed near a trading hub. The spirit of the locals, however, is undeniable; you can feel folk songs echo through the metal corridors.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -3499,7 +3499,7 @@ planet "New India"
 	description `	The farms grow both food crops and cotton, and very recently they have begun manufacturing their own textiles instead of just shipping the raw cotton off-world for processing.`
 	spaceport `New India's spaceport is a ring of low wooden buildings around a wide landing area paved with concrete slabs. Around the perimeter carts of trade goods are driven, some being pulled by tractors and others, by horses or oxen. You even think you see a few carts being pulled by water buffalo.`
 	spaceport `	Most of the buildings are for storage, but from somewhere nearby you can smell fresh-baked bread.`
-	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations still appear to be occurring, with Alpha Wars ballads audible from one of the spaceport buildings.`
+	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations appear to be occurring, with Alpha Wars ballads audible from one of the spaceport buildings.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -3531,7 +3531,7 @@ planet "New Portland"
 	description `New Portland is a cloudy planet orbiting a dim star; the only reason it is not completely frozen is because of the heat trapped by its upper atmosphere. There are only a handful of towns here, and nothing big enough to warrant being called a city. Most of the settlers are subsistence farmers who can only dream about life on other worlds. Many houses here do not even have running water or personal computers.`
 	description `	Some of the farms near the spaceport are planted with different crops forming abstract patterns visible from the air. Such a whimsical extravagance seems particularly odd when you consider that the owners will never be able to afford to see their fields from that angle. But perhaps that is precisely the point.`
 	spaceport `The largest town on New Portland has set aside a landing area for ships, but it is barely what could be called a spaceport. Aside from the refueling station and a few sheds, there are no other buildings, just an open field of packed gravel, with grass and weeds peeking up in places where it has avoided the blast from landing spacecraft. A few farmers have parked wagons here and are trading food and other goods with the visiting ships.`
-	spaceport `	It appears that the spaceport has not been embellished for Remembrance Day. You assume that the main celebrations are taking place in the planet's individual towns.`
+	spaceport `	It appears that the spaceport has not been embellished for Remembrance Day. The main celebrations are likely taking place in the planet's individual towns.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
@@ -3636,7 +3636,7 @@ planet "New Washington"
 	description `	The only villages are in the twilight region in between, and there the settlers make a living by mining for metal and for oil, a relic of a warmer period when more life flourished here and the planet spun more quickly on its axis.`
 	spaceport `In this narrow ring between the baking sun of New Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them.`
 	spaceport `	Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatoes. You are almost certain the stew is made with rat meat.`
-	spaceport `	The cafeteria is littered with Remembrance Day memorabilia: flags of corporations from a long gone era; recruitment posters for a war that has ended; banners for a victory still ongoing. Judging by how haphazardly everything is strewn about, you assume that whoever put the decorations out must be rather lazy.`
+	spaceport `	The cafeteria is littered with Remembrance Day memorabilia: flags of corporations from a long gone era, recruitment posters for a war that has ended, banners for a victory still ongoing. Judging by how haphazardly everything is strewn about, you assume that whoever put the decorations out must be rather lazy.`
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
