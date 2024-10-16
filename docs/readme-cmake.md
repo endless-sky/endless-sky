@@ -61,7 +61,7 @@ In addition to the below dependencies, you will also need CMake 3.16 or newer, h
 ```
 g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
 ```
-additionally, if you want to build unit tests:
+Additionally, if you want to build unit tests:
 ```
 catch2
 ```
@@ -74,7 +74,7 @@ catch2
 ```
 gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
 ```
-additionally, if you want to build unit tests:
+Additionally, if you want to build unit tests:
 ```
 catch2-devel
 ```
