@@ -49,6 +49,7 @@ public:
 
 	void SetCondition(const std::string &condition);
 	bool HasCondition(const std::string &condition) const;
+	void ClearConditions();
 
 	void SetOutlineColor(const Color &color);
 	const Color &GetOutlineColor() const;

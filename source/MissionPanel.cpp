@@ -836,7 +836,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 
 void MissionPanel::DrawMissionInfo()
 {
-	Information info;
+	info.ClearConditions();
 
 	// The "accept / abort" button text and activation depends on what mission,
 	// if any, is selected, and whether missions are available.
