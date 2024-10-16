@@ -59,7 +59,11 @@ In addition to the below dependencies, you will also need CMake 3.16 or newer, h
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev catch2
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+```
+additionally, if you want to build unit tests:
+```
+catch2
 ```
 
 </details>
@@ -68,7 +72,11 @@ g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev li
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel catch2-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
+```
+additionally, if you want to build unit tests:
+```
+catch2-devel
 ```
 
 </details>
@@ -82,11 +90,12 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 Here's a summary of every command you will need for development:
 
 ```bash
-$ cmake --preset <preset>                     # configure project (only needs to be done once)
-$ cmake --build --preset <preset>-debug       # build Endless Sky (as well as any tests)
-$ ctest --preset <preset>-test                # run the unit tests
-$ ctest --preset <preset>-benchmark           # run the benchmarks
-$ ctest --preset <preset>-integration         # run the integration tests (Linux only)
+$ cmake --preset <preset>                                       # configure project (only needs to be done once)
+$ cmake --build --preset <preset>-debug                         # build Endless Sky and all tests
+$ cmake --build --preset <preset>-debug --target EndlessSky     # build only the game
+$ ctest --preset <preset>-test                                  # run the unit tests
+$ ctest --preset <preset>-benchmark                             # run the benchmarks
+$ ctest --preset <preset>-integration                           # run the integration tests (Linux only)
 ```
 
 The executable will be located in `build/<preset>/Debug/`. If you'd like to debug a specific integration test (on any OS), you can do so as follows:
@@ -98,8 +107,6 @@ $ ctest --preset <preset>-integration-debug -R <name>
 You can get a list of integration tests with `ctest --preset <preset>-integration-debug -N`.
 
 (You can also use the `<preset>-release` preset for a release build, and the output will be in the Release folder).
-
-If you want to build the game without any tests, add `--target EndlessSky` to the command.
 
 Replace `<preset>` with one of the following presets:
 
