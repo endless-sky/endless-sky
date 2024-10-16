@@ -3976,7 +3976,8 @@ void PlayerInfo::CreateMissions()
 		{
 			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
 				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER);
+				|| it->IsAtLocation(Mission::OUTFITTER)
+				|| it->IsAtLocation(Mission::JOB_BOARD);
 			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
