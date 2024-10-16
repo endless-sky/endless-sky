@@ -337,10 +337,15 @@ void Orders::MergeOrders(const Orders &other, bool &hasMismatch, bool &alreadyHa
 	if(hasMismatch && other.GetTargetAsteroid())
 		alreadyHarvesting = (HasHarvest() && other.HasHarvest());
 
-	targetShip = other.targetShip;
-	targetAsteroid = other.targetAsteroid;
-	targetPoint = other.targetPoint;
-	targetSystem = other.targetSystem;
+	if((other.activeOrders & REQUIRES_TARGET_SHIP).any())
+		targetShip = other.targetShip;
+	if((other.activeOrders & REQUIRES_TARGET_ASTEROID).any())
+		targetAsteroid = other.targetAsteroid;
+	if(other.HasMoveTo())
+	{
+		targetPoint = other.targetPoint;
+		targetSystem = other.targetSystem;
+	}
 }
 
 
