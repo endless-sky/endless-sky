@@ -7467,7 +7467,7 @@ mission "Tavish and Kormak 1"
 	on offer
 		conversation
 			`You make your way through the makeshift spaceport, breathing in the thick humid air and feeling the relentless glare of New India's twin suns. The muddy streets are filled with a constant bustling stream of humans, animals, and vehicles fighting either to unload the raw materials of this world, or to load up on the precious goods needed to tame it.`
-			`	You notice a small uncrowded cafe and bakery slightly off the beaten path where you can get some respite from the crowds and the sun.`
+			`	There's a small uncrowded cafe and bakery slightly off the beaten path. It seems like a nice place to can get some respite from the crowds and the sun.`
 			choice
 				`	(Take a seat in the cafe.)`
 					goto seat
@@ -7480,7 +7480,6 @@ mission "Tavish and Kormak 1"
 			`	You take a seat near a window that does a surprisingly good job at muffling the noises beyond it. The cafe is quaint, nearly empty, and cool. Initially you're the only patron here, but after moment a pair of men enter.`
 			choice
 				`	(Check the menu.)`
-				`	(Get up to leave.)`
 
 			`	Before you can make your order, the two men seat themselves directly in front of you. One of them is short and wiry with bright twitchy eyes and a dark mustache, and other is a looming giant with a trimmed red beard and hair pulled back into a tight pony tail. Both men look overdressed in fine, three-piece suits and bowler hats.`
 			`	"Most serendipitous to find a captain of your caliber in this obscure port of call," the shorter man says, and tips his hat to you. "I am Dr. Julius Theodore Eustice Tavish and my affable comrade is the loquacious Dr. Gluniairn mac Kormakr. Don't worry, our friends just call us Tavish and Kormak..."`
@@ -7493,10 +7492,13 @@ mission "Tavish and Kormak 1"
 			choice
 				`	"I'll do it, but not for free."`
 				`	"Surely you have some money."`
+					goto cashmoney
 				`	"Fine, I'll do it for free."`
 					goto forscience
 				`	"For science!"`
 					goto forscience
+				`	"Not interested."`
+					goto notint
 
 			label cashmoney
 			`	Tavish glances at Kormak and then back to you. There's a hint of sweat on his brow as he says, "Ahem, my esteemed colleague and I have run into to some trouble, of the financial variety. You see, we uh, well, already paid another very charming captain to pick up our equipment on Clark, and they never returned. We then paid another captain to take us there, but when we went to meet them at their ship we discovered the most unwelcome news that there was no ship at all, and they were nowhere to be found."`
@@ -7535,6 +7537,12 @@ mission "Tavish and Kormak 1"
 			`	Tavish's bright eyes turn wet, and he drops his gaze to the table before you. Slowly, as if he's in actual pain, he places his bowler hat back atop his head. He then stands up, promptly followed by the lumbering Kormak.`
 			`	"Very well. You're not the first captain to disdain science and cast us out into the streets, but I had truly hoped you'd be the first to see reason. I bid you good day."`
 			`	As Tavish turns to leave, Kormak waivers for a just a moment. "Not like mirror," he finally says, and then follows Tavish out.`
+				decline
+			
+			label notint
+			`	Tavish's frowns, and he drops his gaze to the table before you. Slowly, as if he's in actual pain, he places his bowler hat back atop his head. He then stands up, promptly followed by the lumbering Kormak.`
+			`	"Very well. There will be other captain's who recognize our proposal for the boon it is. I bid you good day."`
+			`	As Tavish turns to leave, Kormak waivers for a just a moment. "Fool," he finally says, and then follows Tavish out.`
 				decline
 				
 			label reluctantlyforscience
@@ -8033,6 +8041,11 @@ mission "Tavish and Kormak 4"
 						not "kor"
 				`	(Fill out the form and pay the 20,000 credit processing fee.)`
 					goto payup
+				`	"I am not paying 20,000. I am out."`
+					goto giveup
+					to display
+						has "tav"
+						has "kor"
 
 			label tav
 			action
@@ -8053,6 +8066,16 @@ mission "Tavish and Kormak 4"
 			`	Kormak pulls his ear back and pushes on the glass with both hands. Nothing happens. He stops and looks at his fist, clearly considering punching it, but finally decides against it.`
 			`	He takes a step back and looks at you. "Can't."`
 				goto options
+			
+			label giveup
+			`	Tavish frowns, and Komark growls.`
+			`	"Captain <last>," Tavish begins with a note of pleading, but then stops and shakes his head.`
+			`	"I suppose that is equitable. You have been a most agreeable gentleperson, and have taken us further than anyone else."`
+			`	"Gentle." Kormak affirms.`
+			`	"Rest assured, we will take it from here, Captain." Tavish attempts to say with false cheer.`
+			`	"Find own way." Kormak says.`
+			`	You leave them at the kiosk and head back your ship.`
+				decline
 				
 			label payup
 			action
@@ -8092,6 +8115,7 @@ mission "Tavish Interlude"
 			`Tavish approaches you on the bridge. "Captain <last>, I'd like a word."`
 			choice
 				`	"Sure, what's up?"`
+					goto talk
 				`	"Talk."`
 					goto talk
 				`	"Not now, Tavish, I am busy."`
