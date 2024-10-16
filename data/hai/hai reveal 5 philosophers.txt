@@ -427,7 +427,7 @@ mission "Hai Reveal [B06] Lovelace Analysis"
 			`	"Exactly, come on, lets go." He quickly leads the way back to the tube.`
 				goto lab
 			label lead
-			`	You clarify that technically it's a lead on cases that match the same profile as his wife's, not strictly his wife's case. His expression falters momentarily and then he seems to find some internal resolve to draw upon. "Good enough for me... Thank you for your honesty."`
+			`	You clarify that technically it's a lead on cases that match the same profile as his wife's, not strictly his wife's case. His expression falters momentarily and then he seems to find some internal resolve to draw upon. "Good enough for me... thank you, for your honesty."`
 			label lab
 			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, it must be a Lovelace Labs research center. Goraz's laboratory is an entire docking bay with a modified Bounder, but despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has a few assistants who are off-world most of the time.`
 			`	Goraz says, "Here, let me take a look at what you've brought me." He's eyeing your pockets.`
