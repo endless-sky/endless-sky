@@ -409,6 +409,8 @@ outfit "Thermal Repeater Turret"
 
 outfit "Piercer Missile"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 30
 	cost 3500
 	thumbnail "outfit/piercer"
 	"mass" .3
@@ -417,6 +419,8 @@ outfit "Piercer Missile"
 
 outfit "Piercer Missile Rack"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 31
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
@@ -565,6 +569,8 @@ effect "detainer smoke"
 
 outfit "Cluster Mine"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 40
 	cost 3500
 	thumbnail "outfit/korath mine"
 	"mass" .7
@@ -573,6 +579,8 @@ outfit "Cluster Mine"
 
 outfit "Cluster Mine Rack"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 41
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
@@ -939,6 +947,8 @@ effect "heaver splinter hit"
 
 outfit "Firelight Storage Rack"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 11
 	cost 27400
 	thumbnail "outfit/firelight rack"
 	"mass" 3
@@ -949,6 +959,8 @@ outfit "Firelight Storage Rack"
 
 outfit "Firelight Missile"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 10
 	cost 7600
 	thumbnail "outfit/firelight"
 	"mass" 0.3
@@ -1089,6 +1101,8 @@ outfit "Microbot Grinder"
 outfit "Firestorm Torpedo"
 	plural "Firestorm Torpedoes"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 20
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
 	"mass" 1
@@ -1099,6 +1113,8 @@ outfit "Firestorm Torpedo"
 
 outfit "Firestorm Torpedo Rack"
 	category "Ammunition"
+	series "Ammunition: Korath"
+	index 21
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
 	"mass" 7

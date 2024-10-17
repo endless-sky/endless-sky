@@ -223,6 +223,8 @@ effect "point defense die"
 outfit "EMP Torpedo"
 	plural "EMP Torpedoes"
 	category "Ammunition"
+	series "Ammunition: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 4400
@@ -233,6 +235,8 @@ outfit "EMP Torpedo"
 
 outfit "EMP Torpedo Storage Bay"
 	category "Ammunition"
+	series "Ammunition: Remnant"
+	index 11
 	licenses
 		Remnant
 	cost 98000
@@ -297,6 +301,8 @@ outfit "EMP Torpedo Bay"
 
 outfit "Teciimach Canister"
 	category "Ammunition"
+	series "Ammunition: Remnant"
+	index 20
 	licenses
 		Remnant
 	cost 35500
@@ -308,6 +314,8 @@ outfit "Teciimach Canister"
 
 outfit "Teciimach Canister Rack"
 	category "Ammunition"
+	series "Ammunition: Remnant"
+	index 21
 	licenses
 		Remnant
 	cost 295000

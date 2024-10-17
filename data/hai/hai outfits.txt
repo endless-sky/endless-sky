@@ -220,6 +220,8 @@ effect "ionic impact"
 outfit "Railgun Slug"
 	"display name" "Skipper Railgun Slug"
 	category "Ammunition"
+	series "Ammunition: Hai"
+	index 20
 	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.003
@@ -229,6 +231,8 @@ outfit "Railgun Slug"
 outfit "Railgun Slug Rack"
 	"display name" "Skipper Slug Rack"
 	category "Ammunition"
+	series "Ammunition: Hai"
+	index 21
 	cost 15000
 	thumbnail "outfit/railslug rack"
 	"mass" 1
@@ -300,6 +304,8 @@ effect "rail sparks"
 
 outfit "Hai Tracker"
 	category "Ammunition"
+	series "Ammunition: Hai"
+	index 10
 	cost 1000
 	thumbnail "outfit/hai tracker"
 	"mass" .2
@@ -308,6 +314,8 @@ outfit "Hai Tracker"
 
 outfit "Tracker Storage Pod"
 	category "Ammunition"
+	series "Ammunition: Hai"
+	index 11
 	cost 28000
 	thumbnail "outfit/hai tracker storage"
 	"mass" 4.4

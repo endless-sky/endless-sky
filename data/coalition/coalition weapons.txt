@@ -186,6 +186,8 @@ outfit "Active Finisher"
 
 outfit "Finisher Storage Tube"
 	category "Ammunition"
+	series "Ammunition: Coalition"
+	index 11
 	cost 58800
 	thumbnail "outfit/finisher storage"
 	"mass" 4
@@ -198,6 +200,8 @@ outfit "Finisher Storage Tube"
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
+	series "Ammunition: Coalition"
+	index 10
 	cost 32000
 	thumbnail "outfit/finisher"
 	"mass" .5

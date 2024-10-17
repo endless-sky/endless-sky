@@ -850,6 +850,8 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 20
 	cost 500
 	thumbnail "outfit/meteor"
 	"mass" .2
@@ -858,6 +860,8 @@ outfit "Meteor Missile"
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
+	series "Ammunition: Human"
+	index 21
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
@@ -956,6 +960,8 @@ effect "meteor fire"
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 30
 	cost 900
 	thumbnail "outfit/sidewinder"
 	"mass" .2
@@ -964,6 +970,8 @@ outfit "Sidewinder Missile"
 
 outfit "Sidewinder Missile Rack"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 31
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
 	"mass" 2.4
@@ -1064,6 +1072,8 @@ effect "sidewinder fire"
 
 outfit "Javelin"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 10
 	cost 50
 	thumbnail "outfit/javelin"
 	"mass" .04
@@ -1072,6 +1082,8 @@ outfit "Javelin"
 
 outfit "Javelin Storage Crate"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 11
 	cost 5000
 	thumbnail "outfit/javelin storage"
 	"mass" 2
@@ -1179,6 +1191,8 @@ outfit "Javelin Turret"
 
 outfit "Torpedo"
 	plural "Torpedoes"
+	series "Ammunition: Human"
+	index 50
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
@@ -1188,6 +1202,8 @@ outfit "Torpedo"
 
 outfit "Torpedo Storage Rack"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 51
 	cost 21000
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
@@ -1284,6 +1300,8 @@ effect "torpedo fire"
 
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
+	series "Ammunition: Human"
+	index 60
 	category "Ammunition"
 	cost 2700
 	thumbnail "outfit/typhoon"
@@ -1293,6 +1311,8 @@ outfit "Typhoon Torpedo"
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 61
 	cost 40500
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
@@ -1389,6 +1409,8 @@ effect "typhoon fire"
 
 outfit "Heavy Rocket"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 40
 	cost 2000
 	thumbnail "outfit/rocket"
 	"mass" .5
@@ -1397,6 +1419,8 @@ outfit "Heavy Rocket"
 
 outfit "Heavy Rocket Rack"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 41
 	cost 20000
 	thumbnail "outfit/rocket storage"
 	"mass" 2
@@ -1570,6 +1594,8 @@ effect "nuke residue slow"
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 70
 	cost 4
 	thumbnail "outfit/bullet"
 	"mass" .002
@@ -1579,6 +1605,8 @@ outfit "Gatling Gun Ammo"
 outfit "Bullet Boxes"
 	plural "Bullet Boxes"
 	category "Ammunition"
+	series "Ammunition: Human"
+	index 71
 	cost 3000
 	thumbnail "outfit/bullet storage"
 	"mass" 2

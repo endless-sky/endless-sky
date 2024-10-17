@@ -179,6 +179,8 @@ effect "yellow spark fragment"
 
 outfit "Swarm Clip"
 	category "Ammunition"
+	series "Ammunition: Bunrodea"
+	index 11
 	cost 24000
 	thumbnail "outfit/swarm storage"
 	"mass" 2
@@ -189,6 +191,8 @@ outfit "Swarm Clip"
 
 outfit "Swarm Missile"
 	category "Ammunition"
+	series "Ammunition: Bunrodea"
+	index 10
 	cost 250
 	thumbnail "outfit/swarm missile"
 	"mass" 0.04

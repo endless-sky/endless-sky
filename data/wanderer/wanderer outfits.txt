@@ -268,6 +268,8 @@ outfit "Thunderhead Launcher"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
+	series "Ammunition: Wanderers"
+	index 10
 	cost 1800
 	thumbnail "outfit/thunderhead"
 	mass .3
@@ -297,6 +299,8 @@ outfit "Thunderhead"
 
 outfit "Thunderhead Storage Array"
 	category "Ammunition"
+	series "Ammunition: Wanderers"
+	index 11
 	licenses
 		"Wanderer Outfits"
 	cost 36000
