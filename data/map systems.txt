@@ -3376,6 +3376,7 @@ system Alcor
 	trade Plastic 488
 	fleet "Small Southern Merchants" 2000
 	fleet "Small Southern Pirates" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/m3
 		distance 78.946
