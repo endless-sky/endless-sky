@@ -1945,6 +1945,20 @@ void PlayerInfo::AddSpecialLog(const string &type, const string &name, const str
 
 
 
+void PlayerInfo::RemoveSpecialLog(const std::string &type, const std::string &name)
+{
+	specialLogs[type].erase(specialLogs[type].find(name));
+}
+
+
+
+void PlayerInfo::RemoveSpecialLog(const std::string &type)
+{
+	specialLogs.erase(specialLogs.find(type));
+}
+
+
+
 bool PlayerInfo::HasLogs() const
 {
 	return !logbook.empty() || !specialLogs.empty();

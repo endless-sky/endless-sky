@@ -150,10 +150,19 @@ void GameAction::LoadSingle(const DataNode &child)
 
 	if(key == "log")
 	{
-		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		if(child.Token(1) == "clear" && child.Size() >= 3)
+		{
+			auto &type = specialLogClear[child.Token(2)];
+			if(child.Size() > 3)
+				type.push_back(child.Token(3));
+		}
+		else
+		{
+			bool isSpecial = (child.Size() >= 3);
+			string &text = (isSpecial ?
+				specialLogText[child.Token(1)][child.Token(2)] : logText);
+			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		}
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
@@ -251,6 +260,14 @@ void GameAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			out.Write("log", "clear", it.first);
+		else
+			for(auto &&jt : it.second)
+				out.Write("log", "clear", it.first, jt);
+	}
 	for(auto &&it : giftShips)
 		it.Save(out);
 	for(auto &&it : giftOutfits)
@@ -371,6 +388,14 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			player.RemoveSpecialLog(it.first);
+		else
+			for(auto &&jt : it.second)
+				player.RemoveSpecialLog(it.first, jt);
+	}
 
 	// If multiple outfits, ships are being transferred, first remove the ships,
 	// then the outfits, before adding any new ones.
@@ -481,6 +506,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
 	result.failCaller = failCaller;
