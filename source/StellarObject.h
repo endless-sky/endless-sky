@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "Hazard.h"
 #include "RandomEvent.h"
+
 #include <set>
 
 class Planet;
