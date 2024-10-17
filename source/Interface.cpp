@@ -31,8 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "RingShader.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
@@ -711,6 +711,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		if(reversed)
 			dimensions *= -1.;
 		double length = dimensions.Length();
+		Point unit = dimensions.Unit();
 
 		// We will have (segments - 1) gaps between the segments.
 		double empty = segments ? (width / length) : 0.;
@@ -725,7 +726,13 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			Point to = start + min(v, value) * dimensions;
 			v += empty;
 
-			LineShader::Draw(from, to, width, *color);
+			// Rounded lines have a bit of padding, so account for that here.
+			float d = (to - from).Length() / 2.;
+			float twidth = d < width ? width * d / 2. : width;
+			from += unit * twidth;
+			to -= unit * twidth;
+
+			LineShader::Draw(from, to, twidth, *color);
 		}
 	}
 }
