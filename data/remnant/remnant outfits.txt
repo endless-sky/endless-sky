@@ -592,6 +592,8 @@ outfit "Aeon Cell"
 
 outfit "Thermoelectric Cooler"
 	category "Systems"
+	series "Cooling: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 100000

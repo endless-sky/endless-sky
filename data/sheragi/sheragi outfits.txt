@@ -43,6 +43,8 @@ outfit "Large EM Battery"
 
 outfit "Small Hybrid Cooling"
 	category "Systems"
+	series "Cooling: Sheragi"
+	index 10
 	cost 200000
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
@@ -55,6 +57,8 @@ outfit "Small Hybrid Cooling"
 
 outfit "Large Hybrid Cooling"
 	category "Systems"
+	series "Cooling: Sheragi"
+	index 20
 	cost 1000000
 	thumbnail "outfit/sheragicooling"
 	"mass" 40

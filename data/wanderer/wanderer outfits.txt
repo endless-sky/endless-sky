@@ -414,6 +414,8 @@ outfit "Wanderer Ramscoop"
 
 outfit "Wanderer Heat Sink"
 	category "Systems"
+	series "Cooling: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 94000

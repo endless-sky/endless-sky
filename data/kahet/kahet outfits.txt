@@ -330,6 +330,8 @@ effect "mhd explosion"
 
 outfit "Ka'het Support Cooling"
 	category "Systems"
+	series "Cooling: Ka'het"
+	index 10
 	cost 218000
 	thumbnail "outfit/ka'het support cooling"
 	"mass" 6
@@ -341,6 +343,8 @@ outfit "Ka'het Support Cooling"
 
 outfit "Ka'het Primary Cooling"
 	category "Systems"
+	series "Cooling: Ka'het"
+	index 20
 	cost 563000
 	thumbnail "outfit/ka'het primary cooling"
 	"mass" 11

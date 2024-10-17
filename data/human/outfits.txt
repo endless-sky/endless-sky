@@ -14,6 +14,8 @@
 outfit "Cooling Ducts"
 	plural "Cooling Ducts"
 	category "Systems"
+	series "Cooling: Human"
+	index 10
 	cost 10000
 	thumbnail "outfit/cooling ducts"
 	"mass" 5
@@ -23,6 +25,8 @@ outfit "Cooling Ducts"
 
 outfit "Water Coolant System"
 	category "Systems"
+	series "Cooling: Human"
+	index 20
 	cost 25000
 	thumbnail "outfit/water cooling"
 	"mass" 10
@@ -32,6 +36,8 @@ outfit "Water Coolant System"
 
 outfit "Liquid Nitrogen Cooler"
 	category "Systems"
+	series "Cooling: Human"
+	index 30
 	cost 60000
 	thumbnail "outfit/liquid nitrogen"
 	"mass" 20
@@ -41,6 +47,8 @@ outfit "Liquid Nitrogen Cooler"
 
 outfit "Liquid Helium Cooler"
 	category "Systems"
+	series "Cooling: Human"
+	index 40
 	cost 150000
 	thumbnail "outfit/liquid helium"
 	"mass" 40

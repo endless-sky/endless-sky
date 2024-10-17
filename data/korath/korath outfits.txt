@@ -79,6 +79,8 @@ outfit "Triple Plasma Core"
 
 outfit "Small Heat Shunt"
 	category "Systems"
+	series "Cooling: Korath"
+	index 10
 	cost 180000
 	thumbnail "outfit/small heat shunt"
 	"mass" 7
@@ -88,6 +90,8 @@ outfit "Small Heat Shunt"
 
 outfit "Large Heat Shunt"
 	category "Systems"
+	series "Cooling: Korath"
+	index 20
 	cost 790000
 	thumbnail "outfit/large heat shunt"
 	"mass" 24
@@ -97,6 +101,8 @@ outfit "Large Heat Shunt"
 
 outfit "Liquid Sodium Cooler"
 	category "Systems"
+	series "Cooling: Korath"
+	index 30
 	cost 1660000
 	thumbnail "outfit/liquid sodium"
 	"mass" 34

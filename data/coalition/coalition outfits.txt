@@ -203,6 +203,8 @@ outfit "Overclocked Repair Module"
 
 outfit "Cooling Module"
 	category "Systems"
+	series "Cooling: Coalition"
+	index 10
 	licenses
 		Coalition
 	cost 160000

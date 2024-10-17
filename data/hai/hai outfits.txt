@@ -468,6 +468,8 @@ outfit "Hai Diamond Regenerator"
 
 outfit "Hai Williwaw Cooling"
 	category "Systems"
+	series "Cooling: Hai"
+	index 10
 	cost 15000
 	thumbnail "outfit/hai williwaw"
 	"mass" 8
