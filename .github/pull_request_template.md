@@ -1,13 +1,15 @@
 (The lines in parentheses (like this one) are instructions for filling out this template. These lines can be deleted.)
 (The lines in double curly brackets ({{}}) should be replaced as it describes.)
-(You can open a PR to add or improve this template, if you find it lacking!)
+(You can open a PR to add to or improve this template, if you find it lacking!)
 
 (Choose one heading, or add your own.)
 **Content (Artwork / Missions / Jobs)**
 **Balance**
 **Feature**
 **Bug fix**
+**Typo fix**
 **CI/CD/Testing**
+**Refactor**
 **Documentation**
 
 This PR addresses the bug/feature described in issue #{{insert number}}
@@ -34,6 +36,9 @@ This save file can be used to test these changes:
  - [ ] I updated the copyright attributions, or decline to claim copyright of any assets produced or modified
  - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/endless-sky/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
  - [ ] I created a PR to the [endless-sky-high-dpi repo](https://github.com/endless-sky/endless-sky-high-dpi) with the `@2x` versions of these art assets: {{insert PR link}}
+
+## Wiki Update
+(If this PR adds a new feature or modifies a feature that should be documented in the [GitHub wiki](https://github.com/endless-sky/endless-sky/wiki), open a PR to the [wiki repository](https://github.com/endless-sky/endless-sky-wiki) and provide a link.)
 
 ## Performance Impact
 {{If this PR changed code, describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed.}}

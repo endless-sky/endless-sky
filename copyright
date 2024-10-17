@@ -12,18 +12,17 @@ Files: images/*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
-Files:
- images/outfit/*battery?hai*
- images/outfit/anti-missile?hai*
- images/outfit/cooling ducts?hai*
- images/outfit/dwarf?core?hai*
- images/outfit/fission?hai*
- images/outfit/fusion?hai*
- images/outfit/heavy?anti-missile?hai*
- images/ship/mfury*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Files: images/land/*
+Copyright: Various
+License: public-domain
+ Taken from morgue-file.com, a collection of photographs that have been donated
+ and placed in the public domain. (Exceptions noted below.)
+
+Files: images/scene/*
+Copyright: Various
+License: public-domain
+ Taken from morguefile.com, a collection of photographs that have been donated
+ and placed in the public domain. (Exceptions noted below.)
 
 Files:
  images/outfit/bullet*
@@ -37,23 +36,6 @@ Files:
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
-
-Files:
- images/ship/pointedstick?vanguard*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Nate Graham (under the same license).
-
-Files:
- images/effect/railspark*
- images/projectile/tinyflare*
- images/outfit/*engines?hai*
- images/outfit/*steering?hai*
- images/outfit/*thruster?hai*
- images/outfit/tiny?ion?engines*
-Copyright: Iaz Poolar
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/projectile/bullet*
@@ -81,8 +63,8 @@ Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
- images/outfit/luxury accommodations*
- images/hardpoint/proton turret*
+ images/outfit/luxury?accommodations*
+ images/hardpoint/proton?turret*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -93,7 +75,8 @@ Files:
  images/land/canyon9*
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public-domain
-Comment: Based on public domain images taken from unsplash.com
+ Based on images taken from unsplash.com before June 2017, when all images
+ uploaded to that site were donated to the public domain.
 
 Files:
  images/icon/gat*
@@ -165,10 +148,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso, Darcy Manoel, and Michael Zahniser (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/land/moon0*
+Copyright: NASA/GSFC/Arizona State University
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
  images/land/enceladus_1*
  images/land/enceladus_2*
  images/land/enceladus_3*
  images/land/enceladus_4*
+ images/land/moon1*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -192,12 +183,6 @@ Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
-
-Files: images/scene/*
-Copyright: Various
-License: public-domain
- Taken from morguefile.com, a collection of photographs that have been donated
- and placed in the public domain. (Exceptions noted below.)
 
 Files: images/scene/geoscan*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
@@ -227,63 +212,52 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files: images/land/*
-Copyright: Various
-License: public-domain
- Taken from morgue-file.com, a collection of photographs that have been donated
- and placed in the public domain. (Exceptions noted below.)
-
 Files:
  images/land/mercury1*
 Copyright: NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington
 License: public-domain
-Comment:
  Taken from https://archive.is/dd4hA. This image is an
  artist's impression of the surface of Mercury, produced
  for the MESSENGER mission. Because it was produced for
  a NASA mission, it is in the public domain.
 
 Files:
+ images/land/haze0*
+Copyright: Izaac Hewitt-Lawrence
+License: Unsplash
+ Taken from https://archive.is/LZQbZ and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/haze1*
+Copyright: Tobias Rademacher
+License: Unsplash
+ Taken from https://archive.is/Rc9fs and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/haze2*
+Copyright: Marek Piwnicki
+License: Unsplash
+ Taken from https://archive.is/iVNGc and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
  images/land/sea23*
 Copyright: Dan Stark
 License: public-domain
-Comment:
  Taken from https://archive.is/qvHPl. This image was
  uploaded to unsplash.com before June 2017, so it is
  in the public domain.
-
-Files:
- images/land/station46*
-Copyright: Bruno Thethe
-License: Unsplash License
-Comment:
- Taken from https://archive.is/FpG3p. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
-
-Files:
- images/land/station47*
-Copyright: Adrien Olichon
-License: Unsplash License
-Comment:
- Taken from https://archive.is/zTEVA. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
-
-Files:
- images/land/station48*
-Copyright: Miquel Parera
-License: Unsplash License
-Comment:
- Taken from https://archive.is/UjGht. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
 
 Files: images/land/bwerner*
 Copyright: Berthold Werner (commons.wikimedia.org/wiki/User:Berthold_Werner)
@@ -321,17 +295,6 @@ Files: images/land/*-iridium*
 Copyright: @Iridium Ore (blueajp@gmail.com)
 License: CC-BY-SA-4.0
 
-Files: images/land/lava11*
-Copyright: National Archives and Records Administration
-License: public-domain
-Comment: Taken from Wikimedia Commons. Cropped and edited.
-
-Files:
- images/land/station12*
-Copyright: Office of War Information
-License: public-domain
-Comment: Taken from Wikimedia Commons. Cropped and edited.
-
 Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
 License: CC-BY-SA-4.0
@@ -339,7 +302,8 @@ License: CC-BY-SA-4.0
 Files: images/land/sivael*
 Copyright: Tymoteusz Kapuściński (Sivael)
 License: CC-BY-SA-4.0
-Comment: Screenshots of environments created with assets purchased by Tymoteusz
+Comment:
+ Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
 
@@ -353,6 +317,13 @@ Files:
  images/effect/jump?drive?red*
 Copyright: Zachary Siple
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/security?station*
+ images/ship/peregrine/*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
 
 Files:
  images/outfit/korath?rifle*
@@ -396,16 +367,13 @@ Comment: Derived from works by Iaz Poolar (under the same license).
 
 Files: images/portrait/*
 Copyright: Various
-License: public-domain
- Taken from unsplash.com, a collection of photographs that have been donated and
- placed in the public domain.
-
-Files:
- images/outfit/quarg?skylance*
- images/hardpoint/quarg?skylance*
-Copyright: Evan Fluharty (Evanfluharty@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+License: Depends
+Comment:
+ Taken from unsplash.com and added to the game after June 2017. If the pictures were
+ uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
+ subject to the Unsplash License. If they were also uploaded after February 2018, they
+ are subject to additional restrictions.
 
 Files:
  images/outfit/quarg*
@@ -421,143 +389,36 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/quarg?skylance*
+ images/hardpoint/quarg?skylance*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+
+Files:
  images/outfit/enforcer?riot?staff*
 Copyright: 1010todd
 Comment: Derived from works by Evan Fluharty (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
- images/effect/remnant?afterburner/remnant?afterburner*
- images/effect/mhd?spark*
- images/land/nasa9*
- images/hardpoint/annihilator?turret*
- images/hardpoint/hai?ionic?turret*
- images/hardpoint/inhibitor?turret*
- images/hardpoint/ion?hail?turret*
- images/hardpoint/ravager?turret*
- images/outfit/inhibitor?turret*
- images/outfit/ion?hail?turret*
- images/hardpoint/shooting?star?flare/ss-rays*
- images/outfit/overcharged?shield?module*
- images/outfit/overclocked?repair?module*
- images/outfit/ramscoop*
- images/outfit/remnant?afterburner*
- images/outfit/remnant?capital?license*
- images/outfit/research?laboratory*
- images/outfit/salvage?scanner*
- images/outfit/tiny?remnant?engine*
- images/outfit/void?rifle*
- images/outfit/fragmentation?grenades*
- images/outfit/nerve?gas*
- images/outfit/catalytic?ramscoop*
- images/outfit/anti-missile*
- images/outfit/blaster?turret*
- images/outfit/blaster*
- images/outfit/breeder*
- images/outfit/bunk?room*
- images/outfit/dwarf?core*
- images/outfit/electron?beam*
- images/outfit/electron?turret*
- images/outfit/fission*
- images/outfit/flamethrower*
- images/outfit/hai?ionic?blaster*
- images/outfit/hai?ionic?turret*
- images/outfit/heavy?anti-missile*
- images/outfit/heavy?laser?turret*
- images/outfit/heavy?laser*
- images/outfit/huge?fuel?cell*
- images/outfit/large?fuel?cell*
- images/outfit/medium?fuel?cell*
- images/outfit/small?fuel?cell*
- images/outfit/tiny?fuel?cell*
- images/outfit/huge?shield*
- images/outfit/large?shield*
- images/outfit/medium?shield*
- images/outfit/small?shield*
- images/outfit/tiny?shield*
- images/outfit/hyperdrive*
- images/outfit/large?radar?jammer*
- images/outfit/small?radar?jammer*
- images/outfit/meteor*
- images/outfit/meteor?launcher*
- images/outfit/meteor?pod*
- images/outfit/meteor?storage*
- images/outfit/mod?blaster?turret*
- images/outfit/mod?blaster*
- images/outfit/particle?cannon*
- images/outfit/plasma?cannon*
- images/outfit/plasma?turret*
- images/outfit/proton?gun*
- images/outfit/quad?blaster?turret*
- images/outfit/rocket*
- images/outfit/rocket?launcher*
- images/outfit/rocket?pod*
- images/outfit/rocket?storage*
- images/outfit/sidewinder*
- images/outfit/sidewinder?launcher*
- images/outfit/sidewinder?pod*
- images/outfit/sidewinder?storage*
- images/outfit/small?bunk?room*
- images/outfit/small?nucleovoltaic*
- images/outfit/small?radiothermal*
- images/outfit/small?thermionic*
- images/outfit/stack?core*
- images/outfit/surveillance?pod*
- images/outfit/banisher*
- images/outfit/command?center*
- images/outfit/fire-lance*
- images/outfit/piercer*
- images/outfit/piercer?launcher*
- images/outfit/korath?piercer?storage*
- images/outfit/reverse?thruster?ion*
- images/outfit/reverse?thruster?plasma*
- images/outfit/rock?0*
- images/outfit/rock?1*
- images/outfit/rock?2*
- images/outfit/rock?3*
- images/outfit/rock?4*
- images/scene/penguinscene*
- images/ship/hai?sea?scorpion*
- images/ship/ibis*
- images/ship/mbactriane*
- images/ship/merganser*
- images/ship/penguin/*
- images/ship/petrel*
- images/ship/tern*
- images/ship/shooting?star/shooting?star*
- images/ship/pug?zibruka*
- images/ship/pug?enfolta*
- images/ship/pug?maboro*
- images/ship/pug?arfecta*
- images/thumbnail/hai?sea?scorpion*
- images/thumbnail/ibis*
- images/thumbnail/merganser*
- images/thumbnail/penguin*
- images/thumbnail/petrel*
- images/thumbnail/tern*
- images/planet/station1c*
- images/planet/station2c*
- images/planet/station3c*
- images/ship/archon?b*
- images/ship/archon?c*
- images/asteroid/plant*
- images/asteroid/plant2*
- images/asteroid/plant?cluster*
- images/asteroid/space?flora*
- images/asteroid/large?plant*
- images/asteroid/large?plant2*
- images/asteroid/large?plant?cluster*
- images/asteroid/large?space?flora*
- images/asteroid/yottrite*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+ images/land/desert0*
+ images/land/earthrise*
+ images/land/nasa*
+ images/land/space*
+ images/land/station1*
+ images/land/station2*
+ images/land/station3*
+Copyright: NASA
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
 
 Files:
- sounds/pincer*
-Copyright: Michael Zahniser
-License: GPL-2
-Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
+ images/land/station12*
+Copyright: Office of War Information
+License: public-domain
+ Taken from Wikimedia Commons. Cropped and edited.
 
 Files:
  images/*/pincer*
@@ -589,83 +450,40 @@ Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
  images/land/badlands0*
- images/land/badlands1*
- images/land/badlands2*
  images/land/badlands5*
- images/land/badlands6*
  images/land/badlands7*
  images/land/badlands8*
- images/land/badlands10*
- images/land/badlands11*
- images/land/badlands12*
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
  images/land/beach5*
  images/land/beach6*
- images/land/beach13*
- images/land/beach14*
  images/land/canyon0*
- images/land/canyon1*
  images/land/canyon7*
- images/land/canyon8*
- images/land/canyon13*
- images/land/canyon14*
- images/land/canyon15*
- images/land/city2*
  images/land/city4*
  images/land/city6*
- images/land/city7*
  images/land/city8*
  images/land/city9*
  images/land/city10*
- images/land/city11*
- images/land/city12*
  images/land/desert1*
  images/land/desert2*
- images/land/desert11*
- images/land/desert12*
- images/land/desert13*
- images/land/dune1*
  images/land/fields1*
  images/land/fields2*
- images/land/fields3*
  images/land/fields5*
  images/land/fields6*
  images/land/fields7*
  images/land/fields9*
- images/land/fields13*
- images/land/fields14*
- images/land/fields15*
  images/land/fog0*
- images/land/fog1*
  images/land/fog2*
  images/land/fog4*
- images/land/fog6*
- images/land/fog8*
- images/land/fog9*
- images/land/fog10*
- images/land/fog11*
  images/land/forest1*
  images/land/forest2*
  images/land/forest3*
  images/land/forest4*
- images/land/forest5*
- images/land/forest6*
- images/land/forest7*
- images/land/forest8*
- images/land/forest9*
- images/land/garden1*
- images/land/hills0*
  images/land/hills2*
- images/land/hills8*
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
- images/land/lava12*
- images/land/lava13*
- images/land/loc3*
- images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
  images/land/mountain4*
@@ -674,104 +492,1064 @@ Files:
  images/land/mountain7*
  images/land/mountain8*
  images/land/mountain9*
- images/land/sea1*
- images/land/sea5*
- images/land/sea7*
  images/land/sea8*
- images/land/sea18*
- images/land/sea19*
  images/land/sky0*
  images/land/sky3*
- images/land/sky4*
- images/land/sky5*
  images/land/sky7*
  images/land/sky8*
  images/land/sky9*
- images/land/sky10*
- images/land/sky11*
  images/land/snow0*
  images/land/snow1*
  images/land/snow2*
  images/land/snow3*
  images/land/snow4*
- images/land/snow5*
  images/land/snow6*
  images/land/snow7*
- images/land/snow10*
- images/land/snow14*
- images/land/snow15*
- images/land/snow16*
- images/land/snow17*
- images/land/snow18*
- images/land/snow19*
- images/land/snow20*
- images/land/snow21*
  images/land/space2*
- images/land/station4*
- images/land/station6*
- images/land/station9*
- images/land/station10*
- images/land/station11*
- images/land/station13*
- images/land/station14*
- images/land/station16*
- images/land/station17*
- images/land/station18*
- images/land/station19*
- images/land/station20*
- images/land/station21*
- images/land/station22*
- images/land/station23*
- images/land/station24*
- images/land/station25*
- images/land/station26*
- images/land/station29*
- images/land/station30*
- images/land/station31*
- images/land/station32*
- images/land/station33*
- images/land/station34*
- images/land/station35*
- images/land/station36*
- images/land/station37*
- images/land/station38*
- images/land/station39*
- images/land/station40*
- images/land/station41*
- images/land/station42*
- images/land/station43*
- images/land/station44*
- images/land/station45*
- images/land/station46*
  images/land/water0*
- images/land/water3*
- images/land/water4*
  images/land/water8*
- images/land/water12*
- images/land/water13*
 Copyright: Various
 License: public-domain
- Taken from unsplash.com, a collection of photographs that have been donated and
- placed in the public domain.
+ Taken from unsplash.com and added to the game before June 2017, when it was
+ a collection of photographs that had been donated and placed in the public domain.
+
+Files:
+ images/land/badlands1*
+Copyright: Jason Thompson
+License: public-domain
+ Taken from https://archive.is/arYCs. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/badlands2*
+Copyright: Koen van Gilst
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Syt9W. This image was uploaded to
+ unsplash.com in June 2017, so it is subject to the Unsplash
+ License. It was uploaded before February 2018, so it is not
+ subject to additional restrictions.
+
+Files:
+ images/land/badlands6*
+Copyright: John Fowler
+License: Unsplash
+Comment:
+ Taken from https://archive.is/u0tLY. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/canyon1*
+Copyright: Ana Filipa Neves
+License: public-domain
+ Taken from https://archive.is/cFMrt. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/canyon8*
+Copyright: Benjaimn Esteves
+License: public-domain
+ Taken from https://archive.is/uHKHC. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/city2*
+Copyright: timJ
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Wqo8m. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions. The link to
+ the image on the archive is broken and the published date
+ can't be seen if you just look at the site. If you click
+ view source and search `"id":"EJ4qfFp1g8Q",` you will see
+ it was published in July 2017. You will also see in the
+ source that the image is
+ https://images.unsplash.com/photo-1500021804447-2ca2eaaaabeb,
+ which matches the image as per https://archive.is/zU3K5.
+
+Files:
+ images/land/city7*
+Copyright: Jason Wong
+License: Unsplash
+Comment:
+ Taken from https://archive.is/AmgC4. This image was uploaded to
+ unsplash.com in June 2017, so it is subject to the Unsplash
+ License. It was uploaded before February 2018, so it is not
+ subject to additional restrictions.
+
+Files:
+ images/land/city11*
+Copyright: Bon Bahar
+License: Unsplash
+Comment:
+ Taken from https://archive.is/fWfhb. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions. The link to
+ the image on the archive is broken and the published date
+ can't be seen if you just look at the site. If you click
+ view source and search "datePublished," you will see it
+ was published in August 2017. You will also see in the
+ source that the image is
+ https://images.unsplash.com/photo-1501607087079-27057d2fdc93,
+ which matches the image as per https://archive.is/7id7h.
+
+Files:
+ images/land/city12*
+Copyright: Steven Pahel
+License: Unsplash
+Comment:
+ Taken from https://archive.is/xYdxk. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/dune1*
+Copyright: Wilson Ye
+License: public-domain
+ Taken from https://archive.is/qmRn7. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fields3*
+Copyright: Doan Tuan
+License: public-domain
+ Taken from https://archive.is/yH9tF. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog1*
+Copyright: Peter Hammer
+License: Unsplash
+Comment:
+ Taken from https://archive.is/eh77M. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/fog6*
+Copyright: Michael Dam
+License: public-domain
+ Taken from https://archive.is/vhrne. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest5*
+Copyright: Wei Pan
+License: public-domain
+ Taken from https://archive.is/zr5p0. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/hills0*
+Copyright: Baptist Standaert
+License: Unsplash
+Comment:
+ Taken from https://archive.is/bT412. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/mountain0*
+Copyright: Karsten Wurth
+License: public-domain
+ Taken from https://archive.is/QroFs. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sea1*
+Copyright: Christian Joudrey
+License: public-domain
+ Taken from https://archive.is/uYIiS. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sea5*
+Copyright: Johannes Plenio
+License: Unsplash
+Comment:
+ Taken from https://archive.is/WHmJC. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/sea7*
+Copyright: Johannes Plenio
+License: public-domain
+ Taken from https://archive.is/Ab1ml. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sky4*
+Copyright: Sergey Pesterev
+License: Unsplash
+Comment:
+ Taken from https://archive.is/psGa3. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/sky5*
+Copyright: Nathan Hulsey
+License: public-domain
+ Taken from https://archive.is/J1nTb. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow5*
+Copyright: Jay Ruzesky
+License: public-domain
+ Taken from https://archive.is/cMHkC. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow10*
+Copyright: Mathias Herheim
+License: Unsplash
+Comment:
+ Taken from https://archive.is/25091. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/water3*
+Copyright: Jacek Smoter
+License: public-domain
+ Taken from https://archive.is/9lZeb. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/water4*
+Copyright: Unknown
+License: Depends
+Comment:
+ Cannot source. The image was probably removed from unsplash.
+
+Files:
+ images/land/badlands10*
+Copyright: Jean Beller
+License: Unsplash
+Comment:
+ Taken from https://archive.is/0HX4h. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/badlands11*
+Copyright: Luemen Rutkowski
+License: Unsplash
+Comment:
+ Taken from https://archive.is/HkBI5. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/badlands12*
+Copyright: Tim Mossholder
+License: Unsplash
+Comment:
+ Taken from https://archive.is/KsALa. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/beach13*
+Copyright: Mads Sonne
+License: Unsplash
+Comment:
+ Taken from https://archive.is/ZmzZe. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/beach14*
+Copyright: Silas Baisch
+License: Unsplash
+Comment:
+ Taken from https://archive.is/uMT7F. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/canyon13*
+Copyright: Miriam Mica
+License: Unsplash
+Comment:
+ Taken from https://archive.is/CyvxB. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/canyon14*
+Copyright: John Towner
+License: public-domain
+ Taken from https://archive.is/3euXE. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/canyon15*
+Copyright: Nathan Anderson
+License: public-domain
+ Taken from https://archive.is/8rN07. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/desert11*
+Copyright: Robert Murray
+License: public-domain
+ Taken from https://archive.is/DirtW. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/desert12*
+Copyright: Joe Mania
+License: public-domain
+ Taken from https://archive.is/3FHPD. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/desert13*
+Copyright: Mikk Tonissoo
+License: Unsplash
+Comment:
+ Taken from https://archive.is/KqPh4. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/fields13*
+Copyright: Jeff King
+License: public-domain
+ Taken from https://archive.is/b9tIO. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fields14*
+Copyright: Jeroen van Dijk
+License: Unsplash
+Comment:
+ Taken from https://archive.is/gj7LA. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/fields15*
+Copyright: Ales Krivec
+License: public-domain
+ Taken from https://archive.is/i9nJj. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog8*
+Copyright: Dawid Zawila
+License: public-domain
+ Taken from https://archive.is/XGHmJ. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog9*
+Copyright: J. P. Valery
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Ih53u. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/fog10*
+Copyright: Weronika
+License: Unsplash
+Comment:
+ Taken from https://archive.is/qZ3JG. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/fog11*
+Copyright: Jay Mantri
+License: public-domain
+ Taken from https://archive.is/t72LL. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest6*
+Copyright: Inggrid Koe
+License: public-domain
+ Taken from https://archive.is/yiGOx. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest7*
+Copyright: Eutah Mizushima
+License: public-domain
+ Taken from https://archive.is/fXZt2. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest8*
+Copyright: Gez Xavier Mansfield
+License: public-domain
+ Taken from https://archive.is/WAC8Q. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest9*
+Copyright: Ekaterina Novitskaya
+License: Unsplash
+Comment:
+ Taken from https://archive.is/YFXae. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/garden1*
+Copyright: Jon Canty
+License: Unsplash
+Comment:
+ Taken from https://archive.is/ceyjf. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/hills8*
+Copyright: Joshua Sortino
+License: public-domain
+ Taken from https://archive.is/SRbX3. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/lava12*
+Copyright: Hannah Wright
+License: Unsplash
+Comment:
+ Taken from https://archive.is/xovBt. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/lava13*
+Copyright: Marc Szeglat
+License: Unsplash
+Comment:
+ Taken from https://archive.is/nHPqS. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 12, 2018,
+ so it is not subject to additional restrictions, as this is
+ a week before the additional restrictions were added.
+
+Files:
+ images/land/loc3*
+Copyright: Hafidh Satyanto
+License: Unsplash
+Comment:
+ Taken from https://archive.is/6pM64. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/sea18*
+Copyright: Marcus Woodbridge
+License: Unsplash
+Comment:
+ Taken from https://archive.is/mmrlP. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/sea19*
+Copyright: Michael Owen
+License: Unsplash
+Comment:
+ Taken from https://archive.is/N45Mz. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/sky10*
+Copyright: Marek Piwnicki
+License: Unsplash
+Comment:
+ Taken from https://archive.is/GtJDm. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/sky11*
+Copyright: Benjamin Voros
+License: Unsplash
+Comment:
+ Taken from https://archive.is/JBIFr. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 26, 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies, as this is a week after the
+ restriction was added.
+
+Files:
+ images/land/snow14*
+Copyright: Alto Crew
+License: Unsplash
+Comment:
+ Taken from https://archive.is/0A1UT. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/snow16*
+Copyright: Alberto Restifo
+License: public-domain
+ Taken from https://archive.is/tmlmk. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow17*
+Copyright: Denis Linine
+License: Unsplash
+Comment:
+ Taken from https://archive.is/zCjqu. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/snow18*
+Copyright: Jeremy Bishop
+License: public-domain
+ Taken from https://archive.is/d9C3U. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow19*
+Copyright: Greg Garnhart
+License: Unsplash
+Comment:
+ Taken from https://archive.is/JmYfL. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/snow20*
+Copyright: Sergey Pesterev
+License: Unsplash
+Comment:
+ Taken from https://archive.is/5SjC2. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/snow21*
+Copyright: Clement Rothen
+License: Unsplash
+Comment:
+ Taken from https://archive.is/gBEOk. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 20, 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies, as this is a day after the
+ restriction was added.
+
+Files:
+ images/land/station4*
+Copyright: Alek Kalinowski
+License: Unsplash
+Comment:
+ Taken from https://archive.is/2KkAX. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station6*
+Copyright: Alvaro Pinot
+License: Unsplash
+Comment:
+ Taken from https://archive.is/pfFYe. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station9*
+Copyright: Tony Dinh
+License: Unsplash
+Comment:
+ Taken from https://archive.is/xsuf9. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station10*
+Copyright: Upal Patel
+License: Unsplash
+Comment:
+ Taken from https://archive.is/TXPDq. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station11*
+Copyright: Aurelien Thomas
+License: Unsplash
+Comment:
+ Taken from https://archive.is/hvP1o. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station13*
+Copyright: Brayden Law
+License: Unsplash
+Comment:
+ Taken from https://archive.is/CYwnY. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies. The published date can't be seen
+ if you just look at the site. If you click view source and
+ search "datePublished," you will see it was published in
+ December 2018.
+
+Files:
+ images/land/station14*
+Copyright: Ferdinand Stohr
+License: public-domain
+ Taken from https://archive.is/ZtRLf. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/station16*
+Copyright: Aron Yigin
+License: Unsplash
+Comment:
+ Taken from https://archive.is/IuyvN. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station17*
+Copyright: Upal Patel
+License: Unsplash
+Comment:
+ Taken from https://archive.is/tAzhJ. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station18*
+Copyright: Will Dunkley
+License: Unsplash
+Comment:
+ Taken from https://archive.is/ptsa9. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/station19*
+Copyright: Bradley Jasper Ybanez
+License: Unsplash
+Comment:
+ Taken from https://archive.is/EvVcQ. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station20*
+Copyright: Dan Asaki
+License: Unsplash
+Comment:
+ Taken from https://archive.is/OcBnr. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station21*
+Copyright: Ryan Tang
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Uj5DY. This image was uploaded to
+ unsplash.com in June 2017, so it is subject to the Unsplash
+ License. It was uploaded before February 2018, so it is not
+ subject to additional restrictions.
+
+Files:
+ images/land/station22*
+Copyright: Jonathan Gallegos
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Kaq8i. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station23*
+Copyright: Patrick Robert Doyle
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Qf9VJ. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018, so
+ it is subject to an additional restriction limiting the sale of
+ unaltered copies. The link to the image on the archive is broken
+ and the published date can't be seen if you just look at the
+ site. If you click view source and search `"id":"b-FRIPfxcj4",`
+ you will see it was published in May 2019. You will also see
+ in the source that the image is
+ https://images.unsplash.com/photo-1557153334-3480a560a36e,
+ which matches the image as per https://archive.is/WH8JI.
+
+Files:
+ images/land/station24*
+Copyright: Tomasz Frankowski
+License: public-domain
+ Taken from https://archive.is/uZuiY. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/station25*
+Copyright: Claudia Soraya
+License: public-domain
+ Taken from https://archive.is/fk8aQ. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/station26*
+Copyright: Graphic Node
+License: Unsplash
+Comment:
+ Taken from https://archive.is/TSrOg. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station29*
+Copyright: Unknown
+License: Depends
+Comment:
+ Cannot source. The image was probably removed from unsplash.
+
+Files:
+ images/land/station30*
+Copyright: Bradley Dunn
+License: Unsplash
+Comment:
+ Taken from https://archive.is/3exZC. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station31*
+Copyright: Andra Taylor
+License: Unsplash
+Comment:
+ Taken from https://archive.is/tLH4b. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station32*
+Copyright: Liam Drinan
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Bvx01. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station33*
+Copyright: Miguel Bruna
+License: Unsplash
+Comment:
+ Taken from https://archive.is/wqILb. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station34*
+Copyright: Monty Lov
+License: public-domain
+ Taken from https://archive.is/c1AWT. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/land/station35*
+Copyright: Willian Justen de Vasconcellos
+License: Unsplash
+Comment:
+ Taken from https://archive.is/7WLG3. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 11, 2018,
+ so it is not subject to additional restrictions, as this is
+ a week before the additional restrictions were added.
+
+Files:
+ images/land/station36*
+Copyright: Anderson Djumin
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Vo35D. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station37*
+Copyright: Alexandra Nicolae
+License: Unsplash
+Comment:
+ Taken from https://archive.is/iMtE1. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/station38*
+Copyright: Clare Whiting
+License: Unsplash
+Comment:
+ Taken from https://archive.is/yZ5u2. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station39*
+Copyright: Silvio Kundt
+License: public-domain
+ Taken from https://archive.is/OCfcl. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/land/station40*
+Copyright: Ussama Azam
+License: Unsplash
+Comment:
+ Taken from https://archive.is/WEOdx. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station41*
+Copyright: Angelika Yakymenko
+License: Unsplash
+Comment:
+ Taken from https://archive.is/BDkIW. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station42*
+Copyright: Gil Ribeiro
+License: Unsplash
+Comment:
+ Taken from https://archive.is/80u48. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/station43*
+Copyright: Unknown
+License: Depends
+Comment:
+ Cannot source. The image was probably removed from unsplash.
+
+Files:
+ images/land/station44*
+Copyright: Alvaro Pinot
+License: Unsplash
+Comment:
+ Taken from https://archive.is/3TUmc. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/station45*
+Copyright: Maxime Lebrun
+License: Unsplash
+Comment:
+ Taken from https://archive.is/oK8z4. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/water12*
+Copyright: Steve Adams
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Qa3Ws. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/land/water13*
+Copyright: JuniperPhoton
+License: public-domain
+ Taken from https://archive.is/mvzhX. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/land/station46*
+Copyright: Bruno Thethe
+License: Unsplash
+Comment:
+ Taken from https://archive.is/FpG3p. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station47*
+Copyright: Adrien Olichon
+License: Unsplash
+Comment:
+ Taken from https://archive.is/zTEVA. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station48*
+Copyright: Miquel Parera
+License: Unsplash
+Comment:
+ Taken from https://archive.is/UjGht. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station49*
+Copyright: Andrea De Santis
+License: Unsplash
+Comment:
+ Taken from https://archive.is/jIP5x and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/station50*
+Copyright: Mariia Ilina
+License: Unsplash
+Comment:
+ Taken from https://archive.is/mQO7C, rotated and cropped. This
+ image was uploaded to unsplash.com after June 2017, so it is
+ subject to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files: images/land/lava11*
+Copyright: National Archives and Records Administration
+License: public-domain
+ Taken from Wikimedia Commons. Cropped and edited.
+
+Files:
+ images/land/snow15*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
 
 Files:
  images/land/lava0*
 Copyright: USGS
 License: public-domain
  From the USGS, and therefore in the public domain because they were created by
- government employees while doing work for the government.
-
-Files:
- images/land/desert0*
- images/land/earthrise*
- images/land/nasa*
- images/land/space*
- images/land/station1*
- images/land/station2*
- images/land/station3*
-Copyright: NASA
-License: public-domain
- From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files:
@@ -802,7 +1580,8 @@ Files:
  images/land/station15*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
-Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
+Comment:
+ Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
  According to Section 3 of the Pixabay Terms of Service, all images with a
  "published date" earlier than January 9, 2019 have the CC0 license.
 
@@ -831,7 +1610,13 @@ Comment: Derived from works by NASA and Michael Zahniser.
 Files: sounds/*
 Copyright: Various
 License: public-domain
-Comment: Based on public domain sounds taken from freesound.org.
+ Based on public domain sounds taken from freesound.org.
+
+Files:
+ sounds/pincer*
+Copyright: Michael Zahniser
+License: GPL-2
+Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
 
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
@@ -841,11 +1626,12 @@ Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
 Files: sounds/missile?hit.wav
 Copyright: Copyright "Nbs Dark"
 License: public-domain
-Comment: Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
+ Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
 
 Files: sounds/torpedo?hit.wav
 Copyright: Public Domain
 License: public-domain
+ Taken from a now-defunct public domain sharing site. Please contact Pointedstick (Nate Graham <pointedstick@zoho.com>) for legal enquires.
 
 Files: sounds/meteor.wav
 Copyright: Copyright "18hiltc"
@@ -855,7 +1641,7 @@ Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
 Files: sounds/sidewinder.wav
 Copyright: Copyright "NHMWretched"
 License: public-domain
-Comment: Taken from https://freesound.org/people/NHMWretched/sounds/151858/
+ Taken from https://freesound.org/people/NHMWretched/sounds/151858/
 
 Files: sounds/explosion?huge.wav
 Copyright: Copyright Mike Koenig
@@ -863,13 +1649,13 @@ License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
 Files:
- sounds/asteroid crunch small.wav
- sounds/asteroid crunch medium.wav
+ sounds/asteroid?crunch?small.wav
+ sounds/asteroid?crunch?medium.wav
 Copyright: Copyright AlanCat
 License: public-domain
-Comment: Derived from https://freesound.org/people/AlanCat/sounds/381645/
+ Derived from https://freesound.org/people/AlanCat/sounds/381645/
 
-Files: sounds/asteroid crunch large.wav
+Files: sounds/asteroid?crunch?large.wav
 Copyright: Copyright "BW_Clowes"
 License: CC-BY-3.0
 Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
@@ -889,13 +1675,6 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
-
-Files:
- images/outfit/security?station*
- images/ship/peregrine/*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser and Evan Fluharty (under the same license).
 
 Files:
  images/ship/nest*
@@ -925,7 +1704,7 @@ Files:
  images/ship/hauler?i*
  images/ship/hauler?ii*
  images/ship/hauler?iii*
- images/ship/modified argosy*
+ images/ship/modified?argosy*
  images/ship/bastion*
  images/ship/behemoth*
  images/ship/heavy?shuttle*
@@ -947,7 +1726,7 @@ Files:
  images/thumbnail/hauler?i*
  images/thumbnail/hauler?ii*
  images/thumbnail/hauler?iii*
- images/thumbnail/modified argosy*
+ images/thumbnail/modified?argosy*
  images/thumbnail/bastion*
  images/thumbnail/behemoth*
  images/thumbnail/heavy?shuttle*
@@ -986,7 +1765,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
- images/ship/pointedstick vanguard*
+ images/ship/pointedstick?vanguard*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -1211,6 +1990,146 @@ Files:
  images/scene/asteroid?scene*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/effect/remnant?afterburner/remnant?afterburner*
+ images/effect/mhd?spark*
+ images/land/nasa9*
+ images/hardpoint/annihilator?turret*
+ images/hardpoint/hai?ionic?turret*
+ images/hardpoint/inhibitor?turret*
+ images/hardpoint/ion?hail?turret*
+ images/hardpoint/ravager?turret*
+ images/outfit/inhibitor?turret*
+ images/outfit/ion?hail?turret*
+ images/hardpoint/shooting?star?flare/ss-rays*
+ images/outfit/overcharged?shield?module*
+ images/outfit/overclocked?repair?module*
+ images/outfit/ramscoop*
+ images/outfit/remnant?afterburner*
+ images/outfit/remnant?capital?license*
+ images/outfit/research?laboratory*
+ images/outfit/salvage?scanner*
+ images/outfit/tiny?remnant?engine*
+ images/outfit/void?rifle*
+ images/outfit/fragmentation?grenades*
+ images/outfit/nerve?gas*
+ images/outfit/catalytic?ramscoop*
+ images/outfit/anti-missile*
+ images/outfit/blaster?turret*
+ images/outfit/blaster*
+ images/outfit/breeder*
+ images/outfit/bunk?room*
+ images/outfit/dwarf?core*
+ images/outfit/electron?beam*
+ images/outfit/electron?turret*
+ images/outfit/fission*
+ images/outfit/flamethrower*
+ images/outfit/hai?ionic?blaster*
+ images/outfit/hai?ionic?turret*
+ images/outfit/heavy?anti-missile*
+ images/outfit/heavy?laser?turret*
+ images/outfit/heavy?laser*
+ images/outfit/huge?fuel?cell*
+ images/outfit/large?fuel?cell*
+ images/outfit/medium?fuel?cell*
+ images/outfit/small?fuel?cell*
+ images/outfit/tiny?fuel?cell*
+ images/outfit/huge?shield*
+ images/outfit/large?shield*
+ images/outfit/medium?shield*
+ images/outfit/small?shield*
+ images/outfit/tiny?shield*
+ images/outfit/hyperdrive*
+ images/outfit/large?radar?jammer*
+ images/outfit/small?radar?jammer*
+ images/outfit/meteor*
+ images/outfit/meteor?launcher*
+ images/outfit/meteor?pod*
+ images/outfit/meteor?storage*
+ images/outfit/mod?blaster?turret*
+ images/outfit/mod?blaster*
+ images/outfit/particle?cannon*
+ images/outfit/plasma?cannon*
+ images/outfit/plasma?turret*
+ images/outfit/proton?gun*
+ images/outfit/quad?blaster?turret*
+ images/outfit/rocket*
+ images/outfit/rocket?launcher*
+ images/outfit/rocket?pod*
+ images/outfit/rocket?storage*
+ images/outfit/sidewinder*
+ images/outfit/sidewinder?launcher*
+ images/outfit/sidewinder?pod*
+ images/outfit/sidewinder?storage*
+ images/outfit/small?bunk?room*
+ images/outfit/small?nucleovoltaic*
+ images/outfit/small?radiothermal*
+ images/outfit/small?thermionic*
+ images/outfit/stack?core*
+ images/outfit/surveillance?pod*
+ images/outfit/banisher*
+ images/outfit/command?center*
+ images/outfit/fire-lance*
+ images/outfit/piercer*
+ images/outfit/piercer?launcher*
+ images/outfit/korath?piercer?storage*
+ images/outfit/reverse?thruster?ion*
+ images/outfit/reverse?thruster?plasma*
+ images/outfit/rock?0*
+ images/outfit/rock?1*
+ images/outfit/rock?2*
+ images/outfit/rock?3*
+ images/outfit/rock?4*
+ images/scene/penguinscene*
+ images/ship/hai?sea?scorpion*
+ images/ship/ibis*
+ images/ship/mbactriane*
+ images/ship/merganser*
+ images/ship/penguin/*
+ images/ship/petrel*
+ images/ship/tern*
+ images/ship/shooting?star/shooting?star*
+ images/ship/pug?zibruka*
+ images/ship/pug?enfolta*
+ images/ship/pug?maboro*
+ images/ship/pug?arfecta*
+ images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/ibis*
+ images/thumbnail/merganser*
+ images/thumbnail/penguin*
+ images/thumbnail/petrel*
+ images/thumbnail/tern*
+ images/planet/station1c*
+ images/planet/station2c*
+ images/planet/station3c*
+ images/ship/archon?b*
+ images/ship/archon?c*
+ images/asteroid/plant*
+ images/asteroid/plant2*
+ images/asteroid/plant?cluster*
+ images/asteroid/space?flora*
+ images/asteroid/large?plant*
+ images/asteroid/large?plant2*
+ images/asteroid/large?plant?cluster*
+ images/asteroid/large?space?flora*
+ images/asteroid/yottrite*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/*battery?hai*
+ images/outfit/anti-missile?hai*
+ images/outfit/cooling?ducts?hai*
+ images/outfit/dwarf?core?hai*
+ images/outfit/fission?hai*
+ images/outfit/fusion?hai*
+ images/outfit/heavy?anti-missile?hai*
+ images/ship/mfury*
+Copyright: Maximilian Korber
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/label/graveyard*
@@ -1443,12 +2362,12 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files: sounds/dragonflame*
 Copyright: TheHadnot
 License: public-domain
-Comment: Taken from https://freesound.org/people/TheHadnot/sounds/160880/
+ Taken from https://freesound.org/people/TheHadnot/sounds/160880/
 
 Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
-Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
+ Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
 Files: sounds/hion*
 Copyright: michael_kur95
@@ -1599,63 +2518,26 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/atomic?flare/*
  images/effect/burning?spark*
- images/effect/coalition?flare/*
  images/effect/corrosion?spark*
  images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
- images/effect/ion?flare/*
- images/effect/korath?flare/*
  images/effect/plasma?cloud*
- images/effect/plasma?flare/*
  images/effect/plasma?fire*
  images/effect/plasma?impact*
  images/effect/pug?flare/*
- images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
  images/effect/zapper?impact*
- images/hardpoint/dual?sunbeam?turret*
- images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
- images/hardpoint/sunbeam?turret*
- images/hardpoint/wanderer?anti-missile*
  images/_menu/haze-coal*
  images/outfit/*?korath?afterburner*
- images/outfit/afterburner*
  images/outfit/asteroid?scanner*
- images/outfit/blue?sun*
- images/outfit/bright?cloud*
- images/outfit/caldera?afterburner*
- images/outfit/dark?storm*
- images/outfit/double?plasma?core*
- images/outfit/dual?sunbeam?turret*
  images/outfit/*efreti?steering*
  images/outfit/*efreti?thruster*
- images/outfit/finisher?maegrolain*
  images/outfit/fusion?cannon*
- images/outfit/moonbeam*
- images/outfit/moonbeam?turret*
  images/outfit/nuke*
- images/outfit/plasma?core*
- images/outfit/red?sun*
- images/outfit/sunbeam*
- images/outfit/sunbeam?turret*
- images/outfit/thunderhead?launcher*
- images/outfit/thunderhead?storage*
- images/outfit/triple?plasma?core*
- images/outfit/wanderer?anti-missile*
- images/outfit/wanderer?heat?sink*
- images/outfit/white?sun*
- images/outfit/yellow?sun*
- images/planet/ringworld*
- images/planet/ringworld?broken?debris*
- images/planet/ringworld?broken?debris?small*
- images/planet/ringworld?broken?left*
- images/planet/ringworld?broken?right*
- images/planet/ringworld?left*
- images/planet/ringworld?right*
+ images/planet/pontes*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
@@ -1663,24 +2545,21 @@ Files:
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/battleship*
- images/ship/corvette*
- images/ship/dagger*
- images/ship/flivver*
- images/ship/mraven*
- images/ship/msplinter*
- images/ship/raven*
- images/ship/splinter*
+ images/ship/cirrus*
+ images/ship/gero*
+ images/ship/nimbus*
+ images/ship/silent?harvester*
+ images/ship/stratus*
+ images/ship/venta*
+ images/thumbnail/cirrus*
+ images/thumbnail/gero*
+ images/thumbnail/nimbus*
+ images/thumbnail/stratus*
+ images/thumbnail/venta*
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
  images/thumbnail/battleship*
- images/thumbnail/corvette*
- images/thumbnail/dagger*
- images/thumbnail/flivver*
- images/thumbnail/mraven*
- images/thumbnail/msplinter*
- images/thumbnail/raven*
- images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -1694,8 +2573,12 @@ Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com>, David Mon
 Files:
  images/ship/manta*
  images/ship/mmanta*
+ images/ship/mraven*
+ images/ship/msplinter*
  images/thumbnail/manta*
  images/thumbnail/mmanta*
+ images/thumbnail/mraven*
+ images/thumbnail/msplinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
@@ -1703,7 +2586,7 @@ Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the
 Files: sounds/ionball*
 Copyright: pluralz
 License: public-domain
-Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
+ Taken from https://freesound.org/people/pluralz/sounds/475806/
 
 Files:
  images/outfit/tiny?korath?engine*
@@ -1734,22 +2617,70 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
+ images/effect/atomic?flare/*
+ images/effect/coalition?flare/*
+ images/effect/ion?flare/*
+ images/effect/korath?flare/*
+ images/effect/plasma?flare/*
+ images/effect/tracker?cloud*
+ images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/moonbeam?turret*
+ images/hardpoint/sunbeam?turret*
+ images/hardpoint/wanderer?anti-missile*
+ images/outfit/afterburner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
+ images/outfit/dark?storm*
+ images/outfit/double?plasma?core*
+ images/outfit/dual?sunbeam?turret*
+ images/outfit/finisher?maegrolain*
+ images/outfit/moonbeam*
+ images/outfit/moonbeam?turret*
+ images/outfit/plasma?core*
+ images/outfit/red?sun*
  images/outfit/shield?refactor?module*
+ images/outfit/sunbeam*
+ images/outfit/sunbeam?turret*
+ images/outfit/thunderhead?launcher*
+ images/outfit/thunderhead?storage*
+ images/outfit/triple?plasma?core*
+ images/outfit/wanderer?anti-missile*
+ images/outfit/wanderer?heat?sink*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?broken?debris*
+ images/planet/ringworld?broken?debris?small*
+ images/planet/ringworld?broken?left*
+ images/planet/ringworld?broken?right*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/ship/carrier*
  images/ship/combat?drone*
+ images/ship/corvette*
  images/ship/cruiser*
+ images/ship/dagger*
+ images/ship/flivver*
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
  images/ship/rainmaker*
+ images/ship/raven*
+ images/ship/splinter*
  images/ship/surveillance?drone*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
+ images/thumbnail/corvette*
  images/thumbnail/cruiser*
+ images/thumbnail/dagger*
+ images/thumbnail/flivver*
  images/thumbnail/frigate*
  images/thumbnail/gunboat*
  images/thumbnail/lance*
  images/thumbnail/rainmaker*
+ images/thumbnail/raven*
+ images/thumbnail/splinter*
  images/thumbnail/surveillance?drone*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
@@ -1765,9 +2696,50 @@ Comment: Derived from works by Evan Fluharty (under the same license).
 Files:
  images/outfit/gat?turret?hardpoint*
  images/outfit/gat?turret*
-Copyright: bene_dictator <benstaples8068@gmail.com>
+Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
+
+Files:
+ images/planet/station19*
+Copyright: bene-dictator <benstaples8068@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/_menu/haze-dark-nebula*
+ images/effect/incipias?flare/*
+ images/effect/horizon?grappler*
+ images/effect/plasma?exhaust*
+ images/effect/plasma?particle*
+ images/effect/stagnation?beam?impact*
+ images/effect/star?tail*
+ images/hardpoint/horizon?grappler*
+ images/hardpoint/stagnation?beam*
+ images/outfit/gas?class?shield*
+ images/outfit/horizon?grappler*
+ images/outfit/liquid?class?shield*
+ images/outfit/metallic?hydrogen?cell*
+ images/outfit/mh?*
+ images/outfit/plasma?discharger*
+ images/outfit/stagnation?beamx*
+ images/outfit/star?tail?*
+ images/planet/aera*
+ images/planet/gliese*
+ images/planet/redias*
+ images/planet/treser*
+ images/planet/vulpa*
+ images/projectile/ionic?turret*
+ images/projectile/plasma?discharge*
+ images/projectile/stagnation?beam*
+ images/projectile/star?tail*
+ images/projectile/strange?ray*
+ images/scene/incipias?message*
+ images/star/a-eater*
+ images/star/neutron-small*
+ images/star/proto-planetary-disk*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/*bioroid*
@@ -1793,6 +2765,8 @@ Files:
  images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/hardpoint/tractor?beam*
+ images/label/gegno*
+ images/label/umbral*
  images/outfit/acuit*
  images/outfit/acumen*
  images/outfit/ameliorate?cell*
@@ -1823,7 +2797,6 @@ Files:
  images/outfit/savagery?pike*
  images/outfit/scrap?cell*
  images/outfit/skirmish?battery*
- images/outfit/*torch?thruster?vi*
  images/outfit/*torch?thruster?vi*
  images/outfit/tractor?beam*
  images/outfit/warforge?battery*
@@ -1873,6 +2846,7 @@ Files:
  images/ship/gegno?kyanite*
  images/ship/gegno?mica*
  images/ship/gegno?protolith*
+ images/ship/gegno?rhyolite*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1900,6 +2874,8 @@ Files:
  images/thumbnail/gegno?halite*
  images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
+ images/thumbnail/gegno?protolith*
+ images/thumbnail/gegno?rhyolite*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
@@ -1970,20 +2946,25 @@ Files:
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
+ sounds/*incip?plasma*
  sounds/locust?blaster*
  sounds/mandible?cannon*
+ sounds/plasma?discharger*
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
  sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/stagnation?beam*
+ sounds/star?tail*
+ sounds/*successor?afterburner*
  sounds/swarm?missile*
  sounds/thorax?cannon*
  sounds/tractor?beam*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia.
+ Based on public domain sounds taken from freesound.org, edits done by Saugia.
 
 Files:
  images/ship/hai?cicada*
@@ -2073,7 +3054,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Iaz Poolar (under the same license).
 
 Files:
- images/icon/gat turret*
+ images/effect/railspark*
+ images/projectile/tinyflare*
+ images/outfit/*engines?hai*
+ images/outfit/*steering?hai*
+ images/outfit/*thruster?hai*
+ images/outfit/tiny?ion?engines*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/icon/gat?turret*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Maximilian Korber (under the same license) and Amazinite (under the same license).
@@ -2082,14 +3074,14 @@ Files:
  sounds/remnant?afterburner.wav
 Copyright: Public Domain
 License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+ Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  sounds/firelight.wav
  sounds/firelight?hit.wav
 Copyright: Public Domain
 License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
+ Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
 Files:
  images/effect/ember?tear/ember?tear?fire*
@@ -2139,24 +3131,156 @@ License: CC-BY-SA-4.0
 
 Files:
  images/scene/citydark*
- images/scene/buildings*
- images/scene/busystreet*
- images/scene/iceplains*
- images/scene/iceplains2*
- images/scene/iceplains3*
- images/scene/lonelyrock*
- images/scene/redrocks*
- images/scene/seasidecliffs*
- images/scene/Seasunset*
- images/scene/smeer*
- images/scene/snowfield*
- images/scene/snowvillage*
- images/scene/sunset*
- images/scene/tower*
- images/scene/icepicture*
- images/scene/snowplain*
-Copyright: unsplash.com/
+Copyright: N/A (CC0 Public Domain)
 License: CC0
+Comment:
+ Taken from pixwizard.com. Archived at https://archive.is/JPrU9.
+
+Files:
+ images/scene/buildings*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from pixwizard.com. Archived at https://archive.is/x993H.
+
+Files:
+ images/scene/lonelyrock*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/scene/snowplain*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/scene/busystreet*
+Copyright: Gabriel Del Fiaco
+License: public-domain
+ Taken from https://archive.is/29hj9. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/scene/iceplains*
+Copyright: Federico Di Dio
+License: Unsplash
+Comment:
+ Taken from https://archive.is/MirSk. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/iceplains2*
+Copyright: Vidar Nordli-Mathisen
+License: Unsplash
+Comment:
+ Taken from https://archive.is/uC6Up. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 2, 2018,
+ so it is not subject to additional restrictions, as this is
+ before the additional restrictions were added.
+
+Files:
+ images/scene/redrocks*
+Copyright: Joshua Gresham
+License: Unsplash
+Comment:
+ Taken from https://archive.is/0gRHU. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/seasidecliffs*
+Copyright: Joachim Pressl
+License: Unsplash
+Comment:
+ Taken from https://archive.is/caZ9F. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/Seasunset*
+Copyright: Jim Cooke
+License: Unsplash
+Comment:
+ Taken from https://archive.is/zRulg. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/scene/smeer*
+Copyright: Parrish Freeman
+License: Unsplash
+Comment:
+ Taken from https://archive.is/W6LES. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/snowfield*
+Copyright: Alessio Soggetti
+License: Unsplash
+Comment:
+ Taken from https://archive.is/JGEju. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/snowvillage*
+Copyright: Matthew Buchanan
+License: Unsplash
+Comment:
+ Taken from https://archive.is/DRS7j. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/sunset*
+Copyright: Carl Schlabach
+License: Unsplash
+Comment:
+ Taken from https://archive.is/oFaOT. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/tower*
+Copyright: Constant Loubier
+License: Unsplash
+Comment:
+ Taken from https://archive.is/764rq. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/icepicture*
+Copyright: Alberto Restifo
+License: public-domain
+ Taken from https://archive.is/d4jre. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
 
 Files:
  images/scene/hroar*
@@ -2177,6 +3301,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/outfit/anti-materiel?gun*
+ images/outfit/cloud?piercer*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 
@@ -2208,6 +3333,7 @@ License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
 Files:
+ images/icon/swarm*
  images/outfit/twin?blaster*
  images/outfit/twin?mod?blaster*
  images/outfit/repeater*
@@ -2218,26 +3344,232 @@ Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the sam
 
 Files:
  images/land/badlands13*
+Copyright: Sasha Sashina
+License: Unsplash
+Comment:
+ Taken from https://archive.is/X25Q2. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/beach15*
+Copyright: Chris Meads
+License: Unsplash
+Comment:
+ Taken from https://archive.is/OmpGr. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/city19*
+Copyright: Chan Yuki
+License: Unsplash
+Comment:
+ Taken from https://archive.is/9wmYF. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/city20*
+Copyright: JC Gellidon
+License: Unsplash
+Comment:
+ Taken from https://archive.is/K4bnD. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/city21*
+Copyright: Jesse Collins
+License: public-domain
+ Taken from https://archive.is/qD91K. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/city22*
+Copyright: Wong Zihoo
+License: Unsplash
+Comment:
+ Taken from https://archive.is/sJt28. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/city23*
+Copyright: Juan Pablo Ahumada
+License: Unsplash
+Comment:
+ Taken from https://archive.is/GAOgv. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/city24*
+Copyright: Samuel Charron
+License: Unsplash
+Comment:
+ Taken from https://archive.is/wT75U. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 20, 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies, as this is a day after the
+ restriction was added.
+
+Files:
  images/land/city25*
+Copyright: Jules Marvin Eguilos
+License: Unsplash
+Comment:
+ Taken from https://archive.is/qMDPn. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/desert14*
+Copyright: E Mens
+License: Unsplash
+Comment:
+ Taken from https://archive.is/g5XEM. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/desert15*
+Copyright: Juli Kosolapova
+License: Unsplash
+Comment:
+ Taken from https://archive.is/VDhic. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/forest10*
+Copyright: Sarah Humer
+License: public-domain
+ Taken from https://archive.is/bzVwX. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
  images/land/mountain27*
+Copyright: Marek Piwnicki
+License: Unsplash
+Comment:
+ Taken from https://archive.is/1Tfmm. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/mountain28*
+Copyright: Luca Bravo
+License: Unsplash
+Comment:
+ Taken from https://archive.is/FwnMI. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
  images/land/mountain29*
+Copyright: Marek Piwnicki
+License: Unsplash
+Comment:
+ Taken from https://archive.is/Uqm0M. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/mountain30*
+Copyright: Mike Liao
+License: Unsplash
+Comment:
+ Taken from https://archive.is/k6mqP. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
  images/land/sea22*
+Copyright: Martin Bennie
+License: Unsplash
+Comment:
+ Taken from https://archive.is/MO0Rz. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/city26*
+ images/land/city27*
+ images/land/city28*
+ images/land/clouds9*
+ images/land/clouds10*
+ images/land/fields28*
+ images/land/fields29*
+ images/land/forest11*
+ images/land/forest12*
+ images/land/path1*
+ images/land/path2*
+ images/land/path3*
+ images/land/path4*
+ images/land/sea24*
+ images/land/sky12*
+ images/land/sky13*
+ images/land/water21*
+ images/land/water22*
+ images/land/water23*
+ images/land/water24*
+ images/land/water25*
+Copyright: DAK (4robits@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
  images/land/snow22*
-Copyright: Various
-License: CC0
-Comment: Taken from unsplash.com and cropped.
+Copyright: Paston Woelber
+License: Unsplash
+Comment:
+ Taken from https://archive.is/rmkuZ. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/snow23*
+ images/scene/iceplains3*
+Copyright: Daniel Frank
+License: Unsplash
+Comment:
+ Taken from https://archive.is/xK5Wu. These images were
+ uploaded to unsplash.com after June 2017, so they are
+ subject to the Unsplash License. They were also uploaded
+ after February 2018, so they are subject to an additional
+ restriction limiting the sale of unaltered copies.
 
 Files:
  images/ui/red?alert*
@@ -2249,12 +3581,6 @@ Files:
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
-
-Files:
- images/star/proto-planetary-disk*
- images/projectile/ionic turret*
-Copyright: RisingLeaf (https://github.com/RisingLeaf)
-License: CC-BY-SA-4.0
 
 Files:
  images/effect/ionic?impact*
@@ -2286,10 +3612,166 @@ License: CC0
 Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
 
 Files:
- images/planet/station19*
+ images/planet/station20*
 Copyright: Petersupes (https://github.com/Petersupes)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/land/mars4*
+Copyright: NASA
+License: public-domain
+ Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
+
+Files:
+ images/effect/bimodal?impact*
+ images/effect/bimodal?switch?impact*
+ images/effect/drag?cannon?impact*
+ images/effect/overcharged?pulse?laser?impact*
+ images/effect/successor?flare/*
+ images/effect/successor?pulse?laser?impact*
+ images/effect/void?spark*
+ images/hardpoint/bimodal?turret*
+ images/hardpoint/overcharged?pulse?laser?turret*
+ images/hardpoint/successor?pulse?laser?turret*
+ images/icon/hv?spike*
+ images/label/successors*
+ images/outfit/bimodal?coilgun?turret*
+ images/outfit/bimodal?coilgun*
+ images/outfit/drag?cannon*
+ images/outfit/fuel?sail*
+ images/outfit/hv?spike?rack*
+ images/outfit/hv?spike*
+ images/outfit/large?betavoltaic*
+ images/outfit/large?successor?battery*
+ images/outfit/large?successor?reactor*
+ images/outfit/large?successor?reverse*
+ images/outfit/large?successor?shield*
+ images/outfit/large?successor?steering*
+ images/outfit/large?successor?thruster*
+ images/outfit/medium?betavoltaic*
+ images/outfit/medium?successor?reactor*
+ images/outfit/medium?successor?repair*
+ images/outfit/medium?successor?reverse*
+ images/outfit/medium?successor?shield*
+ images/outfit/medium?successor?steering*
+ images/outfit/medium?successor?thruster*
+ images/outfit/overcharged?betavoltaic*
+ images/outfit/overcharged?pulse?laser?turret*
+ images/outfit/overcharged?pulse?laser*
+ images/outfit/railgun?h2h*
+ images/outfit/shield?cortex?interface*
+ images/outfit/sjeja?kinetic?lance*
+ images/outfit/small?betavoltaic*
+ images/outfit/small?successor?battery*
+ images/outfit/small?successor?reactor*
+ images/outfit/small?successor?repair*
+ images/outfit/small?successor?reverse*
+ images/outfit/small?successor?shield*
+ images/outfit/small?successor?steering*
+ images/outfit/small?successor?thruster*
+ images/outfit/successor?armor*
+ images/outfit/successor?cooling*
+ images/outfit/successor?engines?tiny*
+ images/outfit/successor?license*
+ images/outfit/successor?pulse?laser?turret*
+ images/outfit/successor?pulse?laser*
+ images/outfit/tiny?successor?shield*
+ images/outfit/tuur?scanning?suite*
+ images/outfit/veldt?combat?scanner*
+ images/planet/station?successor*
+ images/projectile/bimodal?switch*
+ images/projectile/bimodal*
+ images/projectile/drag?cannon*
+ images/projectile/sjeja?kinetic?lance*
+ images/projectile/successor?pulse?laser*
+ images/ship/aaulqra*
+ images/ship/ejniisde*
+ images/ship/kaskhorade*
+ images/ship/kvelqde-khora*
+ images/ship/kvelqde*
+ images/ship/myaede*
+ images/ship/nnesaarau*
+ images/ship/ojde*
+ images/ship/seiitej*
+ images/ship/stolsaqra*
+ images/ship/veusade*
+ images/ship/vujlet*
+ images/thumbnail/aaulqra*
+ images/thumbnail/ejniisde*
+ images/thumbnail/kaskhorade*
+ images/thumbnail/kvelqde-khora*
+ images/thumbnail/kvelqde*
+ images/thumbnail/myaede*
+ images/thumbnail/nnesaarau*
+ images/thumbnail/ojde*
+ images/thumbnail/seiitej*
+ images/thumbnail/stolsaqra*
+ images/thumbnail/veusade*
+ images/thumbnail/vujlet*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+
+Files:
+  sounds/bimodal*
+  sounds/drag?cannon*
+  sounds/overcharged?pulse?laser*
+  sounds/successor?pulse?laser*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Sound effects generated with Labchirp v1.60 (https://labbed.net/software/labchirp/).
+
+Files:
+ images/_menu/haze-tear*
+ images/star/void-scar*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC0
+Comment: Derived from works by NASA in the public domain.
+
+Files:
+ images/land/fog12*
+Copyright: US National Park Service
+License: public-domain
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
+
+Files:
+ images/land/snow24*
+Copyright: NPS Photo / Kent Miller
+License: public-domain
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
+
+Files:
+ images/land/snow25*
+Copyright: DCheretovich
+License: CC0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Vatnajökull_glacier.jpg and cropped.
+
+Files:
+ images/land/lava14*
+Copyright: USGS
+License: public-domain
+ From the USGS, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+License: Depends
+ Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
+ placed in the public domain. In June 2017, Unsplash modified their terms and conditions to make all images
+ uploaded after that date subject to a permissive license (the "Unsplash License.") These pictures were added
+ to the game after June 2017, but could have been uploaded before then. Therefore, the license of these images
+ depends on when they were uploaded. If they were uploaded before June 2017, they are in the public domain. If
+ they were uploaded on or after June 2017, they are subject to the Unsplash License. Additionally, all images
+ uploaded to Unsplash after February 2018 cannot be sold without making "significant alterations" as they are
+ subject to more restrictive terms and conditions.
+
+License: Unsplash
+ Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
+ license to download, copy, modify, distribute, perform, and use photos
+ from Unsplash for free, including for commercial purposes, without
+ permission from or attributing the photographer or Unsplash. This
+ license does not include the right to compile photos from Unsplash to
+ replicate a similar or competing service.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

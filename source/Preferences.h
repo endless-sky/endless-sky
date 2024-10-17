@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PREFERENCES_H_
-#define PREFERENCES_H_
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -28,6 +27,12 @@ public:
 		off = 0,
 		on,
 		adaptive,
+	};
+
+	enum class CameraAccel : int_fast8_t {
+		OFF = 0,
+		ON,
+		REVERSED,
 	};
 
 	enum class DateFormat : int_fast8_t {
@@ -135,6 +140,10 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
+	static void ToggleCameraAcceleration();
+	static CameraAccel CameraAcceleration();
+	static const std::string &CameraAccelerationSetting();
+
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
@@ -179,7 +188,3 @@ public:
 
 	static int GetPreviousSaveCount();
 };
-
-
-
-#endif

@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -51,13 +51,27 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "safe")
 			isSafe = true;
 		else if(key == "phasing")
+		{
 			isPhasing = true;
+			// Phasing projectiles implicitly have no asteroid collisions
+			// for reverse compatibility.
+			canCollideAsteroids = false;
+			canCollideMinables = false;
+		}
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
 		else if(key == "parallel")
 			isParallel = true;
 		else if(key == "gravitational")
 			isGravitational = true;
+		else if(key == "fused")
+			isFused = true;
+		else if(key == "no ship collisions")
+			canCollideShips = false;
+		else if(key == "no asteroid collisions")
+			canCollideAsteroids = false;
+		else if(key == "no minable collisions")
+			canCollideMinables = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -109,6 +123,17 @@ void Weapon::LoadWeapon(const DataNode &node)
 					submunitions.back().facing = Angle(grand.Value(1));
 				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
+				else if(grand.Size() >= 2 && grand.Token(0) == "spawn on")
+				{
+					submunitions.back().spawnOnNaturalDeath = false;
+					for(int j = 1; j < grand.Size(); ++j)
+					{
+						if(grand.Token(j) == "natural")
+							submunitions.back().spawnOnNaturalDeath = true;
+						else if(grand.Token(j) == "anti-missile")
+							submunitions.back().spawnOnAntiMissileDeath = true;
+					}
+				}
 				else
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
@@ -189,6 +214,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "turret turn")
 				turretTurn = value;
+			else if(key == "arc")
+				maxAngle = max(0., value);
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
 			else if(key == "optical tracking")

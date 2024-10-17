@@ -347,20 +347,6 @@ phrase "exile humanika: Your ship sucks."
 	word
 		"."
 
-phrase "exile humanika: Your ship sucks."
-	phrase
-		"exile humanika: Your ship or its contents or attributes"
-	word
-		" "
-	phrase
-		"exile humanika: are inferior to what we possess"
-		"exile humanika: are sub-par by any reasonable standards"
-	phrase
-		"exile mixed:, you inferior beings"
-		"exile: empty phrase"
-	word
-		"."
-
 phrase "exile humanika: We are better than you."
 	phrase
 		"exile humanika: Our ship or its contents or attributes"
