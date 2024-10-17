@@ -204,6 +204,8 @@ mission "FW Southern Recon 1B"
 	autosave
 	source "Trinket"
 	destination "Trinket"
+	mark "Alnasl"
+	mark "Wei"
 	to offer
 		has "FW Southern Recon 1: done"
 	
@@ -232,6 +234,10 @@ mission "FW Southern Recon 1B"
 			names "republic small"
 			variant
 				"Gunboat (Mark II)"
+	on enter Alnasl
+		unmark Alnasl
+	on enter Wei
+		unmark Wei
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
