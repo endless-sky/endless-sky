@@ -653,6 +653,8 @@ outfit "Emergency Ramscoop"
 
 outfit "NDR-114 Android"
 	category "Unique"
+	series "Functional Unique"
+	index 40
 	cost 120000
 	thumbnail "outfit/android"
 	"required crew" -1
@@ -932,6 +934,8 @@ outfit "Tuning Rifle"
 
 outfit "Void Rifle"
 	category "Unique"
+	series "Functional Unique"
+	index 50
 	licenses
 		Remnant
 	cost 1000000
@@ -949,6 +953,8 @@ outfit "Void Rifle"
 outfit "Void Sprite Parts"
 	plural "Void Sprite Parts"
 	category "Unique"
+	series "Non-Functional Unique"
+	index 20
 	cost 500
 	thumbnail "outfit/void sprite parts"
 	"flotsam sprite" "effect/void sprite parts/void sprite parts"

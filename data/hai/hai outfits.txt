@@ -905,6 +905,8 @@ outfit "Pulse Rifle"
 
 outfit "Shield Beetle Pendant"
 	category "Unique"
+	series "Functional Unique"
+	index 30
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	"unique" 1

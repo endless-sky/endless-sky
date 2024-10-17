@@ -309,6 +309,8 @@ outfit "Surveillance Pod"
 
 outfit "Cloaking Device"
 	category "Unique"
+	series "Functional Unique"
+	index 10
 	cost 1200000
 	"mass" 10
 	"outfit space" -10
@@ -493,6 +495,8 @@ outfit "Antigrav Glass"
 
 outfit "Puny"
 	category "Unique"
+	series "Non-Functional Unique"
+	index 10
 	"display name" `"Puny"`
 	thumbnail "outfit/unknown"
 	"unique" 1
@@ -501,6 +505,8 @@ outfit "Puny"
 
 outfit "Tear of Skade"
 	category "Unique"
+	series "Functional Unique"
+	index 20
 	thumbnail "outfit/skadetear"
 	"cooling" 4
 	"unique" 1
