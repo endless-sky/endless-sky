@@ -391,11 +391,11 @@ mission "Unfettered Jump Drive Trading"
 					to display
 						not "unfettered: uninterested in weapons"
 					goto uninterested
-				`	(Leave and come back another time.)`
+				`	"I'm not really interested in this anymore. I'm leaving."`
 			action
 				clear "unfettered: uninterested in weapons"
 				"unfettered: jd to sell" ++
-			`	"How rude. You better hope there will be someone else to guide you, next time!" Says the engineer as you walk off and return to your ship.`
+			`	"How rude. You better hope there will be someone else to guide you next time!" says the engineer as you return to your ship.`
 				defer
 			label uninterested
 			action
