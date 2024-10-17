@@ -134,6 +134,8 @@ outfit "Fusion Drive"
 
 outfit "Electronic Warfare System"
 	category "Systems"
+	series "Scanners: Sheragi"
+	index 10
 	cost 3400000
 	thumbnail "outfit/sheragi ews"
 	"mass" 6
