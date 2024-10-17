@@ -639,6 +639,7 @@ phrase "high houses friendly hail"
 		"a Seiitej"
 		"a Veusade"
 		"an Ojet"
+		"a coilgun"
 	word
 		" "
 	word
@@ -758,19 +759,143 @@ phrase "old houses friendly hail" 10
 		"high houses friendly hail"
 
 
+phrase "chydiyi friendly hail" 7
+	phrase
+		"old houses friendly hail"
+
+
 phrase "chydiyi friendly hail"
+	word
+		"Share in House Chydiyi's Barred Sky"
+		"Fly by grace of the Barred Sky"
+	word
+		", / "
+	word
+		"Its"
+		"Our"
+	word
+		" "
+	word
+		"fleet"
+		"ships"
+		"craft"
+	word
+		" "
+	word
+		"the clouds within it"
+		"the wreath of stars"
+		"a storm within't"
+	word
+		"."
+		"!"
+
+
+phrase "myurej friendly hail" 6
 	phrase
 		"old houses friendly hail"
 
 
 phrase "myurej friendly hail"
+	word
+		"Endure not"
+	word
+		" "
+	word
+		"the rise and fall"
+		"the in and out"
+		"the breath of waves"
+		"the pain of yore"
+	word
+		", "
+	word
+		"the ebb and play"
+		"the draw of fear"
+		"the ghost of past"
+	word
+		", / "
+	word
+		"make thine eyes aflutter"
+		"lift thy head with pride"
+		"stretch thine arms afront"
+		"push thy spirit forth"
+		"grant thy spirit flight"
+	word
+		", "
+	word
+		"breathe in the noble day"
+		"make merry of the day"
+		"find success in thine 'deavors"
+		"take pleasure in thy role"
+	word
+		"."
+		"!"
+
+
+phrase "myurej friendly hail"
+	word
+		"The Blossoming Arm of "
+	word
+		"House"
+		"grand"
+		"sweet"
+	word
+		" Myurej "
+	word
+		"extends to thee"
+		"'s offered to thee"
+	word
+		" in "
+	word
+		"friendship"
+		"peace"
+		"aid"
+		"am'ty"
+	word
+		". / "
+	word
+		"Thou may'st accept as thou requires."
+		"Do naught but hail t'invoke assistance."
+		"Such is our promise, nobly made."
+	
+
+phrase "sioeora friendly hail" 7
 	phrase
 		"old houses friendly hail"
 
 
 phrase "sioeora friendly hail"
-	phrase
-		"old houses friendly hail"
+	word
+		"The"
+	word
+		" "
+	word
+		"gleaming"
+		"brilliant"
+		"faultless"
+		"clever"
+	word
+		" "
+	word
+		"ships"
+		"craft"
+		"tools"
+		"arms"
+	word
+		" of "
+	word
+		"our noble House"
+		"bright Sioeora"
+		"the Twin-Moon House"
+	word
+		" / "
+	word
+		"Stand ready to assist"
+		"Are well-known as the best of all"
+		"Shall not endure the evil-hearted"
+		"Are our pleasure to employ"
+	word
+		"."
+		"!"
 
 # High Houses: New Houses
 
@@ -813,7 +938,7 @@ phrase "new houses friendly hail" 10
 		"high houses friendly hail"
 
 
-phrase "kaatrij friendly hail" 5
+phrase "kaatrij friendly hail" 6
 	phrase
 		"new houses friendly hail"
 
@@ -845,7 +970,14 @@ phrase "kaatrij friendly hail"
 		"Wing'ed"
 		"Winged-Eye"
 	word
-		" House doth greet thee, "
+		" House "
+	word
+		"doth greet"
+		"observes"
+		"observes and notes"
+		"salutes"
+	word
+		" thee, "
 	word
 		"traveler"
 		"captain"
@@ -860,6 +992,7 @@ phrase "kaatrij friendly hail"
 	word
 		" "
 	word
+		"clarity"
 		"prudence"
 		"success"
 		"integrity"
@@ -867,20 +1000,65 @@ phrase "kaatrij friendly hail"
 		" "
 	word
 		"in thy travels."
+		"on thy journey."
 
 
 phrase "seineq friendly hail"
 	phrase
-		"new houses friendly hail" 5
+		"new houses friendly hail" 7
 
 
 phrase "seineq friendly hail"
 	word
-		"For ten thousand years / For ten thousand more!"
-		"Our alliance shall endure."
+		"In"
+	word
+		" "
+	word
+		"verdant"
+		"lasting"
+		"brilliant"
+		"gleaming"
+	word
+		" "
+	word
+		"peace"
+	word
+		" "
+	word
+		"and"
+		"with"
+	word
+		" "
+	word
+		"glowing"
+		"passioned"
+		"clear-eyed"
+	word
+		" "
+	word
+		"pride"
+	word
+		", / "
+	word
+		"the Houses, New"
+		"our noble House"
+		"grand Seineq's House"
+		"the Lum'nary party"
+		"the Twice-Wrapped Ring"
+	word
+		"doth"
+	word
+		" "
+	word
+		"endure and thrive"
+		"proclaim success"
+		"invoke our skill"
+	word
+		"."
+		"!"
 
 
-phrase "aqrabe friendly hail" 5
+phrase "aqrabe friendly hail" 6
 	phrase
 		"new houses friendly hail"
 
@@ -904,13 +1082,17 @@ phrase "aqrabe friendly hail"
 		"thoughtful"
 	word
 		" saint of "
+		" paragon o'"
 	word
 		"Clarity"
-		"Wealth"
-		"Honesty"
-		"Unity"
-		"Industry"
+		"Cleverness"
+		"Cognizance"
 		"Family"
+		"Honesty"
+		"Humility"
+		"Industry"
+		"Unity"
+		"Wealth"
 	word
 		": / "
 	word

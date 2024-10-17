@@ -306,7 +306,7 @@ fleet "New Houses Surveillance"
 
 fleet "Kaatrij Home"
 	government "House Kaatrij"
-	names "house kaatrij"
+	names "high houses"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -325,7 +325,7 @@ fleet "Kaatrij Home"
 
 fleet "Aqrabe Home"
 	government "House Aqrabe"
-	names "house aqrabe"
+	names "high houses"
 	cargo 0
 	personality
 		heroic
