@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -130,6 +130,15 @@ namespace {
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
+
+		{"cloaking energy", 0.},
+		{"cloaking fuel", 0.},
+		{"cloaking heat", 0.},
+		{"cloaking hull", 0.},
+		{"cloaking repair delay", 0.},
+		{"cloaking shields", 0.},
+		{"cloaking shield delay", 0.},
+		{"cloaked firing", 0.},
 
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},
@@ -253,6 +262,10 @@ void Outfit::Load(const DataNode &node)
 			++jumpInSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
 			++jumpOutSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "cargo scan sound" && child.Size() >= 2)
+			++cargoScanSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "outfit scan sound" && child.Size() >= 2)
+			++outfitScanSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
@@ -536,6 +549,8 @@ void Outfit::Add(const Outfit &other, int count)
 	MergeMaps(jumpSounds, other.jumpSounds, count);
 	MergeMaps(jumpInSounds, other.jumpInSounds, count);
 	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
+	MergeMaps(cargoScanSounds, other.cargoScanSounds, count);
+	MergeMaps(outfitScanSounds, other.outfitScanSounds, count);
 }
 
 
@@ -653,6 +668,20 @@ const map<const Sound *, int> &Outfit::JumpInSounds() const
 const map<const Sound *, int> &Outfit::JumpOutSounds() const
 {
 	return jumpOutSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::CargoScanSounds() const
+{
+	return cargoScanSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::OutfitScanSounds() const
+{
+	return outfitScanSounds;
 }
 
 

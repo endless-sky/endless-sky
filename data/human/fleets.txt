@@ -2095,6 +2095,13 @@ fleet "Large CCOR"
 		"Saber (CCOR Gatling)"
 		"Enforcer (CCOR)"
 		"Berserker (CCOR)"
+
+fleet "CCOR Logistics"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		timid secretive coward appeasing
 	variant 1
 		"Hauler II"
 	variant 1
@@ -2256,6 +2263,8 @@ fleet "Small Core Pirates"
 	variant 1
 		"Headhunter (Particle)"
 	variant 1
+		"Headhunter (Tractor Beam)"
+	variant 1
 		"Quicksilver" 2
 	variant 1
 		"Quicksilver"
@@ -2328,12 +2337,16 @@ fleet "Large Core Pirates"
 		"Splinter (Laser)" 2
 	variant 1
 		"Splinter (Proton)" 2
+	variant 1
+		"Splinter (Tractor Beam)"
 	variant 2
 		"Falcon"
 	variant 1
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 1
+		"Falcon (Tractor Beam)"
 	variant 2
 		"Firebird"
 	variant 2
@@ -2352,6 +2365,8 @@ fleet "Large Core Pirates"
 		"Protector (Laser)"
 	variant 1
 		"Protector (Proton)"
+	variant 1
+		"Protector (Tractor Beam)"
 	variant 1
 		"Protector"
 
@@ -2431,98 +2446,98 @@ fleet "Large Northern Pirates"
 	cargo 1
 	personality
 		plunders harvests
-	variant 2
-		"Firebird"
-	variant 5
-		"Firebird (Laser)"
-	variant 1
-		"Firebird (Missile)"
 	variant 4
+		"Firebird"
+	variant 10
+		"Firebird (Laser)"
+	variant 2
+		"Firebird (Missile)"
+	variant 8
 		"Firebird (Plasma)"
-	variant 1
+	variant 2
 		"Firebird"
 		"Corvette"
-	variant 4
+	variant 8
 		"Firebird (Plasma)"
 		"Corvette (Speedy)"
-	variant 2
+	variant 4
 		"Firebird (Plasma)"
 		"Corvette (Missile)"
-	variant 1
+	variant 2
 		"Firebird (Laser)"
 		"Corvette (Missile)"
-	variant 2
+	variant 4
 		"Firebird"
 		"Fury"
-	variant 2
+	variant 4
 		"Firebird"
 		"Berserker" 2
-	variant 1
+	variant 2
 		"Firebird (Plasma)"
 		"Fury (Missile)"
-	variant 1
+	variant 2
 		"Firebird (Missile)"
 		"Fury (Bomber)"
-	variant 3
+	variant 6
 		"Raven (Afterburner)" 2
-	variant 1
-		"Raven (Heavy)" 2
 	variant 2
+		"Raven (Heavy)" 2
+	variant 4
 		"Headhunter (Particle)"
 		"Headhunter (Strike)"
-	variant 1
+	variant 2
 		"Headhunter (Particle)" 2
 		"Headhunter (Strike)"
-	variant 1
+	variant 2
 		"Aerie"
 		"Dagger" 2
 		"Corvette"
-	variant 1
+	variant 2
 		"Aerie"
 		"Dagger" 2
 		"Raven"
-	variant 2
+	variant 4
 		"Aerie" 2
 		"Dagger" 4
-	variant 2
+	variant 4
 		"Aerie"
 		"Dagger" 2
 		"Corvette (Missile)"
-	variant 1
+	variant 2
 		"Aerie" 2
 		"Dagger" 4
 		"Firebird"
-	variant 2
+	variant 4
 		"Mule"
 		"Lance"
-	variant 2
+	variant 4
 		"Mule (Heavy)"
 		"Dagger"
-	variant 2
+	variant 4
 		"Leviathan"
 		"Firebird"
-	variant 1
+	variant 2
 		"Leviathan (Laser)"
 		"Firebird"
-	variant 3
+	variant 6
 		"Leviathan (Laser)"
 		"Firebird (Laser)"
-	variant 2
+	variant 4
 		"Leviathan (Heavy)"
 		"Firebird (Plasma)"
-	variant 2
+	variant 4
 		"Leviathan (Heavy)"
 		"Firebird (Missile)"
-	variant 2
+	variant 4
 		"Leviathan (Laser)"
 		"Firebird (Missile)"
-	variant 3
+	variant 6
 		"Leviathan"
-	variant 2
+	variant 4
 		"Leviathan (Laser)"
-	variant 1
+	variant 2
 		"Leviathan (Heavy)"
-	variant 1
+	variant 2
 		"Fury (Heavy)" 2
 		"Firebird (Missile)"
 	variant 1
@@ -3441,26 +3456,6 @@ fleet "Hired Guns"
 		"Splinter (Laser)"
 	variant 1
 		"Vanguard (Particle)"
-		"Splinter (Proton)"
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
-		"Modified Argosy" 2
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Mule (Heavy)"
-		"Dagger" 4
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
-		"Corvette"
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
-		"Splinter (Laser)"
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
 		"Splinter (Proton)"
 
 # The Navy forces which blockade the wormhole during the Hai crisis.

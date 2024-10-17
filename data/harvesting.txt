@@ -206,7 +206,7 @@ outfit "Silver"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "Although not as pricy as gold, silver is used not just in jewelry but in electronics, disinfectants, and high-quality mirrors, and as a chemical catalyst."
+	description "Although not as pricey as gold, silver is used not just in jewelry but in electronics, disinfectants, and high-quality mirrors, and as a chemical catalyst."
 
 
 minable "titanium"

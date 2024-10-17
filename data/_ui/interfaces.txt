@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
 # Colors used to reflect the active or hovered interface button.
 color "hover" 1. 1. 1. 0.
 color "active" .75 .75 .75 0.
@@ -74,6 +75,8 @@ color "escort split energy" .3 .3 .3 0.
 color "escort split fuel" .35 .31 .215 0.
 
 color "flagship highlight" .5 .8 .2 0.
+
+color "cloak highlight" .45 0. 0. .65
 
 color "drag select" .2 1. 0. 0.
 
@@ -170,7 +173,11 @@ color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
 color "message importance highest" 1. .5 0. 1.
+color "message importance high" 1. 1. 1. 1.
 color "message importance info" 0. 1. .5 1.
+color "message importance daily" 1. 1. 1. 1.
+color "message importance low" 1. 1. 1. 1.
+
 color "message log importance highest" 1. .5 0. 1.
 color "message log importance high" .75 .75 .75 1.
 color "message log importance info" 0. 1. .5 1.
@@ -187,6 +194,11 @@ color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
+
+# Colors used for the routing issue text in the map panel when
+# a route to the selected system cannot be determined.
+color "map route error text" 1. 0. 0. 1.
+color "map route error shadow" 0. 0. 0. 1.
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
@@ -475,6 +487,19 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	visible if "multiple controls pages"
+	sprite "ui/dialog cancel"
+		center -115 210
+	active if "show next controls"
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	sprite "ui/wide button"
+		center -210 210
+	active if "show previous controls"
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
 
 
 
@@ -495,16 +520,16 @@ interface "settings"
 		dimensions 90 30
 		color medium
 		hover bright
-	visible if "multiple pages"
+	visible if "multiple settings pages"
 	sprite "ui/dialog cancel"
 		center -115 210
-	active if "show next"
+	active if "show next settings"
 	button n "_Next"
 		center -115 210
 		dimensions 70 30
 	sprite "ui/wide button"
 		center -210 210
-	active if "show previous"
+	active if "show previous settings"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
@@ -560,7 +585,7 @@ interface "preferences"
 		from 280.5 15
 		dimensions 0 -200
 		color "energy"
-		size 3
+		size 2
 
 
 
@@ -587,9 +612,15 @@ interface "hud"
 		color "medium"
 		align right
 	
+	visible if "!fast hud sprites"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
+	visible if "fast hud sprites"
+	image "player sprite"
+		center -75 155
+		dimensions 70 70
+	visible
 	ring "shields"
 		center -75 155
 		dimensions 120 120
@@ -667,10 +698,16 @@ interface "hud"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
+	visible if "!fast hud sprites"
 	outline "target sprite"
 		center 75 315
 		dimensions 70 70
 		colored
+	visible if "fast hud sprites"
+	image "target sprite"
+		center 75 315
+		dimensions 70 70
+	visible
 	ring "target shields"
 		center 75 315
 		dimensions 120 120
@@ -1262,9 +1299,14 @@ interface "bank"
 
 
 interface "mission" bottom
+	visible if "has description"
 	sprite "ui/mission"
 		align bottom
-	
+	visible if "!has description"
+	sprite "ui/mission empty"
+		align bottom
+
+	visible
 	label "cargo space free:"
 		center -130 -85
 	string "cargo free"
@@ -1394,6 +1436,16 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+
+	anchor top
+	string "route error"
+		center 1 59
+		size 18
+		color "map route error shadow"
+	string "route error"
+		center 0 58
+		size 18
+		color "map route error text"
 
 
 
@@ -1536,6 +1588,11 @@ interface "info panel"
 
 interface "message log"
 	value "width" 570
+
+	visible if "empty"
+	label "(The message log is empty.)"
+		from 300 0 left
+		color medium
 
 
 
