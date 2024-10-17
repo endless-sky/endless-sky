@@ -1643,7 +1643,10 @@ mission "Remnant: Tech Retrieval"
 	on offer
 		"remnant met taely" ++
 		conversation
-			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important.`
+			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <starting planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+				to display
+					has "human space start"
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
