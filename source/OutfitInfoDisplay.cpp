@@ -189,6 +189,7 @@ namespace {
 		{"overheat damage threshold", 3},
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
+		{"cloaked shield permeability", 3},
 		{"acceleration multiplier", 3},
 		{"turn multiplier", 3},
 
