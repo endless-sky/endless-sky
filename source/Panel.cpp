@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -101,9 +102,9 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 
-void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
+void Panel::AddZone(const Rectangle &rect, int32_t key)
 {
-	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
+	AddZone(rect, [this, key](){ this->KeyDown(key, Command(), true); });
 }
 
 
@@ -169,7 +170,7 @@ void Panel::AddOrRemove()
 
 
 // Only override the ones you need; the default action is to return false.
-bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool Panel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	return false;
 }
@@ -218,9 +219,9 @@ bool Panel::Release(int x, int y)
 
 
 
-bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool Panel::DoKeyDown(int32_t key, const Command &command, bool isNewPress)
 {
-	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
+	return EventVisit(&Panel::KeyDown, key, command, isNewPress);
 }
 
 
@@ -321,9 +322,9 @@ UI *Panel::GetUI() const noexcept
 // arguments. In this form, the command is never set, so you can call this
 // with a key representing a known keyboard shortcut without worrying that a
 // user-defined command key will override it.
-bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
+bool Panel::DoKey(int32_t key, uint16_t mod)
 {
-	return KeyDown(key, mod, Command(), true);
+	return KeyDown(key, Command(), true);
 }
 
 
@@ -332,14 +333,13 @@ bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
 // something you are buying, so the shared function is defined here:
 int Panel::Modifier()
 {
-	SDL_Keymod mod = SDL_GetModState();
 
 	int modifier = 1;
-	if(mod & KMOD_ALT)
+	if(GameWindow::GetMod(GameWindow::Mods::ALT))
 		modifier *= 500;
-	if(mod & (KMOD_CTRL | KMOD_GUI))
+	if(GameWindow::GetMod(GameWindow::Mods::CTRL_GUI))
 		modifier *= 20;
-	if(mod & KMOD_SHIFT)
+	if(GameWindow::GetMod(GameWindow::Mods::SHIFT))
 		modifier *= 5;
 
 	return modifier;

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
 #include "text/layout.hpp"
@@ -90,7 +91,7 @@ void MapSalesPanel::Draw()
 
 
 
-bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool MapSalesPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::HELP))
 		DoHelp("map advanced shops", true);
@@ -119,7 +120,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new Dialog(
 			this, &MapSalesPanel::DoFind, "Search for:"));
 	else
-		return MapPanel::KeyDown(key, mod, command, isNewPress);
+		return MapPanel::KeyDown(key, command, isNewPress);
 
 	return true;
 }
@@ -139,7 +140,7 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 			Select(selected = -1);
 			Compare(compare = -1);
 		}
-		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
+		else if(!GameWindow::GetMod(GameWindow::Mods::SHIFT))
 		{
 			Select(selected = zone->Value());
 			Compare(compare = -1);
@@ -433,7 +434,7 @@ void MapSalesPanel::ScrollTo(int index)
 void MapSalesPanel::ClickCategory(const string &name)
 {
 	bool isHidden = collapsed.contains(name);
-	if(SDL_GetModState() & KMOD_SHIFT)
+	if(GameWindow::GetMod(GameWindow::Mods::SHIFT))
 	{
 		// If the shift key is held down, hide or show all categories.
 		if(isHidden)

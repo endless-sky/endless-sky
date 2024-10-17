@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
@@ -222,9 +223,10 @@ void BoardingPanel::Draw()
 
 
 // Handle key presses or button clicks that were mapped to key presses.
-bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool BoardingPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
-	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
+	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE
+		|| (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI))) && CanExit())
 	{
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
@@ -541,7 +543,7 @@ bool BoardingPanel::CanAttack() const
 
 
 // Handle the keyboard scrolling and selection in the panel list.
-void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
+void BoardingPanel::DoKeyboardNavigation(const int32_t key)
 {
 	// Scrolling the list of plunder.
 	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)

@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameWindow.h"
 #include "Government.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
@@ -47,7 +48,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include "opengl.h"
-#include <SDL2/SDL.h>
 
 #include <algorithm>
 
@@ -294,11 +294,11 @@ void ShopPanel::ToggleCargo()
 
 
 // Only override the ones you need; the default action is to return false.
-bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool ShopPanel::KeyDown(int32_t key, const Command &command, bool isNewPress)
 {
 	bool toStorage = planet && planet->HasOutfitter() && (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+			|| (key == 'w' && GameWindow::GetMod(GameWindow::Mods::CTRL_GUI)))
 	{
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
@@ -402,9 +402,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
-		if(mod & (KMOD_CTRL | KMOD_GUI))
+		if(GameWindow::GetMod(GameWindow::Mods::CTRL_GUI))
 			player.SetGroup(group, &playerShips);
-		else if(mod & KMOD_SHIFT)
+		else if(GameWindow::GetMod(GameWindow::Mods::SHIFT))
 		{
 			// If every single ship in this group is already selected, shift
 			// plus the group number means to deselect all those ships.
@@ -477,7 +477,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	for(const ClickZone<string> &zone : categoryZones)
 		if(zone.Contains(clickPoint))
 		{
-			bool toggleAll = (SDL_GetModState() & KMOD_SHIFT);
+			bool toggleAll = GameWindow::GetMod(GameWindow::Mods::SHIFT);
 			auto it = collapsed.find(zone.Value());
 			if(it == collapsed.end())
 			{
@@ -1191,8 +1191,8 @@ void ShopPanel::SideSelect(int count)
 
 void ShopPanel::SideSelect(Ship *ship)
 {
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+	bool shift = GameWindow::GetMod(GameWindow::Mods::SHIFT);
+	bool control = GameWindow::GetMod(GameWindow::Mods::CTRL_GUI);
 
 	if(shift)
 	{

@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Screen.h"
 
 #include "../opengl.h"
-#include <SDL2/SDL.h>
 
 #include <algorithm>
 
