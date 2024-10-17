@@ -323,7 +323,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Add system to accumulate reasons why an outfit cannot be bought
 	vector<string> errors;
-	auto addError = [&](const string &msg) { errors.push_back(msg); };	
+	auto addError = [&](const string &msg) { errors.push_back(msg); };
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
@@ -390,13 +390,13 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		if(cost > credits)
 			addError("You do not have enough money to buy this outfit, you need a further " +
-				 Format::CreditString(cost - credits));
+				Format::CreditString(cost - credits));
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
 			addError("You do not have enough money to buy this outfit because you also need to buy a "
-				 "license for it. You need a further " +
-				 Format::CreditString(licenseCost - credits));
+				"license for it. You need a further " +
+				Format::CreditString(licenseCost - credits));
 	}
 
 	// Check if the outfit will fit
@@ -472,7 +472,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"because it would reduce one of your ship's attributes to a negative amount. "
 			"For example, it may use up more cargo space than you have left.");
 	}
-	
+
 	if(errors.empty())
 		return true;
 	else if(errors.size() == 1)
