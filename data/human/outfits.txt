@@ -184,7 +184,7 @@ outfit "Ramscoop"
 outfit "Catalytic Ramscoop"
 	category "Systems"
 	series "Ramscoops: Human"
-	index 10
+	index 20
 	cost 320000
 	thumbnail "outfit/catalytic ramscoop"
 	"mass" 16
