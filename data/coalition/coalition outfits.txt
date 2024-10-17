@@ -230,6 +230,8 @@ outfit "Fuel Module"
 
 outfit "Decoy Plating"
 	category "Systems"
+	series "Jammers: Coalition"
+	index 10
 	cost 93000
 	thumbnail "outfit/decoy plating"
 	"mass" 7

@@ -419,6 +419,8 @@ outfit "Chameleon Anti-Missile"
 
 outfit "Hai Cuttlefish Jammer"
 	category "Systems"
+	series "Jammers: Hai"
+	index 10
 	cost 260000
 	thumbnail "outfit/hai jammer"
 	"mass" 10
@@ -429,6 +431,8 @@ outfit "Hai Cuttlefish Jammer"
 
 outfit "Hai Octopus Jammer"
 	category "Systems"
+	series "Jammers: Hai"
+	index 20
 	cost 350000
 	thumbnail "outfit/hai jammer overclocked"
 	"mass" 10
