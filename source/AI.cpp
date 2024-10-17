@@ -1130,7 +1130,10 @@ void AI::Step(Command &activeCommands)
 			if(it->Velocity().Length() > .001 || !target)
 				Stop(*it, command);
 			else
+			{
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
+				it->SetVelocity({0, 0});
+			}
 		}
 		else if(FollowOrders(*it, command))
 		{
@@ -1724,7 +1727,10 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
+		{
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+			ship.SetVelocity({0, 0});
+		}
 	}
 	else if(order.HasMine() && targetAsteroid)
 	{
