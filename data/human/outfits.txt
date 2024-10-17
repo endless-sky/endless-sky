@@ -51,6 +51,8 @@ outfit "Liquid Helium Cooler"
 
 outfit "D14-RN Shield Generator"
 	category "Systems"
+	series "Shields: Human"
+	index 10
 	cost 20000
 	thumbnail "outfit/tiny shield"
 	"mass" 15
@@ -61,6 +63,8 @@ outfit "D14-RN Shield Generator"
 
 outfit "D23-QP Shield Generator"
 	category "Systems"
+	series "Shields: Human"
+	index 20
 	cost 35000
 	thumbnail "outfit/small shield"
 	"mass" 22
@@ -71,6 +75,8 @@ outfit "D23-QP Shield Generator"
 
 outfit "D41-HY Shield Generator"
 	category "Systems"
+	series "Shields: Human"
+	index 30
 	cost 65000
 	thumbnail "outfit/medium shield"
 	"mass" 30
@@ -81,6 +87,8 @@ outfit "D41-HY Shield Generator"
 
 outfit "D67-TM Shield Generator"
 	category "Systems"
+	series "Shields: Human"
+	index 30
 	cost 120000
 	thumbnail "outfit/large shield"
 	"mass" 45
@@ -91,6 +99,8 @@ outfit "D67-TM Shield Generator"
 
 outfit "D94-YV Shield Generator"
 	category "Systems"
+	series "Shields: Human"
+	index 40
 	cost 200000
 	thumbnail "outfit/huge shield"
 	"mass" 60
@@ -101,6 +111,8 @@ outfit "D94-YV Shield Generator"
 
 outfit "S-270 Regenerator"
 	category "Systems"
+	series "Shields: Human"
+	index 50
 	cost 220000
 	thumbnail "outfit/small regenerator"
 	"mass" 12
@@ -113,6 +125,8 @@ outfit "S-270 Regenerator"
 
 outfit "S-970 Regenerator"
 	category "Systems"
+	series "Shields: Human"
+	index 60
 	cost 800000
 	thumbnail "outfit/large regenerator"
 	"mass" 37
@@ -164,6 +178,8 @@ outfit "Catalytic Ramscoop"
 
 outfit "Hyperdrive"
 	category "Systems"
+	series "Drives"
+	index 10
 	cost 50000
 	thumbnail "outfit/hyperdrive"
 	"mass" 20
@@ -176,6 +192,8 @@ outfit "Hyperdrive"
 
 outfit "Scram Drive"
 	category "Systems"
+	series "Drives"
+	index 20
 	cost 90000
 	thumbnail "outfit/scram drive"
 	"mass" 30
@@ -187,6 +205,8 @@ outfit "Scram Drive"
 
 outfit "Jump Drive"
 	category "Systems"
+	series "Drives"
+	index 30
 	cost 1000000
 	thumbnail "outfit/jump drive"
 	"mass" 20

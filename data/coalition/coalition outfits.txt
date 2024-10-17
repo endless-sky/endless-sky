@@ -111,6 +111,8 @@ outfit "Large Battery Module"
 
 outfit "Small Shield Module"
 	category "Systems"
+	series "Shields: Coalition"
+	index 10
 	licenses
 		Coalition
 	cost 84000
@@ -124,6 +126,8 @@ outfit "Small Shield Module"
 
 outfit "Large Shield Module"
 	category "Systems"
+	series "Shields: Coalition"
+	index 20
 	licenses
 		Coalition
 	cost 553000
@@ -137,6 +141,8 @@ outfit "Large Shield Module"
 
 outfit "Overcharged Shield Module"
 	category "Systems"
+	series "Shields: Coalition"
+	index 30
 	licenses
 		Heliarch
 	cost 1216000
@@ -239,6 +245,8 @@ outfit "Refueling Module"
 
 outfit "Shield Refactor Module"
 	category "Systems"
+	series "Shields: Coalition"
+	index 40
 	cost 3248000
 	thumbnail "outfit/shield refactor module"
 	"mass" 7
@@ -253,6 +261,8 @@ outfit "Shield Refactor Module"
 
 outfit "Small Recovery Module"
 	category "Systems"
+	series "Shields: Coalition"
+	index 50
 	cost 625000
 	thumbnail "outfit/small recovery module"
 	"mass" 25

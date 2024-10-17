@@ -353,6 +353,8 @@ outfit "Ka'het Primary Cooling"
 
 outfit "Ka'het Shield Restorer"
 	category "Systems"
+	series "Shields: Ka'het"
+	index 10
 	cost 138000
 	thumbnail "outfit/ka'het shield restorer"
 	"mass" 14
@@ -363,6 +365,8 @@ outfit "Ka'het Shield Restorer"
 
 outfit "Ka'het Grand Restorer"
 	category "Systems"
+	series "Shields: Ka'het"
+	index 20
 	cost 1022000
 	thumbnail "outfit/ka'het grand restorer"
 	"mass" 72

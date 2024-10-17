@@ -13,6 +13,8 @@
 
 outfit "Shield Relay Booster"
 	category "Systems"
+	series "Shields: Bunrodea"
+	index 98
 	cost 59000
 	thumbnail "outfit/shield booster"
 	"mass" 2
@@ -24,6 +26,8 @@ outfit "Shield Relay Booster"
 
 outfit "Shield Relay Limiter"
 	category "Systems"
+	series "Shields: Bunrodea"
+	index 99
 	cost 12000
 	thumbnail "outfit/shield limiter"
 	"mass" 1
@@ -35,6 +39,8 @@ outfit "Shield Relay Limiter"
 
 outfit "Small Shield Relay"
 	category "Systems"
+	series "Shields: Bunrodea"
+	index 10
 	cost 172000
 	thumbnail "outfit/small shield relay"
 	"mass" 21
@@ -50,6 +56,8 @@ outfit "Small Shield Relay"
 
 outfit "Large Shield Relay"
 	category "Systems"
+	series "Shields: Bunrodea"
+	index 20
 	cost 593000
 	thumbnail "outfit/large shield relay"
 	"mass" 56

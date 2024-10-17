@@ -440,6 +440,8 @@ outfit "Hai Octopus Jammer"
 
 outfit "Hai Corundum Regenerator"
 	category "Systems"
+	series "Shields: Hai"
+	index 10
 	cost 300000
 	thumbnail "outfit/small regenerator hai"
 	"mass" 16
@@ -452,6 +454,8 @@ outfit "Hai Corundum Regenerator"
 
 outfit "Hai Diamond Regenerator"
 	category "Systems"
+	series "Shields: Hai"
+	index 20
 	cost 1150000
 	thumbnail "outfit/large regenerator hai"
 	"mass" 49

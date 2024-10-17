@@ -374,6 +374,8 @@ outfit "Blue Sun Reactor"
 
 outfit "Bright Cloud Shielding"
 	category "Systems"
+	series "Shields: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 220000
@@ -386,6 +388,8 @@ outfit "Bright Cloud Shielding"
 
 outfit "Dark Storm Shielding"
 	category "Systems"
+	series "Shields: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 800000

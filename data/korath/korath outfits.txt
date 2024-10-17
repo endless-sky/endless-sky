@@ -111,6 +111,8 @@ outfit "Liquid Sodium Cooler"
 outfit "Systems Core (Tiny)"
 	plural "Systems Cores (Tiny)"
 	category "Systems"
+	series "Shields: Korath"
+	index 10
 	cost 621000
 	thumbnail "outfit/tiny systems core"
 	"mass" 17
@@ -126,6 +128,8 @@ outfit "Systems Core (Tiny)"
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
 	category "Systems"
+	series "Shields: Korath"
+	index 20
 	cost 1452000
 	thumbnail "outfit/small systems core"
 	"mass" 31
@@ -141,6 +145,8 @@ outfit "Systems Core (Small)"
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
 	category "Systems"
+	series "Shields: Korath"
+	index 30
 	cost 3630000
 	thumbnail "outfit/medium systems core"
 	"mass" 53
@@ -156,6 +162,8 @@ outfit "Systems Core (Medium)"
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
 	category "Systems"
+	series "Shields: Korath"
+	index 40
 	cost 9075000
 	thumbnail "outfit/large systems core"
 	"mass" 91

@@ -143,6 +143,8 @@ outfit "Medium Graviton Steering"
 
 outfit "Quantum Shield Generator"
 	category "Systems"
+	series "Shields: Quarg"
+	index 10
 	cost 30000000
 	thumbnail "outfit/quarg quantum shield generator"
 	"mass" 120
