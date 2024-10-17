@@ -1378,6 +1378,11 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 				`	(Stand in the room's entrance and watch.)`
 					goto watch
 			`	As you enter the room, a pair of Unfettered grab you. Teeneep draws a throwing knife, saying with intensity, "Let Captain <last> go. Now." The Unfettered let go immediately, and she nods for you to stay where you are, sheathing the knife.`
+				to display
+					not "salary: Unfettered"
+			`	As you enter the room, the Unfettered guards salute you with their fist, before letting you pass.`
+				to display
+					has "salary: Unfettered"
 			label watch
 			`	The leader's voice booms from where he sits at the other end of the room. "Come, False Hai. You have entered here to make a case, have at it."`
 			`	Teeneep explains to the leader, "Five thousand Hai have been enslaved by human pirates, or vaporized when the human authorities have shot down their captors with no regard for the innocents on board. The Elders do not act. Will not act. They know, and do nothing. I have learned that they have known of some pirates who they felt were too much of a headache for decades, and that rather than hunt them down, they have paid them with technology. Our weapons and technology. Paid them off to simply leave us alone, and not even to return any Hai they may have captured.`
