@@ -33,7 +33,7 @@
 				"checks": [
 					{
 						"description": "multiple consecutive space characters",
-						"regex": "(?<!^tip .*)([^ ])	+([^# ])",
+						"regex": "(?<!^tip .*)([^ ])    +([^# ])",
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
