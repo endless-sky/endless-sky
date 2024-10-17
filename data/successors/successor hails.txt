@@ -174,7 +174,7 @@ phrase "successor friendly hail" # Cargo
 	word
 		" "
 	word
-		"of pricey"
+		"of pricy"
 		"containing"
 		"of gilded"
 	word
@@ -1045,6 +1045,8 @@ phrase "seineq friendly hail"
 		"grand Seineq's House"
 		"the Lum'nary party"
 		"the Twice-Wrapped Ring"
+	word
+		" "
 	word
 		"doth"
 	word
