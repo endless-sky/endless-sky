@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "ui/panel/DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "System.h"
-#include "UI.h"
+#include "ui/UI.h"
 
 #include <cstdlib>
 
@@ -109,7 +109,7 @@ namespace {
 				special += " put in your cargo hold because there is not enough space to install ";
 				special += (isSingle ? "it" : "them");
 				special += " in your ship.";
-				ui->Push(new Dialog(special));
+				ui->Push(new DialogPanel(special));
 			}
 		}
 		if(didCargo && didShip)
@@ -153,7 +153,7 @@ void GameAction::LoadSingle(const DataNode &child)
 		bool isSpecial = (child.Size() >= 3);
 		string &text = (isSpecial ?
 			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		DialogPanel::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{

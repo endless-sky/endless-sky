@@ -39,7 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Interface.h"
 #include "Logger.h"
-#include "MapPanel.h"
+#include "ui/panel/MapPanel.h"
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"

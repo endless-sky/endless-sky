@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 
 #include "CargoHold.h"
-#include "ConversationPanel.h"
+#include "ui/panel/ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "ui/panel/DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "TextReplacements.h"
-#include "UI.h"
+#include "ui/UI.h"
 
 using namespace std;
 
@@ -397,9 +397,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
 		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
+			ui->Push(new DialogPanel(text, player, destination));
 		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			ui->Push(new DialogPanel(text));
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
