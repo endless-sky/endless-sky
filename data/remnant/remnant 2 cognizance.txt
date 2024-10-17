@@ -416,7 +416,7 @@ mission "Remnant: Cognizance 10"
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>.`
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring them back to <origin>.`
 	on stopover
 		dialog
 			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
