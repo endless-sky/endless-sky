@@ -334,6 +334,8 @@ outfit "Pug Lohmar Steering"
 outfit "Pug Biodefenses"
 	plural "Pug Biodefenses"
 	category "Hand to Hand"
+	series "Fortifications: Pug"
+	index 20
 	cost 100000
 	thumbnail "outfit/pug biodefenses"
 	"capture defense" 100
@@ -343,6 +345,8 @@ outfit "Pug Biodefenses"
 outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"
 	category "Hand to Hand"
+	series "H2H: Pug"
+	index 10
 	cost 123456
 	thumbnail "outfit/pug staff"
 	"capture attack" 2.3

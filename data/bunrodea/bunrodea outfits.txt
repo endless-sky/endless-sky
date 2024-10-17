@@ -210,6 +210,8 @@ outfit "Dark Reactor"
 
 outfit "Lasher Pistol"
 	category "Hand to Hand"
+	series "H2H: Bunrodea"
+	index 10
 	cost 47000
 	thumbnail "outfit/lasher pistol"
 	"capture attack" 1.1

@@ -782,6 +782,8 @@ outfit "Nelmeb GP Hybrid Steering"
 
 outfit "Thermal Repeater Rifle"
 	category "Hand to Hand"
+	series "H2H: Korath"
+	index 10
 	cost 53000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
@@ -791,6 +793,8 @@ outfit "Thermal Repeater Rifle"
 
 outfit "Microbot Defense Station"
 	category "Hand to Hand"
+	series "Fortifications: Korath"
+	index 10
 	cost 53000
 	thumbnail "outfit/microbot defense station"
 	mass 2

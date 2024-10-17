@@ -326,6 +326,8 @@ outfit "MH Red-Class Steering"
 # Hand to Hand
 outfit "Cloud Piercer"
 	category "Hand to Hand"
+	series "H2H: Incipias"
+	index 10
 	cost 10000
 	thumbnail "outfit/cloud piercer"
 	licenses

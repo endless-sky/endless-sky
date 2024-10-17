@@ -206,63 +206,63 @@ category "series":
 	"Batteries: Successors" 212
 	"Batteries: Other" 299
 	# Engines
-	"Engines: Human" 0
-	"Engines: Hai" 1
-	"Engines: Remnant" 2
-	"Engines: Korath" 3
-	"Engines: Ka'het" 4
-	"Engines: Gegno" 5
-	"Engines: Coalition" 6
-	"Engines: Wanderers" 7
-	"Engines: Bunrodea" 8
-	"Engines: Pug" 9
-	"Engines: Quarg" 10
-	"Engines: Incipias" 11
-	"Engines: Successors" 12
-	"Engines: Other" 99
+	"Engines: Human" 100
+	"Engines: Hai" 101
+	"Engines: Remnant" 102
+	"Engines: Korath" 103
+	"Engines: Ka'het" 104
+	"Engines: Gegno" 105
+	"Engines: Coalition" 106
+	"Engines: Wanderers" 107
+	"Engines: Bunrodea" 108
+	"Engines: Pug" 109
+	"Engines: Quarg" 110
+	"Engines: Incipias" 111
+	"Engines: Successors" 112
+	"Engines: Other" 199
+	"Afterburners: Human" 200
+	"Afterburners: Hai" 201
+	"Afterburners: Remnant" 202
+	"Afterburners: Korath" 203
+	"Afterburners: Ka'het" 204
+	"Afterburners: Gegno" 205
+	"Afterburners: Coalition" 206
+	"Afterburners: Wanderers" 207
+	"Afterburners: Bunrodea" 208
+	"Afterburners: Pug" 209
+	"Afterburners: Quarg" 210
+	"Afterburners: Incipias" 211
+	"Afterburners: Successors" 212
+	"Afterburners: Other" 299
 	# Hand to Hand
-	"Offensive H2H: Human" 100
-	"Offensive H2H: Hai" 101
-	"Offensive H2H: Remnant" 102
-	"Offensive H2H: Korath" 103
-	"Offensive H2H: Ka'het" 104
-	"Offensive H2H: Gegno" 105
-	"Offensive H2H: Coalition" 106
-	"Offensive H2H: Wanderers" 107
-	"Offensive H2H: Bunrodea" 108
-	"Offensive H2H: Pug" 109
-	"Offensive H2H: Quarg" 110
-	"Offensive H2H: Incipias" 111
-	"Offensive H2H: Successors" 112
-	"Offensive H2H: Other" 199
-	"Defensive H2H: Human" 200
-	"Defensive H2H: Hai" 201
-	"Defensive H2H: Remnant" 202
-	"Defensive H2H: Korath" 203
-	"Defensive H2H: Ka'het" 204
-	"Defensive H2H: Gegno" 205
-	"Defensive H2H: Coalition" 206
-	"Defensive H2H: Wanderers" 207
-	"Defensive H2H: Bunrodea" 208
-	"Defensive H2H: Pug" 209
-	"Defensive H2H: Quarg" 210
-	"Defensive H2H: Incipias" 211
-	"Defensive H2H: Successors" 212
-	"Defensive H2H: Other" 299
-	"Fortifications: Human" 300
-	"Fortifications: Hai" 301
-	"Fortifications: Remnant" 302
-	"Fortifications: Korath" 303
-	"Fortifications: Ka'het" 304
-	"Fortifications: Gegno" 305
-	"Fortifications: Coalition" 306
-	"Fortifications: Wanderers" 307
-	"Fortifications: Bunrodea" 308
-	"Fortifications: Pug" 309
-	"Fortifications: Quarg" 310
-	"Fortifications: Incipias" 311
-	"Fortifications: Successors" 312
-	"Fortifications: Other" 399
+	"H2H: Human" 100
+	"H2H: Hai" 101
+	"H2H: Remnant" 102
+	"H2H: Korath" 103
+	"H2H: Ka'het" 104
+	"H2H: Gegno" 105
+	"H2H: Coalition" 106
+	"H2H: Wanderers" 107
+	"H2H: Bunrodea" 108
+	"H2H: Pug" 109
+	"H2H: Quarg" 110
+	"H2H: Incipias" 111
+	"H2H: Successors" 112
+	"H2H: Other" 199
+	"Fortifications: Human" 200
+	"Fortifications: Hai" 201
+	"Fortifications: Remnant" 202
+	"Fortifications: Korath" 203
+	"Fortifications: Ka'het" 204
+	"Fortifications: Gegno" 205
+	"Fortifications: Coalition" 206
+	"Fortifications: Wanderers" 207
+	"Fortifications: Bunrodea" 208
+	"Fortifications: Pug" 209
+	"Fortifications: Quarg" 210
+	"Fortifications: Incipias" 211
+	"Fortifications: Successors" 212
+	"Fortifications: Other" 299
 	# Unique
 	"Functional Unique" 100
 	"Non-Functional Unique" 200

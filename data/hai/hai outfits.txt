@@ -805,6 +805,8 @@ outfit `"Bufaer" Atomic Steering`
 
 outfit "Pulse Rifle"
 	category "Hand to Hand"
+	series "H2H: Hai"
+	index 10
 	cost 11000
 	thumbnail "outfit/hai rifle"
 	"capture attack" .7

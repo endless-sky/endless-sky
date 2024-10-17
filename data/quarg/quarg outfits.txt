@@ -102,6 +102,8 @@ effect "quarg anti-missile"
 outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
+	series "Fortifications: Quarg"
+	index 10
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
 	"unplunderable" 1

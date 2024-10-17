@@ -855,6 +855,8 @@ outfit "Smelter-Class Steering"
 
 outfit "Tuning Rifle"
 	category "Hand to Hand"
+	series "H2H: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 22000

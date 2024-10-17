@@ -596,6 +596,8 @@ outfit "Multimodal Armor: Resilient"
 
 outfit "Kinetic Rail Rifle"
 	category "Hand to Hand"
+	series "H2H: Successors"
+	index 10
 	thumbnail "outfit/railgun h2h"
 	licenses "High Houses"
 	cost 72000

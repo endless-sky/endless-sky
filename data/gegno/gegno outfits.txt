@@ -949,6 +949,8 @@ effect "bludgeon impact"
 
 outfit "Savagery Pike"
 	category "Hand to Hand"
+	series "H2H: Gegno"
+	index 10
 	licenses
 		"Vi Evocati"
 		"Vi Centurion"
@@ -961,6 +963,8 @@ outfit "Savagery Pike"
 
 outfit "Irate Carronade"
 	category "Hand to Hand"
+	series "Fortifications: Gegno"
+	index 10
 	licenses
 		"Vi Centurion"
 	cost 39000
@@ -973,6 +977,8 @@ outfit "Irate Carronade"
 	
 outfit "Plasmasickle"
 	category "Hand to Hand"
+	series "H2H: Gegno"
+	index 20
 	licenses
 		"Scin Hoplologist"
 	cost 11000
@@ -985,6 +991,8 @@ outfit "Plasmasickle"
 outfit "Plasma Grenades"
 	plural "Plasma Grenades"
 	category "Hand to Hand"
+	series "H2H: Gegno"
+	index 30
 	licenses
 		"Scin Hoplologist"
 	cost 60000

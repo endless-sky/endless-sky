@@ -356,6 +356,8 @@ outfit "Interference Plating"
 
 outfit "Laser Rifle"
 	category "Hand to Hand"
+	series "H2H: Human"
+	index 10
 	cost 8000
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
@@ -366,6 +368,8 @@ outfit "Laser Rifle"
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
 	category "Hand to Hand"
+	series "H2H: Human"
+	index 20
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
 	"capture attack" 1.3
@@ -375,6 +379,8 @@ outfit "Fragmentation Grenades"
 
 outfit "Security Station"
 	category "Hand to Hand"
+	series "Fortifications: Human"
+	index 10
 	cost 42000
 	thumbnail "outfit/security station"
 	"mass" 2
@@ -386,6 +392,8 @@ outfit "Security Station"
 outfit "Nerve Gas"
 	plural "Nerve Gas"
 	category "Hand to Hand"
+	series "H2H: Human"
+	index 30
 	cost 75000
 	thumbnail "outfit/nerve gas"
 	"capture attack" 2.8
@@ -397,6 +405,8 @@ outfit "Nerve Gas"
 
 outfit "Mug"
 	category "Hand to Hand"
+	series "H2H: Unique"
+	index 10
 	cost 50
 	thumbnail "outfit/mug"
 	"capture attack" .1
@@ -406,6 +416,8 @@ outfit "Mug"
 
 outfit "Antigrav Glass"
 	category "Hand to Hand"
+	series "H2H: Unique"
+	index 20
 	plural "Antigrav Glasses"
 	cost 25
 	thumbnail "outfit/unknown"
