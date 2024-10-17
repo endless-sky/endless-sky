@@ -7713,7 +7713,7 @@ mission "Tavish and Kormak 2"
 			`	"Kormak and Tavish," Kormak corrects him.`
 			`	"And," Tavish says ignoring Kormak, "we are doctors, researchers, and most importantly, explorers!"`
 			`	Tavish pauses and levels a look at Kormak, "At least, I think we're both doctors."`
-			`	"Very small school in Deep. Likely not heard of." Kormak says nonchalantly.`
+			`	"Very small school in Deep. Likely not heard of," Kormak says nonchalantly.`
 			choice
 				`	"You're not the 'Dean-Praetor' of the Oxford-Harvard Science and Research Institute, though, are you?"`
 				`	"I am pretty sure you lied to that SpaceFork employee about being a 'Dean-Praetor'."`
@@ -8502,10 +8502,12 @@ mission "Tavish and Kormak 6"
 
 			label everyone
 			`	Everyone is now up and attacking the vines. Kormak begins laughing and starts singing in his bloodlust:`
-			`	"Axe-Edge, Bright-Pledge, Breaker of Blight's Dredge,`
+			``
+			`	Axe-Edge, Bright-Pledge, Breaker of Blight's Dredge,`
 			`	Ash-born, Eagle-torn, Slayer of Earth's forlorn.`
 			`	Break before my battle axe, Flee before my thunder.`
-			`	Die beneath a stranger's sky, and feed my clan's hunger."`
+			`	Die beneath a stranger's sky, and feed my clan's hunger.`
+			``
 			`	After a while nothing is moves. It seems all the alien vines have retreated back behind the tree line. Belatedly you realize they weren't terribly formidable. The vines were slow, weak, and soft.`
 			choice
 				`	"That's it? How did those things manage to kill Gerald?"`
