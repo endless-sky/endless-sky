@@ -34,7 +34,7 @@ mission "Remnant: Visit to Paradise 1"
 		conversation
 			`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>. How is life as an adventurer?"`
 			choice
-				`	"Exciting, as always."`
+				`	"Exciting as always."`
 				`	"I am taking a break right now."`
 			`	She nods sympathetically. "Things have been a bit hectic lately, what with dimensional pockets and mysterious new aliens. I can understand wanting to slow down a bit. With the launch of two new ships in such a short time, I know I feel like I need to just relax a bit." She sighs. "It makes me feel guilty, honestly. I have accomplished so much, and there are so many things to be grateful for, but I even have more projects in development to focus on." She looks lost in thought for a moment.`
 			`	Taely looks up at you. "Could I ask you something about life back in ancestral space?"`
