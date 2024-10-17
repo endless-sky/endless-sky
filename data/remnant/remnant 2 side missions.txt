@@ -34,7 +34,7 @@ mission "Remnant: Visit to Paradise 1"
 		conversation
 			`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>. How is life as an adventurer?"`
 			choice
-				`	"Exciting as always."`
+				`	"Exciting, as always."`
 				`	"I am taking a break right now."`
 			`	She nods sympathetically. "Things have been a bit hectic lately, what with dimensional pockets and mysterious new aliens. I can understand wanting to slow down a bit. With the launch of two new ships in such a short time, I know I feel like I need to just relax a bit." She sighs. "It makes me feel guilty, honestly. I have accomplished so much, and there are so many things to be grateful for, but I even have more projects in development to focus on." She looks lost in thought for a moment.`
 			`	Taely looks up at you. "Could I ask you something about life back in ancestral space?"`
@@ -114,8 +114,8 @@ mission "Remnant: Visit to Paradise 1"
 				`	"I do not know what to make of this."`
 				`	"This is a spaceport?"`
 			`	She nods, and guides you amongst the stream of camel-drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same, whether one is looking at historic pre-flight eras or modern settlement efforts."`
-			scene "scene/remnant remote spaceport"
 			label questionloop
+			scene "scene/remnant remote spaceport"
 			choice
 				`	"It still seems odd to see camels pulling levitating platforms."`
 					goto camelcart
