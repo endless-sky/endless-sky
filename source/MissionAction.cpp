@@ -273,7 +273,7 @@ const string &MissionAction::DialogText() const
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
 {
-	if(isFailed && !runsWhenFailed)
+	if(isFailed && !runsWhenFailed && trigger != "fail")
 		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;
