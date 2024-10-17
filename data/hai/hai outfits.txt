@@ -482,6 +482,8 @@ outfit "Hai Williwaw Cooling"
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Quantum Keystone"
+	series "Drives"
+	index 50
 	category "Systems"
 	cost 12000
 	thumbnail "outfit/keystone"
@@ -838,6 +840,8 @@ outfit "Shield Beetle Pendant"
 
 outfit "Failed Control System"
 	category "Systems"
+	series "Special Systems: Hai"
+	index 10
 	cost 0
 	thumbnail "outfit/control transceiver"
 	"mass" 1

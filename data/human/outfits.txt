@@ -234,6 +234,8 @@ outfit "Jump Drive"
 
 outfit "Jump Drive (Broken)"
 	plural "Jump Drives (Broken)"
+	series "Drives"
+	index 40
 	category "Systems"
 	cost 25000
 	thumbnail "outfit/jump drive (broken)"
@@ -406,6 +408,8 @@ outfit "Fuel Pod"
 
 outfit "Interference Plating"
 	category "Systems"
+	series "Special Systems: Human"
+	index 10
 	cost 50000
 	thumbnail "outfit/interference plating"
 	"mass" 4

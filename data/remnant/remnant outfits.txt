@@ -649,6 +649,8 @@ outfit "Research Laboratory"
 
 outfit "Quantum Key Stone"
 	category "Systems"
+	series "Drives"
+	index 60
 	licenses
 		Remnant
 	cost 240000

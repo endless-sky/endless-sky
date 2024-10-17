@@ -212,6 +212,8 @@ outfit "Command Center"
 
 outfit "Reasoning Node"
 	category "Systems"
+	series "Special Systems: Korath"
+	index 10
 	cost "23000"
 	thumbnail "outfit/reasoning node"
 	"mass" 1
@@ -220,6 +222,8 @@ outfit "Reasoning Node"
 
 outfit "Control Transceiver"
 	category "Systems"
+	series "Special Systems: Korath"
+	index 20
 	cost "7000"
 	thumbnail "outfit/control transceiver"
 	"mass" 1
