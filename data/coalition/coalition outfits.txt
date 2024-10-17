@@ -217,6 +217,8 @@ outfit "Cooling Module"
 
 outfit "Fuel Module"
 	category "Systems"
+	series "Fuel"
+	index 20
 	licenses
 		Coalition
 	cost 270000
@@ -243,6 +245,8 @@ outfit "Decoy Plating"
 
 outfit "Refueling Module"
 	category "Systems"
+	series "Fuel"
+	index 30
 	cost 822000
 	thumbnail "outfit/refueling module"
 	"mass" 10

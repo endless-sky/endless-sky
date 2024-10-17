@@ -343,6 +343,8 @@ outfit "Cargo Expansion"
 
 outfit "Bunk Room"
 	category "Systems"
+	series "Passenger"
+	index 20
 	cost 40000
 	thumbnail "outfit/bunk room"
 	"mass" 5
@@ -353,6 +355,8 @@ outfit "Bunk Room"
 
 outfit "Small Bunk Room"
 	category "Systems"
+	series "Passenger"
+	index 10
 	cost 20000
 	thumbnail "outfit/small bunk room"
 	"mass" 3
@@ -363,6 +367,8 @@ outfit "Small Bunk Room"
 
 outfit "Brig"
 	category "Systems"
+	series "Passenger"
+	index 30
 	cost 40000
 	thumbnail "outfit/brig"
 	"mass" 3
@@ -373,6 +379,8 @@ outfit "Brig"
 outfit "Luxury Accommodations"
 	plural "Luxury Accommodations"
 	category "Systems"
+	series "Passenger"
+	index 40
 	cost 250000
 	thumbnail "outfit/luxury accommodations"
 	"mass" 10
@@ -383,6 +391,8 @@ outfit "Luxury Accommodations"
 
 outfit "Fuel Pod"
 	category "Systems"
+	series "Fuel"
+	index 10
 	cost 20000
 	thumbnail "outfit/fuel pod"
 	"mass" 8

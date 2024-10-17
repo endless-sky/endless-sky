@@ -198,6 +198,8 @@ outfit "Fuel Processor"
 
 outfit "Command Center"
 	category "Systems"
+	series "Passenger"
+	index 50
 	cost 437000
 	thumbnail "outfit/command center"
 	"mass" 8
