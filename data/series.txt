@@ -9,10 +9,11 @@ category "series":
 	"Guns: Coalition" 6
 	"Guns: Wanderers" 7
 	"Guns: Bunrodea" 8
-	"Guns: Pug" 9
-	"Guns: Quarg" 10
-	"Guns: Incipias" 11
-	"Guns: Successors" 12
+	"Guns: Successors" 9
+	"Guns: Incipias" 10
+	"Guns: Sheragi" 11
+	"Guns: Pug" 12
+	"Guns: Quarg" 13
 	"Guns: Other" 99
 	# Turrets
 	"Turrets: Human" 0
@@ -24,10 +25,11 @@ category "series":
 	"Turrets: Coalition" 6
 	"Turrets: Wanderers" 7
 	"Turrets: Bunrodea" 8
-	"Turrets: Pug" 9
-	"Turrets: Quarg" 10
-	"Turrets: Incipias" 11
-	"Turrets: Successors" 12
+	"Turrets: Successors" 9
+	"Turrets: Incipias" 10
+	"Turrets: Sheragi" 11
+	"Turrets: Pug" 12
+	"Turrets: Quarg" 13
 	"Turrets: Other" 99
 	# Secondary Weapons
 	"Fixed Secondaries: Human" 100
@@ -39,10 +41,11 @@ category "series":
 	"Fixed Secondaries: Coalition" 106
 	"Fixed Secondaries: Wanderers" 107
 	"Fixed Secondaries: Bunrodea" 108
-	"Fixed Secondaries: Pug" 109
-	"Fixed Secondaries: Quarg" 110
-	"Fixed Secondaries: Incipias" 111
-	"Fixed Secondaries: Successors" 112
+	"Fixed Secondaries: Successors" 109
+	"Fixed Secondaries: Incipias" 110
+	"Fixed Secondaries: Sheragi" 111
+	"Fixed Secondaries: Pug" 112
+	"Fixed Secondaries: Quarg" 113
 	"Fixed Secondaries: Other" 199
 	"Turreted Secondaries: Human" 200
 	"Turreted Secondaries: Hai" 201
@@ -53,10 +56,11 @@ category "series":
 	"Turreted Secondaries: Coalition" 206
 	"Turreted Secondaries: Wanderers" 207
 	"Turreted Secondaries: Bunrodea" 208
-	"Turreted Secondaries: Pug" 209
-	"Turreted Secondaries: Quarg" 210
-	"Turreted Secondaries: Incipias" 211
-	"Turreted Secondaries: Successors" 212
+	"Turreted Secondaries: Successors" 209
+	"Turreted Secondaries: Incipias" 210
+	"Turreted Secondaries: Sheragi" 211
+	"Turreted Secondaries: Pug" 212
+	"Turreted Secondaries: Quarg" 213
 	"Turreted Secondaries: Other" 299
 	# Ammunition
 	"Ammunition: Human" 0
@@ -68,10 +72,11 @@ category "series":
 	"Ammunition: Coalition" 6
 	"Ammunition: Wanderers" 7
 	"Ammunition: Bunrodea" 8
-	"Ammunition: Pug" 9
-	"Ammunition: Quarg" 10
-	"Ammunition: Incipias" 11
-	"Ammunition: Successors" 12
+	"Ammunition: Successors" 9
+	"Ammunition: Incipias" 10
+	"Ammunition: Sheragi" 11
+	"Ammunition: Pug" 12
+	"Ammunition: Quarg" 13
 	"Ammunition: Other" 99
 	# Systems
 	"Drives" 100
@@ -84,10 +89,11 @@ category "series":
 	"Shields: Coalition" 206
 	"Shields: Wanderers" 207
 	"Shields: Bunrodea" 208
-	"Shields: Pug" 209
-	"Shields: Quarg" 210
-	"Shields: Incipias" 211
-	"Shields: Successors" 212
+	"Shields: Successors" 209
+	"Shields: Incipias" 210
+	"Shields: Sheragi" 211
+	"Shields: Pug" 212
+	"Shields: Quarg" 213
 	"Shields: Other" 299
 	"Repair: Human" 300
 	"Repair: Hai" 301
@@ -98,10 +104,11 @@ category "series":
 	"Repair: Coalition" 306
 	"Repair: Wanderers" 307
 	"Repair: Bunrodea" 308
-	"Repair: Pug" 309
-	"Repair: Quarg" 310
-	"Repair: Incipias" 311
-	"Repair: Successors" 312
+	"Repair: Successors" 309
+	"Repair: Incipias" 310
+	"Repair: Sheragi" 311
+	"Repair: Pug" 312
+	"Repair: Quarg" 313
 	"Repair: Other" 399
 	"Cooling: Human" 400
 	"Cooling: Hai" 401
@@ -112,10 +119,11 @@ category "series":
 	"Cooling: Coalition" 406
 	"Cooling: Wanderers" 407
 	"Cooling: Bunrodea" 408
-	"Cooling: Pug" 409
-	"Cooling: Quarg" 410
-	"Cooling: Incipias" 411
-	"Cooling: Successors" 412
+	"Cooling: Successors" 409
+	"Cooling: Incipias" 410
+	"Cooling: Sheragi" 411
+	"Cooling: Pug" 412
+	"Cooling: Quarg" 413
 	"Cooling: Other" 499
 	"Scanners: Human" 500
 	"Scanners: Hai" 501
@@ -126,10 +134,11 @@ category "series":
 	"Scanners: Coalition" 506
 	"Scanners: Wanderers" 507
 	"Scanners: Bunrodea" 508
-	"Scanners: Pug" 509
-	"Scanners: Quarg" 510
-	"Scanners: Incipias" 511
-	"Scanners: Successors" 512
+	"Scanners: Successors" 509
+	"Scanners: Incipias" 510
+	"Scanners: Sheragi" 511
+	"Scanners: Pug" 512
+	"Scanners: Quarg" 513
 	"Scanners: Other" 599
 	"Jammers: Human" 600
 	"Jammers: Hai" 601
@@ -140,10 +149,11 @@ category "series":
 	"Jammers: Coalition" 606
 	"Jammers: Wanderers" 607
 	"Jammers: Bunrodea" 608
-	"Jammers: Pug" 609
-	"Jammers: Quarg" 610
-	"Jammers: Incipias" 611
-	"Jammers: Successors" 612
+	"Jammers: Successors" 609
+	"Jammers: Incipias" 610
+	"Jammers: Sheragi" 611
+	"Jammers: Pug" 612
+	"Jammers: Quarg" 613
 	"Jammers: Other" 699
 	"Ramscoops: Human" 700
 	"Ramscoops: Hai" 701
@@ -154,10 +164,11 @@ category "series":
 	"Ramscoops: Coalition" 706
 	"Ramscoops: Wanderers" 707
 	"Ramscoops: Bunrodea" 708
-	"Ramscoops: Pug" 709
-	"Ramscoops: Quarg" 710
-	"Ramscoops: Incipias" 711
-	"Ramscoops: Successors" 712
+	"Ramscoops: Successors" 709
+	"Ramscoops: Incipias" 710
+	"Ramscoops: Sheragi" 711
+	"Ramscoops: Pug" 712
+	"Ramscoops: Quarg" 713
 	"Ramscoops: Other" 799
 	"Special Systems: Human" 800
 	"Special Systems: Hai" 801
@@ -168,10 +179,11 @@ category "series":
 	"Special Systems: Coalition" 806
 	"Special Systems: Wanderers" 807
 	"Special Systems: Bunrodea" 808
-	"Special Systems: Pug" 809
-	"Special Systems: Quarg" 810
-	"Special Systems: Incipias" 811
-	"Special Systems: Successors" 812
+	"Special Systems: Successors" 809
+	"Special Systems: Incipias" 810
+	"Special Systems: Sheragi" 811
+	"Special Systems: Pug" 812
+	"Special Systems: Quarg" 813
 	"Special Systems: Other" 899
 	"Fuel" 900
 	"Passenger" 1000
@@ -186,10 +198,11 @@ category "series":
 	"Generators: Coalition" 106
 	"Generators: Wanderers" 107
 	"Generators: Bunrodea" 108
-	"Generators: Pug" 109
-	"Generators: Quarg" 110
-	"Generators: Incipias" 111
-	"Generators: Successors" 112
+	"Generators: Successors" 109
+	"Generators: Incipias" 110
+	"Generators: Sheragi" 111
+	"Generators: Pug" 112
+	"Generators: Quarg" 113
 	"Generators: Other" 199
 	"Batteries: Human" 200
 	"Batteries: Hai" 201
@@ -200,10 +213,11 @@ category "series":
 	"Batteries: Coalition" 206
 	"Batteries: Wanderers" 207
 	"Batteries: Bunrodea" 208
-	"Batteries: Pug" 209
-	"Batteries: Quarg" 210
-	"Batteries: Incipias" 211
-	"Batteries: Successors" 212
+	"Batteries: Successors" 209
+	"Batteries: Incipias" 210
+	"Batteries: Sheragi" 211
+	"Batteries: Pug" 212
+	"Batteries: Quarg" 213
 	"Batteries: Other" 299
 	# Engines
 	"Engines: Human" 100
@@ -215,10 +229,11 @@ category "series":
 	"Engines: Coalition" 106
 	"Engines: Wanderers" 107
 	"Engines: Bunrodea" 108
-	"Engines: Pug" 109
-	"Engines: Quarg" 110
-	"Engines: Incipias" 111
-	"Engines: Successors" 112
+	"Engines: Successors" 109
+	"Engines: Incipias" 110
+	"Engines: Sheragi" 111
+	"Engines: Pug" 112
+	"Engines: Quarg" 113
 	"Engines: Other" 199
 	"Afterburners: Human" 200
 	"Afterburners: Hai" 201
@@ -229,10 +244,11 @@ category "series":
 	"Afterburners: Coalition" 206
 	"Afterburners: Wanderers" 207
 	"Afterburners: Bunrodea" 208
-	"Afterburners: Pug" 209
-	"Afterburners: Quarg" 210
-	"Afterburners: Incipias" 211
-	"Afterburners: Successors" 212
+	"Afterburners: Successors" 209
+	"Afterburners: Incipias" 210
+	"Afterburners: Sheragi" 211
+	"Afterburners: Pug" 212
+	"Afterburners: Quarg" 213
 	"Afterburners: Other" 299
 	# Hand to Hand
 	"H2H: Human" 100
@@ -244,10 +260,11 @@ category "series":
 	"H2H: Coalition" 106
 	"H2H: Wanderers" 107
 	"H2H: Bunrodea" 108
-	"H2H: Pug" 109
-	"H2H: Quarg" 110
-	"H2H: Incipias" 111
-	"H2H: Successors" 112
+	"H2H: Successors" 109
+	"H2H: Incipias" 110
+	"H2H: Sheragi" 111
+	"H2H: Pug" 112
+	"H2H: Quarg" 113
 	"H2H: Other" 199
 	"Fortifications: Human" 200
 	"Fortifications: Hai" 201
@@ -258,10 +275,11 @@ category "series":
 	"Fortifications: Coalition" 206
 	"Fortifications: Wanderers" 207
 	"Fortifications: Bunrodea" 208
-	"Fortifications: Pug" 209
-	"Fortifications: Quarg" 210
-	"Fortifications: Incipias" 211
-	"Fortifications: Successors" 212
+	"Fortifications: Successors" 209
+	"Fortifications: Incipias" 210
+	"Fortifications: Sheragi" 211
+	"Fortifications: Pug" 212
+	"Fortifications: Quarg" 213
 	"Fortifications: Other" 299
 	# Unique
 	"Functional Unique" 100
@@ -276,8 +294,9 @@ category "series":
 	"Licenses: Coalition" 6
 	"Licenses: Wanderers" 7
 	"Licenses: Bunrodea" 8
-	"Licenses: Pug" 9
-	"Licenses: Quarg" 10
-	"Licenses: Incipias" 11
-	"Licenses: Successors" 12
+	"Licenses: Successors" 9
+	"Licenses: Incipias" 10
+	"Licenses: Sheragi" 11
+	"Licenses: Pug" 12
+	"Licenses: Quarg" 13
 	"Licenses: Other" 99
