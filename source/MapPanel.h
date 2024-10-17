@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PANEL_H_
-#define MAP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -75,7 +74,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	// Draw map mode buttons, escort/storage tooltips, and the non-routable system warning.
+	// Draw elements common for all map panels that need to be placed
+	// on top of everything else. This includes distance info, map mode buttons,
+	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
 
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
@@ -209,7 +210,3 @@ private:
 	};
 	std::vector<Link> links;
 };
-
-
-
-#endif

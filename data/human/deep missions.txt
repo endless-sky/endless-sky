@@ -802,6 +802,9 @@ mission "Deep: Interrogation"
 		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
@@ -1086,7 +1089,7 @@ mission "Deep: Project Hawking"
 	on complete
 		"reputation: Independent (Killable)" = 10
 		payment 1500000
-		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
+		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crash-landed into the ground, triggering an earthquake.`
 		conversation
 			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere." He directs you toward the mountains.`
 			branch know
@@ -1711,6 +1714,9 @@ mission "Deep: Remnant: Continue Research"
 	to offer
 		has "event: deep: remnant: rest period"
 		has "deep: did reveal remnant"
+		# If the player received subsequent missions prior to the addition of this one in v0.9.15, do not offer this one.
+		not "Deep: Remnant: Engines: offered"
+
 	on offer
 		conversation
 			`You receive a message from Ivan, the Deep scientist who you helped to discover the Remnant in the Ember Waste. "Captain <last>, it's been so long. The Deep has finally finished reviewing our research in the Ember Waste, and we've been approved for further funding! Please meet us on <destination> if you wish to assist us again. Your help would be appreciated, but we will make progress even if you're unable to help."`
@@ -1946,7 +1952,7 @@ mission "Deep: Scientist Rescue 0"
 		attributes "deep"
 		not attributes "station"
 	destination "Valhalla"
-	waypoint "Betelgeuse"
+	mark "Betelgeuse"
 	to offer
 		has "event: deep: scientist rescue timer"
 		or
@@ -1983,8 +1989,11 @@ mission "Deep: Scientist Rescue 0"
 					accept
 				`	"Sorry, but this doesn't sound worth it to me."`
 					decline
-
+	on enter "Betelgeuse"
+		unmark "Betelgeuse"
+		dialog `Upon entering Betelgeuse, you fail to see any trace of the Star Queen. The pirates must have captured it and escaped to a nearby system.`
 	on enter "Arneb"
+		unmark "Betelgeuse"
 		set "found star queen"
 		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Paris on <destination> for further instruction.`
 	on visit
@@ -2471,28 +2480,75 @@ mission "Stone of our Fathers 1"
 		conversation
 			`Helheim's spaceport has all the constant hustle and bustle of a boomtown. It's dirty, lively, and packed with workers. As you walk through the spaceport, an aged man in a worn and weathered roustabout jacket waves his arm toward you and approaches you.`
 			`	"You've got the look of one who knows a ship inside and out," he says. "Name's Skaldgar, ain't much for ships; earth, soil, and rock are my domain. But I do got a need to travel." He pauses as a wistful look briefly passes over his face. "I left, you see, decades ago. No goodbye. No note. Just... left. Living with others, taking care of others, hard on a man like me. I like solitude, peace, and work. But now my bones are brittle: the radiation, earth-rot as we call it, has taken hold and my time is running out. And I find, I don't want to be alone anymore."`
-			`	He stops and frowns. "Look at me, rambling like an ol' man. Captain, I'd like to pay you <payment> to take me home, to <destination>."`
+			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
+			label choice
 			choice
 				`	"If you have coin, I have room."`
 				`	"I guess I can take a small detour."`
+				`	"Why are you calling me 'ser'?"`
+					goto ser
+					to display
+						not "Stone of our Fathers: ser"
+				`	"Does 'ser' just apply to men?"`
+					goto "ser 2"
+					to display
+						has "Stone of our Fathers: ser"
+						not "Stone of our Fathers: ser 2"
+				`	"Is 'ser' different from 'sir'?"`
+					goto "ser 3"
+					to display
+						has "Stone of our Fathers: ser"
+						not "Stone of our Fathers: ser 2"
 				`	(Shake my head. I have better things to do than bus old men around.)`
 					goto decline
+
+			action
+				clear "Stone of our Fathers: ser"
+				clear "Stone of our Fathers: ser 2"
 			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
 				accept
+
+			label ser
+			action
+				set "Stone of our Fathers: ser"
+			`	"You're not from around here, are ya? Ser's just what decent folk call each other in the Deep. Sign of respect and the like. Though I am hearing it less and less these days. Old ways being forgotten, but ain't that the way of things?"`
+			`	He pauses for a moment as if reflecting on this, then says, "Well, what do you say? <payment> for transportation to <planet>?"`
+				goto choice
+
+			label "ser 2"
+			action
+				set "Stone of our Fathers: ser 2"
+			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+				goto "back to the point"
+
+			label "ser 3"
+			action
+				set "Stone of our Fathers: ser 2"
+			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+
+			label "back to the point"
+			`	"Now, I'd like to know whether you can take me to <planet>."`
+				goto choice
+
 			label decline
+			action
+				clear "Stone of our Fathers: ser"
+				clear "Stone of our Fathers: ser 2"
 			`	With a disappointed look on his face, he nods once and slides back into the endless sea of people.`
 				decline
+
 	on visit
 		dialog `You have reached <planet>, but your escort carrying Skaldgar has not arrived! Better depart and wait for your escorts to arrive in this star system.`
+
 	on complete
 		payment 15000
 		event "Stone waiting" 30
 		dialog `Skaldgar is as clean as you've seen him: scrubbed, shaved and wearing clothes that are respectable, if a few decades out of style. His eyes glisten, and he turns to you.`
 			`	"I've made a lot of mistakes in my life. Comin' home, even if I'm hated - or worse, forgotten - ain't one of them. Thank ya kindly for the passage."`
 			`	You wish the old codger a joyful homecoming, and watch as he disappears into the sleepy spaceport.`
-		
-event "Stone waiting"
 
+
+event "Stone waiting"
 
 
 mission "Stone of our Fathers 2"
@@ -2552,7 +2608,7 @@ mission "Stone of our Fathers 3"
 				decline
 			label accept
 			`	You're surprised at how cool the smooth stone feels in your palm.`
-			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	And with that, the man disappears into the crowd.`
 				accept
 	on complete
@@ -2659,7 +2715,7 @@ mission "Stone of our Fathers 4"
 			label treasure
 			`	You could always use a little extra money, and this trip, while engaging, has certainly not made you any richer, so you ask about hidden treasures. Helm and Thorleif both grin at this and glance at each other knowingly. They launch into tales of the riches of lost civilizations, or forgotten pirate hoards, or even early human kingdoms. It's easy to lose things on a fog-covered ocean world with floating islands, all too easy.`
 			`	When they are done regaling you with tales, they mention to you that maybe some other time they'll take you out into the deep ocean and perhaps you'll find what you're looking for. They smile wolfishly at that, and you think they might be putting you on. "Have you ever found treasure out here?" you ask.`
-			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our descendants felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
+			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our antecedents felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
 			label family
 			`	As the conversation winds down and the hour grows late Helm excuses himself to bed, for he, like the rest of you, is dog tired after the day's events. You stand too, feeling your own need for sleep.`
 			`	"<first>," Thorleif says without looking up from the fire. "I've been thinking. I can never forgive my father for what he did. Leaving me and mom like that. But I can, I think, make peace with it. I can accept the stone." He looks up and smiles, "You brought some luck with you, and a man should never argue with luck."`
@@ -2787,20 +2843,20 @@ mission "Home for Skadenga 1"
 			`There is a feeling of deep melancholy in the nearly deserted spaceport. A few plaques adorn the walls, proudly boasting of earlier times when Nifel was a place of relevance in the galactic community. Most are old images of researchers and doctors and their miracle cures.`
 			`	But now this place is a ghost-town, and you walk its empty halls unsure of why you even bothered to explore it in the first place.`
 			`	You turn a corner and find a woman standing near a booth with blown up images of ice-covered scenery. She waves at you excitedly.`
-			`	"Hello, Captain! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
+			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
 			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!`
-			`	"So Captain," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
+			`	"So ser," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
 			choice
 				`	"Sure, I'd love to see more of this world."`
 					goto excursion
 				`	"No, uh, thanks. Freezing to death in the frigid tundra doesn't sound like a good time to me."`
-			`	The woman frowns, but nods knowingly. "I am afraid, Captain, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
+			`	The woman frowns, but nods knowingly. "I am afraid, ser, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
 				decline
 			label excursion
 			action
 				payment -2000
-			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful Captain, just wonderful!"`
-			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, Captain! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
+			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
+			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
 			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
 			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mishmash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
@@ -2818,7 +2874,7 @@ mission "Home for Skadenga 1"
 				`	(Key my signature.)`
 					goto yolo
 				`	"I've changed my mind. I am going to pass on this excursion."`
-			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised, like she was half expecting this outcome. "Brunhilda can be an... intimidating vehicle, it's true. But she is safe Captain, I assure you. Either way, I'll take you back to the spaceport."`
+			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised, like she was half expecting this outcome. "Brunhilda can be an... intimidating vehicle, it's true. But she is safe ser, I assure you. Either way, I'll take you back to the spaceport."`
 			`	With that, you follow the woman back to the warm and nearly empty spaceport, where she leaves you to return to her forlorn booth.`
 				decline
 			label yolo
@@ -3414,7 +3470,7 @@ mission "Home for Skadenga 6"
 		has "Mani Refit: done"
 	on offer
 		conversation
-			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
+			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crew members leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
 			choice
 				`	"Let's get this over with."`
 				`	"Don't worry, your ships are in good hands."`
