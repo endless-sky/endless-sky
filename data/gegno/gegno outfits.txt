@@ -1000,40 +1000,56 @@ outfit "Plasma Grenades"
 
 outfit "Gegno Civilian License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 10
 	thumbnail "outfit/unknown"
 	description "You have been accepted as a titular Gegno citizen who provides benefits for the Gegno race, and have been awarded access to their civilian technology."
 
 outfit "Gegno Driller License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 20
 	thumbnail "outfit/unknown"
 	description "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestowed the right of access to their mining technology."
 
 outfit "Vi Lord License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 50
 	thumbnail "outfit/unknown"
 	description "A majority of the Vi's military hierarchy recognizes you as a respectable foe and invaluable asset for their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
 	
 outfit "Vi Centurion License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 40
 	thumbnail "outfit/unknown"
 	description "Amongst the Vi's Evocati you have proven yourself as a powerful leader in combat and a successful user of judgment. Access to a portion of the Vi's military arsenal awaits your interests."
 
 outfit "Vi Evocati License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 30
 	thumbnail "outfit/unknown"
 	description "The Gegno Vi have recognized you as a committed warrior to their cause, and see usefulness in you. Low level Vi technology now becomes accessible for your leisure."
 
 outfit "Scin Hoplologist License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 70
 	thumbnail "outfit/unknown"
 	description "Your intelligence is most desirable in the eyes of the Gegno Scin, and your reward is the usage of advanced Scin weaponry."
 
 outfit "Scin Architect License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 80
 	thumbnail "outfit/unknown"
 	description "Showing that you are advantageous to the Scin's constructive efforts, you are now given permission to operate their most advanced vessels."
 
 outfit "Scin Adjutant License"
 	category "Licenses"
+	series "Licenses: Gegno"
+	index 60
 	thumbnail "outfit/unknown"
 	description "Productive acts perpetrated by you have raised the interests of the Gegno Scin, and they authorize you to purchase their most basic technology."

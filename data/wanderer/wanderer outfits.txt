@@ -566,15 +566,21 @@ outfit "Type 4 Radiant Steering"
 
 outfit "Wanderer Outfits License"
 	category "Licenses"
+	series "Licenses: Wanderers"
+	index 10
 	thumbnail "outfit/wanderer outfits license"
 	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
 
 outfit "Wanderer License"
 	category "Licenses"
+	series "Licenses: Wanderers"
+	index 20
 	thumbnail "outfit/wanderer license"
 	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 
 outfit "Wanderer Military License"
 	category "Licenses"
+	series "Licenses: Wanderers"
+	index 30
 	thumbnail "outfit/wanderer military license"
 	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."

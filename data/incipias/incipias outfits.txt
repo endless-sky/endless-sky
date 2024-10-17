@@ -338,4 +338,6 @@ outfit "Cloud Piercer"
 # Special
 outfit "Hicemus Conflict License"
 	category "Licenses"
+	series "Licenses: Incipias"
+	index 10
 	description "The Hicemus have trusted you enough to give you this license, allowing a glimpse at their most precious technology - technology that is meant to give them an advantage over other factions."
