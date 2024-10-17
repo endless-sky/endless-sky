@@ -285,6 +285,8 @@ outfit "Small Recovery Module"
 
 outfit "Scanning Module"
 	category "Systems"
+	series "Scanners: Coalition"
+	index 10
 	licenses
 		Heliarch
 	cost 453600
@@ -300,6 +302,8 @@ outfit "Scanning Module"
 
 outfit "Outskirts Gauger"
 	category "Systems"
+	series "Scanners: Coalition"
+	index 20
 	cost 1406000
 	thumbnail "outfit/outskirts gauger"
 	"mass" 8

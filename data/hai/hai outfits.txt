@@ -489,6 +489,8 @@ outfit "Quantum Keystone"
 
 outfit "Value Detector"
 	category "Systems"
+	series "Scanners: Hai"
+	index 10
 	cost 260000
 	thumbnail "outfit/value detector"
 	"mass" 5

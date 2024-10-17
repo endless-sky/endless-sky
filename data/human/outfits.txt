@@ -236,6 +236,8 @@ outfit "Jump Drive (Broken)"
 
 outfit "Cargo Scanner"
 	category "Systems"
+	series "Scanners: Human"
+	index 10
 	cost 8000
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
@@ -246,6 +248,8 @@ outfit "Cargo Scanner"
 
 outfit "Outfit Scanner"
 	category "Systems"
+	series "Scanners: Human"
+	index 20
 	cost 24000
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
@@ -256,6 +260,8 @@ outfit "Outfit Scanner"
 
 outfit "Asteroid Scanner"
 	category "Systems"
+	series "Scanners: Human"
+	index 30
 	cost 61000
 	thumbnail "outfit/asteroid scanner"
 	"mass" 6
@@ -265,6 +271,8 @@ outfit "Asteroid Scanner"
 
 outfit "Tactical Scanner"
 	category "Systems"
+	series "Scanners: Human"
+	index 40
 	cost 144000
 	thumbnail "outfit/tactical scanner"
 	"mass" 4
@@ -274,6 +282,8 @@ outfit "Tactical Scanner"
 
 outfit "Surveillance Pod"
 	category "Systems"
+	series "Scanners: Human"
+	index 50
 	cost 122500
 	thumbnail "outfit/surveillance pod"
 	"mass" 5

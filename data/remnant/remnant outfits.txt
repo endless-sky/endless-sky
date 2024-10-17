@@ -628,6 +628,8 @@ outfit "NDR-114 Android"
 
 outfit "Research Laboratory"
 	category "Systems"
+	series "Scanners: Remnant"
+	index 20
 	licenses
 		Remnant
 	cost 500000
@@ -656,6 +658,8 @@ outfit "Quantum Key Stone"
 
 outfit "Salvage Scanner"
 	category "Systems"
+	series "Scanners: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 410000
