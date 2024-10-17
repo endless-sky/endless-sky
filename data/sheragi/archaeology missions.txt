@@ -787,7 +787,7 @@ mission "Sheragi Archaeology: The Box 3"
 				goto whatnow
 			label worse
 			`	"Well... some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
-			`	"And the bad news?" you ask`
+			`	"And the bad news?" you ask.`
 			`	"The less bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
 			label whatnow
 			`	Your heart sinks. "What do we do now? Do you have any idea where to find the box? Did you contact law enforcement?"`
@@ -1600,6 +1600,7 @@ mission "Sheragi Archaeology: Epilogue"
 	description "Return to Zug."
 	source "Valley of the Damned"
 	destination "Zug"
+	passengers 150
 	cargo "Outfitting Equipment" 25
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"
