@@ -185,6 +185,8 @@ outfit "Systems Core (Large)"
 
 outfit "Fuel Processor"
 	category "Systems"
+	series "Ramscoops: Korath"
+	index 10
 	cost 400000
 	thumbnail "outfit/korath fuel processor"
 	"mass" 14

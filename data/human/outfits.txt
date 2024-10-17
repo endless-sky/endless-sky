@@ -171,6 +171,8 @@ outfit "Large Radar Jammer"
 
 outfit "Ramscoop"
 	category "Systems"
+	series "Ramscoops: Human"
+	index 10
 	cost 60000
 	thumbnail "outfit/ramscoop"
 	"mass" 10
@@ -181,6 +183,8 @@ outfit "Ramscoop"
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
+	series "Ramscoops: Human"
+	index 10
 	cost 320000
 	thumbnail "outfit/catalytic ramscoop"
 	"mass" 16

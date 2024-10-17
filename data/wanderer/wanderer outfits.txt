@@ -402,6 +402,8 @@ outfit "Dark Storm Shielding"
 
 outfit "Wanderer Ramscoop"
 	category "Systems"
+	series "Ramscoops: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 460000

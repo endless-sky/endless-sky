@@ -606,6 +606,8 @@ outfit "Thermoelectric Cooler"
 
 outfit "Emergency Ramscoop"
 	category "Systems"
+	series "Ramscoops: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 72000
