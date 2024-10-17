@@ -14,6 +14,8 @@
 
 outfit "Grab-Strike Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 40
 	cost 821000
 	thumbnail "outfit/grab-strike"
 	"mass" 52
@@ -59,6 +61,8 @@ effect "grab-strike impact"
 
 outfit "Shunt-Strike Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 80
 	cost 821000
 	thumbnail "outfit/shunt-strike"
 	"mass" 42
@@ -117,6 +121,8 @@ effect "shunt-strike sparkle"
 
 outfit "Banisher Grav-Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 50
 	cost 943000
 	thumbnail "outfit/banisher"
 	"mass" 41
@@ -245,6 +251,8 @@ effect "fire-lance impact"
 
 outfit "Blaze-Pike Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 20
 	cost 1970000
 	thumbnail "outfit/blaze-pike"
 	"mass" 57
@@ -283,6 +291,8 @@ effect "blaze-pike hit"
 
 outfit "Korath Inferno"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 30
 	cost 2670000
 	thumbnail "outfit/korath inferno"
 	"mass" 86
@@ -362,6 +372,8 @@ effect "repeater impact"
 
 outfit "Thermal Repeater Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 10
 	cost 874000
 	thumbnail "outfit/repeater turret"
 	"mass" 29
@@ -647,6 +659,8 @@ effect "minelayer split"
 
 outfit "Shield Disruptor Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 70
 	cost 983000
 	thumbnail "outfit/disruptor"
 	"mass" 35
@@ -713,6 +727,8 @@ outfit "Husk-Slice"
 
 outfit "Husk-Slice Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 60
 	cost 1473000
 	thumbnail "outfit/slicer turret"
 	"mass" 59
@@ -753,6 +769,8 @@ effect "slicer impact"
 
 outfit "Digger Mining Turret"
 	category "Turrets"
+	series "Turrets: Korath"
+	index 90
 	cost 509000
 	thumbnail "outfit/korath digger turret"
 	"mass" 16

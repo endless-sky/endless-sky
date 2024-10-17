@@ -37,6 +37,8 @@ outfit "Pulse Cannon"
 
 outfit "Pulse Turret"
 	category "Turrets"
+	series "Turrets: Hai"
+	index 10
 	cost 590000
 	thumbnail "outfit/pulse turret"
 	"mass" 34
@@ -171,6 +173,8 @@ outfit "Ionic Blaster Prototype"
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
+	series "Turrets: Hai"
+	index 20
 	cost 1260000
 	thumbnail "outfit/hai ionic turret"
 	"mass" 58

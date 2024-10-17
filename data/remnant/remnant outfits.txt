@@ -60,6 +60,8 @@ effect "inhibitor impact"
 
 outfit "Inhibitor Turret"
 	category "Turrets"
+	series "Turrets: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 1371000
@@ -137,6 +139,8 @@ effect "thrasher impact"
 
 outfit "Thrasher Turret"
 	category "Turrets"
+	series "Turrets: Remnant"
+	index 20
 	licenses
 		Remnant
 	cost 980000

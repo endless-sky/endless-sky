@@ -53,6 +53,8 @@ outfit "plasma particle"
 
 outfit "Stagnation Beam"
 	category "Turrets"
+	series "Turrets: Incipias"
+	index 10
 	cost 180000
 	mass 30
 	"outfit space" -30
@@ -183,6 +185,8 @@ outfit "Star Tail Storage"
 
 outfit "Horizon Grappler"
 	category "Turrets"
+	series "Turrets: Incipias"
+	index 20
 	cost 200000
 	thumbnail "outfit/horizon grappler"
 	"mass" 25

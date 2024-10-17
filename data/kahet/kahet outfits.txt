@@ -139,6 +139,8 @@ outfit "Ka'het Ravager Beam"
 
 outfit "Ka'het Ravager Turret"
 	category "Turrets"
+	series "Turrets: Ka'het"
+	index 20
 	cost 417000
 	thumbnail "outfit/ka'het ravager turret"
 	"mass" 16
@@ -197,6 +199,8 @@ outfit "Ka'het Annihilator"
 
 outfit "Ka'het Annihilator Turret"
 	category "Turrets"
+	series "Turrets: Ka'het"
+	index 10
 	cost 529000
 	thumbnail "outfit/ka'het annihilator turret"
 	"mass" 25

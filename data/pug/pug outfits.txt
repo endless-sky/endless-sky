@@ -40,6 +40,8 @@ outfit "Pug Zapper"
 
 outfit "Pug Zapper Turret"
 	category "Turrets"
+	series "Turrets: Pug"
+	index 10
 	cost 860000
 	thumbnail "outfit/pug zapper turret"
 	"mass" 66
@@ -188,6 +190,8 @@ effect "tier 3 anti-missile die"
 
 outfit "Pug Gridfire Turret"
 	category "Turrets"
+	series "Turrets: Pug"
+	index 20
 	cost 24000000
 	thumbnail "outfit/pug gridfire turret"
 	"mass" 83

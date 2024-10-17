@@ -74,6 +74,8 @@ outfit "Blaster Submunition"
 
 outfit "Blaster Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 10
 	cost 100000
 	thumbnail "outfit/blaster turret"
 	"mass" 15
@@ -100,6 +102,8 @@ outfit "Blaster Turret"
 
 outfit "Quad Blaster Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 30
 	cost 230000
 	thumbnail "outfit/quad blaster turret"
 	"mass" 25
@@ -196,6 +200,8 @@ outfit "Modified Blaster Submunition"
 
 outfit "Modified Blaster Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 20
 	cost 170000
 	thumbnail "outfit/mod blaster turret"
 	"mass" 18
@@ -248,6 +254,8 @@ outfit "Beam Laser"
 
 outfit "Laser Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 40
 	cost 140000
 	thumbnail "outfit/laser turret"
 	"mass" 22
@@ -310,6 +318,8 @@ outfit "Heavy Laser"
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 50
 	cost 320000
 	thumbnail "outfit/heavy laser turret"
 	"mass" 40
@@ -376,6 +386,8 @@ outfit "Mining Laser"
 
 outfit "Mining Laser Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 70
 	cost 66000
 	thumbnail "outfit/mining laser turret"
 	"mass" 18
@@ -407,6 +419,8 @@ outfit "Mining Laser Turret"
 
 outfit "Tractor Beam"
 	category "Turrets"
+	series "Turrets: Human"
+	index 100
 	cost 75000
 	thumbnail "outfit/tractor beam"
 	"mass" 22
@@ -459,6 +473,8 @@ outfit "Electron Beam"
 
 outfit "Electron Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 60
 	cost 720000
 	thumbnail "outfit/electron turret"
 	"mass" 54
@@ -636,6 +652,8 @@ effect "proton impact"
 
 outfit "Proton Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 80
 	cost 260000
 	thumbnail "outfit/proton turret"
 	"mass" 34
@@ -690,6 +708,8 @@ outfit "Plasma Cannon"
 
 outfit "Plasma Turret"
 	category "Turrets"
+	series "Turrets: Human"
+	index 90
 	cost 520000
 	thumbnail "outfit/plasma turret"
 	"mass" 60

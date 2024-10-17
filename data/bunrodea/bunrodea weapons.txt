@@ -39,6 +39,8 @@ outfit "Locust Blaster"
 
 outfit "Locust Turret"
 	category "Turrets"
+	series "Turrets: Bunrodea"
+	index 10
 	cost 1265000
 	thumbnail "outfit/locust turret"
 	"mass" 28

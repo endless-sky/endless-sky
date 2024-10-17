@@ -437,6 +437,8 @@ outfit "Irate Cannon"
 
 outfit "Irate Cannon Turret"
 	category "Turrets"
+	series "Turrets: Gegno"
+	index 10
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -519,6 +521,8 @@ outfit "Choleric Cannon"
 
 outfit "Choleric Cannon Turret"
 	category "Turrets"
+	series "Turrets: Gegno"
+	index 20
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -605,6 +609,8 @@ outfit "Ballistic Cannon"
 
 outfit "Ballistic Cannon Turret"
 	category "Turrets"
+	series "Turrets: Gegno"
+	index 30
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -669,6 +675,8 @@ effect "ballistic smoke"
 
 outfit "Astuit Battery"
 	category "Turrets"
+	series "Turrets: Gegno"
+	index 40
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -706,6 +714,8 @@ effect "astuit hit"
 outfit "Acuit Artillery"
 	plural "Acuit Artillery"
 	category "Turrets"
+	series "Turrets: Gegno"
+	index 50
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"

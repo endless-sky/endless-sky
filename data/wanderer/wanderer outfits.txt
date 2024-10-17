@@ -51,6 +51,8 @@ effect "sunbeam impact"
 
 outfit "Sunbeam Turret"
 	category "Turrets"
+	series "Turrets: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 1970000
@@ -81,6 +83,8 @@ outfit "Sunbeam Turret"
 
 outfit "Dual Sunbeam Turret"
 	category "Turrets"
+	series "Turrets: Wanderers"
+	index 30
 	licenses
 		"Wanderer Outfits"
 	cost 3720000
@@ -157,6 +161,8 @@ effect "moonbeam impact"
 
 outfit "Moonbeam Turret"
 	category "Turrets"
+	series "Turrets: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 1730000

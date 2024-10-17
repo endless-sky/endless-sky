@@ -42,6 +42,8 @@ outfit "Bombardment Cannon"
 
 outfit "Bombardment Turret"
 	category "Turrets"
+	series "Turrets: Coalition"
+	index 10
 	licenses
 		Heliarch
 	cost 1845000
@@ -239,6 +241,8 @@ effect "finisher fragment"
 
 outfit "Heliarch Attractor"
 	category "Turrets"
+	series "Turrets: Coalition"
+	index 30
 	licenses
 		Heliarch
 	cost 2187000
@@ -282,6 +286,8 @@ effect "attractor impact"
 
 outfit "Heliarch Repulsor"
 	category "Turrets"
+	series "Turrets: Coalition"
+	index 40
 	licenses
 		Heliarch
 	cost 2549000
@@ -326,6 +332,8 @@ effect "repulsor impact"
 
 outfit "Ion Hail Turret"
 	category "Turrets"
+	series "Turrets: Coalition"
+	index 20
 	licenses
 		Heliarch
 	cost 1268000

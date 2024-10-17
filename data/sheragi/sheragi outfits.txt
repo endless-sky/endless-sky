@@ -256,6 +256,8 @@ effect "sheragiam"
 
 outfit "Particle Waveform Turret"
 	category "Turrets"
+	series "Turrets: Sheragi"
+	index 10
 	cost 1650000
 	thumbnail "outfit/pwave turret"
 	"mass" 47

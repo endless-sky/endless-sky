@@ -13,6 +13,8 @@
 
 outfit "Drak Distancer"
 	category "Turrets"
+	series "Turrets: Other"
+	index 20
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 64
@@ -40,6 +42,8 @@ effect "distancer flare"
 
 outfit "Drak Draining Field"
 	category "Turrets"
+	series "Turrets: Other"
+	index 30
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -70,6 +74,8 @@ outfit "Drak Draining Field"
 
 outfit "Drak Draining Field (Augmented)"
 	category "Turrets"
+	series "Turrets: Other"
+	index 31
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -142,6 +148,8 @@ outfit "Drak Anti-Missile Field (Augmented)"
 
 outfit "Drak Turret"
 	category "Turrets"
+	series "Turrets: Other"
+	index 10
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -169,6 +177,8 @@ outfit "Drak Turret"
 
 outfit "Drak Turret (Augmented)"
 	category "Turrets"
+	series "Turrets: Other"
+	index 11
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 48
