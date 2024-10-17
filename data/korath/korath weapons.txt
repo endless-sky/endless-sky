@@ -145,6 +145,8 @@ outfit "Banisher Grav-Turret"
 
 outfit "Expeller Grav-Ray"
 	category "Guns"
+	series "Guns: Korath"
+	index 30
 	cost 819000
 	thumbnail "outfit/expeller"
 	"mass" 20
@@ -207,6 +209,8 @@ effect "korath warder"
 
 outfit "Fire-Lance"
 	category "Guns"
+	series "Guns: Korath"
+	index 20
 	cost 697000
 	thumbnail "outfit/fire-lance"
 	"mass" 22
@@ -318,6 +322,8 @@ effect "korath inferno hit"
 
 outfit "Thermal Repeater"
 	category "Guns"
+	series "Guns: Korath"
+	index 10
 	cost 306000
 	thumbnail "outfit/repeater"
 	"mass" 11
@@ -479,6 +485,8 @@ effect "piercer explosion"
 
 outfit "Korath Detainer"
 	category "Guns"
+	series "Guns: Korath"
+	index 60
 	cost 1340000
 	thumbnail "outfit/detainer"
 	"mass" 76
@@ -678,6 +686,8 @@ effect "disruptor impact"
 
 outfit "Husk-Slice"
 	category "Guns"
+	series "Guns: Korath"
+	index 40
 	cost 832000
 	thumbnail "outfit/slicer"
 	"mass" 46
@@ -773,6 +783,8 @@ outfit "Digger Mining Turret"
 
 outfit "Digger Mining Beam"
 	category "Guns"
+	series "Guns: Korath"
+	index 70
 	cost 419000
 	thumbnail "outfit/korath digger"
 	"mass" 10
@@ -1016,6 +1028,8 @@ effect "firelight ring"
 
 outfit "Microbot Grinder"
 	category "Guns"
+	series "Guns: Korath"
+	index 80
 	thumbnail "outfit/unknown"
 	"mass" 182
 	"outfit space" -212

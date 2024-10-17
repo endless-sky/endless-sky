@@ -363,6 +363,8 @@ effect "shard impact"
 
 outfit "Heavy Ion Cyclotron"
 	category "Guns"
+	series "Guns: Sheragi"
+	index 10
 	cost 1650000
 	thumbnail "outfit/hion"
 	"mass" 33

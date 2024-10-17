@@ -15,6 +15,8 @@
 
 outfit "Ka'het Nullifier"
 	category "Guns"
+	series "Guns: Ka'het"
+	index 30
 	cost 3062000
 	thumbnail "outfit/ka'het nullifier"
 	"mass" 68
@@ -112,6 +114,8 @@ effect "ionball ring"
 
 outfit "Ka'het Ravager Beam"
 	category "Guns"
+	series "Guns: Ka'het"
+	index 20
 	cost 322000
 	thumbnail "outfit/ka'het ravager beam"
 	"mass" 13
@@ -168,6 +172,8 @@ effect "ravager impact"
 
 outfit "Ka'het Annihilator"
 	category "Guns"
+	series "Guns: Ka'het"
+	index 10
 	cost 351000
 	thumbnail "outfit/ka'het annihilator"
 	"mass" 10

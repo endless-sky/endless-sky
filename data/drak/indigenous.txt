@@ -322,6 +322,8 @@ outfit "Absorption Organ"
 
 outfit Mouthparts?
 	category "Guns"
+	series "Guns: Other"
+	index 80
 	thumbnail "outfit/mouthparts"
 	"gun ports" -1
 	weapon

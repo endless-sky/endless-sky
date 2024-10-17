@@ -406,6 +406,8 @@ outfit "SC-15 Plasma Thrusters"
 
 outfit "Irate Cannon"
 	category "Guns"
+	series "Guns: Gegno"
+	index 10
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -485,6 +487,8 @@ effect "irate smoke"
 
 outfit "Choleric Cannon"
 	category "Guns"
+	series "Guns: Gegno"
+	index 20
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -566,6 +570,8 @@ effect "choleric smoke"
 
 outfit "Ballistic Cannon"
 	category "Guns"
+	series "Guns: Gegno"
+	index 30
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -739,6 +745,8 @@ effect "acuit hit"
 
 outfit "Acumen Bolt Cannon"
 	category "Guns"
+	series "Guns: Gegno"
+	index 40
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -781,6 +789,8 @@ effect "neutron explosion"
 
 outfit "Guile Pulse Laser"
 	category "Guns"
+	series "Guns: Gegno"
+	index 50
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -812,6 +822,8 @@ outfit "Guile Pulse Laser"
 
 outfit "Excavator"
 	category "Guns"
+	series "Guns: Gegno"
+	index 60
 	licenses
 		"Gegno Civilian"
 	cost 500000
@@ -853,6 +865,8 @@ effect "excavate"
 
 outfit "Burrower"
 	category "Guns"
+	series "Guns: Gegno"
+	index 70
 	licenses
 		"Gegno Civilian"
 		"Gegno Driller"
@@ -899,6 +913,8 @@ effect "burrow"
 
 outfit "Ion Torch"
 	category "Guns"
+	series "Guns: Gegno"
+	index 80
 	licenses
 		"Gegno Civilian"
 		"Gegno Driller"
@@ -938,6 +954,8 @@ outfit "Ion Torch"
 
 outfit "Savagery Bludgeon"
 	category "Guns"
+	series "Guns: Gegno"
+	index 90
 	cost 10000
 	licenses
 		"Vi Evocati"

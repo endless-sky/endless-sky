@@ -13,6 +13,8 @@
 
 outfit "Locust Blaster"
 	category "Guns"
+	series "Guns: Bunrodea"
+	index 10
 	cost 284000
 	thumbnail "outfit/locust blaster"
 	"mass" 7
@@ -65,6 +67,8 @@ outfit "Locust Turret"
 
 outfit "Mandible Cannon"
 	category "Guns"
+	series "Guns: Bunrodea"
+	index 20
 	cost 1170000
 	thumbnail "outfit/mandible cannon"
 	"mass" 29
@@ -95,6 +99,8 @@ outfit "Mandible Cannon"
 
 outfit "Thorax Cannon"
 	category "Guns"
+	series "Guns: Bunrodea"
+	index 30
 	cost 3484000
 	thumbnail "outfit/thorax cannon"
 	"mass" 105

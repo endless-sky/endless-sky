@@ -13,6 +13,8 @@
 
 outfit "Energy Blaster"
 	category "Guns"
+	series "Guns: Human"
+	index 10
 	cost 16000
 	thumbnail "outfit/blaster"
 	"mass" 5
@@ -35,6 +37,8 @@ outfit "Energy Blaster"
 
 outfit "Twin Blaster"
 	category "Guns"
+	series "Guns: Human"
+	index 30
 	cost 40000
 	thumbnail "outfit/twin blaster"
 	"mass" 12
@@ -131,6 +135,8 @@ effect "blaster impact"
 
 outfit "Modified Blaster"
 	category "Guns"
+	series "Guns: Human"
+	index 20
 	cost 35000
 	thumbnail "outfit/mod blaster"
 	"mass" 6
@@ -153,6 +159,8 @@ outfit "Modified Blaster"
 
 outfit "Twin Modified Blaster"
 	category "Guns"
+	series "Guns: Human"
+	index 40
 	cost 84000
 	thumbnail "outfit/twin mod blaster"
 	"mass" 14
@@ -215,6 +223,8 @@ outfit "Modified Blaster Turret"
 
 outfit "Beam Laser"
 	category "Guns"
+	series "Guns: Human"
+	index 50
 	cost 29000
 	thumbnail "outfit/laser"
 	"mass" 8
@@ -275,6 +285,8 @@ effect "beam laser impact"
 
 outfit "Heavy Laser"
 	category "Guns"
+	series "Guns: Human"
+	index 60
 	cost 60000
 	thumbnail "outfit/heavy laser"
 	"mass" 15
@@ -335,6 +347,8 @@ effect "heavy laser impact"
 
 outfit "Mining Laser"
 	category "Guns"
+	series "Guns: Human"
+	index 80
 	cost 38000
 	thumbnail "outfit/mining laser"
 	"mass" 12
@@ -420,6 +434,8 @@ effect "tractor beam"
 
 outfit "Electron Beam"
 	category "Guns"
+	series "Guns: Human"
+	index 70
 	cost 170000
 	thumbnail "outfit/electron beam"
 	"mass" 21
@@ -538,6 +554,8 @@ effect "large anti-missile"
 
 outfit "Particle Cannon"
 	category "Guns"
+	series "Guns: Human"
+	index 90
 	cost 220000
 	thumbnail "outfit/particle cannon"
 	"mass" 30
@@ -573,6 +591,8 @@ effect "particle impact"
 
 outfit "Proton Gun"
 	category "Guns"
+	series "Guns: Human"
+	index 100
 	cost 150000
 	thumbnail "outfit/proton gun"
 	"mass" 28
@@ -643,6 +663,8 @@ outfit "Proton Turret"
 
 outfit "Plasma Cannon"
 	category "Guns"
+	series "Guns: Human"
+	index 110
 	cost 190000
 	thumbnail "outfit/plasma cannon"
 	"mass" 25
@@ -697,6 +719,8 @@ outfit "Plasma Turret"
 
 outfit "Plasma Repeater"
 	category "Guns"
+	series "Guns: Human"
+	index 120
 	cost 274000
 	thumbnail "outfit/plasma repeater"
 	"mass" 32

@@ -55,6 +55,8 @@ ship "Vyrmeid"
 
 outfit "Plankton Mouth"
 	category "Guns"
+	series "Guns: Other"
+	index 70
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
@@ -235,6 +237,8 @@ ship "Astral Cetacean"
 
 outfit "Astral Mouth"
 	category "Guns"
+	series "Guns: Other"
+	index 60
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon

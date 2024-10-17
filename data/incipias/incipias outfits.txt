@@ -14,6 +14,8 @@
 # Weapons:
 outfit "Plasma Discharger"
 	category "Guns"
+	series "Guns: Incipias"
+	index 10
 	cost 140000
 	mass 25
 	"outfit space" -20

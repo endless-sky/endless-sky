@@ -16,6 +16,8 @@
 
 outfit "Inhibitor Cannon"
 	category "Guns"
+	series "Guns: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 471000
@@ -95,6 +97,8 @@ outfit "Inhibitor Turret"
 
 outfit "Thrasher Cannon"
 	category "Guns"
+	series "Guns: Remnant"
+	index 20
 	licenses
 		Remnant
 	cost 218000

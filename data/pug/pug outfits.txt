@@ -13,6 +13,8 @@
 
 outfit "Pug Zapper"
 	category "Guns"
+	series "Guns: Pug"
+	index 20
 	cost 290000
 	thumbnail "outfit/pug zapper"
 	"mass" 25
@@ -75,6 +77,8 @@ effect "zapper impact"
 
 outfit "Pug Seeker"
 	category "Guns"
+	series "Guns: Pug"
+	index 10
 	cost 540000
 	thumbnail "outfit/pug seeker"
 	"mass" 34

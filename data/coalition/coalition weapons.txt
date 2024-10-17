@@ -13,6 +13,8 @@
 
 outfit "Bombardment Cannon"
 	category "Guns"
+	series "Guns: Coalition"
+	index 10
 	licenses
 		Heliarch
 	cost 437000
@@ -367,6 +369,8 @@ outfit "ion hail"
 
 outfit "Ion Rain Gun"
 	category "Guns"
+	series "Guns: Coalition"
+	index 20
 	licenses
 		Heliarch
 	cost 798000
@@ -409,6 +413,8 @@ effect "ion rain impact"
 
 outfit "MCS Extractor"
 	category "Guns"
+	series "Guns: Coalition"
+	index 30
 	licenses
 		Coalition
 	cost 106000

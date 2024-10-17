@@ -13,6 +13,8 @@
 
 outfit "Pulse Cannon"
 	category "Guns"
+	series "Guns: Hai"
+	index 10
 	cost 130000
 	thumbnail "outfit/pulse cannon"
 	"mass" 13
@@ -61,6 +63,8 @@ outfit "Pulse Turret"
 
 outfit "Tripulse Shredder"
 	category "Guns"
+	series "Guns: Hai"
+	index 20
 	cost 520000
 	thumbnail "outfit/tripulse shredder"
 	"mass" 42
@@ -97,6 +101,8 @@ effect "pulse impact"
 
 outfit "Ion Cannon"
 	category "Guns"
+	series "Guns: Hai"
+	index 30
 	cost 490000
 	thumbnail "outfit/ion cannon"
 	"mass" 47
@@ -136,6 +142,8 @@ effect "ion impact"
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"
+	series "Guns: Hai"
+	index 40
 	cost 530000
 	thumbnail "outfit/hai ionic blaster"
 	"mass" 19

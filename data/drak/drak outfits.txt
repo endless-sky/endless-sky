@@ -208,6 +208,8 @@ effect "drak bolt impact"
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
+	series "Guns: Other"
+	index 10
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 96
@@ -234,6 +236,8 @@ outfit "Drak Antimatter Cannon"
 
 outfit "Drak Antimatter Cannon (Augmented)"
 	category "Guns"
+	series "Guns: Other"
+	index 11
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 96

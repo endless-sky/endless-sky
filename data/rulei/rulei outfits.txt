@@ -13,6 +13,8 @@
 
 outfit "Fate Sealer"
 	category "Guns"
+	series "Guns: Other"
+	index 20
 	cost 77777777
 	thumbnail "outfit/unknown"
 	"mass" 31
@@ -55,6 +57,8 @@ outfit "Fate Sealer Activated"
 
 outfit "Fate Divider"
 	category "Guns"
+	series "Guns: Other"
+	index 30
 	cost 77777777
 	thumbnail "outfit/unknown"
 	"mass" 31
@@ -117,6 +121,8 @@ effect "fusion blast"
 
 outfit "Abyssal Composer"
 	category "Guns"
+	series "Guns: Other"
+	index 40
 	cost 170000000
 	thumbnail "outfit/unknown"
 	"mass" 121

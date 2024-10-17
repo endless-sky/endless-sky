@@ -36,6 +36,8 @@ ship "Nanobot"
 
 outfit "Nano Strike"
 	category "Guns"
+	series "Guns: Other"
+	index 90
 	thumbnail "outfit/unknown"
 	"mass" 5
 	"outfit space" -5
