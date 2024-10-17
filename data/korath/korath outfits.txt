@@ -15,6 +15,8 @@
 outfit "Generator (Candle Class)"
 	plural "Generators (Candle Class)"
 	category "Power"
+	series "Generators: Korath"
+	index 10
 	cost 493000
 	thumbnail "outfit/small korath generator"
 	"mass" 23
@@ -26,6 +28,8 @@ outfit "Generator (Candle Class)"
 outfit "Generator (Furnace Class)"
 	plural "Generators (Furnace Class)"
 	category "Power"
+	series "Generators: Korath"
+	index 20
 	cost 925000
 	thumbnail "outfit/medium korath generator"
 	"mass" 39
@@ -37,6 +41,8 @@ outfit "Generator (Furnace Class)"
 outfit "Generator (Inferno Class)"
 	plural "Generators (Inferno Class)"
 	category "Power"
+	series "Generators: Korath"
+	index 30
 	cost 1877000
 	thumbnail "outfit/large korath generator"
 	"mass" 71
@@ -47,6 +53,8 @@ outfit "Generator (Inferno Class)"
 
 outfit "Plasma Core"
 	category "Power"
+	series "Generators: Korath"
+	index 40
 	cost 4188000
 	thumbnail "outfit/plasma core"
 	"mass" 54
@@ -57,6 +65,8 @@ outfit "Plasma Core"
 
 outfit "Double Plasma Core"
 	category "Power"
+	series "Generators: Korath"
+	index 50
 	cost 9321000
 	thumbnail "outfit/double plasma core"
 	"mass" 93
@@ -67,6 +77,8 @@ outfit "Double Plasma Core"
 
 outfit "Triple Plasma Core"
 	category "Power"
+	series "Generators: Korath"
+	index 60
 	cost 20460000
 	thumbnail "outfit/triple plasma core"
 	"mass" 169

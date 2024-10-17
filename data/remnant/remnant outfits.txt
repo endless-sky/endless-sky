@@ -531,6 +531,8 @@ effect "ember tear vortex"
 
 outfit "Crystal Capacitor"
 	category "Power"
+	series "Batteries: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 57000
@@ -547,6 +549,8 @@ outfit "Crystal Capacitor"
 
 outfit "Millennium Cell"
 	category "Power"
+	series "Generators: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 553000
@@ -562,6 +566,8 @@ outfit "Millennium Cell"
 
 outfit "Epoch Cell"
 	category "Power"
+	series "Generators: Remnant"
+	index 20
 	licenses
 		Remnant
 	cost 2123000
@@ -577,6 +583,8 @@ outfit "Epoch Cell"
 
 outfit "Aeon Cell"
 	category "Power"
+	series "Generators: Remnant"
+	index 30
 	licenses
 		Remnant
 	cost 4384000

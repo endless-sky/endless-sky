@@ -135,6 +135,8 @@ outfit "Large Nanite Fabricator"
 outfit "Solar Battery"
 	plural "Solar Batteries"
 	category "Power"
+	series "Batteries: Bunrodea"
+	index 10
 	cost 49000
 	thumbnail "outfit/solar battery"
 	"mass" 7
@@ -146,6 +148,8 @@ outfit "Solar Battery"
 
 outfit "Solar Cell"
 	category "Power"
+	series "Batteries: Bunrodea"
+	index 20
 	cost 17000
 	thumbnail "outfit/solar cell"
 	"mass" 1
@@ -160,6 +164,8 @@ outfit "Solar Cell"
 
 outfit "Reactor Overclocker"
 	category "Power"
+	series "Generators: Bunrodea"
+	index 98
 	cost 142000
 	thumbnail "outfit/reactor overclocker"
 	"mass" 4
@@ -171,6 +177,8 @@ outfit "Reactor Overclocker"
 
 outfit "Reactor Limiter"
 	category "Power"
+	series "Generators: Bunrodea"
+	index 99
 	cost 26000
 	thumbnail "outfit/reactor limiter"
 	"mass" 2
@@ -182,6 +190,8 @@ outfit "Reactor Limiter"
 
 outfit "Quark Reactor"
 	category "Power"
+	series "Generators: Bunrodea"
+	index 10
 	cost 3367000
 	thumbnail "outfit/quark reactor"
 	"mass" 61
@@ -196,6 +206,8 @@ outfit "Quark Reactor"
 
 outfit "Electroweak Reactor"
 	category "Power"
+	series "Generators: Bunrodea"
+	index 20
 	cost 8393000
 	thumbnail "outfit/electroweak reactor"
 	"mass" 106
@@ -210,6 +222,8 @@ outfit "Electroweak Reactor"
 
 outfit "Dark Reactor"
 	category "Power"
+	series "Generators: Bunrodea"
+	index 30
 	cost 15022000
 	thumbnail "outfit/dark reactor"
 	"mass" 142

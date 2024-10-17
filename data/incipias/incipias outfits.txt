@@ -233,6 +233,8 @@ outfit "Liquid-Class Shield"
 
 outfit "Metallic Hydrogen Cell"
 	category "Power"
+	series "Batteries: Incipias"
+	index 10
 	thumbnail "outfit/metallic hydrogen cell"
 	cost 2500
 	mass 20

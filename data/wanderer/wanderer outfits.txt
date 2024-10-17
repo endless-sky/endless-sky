@@ -295,6 +295,8 @@ outfit "Thunderhead Storage Array"
 
 outfit "Small Biochemical Cell"
 	category "Power"
+	series "Generators: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 230000
@@ -308,6 +310,8 @@ outfit "Small Biochemical Cell"
 
 outfit "Large Biochemical Cell"
 	category "Power"
+	series "Generators: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 940000
@@ -321,6 +325,8 @@ outfit "Large Biochemical Cell"
 
 outfit "Red Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 30
 	licenses
 		"Wanderer Outfits"
 	cost 3800000
@@ -334,6 +340,8 @@ outfit "Red Sun Reactor"
 
 outfit "Yellow Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 40
 	licenses
 		"Wanderer Outfits"
 	cost 7500000
@@ -347,6 +355,8 @@ outfit "Yellow Sun Reactor"
 
 outfit "White Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 50
 	licenses
 		"Wanderer Outfits"
 	cost 13900000
@@ -360,6 +370,8 @@ outfit "White Sun Reactor"
 
 outfit "Blue Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 60
 	licenses
 		"Wanderer Outfits"
 	cost 21500000

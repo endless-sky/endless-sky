@@ -13,6 +13,8 @@
 
 outfit "Small Collector Module"
 	category "Power"
+	series "Solar: Coalition"
+	index 10
 	licenses
 		Coalition
 	cost 60000
@@ -25,6 +27,8 @@ outfit "Small Collector Module"
 
 outfit "Large Collector Module"
 	category "Power"
+	series "Solar: Coalition"
+	index 20
 	licenses
 		Coalition
 	cost 300000
@@ -37,6 +41,8 @@ outfit "Large Collector Module"
 
 outfit "Small Reactor Module"
 	category "Power"
+	series "Generators: Coalition"
+	index 30
 	licenses
 		Heliarch
 	cost 5497000
@@ -50,6 +56,8 @@ outfit "Small Reactor Module"
 
 outfit "Large Reactor Module"
 	category "Power"
+	series "Generators: Coalition"
+	index 40
 	licenses
 		Heliarch
 	cost 17754000
@@ -63,6 +71,8 @@ outfit "Large Reactor Module"
 
 outfit "Small Cogeneration Module"
 	category "Power"
+	series "Generators: Coalition"
+	index 10
 	licenses
 		Coalition
 	cost 176000
@@ -76,6 +86,8 @@ outfit "Small Cogeneration Module"
 
 outfit "Large Cogeneration Module"
 	category "Power"
+	series "Generators: Coalition"
+	index 20
 	licenses
 		Coalition
 	cost 799000
@@ -88,6 +100,8 @@ outfit "Large Cogeneration Module"
 
 outfit "Small Battery Module"
 	category "Power"
+	series "Batteries: Coalition"
+	index 10
 	licenses
 		Coalition
 	cost 22000
@@ -99,6 +113,8 @@ outfit "Small Battery Module"
 
 outfit "Large Battery Module"
 	category "Power"
+	series "Batteries: Coalition"
+	index 20
 	licenses
 		Coalition
 	cost 170000

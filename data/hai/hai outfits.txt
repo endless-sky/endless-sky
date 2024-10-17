@@ -510,6 +510,8 @@ outfit "Value Detector"
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
+	series "Batteries: Hai"
+	index 10
 	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
@@ -520,6 +522,8 @@ outfit "Hai Chasm Batteries"
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
 	category "Power"
+	series "Batteries: Hai"
+	index 20
 	cost 11000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
@@ -530,6 +534,8 @@ outfit "Hai Fissure Batteries"
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
 	category "Power"
+	series "Batteries: Hai"
+	index 30
 	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
@@ -540,6 +546,8 @@ outfit "Hai Gorge Batteries"
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
 	category "Power"
+	series "Batteries: Hai"
+	index 40
 	cost 47000
 	thumbnail "outfit/large battery hai"
 	"mass" 50
@@ -550,6 +558,8 @@ outfit "Hai Ravine Batteries"
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
 	category "Power"
+	series "Batteries: Hai"
+	index 50
 	cost 74000
 	thumbnail "outfit/huge battery hai"
 	"mass" 70
@@ -560,6 +570,8 @@ outfit "Hai Valley Batteries"
 
 outfit "Boulder Reactor"
 	category "Power"
+	series "Generators: Hai"
+	index 40
 	cost 5750000
 	thumbnail "outfit/hai boulder"
 	"mass" 90
@@ -570,6 +582,8 @@ outfit "Boulder Reactor"
 
 outfit "Geode Reactor"
 	category "Power"
+	series "Generators: Hai"
+	index 30
 	cost 1750000
 	thumbnail "outfit/hai geode"
 	"mass" 58
@@ -580,6 +594,8 @@ outfit "Geode Reactor"
 
 outfit "Pebble Core"
 	category "Power"
+	series "Generators: Hai"
+	index 20
 	cost 1050000
 	thumbnail "outfit/hai pebble core"
 	"mass" 32
@@ -590,6 +606,8 @@ outfit "Pebble Core"
 
 outfit "Sand Cell"
 	category "Power"
+	series "Generators: Hai"
+	index 10
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24

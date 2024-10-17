@@ -14,6 +14,8 @@
 outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
 	category "Power"
+	series "Batteries: Quarg"
+	index 10
 	cost 3000000
 	thumbnail "outfit/quarg nanotech battery"
 	"mass" 50
@@ -23,6 +25,8 @@ outfit "Nanotech Battery"
 
 outfit "Antimatter Core"
 	category "Power"
+	series "Generators: Quarg"
+	index 10
 	cost 100000000
 	thumbnail "outfit/quarg antimatter core"
 	"mass" 80

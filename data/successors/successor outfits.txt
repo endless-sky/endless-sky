@@ -108,7 +108,7 @@ outfit "Shield Cortex Interface"
 
 outfit `1-"Uurau" Betavoltaic Cell`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 10
 	licenses
 		Successor
@@ -123,7 +123,7 @@ outfit `1-"Uurau" Betavoltaic Cell`
 
 outfit `OC-"Mavra" Betavoltaic Cell`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 40
 	licenses
 		Successor
@@ -138,7 +138,7 @@ outfit `OC-"Mavra" Betavoltaic Cell`
 
 outfit `3-"Kaska" Betavoltaic Cell`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 20
 	licenses
 		Successor
@@ -153,7 +153,7 @@ outfit `3-"Kaska" Betavoltaic Cell`
 
 outfit `6-"Ruuv" Betavoltaic Cell`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 30
 	licenses
 		Successor
@@ -169,8 +169,8 @@ outfit `6-"Ruuv" Betavoltaic Cell`
 
 outfit "Auxiliary Power Reserve"
 	category "Power"
-	series "Power: Successors"
-	index 100
+	series "Batteries: Successors"
+	index 10
 	cost 60000
 	thumbnail "outfit/small successor battery"
 	licenses
@@ -183,8 +183,8 @@ outfit "Auxiliary Power Reserve"
 
 outfit "Primary Power Reserve"
 	category "Power"
-	series "Power: Successors"
-	index 110
+	series "Batteries: Successors"
+	index 10
 	cost 320000
 	thumbnail "outfit/large successor battery"
 	licenses
@@ -198,7 +198,7 @@ outfit "Primary Power Reserve"
 
 outfit `"Nnesa" Fusion Core`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 50
 	cost 4754000
 	thumbnail "outfit/small successor reactor"
@@ -214,7 +214,7 @@ outfit `"Nnesa" Fusion Core`
 
 outfit `"Ryuit" Fusion Core`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 60
 	cost 12250000
 	thumbnail "outfit/medium successor reactor"
@@ -231,7 +231,7 @@ outfit `"Ryuit" Fusion Core`
 
 outfit `"Uoret" Fusion Core`
 	category "Power"
-	series "Power: Successors"
+	series "Generators: Successors"
 	index 70
 	cost 17754000
 	thumbnail "outfit/large successor reactor"

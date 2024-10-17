@@ -16,6 +16,8 @@
 outfit "R01 Skirmish Battery"
 	plural "R01 Skirmish Batteries"
 	category "Power"
+	series "Batteries: Gegno"
+	index 10
 	licenses
 		"Gegno Civilian"
 	cost 5900
@@ -29,6 +31,8 @@ outfit "R01 Skirmish Battery"
 outfit "R02 Battlezone Battery"
 	plural "R02 Battlezone Batteries"
 	category "Power"
+	series "Batteries: Gegno"
+	index 20
 	licenses
 		"Gegno Civilian"
 	cost 12600
@@ -42,6 +46,8 @@ outfit "R02 Battlezone Battery"
 outfit "R03 Warforge Battery"
 	plural "R03 Warforge Batteries"
 	category "Power"
+	series "Batteries: Gegno"
+	index 30
 	licenses
 		"Gegno Civilian"
 	cost 27800
@@ -55,6 +61,8 @@ outfit "R03 Warforge Battery"
 outfit "R04 Crusade Battery"
 	plural "R04 Crusade Batteries"
 	category "Power"
+	series "Batteries: Gegno"
+	index 40
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -70,6 +78,8 @@ outfit "R04 Crusade Battery"
 
 outfit "C3 Scrap Cell"
 	category "Power"
+	series "Generators: Gegno"
+	index 10
 	licenses
 		"Gegno Civilian"
 	cost 47000
@@ -83,6 +93,8 @@ outfit "C3 Scrap Cell"
 
 outfit "C7 Brawl Cell"
 	category "Power"
+	series "Generators: Gegno"
+	index 20
 	licenses
 		"Gegno Civilian"
 	cost 64000
@@ -96,6 +108,8 @@ outfit "C7 Brawl Cell"
 
 outfit "C17 Warzone Core"
 	category "Power"
+	series "Generators: Gegno"
+	index 30
 	licenses
 		"Gegno Civilian"
 	cost 1620000
@@ -109,6 +123,8 @@ outfit "C17 Warzone Core"
 
 outfit "C27 Campaign Core"
 	category "Power"
+	series "Generators: Gegno"
+	index 40
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -125,6 +141,8 @@ outfit "C27 Campaign Core"
 
 outfit "I70 Ameliorate Cell"
 	category "Power"
+	series "Generators: Gegno"
+	index 50
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"

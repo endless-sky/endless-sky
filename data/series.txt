@@ -219,6 +219,21 @@ category "series":
 	"Batteries: Pug" 212
 	"Batteries: Quarg" 213
 	"Batteries: Other" 299
+	"Solar: Human" 300
+	"Solar: Hai" 301
+	"Solar: Remnant" 302
+	"Solar: Korath" 303
+	"Solar: Ka'het" 304
+	"Solar: Gegno" 305
+	"Solar: Coalition" 306
+	"Solar: Wanderers" 307
+	"Solar: Bunrodea" 308
+	"Solar: Successors" 309
+	"Solar: Incipias" 310
+	"Solar: Sheragi" 311
+	"Solar: Pug" 312
+	"Solar: Quarg" 313
+	"Solar: Other" 399
 	# Engines
 	"Engines: Human" 100
 	"Engines: Hai" 101

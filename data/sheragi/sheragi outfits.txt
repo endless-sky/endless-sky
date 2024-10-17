@@ -16,6 +16,8 @@
 outfit "Small EM Battery"
 	plural "Small EM Batteries"
 	category "Power"
+	series "Batteries: Sheragi"
+	index 10
 	cost 200000
 	thumbnail "outfit/small embattery"
 	"mass" 14
@@ -30,6 +32,8 @@ outfit "Small EM Battery"
 outfit "Large EM Battery"
 	plural "Large EM Batteries"
 	category "Power"
+	series "Batteries: Sheragi"
+	index 20
 	cost 1000000
 	thumbnail "outfit/embattery"
 	"mass" 150

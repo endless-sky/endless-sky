@@ -385,6 +385,8 @@ outfit "Ka'het Grand Restorer"
 
 outfit "Ka'het MHD Generator"
 	category "Power"
+	series "Generators: Ka'het"
+	index 10
 	cost 1263000
 	thumbnail "outfit/ka'het mhd generator"
 	"mass" 20
@@ -395,6 +397,8 @@ outfit "Ka'het MHD Generator"
 
 outfit "Ka'het Reserve Accumulator"
 	category "Power"
+	series "Batteries: Ka'het"
+	index 10
 	cost 27000
 	thumbnail "outfit/ka'het reserve accumulator"
 	"mass" 2
