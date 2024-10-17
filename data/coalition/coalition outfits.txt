@@ -157,6 +157,8 @@ outfit "Overcharged Shield Module"
 
 outfit "Small Repair Module"
 	category "Systems"
+	series "Repair: Coalition"
+	index 10
 	licenses
 		Coalition
 	cost 64000
@@ -170,6 +172,8 @@ outfit "Small Repair Module"
 
 outfit "Large Repair Module"
 	category "Systems"
+	series "Repair: Coalition"
+	index 20
 	licenses
 		Coalition
 	cost 553000
@@ -183,6 +187,8 @@ outfit "Large Repair Module"
 
 outfit "Overclocked Repair Module"
 	category "Systems"
+	series "Repair: Coalition"
+	index 30
 	licenses
 		Heliarch
 	cost 1126000

@@ -74,6 +74,8 @@ outfit "Large Shield Relay"
 
 outfit "Nanite Enhancer"
 	category "Systems"
+	series "Repair: Bunrodea"
+	index 98
 	cost 76000
 	thumbnail "outfit/nanite enhancer"
 	"mass" 5
@@ -85,6 +87,8 @@ outfit "Nanite Enhancer"
 
 outfit "Nanite Limiter"
 	category "Systems"
+	series "Repair: Bunrodea"
+	index 99
 	cost 21000
 	thumbnail "outfit/nanite limiter"
 	"mass" 2
@@ -96,6 +100,8 @@ outfit "Nanite Limiter"
 
 outfit "Small Nanite Fabricator"
 	category "Systems"
+	series "Repair: Bunrodea"
+	index 10
 	cost 650000
 	thumbnail "outfit/small nanite fabricator"
 	"mass" 23
@@ -110,6 +116,8 @@ outfit "Small Nanite Fabricator"
 
 outfit "Large Nanite Fabricator"
 	category "Systems"
+	series "Repair: Bunrodea"
+	index 20
 	cost 1940000
 	thumbnail "outfit/large nanite fabricator"
 	"mass" 58
