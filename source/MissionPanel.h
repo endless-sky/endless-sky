@@ -17,13 +17,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "text/WrappedText.h"
-
 #include <list>
 
 class Color;
 class Mission;
 class PlayerInfo;
+class TextArea;
 
 
 
@@ -93,5 +92,6 @@ private:
 	int dragSide = 0;
 	int hoverSortCount = 0;
 	int hoverSort = -1; // 0 to 3 for each UI element
-	WrappedText wrap;
+	std::shared_ptr<TextArea> description;
+	bool descriptionVisible = false;
 };
