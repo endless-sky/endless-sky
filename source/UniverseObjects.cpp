@@ -421,6 +421,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 					solarPower[sprite] = child.Value(1);
 				else if(child.Token(0) == "wind" && child.Size() >= 2)
 					solarWind[sprite] = child.Value(1);
+				else if(child.Token(0) == "icon" && child.Size() >= 2)
+					starIcons[sprite] = SpriteSet::Get(child.Token(1));
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
