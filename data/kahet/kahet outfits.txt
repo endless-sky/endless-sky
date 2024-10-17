@@ -425,6 +425,8 @@ outfit "Ka'het Reserve Accumulator"
 outfit "Maeri Engine Nacelles"
 	plural "Maeri Engine Nacelles"
 	category "Engines"
+	series "Engines: Ka'het"
+	index 30
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
 	"mass" 59
@@ -447,6 +449,8 @@ outfit "Maeri Engine Nacelles"
 outfit "Ka'het Sustainer Nacelles"
 	plural "Ka'het Sustainer Nacelles"
 	category "Engines"
+	series "Engines: Ka'het"
+	index 20
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
 	"mass" 27
@@ -469,6 +473,8 @@ outfit "Ka'het Sustainer Nacelles"
 outfit "Telis Engine Nacelles"
 	plural "Telis Engine Nacelles"
 	category "Engines"
+	series "Engines: Ka'het"
+	index 40
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
 	"mass" 81
@@ -490,6 +496,8 @@ outfit "Telis Engine Nacelles"
 
 outfit "Vareti Engine Block"
 	category "Engines"
+	series "Engines: Ka'het"
+	index 50
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
 	"mass" 137
@@ -511,6 +519,8 @@ outfit "Vareti Engine Block"
 
 outfit "Ka'het Compact Engine"
 	category "Engines"
+	series "Engines: Ka'het"
+	index 10
 	"cost" 172000
 	thumbnail "outfit/ka'het compact engine"
 	"mass" 21

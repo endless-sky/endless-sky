@@ -338,6 +338,8 @@ outfit "Outskirts Gauger"
 
 outfit "Small Thrust Module"
 	category "Engines"
+	series "Engines: Coalition"
+	index 11
 	licenses
 		Coalition
 	"cost" 66000
@@ -355,6 +357,8 @@ outfit "Small Thrust Module"
 
 outfit "Large Thrust Module"
 	category "Engines"
+	series "Engines: Coalition"
+	index 21
 	licenses
 		Coalition
 	"cost" 292000
@@ -372,6 +376,8 @@ outfit "Large Thrust Module"
 
 outfit "Small Reverse Module"
 	category "Engines"
+	series "Engines: Coalition"
+	index 12
 	licenses
 		Coalition
 	"cost" 66000
@@ -390,6 +396,8 @@ outfit "Small Reverse Module"
 
 outfit "Large Reverse Module"
 	category "Engines"
+	series "Engines: Coalition"
+	index 22
 	licenses
 		Coalition
 	"cost" 292000
@@ -408,6 +416,8 @@ outfit "Large Reverse Module"
 
 outfit "Small Steering Module"
 	category "Engines"
+	series "Engines: Coalition"
+	index 10
 	licenses
 		Coalition
 	"cost" 60000
@@ -425,6 +435,8 @@ outfit "Small Steering Module"
 
 outfit "Large Steering Module"
 	category "Engines"
+	series "Engines: Coalition"
+	index 20
 	licenses
 		Coalition
 	"cost" 269000

@@ -460,6 +460,8 @@ outfit "Wanderer Heat Sink"
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 11
 	licenses
 		"Wanderer Outfits"
 	"cost" 135000
@@ -478,6 +480,8 @@ outfit "Type 1 Radiant Thruster"
 
 outfit "Type 2 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 21
 	licenses
 		"Wanderer Outfits"
 	"cost" 390000
@@ -496,6 +500,8 @@ outfit "Type 2 Radiant Thruster"
 
 outfit "Type 3 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 31
 	licenses
 		"Wanderer Outfits"
 	"cost" 750000
@@ -514,6 +520,8 @@ outfit "Type 3 Radiant Thruster"
 
 outfit "Type 4 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 41
 	licenses
 		"Wanderer Outfits"
 	"cost" 1370000
@@ -532,6 +540,8 @@ outfit "Type 4 Radiant Thruster"
 
 outfit "Type 1 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	"cost" 115000
@@ -550,6 +560,8 @@ outfit "Type 1 Radiant Steering"
 
 outfit "Type 2 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	"cost" 325000
@@ -568,6 +580,8 @@ outfit "Type 2 Radiant Steering"
 
 outfit "Type 3 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 30
 	licenses
 		"Wanderer Outfits"
 	"cost" 590000
@@ -586,6 +600,8 @@ outfit "Type 3 Radiant Steering"
 
 outfit "Type 4 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 40
 	licenses
 		"Wanderer Outfits"
 	"cost" 1100000

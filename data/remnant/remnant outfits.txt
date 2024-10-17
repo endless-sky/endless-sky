@@ -716,6 +716,8 @@ outfit "Salvage Scanner"
 
 outfit "Bellows-Class Afterburner"
 	category "Engines"
+	series "Afterburners: Remnant"
+	index 10
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
@@ -739,6 +741,8 @@ effect "remnant afterburner"
 
 outfit "Anvil-Class Engine"
 	category "Engines"
+	series "Engines: Remnant"
+	index 10
 	licenses
 		Remnant
 	"cost" 290000
@@ -769,6 +773,8 @@ outfit "Anvil-Class Engine"
 
 outfit "Crucible-Class Thruster"
 	category "Engines"
+	series "Engines: Remnant"
+	index 21
 	licenses
 		Remnant
 	"cost" 200000
@@ -793,6 +799,8 @@ outfit "Crucible-Class Thruster"
 
 outfit "Forge-Class Thruster"
 	category "Engines"
+	series "Engines: Remnant"
+	index 31
 	licenses
 		Remnant
 	"cost" 441000
@@ -817,6 +825,8 @@ outfit "Forge-Class Thruster"
 
 outfit "Smelter-Class Thruster"
 	category "Engines"
+	series "Engines: Remnant"
+	index 41
 	licenses
 		Remnant
 	"cost" 984000
@@ -841,6 +851,8 @@ outfit "Smelter-Class Thruster"
 
 outfit "Crucible-Class Steering"
 	category "Engines"
+	series "Engines: Remnant"
+	index 20
 	licenses
 		Remnant
 	"cost" 172000
@@ -859,6 +871,8 @@ outfit "Crucible-Class Steering"
 
 outfit "Forge-Class Steering"
 	category "Engines"
+	series "Engines: Remnant"
+	index 30
 	licenses
 		Remnant
 	"cost" 393000
@@ -877,6 +891,8 @@ outfit "Forge-Class Steering"
 
 outfit "Smelter-Class Steering"
 	category "Engines"
+	series "Engines: Remnant"
+	index 40
 	licenses
 		Remnant
 	"cost" 880000

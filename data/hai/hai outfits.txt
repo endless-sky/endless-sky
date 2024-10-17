@@ -648,6 +648,8 @@ outfit "Sand Cell"
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
+	series "Engines: Hai"
+	index 10
 	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 22
@@ -669,6 +671,8 @@ outfit `"Baellie" Atomic Engines`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 21
 	"cost" 150000
 	thumbnail "outfit/tiny atomic thruster hai"
 	"mass" 18
@@ -684,6 +688,8 @@ outfit `"Basrem" Atomic Thruster`
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 31
 	"cost" 300000
 	thumbnail "outfit/small atomic thruster hai"
 	"mass" 28
@@ -699,6 +705,8 @@ outfit `"Benga" Atomic Thruster`
 
 outfit `"Biroo" Atomic Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 41
 	"cost" 610000
 	thumbnail "outfit/medium atomic thruster hai"
 	"mass" 44
@@ -714,6 +722,8 @@ outfit `"Biroo" Atomic Thruster`
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 51
 	"cost" 1100000
 	thumbnail "outfit/large atomic thruster hai"
 	"mass" 63
@@ -729,6 +739,8 @@ outfit `"Bondir" Atomic Thruster`
 
 outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 61
 	"cost" 2400000
 	thumbnail "outfit/huge atomic thruster hai"
 	"mass" 104
@@ -744,6 +756,8 @@ outfit `"Bufaer" Atomic Thruster`
 
 outfit `"Basrem" Reverse Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 22
 	"cost" 150000
 	thumbnail "outfit/tiny atomic reverse hai"
 	"mass" 18
@@ -759,6 +773,8 @@ outfit `"Basrem" Reverse Thruster`
 
 outfit `"Benga" Reverse Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 32
 	"cost" 300000
 	thumbnail "outfit/small atomic reverse hai"
 	"mass" 28
@@ -774,6 +790,8 @@ outfit `"Benga" Reverse Thruster`
 
 outfit `"Biroo" Reverse Thruster`
 	category "Engines"
+	series "Engines: Hai"
+	index 42
 	"cost" 610000
 	thumbnail "outfit/medium atomic reverse hai"
 	"mass" 44
@@ -789,6 +807,8 @@ outfit `"Biroo" Reverse Thruster`
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
+	series "Engines: Hai"
+	index 20
 	"cost" 120000
 	thumbnail "outfit/tiny atomic steering hai"
 	"mass" 12
@@ -804,6 +824,8 @@ outfit `"Basrem" Atomic Steering`
 
 outfit `"Benga" Atomic Steering`
 	category "Engines"
+	series "Engines: Hai"
+	index 30
 	"cost" 250000
 	thumbnail "outfit/small atomic steering hai"
 	"mass" 20
@@ -819,6 +841,8 @@ outfit `"Benga" Atomic Steering`
 
 outfit `"Biroo" Atomic Steering`
 	category "Engines"
+	series "Engines: Hai"
+	index 40
 	"cost" 530000
 	thumbnail "outfit/medium atomic steering hai"
 	"mass" 32
@@ -834,6 +858,8 @@ outfit `"Biroo" Atomic Steering`
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"
+	series "Engines: Hai"
+	index 50
 	"cost" 950000
 	thumbnail "outfit/large atomic steering hai"
 	"mass" 49
@@ -849,6 +875,8 @@ outfit `"Bondir" Atomic Steering`
 
 outfit `"Bufaer" Atomic Steering`
 	category "Engines"
+	series "Engines: Hai"
+	index 60
 	"cost" 2100000
 	thumbnail "outfit/huge atomic steering hai"
 	"mass" 76

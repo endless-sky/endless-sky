@@ -76,6 +76,8 @@ outfit "Large Hybrid Cooling"
 
 outfit "Fission Drive"
 	category "Engines"
+	series "Engines: Sheragi"
+	index 10
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
 	"mass" 71
@@ -102,6 +104,8 @@ outfit "Fission Drive"
 
 outfit "Fusion Drive"
 	category "Engines"
+	series "Engines: Sheragi"
+	index 20
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
 	"mass" 480

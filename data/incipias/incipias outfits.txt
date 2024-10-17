@@ -253,6 +253,8 @@ outfit "Metallic Hydrogen Cell"
 # Engines:
 outfit "MH Blue-Class Thruster"
 	category "Engines"
+	series "Engines: Incipias"
+	index 11
 	thumbnail "outfit/mh blue-class thruster"
 	cost 32000
 	mass 27
@@ -268,6 +270,8 @@ outfit "MH Blue-Class Thruster"
 
 outfit "MH Blue-Class Steering"
 	category "Engines"
+	series "Engines: Incipias"
+	index 10
 	thumbnail "outfit/mh blue-class steering"
 	cost 28000
 	mass 24
@@ -280,6 +284,8 @@ outfit "MH Blue-Class Steering"
 
 outfit "MH Green-Class Thruster"
 	category "Engines"
+	series "Engines: Incipias"
+	index 21
 	thumbnail "outfit/mh green-class thruster"
 	cost 44000
 	mass 32
@@ -295,6 +301,8 @@ outfit "MH Green-Class Thruster"
 
 outfit "MH Green-Class Steering"
 	category "Engines"
+	series "Engines: Incipias"
+	index 20
 	thumbnail "outfit/mh green-class steering"
 	cost 35000
 	mass 28
@@ -307,6 +315,8 @@ outfit "MH Green-Class Steering"
 
 outfit "MH Red-Class Thruster"
 	category "Engines"
+	series "Engines: Incipias"
+	index 31
 	thumbnail "outfit/mh red-class thruster"
 	cost 50000
 	mass 41
@@ -322,6 +332,8 @@ outfit "MH Red-Class Thruster"
 
 outfit "MH Red-Class Steering"
 	category "Engines"
+	series "Engines: Incipias"
+	index 30
 	thumbnail "outfit/mh red-class steering"
 	cost 49000
 	mass 41

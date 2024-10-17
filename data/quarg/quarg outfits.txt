@@ -119,6 +119,8 @@ outfit "Intrusion Countermeasures"
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
+	series "Engines: Quarg"
+	index 11
 	"cost" 20000000
 	thumbnail "outfit/medium quarg thruster"
 	"mass" 70
@@ -135,6 +137,8 @@ outfit "Medium Graviton Thruster"
 
 outfit "Medium Graviton Steering"
 	category "Engines"
+	series "Engines: Quarg"
+	index 10
 	"cost" 16000000
 	thumbnail "outfit/medium quarg steering"
 	"mass" 50

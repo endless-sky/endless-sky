@@ -253,6 +253,8 @@ effect "gridfire cloud"
 
 outfit "Pug Akfar Thruster"
 	category "Engines"
+	series "Engines: Pug"
+	index 11
 	"cost" 608000
 	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
@@ -268,6 +270,8 @@ outfit "Pug Akfar Thruster"
 
 outfit "Pug Akfar Steering"
 	category "Engines"
+	series "Engines: Pug"
+	index 10
 	"cost" 472000
 	thumbnail "outfit/pug akfar steering"
 	"mass" 33
@@ -283,6 +287,8 @@ outfit "Pug Akfar Steering"
 
 outfit "Pug Cormet Thruster"
 	category "Engines"
+	series "Engines: Pug"
+	index 21
 	"cost" 1050000
 	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
@@ -298,6 +304,8 @@ outfit "Pug Cormet Thruster"
 
 outfit "Pug Cormet Steering"
 	category "Engines"
+	series "Engines: Pug"
+	index 20
 	"cost" 880000
 	thumbnail "outfit/pug cormet steering"
 	"mass" 46
@@ -313,6 +321,8 @@ outfit "Pug Cormet Steering"
 
 outfit "Pug Lohmar Thruster"
 	category "Engines"
+	series "Engines: Pug"
+	index 31
 	"cost" 1740000
 	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
@@ -328,6 +338,8 @@ outfit "Pug Lohmar Thruster"
 
 outfit "Pug Lohmar Steering"
 	category "Engines"
+	series "Engines: Pug"
+	index 30
 	"cost" 1580000
 	thumbnail "outfit/pug lohmar steering"
 	"mass" 64

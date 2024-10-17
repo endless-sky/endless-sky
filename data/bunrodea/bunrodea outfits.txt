@@ -253,6 +253,8 @@ outfit "Lasher Pistol"
 
 outfit "Chiisana Rift Thruster"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 11
 	cost 130000
 	thumbnail "outfit/chiisana rift thruster"
 	"mass" 11
@@ -270,6 +272,8 @@ outfit "Chiisana Rift Thruster"
 
 outfit "Nami Rift Thruster"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 21
 	cost 262000
 	thumbnail "outfit/nami rift thruster"
 	"mass" 19
@@ -287,6 +291,8 @@ outfit "Nami Rift Thruster"
 
 outfit "Ookii Rift Thruster"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 31
 	cost 512000
 	thumbnail "outfit/ookii rift thruster"
 	"mass" 32
@@ -304,6 +310,8 @@ outfit "Ookii Rift Thruster"
 
 outfit "Subarashii Rift Thruster"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 41
 	cost 1004000
 	thumbnail "outfit/subarashii rift thruster"
 	"mass" 55
@@ -320,6 +328,8 @@ outfit "Subarashii Rift Thruster"
 
 outfit "Chiisana Rift Steering"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 10
 	cost 201000
 	thumbnail "outfit/chiisana rift steering"
 	"mass" 17
@@ -332,6 +342,8 @@ outfit "Chiisana Rift Steering"
 
 outfit "Nami Rift Steering"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 20
 	cost 442000
 	thumbnail "outfit/nami rift steering"
 	"mass" 31
@@ -344,6 +356,8 @@ outfit "Nami Rift Steering"
 
 outfit "Ookii Rift Steering"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 30
 	cost 940000
 	thumbnail "outfit/ookii rift steering"
 	"mass" 53
@@ -356,6 +370,8 @@ outfit "Ookii Rift Steering"
 
 outfit "Subarashii Rift Steering"
 	category "Engines"
+	series "Engines: Bunrodea"
+	index 40
 	cost 1577000
 	thumbnail "outfit/subarashii rift steering"
 	"mass" 90

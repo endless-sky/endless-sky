@@ -161,6 +161,8 @@ outfit "I70 Ameliorate Cell"
 
 outfit "RG15 Torch Thruster"
 	category "Engines"
+	series "Engines: Gegno"
+	index 11
 	licenses
 		"Gegno Civilian"
 	cost 17000
@@ -179,6 +181,8 @@ outfit "RG15 Torch Thruster"
 
 outfit "RG15 Torch Steering"
 	category "Engines"
+	series "Engines: Gegno"
+	index 10
 	licenses
 		"Gegno Civilian"
 	cost 15000
@@ -197,6 +201,8 @@ outfit "RG15 Torch Steering"
 
 outfit "RG18 Torch Thruster"
 	category "Engines"
+	series "Engines: Gegno"
+	index 21
 	licenses
 		"Gegno Civilian"
 	cost 38000
@@ -215,6 +221,8 @@ outfit "RG18 Torch Thruster"
 
 outfit "RG18 Torch Steering"
 	category "Engines"
+	series "Engines: Gegno"
+	index 20
 	licenses
 		"Gegno Civilian"
 	cost 32000
@@ -233,6 +241,8 @@ outfit "RG18 Torch Steering"
 
 outfit "RG3 Torch Thruster"
 	category "Engines"
+	series "Engines: Gegno"
+	index 31
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -254,6 +264,8 @@ outfit "RG3 Torch Thruster"
 
 outfit "RG3 Torch Steering"
 	category "Engines"
+	series "Engines: Gegno"
+	index 30
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -276,6 +288,8 @@ outfit "RG3 Torch Steering"
 outfit "SC-1 Plasma Engines"
 	plural "SC-1 Plasma Engines"
 	category "Engines"
+	series "Engines: Gegno"
+	index 40
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -302,6 +316,8 @@ outfit "SC-1 Plasma Engines"
 
 outfit "SC-12 Plasma Thruster"
 	category "Engines"
+	series "Engines: Gegno"
+	index 51
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -321,6 +337,8 @@ outfit "SC-12 Plasma Thruster"
 
 outfit "SC-12 Plasma Steering"
 	category "Engines"
+	series "Engines: Gegno"
+	index 50
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -340,6 +358,8 @@ outfit "SC-12 Plasma Steering"
 
 outfit "SC-14 Plasma Thruster"
 	category "Engines"
+	series "Engines: Gegno"
+	index 61
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -359,6 +379,8 @@ outfit "SC-14 Plasma Thruster"
 
 outfit "SC-14 Plasma Steering"
 	category "Engines"
+	series "Engines: Gegno"
+	index 60
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -378,6 +400,8 @@ outfit "SC-14 Plasma Steering"
 
 outfit "SC-15 Plasma Thrusters"
 	plural "SC-15 Plasma Thrusters"
+	series "Engines: Gegno"
+	index 70
 	category "Engines"
 	licenses
 		"Gegno Civilian"
