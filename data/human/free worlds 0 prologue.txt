@@ -797,7 +797,7 @@ mission "FW Escort 1B"
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
-		event "fw escorts abandon timer" 1
+		event "fw escorts abandon timer"
 		dialog `Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
 
 
