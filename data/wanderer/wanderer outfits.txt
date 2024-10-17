@@ -196,6 +196,8 @@ outfit "Moonbeam Turret"
 
 outfit "Wanderer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 850000

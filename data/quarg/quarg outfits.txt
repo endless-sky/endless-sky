@@ -79,6 +79,8 @@ effect "skylance impact"
 
 outfit "Quarg Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Quarg"
+	index 10
 	cost 6000000
 	thumbnail "outfit/quarg anti missile"
 	"mass" 40

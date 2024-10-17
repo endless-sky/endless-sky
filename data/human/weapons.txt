@@ -512,6 +512,8 @@ effect "electron impact"
 
 outfit "Anti-Missile Turret"
 	category "Turrets"
+	series "Anti-Missile: Human"
+	index 10
 	cost 60000
 	thumbnail "outfit/anti-missile"
 	"mass" 16
@@ -541,6 +543,8 @@ effect "small anti-missile"
 
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
+	series "Anti-Missile: Human"
+	index 20
 	cost 150000
 	thumbnail "outfit/heavy anti-missile"
 	"mass" 30

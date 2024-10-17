@@ -16,52 +16,52 @@ category "series":
 	"Guns: Quarg" 13
 	"Guns: Other" 99
 	# Turrets
-	"Turrets: Human" 0
-	"Turrets: Hai" 1
-	"Turrets: Remnant" 2
-	"Turrets: Korath" 3
-	"Turrets: Ka'het" 4
-	"Turrets: Gegno" 5
-	"Turrets: Coalition" 6
-	"Turrets: Wanderers" 7
-	"Turrets: Bunrodea" 8
-	"Turrets: Successors" 9
-	"Turrets: Incipias" 10
-	"Turrets: Sheragi" 11
-	"Turrets: Pug" 12
-	"Turrets: Quarg" 13
-	"Turrets: Other" 99
+	"Turrets: Human" 100
+	"Turrets: Hai" 101
+	"Turrets: Remnant" 102
+	"Turrets: Korath" 103
+	"Turrets: Ka'het" 104
+	"Turrets: Gegno" 105
+	"Turrets: Coalition" 106
+	"Turrets: Wanderers" 107
+	"Turrets: Bunrodea" 108
+	"Turrets: Successors" 109
+	"Turrets: Incipias" 110
+	"Turrets: Sheragi" 111
+	"Turrets: Pug" 112
+	"Turrets: Quarg" 113
+	"Turrets: Other" 199
+	"Anti-Missile: Human" 200
+	"Anti-Missile: Hai" 201
+	"Anti-Missile: Remnant" 202
+	"Anti-Missile: Korath" 203
+	"Anti-Missile: Ka'het" 204
+	"Anti-Missile: Gegno" 205
+	"Anti-Missile: Coalition" 206
+	"Anti-Missile: Wanderers" 207
+	"Anti-Missile: Bunrodea" 208
+	"Anti-Missile: Successors" 209
+	"Anti-Missile: Incipias" 210
+	"Anti-Missile: Sheragi" 211
+	"Anti-Missile: Pug" 212
+	"Anti-Missile: Quarg" 213
+	"Anti-Missile: Other" 299
 	# Secondary Weapons
-	"Fixed Secondaries: Human" 100
-	"Fixed Secondaries: Hai" 101
-	"Fixed Secondaries: Remnant" 102
-	"Fixed Secondaries: Korath" 103
-	"Fixed Secondaries: Ka'het" 104
-	"Fixed Secondaries: Gegno" 105
-	"Fixed Secondaries: Coalition" 106
-	"Fixed Secondaries: Wanderers" 107
-	"Fixed Secondaries: Bunrodea" 108
-	"Fixed Secondaries: Successors" 109
-	"Fixed Secondaries: Incipias" 110
-	"Fixed Secondaries: Sheragi" 111
-	"Fixed Secondaries: Pug" 112
-	"Fixed Secondaries: Quarg" 113
-	"Fixed Secondaries: Other" 199
-	"Turreted Secondaries: Human" 200
-	"Turreted Secondaries: Hai" 201
-	"Turreted Secondaries: Remnant" 202
-	"Turreted Secondaries: Korath" 203
-	"Turreted Secondaries: Ka'het" 204
-	"Turreted Secondaries: Gegno" 205
-	"Turreted Secondaries: Coalition" 206
-	"Turreted Secondaries: Wanderers" 207
-	"Turreted Secondaries: Bunrodea" 208
-	"Turreted Secondaries: Successors" 209
-	"Turreted Secondaries: Incipias" 210
-	"Turreted Secondaries: Sheragi" 211
-	"Turreted Secondaries: Pug" 212
-	"Turreted Secondaries: Quarg" 213
-	"Turreted Secondaries: Other" 299
+	"Secondary Weapons: Human" 0
+	"Secondary Weapons: Hai" 1
+	"Secondary Weapons: Remnant" 2
+	"Secondary Weapons: Korath" 3
+	"Secondary Weapons: Ka'het" 4
+	"Secondary Weapons: Gegno" 5
+	"Secondary Weapons: Coalition" 6
+	"Secondary Weapons: Wanderers" 7
+	"Secondary Weapons: Bunrodea" 8
+	"Secondary Weapons: Successors" 9
+	"Secondary Weapons: Incipias" 10
+	"Secondary Weapons: Sheragi" 11
+	"Secondary Weapons: Pug" 12
+	"Secondary Weapons: Quarg" 13
+	"Secondary Weapons: Other" 99
 	# Ammunition
 	"Ammunition: Human" 0
 	"Ammunition: Hai" 1

@@ -305,6 +305,8 @@ ship "Embersylph"
 
 outfit "Absorption Organ"
 	category "Turrets"
+	series "Turrets: Other"
+	index 60
 	thumbnail "outfit/unknown"
 	"turret mounts" -1
 	weapon

@@ -173,6 +173,8 @@ outfit "Thrasher Turret"
 
 outfit "Point Defense Turret"
 	category "Turrets"
+	series "Anti-Missile: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 1120000

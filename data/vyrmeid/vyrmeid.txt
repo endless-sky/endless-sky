@@ -110,6 +110,8 @@ ship "Vyrmeid" "Vyrmeid (B)"
 
 outfit "Boomerang Organ"
 	category "Turrets"
+	series "Turrets: Other"
+	index 70
 	cost 0
 	thumbnail "outfit/unknown"
 	"mass" 10

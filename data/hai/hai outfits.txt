@@ -386,6 +386,8 @@ effect "tracker cloud"
 
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Hai"
+	index 10
 	cost 55000
 	thumbnail "outfit/anti-missile hai"
 	"mass" 10
@@ -408,6 +410,8 @@ outfit "Bullfrog Anti-Missile"
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Hai"
+	index 20
 	cost 140000
 	thumbnail "outfit/heavy anti-missile hai"
 	"mass" 22

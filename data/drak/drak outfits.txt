@@ -108,6 +108,8 @@ outfit "Drak Draining Field (Augmented)"
 
 outfit "Drak Anti-Missile Field"
 	category "Turrets"
+	series "Anti-Missile: Other"
+	index 10
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 66
@@ -127,6 +129,8 @@ outfit "Drak Anti-Missile Field"
 
 outfit "Drak Anti-Missile Field (Augmented)"
 	category "Turrets"
+	series "Anti-Missile: Other"
+	index 11
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 66

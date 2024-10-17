@@ -185,6 +185,8 @@ effect "banisher impact"
 
 outfit "Warder Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Korath"
+	index 10
 	cost 845000
 	thumbnail "outfit/warder"
 	"mass" 28

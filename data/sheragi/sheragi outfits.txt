@@ -227,6 +227,8 @@ effect "dragonflame debris"
 
 outfit "Sheragi Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Sheragi"
+	index 10
 	cost 845000
 	thumbnail "outfit/sheragiam"
 	"mass" 35

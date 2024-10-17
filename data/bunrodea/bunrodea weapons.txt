@@ -251,6 +251,8 @@ effect "swarm impact"
 
 outfit "Buzzer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Bunrodea"
+	index 10
 	cost 1195000
 	thumbnail "outfit/buzzer"
 	"mass" 19

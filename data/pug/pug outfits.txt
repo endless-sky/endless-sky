@@ -123,6 +123,8 @@ effect "seeker impact"
 
 outfit "Pug Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Pug"
+	index 10
 	cost 350000
 	thumbnail "outfit/pug anti-missile"
 	"mass" 41
@@ -152,6 +154,8 @@ effect "pug anti-missile"
 
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Pug"
+	index 20
 	cost 12000000
 	thumbnail "outfit/t3 anti missile"
 	"mass" 67
