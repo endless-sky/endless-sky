@@ -101,7 +101,7 @@ def iterate(category_series, s):
                     index = (100 * label) + 99
                 else:
                     index = (100 * label) + species.index(spec)
-                
+
                 s += '\t"' + (series + ": " + str(spec.replace("%","")) + '" ' + str(index) + "\n")
         label += 1
     return s
@@ -115,7 +115,7 @@ def iterate_singular(name, s):
             index = 99
         else:
             index = species.index(spec)
-        
+
         s += '\t"' + (name + ": " + str(spec.replace("%","")) + '" ' + str(index) + "\n")
     return s
 

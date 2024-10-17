@@ -13,7 +13,7 @@
 
 outfit "Sunbeam"
 	category "Guns"
-	series "Guns: Wandererss"
+	series "Guns: Wanderers"
 	index 20
 	licenses
 		"Wanderer Outfits"
