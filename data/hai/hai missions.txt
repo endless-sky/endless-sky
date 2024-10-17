@@ -1075,7 +1075,7 @@ mission "Nanachi 3"
 			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planning and preparing for adverse events."`
 				goto end
 			label end
-			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
+			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
 			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 				goto board
 			label board
@@ -1083,7 +1083,7 @@ mission "Nanachi 3"
 			choice
 				`	"So, do you mind if I help out? I know the job board can be confusing the first few times you check it."`
 				`	"Do you think you need me to help out this time?"`
-			`	"Thanks, but I have to do this on my own. I promise I won't mess this up by getting greedy again," She approaches the board on her own, and it becomes clear that it's much easier to get a job here; she's barely started talking to one of the desk workers before receiving a long list of jobs for smaller ships. She is certainly still very tired, but this seems to have cheered her up a bit; it is the first time she can get a job without your help after all.`
+			`	"Thanks, but I have to do this on my own. I promise I won't mess this up by getting greedy again." She approaches the board on her own, and it becomes clear that it's much easier to get a job here; she's barely started talking to one of the desk workers before receiving a long list of jobs for smaller ships. She is certainly still very tired, but this seems to have cheered her up a bit; it is the first time she can get a job without your help, after all.`
 			`	While you thought she would've picked one or two jobs quickly and headed back to her ship, she keeps going through them and double checking the information for each one, as if something about them bothers her.`
 			`	"What's wrong? Are you struggling to pick between two different jobs?" you ask.`
 			`	"These all seem very easy and I could even accept many at a time, but the problem is their pay isn't very good." She grabs some worn papers from her pocket, and shows it to you: they're the documents for her loan. "The bank back home would only give me enough for the ship if I agreed on a short-term loan. I lost two days before you came along to help me, and if I don't get some better paying job soon, I won't even be able to pay the interest."`

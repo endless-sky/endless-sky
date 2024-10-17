@@ -76,7 +76,7 @@ Version 0.10.9
         * Added "reverse thrusting heat": 0.55
       * Gave the Fetri'sei logical stats for its category and description, replacing stats copied from the Maeri'het. (@Quantumshark)
       * Made the Dragonflame penetrate instead of having a blast radius. (@AvianGeneticist)
-      * Reduced the power of the Merganser, the Peregrine and the Bellows-class Afterburner. (@Azure_)
+      * Reduced the power of the Merganser, the Peregrine and the Bellows-class Afterburner. (@Azure3141)
     * Other:
       * Adjusted wording in "Pookie, Part 2" to more accurately reflect the behavior of dogs. (@aradapilot)
       * Doubled the average interval for "person" ship spawns. (@Saugia)
@@ -89,7 +89,7 @@ Version 0.10.9
       * References to phrases and other substitutions will now be expanded in custom substitutions, and NPC and gift ship names. (@UnorderedSigh)
       * Added fleet formations. (@petervdmeer)
       * Outfits can now specify custom scan sounds. (@TomGoodIdea)
-      * Added "<model>" text replacement for model name of the flagship. (@TomGoodIdea)
+      * Added a "<model>" text replacement for model name of the flagship. (@TomGoodIdea)
       * Made ships snap to formation. (@tibetiroka)
       * Added a "Hold Fire" command for escort ships. (@Hurleveur)
     * Mechanics changes:
