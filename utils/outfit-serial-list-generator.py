@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# check_content_style.py
+# outfit-serial-list-generator.py
 # Copyright (c) 2024 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
