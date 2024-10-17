@@ -155,6 +155,8 @@ outfit "Electronic Warfare System"
 
 outfit "Dragonflame Cannon"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Sheragi"
+	index 20
 	cost 150000000
 	thumbnail "outfit/dragonflame"
 	"mass" 156
@@ -308,6 +310,8 @@ effect "pwave impact"
 
 outfit "Shard Fabricator"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Sheragi"
+	index 10
 	cost 330000
 	thumbnail "outfit/shard"
 	"mass" 10

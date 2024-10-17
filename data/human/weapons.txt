@@ -783,6 +783,8 @@ effect "plasma explosion"
 
 outfit "Flamethrower"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 160
 	cost 190000
 	thumbnail "outfit/flamethrower"
 	"mass" 9
@@ -867,6 +869,8 @@ outfit "Meteor Missile Box"
 
 outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 50
 	cost 15000
 	thumbnail "outfit/meteor launcher"
 	"mass" 8
@@ -903,6 +907,8 @@ outfit "Meteor Missile Launcher"
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 40
 	cost 5000
 	thumbnail "outfit/meteor pod"
 	"mass" 1
@@ -968,6 +974,8 @@ outfit "Sidewinder Missile Rack"
 
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 70
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
 	"mass" 11
@@ -1005,6 +1013,8 @@ outfit "Sidewinder Missile Launcher"
 
 outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 60
 	cost 20000
 	thumbnail "outfit/sidewinder pod"
 	"mass" 2
@@ -1072,6 +1082,8 @@ outfit "Javelin Storage Crate"
 
 outfit "Javelin Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 20
 	cost 20000
 	thumbnail "outfit/javelin pod"
 	"mass" 4
@@ -1100,6 +1112,8 @@ outfit "Javelin Pod"
 
 outfit "Javelin Mini Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 10
 	cost 5000
 	thumbnail "outfit/javelin mini pod"
 	"mass" 1
@@ -1131,6 +1145,8 @@ outfit "Javelin Mini Pod"
 
 outfit "Javelin Turret"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 30
 	cost 110000
 	thumbnail "outfit/javelin turret"
 	"mass" 15
@@ -1182,6 +1198,8 @@ outfit "Torpedo Storage Rack"
 
 outfit "Torpedo Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 110
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
 	"mass" 18
@@ -1218,6 +1236,8 @@ outfit "Torpedo Launcher"
 
 outfit "Torpedo Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 100
 	cost 30000
 	thumbnail "outfit/torpedopod"
 	"mass" 5
@@ -1283,6 +1303,8 @@ outfit "Typhoon Storage Tube"
 
 outfit "Typhoon Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 130
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
 	"mass" 25
@@ -1319,6 +1341,8 @@ outfit "Typhoon Launcher"
 
 outfit "Typhoon Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 120
 	cost 100000
 	thumbnail "outfit/typhoonpod"
 	"mass" 6
@@ -1383,6 +1407,8 @@ outfit "Heavy Rocket Rack"
 
 outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 90
 	cost 40000
 	thumbnail "outfit/rocket launcher"
 	"mass" 15
@@ -1416,6 +1442,8 @@ outfit "Heavy Rocket Launcher"
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 80
 	cost 15000
 	thumbnail "outfit/rocket pod"
 	"mass" 3
@@ -1465,6 +1493,8 @@ effect "heavy rocket hit"
 
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 170
 	cost 1000000
 	thumbnail "outfit/nuke"
 	"mass" 10
@@ -1559,6 +1589,8 @@ outfit "Bullet Boxes"
 
 outfit "Gatling Gun"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 140
 	cost 20000
 	thumbnail "outfit/gat"
 	"mass" 2
@@ -1587,6 +1619,8 @@ outfit "Gatling Gun"
 
 outfit "Gatling Turret"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Human"
+	index 150
 	cost 120000
 	thumbnail "outfit/gat turret"
 	"mass" 11

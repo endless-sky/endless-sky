@@ -228,6 +228,8 @@ effect "wanderer anti-missile"
 
 outfit "Thunderhead Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 450000

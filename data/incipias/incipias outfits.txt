@@ -96,6 +96,8 @@ effect "stagnation beam impact"
 
 outfit "Star Tail"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Incipias"
+	index 10
 	cost 320000
 	mass 48
 	"outfit space" -50

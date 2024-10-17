@@ -86,6 +86,8 @@ effect "bombardment impact"
 
 outfit "Finisher Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Coalition"
+	index 10
 	licenses
 		Heliarch
 	cost 1370000
@@ -123,6 +125,8 @@ outfit "Finisher Pod"
 
 outfit "Finisher Maegrolain"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Coalition"
+	index 20
 	licenses
 		Heliarch
 	cost 7260000

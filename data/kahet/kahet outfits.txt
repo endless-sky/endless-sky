@@ -238,6 +238,8 @@ outfit "Annihilator Projectile"
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Ka'het"
+	index 10
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
 	"mass" 18
@@ -282,6 +284,8 @@ outfit "Ka'het EMP Deployer"
 
 outfit "Ka'het Emergency Deployer"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Ka'het"
+	index 20
 	cost 645000
 	thumbnail "outfit/ka'het mhd deployer"
 	"mass" 13

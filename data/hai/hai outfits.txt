@@ -240,6 +240,8 @@ outfit "Railgun Slug Rack"
 outfit "Railgun"
 	"display name" "Skipper Railgun"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Hai"
+	index 20
 	cost 20000
 	thumbnail "outfit/railgun"
 	"mass" 1
@@ -316,6 +318,8 @@ outfit "Tracker Storage Pod"
 
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Hai"
+	index 10
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
 	"mass" 8

@@ -247,6 +247,8 @@ outfit "EMP Torpedo Storage Bay"
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Remnant"
+	index 10
 	licenses
 		Remnant
 	cost 583000
@@ -320,6 +322,8 @@ outfit "Teciimach Canister Rack"
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Remnant"
+	index 30
 	licenses
 		Remnant
 	cost 1525000
@@ -370,6 +374,8 @@ outfit "Teciimach Bay"
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Remnant"
+	index 20
 	licenses
 		Remnant
 	cost 762500
@@ -454,6 +460,8 @@ effect "emp spark"
 
 outfit "Ember Tear"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Remnant"
+	index 40
 	licenses
 		"Remnant Capital"
 	cost 270000000

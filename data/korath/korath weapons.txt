@@ -427,6 +427,8 @@ outfit "Piercer Missile Rack"
 
 outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Korath"
+	index 30
 	cost 593000
 	thumbnail "outfit/piercer launcher"
 	"mass" 18
@@ -581,6 +583,8 @@ outfit "Cluster Mine Rack"
 
 outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Korath"
+	index 40
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
 	"mass" 36
@@ -841,6 +845,8 @@ effect "korath digger hit"
 
 outfit "Langrage Hyper-Heaver"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Korath"
+	index 50
 	cost 3450000
 	thumbnail "outfit/korath heaver"
 	"mass" 46
@@ -953,6 +959,8 @@ outfit "Firelight Missile"
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Korath"
+	index 10
 	cost 1937000
 	thumbnail "outfit/firelight bank"
 	"mass" 22
@@ -1102,6 +1110,8 @@ outfit "Firestorm Torpedo Rack"
 outfit "Firestorm Battery"
 	plural "Firestorm Batteries"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Korath"
+	index 20
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
 	"mass" 35

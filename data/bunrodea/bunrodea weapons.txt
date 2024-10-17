@@ -197,6 +197,8 @@ outfit "Swarm Missile"
 
 outfit "Swarm Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Bunrodea"
+	index 10
 	cost 363000
 	thumbnail "outfit/swarm pod"
 	"mass" 5

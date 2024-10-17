@@ -327,6 +327,8 @@ effect "overcharged pulse laser impact"
 
 outfit `"Sjeja" Kinetic Lance`
 	category "Secondary Weapons"
+	series "Secondary Weapons: Successors"
+	index 10
 	cost 3500000
 	licenses
 		"High Houses"
