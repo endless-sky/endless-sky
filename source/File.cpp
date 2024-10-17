@@ -21,7 +21,7 @@ using namespace std;
 
 
 
-File::File(const string &path, bool write)
+File::File(const filesystem::path &path, bool write)
 {
 	file = Files::Open(path, write);
 }
