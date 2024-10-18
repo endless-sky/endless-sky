@@ -4,7 +4,7 @@
 
 Most of the current development work is done on Ubuntu Linux. Building the code on any Linux variant should be relatively straightforward. Building it on Windows or Mac OS X is a bit more complicated.
 
-**You can get a copy of the code by either using `git clone`, or using the repo's green "Download" button to obtain a [.ZIP archive](https://github.com/endless-sky/endless-sky/archive/master.zip).** The game's root directory, where your unzipped/newly cloned files reside, will be your starting point for compiling the game.
+**You can get a copy of the code either using "git clone," or using the repo's download button to obtain a [.ZIP archive](https://github.com/endless-sky/endless-sky/archive/master.zip).** The game's root directory, where your unzipped/`git clone`d files reside, will be your starting point for compiling the game.
 
 How you build Endless Sky will then depend on your operating system:
 

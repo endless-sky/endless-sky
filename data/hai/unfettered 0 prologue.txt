@@ -391,7 +391,7 @@ mission "Unfettered Jump Drive Trading"
 					to display
 						not "unfettered: uninterested in weapons"
 					goto uninterested
-				`	"I'm not really interested in this anymore. I'm leaving."`
+				`	"I don't really want to do this right now."`
 			action
 				clear "unfettered: uninterested in weapons"
 				"unfettered: jd to sell" ++
