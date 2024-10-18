@@ -158,6 +158,7 @@ target_sources(EndlessSkyLib PRIVATE
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
 	JumpTypes.h
+	LimitedEvents.h
 	Logger.cpp
 	Logger.h
 	LineShader.cpp
@@ -298,6 +299,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
+	SpawnedFleet.cpp
+	SpawnedFleet.h
 	SpriteShader.cpp
 	SpriteShader.h
 	StarField.cpp

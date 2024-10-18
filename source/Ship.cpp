@@ -3768,6 +3768,27 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
+std::shared_ptr<SpawnedFleet> Ship::GetSpawnedFleet()
+{
+	return spawnedFleet;
+}
+
+
+
+std::shared_ptr<const SpawnedFleet> Ship::GetSpawnedFleet() const
+{
+	return spawnedFleet;
+}
+
+
+
+void Ship::SetSpawnedFleet(std::shared_ptr<SpawnedFleet> fleet)
+{
+	spawnedFleet = fleet;
+}
+
+
+
 int Ship::GetLingerSteps() const
 {
 	return lingerSteps;
