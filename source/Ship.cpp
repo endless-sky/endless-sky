@@ -1937,7 +1937,7 @@ int Ship::Scan(const PlayerInfo &player)
 			for(const auto &sound : sounds)
 				Audio::Play(sound.first, position);
 	};
-	if(isYours || (target->isYours))
+	if(isYours || (target->isYours && !attributes.Get("silent scans")))
 	{
 		if(activeScanning & ShipEvent::SCAN_CARGO)
 			playScanSounds(attributes.CargoScanSounds(), position);
