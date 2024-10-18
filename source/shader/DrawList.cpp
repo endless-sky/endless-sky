@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DrawList.h"
 
-#include "Body.h"
-#include "Preferences.h"
-#include "Screen.h"
-#include "image/Sprite.h"
+#include "../Body.h"
+#include "../Preferences.h"
+#include "../Screen.h"
+#include "../image/Sprite.h"
 #include "SpriteShader.h"
 
 #include <cmath>

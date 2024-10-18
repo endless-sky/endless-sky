@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ScrollBar.h"
 
-#include "LineShader.h"
-#include "PointerShader.h"
+#include "shader/LineShader.h"
+#include "shader/PointerShader.h"
 
 #include <algorithm>
 
