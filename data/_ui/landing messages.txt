@@ -104,3 +104,11 @@
 	"planet/browndwarf-t-rogue"
 	"planet/browndwarf-y"
 	"planet/browndwarf-y-rogue"
+
+"landing message" "You cannot land on a nova!"
+	"star/nova-small"
+	"star/nova"
+	"star/nova-old"
+	"star/nova-core"
+	"star/nova-old-core"
+	"star/wr"
