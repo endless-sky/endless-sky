@@ -150,7 +150,7 @@ void GameAction::LoadSingle(const DataNode &child)
 
 	if(key == "log")
 	{
-		if(child.Token(1) == "clear" && child.Size() >= 3)
+		if(child.Size() >= 3 && child.Token(1) == "clear")
 		{
 			auto &type = specialLogClear[child.Token(2)];
 			if(child.Size() > 3)
