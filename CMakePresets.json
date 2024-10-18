@@ -54,7 +54,8 @@
         "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
         "ES_USE_VCPKG": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF",
-        "BUILD_TESTING": "OFF"
+        "BUILD_TESTING": "OFF",
+        "ES_ENABLE_WAYLAND": "OFF"
       },
       "condition": {
         "type": "equals",
