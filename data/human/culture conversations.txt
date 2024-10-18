@@ -796,28 +796,28 @@ mission "Republic 300 Years Anniversary"
 	landing
 	source
 		government "Republic"
-		attributes "spaceport"
+		not attributes "uninhabited"
 	to offer
 		year == 3030
 	on offer
 		conversation
-			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport, in something of a celebration as they tune in to the main news stations, websites and blogs throughout human space that are commenting on this momentous day. Just as well, however, you notice many passersby moving about with an air of disdain for the activities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
+			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport in something of a celebration as they tune in to the main news stations, websites and blogs throughout human space that are commenting on this momentous day. Just as well, however, you notice many passersby moving about with an air of disdain for the activities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
 			`	Originally formed by Earth and planets close to it, the Rim, and a few Dirt Belt worlds, the Republic went on to gradually expand, incorporating the Syndicate, Paradise Worlds, and the Deep. For three hundred years now, most of humanity has existed under its flag, and through protests and the space renaissance, waves of colonization, expansion, and battles against remnants of the Alphas, that flag remains flying over most human worlds today.`
 			branch "war over"
 				has "main plot completed"
 			`	Not all is well, of course, as the bombing of Geminus and Martini appears to have set the Republic on the precipice of war with the Free Worlds, on the southern portion of human space, and you can't help but feel that the cheerfulness in the spaceport celebration has more to do with the national holiday, than with a deep-rooted appreciation for the Republic's history, and what it stands for.`
 				goto end
 			label "war over"
-			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear conflict loomed closer as the conflict escalated. Alas, the indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
+			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear conflict loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
 			branch "zenith bombed"
 				has "Wanderers: Sestor: Return to Wanderers: done"
 			branch "sestor beaten at farpoint"
 				has "Wanderers: Sestor Alt: Return to Wanderers: done"
 			label end
-			`	You decide to take an hour or two to join in on the festivities, it's not everyone who can claim to have witnessed a centenary anniversary of a nation, after all. Stepping off the <ship>, you head to the spaceport, having a couple of drinks, speaking to some of the locals, and partying with a few revelers. Once it's getting late, you head back to your ship, and reflect on the meaning of this day throughout human space.`
+			`	You decide to take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, having a couple of drinks, speaking to some of the locals, and partying with a few revelers. Once it's getting late, you head back to your ship, and reflect on the meaning of this day throughout human space.`
 				decline
 			label "zenith bombed"
-			`	Dimming the mood of the otherwise mostly positive news titles, are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and by extension the Republic's - ability of keeping humanity safe seems to have been affected significantly...`
+			`	Dimming the mood of the otherwise mostly positive news titles are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and by extension the Republic's - ability of keeping humanity safe seems to have been affected significantly...`
 				goto end
 			label "sestor beaten at farpoint"
 			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
