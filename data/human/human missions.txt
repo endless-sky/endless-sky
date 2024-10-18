@@ -3936,7 +3936,7 @@ mission "Human to Hai Space"
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
 				decline
 			label haistart
-			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then says, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Benjamin arranged for a merchant to bring him on the way."`
+			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then says, "We heard about your travel agency, even went there at some point when we were thinking of going to human space. It ended up being a touch too expensive, though, so Benjamin arranged for a merchant to bring him on the way."`
 			`	"Funny we almost found each other then," he adds with a smile on his face.`
 			`	"And now look at you, a starship captain! Honest work always bears fruits," his mother Taepip tells you, before looking back at her son. "That's what we always told him."`
 			`	She softly places her hand on her son's shoulder before continuing, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
@@ -3944,7 +3944,7 @@ mission "Human to Hai Space"
 				`	"Sure."`
 				`	"Sorry, I have other pressing matters."`
 					goto end
-			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. Yeerto then tells you about the local news here.`
+			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. Yeerto then tells you about the local news here, and you catch up with what's happened on your home planet since you left.`
 			`	It begins to get dark, and after a final goodbye you head back to your ship.`
 
 
