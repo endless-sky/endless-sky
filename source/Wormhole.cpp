@@ -103,9 +103,9 @@ void Wormhole::Load(const DataNode &node)
 		else if(key == "display name")
 		{
 			if(remove)
-				name = "???";
+				displayName = "???";
 			else if(hasValue)
-				name = value;
+				displayName = value;
 			else
 				child.PrintTrace("Missing value for attribute:");
 		}
@@ -164,9 +164,9 @@ const Planet *Wormhole::GetPlanet() const
 
 
 
-const string &Wormhole::Name() const
+const string &Wormhole::DisplayName() const
 {
-	return name;
+	return displayName;
 }
 
 

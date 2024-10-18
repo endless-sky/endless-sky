@@ -379,7 +379,7 @@ string NPC::Validate(bool asTemplate) const
 		// A null system reference is allowed, since it will be set during
 		// instantiation if not given explicitly.
 		if(system && !system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 
 		// A planet is optional, but if given must be valid.
 		if(planet && !planet->IsValid())
