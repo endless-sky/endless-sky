@@ -21,6 +21,7 @@ mission "Remnant: Visit to Paradise 1"
 		government "Remnant"
 	destination "Caelian"
 	stopover "Vail"
+	passenger 1
 	to offer
 		has "event: remnant: cognizance calm"
 		or
