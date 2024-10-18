@@ -7494,7 +7494,7 @@ mission "Syndicate Business 3"
 				accept
 	on complete
 		conversation
-			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office near the galactic headquarters of Syndicated Systems.`
+			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office, which is close to the galactic headquarters of Syndicated Systems.`
 			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from just a few minutes to many hours.`
 			choice
 				`	(Take a seat in the lobby.)`
@@ -7551,7 +7551,7 @@ mission "Syndicate Business 4"
 	destination "Sunracer"
 	on offer
 		conversation
-			`You meet Howard at the spaceport. He's standing on a nearby landing pad by his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
+			`You meet Howard at the spaceport. He's standing on a nearby landing pad next to his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
 			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your ship ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his Shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
 				launch
 	npc accompany save
@@ -7747,7 +7747,7 @@ mission "Syndicate Business 5"
 			action
 				"syndicate business: mean to Howard" --
 				payment -25000
-			`	"That's generous of you, and I appreciate it."`
+			`	"That's generous of you, and I appreciate it.`
 				goto investmentopps
 			label cheapskate
 			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated.`
