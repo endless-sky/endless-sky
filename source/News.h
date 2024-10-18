@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DataNode;
-class Planet;
+class PlayerInfo;
 class Sprite;
 
 
@@ -36,8 +36,8 @@ public:
 
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;
-	// Check if this news item is available given the player's planet and conditions.
-	bool Matches(const Planet *planet, const ConditionsStore &conditions) const;
+	// Check if this news item is available to the given player.
+	bool AvailableTo(const PlayerInfo &player) const;
 
 	// Get the speaker's name.
 	std::string Name() const;

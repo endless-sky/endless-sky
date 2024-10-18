@@ -670,7 +670,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
 	if(!result.system && !location.IsEmpty())
-		result.system = location.PickSystem(origin);
+		result.system = location.PickSystem(origin, &player);
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
 	// If a planet was specified in the template, it must be in this system.
