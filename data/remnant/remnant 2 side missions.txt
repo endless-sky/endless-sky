@@ -520,7 +520,7 @@ mission "Remnant: Shattered Light 4"
 		fail "Remnant: Shattered Light 3"
 		conversation
 			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land within close proximity of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
-			`	"Ready for drop, Captain. Just get us along side the Shattered Light without too much forward velocity. We can handle the rest."`
+			`	"Ready for drop, Captain. Just get us alongside the Shattered Light without too much forward velocity. We can handle the rest."`
 			branch livingship
 				or
 					has "flagship model: Peregrine"
@@ -634,7 +634,7 @@ mission "Remnant: Shattered Light 6"
 			label shatteredhelp
 			`	"Thank you, Captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			`	Ruach's gestures take on a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
 
