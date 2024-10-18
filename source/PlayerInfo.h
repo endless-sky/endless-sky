@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLAYER_INFO_H_
-#define PLAYER_INFO_H_
+#pragma once
 
 #include "Account.h"
 #include "CargoHold.h"
@@ -259,6 +258,7 @@ public:
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
+	void AddPlayerSubstitutions(std::map<std::string, std::string> &subs) const;
 
 	// Get and set the "tribute" that the player receives from dominated planets.
 	bool SetTribute(const Planet *planet, int64_t payment);
@@ -307,6 +307,7 @@ public:
 	bool SelectShips(const Rectangle &box, bool hasShift);
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
+	void DeselectShip(const Ship *ship);
 	void SelectGroup(int group, bool hasShift);
 	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetGroup(int group);
@@ -471,7 +472,3 @@ private:
 
 	DataWriter *transactionSnapshot = nullptr;
 };
-
-
-
-#endif

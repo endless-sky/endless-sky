@@ -107,14 +107,13 @@ mission "Hunted"
 	to offer
 		"combat rating" > 8103
 		"armament deterrence" >= 2
-		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
 		or
 			and
 				not "Hunted: active"
-				"ship scale" < 32
-				random < 2 + "ship scale" / 4
+				"ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4 < 32
+				random < 8
 			and
-				"ship scale" >= 32 + "Hunted: active" * 4
+				"ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4 >= 32 + "Hunted: active" * 4
 				random < 10
 		or
 			not "chosen sides"
@@ -280,7 +279,7 @@ mission "Pookie, Part 2"
 			label response
 			`	"Thank heavens," she says. "She's all yours." She hands you the leash and a large bag that appears to be full of chew toys. "Here are her toys, her food, and her... outfits. Which she hates. Feed her twice a day, or she will go berserk. Do not feed her more than twice a day, or she will throw up..."`
 			`	As she continues rattling off instructions, you ask, "Wait, Pookie is the dog?"`
-			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut.`
+			`	"Short for 'Pocahontas,"' she explains. "Good luck, and I hope my sister pays you well." She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately squats against the landing strut.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but your escort carrying Pookie has not arrived! Better depart and wait for your escorts to arrive in this star system.`
@@ -883,7 +882,7 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
-		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
+		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
 
 
 
@@ -3572,9 +3571,8 @@ mission "Pirate Duel"
 	source
 		near "Tarazed" 1 5
 		government "Republic" "Free Worlds"
-	waypoint "Umbral"
+	mark "Umbral"
 	destination "Wayfarer"
-	
 	to offer
 		"combat rating" > 20
 		"combat rating" < 400
@@ -3631,18 +3629,64 @@ mission "Pirate Duel"
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
 	on enter "Umbral"
+		unmark "Umbral"
 		"reputation: Independent (Killable)" = -1000
 		conversation
+			branch "killed anglerfish"
+				has "anglerfish dead"
+			branch "disabled anglerfish"
+				has "anglerfish disabled"
+			branch "caught anglerfish"
+				has "anglerfish caught"
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
 			`	The Vanguard powers up its weapons.`
+				decline
+			label "killed anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was killed. You should head back to Wayfarer to see if you can claim some sort of reward.`
+				decline
+			label "disabled anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was on the ship you disabled. You should head back to make sure the Anglerfish has been fully destroyed.`
+				decline
+			label "caught anglerfish"
+			action
+				clear "anglerfish caught"
+			`As you enter Umbral, the Anglerfish follows behind you, and opens a hail.`
+			`	"Did you think that if you went to Umbral, I would switch to a smaller ship? Ha!"`
+			`	The Anglerfish once again powers up its weapons.`
+				decline
 	
 	npc kill
 		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
 			confusion 20
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
-		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
+		on provoke
+			unmark "Umbral"
+			"reputation: Independent (Killable)" = -1000
+			set "anglerfish caught"
+			conversation
+				`As soon as you open fire, the Anglerfish hails you.`
+				`	A voice you recognize as the "captain of the Esca" says, "How did you know that was me? Well, it doesn't matter, because I've paid off the militia. Get ready to die, small-fry."`
+				`	The Anglerfish powers up its weapons.`
+					decline
+		on disable
+			set "anglerfish disabled"
+		on kill
+			clear "anglerfish disabled"
+			set "anglerfish dead"
+			conversation
+				branch "orbiting tarazed"
+					has "flagship system: Tarazed"
+				branch "passed tarazed"
+					not "anglerfish caught"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should continue on to Wayfarer to see if you can claim some sort of reward for your effort.`
+					decline
+				label "passed tarazed"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should head back to Wayfarer to see if you can claim some sort of reward for your effort.`
+					decline
+				label "orbiting tarazed"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should land on Wayfarer to see if you can claim some sort of reward for your effort.`
 	
 	on complete
 		"reputation: Independent (Killable)" = 10
@@ -5730,7 +5774,7 @@ mission "Quicksilver Mixup 0"
 			`You're looking at some job listings when a man with a harried face approaches you, carrying a package.`
 			`	"Excuse me, Captain," he says. "I need this package delivered in the next four days. Details are on the package. I'll pay you <payment> once it's done." Without waiting for a response, he shoves the package into your hands and runs off to attend to whatever business has gotten him in such a hurry. The package is addressed to a location on <planet>.`
 			branch "can't make it in time"
-				has "hyperjumps to planet: Silver" > 3
+				"hyperjumps to planet: Silver" > 3
 			`	It's going to be close to his deadline, but it's possible.`
 				goto choice
 			label "can't make it in time"
@@ -5800,7 +5844,7 @@ mission "Quicksilver Mixup 1"
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???"`
-			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO!!!"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
@@ -5962,7 +6006,7 @@ mission "Argosy Hijacking"
 			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
 				decline
 	
-	npc save disable
+	npc disable save
 		personality launching daring uninterested target
 			confusion 80
 		government "Bounty (Disguised)"
@@ -6005,7 +6049,7 @@ mission "Argosy Hijacking"
 			`	He sighs and says, "Man, I don't have time for this. Tell me what actually happened."`
 			choice
 				`	"I blew it up, didn't you hear me?"`
-				`	"You ship got away. That's what happened."`
+				`	"Your ship got away. That's what happened."`
 			`	"If you're going to waste my time, get out of here." Before you can react, he storms off towards the Syndicated Security offices.`
 				decline
 
@@ -6040,7 +6084,7 @@ mission "Argosy Hijacking"
 			choice
 				`	"Well, yeah."`
 				`	"No, that's not what I meant."`
-			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
+			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, and I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
 			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
 				decline
 
@@ -6878,7 +6922,7 @@ mission "Hogshead's Dilemma"
 				`	What Asteroid`
 			action
 				event "hogshead poll" 7
-			`	After you made your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
+			`	After you make your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
 				decline
 
 event "hogshead poll"
@@ -6891,7 +6935,6 @@ mission "Hogshead's Dilemma II"
 		has "Hogshead's Dilemma: offered"
 		has "event: hogshead poll"
 	on offer
-		clear "hogshead poll"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
@@ -7251,7 +7294,7 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll to film the conditions in a secret Syndicate sweatshop.`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll film the conditions in a secret Syndicate sweatshop.`
 			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
 			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			choice

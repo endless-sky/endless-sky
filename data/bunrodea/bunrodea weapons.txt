@@ -177,7 +177,7 @@ outfit "Swarm Clip"
 	"outfit space" -10
 	"swarm capacity" 200
 	ammo "Swarm Missile"
-	description "Swarm Clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectable 200 missiles able to be swiftly loaded into a launcher after its current clip is empty."
+	description "Swarm Clips provide a sizable increase in ammo capacity for Swarm Pods, holding a respectable 200 missiles able to be swiftly loaded into a launcher after its current clip is empty."
 
 outfit "Swarm Missile"
 	category "Ammunition"
@@ -201,7 +201,7 @@ outfit "Swarm Pod"
 			"frame rate" .01
 		sound "swarm missile"
 		ammo "Swarm Missile"
-		icon "icon/meteor"
+		icon "icon/swarm"
 		"die effect" "missile death"
 		"hit effect" "particle impact"
 		"live effect" "swarm flare" 1000000

@@ -2308,7 +2308,8 @@ mission "Strike Breakers [large mining]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of mine workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < ( "passenger space" - 45 ) / 2
+		random < "passenger space" - 45
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2350,7 +2351,8 @@ mission "Strike Breakers [large textile]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of textile workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < ( "passenger space" - 45 ) / 2
+		random < "passenger space" - 45
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2392,7 +2394,8 @@ mission "Strike Breakers [large factory]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of factory workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < ( "passenger space" - 45 ) / 2
+		random < "passenger space" - 45
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -3313,7 +3316,7 @@ mission "Bounty Hunting (Small, Local)"
 
 mission "Bounty Hunting (Medium)"
 	name "Wanted pirate near <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3351,7 +3354,7 @@ mission "Bounty Hunting (Medium)"
 
 mission "Bounty Hunting (Medium, Local)"
 	name "Wanted pirate entering <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
