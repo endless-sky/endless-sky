@@ -116,8 +116,8 @@ namespace {
 
 	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() <
-			rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+		return lhs->Attributes().Get({PASSIVE, FUEL}) * lhs->Fuel() <
+			rhs->Attributes().Get({PASSIVE, FUEL}) * rhs->Fuel();
 	}
 
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -780,7 +780,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.Draw(hull);
 
 		string fuel = to_string(static_cast<int>(
-			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
+			ship.Attributes().Get({PASSIVE, FUEL}) * ship.Fuel()));
 		table.Draw(fuel);
 
 		// If this isn't the flagship, we'll remember how many crew it has, but
