@@ -19,9 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "GameData.h"
 
-#include <algorithm>
-
 using namespace std;
+
 
 
 RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
@@ -31,20 +30,30 @@ RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttract
 
 
 
-void RaidFleet::Load(vector<RaidFleet> &raidFleets, const DataNode &node, bool remove, int valueIndex)
+RaidFleet::RaidFleet() {}
+
+
+
+void RaidFleet::Load(const DataNode &node, const Fleet *fleet)
 {
-	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
-	if(remove)
-	{
-		auto fleetMatcher = [fleet](const RaidFleet &raidFleet) noexcept -> bool {
-			return raidFleet.GetFleet() == fleet;
-		};
-		raidFleets.erase(remove_if(raidFleets.begin(), raidFleets.end(), fleetMatcher), raidFleets.end());
-	}
-	else
-		raidFleets.emplace_back(fleet,
-			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
-			node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
+	this->fleet = fleet;
+	if(node.HasChildren())
+		for(const DataNode &child : node)
+		{
+			const string &key = child.Token(0);
+			if(child.Size() < 2)
+				child.PrintTrace("Error: Expected key to have a value:");
+			else if(key == "min attraction")
+				minAttraction = child.Value(1);
+			else if(key == "max attraction")
+				maxAttraction = child.Value(1);
+			else if(key == "fleet cap attraction")
+				capAttraction = child.Value(1);
+			else if(key == "fleet cap")
+				fleetCap = child.Value(1);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 }
 
 
@@ -66,4 +75,18 @@ double RaidFleet::MinAttraction() const
 double RaidFleet::MaxAttraction() const
 {
 	return maxAttraction;
+}
+
+
+
+double RaidFleet::CapAttraction() const
+{
+	return capAttraction ? capAttraction : maxAttraction;
+}
+
+
+
+double RaidFleet::FleetCap() const
+{
+	return fleetCap;
 }

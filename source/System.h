@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hazard.h"
 #include "Point.h"
-#include "RaidFleet.h"
 #include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
@@ -33,6 +32,8 @@ class Fleet;
 class Government;
 class Minable;
 class Planet;
+class Raiders;
+class RaidFleet;
 class Ship;
 class Sprite;
 
@@ -176,6 +177,7 @@ public:
 	int MinimumFleetPeriod() const;
 
 	const std::vector<RaidFleet> &RaidFleets() const;
+	const Raiders *GetRaiders() const;
 
 
 private:
@@ -249,7 +251,7 @@ private:
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
 
-	std::vector<RaidFleet> raidFleets;
+	const Raiders *raiders;
 	bool noRaids = false;
 
 	// The amount of additional distance that ships will arrive away from the
