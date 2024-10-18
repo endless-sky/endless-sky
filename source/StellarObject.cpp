@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "Ship.h"
 
 #include <algorithm>
 
@@ -151,6 +152,18 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+// Change the distances an object is visible from, based on ship attributes.
+void StellarObject::UpdateDistanceVisibility(const Ship *flagship)
+{
+	if(!flagship || !trueDistanceInvisible)
+		return;
+
+	distanceInvisible = trueDistanceInvisible;
+	distanceVisible = trueDistanceVisible;
 }
 
 
