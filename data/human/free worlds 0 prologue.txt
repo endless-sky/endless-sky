@@ -1685,6 +1685,10 @@ mission "FW Katya 4"
 	destination "Oblivion"
 	passengers 2
 	blocked `You need bunks for both Katya and Eyes in order to continue this mission.`
+	substitutions
+		"<dirt belt origin>" ""
+		"<dirt belt origin>" " like yourself,"
+			has "human space start"
 	to offer
 		has "FW Katya 3: done"
 	to fail
@@ -1695,7 +1699,7 @@ mission "FW Katya 4"
 		conversation
 			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
 			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "and then work our way toward the Rim."`
-			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native like yourself, from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
+			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native<dirt belt origin> from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
 			choice
 				`	"Was anyone killed?"`
 				`	"How did you escape?"`
