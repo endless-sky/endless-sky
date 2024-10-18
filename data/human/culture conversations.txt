@@ -801,7 +801,7 @@ mission "Republic 300 Years Anniversary"
 		year == 3030
 	on offer
 		conversation
-			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport in something of a celebration as they tune in to the main news stations, websites and blogs throughout human space that are commenting on this momentous day. Just as well, however, you notice many passersby moving about with an air of disdain for the activities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
+			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport in something of a celebration as they tune in to the main news stations, websites and blogs throughout human space that are commenting on this momentous day. However, you notice many passersby moving about with an air of disdain for the festivities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
 			`	Originally formed by Earth and planets close to it, the Rim, and a few Dirt Belt worlds, the Republic went on to gradually expand, incorporating the Syndicate, Paradise Worlds, and the Deep. For three hundred years now, most of humanity has existed under its flag, and through protests and the space renaissance, waves of colonization, expansion, and battles against remnants of the Alphas, that flag remains flying over most human worlds today.`
 			branch "war over"
 				has "main plot completed"
