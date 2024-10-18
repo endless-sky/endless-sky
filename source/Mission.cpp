@@ -253,6 +253,13 @@ void Mission::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(child.Token(0) == "landmark" && child.Size() > 1 && child.HasChildren())
+		{
+			if(child.Token(1) == "source")
+				child.PrintTrace("Error: 'source' is a reserved name and may not refer to a user-defined landmark.");
+			else
+				landmarks[child.Token(1)].Load(child);
+		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
 		{
 			source = GameData::Planets().Get(child.Token(1));
@@ -1294,12 +1301,29 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.sourceShip = boardingShip.get();
 	result.repeat = repeat;
 	result.name = name;
+
+	const System *const sourceSystem = player.GetSystem();
+	// Instantiate the landmarks.
+	const Planet *sourcePlanet = player.GetPlanet();
+	if(sourcePlanet)
+		result.landmarkPlanets["source"] = sourcePlanet;
+	for(auto &it : landmarks)
+	{
+		const System *landmarkSystem = it.second.PickSystem(sourceSystem);
+		const Planet *landmarkPlanet = it.second.PickPlanet(sourceSystem);
+
+		if(landmarkSystem)
+			result.landmarkSystems[it.first] = landmarkSystem;
+		if(landmarkPlanet)
+			result.landmarkPlanets[it.first] = landmarkPlanet;
+	}
+
 	result.waypoints = waypoints;
 	result.markedSystems = markedSystems;
 	// Handle waypoint systems that are chosen randomly.
-	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
 	{
+		filter.ConfigureLandmarks(result.landmarkSystems, result.landmarkPlanets);
 		const System *system = filter.PickSystem(sourceSystem);
 		if(!system)
 			return result;
@@ -1321,6 +1345,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const LocationFilter &filter : stopoverFilters)
 	{
+		filter.ConfigureLandmarks(result.landmarkSystems, result.landmarkPlanets);
 		// Unlike destinations, we can allow stopovers on planets that don't have a spaceport.
 		const Planet *planet = filter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty(), false);
 		if(!planet)
@@ -1335,6 +1360,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
+		destinationFilter.ConfigureLandmarks(result.landmarkSystems, result.landmarkPlanets);
 		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
@@ -1496,7 +1522,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(),
+				jumps, payload, result.landmarkSystems, result.landmarkPlanets));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
