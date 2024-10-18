@@ -120,7 +120,7 @@ def iterate_singular(name, s):
 	return s
 
 f = open("series.txt", "w")
-data = 'category "series":\n'
+data = 'category "series"\n'
 for category in categories:
 	data += "\t"
 	data += ("# " + category + "\n") # Add comment tags
