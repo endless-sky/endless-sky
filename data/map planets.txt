@@ -240,6 +240,12 @@ planet "Arachne Station"
 		threshold 3000
 		fleet "Large Militia" 14
 
+planet Arcadia
+	attributes "near earth" uninhabited
+	landscape land/canyon02
+	description `A system of considerable interest for many years, the prospect of a human colony in Tau Ceti began when, in 2083, astronomers on Earth discovered what they believed to be oxygen - and presumably, life - on Arcadia. Following the model of the Alpha Centauri generation fleet, a similar fleet was commissioned to colonize Tau Ceti.`
+	description `	When the fleet arrived in the mid-2100s the planet was found to be totally uninhabitable, the oxygen having merely been the byproduct of extraneous chemical processes. With no way home, communications between Earth and the fleet broke down after an apparent internal conflict among the colonists. After humanity returned to Arcadia with hyperdrive-equipped ships in the 2200s, all that remained were the husks of the generation ships on the planet's surface.`
+
 planet "Aresepru Nat"
 	attributes korath
 	landscape land/sea0
@@ -916,7 +922,7 @@ planet Darkcloak
 
 planet Darkmetal
 	attributes hai "hai tourism" mining
-	landscape land/canyon02
+	landscape land/badlands14
 	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a concrete-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
 	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
 	security 0.2
@@ -2215,6 +2221,13 @@ planet Hestia
 		threshold 8500
 		fleet "Large Republic" 18
 
+planet Hevring
+	attributes moon paradise uninhabited
+	landscape land/moon2
+	description `A moon of the gas giant Aegir, Hevring was once an extrasolar mining colony from a corporation of old Earth, established in the first hyperdrive-fueled expansion of humanity amongst the stars.`
+	description `	A century after its founding, a transport ship operating a routine resupply mission to Hevring discovered that a privateer had crashed into the colony's spacedock, preventing the miners from contacting the rest of human space. More oddly, there was no trace of the privateer crew or of the colonists, nor any sign that another ship had extracted them from the moon.`
+	description `	After the "Hevring incident" it was widely speculated that the Quarg had caused the disappearance of the colony, though no substantive evidence proving this has ever surfaced.`
+
 planet Hippocrates
 	attributes core frontier research
 	landscape land/water11-harro
@@ -2689,7 +2702,7 @@ planet "Kraken Station"
 	landscape land/station49
 	music ambient/machinery
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains.`
-	description `	Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
+	description `	Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery and trading outpost for its entire lifetime.`
 	spaceport `The main ring of the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones.`
 	spaceport `	For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
 	security 0.3
