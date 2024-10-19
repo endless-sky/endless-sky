@@ -2762,7 +2762,7 @@ void Engine::CreateStatusOverlays()
 
 
 void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting,
-	int type, double cloak)
+	Status::Type type, double cloak)
 {
 	if(overlaySetting == Preferences::OverlayState::OFF)
 		return;

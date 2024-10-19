@@ -194,7 +194,7 @@ private:
 
 	void CreateStatusOverlays();
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
-		int value, double cloak);
+		Status::Type type, double cloak);
 
 
 private:
