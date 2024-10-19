@@ -21,7 +21,7 @@ Version 0.10.10
     * Engine bugs:
       * The conversation panel will no longer close immediately when the player dies. (@TomGoodIdea)
       * Added required precision specifiers to LineShader GLSL code. (@Koranir, @thewierdnut)
-      * Corrected expected syntax desription in the error message for incorrect conversation text child nodes. (@warp-core)
+      * Corrected expected syntax description in the error message for incorrect conversation text child nodes. (@warp-core)
       * Cargo dumped from docked carriable ships is now properly converted into flotsam instead of being lost. (@warp-core)
       * "Mute" ships, or ships from governments with languages the player does not know will no longer send the "appeasement" message. (@warp-core)
   * Game content:
