@@ -467,6 +467,7 @@ void Audio::Step()
 				alSourcePlay(source.ID());
 		}
 		shouldResume = false;
+		shouldPause = false;
 	}
 	else if(shouldPause)
 	{
