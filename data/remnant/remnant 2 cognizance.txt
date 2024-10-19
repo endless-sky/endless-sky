@@ -416,7 +416,7 @@ mission "Remnant: Cognizance 10"
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>.`
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring them back to <origin>.`
 	on stopover
 		dialog
 			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
@@ -657,7 +657,7 @@ mission "Remnant: Cognizance 18"
 		event "remnant: pantica void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
-			`Moments later a ping comes in on the commlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
+			`Moments later a ping comes in on the commlink, and Prefect Chilia and Plume appear on screen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
 			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
 
 
@@ -805,7 +805,7 @@ mission "Remnant: Cognizance 21"
 				`	"Your ancestors were originally a scientific conference?"`
 				`	"Thanks for the background. So, what is our mission?"`
 					goto missiontransition
-			`	Several of the Remnant nod, and another signs. "They gathered together to talk of their science, and each brought with them the captains and crew who enabled them. Some of those captains brought with them resources, too. Who else would appreciate learning of the void as much as those who ply their trades across it?`
+			`	Several of the Remnant nod, and another signs, "They gathered together to talk of their science, and each brought with them the captains and crew who enabled them. Some of those captains brought with them resources, too. Who else would appreciate learning of the void as much as those who ply their trades across it?`
 			`	"The association grew over time, although as best we can tell from our records it made an effort to remain both politically and economically neutral. As such, it remained comparatively small and close-knit. Many of our ancestors have told stories about calling themselves the 'Exploration Vector,' alluding to the fact that they were the one subset of humanity on a course to head out into the furthest reaches of space. They even held contests about who could go the furthest from inhabited space, or who could spend the longest time between resupply stops.`
 			`	"When the war against the Alphas started, it was these people who had the most knowledge and experience with the farthest reaches of space. While many outfitters might sell a captain a map showing the hyperjumps a few systems into the uninhabited territories, it was our ancestors who had spent years living in those systems while they did their research. Thus they were the ones who got the jobs running supplies, or flying reconnaissance. They saw first-hand the way the war was going. They made the rendezvous and picked up the equipment drops, and they grew increasingly worried."`
 			choice
@@ -841,7 +841,7 @@ mission "Remnant: Cognizance 21"
 				"exploration interest" ++
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
 			`	The first few corridors are marked with labels indicating the direction that other explorers traveled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
-			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
+			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours of exploring you head back to the main area.`
 				goto wrapup
 			label scienceassistant
 			action
@@ -1347,7 +1347,7 @@ mission "Remnant: Cognizance 30"
 			label notthirsty
 			`	Torza quickly continues his rounds, and soon everyone is sipping on a drink. Several have pulled up displays of Ssil Vida, while others are chatting as they go over inventory lists. Most of the conversation that you catch sounds like a group of technicians prepping for a mission.`
 			label powerbriefing
-			`	After a few minutes Torza gestures for everyone to pay attention. "Now, to review the parameters: <planet> appears to be a giant mechanism for doing something we do not yet know. The core systems have exhausted the capacity of its large fusion reactor to supply it. The installation of the Aeon Cell has reduced the strain on the system, but cannot fully power the station. You need to focus on the power systems, and figure out how to fully stabilize the distribution. While you are doing that, <first> will be returning to Viminal for the next step in this operation. You will all be staying on <planet> for at least a few months, maybe longer as the situation warrants. Agreed?" Around the room there are a variety of nods and gestures of affirmation.`
+			`	After a few minutes Torza gestures for everyone to pay attention. "Now, to review the parameters: <planet> appears to be a giant mechanism for doing something we do not yet know. The core systems have exhausted the capacity of the large fusion reactor to supply them. The installation of the Aeon Cell has reduced the strain on the system, but it cannot fully power the station. You need to focus on the power systems, and figure out how to fully stabilize the distribution. While you are doing that, <first> will be returning to Viminal for the next step in this operation. You will all be staying on <planet> for at least a few months, maybe longer, as the situation warrants. Agreed?" Around the room there are a variety of nods and gestures of affirmation.`
 			`	Torza makes a gesture of respect. "Embers sharpen your sight, friends."`
 				accept
 	on complete
