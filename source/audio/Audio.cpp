@@ -457,18 +457,6 @@ void Audio::Step()
 			alSourcePlay(musicSource);
 	}
 
-	if(shouldPause && !shouldResume)
-	{
-		ALint state;
-		for(const Source &source : sources)
-		{
-			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-			if(state == AL_PLAYING)
-				alSourcePause(source.ID());
-		}
-		shouldPause = false;
-	}
-
 	if(shouldResume)
 	{
 		ALint state;
@@ -479,6 +467,17 @@ void Audio::Step()
 				alSourcePlay(source.ID());
 		}
 		shouldResume = false;
+	}
+	else if(shouldPause)
+	{
+		ALint state;
+		for(const Source &source : sources)
+		{
+			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+			if(state == AL_PLAYING)
+				alSourcePause(source.ID());
+		}
+		shouldPause = false;
 	}
 }
 
