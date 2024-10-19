@@ -501,9 +501,11 @@ mission "Remnant: Shattered Light 3"
 		conversation
 			action
 				set "remnant: scanned specter"
-				fail
 			`As the scan results arrive the data is relayed down to the team in the cargo hold. Your video feed shows a large hologram of the system floating in midair above one of the pallets. Nearby, terminals flash rolling readouts and analyses. As the data on the spectral ship solidifies, cones of projected courses appear on the display. Line by line the cone tightens in as additional data flows from your telemetry, closing in on a path intersecting with the nearby world.`
 			`	While the system continues to refine the orbital paths, the team seemed disinclined to wait: Ruach activates her commlink, broadcasting quickly to you. "It is on a crash course for Far Monad!" she exclaims. "Quick, land there!" Behind her, you can see her team scrambling to move equipment around near your cargo door and seal their spacesuits.`
+	to fail
+		has "remnant: scanned specter"
+		has "flagship planet: Far Monad"
 	to complete
 		never
 
