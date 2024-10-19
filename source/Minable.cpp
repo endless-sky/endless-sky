@@ -59,6 +59,21 @@ Minable::Payload::Payload(const DataNode &node)
 
 
 
+Minable::LiveEffect::LiveEffect(const DataNode &node)
+{
+	interval = (node.Size() == 2 ? 1 : node.Value(2));
+	effect = GameData::Effects().Get(node.Token(1));
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "relative to system center")
+			relativeToSystem = true;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
 // Load a definition of a minable object.
 void Minable::Load(const DataNode &node)
 {
@@ -87,6 +102,8 @@ void Minable::Load(const DataNode &node)
 			randomHull = max(0., child.Value(1));
 		else if(key == "payload")
 			payload.emplace_back(child);
+		else if(key == "live effect")
+			liveEffects.emplace_back(child);
 		else if(key == "explode")
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -233,6 +250,10 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		return false;
 	}
+
+	for(const auto &it : liveEffects)
+		if(!Random::Int(it.interval))
+			visuals.emplace_back(*it.effect, position, velocity, it.relativeToSystem ? Angle{position} : angle);
 
 	// Spin the object.
 	angle += spin;

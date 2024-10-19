@@ -51,6 +51,18 @@ public:
 		double toughness = 1.;
 	};
 
+	class LiveEffect {
+	public:
+		LiveEffect(const DataNode &node);
+
+		const Effect *effect;
+		// Average interval between instances of the effect, in frames.
+		unsigned interval = 1;
+		// If set to true, the effect behaves like a comet tail,
+		// always facing away from the system center.
+		bool relativeToSystem = false;
+	};
+
 
 public:
 	// Inherited from Body:
@@ -126,6 +138,7 @@ private:
 	double prospecting = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
+	std::vector<LiveEffect> liveEffects;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
