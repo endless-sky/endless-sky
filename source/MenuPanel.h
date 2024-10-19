@@ -31,7 +31,8 @@ class UI;
 // credits and basic information on the currently loaded player.
 class MenuPanel : public Panel {
 public:
-	MenuPanel(PlayerInfo &player, UI &gamePanels);
+	MenuPanel(PlayerInfo &player, UI &gamePanels, bool pauseAudio = true);
+	~MenuPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;
