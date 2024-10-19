@@ -487,6 +487,11 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	button a "_Audio"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	visible if "multiple controls pages"
 	sprite "ui/dialog cancel"
 		center -115 210
@@ -517,6 +522,11 @@ interface "settings"
 		color bright
 	button p "_Plugins"
 		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	button a "_Audio"
+		center -300 -110
 		dimensions 90 30
 		color medium
 		hover bright
@@ -554,6 +564,11 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	button a "_Audio"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
@@ -574,6 +589,127 @@ interface "plugins"
 		from -250 -216 to -10 184
 	box "plugin description"
 		from 250 -244 to 10 184
+
+
+
+interface "audio"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	button a "_Audio"
+		center -300 -110
+		dimensions 90 30
+		color bright
+	label "Master"
+		center -125 -228
+		color bright
+	bar "master volume"
+		from -240 -208
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "master volume box"
+		from -265 -220
+		dimensions 270 25
+	label "Music"
+		center -125 -168
+		color bright
+	bar "music volume"
+		from -240 -148
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "music volume box"
+		from -265 -160
+		dimensions 270 25
+	label "UI"
+		center -125 -108
+		color bright
+	bar "ui volume"
+		from -240 -88
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "ui volume box"
+		from -265 -100
+		dimensions 270 25
+	label "Weapons"
+		center -125 -48
+		color bright
+	bar "weapon volume"
+		from -240 -28
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "weapon volume box"
+		from -265 -40
+		dimensions 270 25
+	label "Engines"
+		center -125 12
+		color bright
+	bar "engine volume"
+		from -240 32
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "engine volume box"
+		from -265 20
+		dimensions 270 25
+	label "Hyperdrives"
+		center -125 72
+		color bright
+	bar "jump volume"
+		from -240 92
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "jump volume box"
+		from -265 80
+		dimensions 270 25
+	label "Explosions"
+		center -125 132
+		color bright
+	bar "explosion volume"
+		from -240 152
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "explosion volume box"
+		from -265 140
+		dimensions 270 25
+	label "Environment"
+		center 135 -228
+		color bright
+	bar "environment volume"
+		from 20 -208
+		dimensions 220 0
+		color "energy"
+		size 2
+		reversed
+	box "environment volume box"
+		from -5 -220
+		dimensions 270 25
 
 
 

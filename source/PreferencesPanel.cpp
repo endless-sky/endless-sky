@@ -86,6 +86,18 @@ namespace {
 	const int SETTINGS_PAGE_COUNT = 2;
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+
+	const map<string, SoundCategory> volume_bars = {
+			{"volume", SoundCategory::MASTER},
+			{"master volume", SoundCategory::MASTER},
+			{"music volume", SoundCategory::MUSIC},
+			{"ui volume", SoundCategory::UI},
+			{"weapon volume", SoundCategory::WEAPON},
+			{"engine volume", SoundCategory::ENGINE},
+			{"jump volume", SoundCategory::JUMP},
+			{"explosion volume", SoundCategory::EXPLOSION},
+			{"environment volume", SoundCategory::ENVIRONMENT}
+	};
 }
 
 
@@ -139,7 +151,10 @@ void PreferencesPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 
 	Information info;
-	info.SetBar("volume", Audio::Volume());
+
+	for(const auto &[bar, category] : volume_bars)
+		info.SetBar(bar, Audio::Volume(category));
+
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
@@ -155,7 +170,7 @@ void PreferencesPanel::Draw()
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "audio");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -174,6 +189,8 @@ void PreferencesPanel::Draw()
 	}
 	else if(page == 'p')
 		DrawPlugins();
+	else if(page == 'a')
+		DrawAudio();
 }
 
 
@@ -195,7 +212,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
-	else if(key == 'c' || key == 's' || key == 'p')
+	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
 	{
 		page = key;
 		hoverItem.clear();
@@ -252,8 +269,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
-		Audio::SetVolume((17 - y) / 200.);
-		Audio::Play(Audio::Get("warder"));
+		Audio::SetVolume((17 - y) / 200., SoundCategory::MASTER);
+		Audio::Play(Audio::Get("warder"), SoundCategory::MASTER);
 		return true;
 	}
 
@@ -287,6 +304,24 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					break;
 				}
 				index++;
+			}
+		}
+	}
+	else if(page == 'a')
+	{
+		const Interface *audioUI = GameData::Interfaces().Get("audio");
+		for(const auto &[name, category] : volume_bars)
+		{
+			if(name != "volume")
+			{
+				Rectangle barZone = audioUI->GetBox(name + " box");
+				if(barZone.Contains(point))
+				{
+					double volume = (point.X() - barZone.Center().X()) / (barZone.Width() - 50) + 0.5;
+					Audio::SetVolume(volume, category);
+					Audio::Play(Audio::Get("warder"), category);
+					return true;
+				}
 			}
 		}
 	}
@@ -1048,6 +1083,13 @@ void PreferencesPanel::DrawPlugins()
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 		}
 	}
+}
+
+
+
+void PreferencesPanel::DrawAudio()
+{
+	// The entire audio panel is defined in interfaces, so this is a dummy.
 }
 
 

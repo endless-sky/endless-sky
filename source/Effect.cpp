@@ -18,8 +18,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "DataNode.h"
 
+#include <map>
+
 using namespace std;
 
+namespace {
+	const map<string, SoundCategory> categoryNames = {
+			{"ui", SoundCategory::UI},
+			{"weapon", SoundCategory::WEAPON},
+			{"engine", SoundCategory::ENGINE},
+			{"jump", SoundCategory::JUMP},
+			{"explosion", SoundCategory::EXPLOSION},
+			{"environment", SoundCategory::ENVIRONMENT}
+	};
+}
 
 
 const string &Effect::Name() const
@@ -47,6 +59,13 @@ void Effect::Load(const DataNode &node)
 			LoadSprite(child);
 		else if(child.Token(0) == "sound" && child.Size() >= 2)
 			sound = Audio::Get(child.Token(1));
+		else if(child.Token(0) == "sound category" && child.Size() >= 2)
+		{
+			if(categoryNames.contains(child.Token(1)))
+				soundCategory = categoryNames.at(child.Token(1));
+			else
+				child.PrintTrace("Unknown sound category \"" + child.Token(1)+"\"");
+		}
 		else if(child.Token(0) == "lifetime" && child.Size() >= 2)
 			lifetime = child.Value(1);
 		else if(child.Token(0) == "random lifetime" && child.Size() >= 2)

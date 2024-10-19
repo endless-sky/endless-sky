@@ -1932,10 +1932,10 @@ int Ship::Scan(const PlayerInfo &player)
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
 	{
 		if(sounds.empty())
-			Audio::Play(Audio::Get("scan"), position);
+			Audio::Play(Audio::Get("scan"), position, SoundCategory::ENVIRONMENT);
 		else
 			for(const auto &sound : sounds)
-				Audio::Play(sound.first, position);
+				Audio::Play(sound.first, position, SoundCategory::ENVIRONMENT);
 	};
 	if(isYours || (target->isYours))
 	{
