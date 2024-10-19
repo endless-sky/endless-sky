@@ -110,6 +110,6 @@ test "To Accept Blocks Accepts When Conditions Fail"
 		apply
 			"%TEST%: TO ACCEPT BLOCKED MISSION OFFER" = 1
 		call "Trigger Prime Spaceport Mission"
-		call "Skip Spaceport Mission"
+		call "Skip Mission"
 		assert
 			"fail test" != 1
