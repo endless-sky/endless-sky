@@ -1077,7 +1077,7 @@ void Engine::Draw() const
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer,
 				Color::Multiply(it.alpha, color[it.type]), 0.f, it.angle);
-		double dashes = (it.type >= 5) ? 0. : 20. * min<double>(1., zoom);
+		double dashes = (it.type >= 4) ? 0. : 20. * min<double>(1., zoom);
 		if(it.inner > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.inner,
 				Color::Multiply(it.alpha, color[6 + it.type]), dashes, it.angle);
