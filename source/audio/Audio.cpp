@@ -110,6 +110,10 @@ namespace {
 	shared_ptr<Music> previousTrack;
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
+
+	// Whether the next step should pause or resume the audio sources
+	bool shouldPause = false;
+	bool shouldResume = false;
 }
 
 
@@ -303,6 +307,22 @@ void Audio::PlayMusic(const string &name)
 
 
 
+// Pause all active playback streams. Doesn't cause new streams to be paused.
+void Audio::Pause()
+{
+	shouldPause = true;
+}
+
+
+
+// Resumes all paused streams.
+void Audio::Resume()
+{
+	shouldResume = true;
+}
+
+
+
 // Begin playing all the sounds that have been added since the last time
 // this function was called.
 void Audio::Step()
@@ -335,7 +355,7 @@ void Audio::Step()
 			// Non-looping sounds: check if they're done playing.
 			ALint state;
 			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-			if(state == AL_PLAYING)
+			if(state == AL_PLAYING || state == AL_PAUSED)
 				newSources.push_back(source);
 			else
 				recycledSources.push_back(source.ID());
@@ -357,6 +377,8 @@ void Audio::Step()
 			alSourcef(*it, AL_GAIN, gain);
 			++it;
 		}
+		else if(state == AL_PAUSED)
+			++it;
 		else
 		{
 			recycledSources.push_back(*it);
@@ -429,10 +451,35 @@ void Audio::Step()
 
 		alSourceQueueBuffers(musicSource, 1, &buffer);
 		// Check if the source has stopped (i.e. because it ran out of buffers).
+
 		ALint state;
 		alGetSourcei(musicSource, AL_SOURCE_STATE, &state);
-		if(state != AL_PLAYING)
+		if(state != AL_PLAYING && state == AL_PAUSED)
 			alSourcePlay(musicSource);
+	}
+
+	if(shouldPause && !shouldResume)
+	{
+		ALint state;
+		for(const Source &source : sources)
+		{
+			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+			if(state == AL_PLAYING)
+				alSourcePause(source.ID());
+		}
+		shouldPause = false;
+	}
+
+	if(shouldResume)
+	{
+		ALint state;
+		for(const Source &source : sources)
+		{
+			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+			if(state == AL_PAUSED)
+				alSourcePlay(source.ID());
+		}
+		shouldResume = false;
 	}
 }
 
