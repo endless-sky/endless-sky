@@ -451,7 +451,6 @@ void Audio::Step()
 
 		alSourceQueueBuffers(musicSource, 1, &buffer);
 		// Check if the source has stopped (i.e. because it ran out of buffers).
-
 		ALint state;
 		alGetSourcei(musicSource, AL_SOURCE_STATE, &state);
 		if(state != AL_PLAYING && state == AL_PAUSED)
