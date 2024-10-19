@@ -138,7 +138,7 @@ private:
 
 	public:
 		constexpr Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.)
+			double disabled, double radius, Type type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
@@ -147,7 +147,7 @@ private:
 		double inner;
 		double disabled;
 		double radius;
-		int type;
+		Type type;
 		float alpha;
 		double angle;
 	};
