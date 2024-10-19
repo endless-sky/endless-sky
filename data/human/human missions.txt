@@ -7585,6 +7585,8 @@ mission "Timothy Radrickson 2: Interlude"
 
 
 mission "Timothy Radrickson 2: Good Interlude"
+	source
+		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	landing
 	invisible
 	to offer
