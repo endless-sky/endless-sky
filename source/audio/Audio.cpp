@@ -111,7 +111,7 @@ namespace {
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
 
-	// Whether the next step should pause or resume the audio sources
+	// Whether the next step should pause or resume the audio sources.
 	bool shouldPause = false;
 	bool shouldResume = false;
 }
@@ -307,7 +307,7 @@ void Audio::PlayMusic(const string &name)
 
 
 
-// Pause all active playback streams. Doesn't cause new streams to be paused.
+// Pause all active playback streams. Doesn't cause new streams to be paused, and doesn't pause the music source.
 void Audio::Pause()
 {
 	shouldPause = true;
