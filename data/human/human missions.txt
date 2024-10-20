@@ -3980,7 +3980,7 @@ mission "Human to Hai Space"
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
 				decline
 			label haistart
-			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then says, "We heard about your travel agency, even went there at some point when we were thinking of going to human space. It ended up being a touch too expensive, though, so Benjamin arranged for a merchant to bring him on the way."`
+			`	Benjamin notices you approaching, and says, "These are my parents, Yeerto and Taepip." His father Yeerto then says, "We checked the travel agencies here on Greenwater, but it turned out to be much cheaper to get a merchant to bring Benjamin to human space. I guess we learned why that was cheaper the hard way."`
 			`	 "You said you used to work at a travel agency, right?" Benjamin adds with a smile on his face. "Funny we almost found each other then."`
 			`	Benjamin's mother Taepip softly places her hand on his shoulder before continuing, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
 			choice
