@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
 		Audio::Init(GameData::Sources());
 
 		if(isTesting && !noTestMute)
-			Audio::SetVolume(0);
+			Audio::SetVolume(0, SoundCategory::MASTER);
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
