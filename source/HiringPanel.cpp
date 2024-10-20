@@ -47,7 +47,7 @@ void HiringPanel::Draw()
 {
 	const Ship *flagship = player.Flagship();
 	const Interface *hiring = GameData::Interfaces().Get("hiring");
-	Information info;
+	info.ClearConditions();
 
 	int flagshipBunks = 0;
 	int flagshipRequired = 0;
