@@ -199,7 +199,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	// Don't show the "in stock" amount if the outfit has an unlimited stock or
 	// if it is not something that you can buy.
 	int stock = 0;
-	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
+	if(!outfitter.Has(outfit))
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage().Get(outfit);
@@ -323,7 +323,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Add system to accumulate reasons why an outfit cannot be bought
 	vector<string> errors;
-	auto addError = [&](const string &msg) { errors.push_back(msg); };
+	//auto errors.push_back = [&](const string &msg) { errors.push_back(msg); };
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
@@ -389,12 +389,12 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		int64_t credits = player.Accounts().Credits();
 
 		if(cost > credits)
-			addError("You do not have enough money to buy this outfit, you need a further " +
+			errors.push_back("You do not have enough money to buy this outfit, you need a further " +
 				Format::CreditString(cost - credits));
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
-			addError("You do not have enough money to buy this outfit because you also need to buy a "
+			errors.push_back("You do not have enough money to buy this outfit because you also need to buy a "
 				"license for it. You need a further " +
 				Format::CreditString(licenseCost - credits));
 	}
@@ -408,7 +408,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		if(!mass || freeCargo >= mass)
 			return true;
 
-		addError("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
+		errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
 			+ Format::CargoString(mass, "mass") + " and your fleet has "
 			+ Format::CargoString(freeCargo, "cargo space") + " free.");
 	}
@@ -424,14 +424,14 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		double outfitNeeded = -selectedOutfit->Get("outfit space");
 		double outfitSpace = playerShip->Attributes().Get("outfit space");
 		if(outfitNeeded > outfitSpace)
-			addError("You cannot install this outfit, because it takes up "
+			errors.push_back("You cannot install this outfit, because it takes up "
 				+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
 				+ Format::MassString(outfitSpace) + " free.");
 
 		double weaponNeeded = -selectedOutfit->Get("weapon capacity");
 		double weaponSpace = playerShip->Attributes().Get("weapon capacity");
 		if(weaponNeeded > weaponSpace)
-			addError("Only part of your ship's outfit capacity is usable for weapons. "
+			errors.push_back("Only part of your ship's outfit capacity is usable for weapons. "
 				"You cannot install this outfit, because it takes up "
 				+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
 				+ Format::MassString(weaponSpace) + " free.");
@@ -439,13 +439,13 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		double engineNeeded = -selectedOutfit->Get("engine capacity");
 		double engineSpace = playerShip->Attributes().Get("engine capacity");
 		if(engineNeeded > engineSpace)
-			addError("Only part of your ship's outfit capacity is usable for engines. "
+			errors.push_back("Only part of your ship's outfit capacity is usable for engines. "
 				"You cannot install this outfit, because it takes up "
 				+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
 				+ Format::MassString(engineSpace) + " free.");
 
 		if(selectedOutfit->Category() == "Ammunition")
-			addError(!playerShip->OutfitCount(selectedOutfit) ?
+			errors.push_back(!playerShip->OutfitCount(selectedOutfit) ?
 				"This outfit is ammunition for a weapon. "
 				"You cannot install it without first installing the appropriate weapon."
 				: "You already have the maximum amount of ammunition for this weapon. "
@@ -454,23 +454,23 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		int mountsNeeded = -selectedOutfit->Get("turret mounts");
 		int mountsFree = playerShip->Attributes().Get("turret mounts");
 		if(mountsNeeded && !mountsFree)
-			addError("This weapon is designed to be installed on a turret mount, "
+			errors.push_back("This weapon is designed to be installed on a turret mount, "
 				"but your ship does not have any unused turret mounts available.");
 
 		int gunsNeeded = -selectedOutfit->Get("gun ports");
 		int gunsFree = playerShip->Attributes().Get("gun ports");
 		if(gunsNeeded && !gunsFree)
-			addError("This weapon is designed to be installed in a gun port, "
+			errors.push_back("This weapon is designed to be installed in a gun port, "
 				"but your ship does not have any unused gun ports available.");
 
 		if(selectedOutfit->Get("installable") < 0.)
-			addError("This item is not an outfit that can be installed in a ship.");
+			errors.push_back("This item is not an outfit that can be installed in a ship.");
 
 		// For unhandled outfit requirements, show a catch-all error message.
 		if(errors.empty())
-			addError("You cannot install this outfit in your ship, "
-				"because it would reduce one of your ship's attributes to a negative amount. "
-			"For example, it may use up more cargo space than you have left.");
+		errors.push_back("You cannot install this outfit in your ship, "
+			"because it would reduce one of your ship's attributes to a negative amount. "
+				"For example, it may use up more cargo space than you have left.");
 	}
 
 	if(errors.empty())
@@ -481,7 +481,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	{
 		string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
 		for(size_t i = 0; i < errors.size(); ++i)
-			errorMessage += to_string(i + 1) + ". " + errors[i] + "\n";
+			errorMessage += "- " + errors[i] + "\n";
 		return errorMessage;
 	}
 }
