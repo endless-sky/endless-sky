@@ -57,7 +57,6 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
-	void DrawAudio();
 	void RenderPluginDescription(const std::string &pluginName);
 	void RenderPluginDescription(const Plugin &plugin);
 

@@ -190,7 +190,9 @@ void PreferencesPanel::Draw()
 	else if(page == 'p')
 		DrawPlugins();
 	else if(page == 'a')
-		DrawAudio();
+	{
+		// The entire audio panel is defined in interfaces, so this is a dummy.
+	}
 }
 
 
@@ -1083,13 +1085,6 @@ void PreferencesPanel::DrawPlugins()
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 		}
 	}
-}
-
-
-
-void PreferencesPanel::DrawAudio()
-{
-	// The entire audio panel is defined in interfaces, so this is a dummy.
 }
 
 
