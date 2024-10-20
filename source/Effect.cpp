@@ -64,7 +64,7 @@ void Effect::Load(const DataNode &node)
 			if(categoryNames.contains(child.Token(1)))
 				soundCategory = categoryNames.at(child.Token(1));
 			else
-				child.PrintTrace("Unknown sound category \"" + child.Token(1)+"\"");
+				child.PrintTrace("Unknown sound category \"" + child.Token(1) + "\"");
 		}
 		else if(child.Token(0) == "lifetime" && child.Size() >= 2)
 			lifetime = child.Value(1);
