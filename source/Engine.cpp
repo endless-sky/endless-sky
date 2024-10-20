@@ -1465,7 +1465,11 @@ void Engine::CalculateStep()
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(jumpSounds.empty())
+		if(flagship->Attributes().Get("silent jumps"))
+		{
+			// No sounds.
+		}
+		else if(jumpSounds.empty())
 			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
 		else
 			for(const auto &sound : jumpSounds)
