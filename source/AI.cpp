@@ -310,6 +310,9 @@ namespace {
 		if(ship.GetAICache().NeedsAmmo())
 			return true;
 
+		if(personality.IsGetaway() && ship.Cargo().Free() == 0)
+			return true;
+
 		return false;
 	}
 
