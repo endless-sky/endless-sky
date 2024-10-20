@@ -1864,9 +1864,15 @@ void PlayerInfo::PoolCargo()
 	// This can only be done while landed.
 	if(!planet)
 		return;
+
+	// To make sure all cargo and passengers get unloaded from each ship,
+	// temporarily uncap the player's cargo and bunk capacity.
+	cargo.SetSize(-1);
+	cargo.SetBunks(-1);
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 			ship->Cargo().TransferAll(cargo);
+	UpdateCargoCapacities();
 }
 
 

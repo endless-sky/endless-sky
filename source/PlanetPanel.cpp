@@ -438,14 +438,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
-		// To make sure all cargo and passengers get unloaded from each ship,
-		// temporarily uncap the player's cargo and bunk capacity.
-		player.Cargo().SetSize(-1);
-		player.Cargo().SetBunks(-1);
 		// Pool cargo together, so that the cargo number on the trading panel
 		// is still accurate while the popup is active.
 		player.PoolCargo();
-		player.UpdateCargoCapacities();
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
@@ -460,10 +455,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
-	{
-		player.DistributeCargo();
-		TakeOff(false);
-	}
+		TakeOff(true);
 	else
 		return;
 }
