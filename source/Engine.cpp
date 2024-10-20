@@ -2748,17 +2748,14 @@ void Engine::CreateStatusOverlays()
 		if(it->IsDestroyed())
 			continue;
 
-		static auto FLAGSHIP = Preferences::OverlayType::FLAGSHIP;
-		static auto FRIENDLY = Preferences::OverlayType::ESCORT;
-		static auto HOSTILE = Preferences::OverlayType::ENEMY;
-		static auto NEUTRAL = Preferences::OverlayType::NEUTRAL;
+		using enum Preferences::OverlayType;
 
 		if(it == flagship)
 			EmplaceStatusOverlay(it, overlaySettings[FLAGSHIP], Status::Type::FLAGSHIP, it->Cloaking());
 		else if(it->GetGovernment()->IsEnemy())
-			EmplaceStatusOverlay(it, overlaySettings[HOSTILE], Status::Type::HOSTILE, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[ENEMY], Status::Type::HOSTILE, it->Cloaking());
 		else if(it->IsYours() || it->GetPersonality().IsEscort())
-			EmplaceStatusOverlay(it, overlaySettings[FRIENDLY], Status::Type::FRIENDLY, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[ESCORT], Status::Type::FRIENDLY, it->Cloaking());
 		else
 			EmplaceStatusOverlay(it, overlaySettings[NEUTRAL], Status::Type::NEUTRAL, it->Cloaking());
 	}
