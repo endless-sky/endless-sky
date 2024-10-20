@@ -232,7 +232,7 @@ tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
 
 tip "energy capacity:"
-	`The amount of energy this ship can store. This allows you to temporarily use more power than your generators produce.`
+	`The amount of energy this outfit can store. This allows you to temporarily use more power than your generators produce.`
 
 tip "energy consumption:"
 	`Energy consumed per second while in flight.`
