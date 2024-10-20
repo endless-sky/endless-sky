@@ -60,7 +60,7 @@ conversation "default intro"
 
 start "hai space"
 	name "Hai Origins"
-	description `You grew up on Greenwater, a world with a rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending locations in human space.`
+	description `You grew up on Greenwater, a Hai world with a rich and mixed culture thanks to its climate. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. To reach that goal, you worked hard at a travel company, recommending locations in human space.`
 	description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
 	thumbnail "scene/hai start"
 	system "Fah Soom"
@@ -70,7 +70,7 @@ start "hai space"
 		has "Ask the Hai about the Unfettered: offered"
 	on reveal
 		name "Hai Origins"
-		description `You grew up on Greenwater, in one of the human cities built on the equator, where the climate is too hot for the Hai. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending locations in human space.`
+	description `You grew up on Greenwater, a Hai world with a rich and mixed culture thanks to its climate. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. To reach that goal, you worked hard at a travel company, recommending locations in human space.`
 		description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
 		system "Fah Soom"
 		planet "Greenwater"
@@ -109,6 +109,8 @@ conversation "hai intro"
 			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 		log "Factions" "Hai" `The Hai are a species of giant, intelligent rodents, who live to the north of human space. They allow any humans who discover their territory to live alongside them, and to trade with them and purchase their technology.`
+		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
+		log "Factions" "Sheragi" `A long extinct dragon-like species called the "Sheragi" used to live in human space, back when much of what is now human territory was occupied by the Hai.`
 	
 	`Going to the North Pole already makes you feel as if you're on another world; even within the berth for your ferry, you can see more Hai than there are in your entire hometown. After some parting words from the PA system, you and your fellow passengers disembark, the flow of humanity breaking against the Hai crowd.`
 	`	Making your way towards the shipyard, you pull up the human-language version of your loan agreement to review: You have borrowed 1.431 million credits to be repaid over the course of two years. Your interest rate is 0.3%, making your repayments 4,836 credits per day.`
@@ -139,7 +141,7 @@ conversation "hai intro"
 	`	He bows. "Thank you."`
 	
 	label help
-	`	The Hai brings you to the landing pads of Greenwater, where a large number of humans and Hai are gathered around several vessels. From the crowd, another Hai approaches your companion, talking to him in Hai at such a speed that you'd have trouble understanding even if you knew the language. However, the gray-haired Hai simply nods and hands the other Hai a set of keys in exchange for a credit chip. The other Hai quickly bows before dashing towards one of the landed ships.`
+	`	The Hai brings you to the landing pads of Greenwater, where a large number of humans and Hai are gathered around several vessels. From the crowd, another Hai approaches your companion, talking to him in Hai. The gray-furred Hai simply nods and hands the other Hai a set of keys in exchange for a credit chip. The other Hai quickly bows before dashing towards one of the landed ships.`
 	`	"I'm selling off my fleet before retiring," the Hai says. "Sure, I could just go to the shipyard, but I could never have started if it weren't for another retiring captain selling me a ship for cheap when I was young. So, I've decided to pay it forward and help out other captains-to-be."`
 	`	The Hai walks up to one of the smaller ships in the fleet, a Grasshopper interceptor. "The Pristine Jewel. She's served me well over the past century, but I'm sure she'll be safe in your hands."`
 	choice
