@@ -321,9 +321,6 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	if(!planet || !selectedOutfit)
 		return false;
 
-	// Add system to accumulate reasons why an outfit cannot be bought
-	vector<string> errors;
-	
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize > 0 && player.HasMapped(mapSize))
@@ -379,7 +376,10 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"It is being shown in the list because you have one, "
 			"but this " + planet->Noun() + " does not sell them.";
 	}
-
+	
+	// Add system to accumulate reasons why an outfit cannot be bought
+	vector<string> errors;
+	
 	// Check if you need to pay, and can't afford it.
 	if(!onlyOwned)
 	{
