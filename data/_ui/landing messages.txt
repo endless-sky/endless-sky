@@ -105,7 +105,7 @@
 	"planet/browndwarf-y"
 	"planet/browndwarf-y-rogue"
 
-"landing message" "You cannot land on a nova!"
+"landing message" "This environment is too hostile for your ship to land in."
 	"star/nova-small"
 	"star/nova"
 	"star/nova-old"
