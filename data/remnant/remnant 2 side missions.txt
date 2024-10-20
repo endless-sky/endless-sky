@@ -115,8 +115,8 @@ mission "Remnant: Visit to Paradise 1"
 				`	"I do not know what to make of this."`
 				`	"This is a spaceport?"`
 			`	She nods, and guides you amongst the stream of camel-drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same, whether one is looking at historic pre-flight eras or modern settlement efforts."`
-			label questionloop
 			scene "scene/remnant remote spaceport"
+			label questionloop
 			choice
 				`	"It still seems odd to see camels pulling levitating platforms."`
 					goto camelcart
