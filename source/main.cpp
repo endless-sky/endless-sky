@@ -293,7 +293,13 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				cursorTime = 0;
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+			{
 				isPaused = !isPaused;
+				if(isPaused)
+					Audio::Pause();
+				else
+					Audio::Resume();
+			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())

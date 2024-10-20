@@ -70,7 +70,7 @@ void GameLoadingPanel::Step()
 		GetUI()->Pop(this);
 		if(conversation.IsEmpty())
 		{
-			GetUI()->Push(new MenuPanel(player, gamePanels));
+			GetUI()->Push(new MenuPanel(player, gamePanels, false));
 			GetUI()->Push(new MenuAnimationPanel());
 		}
 		else
