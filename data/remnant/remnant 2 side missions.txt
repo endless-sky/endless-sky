@@ -441,7 +441,7 @@ mission "Remnant: Shattered Light 2"
 		conversation
 			`Your arrival in the spaceport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
 			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher."`
-			`	Ruach gives a polite bow. "Taely lays too many compliments on me," she gestures with amusement. "I fulfilled my duty doing the best with that which the Embers blessed me, nothing more, nothing less. But it has been rewarding watching someone take everything I taught them and fly with it to heights I could only dream of."`
+			`	Ruach gives a polite bow. "Taely lays too many compliments on me," she gestures with amusement. "I fulfilled my duty making the best of whatever the Embers graciously blessed me with, nothing more, nothing less. But it has been rewarding watching someone take everything I taught them and fly with it to heights I could only dream of."`
 			`	Ruach's gestures take on a more precise cadence. "Taely tells me that you have spotted a strange 'ghost' in Caeculus that bears a resemblance to ancestral ships. Could you take me to do a scan of it please?"`
 			choice
 				`	"Okay."`
