@@ -468,8 +468,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		// For unhandled outfit requirements, show a catch-all error message.
 		if(errors.empty())
-		addError("You cannot install this outfit in your ship, "
-			"because it would reduce one of your ship's attributes to a negative amount. "
+			addError("You cannot install this outfit in your ship, "
+				"because it would reduce one of your ship's attributes to a negative amount. "
 			"For example, it may use up more cargo space than you have left.");
 	}
 
