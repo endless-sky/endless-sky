@@ -323,8 +323,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Add system to accumulate reasons why an outfit cannot be bought
 	vector<string> errors;
-	//auto errors.push_back = [&](const string &msg) { errors.push_back(msg); };
-
+	
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize > 0 && player.HasMapped(mapSize))
