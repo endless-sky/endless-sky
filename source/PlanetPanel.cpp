@@ -454,7 +454,14 @@ void PlanetPanel::WarningsDialogCallback(const bool isOk)
 	if(isOk)
 		TakeOff(false);
 	else
+	{
+		// To make sure all cargo and passengers get unloaded from each ship,
+		// temporarily uncap the player's cargo and bunk capacity.
+		player.Cargo().SetSize(-1);
+		player.Cargo().SetBunks(-1);
 		player.PoolCargo();
+		player.UpdateCargoCapacities();
+	}
 }
 
 

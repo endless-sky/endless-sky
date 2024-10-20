@@ -1952,8 +1952,9 @@ bool PlayerInfo::HasLogs() const
 
 
 
-// Call this after missions update, or if leaving the outfitter, shipyard, or
-// hiring panel. Updates the information on how much space is available.
+// Call this after missions update, if leaving the outfitter, shipyard, or
+// hiring panel, or after backing out of a take-off warning.
+// Updates the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
