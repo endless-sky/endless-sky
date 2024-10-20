@@ -94,7 +94,8 @@ start "hai space"
 	set "hai space start"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
-	set "Intro [0]: offered"
+	set "First Contact: Unfettered: offered"
+	set "Ask the Hai about the Unfettered: done"
 
 
 conversation "hai intro"
