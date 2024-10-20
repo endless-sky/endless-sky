@@ -614,102 +614,119 @@ interface "audio"
 		center -300 -110
 		dimensions 90 30
 		color bright
+	value "volume bar width" 175
 	label "Master"
-		center -125 -228
+		center -129.5 -228
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 -208.5
 	bar "master volume"
-		from -240 -208
-		dimensions 220 0
+		center -129.5 -208.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "master volume box"
-		from -265 -220
-		dimensions 270 25
+		center -129.5 -208.5
+		dimensions 247 25
 	label "Music"
-		center -125 -168
+		center -129.5 -168
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 -148.5
 	bar "music volume"
-		from -240 -148
-		dimensions 220 0
+		center -129.5 -148.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "music volume box"
-		from -265 -160
-		dimensions 270 25
+		center -129.5 -148.5
+		dimensions 247 25
 	label "UI"
-		center -125 -108
+		center -129.5 -108
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 -88.5
 	bar "ui volume"
-		from -240 -88
-		dimensions 220 0
+		center -129.5 -88.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "ui volume box"
-		from -265 -100
-		dimensions 270 25
+		center -129.5 -88.5
+		dimensions 247 25
 	label "Weapons"
-		center -125 -48
+		center -129.5 -48
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 -28.5
 	bar "weapon volume"
-		from -240 -28
-		dimensions 220 0
+		center -129.5 -28.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "weapon volume box"
-		from -265 -40
-		dimensions 270 25
+		center -129.5 -28.5
+		dimensions 247 25
 	label "Engines"
-		center -125 12
+		center -129.5 12
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 31.5
 	bar "engine volume"
-		from -240 32
-		dimensions 220 0
+		center -129.5 31.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "engine volume box"
-		from -265 20
-		dimensions 270 25
+		center -129.5 31.5
+		dimensions 247 25
 	label "Hyperdrives"
-		center -125 72
+		center -129.5 72
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 91.5
 	bar "jump volume"
-		from -240 92
-		dimensions 220 0
+		center -129.5 91.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "jump volume box"
-		from -265 80
-		dimensions 270 25
+		center -129.5 91.5
+		dimensions 247 25
 	label "Explosions"
-		center -125 132
+		center -129.5 132
 		color bright
+	sprite "ui/horizontal volume bar"
+		center -129.5 151.5
 	bar "explosion volume"
-		from -240 152
-		dimensions 220 0
+		center -129.5 151.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "explosion volume box"
-		from -265 140
-		dimensions 270 25
+		center -129.5 151.5
+		dimensions 247 25
 	label "Environment"
-		center 135 -228
+		center 129.5 -228
 		color bright
+	sprite "ui/horizontal volume bar"
+		center 129.5 -208.5
 	bar "environment volume"
-		from 20 -208
-		dimensions 220 0
+		center 129.5 -208.5
+		dimensions 175 0
 		color "energy"
 		size 2
 		reversed
 	box "environment volume box"
-		from -5 -220
-		dimensions 270 25
+		center 129.5 -208.5
+		dimensions 247 25
 
 
 

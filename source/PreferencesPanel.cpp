@@ -317,7 +317,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Rectangle barZone = audioUI->GetBox(name + " box");
 				if(barZone.Contains(point))
 				{
-					double volume = (point.X() - barZone.Center().X()) / (barZone.Width() - 50) + 0.5;
+					double volume = (point.X() - barZone.Center().X()) / (audioUI->GetValue("volume bar width")) + 0.5;
 					Audio::SetVolume(volume, category);
 					Audio::Play(Audio::Get("warder"), category);
 					return true;
