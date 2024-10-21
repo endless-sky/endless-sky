@@ -165,7 +165,7 @@ planet Alvorada
 	attributes ccor frontier military pirate south "south pirate" station
 	landscape land/station46
 	description `Formerly "Fortaleza da Alvorada," Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the Politburo of the CCOR and the extensive computer system they built that administered their centrally-planned economy. Rumor has it that, in the deepest reaches of the complex where no pirates have yet been able to breach, they're still there, having adapted the system to instead direct the guerrillas in the reestablishment of their homeland.`
-	spaceport `Alvorada's cosmodrome was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but with clear firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the asteroid where similar emplacements could have been hidden.`
+	spaceport `Alvorada's cosmodromo was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but with clear firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the asteroid where similar emplacements could have been hidden.`
 	bribe 0.1
 	security 0
 	tribute 600
@@ -341,7 +341,7 @@ planet Bailey
 	landscape land/mercury1
 	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. As the planet slowly rotates relative to its host stars, its hot side is blasted into a molten wasteland, while its cool side hardens into a mineral-rich crust, a rarity in this region of space.`
 	description `	Like aphids sucking the sap from a plant, semi-mobile mining stations strip and refine the minerals, a method originally developed by the Confederated Councils. Since their fall, the pirates of the region have maintained the stations - although with considerably less organization than what was upheld by the central government.`
-	spaceport `Given the uninhabitability of the hot side of the planet, the cosmodrome and other major infrastructure is just as mobile as the mining stations. The cosmodrome is located close to the planet's terminator, cast in a perpetual twilight. Whenever the stars threaten to rise over the horizon, each building activates repulsor-lifts located under their foundations, causing the entire cosmodrome to rise above the ground and move in unison several kilometers away from the terminator, ensuring that it remains relatively habitable.`
+	spaceport `Given the uninhabitability of the hot side of the planet, the cosmodromo and other major infrastructure is just as mobile as the mining stations. The cosmodromo is located close to the planet's terminator, cast in a perpetual twilight. Whenever the stars threaten to rise over the horizon, each building activates repulsor-lifts located under their foundations, causing the entire cosmodromo to rise above the ground and move in unison several kilometers away from the terminator, ensuring that it remains relatively habitable.`
 	bribe 0.03
 	security 0
 	tribute 300
@@ -1729,8 +1729,8 @@ planet Gagarin
 	attributes ccor factory frontier pirate south "south pirate" urban
 	landscape land/city16-sfiera
 	description `Gagarin is the most populous planet in what used to be the Confederated Councils of the Outer Rim, and it was one of the first colonies established in this region. All of the settlements on Gagarin are connected to a planetary transport and infrastructure grid... although the grid hasn't been able to keep pace with Gagarin's growing population. Despite having been designed for expansion commensurate with increasing demand, such a resource-intensive infrastructure project became harder and harder to maintain due to continuous supply shortages. The collapse of the CCOR has only exacerbated the grid's deficiencies.`
-	spaceport `The heart of the planetary infrastructure network, Gagarin's cosmodrome is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the cosmodrome appears to be able to meet demand, if just barely.`
-	spaceport `	On the walls of the cosmodrome you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrillas.`
+	spaceport `The heart of the planetary infrastructure network, Gagarin's cosmodromo is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the cosmodromo appears to be able to meet demand, if just barely.`
+	spaceport `	On the walls of the cosmodromo you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrillas.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
@@ -2439,7 +2439,7 @@ planet Jakobsen
 	landscape land/sea23
 	description `Jakobsen is an ocean world with only 6% of its surface above sea level. The land consists almost exclusively of volcanic islands and atolls, as any land not refreshed by plate tectonics is slowly being eroded away by the immense seasonal storms that wreathe the planet.`
 	description `	Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and to provide a nutritious, if bland, staple food.`
-	spaceport `The cosmodrome is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
+	spaceport `The cosmodromo is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
@@ -3154,7 +3154,7 @@ planet Mordente-Bridi
 	landscape land/station48
 	music ambient/machinery
 	description `A testament to the ingenuity of the engineering corps of the now defunct Confederated Councils of the Outer Rim, the massive Mordente-Bridi Station is one of the largest in human space. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest alloy the CCOR could manufacture at scale. Bridi Cylinder is pressurized and contains crew quarters and logistical infrastructure amounting to that of a sizable city, while Mordente Cylinder contains what was the Outer Rim's main shipyard.`
-	spaceport `Apart from the cosmodrome's facilities, almost none of Mordente Cylinder is pressurized. Making up most of its armored hull is a micro-gravity shipyard, which despite not being subject to a central government and defense force has remained quite busy. Worker shuttles are busily flying about the large space, tending to a multitude of ships; you notice that a few of them are also engaged in constructing new vessels.`
+	spaceport `Apart from the cosmodromo's facilities, almost none of Mordente Cylinder is pressurized. Making up most of its armored hull is a micro-gravity shipyard, which despite not being subject to a central government and defense force has remained quite busy. Worker shuttles are busily flying about the large space, tending to a multitude of ships; you notice that a few of them are also engaged in constructing new vessels.`
 	shipyard "Advanced Southern Pirates"
 	shipyard "Betelgeuse Advanced"
 	shipyard "Betelgeuse Basics"
