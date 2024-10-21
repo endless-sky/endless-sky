@@ -196,8 +196,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			font.Draw(label, labelPos, bright);
 		}
 	}
-	// Don't show the "in stock" amount if the outfit has an unlimited stock or
-	// if it is not something that you can buy.
+	// Don't show the "in stock" amount if the outfit has an unlimited stock.
 	int stock = 0;
 	if(!outfitter.Has(outfit))
 		stock = max(0, player.Stock(outfit));
