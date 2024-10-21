@@ -14,6 +14,8 @@
 # Weapons:
 outfit "Plasma Discharger"
 	category "Guns"
+	series "Guns: Incipias"
+	index 10
 	cost 140000
 	mass 25
 	"outfit space" -20
@@ -51,6 +53,8 @@ outfit "plasma particle"
 
 outfit "Stagnation Beam"
 	category "Turrets"
+	series "Turrets: Incipias"
+	index 10
 	cost 180000
 	mass 30
 	"outfit space" -30
@@ -92,6 +96,8 @@ effect "stagnation beam impact"
 
 outfit "Star Tail"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Incipias"
+	index 10
 	cost 320000
 	mass 48
 	"outfit space" -50
@@ -181,6 +187,8 @@ outfit "Star Tail Storage"
 
 outfit "Horizon Grappler"
 	category "Turrets"
+	series "Turrets: Incipias"
+	index 20
 	cost 200000
 	thumbnail "outfit/horizon grappler"
 	"mass" 25
@@ -233,6 +241,8 @@ outfit "Liquid-Class Shield"
 
 outfit "Metallic Hydrogen Cell"
 	category "Power"
+	series "Batteries: Incipias"
+	index 10
 	thumbnail "outfit/metallic hydrogen cell"
 	cost 2500
 	mass 20
@@ -243,6 +253,8 @@ outfit "Metallic Hydrogen Cell"
 # Engines:
 outfit "MH Blue-Class Thruster"
 	category "Engines"
+	series "Engines: Incipias"
+	index 11
 	thumbnail "outfit/mh blue-class thruster"
 	cost 32000
 	mass 27
@@ -258,6 +270,8 @@ outfit "MH Blue-Class Thruster"
 
 outfit "MH Blue-Class Steering"
 	category "Engines"
+	series "Engines: Incipias"
+	index 10
 	thumbnail "outfit/mh blue-class steering"
 	cost 28000
 	mass 24
@@ -270,6 +284,8 @@ outfit "MH Blue-Class Steering"
 
 outfit "MH Green-Class Thruster"
 	category "Engines"
+	series "Engines: Incipias"
+	index 21
 	thumbnail "outfit/mh green-class thruster"
 	cost 44000
 	mass 32
@@ -285,6 +301,8 @@ outfit "MH Green-Class Thruster"
 
 outfit "MH Green-Class Steering"
 	category "Engines"
+	series "Engines: Incipias"
+	index 20
 	thumbnail "outfit/mh green-class steering"
 	cost 35000
 	mass 28
@@ -297,6 +315,8 @@ outfit "MH Green-Class Steering"
 
 outfit "MH Red-Class Thruster"
 	category "Engines"
+	series "Engines: Incipias"
+	index 31
 	thumbnail "outfit/mh red-class thruster"
 	cost 50000
 	mass 41
@@ -312,6 +332,8 @@ outfit "MH Red-Class Thruster"
 
 outfit "MH Red-Class Steering"
 	category "Engines"
+	series "Engines: Incipias"
+	index 30
 	thumbnail "outfit/mh red-class steering"
 	cost 49000
 	mass 41
@@ -326,6 +348,8 @@ outfit "MH Red-Class Steering"
 # Hand to Hand
 outfit "Cloud Piercer"
 	category "Hand to Hand"
+	series "H2H: Incipias"
+	index 10
 	cost 10000
 	thumbnail "outfit/cloud piercer"
 	licenses
@@ -338,4 +362,6 @@ outfit "Cloud Piercer"
 # Special
 outfit "Hicemus Conflict License"
 	category "Licenses"
+	series "Licenses: Incipias"
+	index 10
 	description "The Hicemus have trusted you enough to give you this license, allowing a glimpse at their most precious technology - technology that is meant to give them an advantage over other factions."
