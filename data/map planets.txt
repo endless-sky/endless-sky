@@ -2620,7 +2620,7 @@ planet Khosa-Kella-Oa
 	description `Devoid of atmosphere, this small and rocky world sits at the very edge of the galaxy. This may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			not "known to the successors"
-	description `Devoid of atmosphere, this small and rocky world sits at the southern end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
+	description `Devoid of atmosphere, this small and rocky world sits at the western end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			has "known to the successors"
 
