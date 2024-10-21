@@ -795,7 +795,7 @@ mission "Raider returning to Mordente-Bridi"
 mission "Militia returning to Solace"
 	source "Solace"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Wandering around the main spaceport on Solace, you notice several rows of shiny new landing pads next to the Delta V company offices. A large banner announces that you are witnessing the grand opening of Delta V's new private spaceport, and a crowd of interested spectators has gathered near the perimeter of the fence.`
