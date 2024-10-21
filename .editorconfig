@@ -14,9 +14,6 @@ indent_style = tab
 # Code files
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
-# Except any third-party libraries
-[catch.hpp]
-indent_style = unset
 
 # Changelog file
 [changelog]
@@ -42,6 +39,9 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
+[*.py]
+indent_style = tab
+
 [*.xml]
 indent_style = space
 indent_size = 2
@@ -49,3 +49,6 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
+
+[*.json]
+indent_style = tab
