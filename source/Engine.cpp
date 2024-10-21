@@ -888,12 +888,12 @@ void Engine::Step(bool isActive)
 	{
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
-		const bool outfitBeyondRange = pos.LengthSquared() > (flagship->Attributes().Get("outfit scan power") * 10000);
+		int outfitOverlayType = pos.LengthSquared() > (flagship->Attributes().Get("outfit scan power") * 10000) ? 5 : 4;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
-			0., 10. + max(20., width * .5), 4 + outfitBeyondRange, 1.f, Angle(pos).Degrees() + 180.);
-		const bool cargoBeyondRange = pos.LengthSquared() > (flagship->Attributes().Get("cargo scan power") * 10000);
+			0., 10. + max(20., width * .5), outfitOverlayType, 1.f, Angle(pos).Degrees() + 180.);
+		int cargoOverlayType = pos.LengthSquared() > (flagship->Attributes().Get("cargo scan power") * 10000) ? 5 : 4;
 		statuses.emplace_back(pos, 0., flagship->CargoScanFraction(),
-			0., 10. + max(20., width * .5), 4 + cargoBeyondRange, 1.f, Angle(pos).Degrees() + 180.);
+			0., 10. + max(20., width * .5), cargoOverlayType, 1.f, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
