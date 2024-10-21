@@ -128,7 +128,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 bool MapSalesPanel::Click(int x, int y, int clicks)
 {
-	static const int KEY_ROW_COUNT = 4;
+	static constexpr int KEY_ROW_COUNT = 4;
 	static const Point KEY_ROW_SIZE(140., 20.);
 	static const Point KEY_ROWS_SIZE = Point(KEY_ROW_SIZE.X(), KEY_ROW_SIZE.Y() * KEY_ROW_COUNT);
 	static const Point KEY_ROWS_INSET(30., 40.);
