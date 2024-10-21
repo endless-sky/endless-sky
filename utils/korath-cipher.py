@@ -35,7 +35,7 @@
 #
 # ORIGINAL: Dalam kebenaran, saya hanya melihat kebohongan.
 # REVERSED: malaD ,naranebek ayas aynah tahilem .nagnohobek
-# EXILE:	famaS ,ralarehet aga' agrap kapimef .ranrupuhet
+# EXILE:    famaS ,ralarehet aga' agrap kapimef .ranrupuhet
 # EFRETI:   fanaT ,raparebes adam adrah kahinef .ralruhubes
 #
 # Clearly, you'll need to manually correct a few things. The commas
@@ -58,12 +58,12 @@
 #
 # There are a few words with standard translations you'll need to apply manually:
 #
-# humans => humanika							(Exile, Efreti, and Quarg)
-# human (noun, member of species) => humani	 (Exile, Efreti, and Quarg)
-# Quarg => Kuwaru							   (Efreti)
-# Drak => Drak								  (both Exile and Efreti)
-# Ember Space => Nraol Alaj					 (Exile)
-# There Might Be Riots => Ter Mite Bee Riot	 (both Exile and Efreti)
+# humans => humanika                          (Exile, Efreti, and Quarg)
+# human (noun, member of species) => humani   (Exile, Efreti, and Quarg)
+# Quarg => Kuwaru                             (Efreti)
+# Drak => Drak                                (both Exile and Efreti)
+# Ember Space => Nraol Alaj                   (Exile)
+# There Might Be Riots => Ter Mite Bee Riot   (both Exile and Efreti)
 #
 # The easiest way to do this is to put them in ALL CAPS to whatever
 # translation program you're using to get Indonesian from English. The
@@ -106,10 +106,10 @@ for ixf in replace:
 
 # Loop over every line in stdin, processing it
 for line in sys.stdin:
-	words = line.split()	   # words in the line, as a list
-	sdrow = []				 # the same words, with letters reversed
-	exiles = []				# those words after the exile cipher
-	efretis = []			   # those words after the efret cipher
+	words = line.split()       # words in the line, as a list
+	sdrow = []                 # the same words, with letters reversed
+	exiles = []                # those words after the exile cipher
+	efretis = []               # those words after the efret cipher
 
 	for word in words:
 		# Reverse the word:
@@ -137,6 +137,6 @@ for line in sys.stdin:
 	# Print the results of this line:
 	print("ORIGINAL: "+" ".join(words))
 	print("REVERSED: "+" ".join(sdrow))
-	print("EXILE:	"+" ".join(exiles))
+	print("EXILE:    "+" ".join(exiles))
 	print("EFRETI:   "+" ".join(efretis))
 	print("")
