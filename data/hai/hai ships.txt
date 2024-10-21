@@ -11,6 +11,88 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Anomalocaris"
+	plural "Anomalocarises"
+	sprite "ship/hai anomalocaris"
+	thumbnail "thumbnail/hai anomalocaris"
+	attributes
+		category "Medium Warship"
+		"cost" 7400000
+		"shields" 14200
+		"hull" 6800
+		"required crew" 20
+		"bunks" 26
+		"mass" 970
+		"drag" 9.3
+		"heat dissipation" .49
+		"fuel capacity" 400
+		"cargo space" 121
+		"outfit space" 533
+		"weapon capacity" 192
+		"engine capacity" 98
+		weapon
+			"blast radius" 210
+			"shield damage" 2100
+			"hull damage" 1050
+			"hit force" 3150
+	outfits
+		"Chameleon Anti-Missile" 2
+		"Ion Cannon"
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+	gun -24 -89.5
+	gun 24 -89.5
+	turret -40 -28
+	turret 40 -28
+	turret 0 60
+	turret 0 -32.5
+	engine -50 15
+	engine 50 15
+	"steering engine" -50 15
+		zoom 0.5
+		right
+	"steering engine" 50.5 15
+		zoom 0.5
+		left
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage."
+
+# Disabled faster due to being submersed underwater for an extended period of time.
+ship "Anomalocaris" "Anomalocaris (Venerable)"
+	add attributes
+		"threshold percentage" 0.4
+	outfits
+		"Bullfrog Anti-Missile" 2
+		"Korath Detainer" 2
+		"Hai Williwaw Cooling"
+		"Boulder Reactor"
+		"Hai Valley Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
+		"Value Detector"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Afterburner (Asteroid Class)"
+		"Hyperdrive"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
+
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
@@ -965,7 +1047,9 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
+# These variants don't spawn normally and have larger crew counts to represent experimentation with ionic weapons.
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -978,7 +1062,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
@@ -1432,6 +1516,25 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Prototype)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Tripulse Shredder" 4
+		"Chameleon Anti-Missile" 4
+		Hyperdrive
+		"Hai Diamond Regenerator"
+		"Quantum Keystone"
+		"Hai Williwaw Cooling" 2
+		"Hai Octopus Jammer"
+		"Value Detector"
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Pulse Rifle" 75
 
 
 
