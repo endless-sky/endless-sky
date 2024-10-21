@@ -3790,37 +3790,39 @@ mission "Earth Retirement 2"
 	passengers 3
 	on offer
 		conversation
-			`As you enter the spaceport, you see a familiar sight. The elderly couple, Charles and Donna, who you helped move to Earth some months ago are talking to a young well-dressed man. Donna looks much the same as you remember her, but Charles is sporting a bandage on his head, and one of his arms looks like it's in a sling. When they see you, Donna points excitedly in your direction, and the entire group moves to meet you.`
+			`As you enter the spaceport, you see a familiar sight. The elderly couple Charles and Donna Singer, who you helped move to Earth a while ago, are talking to a young well-dressed man. Donna looks much the same as you remember her, but Charles is sporting a bandage on his head, and one of his arms looks like it's in a sling. When they see you, Donna points excitedly in your direction, and the entire group moves to meet you.`
 			`	"Captain! I never thought we would see you again," Donna begins. "I'd like to introduce you to my son, Abel." She gestures to the young man, who shakes your hand vigorously. Now that you're close, you can see that he is dressed very finely. His suit is made of expensive wool with ebony buttons, his shoes are emblazoned with designer logos, and you can see a jewel-encrusted watch peeking out from underneath the well-tailored cuff of one arm.`
 			`	"It's great to meet you, Captain...?"`
 			choice
-				`"<first> <last>."`
+				`	"<first> <last>."`
+				`	"<last>."`
 			`	"Captain <last>," he smiles. "How very nice to meet you indeed. My parents here told me what you did for them. If I may introduce myself more fully, I am Abel Singer, Junior Vice President of Marketing Operations for Syndicated Systems. I want to thank you for going out of your way to help my parents when they needed it most."`
 			choice
-				`"It was nothing.`
-				`"What happened to Charles?"`
+				`	"It was nothing."`
+				`	"What happened to Charles?"`
 					goto injuries
-				`"How could you leave them to rot...?"`
+				`	"How could you leave them to rot...?"`
 					goto rot
 			`	"It was not nothing," Donna blurts out. "You were there for us when nobody else cared. You didn't even accept the agreed upon payment! Our former employers, our friends, even our children..." She trails off.`
 			label rot
-			`	"I've not been the best son," Abel interjects, staring down at his feet. "My parents are very dear to me, of course. But I was so busy with work. I thought they could take care of themselves. So, I left them to their own devices. I didn't even think to wonder about their financial position, and my father here was too proud to say it out loud." He turns to look his father in the eyes. "Still, I should have known better. I'm sorry, dad."`
+			`	"I've not been the best son," Abel says, staring down at his feet. "My parents are very dear to me, of course. But I was so busy with work. I thought they could take care of themselves. So I left them to their own devices. I didn't even think to wonder about their financial position, and my father here was too proud to say it out loud." He turns to look his father in the eyes. "Still, I should have known better. I'm sorry, dad."`
 			label injuries
 			`	Charles grunts, but it is his wife who speaks up next. "Shortly after we arrived, a gang of local teenagers began terrorizing our retirement community. It was mostly just vandalism, some petty theft, and even some burglaries. Nothing would have happened if Charles had just given up the necklace-"`
 			`	"Give up your necklace?!" Charles snaps. "You know I couldn't do that. It was your mother's - the gift she gave you on the day of our wedding, to show you how proud she was. I'd face down those bullies a hundred times if it meant saving it."`
 			`	A silence follows, but it's not uncomfortable. Donna looks at Charles with tenderness; Charles looks at her with love. Abel looks at both of them with sorrow and regret. Finally, the three of them turn to you.`
-			`	"I am taking my parents to come live with me on <planet>. We were all wondering if you would do us the honor of bringing them and me home one last time. This time, I will spare no expense to ensure their safety and comfort. We will pay you <payment> for the trip."`
+			`	"I am taking my parents to come live with me on <planet>. I think it'd be fitting if you took us. This time, I will spare no expense to ensure their safety and comfort. We will pay you <payment> for the trip."`
 			choice
-				`"Welcome aboard, Singer family."`
+				`	"Welcome aboard, Singer family."`
 					accept
-				`"Sorry, I can't."`
-					decline
+				`	"Sorry, I can't. I've got other things to do."`
+			`	"Well, the best of luck to you, then," Abel immediately replies. "We wish you well!" adds Charles. They all go in search of another captain.`
+				decline
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the Singer family hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
-		payment 75000
+		payment 85000
 		conversation
-			`When you land on <planet>, Abel insists on carrying all of the family's personal effects. Donna and Charles are almost reluctant to say goodbye to the luxury accommodations on your ship, but they look ahead smiling as their son leads them on to the better, happier retirement that they have well earned.`
+			`When you land on <planet>, Abel insists on carrying all of the family's personal effects. Donna and Charles are almost reluctant to say goodbye to the Luxury Accommodations on your ship, but they look ahead smiling as their son leads them on to the better, happier retirement that they have well earned.`
 			`	Before leaving, each of them shakes your hand in turn, and Abel slyly deposits a credit chip worth <payment> in your palm at the end of the handshake. With a final wave, you bid the Singers goodbye and good luck.`
 
 
