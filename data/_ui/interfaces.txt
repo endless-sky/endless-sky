@@ -1352,14 +1352,14 @@ interface "shop"
 		dimensions 70 30
 		size 18
 
-	visible if "is outfitters"
+	visible if "is outfitter"
 	active if "can sell"
 	button s "_Sell"
 		center -425 -25
 		dimensions 70 30
 		size 18
 
-	visible if "!is outfitters"
+	visible if "!is outfitter"
 	active if "can sell"
 	button s "_Sell"
 		center -215 -25

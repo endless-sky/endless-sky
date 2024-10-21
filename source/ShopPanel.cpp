@@ -954,7 +954,7 @@ void ShopPanel::DrawButtons()
 	const bool isOwned = IsAlreadyOwned();
 	info.SetCondition(isOwned ? (playerShip ? "use install" : "use cargo") : "use buy");
 	if(isOutfitter)
-		info.SetCondition("is outfitters");
+		info.SetCondition("is outfitter");
 	if(CanBuy(isOwned))
 		info.SetCondition("can buy");
 	if(CanSell())
