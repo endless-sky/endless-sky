@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_ACTION_H_
-#define GAME_ACTION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ShipManager.h"
@@ -112,7 +111,3 @@ private:
 
 	ConditionSet conditions;
 };
-
-
-
-#endif

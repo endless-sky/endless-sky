@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef POINTER_SHADER_H_
-#define POINTER_SHADER_H_
+#pragma once
 
 class Color;
 class Point;
@@ -32,7 +31,3 @@ public:
 	static void Add(const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
 	static void Unbind();
 };
-
-
-
-#endif

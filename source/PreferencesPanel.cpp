@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PreferencesPanel.h"
 
 #include "text/alignment.hpp"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
@@ -31,8 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "text/Table.h"
@@ -252,7 +252,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
-		Audio::SetVolume((20 - y) / 200.);
+		Audio::SetVolume((17 - y) / 200.);
 		Audio::Play(Audio::Get("warder"));
 		return true;
 	}
@@ -480,7 +480,8 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD,
+		Command::HOLD_FIRE,
+		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -678,6 +679,7 @@ void PreferencesPanel::DrawSettings()
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
 		"",
 		"Map",
 		"Deadline blink by distance",
