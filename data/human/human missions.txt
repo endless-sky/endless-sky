@@ -3812,7 +3812,7 @@ mission "Earth Retirement 2"
 			`	A silence follows, but it's not uncomfortable. Donna looks at Charles with tenderness; Charles looks at her with love. Abel looks at both of them with sorrow and regret. Finally, the three of them turn to you.`
 			`	"I am taking my parents to come live with me on <planet>. I think it'd be fitting if you took us. This time, I will spare no expense to ensure their safety and comfort. We will pay you <payment> for the trip."`
 			choice
-				`	"Welcome aboard, Singer family."`
+				`	"You're welcome on my ship."`
 					accept
 				`	"Sorry, I can't. I've got other things to do."`
 			`	"Well, the best of luck to you, then," Abel immediately replies. "We wish you well!" adds Charles. They all go in search of another captain.`
