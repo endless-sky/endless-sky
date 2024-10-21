@@ -3796,7 +3796,7 @@ mission "Earth Retirement 2"
 			choice
 				`	"<first> <last>."`
 				`	"<last>."`
-			`	"Captain <last>," he smiles. "How very nice to meet you indeed. My parents here told me what you did for them. If I may introduce myself more fully, I am Abel Singer, Junior Vice President of Marketing Operations for Syndicated Systems. I want to thank you for going out of your way to help my parents when they needed it most."`
+			`	"Captain <last>," he smiles. "How very nice to meet you indeed. My parents here told me what you did for them. If I may introduce myself more fully, I am Abel Singer, Assistant Vice President of Investments for Syndicated Systems. I want to thank you for going out of your way to help my parents when they needed it most."`
 			choice
 				`	"It was nothing."`
 				`	"What happened to Charles?"`
@@ -3805,7 +3805,7 @@ mission "Earth Retirement 2"
 					goto rot
 			`	"It was not nothing," Donna blurts out. "You were there for us when nobody else cared. You didn't even accept the agreed upon payment! Our former employers, our friends, even our children..." She trails off.`
 			label rot
-			`	"I've not been the best son," Abel says, staring down at his feet. "My parents are very dear to me, of course. But I was so busy with work. I thought they could take care of themselves. So I left them to their own devices. I didn't even think to wonder about their financial position, and my father here was too proud to say it out loud." He turns to look his father in the eyes. "Still, I should have known better. I'm sorry, dad."`
+			`	"I've not been the best son," Abel says, staring down at his feet. "My parents are very dear to me, of course. But I was so busy with work, I thought they could take care of themselves. So I left them to their own devices. I didn't even think to wonder about their financial position, and my father here was too proud to say it out loud." He turns to look his father in the eyes. "Still, I should have known better. I'm sorry, Dad."`
 			label injuries
 			`	Charles grunts, but it is his wife who speaks up next. "Shortly after we arrived, a gang of local teenagers began terrorizing our retirement community. At first it was just vandalism, but eventually it became petty theft, burglary... Nothing would have happened if Charles had just given up the necklace-"`
 			`	"Give up your necklace?!" Charles snaps. "You know I couldn't do that. It was your mother's - the gift she gave you on the day of our wedding, to show you how proud she was. I'd face down those bullies a hundred times if it meant saving it."`
@@ -3822,7 +3822,7 @@ mission "Earth Retirement 2"
 	on complete
 		payment 85000
 		conversation
-			`When you land on <planet>, Abel insists on carrying all of the family's personal effects. Donna and Charles are almost reluctant to say goodbye to the luxury accommodations on your ship, but they look ahead smiling as their son leads them on to the better, happier retirement that they have well earned.`
+			`When you land on <planet>, Abel insists on carrying all of the family's personal effects. Donna and Charles are almost reluctant to say goodbye to the luxurious accommodations on your ship, but they look ahead smiling as their son leads them on to the better, happier retirement that they have well earned.`
 			`	Before leaving, each of them shakes your hand in turn, and Abel slyly deposits a credit chip worth <payment> in your palm at the end of the handshake. With a final wave, you bid the Singers goodbye and good luck.`
 
 
