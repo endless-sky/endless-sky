@@ -241,7 +241,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	if(fined.contains(gov) || Random::Real() > security || !gov->GetFineFraction())
+	if(fined.contains(gov) || Random::Real() > security)
 		return "";
 
 	string reason;
