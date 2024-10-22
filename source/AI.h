@@ -186,10 +186,13 @@ private:
 		// Hold active is the same command as hold position, but it is given when a ship
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
+		// Travel orders
 		static const int MOVE_TO = 0x002;
+		static const int TRAVEL_TO = 0x003;
+		static const int LAND_ON = 0x004;
 		// HARVEST is related to MINE and is for picking up flotsam after
 		// ATTACK.
-		static const int HARVEST = 0x003;
+		static const int HARVEST = 0x005;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -206,6 +209,7 @@ private:
 		std::weak_ptr<Minable> targetAsteroid;
 		Point point;
 		const System *targetSystem = nullptr;
+		const Planet *targetPlanet = nullptr;
 	};
 
 
