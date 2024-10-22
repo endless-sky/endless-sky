@@ -94,7 +94,7 @@ mission "New China Mourners"
 	minor
 	source "New China"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`The skies pour down onto the world below, weeping together with the crowds as a plain but stately coffin is carried slowly from a void deck. Rhythmic wailing blends with the susurrant rain, filling the air as the coffin is followed closely by procession of mourners that look to be an extensive gathering of family. Even as it is placed into the van they do not leave the departed, a number of their hands placed on it as if pushing the person toward their final resting place. The two foremost mourners, a woman and a young man, climb in and take their seats next to it. Somewhere nearby, music begins to play as the vehicle slowly moves off.`
@@ -107,7 +107,7 @@ mission "New Holland Foibles"
 	minor
 	source "New Holland"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`The smell of burning metal fills the air as you walk down the uncrowded streets of the factory town near the spaceport, keeping away from the arterial supply route directly feeding the port and its hangars.`
@@ -410,7 +410,7 @@ mission "Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
 	to offer
-		random < 1
+		random < 10
 		has "main plot completed"
 	on offer
 		conversation
@@ -594,7 +594,7 @@ mission "Sol-Bound Shuttle"
 	source
 		system "Sol"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you see that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
@@ -691,7 +691,7 @@ mission "Burthen Triathlon"
 	source
 		planet "Burthen"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Thanks to the planet's high gravity, Burthen is not a common destination, but today the spaceport seems to have a lot of visitors. Many of the usually empty landing pads are occupied, and you notice a sizable crowd at the edge of the spaceport as you step out onto its rather untarnished apron. Some members of the crowd are obviously from offworld judging by their height, and there's even a few media crews standing by, although it looks like their camera drones are struggling with Burthen's gravity.`
@@ -757,7 +757,7 @@ mission "CCOR Guerrilla Standoff"
 	minor
 	source "Gagarin"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars. Still, it appears much like any other old, slightly run-down Southern spaceport, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
@@ -785,7 +785,7 @@ mission "CCOR Guerrilla Standoff"
 mission "Raider returning to Mordente-Bridi"
 	source "Mordente-Bridi"
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
