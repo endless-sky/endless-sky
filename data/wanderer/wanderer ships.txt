@@ -294,7 +294,7 @@ ship "Heavy Gust"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
-		"Wanderer Ramscoop" 2
+		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
