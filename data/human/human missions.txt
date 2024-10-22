@@ -6412,7 +6412,7 @@ mission "Moving House 1"
 				decline
 				
 			label sure
-			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
+			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour."`
 			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
 			choice
 				`	(Shake their hand.)`
