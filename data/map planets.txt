@@ -166,6 +166,7 @@ planet Alvorada
 	landscape land/station46
 	description `Formerly "Fortaleza da Alvorada," Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the Politburo of the CCOR and the extensive computer system they built that administered their centrally-planned economy. Rumor has it that, in the deepest reaches of the complex where no pirates have yet been able to breach, they're still there, having adapted the system to instead direct the guerrillas in the reestablishment of their homeland.`
 	spaceport `Alvorada's cosmodromo was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but with clear firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the asteroid where similar emplacements could have been hidden.`
+	# NOTE: "cosmodromo" is intentional. The CCOR uses Portuguese, and "cosmodromo" is the Portuguese spelling of "cosmodrome".
 	bribe 0.1
 	security 0
 	tribute 600
