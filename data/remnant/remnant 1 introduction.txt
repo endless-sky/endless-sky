@@ -3350,6 +3350,8 @@ mission "Remnant: Keystone Research 7"
 				`	"The Remnant sure like to eat."`
 				`	"Why do the Remnant eat so much?"`
 					goto foodvolume
+					to display
+						not "remnant symbionts info"
 				`	"Maybe I should import some spices."`
 					goto spices
 				`	"What is our next step?"`
