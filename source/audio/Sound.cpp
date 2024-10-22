@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sound.h"
 
+#include "../Archive.h"
 #include "../File.h"
 
 #include <AL/al.h>
@@ -44,16 +45,21 @@ bool Sound::Load(const string &path, const string &name)
 
 	isLooped = path[path.length() - 5] == '~';
 
+	Archive::ArchiveResourceHandle handle;
 	File in(path);
 	if(!in)
-		return false;
+	{
+		Archive::GetArchiveFile(path, handle);
+		if(!handle)
+			return false;
+	}
 	uint32_t frequency = 0;
-	uint32_t bytes = ReadHeader(in, frequency);
+	uint32_t bytes = ReadHeader(handle ? handle.GetFile() : in, frequency);
 	if(!bytes)
 		return false;
 
 	vector<char> data(bytes);
-	if(fread(&data[0], 1, bytes, in) != bytes)
+	if(fread(&data[0], 1, bytes, handle ? handle.GetFile() : in) != bytes)
 		return false;
 
 	if(!buffer)

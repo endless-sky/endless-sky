@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Plugins.h"
 
+#include "Archive.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -195,9 +196,10 @@ bool Plugin::IsValid() const
 // Attempt to load a plugin at the given path.
 const Plugin *Plugins::Load(const string &path)
 {
+	const bool isZip = path.ends_with(".zip");
 	// Get the name of the folder containing the plugin.
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
-	string name = path.substr(pos, path.length() - 1 - pos);
+	string name = path.substr(pos, path.length() - (isZip ? 4 : 1) - pos);
 
 	string pluginFile = path + "plugin.txt";
 	string aboutText;

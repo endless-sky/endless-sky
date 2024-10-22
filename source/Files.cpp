@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 
+#include "Archive.h"
 #include "File.h"
 #include "Logger.h"
 
@@ -345,6 +346,8 @@ vector<string> Files::RecursiveList(const string &directory)
 {
 	vector<string> list;
 	RecursiveList(directory, &list);
+	if(list.empty())
+		list = Archive::GetRecursiveFileList(directory);
 	sort(list.begin(), list.end());
 	return list;
 }
@@ -409,13 +412,19 @@ void Files::RecursiveList(string directory, vector<string> *list)
 
 bool Files::Exists(const string &filePath)
 {
+	bool returnValue = false;
 #if defined _WIN32
 	struct _stat buf;
-	return !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
+	returnValue = !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
 #else
 	struct stat buf;
-	return !stat(filePath.c_str(), &buf);
+	returnValue = !stat(filePath.c_str(), &buf);
 #endif
+
+	if(!returnValue && filePath.find(".zip/") != string::npos)
+		return Archive::FileExists(filePath);
+	else
+		return returnValue;
 }
 
 
@@ -504,8 +513,14 @@ FILE *Files::Open(const string &path, bool write)
 
 string Files::Read(const string &path)
 {
+	Archive::ArchiveResourceHandle handle;
+
+	// Open the file, and make sure it really is a PNG.
 	File file(path);
-	return Read(file);
+	if(!file)
+		Archive::GetArchiveFile(path, handle);
+
+	return Read(handle ? handle.GetFile() : file);
 }
 
 

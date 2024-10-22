@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
+#include "../Archive.h"
 #include "../File.h"
 #include "../Logger.h"
 
@@ -193,10 +194,18 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 namespace {
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
+		Archive::ArchiveResourceHandle handle;
+
 		// Open the file, and make sure it really is a PNG.
 		File file(path.string());
 		if(!file)
-			return false;
+		{
+			Archive::GetArchiveFile(path.string(), handle);
+			if(!handle)
+				return false;
+		}
+
+
 
 		// Set up libpng.
 		png_struct *png = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
@@ -218,7 +227,7 @@ namespace {
 
 		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
 		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
-		png_init_io(png, file);
+		png_init_io(png, handle ? handle.GetFile() : file);
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
@@ -293,9 +302,16 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
+		Archive::ArchiveResourceHandle handle;
+
+		// Open the file, and make sure it really is a PNG.
 		File file(path.string());
 		if(!file)
-			return false;
+		{
+			Archive::GetArchiveFile(path.string(), handle);
+			if(!handle)
+				return false;
+		}
 
 		jpeg_decompress_struct cinfo;
 		struct jpeg_error_mgr jerr;
@@ -305,7 +321,7 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		jpeg_stdio_src(&cinfo, file);
+		jpeg_stdio_src(&cinfo, handle ? handle.GetFile() : file);
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 

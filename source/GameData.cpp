@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
+#include "Archive.h"
 #include "audio/Audio.h"
 #include "BatchShader.h"
 #include "CategoryList.h"
@@ -901,15 +902,18 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
-	for(const string &path : globalPlugins)
-		if(Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
+	auto AddPlugins = [&queue] (const string &directory) {
+		vector<string> plugins = Files::List(directory);
+		for(const string &path : plugins)
+		{
+			string realPath = path.ends_with(".zip") ? path + "/" : path;
+			if(Plugins::IsPlugin(realPath))
+				LoadPlugin(queue, realPath);
+		}
+	};
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
-		if(Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
+	AddPlugins(Files::Resources() + "plugins/");
+	AddPlugins(Files::Config() + "plugins/");
 }
 
 

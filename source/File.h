@@ -25,6 +25,7 @@ class File {
 public:
 	File() noexcept = default;
 	explicit File(const std::string &path, bool write = false);
+	File(unsigned char *data, size_t size, const char *type);
 	File(const File &) = delete;
 	File(File &&other) noexcept;
 	~File() noexcept;
