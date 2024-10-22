@@ -325,7 +325,7 @@ outfit "Cloaking Device"
 outfit "Outfits Expansion"
 	category "Systems"
 	series "Utility"
-	index 10
+	index 20
 	cost 50000
 	thumbnail "outfit/outfit expansion"
 	"mass" 5
@@ -340,7 +340,7 @@ outfit "Outfits Expansion"
 outfit "Cargo Expansion"
 	category "Systems"
 	series "Utility"
-	index 20
+	index 10
 	cost 30000
 	thumbnail "outfit/cargo expansion"
 	"mass" 5
