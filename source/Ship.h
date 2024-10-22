@@ -563,6 +563,10 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	// Helper function for jettisoning flotsam.
+	void Jettison(std::shared_ptr<Flotsam> toJettison);
+
+	// Mark all stopovers as incomplete.
 	void ResetStopovers();
 
 
@@ -644,6 +648,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
+	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
 
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.

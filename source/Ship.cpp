@@ -1392,6 +1392,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
+	jettisonedFromBay.clear();
 	hyperspaceCount = 0;
 	forget = 1;
 	targetShip.reset();
@@ -3419,7 +3420,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
-		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons)
+		Jettison(make_shared<Flotsam>(commodity, (Flotsam::TONS_PER_BOX < tons)
 			? Flotsam::TONS_PER_BOX : tons, notForGov));
 }
 
@@ -3449,7 +3450,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
-		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count)
+		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
@@ -3999,6 +4000,12 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			for(shared_ptr<Flotsam> &it : jettisoned)
 				it->Place(*this);
 			flotsam.splice(flotsam.end(), jettisoned);
+			for(auto &[newFlotsam, bayIndex] : jettisonedFromBay)
+			{
+				newFlotsam->Place(*this, bayIndex);
+				flotsam.emplace_back(std::move(newFlotsam));
+			}
+			jettisonedFromBay.clear();
 
 			// Any ships that failed to launch from this ship are destroyed.
 			for(Bay &bay : bays)
@@ -4389,11 +4396,21 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 
 void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 {
+	if(forget)
+		return;
 	// Jettisoned cargo effects (only for ships in the current system).
-	if(!jettisoned.empty() && !forget)
+	if(!jettisoned.empty())
 	{
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
+		return;
+	}
+	if(!jettisonedFromBay.empty())
+	{
+		auto &[newFlotsam, bayIndex] = jettisonedFromBay.front();
+		newFlotsam->Place(*this, bayIndex);
+		flotsam.emplace_back(std::move(newFlotsam));
+		jettisonedFromBay.pop_front();
 	}
 }
 
@@ -4638,21 +4655,35 @@ bool Ship::DoLandingLogic()
 			}
 			else if(isSpecial && !isYours)
 			{
-				// This mission NPC has a directive to land on at least one specific planet.
-				// If this is one of them, this ship may land on a "destination" (permanently),
-				// or have a "stopover."
-				if(AllStopoversVisited() && destinationPlanet == landingPlanet)
+				bool escortsLanded = true;
+				for(const auto &it : escorts)
 				{
-					MarkForRemoval();
-					LandForever();
+					const auto escort = it.lock();
+					// Check if escorts are also landed, or destroyed.
+					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+						continue;
+					escortsLanded = false;
+					break;
+				}
+				if(escortsLanded)
+				{
+					// This mission NPC has a directive to land on at least one specific planet.
+					// If this is one of them, this ship may land on a "destination" (permanently),
+					// or have a "stopover."
+					if(AllStopoversVisited() && destinationPlanet == landingPlanet)
+					{
+						MarkForRemoval();
+						LandForever();
 					return true;
+					}
+					else if(!stopovers.empty())
+					{
+						auto it = stopovers.find(landingPlanet);
+						if(it != stopovers.end())
+							it->second = true;
+					}
 				}
-				else if(!stopovers.empty())
-				{
-					auto it = stopovers.find(landingPlanet);
-					if(it != stopovers.end())
-						it->second = true;
-				}
+				return true;
 			}
 
 			zoom = 0.f;
@@ -5204,6 +5235,29 @@ double Ship::CalculateDeterrence() const
 }
 
 
+
+void Ship::Jettison(shared_ptr<Flotsam> toJettison)
+{
+	if(currentSystem)
+	{
+		jettisoned.emplace_back(toJettison);
+		return;
+	}
+	// If this ship is currently being carried by another, transfer Flotsam to be jettisoned to the carrier.
+	shared_ptr<Ship> carrier = parent.lock();
+	if(!carrier)
+		return;
+	size_t bayIndex = 0;
+	for(const auto &bay : carrier->Bays())
+	{
+		if(bay.ship.get() == this)
+		{
+			carrier->jettisonedFromBay.emplace_back(toJettison, bayIndex);
+			break;
+		}
+		++bayIndex;
+	}
+}
 
 void Ship::ResetStopovers()
 {
