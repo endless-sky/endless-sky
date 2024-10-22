@@ -523,6 +523,7 @@ phrase "high houses friendly hail"
 		"! / "
 	word
 		"Your House is here"
+		"Your House arrives"
 	word
 		"."
 		"!"
