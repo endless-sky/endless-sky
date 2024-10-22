@@ -2165,12 +2165,12 @@ void PlayerInfo::ClearActiveBoardingMission()
 
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
-// show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+// show that message. Returns true if anything was shown.
+bool PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
-		return;
+		return false;
 
 	for(auto &it : missionList)
 		if(it.IsAtLocation(location) && it.CanOffer(*this) && !it.CanAccept(*this))
@@ -2179,9 +2179,10 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			if(!message.empty())
 			{
 				ui->Push(new Dialog(message));
-				return;
+				return true;
 			}
 		}
+	return false;
 }
 
 

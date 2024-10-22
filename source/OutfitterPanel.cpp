@@ -79,7 +79,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, true)
+	: ShopPanel(player, Mission::OUTFITTER)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].push_back(it.first);
@@ -101,8 +101,7 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
-	ShopPanel::CheckForMissions(Mission::OUTFITTER);
-	if(GetUI()->IsTop(this) && !checkedHelp)
+	if(GetUI()->WillBeTop(this) && !checkedHelp)
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)
 		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage")

@@ -158,6 +158,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
 	JumpTypes.h
+	LandedOfferPanel.cpp
+	LandedOfferPanel.h
 	Logger.cpp
 	Logger.h
 	LineShader.cpp
