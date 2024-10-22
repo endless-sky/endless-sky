@@ -13,15 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RAIDERS_H
-#define RAIDERS_H
+#pragma once
 
 #include "RaidFleet.h"
 
 #include <vector>
 
-class Government;
 class DataNode;
+class Government;
 
 
 
@@ -43,5 +42,3 @@ private:
 	bool scoutsCargo = false;
 	const Government *government = nullptr;
 };
-
-#endif

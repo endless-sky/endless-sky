@@ -30,30 +30,31 @@ RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttract
 
 
 
-RaidFleet::RaidFleet() {}
+RaidFleet::RaidFleet()
+{
+}
 
 
 
 void RaidFleet::Load(const DataNode &node, const Fleet *fleet)
 {
 	this->fleet = fleet;
-	if(node.HasChildren())
-		for(const DataNode &child : node)
-		{
-			const string &key = child.Token(0);
-			if(child.Size() < 2)
-				child.PrintTrace("Error: Expected key to have a value:");
-			else if(key == "min attraction")
-				minAttraction = child.Value(1);
-			else if(key == "max attraction")
-				maxAttraction = child.Value(1);
-			else if(key == "fleet cap attraction")
-				capAttraction = child.Value(1);
-			else if(key == "fleet cap")
-				fleetCap = child.Value(1);
-			else
-				child.PrintTrace("Skipping unrecognized attribute:");
-		}
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		if(child.Size() < 2)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "min attraction")
+			minAttraction = child.Value(1);
+		else if(key == "max attraction")
+			maxAttraction = child.Value(1);
+		else if(key == "fleet cap attraction")
+			capAttraction = child.Value(1);
+		else if(key == "fleet cap")
+			fleetCap = child.Value(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
 }
 
 

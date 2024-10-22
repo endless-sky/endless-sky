@@ -27,7 +27,7 @@ using namespace std;
 
 
 
-void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool depreciated)
+void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool deprecated)
 {
 	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
 	if(remove)
@@ -39,16 +39,12 @@ void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool
 	}
 	else
 	{
-		if(depreciated)
+		if(deprecated)
 			raidFleets.emplace_back(fleet,
 				node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
 				node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
 		else
-		{
-			RaidFleet raidFleet;
-			raidFleet.Load(node, fleet);
-			raidFleets.emplace_back(raidFleet);
-		}
+			raidFleets.emplace_back().Load(node, fleet);
 	}
 }
 
@@ -76,7 +72,7 @@ void Raiders::Load(const DataNode &node)
 			else if(key == "empty cargo attraction")
 				emptyCargoAttraction = 1.;
 			else if(key == "fleet")
-				raidFleets = {};
+				raidFleets.clear();
 			else
 				child.PrintTrace("Cannot \"remove\" the given key:");
 		}

@@ -203,7 +203,7 @@ void Government::Load(const DataNode &node)
 			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
 			if(!raiders)
 				raiders = new Raiders();
-			const_cast<Raiders*>(raiders)->LoadFleets(child, remove, valueIndex);
+			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex);
 		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
