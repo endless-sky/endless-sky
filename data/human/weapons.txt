@@ -419,8 +419,8 @@ outfit "Mining Laser Turret"
 
 outfit "Tractor Beam"
 	category "Turrets"
-	series "Turrets: Human"
-	index 100
+	series "Tractor Beams"
+	index 10
 	cost 75000
 	thumbnail "outfit/tractor beam"
 	"mass" 22

@@ -29,10 +29,11 @@ categories = [
 turrets_series = [
 	"Turrets",
 	"Anti-Missile",
+	"$Tractor Beams",  # The $ creates a single category shared by all species.
 ]
 
 systems_series = [
-	"$Drives", # The $ creates a single category shared by all species.
+	"$Drives",
 	"Shields",
 	"Repair",
 	"Cooling",

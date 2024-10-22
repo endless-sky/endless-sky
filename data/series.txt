@@ -59,6 +59,7 @@ category "series"
 	"Anti-Missile: Pug" 212
 	"Anti-Missile: Quarg" 213
 	"Anti-Missile: Other" 299
+	"Tractor Beams" 300
 	# Secondary Weapons
 	"Secondary Weapons: Human" 0
 	"Secondary Weapons: Hai" 1

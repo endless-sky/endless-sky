@@ -187,7 +187,7 @@ outfit "Star Tail Storage"
 
 outfit "Horizon Grappler"
 	category "Turrets"
-	series "Turrets: Incipias"
+	series "Tractor Beams"
 	index 20
 	cost 200000
 	thumbnail "outfit/horizon grappler"
