@@ -217,6 +217,8 @@ effect "horizon grappler"
 # Shields/Energy:
 outfit "Gas-Class Shield"
 	category "Systems"
+	series "Shields: Incipias"
+	index 10
 	thumbnail "outfit/gas class shield"
 	cost 136000
 	mass 60
@@ -229,6 +231,8 @@ outfit "Gas-Class Shield"
 
 outfit "Liquid-Class Shield"
 	category "Systems"
+	series "Shields: Incipias"
+	index 10
 	thumbnail "outfit/liquid class shield"
 	cost 216000
 	mass 80
