@@ -14,7 +14,7 @@
 outfit "Supercapacitor"
 	category "Power"
 	series "Batteries: Human"
-	index 70
+	index 10
 	cost 1500
 	thumbnail "outfit/supercapacitor"
 	"mass" 2
@@ -25,7 +25,7 @@ outfit "Supercapacitor"
 outfit "LP036a Battery Pack"
 	category "Power"
 	series "Batteries: Human"
-	index 10
+	index 20
 	cost 6000
 	thumbnail "outfit/tiny battery"
 	"mass" 10
@@ -36,7 +36,7 @@ outfit "LP036a Battery Pack"
 outfit "LP072a Battery Pack"
 	category "Power"
 	series "Batteries: Human"
-	index 20
+	index 30
 	cost 14000
 	thumbnail "outfit/small battery"
 	"mass" 20
