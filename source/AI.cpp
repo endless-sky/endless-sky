@@ -5034,17 +5034,17 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
 			ship.EraseWaypoint(targetSystem);
 		else
 		{
-			newOrders.SetTravelTo();
-			newOrders.SetTargetSystem(targetSystem);
+			newOrders.type = Orders::TRAVEL_TO;
+			newOrders.targetSystem = targetSystem;
 			if(from == targetSystem)
 			{
 				// Travel to the next waypoint, if it exists.
 				ship.SetTargetStellar(nullptr);
 				const System *nextSystem = ship.NextWaypoint();
 				if(nextSystem)
-					newOrders.SetTargetSystem(nextSystem);
+					newOrders.targetSystem = nextSystem;
 				else
-					newOrders.SetTargetSystem(nullptr);
+					newOrders.targetSystem = nullptr;
 			}
 		}
 	}
@@ -5053,21 +5053,21 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
 	// supercedes the order to travel to the next waypoint (unless already visited).
 	if(destination && destination->IsInSystem(from))
 	{
-		newOrders.SetLandOn();
-		newOrders.SetTargetPlanet(destination);
+		newOrders.type = Orders::LAND_ON;
+		newOrders.targetPlanet = destination;
 	}
 
 	for(const auto &it : stopovers)
 		if(!it.second && it.first->IsInSystem(from))
 		{
-			newOrders.SetLandOn();
-			newOrders.SetTargetPlanet(it.first);
+			newOrders.type = Orders::LAND_ON;
+			newOrders.targetPlanet = it.first;
 			break;
 		}
 
 	// Update the NPC's orders.
 	Orders &existing = orders[&ship];
-	if(!newOrders.GetTargetSystem() && !newOrders.HasLandOn())
+	if(!newOrders.targetSystem && newOrders.type != Orders::LAND_ON)
 		orders.erase(&ship);
 	else
 		existing = newOrders;
