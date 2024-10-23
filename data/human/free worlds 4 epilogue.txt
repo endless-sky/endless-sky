@@ -325,7 +325,10 @@ mission "Shared History: Winters"
 				goto heritage
 				`   "No, I don't."`
 				goto denial
-			
+				
+			label denial
+			`	"Oh, okay. Sorry to bother you, then.`
+				decline
 			label heritage
 			`   You spend the entire trip from the entrance to the food court trying to recall exactly where you've heard those names. Then, as you're sitting in the food court eating a sandwich, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
 			`   "Yeah, I do know a Marcus and Lavinia, but they're my great-grandparents. Are you sure you're asking the right person?" you ask.`
