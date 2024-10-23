@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
+#include "Raiders.h"
 #include "Random.h"
 #include "image/SpriteSet.h"
 
@@ -161,6 +162,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				hazards.clear();
 			else if(key == "belt")
 				belts.clear();
+			else if(key == "raid" || key == "raiders")
+				raiders = nullptr;
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -283,7 +286,14 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
 		else if(key == "raid")
-			RaidFleet::Load(raidFleets, child, remove, valueIndex);
+		{
+			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
+			if(!raiders)
+				raiders = new Raiders();
+			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex);
+		}
+		else if(key == "raiders")
+			raiders = GameData::GetRaiders().Get(child.Token(0));
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);
@@ -991,7 +1001,15 @@ const vector<RaidFleet> &System::RaidFleets() const
 {
 	static const vector<RaidFleet> EMPTY;
 	// If the system defines its own raid fleets then those are used in lieu of the government's fleets.
-	return noRaids ? EMPTY : ((raidFleets.empty() && government) ? government->RaidFleets() : raidFleets);
+	return noRaids ? EMPTY : raiders && !raiders->RaidFleets().empty()
+		? raiders->RaidFleets() : GetGovernment()->RaidFleets();
+}
+
+
+
+const Raiders *System::GetRaiders() const
+{
+	return noRaids ? nullptr : raiders ? raiders : GetGovernment()->GetRaiders();
 }
 
 

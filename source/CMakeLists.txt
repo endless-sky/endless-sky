@@ -256,6 +256,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Radar.h
 	RaidFleet.cpp
 	RaidFleet.h
+	Raiders.cpp
+	Raiders.h
 	Random.cpp
 	Random.h
 	RandomEvent.h
