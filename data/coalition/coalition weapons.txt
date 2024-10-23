@@ -195,6 +195,7 @@ outfit "Finisher Torpedo"
 	"mass" .5
 	"finisher capacity" -1
 	description `A substantial fraction of the Heliarch military complex is devoted to supervising the refining, enrichment, and breeding of nuclear fuels. Having ensured a steady supply of feedstock, they are able to produce a selective set of highly exotic fissile materials. With minuscule critical masses and favorable neutronics properties, these carefully controlled isotopes are the key to giving the miniaturized nuclear warhead in the Finisher Torpedo enough power to deter any would-be threats to the Coalition.`
+	description `	This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
 
 effect "finisher sparks"
 	sprite "effect/finisher sparks"
