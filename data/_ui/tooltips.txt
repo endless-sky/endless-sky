@@ -642,6 +642,9 @@ tip "high shield permeability:"
 tip "low shield permeability:"
 	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
 
+tip "cloaked shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull while you are cloaked.`
+
 tip "shields (charge):"
 	`Total shield strength and regeneration rate per second.`
 
