@@ -91,6 +91,8 @@
 "landing message" "You cannot land on a black hole!"
 	"star/black-hole"
 	"star/black-hole-core"
+	"star/small-black-hole"
+	"star/coal-black-hole"
 
 "landing message" "You cannot land on this part of the Dyson sphere."
 	"planet/dyson1"
