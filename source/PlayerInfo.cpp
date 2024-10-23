@@ -1845,15 +1845,25 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	cargo.Clear();
 	stockDepreciation = Depreciation();
 	sold -= ceil(stored);
-	if(sold)
+	if(sold || stored)
 	{
-		// Report how much excess cargo was sold, and what profit you earned.
+		// Report how much excess cargo was sold (and what profit you earned),
+		// and how many tons of outfits were stored.
 		ostringstream out;
-		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
-		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
-		else
-			out << ".";
+		out << "You ";
+		if(sold)
+		{
+			out << "sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
+			if(totalBasis && totalBasis != income)
+				out << " (for a profit of " << Format::CreditString(income - totalBasis) << ")";
+			if(stored)
+				out << ", and ";
+		}
+		if(stored)
+		{
+			out << "stored " << Format::CargoString(stored, "outfits") << " you could not carry";
+		}
+		out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
