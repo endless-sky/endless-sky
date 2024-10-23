@@ -664,7 +664,7 @@ tip "silent jumps:"
 	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
 
 tip "silent scans:"
-	`Prevents a ship from generating scan sounds (not even the default scan sound).`
+	`Prevents a ship from generating scan sounds.`
 
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
