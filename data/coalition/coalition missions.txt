@@ -3187,7 +3187,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			choice
 				`	"Excuse me, what do you all want?"`
 			`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says a Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
-			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will", explains the citizen.`
+			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will," explains the citizen.`
 			choice
 				`	"Sorry, I'm not interested."`
 					decline
@@ -3229,12 +3229,12 @@ mission "Coalition: Book Discovered"
 				`	(Look for Anna Fangvin.)`
 				`	(Disregard the message.)`
 					decline
-			`A quick look through your encyclopedia reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview and set a course.`
+			`	A quick look through your encyclopedia reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview and set a course.`
 				accept
 	on complete
 		conversation
 			`As you prepare to land, you write Anna a short message, offering an interview. In less than 10 minutes you receive a reply, explaining that Anna has accepted your offer and will wait for you in the spaceport.`
-			`	Look for Anna in the spaceport, so you can take her to the Coalition for a little conversation with those Coalition citizens who showed interest in her work.`
+			`	You should look for Anna in the spaceport, so you can take her to the Coalition for a little conversation with those Coalition citizens who showed interest in her work.`
 
 mission "Coalition: Book Discovered 2"
 	name "'Beyond the Hyperdrive' for Kachachee"
@@ -3248,17 +3248,17 @@ mission "Coalition: Book Discovered 2"
 		conversation
 			`Sorting through messages you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's 'Beyond the Hyperdrive'. You now have a copy you can give to them.`
 			choice
-				`(Ask Anna for another copy of the book.)`
+				`	(Ask Anna for another copy of the book.)`
 					goto "another copy"
-				`(Forget about it.)`
+				`	(Forget about it.)`
 					decline
 			label "another copy"
 			`	You meet Anna once again, and ask her for another copy of Beyond the Hyperdrive. You mention that you have a friend named Kachachee who wanted you to provide them with a copy. Accepting this explanation, Anna takes out another copy, signs it, and gives it to you.`
 				accept
 	on complete
 		conversation
-			`	You get in contact with Kachachee again, informing them you have a copy of Beyond the Hyperdrive. They respond, telling you to meet them at a public square within the spaceport.`
-			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. 'Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are.' They then give you a chip.`
+			`You get in contact with Kachachee again, informing them you have a copy of Beyond the Hyperdrive. They respond, telling you to meet them at a public square within the spaceport.`
+			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 		payment 7000
 
 mission "Coalition: Struggling Author 1"
@@ -3273,12 +3273,9 @@ mission "Coalition: Struggling Author 1"
 			`Upon entering the spaceport, you walk past a restaurant. A woman then raises her arms, waving towards you. She must be Anna Fangvin, the author the Coalition citizens showed interest in.`
 			choice
 				`	(Approach her.)`
-			`	You approach the woman and sit right next to her. "Hello, are you <first>?`
+			`	You approach the woman and sit right next to her. "Hello, are you <first>?" she asks.`
 			choice
-				`	"Yes, I am. So, what do you want to ask?"`
-			choice
-				`	"What do you write?"`
-					goto "genre"
+				`	"Yes, I am. What do you write?"`
 			label "genre"
 			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy!"`
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg ship, and skimming front and back flaps, confirms most of what Anna told you about it. Her signature is on the title page.`
@@ -3292,18 +3289,18 @@ mission "Coalition: Struggling Author 1"
 					goto "quarg"
 				`	"Anything else aside from Beyond the Hyperdrive?"`
 			label "other novels"
-			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually.", says Anna. Other 4 never got any sales. I write short stories on the Internet in my free time. In fact, I'll probably start writing my sixth in a couple months as soon as I find a good idea.`
+			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually," says Anna. "The other four never got any sales. I write short stories on the Hypernet in my free time. In fact, I'll probably start writing my sixth in a couple months, as soon as I find a good idea."`
 			choice
 				`	"What other short stories have you written?"`
 					goto "short stories"
 				`	"How about your previous books?"`
 			label "previous books"
-			`	"They weren't really successful. I'm still struggling. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one remains unpublished; all the publishers rejected it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates, I stopped that series since it was clear it would never sell."`
-			`	"'Beyond the Hyperdrive' is the fifth one and I'm hoping it will sell better than the previous four."`
+			`	"They weren't really successful. I'm still struggling. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one remains unpublished; all the publishers rejected it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell."`
+			`	"'Beyond the Hyperdrive' is the fifth one, and I'm hoping it will sell better than the previous four."`
 			choice
 				`	"How about short stories?"`
 			label "short stories"
-			`	"I write short stories and put them up on the internet some days. Helps me improve my writing and get that urge satiated without committing to a project as long-term as a novel."`
+			`	"I write short stories and put them up on the hypernet some days. Helps me improve my writing and get that urge satiated without committing to a project as long-term as a novel."`
 			`	Anna shows you a webpage with all her stories. The viewer counts appear to be in the hundreds with the occasional one reaching 4 digits.`
 			choice
 				`	"So why is 'Beyond the Hyperdrive' about humans stealing from the Quarg?"`
@@ -3330,7 +3327,7 @@ mission "Coalition: Struggling Author 1"
 				`	"So you said your book doesn't sell well, right?"`
 			`	"Yes, it doesn't. Do you know anyone who could help?"`
 			choice
-				`	"No, I'm afraid I don't know anyone who could."`
+				`	"No actually, I'm afraid I don't know anyone who could."`
 					decline
 				`	(Tell her about the Coalition.)`
 			label "coalition"
