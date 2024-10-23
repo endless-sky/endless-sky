@@ -888,8 +888,12 @@ void Engine::Step(bool isActive)
 	{
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
-		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			0., 10. + max(20., width * .5), 4, 1.f, Angle(pos).Degrees() + 180.);
+		int outfitOverlayType = pos.LengthSquared() > (flagship->Attributes().Get("outfit scan power") * 10000) ? 5 : 4;
+		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
+			0., 10. + max(20., width * .5), outfitOverlayType, 1.f, Angle(pos).Degrees() + 180.);
+		int cargoOverlayType = pos.LengthSquared() > (flagship->Attributes().Get("cargo scan power") * 10000) ? 5 : 4;
+		statuses.emplace_back(pos, 0., flagship->CargoScanFraction(),
+			0., 10. + max(20., width * .5), cargoOverlayType, 1.f, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -1054,17 +1058,19 @@ void Engine::Draw() const
 
 	for(const auto &it : statuses)
 	{
-		static const Color color[14] = {
+		static const Color color[16] = {
 			*colors.Get("overlay flagship shields"),
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
 			*colors.Get("overlay neutral shields"),
 			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay outfit scan out of range"),
 			*colors.Get("overlay flagship hull"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
 			*colors.Get("overlay neutral hull"),
 			*colors.Get("overlay cargo scan"),
+			*colors.Get("overlay cargo scan out of range"),
 			*colors.Get("overlay flagship disabled"),
 			*colors.Get("overlay friendly disabled"),
 			*colors.Get("overlay hostile disabled"),
@@ -1075,13 +1081,13 @@ void Engine::Draw() const
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer,
 				Color::Multiply(it.alpha, color[it.type]), 0.f, it.angle);
-		double dashes = (it.type >= 5) ? 0. : 20. * min<double>(1., zoom);
+		double dashes = (it.type >= 4) ? 0. : 20. * min<double>(1., zoom);
 		if(it.inner > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.inner,
-				Color::Multiply(it.alpha, color[5 + it.type]), dashes, it.angle);
+				Color::Multiply(it.alpha, color[6 + it.type]), dashes, it.angle);
 		if(it.disabled > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.disabled,
-				Color::Multiply(it.alpha, color[10 + it.type]), dashes, it.angle);
+				Color::Multiply(it.alpha, color[12 + it.type]), dashes, it.angle);
 	}
 
 	// Draw labels on missiles
