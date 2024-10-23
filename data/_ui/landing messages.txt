@@ -111,4 +111,3 @@
 	"star/nova-old"
 	"star/nova-core"
 	"star/nova-old-core"
-	"star/wr"
