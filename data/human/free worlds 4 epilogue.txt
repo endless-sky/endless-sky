@@ -297,3 +297,52 @@ conversation "edward epilogue"
 event "plasma repeater advanced"
 	outfitter "Kraz Advanced"
 		"Plasma Repeater"
+
+
+mission "Shared History: Winters"
+	landing
+	to offer
+		has "last name: Winters"
+		has "free worlds plot completed"
+		random < 30
+
+	on offer
+		conversation
+			`As soon as you enter the arrivals terminal, you get a message on your phone. It's from Freya.`
+				`"Hey, <first>. Can I ask you something? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
+			choice
+				`   "Sure. What is it?"`
+				goto permitted
+				`   "Sorry, I'd prefer it if you didn't."`
+				decline
+			
+			label permitted
+			`   You send the reply. A few seconds later, her question arrives.`
+			`   "Do you happen to know anyone named Lavinia? Married to someone named Marcus?"`
+			`   Both names sound oddly familiar, but you can't remember where you heard them.`
+			choice
+				`   "I think so, but I'll need a minute to remember where."`
+				goto heritage
+				`   "No, I don't."`
+				goto denial
+			
+			label heritage
+			`   You spend the entire trip from the entrance to the food court trying to recall exactly where you've heard those names. Then, as you're sitting in the food court eating a sandwich, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
+			`   "Yeah, I do know a Marcus and Lavinia, but they're my great-grandparents. Are you sure you're asking the right person?" you ask.`
+			`   "Oh my god," Freya says. "I can't believe it."`
+			`   "What?"`
+			`   "I think we're related. Second cousins. Marcus and Lavinia Winters are also my great-grandparents."`
+			choice
+				`   "Really?"`
+				goto disbelief
+				`   "Well, then. Hello, cousin. Nice to meet you."`
+				goto joke
+			label disbelief
+			`   "Yeah, I can hardly believe it myself. I think it's nice, though. A pleasant surprise." You agree. "Anyway," she continues. "I should be getting back to work. There's plenty being discovered here in Deneb, and I've got a lot on my plate. Feel free to come visit sometime, though. I'd be glad to have you."`
+			`   You wish her well and return to your sandwich.`
+
+			label joke
+			`   "Heh. Nice to meet you, too. Looks like we brought some prestige to the Winters family name, haven't we, cousin?"`
+			`   You chuckle at her reply.`
+			`   "Anyway," she continues. "I should be getting back to work. There's plenty being discovered here in Deneb, and I've got a lot on my plate. Feel free to come visit sometime, though. I'd be glad to have you."`
+			`   You wish her well and return to your sandwich.`
