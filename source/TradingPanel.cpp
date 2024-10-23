@@ -267,7 +267,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			profit += value;
 			tonsSold += static_cast<int>(amount * outfit->Mass());
 
-			player.AddStock(outfit, amount);
+			player.AddOutfitStock(outfit, amount);
 			player.Accounts().AddCredits(value);
 			player.Cargo().Remove(outfit, amount);
 		}
