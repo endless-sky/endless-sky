@@ -70,7 +70,7 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 
 			for(const DataNode &grand : child)
 			{
-				const std::string &grandToken = grand.Token(0);
+				const std::string &grandValue = grand.Value(0);
 				if(grandToken == "probability")
 					rs.probability = std::stoi(grand.Value(1));
 				if(grandToken == "quantity")
