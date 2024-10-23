@@ -308,8 +308,8 @@ mission "Shared History: Winters"
 
 	on offer
 		conversation
-			`As soon as you enter the arrivals terminal, you get a message on your phone. It's from Freya.`
-				`"Hey, <first>. Can I ask you something? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
+			`	As soon as you enter the arrivals terminal, you get a message on your phone. It's from Freya.`
+				`	"Hey, <first>. Can I ask you something? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
 			choice
 				`	"Sure. What is it?"`
 				goto permitted
@@ -327,7 +327,7 @@ mission "Shared History: Winters"
 				goto denial
 				
 			label denial
-			`	"Oh, okay. Sorry to bother you, then.`
+			`	"Oh, okay. Sorry to bother you, then."`
 				decline
 			label heritage
 			`	You spend the entire trip from the entrance to the food court trying to recall exactly where you've heard those names. Then, as you're sitting in the food court eating a sandwich, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
