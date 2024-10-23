@@ -356,7 +356,7 @@ outfit "White Sun Reactor"
 	"energy generation" 24.85
 	"heat generation" 32
 	"energy capacity" 6700
-	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
+	description "The White Sun is a large nuclear reactor that the Wanderers use for powering some of their warships."
 
 outfit "Blue Sun Reactor"
 	category "Power"

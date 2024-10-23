@@ -49,6 +49,45 @@ ship "Earth Shaper"
 
 
 
+ship "Hailstone"
+	sprite "ship/hailstone"
+	thumbnail "thumbnail/hailstone"
+	attributes
+		category "Fighter"
+		licenses
+			"Wanderer Military"
+		"cost" 990000
+		"hull" 1200
+		"shields" 3400
+		"mass" 100
+		"drag" .87
+		"heat dissipation" .75
+		"outfit space" 113
+		"weapon capacity" 38
+		"engine capacity" 24
+		weapon
+			"blast radius" 23
+			"shield damage" 230
+			"hull damage" 115
+			"hit force" 345
+	outfits
+		"Moonbeam" 2
+
+		"Small Biochemical Cell" 2
+		"Bright Cloud Shielding"
+
+		"Type 1 Radiant Thruster"
+		"Type 1 Radiant Steering"
+
+	engine 12.5 35.5
+	engine -12.5 35.5
+	gun 14 -4.5 "Moonbeam"
+	gun -14 -4.5 "Moonbeam"
+	explode "tiny explosion" 10
+	explode "small explosion" 40
+
+
+
 ship "Flycatcher"
 	sprite "ship/flycatcher"
 	thumbnail "thumbnail/flycatcher"
@@ -256,6 +295,69 @@ ship "Strong Wind"
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "The Strong Wind was originally designed for science and exploration, but recently the Wanderers have modified the design to allow it to be used as a warship."
+
+
+
+ship "Squall"
+	sprite "ship/squall"
+	thumbnail "thumbnail/squall"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Wanderer Military"
+		"cost" 22300000
+		"shields" 40200
+		"hull" 25100
+		"required crew" 39
+		"bunks" 55
+		"mass" 1050
+		"drag" 10.3
+		"heat dissipation" 0.31
+		"fuel capacity" 700
+		"cargo space" 57
+		"outfit space" 640
+		"weapon capacity" 236
+		"engine capacity" 156
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	outfits
+		"Thunderhead Launcher" 2
+		"Sunbeam Turret"
+		"Moonbeam Turret"
+		"Wanderer Anti-Missile" 2
+
+		"Blue Sun Reactor"
+		"Large Biochemical Cell"
+		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
+
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+
+	engine 38.5 133.5
+	engine -38.5 133.5
+	gun 21.5 -105.5 "Thunderhead Launcher"
+	gun -21.5 -105.5 "Thunderhead Launcher"
+	turret 0 -68 "Sunbeam Turret"
+	turret -20.5 30 "Wanderer Anti-Missile"
+	turret 20.5 30 "Wanderer Anti-Missile"
+	turret 0 86.5 "Moonbeam Turret"
+	bay Fighter 37.5 -4.5
+	bay Fighter -37.5 -4.5
+	bay Fighter 37.5 -4.5
+	bay Fighter -37.5 -4.5
+	bay Drone 37.5 -4.5
+	bay Drone -37.5 -4.5
+	bay Drone 37.5 -4.5
+	bay Drone -37.5 -4.5
+	explode "small explosion" 70
+	explode "medium explosion" 70
+	explode "large explosion" 20
+	"final explode" "final explosion medium" 1
 
 
 
