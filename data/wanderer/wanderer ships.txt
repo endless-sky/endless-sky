@@ -346,14 +346,22 @@ ship "Squall"
 	turret -20.5 30 "Wanderer Anti-Missile"
 	turret 20.5 30 "Wanderer Anti-Missile"
 	turret 0 86.5 "Moonbeam Turret"
-	bay Fighter 37.5 -4.5
-	bay Fighter -37.5 -4.5
-	bay Fighter 37.5 -4.5
-	bay Fighter -37.5 -4.5
-	bay Drone 37.5 -4.5
-	bay Drone -37.5 -4.5
-	bay Drone 37.5 -4.5
-	bay Drone -37.5 -4.5
+	bay Fighter 33 -4
+	bay Fighter -33 -4
+	bay Fighter 33 -4
+	bay Fighter -33 -4
+	bay Drone -75.5 18.5
+		angle 340
+		under
+	bay Drone 75.5 18.5
+		angle 20
+		under
+	bay Drone -67 100
+		angle 320
+		under
+	bay Drone 67 100
+		angle 40
+		under
 	explode "small explosion" 70
 	explode "medium explosion" 70
 	explode "large explosion" 20
