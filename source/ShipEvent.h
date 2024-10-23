@@ -68,6 +68,8 @@ public:
 		JUMP = (1 << 9),
 		// This ship just met another ship for the first time
 		ENCOUNTER = (1 << 10),
+		// This ship has permanently landed on a planet.
+		LAND = (1 << 11),
 	};
 
 
