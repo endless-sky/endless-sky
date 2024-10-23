@@ -309,7 +309,7 @@ mission "Shared History: Winters"
 	on offer
 		conversation
 			`As soon as you enter the arrivals terminal, you get a message on your phone. It's from Freya.`
-				`"Hey, <first>. Can I ask you something? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
+				`	"Hey, <first>. Can I ask you something? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
 			choice
 				`	"Sure. What is it?"`
 				goto permitted
