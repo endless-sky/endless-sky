@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "AttributeStore.h"
 #include "DistanceCalculationSettings.h"
 
 #include <list>
@@ -82,7 +83,7 @@ private:
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
 	// It must have at least one attribute from each set in this list:
-	std::list<std::set<std::string>> attributes;
+	std::list<std::set<AnyAttribute>> attributes;
 
 	// The system must satisfy these conditions:
 	std::set<const System *> systems;
