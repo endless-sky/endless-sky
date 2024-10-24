@@ -390,7 +390,7 @@ Rectangle Interface::Element::Bounds(const Information &info) const
 
 
 // The name of this element, or an empty string if it doesn't have a name.
-std::string Interface::Element::Name() const
+string Interface::Element::Name() const
 {
 	return name;
 }
