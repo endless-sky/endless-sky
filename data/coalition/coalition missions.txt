@@ -3628,7 +3628,7 @@ mission "Coalition: Struggling Author 5A"
 				accept
 	on complete
 		payment 50000
-		set "salary: Beyond the Hyperdrive" 800
+		"salary: Beyond the Hyperdrive" = 800
 		conversation "anna invites you to book signing"
 
 mission "Coalition: Struggling Author 5B"
@@ -3645,7 +3645,7 @@ mission "Coalition: Struggling Author 5B"
 				accept
 	on complete
 		payment 50000
-		set "salary: Beyond the Hyperdrive" 800
+		"salary: Beyond the Hyperdrive" = 800
 		conversation "anna invites you to book signing"
 
 
