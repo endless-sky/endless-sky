@@ -835,7 +835,7 @@ mission "Korath [F01]: A Fishy Deal"
 	on enter Atik
 		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
 	on visit
-		dialog "You've arrived at <planet> but you left some of the fish behind. You should take off and wait for your escorts to arrive."
+		dialog "You've arrived at <planet>, but you left some of the fish behind. You should take off and wait for your escorts to arrive."
 
 event "know about Korath fish jobs"
 
@@ -957,7 +957,7 @@ mission "Korath [F02]: A Fishy Proposition"
 
 			label done
 			`	"Your payment is <payment>, a bit higher than promised. Thank you for the prompt delivery, Captain <last>!"`
-			`	"In the future, you will find more fish delivery jobs on the New Tortuga job board. They will grant you clearance to land on La'ab Bamen, whose job board has lucrative opportunities.`
+			`	"In the future, you will find more fish delivery jobs on the New Tortuga job board. They will grant you clearance to land on La'ab Bamen, whose job board has lucrative opportunities."`
 	on visit
 		dialog "You've arrived at <planet>, but you left some of the fish behind. You should take off and wait for your escorts to arrive."
 
