@@ -144,6 +144,52 @@ mission "FW Epilogue: Freya"
 				`	"You sound frustrated."`
 				`	"You know, the war is over, you can relax if you want to."`
 			`	"I know, I know," she says. "I complain, but really there's nowhere else I would rather be. Even if everything we're discovering here is nothing more than what they intended for us to discover, it's still the most interesting work I could possibly be doing right now. So, don't feel sorry for me. Really."`
+			branch surname		
+				has "last name: Winters"
+				goto conclusion
+
+			label surname
+			`	"By the way, can I ask you something, <first>? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
+			choice
+				`	"Sure. What is it?"`
+				goto permitted
+				`	"Sorry, I'd prefer it if you didn't."`
+				goto conclusion
+			
+			label permitted
+			`	"Do you happen to know anyone named Lavinia? Married to someone named Marcus?"`
+			`	Both names sound oddly familiar, but you can't remember where you heard them.`
+			choice
+				`	"I think so, but I need a minute to remember exactly who."`
+				goto heritage
+				`	"No, I don't."`
+				goto denial
+				
+			label denial
+			`	"Oh, okay. I think I've been mistaken, then."`
+				goto conclusion
+			label heritage
+			`	You try to recall exactly where you've heard those names before, racking your brain for any information on these vaguely familiar names, then all of a sudden, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
+			`	"Yeah, I do know a Marcus and Lavinia, but they're my great-grandparents. Are you sure you're asking the right person?" you ask.`
+			`	"Oh my god," Freya says. "I can't believe it."`
+			`	"What?"`
+			`	"I think we're related. Second cousins. Marcus and Lavinia Winters are also my great-grandparents."`
+			choice
+				`	"Really?"`
+				goto disbelief
+				`	"Well, then. Hello, cousin. Nice to meet you."`
+				goto joke
+			label disbelief
+			`	"Yeah, I can hardly believe it myself. I think it's nice, though. A pleasant surprise." You agree.`
+				goto conclusion
+
+			label joke
+			`	"Heh. Nice to meet you, too. Looks like we brought some prestige to the Winters family name, haven't we, cousin?"`
+			`	You both laugh at her reply.`
+			`	"Never thought I'd go about saving the galaxy with a second cousin I'd never met," she continues, "but in a war where some previously-unknown hyperlane-manipulating aliens intervene to try and make both sides unite, I guess anything's possible.`
+				goto conclusion
+
+			label conclusion
 			`	You talk for a while longer, and she tells you she'll be sure to be in touch if they ever get to the root of the Pug's motivation. "Until then," she says, "good luck in your travels. I hope the galaxy never runs out of ways to surprise you."`
 				decline
 
@@ -297,55 +343,3 @@ conversation "edward epilogue"
 event "plasma repeater advanced"
 	outfitter "Kraz Advanced"
 		"Plasma Repeater"
-
-
-mission "Shared History: Winters"
-	landing
-	to offer
-		has "last name: Winters"
-		has "free worlds plot completed"
-		random < 30
-
-	on offer
-		conversation
-			`	As soon as you enter the arrivals terminal, you get a message on your phone. It's from Freya.`
-				`	"Hey, <first>. Can I ask you something? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
-			choice
-				`	"Sure. What is it?"`
-				goto permitted
-				`	"Sorry, I'd prefer it if you didn't."`
-				decline
-			
-			label permitted
-			`	You send the reply. A few seconds later, her question arrives.`
-			`	"Do you happen to know anyone named Lavinia? Married to someone named Marcus?"`
-			`	Both names sound oddly familiar, but you can't remember where you heard them.`
-			choice
-				`	"I think so, but I'll need a minute to remember where."`
-				goto heritage
-				`	"No, I don't."`
-				goto denial
-				
-			label denial
-			`	"Oh, okay. Sorry to bother you, then."`
-				decline
-			label heritage
-			`	You spend the entire trip from the entrance to the food court trying to recall exactly where you've heard those names. Then, as you're sitting in the food court eating a sandwich, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
-			`	"Yeah, I do know a Marcus and Lavinia, but they're my great-grandparents. Are you sure you're asking the right person?" you ask.`
-			`	"Oh my god," Freya says. "I can't believe it."`
-			`	"What?"`
-			`	"I think we're related. Second cousins. Marcus and Lavinia Winters are also my great-grandparents."`
-			choice
-				`	"Really?"`
-				goto disbelief
-				`	"Well, then. Hello, cousin. Nice to meet you."`
-				goto joke
-			label disbelief
-			`	"Yeah, I can hardly believe it myself. I think it's nice, though. A pleasant surprise." You agree. "Anyway," she continues. "I should be getting back to work. There's plenty being discovered here in Deneb, and I've got a lot on my plate. Feel free to come visit sometime, though. I'd be glad to have you."`
-			`	You wish her well and return to your sandwich.`
-
-			label joke
-			`	"Heh. Nice to meet you, too. Looks like we brought some prestige to the Winters family name, haven't we, cousin?"`
-			`	You chuckle at her reply.`
-			`	"Anyway," she continues. "I should be getting back to work. There's plenty being discovered here in Deneb, and I've got a lot on my plate. Feel free to come visit sometime, though. I'd be glad to have you."`
-			`	You wish her well and return to your sandwich.`
