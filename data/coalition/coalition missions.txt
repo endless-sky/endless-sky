@@ -3204,8 +3204,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			action
 				event "coalition citizens discover fangvin" 14 27
 				payment 180000
-			`	"Thank you. Enlighten me and my friends, this datachip will. And as promised, a chip of 180,000
-credits, we have." Kachachee places it within your hand.`
+			`	"Thank you. Enlighten me and my friends, this datachip will. And as promised, a chip of 180,000 credits, we have." Kachachee places it within your hand.`
 				decline
 
 
@@ -3629,7 +3628,7 @@ mission "Coalition: Struggling Author 5A"
 				accept
 	on complete
 		payment 50000
-		"salary: Beyond the Hyperdrive" 800
+		set "salary: Beyond the Hyperdrive" 800
 		conversation "anna invites you to book signing"
 
 mission "Coalition: Struggling Author 5B"
@@ -3646,7 +3645,7 @@ mission "Coalition: Struggling Author 5B"
 				accept
 	on complete
 		payment 50000
-		"salary: Beyond the Hyperdrive" 800
+		set "salary: Beyond the Hyperdrive" 800
 		conversation "anna invites you to book signing"
 
 
