@@ -236,9 +236,9 @@ void MissionPanel::Draw()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 5.f, routeColor);
+			LineShader::Draw(from, to, 3.f, routeColor);
 
 		previous = next;
 	}
