@@ -75,7 +75,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	: objectPosition(object.Position()), objectRadius(object.Radius())
 {
 	const Planet &planet = *object.GetPlanet();
-	name = planet.Name();
+	name = planet.DisplayName();
 	if(planet.IsWormhole())
 		color = *planet.GetWormhole()->GetLinkColor();
 	else if(planet.GetGovernment())
