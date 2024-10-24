@@ -152,7 +152,7 @@ mission "FW Epilogue: Freya"
 			`	"By the way, can I ask you something, <first>? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
 			choice
 				`	"Sure. What is it?"`
-				goto permitted
+					goto permitted
 				`	"Sorry, I'd prefer it if you didn't."`
 				goto conclusion
 			
