@@ -47,6 +47,12 @@ class System;
 // names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
+	// Flags for LimitedEvents<Fleet>
+	static const unsigned DEFAULT_FLEET_CATEGORY = 1;
+	static const unsigned IGNORE_ENEMY_STRENGTH = 2;
+	static const unsigned SKIP_SYSTEM_ENTRY = 4;
+
+
 	Fleet() = default;
 	// Construct and Load() at the same time.
 	Fleet(const DataNode &node);
@@ -65,6 +71,7 @@ public:
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action." If the carried flag is set, only
 	// uncarried ships will be added to the list (as any carriables will be stored in bays).
+	// Give it an id if it is part of a limited count random event fleet.
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
 			bool carried = true, bool addCargo = true) const;
 
@@ -74,6 +81,7 @@ public:
 	static void Place(const System &system, Ship &ship);
 
 	int64_t Strength() const;
+	const std::string &Name() const;
 
 
 private:

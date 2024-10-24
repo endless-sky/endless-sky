@@ -576,3 +576,621 @@ mission "Efreti: Distress Call 8"
 			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
 			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
 			`	You carefully store the chip in a safe place.`
+
+
+mission "First Contact: Korath Exiles"
+	landing
+	source "Far'en Lai"
+	to offer
+		not "Wanderers: Sestor: Exiles 2: active"
+	on offer
+		fail
+		conversation
+			# Premise: Although there are Korath who are around humans frequently,
+			# that is a tiny fraction of the Korath population. Most will not have
+			# even seen a human and certainly won't recognize all human ships.
+			# That is niche knowledge, and it has not spread far yet. Most Korath
+			# know humans merely as local food suppliers, and they certainly won't
+			# know about specific human planets other than New Tortuga.
+
+			# The two Korath who meet you here aren't certain of what a human looks
+			# like and don't know more than a few words, simply because the chance
+			# of the first two available Korath pilots knowing such details is
+			# quite small. An armed landing on Far'en Lai is an emergency, and they
+			# couldn't wait for a diplomat from La'ab Bamen to arrive.
+			`Before you even step out of your ship, two fighters come hurtling down out of the sky to land, sending up a spray of sand as they skid to a stop about ten meters away from you as you open the hatch. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
+			# Names:
+			# Pilot to the left: Akafavah, meaning "steel eyes"
+			# Pilot to the right: Tak Ratabomlek, or Takra for short, means "unforgotten"
+
+			choice
+				`	"I am <first> <last>."`
+					goto name
+				`	"Oi, oi!"`
+					goto silence
+				`	"I come in peace. Take me to your leader."`
+					goto peaceleader
+				`	(Remain silent and observe.)`
+					goto silence
+				`	(Attack them.)`
+					goto attack
+
+			label name
+			`	"Takra," one says, pointing at themself. Takra points to their compatriot and says, "Akafavah."`
+			`	"Korath," Takra says, gesturing to the two of them. They both look at you expectantly.`
+				goto humanika
+
+			# With a longer starting sentence, they suspect you're speaking human standard
+			# (even if you may not be human) so they try to use the same language in response.
+			label peaceleader
+			`	Both of them seem confused, like they half-understand parts of what you said, but can't put the pieces together.`
+			`	"Peeese? Takra," one says, pointing to themself. Then Takra points to the other and says, "Akafavah." You respond with "<first> <last>."`
+			`	"Weee Korath," Takra says, gesturing to the two of them. Then Takra gestures at you and says, "Yee ess...?"`
+				goto humanika
+
+			label humanika
+			`	"Human," you say, almost instinctively.`
+			`	Akafavah says, "Oy! Humanika!" It's not clear what emotion they're feeling, but it's a strong one.`
+			`	Takra asks you, "Were foam?"`
+			`	They see your confusion and seem to give up on communicating in your language. It's time for a different approach.`
+				goto map
+
+			label silence
+			`	The left gestures at themself and says, "Akafavah." The right does a similar gesture and says, "Takra." You respond almost instinctively with "<first> <last>."`
+			`	Pleased with this success, Akafavah continues. "Korath," they say, gesturing at the two pilots.`
+			`	"I'm a human," you say, "from Earth."`
+			`	Akafavah says suddenly, "Oi! Humanika!" It's unclear what emotion the Korath is expressing, but it is a strong one.`
+			`	They see your confusion and seem to give up on communicating with words. It's time for a different approach.`
+				goto map
+
+			label attack
+			action
+				set "First Contact: Korath Exiles: pointed gun on Far'en Lai"
+			`	You reach for your gun. They move faster than you would have expected possible. One of them strikes a pose with their arms and shouts, "Nag! Nag! Koreshi far'en lai!" Simultaneously, the other dives at you, grabbing the gun out of your hands before you have a chance to fire it.`
+			`	Then, instead of attacking you, the one who took your gun begins waving it in your face and talking very quickly, as if scolding you. They point to the sky with a sweeping gesture, then mimic drawing the gun as you just did. Then they point to the ground, put the gun on the ground, and says, "Far'en lai ko forei lak'far." They pick up the gun and repeat both gestures: at the sky, gun drawn. Down, gun on ground. Then they toss the gun near your feet and wait, expectantly.`
+				goto map
+
+			label map
+			`	There is a long awkward silence, like a cocktail party where you are standing next to someone but have no idea how to start a conversation. Then one of the Korath stoops down and begins drawing in the sand, a spiral with many arms: the galaxy. Near the center of the spiral, they draw the outline of one of their warships. "Korath soru nar," they say.`
+			choice
+				`	(Draw where human territory is.)`
+					goto draw
+				`	(Pretend not to understand what the map is.)`
+					goto wait
+
+			label draw
+			`	You draw the outline of your own ship on the same side of the core as theirs, but farther out, then draw a line around it marking the extents of human space. The Korath responds by drawing something that looks like a squirrel, beyond the northern edge of human space. Then, near the top of human space they push their finger deep into the ground, and again just north of there, and connect the two holes with a line.`
+			choice
+				`	(Add some details I know to the map.)`
+					goto add
+				`	(Wait to see what else they will draw.)`
+					goto wait
+
+			label add
+			# MZ wrote the parts about spiders, long before the Coalition was added to the game, the spiders are Archons. (so saith ravenshining)
+			`	Near the southern end of human space, you draw a dot with a partial ring around it: the Quarg ringworld, under construction. The Korath respond by both beginning to draw more rings, spread out all over the galaxy, some broken, some complete. Then they draw spiders, also spread out all over the galaxy, and then sprinkle sand over the spiders so they are barely visible.`
+
+			label wait
+			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw several smaller ones, facing each other. "Korath," they say again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
+			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small spiders, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
+			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." They point to the gun at the front of their fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." They point to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then they point to you. "Humani ka Korath nik lak'mal."`
+			`	To emphasize the point, on a blank part of the sand they draw a large circle with lots of dots on it, pointing to the plants as they make each dot. They then draw an outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships and likewise tosses it onto the map of their own space.`
+			choice
+				`	(Try to assure them you do not mean to fight them.)`
+					goto assurance
+				`	(Try to communicate that they should leave humanity alone.)`
+					goto alone
+
+			label assurance
+			`	"We do not want to fight you," you say, and you redraw the human and Korath ships, on the map, so they are facing away from each other.`
+			`	"Kai," says one of the Korath, looking at the other, "mik'mal ka puk?"`
+			`	"Lajalness?" the other says back, and takes a moment to look at your ship.`
+			`	Returning to the sand, they make another copy of your respective ships, this time, all facing in the same direction. Making a gesture, they alter the drawing you made, making the ships double-ended, with two bows and no stern. They point to each drawing and then to you.`
+			choice
+				`	(Point to the three ships flying together in the same direction.)`
+					goto together
+				`	(Point to the double-ended ships facing off against each other.)`
+					goto fight
+				`	(Change the drawing to emphasize the ships moving apart again.)`
+					goto alone
+
+			label together
+			`	They stare at you for another few awkward seconds.`
+			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. On one side of the ships, they draw a teardrop shape, facing away. On the other, they draw a spider facing in the other direction. After a brief pause, they give the spider heads on both sides of its body, and give the teardrop a second point. Again, they point to the drawing of your double-ended ships, then to the now ominous-looking collection of ships and fire, and then to you.`
+			choice
+				`	(Point again to the ominous collection of ships and fire, with the three ships flying together.)`
+					goto fire
+				`	(Point to the double-ended ships facing off against each other this time.)`
+					goto fight
+				`	(Change the drawing to emphasize the ships moving apart again.)`
+					goto alone
+
+			label fire
+			`	A furious exchange of gestures and vocalizations ensues between the two Korath; they begin vigorously drawing, erasing, and drawing more things in the sand between themselves, out of your sight. Eventually, the pace of their conversation slows and they turn back to you.`
+			# This Korath is asking you to return here with food.
+			`	They draw your ships back on the illustration of the planet, pick up the sand for your ship, and throw it back in human space again. Then they collect a few pebbles from human space, redraw your ship back on the planet again, and place the pebbles inside. Picking up one of the pebbles, one of them reaches into their coat, takes out a glowing red orb, unscrews a cap from the top, and drinks the thick, red fluid. They gesture with the pebble, gesture with the now-empty orb, and place all the pebbles on the drawing of the planet between your three ships.`
+			choice
+				`	(Nod.)`
+				`	(Make a motion like a ship landing and point to the Korath's mouth.)`
+			action
+				set "First Contact: Korath Exiles: agreed to bring food"
+			`	"Lasel," says the Korath, stretching out both arms toward you, fingers curled back towards its body. You make the same gesture, and they reverse their hands, linking their scaly fingers with yours. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters and take off, circling above you.`
+				decline
+
+			label alone
+			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "if the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
+				goto parting
+			label fight
+			`	They push their finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
+			label parting
+			`	"Kai," says the Korath, and they stretch out both arms toward you, palms out. You make the same gesture and touch their hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
+				decline
+
+
+
+mission "Korath [F01]: A Fishy Deal"
+	landing
+	name "A fishy proposition"
+	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be paid 140,000 credits. Don't get caught."
+	cargo "live fish" 15
+	# The mission is illegal because of the broader trade agreement. The player is supposed to be left with the impression that the Korath are sending back more dangerous things than waste processing systems. The Syndicate (and by extension, the Republic) is aware of this, and fines pilots involved.
+	illegal 50000
+	deadline 4
+	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
+	source "New Tortuga"
+	destination "La'ab Bamen"
+	on offer
+		event "know about Korath fish jobs"
+		conversation
+			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they are ten meters thick, made of an unfamiliar brown material. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
+			`	Spaceport authorities direct you to bay 23X-5, which contains an odd ship you see on your way in. It resembles an old-fashioned jet aircraft, whose four jet engines have been replaced with small ion engines. From the gold pipes on the tail, it appears to have a hyperdrive built into the hull. Several packages are being unloaded from the plane. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the spaceport.`
+			`	The ship is parked next to yours and the woman is about to walk past you. She looks quite distraught and, perchance, looks your way. Maybe a distraction will cheer her up?`
+			label questions
+			choice
+				`	"That's an interesting ship."`
+					goto ship
+					to display
+						not "Korath [F01]: A Fishy Deal: ship"
+				`	"What's getting you down?"`
+					goto down
+					to display
+						has "Korath [F01]: A Fishy Deal: ship"
+						not "Korath [F01]: A Fishy Deal: down"
+				`	"What sort of delivery?"`
+					goto mission
+					to display
+						has "Korath [F01]: A Fishy Deal: down"
+						not "Korath [F01]: A Fishy Deal: mission"
+				`	"Sure, I could deliver it for you."`
+					goto yup
+					to display
+						has "Korath [F01]: A Fishy Deal: mission"
+				`	"I wish I could help, but I have urgent matters of my own."`
+					decline
+					to display
+						or
+							has "Korath [F01]: A Fishy Deal: ship"
+							has "Korath [F01]: A Fishy Deal: down"
+							has "Korath [F01]: A Fishy Deal: mission"
+				`	(Ignore her and go about your business.)`
+					goto "decline mission"
+					to display
+						not "Korath [F01]: A Fishy Deal: ship"
+						not "Korath [F01]: A Fishy Deal: down"
+						not "Korath [F01]: A Fishy Deal: mission"
+			label ship
+			action
+				set "Korath [F01]: A Fishy Deal: ship"
+				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on the run from the Syndicate for rescuing her persecuted uncle from Tinker."
+			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years. It's more of a replica now.`
+			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, all in one assembly. The design was once called a Jetmaster, and my family have taken the Jetmaster name as our own.`
+			`	"Jenny Jetmaster," she says, with a choreographed bow. "My family used to do air shows all across human space, until my uncle got on the bad side of the Syndicate. We flew all the way from Bourne to Tinker to pick him up and smuggled him out here to New Tortuga where the Syndicate cannot reach us. Now I smuggle cargo through hyperspace in a 20th century aircraft!"`
+			branch questions
+				has "Korath [F01]: A Fishy Deal: down"
+			label down
+			action
+				set "Korath [F01]: A Fishy Deal: down"
+			`	Her face turns sour, and she says, "Unfortunately, I can't finish my current delivery. My mother is quite sick, and I want to get to Freedom before..." she trails off. "Well, a client really needs this delivery, and I have to find someone to do it."`
+				goto questions
+			label mission
+			action
+				set "Korath [F01]: A Fishy Deal: mission"
+			`	"It's the sort of delivery where you don't ask what sort of delivery it is. Take <tons> of fish to <planet>, and fly back here with <tons> of supplies. It's just two systems away, and the payment is 140,000 credits. Couldn't be easier."`
+				goto questions
+			label yup
+			action
+				log "Agreed to help a woman named Jenny Jetmaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
+			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved." Her crewman starts offloading the fish, preparing to transfer it to your ship.`
+			`	"If the authorities won't let you land, transmit them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
+			label "d'ya want the job"
+			choice
+				`	"I'm not afraid of dodging the cops... where there are none. Give me the cargo, and it'll reach its destination. You have my word."`
+					goto "accept mission"
+				`	"On second thought, I don't think I want this mission. Illegal fish deliveries are too strange for my tastes."`
+					goto "decline mission"
+				`	"If I'm just delivering fish, why is it illegal?"`
+					to display
+						not "Korath [F01]: A Fishy Deal: spicy"
+			label "'cause they're spicy"
+			action
+				set "Korath [F01]: A Fishy Deal: spicy"
+			`	"Nothing is wrong with the fish; the other end of the delivery is the problem, so the whole trade arrangement is illegal. There's all sorts of barrels and boxes that come back from <planet>. It's mostly mundane stuff; never any drugs, counterfeits, or weapons. Why the Republic would ban this... I haven't the slightest notion.`
+			`	"A while back, my aunt was fined 25,000 credits for using a knock-off fuel gasket on her racing Flivver. She used the gasket because it was more reliable than a genuine one. Of course, that doesn't matter to the Republic. The Navy officer that caught her knew how dumb the law was, so he let her keep the gasket."`
+				goto "d'ya want the job"
+			label "accept mission"
+			action
+				clear "Korath [F01]: A Fishy Deal: ship"
+				clear "Korath [F01]: A Fishy Deal: down"
+				clear "Korath [F01]: A Fishy Deal: mission"
+				clear "Korath [F01]: A Fishy Deal: spicy"
+			branch accept
+			label "decline mission"
+			action
+				clear "Korath [F01]: A Fishy Deal: ship"
+				clear "Korath [F01]: A Fishy Deal: down"
+				clear "Korath [F01]: A Fishy Deal: mission"
+				clear "Korath [F01]: A Fishy Deal: spicy"
+			branch decline
+
+	on enter Atik
+		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
+	on visit
+		dialog "You've arrived at <planet>, but you left some of the fish behind. You should take off and wait for your escorts to arrive."
+
+event "know about Korath fish jobs"
+
+
+
+mission "Korath [F02]: A Fishy Proposition"
+	landing
+	name "A fishy proposition"
+	description "Transport <cargo> to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
+	cargo "planetary supplies" 15
+	# See note above in "Korath [F01]: A Fishy Deal" for why this is illegal.
+	illegal 50000
+	"apparent payment" 140000
+	deadline 4
+	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
+	source "La'ab Bamen"
+	destination "New Tortuga"
+	to offer
+		has "Korath [F01]: A Fishy Deal: done"
+	on offer
+		conversation
+			`You approach the asteroid, and a crater suddenly opens up, revealing a docking bay. Entire human space stations could fit in here, but there are only a few ordinary ships parked. When you exit the <ship>, several dire men in uniformed body armor greet you. Each holds a bright orange rifle whose scorching heat warps the air around them. They all stare intensely at you as another figure steps forward.`
+			`	It is a woman who captures your attention, with a warm and open smile on her face. Strapped over the top of her silky white dress you see two revolvers and a sizable supply of ammo. Beyond that there is a knife on each leg, just above her knee-high combat boots, and you think there's another one between her shoulder blades. A rainbow lock contrasts her otherwise light blond hair, and matches the rainbow feather on a necklace draped around her neck.`
+			`	She shakes your hand firmly. "My name is Iris." Her glowing smile quickly switches to a look of concern. "We don't like surprises, Captain <last>. I was expecting to see Jenny Jetmaster, but here you are in her stead. Care to explain?"`
+			choice
+				`	(Pull out your gun.)`
+					goto gun
+				`	"She wasn't using the fish, so I took it."`
+					goto taunt
+				`	"Her mother is unwell, but she knew you needed this delivery."`
+					goto unwell
+
+			# You get here by default, partly to show Iris's restraint, and also
+			# to warn players they should pay attention to conversation choices.
+			label gun
+			action
+				set "pulled gun on Iris"
+			`	Before you can reach the holster, the squad's guns are pointed at nearly every part of your torso. Iris raises her hand to signal "hold fire." You instinctively stop, knowing any move will result in your death.`
+			`	"I understand, Captain <last>, you're scared. Anyone would be in a place like this, crawling with pirates, marauders, and who knows what else. We haven't threatened you in any way; you're safe around us. I'm used to dealing with difficult personalities, so I'll give you a second chance."`
+			choice
+				`	(Go out in a blaze of glory.)`
+					goto glory
+				`	"I'm sorry, I panicked."`
+					goto sorry
+				`	"Yes, let's talk instead."`
+					goto talk
+
+			# Death scene, for players who don't bother reading the choices.
+			label glory
+			`	As your hand starts to move, so does Iris's, giving the order to fire. All guns glow red, and your pain is excruciating for a brief moment as plasma eats its way through flesh and bone.`
+				die
+
+			label sorry
+			`	You move your hand away from the gun, and she reassures you. "We all make mistakes, Captain <last>. Be glad this wasn't a fatal one. Now tell me what really happened."`
+				goto really
+			label talk
+			`	"A wiser decision than your last one, Captain <last>. Rash actions can lead to a quick end of your mercenary career. Please be careful in the future. Now tell me what really happened."`
+				goto really
+			label taunt
+			`	Iris laughs at your joke as the men around her glare at you. "You don't look halfway clever enough to scam Jenny. What really happened?"`
+			label really
+			choice
+				`	(Pull out your gun.)`
+					goto gun
+					to display
+						not "pulled gun on Iris"
+				`	"Jenny's mother is unwell, but she knew you needed this delivery."`
+					goto unwell
+			label unwell
+			`	"Poor Jenny. Yes, I know about that. She's smuggling her mother from Freedom to a hospital on Shroud for treatment. Her mother's a strong woman, and I'm sure she'll pull through.`
+			`	"She vouched for you, and we did a background check. You do seem suitable for our needs, if you keep a level head. Take these supplies to New Tortuga," she points to a pile of black barrels, "and an officer there will pay you."`
+			choice
+				`	"I'll see it done."`
+					goto see
+				`	"You can count on me."`
+				`	"No, I think I'm done with your deliveries."`
+					goto reject
+			`	"I'm sure I can," she says, smiling.`
+				goto warning
+			label see
+			`	She nods and gives an approving smile.`
+			label warning
+			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
+			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Assisting New Tortuga or this station can earn you favor with them. Eventually, they'll warm up to you and might even begin to trust you if you assist them when their ships are damaged.`
+			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships yet. They know the risk they take when raiding, and have contingencies in place. It is more important to them that you retain your freedom of movement by not revealing your association with them."`
+				goto departs
+
+			label reject
+			action
+				payment 70000
+				log "Met a woman named Iris who offered a suspicious cargo transport job to assist New Tortuga. Rejected the request."
+			`	"That is your prerogative. As you have done half the job, you may have half the payment: 70,000 credits."`
+			`	She departs with her entourage, as dock workers move cargo to a holding area.`
+				decline
+
+			label departs
+			action
+				log `Agreed to help New Tortuga by delivering "planetary supplies" from a black market called "La'ab Bamen." The request came from a woman who calls herself Iris. That may be a code name; she seems to be an agent of some sort. She has a suspiciously in-depth level of knowledge of the large vessels that frequent New Tortuga, which identify themselves as Korath.`
+				log `Iris warned me not to assist Korath vessels, or it would anger "half the galaxy." New Tortuga and the Korath need me to retain my freedom of movement so I can act as a courier.`
+			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
+				accept
+	on complete
+		payment 165000
+
+		# This is a reputation reset for people who haven't been fighting the
+		# Korath. It's enough to cover disabling and pillaging a Palavret.
+		# Anyone else will have to do a lot of assistance jobs.
+		"reputation: Korath" += 300
+
+		conversation
+			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
+			`	Another well-armed woman in a white dress meets you, accompanied by security guards with the same uniform as on La'ab Bamen. "Ah, Captain <last>! The next shipment."`
+			choice
+				`	"What was this cargo?"`
+				`	"I'm glad to have served another happy customer."`
+					goto done
+			`	She looks shocked. "You should never ask that question." Her face relaxes. "You're in luck this time: your cargo was not confidential, so I can satisfy your curiosity.`
+			`	"Much of our planet's food comes from waste processing systems that convert sewage into edible materials. They rely heavily on aquaponics using extraterrestrial species. These barrels contain several genetically-engineered organisms that feed on sewage and secrete certain types of proteins. The process produces edible algae-like substances; with spices and 3D printers, it is quite palatable. Still, we prefer to eat real food when we can.`
+
+			label done
+			`	"Your payment is <payment>, a bit higher than promised. Thank you for the prompt delivery, Captain <last>!"`
+			`	"In the future, you will find more fish delivery jobs on the New Tortuga job board. They will grant you clearance to land on La'ab Bamen, whose job board has lucrative opportunities."`
+	on visit
+		dialog "You've arrived at <planet>, but you left some of the fish behind. You should take off and wait for your escorts to arrive."
+
+
+
+mission "Korath: Assistance Warning"
+	assisting
+	invisible
+	source
+		government Korath
+	to offer
+		has "Korath [F02]: A Fishy Proposition: offered"
+	on offer
+		conversation
+			`Just after the ship departs, you remember the warning from Iris: openly displaying your association with the Korath will anger half the galaxy. Hopefully that was just hyperbole...`
+				decline
+
+
+
+mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
+	name "Land on <planet>."
+	description "Try again to land on <planet> after your last attempt failed."
+	landing
+	repeat 3
+	source "Rabasot Pa'ah"
+	destination "Rabasot Pa'ah"
+	on offer
+		conversation
+			branch "first attempt"
+				"Korath [F03]: Rabasot Pa'ah Failed Landings: offered" == 0
+			branch "second attempt"
+				"Korath [F03]: Rabasot Pa'ah Failed Landings: offered" == 1
+			branch "third attempt"
+
+			label "first attempt"
+			scene scene/purple-lightning
+			action
+				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfigured the shields to act as a plow to get out of the storm. That shield configuration should allow safe transit through the atmosphere in another landing attempt."
+			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles called muons, which is a bit odd. From your training on hyperspace exit and entrance, you recall that the mean lifetime of a muon is measured in microseconds. Something here must be actively generating them.`
+			`	You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
+			`	Remembering what you've read about extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere.`
+			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the carbon star in an odd manner that produces vast amounts of muons. Your shield was drawing them in and discharging them, creating an intense storm centered on your ship. The plow shape directed the electrical activity aft, letting you move freely.`
+			`	Certainly, a second landing attempt will get you through the atmosphere. Next, you'll have to scout for a safe place to land on this world of water and storms.`
+				launch
+
+			label "second attempt"
+			scene scene/volcanic-eruption-at-night
+			action
+				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, perhaps caused by landing in the wrong area. There is a large island that might be suitable for landing. Another attempt could succeed."
+			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for another one nearby.`
+			`	Aiming for the hardest-looking piece of ground your sensors can find, you touch down. Noting the star's unusual radiation, you extend your ship's shields to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
+			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you see a larger island with no apparent volcanic activity and a pleasant-looking bay.`
+				launch
+
+			label "third attempt"
+			scene scene/blue-whale
+			action
+				set "landed on Rabasot Pa'ah"
+				log "Discovered a creature in a bay on the ocean world of Rabasot Pa'ah with the front half of a whale and the back half of a giant squid. They seem out-of-place, since the planet is almost devoid of macroscopic lifeforms. Perhaps someone is shipping them to the planet?"
+			`On your third attempt, you dodge most of the storms by flying into the atmosphere at an odd angle that keeps you in stable air nearly the whole way. After a long flight through safe atmosphere, you finally reach the bay and land on a durable mesa overlooking it. Extending your ship's artificial gravity field to the surface, you don your suit and walk out. It quickly becomes clear the mesa is artificial: it's a constructed landing pad for a ship of vast scale.`
+			`	This is the perfect location for life, so it's no surprise there are small plants and a few fish in the water. The seas are calmer here than the rest of the planet, and an unusual formation in the ionosphere protects this spot from the worst rays of the carbon star. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
+			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. On the far end of the mesa, you spy a gravity crane system that looks suitable for carrying such a beast out of the water.`
+				decline
+
+
+
+mission "Korath [F04]: Fishy Delay"
+	invisible
+	landing
+	to offer
+		has "First Contact: Korath Exiles: offered"
+
+		# Require a successful landing on Rabasot Pa'ah, since that gives you the whale picture.
+		has "landed on Rabasot Pa'ah"
+
+		# You have to meet Iris and know she has knowledge of Korath:
+		has "Korath [F02]: A Fishy Proposition: done"
+	on offer
+		event "Korath [F04]: Fishy Delay Event" 5 14
+		fail
+
+event "Korath [F04]: Fishy Delay Event"
+
+
+
+mission "Korath [F05]: Fishy Reasoning"
+	landing
+	name "Seek answers from Iris"
+	description "Visit Iris at <planet> and ask her about Korath, fish transfers, an ocean planet, and her rainbow feather."
+	clearance "You explain the purpose of your visit, and the authorities inform you that Iris will expect you."
+	source
+		not planet "La'ab Bamen"
+	destination "La'ab Bamen"
+	to offer
+		has "event: Korath [F04]: Fishy Delay Event"
+	on offer
+		conversation
+			`While skimming damage and transit logs from your recent trips, a few old log entries catch your eye.`
+			`	When the Korath were drawing systems, three seemed to jump out at you. You now know they're Misam, home of New Tortuga; Atik, where the La'ab Bamen black market resides; and Kor Ak'Mari, the ocean planet's system. The first fish you transferred from New Tortuga to La'ab Bamen looked like a tiny relative of the island-sized fish on the ocean planet.`
+			`	Iris had quite a lot of knowledge of the Korath, and spoke of them with admiration. Most curious of all is the rainbow feather on her necklace. It was the exact shape of feathers on the Korath of Far'en Lai, but far more colorful.`
+			`	You last saw Iris on <planet>. Perhaps it is time to seek answers.`
+				accept
+
+
+mission "Korath [F06]: The Rainbow Feather"
+	landing
+	invisible
+	source "La'ab Bamen"
+	to offer
+		has "Korath [F05]: Fishy Reasoning: offered"
+	on offer
+		fail
+		conversation
+			`You find Iris in one of the narrow access tunnels of La'ab Bamen, observing the fish behind the glass.`
+			`	"I was wondering when you'd seek me out," she says, with a worried look. "You gave those two patrols quite a scare on Far'en Lai. They had never seen a human before, and they found one armed at their jail's lock."`
+				goto questions
+
+			label check
+			branch compassion
+				has "Korath [F05]: The Rainbow Feather: feather"
+				has "Korath [F05]: The Rainbow Feather: exile"
+				has "Korath [F05]: The Rainbow Feather: freedom"
+
+			label questions
+			choice
+				`	"I meant no harm."`
+					goto harm
+					to display
+						not "Korath [F05]: The Rainbow Feather: know"
+				`	"How do you know about that?"`
+					goto know
+					to display
+						not "Korath [F05]: The Rainbow Feather: know"
+				`	"You seem to know the Korath well. Who are they, really?"`
+					goto feather
+					to display
+						has "Korath [F05]: The Rainbow Feather: know"
+						not "Korath [F05]: The Rainbow Feather: feather"
+				`	"Why did you call Far'en Lai 'their jail's lock'?"`
+					goto exile
+					to display
+						has "Korath [F05]: The Rainbow Feather: know"
+						not "Korath [F05]: The Rainbow Feather: exile"
+				`	"What is the nature of this fish trade?"`
+					goto freedom
+					to display
+						has "Korath [F05]: The Rainbow Feather: know"
+						not "Korath [F05]: The Rainbow Feather: freedom"
+
+			label harm
+			action
+				set "Korath [F05]: The Rainbow Feather: know"
+			`	"The Korath told me what you did: you brought a weapon to Far'en Lai, Captain." She looks deeply concerned. "That, alone, is terrible harm, and you should never do it again. They let you go because it is a planet of peace."`
+				to display
+					has "First Contact: Korath Exiles: pointed gun on Far'en Lai"
+				goto check
+			`	"Strangers landing on Far'en Lai is dangerous to the Korath, Captain <last>. If you make the wrong move, it can lead to their destruction. You did make a good impression when you agreed to bring them food. Any of the jobs at <origin>'s job board provide food to the Korath. Please lend all the help you can.`
+				to display
+					has "First Contact: Korath Exiles: agreed to bring food"
+				goto check
+			`	"Strangers landing on Far'en Lai is dangerous to the Korath, Captain <last>. If you make the wrong move, it can lead to their destruction. I'm glad you had the good sense not to do any real harm, but please stay away in the future.`
+				goto check
+
+			label know
+			action
+				set "Korath [F05]: The Rainbow Feather: know"
+			`	"We are allies of the Korath. Naturally, if a human somehow obtains a jump drive and wanders into Korath space, they ask us about it. Landing on Far'en Lai with a weapon does terrible harm. They let you go because it is a planet of peace."`
+				goto check
+
+			label feather
+			action
+				set "Korath [F05]: The Rainbow Feather: feather"
+			`	She removes her necklace and cups the rainbow feather tenderly in her hands. "This was a gift from a Korath woman who is my... close friend. Korath keep memories in their skin and pass knowledge by eating another's memories. The stronger the memory, the more colorful the feathers. This feather has the memories and emotions that she identifies with me.`
+			`	"If she dies in a raid, and another Korath eats this, I'll have her back, in a way. Another Korath that feels for me as she does, and remembers our times together. All Korath know the consequence of a rainbow feather. This is how they pass knowledge; not only through schooling, but through skin.`
+			`	"Think about that a moment. Years of memories flow in as if they were yesterday. Powerful emotions overwhelm you, and you don't understand why, because they aren't your own. You love someone who doesn't love you back because they never met you. Knowledge you couldn't comprehend before is intuitive, but it came at a high price. You'd lose all sense of time and self - unimaginable psychological pain to us is simply a fact of life to a Korath.`
+			`	"That, Captain, is the very core of their being. They never developed diplomacy because they didn't need it: a few feathers or the skin of the dead may end a conflict. That is, unless their terrible weapons annihilate the corpses, or if the enemies aren't Korath at all. We do what we can to mediate their troubles with humans, but we aren't always around."`
+				goto check
+
+			label freedom
+			action
+				set "Korath [F05]: The Rainbow Feather: freedom"
+			`	"There are few life-supporting planets in the systems where the Korath are exiled. One is the violent planet you visited: Rabasot Pa'ah. The Korath discovered New Tortuga has a similar environment, but it had evolved macroscopic life. The creature you found, the Pwason Gra, attracted them.`
+			`	"They could not grow the creatures from an egg either artificially or on Rabasot Pa'ah, because the larval form requires very specific conditions. However, the juvenile and adult forms thrive on Rabasot Pa'ah, growing far larger than on New Tortuga. That means they need a steady supply of juveniles for transport. The conditions of their exile prevented the Korath from fishing on New Tortuga themselves, so they had to make a deal with humans.`
+			`	"Not understanding our society, they talked to the first fishers they found, who couldn't help them, because those fishers were slaves. To Korath, self-expression is a religion and almost a biological necessity. Slavery to them is as abhorrent as," she thinks for a moment, "consuming the skin of dead relatives is to us.`
+			`	"They made a deal: freedom for fish. The Korath provided rifles in secret, and the slaves drove their masters off the planet. Ex-Syndicate refugees who fled persecution to live here helped us form a functioning government. Now, we give juvenile fish to the Korath, and they assist us in industry, mining, food production, and defense of our systems.`
+			`	"We invited them - no, we asked them - to live on New Tortuga with us, to share our homes and be family. Sadly, their oppressors have forbidden them from setting foot on planets outside their exiled systems. Although we have occasional visits of technicians or doctors to New Tortuga, no Korath has stayed for more than a few days. Never has a military vessel touched down.`
+			`	"I fear this traumatic first contact has scarred their view of humans. They despise the Syndicate, for its anti-religion policies; and pirates, for enslavement. The vastness of our species makes them fearful, despite their technological superiority. I fear broader peaceful relations between humans and Korath will be many years away.`
+				goto check
+
+			label exile
+			action
+				set "Korath [F05]: The Rainbow Feather: exile"
+			`	"Before their exile, the Korath had a vast and thriving civilization that spanned many systems. Unfortunately, due to their very nature, they could not resolve differences easily. This led to a terrible war that left their civilization weakened.`
+			# Iris's explanation is extremely biased because her primary source is the Korath exiles. She is presenting a human interpretation of the Exiles' feelings about their own fate.
+			`	"The imperialist Drak race sent living weapons, the Archons, to conquer the Korath under the guise of protection. The Archons' antimatter weapons and seeming invincibility was too much, until the Korath gathered a larger fleet. When they managed to injure one Archon, the others revealed frightening powers. They tore open rifts in reality, simply swallowing up Korath ships. Hidden super-weapons in planetoids, intended as mines, were harmless, as the Archons shattered the planetoids and atomized the weapons. In every battle, all Korath military ships were destroyed, but the civilians were somehow unscathed.`
+			`	"The Korath saw certain defeat, and in surrender the Drak offered two options. The Korath may give up their religions and live as pets of their own former friends, the Quarg. Or, they could keep their religions and live in starving exile near us.`
+			# The "YOU" in all caps is to indicate Iris is briefly raising her voice. Iris momentarily departs from the calm and kind persona she usually displays because she's infuriated beyond reason. This unusual departure from the typical Endless Sky writing rules is to emphasize the importance of what you did wrong.
+			# Some of this paragraph is not 100% correct; her information is based on what a Korath told her. The myth that the Drak would kill the Korath is common among the Korath. She perpetuates it here, not realizing it is false.
+			`	"The Drak left the exiles with a warning: destroy Far'en Lai, and we will kill you all. You may never leave exile until you live peacefully on Far'en Lai and make it thrive. As a precaution, and almost as a religion, they forbid weapons on that planet. A condition YOU violated." She looks heated for a moment before continuing.`
+			`	"As to their guardianship over us, it violates the letter of the law, but not the intent. The Korath hope this protection of the innocent will temper the Drak's rage. Along with defending us against major attacks, they have provided extensive assistance. Their aid - at our insistence - has been purely civilian: Anything we receive, the Syndicate may somehow obtain, and I shudder to think of what they may do with the wrong knowledge."`
+				goto check
+
+			label compassion
+			`	"Now that I have satisfied your curiosity, I have a request for you."`
+			choice
+				`	"Of course. What is it?"`
+				`	"I'll hear it."`
+			`	"In my meditations, I see your future part on the galactic stage, which I should not forbid. The rest of the galaxy knows our protectors as monsters; mindless destroyers to be hunted for thrill or profit. All I ask is that you act with compassion and understanding."`
+			choice
+				`	"I'm just a ship captain, not a galactic superpower. You need to seek stronger allies, but I'll show what compassion I can."`
+					goto "will try"
+				`	"You've made a convincing case. I'll help them find their place in the galaxy."`
+					goto "find their place"
+				`	"We will have to agree to disagree, but I will not forget your words."`
+					goto "agree to disagree"
+			label "find their place"
+			action
+				"willingness to agree to Iris's request to help Korath" = 3
+			branch happyiris
+			label "will try"
+			action
+				"willingness to agree to Iris's request to help Korath" = 2
+			label happyiris
+			`	She closes her eyes and sighs happily. "Thank you. We do not share this information lightly, and I'm glad we judged well." Opening her eyes and smiling, she does a slight bow and departs.`
+				goto end
+			label "agree to disagree"
+			action
+				"willingness to agree to Iris's request to help Korath" = 1
+			`	She looks concerned and says, "Then, I'll pray that you make the right choice when fate brings power your way." At this, she does a slight bow and departs.`
+
+			label end
+			action
+				clear "Korath [F05]: The Rainbow Feather: feather"
+				clear "Korath [F05]: The Rainbow Feather: know"
+				clear "Korath [F05]: The Rainbow Feather: exile"
+				clear "Korath [F05]: The Rainbow Feather: freedom"

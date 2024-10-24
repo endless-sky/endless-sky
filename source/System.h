@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Hazard.h"
+#include "LimitedEvents.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -83,6 +84,8 @@ public:
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	// Get this system's map icons.
+	const std::vector<const Sprite *> &GetMapIcons() const;
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 
@@ -165,7 +168,7 @@ public:
 	double Exports(const std::string &commodity) const;
 
 	// Get the probabilities of various fleets entering this system.
-	const std::vector<RandomEvent<Fleet>> &Fleets() const;
+	const std::vector<LimitedEvents<Fleet>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
@@ -185,6 +188,9 @@ private:
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems, double distance);
+
+	// Utility function for Load()
+	void LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events);
 
 
 private:
@@ -207,6 +213,7 @@ private:
 	std::string name;
 	Point position;
 	const Government *government = nullptr;
+	std::vector<const Sprite *> mapIcons;
 	std::string music;
 
 	// All possible hyperspace links to other systems.
@@ -238,11 +245,11 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
-	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<LimitedEvents<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;
-	double invisibleFenceRadius = 10000.;
+	double invisibleFenceRadius = 64000.; // vanilla is 10000
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
