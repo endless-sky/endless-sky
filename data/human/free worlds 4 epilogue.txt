@@ -144,7 +144,7 @@ mission "FW Epilogue: Freya"
 				`	"You sound frustrated."`
 				`	"You know, the war is over, you can relax if you want to."`
 			`	"I know, I know," she says. "I complain, but really there's nowhere else I would rather be. Even if everything we're discovering here is nothing more than what they intended for us to discover, it's still the most interesting work I could possibly be doing right now. So, don't feel sorry for me. Really."`
-			branch surname		
+			branch surname
 				has "last name: Winters"
 				goto conclusion
 
