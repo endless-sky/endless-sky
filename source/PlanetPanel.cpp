@@ -340,7 +340,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	}
 	// Have you left any unique items at the outfitter?
 	map<const Outfit *, int> leftUniques;
-	for(const auto &it : player.GetStock())
+	for(const auto &it : player.GetOutfitStock())
 		if(it.second > 0 && it.first->Attributes().Get("unique"))
 			leftUniques[it.first] = it.second;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
