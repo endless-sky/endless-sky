@@ -314,8 +314,8 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
-		// This node is called "stock" and not "outfit stock" for backwards compatibility.
-		else if(child.Token(0) == "stock")
+		// Read also from "stock" for backwards compatibility.
+		else if(child.Token(0) == "outfit stock" || child.Token(0) == "stock")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
@@ -4440,8 +4440,7 @@ void PlayerInfo::Save(DataWriter &out) const
 
 	if(!outfitStock.empty())
 	{
-		// This node is called "stock" and not "outfit stock" for backwards compatibility.
-		out.Write("stock");
+		out.Write("outfit stock");
 		out.BeginChild();
 		{
 			using StockElement = pair<const Outfit *const, int>;
