@@ -65,18 +65,20 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 		}
 		else
 		{
-			RandomStockItem<Item> rs = { items.Get(child.Token(token == "add" ? 1 : 0)) };
+			RandomStockItem<Item> rs = {items.Get(child.Token(token == "add" ? 1 : 0))};
 
 			for(const DataNode &grand : child)
 			{
 				const std::string &grandToken = grand.Token(0);
-				if(grandToken == "probability")
+				if(grand.Size() < 2)
+					grand.PrintTrace("Error: Expected key to have a value:");
+				else if(grandToken == "probability")
 					rs.probability = grand.Value(1);
-				if(grandToken == "quantity")
+				else if(grandToken == "quantity")
 					rs.quantity = grand.Value(1);
-				if(grandToken == "depreciation")
+				else if(grandToken == "depreciation")
 					rs.depreciation = grand.Value(1);
-				if(grandToken == "discount")
+				else if(grandToken == "discount")
 					rs.depreciation = Depreciation::AgeForDepreciation(1 - grand.Value(1) / 100.0);
 			}
 

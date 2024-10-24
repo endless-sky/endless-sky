@@ -35,7 +35,7 @@ class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
-	// Calculate depreciation:
+	// Calculate the value fraction for an item of the given age.
 	static double Depreciate(int age);
 	// Calculate how old an item needs to be for a target amount of depreciation, if possible.
 	static int AgeForDepreciation(double depreciation);
