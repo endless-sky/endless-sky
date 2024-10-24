@@ -17,7 +17,7 @@ ship "Venta"
 	"thumbnail" thumbnail/venta
 	"swizzle" 0
 	attributes
-		"category" "Heavy Warship"
+		category "Heavy Warship"
 		licenses
 			"Hicemus Conflict"
 		"cost" 25000000
@@ -77,7 +77,7 @@ ship "Nimbus"
 	"thumbnail" thumbnail/nimbus
 	"swizzle" 0
 	attributes
-		"category" "Medium Warship"
+		category "Medium Warship"
 		licenses
 			"Hicemus Conflict"
 		"cost" 3250000
@@ -153,7 +153,7 @@ ship "Nimbo Stratus"
 	"thumbnail" thumbnail/stratus
 	"swizzle" 0
 	attributes
-		"category" "Utility"
+		category "Utility"
 		"cost" 460000
 		"hull" 500
 		"shields" 700
@@ -198,7 +198,7 @@ ship "Nimbo Cirrus"
 	"thumbnail" thumbnail/cirrus
 	"swizzle" 0
 	attributes
-		"category" "Light Freighter"
+		category "Light Freighter"
 		"cost" 330000
 		"hull" 750
 		"shields" 1500
@@ -240,7 +240,7 @@ ship "Gero"
 	"thumbnail" thumbnail/gero
 	"swizzle" 0
 	attributes
-		"category" "Transport"
+		category "Transport"
 		"cost" 985000
 		"hull" 850
 		"shields" 1700

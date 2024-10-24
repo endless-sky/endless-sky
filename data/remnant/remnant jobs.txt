@@ -397,7 +397,7 @@ ship "Rescue Dummy"
 	gun 0 0
 
 outfit "Suicide Gun"
-	"category" guns
+	category "Guns"
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
