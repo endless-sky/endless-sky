@@ -375,7 +375,6 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"It is being shown in the list because you have one, "
 			"but this " + planet->Noun() + " does not sell them.";
 	}
-	
 	// Add system to accumulate reasons why an outfit cannot be bought
 	vector<string> errors;
 	
