@@ -198,7 +198,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	}
 	// Don't show the "in stock" amount if the outfit has an unlimited stock.
 	int stock = 0;
-	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
+	if(!outfitter.Has(outfit))
 		stock = max(0, player.OutfitStock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage().Get(outfit);

@@ -30,7 +30,7 @@ class Fleet;
 class Government;
 class Outfit;
 class PlayerInfo;
-template <typename Item> class RandomStock;
+template<typename Item> class RandomStock;
 class Ship;
 class Sprite;
 class System;

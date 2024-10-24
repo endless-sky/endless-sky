@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RANDOM_STOCK_H_
-#define RANDOM_STOCK_H_
+#pragma once
 
 #include "DataNode.h"
 #include "Depreciation.h"
@@ -85,7 +84,3 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 		}
 	}
 }
-
-
-
-#endif
