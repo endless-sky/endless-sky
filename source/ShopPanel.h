@@ -212,7 +212,9 @@ private:
 	std::vector<Zone>::const_iterator Selected() const;
 	char CheckButton(int x, int y);
 
+	// Check if at least one of the selected ships is an escort.
 	bool EscortSelected();
+	// Check whether there is a selected ship that can be parked/unparked.
 	bool CanPark();
 	bool CanUnpark();
 
