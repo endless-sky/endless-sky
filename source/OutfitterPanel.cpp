@@ -377,7 +377,6 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 	// Add system to accumulate reasons why an outfit cannot be bought
 	vector<string> errors;
-	
 	// Check if you need to pay, and can't afford it.
 	if(!onlyOwned)
 	{
