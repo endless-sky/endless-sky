@@ -4478,6 +4478,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	depreciation.Save(out, date.DaysSinceEpoch());
 	stockDepreciation.Save(out, date.DaysSinceEpoch());
 
+
 	// Records of things you have done or are doing, or have happened to you:
 	out.Write();
 	out.WriteComment("What you've done:");
