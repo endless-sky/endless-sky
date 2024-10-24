@@ -397,7 +397,6 @@ string Interface::Element::Name() const
 
 
 
-
 // Parse the given data line: one that is not recognized by Element
 // itself. This returns false if it does not recognize the line, either.
 bool Interface::Element::ParseLine(const DataNode &node)
