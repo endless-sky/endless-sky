@@ -141,6 +141,8 @@ void Interface::Load(const DataNode &node)
 
 			// If we get here, a new element was just added.
 			elements.back()->SetConditions(visibleIf, activeIf);
+			if(!elements.back()->Name().empty())
+				namedElements[elements.back()->Name()] = elements.back();
 		}
 	}
 }
@@ -180,7 +182,11 @@ Rectangle Interface::GetBox(const string &name) const
 {
 	auto it = points.find(name);
 	if(it == points.end())
-		return Rectangle();
+	{
+		auto it2 = namedElements.find(name);
+		if(it2 != namedElements.end())
+			return it2->second->Bounds();
+	}
 
 	return it->second.Bounds();
 }
@@ -380,6 +386,15 @@ Rectangle Interface::Element::Bounds(const Information &info) const
 {
 	return Rectangle::WithCorners(from.Get(info), to.Get(info));
 }
+
+
+
+// The name of this element, or an empty string if it doesn't have a name.
+std::string Interface::Element::Name() const
+{
+	return name;
+}
+
 
 
 

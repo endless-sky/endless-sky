@@ -101,6 +101,9 @@ private:
 		// Get the bounding rectangle, treating the Region within the Information as the screen area.
 		Rectangle Bounds(const Information &info) const;
 
+		// The name of this element, or an empty string if it doesn't have a name.
+		std::string Name() const;
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
@@ -120,6 +123,7 @@ private:
 		Point padding;
 		std::string visibleIf;
 		std::string activeIf;
+		std::string name;
 	};
 
 	// This class handles "sprite", "image", and "outline" elements.
@@ -195,7 +199,6 @@ private:
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
 
 	private:
-		std::string name;
 		const Color *color = nullptr;
 		float width = 2.f;
 		bool reversed = false;
@@ -242,6 +245,7 @@ private:
 
 private:
 	std::vector<Element *> elements;
+	std::map<std::string, Element *> namedElements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
 	std::map<std::string, std::vector<double>> lists;
