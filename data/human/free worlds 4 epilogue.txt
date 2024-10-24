@@ -154,16 +154,16 @@ mission "FW Epilogue: Freya"
 				`	"Sure. What is it?"`
 					goto permitted
 				`	"Sorry, I'd prefer if you didn't."`
-				goto conclusion
+					goto conclusion
 			
 			label permitted
 			`	"Do you happen to know anyone named Lavinia? Married to someone named Marcus?"`
 			`	Both names sound oddly familiar, but you can't remember where you heard them.`
 			choice
 				`	"I think so, but I need a minute to remember exactly who."`
-				goto heritage
+					goto heritage
 				`	"No, I don't."`
-				goto denial
+					goto denial
 				
 			label denial
 			`	"Oh, okay. I think I've been mistaken, then."`
@@ -176,9 +176,9 @@ mission "FW Epilogue: Freya"
 			`	"I think we're related. Second cousins. Marcus and Lavinia Winters are also my great-grandparents."`
 			choice
 				`	"Really?"`
-				goto disbelief
+					goto disbelief
 				`	"Well, then. Hello, cousin. Nice to meet you."`
-				goto joke
+					goto joke
 			label disbelief
 			`	"Yeah, I can hardly believe it myself. I think it's nice, though. A pleasant surprise." You agree.`
 				goto conclusion
@@ -187,7 +187,6 @@ mission "FW Epilogue: Freya"
 			`	"Heh. Nice to meet you, too. Looks like we brought some prestige to the Winters family name, haven't we, cousin?"`
 			`	You both laugh at her reply.`
 			`	"Never thought I'd go about saving the galaxy with a second cousin I'd never met," she continues, "but in a war where some previously-unknown hyperlane-manipulating aliens intervene to try and make both sides unite, I guess anything's possible.`
-				goto conclusion
 
 			label conclusion
 			`	You talk for a while longer, and she tells you she'll be sure to be in touch if they ever get to the root of the Pug's motivation. "Until then," she says, "good luck in your travels. I hope the galaxy never runs out of ways to surprise you."`
