@@ -353,7 +353,7 @@ mission "Returning Home"
 					goto outsider
 			
 			label insider
-			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You wouldn't happen to be a captain from the outside, would you?"`
+			`You are stopped by a human in the marketplace of <origin>. He takes off his hat and asks, "You wouldn't happen to be a captain from the outside, would you?"`
 			choice
 				`	"No, I grew up here."`
 				`	"Why? Do you need to go somewhere?"`
