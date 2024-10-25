@@ -785,7 +785,7 @@ government "House Aqrabe"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Chydiyi"
 	swizzle 5
@@ -803,7 +803,7 @@ government "House Chydiyi"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Kaatrij"
 	swizzle 3
@@ -821,7 +821,7 @@ government "House Kaatrij"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Myurej"
 	swizzle 5
@@ -839,7 +839,7 @@ government "House Myurej"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Seineq"
 	swizzle 3
@@ -857,7 +857,7 @@ government "House Seineq"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Sioeora"
 	swizzle 5
@@ -875,7 +875,7 @@ government "House Sioeora"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "Incipias Civilian"
 	swizzle 0
@@ -1240,7 +1240,7 @@ government "New Houses"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 color "governments: Old Houses" 0.375 0.316 1
 
@@ -1260,7 +1260,7 @@ government "Old Houses"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "Parrot"
 	swizzle 2
