@@ -18,4 +18,4 @@ raiders "Large Southern Pirates"
 	fleet "Large Southern Pirates"
 
 raiders "People's Houses Raiders"
-  fleet "People's Houses Raiders"
+	fleet "People's Houses Raiders"
