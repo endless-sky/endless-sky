@@ -32,8 +32,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -196,10 +196,9 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			font.Draw(label, labelPos, bright);
 		}
 	}
-	// Don't show the "in stock" amount if the outfit has an unlimited stock or
-	// if it is not something that you can buy.
+	// Don't show the "in stock" amount if the outfit has an unlimited stock.
 	int stock = 0;
-	if(!outfitter.Has(outfit) && outfit->Get("installable") >= 0.)
+	if(!outfitter.Has(outfit))
 		stock = max(0, player.Stock(outfit));
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage().Get(outfit);

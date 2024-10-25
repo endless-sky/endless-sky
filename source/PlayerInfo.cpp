@@ -2370,7 +2370,14 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, Conditions());
+	AddPlayerSubstitutions(subs);
+	return subs;
+}
 
+
+
+void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
+{
 	subs["<first>"] = FirstName();
 	subs["<last>"] = LastName();
 	const Ship *flag = Flagship();
@@ -2383,7 +2390,6 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 	subs["<system>"] = GetSystem()->Name();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
-	return subs;
 }
 
 
@@ -2801,6 +2807,18 @@ void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
 	for(const shared_ptr<Ship> &it : ships)
 		if(it.get() == ship)
 			SelectShip(it, &first);
+}
+
+
+
+void PlayerInfo::DeselectShip(const Ship *ship)
+{
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
+		if(it->lock().get() == ship)
+		{
+			selectedShips.erase(it);
+			return;
+		}
 }
 
 

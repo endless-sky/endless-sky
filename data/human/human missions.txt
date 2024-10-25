@@ -107,14 +107,13 @@ mission "Hunted"
 	to offer
 		"combat rating" > 8103
 		"armament deterrence" >= 2
-		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
 		or
 			and
 				not "Hunted: active"
-				"ship scale" < 32
-				random < 2 + "ship scale" / 4
+				"ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4 < 32
+				random < 8
 			and
-				"ship scale" >= 32 + "Hunted: active" * 4
+				"ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4 >= 32 + "Hunted: active" * 4
 				random < 10
 		or
 			not "chosen sides"
@@ -5739,7 +5738,7 @@ mission "Quicksilver Mixup 0"
 			`You're looking at some job listings when a man with a harried face approaches you, carrying a package.`
 			`	"Excuse me, Captain," he says. "I need this package delivered in the next four days. Details are on the package. I'll pay you <payment> once it's done." Without waiting for a response, he shoves the package into your hands and runs off to attend to whatever business has gotten him in such a hurry. The package is addressed to a location on <planet>.`
 			branch "can't make it in time"
-				has "hyperjumps to planet: Silver" > 3
+				"hyperjumps to planet: Silver" > 3
 			`	It's going to be close to his deadline, but it's possible.`
 				goto choice
 			label "can't make it in time"
@@ -5809,7 +5808,7 @@ mission "Quicksilver Mixup 1"
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???"`
-			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO!!!"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
@@ -6413,7 +6412,7 @@ mission "Moving House 1"
 				decline
 				
 			label sure
-			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
+			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour."`
 			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
 			choice
 				`	(Shake their hand.)`
@@ -6887,7 +6886,7 @@ mission "Hogshead's Dilemma"
 				`	What Asteroid`
 			action
 				event "hogshead poll" 7
-			`	After you made your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
+			`	After you make your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
 				decline
 
 event "hogshead poll"
@@ -6900,7 +6899,6 @@ mission "Hogshead's Dilemma II"
 		has "Hogshead's Dilemma: offered"
 		has "event: hogshead poll"
 	on offer
-		clear "hogshead poll"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
@@ -7260,7 +7258,7 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll to film the conditions in a secret Syndicate sweatshop.`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll film the conditions in a secret Syndicate sweatshop.`
 			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
 			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			choice
