@@ -560,10 +560,10 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 			`	"At the [body, planet] named Vara Ke'sok, there are [raids, conquests] by Unfettered that take place. During these, various structures get [damaged, hurt]. We wish you to help [fix, mend] these by carrying <tons> of [supplies, materials]."`
 			choice
 				`	"I'd be happy to do that."`
-				`	"I'd prefer not to intervene in your conflict with the Unfettered."`
-					decline
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
+				`	"I'd prefer not to intervene in your conflict with the Unfettered."`
+					decline
 			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
 				accept
 	on visit
