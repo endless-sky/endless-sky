@@ -1,4 +1,6 @@
 Version 0.10.10
+  * Big changes:
+    * Removed the "hold fire" command and reverted the associated refactor due to bugs that cannot be easily addressed at this time. (@warp-core)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@alextd, @opusforlife2, @TheGiraffe3, @tibetiroka)
@@ -39,7 +41,9 @@ Version 0.10.10
       * Added a unique icon for the Swarm Pod, instead of reusing the "meteor" icon. (@Daeridanii1)
     * Balance:
       * Reduced the "capture defense" of various outfits with very high values. (@Quantumshark)
-        * Todo: more details.
+        * Microbot Defense Station: 45 -> 18
+        * Pug Biodefenses: 250 -> 100
+        * Intrusion Countermeasures: 60 -> 24
       * Reduced the difficulty of the "Wanderers: Sestor Attack" battle. (@TheGiraffe3, @Quantumshark)
         * Removed one Tek Far 109, nine "Far Lek 14"s, and seven "Far Osk 21"s from the hostile fleet.
         * Replaced four Summer Leaves with five Autumn Leaves in the allied Wanderer fleet.
