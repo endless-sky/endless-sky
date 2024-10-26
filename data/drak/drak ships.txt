@@ -123,7 +123,7 @@ ship "Archon" "Archon (Hyperdrive Cloaked)"
 		"cloak" .04
 		"jump speed" 1
 		"hyperdrive" 1
-		"silent jumps"
+		"silent jumps" 1
 	"final explode" "archon b teleport"
 	outfits
 		"Drak Antimatter Cannon"
