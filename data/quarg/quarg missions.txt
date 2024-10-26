@@ -14,8 +14,7 @@
 mission "First Contact: Quarg"
 	landing
 	source
-		attributes "quarg"
-		not attributes "gegno quarg"
+		attributes "hai quarg" "human quarg"
 	on offer
 		log "Factions" "Quarg" `The Quarg are tall, thin, inscrutable aliens who evolved on a very small planet and can live comfortably on worlds with atmosphere so thin that a human being could not breathe it. They discovered spaceflight millions of years ago. Many of them live on artificially constructed ringworlds, including one in human space. They live at peace with most sentient species and claim to be in communication with an even older species named the Drak.`
 		log "Factions" "Drak" `The Drak are supposedly the oldest living species in the galaxy. The Quarg say that the Drak act as something like galactic peacekeepers or police, and will intervene if a species invents a weapon so terrible that it could drive that species to extinction.`
