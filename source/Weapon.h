@@ -234,8 +234,8 @@ private:
 	Body sprite;
 	Body hardpointSprite;
 	const Sound *sound = nullptr;
-	const Sprite *icon = nullptr;
 	const Sound *emptySound = nullptr;
+	const Sprite *icon = nullptr;
 
 	// Fire, die and hit effects.
 	std::map<const Effect *, int> fireEffects;
