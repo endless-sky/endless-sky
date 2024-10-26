@@ -19,8 +19,10 @@ Version 0.10.10
       * Added missing passengers to "Remnant: Cognizance 7" and "Remnant: Visit to Paradise 1". (@opusforlife2)
       * Text in "Remnant: Void Sprites 3" will now correctly account for if the player was given additional information in "Remnant: Void Sprites 1". (@warp-core)
       * "Remnant: Shattered Light 3" will no longer remain active after "Remnant: Shattered Light 4" has started, preventing the presence of two Shatered Lights at the same time. (@warp-core)
-      * Updated some Korath ship variants to use the "Piercer Missile Launcher" instead of the deprecated "Korath Piercer Launcher". (@Zitchas)
+      * Replaced deprecated "Korath Piercer Launchers" and "Korath Piercers" on some Korath variants with the newer "Piercer Missile Launchers" and "Piercer Missiles". (@Zitchas, @warp-core)
       * Updated landing messages for some star sprites to improve accuracy. (@tibetiroka)
+      * Improved continuite in "Remnant: Keystone Research 7" by not repeating information the player already knows as though it is hte first time they are learning it. (@mOctave)
+      * The hyperdrive variant of the Archon now uses the "silent jumps" attribute instead of referring to non-existent sound files to avoid playing jump sounds. (@TheGiraffe3)
     * Engine bugs:
       * The conversation panel will no longer close immediately when the player dies. (@TomGoodIdea)
       * Added required precision specifiers to LineShader GLSL code. (@Koranir, @thewierdnut)
@@ -45,6 +47,8 @@ Version 0.10.10
         * Moved the starting point of the allied Mereti fleet from Faronektu to Mekislepti, so they arrive to the battle sooner.
     * Other:
       * Expanded the descriptions of the Coalition licenses. (@Arachi-Lover)
+  * Game mechanics:
+    * Added two new attributes ("silent jumps" and "silent scans") that allow ships to jump and scan silently, not even playing the default sounds. (@warp-core)
   * User interface:
     * Updated how "outfits stored here" indicators on the map are drawn to account for recent changes to LineShader. (@Koranir)
   * Under the hood:
