@@ -73,7 +73,7 @@ double Depreciation::Depreciate(int age)
 		return Min();
 
 	double daily = pow(Daily(), age - GracePeriod());
-	double linear = double(MaxAge() - age) / (MaxAge() - GracePeriod());
+	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
 	return Min() + (1. - Min()) * daily * linear;
 }
 
