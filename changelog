@@ -1,11 +1,11 @@
 Version 0.10.10
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@opusforlife2, @TheGiraffe3, @tibetiroka)
+      * Typo fixes. (@alextd, @opusforlife2, @TheGiraffe3, @tibetiroka)
       * Added "required crew" to Successors' turrets. (@tibetiroka)
       * Corrected offer and fail conditions of "Successors: First Contact 2 Prompt". (@Daeridanni1)
       * Added clearance to "Successors: Predecessor Research 1". (@TheGiraffe3)
-      * "Ringworld Debris: Quarg" will now only offer on ringworlds in human and Hai space. (@tibetiroka)
+      * "First Contact: Quarg" and "Ringworld Debris: Quarg" will now only offer on ringworlds in human and Hai space. (@tibetiroka, @TheGiraffe3)
       * Added missing government to uninhabited systems near the Incipias. (@mOctave)
       * Removed a spurious condition operation in "Hogshead's Dilemma II". (@TheGiraffe3)
       * Successors rush delivery jobs will no longer choose the origin, or another planet less than two jumps away, as the destination. (@reticent-rem)
@@ -18,16 +18,21 @@ Version 0.10.10
       * The missions "Gegno Anticipation" and "Gegno Intervention" will no longer offer after the other has been offered. (@Saugia)
       * Added missing passengers to "Remnant: Cognizance 7" and "Remnant: Visit to Paradise 1". (@opusforlife2)
       * Text in "Remnant: Void Sprites 3" will now correctly account for if the player was given additional information in "Remnant: Void Sprites 1". (@warp-core)
+      * "Remnant: Shattered Light 3" will no longer remain active after "Remnant: Shattered Light 4" has started, preventing the presence of two Shatered Lights at the same time. (@warp-core)
+      * Updated some Korath ship variants to use the "Piercer Missile Launcher" instead of the deprecated "Korath Piercer Launcher". (@Zitchas)
+      * Updated landing messages for some star sprites to improve accuracy. (@tibetiroka)
     * Engine bugs:
       * The conversation panel will no longer close immediately when the player dies. (@TomGoodIdea)
       * Added required precision specifiers to LineShader GLSL code. (@Koranir, @thewierdnut)
       * Corrected expected syntax description in the error message for incorrect conversation text child nodes. (@warp-core)
       * Cargo dumped from docked carriable ships is now properly converted into flotsam instead of being lost. (@warp-core)
       * "Mute" ships, or ships from governments with languages the player does not know will no longer send the "appeasement" message. (@warp-core)
+      * Sold, in stock outfits that are not installable will now correctly be shown as "in stock" instead of "not sold here". (@TomGoodIdea)
   * Game content:
     * Mission changes:
       * Added an "on visit" dialog to, and expanded the descriptions of "Remnant: Cognizance 1". (@warp-core)
       * Reduced the offer rates of strike breaker jobs by a factor of 5. (@Anarchist2)
+      * Increased the offer rates of culture conversations for single planets in human space. (@reticent-rem)
     * Graphics:
       * Added a unique icon for the Swarm Pod, instead of reusing the "meteor" icon. (@Daeridanii1)
     * Balance:
@@ -40,8 +45,11 @@ Version 0.10.10
         * Moved the starting point of the allied Mereti fleet from Faronektu to Mekislepti, so they arrive to the battle sooner.
     * Other:
       * Expanded the descriptions of the Coalition licenses. (@Arachi-Lover)
+  * User interface:
+    * Updated how "outfits stored here" indicators on the map are drawn to account for recent changes to LineShader. (@Koranir)
   * Under the hood:
     * Corrected the naming style of some variables. (@TomGoodIdea)
+    * Removed incorrect iCCP sRGB color profiles from some recently added landscape images. (@warp-core)
   * CI/CD and development environment:
     * Updated the documentation issue template to include a checkbox about checking for duplicate issues. (@TheGiraffe3)
     * Updated Python dependency installation in GitHub Actions as GitHub migrates "ubuntu-latest" runners. (@tibetiroka)
