@@ -85,14 +85,14 @@ int Depreciation::AgeForDepreciation(double depreciation)
 	if(depreciation <= Min())
 		return MaxAge();
 
-	if(depreciation >= 1)
+	if(depreciation >= 1.)
 		return 0;
 
 	// Unfortunately, solving the depreciation function for age gives a horrible formula involving
 	// the Lambert W function. So instead, just increase age by 1 until the depreciation is right.
-	int age = 0;
-	while(Depreciate(age++) > depreciation)
-		continue;
+	int age = GracePeriod();
+	while(Depreciate(age) > depreciation)
+		age++;
 	return age;
 }
 

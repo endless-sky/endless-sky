@@ -82,7 +82,7 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 					rs.depreciation = Depreciation::AgeForDepreciation(1 - grand.Value(1) / 100.0);
 			}
 
-			this->push_back(rs);
+			this->push_back(std::move(rs));
 		}
 	}
 }
