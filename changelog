@@ -21,7 +21,7 @@ Version 0.10.10
       * "Remnant: Shattered Light 3" will no longer remain active after "Remnant: Shattered Light 4" has started, preventing the presence of two Shatered Lights at the same time. (@warp-core)
       * Replaced deprecated "Korath Piercer Launchers" and "Korath Piercers" on some Korath variants with the newer "Piercer Missile Launchers" and "Piercer Missiles". (@Zitchas, @warp-core)
       * Updated landing messages for some star sprites to improve accuracy. (@tibetiroka)
-      * Improved continuite in "Remnant: Keystone Research 7" by not repeating information the player already knows as though it is hte first time they are learning it. (@mOctave)
+      * Improved continuity in "Remnant: Keystone Research 7" by not repeating information the player already knows as though it is the first time they are learning it. (@mOctave)
       * The hyperdrive variant of the Archon now uses the "silent jumps" attribute instead of referring to non-existent sound files to avoid playing jump sounds. (@TheGiraffe3)
     * Engine bugs:
       * The conversation panel will no longer close immediately when the player dies. (@TomGoodIdea)
