@@ -4,7 +4,7 @@ Version 0.10.10
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@alextd, @opusforlife2, @TheGiraffe3, @tibetiroka)
-      * Added "required crew" to Successors' turrets. (@tibetiroka)
+      * Added "required crew" to Successor turrets. (@tibetiroka)
       * Corrected offer and fail conditions of "Successors: First Contact 2 Prompt". (@Daeridanni1)
       * Added clearance to "Successors: Predecessor Research 1". (@TheGiraffe3)
       * "First Contact: Quarg" and "Ringworld Debris: Quarg" will now only offer on ringworlds in human and Hai space. (@tibetiroka, @TheGiraffe3)
