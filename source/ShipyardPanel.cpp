@@ -102,7 +102,7 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 
 	DrawShip(*ship, point, ship == selectedShip);
 
-	// Don't show the "in stock" amount if the ship is sold.
+	// Don't show the "in stock" amount if the shipyard has an unlimited stock of this ship.
 	if(!shipyard.Has(ship) && player.ShipStock(ship) > 0)
 	{
 		const Font &font = FontSet::Get(14);

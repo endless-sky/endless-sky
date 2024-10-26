@@ -19,12 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "Set.h"
 
-#include <set>
 #include <string>
 
 
 
-// Struct representing an item that may sometimes be in stock.
+// Struct representing a ship or outfit that will sometimes be in stock.
 template <class Item>
 struct RandomStockItem
 {
