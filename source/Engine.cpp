@@ -894,7 +894,8 @@ void Engine::Step(bool isActive)
 			{
 				info.SetString("target crew", to_string(target->Crew()));
 				if(targetRange <= (strategicScanRange + accelerationScanRange)
-					|| targetRange <= (strategicScanRange + velocityScanRange))
+					|| targetRange <= (strategicScanRange + velocityScanRange)
+					|| target->IsYours())
 				{
 					info.SetCondition("mobility crew display");
 				}
