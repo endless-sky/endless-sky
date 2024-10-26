@@ -660,6 +660,12 @@ tip "depleted shield delay:"
 tip "shield protection:"
 	`Protection against shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
 
+tip "silent jumps:"
+	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
+
+tip "silent scans:"
+	`Prevents a ship from generating scan sounds.`
+
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
 
@@ -1302,9 +1308,6 @@ tip "Fleet: Fight my target"
 tip "Fleet: Gather around me"
 	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
 	`With <shift>, change the formation pattern in your fleet.`
-
-tip "Fleet: Toggle hold fire"
-	`Command your fleet to stop firing except if they are given a specific target to shoot at afterwards. If only some escorts are selected, only sends the command to those escorts.`
 
 tip "Fleet: Hold position"
 	`Command your fleet to hold its current position. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
