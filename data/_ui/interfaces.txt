@@ -840,10 +840,10 @@ interface "hud"
 
 	visible if "target acceleration display"
 	sprite "ui/tactical/acceleration"
-		from 190 286
+		from 194 286
 		align top left
 	string "target acceleration"
-		from 204 286
+		from 208 286
 		align top left
 	
 	
