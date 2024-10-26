@@ -67,6 +67,7 @@ public:
 	const Body &WeaponSprite() const;
 	const Body &HardpointSprite() const;
 	const Sound *WeaponSound() const;
+	const Sound *EmptySound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
 
@@ -234,6 +235,7 @@ private:
 	Body hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sprite *icon = nullptr;
+	const Sound *emptySound = nullptr;
 
 	// Fire, die and hit effects.
 	std::map<const Effect *, int> fireEffects;

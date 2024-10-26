@@ -2019,7 +2019,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, bool ammoAlert)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2042,23 +2042,30 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon)
 		{
-			if(weapon->AntiMissile())
-				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(weapon->TractorBeam())
-				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
-			else if(firingCommands.HasFire(i))
+			CanFireResult canFire = CanFire(weapon);
+			if(canFire == CanFireResult::CAN_FIRE)
 			{
-				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
-				if(cloak)
+				if(weapon->AntiMissile())
+					antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+				else if(weapon->TractorBeam())
+					tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
+				else if(firingCommands.HasFire(i))
 				{
-					double cloakingFiring = attributes.Get("cloaked firing");
-					// Any negative value means shooting does not decloak.
-					if(cloakingFiring > 0)
-						cloak -= cloakingFiring;
+					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+					if(cloak)
+					{
+						double cloakingFiring = attributes.Get("cloaked firing");
+						// Any negative value means shooting does not decloak.
+						if(cloakingFiring > 0)
+							cloak -= cloakingFiring;
+					}
 				}
 			}
+			else if(ammoAlert && canFire == CanFireResult::NO_AMMO
+					&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
+				Audio::Play(weapon->EmptySound(), position);
 		}
 	}
 
@@ -2095,7 +2102,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2135,7 +2142,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -3523,41 +3530,41 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
-bool Ship::CanFire(const Weapon *weapon) const
+Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
 	if(!weapon || !weapon->IsWeapon())
-		return false;
+		return CanFireResult::INVALID;
 
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second < weapon->AmmoUsage())
-			return false;
+			return CanFireResult::NO_AMMO;
 	}
 
 	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
 	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(ionization < -weapon->FiringIon())
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 	if(disruption < -weapon->FiringDisruption())
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 	if(slowness < -weapon->FiringSlowing())
-		return false;
+		return CanFireResult::NO_ATTRIBUTES;
 
-	return true;
+	return CanFireResult::CAN_FIRE;
 }
 
 

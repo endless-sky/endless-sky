@@ -108,6 +108,13 @@ public:
 		Angle gimbal;
 	};
 
+	enum class CanFireResult {
+		INVALID,
+		NO_AMMO,
+		NO_ATTRIBUTES,
+		CAN_FIRE
+	};
+
 
 public:
 	// Functions provided by the Body base class:
@@ -232,7 +239,7 @@ public:
 	// Fire any primary or secondary weapons that are ready to fire. Determines
 	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 	// The firing of special weapons is handled separately.
-	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool ammoAlert = false);
 	// Return true if any anti-missile or tractor beam systems are ready to fire.
 	bool HasAntiMissile() const;
 	bool HasTractorBeam() const;
@@ -451,7 +458,7 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Weapon *weapon) const;
+	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);

@@ -1756,7 +1756,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Launch(newShips, newVisuals);
 
 	// Fire weapons.
-	ship->Fire(newProjectiles, newVisuals);
+	ship->Fire(newProjectiles, newVisuals, ship.get() == flagship);
 
 	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
 	// Track which ships have at least one such system ready to fire.
