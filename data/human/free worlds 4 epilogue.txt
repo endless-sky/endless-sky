@@ -178,7 +178,7 @@ mission "FW Epilogue: Freya"
 			choice
 				`	"Really?"`
 					goto disbelief
-				`	"Well, then. Hello, cousin. Nice to meet you."`
+				`	"Well, then, hello, cousin. Nice to meet you."`
 					goto joke
 			label disbelief
 			`	"Yeah, I can hardly believe it myself. I think it's nice, though. A pleasant surprise." You agree.`
@@ -187,7 +187,7 @@ mission "FW Epilogue: Freya"
 			label joke
 			`	"Heh. Nice to meet you, too. Looks like we brought some prestige to the Winters family name, haven't we, cousin?"`
 			`	You both laugh at her reply.`
-			`	"Never thought I'd go about saving the galaxy with a second cousin I'd never met," she continues, "but in a war where some previously-unknown hyperlane-manipulating aliens intervene to try and make both sides unite, I guess anything's possible.`
+			`	"Never thought I'd go about saving the galaxy with a second cousin I'd never met," she continues, "but in a war where some previously-unknown hyperlane-manipulating aliens intervene to try and make both sides unite, I guess anything's possible."`
 
 			label conclusion
 			`	You talk for a while longer, and she tells you she'll be sure to be in touch if they ever get to the root of the Pug's motivation. "Until then," she says, "good luck in your travels. I hope the galaxy never runs out of ways to surprise you."`
