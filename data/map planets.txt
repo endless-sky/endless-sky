@@ -2067,6 +2067,7 @@ planet Hai-home
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Advanced"
+	outfitter "Hai-home Only"
 	"required reputation" 100
 	bribe 0
 	security 0.4
