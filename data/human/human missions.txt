@@ -3916,6 +3916,10 @@ mission "Human to Hai Space"
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
 			choice
+				`	"'Heard tell'? I'm from Hai space!"`
+					to display
+						has "hai space start"
+					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
@@ -3926,15 +3930,27 @@ mission "Human to Hai Space"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
+			label origin
+			`	He seems shocked. "Really? I can give you <payment> to get to <planet>."`
+				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			label choice
 			choice
+				`	"Actually, I'm from <planet>."`
+					to display
+						has "hai space start"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
 					decline
 				`	"Why would you want to go all the way out to <planet>?"`
+					goto explain
+			`	"No way, you as well?" He stops for a second to process. "They say the universe is a small place, but I never believed any of that. Until now, that is. And to think I'd meet someone like you on my first time out of the wormhole."`
+				goto humanspace
+			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
+			label humanspace
 			choice
 				`	"Really? How did you like human space?"`
 					goto travel
@@ -3958,12 +3974,30 @@ mission "Human to Hai Space"
 			choice
 				`	(Leave.)`
 					decline
+				`	(Approach them.)`
+					to display
+						has "hai space start"
+					goto haistart
 				`	"That's your family?"`
+					to display
+						not "hai space start"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
 				`	"No problem, I hope you enjoyed the trip."`
+			label end
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+				decline
+			label haistart
+			`	Benjamin notices you approaching, and says, "These are my parents, Yeerto and Taepip." His father Yeerto then says, "We checked the travel agencies here on Greenwater, but it turned out to be much cheaper to get a merchant to bring Benjamin to human space. I guess we learned why that was cheaper the hard way."`
+			`	"You said you used to work at a travel agency, right?" Benjamin adds with a smile on his face. "Funny we almost found each other then."`
+			`	Benjamin's mother Taepip softly places her hand on his shoulder before continuing, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
+			choice
+				`	"Sure."`
+				`	"Sorry, I have other pressing matters."`
+					goto end
+			`	You spend a long evening with them, talking about your upbringing on <planet> and your experiences in human space. Yeerto then tells you about the local news here, and you catch up with what's happened on your home planet since you left.`
+			`	It begins to get dark, and after a final goodbye you head back to your ship.`
 
 
 
@@ -4647,6 +4681,7 @@ mission "Hai Wormhole Warning"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 		not "hr: meet the team"
+		not "hai space start"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -5817,7 +5852,7 @@ mission "Quicksilver Mixup 1"
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???"`
-			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO!!!"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
@@ -6421,7 +6456,7 @@ mission "Moving House 1"
 				decline
 				
 			label sure
-			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
+			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour."`
 			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
 			choice
 				`	(Shake their hand.)`
@@ -7267,7 +7302,7 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll to film the conditions in a secret Syndicate sweatshop.`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll film the conditions in a secret Syndicate sweatshop.`
 			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
 			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			choice
