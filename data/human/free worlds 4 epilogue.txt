@@ -146,7 +146,8 @@ mission "FW Epilogue: Freya"
 			`	"I know, I know," she says. "I complain, but really there's nowhere else I would rather be. Even if everything we're discovering here is nothing more than what they intended for us to discover, it's still the most interesting work I could possibly be doing right now. So, don't feel sorry for me. Really."`
 			branch surname
 				has "last name: Winters"
-			goto conclusion
+			`	You talk for a while longer, and she tells you she'll be sure to be in touch if they ever get to the root of the Pug's motivation. "Until then," she says, "good luck in your travels. I hope the galaxy never runs out of ways to surprise you."`
+				decline
 
 			label surname
 			`	"By the way, can I ask you something, <first>? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
