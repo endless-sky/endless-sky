@@ -85,7 +85,7 @@ private:
 	// Check whether the given link is travelable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
-	bool CheckLink(const System &from, const System &to, bool useJump) const;
+	bool CheckLink(const System &from, const System &to) const;
 
 
 private:

@@ -264,26 +264,22 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 {
 	const System *currentSystem = curEdge.prev;
 
-	bool useJump = jumpRangeMax > 0;
-
 	// JumpNeighbors will use the system's jump range, overriding jumpRangeMax.
 	// JumpNeighbors also includes normal hyperspace Links.
-	for(const System *link : (useJump ? currentSystem->JumpNeighbors(jumpRangeMax) : currentSystem->Links()))
+	auto links = currentSystem->Links();
+	for(const System *link : (jumpRangeMax > 0 ? currentSystem->JumpNeighbors(jumpRangeMax) : links))
 	{
-		double fuelCost = (useJump ? ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST : ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST);
-		if (ship)
-		{
-			fuelCost = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link).second;
-		}
-
 		// Copy the edge to be used for this link, and build upon its fields.
 		RouteEdge nextEdge = curEdge;
-		nextEdge.fuel += fuelCost;
+
+		nextEdge.fuel += ship ? ship->JumpNavigation().GetCheapestJumpType(currentSystem, link).second :
+			links.contains(link) ? ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST :
+			ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST;
 
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if(HasBetter(*link, nextEdge) || !CheckLink(*currentSystem, *link, useJump))
+		if(HasBetter(*link, nextEdge) || !CheckLink(*currentSystem, *link))
 			continue;
 
 		Add(*link, nextEdge);
@@ -323,20 +319,13 @@ void DistanceMap::Add(const System &to, RouteEdge edge)
 // Check whether the given link is travelable. If no player was given in the
 // constructor then this depends on travel restrictions; otherwise, the player must know
 // that the given link exists.
-bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) const
+bool DistanceMap::CheckLink(const System &from, const System &to) const
 {
 	if(!player)
 		return !ship || !ship->IsRestrictedFrom(to);
 
 	if(!player->HasSeen(to))
 		return false;
-
-	// If you are using a jump drive and you can see just from the positions of
-	// the two systems that you can jump between them, you can plot a course
-	// between them even if neither system is explored. Otherwise, you need to
-	// know if a link exists, so you must have explored at least one of them.
-	if (useJump)
-		return true;
 
 	return (player->CanView(from) || player->CanView(to));
 }
