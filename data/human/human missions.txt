@@ -2500,8 +2500,17 @@ event "terraforming follow-up"
 		add attributes "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has led to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
+		spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
+		spaceport `	For once, the spaceport is lively during Remembrance Day. It appears that more and more people are choosing to invite their family over to Rand to commemorate the day instead of traveling to another planet.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
 	planet "Tundra"
 		spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Before the planet was terraformed, enough snow would pile up on top of one of the domes every decade or so that it became a danger of collapsing under its own weight; the locals would simply move out of that dome and build another one higher up on the snowpack, but the changing climate has reduced the amount of snow enough that the locals may never need to build another dome again.`
+		spaceport `	For Remembrance Day, several stalls have been set up to showcase items of clothing made with the planet's synthetic fabrics. A new addition to the event is a group of stalls dedicated to presenting clothing tailored here on Tundra.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
 
 
 
