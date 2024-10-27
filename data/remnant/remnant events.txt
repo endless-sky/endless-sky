@@ -815,7 +815,7 @@ event "remnant: ssil vida activation"
 
 
 
-# TODO: Jump range of other systems nearby may need to be reduced on activation 
+# TODO: Jump range of other systems nearby may need to be reduced on activation
 # to prevent escorts outside the Postverta cluster jumping into that region.
 # Or create an entire new system to handle this "dimensional bubble"
 event "remnant: ssil vida deactivation"
