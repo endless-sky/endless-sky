@@ -218,9 +218,9 @@ mission "Successors: First Contact 2 Prompt"
 	destination "Staja-Kella-Oa"
 	to offer
 		has "event: successors: first contact wait"
+		not "Successors: First Contact 2: offered"
 	to fail
 		has "Successors: Unified Defense: offered"
-		has "Successors: First Contact 2: offered"
 	on offer
 		event "successors: tardy for sioeora" 14
 		conversation

@@ -2457,7 +2457,7 @@ news "ccor gendarme"
 		word
 			`"`
 		word
-			"Report any signs of guerilla or pirate activity to us."
+			"Report any signs of guerrilla or pirate activity to us."
 			"Move along, now."
 			"If you see any defacement of local insignia, tell us and we'll have it sorted."
 			"We are here to keep the peace in this spaceport."
