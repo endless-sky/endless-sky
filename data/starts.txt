@@ -16,7 +16,7 @@ start "default"
 	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of working at a textile mill, you've finally saved enough credits to apply for a pilot's license from the Republic.`
 	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to take out a loan on your first ship...`
 	thumbnail "scene/lobby"
-	date 16 11 3013
+	date 16 5 3013
 	system "Rutilicus"
 	planet "New Boston"
 	conversation "default intro"
@@ -74,7 +74,7 @@ start "hai space"
 		description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
 		system "Fah Soom"
 		planet "Greenwater"
-		date 16 11 3013
+		date 16 5 3013
 		credits 1431000
 		debt 1431000
 	to unlock
