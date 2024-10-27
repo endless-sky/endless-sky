@@ -13,6 +13,8 @@
 
 outfit "Phantom Pallet"
 	category "Systems"
+	series "Special Systems: Hai"
+	index 20
 	cost 12000
 	thumbnail "outfit/phantom pallet"
 	"mass" 0.2
@@ -26,6 +28,8 @@ outfit "Phantom Pallet"
 
 outfit "Holovid Zone"
 	category "Systems"
+	series "Special Systems: Hai"
+	index 30
 	cost 320000
 	thumbnail "outfit/holovid zone"
 	"mass" 20
