@@ -3850,9 +3850,9 @@ void PlayerInfo::RegisterDerivedConditions()
 			return -1;
 
 		auto distanceMap = DistanceMap(origin);
-		if(!distanceMap.HasRoute(destination))
+		if(!distanceMap.HasRoute(*destination))
 			return -1;
-		return distanceMap.Days(destination);
+		return distanceMap.Days(*destination);
 	};
 
 	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
