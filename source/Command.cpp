@@ -53,48 +53,72 @@ namespace {
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(0, "");
-const Command Command::MENU(ONE << 0, "Show main menu", "ui/icon_exit");
+const Command Command::MENU(ONE << 0, "Show main menu");
 const Command Command::FORWARD(ONE << 1, "Forward thrust");
 const Command Command::LEFT(ONE << 2, "Turn left");
 const Command Command::RIGHT(ONE << 3, "Turn right");
 const Command Command::BACK(ONE << 4, "Reverse");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
-const Command Command::PRIMARY(ONE << 6, "Fire primary weapon", "ui/icon_fire");
+const Command Command::PRIMARY(ONE << 6, "Fire primary weapon");
 const Command Command::TURRET_TRACKING(ONE << 7, "Toggle turret tracking");
-const Command Command::SECONDARY(ONE << 8, "Fire secondary weapon", "ui/icon_secondary");
+const Command Command::SECONDARY(ONE << 8, "Fire secondary weapon");
 const Command Command::SELECT(ONE << 9, "Select secondary weapon");
-const Command Command::LAND(ONE << 10, "Land on planet / station", "ui/icon_land");
-const Command Command::BOARD(ONE << 11, "Board selected ship", "ui/icon_board");
-const Command Command::HAIL(ONE << 12, "Talk to selected ship", "ui/icon_talk");
-const Command Command::SCAN(ONE << 13, "Scan selected ship", "ui/icon_scan");
-const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump", "ui/icon_jump");
+const Command Command::LAND(ONE << 10, "Land on planet / station");
+const Command Command::BOARD(ONE << 11, "Board selected ship");
+const Command Command::HAIL(ONE << 12, "Talk to selected ship");
+const Command Command::SCAN(ONE << 13, "Scan selected ship");
+const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump");
 const Command Command::FLEET_JUMP(ONE << 15, "");
 const Command Command::TARGET(ONE << 16, "Select next ship");
 const Command Command::NEAREST(ONE << 17, "Select nearest hostile ship");
 const Command Command::NEAREST_ASTEROID(ONE << 18, "Select nearest asteroid");
-const Command Command::DEPLOY(ONE << 19, "Deploy / recall fighters", "ui/icon_deploy");
+const Command Command::DEPLOY(ONE << 19, "Deploy / recall fighters");
 const Command Command::AFTERBURNER(ONE << 20, "Fire afterburner");
-const Command Command::CLOAK(ONE << 21, "Toggle cloaking device", "ui/icon_cloak");
-const Command Command::MAP(ONE << 22, "View star map", "ui/icon_map");
-const Command Command::INFO(ONE << 23, "View player info", "ui/icon_info");
+const Command Command::CLOAK(ONE << 21, "Toggle cloaking device");
+const Command Command::MAP(ONE << 22, "View star map");
+const Command Command::INFO(ONE << 23, "View player info");
 const Command Command::MESSAGE_LOG(ONE << 24, "View message log");
 const Command Command::FULLSCREEN(ONE << 25, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 26, "Toggle fast-forward", "ui/icon_fast_forward");
+const Command Command::FASTFORWARD(ONE << 26, "Toggle fast-forward");
 const Command Command::HELP(ONE << 27, "Show help");
-const Command Command::FIGHT(ONE << 28, "Fleet: Fight my target", "ui/icon_fleet_fight");
-const Command Command::GATHER(ONE << 29, "Fleet: Gather around me", "ui/icon_fleet_gather");
-const Command Command::HOLD_FIRE(ONE << 30, "Fleet: Toggle hold fire");
-const Command Command::HOLD_POSITION(ONE << 31, "Fleet: Hold position", "ui/icon_fleet_stop");
-const Command Command::HARVEST(ONE << 32, "Fleet: Harvest flotsam", "ui/icon_fleet_harvest");
-const Command Command::AMMO(ONE << 33, "Fleet: Toggle ammo usage", "ui/icon_ammo_usage");
-const Command Command::AUTOSTEER(ONE << 34, "Auto steer");
-const Command Command::WAIT(ONE << 35, "");
-const Command Command::STOP(ONE << 36, "Stop", "ui/icon_fleet_stop");
-const Command Command::SHIFT(ONE << 37, "");
+const Command Command::FIGHT(ONE << 28, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 29, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 30, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 31, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 32, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 33, "Auto steer");
+const Command Command::WAIT(ONE << 34, "");
+const Command Command::STOP(ONE << 35, "Stop");
+const Command Command::SHIFT(ONE << 36, "");
 
 
-// Mobile specific
-const Command Command::FLEET_FORMATION(ONE << 63, "Fleet: Toggle Formation", "ui/icon_fleet_formation");
+// Mobile specific commands and icons.
+const Command Command::FLEET_FORMATION(ONE << 63, "Fleet: Toggle Formation");
+void Command::InitIcons()
+{
+	iconName[Command::MENU] = "ui/icon_exit";
+	iconName[Command::PRIMARY] = "ui/icon_fire";
+	iconName[Command::SECONDARY] = "ui/icon_secondary";
+	iconName[Command::LAND] = "ui/icon_land";
+	iconName[Command::BOARD] = "ui/icon_board";
+	iconName[Command::HAIL] = "ui/icon_talk";
+	iconName[Command::SCAN] = "ui/icon_scan";
+	iconName[Command::JUMP] = "ui/icon_jump";
+	iconName[Command::DEPLOY] = "ui/icon_deploy";
+	iconName[Command::CLOAK] = "ui/icon_cloak";
+	iconName[Command::MAP] = "ui/icon_map";
+	iconName[Command::INFO] = "ui/icon_info";
+	iconName[Command::FASTFORWARD] = "ui/icon_fast_forward";
+	iconName[Command::FIGHT] = "ui/icon_fleet_fight";
+	iconName[Command::GATHER] = "ui/icon_fleet_gather";
+	iconName[Command::HOLD] = "ui/icon_fleet_stop";
+	iconName[Command::HARVEST] = "ui/icon_fleet_harvest";
+	iconName[Command::AMMO] = "ui/icon_ammo_usage";
+	iconName[Command::STOP] = "ui/icon_fleet_stop";
+
+	iconName[Command::FLEET_FORMATION] = "ui/icon_fleet_formation";
+}
+
 
 std::atomic<uint64_t> Command::simulated_command{};
 std::atomic<uint64_t> Command::simulated_command_once{};
@@ -577,7 +601,7 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
-			{"mouse turning hold", Command::MOUSE_TURNING_HOLD},
+			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
@@ -590,8 +614,7 @@ void Command::Load(const DataNode &node)
 			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
 			{"gather", Command::GATHER},
-			{"hold fire", Command::HOLD_FIRE},
-			{"hold position", Command::HOLD_POSITION},
+			{"hold", Command::HOLD},
 			{"ammo", Command::AMMO},
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
@@ -729,14 +752,11 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text, const string &icon)
+Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())
 		description[*this] = text;
-
-	if(!icon.empty())
-		iconName[*this] = icon;
 }
 
 

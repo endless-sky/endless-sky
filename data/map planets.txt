@@ -647,7 +647,7 @@ planet Cassandra
 	landscape land/mars4
 	description `In the late 2300s, Cassandra was the subject of one of the most ambitious terraforming projects performed by humanity up to that point; an attempt to rapidly modify its biosphere and jumpstart the process of making the planet more than perfect for human habitation.`
 	description `	The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occurred during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
-	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
+	description `	This appears to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
 
 planet Cavaasa-Vasa-Tej
 	attributes predecessor uninhabited
@@ -2620,7 +2620,7 @@ planet Khosa-Kella-Oa
 	description `Devoid of atmosphere, this small and rocky world sits at the very edge of the galaxy. This may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			not "known to the successors"
-	description `Devoid of atmosphere, this small and rocky world sits at the eastern end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
+	description `Devoid of atmosphere, this small and rocky world sits at the western end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			has "known to the successors"
 

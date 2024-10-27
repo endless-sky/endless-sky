@@ -46,6 +46,10 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+	# Add the testing libraries
+	if(NOT APPLE OR CMAKE_OSX_DEPLOYMENT_TARGET VERSION_GREATER_EQUAL 10.12)
+		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
+	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
@@ -58,7 +62,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.9
+project("Endless Sky" VERSION 0.10.10
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -242,7 +246,8 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	set_target_properties(EndlessSky PROPERTIES
 		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/resources/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
-	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
+	set(OUTPUT_NAME "Endless Sky")
+	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")

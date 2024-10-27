@@ -78,8 +78,7 @@ public:
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
-	static const Command HOLD_FIRE;
-	static const Command HOLD_POSITION;
+	static const Command HOLD;
 	static const Command AMMO;
 	static const Command HARVEST;
 	// This command is given in combination with JUMP or LAND and tells a ship
@@ -97,6 +96,7 @@ public:
 	static const Command SHIFT;
 
 	// Mobile specific
+	static void InitIcons();
 	static const Command FLEET_FORMATION;
 
 public:
@@ -184,7 +184,7 @@ public:
 
 private:
 	explicit Command(uint64_t state);
-	Command(uint64_t state, const std::string &text, const std::string &icon = "");
+	Command(uint64_t state, const std::string &text);
 
 
 private:

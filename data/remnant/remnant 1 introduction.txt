@@ -581,7 +581,8 @@ mission "Remnant: Void Sprites 1"
 				`	"Yes, I'd be glad to."`
 					goto end
 				`	"Wait, that sounds super shady. Can you explain why you think it's safe for me to enter that star system, but not for you to do so?"`
-
+			action
+				set "remnant: void sprites 1: asked for more details"
 			`	He says, "We studied the organisms and determined that they could not possibly be sentient. Therefore we saw no moral issues with collecting, well, ah... a sample. Unexpected things happened and certain grudges have been, ah, borne against Remnant ships for centuries as a result."`
 			choice
 				`	"Well, as long as you don't ask me to do something that will get me in similar trouble, I'll help you out."`
@@ -686,7 +687,13 @@ mission "Remnant: Void Sprites 3"
 			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I will not have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
 				`	"How much will it cost to buy one?"`
+				`	"You said before you cannot safely approach these organisms. How will I land on their planets in one of your ships?"`
+					to display
+						not "remnant: void sprites 1: asked for more details"
+					goto attack
 				`	"Didn't you say before that anyone entering that system in a Remnant ship gets attacked?"`
+					to display
+						has "remnant: void sprites 1: asked for more details"
 					goto attack
 				`	"Sorry, I'm not interested in helping you anymore."`
 					decline
@@ -3343,6 +3350,8 @@ mission "Remnant: Keystone Research 7"
 				`	"The Remnant sure like to eat."`
 				`	"Why do the Remnant eat so much?"`
 					goto foodvolume
+					to display
+						not "remnant symbionts info"
 				`	"Maybe I should import some spices."`
 					goto spices
 				`	"What is our next step?"`

@@ -139,6 +139,8 @@ int main(int argc, char *argv[])
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
+	Command::InitIcons(); // Mobile specific
+
 	// Config now set. It is safe to access the config now
 	CrashState::Init(!testToRunName.empty());
 	CrashState::Set(CrashState::LOADED);
@@ -645,7 +647,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.9" << endl;
+	cerr << "Endless Sky ver. 0.10.10" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
