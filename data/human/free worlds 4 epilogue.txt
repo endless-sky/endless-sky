@@ -150,7 +150,7 @@ mission "FW Epilogue: Freya"
 				decline
 
 			label surname
-			`	"By the way, can I ask you something, <first>? About you? Sorry if this rather abrupt. I've been too busy to talk during the war."`
+			`	"By the way, can I ask you something, <first>? About you? Sorry if this is rather abrupt. I've been too busy to talk during the war."`
 			choice
 				`	"Sure. What is it?"`
 					goto permitted
@@ -164,10 +164,9 @@ mission "FW Epilogue: Freya"
 				`	"I think so, but I need a minute to remember exactly who."`
 					goto heritage
 				`	"No, I don't."`
-					goto denial
 				
 			label denial
-			`	"Oh, okay. I think I've been mistaken, then."`
+			`	"Oh, okay. I think I've been mistaken, then. Never mind."`
 				goto conclusion
 			label heritage
 			`	You try to recall exactly where you've heard those names before, racking your brain for any information on these vaguely familiar names, then all of a sudden, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
