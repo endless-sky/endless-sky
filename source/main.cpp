@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
-		else if(arg == "--parse-images")
+		else if(arg == "--parse-images-and-sounds")
 			checkImages = true;
 		else if(arg == "--test" && *++it)
 			testToRunName = *it;
@@ -511,7 +511,7 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
-	cerr << "    --parse-images: load all game data, images, and sounds,"
+	cerr << "    --parse-images-and-sounds: load all game data, images, and sounds,"
 		" and the latest save game, and inspect data for errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;

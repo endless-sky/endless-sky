@@ -287,5 +287,5 @@ jobs:
       run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
       shell: bash
     - name: Parse All Resources
-      run: "'./Endless Sky.exe' --parse-images"
+      run: "'./Endless Sky.exe' --parse-images-and-sounds"
       shell: bash
