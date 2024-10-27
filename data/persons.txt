@@ -2204,6 +2204,9 @@ ship "Modified Hauler VI"
 		"outfit space" 900
 		"weapon capacity" 430
 		"engine capacity" 160
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
