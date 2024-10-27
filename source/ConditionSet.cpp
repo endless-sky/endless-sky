@@ -390,7 +390,10 @@ bool ConditionSet::Add(const string &name, const string &op, const string &value
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun || !DataNode::IsConditionName(name) ||
+	// For assignments we only allow condition-names on the left side.
+	// For all others we allow numbers and condition-names on both sides.
+	if(!fun || (!DataNode::IsConditionName(name) && !DataNode::IsNumber(name)) ||
+			(DataNode::IsNumber(name) && IsAssignment(op)) ||
 			(!DataNode::IsConditionName(value) && !DataNode::IsNumber(value)))
 		return false;
 
