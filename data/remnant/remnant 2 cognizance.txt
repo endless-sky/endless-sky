@@ -759,7 +759,12 @@ mission "Remnant: Cognizance 20"
 	on complete
 		require "Research Laboratory"
 		conversation
+			branch busy
+				has "remnant: dusk busy"
 			`One of the Remnant is waiting for you. "Thanks for picking up the equipment. The team that you will be taking to Ssil Vida is waiting for you in the spaceport."`
+				decline
+			label busy
+			`One of the Remnant is waiting for you. "Thanks for picking up the equipment. Dusk will lead the team that you will take to Ssil Vida, but we understand he is currently busy elsewhere with you. You should complete that work, then return to the spaceport here to begin the next expedition."`
 
 
 
@@ -770,7 +775,7 @@ mission "Remnant: Cognizance 21"
 		government "Remnant"
 		attributes "remnant primary"
 	stopover "Ssil Vida"
-	blocked "You need 10 free space for this mission."
+	blocked "You need 10 free space and a Research Laboratory for this mission."
 	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 20: done"
@@ -1078,7 +1083,12 @@ mission "Remnant: Cognizance 23"
 		conversation
 			`You disembark to the sight of Taely striding across the tarmac, but she veers away from you at the last minute to pat the nose of one of the Mergansers. She runs a finger gently along a weapon score for a moment, then turns to face you. "So, the Korath are still capable fighters, I see." She pauses, her eyes take on a distant look for a second before she continues. "But you have returned with the flock intact. Come, join us for a meal and tell me how they fared." She leads you into the hangar where a bunch of engineers and technicians are gathered in one corner with a rack full of food trays. They enthusiastically greet you and the Merganser pilots, and quickly pull you into discussions of how the Mergansers handled their first patrol.`
 			`	Before long the technicians and pilots are trading stories while the Mergansers overshadow the group. Sometimes they poke various engineers or technicians, and the technicians frequently share messages from their commlinks. Apparently they have them hooked up to the Mergansers, so the ships are sharing their own accounts of the patrol. After several hours of the festivities, Taely announces that everyone needs to get to sleep because tomorrow is a new day. As everyone bids their farewells, you note that they include the ships, with most people patting or stroking one or more of the ships on their way out.`
-			`	"Stop by the cafeteria tomorrow morning, <first>. There will be more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
+			branch busy
+				has "remnant: dusk busy"
+			`	"Stop by the cafeteria tomorrow morning, <first>. Dusk and I will have more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
+				decline
+			label busy
+			`	"Stop by the cafeteria once your current work with Dusk is concluded; we will have more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
 
 
 
@@ -1091,8 +1101,10 @@ mission "Remnant: Cognizance 24"
 	destination "Ssil Vida"
 	cargo "outpost equipment" 11
 	passengers 1
+	blocked "You receive a message from Dusk and Taely indicating the next mission requires space for <tons> of cargo and <fare>."
 	to offer
 		has "Remnant: Cognizance 23: done"
+		not "remnant: dusk busy"
 	on offer
 		conversation
 			`When you enter the cafeteria you are greeted by Dusk and Taely signing at you from across the room to join them. Collecting a tray from the dispenser, you slide into an empty seat at their table, watching as Taely signs: "We were just exchanging news and discovered we can combine our next assignment."`
@@ -1243,8 +1255,6 @@ mission "Remnant: Cognizance 27"
 	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 26: done"
-	to complete
-		not "remnant: dusk busy"
 
 
 
@@ -1260,9 +1270,7 @@ mission "Remnant: Cognizance 28"
 	deadline 13
 	to offer
 		has "Remnant: Cognizance 27: done"
-		not "remnant: dusk busy"
 	on offer
-		set "remnant: dusk busy"
 		conversation
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have set up a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
@@ -1384,10 +1392,20 @@ mission "Remnant: Cognizance 32"
 	deadline 19
 	to offer
 		has "Remnant: Cognizance 31: done"
+		or
+			not "remnant: dusk busy"
+			not "remnant: cognizance 32: dusk was busy"
 	to accept
 		has "license: Remnant Capital"
 	on offer
 		conversation
+			branch dusk
+				not "remnant: dusk busy"
+			action
+				set "remnant: cognizance 32: dusk was busy"
+			`Chilia and Taely look excited about something when you find them in the cafeteria, but they indicate that your other work with Dusk will need to be completed before you can continue your work here.`
+				defer
+			label dusk
 			`Chilia is just collecting his tray from the counter when you step into the cafeteria. Seeing you enter, he picks up a second and nods toward a pair of open seats at a table with Taely and Dusk. "We are glad you could make it, <first>." Taely looks happy, brimming with contained energy. "It is an exciting day, Captain, but Dusk should lead." She nods to Dusk, who sets down his fork to gesture.`
 			`	"While Gavriil has been making excellent progress setting up facilities on Ssil Vida, I have been working with a team of xenolinguists on deciphering the data we have collected so far. Based on Gavriil's recommendations, we have been focusing on the power distribution system."`
 			branch ssilvidaemeraldsword
@@ -1427,6 +1445,7 @@ mission "Remnant: Cognizance 32"
 			`	A hatch opens on the Peregrine, and all the workers quickly finish their tasks and stow their equipment onboard. "Ready for departure when you are, Captain!" calls one from the hatch.`
 				accept
 	on accept
+		set "remnant: dusk busy"
 		give ship Peregrine "Shadow Flight"
 		event "remnant: cognizance peregrine"
 	on decline
