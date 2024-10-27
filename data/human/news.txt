@@ -2379,6 +2379,7 @@ news "graffiti on spaceport wall"
 			"Don't put graffiti on the wall here."
 			"A spray-painted circle surrounded by two arrows forms the Republic insignia. ${republic motto graffiti}"
 			"A spray-painted tree with a mass of branches in the shape of a brain forms the Deep insignia. ${deep motto graffiti}"
+			"Someone has stenciled the emblem of the Confederated Councils of the Outer Rim here. ${ccor crest graffiti}"
 			"Slow spaceships slow down speedy shipping."
 			"Fast Flivvers; ferociously ferrying famous families fast and friendly."
 			"Veni, vidi, hyperjumped away."
@@ -2392,6 +2393,79 @@ news "graffiti on spaceport wall"
 			"Because I could not stop for Death - He kindly stopped for me - The Shuttle held but just one bunk - Most Peacefully. / We slowly flew; He knew no haste - And I had put away - My labor and my leisure too, - For His Civility." # Based on Emily Dickinson's "Because I could not stop for Death"
 			"We passed the Carrier, where Soldiers strove - In Fighters; in the Void - We passed the Bays with Docked Drones - We passed the Hardened Hull. / Or rather; It passed Us - The Dew drew quivering and Chill - For decompressed, my spacesuit - My tether, torn away." # Based on Emily Dickinson's "Because I could not stop for Death"
 			"We paused before a House that seemed - A Cylinder to be launched - The Roof was scarcely visible - The Flag; covering around. / Since then, 'tis Centuries, and yet - Feels shorter than the Day - I first surmised the Torpedo Bay - Aimed toward Eternity." # Based on Emily Dickinson's "Because I could not stop for Death"
+
+news "ccor graffiti"
+	location
+		planet "Gagarin"
+	name
+		word
+			"Graffiti painted on a wall"
+	message
+		word
+			"Someone has stenciled the emblem of the Confederated Councils of the Outer Rim here."
+			"A crest of the local government here has been defaced with a generous amount of spray paint."
+			"The insignia of a local guerrilla group has been painted on the wall here."
+		word
+			" "
+		phrase
+			"ccor crest graffiti"
+	message
+		word
+			"There's a spray-painted mess of competing emblems and slogans here. You can't make out the details, but it appears as if the burgundy markings are in support of the CCOR."
+
+phrase "ccor crest graffiti"
+	word
+		`"` 2
+		`Underneath are the words "`
+	word
+		`BELENOS SHINES ACROSS THE GALAXY`
+		`THE CONFEDERATED COUNCILS WILL RETURN`
+		`RESIST THE FOREIGN OCCUPIERS`
+		`THE CCOR WILL RISE AGAIN`
+		`LIBERATE THE OUTER RIM`
+		`DISMANTLE THE SYNDICATE OLIGARCHY`
+	word
+		`!"`
+		`."`
+
+news "ccor guerrilla"
+	location
+		attributes "ccor"
+	name
+		word
+			"Guerrilla"
+	message
+		word
+			`"`
+		word
+			"We've suffered long enough under this government of cronies and Syndicate oligarchs!"
+			"Ever since the Republic engineered the dismantling of the Councils, our living standards have dropped considerably."
+			"We're not pirates, we're freedom fighters for the Outer Rim!"
+			"Belenos shines across the galaxy!"
+			"Our goal is to take back the prosperity of the Outer Rim that the Syndicate has taken from us."
+		word
+			`"`
+news "ccor gendarme"
+	location
+		planet "Gagarin" "Jakobsen"
+	name
+		word
+			"Gendarme"
+			"Spaceport guard"
+			"Spaceport security officer"
+	message
+		word
+			`"`
+		word
+			"Report any signs of guerrilla or pirate activity to us."
+			"Move along, now."
+			"If you see any defacement of local insignia, tell us and we'll have it sorted."
+			"We are here to keep the peace in this spaceport."
+		word
+			`"`
+	message
+		word
+			`You notice a spaceport guard eying you suspiciously as you pass through the corridor.`
 
 news "high tension situation"
 	location
