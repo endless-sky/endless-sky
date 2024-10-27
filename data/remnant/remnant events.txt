@@ -815,10 +815,9 @@ event "remnant: ssil vida activation"
 
 
 
-# The default value of a system's "jump range" is 0. In this state, the global default will be used.
-# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
-# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
-# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
+# TODO: Jump range of other systems nearby may need to be reduced on activation 
+# to prevent escorts outside the Postverta cluster jumping into that region.
+# Or create an entire new system to handle this "dimensional bubble"
 event "remnant: ssil vida deactivation"
 	clear "remnant: ssil vida active"
 	planet Fertriery
@@ -837,7 +836,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
-		"jump range" 0
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -886,7 +884,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
-		"jump range" 0
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -941,7 +938,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
-		"jump range" 0
 		link Diespiter
 		link Prosa
 		link Statina
@@ -987,7 +983,6 @@ event "remnant: ssil vida deactivation"
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
-		"jump range" 0
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -1042,7 +1037,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
-		"jump range" 0
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -1094,7 +1088,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
-		"jump range" 0
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6
