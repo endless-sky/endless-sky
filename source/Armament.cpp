@@ -257,8 +257,7 @@ void Armament::Aim(const FireCommand &command)
 
 
 
-// Fire the given weapon, if it is ready. If it did not fire because it is
-// not ready, return false.
+// Fire the given weapon, if it is ready.
 void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	// Don't check if the hardpoint jammed here, as the weapon may not even

@@ -700,7 +700,8 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
-		DATE_FORMAT
+		DATE_FORMAT,
+		"Show parenthesis"
 	};
 
 	bool isCategory = true;

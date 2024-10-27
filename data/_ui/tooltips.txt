@@ -1524,3 +1524,6 @@ tip "Scroll speed"
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
+
+tip "Show parenthesis"
+	`Toggle parenthesis around the trade prices in the ports map mode.`
