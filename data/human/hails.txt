@@ -5069,7 +5069,7 @@ phrase "friendly disabled pirate"
 phrase "friendly author"
 	word
 		"This game"
-		"Endless Sky"
+		"Endless Sky Delta"
 	word
 		" is open source. You can "
 	word
