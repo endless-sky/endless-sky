@@ -42,7 +42,7 @@ DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
 DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
 		bool useJumpDrive, int maxSystems, int maxDays)
 	: center(center), maxSystems(maxSystems), maxDays(maxDays), wormholeStrategy(wormholeStrategy),
-			jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
+			jumpRangeMax(useJumpDrive ? System::DEFAULT_NEIGHBOR_DISTANCE : 0.)
 {
 	Init();
 }
@@ -164,19 +164,10 @@ void DistanceMap::Init(const Ship *ship)
 	if(ship)
 	{
 		this->ship = ship;
-		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
-		// Todo: consider outfit "jump distance" at each link to find if more fuel is needed
-		// by a second jump drive outfit with more range and cost via JumpDriveFuel(to).
-		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
-		jumpRange = ship->JumpNavigation().JumpRange();
-		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
-		// there is no need to check hyperjump paths at all.
-		if(jumpFuel && hyperspaceFuel >= jumpFuel)
-			hyperspaceFuel = 0.;
 
 		// If this ship has no mode of hyperspace travel, and no local
 		// wormhole to use, bail out.
-		if(!jumpFuel && !hyperspaceFuel)
+		if(!ship->JumpNavigation().HasHyperdrive() && !ship->JumpNavigation().HasJumpDrive())
 		{
 			bool hasWormhole = false;
 			for(const StellarObject &object : ship->GetSystem()->Objects())
@@ -189,6 +180,8 @@ void DistanceMap::Init(const Ship *ship)
 			if(!hasWormhole)
 				return;
 		}
+
+		jumpRangeMax = ship->JumpNavigation().JumpRange();
 	}
 
 	// Find the route with the lowest fuel use. If multiple routes use the same fuel,
@@ -259,9 +252,7 @@ void DistanceMap::Init(const Ship *ship)
 				}
 
 		// Bail out if the maximum number of systems is reached.
-		if(hyperspaceFuel && !Propagate(nextEdge, false))
-			break;
-		if(jumpFuel && !Propagate(nextEdge, true))
+		if(!Propagate(nextEdge))
 			break;
 	}
 }
@@ -269,14 +260,26 @@ void DistanceMap::Init(const Ship *ship)
 
 
 // Add the given links to the map, if better. Return false if max systems has been reached.
-bool DistanceMap::Propagate(RouteEdge nextEdge, bool useJump)
+bool DistanceMap::Propagate(const RouteEdge &curEdge)
 {
-	const System *currentSystem = nextEdge.prev;
+	const System *currentSystem = curEdge.prev;
 
-	// nextEdge is a copy to be used for this jump type, so build upon its fields.
-	nextEdge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
-	for(const System *link : (useJump ? currentSystem->JumpNeighbors(jumpRange) : currentSystem->Links()))
+	bool useJump = jumpRangeMax > 0;
+
+	// JumpNeighbors will use the system's jump range, overriding jumpRangeMax.
+	// JumpNeighbors also includes normal hyperspace Links.
+	for(const System *link : (useJump ? currentSystem->JumpNeighbors(jumpRangeMax) : currentSystem->Links()))
 	{
+		double fuelCost = (useJump ? ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST : ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST);
+		if (ship)
+		{
+			fuelCost = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link).second;
+		}
+
+		// Copy the edge to be used for this link, and build upon its fields.
+		RouteEdge nextEdge = curEdge;
+		nextEdge.fuel += fuelCost;
+
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
@@ -332,9 +335,7 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 	// the two systems that you can jump between them, you can plot a course
 	// between them even if neither system is explored. Otherwise, you need to
 	// know if a link exists, so you must have explored at least one of them.
-	// The jump range of a system overrides the jump range of this ship.
-	double distance = from.JumpRange() ? from.JumpRange() : jumpRange;
-	if(useJump && from.Position().Distance(to.Position()) <= distance)
+	if (useJump)
 		return true;
 
 	return (player->CanView(from) || player->CanView(to));
