@@ -565,7 +565,7 @@ bool MainPanel::ControllerButtonDown(SDL_GameControllerButton	button)
 		{
 			selection->AddOption(Command::FIGHT);
 			selection->AddOption(Command::GATHER);
-			selection->AddOption(Command::HOLD_POSITION);
+			selection->AddOption(Command::HOLD);
 			selection->AddOption(Command::HARVEST);
 		}
 		if(hasFighters)

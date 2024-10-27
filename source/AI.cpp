@@ -4939,7 +4939,7 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 			// commands if this is a touchscreen.
 			else if(it.get() == player.Flagship() &&
 			      !(Preferences::Has("Show buttons on map") &&
-					 (newOrders.HasFinishOff() || newOrders.HasAttack())))
+					 (newOrders.type == Orders::FINISH_OFF || newOrders.type == Orders::ATTACK)))
 			{
 				if(it->IsDestroyed())
 					++destroyedCount;

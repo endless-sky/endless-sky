@@ -183,7 +183,6 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/NPC.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/NPCAction.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/opengl.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Orders.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Outfit.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitterPanel.cpp
