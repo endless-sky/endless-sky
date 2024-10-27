@@ -20,7 +20,7 @@ ship "Vyrmeid"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
+		category "Fighter"
 		"cost" 0
 		"shields" 0
 		"hull" 400
@@ -79,7 +79,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
+		category "Fighter"
 		"cost" 0
 		"shields" 0
 		"hull" 1420
@@ -235,7 +235,7 @@ ship "Astral Cetacean"
 	leak "blood" 60 60
 	explode "blood" 160
 	"final explode" "blood"
-	description `Only few captains have had the chance to observe this illustrious creature. Its natural attenuation to the depths of space allows it to travel beyond where most ships are able, and its appearance reflects both the beauty and mystery of the void itself.`
+	description `Only a few captains have had the chance to observe this illustrious creature. Its natural attenuation to the depths of space allows it to travel beyond where most ships are able, and its appearance reflects both the beauty and mystery of the void itself.`
 
 outfit "Astral Mouth"
 	category "Guns"
