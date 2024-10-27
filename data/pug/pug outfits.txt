@@ -54,7 +54,7 @@ outfit "Pug Zapper Turret"
 		sound "zapper"
 		"hit effect" "zapper impact"
 		"inaccuracy" .3
-		"turret turn" 2.5
+		"turret turn" 1
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
