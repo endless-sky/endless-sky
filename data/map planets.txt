@@ -705,6 +705,17 @@ planet "Celestial Third"
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
 	security 0.5
 
+planet Charon
+	attributes moon "near earth"
+	landscape land/snow22
+	description `According to an ancient pre-spaceflight Earth civilization myth, the character known as Charon was a ship captain responsible for ferrying the souls of the dead on a spiritual journey. As a character in the mythos related to Pluto, and sharing its location on the edge of the darkness of a deep space, it was deemd quite relevant.`
+	description `	For modern spacefarers, Charon is a research outpost home to some of Sol's largest telescopes and sensor arrays. It's most unusual feature is a pair of chasms that nearly encircle the planet, giving it the appearance of being ready to split in two.`
+	spaceport `This spaceport is a gaming haven. Obviously the researchers here have a penchant for computer games, and the walls are covered in posters of various spacefaring games. A model of what appears to be a glowing gyroscope set between two long metallic prongs sits on the bar next to a large collection of model ships.`
+	security 0.01
+	tribute 200
+		threshold 2100
+		fleet "Sol Defense Fleet" 4
+
 planet "Charon Station"
 	attributes south station
 	landscape land/sivael6
@@ -1478,6 +1489,16 @@ planet Esstch
 	bribe 0
 	security 0
 
+planet Europa
+	attributes moon "near earth"
+	landscape land/snow15
+	description `Europa is distinctive within the solar system as having the smoothest surface of any known solid stellar object. It also famously has a water ocean beneath the surface that is the home of the first extraterrestrial life that humanity ever found. Bacteria and algea-like life forms, to be specific.`
+	description `	This moon also has the distinction of being the location of more crashed outpost ships than anywhere else in civilized space. To date, 17 attempts have been made to establish permanent outposts here, ranging from research to agricultural. None have managed to get past the initial setup before everyone perished and the equipment damaged beyond repair. So far all deaths & damage appear to be accidental, although the number of deaths in a single place defies statistical odds.`
+	spaceport `This spaceport is echoes with your footsteps. There is no-one around, and nothing of value remains here. Your suit reports that the atmosphere is breathable, but so thin that it would immediately leave you gasping for breath. It also advises that there are unknown contaminents that defy its capacity to analyze.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet Everhope
 	attributes hai station
 	landscape land/station35
@@ -2051,11 +2072,12 @@ planet Greenwater
 	security 0.4
 
 planet "Gresku Fodar"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station29
 	music ambient/machinery
 	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
 	spaceport `The bacterial soup that is being served in the food court has a texture like wet silt and an unpardonably bland flavor. Someone who could supply the Korath with a steady stream of the right sorts of spices could make a killing in trade here.`
+	government "Korath (Station)"
 	security 0
 
 planet Greymoon
@@ -2624,11 +2646,12 @@ planet "Keneska Fek"
 	security 0
 
 planet "Kessel Sepret"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station1
 	music ambient/machinery
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
+	government "Korath (Station)"
 	security 0
 
 planet Khora-Uurau-Uuoru
@@ -2791,6 +2814,25 @@ planet "Kuwaru Efreti"
 	spaceport `	Although the spaceport offers all the usual amenities, including a small merchant's exchange for trading goods, you feel slightly self-conscious about breaking the silence of the station to speak to anyone.`
 	bribe 0
 	security 1
+
+planet "La'ab Bamen"
+	attributes korath "korath exile" "slavery ban" "Independent (Korath-Allied)"
+	landscape land/monterey-bay-aquarium
+	# This station was constructed by the Korath, hence the large size and advanced technology.
+	# The fish within are from the New Tortuga Korath fish trade. You're looking at the
+	# juvenile and adult forms, swimming in the extremely specific environment they require
+	# to survive.
+	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains precise conditions, including typical ocean temperatures and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
+	description `At the surface of the asteroid, there are hidden hangar doors disguised as craters, leading to bays designed for ships larger than anything the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
+	spaceport `This spaceport is tightly compartmentalized, with zones carefully marked out for certain purposes. Each zone can only be accessed by an elevator-like system that moves both horizontally and vertically. With this setup, it is nearly impossible for one group of visitors to see another inside the spaceport. The only shared area is the gigantic hangar bays, which are few in number, but those too seem to be divided by purpose.`
+	government "Independent (Korath-Allied) Restricted"
+	"required reputation" 100
+	bribe 0.04
+	security 0
+	tribute 1200
+		threshold 7000
+		fleet "Independent (Korath-Allied) Defense" 7
+		fleet "Korath Tribute Response (Humanika Rafeki)" 3
 
 planet Lagrange
 	attributes "human quarg" quarg station tourism
@@ -3089,6 +3131,25 @@ planet "Merask Fortuno"
 	bribe 0
 	security 0
 
+planet "Mercury"
+	attributes factory moon "near earth" tourism
+	landscape land/earthrise
+	description `In the early days of space travel one of the earliest forms of interstellar travel proposed was to create massive laser arrays that could be used to push ships equipped with expansive solar sails. Such lasers would need massive power sources, and what better source than the Sun?`
+	description `	Thus began humanity's first megaproject: To create a solar installation that would slowly roll around the planet, always keeping its solar fields in view of the sun in order to power massive laser arrays that were perpetually on the dark side of the planet.`
+	description `	The advent of hyperdrives nullified the purpose of this equipment, but such massive source of power and machinery was able to be turned to industrial use in serving as a raw-processing plant for turning asteroids into usable material. This, in turn, has supported a small outfit and ship manufacturing industry.`
+	spaceport `The spaceport is rudimentary, and the main pressurized dome of the facility is probably at least half a millennium old. So many metal foil patches have been cemented to its outer wall to stop slow air leaks that in places they entirely cover the surface.`
+	spaceport `	Everything is so ancient and ramshackle that it feels almost like you have stepped back in time to the early days of human space flight. Perhaps that's what the tourists come here to experience.`
+	shipyard "Basic Ships"
+	shipyard "Navy Basics"
+	shipyard "Tycho Crater Advanced"
+	outfitter "Common Outfits"
+	outfitter "Ammo North"
+	bribe 0.05
+	security 0.2
+	tribute 2500
+		threshold 7500
+		fleet "Large Republic" 10
+
 planet Mere
 	attributes fishing rim
 	landscape land/sea7
@@ -3167,6 +3228,17 @@ planet Millrace
 	tribute 1400
 		threshold 4000
 		fleet "Large Syndicate" 8
+
+planet "Miranda"
+	attributes moon "near earth"
+	landscape land/moon1
+	description `The outpost on Miranda is an odd mix of research and industry. Several sections are devoted to research labs and sensor arrays; while several other sections are focused on mining into the core of the planet in search of rare elements. The rest of the station is dedicated to the commerce and activities that support these two areas.`
+	spaceport `A sign on a spaceport wall boasts that Miranda is home to Verona Rupes, the solar system's tallest cliff. A schedule posted below it lists this year's dates for expeditions going out to study it.`
+	outfitter "Basic Outfits"
+	security 0.05
+	tribute 100
+		threshold 3500
+		fleet "Small Republic" 2
 
 planet Mirrorlake
 	attributes hai "hai tourism" moon
@@ -3333,6 +3405,13 @@ planet Nepheritis
 	landscape land/clouds_08
 	description `An unusually large ice giant, Nepheritis is well-known among the denizens of the Paradise Planets for its prodigious rains of large diamonds. While this phenomenon is common on most ice giants of sufficient size, Nepheritis is a scientific curiosity due to the sheer size of the diamonds formed in its atmosphere, with some even becoming large boulders during their plummet into the depths.`
 	description `	While these diamonds are unfortunately not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
+	government Uninhabited
+
+planet Neptune
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa16
+	description `While Neptune is a gas giant with a similar atmosphere to Saturn and Jupiter, the additional presence of ices including water, ammonia, and methane. This later is the predominant reason for its bluish tinge.`
+	description `	Few spacefarers have reason to visit Neptune, but there is the constant presence of satellites allowing researchers from nearby stations to continue their studies. Despite centuries of study, the mystery of Neptune's abnormally high atmospheric temperatures. Some have speculated it may be connected to the dark spot that is sometimes visible.`
 	government Uninhabited
 
 planet Neriene
@@ -3584,19 +3663,24 @@ planet "New Tibet"
 	security 0.1
 
 planet "New Tortuga"
-	attributes core "core pirate" factory pirate religious
+	# Although New Tortuga is not a pirate-run planet, there are pirates, so it has to retain the pirate-related attributes.
+	# The planet is self-sufficient, hence the many other attributes.
+	attributes core "core pirate" factory pirate religious fishing research mining "slavery ban" "pirate-friendly" "Independent (Korath-Allied)"
 	landscape land/fog6
-	description `A planet of violent storms and frequent earthquakes, New Tortuga does not have a lot to offer the average spacefarer. The most significant settlements on the planet are built predominantly underground, far from any fault lines, with only obscure, hardened access areas. Combined with the fortress-like blast doors that blockade the spaceport entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
-	description `	Most of the inhabitants of this planet are Syndicate dissidents who mainly support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets do not find the monetary cost of venturing as far as New Tortuga worth the benefit. Here, shipyards, factories, and outfitters provide a continuous supply of goods and services for the system.`
+	# This description barely fits; any new hyphens or commas will break it.
+	description `A planet of violent storms and frequent earthquakes, New Tortuga looks on the surface to be uninhabitable. The few cities on the planet are built underground, far from any fault lines, with only obscure, hardened access areas. With fortress-like blast doors protecting all entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
+	description `	Underneath the surface resides a diverse culture of former slaves and Syndicate dissidents. Their economy is mostly self-sufficient, smuggling high-value manufactured goods to pay for niche needs and luxuries. The Syndicate often destroys pirate factories at their borders, but they cannot strike as deep as New Tortuga. Here, shipyards, factories, and outfitters provide a continuous supply of goods and services. Rumors abound of shadowy research groups advancing unknown objectives.`
 	spaceport `As you walk through the spaceport, scattered amidst the bars and black-markets, you notice a surprising number of religious buildings. There are a variety of churches, synagogues, mosques, temples, and others you can't quite remember the names of. Most of the shops are run not by pirates, but by ordinary folk, many wearing religious garb. The citizens here interact with pirates with friendliness and warmth, rather than the hostility and fear you see on other pirate worlds.`
 	spaceport `	The relative peace is frequently broken by a pirate band wandering through the spaceport. While perhaps an auditory nuisance, the pirates here are generally more obedient and disciplined than those seen on other planets. Their ships are more advanced too, judging by the armaments and engines you noticed in the hangar.`
 	shipyard "Basic Ships"
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
 	shipyard "Southern Pirates"
+	shipyard "Advanced Northern Pirates"
 	shipyard "Northern Pirates"
-	shipyard "Megaparsec Basics"
-	outfitter "Basic Outfits"
+	shipyard "Syndicate Basics"
+	shipyard "Independent (Korath-Allied)"
+	outfitter "Independent (Korath-Allied)"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
@@ -3605,13 +3689,14 @@ planet "New Tortuga"
 	outfitter "Pirate Advanced"
 	outfitter "Syndicate Basics"
 	outfitter "Syndicate Advanced"
+	outfitter "Northern Explorers"
 	"required reputation" -10
 	bribe 0.03
 	security 0
-	tribute 1400
-		threshold 5000
-		fleet "Large Core Pirates" 10
-		fleet "Small Core Pirates" 15
+	tribute 6000
+		threshold 10000
+		fleet "Independent (Korath-Allied) Defense" 25
+		fleet "Korath Civilian Delivery" 2
 
 planet "New Wales"
 	attributes "dirt belt" mining
@@ -3714,6 +3799,18 @@ planet Oasis
 	tribute 300
 		threshold 2000
 		fleet "Large Militia" 5
+
+planet "Oberon"
+	attributes moon "near earth"
+	landscape land/moon0
+	description `Located on Oberon, a moon orbiting Uranus, this forlorn outpost is scarcely big enough to visit. The majority of it is dedicated to servicing the Republic Navy's resupply stockpile, which occupy vast fields of bunkers surrounding it.`
+	description `	While extremely valuable to have in the early days when hyperspace travel was costly and timeconsuming, it is now a relic of bygone eras. As an extension of the Navy's resupply capabilities, the local quartermaster grudgingly also reloads the few mercantile ships that frequent this lonely port.`
+	spaceport `This spaceport carries a heavy Navy theme, with a mix of images of old 20th century naval ships and regalia from logistics and support units of the past half millennia.`
+	outfitter "Ammo North"a
+	security 0.5
+	tribute 100
+		threshold 3500
+		fleet "Small Republic" 3
 
 planet "Oberon Station"
 	attributes core station
@@ -3937,6 +4034,13 @@ planet Placer
 		threshold 2000
 		fleet "Small Syndicate" 4
 
+planet Pluto
+	attributes moon "near earth"
+	landscape land/moon1
+	description `Pluto has been the subject of significant debate over the years. Originally termed a planet, it was reclassified as a dwarf planet back at the dawn of the third millennium. Over a thousand years later, there are still some who term it the ninth planet in the Sol system. Given that most navigational systems can track everything of gravitational significance in a system, what exactly the category of an object is has become a discussion without much interest to modern spacefarers.`
+	description `	This planet is best known for its eccentric and inclined orbit that takes it inside the orbit of Neptune. This, combined with the fact that it is considered to be a binary system, as the barycenter of its orbit does not lie within it, but instead is at a point in between Pluto and Charon's surfaces.`
+	government Uninhabited
+
 planet "Plort's Water"
 	attributes arach research
 	landscape land/sea15-harro
@@ -4112,6 +4216,13 @@ planet Raaqa-Uur-Kaav
 			to display
 				has "trusted by the successors"
 	government Predecessor
+
+planet "Rabasot Pa'ah"
+	attributes ocean uninhabited fishing korath "korath exiles"
+	landscape land/rough-seas
+	description `This tectonically active ocean world has unpredictable weather, frequent tsunamis, and unusual electrical activity. Although there are a few islands, the terrain is so harsh that it is nearly impossible to land and the atmosphere is bathed in radiation from Kor Ak'Mari's death throes. There's almost no vegetation in sight, but the sea is filled with microscopic lifeforms. It seems the violent conditions on this planet have held back evolution.`
+	government Uninhabited
+	security 0
 
 planet Rand
 	attributes "dirt belt" mining
@@ -4322,12 +4433,13 @@ planet "Sabira Eseskrai"
 	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growing to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
 
 planet "Safaresk Enlai"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/station17
 	music ambient/machinery
 	description `It is unclear what the primary purpose of this station is. The station contains numerous greenhouses where a wide variety of plants, and even some small animals, are kept. Other parts of the station are closed off to non-Korath visitors.`
 	spaceport `This spaceport is relatively unpopulated for a station of this size, and the few Korath who are here are wandering about with the sort of deeply absorbed attitude you would expect from a scientist or an academic.`
 	spaceport `	In one corner of the spaceport is a cage housing several large rodents and some small shrubs, lit by a warm sun-lamp. The rodents are quite acrobatic.`
+	government "Korath (Station)"
 	security 0
 
 planet Sandsnap
@@ -4396,6 +4508,13 @@ planet Saska-Aa-Noorr
 	government "House Myurej"
 	"required reputation" 3
 	bribe 0
+
+planet Saturn
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa13
+	description `For over a millennia the main attraction of Saturn has been the rings that encircle it. For some, however, the hexagonal storm cells hold a greater fascination, and have been the source of countless theories. One popular idea posits that they are created by the force fields protecting an alien installation just under the surface.`
+	description `	While your sensors do not reveal any unusual energy fields or structures, the visual of the cloud formations whipping past and the vast storms are certainly impressive.`
+	government Uninhabited
 
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
@@ -4475,19 +4594,21 @@ planet Seli'het
 	government Builder
 
 planet "Separa Tiklar"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/space1
 	music ambient/machinery
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
 	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	government "Korath (Station)"
 	security 0
 
 planet "Septar Lorku"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/loc0
 	music ambient/machinery
 	description `This system has a high concentration of metallic asteroids, which the Korath are harvesting to provide iron ore for their space ships and fissionable materials for their reactor cores. Smelting metal in a high-temperature blast furnace in the interior of a space station is, of course, an incredibly risky proposition.`
 	spaceport `Despite your lack of knowledge of Korath health and anatomy, it is clear that the inhabitants of this station are under-fed and overworked. Also, an alarming number of them are missing fingers, hands, or entire limbs. It is quite possible that the work in the refineries is even more dangerous than the job of the raiders attacking human space.`
+	government "Korath (Station)"
 	security 0
 
 planet Seraglio
@@ -4518,11 +4639,12 @@ planet Servian
 	security 0
 
 planet "Sessiliki Far"
-	attributes korath station
+	attributes korath station "korath exile"
 	landscape land/loc2
 	music ambient/machinery
 	description `This is a Korath mining station, where ore extracted from asteroids is refined and processed. The Korath seem to have an aversion to harvesting raw materials from actual planets, preferring to work with lifeless asteroids instead.`
 	spaceport `A smelter is never a safe place to work, and some of the machinery looks very old, but you get the feeling that the Korath on this station are in relatively good spirits nonetheless. The cafe in the spaceport is bustling, and every few hours a bell rings and about a third of the workers leave the factory floor and are replaced by fresh and rested ones.`
+	government "Korath (Station)"
 	security 0
 
 planet "Sestor Ikfar"
@@ -5168,6 +5290,23 @@ planet Tinker
 		threshold 4000
 		fleet "Large Syndicate" 7
 
+planet Titan
+	attributes moon "near earth"
+	landscape land/snow18
+	description `Titan is known as being the first place in the Sol system where bodies of liquid have been observed on the surface. This, combined with an atmosphere thicker than Earth's made it a prime destination for early spacefarers. Unfortunately for them, the liquid oceans were composed of hydrocarbons, and the atmosphere is quite toxic. Nonetheless, these components enable it to have similar features to Earth, including rain, dunes, rivers, lakes, deltas, erosion, and other factors.`
+	description `	Despite its reputation as the most Earthlike place in the solar system, venturing outside is not recommended. The ambient temperature of 94 K combined with the active methane cycle challenge most equipment.`
+	spaceport `The spaceport is functional and well maintained, filled with hundreds of people going about their lives. Judging from the signs and snippets of conversation, it seems likely that most of the people here are trying to figure out how to enable this outpost to become a self-sufficient city with an industry tapping the vast hydrocarbon reservoirs.`
+	shipyard "Basic Ships"
+	shipyard "Tycho Crater Advanced"
+	outfitter "Common Outfits"
+	outfitter "Lovelace Basics"
+	outfitter "Ammo North"
+	bribe 0.05
+	security 0.2
+	tribute 1000
+		threshold 7500
+		fleet "Large Republic" 5
+
 planet Topkapi
 	attributes moon uninhabited
 	landscape land/mars1
@@ -5201,6 +5340,17 @@ planet Trinket
 	tribute 500
 		threshold 2500
 		fleet "Small Militia" 36
+
+planet Triton
+	attributes moon "near earth"
+	landscape land/snow22
+	description `Triton attracted attention early in humanity's exploration efforts as being one of the most geologically active planets in the solar system. Its icy shell is predominantly water and nitrogen, and is frequently the site of tall geyser plumes.`
+	description `	Despite the early attention it received, Triton was too reluctant to give up its secrets. As extra-solar planets became more available and economic concerns started to dominate space travel, Triton's once thriving research base has shrunk to being a mere shadow of itself. Now it is home only to a few long-term scientists and the occasional graduate student, and the skeleton staff to keep it operational.`
+	spaceport `The spaceport bar was once a large food court, but most of it has been sealed off and is now home to only a single noodle shop. A small group of people sit at a table off to the side, loudly discussing humanity's problems. Several vocally proclaim that everything started going wrong when researchers started chasing money instead of data back in the 24th century. Several others roll their eyes as if they had heard this many times already.`
+	security 0.01
+	tribute 100
+		threshold 1200
+		fleet "Sol Defense Fleet" 2
 
 planet "Triton Station"
 	attributes military north station
@@ -5324,6 +5474,13 @@ planet Uo-Oraa-Vayya
 	government Successor
 	"required reputation" 2
 	bribe 0
+
+planet Uranus
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa15
+	description `Uranus has long been an outlier in astronomy textbooks, noted for its axial tilt of roughly 90 degrees. As such, when most planets are presented as spinning around Sol like tops, Uranus rolls around like a ball. Despite this notoriety, it has little impact on stellar navigation or visible impact.`
+	description `	For the curious and the paranoid, the main attraction to Uranus is its low internal heat and erratic cloud formation. Both have stymied science's ability to explain or predict them for almost a millennia. Notably, Uranus has a dark spot very similar to the one found on Neptune.`
+	government Uninhabited
 
 planet "Ut Divitas"
 	attributes "incipias quarg" quarg
@@ -5612,6 +5769,18 @@ planet Veliante
 	attributes ka'het uninhabited
 	landscape land/fog9
 	description `Veliante may have been habitable once, but no longer. Part of its southern hemisphere is filled with deadly levels of radiation, but even elsewhere on the planet, it isn't safe to remain on the surface without adequate protection for too long. While animal life on the planet seems to have disappeared almost completely, plants and trees cover the surface in vast, colorful patches of flora.`
+
+planet Venus
+	attributes "near earth" tourism
+	landscape land/earthrise
+	description `Some people initially thought that Venus could be terraformed. Solar shades, various chemicals to reduce the acidity, perhaps dropping a few icy comets on it to cool things off... Some were potential ideas, others not so much. All required a starting point, and that was this aerostat station, floating far above the acid clouds.`
+	description `	This station has changed very little over the past millennia, although the scientific equipment within it has improved considerably.`
+	spaceport `The spaceport is simply pads with docking tubes to allow passengers and cargo to be directly transported inside the station. A small tavern provides meals to travelers, but is mostly frequented by research teams monitoring the planet below.`
+	bribe 0.05
+	security 0.2
+	tribute 2500
+		threshold 7500
+		fleet "Large Republic" 10
 
 planet "Vibrant Water"
 	attributes farming saryd

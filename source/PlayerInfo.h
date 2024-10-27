@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <set>
 #include <string>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -58,6 +59,7 @@ class UI;
 // and what their current travel plan is, if any.
 class PlayerInfo {
 public:
+	static const std::string UPDATE_FLEET_COUNTERS_CONDITION_NAME;
 	struct FleetBalance {
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
@@ -336,10 +338,16 @@ public:
 	// Get or set the map zoom level.
 	int MapZoom() const;
 	void SetMapZoom(int level);
+	// Get or set the map display mode.
+	bool StarryMap() const;
+	void SetStarryMap(bool state);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
+
+	std::unordered_map<std::string, int64_t> &FleetCounters();
+	const std::unordered_map<std::string, int64_t> &FleetCounters() const;
 
 
 private:
@@ -460,6 +468,7 @@ private:
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	int mapZoom = 0;
+	bool isStarry = false;
 
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;
@@ -470,5 +479,11 @@ private:
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
 
+	// Tracks the number of times a fleet with a given name has
+	// been spawned as a random event or during system entry.
+	// Only updated if "count spawned fleets" condition is set.
+	// Currently, this does not include raid fleets or NPC fleets.
+	// (Intended only for integration testing.)
+	std::unordered_map<std::string, int64_t> fleetCounters;
 	DataWriter *transactionSnapshot = nullptr;
 };

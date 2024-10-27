@@ -142,7 +142,7 @@ ship "Auxiliary" "Auxiliary (Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -169,7 +169,7 @@ ship "Auxiliary" "Auxiliary (Cargo Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -196,7 +196,7 @@ ship "Auxiliary" "Auxiliary (Transport Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -350,7 +350,7 @@ ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
 		"Liquid Nitrogen Cooler"
 		"Plasma Cannon" 4
 		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
+		# "A255 Atomic Steering" # Extra steering
 		"A525 Atomic Steering"
 		"Fission Reactor"
 		"Quad Blaster Turret" 3
@@ -496,7 +496,7 @@ ship "Behemoth" "Behemoth (Hai)"
 		"Outfits Expansion" 6
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` Extra thruster
 		"Hyperdrive"
 
 
@@ -569,7 +569,7 @@ ship "Behemoth" "Behemoth (Proton)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 6
 		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
+		# "A125 Atomic Steering" # Extra thruster
 		"A375 Atomic Steering"
 		"Scram Drive"
 	turret "Proton Turret"
@@ -592,7 +592,7 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 6
 		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
+		# "A125 Atomic Steering" # Extra steering
 		"A375 Atomic Steering"
 		"Scram Drive"
 
@@ -764,7 +764,7 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 		"Pulse Rifle" 4
 		"X3700 Ion Thruster"
 		`"Benga" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Scram Drive"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
@@ -813,7 +813,7 @@ ship "Bulk Freighter" "Bulk Freighter (Long Haul)"
 		"Laser Rifle" 6
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"X1200 Ion Steering"
+		# "X1200 Ion Steering" # Extra steering
 		"Scram Drive"
 	turret "Anti-Missile Turret"
 	turret "Laser Turret"
@@ -1269,7 +1269,7 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Brig"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"X2200 Ion Steering"
+		# "X2200 Ion Steering" # Extra steering
 		"Scram Drive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
@@ -1803,7 +1803,7 @@ ship "Firebird" "Firebird (CCOR)"
 		"Outfit Scanner"
 		"Laser Rifle" 22
 		"Security Station"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering" # Extra Steering
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
@@ -2137,6 +2137,21 @@ ship "Fury" "Fury (Missile)"
 		"Hyperdrive"
 
 
+ship "Fury" "Fury (Thermal Scanner)"
+	outfits
+		"Energy Blaster" 2
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Thermal Scanner" 3
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
 
 ship "Gunboat" "Gunboat (Mark II)"
 	outfits
@@ -2187,7 +2202,7 @@ ship "Hauler II" "Hauler II (CCOR)"
 		"Laser Rifle" 12
 		"Security Station" 2
 		"Capybara Reverse Thruster"
-		"Chipmunk Plasma Thruster"
+		# "Chipmunk Plasma Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Scram Drive"
@@ -2458,7 +2473,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Security Station"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering"
 		"Scram Drive"
 
 
@@ -2650,6 +2665,30 @@ ship "Manta" "Manta (Proton)"
 	gun "Proton Gun"
 
 
+ship "Manta" "Manta (Miner)"
+	outfits
+		"Cargo Expansion"
+		"D23-QP Shield Generator"
+		"Heavy Laser" 4
+		Hyperdrive
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Laser Rifle"
+		"Meteor Missile" 60
+		"Meteor Missile Launcher" 2
+		"NT-200 Nucleovoltaic"
+		Supercapacitor 4
+		"X1700 Ion Thruster"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
 
 ship "Marauder Bounder" "Marauder Bounder (Hai)"
 	outfits
@@ -2681,7 +2720,7 @@ ship "Marauder Firebird" "Marauder Firebird (Hai)"
 		"Outfits Expansion"
 		"Laser Rifle" 25
 		`"Biroo" Atomic Thruster`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 
@@ -2953,6 +2992,26 @@ ship "Nest" "Nest (Sidewinder)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
+
+
+ship "Nighthawk" "Nighthawk (New Tortuga)"
+	outfits
+		"A370 Atomic Thruster"
+		"Cooling Ducts"
+		"D41-HY Shield Generator"
+		"Fission Reactor"
+		"Fragmentation Grenades" 16
+		"Laser Rifle" 24
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+		"Ramscoop"
+		"Proton Turret" 2
+		"Tactical Scanner"
+		"Water Coolant System"
+	description `This expensive modification of the Blackbird was not invented at New Tortuga, but is a reproduction. The first New Tortuga Nighthawk was seized from slavers who used it for kidnappings. Seeing the obvious uses for smuggling, the local shipyards reproduced them for their own purposes. Ironically, this means the Nighthawks, originally designed for enslavement, are used just as often for freeing slaves.`
 
 
 ship "Nighthawk" "Nighthawk (Raider)"
@@ -3320,7 +3379,7 @@ ship "Saber" "Saber (CCOR Javelin)"
 		"Laser Rifle" 16
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering" # Extra steering
 		"Hyperdrive"
 
 

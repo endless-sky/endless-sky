@@ -426,6 +426,87 @@ ship "Fury" "Doombat"
 
 
 
+mission "FW Thermal Scanner 1"
+	landing
+	name "Go visit Barmy Edward"
+	description "When you have time, report to <destination>, where Barmy Edward has another device he would like you to test."
+	source
+		near "Kraz" 1 100
+	destination "Rust"
+	to offer
+		has "event: flamethrower available"
+		random < 15
+	on offer
+		conversation
+			`A message arrives for you soon after landing the <ship> on <origin>. It's from Barmy Edward, the weapons engineer at Kraz Cybernetics. He writes: "Hello again, Captain! I've been working on something new, and for some reason no one else wants to help out with the testing. If you're interested in helping drop by <destination> and come visit our factory."`
+				accept
+
+
+mission "FW Thermal Scanner 2"
+	landing
+	name "Scanner Testing"
+	description "A test ship with flamethrowers is in the <waypoints> system. Fight and disable it, keeping <npc> safe, and then go back to <destination> to give Barmy Edward the scanner logs."
+	source "Rust"
+	waypoint "Ildaria"
+	to offer
+		has "FW Thermal Scanner 1: done"
+	on offer
+		conversation
+			`You received a message recently from Barmy Edward, asking you to stop by the Kraz Cybernetics facility to help test a new device. Do you want to visit them now?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	You give your name to the receptionist, and she directs you to the hangar where the weapons group does their design and prototyping. Barmy Edward shakes your hand warmly and says, "We've got a new scanner that theoretically will scan ships and give information on the heat levels inside them. Are you interested in helping us test this?"`
+			choice
+				`	"Sure!"`
+				`	"No thanks."`
+					decline
+			`	"We need you to fly to <waypoints> and disable the Doombat, which is still armed with flamethrowers. Another <npc model>, the <npc>, will fly by you with the new scanners installed and take readings on the battle. Then come back here and report.`
+			`	"Make sure to protect the <npc model> escorting you, because it is key to the whole mission."`
+				accept
+	
+	npc disable save
+		personality disables launching heroic quiet staying target unconstrained
+		government "Test Dummy"
+		system "Ildaria"
+		ship "Doombat" "Doombat"
+		on encounter
+			conversation
+				`	The captain of the Doombat hails you as you jump into the system. "Now remember," they say. "This is a battle for testing, so be careful not to destroy my ship. I'll make sure not to destroy you either."`
+		on destroy
+			conversation
+				`	As the Doombat begins to explode, you receive a message from Barmy Edward. "Hey! You said you wouldn't destroy that ship! Do you realize what you have done?" He hangs up. It's clear that, at leadt for a while, you won't get any more missions from Kraz Cybernetics.`
+		on capture
+			conversation
+				`	Just as the boarding action has been successfully concluded, a message from Barmy Edward, who sounds very angry, comes in. "Hey! Do you know what you have done?" Before you can answer, he hangs up. It's clear you won't be getting any more missions from Kraz Cybernetics in the near future.`
+
+	npc accompany save
+		personality disables escort quiet surveillance swarming timid unconstrained
+		government "Kraz Cybernetics"
+		fleet
+			names "free worlds small"
+			variant
+				"Fury (Thermal Scanner)"
+				
+	on visit
+		dialog `You've landed on <planet>, but you have not disabled the Doombat yet, or else the <npc> is not yet in the system.`
+	on complete
+		event "thermal scanner available" 60
+		log "Assisted Barmy Edward with another test: this time a scanner to give information on how hot a ship is running."
+		conversation
+			`Barmy Edward greets you as you step out of <ship>'s airlock. "Well, how did it go?" he asks. "Rhetorical question, of course. It's nice to know that there's someone willing to help us, even when from their point of view the goal is the same as last mission's." He grins.`
+			choice
+				`	"Any time."`
+				`	"So when will these scanners be available for sale?"`
+					goto sale
+			`	"Good! It means a lot to me. Now about the scanner..." he gives a long discourse on how the scanner works. Finally you hear something you're interested in.`
+			label sale
+			`	"We plan to start selling the Thermal Scanner in about two months. You'll be able to buy one then.`
+			`	"It's been a pleasure working with you, <first>. I probably need to go now, but see you later!" He walks off, leaving you to your own business.`
+
+
+
 mission "FW Wolf Pack 1"
 	minor
 	name "Ramscoop Technology"

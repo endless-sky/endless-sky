@@ -22,7 +22,7 @@ ship "Emerald Sword"
 		"hull" 45000
 		"required crew" 86
 		"bunks" 302
-		"mass" 4360
+		"mass" 12160
 		"drag" 41
 		"heat dissipation" 0.22
 		"fuel capacity" 900
@@ -30,6 +30,9 @@ ship "Emerald Sword"
 		"outfit space" 1190
 		"weapon capacity" 512
 		"engine capacity" 230
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"spinal mount" 1
 		weapon
 			"blast radius" 993
@@ -180,6 +183,9 @@ ship "Black Diamond"
 		"outfit space" 152
 		"weapon capacity" 35
 		"engine capacity" 38
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"delayed hull repair rate" 1
 		"repair delay" 60
 		weapon
