@@ -194,7 +194,7 @@ outfit "Swarm Pod"
 	"mass" 5
 	"outfit space" -21
 	"weapon capacity" -21
-	"gun ports" -1
+	"pylon" -1
 	"swarm capacity" 400
 	weapon
 		sprite "effect/swarm"

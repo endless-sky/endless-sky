@@ -111,8 +111,8 @@ ship "Pug Enfolta"
 	engine 10 63.5
 	gun -12.5 -94 "Pug Zapper"
 	gun 12.5 -94 "Pug Zapper"
-	gun -12.5 -94 "Pug Seeker"
-	gun 12.5 -94 "Pug Seeker"
+	pylon -12.5 -94 "Pug Seeker"
+	pylon 12.5 -94 "Pug Seeker"
 	turret 0 11 "Pug Zapper Turret"
 	explode "pug tiny explosion" 5
 	explode "pug small explosion" 20
@@ -167,10 +167,14 @@ ship "Pug Maboro"
 		
 	engine -21 134.5
 	engine 21 134.5
-	gun -24.5 -165 "Pug Seeker"
-	gun 24.5 -165 "Pug Seeker"
-	gun -33.5 -142.5 "Pug Seeker"
-	gun 33.5 -142.5 "Pug Seeker"
+	gun -24.5 -165
+	gun 24.5 -165
+	gun -33.5 -142.5
+	gun 33.5 -142.5
+	pylon -24.5 -165 "Pug Seeker"
+	pylon 24.5 -165 "Pug Seeker"
+	pylon -33.5 -142.5 "Pug Seeker"
+	pylon 33.5 -142.5 "Pug Seeker"
 	turret 0 -68 "Pug Anti-Missile"
 	turret -13.5 -11.5 "Pug Zapper Turret"
 	turret 13.5 -11.5 "Pug Zapper Turret"

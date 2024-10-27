@@ -151,6 +151,7 @@ namespace {
 				<< DataWriter::Quote("engine mod space") << ',' << DataWriter::Quote("reverse thruster slot") << ','
 				<< DataWriter::Quote("steering slot") << ',' << DataWriter::Quote("thruster slot") << ','
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
+				<< DataWriter::Quote("pylon") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << '\n';
 
 			for(auto &it : GameData::Ships())
@@ -215,6 +216,7 @@ namespace {
 				<< DataWriter::Quote("energy capacity") << ',' << DataWriter::Quote("idle/max heat") << ','
 				<< DataWriter::Quote("max heat generation") << ',' << DataWriter::Quote("max heat dissipation") << ','
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
+				<< DataWriter::Quote("pylon") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << ',' << "deterrence" << '\n';
 
 			for(auto &it : GameData::Ships())

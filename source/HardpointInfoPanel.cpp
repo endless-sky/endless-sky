@@ -469,6 +469,7 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 			stayRight = !stayRight;
 		}
 		bool isTurret = hardpoint.IsTurret();
+		bool isPylon = hardpoint.IsPylon();
 
 		double & y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
@@ -483,6 +484,9 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 		if(isTurret)
 			color = *GameData::Colors().Get(isHover ? "player info hardpoint turret hover"
 				: "player info hardpoint turret");
+		else if(isPylon)
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint pylon hover"
+				: "player info hardpoint pylon");
 		else
 			color = *GameData::Colors().Get(isHover ? "player info hardpoint gun hover"
 				: "player info hardpoint gun");

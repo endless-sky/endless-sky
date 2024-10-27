@@ -80,7 +80,7 @@ outfit "Pug Seeker"
 	"mass" 34
 	"outfit space" -34
 	"weapon capacity" -34
-	"gun ports" -1
+	"pylon" -1
 	weapon
 		sprite "projectile/seeker"
 			"frame rate" 20

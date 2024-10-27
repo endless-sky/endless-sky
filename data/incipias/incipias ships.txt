@@ -59,12 +59,18 @@ ship "Venta"
 	engine 0 42
 		"over"
 	engine 90 42
-	gun 58.5 -76.5
-	gun 29 -76.5
+	gun -28 -76.5
 	gun 29 -76.5
 	gun -28 -76.5
-	gun -28 -76.5
+	gun 29 -76.5
 	gun -57 -76
+	gun 58.5 -76.5
+	pylon -28 -76.5
+	pylon 29 -76.5
+	pylon -28 -76.5
+	pylon 29 -76.5
+	pylon -57 -76
+	pylon 58.5 -76.5
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10

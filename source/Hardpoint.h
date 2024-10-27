@@ -54,7 +54,7 @@ public:
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
-		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
+		bool isTurret, bool isPylon, bool isUnder, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -75,6 +75,8 @@ public:
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
+	bool IsPylon() const;
+	bool IsGun() const;
 	bool IsParallel() const;
 	bool IsOmnidirectional() const;
 	bool IsUnder() const;
@@ -141,8 +143,11 @@ private:
 	Angle maxArc;
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	BaseAttributes baseAttributes;
-	// This hardpoint is for a turret or a gun.
+	// This hardpoint is for a turret, ammunition weapon, or gun.
+	bool isGun = false;
 	bool isTurret = false;
+	bool isPylon = false;
+	// bool isGun = false; For future use positively identifying guns.
 	// Indicates if this hardpoint disallows converging (guns only).
 	bool isParallel = false;
 	// Indicates if this hardpoint is omnidirectional (turret only).

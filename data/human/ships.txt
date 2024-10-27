@@ -56,8 +56,12 @@ ship "Aerie"
 		
 	engine 15 97
 	engine -15 97
-	gun -12 -78 "Sidewinder Missile Launcher"
-	gun 12 -78 "Sidewinder Missile Launcher"
+	gun -12 -78
+	gun 12 -78
+	pylon -58 29 "Sidewinder Missile Launcher"
+		over
+	pylon 58 29 "Sidewinder Missile Launcher"
+		over
 	turret 0 1.5 "Heavy Anti-Missile Turret"
 	turret -31 15.5 "Heavy Laser Turret"
 	turret 31 15.5 "Heavy Laser Turret"
@@ -125,9 +129,15 @@ ship "Argosy"
 	engine 14 91 0.8
 	engine 25 91 0.6
 	gun -22 -37 "Energy Blaster"
-	gun -22 -37 "Meteor Missile Launcher"
 	gun 22 -37 "Energy Blaster"
-	gun 22 -37 "Meteor Missile Launcher"
+	gun -25 -37
+	gun 25 -37
+	pylon -27 63 "Meteor Missile Launcher"
+	pylon 27 63 "Meteor Missile Launcher"
+	pylon -27 65
+		over
+	pylon 27 65
+		over
 	turret 0 -12.5 "Blaster Turret"
 	turret 0 9.5 "Anti-Missile Turret"
 	leak "leak" 60 50
@@ -185,8 +195,12 @@ ship "Arrow"
 		
 	engine -8 56
 	engine 8 56
-	gun -7.5 -36 "Sidewinder Missile Pod"
-	gun 7.5 -36 "Sidewinder Missile Pod"
+	gun -7.5 -36
+	gun 7.5 -36
+	pylon -9.5 38.5 "Sidewinder Missile Pod"
+		angle 180
+	pylon 9.5 38.5 "Sidewinder Missile Pod"
+		angle 180
 	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
@@ -194,6 +208,7 @@ ship "Arrow"
 	explode "medium explosion" 6
 	"final explode" "final explosion small"
 	description "The Arrow is a light transport, designed for bringing a small number of very rich passengers - Syndicate CEOs, for example - from one planet to another with speed and style. It makes up for its light armament by being able to outrun nearly every other ship in the sky."
+	description "Unlike most ships, which orient all their weaponry forward, th e designers of the arrow installed the pylons pointing backwards. This was done to allow at to continue running away from threats while still being able to launch its munitions into pursuing ships."
 
 
 
@@ -246,8 +261,8 @@ ship "Auxiliary"
 		"Scram Drive"
 	engine -41. 180.5 0.45
 	engine 41. 180.5 0.45
-	gun -12.5 -182
-	gun 12.5 -182
+	pylon -12.5 -182
+	pylon 12.5 -182
 	turret 0 -74 "Heavy Anti-Missile Turret"
 	turret 0 -17
 	turret 0 32
@@ -271,50 +286,6 @@ ship "Auxiliary"
 	"final explode" "final explosion large"
 	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
 	description "The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
-
-ship "Auxiliary" "Auxiliary (Cargo)"
-	plural "Auxiliaries"
-	sprite "ship/auxiliaryc"
-	thumbnail "thumbnail/auxiliaryc"
-	add attributes
-		"bunks" -112
-		"cargo space" 200
-	gun -12 -186
-	gun 12.5 -186
-	turret 0 -72 "Heavy Anti-Missile Turret"
-	turret 0 -20
-	turret 0 32
-	turret 0 83 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -72
-		"launch effect" "human internal"
-	bay "Fighter" 0 -20
-		"launch effect" "human internal"
-	bay "Fighter" 0 32
-		"launch effect" "human internal"
-	bay "Fighter" 0 83
-		"launch effect" "human internal"
-
-ship "Auxiliary" "Auxiliary (Transport)"
-	plural "Auxiliaries"
-	sprite "ship/auxiliaryt"
-	thumbnail "thumbnail/auxiliaryt"
-	add attributes
-		"bunks" 112
-		"cargo space" -200
-	gun -12 -186
-	gun 12.5 -186
-	turret 0 -74 "Heavy Anti-Missile Turret"
-	turret 0 -17
-	turret 0 20
-	turret 0 78 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -74
-		"launch effect" "human internal"
-	bay "Fighter" 0 -17
-		"launch effect" "human internal"
-	bay "Fighter" 0 20
-		"launch effect" "human internal"
-	bay "Fighter" 0 78
-		"launch effect" "human internal"
 
 
 
@@ -368,9 +339,17 @@ ship "Bactrian"
 	engine 18.5 232
 	engine -15 232
 	gun -9 -231.5
-	gun 13.5 -231.5 "Torpedo Launcher"
-	gun 36.5 -197 "Sidewinder Missile Launcher"
-	gun 42 -193 "Sidewinder Missile Launcher"
+	gun 13.5 -231.5
+	gun 36.5 -197
+	gun 42 -193
+	pylon -27 -120.5 "Sidewinder Missile Launcher"
+		angle 300
+	pylon 5.5 -119 "Sidewinder Missile Launcher"
+		angle 45
+	pylon -29 -27.5 "Torpedo Launcher"
+		angle 300
+	pylon 44 119
+		angle 90
 	turret 37 -132.5 "Heavy Anti-Missile Turret"
 	turret -39 -39 "Heavy Laser Turret"
 	turret 31.5 -26 "Heavy Laser Turret"
@@ -433,6 +412,7 @@ ship "Barb"
 	engine 9 25
 	engine -8 25
 	gun -7.5 -24.5 "Energy Blaster"
+	pylon -7.5 -24.5
 	turret 9.5 8.5 "Blaster Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
@@ -491,10 +471,12 @@ ship "Bastion"
 		
 	engine 31.5 89.5
 	engine -31.5 89.5
-	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5
 	gun -52.5 -0.5 "Plasma Cannon"
-	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5
 	gun 52.5 -0.5 "Plasma Cannon"
+	pylon -33 32 "Heavy Rocket Launcher"
+	pylon 33 32 "Heavy Rocket Launcher"
 	turret 0 0.5 "Anti-Missile Turret"
 	turret -35.5 29.5 "Blaster Turret"
 	turret 35.5 29.5 "Blaster Turret"
@@ -556,8 +538,8 @@ ship "Behemoth"
 	engine 34 143 0.8
 	engine -56 148.5 0.6
 	engine 56 148.5 0.6
-	gun -47.5 -57.5
-	gun 47.5 -57.5
+	pylon -47.5 -57.5
+	pylon 47.5 -57.5
 	turret -31 -50 "Heavy Laser Turret"
 	turret 31 -50 "Heavy Anti-Missile Turret"
 	turret -47.5 33.5 "Heavy Laser Turret"
@@ -619,8 +601,12 @@ ship "Berserker"
 	engine 10 45
 	gun -20 12 "Energy Blaster"
 	gun 20 12 "Energy Blaster"
-	gun -44 10 "Javelin Mini Pod"
-	gun 44 10 "Javelin Mini Pod"
+	gun -44 10
+	gun 44 10
+	pylon -20 23 "Javelin Mini Pod"
+		over
+	pylon 20 23 "Javelin Mini Pod"
+		over
 	leak "leak" 60 50
 	leak "flame" 80 80
 	explode "tiny explosion" 10
@@ -822,8 +808,10 @@ ship "Bulk Freighter"
 		
 	engine -22 198
 	engine 22 198
-	gun -20 -175 "Sidewinder Missile Launcher"
-	gun 20 -175
+	pylon -11 -8 "Sidewinder Missile Launcher"
+		angle 270
+	pylon 11 -8
+		angle 90
 	turret -12 -155 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
 	turret 0 5 "Laser Turret"
@@ -891,10 +879,12 @@ ship "Bulwark"
 		
 	engine 31.5 89.5
 	engine -31.5 89.5
-	gun -52.5 -0.5 "Heavy Rocket Launcher"
+	gun -52.5 -0.5
 	gun -52.5 -0.5 "Plasma Cannon"
-	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5
 	gun 52.5 -0.5 "Plasma Cannon"
+	pylon -33 -13 "Heavy Rocket Launcher"
+	pylon 33 -13 "Heavy Rocket Launcher"
 	turret 0 0.5 "Heavy Anti-Missile Turret"
 	turret -35.5 29.5 "Quad Blaster Turret"
 	turret 35.5 29.5 "Quad Blaster Turret"
@@ -964,12 +954,12 @@ ship "Carrier"
 	engine 36.5 200 0.65
 	gun -17.5 -176.5 "Particle Cannon"
 	gun 17.5 -176.5 "Particle Cannon"
-	gun -17.5 -176.5 "Meteor Missile Launcher"
-	gun 17.5 -176.5 "Meteor Missile Launcher"
 	gun -26 -167.5 "Particle Cannon"
 	gun 26 -167.5 "Particle Cannon"
-	gun -26 -167.5 "Meteor Missile Launcher"
-	gun 26 -167.5 "Meteor Missile Launcher"
+	pylon -17.5 -176.5 "Meteor Missile Launcher"
+	pylon 17.5 -176.5 "Meteor Missile Launcher"
+	pylon -26 -167.5 "Meteor Missile Launcher"
+	pylon 26 -167.5 "Meteor Missile Launcher"
 	turret 0 -49 "Heavy Laser Turret"
 	turret 0 14 "Heavy Laser Turret"
 	turret -22 22 "Heavy Anti-Missile Turret"
@@ -1057,8 +1047,10 @@ ship "Class C Freighter"
 		
 	engine -20 195.5
 	engine 20 195.5
-	gun -20 -175 "Sidewinder Missile Launcher"
-	gun 20 -175
+	pylon -11 -8 "Sidewinder Missile Launcher"
+		angle 270
+	pylon 11 -8
+		angle 90
 	turret -12 -155 "Quad Blaster Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
 	turret 0 5 "Proton Turret"
@@ -1142,10 +1134,14 @@ ship "Clipper"
 		
 	engine -22 47
 	engine 22 47
-	gun -21.5 -18 "Javelin Mini Pod"
-	gun 21.5 -18 "Javelin Mini Pod"
+	gun -21.5 -18
+	gun 21.5 -18
 	gun -11 -8.5 "Beam Laser"
 	gun 11 -8.5 "Beam Laser"
+	pylon -43 35 "Javelin Mini Pod"
+	pylon 43 35 "Javelin Mini Pod"
+	pylon -10 40
+	pylon 10 40
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
@@ -1192,6 +1188,7 @@ ship "Combat Drone"
 	engine -8.5 28.5 0.9
 	engine 8.5 28.5 0.9
 	gun 0 -29 "Beam Laser"
+	pylon 0 -29
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
@@ -1245,8 +1242,8 @@ ship "Container Transport"
 		
 	engine -20 195.5
 	engine 20 195.5
-	gun -23.5 -182 "Sidewinder Missile Launcher"
-	gun 23.5 -182
+	pylon -10.5 9.5 "Sidewinder Missile Launcher"
+	pylon 10.5 9.5
 	turret 0 -90.5 "Laser Turret"
 	turret 0 -40.5 "Heavy Anti-Missile Turret"
 	turret 0 9.5 "Laser Turret"
@@ -1314,8 +1311,14 @@ ship "Corvette"
 	engine 11.5 119
 	gun -11.5 -68.5 "Heavy Laser"
 	gun 11.5 -68.5 "Heavy Laser"
-	gun -26 -8 "Sidewinder Missile Launcher"
-	gun 26 -8 "Sidewinder Missile Launcher"
+	gun -26 -8
+	gun 26 -8
+	pylon -26 68
+	pylon 26 68
+	pylon -28 70 "Sidewinder Missile Launcher"
+		over
+	pylon 28 70 "Sidewinder Missile Launcher"
+		over
 	turret 0 -10 "Heavy Laser Turret"
 	turret 0 76 "Anti-Missile Turret"
 	leak "leak" 40 50
@@ -1387,8 +1390,16 @@ ship "Cruiser"
 	gun 30 -55 "Particle Cannon"
 	gun -40.5 -52 "Particle Cannon"
 	gun 40.5 -52 "Particle Cannon"
-	gun -30 -30 "Sidewinder Missile Launcher"
-	gun 30 -30 "Sidewinder Missile Launcher"
+	gun -30 -30
+	gun 30 -30
+	pylon -8 -68
+	pylon 8 -68
+	pylon -56 91 "Sidewinder Missile Launcher"
+	pylon 56 91 "Sidewinder Missile Launcher"
+	pylon -69 120
+		over
+	pylon 69 120
+		over
 	turret 0 -39.5 "Heavy Anti-Missile Turret"
 	turret -32 -23 "Heavy Laser Turret"
 	turret 32 -23 "Heavy Laser Turret"
@@ -1461,10 +1472,12 @@ ship "Cutthroat"
 	engine 22 47
 	engine -13 43.5 .7
 	engine 13 43.5 .7
-	gun -21.5 -18 "Torpedo Pod"
-	gun 21.5 -18 "Torpedo Pod"
+	gun -21.5 -18
+	gun 21.5 -18
 	gun -11 -8.5 "Twin Modified Blaster"
 	gun 11 -8.5 "Twin Modified Blaster"
+	pylon -21.5 -18 "Torpedo Pod"
+	pylon 21.5 -18 "Torpedo Pod"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
@@ -1515,8 +1528,10 @@ ship "Dagger"
 	engine -8 34
 	engine 8 34
 	gun 0 -35 "Beam Laser"
-	gun -11 -21 "Javelin Mini Pod"
-	gun 11 -21 "Javelin Mini Pod"
+	gun -11 -21
+	gun 11 -21
+	pylon -15 -19 "Javelin Mini Pod"
+	pylon 15 -19 "Javelin Mini Pod"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1575,10 +1590,14 @@ ship "Dreadnought"
 		
 	engine -25.5 173.5
 	engine 25.5 173.5
-	gun -9.5 -186 "Torpedo Launcher"
-	gun 9.5 -186 "Torpedo Launcher"
-	gun -18.5 -173.5 "Torpedo Launcher"
-	gun 18.5 -173.5 "Torpedo Launcher"
+	gun -9.5 -186
+	gun 9.5 -186
+	gun -18.5 -173.5
+	gun 18.5 -173.5
+	pylon -36 -76 "Torpedo Launcher"
+	pylon 36 -76 "Torpedo Launcher"
+	pylon -44 -76 "Torpedo Launcher"
+	pylon 44 -76 "Torpedo Launcher"
 	turret 0 -99.5 "Plasma Turret"
 	turret -39 -63.5 "Heavy Anti-Missile Turret"
 	turret 39 -63.5 "Heavy Anti-Missile Turret"
@@ -1638,6 +1657,8 @@ ship "Dropship"
 	engine -13 26
 	gun 2 -27 "Beam Laser"
 	gun -2 -27 "Beam Laser"
+	pylon 2 -27
+	pylon -2 -27
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1689,13 +1710,15 @@ ship "Enforcer"
 	gun 11 -52
 	gun -5.5 -48
 	gun 5.5 -48
+	pylon -7 12
+	pylon 7 12
 	turret 0 -0.5
 	leak "leak" 40 30
 	leak "flame" 50 60
 	explode "tiny explosion" 8
 	explode "small explosion" 12
 	explode "medium explosion" 4
-	description `Prior to the formation of the galactic Republic, many star systems were owned by "governing corporate entities," with the vast majority of space being inaccessible to private citizens. The only exception to this rule were the pirate bands, whose few ships were often stolen or rebellious corporate fleets of their own, yet who had an outsized impact on interstellar trade. The necessity for corporations to protect their operations meant that Enforcer was one of the most common vessels used for security and defense. The ship boasts an armament of four gun ports and a turreted mount, all packed on a small but defensible frame that was powerful for its time.`
+	description `Prior to the formation of the galactic Republic, many star systems were owned by "governing corporate entities," with the vast majority of space being inaccessible to private citizens. The only exception to this rule were the pirate bands, whose few ships were often stolen or rebellious corporate fleets of their own, yet who had an outsized impact on interstellar trade. The necessity for corporations to protect their operations meant that Enforcer was one of the most common vessels used for security and defense. The ship boasts an armament of four gun ports, two pylons and a turreted mount, all packed on a small but defensible frame that was powerful for its time.`
 	description `	Although no longer on the market, the Enforcer finds itself in the possession of a small number of merchants and, ironically, various groups of pirates, as an aging combat ship easily outperformed by other light warships or even interceptors of a similar size.`
 
 
@@ -1750,8 +1773,12 @@ ship "Falcon"
 	engine 16.5 143
 	gun -16 -86.5 "Plasma Cannon"
 	gun 16 -86.5 "Plasma Cannon"
-	gun -19 -76.5 "Torpedo Launcher"
-	gun 19 -76.5 "Torpedo Launcher"
+	gun -19 -76.5
+	gun 19 -76.5
+	pylon -47 5 "Torpedo Launcher"
+	pylon 47 5 "Torpedo Launcher"
+	pylon -51 84
+	pylon 51 84
 	turret -16 -29 "Heavy Anti-Missile Turret"
 	turret 16 -29 "Quad Blaster Turret"
 	turret -50 39.5 "Quad Blaster Turret"
@@ -1809,8 +1836,10 @@ ship "Finch"
 	engine -5 32
 	engine 5 32
 	gun 0 -31.5 "Beam Laser"
-	gun -7 -14 "Javelin Mini Pod"
-	gun 7 -14 "Javelin Mini Pod"
+	gun -7 -14
+	gun 7 -14
+	pylon -23 3 "Javelin Mini Pod"
+	pylon 23 3 "Javelin Mini Pod"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1866,8 +1895,16 @@ ship "Firebird"
 	engine 31.5 67
 	gun -27 -28 "Particle Cannon"
 	gun 27 -28 "Particle Cannon"
-	gun -38 -13 "Meteor Missile Launcher"
-	gun 38 -13 "Meteor Missile Launcher"
+	gun -38 -13
+	gun 38 -13
+	pylon -39 37 "Meteor Missile Launcher"
+		over
+	pylon 39 37 "Meteor Missile Launcher"
+		over
+	pylon -10 20
+		over
+	pylon 10 20
+		over
 	turret 0 -38 "Anti-Missile Turret"
 	turret 0 3 "Quad Blaster Turret"
 	leak "leak" 50 50
@@ -1923,6 +1960,8 @@ ship "Flivver"
 	engine 16.5 26
 	gun -6 -35.5
 	gun 6 -35.5
+	pylon -6 -35.5
+	pylon 6 -35.5
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
@@ -2037,8 +2076,12 @@ ship "Frigate"
 	engine 26 96.5
 	gun -11 -84.5 "Particle Cannon"
 	gun 11 -84.5 "Particle Cannon"
-	gun -11 -84.5 "Torpedo Launcher"
-	gun 11 -84.5 "Torpedo Launcher"
+	gun -11 -84.5
+	gun 11 -84.5
+	pylon -11 -37 "Torpedo Launcher"
+		over
+	pylon 11 -37 "Torpedo Launcher"
+		over
 	turret 0 -37.5 "Anti-Missile Turret"
 	turret -15.5 -12.5 "Blaster Turret"
 	turret 15.5 -12.5 "Blaster Turret"
@@ -2103,6 +2146,10 @@ ship "Fury"
 	gun 17 -19.5
 	gun -5.5 -33
 	gun 5.5 -33
+	pylon -37 27
+	pylon 37 27
+	pylon -13 -2
+	pylon 13 -2
 	leak "flame" 50 80
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -2159,6 +2206,10 @@ ship "Gunboat"
 	engine 12 57.5 0.7
 	gun -28.5 -27.5 "Heavy Laser"
 	gun 28.5 -27.5 "Heavy Laser"
+	pylon -10 -14
+		over
+	pylon 10 -14
+		over
 	turret 0 -1 "Heavy Laser Turret"
 	leak "leak" 50 50
 	leak "flame" 80 80
@@ -2214,8 +2265,10 @@ ship "Hauler"
 
 	engine -45 122.5
 	engine 45 122.5
-	gun -14.5 -92.5
-	gun 14.5 -92.5
+	pylon -30 -48
+		angle 270
+	pylon 30 -48
+		angle 90
 	turret -21.5 -48 "Quad Blaster Turret"
 	turret 21.5 -48 "Heavy Anti-Missile Turret"
 	turret -18.5 78.5 "Heavy Anti-Missile Turret"
@@ -2278,8 +2331,10 @@ ship "Hauler II"
 		
 	engine -45 159.5
 	engine 45 159.5
-	gun -14.5 -129.5
-	gun 14.5 -129.5
+	pylon -30 -86
+		angle 270
+	pylon 30 -86
+		angle 90
 	turret -21.5 -84.5 "Quad Blaster Turret"
 	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
 	turret -18.5 115.5 "Heavy Anti-Missile Turret"
@@ -2342,8 +2397,10 @@ ship "Hauler III"
 
 	engine -45 196.5
 	engine 45 196.5
-	gun -14.5 -166.5
-	gun 14.5 -166.5
+	pylon -30 -122
+		angle 270
+	pylon 30 -122
+		angle 90
 	turret -21.5 -122 "Quad Blaster Turret"
 	turret 21.5 -122 "Heavy Anti-Missile Turret"
 	turret -18.5 152.5 "Heavy Anti-Missile Turret"
@@ -2403,6 +2460,8 @@ ship "Hawk"
 	engine 23.5 41
 	gun -8.5 -17.5
 	gun 8.5 -17.5
+	pylon -38 26
+	pylon 38 26
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2456,6 +2515,14 @@ ship "Headhunter"
 	gun 17.5 -17
 	gun -12 -25.5 "Heavy Laser"
 	gun 12 -25.5 "Heavy Laser"
+	pylon -46 51
+		over
+	pylon 46 51
+		over
+	pylon -24 21
+	pylon 24 21
+	pylon -31 28
+	pylon 31 28
 	turret 0 9 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 80 80
@@ -2614,8 +2681,10 @@ ship "Lance"
 	engine -14.5 30.5 0.5
 	engine 14.5 30.5 0.5
 	gun 0 -34 "Energy Blaster"
-	gun -13.5 -6.5 "Sidewinder Missile Pod"
-	gun 13.5 -6.5 "Sidewinder Missile Pod"
+	gun -13.5 -6.5
+	gun 13.5 -6.5
+	pylon -19 18 "Sidewinder Missile Pod"
+	pylon 19 18 "Sidewinder Missile Pod"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -2670,6 +2739,18 @@ ship "Leviathan"
 	gun 37.5 -31.5 "Particle Cannon"
 	gun -49 -19.5 "Particle Cannon"
 	gun 49 -19.5 "Particle Cannon"
+	pylon -43 46
+		angle 315
+		over
+	pylon 43 46
+		angle 45
+		over
+	pylon -47 56
+		angle 315
+		over
+	pylon 47 56
+		angle 45
+		over
 	turret -14 -10 "Quad Blaster Turret"
 	turret 14 -10 "Quad Blaster Turret"
 	turret -25.5 12.5 "Quad Blaster Turret"
@@ -2742,6 +2823,10 @@ ship "Mammoth"
 	engine 56 148.5 0.6
 	gun -47.5 -57.5
 	gun 47.5 -57.5
+	pylon -55 35
+		angle 270
+	pylon 55 35
+		angle 90
 	turret -31 -50 "Anti-Missile Turret"
 	turret 31 -50 "Anti-Missile Turret"
 	turret -14.5 0 "Quad Blaster Turret"
@@ -2805,12 +2890,12 @@ ship "Manta"
 		
 	engine -33 40
 	engine 33 40
-	gun -68.5 -33 "Torpedo Pod"
-	gun 68.5 -33 "Torpedo Pod"
 	gun -20 -31 "Particle Cannon"
 	gun 20 -31 "Particle Cannon"
 	gun -26.5 -30 "Particle Cannon"
 	gun 26.5 -30 "Particle Cannon"
+	pylon -68.5 -33 "Torpedo Pod"
+	pylon 68.5 -33 "Torpedo Pod"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
@@ -2911,8 +2996,14 @@ ship "Modified Argosy"
 	engine 25 93 0.6
 	gun -22 -37 "Heavy Laser"
 	gun 22.5 -37 "Heavy Laser"
-	gun -22 -37 "Meteor Missile Launcher"
-	gun 22.5 -37 "Meteor Missile Launcher"
+	gun -22 -37
+	gun 22.5 -37
+	pylon -22 -4 "Meteor Missile Launcher"
+	pylon 22 -4 "Meteor Missile Launcher"
+	pylon -29 35
+		angle 300
+	pylon 29 35
+		angle 60
 	turret 0 -12.5 "Heavy Anti-Missile Turret"
 	turret 0 9.5 "Heavy Laser Turret"
 	leak "leak" 70 50
@@ -2974,8 +3065,12 @@ ship "Mule"
 		
 	engine 11 128
 	engine -8 128
-	gun -11 -125 "Sidewinder Missile Launcher"
-	gun 11 -125 "Sidewinder Missile Launcher"
+	gun -11 -125
+	gun 11 -125
+	pylon 42.5 23.5 "Sidewinder Missile Launcher"
+		angle 90
+	pylon 43 36 "Sidewinder Missile Launcher"
+		angle 90
 	turret -22 -53.5 "Heavy Laser Turret"
 	turret 19.5 -39 "Anti-Missile Turret"
 	turret 20 33 "Heavy Laser Turret"
@@ -3037,8 +3132,8 @@ ship "Nest"
 		
 	engine -45 122.5
 	engine 45 122.5
-	gun -14.5 -92.5
-	gun 14.5 -92.5
+	pylon -14.5 -92.5
+	pylon 14.5 -92.5
 	turret -21.5 -48 "Quad Blaster Turret"
 	turret 21.5 -48 "Heavy Anti-Missile Turret"
 	turret -18.5 78.5 "Heavy Anti-Missile Turret"
@@ -3170,6 +3265,10 @@ ship "Osprey"
 	gun 9.5 -95.5 "Plasma Cannon"
 	gun -25 -49.5 "Plasma Cannon"
 	gun 25 -49.5 "Plasma Cannon"
+	pylon -17 -12
+	pylon 17 -12
+	pylon -50 29
+	pylon 50 29
 	turret -15.5 -12 "Quad Blaster Turret"
 	turret 15.5 -12 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
@@ -3230,8 +3329,8 @@ ship "Protector"
 		
 	engine -12 122.5
 	engine 12 122.5
-	gun -17.5 -101 "Meteor Missile Launcher"
-	gun 17.5 -101 "Meteor Missile Launcher"
+	pylon -17.5 -101 "Meteor Missile Launcher"
+	pylon 17.5 -101 "Meteor Missile Launcher"
 	turret -48.5 -48.5 "Quad Blaster Turret"
 	turret 48.5 -48.5 "Quad Blaster Turret"
 	turret 0 -28.5 "Heavy Anti-Missile Turret"
@@ -3348,10 +3447,12 @@ ship "Rainmaker"
 	engine 11.5 44.5 0.4
 	gun -7.5 -36.5 "Energy Blaster"
 	gun 7.5 -36.5 "Energy Blaster"
-	gun -27 8 "Meteor Missile Launcher"
-	gun 27 8 "Meteor Missile Launcher"
-	gun -22 8 "Meteor Missile Launcher"
-	gun 22 8 "Meteor Missile Launcher"
+	pylon -27 8 "Meteor Missile Launcher"
+	pylon 27 8 "Meteor Missile Launcher"
+	pylon -23 8 "Meteor Missile Launcher"
+	pylon 23 8 "Meteor Missile Launcher"
+	pylon -20 8
+	pylon 20 8
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -3408,8 +3509,10 @@ ship "Raven"
 	engine 9.5 63
 	gun -13.5 -35.5 "Heavy Laser"
 	gun 13.5 -35.5 "Heavy Laser"
-	gun -21 -28 "Torpedo Launcher"
-	gun 21 -28 "Sidewinder Missile Launcher"
+	gun -21 -28
+	gun 21 -28
+	pylon -40 -20 "Torpedo Launcher"
+	pylon 40 -20 "Sidewinder Missile Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
@@ -3466,8 +3569,8 @@ ship "Roost"
 		
 	engine -45 159.5
 	engine 45 159.5
-	gun -14.5 -129.5
-	gun 14.5 -129.5
+	pylon -14.5 -129.5
+	pylon 14.5 -129.5
 	turret -21.5 -84.5 "Quad Blaster Turret"
 	turret 21.5 -84.5 "Heavy Anti-Missile Turret"
 	turret -18.5 115.5 "Heavy Anti-Missile Turret"
@@ -3537,8 +3640,12 @@ ship "Saber"
 	gun -10.5 -105 "Beam Laser"
 	gun 0 -105 "Beam Laser"
 	gun 10.5 -105 "Beam Laser"
-	gun -5 -104 "Javelin Pod"
-	gun 5 -104 "Javelin Pod"
+	gun -5 -104
+	gun 5 -104
+	pylon -30 77 "Javelin Pod"
+		over
+	pylon 30 77 "Javelin Pod"
+		over
 	turret 0 27.5 "Blaster Turret"
 	leak "leak" 60 60
 	leak "flame" 40 80
@@ -3596,6 +3703,8 @@ ship "Scout"
 	engine 7 40
 	gun -18.5 -6 "Energy Blaster"
 	gun 18.5 -6 "Energy Blaster"
+	pylon -27 30
+	pylon 27 30
 	turret 0 -2.5 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -3751,8 +3860,8 @@ ship "Skein"
 
 	engine -45 196.5
 	engine 45 196.5
-	gun -14.5 -166.5
-	gun 14.5 -166.5
+	pylon -14.5 -166.5
+	pylon 14.5 -166.5
 	turret -21.5 -122 "Quad Blaster Turret"
 	turret 21.5 -122 "Heavy Anti-Missile Turret"
 	turret -18.5 152.5 "Anti-Missile Turret"
@@ -3824,6 +3933,10 @@ ship "Sparrow"
 	gun 7 -10
 	gun -10.5 -8.5
 	gun 10.5 -8.5
+	pylon -20 -3.5
+	pylon 20 -3.5
+	pylon -29 -3
+	pylon 29 -3
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -3878,6 +3991,8 @@ ship "Splinter"
 	engine 15.5 115
 	gun -12 -93 "Proton Gun"
 	gun 12 -93 "Proton Gun"
+	pylon -22.5 -42
+	pylon 22.5 -42
 	turret -13 42 "Blaster Turret"
 	turret 0 9 "Anti-Missile Turret"
 	turret 13 42 "Blaster Turret"
@@ -3989,9 +4104,10 @@ ship "Star Queen"
 		over
 	"reverse engine" 19 51
 		over
-	gun 0 -113
-	gun -24 -76 "Sidewinder Missile Launcher"
-	gun 24 -76
+	pylon -24 -76 "Sidewinder Missile Launcher"
+	pylon 24 -76
+	pylon 0 113
+		angle 180
 	turret -21.5 2.5 "Heavy Anti-Missile Turret"
 	turret 21.5 2.5 "Heavy Anti-Missile Turret"
 	leak "leak" 50 50
@@ -4055,7 +4171,7 @@ ship "Sunder"
 		"launch effect" "human external"
 	bay "Drone" 0 38
 		"under"
-		"angle" 180
+		angle 180
 		"launch effect" "human external"
 	leak "leak" 60 50
 	leak "flame" 50 80
@@ -4155,8 +4271,10 @@ ship "Valkyrie"
 	engine -15 97
 	gun -12 -78 "Particle Cannon"
 	gun 12 -78 "Particle Cannon"
-	gun -64 -19 "Torpedo Launcher"
-	gun 64 -19 "Torpedo Launcher"
+	gun -64 -19
+	gun 64 -19
+	pylon -71 31 "Torpedo Launcher"
+	pylon 71 31 "Torpedo Launcher"
 	turret -31 15.5
 	turret 31 15.5
 	bay "Fighter" -43.5 2
@@ -4229,6 +4347,13 @@ ship "Vanguard"
 		parallel
 	gun 35 -44.5 "Proton Gun"
 		parallel
+	pylon 0 -72
+	pylon -18 -75
+	pylon 18 -75
+	pylon -26 5
+	pylon 26 5
+	pylon -20 4
+	pylon 20 4
 	turret 0 42 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 30 80
@@ -4283,11 +4408,13 @@ ship "Wasp"
 		
 	engine -5.5 32.5
 	engine 5.5 32.5
-	gun 0 -41 "Sidewinder Missile Pod"
+	gun 0 -41
 	gun -13.5 -35 "Energy Blaster"
 	gun 13.5 -35 "Energy Blaster"
 	gun -18.5 -27
 	gun 18.5 -27
+	pylon -19 -14.5 "Sidewinder Missile Pod"
+	pylon 19 -14.5
 	leak "leak" 60 50
 	explode "tiny explosion" 20
 	explode "small explosion" 10

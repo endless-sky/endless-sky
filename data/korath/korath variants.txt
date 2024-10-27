@@ -208,8 +208,8 @@ ship "Palavret" "Palavret (Blaze)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
@@ -240,8 +240,8 @@ ship "Palavret" "Palavret (Crippled)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
-	gun
-	gun "Firelight Missile Bank"
+	pylon
+	pylon "Firelight Missile Bank"
 	turret
 	turret
 	turret "Grab-Strike Turret"
@@ -274,8 +274,8 @@ ship "Palavret" "Palavret (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -306,8 +306,8 @@ ship "Palavret" "Palavret (Ember Blaze)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
@@ -340,8 +340,8 @@ ship "Palavret" "Palavret (Ember Shunt)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
@@ -372,8 +372,8 @@ ship "Palavret" "Palavret (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -410,8 +410,8 @@ ship "Tubfalet" "Tubfalet (Crippler)"
 		"Jump Drive"
 
 	gun "Korath Detainer"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Shield Disruptor Turret"
 	turret "Grab-Strike Turret"
@@ -445,12 +445,12 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 
 	gun "Korath Detainer"
 	gun "Korath Detainer"
-	gun "Piercer Missile Launcher"
-	gun "Piercer Missile Launcher"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Piercer Missile Launcher"
+	pylon "Piercer Missile Launcher"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Thermal Repeater Turret"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
@@ -581,8 +581,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun
-	gun
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
 	turret
 	turret "Shunt-Strike Turret"
 	turret
@@ -623,8 +626,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
@@ -664,8 +670,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"
 	turret "Grab-Strike Turret"
@@ -707,8 +716,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Korath Inferno"
 	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
@@ -749,8 +761,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 	gun "Husk-Slice"
 	gun "Husk-Slice"
 	gun "Husk-Slice"
-	gun "Cluster Mine Layer"
-	gun "Cluster Mine Layer"
+	pylon
+	pylon
+	pylon
+	pylon "Cluster Mine Layer"
+	pylon "Cluster Mine Layer"
 	turret "Husk-Slice Turret"
 	turret "Shield Disruptor Turret"
 	turret "Husk-Slice Turret"
@@ -791,8 +806,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	gun "Korath Detainer"
 	gun "Korath Detainer"
 	gun "Korath Detainer"
-	gun "Piercer Missile Launcher"
-	gun "Piercer Missile Launcher"
+	pylon
+	pylon
+	pylon
+	pylon "Piercer Missile Launcher"
+	pylon "Piercer Missile Launcher"
 	turret "Thermal Repeater Turret"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"
@@ -1168,6 +1186,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
 	turret "Banisher Grav-Turret"
@@ -1190,10 +1212,6 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 	turret "Shunt-Strike Turret"
 	turret "Banisher Grav-Turret"
 	turret "Grab-Strike Turret"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
@@ -1227,6 +1245,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Langrage Hyper-Heaver"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
@@ -1249,10 +1271,6 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
 	turret "Warder Anti-Missile"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
@@ -1282,6 +1300,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
@@ -1304,10 +1326,6 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 	turret "Banisher Grav-Turret"
 	turret "Banisher Grav-Turret"
 	turret "Warder Anti-Missile"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
 
 
 
@@ -1395,6 +1413,10 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	gun "Korath Detainer"
 	gun
 	gun
+	pylon
+	pylon
+	pylon
+	pylon
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -1477,8 +1499,10 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		"Hyperdrive"
 	
 	gun "Korath Detainer"
-	gun "Piercer Missile Launcher"
-	gun "Piercer Missile Launcher"
+	gun
+	gun
+	pylon "Piercer Missile Launcher"
+	pylon "Piercer Missile Launcher"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"
 	turret

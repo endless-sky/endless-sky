@@ -83,6 +83,18 @@ ship "Albatross"
 	gun 14 -162 "Inhibitor Cannon"
 	gun -18 -144 "Inhibitor Cannon"
 	gun 18 -144 "Inhibitor Cannon"
+	pylon -9 -110
+		angle 345
+	pylon 9 -110
+		angle 15
+	pylon -13 -99
+		angle 345
+	pylon 13 -99
+		angle 15
+	pylon -26 47
+		angle 345
+	pylon 26 47
+		angle 15
 	turret -23 -34 "Thrasher Turret"
 	turret 23 -34 "Thrasher Turret"
 	turret -74 62
@@ -124,9 +136,14 @@ ship "Albatross" "Albatross (Sniper)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "EMP Torpedo Bay"
-	gun "EMP Torpedo Bay"
-
+	gun
+	gun
+	pylon "EMP Torpedo Bay"
+	pylon
+	pylon "EMP Torpedo Bay"
+	pylon
+	pylon
+	pylon
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 	turret
@@ -270,9 +287,14 @@ ship "Albatross" "Albatross (Sniper II)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "Teciimach Bay"
-	gun "Teciimach Bay"
-
+	gun
+	gun
+	pylon
+	pylon "Teciimach Bay"
+	pylon "Teciimach Bay"
+	pylon
+	pylon
+	pylon
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 	turret
@@ -350,6 +372,26 @@ ship "Modified Dromedary"
 		angle 270
 	gun 78 64
 		angle 90
+	pylon 78.5 -78.5
+		angle 90
+	pylon 77 -52.5
+		angle 90
+	pylon 71.5 -22
+		angle 90
+	pylon 72.5 8
+		angle 90
+	pylon 71.5 38.5
+		angle 90
+	pylon 47 171
+		angle 180
+	pylon 58 169.5
+		angle 180
+	pylon -63 30.5
+		angle 270
+	pylon -63 37.5
+		angle 270
+	pylon -63 45
+		angle 270
 	turret 10 -136.5 "Thrasher Turret"
 	turret -21.5 -57.5 "Point Defense Turret"
 	turret 51 101
@@ -567,6 +609,8 @@ ship "Gull"
 	gun 0 -96 "Inhibitor Cannon"
 	gun -7 -94
 	gun 7 -94
+	pylon -24 -6.5
+	pylon 24 -6.5
 	turret 0 26 "Point Defense Turret"
 	leak "remnant leak" 30 7
 	leak "remnant leak sparkle" 30 7
@@ -757,6 +801,22 @@ ship "Heron"
 	gun 0 -325 "Ember Tear"
 	gun -23.5 -302.5
 	gun 23.5 -302.5
+	pylon -31 -223
+		angle 345
+	pylon 31 -223
+		angle 15
+	pylon -90 50
+		angle 315
+	pylon 90 50
+		angle 45
+	pylon -182 140.5
+		angle 315
+	pylon 182 140
+		angle 45
+	pylon -177 221
+		angle 180
+	pylon 177 221
+		angle 180
 	turret 0 -240.5 "Point Defense Turret"
 	turret -34.5 -134.5 "Inhibitor Turret"
 	turret 34.5 -134.5 "Inhibitor Turret"
@@ -929,6 +989,8 @@ ship "Ibis"
 	gun 0 -135.5 "Inhibitor Cannon"
 	gun 15.5 -102 "Inhibitor Cannon"
 	gun -15.5 -102 "Inhibitor Cannon"
+	pylon -18 -96
+	pylon 18 -96
 	turret 0 -62
 	turret 0 -20.5 "Point Defense Turret"
 	turret 0 58.5 "Thrasher Turret"
@@ -1033,6 +1095,8 @@ ship "Merganser"
 	gun 0 -48.5
 	gun -6 -41 "Inhibitor Cannon"
 	gun 6 -41 "Inhibitor Cannon"
+	pylon -17 -12
+	pylon 17 -12
 	turret 0 0
 	engine 0 45
 	engine -10 49
@@ -1059,9 +1123,11 @@ ship "Merganser" "Merganser (II)"
 		"Bellows-Class Afterburner"
 		"Scram Drive"
 		
-	gun 0 -48.5 "Teciimach Pod"
+	gun 0 -48.5
 	gun -6 -41 "Inhibitor Cannon"
 	gun 6 -41 "Inhibitor Cannon"
+	pylon -17 -12 "Teciimach Pod"
+	pylon 17 -12
 	turret 0 0
 
 
@@ -1130,6 +1196,11 @@ ship "Pelican"
 	engine 0 114 1.1
 	gun 8 -135
 	gun -8 -135
+	pylon 0 -144
+	pylon -41 82
+		angle 180
+	pylon 41 82
+		angle 180
 	turret 0 -67 "Thrasher Turret"
 	turret 56 35 "Point Defense Turret"
 	turret -56 35 "Point Defense Turret"
@@ -1255,25 +1326,26 @@ ship "Penguin"
 		angle 10
 	"steering engine" -11 -17
 		"zoom" 0.15
-		"angle" 90
+		angle 90
 		under
 		right
 	"steering engine" 11 -17
 		"zoom" 0.15
-		"angle" 270
+		angle 270
 		under
 		left
 	"steering engine" -11 17
 		"zoom" 0.15
-		"angle" 90
+		angle 90
 		under
 		left
 	"steering engine" 11 17
 		"zoom" 0.15
-		"angle" 270
+		angle 270
 		under
 		right
 	gun 0 -33
+	pylon 0 -20
 	turret 0 5.5
 	leak "remnant leak sparkle" 30 2
 	explode "tiny explosion" 8
@@ -1361,11 +1433,14 @@ ship "Peregrine"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
-	gun 0 -133.5 "EMP Torpedo Bay"
+	gun 0 -133.5
 	gun -12.5 -105 "Thrasher Cannon"
 	gun 12.5 -105 "Thrasher Cannon"
 	gun -17.5 -83 "Thrasher Cannon"
 	gun 17.5 -83 "Thrasher Cannon"
+	pylon 0 -122 "EMP Torpedo Bay"
+	pylon -13 -67
+	pylon 13 -67
 	turret 0 -44 "Point Defense Turret"
 	turret 0 21 "Thrasher Turret"
 	engine 0 120.5 1.5
@@ -1404,11 +1479,14 @@ ship "Peregrine" "Peregrine (II)"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
-	gun 0 -133.5 "Teciimach Bay"
+	gun 0 -133.5
 	gun -12.5 -105 "Thrasher Cannon"
 	gun 12.5 -105 "Thrasher Cannon"
 	gun -17.5 -83 "Thrasher Cannon"
 	gun 17.5 -83 "Thrasher Cannon"
+	pylon 0 -122 "Teciimach Bay"
+	pylon -13 -67
+	pylon 13 -67
 	turret 0 -44 "Point Defense Turret"
 	turret 0 21 "Thrasher Turret"
 
@@ -1473,6 +1551,8 @@ ship "Petrel"
 	gun 0 -38.5
 	gun -10.5 -24 "Inhibitor Cannon"
 	gun 10.5 -24 "Inhibitor Cannon"
+	pylon -14 -13
+	pylon 14 -13
 	turret 0 2.5
 	engine 0 41.5
 	leak "remnant leak sparkle" 20 3
@@ -1605,6 +1685,7 @@ ship "Smew"
 
 	engine 0 48.5
 	gun 0 -47.5
+	pylon 0 -46.5
 	leak "remnant leak sparkle" 22 3
 	explode "tiny explosion" 35
 	explode "small explosion" 24
@@ -1717,6 +1798,10 @@ ship "Starling"
 	gun 12 -72 "Inhibitor Cannon"
 	gun -18 -49
 	gun 18 -49
+	pylon -6 -58
+	pylon 6 -58
+	pylon -13 -38
+	pylon 13 -38
 	turret 0 2 "Point Defense Turret"
 	leak "remnant leak" 30 4
 	leak "remnant leak sparkle" 30 10
@@ -1762,11 +1847,15 @@ ship "Starling" "Starling (Sniper)"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 
-	gun "EMP Torpedo Bay"
+	gun
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
+	pylon "EMP Torpedo Bay"
+	pylon
+	pylon
+	pylon
 
 ship "Starling" "Starling (Hunter)"
 	outfits
@@ -1873,6 +1962,7 @@ ship "Tern"
 		"Anvil-Class Engine"
 		
 	gun 0 -22 "Inhibitor Cannon"
+	pylon 0 -20
 	engine -5 20.5
 	engine 5 20.5
 	leak "remnant leak sparkle" 30 2

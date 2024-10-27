@@ -51,6 +51,9 @@ ship "Kaiken"
 	gun -7 -31
 	gun 7 -31
 	gun 0 -20
+	pylon 0 10
+	pylon -14 6
+	pylon 14 6
 	leak "flame" 60 80
 	explode "tiny explosion" 20
 	explode "small explosion" 15
@@ -107,8 +110,8 @@ ship "Sasumata"
 	
 	engine -11 109
 	engine 11 109
-	gun -12.5 -110.5
-	gun 12.5 -110.5
+	pylon -12.5 -110.5
+	pylon 12.5 -110.5
 	turret -10 -5
 	turret 10 -5
 	bay "Fighter" 0 -93
@@ -166,8 +169,8 @@ ship "Tanto"
 		
 	engine -20 148
 	engine 20 148
-	gun -16.5 -135
-	gun 16.5 -135
+	pylon -16.5 -135
+	pylon 16.5 -135
 	turret 0 -74.5
 	turret 0 108
 	leak "leak" 60 50
@@ -417,16 +420,22 @@ ship "Kama"
 		
 	engine -11.5 132.5
 	engine 11.5 132.5
-	gun -24.5 -129 "Swarm Pod"
-	gun 24.5 -129 "Swarm Pod"
+	gun -24.5 -129
+	gun 24.5 -129
 	gun -5 -114 "Mandible Cannon"
 	gun 5 -114 "Mandible Cannon"
 	gun -14 -105.5 "Mandible Cannon"
 	gun 14 -105.5 "Mandible Cannon"
-	gun -54.5 -20 "Swarm Pod"
-	gun 54.5 -20 "Swarm Pod"
-	gun -62.5 -9.5 "Swarm Pod"
-	gun 62.5 -9.5 "Swarm Pod"
+	gun -54.5 -20
+	gun 54.5 -20
+	gun -62.5 -9.5
+	gun 62.5 -9.5
+	pylon -24.5 -129 "Swarm Pod"
+	pylon 24.5 -129 "Swarm Pod"
+	pylon -54.5 -20 "Swarm Pod"
+	pylon 54.5 -20 "Swarm Pod"
+	pylon -62.5 -9.5 "Swarm Pod"
+	pylon 62.5 -9.5 "Swarm Pod"
 	turret 0 54.5
 	leak "leak" 50 50
 	leak "flame" 80 80
@@ -496,16 +505,26 @@ ship "Chigiriki"
 	gun -14.5 -153 "Locust Blaster"
 	gun 14.5 -153 "Locust Blaster"
 	gun 0 -143 "Thorax Cannon"
-	gun -67 -26.5 "Swarm Pod"
-	gun 67 -26.5 "Swarm Pod"
-	gun -75 12.5 "Swarm Pod"
-	gun 75 12.5 "Swarm Pod"
-	gun -82.5 21.5 "Swarm Pod"
-	gun 82.5 21.5 "Swarm Pod"
-	gun -95.5 85.5 "Swarm Pod"
-	gun 95.5 85.5 "Swarm Pod"
-	gun -106.5 105.5 "Swarm Pod"
-	gun 106.5 105.5 "Swarm Pod"
+	gun -67 -26.5
+	gun 67 -26.5
+	gun -75 12.5
+	gun 75 12.5
+	gun -82.5 21.5
+	gun 82.5 21.5
+	gun -95.5 85.5
+	gun 95.5 85.5
+	gun -106.5 105.5
+	gun 106.5 105.5
+	pylon -67 -26.5 "Swarm Pod"
+	pylon 67 -26.5 "Swarm Pod"
+	pylon -75 12.5 "Swarm Pod"
+	pylon 75 12.5 "Swarm Pod"
+	pylon -82.5 21.5 "Swarm Pod"
+	pylon 82.5 21.5 "Swarm Pod"
+	pylon -95.5 85.5 "Swarm Pod"
+	pylon 95.5 85.5 "Swarm Pod"
+	pylon -106.5 105.5 "Swarm Pod"
+	pylon 106.5 105.5 "Swarm Pod"
 	turret -20.5 40
 	turret 20.5 40
 	leak "leak" 30 50

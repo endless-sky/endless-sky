@@ -1195,14 +1195,14 @@ ship "Carrier" "Carrier (Alpha)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun
 	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Shield Disruptor Turret"
 	turret "Husk-Slice Turret"
 	turret "Shield Disruptor Turret"

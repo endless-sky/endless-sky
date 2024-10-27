@@ -152,9 +152,9 @@ ship "Palavret"
 		zoom 0.7
 	"reverse engine" 9 -154
 		zoom 0.7
-	gun 32.5 -1 "Firelight Missile Bank"
+	pylon 32.5 -1 "Firelight Missile Bank"
 		angle 60
-	gun -32.5 -1 "Firelight Missile Bank"
+	pylon -32.5 -1 "Firelight Missile Bank"
 		angle 300
 	turret -10 -143 "Grab-Strike Turret"
 	turret 10 -143 "Grab-Strike Turret"
@@ -268,9 +268,10 @@ ship "Tubfalet"
 		angle -38
 		left
 	gun -45 -150 "Fire-Lance"
-	gun 32.5 -1 "Firelight Missile Bank"
+	pylon -45 -150
+	pylon 32.5 -1 "Firelight Missile Bank"
 		angle 60
-	gun -32.5 -1 "Firelight Missile Bank"
+	pylon -32.5 -1 "Firelight Missile Bank"
 		angle 300
 	turret -10 -143 "Grab-Strike Turret"
 	turret 10 -143 "Grab-Strike Turret"
@@ -346,17 +347,17 @@ ship "'nra'ret"
 	engine 0 90 0.9
 	gun -28 -133.5 "Fire-Lance"
 	gun 28 -133.5 "Fire-Lance"
-	gun -48.5 -85.5 "Firelight Missile Bank"
+	pylon -48.5 -85.5 "Firelight Missile Bank"
 		angle 320
-	gun 48.5 -85.5 "Firelight Missile Bank"
+	pylon 48.5 -85.5 "Firelight Missile Bank"
 		angle 40
-	gun -145 14.5 "Firelight Missile Bank"
+	pylon -145 14.5 "Firelight Missile Bank"
 		angle 250
-	gun 145 14.5 "Firelight Missile Bank"
+	pylon 145 14.5 "Firelight Missile Bank"
 		angle 110
-	gun -98 75 "Firelight Missile Bank"
+	pylon -98 75 "Firelight Missile Bank"
 		angle 190
-	gun 98 75 "Firelight Missile Bank"
+	pylon 98 75 "Firelight Missile Bank"
 		angle 170
 	turret -32.5 -53.5 "Langrage Hyper-Heaver"
 	turret 32.5 -53.5 "Langrage Hyper-Heaver"
@@ -522,7 +523,7 @@ ship "Rai'alorej"
 	engine 60 190 0.8
 	engine -29 212
 	engine 29 212
-	gun -81.5 58 "Firelight Missile Bank"
+	pylon -81.5 58 "Firelight Missile Bank"
 		angle 270
 	turret -96.5 -129.5 "Langrage Hyper-Heaver"
 	turret 96.5 -129.5 "Warder Anti-Missile"
@@ -682,6 +683,10 @@ ship "Lor'kas Ik 577"
 		over
 	gun -47 -244 "Expeller Grav-Ray"
 	gun 47 -244 "Expeller Grav-Ray"
+	pylon -75 -160
+		angle 270
+	pylon 75 -160
+		angle 90
 	turret -73 -159 "Warder Anti-Missile"
 	turret 73 -159 "Grab-Strike Turret"
 	turret -56 -137 "Warder Anti-Missile"
@@ -771,9 +776,12 @@ ship "Ra'gru Ik 618"
 	gun -75 -112 "Fire-Lance"
 	gun 75 -112 "Fire-Lance"
 	gun 0 -112 "Fire-Lance"
-	gun 42 90 "Firelight Missile Bank"
+	pylon 0 -110
+	pylon 75 -110
+	pylon -75 -110
+	pylon 42 90 "Firelight Missile Bank"
 		angle 110
-	gun -42 90 "Firelight Missile Bank"
+	pylon -42 90 "Firelight Missile Bank"
 		angle 250
 	turret -56 -254 "Warder Anti-Missile"
 	turret 56 -254 "Banisher Grav-Turret"
@@ -854,6 +862,10 @@ ship "Kas'lor Ik 582"
 		"launch effect" "korath internal"
 	bay "Fighter" 70 51 back
 		"launch effect" "korath internal"
+	pylon -54 -83
+		angle 300
+	pylon 54 -83
+		angle 30
 	turret -52.5 -80.5 "Banisher Grav-Turret"
 	turret 52.5 -80.5 "Warder Anti-Missile"
 	turret -57 -50.5 "Warder Anti-Missile"
@@ -936,6 +948,10 @@ ship "Lor'nag Ik 590"
 		"launch effect" "korath internal"
 	gun -45 -253 "Digger Mining Beam"
 	gun 45 -253 "Digger Mining Beam"
+	pylon -112 116
+		angle 270
+	pylon 112 116
+		angle 90
 	turret -77 -116.5 "Grab-Strike Turret"
 	turret 77 -116.5 "Warder Anti-Missile"
 	turret -87 -83 "Banisher Grav-Turret"
@@ -1024,9 +1040,13 @@ ship "Ra'at Ik 621"
 		"launch effect" "korath internal"
 	bay "Fighter" 50 303 back
 		"launch effect" "korath internal"
-	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
+	gun -71 -209 "Fire-Lance"
 	gun 71 -209 "Fire-Lance"
+	pylon -105 -12
+		angle 270
+	pylon 105 -12
+		angle 90
 	turret -52 -295 "Grab-Strike Turret"
 	turret 52 -295 "Warder Anti-Missile"
 	turret -104 -13 "Banisher Grav-Turret"
@@ -1231,6 +1251,14 @@ ship "Korsmanath A'awoj"
 		zoom 0.8
 	engine 46 454.5
 		zoom 0.8
+	pylon -170 -104 "Firelight Missile Bank"
+		angle 315
+	pylon 170 -104 "Firelight Missile Bank"
+		angle 45
+	pylon -178 -84 "Firelight Missile Bank"
+		angle 290
+	pylon 178 -84 "Firelight Missile Bank"
+		angle 70
 	turret -19.5 -438.5 "Banisher Grav-Turret"
 	turret 19.5 -438.5 "Warder Anti-Missile"
 	turret -178 -332 "Warder Anti-Missile"
@@ -1253,14 +1281,6 @@ ship "Korsmanath A'awoj"
 	turret 72.5 338.5 "Korath Inferno"
 	turret -95.5 365.5 "Korath Inferno"
 	turret 95.5 365.5 "Banisher Grav-Turret"
-	gun -170 -104 "Firelight Missile Bank"
-		angle 315
-	gun 170 -104 "Firelight Missile Bank"
-		angle 45
-	gun -178 -84 "Firelight Missile Bank"
-		angle 290
-	gun 178 -84 "Firelight Missile Bank"
-		angle 70
 	bay "Fighter" -167.5 -420
 		angle 315
 		"launch effect" "korath internal"
@@ -1601,8 +1621,16 @@ ship "Kar Ik Vot 349"
 	engine 24 237
 	gun -8 -212 "Korath Detainer"
 	gun 8 -212 "Korath Detainer"
-	gun -16 -158 "Piercer Missile Launcher"
-	gun 16 -158 "Piercer Missile Launcher"
+	gun -16 -158
+	gun 16 -158
+	pylon -63 66 "Piercer Missile Launcher"
+		angle 350
+	pylon 63 66 "Piercer Missile Launcher"
+		angle 10
+	pylon -71 66
+		angle 350
+	pylon 71 66
+		angle 10
 	turret -37 -150 "Thermal Repeater Turret"
 	turret 37 -150 "Thermal Repeater Turret"
 	turret -38 -132 "Thermal Repeater Turret"
@@ -1669,8 +1697,20 @@ ship "Tek Far 71 - Lek"
 	engine -9 219
 	engine 9 219
 	gun 10 -180 "Korath Detainer"
-	gun 10 -180 "Piercer Missile Launcher"
-	gun 10 -180 "Piercer Missile Launcher"
+	gun 10 -180
+	gun 10 -180
+	pylon 18 -37 "Piercer Missile Launcher"
+		angle 90
+	pylon 18 -29
+		angle 90
+	pylon 18 -20 "Piercer Missile Launcher"
+		angle 90
+	pylon 14 150
+		angle 90
+	pylon 14 159
+		angle 90
+	pylon 14 168
+		angle 90
 	turret -10 -85 "Warder Anti-Missile"
 	turret -13 -61
 	turret -14 -38 "Banisher Grav-Turret"
@@ -1753,9 +1793,17 @@ ship "Tek Far 78 - Osk"
 	engine -9 245
 	engine 9 245
 	gun 0 -239 "Korath Detainer"
-	gun 0 -239 "Piercer Missile Launcher"
-	gun -9 -220 "Piercer Missile Launcher"
-	gun -9 -220 "Piercer Missile Launcher"
+	gun -9 -220
+	pylon -7.5 -73.5 "Piercer Missile Launcher"
+		angle 270
+	pylon -7 -65 "Piercer Missile Launcher"
+		angle 270
+	pylon -7 79.5
+		angle 270
+	pylon -7 88.5 "Piercer Missile Launcher"
+		angle 270
+	pylon -7 97
+		angle 270
 	turret 17 -133 "Warder Anti-Missile"
 	turret 19 -110
 	turret 21 -87
@@ -1835,8 +1883,12 @@ ship "Tek Far 109"
 	engine -9 205
 	engine 9 205
 	gun 0 -214 "Korath Detainer"
-	gun -14 -206 "Piercer Missile Launcher"
-	gun 14 -206 "Piercer Missile Launcher"
+	gun -14 -206
+	gun 14 -206
+	pylon -58 -65 "Piercer Missile Launcher"
+		angle 270
+	pylon 58 -65 "Piercer Missile Launcher"
+		angle 90
 	turret -89 32
 	turret 89 32
 	bay "Drone" 38.5 -115.5 over
@@ -1928,6 +1980,10 @@ ship "Met Par Tek 53"
 	gun 0 -92 "Thermal Repeater"
 	gun -10 -65 "Thermal Repeater"
 	gun 10 -65 "Thermal Repeater"
+	pylon -14 -33
+		angle 350
+	pylon 14 -33
+		angle 10
 	turret -36 -45 "Thermal Repeater Turret"
 	turret 36 -45 "Thermal Repeater Turret"
 	turret -38 -28 "Thermal Repeater Turret"
@@ -2130,7 +2186,9 @@ ship "Model 16"
 	
 	engine -10 99
 	engine 10 99
-	gun 0 -99 "Cluster Mine Layer"
+	gun 0 -99
+	pylon -19 -34 "Cluster Mine Layer"
+		angle 345
 	turret -18 -31 "Shield Disruptor Turret"
 	turret 19 49 "Husk-Slice Turret"
 	explode "tiny explosion" 60
@@ -2188,7 +2246,9 @@ ship "Model 32"
 
 	engine -10 128
 	engine 10 128
-	gun 0 -129 "Cluster Mine Layer"
+	gun 0 -129
+	pylon -32 49 "Cluster Mine Layer"
+		angle 300
 	turret 32 -24 "Shield Disruptor Turret"
 	turret -31 -9 "Husk-Slice Turret"
 	turret 24 19 "Husk-Slice Turret"
@@ -2248,7 +2308,11 @@ ship "Model 64"
 	
 	engine -19 159
 	engine 19 159
-	gun 0 -159 "Cluster Mine Layer"
+	gun 0 -159
+	pylon -39 -68
+		angle 200
+	pylon 0 124 "Cluster Mine Layer"
+		angle 180
 	turret 20 -74 "Husk-Slice Turret"
 	turret -35 -69 "Shield Disruptor Turret"
 	turret -29 71 "Husk-Slice Turret"
@@ -2308,8 +2372,12 @@ ship "Model 128"
 
 	engine -14 178
 	engine 14 178
-	gun -11 -166 "Cluster Mine Layer"
-	gun 11 -166 "Cluster Mine Layer"
+	gun -11 -166
+	gun 11 -166
+	pylon -28 119 "Cluster Mine Layer"
+		angle 225
+	pylon 35 126.5 "Cluster Mine Layer"
+		angle 170
 	turret 29 -83 "Husk-Slice Turret"
 	turret -26 -53 "Shield Disruptor Turret"
 	turret 56 35 "Husk-Slice Turret"
@@ -2371,8 +2439,14 @@ ship "Model 256"
 
 	engine -60 147
 	engine 60 147
-	gun -22 -148 "Cluster Mine Layer"
-	gun 22 -148 "Cluster Mine Layer"
+	gun -22 -148
+	gun 22 -148
+	pylon -31.5 149 "Cluster Mine Layer"
+		angle 200
+	pylon 43.5 144.5
+		angle 180
+	pylon 21.5 163 "Cluster Mine Layer"
+		angle 160
 	turret 36 -85 "Shield Disruptor Turret"
 	turret -56 -45 "Husk-Slice Turret"
 	turret 69 3 "Shield Disruptor Turret"
@@ -2436,8 +2510,14 @@ ship "Model 512"
 
 	engine -145 97
 	engine 145 97
-	gun -22 -143 "Cluster Mine Layer"
-	gun 22 -143 "Cluster Mine Layer"
+	gun -22 -143
+	gun 22 -143
+	pylon -87 167 "Cluster Mine Layer"
+		angle 200
+	pylon 88 151 "Cluster Mine Layer"
+		angle 160
+	pylon -25 172
+		angle 185
 	turret -23 -134 "Husk-Slice Turret"
 	turret 91 -102 "Shield Disruptor Turret"
 	turret 124 -57 "Husk-Slice Turret"

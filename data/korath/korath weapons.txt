@@ -413,7 +413,7 @@ outfit "Piercer Missile Launcher"
 	"outfit space" -27
 	"weapon capacity" -27
 	"energy capacity" 50
-	"gun ports" -1
+	"pylon" -1
 	"piercer capacity" 31
 	weapon
 		sprite "projectile/piercer"
@@ -565,7 +565,7 @@ outfit "Cluster Mine Layer"
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 50
-	"gun ports" -1
+	"pylon" -1
 	"minelayer capacity" 17
 	weapon
 		sprite "projectile/korath minelayer"
@@ -926,7 +926,7 @@ outfit "Firelight Missile Bank"
 	"mass" 22
 	"outfit space" -28
 	"weapon capacity" -28
-	"gun ports" -1
+	"pylon" -1
 	"energy capacity" 700
 	"firelight missile capacity" 20
 	weapon

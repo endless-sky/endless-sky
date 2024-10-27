@@ -661,10 +661,12 @@ bool ShipInfoPanel::Hover(const Point &point)
 	hoverIndex = -1;
 	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
 	bool dragIsTurret = (draggingIndex >= 0 && weapons[draggingIndex].IsTurret());
+	bool dragIsPylon = (draggingIndex >= 0 && weapons[draggingIndex].IsPylon());
 	for(const auto &zone : zones)
 	{
 		bool isTurret = weapons[zone.Value()].IsTurret();
-		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
+		bool isPylon = weapons[zone.Value()].IsPylon();
+		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret || isPylon == dragIsPylon))
 			hoverIndex = zone.Value();
 	}
 

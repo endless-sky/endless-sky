@@ -147,9 +147,9 @@ ship "Korath Raider"
 		zoom 0.7
 	"reverse engine" 9 -154
 		zoom 0.7
-	gun 32.5 -1 "Firelight Missile Bank"
+	pylon 32.5 -1 "Firelight Missile Bank"
 		angle 60
-	gun -32.5 -1 "Firelight Missile Bank"
+	pylon -32.5 -1 "Firelight Missile Bank"
 		angle 300
 	turret -10 -143 "Grab-Strike Turret"
 	turret 10 -143 "Grab-Strike Turret"
@@ -490,8 +490,8 @@ ship "Korath Raider" "Korath Raider (Blaze)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
@@ -522,8 +522,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
-	gun
-	gun "Firelight Missile Bank"
+	pylon
+	pylon "Firelight Missile Bank"
 	turret
 	turret
 	turret "Grab-Strike Turret"
@@ -556,8 +556,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -588,8 +588,8 @@ ship "Korath Raider" "Korath Raider (Ember Blaze)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
@@ -622,8 +622,8 @@ ship "Korath Raider" "Korath Raider (Ember Shunt)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
@@ -654,8 +654,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"

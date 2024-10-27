@@ -144,8 +144,10 @@ ship "Centipede"
 		
 	engine -15 113
 	engine 15 113
-	gun -11 -113 "Hai Tracker Pod"
-	gun 11 -113 "Hai Tracker Pod"
+	gun -11 -113
+	gun 11 -113
+	pylon -31 -2 "Hai Tracker Pod"
+	pylon 31 -2 "Hai Tracker Pod"
 	turret 0 -19 "Bullfrog Anti-Missile"
 	turret -41 67 "Bullfrog Anti-Missile"
 	turret 41 67 "Bullfrog Anti-Missile"
@@ -279,7 +281,7 @@ ship "Cicada"
 		"Hyperdrive"
 	engine -6 75
 	engine 6 75
-	gun 0 -76 "Hai Tracker Pod"
+	pylon 0 -76 "Hai Tracker Pod"
 	turret 34.5 -16.5 "Chameleon Anti-Missile"
 	turret -34.5 -16.5 "Chameleon Anti-Missile"
 	turret -20 42 "Bullfrog Anti-Missile"
@@ -390,6 +392,8 @@ ship "Geocoris"
 	engine -100 39
 	gun 24 -118 "Pulse Cannon"
 	gun -24 -118 "Pulse Cannon"
+	pylon -36 93
+	pylon 36 93
 	turret 0 -89 "Bullfrog Anti-Missile"
 	turret 110 -23 "Pulse Turret"
 	turret -110 -23 "Pulse Turret"
@@ -474,6 +478,8 @@ ship "Grasshopper"
 	engine 0 36
 	gun -6 -34 "Pulse Cannon"
 	gun 6 -34 "Pulse Cannon"
+	pylon -15 -10
+	pylon 15 -10
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -572,6 +578,7 @@ ship "Lightning Bug"
 	engine -40 22
 	engine 40 22
 	gun 0 -40 "Ion Cannon"
+	pylon 0 -16
 	turret -47 18 "Bullfrog Anti-Missile"
 	turret 47 18 "Bullfrog Anti-Missile"
 	leak "leak" 40 50
@@ -707,9 +714,14 @@ ship "Ladybug"
 		`"Biroo" Atomic Thruster`
 		"Hyperdrive"
 
-	gun 0 -69.5 "Hai Tracker Pod"
+	gun 0 -69.5
 	gun -12 -68.5 "Ion Cannon"
 	gun 12 -68.5 "Ion Cannon"
+	pylon 0 -30 "Hai Tracker Pod"
+	pylon -46 -40
+		angle 20
+	pylon 46 -40
+		angle 340
 	turret -36 3 "Chameleon Anti-Missile"
 	turret 36 3 "Pulse Turret"
 	engine -36 62 0.8
@@ -743,6 +755,9 @@ ship "Ladybug" "Ladybug (Three Ion)"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
+	pylon
+	pylon
+	pylon
 	turret "Bullfrog Anti-Missile"
 	turret "Bullfrog Anti-Missile"
 
@@ -766,6 +781,9 @@ ship "Ladybug" "Ladybug (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
+	pylon
+	pylon
+	pylon
 	turret "Pulse Turret"
 	turret "Pulse Turret"
 
@@ -788,9 +806,12 @@ ship "Ladybug" "Ladybug (Tracker)"
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Chameleon Anti-Missile"
 	turret "Pulse Turret"
 
@@ -845,6 +866,7 @@ ship "Pond Strider"
 	gun 0 -76 "Railgun"
 	gun -15 -72 "Ion Cannon"
 	gun 15 -72 "Ion Cannon"
+	pylon 0 -60
 	turret -18 -53 "Bullfrog Anti-Missile"
 	turret 18 -53 "Bullfrog Anti-Missile"
 	turret 0 14 "Chameleon Anti-Missile"
@@ -893,6 +915,10 @@ ship "Pond Strider" "Pond Strider (Tracker)"
 		`"Basrem" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+	gun
+	gun "Railgun"
+	gun "Railgun"
+	pylon "Hai Tracker Pod"
 
 
 ship "Pond Strider" "Pond Strider (Ion)"
@@ -1011,10 +1037,14 @@ ship "Sea Scorpion"
 		zoom 0.55
 		angle 90
 		left
-	gun -13 -77.5
-	gun 13 -77.5
-	gun -27 -56
-	gun 27 -56
+	gun -10 -50
+	gun 10 -50
+	gun -33 -20
+	gun 33 -20
+	pylon -13 -77.5
+	pylon 13 -77.5
+	pylon -27 -56
+	pylon 27 -56
 	turret -35.5 24.5
 	turret 35.5 24.5
 	leak "leak" 40 50
@@ -1211,12 +1241,28 @@ ship "Shield Beetle"
 	engine 44 133
 	gun -22 -102 "Ion Cannon"
 	gun 22 -102 "Ion Cannon"
-	gun -34 -68 "Hai Tracker Pod"
-	gun 34 -68 "Hai Tracker Pod"
 	gun -49 -38 "Ion Cannon"
 	gun 49 -38 "Ion Cannon"
-	gun -61 -14 "Hai Tracker Pod"
-	gun 61 -14 "Hai Tracker Pod"
+	gun -22 -102
+	gun 22 -102
+	gun -49 -38
+	gun 49 -38
+	pylon -34 -68 "Hai Tracker Pod"
+		angle 340
+	pylon 34 -68 "Hai Tracker Pod"
+		angle 20
+	pylon -61 -14 "Hai Tracker Pod"
+		angle 340
+	pylon 61 -14 "Hai Tracker Pod"
+		angle 20
+	pylon -39 -9
+		angle 20
+	pylon 39 -9
+		angle 340
+	pylon -55 72
+		"over"
+	pylon 55 72
+		"over"
 	turret -39 48
 	turret 39 48
 	turret -57 75
@@ -1255,12 +1301,20 @@ ship "Shield Beetle" "Shield Beetle (Police)"
 		"Hyperdrive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
@@ -1331,14 +1385,22 @@ ship "Shield Beetle" "Shield Beetle (Pulse Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Pulse Turret"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
@@ -1365,12 +1427,20 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
@@ -1399,6 +1469,14 @@ ship "Shield Beetle" "Shield Beetle (Six Ion)"
 	gun "Ion Cannon"
 	gun
 	gun
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
@@ -1429,12 +1507,20 @@ ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
 		"Fuel Pod" 9
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
@@ -1508,6 +1594,7 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+	
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Pulse Cannon"
@@ -1516,6 +1603,14 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
 
 
 # Custom anti-pirate build; insufficient battery for fighting Hai:
@@ -1654,12 +1749,20 @@ ship "Emperor Beetle"
 	"steering engine" 43 131
 		zoom 0.45
 		left
-	gun 12.5 -128
 	gun -10 -128
+	gun 12.5 -128
 	gun -23 -102.5
 	gun 24.5 -102.5
 	gun -42.5 -53.5 "Tripulse Shredder"
 	gun 43.5 -54.5 "Tripulse Shredder"
+	pylon 43.5 -54
+		angle 340
+	pylon 43.5 -54
+		angle 20
+	pylon -60 -20
+		angle 315
+	pylon 60 -20
+		angle 45
 	turret 0.5 -25.5 "Warder Anti-Missile"
 	turret -47.5 11.5
 	turret 48.5 11.5
@@ -1729,11 +1832,20 @@ ship "Solifuge"
 		
 	engine -28 135.5
 	engine 28 135.5
-	gun 0 -140 "Hai Tracker Pod"
+	gun 0 -140
 	gun -11.5 -138.5 "Ion Cannon"
 	gun 11.5 -138.5 "Ion Cannon"
 	gun -9.5 -101 "Ion Cannon"
 	gun 9.5 -101 "Ion Cannon"
+	pylon 0 -135 "Hai Tracker Pod"
+	pylon -39 -122
+		angle 315
+	pylon 39 -122
+		angle 45
+	pylon -63 -84
+		angle 345
+	pylon 63 -84
+		angle 15
 	turret 0 -109.5 "Chameleon Anti-Missile"
 	turret 54.5 -48.5 "Bullfrog Anti-Missile"
 	turret -54.5 -48.5 "Bullfrog Anti-Missile"
@@ -1801,10 +1913,22 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
 	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	turret "Pulse Turret"
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
 
 
 ship "Solifuge" "Solifuge (Jump, Tracker)"
@@ -1824,6 +1948,18 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	turret "Chameleon Anti-Missile"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
 
 
 ship "Solifuge" "Solifuge (Pulse)"
@@ -1905,7 +2041,12 @@ ship "Violin Spider"
 
 	engine -15 30
 	engine 15 30
-	gun 0 -31 "Hai Tracker Pod"
+	gun 0 -31
+	pylon 0 -20 "Hai Tracker Pod"
+	pylon -7 -20
+		angle 350
+	pylon 7 -20
+		angle 10
 	turret 0 5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
@@ -1970,8 +2111,8 @@ ship "Water Bug"
 		"Hyperdrive"
 	engine -50 33
 	engine 50 33
-	gun -24 -53 "Hai Tracker Pod"
-	gun 24 -53 "Hai Tracker Pod"
+	pylon -24 -53 "Hai Tracker Pod"
+	pylon 24 -53 "Hai Tracker Pod"
 	turret 0 -10 "Pulse Turret"
 	turret -17 17 "Chameleon Anti-Missile"
 	turret 17 17 "Chameleon Anti-Missile"

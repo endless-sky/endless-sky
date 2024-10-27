@@ -244,7 +244,7 @@ outfit "EMP Torpedo Bay"
 	"mass" 9
 	"outfit space" -18
 	"weapon capacity" -18
-	"gun ports" -1
+	"pylon" -1
 	"emp torpedo capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
@@ -317,7 +317,7 @@ outfit "Teciimach Bay"
 	"mass" 9
 	"outfit space" -13
 	"weapon capacity" -13
-	"gun ports" -1
+	"pylon" -1
 	"teciimach canister capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
@@ -367,7 +367,7 @@ outfit "Teciimach Pod"
 	"mass" 3
 	"outfit space" -6
 	"weapon capacity" -6
-	"gun ports" -1
+	"pylon" -1
 	"teciimach canister capacity" 3
 	weapon
 		sprite "projectile/emp torpedo"

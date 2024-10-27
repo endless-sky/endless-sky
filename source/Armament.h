@@ -42,10 +42,12 @@ class Visual;
 // distance away and velocity relative to the ship that is firing.
 class Armament {
 public:
-	// Add a gun or turret hard-point.
+	// Add a gun, turret, or pylon hard-point.
 	void AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
 		bool isUnder, const Outfit *outfit = nullptr);
 	void AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
+		bool isUnder, const Outfit *outfit = nullptr);
+	void AddPylon(const Point &point, const Hardpoint::BaseAttributes& attributes,
 		bool isUnder, const Outfit *outfit = nullptr);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
@@ -67,6 +69,7 @@ public:
 	const std::vector<Hardpoint> &Get() const;
 	int GunCount() const;
 	int TurretCount() const;
+	int PylonCount() const;
 	// Determine the ammunition used by this armament that can be resupplied (i.e. is not self-uninstalling).
 	std::set<const Outfit *> RestockableAmmo() const;
 

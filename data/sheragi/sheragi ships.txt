@@ -203,8 +203,10 @@ ship "Black Diamond"
 		
 		"Fission Drive"
 	gun 0 -39.5 "Heavy Ion Cyclotron"
-	gun 22 -7.5 "Shard Fabricator"
-	gun -22 -7.5 "Shard Fabricator"
+	gun 22 -7.5
+	gun -22 -7.5
+	pylon 22 -7.5 "Shard Fabricator"
+	pylon -22 -7.5 "Shard Fabricator"
 	engine 0 38
 		zoom 1.3
 		over

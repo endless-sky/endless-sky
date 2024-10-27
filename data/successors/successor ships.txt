@@ -70,6 +70,8 @@ ship "Aaulqra"
 	gun 14 -74 `"Ojet" Bimodal Coilgun`
 	gun -12 -83 `"Ojet" Bimodal Coilgun`
 	gun 12 -83 `"Ojet" Bimodal Coilgun`
+	pylon 0 -116
+	pylon 0 -109
 	turret -17 4
 	turret 17 4
 	engine -17 50
@@ -242,10 +244,12 @@ ship "Kaskhorade"
 		`"Veusa" Inductive Reverser`
 		"Hyperdrive"
 
-	gun -3 -120 `"Sjeja" Kinetic Lance`
-	gun 3 -120 `"Sjeja" Kinetic Lance`
+	gun -3 -120
+	gun 3 -120
 	gun -19 -74 `"Ojet" Bimodal Coilgun`
 	gun 19 -74 `"Ojet" Bimodal Coilgun`
+	pylon -3 -120 `"Sjeja" Kinetic Lance`
+	pylon 3 -120 `"Sjeja" Kinetic Lance`
 	turret -31 6
 	turret 31 6
 	turret 0 -15 "Bimodal Coilgun Turret"
@@ -839,6 +843,7 @@ ship "Seiitej"
 	gun -5 -86
 	gun 5 -86
 	gun 10 -78
+	pylon 0 -76
 	turret 0 -29
 	engine -25 44
 	engine 25 44
@@ -925,6 +930,7 @@ ship "Stolsaqra"
 	gun 0 -40 "Successor Pulse Laser"
 	gun -10.5 -20 "Successor Pulse Laser"
 	gun 10.5 -20 "Successor Pulse Laser"
+	pylon 0 -36
 	engine -8 35
 	engine 8 35
 	"steering engine" 4 -41
@@ -1121,6 +1127,7 @@ ship "Vujlet"
 	gun 6 -46 `"Ojet" Bimodal Coilgun`
 	gun -9 -30
 	gun 9 -30
+	pylon 0 44
 	engine -16 49
 		zoom .9
 	engine 16 49

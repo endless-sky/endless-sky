@@ -304,7 +304,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		"steering slots free:", "steering slot",
 		"thruster slots free:", "thruster slot",
 		"gun ports free:", "gun ports",
-		"turret mounts free:", "turret mounts"
+		"turret mounts free:", "turret mounts",
+		"pylons free:", "pylon"
 	};
 	for(unsigned i = 1; i < NAMES.size(); i += 2)
 		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
@@ -943,7 +944,8 @@ void ShipInfoDisplay::DrawShipHardpointStats(const Ship &ship, const Rectangle &
 	map<string, double> chassis;
 	static const vector<string> NAMES = {
 		"gun ports free:", "gun ports",
-		"turret mounts free:", "turret mounts"
+		"turret mounts free:", "turret mounts",
+		"pylons free:", "pylon"
 	};
 
 	for(unsigned i = 1; i < NAMES.size(); i += 2)

@@ -73,6 +73,8 @@ ship "Arach Courier" "Arach Courier (Miner)"
 		"Small Steering Module" 3
 		"Hyperdrive"
 
+
+
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
 	thumbnail "thumbnail/arach freighter"
@@ -128,6 +130,7 @@ ship "Arach Freighter"
 	"final explode" "final explosion medium"
 	description `Arach cargo ship hulls are legendary for their durability. It is not uncommon for a large Arach family to convert a freighter that is no longer space-worthy into a planet-side dwelling, and even in the harshest of conditions these converted houses can last for hundreds of years with little or no exterior maintenance.`
 
+
 ship "Arach Freighter" "Arach Freighter (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -145,6 +148,8 @@ ship "Arach Freighter" "Arach Freighter (Miner)"
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
+
+
 
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
@@ -205,6 +210,7 @@ ship "Arach Hulk"
 	"final explode" "final explosion large"
 	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk, designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
 
+
 ship "Arach Hulk" "Arach Hulk (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -224,6 +230,8 @@ ship "Arach Hulk" "Arach Hulk (Miner)"
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
+
+
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
@@ -282,6 +290,7 @@ ship "Arach Spindle"
 	"final explode" "final explosion large"
 	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
 
+
 ship "Arach Spindle" "Arach Spindle (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -303,6 +312,7 @@ ship "Arach Spindle" "Arach Spindle (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Arach Spindle" "Arach Spindle (Plasma)"
 	outfits
 		"Hyperdrive"
@@ -319,6 +329,7 @@ ship "Arach Spindle" "Arach Spindle (Plasma)"
 		"Large Steering Module" 2
 		"Fusion Reactor"
 		"Plasma Turret" 2
+
 
 ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 	outfits
@@ -337,6 +348,7 @@ ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Jump Drive"
+
 
 
 ship "Arach Transport"
@@ -392,6 +404,7 @@ ship "Arach Transport"
 	"final explode" "final explosion medium"
 	description `The Arach Transport is the oldest of their ship designs, dating back to the time when they first joined the Coalition in overthrowing the Quarg and capturing their ringworlds. Back then, Transports were occasionally used as warships, but now, thousands of years later, they are considered outdated compared to the latest Heliarch military ships.`
 
+
 ship "Arach Transport" "Arach Transport (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -407,6 +420,7 @@ ship "Arach Transport" "Arach Transport (Miner)"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 
 ship "Heliarch Breacher"
@@ -461,15 +475,19 @@ ship "Heliarch Breacher"
 	engine 0 85 .9
 	engine -19 78 .7
 	engine 19 79 .7
-	gun 0 -87 "Finisher Pod"
+	gun 0 -87
 	gun -20 -33 "Bombardment Cannon"
 	gun 20 -33 "Bombardment Cannon"
+	pylon 0 -85 "Finisher Pod"
+	pylon -20 -31
+	pylon 20 -31
 	turret 0 -23.5 "Bombardment Turret"
 	explode "small explosion" 30
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
 	description `The Breacher isn't the most durable Heliarch vessel, but its impressive forward speed and high firepower for its size make this ship ideal for strafing runs.`
+
 
 ship "Heliarch Breacher" "Heliarch Breacher (Ions)"
 	outfits
@@ -489,6 +507,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Ions)"
 		"Small Thrust Module"
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 	outfits
@@ -510,6 +529,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 	outfits
 		"Bombardment Cannon" 3
@@ -528,6 +548,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		"Small Thrust Module"
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 
 ship "Heliarch Hunter"
@@ -585,9 +606,12 @@ ship "Heliarch Hunter"
 	engine 5.5 103 .1
 	engine -25 113 .8
 	engine 25 113 .8
-	gun 0 -117 "Finisher Pod"
-	gun -17.5 -72.5 "Finisher Pod"
-	gun 17.5 -72.5 "Finisher Pod"
+	gun 0 -117
+	gun -17.5 -72.5
+	gun 17.5 -72.5
+	pylon 0 -115 "Finisher Pod"
+	pylon -17.5 -70 "Finisher Pod"
+	pylon 17.5 -70 "Finisher Pod"
 	turret 0 -39.5 "Heliarch Attractor"
 	turret 0 33 "Bombardment Turret"
 	explode "small explosion" 30
@@ -596,6 +620,7 @@ ship "Heliarch Hunter"
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
 	description `Although they mostly serve as patrol vessels nowadays in peacetime, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
 	outfits
@@ -620,9 +645,13 @@ ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
 		"Scram Drive"
 		
 	gun
-	gun "Finisher Maegrolain"
-	gun "Finisher Maegrolain"
-	
+	gun
+	gun
+	pylon
+	pylon "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+
+
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
 		"Finisher Pod" 2
@@ -648,10 +677,14 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Scram Drive"
 	
 	gun
-	gun "Finisher Pod"
-	gun "Finisher Pod"
+	gun
+	gun
+	pylon
+	pylon "Finisher Pod"
+	pylon "Finisher Pod"
 	turret "Heliarch Repulsor"
 	turret "Heliarch Attractor"
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 	outfits
@@ -675,6 +708,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Small Steering Module" 2
 		"Scram Drive"
 
+
 ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 	outfits
 		"Finisher Pod" 3
@@ -695,6 +729,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 		"Small Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Scram Drive"
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 	outfits
@@ -717,6 +752,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Scram Drive"
+
 
 
 ship "Heliarch Interdictor"
@@ -774,8 +810,10 @@ ship "Heliarch Interdictor"
 	engine -20 163 .85
 	engine 20 163 .85
 	engine 30 163 .5
-	gun -20 -98 "Finisher Pod"
-	gun 20 -98 "Finisher Pod"
+	gun -20 -98
+	gun 20 -98
+	pylon -20 -96 "Finisher Pod"
+	pylon 20 -96 "Finisher Pod"
 	turret -8 -63 "Heliarch Attractor"
 	turret 8 -63 "Heliarch Repulsor"
 	explode "small explosion" 20
@@ -784,6 +822,7 @@ ship "Heliarch Interdictor"
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
 	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry a pair of attractor and repulsor beams that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
@@ -807,6 +846,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
 	outfits
 		"Finisher Maegrolain" 2
@@ -829,6 +869,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 	outfits
 		"Ion Hail Turret" 2
@@ -850,6 +891,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 	outfits
 		"Finisher Pod" 2
@@ -869,6 +911,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 		# "Small Thrust Module" # Extra thruster
 		"Large Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 	outfits
@@ -893,6 +936,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 
 ship "Heliarch Judicator"
@@ -950,8 +994,10 @@ ship "Heliarch Judicator"
 	engine -17 163 .7
 	engine 17 163 .7
 	engine 33 108 .5
-	gun -13 -124.5 "Finisher Pod"
-	gun 13 -124.5 "Finisher Pod"
+	gun -13 -124.5
+	gun 13 -124.5
+	pylon -13 -122 "Finisher Pod"
+	pylon 13 -122 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
 	bay "Fighter" -34.5 -82
 		"launch effect" "coalition launch"
@@ -972,6 +1018,7 @@ ship "Heliarch Judicator"
 	"final explode" "final explosion large" 1
 	description `During their time battling the Quarg, the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of the question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these new fighters.`
 	description `	Alongside their six fighter bays, Judicators come with a large bunk count and higher cargo space than other Heliarch warships, thus doubling as a logistics vessel for transporting troops and equipment.`
+
 
 ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
 	outfits
@@ -994,6 +1041,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
 		"Large Steering Module" 2
 		"Scram Drive"
 
+
 ship "Heliarch Judicator" "Heliarch Judicator (Ions)"
 	outfits
 		"Ion Rain Gun" 2
@@ -1015,6 +1063,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Ions)"
 		"Large Steering Module" 2
 		"Scram Drive"
 
+
 ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 	outfits
 		"Finisher Pod" 2
@@ -1035,6 +1084,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 		"Small Thrust Module" 2  # Extra thruster
 		"Small Steering Module" 3
 		"Scram Drive"
+
 
 ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
 	outfits
@@ -1058,6 +1108,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
 		"Large Steering Module" 2
 		"Scram Drive"
 
+
 ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 	outfits
 		"Bombardment Cannon" 2
@@ -1080,6 +1131,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Scram Drive"
+
 
 
 ship "Heliarch Neutralizer"
@@ -1137,11 +1189,16 @@ ship "Heliarch Neutralizer"
 	gun 16 -59 "Ion Rain Gun"
 	gun -22 -57 "Ion Rain Gun"
 	gun 22 -57 "Ion Rain Gun"
+	pylon -16 -57
+	pylon 16 -57
+	pylon -22 -55
+	pylon 22 -55
 	explode "small explosion" 30
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
 	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive.`
+
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 	outfits
@@ -1163,10 +1220,15 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Large Steering Module"
 		"Hyperdrive"
 	
-	gun "Finisher Pod"
-	gun "Finisher Pod"
 	gun
 	gun
+	gun
+	gun
+	pylon "Finisher Pod"
+	pylon "Finisher Pod"
+	pylon
+	pylon
+
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 	outfits
@@ -1187,6 +1249,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 	outfits
 		"Bombardment Cannon" 4
@@ -1204,6 +1267,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Small Thrust Module" 2
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 
 ship "Heliarch Punisher"
@@ -1264,8 +1328,14 @@ ship "Heliarch Punisher"
 	gun 21 -121 "Ion Rain Gun"
 	gun -27 -118 "Ion Rain Gun"
 	gun 27 -118 "Ion Rain Gun"
-	gun -43 -43 "Finisher Pod"
-	gun 43 -43 "Finisher Pod"
+	gun -43 -43
+	gun 43 -43
+	pylon -21 -119
+	pylon 21 -119
+	pylon -27 -116
+	pylon 27 -116
+	pylon -43 -41 "Finisher Pod"
+	pylon 43 -41 "Finisher Pod"
 	turret -13 -42 "Bombardment Turret"
 	turret 13 -42 "Bombardment Turret"
 	turret 0 -35 "Bombardment Turret"
@@ -1276,6 +1346,7 @@ ship "Heliarch Punisher"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 	outfits
@@ -1300,12 +1371,13 @@ ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
 	
-	gun "Finisher Maegrolain"
-	gun "Finisher Maegrolain"
-	gun
-	gun
-	gun "Finisher Maegrolain"
-	gun "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+	pylon
+	pylon
+	pylon "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
 	outfits
@@ -1328,6 +1400,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Jump Drive"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -1357,12 +1430,19 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	gun "Bombardment Cannon"
 	gun "Bombardment Cannon"
 	gun "Bombardment Cannon"
-	gun "Finisher Pod"
-	gun "Finisher Pod"
+	gun
+	gun
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon "Finisher Pod"
+	pylon "Finisher Pod"
 	turret "Heliarch Attractor"
 	turret "Heliarch Attractor"
 	turret "Heliarch Repulsor"
 	turret "Bombardment Turret"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 	outfits
@@ -1384,6 +1464,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Large Steering Module" 2
 		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 	outfits
@@ -1411,6 +1492,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 	turret "Heliarch Repulsor"
 	turret
 
+
 ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 	outfits
 		"Finisher Pod" 6
@@ -1430,6 +1512,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		# "Small Thrust Module" # Extra thruster
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 	outfits
@@ -1496,11 +1579,13 @@ ship "Heliarch Pursuer"
 	engine 7 33.5
 	engine -7 33.5
 	gun 0 -35.5
+	pylon 0 -33
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own: the Pursuer.`
 	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce and capable of outrunning any other Coalition ship.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 	outfits
@@ -1514,6 +1599,7 @@ ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 		
 		"Small Thrust Module" 2
 		"Small Steering Module" 2
+
 
 
 ship "Heliarch Rover"
@@ -1556,12 +1642,15 @@ ship "Heliarch Rover"
 	
 	engine 7 28
 	engine -7 28
-	gun 5 -30
 	gun -5 -30
+	gun 5 -30
+	pylon -5 -28
+	pylon 5 -28
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `The very first fighter they designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Heliarch Rover" "Heliarch Rover (Ions)"
 	outfits
@@ -1575,6 +1664,7 @@ ship "Heliarch Rover" "Heliarch Rover (Ions)"
 		
 		"Small Thrust Module" 2
 		"Small Steering Module" 2
+
 
 
 ship "Heliarch Stalker"
@@ -1626,6 +1716,7 @@ ship "Heliarch Stalker"
 	explode "small explosion" 15
 	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take serious punishment and recover faster than some warships. Its speed and maneuverability, however, leave much to be desired.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 	outfits
@@ -1703,6 +1794,8 @@ ship "Kimek Briar" "Kimek Briar (Miner)"
 		"Large Steering Module"
 		"Hyperdrive"
 
+
+
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
 	thumbnail "thumbnail/kimek spire"
@@ -1761,6 +1854,7 @@ ship "Kimek Spire"
 	"final explode" "final explosion large"
 	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly three hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
 
+
 ship "Kimek Spire" "Kimek Spire (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1777,6 +1871,7 @@ ship "Kimek Spire" "Kimek Spire (Miner)"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
@@ -1824,6 +1919,10 @@ ship "Kimek Thistle"
 	engine 13 120 .7
 	gun -11 -92
 	gun 11 -92
+	pylon -19 3.5
+		angle 270
+	pylon 19 3.5
+		angle 90
 	turret -13 3
 	turret 13 3
 	explode "small explosion" 10
@@ -1831,6 +1930,7 @@ ship "Kimek Thistle"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The Kimek love traveling so much that some of them will happily spend months at a time in a transport this size, and the passengers often grow into a tight-knit community by the end of their journeys together.`
+
 
 ship "Kimek Thistle" "Kimek Thistle (Miner)"
 	outfits
@@ -1850,6 +1950,7 @@ ship "Kimek Thistle" "Kimek Thistle (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 	outfits
 		"Hyperdrive"
@@ -1865,6 +1966,7 @@ ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 		"Torpedo Launcher" 2
 		Torpedo 60
 		"Breeder Reactor"
+
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
@@ -1914,6 +2016,7 @@ ship "Kimek Thorn"
 	"final explode" "final explosion small"
 	description `The Thorn is the Kimek equivalent of a shuttle, and thanks to their speed and maneuverability they are used throughout Coalition space for transferring passengers from one ship to another or from a planet into orbit.`
 
+
 ship "Kimek Thorn" "Kimek Thorn (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1926,6 +2029,7 @@ ship "Kimek Thorn" "Kimek Thorn (Miner)"
 		"Small Thrust Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
+
 
 
 ship "Saryd Runabout"
@@ -1975,6 +2079,7 @@ ship "Saryd Runabout"
 	"final explode" "final explosion small"
 	description `Saryds place high value both on solitude, but also on community and collaboration. So, it is not surprising that their smallest spacefaring vessel requires a team of at least two individuals to operate it. It is quite common for a lone Saryd to take on a Kimek or Arach copilot as a way of building cross-species friendships.`
 
+
 ship "Saryd Runabout" "Saryd Runabout (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1987,6 +2092,7 @@ ship "Saryd Runabout" "Saryd Runabout (Miner)"
 		"Small Thrust Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
+
 
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
@@ -2048,6 +2154,7 @@ ship "Saryd Sojourner"
 	"final explode" "final explosion large"
 	description `When the first wars were fought against the Quarg, the Saryds had been spacefaring for more than ten thousand Earth years, and their starship technology was considerably more advanced than the Kimek or the Arachi. At that time, ships similar to the modern Sojourner were the most powerful capital ships in the Coalition fleet.`
 
+
 ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -2069,6 +2176,7 @@ ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+
 ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
 	outfits
 		"Hyperdrive"
@@ -2084,6 +2192,8 @@ ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
 		"Large Steering Module" 2
 		"Overclocked Repair Module"
 		"Overcharged Shield Module"
+
+
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
@@ -2145,6 +2255,7 @@ ship "Saryd Traveler"
 	"final explode" "final explosion medium"
 	description `Travelers were originally designed as science vessels, thousands of years ago before the Saryds had catalogued all the life forms and physical phenomena of every world in Coalition space. Today, many Saryd communities still choose to live in a Traveler and journey together from system to system rather than putting down roots on a planet.`
 
+
 ship "Saryd Traveler" "Saryd Traveler (Miner)"
 	outfits
 		"MCS Extractor" 4
@@ -2162,6 +2273,8 @@ ship "Saryd Traveler" "Saryd Traveler (Miner)"
 		"Small Reverse Module"
 		"Small Steering Module"
 		"Hyperdrive"
+
+
 
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
@@ -2214,6 +2327,7 @@ ship "Saryd Visitor"
 	explode "medium explosion" 5
 	"final explode" "final explosion medium"
 	description `Rather than specializing in carrying passengers or carrying cargo, Saryds seek to make their ships as well-balanced and versatile as possible. As a result, the crew of a typical Visitor can count on performing a different sort of job every week.`
+
 
 ship "Saryd Visitor" "Saryd Visitor (Miner)"
 	outfits

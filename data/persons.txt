@@ -285,14 +285,14 @@ ship "Marauder Fury"
 	engine -12.5 41 0.35
 	engine 12.5 41 0.35
 	engine 0 46
-	gun -13.5 -36 "Meteor Missile Launcher"
-	gun 13.5 -36 "Meteor Missile Launcher"
-	gun -20 -25 "Meteor Missile Launcher"
-	gun 20 -25 "Meteor Missile Launcher"
+	pylon -13.5 -36 "Meteor Missile Launcher"
+	pylon 13.5 -36 "Meteor Missile Launcher"
+	pylon -20 -25 "Meteor Missile Launcher"
+	pylon 20 -25 "Meteor Missile Launcher"
 	gun -6 -41.5
 	gun 6 -41.5
-	gun -43.5 2 "Hai Tracker Pod"
-	gun 43.5 2 "Hai Tracker Pod"
+	pylon -43.5 2 "Hai Tracker Pod"
+	pylon 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	"final explode" "final explosion small"
@@ -409,14 +409,6 @@ person "Captain Nate"
 			parallel
 		gun 0 -130.5 "Proton Gun"
 			parallel
-		gun -24 -122 "Heavy Rocket Launcher"
-			parallel
-		gun -24 -122 "Heavy Rocket Launcher"
-			parallel
-		gun 24 -122 "Heavy Rocket Launcher"
-			parallel
-		gun 24 -122 "Heavy Rocket Launcher"
-			parallel
 		gun -40 -46 "Proton Gun"
 			parallel
 		gun -40 -46 "Proton Gun"
@@ -432,6 +424,14 @@ person "Captain Nate"
 		gun 34.5 -43 "Proton Gun"
 			parallel
 		gun 34.5 -43 "Proton Gun"
+			parallel
+		pylon -24 -122 "Heavy Rocket Launcher"
+			parallel
+		pylon -24 -122 "Heavy Rocket Launcher"
+			parallel
+		pylon 24 -122 "Heavy Rocket Launcher"
+			parallel
+		pylon 24 -122 "Heavy Rocket Launcher"
 			parallel
 		turret 0 42 "Anti-Missile Turret"
 		explode "tiny explosion" 18
@@ -690,7 +690,7 @@ ship "Modified Osprey"
 	engine 45.5 64 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun 0 -114 "Nuclear Missile"
+	pylon 0 -114 "Nuclear Missile"
 	gun -6.5 -100 "Husk-Slice"
 	gun 6.5 -100 "Husk-Slice"
 	gun -14 -91 "Husk-Slice"
@@ -699,8 +699,8 @@ ship "Modified Osprey"
 	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
 	gun 26.5 -53 "Korath Detainer"
-	gun -67 -1.5 "Finisher Pod"
-	gun 67 -1.5 "Finisher Pod"
+	pylon -67 -1.5 "Finisher Pod"
+	pylon 67 -1.5 "Finisher Pod"
 	turret 0 -91.5 "Point Defense Turret"
 	turret -13.5 -15.5 "Shield Disruptor Turret"
 	turret 13.5 -15.5 "Shield Disruptor Turret"
@@ -1609,12 +1609,12 @@ ship "Modified Battleship"
 	engine -21 220
 		zoom 0.8
 	gun 0 -223 "Prototype Fusion Cannon"
-	gun -59 14 "Typhoon Pod"
-	gun 59 14 "Typhoon Pod"
-	gun -72 25 "Torpedo Pod"
-	gun 72 26 "Torpedo Pod"
-	gun -84 38 "Torpedo Pod"
-	gun 84 38 "Torpedo Pod"
+	pylon -59 14 "Typhoon Pod"
+	pylon 59 14 "Typhoon Pod"
+	pylon -72 25 "Torpedo Pod"
+	pylon 72 26 "Torpedo Pod"
+	pylon -84 38 "Torpedo Pod"
+	pylon 84 38 "Torpedo Pod"
 	turret -37 -11 "Electron Turret"
 	turret 37 -11 "Electron Turret"
 	turret 0 10 "Wanderer Anti-Missile"
@@ -2233,10 +2233,10 @@ ship "Modified Hauler VI"
 	engine -83.5 196.5
 	engine 83.5 196.5
 	engine 0 196.5
-	gun -14.5 -168
-	gun 14.5 -168
-	gun -35 -128
-	gun 35 -128
+	pylon -14.5 -168
+	pylon 14.5 -168
+	pylon -35 -128
+	pylon 35 -128
 	turret -21 -124.5
 	turret 21 -124.5 "Point Defense Turret"
 	turret -32.5 -102.5

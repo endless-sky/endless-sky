@@ -44,6 +44,8 @@ color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
 color "player info hardpoint gun" .5 .375 0. 1.
 color "player info hardpoint gun hover" .8 .6 0. 1.
+color "player info hardpoint pylon" 0.5 .1 .6 1.
+color "player info hardpoint pylon hover" 0.8 .4 .9 1.
 color "player info hardpoint turret" 0. .375 .5 1.
 color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.

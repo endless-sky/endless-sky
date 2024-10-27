@@ -49,6 +49,7 @@ test-data "Flagship Attribute Autoconditions Save"
 				"outfit scan power" 18
 				"outfit scan efficiency" 22
 				"outfit space" 552
+				"pylon" 0
 				ramscoop 2.5
 				"remnant node" 5
 				"required crew" 9
@@ -153,6 +154,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship base attribute: outfit scan power" == 18000
 			"flagship base attribute: outfit scan efficiency" == 22000
 			"flagship base attribute: outfit space" == 552000
+			"flagship base attribute: pylon" == 0
 			"flagship base attribute: ramscoop" == 2500
 			"flagship base attribute: remnant node" == 5000
 			"flagship base attribute: reverse thruster slot" == 1000
