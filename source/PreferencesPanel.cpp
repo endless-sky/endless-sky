@@ -252,7 +252,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
-		Audio::SetVolume((20 - y) / 200.);
+		Audio::SetVolume((17 - y) / 200.);
 		Audio::Play(Audio::Get("warder"));
 		return true;
 	}
@@ -480,8 +480,7 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD_FIRE,
-		Command::HOLD_POSITION,
+		Command::HOLD,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -694,7 +693,8 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
-		DATE_FORMAT
+		DATE_FORMAT,
+		"Show parenthesis"
 	};
 
 	bool isCategory = true;
