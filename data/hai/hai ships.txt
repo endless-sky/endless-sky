@@ -69,6 +69,21 @@ ship "Aphid" "Aphid (Armed)"
 		"Hyperdrive"
 
 
+ship "Aphid" "Aphid (Phantom Pallet)"
+	outfits
+		"Pulse Turret"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+		"Phantom Pallet" 4
+
+
 ship "Aphid" "Aphid (Unfettered)"
 	outfits
 		"Chameleon Anti-Missile"
@@ -143,6 +158,25 @@ ship "Centipede"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
+
+
+ship "Centipede" "Centipede (Holovid)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hai Cuttlefish Jammer" 2
+		"Luxury Accommodations"
+		"Holovid Zone"
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
+		Hyperdrive
 
 
 ship "Centipede" "Centipede (Pulse)"
@@ -548,6 +582,23 @@ ship "Lightning Bug"
 	explode "large explosion" 8
 	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
+
+
+ship "Lightning Bug" "Lightning Bug (Phantom Pallet)"
+	outfits
+		"Ion Cannon"
+		"Bullfrog Anti-Missile" 2
+		"Hai Cuttlefish Jammer"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle" 2
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Phantom Pallet" 7
+		"Hyperdrive"
 
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
@@ -1933,6 +1984,25 @@ ship "Water Bug"
 	explode "huge explosion" 5
 	"final explode" "final explosion medium"
 	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has led the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
+
+
+ship "Water Bug" "Water Bug (Phantom Pallet)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 168
+		"Tracker Storage Pod" 2
+		"Pulse Turret"
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		# `"Basrem" Reverse Thruster` # Extra thruster
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+		"Phantom Pallet" 7
 
 
 ship "Water Bug" "Water Bug (Jump)"

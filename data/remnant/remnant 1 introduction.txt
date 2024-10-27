@@ -1643,7 +1643,12 @@ mission "Remnant: Tech Retrieval"
 	on offer
 		"remnant met taely" ++
 		conversation
-			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			branch familiar
+				has "remnant met taely"
+			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important.`
+			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <starting planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+				to display
+					has "human space start"
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -1652,6 +1657,10 @@ mission "Remnant: Tech Retrieval"
 			`	She looks at you with an inscrutable expression for a moment. "Trying to be inconspicuous is admirable. Being oblivious to the fact that you stand out like a star in empty space is not."`
 			label admit
 			`	"I have an opportunity for you, if you are interested in being helpful to the Remnant." When you express your interest she leads you over to a balcony overlooking the primary shipyards. As she leans on the railing a cold breeze makes you shiver, but she seems oblivious to it. "I am known as Taely. As a prefect among the Remnant, I am responsible for this." She gestures at the shipyards, where you can see a myriad of the Remnant's alien-looking ships in various stages of construction or repair. "The ships we have serve us well, but they are old designs. Only the Ibis is comparatively new. We need new ideas, new inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a Puffin.`
+				goto question
+			label familiar
+			`As you enter the spaceport, you notice Taely across the plaza. She begins approaching you immediately, appearing to have been waiting for you. "Greetings, <first>. I hope you are not too busy as I have an opportunity for you." When you express interest, she leads you to a balcony overlooking the primary shipyards. She seems oblivious to the chilling breeze as she leans on the railing. "As you may have noticed in your time with us, many of our ships, while they do serve us well, are old designs. While we have recently made significant progress with a new concept, we still need new ideas and inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a Puffin.`
+			label question
 			choice
 				`	"So, what are you asking?"`
 					goto request
@@ -1952,6 +1961,17 @@ mission "Remnant: Taely Intro Log"
 		"remnant met taely" >= 1
 	on offer
 		log "People" "Taely" `As an engineering prefect, Taely is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		fail
+
+
+
+mission "Remnant: Taely Penguin Log"
+	invisible
+	to offer
+		has "Remnant: Taely Intro Log: failed"
+		has "Remnant: Face to Maw 2: done"
+	on offer
+		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		fail
 
 
@@ -2459,6 +2479,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	minor
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination "Wayfarer"
 	passengers 3
 	to offer
@@ -2907,7 +2928,6 @@ mission "Remnant: Face to Maw 2"
 	on accept
 		event "remnant: penguin"
 	on complete
-		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		"remnant met taely" ++
 		give ship "Penguin" "Shadow Hope"
 		conversation
@@ -3350,6 +3370,8 @@ mission "Remnant: Keystone Research 7"
 				`	"The Remnant sure like to eat."`
 				`	"Why do the Remnant eat so much?"`
 					goto foodvolume
+					to display
+						not "remnant symbionts info"
 				`	"Maybe I should import some spices."`
 					goto spices
 				`	"What is our next step?"`
@@ -3404,6 +3426,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 	passengers 1
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination
 		government "Remnant"
 		not distance 0
@@ -3684,6 +3707,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 	passengers 1
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	waypoint
 		system "Aescolanus"
 	to offer

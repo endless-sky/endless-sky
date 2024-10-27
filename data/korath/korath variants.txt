@@ -425,7 +425,7 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 		"Thermal Repeater Turret" 2
 		"Warder Anti-Missile"
 		"Piercer Missile Launcher" 2
-		"Korath Piercer" 62
+		"Piercer Missile" 62
 		"Firelight Missile Bank" 4
 		"Firelight Missile" 80
 
@@ -770,7 +770,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 		"Grab-Strike Turret" 2
 		"Banisher Grav-Turret"
 		"Piercer Missile Launcher" 2
-		"Korath Piercer" 62
+		"Piercer Missile" 62
 		"Warder Anti-Missile" 3
 		
 		"Triple Plasma Core"
