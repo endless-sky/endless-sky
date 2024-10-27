@@ -403,13 +403,17 @@ string Format::AmmoCount(int64_t value)
 	result.reserve(5);
 
 	// Handle numbers bigger than a thousand.
-	static const vector<char> SUFFIX = {'T', 'B', 'M', 'k'};
-	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll, 1000ll};
-	for(size_t i = 0; i < SUFFIX.size(); ++i)
-		if(absolute >= THRESHOLD[i])
+	static constexpr array<pair<int64_t, char>, 4> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'},
+		{1000ll, 'k'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute >= threshold)
 		{
-			int head = absolute / THRESHOLD[i];
-			int64_t tail = absolute % THRESHOLD[i];
+			int head = absolute / threshold;
+			int64_t tail = absolute % threshold;
 			do {
 				result += '0' + head % 10;
 				head /= 10;
@@ -418,20 +422,20 @@ string Format::AmmoCount(int64_t value)
 			switch(result.length())
 			{
 				case 1:
-					tail /= THRESHOLD[i] / 100;
+					tail /= threshold / 100;
 					result += '.';
 					result += '0' + tail / 10;
 					result += '0' + tail % 10;
 					break;
 				case 2:
-					tail /= THRESHOLD[i] / 10;
+					tail /= threshold / 10;
 					result += '.';
 					result += '0' + tail;
 					break;
 				default:
 					break;
 			}
-			result += SUFFIX[i];
+			result += suffix;
 			break;
 		}
 
