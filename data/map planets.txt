@@ -2010,6 +2010,7 @@ planet Greenwater
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
+	spaceport `	Like many other Hai planets, the spaceport signs and menus for the largest restaurants are written in both Hai and human. What is unusual, however, is how some shops don't use any Hai text, perhaps due to Greenwater's larger human population.`
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Mon Ki i'Hiya Basics"
 	shipyard "Yeer e Ki Basics"
@@ -2066,6 +2067,7 @@ planet Hai-home
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Advanced"
+	outfitter "Hai-home Only"
 	"required reputation" 100
 	bribe 0
 	security 0.4
@@ -2620,7 +2622,7 @@ planet Khosa-Kella-Oa
 	description `Devoid of atmosphere, this small and rocky world sits at the very edge of the galaxy. This may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			not "known to the successors"
-	description `Devoid of atmosphere, this small and rocky world sits at the eastern end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
+	description `Devoid of atmosphere, this small and rocky world sits at the western end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			has "known to the successors"
 
