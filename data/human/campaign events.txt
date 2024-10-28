@@ -1292,7 +1292,7 @@ event "fw suppressed Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
 		description `	Now that the Free Worlds is occupying the system, Greenrock has become a marginally more respectable world. Pirates still run wild in the wilderness of the planet, but the Free Worlds is actively arresting criminals and freeing slaves in the population centers.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The normally shady establishments are now filled with militia and the occasional merchant captain looking to explore the planet while it's still in Free Worlds hands.`
-		spaceport `	Despite the Free Worlds presence, dark alleyways are still to be avoided. Down one alley you see a shop called "Mike's Mustelids," now overrun by weasels, ferrets, and wolverines that were once caged there.`
+		spaceport `	Despite the Free Worlds presence, dark alleyways are still to be avoided. Down one alley you see an abandoned shop called "Mike's Mustelids," now overrun by weasels, ferrets, and wolverines that were once caged there.`
 
 
 
