@@ -456,8 +456,6 @@ void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
 		TakeOff(true);
-	else
-		return;
 }
 
 
