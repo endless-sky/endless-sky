@@ -276,7 +276,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 		bool linked = links.contains(link);
 		bool useJump = false; // Only matters for players
 		double fuelCost = 0;
-		if (ship)
+		if(ship)
 		{
 			auto jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
 			useJump = jumpType.first == JumpType::JUMP_DRIVE;
@@ -293,7 +293,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 		nextEdge.fuel += fuelCost;
 
 		// Find out whether we already have a better path to this system
-		if (HasBetter(*link, nextEdge))
+		if(HasBetter(*link, nextEdge))
 			continue;
 
 		Add(*link, nextEdge);
@@ -333,7 +333,7 @@ void DistanceMap::Add(const System &to, RouteEdge edge)
 // Check whether the given link is travelable. If no player was given in the
 // constructor then this depends on travel restrictions; otherwise, the player must know
 // that the given link exists.
-bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, bool useJump, double& fuelCost) const
+bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, bool useJump, double &fuelCost) const
 {
 	if(!player)
 		return !ship || !ship->IsRestrictedFrom(to);
@@ -345,13 +345,13 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, b
 
 	// Check if Propagate produced links using hyperlanes you don't know about.
 	// If hyperlink status is known: OK, you know it, so we can trust the results.
-	if (player->CanView(from) || player->CanView(to))
+	if(player->CanView(from) || player->CanView(to))
 		return true;
 
 	// If unknown, and not actually linked, that's OK:
 	// That means JumpNeighbors found this as a jump-only path.
 	// (Note this is not a player-knowledge check)
-	if (!linked)
+	if(!linked)
 		return true;
 
 	// Otherwise, when linked, but the link status is unknown, Propagate might
@@ -360,12 +360,12 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, b
 	// So for now, you cannot jump to unknown sytems that are outside your range.
 	// (Do NOT use from.jumpRange because you also don't know about that)
 	double distance = from.Position().Distance(to.Position());
-	if (distance >= jumpRangeMax)
+	if(distance >= jumpRangeMax)
 		return false;
 
 	// Otherwise, the unknown link is also within jump range, so you actually do know
 	// you can take this path. If that was the plan, then OK.
-	if (useJump)
+	if(useJump)
 		return true;
 
 	// Otherwise, this is an odd case.
