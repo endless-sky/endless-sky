@@ -893,7 +893,7 @@ void Engine::Step(bool isActive)
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
 			0., 10. + max(20., width * .5), outfitOverlayType, 1.f, Angle(pos).Degrees() + 180.);
 		const bool cargoInRange = pos.LengthSquared() <= (flagship->Attributes().Get("cargo scan power") * 10000);
-		const Status::Type cargoOverlayType = cargoInRange ? Status::Type::SCAN : StatusType::SCAN_OUT_OF_RANGE;
+		const Status::Type cargoOverlayType = cargoInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
 		statuses.emplace_back(pos, 0., flagship->CargoScanFraction(),
 			0., 10. + max(20., width * .5), cargoOverlayType, 1.f, Angle(pos).Degrees() + 180.);
 	}
