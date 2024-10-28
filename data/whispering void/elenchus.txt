@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 shipyard "Elenctic Commune Basic"
-	# Simple, old, designs from Hai and humans.
+	# Simple, old designs from Hai and humans.
 	"Aphid"
 	"Grasshopper"
 	"Shuttle"
