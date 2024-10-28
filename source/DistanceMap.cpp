@@ -273,14 +273,17 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 		// Copy the edge to be used for this link, and build upon its fields.
 		RouteEdge nextEdge = curEdge;
 
-		// There is a distinction here between
 		bool linked = links.contains(link);
-		pair<JumpType, double> jumpType;
+		bool useJump; // Only matters for players
+		double fuelCost;
 		if (ship)
-			jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
+		{
+			auto jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
+			useJump = jumpType.first == JumpType::JUMP_DRIVE;
+			fuelCost = jumpType.second;
+		}
 		else
-			jumpType = linked ? make_pair(JumpType::HYPERDRIVE, ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST) :
-				make_pair(JumpType::JUMP_DRIVE, ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST);
+			fuelCost = linked ? ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST: ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST;
 
 		// Find out whether we already have a better path to this system
 		if(HasBetter(*link, nextEdge))
@@ -288,10 +291,10 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 
 		// Check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if(!CheckLink(*currentSystem, *link, linked, jumpType.first == JumpType::JUMP_DRIVE, jumpType.second))
+		if(!CheckLink(*currentSystem, *link, linked, useJump, fuelCost))
 			continue;
 
-		nextEdge.fuel += jumpType.second;
+		nextEdge.fuel += fuelCost;
 
 		Add(*link, nextEdge);
 		if(!--maxSystems)
@@ -366,6 +369,9 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, b
 		return true;
 
 	// Otherwise, this is an odd case.
+	// There is a distinction here between hyperlanes and hyperdrive.
+	// You can use a jump drive to travel a hyperlane, in addition to the
+	// normal jump range.
 	// If two systems are linked, but you don't know about the link, and
 	// the systems are within jump drive range, but the plan was to use hyperdrive,
 	// well you shouldn't know to use hyperdrive, but you could actually
