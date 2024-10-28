@@ -325,7 +325,7 @@ namespace {
 		if(ship.GetAICache().NeedsAmmo())
 			return true;
 
-		if(personality.IsGetaway() && ship.Cargo().Free() == 0)
+		if(personality.IsGetaway() && ship.Cargo().Free() == 0 && !ship.CanBeCarried())
 			return true;
 
 		return false;
