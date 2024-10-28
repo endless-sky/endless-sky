@@ -380,6 +380,70 @@ string Format::PlayTime(double timeVal)
 
 
 
+// Convert an ammo count into a short string for use in the ammo display.
+// Only the absolute value of a negative number is considered.
+string Format::AmmoCount(int64_t value)
+{
+	if(fabs(value) >= SCIENTIFIC_THRESHOLD)
+	{
+		if(abs(value) == SCIENTIFIC_THRESHOLD)
+			return "1e+15";
+		ostringstream out;
+		out.precision(1);
+		out << static_cast<double>(value);
+		return out.str();
+	}
+
+	int64_t absolute = abs(value);
+
+	if(absolute < 10000)
+		return to_string(value);
+
+	string result;
+	result.reserve(5);
+
+	// Handle numbers bigger than a thousand.
+	static constexpr array<pair<int64_t, char>, 4> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'},
+		{1000ll, 'k'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute >= threshold)
+		{
+			int head = absolute / threshold;
+			int64_t tail = absolute % threshold;
+			do {
+				result += '0' + head % 10;
+				head /= 10;
+			} while(head > 0);
+			reverse(result.begin(), result.end());
+			switch(result.length())
+			{
+				case 1:
+					tail /= threshold / 100;
+					result += '.';
+					result += '0' + tail / 10;
+					result += '0' + tail % 10;
+					break;
+				case 2:
+					tail /= threshold / 10;
+					result += '.';
+					result += '0' + tail;
+					break;
+				default:
+					break;
+			}
+			result += suffix;
+			break;
+		}
+
+	return result;
+}
+
+
+
 // Convert the given number to a string, with a reasonable number of decimal
 // places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
