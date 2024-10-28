@@ -265,22 +265,33 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 	const System *currentSystem = curEdge.prev;
 
 	// JumpNeighbors will use the system's jump range, overriding jumpRangeMax.
-	// JumpNeighbors also includes normal hyperspace Links.
+	// JumpNeighbors also includes normal hyperspace Links. Remember that jump drives
+	// can use hyperlanes, though it still costs more fuel.
 	auto links = currentSystem->Links();
 	for(const System *link : (jumpRangeMax > 0 ? currentSystem->JumpNeighbors(jumpRangeMax) : links))
 	{
 		// Copy the edge to be used for this link, and build upon its fields.
 		RouteEdge nextEdge = curEdge;
 
-		nextEdge.fuel += ship ? ship->JumpNavigation().GetCheapestJumpType(currentSystem, link).second :
-			links.contains(link) ? ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST :
-			ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST;
+		// There is a distinction here between
+		bool linked = links.contains(link);
+		pair<JumpType, double> jumpType;
+		if (ship)
+			jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
+		else
+			jumpType = linked ? make_pair(JumpType::HYPERDRIVE, ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST) :
+				make_pair(JumpType::JUMP_DRIVE, ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST);
 
-		// Find out whether we already have a better path to this system, and
-		// check whether this link can be traveled. If this route is being
-		// selected by the player, they are constrained to known routes.
-		if(HasBetter(*link, nextEdge) || !CheckLink(*currentSystem, *link))
+		// Find out whether we already have a better path to this system
+		if(HasBetter(*link, nextEdge))
 			continue;
+
+		// Check whether this link can be traveled. If this route is being
+		// selected by the player, they are constrained to known routes.
+		if(!CheckLink(*currentSystem, *link, linked, jumpType.first == JumpType::JUMP_DRIVE, jumpType.second))
+			continue;
+
+		nextEdge.fuel += jumpType.second;
 
 		Add(*link, nextEdge);
 		if(!--maxSystems)
@@ -319,13 +330,46 @@ void DistanceMap::Add(const System &to, RouteEdge edge)
 // Check whether the given link is travelable. If no player was given in the
 // constructor then this depends on travel restrictions; otherwise, the player must know
 // that the given link exists.
-bool DistanceMap::CheckLink(const System &from, const System &to) const
+bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, bool useJump, double& fuelCost) const
 {
 	if(!player)
 		return !ship || !ship->IsRestrictedFrom(to);
 
+	// Can never go where you don't know about.
 	if(!player->HasSeen(to))
 		return false;
 
-	return (player->CanView(from) || player->CanView(to));
+
+	// Check if Propagate produced links using hyperlanes you don't know about.
+	// If hyperlink status is known: OK, you know it, so we can trust the results.
+	if (player->CanView(from) || player->CanView(to))
+		return true;
+
+	// If unknown, and not actually linked, that's OK:
+	// That means JumpNeighbors found this as a jump-only path.
+	// (Note this is not a player-knowledge check)
+	if (!linked)
+		return true;
+
+	// Otherwise, when linked, but the link status is unknown, Propagate might
+	// have used hyperlane paths you don't know about. So we probably should
+	// just throw it out. But, if might still be within in your jump range.
+	// So for now, you cannot jump to unknown sytems that are outside your range.
+	// (Do NOT use from.jumpRange because you also don't know about that)
+	double distance = from.Position().Distance(to.Position());
+	if (distance >= jumpRangeMax)
+		return false;
+
+	// Otherwise, the unknown link is also within jump range, so you actually do know
+	// you can take this path. If that was the plan, then OK.
+	if (useJump)
+		return true;
+
+	// Otherwise, this is an odd case.
+	// If two systems are linked, but you don't know about the link, and
+	// the systems are within jump drive range, but the plan was to use hyperdrive,
+	// well you shouldn't know to use hyperdrive, but you could actually
+	// plan to use a jump drive, so use that fuel cost instead.
+	fuelCost = ship->JumpNavigation().JumpDriveFuel(distance);
+	return fuelCost > 0;
 }
