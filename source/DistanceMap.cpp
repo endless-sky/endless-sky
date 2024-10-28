@@ -274,8 +274,8 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 		RouteEdge nextEdge = curEdge;
 
 		bool linked = links.contains(link);
-		bool useJump; // Only matters for players
-		double fuelCost;
+		bool useJump = false; // Only matters for players
+		double fuelCost = 0;
 		if (ship)
 		{
 			auto jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
@@ -285,16 +285,16 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 		else
 			fuelCost = linked ? ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST: ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST;
 
-		// Find out whether we already have a better path to this system
-		if(HasBetter(*link, nextEdge))
-			continue;
-
 		// Check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
 		if(!CheckLink(*currentSystem, *link, linked, useJump, fuelCost))
 			continue;
 
 		nextEdge.fuel += fuelCost;
+
+		// Find out whether we already have a better path to this system
+		if (HasBetter(*link, nextEdge))
+			continue;
 
 		Add(*link, nextEdge);
 		if(!--maxSystems)
