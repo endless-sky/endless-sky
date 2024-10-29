@@ -57,7 +57,7 @@ using namespace std;
 namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
-	const int ZOOM_FACTOR_MIN = 100;
+	const int ZOOM_FACTOR_MIN = 50;
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";

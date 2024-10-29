@@ -88,7 +88,7 @@ int Screen::Zoom()
 
 void Screen::SetZoom(int percent)
 {
-	USER_ZOOM = max(100, min(200, percent));
+	USER_ZOOM = max(50, min(200, percent));
 
 	// Make sure the zoom factor is not set too high for the full UI to fit.
 	static const int MIN_WIDTH = 1000; // Width of main menu
@@ -97,7 +97,7 @@ void Screen::SetZoom(int percent)
 	int minZoomY = 100 * RAW_HEIGHT / MIN_HEIGHT;
 	int minZoom = min(minZoomX, minZoomY);
 	// Never go below 100% zoom, no matter how small the window is
-	minZoom = max(minZoom, 100);
+	minZoom = max(minZoom, 50);
 	// Use increments of 10, like the user setting
 	minZoom -= minZoom % 10;
 	EFFECTIVE_ZOOM = min(minZoom, UserZoom());
