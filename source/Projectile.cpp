@@ -157,7 +157,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
-	int homing = weapon->Homing();
+	bool homing = weapon->Homing();
 	if(target && homing && !Random::Int(30))
 		CheckLock(*target);
 	if(target && homing && hasLock)
@@ -170,7 +170,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		double stepsToReach = d.Length() / trueVelocity;
 		bool isFacingAway = d.Dot(angle.Unit()) < 0.;
 		// At the highest homing level, compensate for target motion.
-		if(homing >= 4)
+		if(weapon->Intercepts())
 		{
 			if(unit.Dot(target->Velocity()) < 0.)
 			{
@@ -196,7 +196,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 		// The very dumbest of homing missiles lose their target if pointed
 		// away from it.
-		if(isFacingAway && homing == 1)
+		if(isFacingAway && weapon->HasBlindspot())
 			targetShip.reset();
 		else
 		{
@@ -207,7 +207,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				turn = desiredTurn;
 
 			// Levels 3 and 4 stop accelerating when facing away.
-			if(homing >= 3)
+			if(weapon->ToggleThrust())
 			{
 				double stepsToFace = desiredTurn / turn;
 

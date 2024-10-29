@@ -634,8 +634,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back(Format::Number(arc));
 		attributesHeight += 20;
 	}
-	int homing = outfit.Homing();
-	if(homing)
+	if(outfit.Homing())
 	{
 		static const string skill[] = {
 			"none",
@@ -644,9 +643,21 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			"good",
 			"excellent"
 		};
-		attributeLabels.emplace_back("homing:");
-		attributeValues.push_back(skill[max(0, min(4, homing))]);
+		attributeLabels.emplace_back("homing type:");
+		attributeValues.push_back(outfit.Intercepts() ? "intercepts" : "direct");
 		attributesHeight += 20;
+		if(outfit.HasBlindspot())
+		{
+			attributeLabels.emplace_back("Cannot track targets behind it.");
+			attributeValues.emplace_back(" ");
+			attributesHeight += 20;
+		}
+		if(outfit.ToggleThrust())
+		{
+			attributeLabels.emplace_back("Can toggle thrust.");
+			attributeValues.emplace_back(" ");
+			attributesHeight += 20;
+		}
 	}
 	static const vector<string> PERCENT_NAMES = {
 		"tracking:",

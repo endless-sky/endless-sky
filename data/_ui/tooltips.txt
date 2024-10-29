@@ -1008,8 +1008,8 @@ tip "turret turn rate:"
 tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
-tip "homing:"
-	`This projectile's ability to track its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
+tip "homing type:"
+	`How this projectile tracks its target. Projectiles with "direct" will fly straight at their target, while projectiles with "intercept" will lead their trajectory.`
 
 tip "tracking:"
 	`This projectile's ability to maintain its target lock.`
