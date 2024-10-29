@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
+#include "Random.h"
 
 #include <cstdint>
 #include <memory>
@@ -112,6 +113,7 @@ public:
 
 private:
 	void CheckLock(const Ship &target);
+	void CheckConfused(const Ship &target);
 
 
 private:
@@ -132,6 +134,10 @@ private:
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;
+	bool isConfused = false;
+	// A positive value means this projectile will turn to the right;
+	// a negative value means this projectile will turn left.
+	int confusionDirection = Random::Int(2) ? -1 : 1;;
 
 	// This is safe to keep even if the ships die, because we don't actually call the ship,
 	// we just compare this pointer to other ship pointers.
