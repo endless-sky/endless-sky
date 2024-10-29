@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
-#include "Random.h"
 
 #include <cstdint>
 #include <memory>
@@ -137,7 +136,7 @@ private:
 	bool isConfused = false;
 	// A positive value means this projectile will turn to the right;
 	// a negative value means this projectile will turn left.
-	int confusionDirection = Random::Int(2) ? -1 : 1;;
+	int confusionDirection = 0;
 
 	// This is safe to keep even if the ships die, because we don't actually call the ship,
 	// we just compare this pointer to other ship pointers.
