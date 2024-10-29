@@ -346,7 +346,7 @@ event "remnant: ssil vida activation"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
-		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
+		description `You are not quite sure what Fertriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
 		spaceport `Delving further into the clouds, it becomes obvious that the entire planet appears to be a mix of gases, aerosols, and suspended particles. Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
 		government "Ember Waste"
 		bribe 0
@@ -1182,6 +1182,9 @@ event "remnant: teciimach deployment"
 		add "Teciimach Pod"
 		add "Teciimach Canister"
 		add "Teciimach Canister Rack"
+	outfitter "Remnant Core"
+		remove "EMP Torpedo"
+		add "Teciimach Canister"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser (II)" 2

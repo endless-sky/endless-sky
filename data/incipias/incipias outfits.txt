@@ -67,7 +67,7 @@ outfit "Stagnation Beam"
 		sound "stagnation beam"
 		"hit effect" "stagnation beam impact"
 		"inaccuracy" .5
-		"turret turn" 3
+		"turret turn" 2.1
 		"velocity" 600
 		"lifetime" 1
 		"reload" 1
@@ -80,7 +80,6 @@ outfit "Stagnation Beam"
 		"slowing damage" 0.1
 	description "The Stagnation Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias even dreamed of space travel. The weapon's origins lie in giant reactors that were constructed to pull asteroids out of their home planet's orbit, providing easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
 	description "	As the Incipias' mastery of spaceflight grew, so did the generators' efficiency, which allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models, much to the benefit of the Incipias' otherwise sluggish ships."
-	description "	Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally valuable in combat, using the beams to lock down and pull in their opponents."
 	description "	The secret of how these beams work is only known to a few scientists of the Incipias who are under the control of the state. Such knowledge, if made public, could have disastrous consequences for the Hicemus and their grip on power."
 
 effect "stagnation beam impact"
@@ -147,7 +146,7 @@ effect "star tail hit"
 	sprite "effect/star tail hit"
 		"no repeat"
 		"frame rate" 40
-	sound "star tail hit"
+	sound "explosion small"
 	"lifetime" 30
 	"velocity scale" 0.
 
@@ -179,6 +178,33 @@ outfit "Star Tail Storage"
 		"Hicemus Conflict"
 	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
 	description "	One layer of this easily expandable system is already shipped with the gun itself. To increase storage space, more layers are simply stacked on top."
+
+outfit "Horizon Grappler"
+	category "Turrets"
+	cost 200000
+	thumbnail "outfit/horizon grappler"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/horizon grappler"
+		"hardpoint offset" 0.
+		sound "tractor beam"
+		"hit effect" "horizon grappler"
+		"tractor beam" 9
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.2
+		"firing heat" 1.1
+	description `The pinnacle of Incipian technology is represented by this mining utility. Perfected over centuries, this tractor beam is far beyond anything the Incipias have developed so far. The beam's name originates from its first prototypes developed before the advent of spaceflight, which gathered minerals by pulling asteroids from their homeworld's rings into its atmosphere.`
+
+effect "horizon grappler"
+	sprite "effect/horizon grappler"
+		"frame rate" 3.5
+	"lifetime" 1
+	"velocity scale" 1
 
 # Shields/Energy:
 outfit "Gas-Class Shield"

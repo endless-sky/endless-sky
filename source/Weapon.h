@@ -53,6 +53,9 @@ public:
 		Angle facing;
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
+
+		bool spawnOnNaturalDeath = true;
+		bool spawnOnAntiMissileDeath = false;
 	};
 
 

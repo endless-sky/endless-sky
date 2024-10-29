@@ -151,10 +151,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
-	ImageBuffer.cpp
-	ImageBuffer.h
-	ImageSet.cpp
-	ImageSet.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -188,10 +184,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -216,8 +208,6 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
-	Orders.cpp
-	Orders.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -277,11 +267,17 @@ target_sources(EndlessSkyLib PRIVATE
 	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
+	RouteEdge.cpp
+	RouteEdge.h
+	RoutePlan.cpp
+	RoutePlan.h
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollBar.cpp
+	ScrollBar.h
 	ScrollVar.h
 	Set.h
 	Shader.cpp
@@ -298,16 +294,14 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
+	ShipNameDialog.cpp
+	ShipNameDialog.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	Sprite.cpp
-	Sprite.h
-	SpriteSet.cpp
-	SpriteSet.h
 	SpriteShader.cpp
 	SpriteShader.h
 	StarField.cpp
@@ -371,6 +365,18 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/ImageBuffer.cpp
+	image/ImageBuffer.h
+	image/ImageSet.cpp
+	image/ImageSet.h
+	image/Mask.cpp
+	image/Mask.h
+	image/MaskManager.cpp
+	image/MaskManager.h
+	image/Sprite.cpp
+	image/Sprite.h
+	image/SpriteSet.cpp
+	image/SpriteSet.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

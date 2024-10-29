@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "MapPanel.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -59,8 +59,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StellarObject.h"
@@ -690,7 +690,7 @@ void Engine::Step(bool isActive)
 					break;
 				}
 			const System *system = escort->GetSystem();
-			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
+			escorts.Add(*escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
@@ -889,7 +889,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			0., 10. + max(20., width * .5), 4, 1.f, Angle(pos).Degrees() + 180.);
+			0., 10. + max(20., width * .5), Status::Type::SCAN, 1.f, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -1072,16 +1072,19 @@ void Engine::Draw() const
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
+		int colorIndex = static_cast<int>(it.type);
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer,
-				Color::Multiply(it.alpha, color[it.type]), 0.f, it.angle);
-		double dashes = (it.type >= 5) ? 0. : 20. * min<double>(1., zoom);
+				Color::Multiply(it.alpha, color[colorIndex]), 0.f, it.angle);
+		double dashes = (it.type >= Status::Type::SCAN) ? 0. : 20. * min<double>(1., zoom);
+		colorIndex += static_cast<int>(Status::Type::COUNT);
 		if(it.inner > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.inner,
-				Color::Multiply(it.alpha, color[5 + it.type]), dashes, it.angle);
+				Color::Multiply(it.alpha, color[colorIndex]), dashes, it.angle);
+		colorIndex += static_cast<int>(Status::Type::COUNT);
 		if(it.disabled > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.disabled,
-				Color::Multiply(it.alpha, color[10 + it.type]), dashes, it.angle);
+				Color::Multiply(it.alpha, color[colorIndex]), dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -1465,7 +1468,11 @@ void Engine::CalculateStep()
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(jumpSounds.empty())
+		if(flagship->Attributes().Get("silent jumps"))
+		{
+			// No sounds.
+		}
+		else if(jumpSounds.empty())
 			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
 		else
 			for(const auto &sound : jumpSounds)
@@ -1700,6 +1707,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			for(const auto &bay : ship->Bays())
 				if(bay.ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
+			// If this is a player ship, make sure it's no longer selected.
+			if(ship->IsYours())
+				player.DeselectShip(ship.get());
 		}
 		return;
 	}
@@ -1715,7 +1725,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
-			if(jumpSounds.empty())
+			if(ship->Attributes().Get("silent jumps"))
+			{
+				// No sounds.
+			}
+			else if(jumpSounds.empty())
 				Audio::Play(Audio::Get(isJump ? "jump out" : "hyperdrive out"), position);
 			else
 				for(const auto &sound : jumpSounds)
@@ -1727,7 +1741,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
-			if(jumpSounds.empty())
+			if(ship->Attributes().Get("silent jumps"))
+			{
+				// No sounds.
+			}
+			else if(jumpSounds.empty())
 				Audio::Play(Audio::Get(isJump ? "jump in" : "hyperdrive in"), position);
 			else
 				for(const auto &sound : jumpSounds)
@@ -1827,7 +1845,7 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// Although an attempt to spawn a person is specified by a gamerule,
 	// that attempt can still fail due to an added weight for no person to spawn.
 	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
@@ -2434,12 +2452,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Unless something went wrong while forming the message, display it.
-	if(!message.empty())
-	{
-		int free = collector->Cargo().Free();
-		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
-		Messages::Add(message, Messages::Importance::High);
-	}
+	if(message.empty())
+		return;
+
+	int free = collector->Cargo().Free();
+	int total = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == player.GetSystem())
+			total += ship->Cargo().Free();
+
+	message += " (" + Format::CargoString(free, "free space") + " remaining";
+	if(free == total)
+		message += ".)";
+	else
+		message += ", " + Format::MassString(total) + " in fleet.)";
+	Messages::Add(message, Messages::Importance::High);
 }
 
 
@@ -2733,21 +2760,26 @@ void Engine::CreateStatusOverlays()
 		if(it->IsDestroyed())
 			continue;
 
+		static auto FLAGSHIP = Preferences::OverlayType::FLAGSHIP;
+		static auto FRIENDLY = Preferences::OverlayType::ESCORT;
+		static auto HOSTILE = Preferences::OverlayType::ENEMY;
+		static auto NEUTRAL = Preferences::OverlayType::NEUTRAL;
+
 		if(it == flagship)
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[FLAGSHIP], Status::Type::FLAGSHIP, it->Cloaking());
 		else if(it->GetGovernment()->IsEnemy())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 2, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[HOSTILE], Status::Type::HOSTILE, it->Cloaking());
 		else if(it->IsYours() || it->GetPersonality().IsEscort())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 1, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[FRIENDLY], Status::Type::FRIENDLY, it->Cloaking());
 		else
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 3, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[NEUTRAL], Status::Type::NEUTRAL, it->Cloaking());
 	}
 }
 
 
 
 void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting,
-	int type, double cloak)
+	Status::Type type, double cloak)
 {
 	if(overlaySetting == Preferences::OverlayState::OFF)
 		return;
