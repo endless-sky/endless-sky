@@ -75,9 +75,9 @@ start "hai space"
 		description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
 		system "Fah Soom"
 		planet "Greenwater"
-		date 16 11 3013
-		credits 1431000
-		debt 1431000
+		date Tue, 16 Nov 3013
+		credits 1.431
+		debt 1.431
 	to unlock
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
