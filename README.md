@@ -13,7 +13,8 @@ If you are feeling particularly brave, you can try out one of the [debug apks ge
 
 # Build Instructions
 ## Desktop build
-Most development is done on using the [SCons](https://scons.org/) build tool to compile the project. For those wishing to use an IDE, project files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup. It is possible to use other IDEs or build systems to compile the game, but support is not provided.
-For full installation instructions, consult the [Build Instructions](https://github.com/thewierdnut/endless-mobile/blob/master/readme-developer.md) readme.
+Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
+
+For full installation instructions, consult the [Build Instructions](docs/readme-cmake.md) readme.
 ## Android build
 Android builds are self contained within the android/ folder. See the [Build Instructions](https://github.com/thewierdnut/endless-mobile/blob/android/android/build_instructions.md) there for more details.
