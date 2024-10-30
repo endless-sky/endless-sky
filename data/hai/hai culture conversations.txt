@@ -371,7 +371,7 @@ mission "Sick of Acorn Bread"
 			`	"You're in luck," she says. "Today only, each meal is served with a free side of acorn bread." She scampers off to place and retrieve your order.`
 			`	The Hai next to you grunts again - this time with clear frustration - and turns to speak. "Acorn bread! That's all they serve here anymore. Ever since you humans arrived in our space, that's all we get to eat. Traditional Hai breadmaking has become a lost art."`
 			choice
-				`	"You mean there's more than just acorn bread?"`
+				`	"Traditional Hai breadmaking?"`
 					goto breads
 				`	"I'm sorry. I didn't mean to offend your culture."`
 			`	The look on his face softens. "I should be the one to apologize. It's not your fault that our spaceports' menus have changed in this respect. Humans have also brought new life to many parts of Hai society. It is only a pity that we have to travel far to find the types of bread that we had in years past."`
