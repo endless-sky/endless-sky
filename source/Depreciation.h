@@ -28,11 +28,10 @@ class Ship;
 
 
 
-private:
-	// Calculate the value fraction for an item of the given age.
-	static double Depreciate(int age);
-	// Calculate how old an item needs to be for a target amount of depreciation, if possible.
-	static int AgeForDepreciation(double depreciation);
+// Calculate the value fraction for an item of the given age.
+static double Depreciate(int age);
+// Calculate how old an item needs to be for a target amount of depreciation, if possible.
+static int AgeForDepreciation(double depreciation);
 
 
 
