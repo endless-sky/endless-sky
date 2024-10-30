@@ -30,12 +30,11 @@ class Ship;
 
 // Class for tracking depreciation records, by storing the day on which a given
 // outfit or ship was purchased. Any ship or outfit for which no record exists,
-// for example because it is plunder, counts as fully depreciated.
+// for example because it is plunder, counts as full depreciated.
 class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
-	static double Full():
-	
+	static double Full();
 
 
 public:
