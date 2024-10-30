@@ -5287,7 +5287,7 @@ phrase "hostile disabled"
 		"!"
 
 # Shakespearean insults.
-phrase "disabled hostile"
+phrase "hostile disabled"
 	word
 		"You piece of"
 	word

@@ -1510,7 +1510,7 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport the <bunks> of them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5

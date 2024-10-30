@@ -60,6 +60,28 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.10" date="2024-10-26">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li>The biggest change this release is the removal of the "hold fire" command, added in 0.10.9, because of bugs associated with it that could not be adequately resolved prior to this release.</li>
+          <li>We hope to have addressed those issues for the next release in a few months.</li>
+        </ul>
+        <p>This release brings one new feature:</p>
+        <ul>
+          <li>The addition of the "silent jumps" and "silent scans" attributes, which allow ships to jump and scan without playing any sounds, not even the default ones.</li>
+        </ul>
+        <p>Some other changes are:</p>
+        <ul>
+          <li>Particularly large capture defense values on some outfits were reduced, to work better with changes to capturing mechanics in 0.10.9.</li>
+          <li>Fixes and improvements to various Incipias, Remnant, and Successor missions.</li>
+          <li>Updated landing messages for some star sprites to improve accuracy.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 18 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.10/changelog</url>
+    </release>
     <release version="0.10.9" date="2024-9-28" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
