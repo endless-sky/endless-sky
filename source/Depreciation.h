@@ -38,7 +38,7 @@ public:
 	// Calculate the value fraction for an item of the given age.
 	static double Depreciate(int age);
 	// Calculate how old an item needs to be for the target amount of depreciation, if possible.
-	static double AgeForDepreciation(double depreciation);
+	static int AgeForDepreciation(double depreciation);
 
 
 public:
