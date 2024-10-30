@@ -64,7 +64,7 @@ double Depreciation::Full()
 
 
 // Calculate the value fraction for an item of the given age.
-double private Depreciation::Depreciate(int age)
+double Depreciation::Depreciate(int age)
 {
 	if(age <= GracePeriod())
 		return 1.;
