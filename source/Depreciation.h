@@ -28,20 +28,19 @@ class Ship;
 
 
 
-// Calculate the value fraction for an item of the given age.
-static double Depreciate(int age);
-// Calculate how old an item needs to be for a target amount of depreciation, if possible.
-static int AgeForDepreciation(double depreciation);
-
-
-
 // Class for tracking depreciation records, by storing the day on which a given
 // outfit or ship was purchased. Any ship or outfit for which no record exists,
-// for example because it is plunder, counts as full depreciated.
+// for example because it is plunder, counts as fully depreciated.
 class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full():
+	// Calculate the value fraction for an item of the given age.
+	static double Depreciate(int age);
+	// Calculate how old an item needs to be for the target amount of depreciation, if possible.
+
+	static double AgeForDepreciation(double depreciation);
+	
 
 
 public:
