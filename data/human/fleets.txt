@@ -1833,7 +1833,7 @@ fleet "Small Southern Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		disables plunders harvests
+		disables plunders harvests getaway
 		confusion 20
 	variant 8
 		"Sparrow"
@@ -1921,7 +1921,7 @@ fleet "Large Southern Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		plunders harvests
+		plunders harvests getaway
 	variant 2
 		"Sparrow" 4
 	variant 1
@@ -2046,7 +2046,7 @@ fleet "Small CCOR"
 	names "pirate"
 	cargo 1
 	personality
-		disables plunders harvests
+		disables plunders harvests getaway
 	variant 5
 		"Berserker"
 	variant 3
@@ -2071,7 +2071,7 @@ fleet "Large CCOR"
 	names "pirate"
 	cargo 1
 	personality
-		disables plunders harvests
+		disables plunders harvests getaway
 	variant 2
 		"Berserker (CCOR)" 2
 	variant 3
@@ -2244,7 +2244,7 @@ fleet "Small Core Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		disables plunders harvests
+		disables plunders harvests getaway
 		confusion 20
 	variant 3
 		"Quicksilver"
@@ -2295,7 +2295,7 @@ fleet "Large Core Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		plunders harvests
+		plunders harvests getaway
 	variant 5
 		"Quicksilver (Proton)" 3
 	variant 2
@@ -2375,7 +2375,7 @@ fleet "Small Northern Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		disables plunders harvests
+		disables plunders harvests getaway
 		confusion 20
 	variant 5
 		"Sparrow"
@@ -2445,7 +2445,7 @@ fleet "Large Northern Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		plunders harvests
+		plunders harvests getaway
 	variant 4
 		"Firebird"
 	variant 10
@@ -2549,7 +2549,7 @@ fleet "pirate raid"
 	names "pirate"
 	cargo 1
 	personality
-		disables nemesis plunders harvests
+		disables nemesis plunders harvests getaway
 		confusion 20
 	variant 3
 		"Argosy (Blaster)"
