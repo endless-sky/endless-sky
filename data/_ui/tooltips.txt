@@ -642,6 +642,9 @@ tip "high shield permeability:"
 tip "low shield permeability:"
 	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
 
+tip "cloaked shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull while you are cloaked.`
+
 tip "shields (charge):"
 	`Total shield strength and regeneration rate per second.`
 
@@ -659,6 +662,12 @@ tip "depleted shield delay:"
 
 tip "shield protection:"
 	`Protection against shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "silent jumps:"
+	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
+
+tip "silent scans:"
+	`Prevents a ship from generating scan sounds.`
 
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -1473,3 +1482,6 @@ tip "Scroll speed"
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
+
+tip "Show parenthesis"
+	`Toggle parenthesis around the trade prices in the ports map mode.`
