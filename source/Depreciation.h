@@ -85,8 +85,6 @@ private:
 
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
-};
-
 
 
 private:
@@ -94,3 +92,4 @@ private:
 	static double Depreciate(int age);
 	// Calculate how old an item needs to be for the target amount of depreciation, if possible.
 	static double AgeForDepreciation(double depreciation);
+};
