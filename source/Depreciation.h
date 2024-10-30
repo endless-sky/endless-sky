@@ -35,8 +35,6 @@ class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
-	// Calculate the value fraction for an item of the given age.
-	static double Depreciate(int age);
 	// Calculate how old an item needs to be for the target amount of depreciation, if possible.
 	static int AgeForDepreciation(double depreciation);
 
@@ -88,4 +86,9 @@ private:
 
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
+
+
+private:
+	// Calculate the value fraction for an item of the given age.
+	static double Depreciate(int age);
 };
