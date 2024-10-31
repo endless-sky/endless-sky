@@ -457,7 +457,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.
 	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start, SoundCategory::WEAPON);
+		Audio::Play(outfit->WeaponSound(), start, IsSpecial() ? SoundCategory::ANTI_MISSILE : SoundCategory::WEAPON);
 	// Apply any "kick" from firing this weapon.
 	double force = outfit->FiringForce();
 	if(force)

@@ -2550,7 +2550,7 @@ void Engine::FillRadar()
 	else if(hasHostiles && !hadHostiles)
 	{
 		if(Preferences::PlayAudioAlert())
-			Audio::Play(Audio::Get("alarm"), SoundCategory::UI);
+			Audio::Play(Audio::Get("alarm"), SoundCategory::ALERT);
 		alarmTime = 300;
 		hadHostiles = true;
 	}

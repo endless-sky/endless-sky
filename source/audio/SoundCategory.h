@@ -21,5 +21,5 @@ enum class SoundCategory {
 	// The background music category
 	MUSIC,
 	// The sound effect types
-	UI, WEAPON, ENGINE, JUMP, EXPLOSION, ENVIRONMENT
+	UI, ANTI_MISSILE, WEAPON, ENGINE, AFTERBURNER, JUMP, EXPLOSION, SCAN, ENVIRONMENT, ALERT
 };

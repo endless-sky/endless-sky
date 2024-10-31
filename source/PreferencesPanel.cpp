@@ -87,16 +87,19 @@ namespace {
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
 
-	const map<string, SoundCategory> volume_bars = {
+	const map<string, SoundCategory> volumeBars = {
 			{"volume", SoundCategory::MASTER},
-			{"master volume", SoundCategory::MASTER},
 			{"music volume", SoundCategory::MUSIC},
 			{"ui volume", SoundCategory::UI},
+			{"anti-missile volume", SoundCategory::ANTI_MISSILE},
 			{"weapon volume", SoundCategory::WEAPON},
 			{"engine volume", SoundCategory::ENGINE},
+			{"afterburner volume", SoundCategory::AFTERBURNER},
 			{"jump volume", SoundCategory::JUMP},
 			{"explosion volume", SoundCategory::EXPLOSION},
-			{"environment volume", SoundCategory::ENVIRONMENT}
+			{"scan volume", SoundCategory::SCAN},
+			{"environment volume", SoundCategory::ENVIRONMENT},
+			{"alert volume", SoundCategory::ALERT}
 	};
 }
 
@@ -152,8 +155,19 @@ void PreferencesPanel::Draw()
 
 	Information info;
 
-	for(const auto &[bar, category] : volume_bars)
-		info.SetBar(bar, Audio::Volume(category));
+	for(const auto &[bar, category] : volumeBars)
+	{
+		double volume = Audio::Volume(category);
+		info.SetBar(bar, volume);
+		if(volume > 0.75)
+			info.SetCondition(bar + " max");
+		else if(volume > 0.5)
+			info.SetCondition(bar + " medium");
+		else if(volume > 0.25)
+			info.SetCondition(bar + " low");
+		else
+			info.SetCondition(bar + " none");
+	}
 
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
@@ -269,14 +283,19 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 {
 	EndEditing();
 
-	if(x >= 265 && x < 295 && y >= -220 && y < 70)
+	Point point(x, y);
+	const Interface *preferencesUI = GameData::Interfaces().Get("preferences");
+	if(preferencesUI->GetBox("volume box").Contains(point))
 	{
-		Audio::SetVolume((17 - y) / 200., SoundCategory::MASTER);
+		Rectangle box = preferencesUI->GetBox("volume box");
+		double barSize = preferencesUI->GetValue("master volume bar size");
+		double volume = (box.Center().Y() - point.Y()) / barSize + 0.5;
+
+		Audio::SetVolume(volume, SoundCategory::MASTER);
 		Audio::Play(Audio::Get("warder"), SoundCategory::MASTER);
 		return true;
 	}
 
-	Point point(x, y);
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
 			editing = selected = index;
@@ -312,14 +331,15 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	else if(page == 'a')
 	{
 		const Interface *audioUI = GameData::Interfaces().Get("audio");
-		for(const auto &[name, category] : volume_bars)
+		double barSize = audioUI->GetValue("volume bar size");
+		for(const auto &[name, category] : volumeBars)
 		{
-			if(name != "volume")
+			if(category != SoundCategory::MASTER)
 			{
 				Rectangle barZone = audioUI->GetBox(name + " box");
 				if(barZone.Contains(point))
 				{
-					double volume = (point.X() - barZone.Center().X()) / (audioUI->GetValue("volume bar width")) + 0.5;
+					double volume = (point.X() - barZone.Center().X()) / barSize + 0.5;
 					Audio::SetVolume(volume, category);
 					Audio::Play(Audio::Get("warder"), category);
 					return true;

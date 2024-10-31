@@ -25,11 +25,15 @@ using namespace std;
 namespace {
 	const map<string, SoundCategory> categoryNames = {
 			{"ui", SoundCategory::UI},
+			{"anti-missile", SoundCategory::ANTI_MISSILE},
 			{"weapon", SoundCategory::WEAPON},
 			{"engine", SoundCategory::ENGINE},
+			{"afterburner", SoundCategory::AFTERBURNER},
 			{"jump", SoundCategory::JUMP},
 			{"explosion", SoundCategory::EXPLOSION},
-			{"environment", SoundCategory::ENVIRONMENT}
+			{"scan", SoundCategory::SCAN},
+			{"environment", SoundCategory::ENVIRONMENT},
+			{"alert", SoundCategory::ALERT}
 	};
 }
 
