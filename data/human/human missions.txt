@@ -5857,7 +5857,7 @@ mission "Quicksilver Mixup 1"
 				has "took picture of quicksilver package"
 
 			label picture
-			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
 			branch "picture success" "picture failure"
 				random < 50
 
