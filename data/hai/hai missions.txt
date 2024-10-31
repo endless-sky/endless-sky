@@ -207,6 +207,49 @@ mission "Ask the Hai about the Unfettered"
 
 
 
+mission "Hai Waypoint Warning"
+	landing
+	invisible
+	to offer
+		has "hai space start"
+	to complete
+		never
+	on enter "Waypoint"
+		fail
+		conversation
+			`As the <ship> drops out of hyperspace, your dashboard is filled with an array of warning lights. It isn't hard to find the cause; even from this distance, the light of the wormhole is as clear as crystal, tinting everything around it a pale purple. The arms of the vortex rotate seemingly lethargically, but you know that, close up, the bands of energy that make it up must be moving several orders of magnitude faster than the top speed of your ship.`
+			`	Your sightseeing is interrupted by a hail on an encrypted frequency. You open it and are met with what you vaguely recognize as a short greeting in the Hai language.`
+			choice
+				`	"Could you repeat that?"`
+				`	"Sorry, I don't speak Hai."`
+			`	You receive a reply in the form of a hearty chuckle. "My bad, friend," the Hai hailing you says. "Used to be that anyone who grew up in Hai space knew Hai, but I guess that isn't really true anymore, what with Greenwater and such.`
+			`	"Anyway, back on topic. You've probably heard this a hundred times, but it bears repeating: Unless you're certain that the other person already knows, don't talk about the Hai, Hai space, or any Hai technology. Got it?"`
+			choice
+				`	"Got it."`
+					goto easy
+				`	"Why do I have to lie?"`
+			`	The Hai lets out another laugh, this time more nervous. "You know, there's some people out there who'd be able to say what you just did with a straight face."`
+			choice
+				`	"Alright, I'll be on my way."`
+					goto easy
+				`	"I'm serious."`
+			`	While you can't see your conversation partner over the commlink, you get the feeling that they'd be pinching the bridge of their nose right now. "A few decades ago, you'd be hard-pressed to find a captain who'd even consider revealing the existence of the Hai. Nowadays, it feels like even Hai are clamoring to go public, regardless of the turmoil it would bring.`
+			`	"But this isn't just about protecting Hai space. There are groups who have more than enough motive and ability to cover up any attempts of stirring chaos in human space, including anybody looking to expose the existence of a yet-unknown sapient species.`
+			`	"Anyway, stay safe out there." The hail cuts off.`
+				decline
+			label easy
+			`	"Glad to hear it. See you around, Captain." The hail cuts off.`
+	npc
+		government Hai
+		personality staying uninterested
+		system "Waypoint"
+		fleet
+			names "hai"
+			variant
+				"Lightning Bug"
+
+
+
 mission "Hai Sympathizer Warning"
 	invisible
 	source
@@ -215,6 +258,7 @@ mission "Hai Sympathizer Warning"
 	to offer
 		"reputation: Hai Merchant (Sympathizers)" < 0
 		not "warned about hai merchant politics"
+		not "hai space start"
 	on offer
 		log `Got spoken to by a Hai merchant at a spaceport bar after a firefight. Was warned about the factions among Hai merchants and the danger of getting in trouble if sympathizers to the Unfettered get caught in the cross-fire when fighting the Unfettered themselves. Learned that, as an outsider, "self-defense" is not an adequate argument where the deaths of Hai citizens are involved.`
 		set "warned about hai merchant politics"
@@ -295,6 +339,8 @@ mission "Returning Home"
 		random < 40
 	on offer
 		conversation
+			branch insider
+				has "hai space start"
 			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
 			choice
 				`	"Yes, I am."`
@@ -304,9 +350,30 @@ mission "Returning Home"
 			`	"Outside of Hai space. You don't look quite like most humans who live here, unless there's some new fashion trend going on that I don't know about."`
 			choice
 				`	"Oh, yes. I do come from outside."`
+					goto outsider
+			
+			label insider
+			`You are stopped by a human in the marketplace of <origin>. He takes off his hat and asks, "You wouldn't happen to be a captain from the outside, would you?"`
+			choice
+				`	"No, I grew up here."`
+				`	"Why? Do you need to go somewhere?"`
+					goto somewhere
+			
+			`	He sighs. "I figured as such. You can usually tell when people aren't from here by their clothing."`
+			`	The man thinks for a moment. "Would it be too much of a hassle for you to take a trip to human space?"`
+			choice
+				`	"I'd be happy to take you there."`
+				`	"Sorry, but no. You'll have to find another captain."`
+					goto decline
 			
 			label outsider
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+				goto offer
+			
+			label somewhere
+			`	"I do. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+			
+			label offer
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
 			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away.`
@@ -1075,7 +1142,7 @@ mission "Nanachi 3"
 			`	Nanachi looks confused, so you continue to elaborate on that idea. "They're expecting to be able to have new worlds soon, so they consider the decay of their current ones as acceptable losses. Humans have also had issues with long-term planning and preparing for adverse events."`
 				goto end
 			label end
-			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-Home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
+			`	"I see..." She says. "I just thought it would be fun to hear about another large planet like Hai-home. Sorry for asking about it, Captain, I'm sure having to speak of it wasn't a pleasant feeling."`
 			`	Although you're sure that even in Hai space there is social inequality, she probably can't fathom that the home planet of a species could be in such bad shape, considering the Hai even go as far as to send aid to the Unfettered on a regular basis.`
 				goto board
 			label board
@@ -1083,7 +1150,7 @@ mission "Nanachi 3"
 			choice
 				`	"So, do you mind if I help out? I know the job board can be confusing the first few times you check it."`
 				`	"Do you think you need me to help out this time?"`
-			`	"Thanks, but I have to do this on my own. I promise I won't mess this up by getting greedy again," She approaches the board on her own, and it becomes clear that it's much easier to get a job here; she's barely started talking to one of the desk workers before receiving a long list of jobs for smaller ships. She is certainly still very tired, but this seems to have cheered her up a bit; it is the first time she can get a job without your help after all.`
+			`	"Thanks, but I have to do this on my own. I promise I won't mess this up by getting greedy again." She approaches the board on her own, and it becomes clear that it's much easier to get a job here; she's barely started talking to one of the desk workers before receiving a long list of jobs for smaller ships. She is certainly still very tired, but this seems to have cheered her up a bit; it is the first time she can get a job without your help, after all.`
 			`	While you thought she would've picked one or two jobs quickly and headed back to her ship, she keeps going through them and double checking the information for each one, as if something about them bothers her.`
 			`	"What's wrong? Are you struggling to pick between two different jobs?" you ask.`
 			`	"These all seem very easy and I could even accept many at a time, but the problem is their pay isn't very good." She grabs some worn papers from her pocket, and shows it to you: they're the documents for her loan. "The bank back home would only give me enough for the ship if I agreed on a short-term loan. I lost two days before you came along to help me, and if I don't get some better paying job soon, I won't even be able to pay the interest."`
