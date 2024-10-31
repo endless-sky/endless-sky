@@ -147,7 +147,6 @@ private:
 	bool isGun = false;
 	bool isTurret = false;
 	bool isPylon = false;
-	// bool isGun = false; For future use positively identifying guns.
 	// Indicates if this hardpoint disallows converging (guns only).
 	bool isParallel = false;
 	// Indicates if this hardpoint is omnidirectional (turret only).

@@ -171,21 +171,6 @@ shipyard "Independent (Korath-Allied)"
 	"Valkyrie"
 	"Cutthroat"
 	"Mammoth"
-	
-	# Variants added for testing.
-	"Argosy" # Not a variant, just added to ensure it is listed)
-	"Aerie (Miner)"
-	"Argosy (Laser)"
-	"Argosy (Proton)"
-	"Berserker (Afterburner)"
-	"Bounder (Hai)"
-	"Auxiliary"
-	"Auxiliary (Jump Transport)"
-	"Bactrian"
-	"Bactrian (Hai Weapons)"
-	"'nra'ret"
-	"Sea Scorpion (Pulse)"
-	"Sea Scorpion"
 
 
 # See note above about capabilities and limitations of "Independent (Korath-Allied)"

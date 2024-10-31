@@ -69,9 +69,9 @@ int Armament::Add(const Outfit *outfit, int count)
 	int added = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	bool isPylon = outfit->Get("pylon");
-	// bool isGun = outfit->Get("gun ports");
+	bool isGun = outfit->Get("gun ports");
 	// Do not equip weapons that do not define how they are mounted.
-	if(!isTurret && !isPylon && !outfit->Get("gun ports"))
+	if(!isTurret && !isPylon && !isGun)
 	{
 		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->TrueName() + "\"."
 			" Weapon outfits must specify \"gun ports\", \"turret mounts\", or \"pylon\".");

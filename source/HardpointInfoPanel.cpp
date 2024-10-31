@@ -388,6 +388,7 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
+	Color dimmer = *GameData::Colors().Get("dimmer");
 	const Font & font = FontSet::Get(14);
 	const Ship & ship = **shipIt;
 
@@ -401,8 +402,9 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 	// too far apart, the scale may need to be reduced.
 	// Also figure out how many weapons of each type are on each side.
 	double maxX = 0.;
-	int count[2][2] = { {0, 0}, {0, 0} };
+	int count[2][3] = { {0, 0, 0}, {0, 0, 0} };
 	bool stayRight = true;
+	int hardpointType = 0;
 	for(const Hardpoint & hardpoint : ship.Weapons())
 	{
 		// Multiply hardpoint X by 2 to convert to sprite pixels.
@@ -414,11 +416,20 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 			isRight = stayRight;
 			stayRight = !stayRight;
 		}
-		++count[isRight][hardpoint.IsTurret()];
+		// Check to see if the hardpoint is a gun, pylon, or turret.
+		// Return 0 for gun, 1 for turret, 2 for pylon.
+		if(hardpoint.IsGun() == true)
+			hardpointType = 0;
+		else if(hardpoint.IsTurret() == true)
+			hardpointType = 1;
+		else if(hardpoint.IsPylon() == true)
+			hardpointType = 2;
+
+		++count[isRight][hardpointType];
 	}
 	// If necessary, shrink the sprite to keep the hardpoints inside the labels.
 	// The width of this UI block will be 2 * (LABEL_WIDTH + HARDPOINT_DX).
-	static const double LABEL_WIDTH = 200.;
+	static const double LABEL_WIDTH = 250.;
 	static const double LABEL_DX = 95.;
 	static const double LABEL_PAD = 5.;
 	if(maxX > (LABEL_DX - LABEL_PAD))
@@ -434,14 +445,21 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);
 	int turretRows = max(count[0][1], count[1][1]);
-	// If there are both guns and turrets, add a gap of ten pixels.
-	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
+	int pylonRows = max(count[0][2], count[1][2]);
+	// Add a gap of 10 between different types of mounts.
+	// This calculates the total height required for all the hardpoint labels.
+	double height = 20. * (gunRows + pylonRows + turretRows) + 20. * (gunRows && turretRows && pylonRows)
+		+ 10 * (gunRows && turretRows && !pylonRows) + 10 * (gunRows && !turretRows && pylonRows)
+		+ 10 * (!gunRows && turretRows && pylonRows);
 
 	double gunY = bounds.Top() + .5 * (bounds.Height() - height);
-	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
-	double nextY[2][2] = {
-		{gunY + 20. * (gunRows - count[0][0]), turretY + 20. * (turretRows - count[0][1])},
-		{gunY + 20. * (gunRows - count[1][0]), turretY + 20. * (turretRows - count[1][1])} };
+	double pylonY = gunY + 20. * gunRows + 10. * (gunRows != 0);
+	double turretY = pylonY + 20 * pylonRows + 10. * (pylonRows != 0);
+	double nextY[2][3] = {
+		{gunY + 20. * (gunRows - count[0][0]), turretY + 20. * (turretRows - count[0][1]),
+			pylonY + 20. * (pylonRows - count[0][2])},
+		{gunY + 20. * (gunRows - count[1][0]), turretY + 20. * (turretRows - count[1][1]),
+			pylonY + 20. * (pylonRows - count[1][2])} };
 
 	int index = 0;
 	const double centerX = bounds.Center().X();
@@ -458,7 +476,17 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
 	for(const Hardpoint & hardpoint : ship.Weapons())
 	{
-		string name = "[empty]";
+		bool isGun = hardpoint.IsGun();
+		bool isPylon = hardpoint.IsPylon();
+		bool isTurret = hardpoint.IsTurret();
+		bool isEmpty = !hardpoint.GetOutfit();
+		string name = "[empty510]";
+		if(isGun == true)
+			name = "[empty gun port]";
+		if(isPylon == true)
+			name = "[empty pylon]";
+		if(isTurret == true)
+			name = "[empty turret mount]";
 		if(hardpoint.GetOutfit())
 			name = hardpoint.GetOutfit()->DisplayName();
 
@@ -468,14 +496,13 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 			isRight = stayRight;
 			stayRight = !stayRight;
 		}
-		bool isTurret = hardpoint.IsTurret();
-		bool isPylon = hardpoint.IsPylon();
 
-		double & y = nextY[isRight][isTurret];
+		int hardpointType = isPylon ? 2 : isTurret ? 1 : 0;
+		double & y = nextY[isRight][hardpointType];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
 		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
-		font.Draw({ name, layout }, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		font.Draw({ name, layout }, Point(x, y + TEXT_OFF), isEmpty ? isHover ? dim : dimmer : isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
