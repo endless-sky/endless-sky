@@ -21247,22 +21247,24 @@ system Kornephoros
 	pos -612 424
 	government Republic
 	attributes "south"
-	arrival 980
-	habitable 980
-	belt 1168
+	arrival 4000
+	habitable 2000
+	belt 1168 2
+	belt 2932 3
+	belt 4029
 	link Aldhibain
 	link Sabik
 	link Sargas
 	link Wei
-	asteroids "small rock" 127 10.44
-	asteroids "medium rock" 96 8.787
-	asteroids "large rock" 24 12.528
-	asteroids "small metal" 4 7.221
+	asteroids "small rock" 145 10.44
+	asteroids "medium rock" 130 8.787
+	asteroids "large rock" 30 12.528
+	asteroids "small metal" 7 7.221
 	asteroids "medium metal" 143 8.352
-	asteroids "large metal" 7 11.745
-	minables lead 48 18.1544
-	minables silicon 24 15.5119
-	minables silver 13 18.7077
+	asteroids "large metal" 10 11.745
+	minables lead 90 18.1544
+	minables silicon 50 15.5119
+	minables silver 25 18.7077
 	trade Clothing 311
 	trade Electronics 797
 	trade Equipment 439
@@ -21290,23 +21292,31 @@ system Kornephoros
 		period 11.9686
 	object
 		sprite planet/ganymede
-		distance 327.16
-		period 75.6113
+		distance 735.16
+		period 150.6113
 	object Deep
 		sprite planet/ocean9
-		distance 809.16
-		period 294.102
+		distance 1609.16
+		period 670.102
 		object Clink
 			sprite planet/luna
-			distance 168
+			distance 200
 			period 20.8235
 	object
 		sprite planet/ice7
-		distance 1501.2
+		distance 3201.2
 		period 743.198
 	object
+		sprite planet/forest2
+		distance 4253.302
+		period 1253.43
+	object
+		sprite planet/rock6
+		distance 5634.5474
+		period 1620.4736
+	object
 		sprite planet/gas15-b
-		distance 2966.29
+		distance 6560.29
 		period 2064.27
 		object
 			sprite planet/miranda-b
