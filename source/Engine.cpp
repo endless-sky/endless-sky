@@ -626,8 +626,11 @@ void Engine::Step(bool isActive)
 	// Add the flagship outline last to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
-		outlines.emplace_back(flagship->GetSprite(), (flagship->Center() - center) * zoom, flagship->Unit() * zoom,
-			flagship->GetFrame(), *GameData::Colors().Get("flagship highlight"));
+		outlines.emplace_back(flagship->GetSprite(),
+			(flagship->Center() - center) * zoom,
+			flagship->Unit() * zoom * flagship->Scale(),
+			flagship->GetFrame(),
+			*GameData::Colors().Get("flagship highlight"));
 	}
 
 	// Any of the player's ships that are in system are assumed to have
