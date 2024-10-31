@@ -30165,21 +30165,23 @@ system Sabik
 	pos -675 379
 	government Republic
 	attributes "rim"
-	arrival 625
-	habitable 625
-	belt 1609
+	arrival 1560
+	habitable 1250
+	belt 1609 3
+	belt 2500
+	belt 2900
 	link Aldhibain
 	link Kornephoros
 	link Unukalhai
 	link Zubenelgenubi
-	asteroids "small rock" 2 5.684
-	asteroids "medium rock" 1 4.669
-	asteroids "large rock" 5 5.5622
-	asteroids "small metal" 7 5.0344
-	asteroids "medium metal" 29 5.481
-	asteroids "large metal" 2 2.233
-	minables aluminum 4 9.1736
-	minables iron 2 7.04854
+	asteroids "small rock" 5 5.684
+	asteroids "medium rock" 3 4.669
+	asteroids "large rock" 11 5.5622
+	asteroids "small metal" 15 5.0344
+	asteroids "medium metal" 50 5.481
+	asteroids "large metal" 4 2.233
+	minables aluminum 9 9.1736
+	minables iron 5 7.04854
 	trade Clothing 312
 	trade Electronics 787
 	trade Equipment 383
@@ -30199,20 +30201,28 @@ system Sabik
 		period 10
 	object
 		sprite planet/cloud2
-		distance 182.25
-		period 39.366
+		distance 420.25
+		period 75.36
+	object
+		sprite planet/ice7-b
+		distance 563.27
+		period 292.098
 	object Longjump
 		sprite planet/forest6-b
-		distance 647.5
-		period 263.620
+		distance 1424.5
+		period 513.620
 	object
 		sprite planet/gas4-b
-		distance 1280.19
-		period 732.877
+		distance 2825.19
+		period 1526.877
+	object
+		sprite planet/cloud5
+		distance 3602.62
+		period 1850.72
 	object
 		sprite planet/gas11-b
-		distance 2061.55
-		period 1497.65
+		distance 4320.55
+		period 2103.65
 
 system Sabriset
 	pos 151.724 -426.518
