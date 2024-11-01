@@ -163,7 +163,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		CheckLock(*target);
 		CheckConfused(*target);
 	}
-	if(!Random::Int(90))
+	// Make sure to set a confusion direction if there isn't one.
+	if(!Random::Int(ceil(180 / turn)) || confusionDirection == 0)
 		confusionDirection = Random::Int(2) ? -1 : 1;
 	if(target && homing && hasLock)
 	{
@@ -473,10 +474,6 @@ void Projectile::CheckConfused(const Ship &target)
 	}
 
 	isConfused = trackingConfused && infraredConfused && opticalConfused && radarConfused;
-
-	// Set a confusion direction if there isn't one already
-	if(isConfused && confusionDirection == 0)
-		confusionDirection = Random::Int(2) ? -1 : 1;
 }
 
 
