@@ -815,7 +815,7 @@ void MapPanel::Select(const System *system)
 			flagship->SetTargetSystem(nullptr);
 
 		plan = distance.Plan(*system);
-		if (isJumping)
+		if(isJumping)
 			plan.push_back(source);
 	}
 
