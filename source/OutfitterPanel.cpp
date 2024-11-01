@@ -385,14 +385,14 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		int64_t credits = player.Accounts().Credits();
 
 		if(cost > credits)
-			errors.push_back("You do not have enough money to buy this outfit, you need a further " +
+			errors.push_back("You do not have enough money to buy this outfit. You need a further " +
 				Format::CreditString(cost - credits));
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
-			errors.push_back("You do not have enough money to buy this outfit because you also need to buy a "
-				"license for it. You need a further " +
-				Format::CreditString(licenseCost - credits));
+			errors.push_back("You do not have enough money to buy this outfit because you also need "
+				"to buy a license for it. You need a further " +
+				Format::CreditString(cost + licenseCost - credits));
 	}
 
 	// Check if the outfit will fit
@@ -475,7 +475,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return errors[0];
 	else
 	{
-		string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
+		string errorMessage = "There are several reasons why you cannot " + 
+			string(onlyOwned ? "load" : "buy") + " this outfit:\n";
 		for(size_t i = 0; i < errors.size(); ++i)
 			errorMessage += "- " + errors[i] + "\n";
 		return errorMessage;
