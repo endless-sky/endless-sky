@@ -484,7 +484,7 @@ void HardpointInfoPanel::DrawWeapons(const Rectangle & bounds)
 		if(isGun == true)
 			name = "[empty gun port]";
 		if(isPylon == true)
-			name = "[empty pylon]";
+			name = "[empty missile pylon]";
 		if(isTurret == true)
 			name = "[empty turret mount]";
 		if(hardpoint.GetOutfit())

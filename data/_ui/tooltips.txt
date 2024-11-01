@@ -277,10 +277,10 @@ tip "fuel protection:"
 	`Protection provided against fuel damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in fuel damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "gun ports needed:"
-	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
+	`This weapon uses up a gun port. Guns always fire on a specified angle, which is usually forwards.`
 
 tip "gun ports free:"
-	`How many guns this ship can hold. This includes most missiles and secondary weapons that fire straight forward.`
+	`How many guns this ship can hold. This includes all primary weapons that fire in a fixed direction.`
 
 tip "heat dissipation:"
 	`How effectively this ship radiates excess heat.`
@@ -533,6 +533,12 @@ tip "piercing protection:"
 
 tip "piercing resistance:"
 	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
+
+tip "pylons needed:"
+	`This weapon uses up a missile pylon. Pylons always fire on a set angle, which is often forward but may be on an angle to provide counter-flanking or counter-pursuit fire.`
+
+tip "missile pylons free:"
+	`How many pylons this ship can hold. This includes all rockets, missiles, torpedoes and similar secondary weapons.`
 
 tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
@@ -829,10 +835,10 @@ tip "turning disruption:"
 	`Accumulated shield interference per second when turning.`
 
 tip "turret mounts needed:"
-	`This weapon can fire in any direction, tracking your currently selected target. It uses up one of your ship's turret mounts.`
+	`This weapon can fire in any direction, tracking your currently selected target or closest enemy ship depending on your preferences. It uses up one of your ship's turret mounts.`
 
 tip "turret mounts free:"
-	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
+	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns. Some turret mounts may have a limited range of fire.`
 
 tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`

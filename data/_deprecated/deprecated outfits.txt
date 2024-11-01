@@ -450,7 +450,7 @@ outfit "Korath Piercer Launcher"
 	"outfit space" -27
 	"weapon capacity" -27
 	"energy capacity" 50
-	"pylon" -1
+	"missile pylons" -1
 	"piercer capacity" 31
 	weapon
 		sprite "projectile/piercer"

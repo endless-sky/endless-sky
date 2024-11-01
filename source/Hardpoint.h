@@ -30,7 +30,7 @@ class Visual;
 
 
 
-// A single weapon hardpoint on the ship (i.e. a gun port or turret mount),
+// A single weapon hardpoint on the ship (i.e. a gun port, turret mount, or missile pylon),
 // which may or may not have a weapon installed.
 class Hardpoint {
 public:

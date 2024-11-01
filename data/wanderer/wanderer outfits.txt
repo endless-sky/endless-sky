@@ -223,7 +223,7 @@ outfit "Thunderhead Launcher"
 	"mass" 14
 	"outfit space" -26
 	"weapon capacity" -26
-	"pylon" -1
+	"missile pylons" -1
 	"thunderhead capacity" 40
 	weapon
 		sprite "projectile/thunderhead"

@@ -96,7 +96,7 @@ outfit "Star Tail"
 	mass 48
 	"outfit space" -50
 	"weapon capacity" -50
-	"pylon" -1
+	"missile pylons" -1
 	thumbnail "outfit/star tail launcher"
 	"star tail capacity" 20
 	licenses

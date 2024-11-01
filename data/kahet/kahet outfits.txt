@@ -233,7 +233,7 @@ outfit "Ka'het EMP Deployer"
 	"mass" 18
 	"outfit space" -26
 	"weapon capacity" -26
-	"pylon" -1
+	"missile pylons" -1
 	"emp torpedo capacity" 16
 	weapon
 		sprite "projectile/emp torpedo"
@@ -276,7 +276,7 @@ outfit "Ka'het Emergency Deployer"
 	thumbnail "outfit/ka'het mhd deployer"
 	"mass" 13
 	"outfit space" -17
-	"pylon" -1
+	"missile pylons" -1
 	weapon
 		sprite "projectile/mhd"
 			"frame rate" 2

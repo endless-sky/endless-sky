@@ -89,7 +89,7 @@ outfit "Finisher Pod"
 	"mass" 16
 	"outfit space" -36
 	"weapon capacity" -36
-	"pylon" -1
+	"missile pylons" -1
 	"finisher capacity" 40
 	weapon
 		sprite "projectile/finisher activating"
@@ -126,7 +126,7 @@ outfit "Finisher Maegrolain"
 	"mass" 58
 	"outfit space" -88
 	"weapon capacity" -88
-	"pylon" -1
+	"missile pylons" -1
 	"finisher capacity" 60
 	weapon
 		sprite "projectile/finisher activating"

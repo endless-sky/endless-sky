@@ -320,7 +320,7 @@ outfit "Shard Fabricator"
 	"outfit space" -10
 	"weapon capacity" -7
 	"fuel capacity" 36
-	"pylon" -1
+	"missile pylons" -1
 	"unique" 1
 	"operating costs" 150
 	weapon

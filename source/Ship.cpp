@@ -749,7 +749,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	baseAttributes.Set("gun ports", armament.GunCount());
 	baseAttributes.Set("turret mounts", armament.TurretCount());
-	baseAttributes.Set("pylon", armament.PylonCount());
+	baseAttributes.Set("missile pylons", armament.PylonCount());
 
 	if(addAttributes)
 	{
@@ -811,9 +811,9 @@ void Ship::FinishLoading(bool isNewInstance)
 
 		Logger::LogError(message);
 	}
-	// Inspect the ship's armament to ensure that guns are in gun ports and
-	// turrets are in turret mounts. This can only happen when the armament
-	// is configured incorrectly in a ship or variant definition. Do not
+	// Inspect the ship's armament to ensure that guns are in gun ports, turrets are
+	// in turret mounts, and missiles in missile pylons. This can only happen when the
+	// armament is configured incorrectly in a ship or variant definition. Do not
 	// bother printing this warning if the outfit is not fully defined.
 	// Note the GT in the two outputs for the first test stand for Gun Test
 	// while the TT in the second set of two outputs is for Turret Test,
@@ -848,7 +848,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			warning += " \"" + outfit->TrueName() + "\"";
 			Logger::LogError(warning);
 		}
-		if(outfit && (hardpoint.IsPylon() != (outfit->Get("pylon") != 0.)))
+		if(outfit && (hardpoint.IsPylon() != (outfit->Get("missile pylons") != 0.)))
 		{
 			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
 			if(!name.empty())

@@ -338,7 +338,7 @@ outfit "Hai Tracker Pod"
 	"mass" 8
 	"outfit space" -19
 	"weapon capacity" -19
-	"pylon" -1
+	"missile pylons" -1
 	"tracker capacity" 56
 	weapon
 		sprite "projectile/tracker"

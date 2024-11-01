@@ -417,7 +417,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	// don't use SCALE or BOOLEAN_ATTRIBUTES.
 	static const vector<string> EXPECTED_NEGATIVE = {
 		"outfit space", "weapon capacity", "engine capacity", "engine mod space", "reverse thruster slot",
-		"steering slot", "thruster slot", "gun ports", "turret mounts", "pylon"
+		"steering slot", "thruster slot", "gun ports", "turret mounts", "missile pylons"
 	};
 
 	for(const string &attr : EXPECTED_NEGATIVE)
