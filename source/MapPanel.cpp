@@ -815,6 +815,8 @@ void MapPanel::Select(const System *system)
 			flagship->SetTargetSystem(nullptr);
 
 		plan = distance.Plan(*system);
+		if (isJumping)
+			plan.push_back(source);
 	}
 
 	// Reset the travel destination if the final system in the travel plan has changed.
