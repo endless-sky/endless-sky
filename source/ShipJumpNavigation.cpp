@@ -163,10 +163,7 @@ bool ShipJumpNavigation::CanJump(const System *from, const System *to) const
 		return false;
 
 	const double distanceSquared = from->Position().DistanceSquared(to->Position());
-	if(from->JumpRange() && from->JumpRange() * from->JumpRange() < distanceSquared)
-		return false;
-
-	const double maxRange = jumpDriveCosts.rbegin()->first;
+	double maxRange = from->JumpRange() ? from->JumpRange() : jumpDriveCosts.rbegin()->first;
 	return maxRange * maxRange >= distanceSquared;
 }
 
