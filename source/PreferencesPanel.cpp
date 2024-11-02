@@ -694,7 +694,7 @@ void PreferencesPanel::DrawSettings()
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,
-		"Show parenthesis"
+		"Show parenthesis",
 		"Play ding on destination"
 	};
 
