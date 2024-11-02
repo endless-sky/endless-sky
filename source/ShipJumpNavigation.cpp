@@ -24,10 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-const double ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST = 100.;
-const double ShipJumpNavigation::DEFAULT_SCRAM_DRIVE_COST = 150.;
-const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
-
 
 
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
@@ -202,11 +198,8 @@ bool ShipJumpNavigation::HasJumpDrive() const
 // jump information accordingly.
 void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 {
-	auto CalculateFuelCost = [this, &outfit](double defaultFuel) -> double
+	auto CalculateFuelCost = [this, &outfit]() -> double
 	{
-		double baseCost = outfit.Get("jump fuel");
-		if(baseCost <= 0.)
-			baseCost = defaultFuel;
 		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
 		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
 		// jump base mass is allowed to have a negative mass cost.
@@ -214,12 +207,12 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 		// Prevent a drive with a high jump base mass on a ship with a low mass from pushing the total
 		// cost too low. Put a floor at 1, as a floor of 0 would be assumed later on to mean you can't jump.
 		// If and when explicit 0s are allowed for fuel cost, this floor can become 0.
-		return max(1., baseCost + massCost);
+		return max(1., outfit.Get("jump fuel") + massCost);
 	};
 
 	if(outfit.Get("hyperdrive") && (!hasScramDrive || outfit.Get("scram drive")))
 	{
-		double cost = CalculateFuelCost(hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
+		double cost = CalculateFuelCost();
 		if(!hyperdriveCost || cost < hyperdriveCost)
 			hyperdriveCost = cost;
 	}
@@ -228,7 +221,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 		double distance = outfit.Get("jump range");
 		if(distance <= 0.)
 			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
-		double cost = CalculateFuelCost(DEFAULT_JUMP_DRIVE_COST);
+		double cost = CalculateFuelCost();
 
 		UpdateJumpDriveCosts(distance, cost);
 	}
