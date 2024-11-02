@@ -32,12 +32,12 @@ mission "Avgi: First Contact"
 	autosave
 	name "An Alien Encounter"
 	description "Follow the alien ship to the destination marked on your map."
+	landing
 	source
 		attributes "avgi"
-	landing
-	waypoint "Arche"
-	waypoint "Ballad"
 	destination "Peripheria"
+	mark "Arche"
+	mark "Ballad"
 	clearance
 	on offer
 		set "avgi: aberrant siege"
@@ -157,11 +157,45 @@ mission "Avgi: First Contact"
 
 	npc
 		government "Aberrant"
-		personality entering heroic
+		personality coward secretive vindictive entering
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Latte" 4
+				"Aberrant Latte" 3
+				"Aberrant Whiskers" 2
+
+	npc
+		government "Aberrant"
+		personality
+			confusion 90
+			coward secretive uninterested vindictive
+		system "Quintessence"
+		fleet
+			names "aberrant names"
+			variant
+				"Aberrant Chomper" 2
+
+	npc
+		government "Aberrant"
+		personality
+			confusion 90
+			coward secretive uninterested vindictive
+		system "Ballad"
+		fleet
+			names "aberrant names"
+			variant
+				"Aberrant Trip"
+
+	npc
+		government "Aberrant"
+		personality
+			confusion 90
+			coward secretive uninterested vindictive
+		system "H-1"
+		fleet
+			names "aberrant names"
+			variant
+				"Aberrant Hugger" 2
 
 	npc save accompany
 		government "Avgi (Twilight Guard)"
@@ -326,8 +360,8 @@ mission "Avgi: First Contact"
 mission "Avgi: Humans From the Deep"
 	name "Humans among the Avgi"
 	description "Visit the <destination>, where there is another human, Darius Calwell, stranded in Avgi space."
-	source "Peripheria"
 	landing
+	source "Peripheria"
 	destination "Aktina Cylinder"
 	to offer
 		has "Avgi: First Contact: done"
@@ -336,10 +370,10 @@ mission "Avgi: Humans From the Deep"
 mission "Avgi: Defend Ensemble 1"
 	name "Avgi Strike Force"
 	description "Meet up with the Avgi strike force at <destination>."
-	source "Aktina Cylinder"
 	landing
 	passengers 1
 	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
+	source "Aktina Cylinder"
 	destination "Navigeo Yards"
 	to offer
 		has "Avgi: Humans From the Deep: done"
@@ -438,8 +472,8 @@ mission "Avgi: Defend Ensemble 1"
 mission "Avgi: Defend Ensemble 2"
 	name "Ensemble Defense"
 	description "Assist the Avgi in the Ensemble system with an Aberrant deep raid."
-	source "Navigeo Yards"
 	landing
+	source "Navigeo Yards"
 	destination "Weledos"
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
@@ -455,7 +489,7 @@ mission "Avgi: Defend Ensemble 2"
 				accept
 	npc
 		government "Avgi (Twilight Guard)"
-		personality heroic
+		personality heroic escort
 		fleet
 			names "avgi military names"
 			variant
@@ -465,7 +499,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Tremoros" 3
 	npc
 		government "Avgi (Twilight Guard)"
-		personality heroic waiting
+		personality heroic waiting escort
 		fleet
 			names "avgi military names"
 			variant
@@ -489,34 +523,56 @@ mission "Avgi: Defend Ensemble 2"
 				"Diaspersi"
 				"Vibratia" 8
 				"Photikon" 2
+	npc
+		government "Avgi (Twilight Guard)"
+		personality heroic waiting
+		system "Arche"
+		fleet
+			names "avgi military names"
+			variant
+				"Prismaios" 3
+				"Tremoros" 6
+				"Refraktos" 2
 	npc evade
 		government "Aberrant"
 		personality
-			confusion 60
-			coward hunting secretive staying unconstrained vindictive
+			confusion 40
+			coward hunting secretive staying unconstrained vindictive target
 		system "Ensemble"
 		fleet
 			names "aberrant names"
 			variant
 				"Aberrant Latte" 4
-				"Aberrant Chomper" 7
-				"Aberrant Pileup" 4
+				"Aberrant Chomper (Disable-able)" 2
+				"Aberrant Pileup" 2
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Latte" 7
-				"Aberrant Chomper" 4
-				"Aberrant Whiskers" 4
+				"Aberrant Latte" 2
+				"Aberrant Chomper"
+				"Aberrant Whiskers" 2
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Traincar" 5
-				"Aberrant Mole" 3
+				"Aberrant Latte" 2
+				"Aberrant Chomper" 2
+				"Aberrant Whiskers"
+		fleet
+			names "aberrant names"
+			variant
+				"Aberrant Traincar"
+				"Aberrant Mole" 2
+		fleet
+			names "aberrant names"
+			variant
+				"Aberrant Traincar" 2
+				"Aberrant Mole"
 		fleet
 			names "aberrant names"
 			variant
 				"Aberrant Trip" 3
 				"Aberrant Triplet (Disable-able)" 2
+
 	on complete
 		conversation
 			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to the Navigeo Yards. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
@@ -587,9 +643,10 @@ mission "Avgi: Defend Ensemble 2"
 
 mission "Avgi: Scout Rescue"
 	name "Search and Rescue"
-	description "Find and evacuate the crew of the <npc>, which was last seen in the Twirl system."
-	source "Weledos"
+	description "Find and evacuate the crew of the <npc>, which was last seen in the Twirl system, but could be anywhere in the local star cluster."
 	passengers 12
+	blocked "You'll need <capacity> to complete this mission."
+	source "Weledos"
 	destination "Peripheria"
 	waypoint "Twirl"
 	to offer
@@ -610,7 +667,9 @@ mission "Avgi: Scout Rescue"
 			`	He flicks his wings. "Regret. It is a sad truth, but those on the forefront of expanding our knowledge are often those who face the most danger from the unknown."`
 			label point
 			`	"But, to the point. A scout team, aboard the Polari-class scout 'Silver Albedo,' was sent to survey the Twirl system two weeks ago, but has missed its check-in by multiple days. To reach that star cluster and return would normally require a trip of weeks, all through perilous territory, and I am ashamed to say that we could be forced to consider writing off the scouts as lost. But I have heard that the visiting human, Captain <last>, is in possession of a new kind of faster-than-light drive, one that can travel without the need for starways. Tell me, is this true, question?"`
-			`	You nod.`
+			choice
+				`	"Yes."`
+				`	"Yes, it's called a jump drive."`
 			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mounting a rescue. I will mark the location of the Twirl system on your map, though it is probable that the Silver Albedo is elsewhere in the star cluster. The highest priority is of course the safe recovery of its crew, though if you could recover any data or samples they have managed to gather, that would also be much appreciated."`
 				accept
 
@@ -671,7 +730,7 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion 40
 			coward secretive staying target unconstrained uninterested vindictive
 		system "Corporeal"
 		fleet
@@ -682,7 +741,7 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion 40
 			coward secretive staying target unconstrained uninterested vindictive
 		system "Empyrean"
 		fleet
@@ -693,7 +752,7 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion 40
 			coward secretive staying target unconstrained uninterested vindictive
 		system "Firmament"
 		fleet
@@ -704,7 +763,7 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion 40
 			coward secretive staying target unconstrained uninterested vindictive
 		system "Lumine"
 		fleet
@@ -729,9 +788,9 @@ mission "Avgi: Frontline Combat"
 mission "Avgi: Dissonance Outreach 0.5"
 	name "Return to Peripheria"
 	description "Return to <destination> to collect Hriso, a Consonance Assemblyman."
-	source "Feo Platform"
 	landing
 	passengers 2
+	source "Feo Platform"
 	destination "Peripheria"
 	to offer
 		has "Avgi: Frontline Combat: done"
@@ -743,9 +802,9 @@ mission "Avgi: Dissonance Outreach 0.5"
 mission "Avgi: Dissonance Outreach"
 	name "Dissonance Outreach"
 	description "Take Hriso to <destination> for negotiations with the local miners."
-	source "Peripheria"
 	passengers 3
 	blocked "You'll need <capacity> to transport Darius, Sora, and Hriso."
+	source "Peripheria"
 	destination "Outpost Tekis"
 	clearance
 	to offer
@@ -756,9 +815,9 @@ mission "Avgi: Dissonance Outreach"
 		conversation
 			`	Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."`
 			choice
+				`	"Aren't the Avgi united under the Consonance?"`
 				`	"Who are you negotiating with exactly?"`
 					goto dissonance
-				`	"Aren't the Avgi united under the Consonance?"`
 			`	He thrums in laughter. "One can only wish our species was that unified. No, membership in the Consonance is purely at-will, and many polities have chosen to go it alone even with the current crisis. Regret. The initial evacuation into the Tangled Shroud was haphazard to say the least, as much of it was, and still is, unmapped. Many captains took their ships down differing paths, meeting up with each other and forming alliances just to survive. In a way, it's a miracle that the Consonance was even able to reconstitute itself at all."`
 
 			label dissonance
@@ -767,7 +826,19 @@ mission "Avgi: Dissonance Outreach"
 			`	Sora says, "I still think they're a bunch of cowards. The existence of your species is threatened, and you let someone else do the fighting? Then you complain about the price they can pay for iron? What kind of person does that?"`
 			`	Hriso flicks his wings. "Reproach. The kind that still has to support themselves, and pay for the precision machinery they cannot make themselves. But we can discuss this later. For now, let us set off as soon as possible."`
 				accept
-	on complete
+
+
+mission "Avgi: Twilight Escape 1"
+	name "Escape the Twilight"
+	description "Find a way out of the Twilight. You may want to look to the far east of Avgi space, where the Incursion started."
+	landing
+	passengers 3
+	blocked "You'll need <capacity> on the <ship> to transport Darius, Sora, and Leon."
+	source "Outpost Tekis"
+	destination "Vinci"
+	to offer
+		has "Avgi: Dissonance Outreach: done"
+	on offer
 		conversation
 			`	Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
 			`	You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
@@ -815,19 +886,10 @@ mission "Avgi: Dissonance Outreach"
 			choice
 				`	"I've heard of that area. It's called the Ember Waste."`
 				`	"Can it take us back to human space?" asks Leon, to which you nod.`
+
 			label "unknown ember waste"
 			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him. You just hope his hope isn't a false one, for both of your sakes.`
-
-
-mission "Avgi: Twilight Escape 1"
-	name "Escape the Twilight"
-	description "Find a way out of the Twilight. You may want to look to the far east, where the first invasion started."
-	source "Outpost Tekis"
-	passengers 3
-	blocked "You'll need three free bunks on the <ship> to transport Darius, Sora, and Leon."
-	destination "Vinci"
-	to offer
-		has "Avgi: Dissonance Outreach: done"
+				accept
 	on enter "Decet"
 		conversation
 			`	Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tell you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
@@ -837,8 +899,8 @@ mission "Avgi: Twilight Escape 1"
 		conversation
 			`	As the purple flames of your jump drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
 			choice
-				`"Heh, told you we'd make it."`
-				`"We're out. Where to now?"`
+				`	"Heh, told you we'd make it."`
+				`	"We're out. Where to now?"`
 			`	Leon stares for a moment, then swears. "That damn magnetar was there the entire time? I was there for years. Years!"`
 			`	"We all were. And you wouldn't have been able to do anything with it without <first>'s jump drive," reminds Sora.`
 			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
@@ -859,9 +921,9 @@ mission "Avgi: Twilight Escape 1"
 mission "Avgi: Twilight Escape 2"
 	name "Sora's Return"
 	description "Take Sora to her parents' farm on Memory"
-	source "Vinci"
 	passengers 2
-	blocked "You'll need two free bunks on the <ship> to transport Darious and Sora."
+	blocked "You'll need <capacity> on the <ship> to transport Darious and Sora."
+	source "Vinci"
 	destination "Memory"
 	to offer
 		has "Avgi: Twilight Escape 1: done"
@@ -882,10 +944,10 @@ mission "Avgi: Twilight Escape 2"
 mission "Avgi: Twilight Escape 3"
 	name "Darius' Return"
 	description "Take Darius to his home on Valhalla, in the hope his wife is still there since his apparent death."
-	source "Memory"
 	landing
 	passengers 1
-	blocked "You'll need one free bunk on the <ship> to transport Darius."
+	blocked "You'll need <capacity> on the <ship> to transport Darius."
+	source "Memory"
 	destination "Valhalla"
 	to offer
 		has "Avgi: Twilight Escape 2: done"

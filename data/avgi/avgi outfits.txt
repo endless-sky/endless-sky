@@ -171,7 +171,7 @@ outfit "Diffuse Deflector"
 	"delayed shield energy" 1.8
 	"delayed shield heat" 4.8
 	"shield delay" 3
-	description "The Avgi never developed shields indigenously, instead being first introduced to the technology by lost explorers from the Deep. Directly copying the technique used in human shields proved unappealing to Avgi scientists, in part due to the totally alien principles involved, so instead they attempted to replicate the shield effect via enormous superconducting magnets, a far more mature technology."
+	description "The Avgi never developed shields indigenously, instead being first introduced to the technology by lost explorers from the Deep. Directly copying the technique used in human shields proved unappealing to Avgi scientists, in part due to the totally alien principles involved, so instead they attempted to tap into the shield effect via enormous superconducting magnets, for them a far more mature technology."
 	description "Unfortunately, for its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about half as strong, while also consuming far more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield, resulting in a generator that can be generously described as anemic."
 
 
@@ -188,7 +188,7 @@ outfit "Specular Deflector"
 	"delayed shield energy" 3.6
 	"delayed shield heat" 9.6
 	"shield delay" 3
-	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their practically concept-level theory of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete understanding of the base physics behind shielding, and this generator approaches it."
+	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their fledgling understanding of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete picture of the base physics behind shields, and this generator approaches it."
 	description "The limited success of the Avgi shield replication attempts are mitigated somewhat by the fact that the enormous superconducting coils in their shield generators store a similarly enormous amount of energy, making them effectively superconducting magnetic energy storage devices that slowly regenerate shields as a bonus."
 
 
@@ -290,7 +290,7 @@ outfit "Magnetoplasma Drive"
 	"turn" 270
 	"turning energy" 0.6
 	"turning heat" 0.3
-	"drag reduction" 0.15
+	"drag reduction" 0.3
 	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
@@ -613,7 +613,7 @@ outfit "Damselflyman"
 	"capture attack" 30
 	"capture defense" 60
 	"unplunderable" 1
-	description "This mysterious radioactive tumor, while benign, has grown unnaturally in the center of your chest, creating a glowing dragonfly-shaped patch in the middle of your sternum. Enemies panic and flee at the sight of it, but only when possession of a disabled starship is contested. Also, you really shouldn't be able to see this."
+	description "This mysterious radioactive tumor, while benign, has grown unnaturally in the center of your chest, creating a glowing dragonfly-shaped patch in the middle of your sternum. Enemies panic and flee at the sight of it, but only when possession of a disabled starship is contested. Also, you really shouldn't be able to see this 'outfit.'"
 
 
 outfit "Lancet Adamant"

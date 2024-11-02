@@ -435,7 +435,7 @@ planet "Feo Platform"
 
 planet "Peripheria"
 	attributes avgi "avgi diaspora" station urban
-	landscape land/station54
+	landscape land/peripheria
 	description `This enormous, kilometer-wide rotating station is the capital of the Avgi civilization in exile. Shaped like a solid disc, it is home to almost a million Avgi, made up of both civilians that were able to flee the core worlds during the invasion and those who already led independent lives in deep space.`
 	description `The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached.`
 	description `The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species-wide government.`
