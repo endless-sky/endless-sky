@@ -200,6 +200,21 @@ Point operator/(double scalar, const Point &point)
 #endif
 }
 
+
+
+Point &Point::operator/=(double scalar)
+{
+#ifdef __SSE3__
+	v /= _mm_loaddup_pd(&scalar);
+#else
+	x /= scalar;
+	y /= scalar;
+#endif
+	return *this;
+}
+
+
+
 Point Point::operator/(const Point &other) const
 {
 #ifdef __SSE3__
@@ -211,6 +226,8 @@ Point Point::operator/(const Point &other) const
 #endif
 }
 
+
+
 Point &Point::operator/=(const Point &other)
 {
 #ifdef __SSE3__
@@ -218,17 +235,6 @@ Point &Point::operator/=(const Point &other)
 #else
 	x /= other.x;
 	y /= other.y;
-#endif
-	return *this
-}
-
-Point &Point::operator/=(double scalar)
-{
-#ifdef __SSE3__
-	v /= _mm_loaddup_pd(&scalar);
-#else
-	x /= scalar;
-	y /= scalar;
 #endif
 	return *this;
 }
