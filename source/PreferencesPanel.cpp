@@ -695,6 +695,7 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		DATE_FORMAT,
 		"Show parenthesis"
+		"Play ding on destination"
 	};
 
 	bool isCategory = true;
