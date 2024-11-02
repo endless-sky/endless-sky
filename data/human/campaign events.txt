@@ -1148,7 +1148,7 @@ event "oathkeepers founded"
 		fleet "Derelict Pirate" 10000
 	planet "Farpoint"
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
-		description `	Lately, the Navy base on Farpoint has been growing; it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
+		description `	Lately, the Navy base on Farpoint has been growing. It has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
 
 
 
@@ -1753,7 +1753,7 @@ event "fw northern expansion"
 
 event "fw prison on Clink"
 	planet "Clink"
-		add description `Recently, the Free Worlds has converted Clink into a prison colony for Navy officers and support staff who were captured in the battle for the Rastaban system.`
+		add description `Recently, the Free Worlds have converted Clink into a prison colony for Navy officers and support staff who were captured in the battle for the Rastaban system.`
 
 event "fw prison on Clink closes"
 	planet "Clink"
