@@ -2057,7 +2057,7 @@ mission "FW Katya 7C"
 				`	"So the Free Worlds is behind this! This is one of your planets!"`
 			
 			`	"Yes, this a Free planet, but this evidence is far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds is being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
-			`	"I swear before God when I say that the Free Worlds has nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
+			`	"I swear before God when I say that the Free Worlds have nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
 			
 			label now
 			`	Katya thinks for a moment. "Captain, is the outpost reporting any job openings?"`

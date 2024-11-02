@@ -1885,7 +1885,7 @@ event "albatross joins free worlds"
 	planet "Albatross"
 		add attributes "ex-pirate"
 		description `Albatross is a cold ocean world orbiting a small, cold sun. The first settlers on Albatross were anarchists who believed that in a society free from unnatural laws and constraints, everyone would happily and freely work for the common good. The next settlers were pirates who believed that a planet free from laws and constraints would be a great base of operations.`
-		description `	Recently, the Free Worlds has liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
+		description `	Recently, the Free Worlds have liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
 	system "Nunki"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 700
