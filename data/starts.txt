@@ -1,4 +1,5 @@
 # Copyright (c) 2015 by Michael Zahniser
+# Copyright (c) 2024 by Hurleveur
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -67,19 +68,19 @@ start "hai space"
 	planet "Greenwater"
 	date 16 11 3013
 	to reveal
-		has "Ask the Hai about the Unfettered: offered"
+		has "Ask the Hai about the Unfettered"
 	on reveal
 		name "Hai Origins"
 		description `You grew up on Greenwater, a Hai world with a rich and mixed culture thanks to its climate. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. To reach that goal, you worked hard at a travel company, recommending locations in human space.`
 		description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
 		system "Fah Soom"
 		planet "Greenwater"
-		date 16 11 3013
-		credits 1431000
-		debt 1431000
+		date "Tue, 16 Nov 3013"
+		credits "1.431M"
+		debt "1.431M"
 	to unlock
 		has "main plot completed"
-		has "Ask the Hai about the Unfettered: offered"
+		has "Ask the Hai about the Unfettered"
 		# TODO: think about what point of HR should unlock this once it's back in the game, if any
 		# has "event: hai-human resolution announced"
 	conversation "hai intro"
