@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
@@ -62,6 +63,7 @@ namespace {
 
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
+	const vector<string> LATERAL_FACING = { "none", "left", "right" };
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
@@ -288,20 +290,23 @@ void Ship::Load(const DataNode &node)
 				attributes.Load(child);
 			}
 		}
-		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
+		else if((key == "engine" || key == "reverse engine" || key == "steering engine" || key == "lateral engine")
+			&& child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
 				enginePoints.clear();
 				reverseEnginePoints.clear();
 				steeringEnginePoints.clear();
+				lateralEnginePoints.clear();
 				hasEngine = true;
 			}
 			bool reverse = (key == "reverse engine");
 			bool steering = (key == "steering engine");
+			bool lateral = (key == "lateral engine");
 
-			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
-				(reverse ? reverseEnginePoints : steeringEnginePoints);
+			vector<EnginePoint> &editPoints = (!steering && !reverse && !lateral) ? enginePoints :
+				(reverse ? reverseEnginePoints : steering ? steeringEnginePoints : lateralEnginePoints);
 			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
@@ -325,10 +330,14 @@ void Ship::Load(const DataNode &node)
 						for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
 							if(grandKey == STEERING_FACING[j])
 								engine.steering = j;
+					if(lateral)
+						for(unsigned j = 1; j < LATERAL_FACING.size(); ++j)
+							if(grandKey == LATERAL_FACING[j])
+								engine.lateral = j;
 				}
 			}
 		}
-		else if(key == "gun" || key == "turret")
+		else if(key == "gun" || key == "turret" || key == "pylon")
 		{
 			if(!hasArmament)
 			{
@@ -399,6 +408,8 @@ void Ship::Load(const DataNode &node)
 			}
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, attributes, drawUnder, outfit);
+			else if(key == "pylon")
+				armament.AddPylon(hardpoint, attributes, drawUnder, outfit);
 			else
 				armament.AddTurret(hardpoint, attributes, drawUnder, outfit);
 		}
@@ -640,6 +651,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			reverseEnginePoints = base->reverseEnginePoints;
 		if(steeringEnginePoints.empty())
 			steeringEnginePoints = base->steeringEnginePoints;
+		if(lateralEnginePoints.empty())
+			lateralEnginePoints = base->lateralEnginePoints;
 		if(explosionEffects.empty())
 		{
 			explosionEffects = base->explosionEffects;
@@ -664,18 +677,28 @@ void Ship::FinishLoading(bool isNewInstance)
 			auto bend = base->Weapons().end();
 			auto nextGun = armament.Get().begin();
 			auto nextTurret = armament.Get().begin();
+			auto nextPylon = armament.Get().begin();
 			auto end = armament.Get().end();
 			Armament merged;
 			for( ; bit != bend; ++bit)
 			{
-				if(!bit->IsTurret())
+				if(!bit->IsTurret() && !bit->IsPylon())
 				{
-					while(nextGun != end && nextGun->IsTurret())
+					while(nextGun != end && (nextGun->IsTurret() || nextGun->IsPylon()))
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
 					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
 					if(nextGun != end)
 						++nextGun;
+				}
+				else if(bit->IsPylon())
+				{
+					while (nextPylon != end && !nextPylon->IsPylon())
+						++nextPylon;
+					const Outfit * outfit = (nextPylon == end) ? nullptr : nextPylon->GetOutfit();
+					merged.AddPylon(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					if(nextPylon != end)
+						++nextPylon;
 				}
 				else
 				{
@@ -726,6 +749,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	baseAttributes.Set("gun ports", armament.GunCount());
 	baseAttributes.Set("turret mounts", armament.TurretCount());
+	baseAttributes.Set("missile pylons", armament.PylonCount());
 
 	if(addAttributes)
 	{
@@ -787,13 +811,31 @@ void Ship::FinishLoading(bool isNewInstance)
 
 		Logger::LogError(message);
 	}
-	// Inspect the ship's armament to ensure that guns are in gun ports and
-	// turrets are in turret mounts. This can only happen when the armament
-	// is configured incorrectly in a ship or variant definition. Do not
+	// Inspect the ship's armament to ensure that guns are in gun ports, turrets are
+	// in turret mounts, and missiles in missile pylons. This can only happen when the
+	// armament is configured incorrectly in a ship or variant definition. Do not
 	// bother printing this warning if the outfit is not fully defined.
+	// Note the GT in the two outputs for the first test stand for Gun Test
+	// while the TT in the second set of two outputs is for Turret Test,
+	// and the PT in the third set of two outputs is for Pylon Test.
+	// These are to ensure that each of these error messages is actually unique,
+	// whereas during testing we found that the message could appear in two
+	// different circumstances.
 	for(const Hardpoint &hardpoint : armament.Get())
 	{
 		const Outfit *outfit = hardpoint.GetOutfit();
+		if(outfit && outfit->IsDefined()
+				&& (hardpoint.IsGun() != (outfit->Get("gun ports") != 0.)))
+		{
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
+			if(!name.empty())
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
+			warning += (hardpoint.IsGun() ? "gun but is a turret. GT\n\tgun" : "turret but is a gun. GT\n\tturret");
+			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
+			warning += " \"" + outfit->TrueName() + "\"";
+			Logger::LogError(warning);
+		}
 		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
@@ -801,7 +843,18 @@ void Ship::FinishLoading(bool isNewInstance)
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
-			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
+			warning += (hardpoint.IsTurret() ? "turret but is a gun.TT\n\tturret" : "gun but is a turret.TT\n\tgun");
+			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
+			warning += " \"" + outfit->TrueName() + "\"";
+			Logger::LogError(warning);
+		}
+		if(outfit && (hardpoint.IsPylon() != (outfit->Get("missile pylons") != 0.)))
+		{
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
+			if(!name.empty())
+				warning += " \"" + name + "\"";
+			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
+			warning += (hardpoint.IsPylon() ? "pylon but is a gun.PT\n\tpylon" : "gun but is a pylon.PT\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
 			warning += " \"" + outfit->TrueName() + "\"";
 			Logger::LogError(warning);
@@ -847,7 +900,8 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
-	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity",
+		"engine mod space", "reverse thruster slot", "steering slot", "thruster slot"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
@@ -954,6 +1008,9 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
+			for(const auto & it : baseAttributes.LateralFlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "lateral flare sprite");
 			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("flare sound", it.first->Name());
@@ -1061,9 +1118,22 @@ void Ship::Save(DataWriter &out) const
 			out.Write(STEERING_FACING[point.steering]);
 			out.EndChild();
 		}
+		for(const EnginePoint &point : lateralEnginePoints)
+		{
+			out.Write("lateral engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.facing.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.Write(LATERAL_FACING[point.lateral]);
+			out.EndChild();
+		}
 		for(const Hardpoint &hardpoint : armament.Get())
 		{
-			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
+			// This sets *type to one of turret, pylon, or gun based on which hardpoint Is_____ it matches.
+			// When we have a means to just test for guns directly, remember to add it here.
+			const char *type = (hardpoint.IsTurret() ? "turret" : hardpoint.IsPylon() ? "pylon" :
+				hardpoint.IsGun() ? "gun" : "gun");
 			if(hardpoint.GetOutfit())
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
 					hardpoint.GetOutfit()->TrueName());
@@ -1545,17 +1615,22 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool massLessChange)
 {
-	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(massLessChange)
+		aiCache.Calibrate(*this);
+	else
+	{
+		aiCache.Recalibrate(*this);
+		navigation.Recalibrate(*this);
+	}
 }
 
 
@@ -2425,7 +2500,21 @@ int Ship::CustomSwizzle() const
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
-	return isThrusting;
+	return isThrusting && ThrustMagnitude() > 0.25;
+}
+
+
+
+bool Ship::IsLatThrusting() const
+{
+	return isLatThrusting;
+}
+
+
+
+double Ship::LateralDirection() const
+{
+	return lateralDirection;
 }
 
 
@@ -2451,6 +2540,13 @@ double Ship::SteeringDirection() const
 
 
 
+double Ship::ThrustMagnitude() const
+{
+	return thrustMagnitude;
+}
+
+
+
 // Get the points from which engine flares should be drawn.
 const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
@@ -2469,6 +2565,13 @@ const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 {
 	return steeringEnginePoints;
+}
+
+
+
+const vector<Ship::EnginePoint>& Ship::LateralEnginePoints() const
+{
+	return lateralEnginePoints;
 }
 
 
@@ -2707,6 +2810,47 @@ double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
 	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
+}
+
+
+
+double Ship::DisplaySolar() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double solarScaling = currentSystem->SolarPower() * scale;
+	double solarPower = solarScaling * attributes.Get("solar collection");
+	return solarPower;
+}
+
+
+
+double Ship::DisplayRamScoop() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double ramScoop = currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+	return ramScoop;
+}
+
+
+
+// These are for the thruster activity bars
+double Ship::DisplayThrust() const
+{
+	return -thrustMagnitude;
+}
+
+
+
+double Ship::DisplayTurn() const
+{
+	return -commands.Turn();
+}
+
+
+
+double Ship::DisplayLateralThrust() const
+{
+	return -commands.LateralThrust();
 }
 
 
@@ -3040,11 +3184,25 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
 }
 
 
@@ -3072,6 +3230,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 
@@ -3288,6 +3453,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetTargetStellar(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
+			ship->isLatThrusting = false;
 			ship->isReversing = false;
 			ship->isSteering = false;
 			ship->commands.Clear();
@@ -3566,6 +3732,27 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 
 
+std::shared_ptr<SpawnedFleet> Ship::GetSpawnedFleet()
+{
+	return spawnedFleet;
+}
+
+
+
+std::shared_ptr<const SpawnedFleet> Ship::GetSpawnedFleet() const
+{
+	return spawnedFleet;
+}
+
+
+
+void Ship::SetSpawnedFleet(std::shared_ptr<SpawnedFleet> fleet)
+{
+	spawnedFleet = fleet;
+}
+
+
+
 // Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
 // or fuel it uses and add whatever heat it generates). Assume that CanFire()
 // is true.
@@ -3794,9 +3981,11 @@ bool Ship::StepFlags()
 {
 	forget += !isInSystem;
 	isThrusting = false;
+	isLatThrusting = false;
 	isReversing = false;
 	isSteering = false;
 	steeringDirection = 0.;
+	lateralDirection = 0.;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 	{
 		MarkForRemoval();
@@ -4675,8 +4864,9 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrustCommand = commands.Thrust();
 		double thrust = 0.;
+		thrustMagnitude = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
@@ -4704,6 +4894,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				"thrusting heat" : "reverse thrusting heat");
 			if(cost > 0. && heat < cost * fabs(thrustCommand))
 				thrustCommand = copysign(heat / cost, thrustCommand);
+
+			thrustMagnitude = thrustCommand * slowMultiplier;
 
 			if(thrustCommand)
 			{
@@ -4735,6 +4927,49 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				}
 			}
 		}
+		// Lateral Thrust functionality.
+		// This pulls "lateral thrust ratio" from the ship definition,
+		// and if there isn't one, it uses the default value of 0.25,
+		// which is listed as a gamerule value.
+		double latThrustCommand = commands.LateralThrust();
+		double latThrust = 0.;
+		double lateralThrustValue = 0.;
+		if(attributes.Get("lateral thrust ratio"))
+			lateralThrustValue = attributes.Get("lateral thrust ratio");
+		else if(!attributes.Get("lateral thrust ratio"))
+		{
+			// lateralThrustValue = GameData::GetGamerules().DefaultLateralThrustRatio();
+			double tempLateralThrustRatio = (3000 - mass) / 3500;
+			double defaultLateralThrustRatio = GameData::GetGamerules().DefaultLateralThrustRatio();
+			if(tempLateralThrustRatio > defaultLateralThrustRatio)
+				lateralThrustValue = tempLateralThrustRatio;
+			else lateralThrustValue = defaultLateralThrustRatio;
+		}
+
+		if(latThrustCommand)
+		{
+			// Check if we are able to apply this thrust.
+			double cost = attributes.Get("thrusting energy") * lateralThrustValue;
+			if(energy < cost)
+				latThrustCommand *= energy / cost;
+
+			if(latThrustCommand)
+			{
+				// These area used for lateral thrusting flares.
+				isLatThrusting = true;
+				lateralDirection = latThrustCommand;
+				latThrust = attributes.Get("thrust") * lateralThrustValue;
+				if(latThrust)
+				{
+					double scale = fabs(latThrustCommand);
+					energy -= scale * cost;
+					heat += scale * attributes.Get("thrusting heat") * lateralThrustValue;
+					Point lateral(-angle.Unit().Y(), angle.Unit().X());
+					acceleration += lateral * (latThrustCommand * latThrust / mass);
+				}
+			}
+		}
+
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
 				&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
@@ -4810,7 +5045,10 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
 					dragAcceleration = -vNormal * angle.Unit();
 			}
-			velocity += dragAcceleration;
+			if(velocity.Length() > MaxVelocity() || velocity.Length() < 0.1)
+				velocity += dragAcceleration;
+			else
+				velocity += acceleration;
 		}
 		acceleration = Point();
 	}
@@ -4900,8 +5138,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 	{
-		double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
-			* -Commands().Turn();
+		double gimbalDirection = abs(Commands().Thrust()) * -Commands().Turn();
 
 		for(const EnginePoint &point : enginePoints)
 		{

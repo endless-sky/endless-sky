@@ -1337,6 +1337,12 @@ event "flamethrower available"
 
 
 
+event "thermal scanner available"
+	outfitter "Kraz Advanced"
+		"Thermal Scanner"
+
+
+
 event "navy occupying the south"
 	system "Rastaban"
 		fleet "Small Southern Merchants" 1200
