@@ -2050,7 +2050,8 @@ void Engine::HandleMouseClicks()
 						else
 						{
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
+							if(!flagship->IsDestroyed())
+								Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
 						}
 					}
 					else
