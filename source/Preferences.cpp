@@ -172,7 +172,6 @@ void Preferences::Load()
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
-	settings["Play ding on destination"] = false;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
