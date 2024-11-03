@@ -371,13 +371,16 @@ mission "Sick of Acorn Bread"
 			`	"You're in luck," she says. "Today only, each meal is served with a free side of acorn bread." She scampers off to place and retrieve your order.`
 			`	The Hai next to you grunts again - this time with clear frustration - and turns to speak. "Acorn bread! That's all they serve here anymore. Ever since you humans arrived in our space, that's all we get to eat. Traditional Hai breadmaking has become a lost art."`
 			choice
-				`	"Traditional Hai breadmaking?"`
-					goto breads
+				`	"Can you tell me about traditional Hai breadmaking?"`
 				`	"I'm sorry. I didn't mean to offend your culture."`
+				goto offend
+			`	He seems somewhat calmed by your interest.`
+				goto breads
+			label offend
 			`	The look on his face softens. "I should be the one to apologize. It's not your fault that our spaceports' menus have changed in this respect. Humans have also brought new life to many parts of Hai society. It is only a pity that we have to travel far to find the types of bread that we had in years past."`
-			`	"You mean there was more than just acorn bread?" you ask.`
+			`	"Can you tell me about other types of bread?" you ask.`
 			label breads
-			`	"Oh yes. Acorn bread was a rare sight in Hai cuisine. It's too sweet, you see." He shifts his weight on the stool. "I'm old enough to remember hayipp bread, yur ki bread - you name it. Hayipp is a grain, similar to your human 'corn,' which creates a wholesome ruddy brown flour when milled. The bread was hearty, yet exquisite." You note the wistful look on his face. "Yur ki is a milk, sourced from the livestock we raise. You may have seen some on Newhome; I'm told your kind has a similar animal called 'sheep.' Bread made from yur ki is rich and decadent. It is among my favorite foods to have for breakfast." He pauses for a moment and looks a bit downcast. "Since humans have joined us on our planets, all they want is acorn bread. The high demand has displaced all of the traditional breads that I grew up with from high traffic areas such as this spaceport restaurant. I miss having them easily available."`
+			`	"Oh yes." He shifts his weight on the stool. "I'm old enough to remember hayipp bread, yur ki bread - you name it. Hayipp is a grain, similar to your human 'corn,' which creates a wholesome ruddy brown flour when milled. The bread was hearty, yet exquisite." You note the wistful look on his face. "Yur ki is a milk, sourced from the livestock we raise. You may have seen some on Newhome; I'm told your kind has a similar animal called 'sheep.' Bread made from yur ki is rich and decadent. It is among my favorite foods to have for breakfast." He pauses for a moment and looks a bit downcast. "Acorn bread was once a rare sight in Hai cuisine. Far too sweet. But, since humans have joined us on our planets, all they want is acorn bread. The high demand has displaced all of the traditional breads that I grew up with from high traffic areas such as this spaceport restaurant. I miss having them easily available."`
 			action
 				payment -50
 			`	As if on cue, the hostess arrives with both of your meals. The Hai next to you, whose name you still do not know, sighs as he sees his free acorn bread, but he eats it nonetheless. You each finish your meals in silence and leave.`
