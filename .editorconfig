@@ -14,7 +14,6 @@ indent_style = tab
 # Code files
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
-#cpp_new_line_before_open_brace_block = new_line # also applies to do {} so can't have this
 cpp_space_pointer_reference_alignment = right
 cpp_space_after_keywords_in_control_flow_statements = false
 # Except any third-party libraries
