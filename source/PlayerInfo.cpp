@@ -1883,9 +1883,15 @@ void PlayerInfo::PoolCargo()
 	// This can only be done while landed.
 	if(!planet)
 		return;
+
+	// To make sure all cargo and passengers get unloaded from each ship,
+	// temporarily uncap the player's cargo and bunk capacity.
+	cargo.SetSize(-1);
+	cargo.SetBunks(-1);
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 			ship->Cargo().TransferAll(cargo);
+	UpdateCargoCapacities();
 }
 
 
@@ -1971,8 +1977,9 @@ bool PlayerInfo::HasLogs() const
 
 
 
-// Call this after missions update, or if leaving the outfitter, shipyard, or
-// hiring panel. Updates the information on how much space is available.
+// Call this after missions update, if leaving the outfitter, shipyard, or
+// hiring panel, or after backing out of a take-off warning.
+// Updates the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
