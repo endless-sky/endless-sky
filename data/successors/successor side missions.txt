@@ -101,7 +101,7 @@ mission "Successors: Predecessor Research 1"
 			label who
 			action
 				set "Successors: who"
-			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
+			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many of their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
 				goto questions
 			label collapse
 			action
