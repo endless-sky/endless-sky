@@ -46,7 +46,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
@@ -84,7 +84,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -123,7 +123,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
