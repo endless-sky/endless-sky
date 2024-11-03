@@ -478,7 +478,7 @@ mission "FW Recon 3B"
 			
 			action
 				set "fw recon: caught"
-			`	You follow the officers into a supply yard and hide behind a large stack of crates. "Lieutenant," says one of them, "we just received word that the Free Worlds have contracted with someone to spy on this facility."`
+			`	You follow the officers into a supply yard and hide behind a large stack of crates. "Lieutenant," says one of them, "we just received word that the Free Worlds has contracted with someone to spy on this facility."`
 			`	"A professional, sir?"`
 			`	"Hardly. My grandmother would make a better spy. It's a merchant captain, clearly an amateur." They are both speaking quite loudly; you are having no trouble listening in.`
 			`	"What are we going to do, sir?" asks the lieutenant.`
@@ -1280,7 +1280,7 @@ mission "FW Katya 1"
 					decline
 			
 			label terrorists
-			`	"Look, kid," she says. "I know the situation looks bad, but I'm telling the truth when I say that the Free Worlds aren't the ones who dropped those nukes, and we don't know who did, either. So I'll proudly be called treasonous for separating from the Republic, but I will not tolerate being called a terrorist."`
+			`	"Look, kid," she says. "I know the situation looks bad, but I'm telling the truth when I say that the Free Worlds isn't the one who dropped those nukes, and we don't know who did, either. So I'll proudly be called treasonous for separating from the Republic, but I will not tolerate being called a terrorist."`
 			choice
 				`	"And what reason do I have to believe you?"`
 				`	"I'm not convinced. You'll need to find some other sucker to do your dirty work for you."`
@@ -1560,7 +1560,7 @@ mission "FW Katya 2B"
 			`	"So, what has Katya asked you to do for the Free Worlds?" you ask.`
 			`	"Isn't it obvious?" he says. "We're going to hunt down certain naughty people who have been developing nuclear weapons, and the Free Worlds will turn them over to the Republic. Then the Republic will know that the Free Worlds weren't behind the attacks, and we'll stop this whole mess before it devolves into a civil war."`
 			choice
-				`	"So, you're convinced that the Free Worlds are innocent?"`
+				`	"So, you're convinced that the Free Worlds is innocent?"`
 				`	"Okay, what's our plan to do that?"`
 					goto plan
 			
@@ -2057,7 +2057,7 @@ mission "FW Katya 7C"
 				`	"So the Free Worlds is behind this! This is one of your planets!"`
 			
 			`	"Yes, this a Free planet, but this evidence is far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds is being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
-			`	"I swear before God when I say that the Free Worlds have nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
+			`	"I swear before God when I say that the Free Worlds has nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
 			
 			label now
 			`	Katya thinks for a moment. "Captain, is the outpost reporting any job openings?"`

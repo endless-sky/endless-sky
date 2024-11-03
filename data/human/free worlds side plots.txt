@@ -849,7 +849,7 @@ mission "FW Greenrock Lost Announcement"
 		has "event: fw abandoned Greenrock"
 	on offer
 		conversation
-			`While waiting in <planet>'s spaceport for your ship to be refueled, you hear an announcement coming from an unseen loudspeaker. "Attention! The Free Worlds have withdrawn our presence from Greenrock. Be advised that any further travel to the Shaula system may carry the risk of pirate attacks." The message cuts off abruptly, only to repeat a few minutes later.`
+			`While waiting in <planet>'s spaceport for your ship to be refueled, you hear an announcement coming from an unseen loudspeaker. "Attention! The Free Worlds has withdrawn our presence from Greenrock. Be advised that any further travel to the Shaula system may carry the risk of pirate attacks." The message cuts off abruptly, only to repeat a few minutes later.`
 			`	A militia captain who paused nearby to listen to the announcement shakes his head before recognizing you. "Well, that's a damn shame, isn't it?"`
 			choice
 				`	"Yeah, I risked my life and position taking Greenrock."`

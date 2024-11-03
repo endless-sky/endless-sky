@@ -1119,7 +1119,7 @@ mission "FW Pug 2A"
 					goto no
 			
 			label no
-			`	Alondo says, quietly but firmly, "Captain <last>, the Senate has asked you to assist the Republic in this matter, and the Council agrees. I know the risk is great, but you swore to serve the Free Worlds, and the Free Worlds are now commanding you to take this mission."`
+			`	Alondo says, quietly but firmly, "Captain <last>, the Senate has asked you to assist the Republic in this matter, and the Council agrees. I know the risk is great, but you swore to serve the Free Worlds, and the Free Worlds is now commanding you to take this mission."`
 			`	"Very well," you say, "I accept. But I'm afraid of what will happen when we reach Syndicate space."`
 			
 			label yes
@@ -1650,7 +1650,7 @@ conversation "fw pug"
 	label yes
 	`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
 	`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few kilometers away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
-	`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
+	`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds has been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
 	`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
 		accept
 

@@ -129,7 +129,7 @@ mission "Liberate Kornephoros"
 		dialog `There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea.`
 	on complete
 		event "recapture of Kornephoros"
-		log "The Free Worlds have retaken the Kornephoros system, with heavy losses on both sides. And unfortunately, there is no sign of Katya; she may have been taken prisoner by the Navy."
+		log "The Free Worlds has retaken the Kornephoros system, with heavy losses on both sides. And unfortunately, there is no sign of Katya; she may have been taken prisoner by the Navy."
 		conversation
 			`The last of the Navy vessels in orbit has been subdued. As you land, you find that several Free Worlds troop transports have already set down in the spaceport and corralled the remaining Navy officers into a small circle. You would estimate that there are several hundred Navy prisoners. Another transport lands, carrying more prisoners: the Navy troops who had been guarding the mines on Clink.`
 			`	For several hours, nothing changes: the Navy troops are huddled into a small circle, surrounded by guards. When lunchtime comes, some of the guards go to the market and fetch some of the vendors who sell meals out of carts there; they return with the carts and hand out food to the prisoners. Then, another transport lands and Tomek steps out.`
@@ -1015,7 +1015,7 @@ mission "FW Senate 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Free Worlds have finally elected a Senate, which will be convening for the first time soon on Bourne."
+		log "The Free Worlds has finally elected a Senate, which will be convening for the first time soon on Bourne."
 		conversation
 			`Surprisingly, when you get back to <origin> you find that Tomek is no longer there. A courier hands you a short note: "Captain <last>: because the decision of how to deal with the pirates is of interest to all the Free Worlds, the Council has decided to convene the first session of the Free Worlds Senate ahead of schedule. I have already left for Bourne. You have been assigned to transport Senator Arianna Huygens of <planet>; please pick her up as soon as possible and bring her with you."`
 				accept
