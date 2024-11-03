@@ -5051,8 +5051,8 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
 	const System *from = ship.GetSystem();
 	if(targetSystem)
 	{
-		DistanceMap distance(ship, targetSystem);
-		if(!distance.HasRoute(targetSystem))
+		RoutePlan routePlan(ship, *targetSystem, nullptr);
+		if(!routePlan.HasRoute())
 			ship.EraseWaypoint(targetSystem);
 		else
 		{
