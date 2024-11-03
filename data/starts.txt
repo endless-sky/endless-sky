@@ -76,8 +76,8 @@ start "hai space"
 		system "Fah Soom"
 		planet "Greenwater"
 		date "Tue, 16 Nov 3013"
-		credits 1.431
-		debt 1.431
+		credits "1.431M"
+		debt "1.431M"
 	to unlock
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
