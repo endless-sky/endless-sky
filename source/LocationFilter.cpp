@@ -104,7 +104,7 @@ namespace {
 			);
 		}
 		// If the distance is greater than the maximum, this is not a match.
-		int d = distance.Days(system);
+		int d = distance.Days(*system);
 		return (d > maximum) ? -1 : d;
 	}
 
