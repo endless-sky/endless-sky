@@ -77,11 +77,12 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
-	// Functions, determining the current alpha value of the body,
+	// Functions determining the current alpha value of the body,
 	// dependent on the position of the body relative to the center of the screen.
 	double Alpha(const Point &drawCenter) const;
 	double DistanceAlpha(const Point &drawCenter) const;
 	bool IsVisible(const Point &drawCenter) const;
+
 
 protected:
 	// Adjust the frame rate.

@@ -309,8 +309,7 @@ double Body::DistanceAlpha(const Point &drawCenter) const
 	if(!distanceInvisible)
 		return 1.;
 	double distance = (drawCenter - position).Length();
-	double distanceAlpha = clamp<double>((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 0., 1.);
-	return distanceAlpha;
+	return clamp<double>((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 0., 1.);
 }
 
 
