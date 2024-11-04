@@ -16910,7 +16910,7 @@ system Heutesl
 		period 60.0582
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
-		distance 1000
+		distance 820
 		period 349.481
 	object
 		sprite planet/gas4
@@ -30936,7 +30936,7 @@ system Scija
 			period 413.1
 	object
 		sprite planet/saturn
-		distance 8500
+		distance 9400
 		period 4188.84
 		object
 			sprite planet/europa
