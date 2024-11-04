@@ -32,7 +32,7 @@ outfit "Grab-Strike Turret"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
-		"turret turn" 1.9
+		"turret turn" 1
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
@@ -78,7 +78,7 @@ outfit "Shunt-Strike Turret"
 		"hit effect" "shunt-strike hit"
 		"die effect" "shunt-strike sparkle"
 		"inaccuracy" 1
-		"turret turn" 2.1
+		"turret turn" 1.5
 		"velocity" 10
 		"lifetime" 81
 		"reload" 30
@@ -132,7 +132,7 @@ outfit "Banisher Grav-Turret"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"turret turn" 4.2
+		"turret turn" 1.8
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
@@ -255,7 +255,7 @@ outfit "Blaze-Pike Turret"
 		sound "blaze-pike"
 		"hit effect" "blaze-pike hit"
 		"inaccuracy" 0.45
-		"turret turn" 2.1
+		"turret turn" 0.8
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -293,7 +293,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 1.3
+		"turret turn" 0.6
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
@@ -372,7 +372,7 @@ outfit "Thermal Repeater Turret"
 		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 3
-		"turret turn" 2.6
+		"turret turn" 1.5
 		"velocity" 13
 		"lifetime" 40
 		"reload" 5
@@ -654,7 +654,7 @@ outfit "Shield Disruptor Turret"
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
-		"turret turn" 1.5
+		"turret turn" 1
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -718,7 +718,7 @@ outfit "Husk-Slice Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
-		"turret turn" 2.9
+		"turret turn" 1.5
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62
@@ -758,7 +758,7 @@ outfit "Digger Mining Turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" 1.5
-		"turret turn" 4.6
+		"turret turn" 2.4
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -826,7 +826,7 @@ outfit "Langrage Hyper-Heaver"
 		icon "icon/korath heaver"
 		"hit effect" "heaver hyperspace hit"
 		"inaccuracy" 0.5
-		"turret turn" 2.2
+		"turret turn" 1.3
 		velocity 30
 		lifetime 8
 		"reload" 40
@@ -935,6 +935,7 @@ outfit "Firelight Missile Bank"
 		ammo "Firelight Missile"
 		icon "icon/firelight"
 		"hit effect" "firelight ring" 20
+		"die effect" "piercer fire"
 		"velocity" 4
 		"velocity override" 16
 		"lifetime" 10
@@ -1083,7 +1084,7 @@ outfit "Firestorm Battery"
 		"hardpoint sprite" "hardpoint/firestorm battery"
 		sound "firestorm"
 		ammo "Firestorm Torpedo"
-		"turret turn" 2.7
+		"turret turn" 1.5
 		icon "icon/firestorm torpedo"
 		"hit effect" "firestorm ring" 40
 		"die effect" "small explosion"
