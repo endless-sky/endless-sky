@@ -333,9 +333,9 @@ void Outfit::Load(const DataNode &node)
 	}
 
 	// Set the default jump fuel if not defined.
-	bool isHyperdrive = attributes.Get("hyperdrive"),
-		isScramDrive = attributes.Get("scram drive"),
-		isJumpDrive = attributes.Get("jump drive");
+	bool isHyperdrive = attributes.Get("hyperdrive");
+	bool isScramDrive = attributes.Get("scram drive");
+	bool isJumpDrive = attributes.Get("jump drive");
 	if((isHyperdrive || isScramDrive || isJumpDrive) && attributes.Get("jump fuel") <= 0.)
 		attributes["jump fuel"] = (isJumpDrive ? DEFAULT_JUMP_DRIVE_COST
 			: isScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
