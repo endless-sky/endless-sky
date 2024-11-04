@@ -1945,7 +1945,7 @@ void PlayerInfo::AddSpecialLog(const string &type, const string &name, const str
 
 
 
-void PlayerInfo::RemoveSpecialLog(const std::string &type, const std::string &name)
+void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
 {
 	auto &nameMap = specialLogs[type];
 	auto it = nameMap.find(name);
@@ -1955,7 +1955,7 @@ void PlayerInfo::RemoveSpecialLog(const std::string &type, const std::string &na
 
 
 
-void PlayerInfo::RemoveSpecialLog(const std::string &type)
+void PlayerInfo::RemoveSpecialLog(const string &type)
 {
 	auto it = specialLogs.find(type);
 	if(it != specialLogs.end())
