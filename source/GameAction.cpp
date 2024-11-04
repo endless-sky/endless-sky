@@ -148,7 +148,7 @@ void GameAction::LoadSingle(const DataNode &child)
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
 
-	if(child.Size() >= 3 && child.Token(0) == "remove" && child.Token(1) == "log")
+	if(key == "remove" && child.Size() >= 3 && child.Token(1) == "log")
 	{
 		auto &type = specialLogClear[child.Token(2)];
 		if(child.Size() > 3)
@@ -260,10 +260,10 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
-			out.Write("log", "clear", it.first);
+			out.Write("remove", "log", it.first);
 		else
-			for(auto &&jt : it.second)
-				out.Write("log", "clear", it.first, jt);
+			for(string &&jt : it.second)
+				out.Write("remove", "log", it.first, jt);
 	}
 	for(auto &&it : giftShips)
 		it.Save(out);
