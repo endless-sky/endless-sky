@@ -3821,12 +3821,29 @@ mission "Remnant: Logistics 1"
 	to offer
 		has "remnant: blood test pure"
 		has "Remnant: Defense 1: done"
+		has "license: Remnant"
 	on offer
 		conversation
 			`You step out of the <ship> amidst the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
-			`	The woman working the desk seems startled to see you when you walk up. You can see the realization dawn on her as she looks you over with a practiced eye. "Ah," she sings, "you are the ancestral sojourner among us."`
-			`	It is typical for people to gawk at you, so you respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
-			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she sings, "Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
+			`	The woman working the desk seems startled to see you when you walk up. You can see the realization dawn on her as she looks you over with a practiced eye. "Ah," she sings, "you are the ancestral sojourner among us." You are by now used to the Remnant gawking at you.`
+			choice
+				(Sing in reply.)
+				goto sing
+				(Sign in reply.)
+				to display 
+					has "event: remnant: sign studies complete"
+				(Talk in reply.)
+			`You clear your throat. "Yes, and I believe someone requested that I come here."`
+				goto shesings
+			label sign
+			`You begin to sign, "Yes, and I believe someone requested that I come here."`
+			`	Her face lights up as she realizes that you are signing in her language. "I am happy to see that you have learned our language, but I can tell that it comes with considerable effort to you," she sings in a soft voice. "I will use the ancestral tongue in order to make sure my message is clear to you."`
+				goto shesings
+			label sing
+			`You respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
+			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she begins to sing.`
+			label shesings
+			`	"Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
 			choice
 				`	"Certainly!"`
 					goto willdo
