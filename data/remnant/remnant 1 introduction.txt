@@ -3830,7 +3830,7 @@ mission "Remnant: Logistics 1"
 				(Sing in reply.)
 				goto sing
 				(Sign in reply.)
-				to display 
+				to display
 					has "event: remnant: sign studies complete"
 				(Talk in reply.)
 			`You clear your throat. "Yes, and I believe someone requested that I come here."`
