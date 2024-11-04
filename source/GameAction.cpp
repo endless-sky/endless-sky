@@ -148,21 +148,18 @@ void GameAction::LoadSingle(const DataNode &child)
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
 
-	if(key == "log")
+	if(child.Size() >= 3 && child.Token(0) == "remove" && child.Token(1) == "log")
 	{
-		if(child.Size() >= 3 && child.Token(1) == "clear")
-		{
-			auto &type = specialLogClear[child.Token(2)];
-			if(child.Size() > 3)
-				type.push_back(child.Token(3));
-		}
-		else
-		{
-			bool isSpecial = (child.Size() >= 3);
-			string &text = (isSpecial ?
-				specialLogText[child.Token(1)][child.Token(2)] : logText);
-			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
-		}
+		auto &type = specialLogClear[child.Token(2)];
+		if(child.Size() > 3)
+			type.push_back(child.Token(3));
+	}
+	else if(key == "log")
+	{
+		bool isSpecial = (child.Size() >= 3);
+		string &text = (isSpecial ?
+			specialLogText[child.Token(1)][child.Token(2)] : logText);
+		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
