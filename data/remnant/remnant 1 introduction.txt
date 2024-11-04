@@ -3833,14 +3833,14 @@ mission "Remnant: Logistics 1"
 					to display
 						has "event: remnant: sign studies complete"
 				`	(Talk in reply.)`
-			`You clear your throat. "Yes, and I believe someone requested that I come here."`
+			`	You clear your throat. "Yes, and I believe someone requested that I come here."`
 				goto shesings
 			label sign
-			`You begin to sign, "Yes, and I believe someone requested that I come here."`
+			`	You begin to sign, "Yes, and I believe someone requested that I come here."`
 			`	Her face lights up as she realizes that you are signing in her language. "I am happy to see that you have learned our language, but I can tell that it comes with considerable effort to you," she sings in a soft voice. "I will use the ancestral tongue in order to make sure my message is clear to you."`
 				goto shesings
 			label sing
-			`You respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
+			`	You respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
 			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she begins to sing.`
 			label shesings
 			`	"Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
