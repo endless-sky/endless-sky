@@ -944,7 +944,7 @@ mission "FW Escort 3"
 				`	"Sure!"`
 				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
 					decline
-			
+		
 			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if pirates board them before you get there, so get moving quickly."`
 				accept
 	
