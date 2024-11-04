@@ -1947,14 +1947,19 @@ void PlayerInfo::AddSpecialLog(const string &type, const string &name, const str
 
 void PlayerInfo::RemoveSpecialLog(const std::string &type, const std::string &name)
 {
-	specialLogs[type].erase(specialLogs[type].find(name));
+	auto &nameMap = specialLogs[type];
+	auto it = nameMap.find(name);
+	if(it != nameMap.end())
+		nameMap.erase(it);
 }
 
 
 
 void PlayerInfo::RemoveSpecialLog(const std::string &type)
 {
-	specialLogs.erase(specialLogs.find(type));
+	auto it = specialLogs.find(type);
+	if(it != specialLogs.end())
+		specialLogs.erase(it);
 }
 
 
