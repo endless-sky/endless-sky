@@ -1280,7 +1280,7 @@ mission "FW Katya 1"
 					decline
 			
 			label terrorists
-			`	"Look, kid," she says. "I know the situation looks bad, but I'm telling the truth when I say that the Free Worlds isn't the one who dropped those nukes, and we don't know who did, either. So I'll proudly be called treasonous for separating from the Republic, but I will not tolerate being called a terrorist."`
+			`	"Look, kid," she says. "I know the situation looks bad, but I'm telling the truth when I say that the Free Worlders aren't the ones who dropped those nukes, and we don't know who did, either. So I'll proudly be called treasonous for separating from the Republic, but I will not tolerate being called a terrorist."`
 			choice
 				`	"And what reason do I have to believe you?"`
 				`	"I'm not convinced. You'll need to find some other sucker to do your dirty work for you."`

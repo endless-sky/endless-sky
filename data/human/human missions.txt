@@ -3091,7 +3091,7 @@ mission "Southern Blockade"
 	
 	on offer
 		conversation
-			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds is in need of volunteers able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain who accepts." The spaceport falls quiet as captains contemplate this offer.`
+			`A captain in a Free Worlds uniform enters the spaceport and turns on a megaphone. "Attention! The Free Worlds are in need of volunteers able to carry <cargo> to <stopovers> for fortifying the spaceports nearest to the pirate system of Men. Free Worlds ships are currently preoccupied with fighting off a pirate incursion into those systems, and we are unable to spare enough ships for the job. Our hope is that these defenses will deter any future incursions. Payment will be <payment> for the first captain who accepts." The spaceport falls quiet as captains contemplate this offer.`
 			choice
 				`	(Volunteer.)`
 				`	(Ignore.)`

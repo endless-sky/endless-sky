@@ -514,7 +514,7 @@ mission "News Reporter - Paradise"
 			`	The reporter frowns. "Can you explain your answer for our viewers?"`
 			choice
 				`	"The interests of every world should be considered, whether we agree or not."`
-				`	"The Free Worlds isn't represented well enough to gain traction through normal channels."`
+				`	"The Free Worlds aren't represented well enough to gain traction through normal channels."`
 				`	"The Navy is hardly defending that territory, so taxes shouldn't be as much."`
 				`	"I would prefer to not answer."`
 			`	"I'm not sure that Parliament would agree with you, but I want to thank you for your answers, and for taking the time to do this interview!" she says.`
