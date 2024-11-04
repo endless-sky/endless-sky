@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.9-alpha
+version 0.10.11-alpha
 
 The player's manual and other
 resources are available at:
@@ -54,6 +54,7 @@ Storyline & Faction Authors
   Amazinite
   Arachi-Lover
   beccabunny
+  Daeridanii
   Lia Gerty
   LocalGod79
   MasterOfGrey
@@ -182,6 +183,7 @@ contributed to Endless Sky:
   BlackVegetable
   Bladewood
   BlazingDiesel
+  blue-four-seven
   bobrobbow
   bojidar-bg
   brendanjones
@@ -219,6 +221,7 @@ contributed to Endless Sky:
   dseomn
   dufferzafar
   dzhu
+  Ebreus
   eebop
   eflyon
   EjoThims
@@ -244,6 +247,7 @@ contributed to Endless Sky:
   Fzzr
   Galaucus
   gecko-locator
+  GefullteTaubenbrust2
   guillochon
   gunqqer
   Hacklin
@@ -258,6 +262,7 @@ contributed to Endless Sky:
   hmglasgow
   Hurleveur
   Hyugat
+  implicitfield
   InfiniteDonuts
   infinitewarp
   ItsNickBarry
@@ -281,7 +286,7 @@ contributed to Endless Sky:
   justinw1320
   kaol
   Karirawri
-  Kepler-69c
+  kepler-69c
   kestrel1110
   kilobyte
   kkuchta
@@ -291,6 +296,7 @@ contributed to Endless Sky:
   lantzk
   LazerLit
   leklachu
+  leowongcanto
   LepRyot
   lheckemann
   Lineth
@@ -320,6 +326,7 @@ contributed to Endless Sky:
   MillerNerd
   mimirzero
   mOctave
+  moonliiiqhte
   mootootwo
   Mr-L-oof
   naehc
@@ -339,7 +346,6 @@ contributed to Endless Sky:
   Ornok
   ovari
   OverYrPaygrade
-  pakyinw
   PaulBlay
   PeacefulPotato
   pega3
@@ -369,6 +375,7 @@ contributed to Endless Sky:
   ReimeiSky
   reizbar
   RestingImmortal
+  reticent-rem
   retrue
   RighthandSon
   Ririshi
@@ -402,8 +409,10 @@ contributed to Endless Sky:
   Smedley-SC
   solardawning
   SolraBizna
+  SomeTroglodyte
   SpearDane
   starscollide5
+  stefanct
   StrawberryDelite
   strollcata
   SubstandardZeal
@@ -411,6 +420,7 @@ contributed to Endless Sky:
   Tangle10
   tboby
   tehhowch
+  tekker2234
   temtemy
   Terin
   The-Legendary-M

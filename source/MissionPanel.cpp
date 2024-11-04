@@ -38,8 +38,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
@@ -216,11 +216,11 @@ void MissionPanel::Draw()
 	const Color &routeColor = *colors.Get("mission route");
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
-	const System *previous = nullptr;
-	const System *next = selectedSystem;
-	for(; distance.Days(next) > 0; next = previous)
+	const System *previous = player.GetSystem();
+	const vector<const System *> plan = distance.Plan(*selectedSystem);
+	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
-		previous = distance.Route(next);
+		const System *next = *it;
 
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
@@ -236,9 +236,11 @@ void MissionPanel::Draw()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 5.f, routeColor);
+			LineShader::Draw(from, to, 3.f, routeColor);
+
+		previous = next;
 	}
 
 	const Color &availableColor = *colors.Get("available back");
