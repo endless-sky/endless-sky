@@ -2678,8 +2678,8 @@ ship "Lance"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -14.5 30.5 0.5
-	engine 14.5 30.5 0.5
+	engine -14.5 30.5
+	engine 14.5 30.5
 	gun 0 -34 "Energy Blaster"
 	gun -13.5 -6.5
 	gun 13.5 -6.5
