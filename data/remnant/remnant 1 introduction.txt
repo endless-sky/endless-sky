@@ -3827,12 +3827,12 @@ mission "Remnant: Logistics 1"
 			`You step out of the <ship> amidst the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
 			`	The woman working the desk seems startled to see you when you walk up. You can see the realization dawn on her as she looks you over with a practiced eye. "Ah," she sings, "you are the ancestral sojourner among us." You are by now used to the Remnant gawking at you.`
 			choice
-				(Sing in reply.)
-				goto sing
-				(Sign in reply.)
-				to display
-					has "event: remnant: sign studies complete"
-				(Talk in reply.)
+				`	(Sing in reply.)`
+					goto sing
+				`	(Sign in reply.)`
+					to display
+						has "event: remnant: sign studies complete"
+				`	(Talk in reply.)`
 			`You clear your throat. "Yes, and I believe someone requested that I come here."`
 				goto shesings
 			label sign
