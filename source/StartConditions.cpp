@@ -292,7 +292,11 @@ const string &StartConditions::GetSystemName() const noexcept
 const string &StartConditions::GetDateString() const noexcept
 {
 	auto it = infoByState.find(state);
-	return it == infoByState.end() ? ILLEGAL : it->second.date ? it->second.date.ToString() : it->second.dateString;
+	if(it == infoByState.end())
+		return ILLEGAL;
+	if(it->second.date)
+		return it->second.date.ToString();
+	return it->second.dateString;
 }
 
 
