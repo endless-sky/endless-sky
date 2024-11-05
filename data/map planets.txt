@@ -114,10 +114,15 @@ planet Albatross
 planet Alexandria
 	attributes deep station tourism
 	landscape land/space7
-	description `At the height of the Alpha War, the government of the Deep constructed Alexandria as the galaxy's largest storehouse of human literature, scientific writing, and technology. It also houses a vast museum of cultural artifacts dating back to long before the start of the space age. Today the station is mostly populated by visitors looking for particularly arcane writings or information, and librarians who have devoted their lives to keeping the archives well-indexed and up to date.`
+	description `At the height of the Alpha Wars, the government of the Deep constructed Alexandria as the galaxy's largest storehouse of human literature, scientific writing, and technology. It also houses a vast museum of cultural artifacts dating back to long before the start of the space age. Today the station is mostly populated by visitors looking for particularly arcane writings or information, and librarians who have devoted their lives to keeping the archives well-indexed and up to date.`
 	description `	Entire sections of the station are off limits to ordinary visitors. There are many rumors about what those restricted areas contain.`
 	spaceport `The station's cavernous visitor center is by far the quietest spaceport you have ever been in. Many people are bustling back and forth, wheeling carts of old books or carrying data pads, but they are entirely silent except for the occasional startled outburst when a scholar, walking deep in thought or immersed in reading, accidentally collides with someone.`
 	spaceport `	From here, passageways lead off into the wings of the library in a veritable labyrinth of hallways, stairs, and library stacks. A few particularly heavy doors require key cards to enter, and others have no opening controls of any sort that you can see.`
+	spaceport `	Various pieces of media pertaining to the Alpha Wars are front and center on the display racks in the library.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
+			
 	"required reputation" 100
 	bribe 0.1
 	tribute 1000
@@ -149,6 +154,10 @@ planet Allhome
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space. More substantial urban settlements exist, particularly near the spaceport, but from the air they appear to exist within strict boundaries.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
+	spaceport `	Despite the distance from Republic space, some humans have set up decorations in celebration of Remembrance Day. A handful of the more curious Hai mingle with the humans, asking them what the fuss is all about.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Hai Basics"
 	security 0.6
 
@@ -223,6 +232,10 @@ planet Arabia
 	description `	Aside from hunting, most of the industry takes the form of harvesting and refining petrochemicals to make plastics, polymers, and oils. In some parts of Arabia, the pumpjacks outnumber the people a hundred to one.`
 	spaceport `The spaceport consists mostly of a wide, open field paved in asphalt, the cheapest material available here. The pavement shimmers with heat, and is pockmarked with divots where ships' landing gear has sunk several centimeters in to the surface.`
 	spaceport `	At the center of the pavement is a small cluster of refrigerated sheds and stacks of crates carrying various goods for trade; a few armed guards patrol around them to prevent theft. A food truck is parked nearby, serving burgers and tacos to the port workers and to the crews of the few starships that are parked here at the moment.`
+	spaceport `	Despite the climate, a small procession of security guards and port workers is gathered in the spaceport to celebrate Remembrance Day.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.1
 	tribute 600
 		threshold 2500
@@ -388,6 +401,10 @@ planet "Big Sky"
 	description `	The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These "ubergoats" pose so great a threat to the typical biosphere that they are export-controlled as biological weapons.`
 	spaceport `The landing pads here are being gradually consumed by the local plant life. In most places grass and ivy has crept out to cover at least a meter of the pad on all sides, and every small crack or crevice has been colonized by moss and by the roots of larger plants.`
 	spaceport `	In places the forest has been cleared to make roads leading to the nearby farming villages, but in most directions all you see is green. It is a beautiful sight, and oddly peaceful, but you know what a nuisance these plants are to the locals.`
+	spaceport `	A large number of locals have congregated around a memorial in the spaceport in order to commemorate Remembrance Day. The plaque and the surrounding path have been scoured clean of the native flora.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.1
 	tribute 600
 		threshold 3000
@@ -493,6 +510,10 @@ planet Bounty
 	description `All the land near Bounty's equator is desert, but closer to the poles, the weather is temperate and there is enough rain for farming. The land near the northern pole is sparsely populated, but the other hemisphere is quite well developed, with many of the inhabitants now working in factories that produce fancy watches and intricate electronic components.`
 	description `	The focus on skilled manufacturing has had a dramatic effect on both the local education system and the sports scene. One can garner great respect - and a sizable income - simply by being the best at folding tiny paper cranes by microscope.`
 	spaceport `The spaceport is not fancy, but it is serviceable: the landing pads are very level and show only minor signs of wear and tear, and the one warehouse is tiny but recently built, and its roof is in good repair. Next to it is a marketplace building, with three walls and a pitched roof, and the fourth side open for people and trucks to come and go. An enterprising cook is selling lamb kebabs from a small grill and cart in one corner of the building.`
+	spaceport `	A moderately-sized festival has been set up in commemoration of Remembrance Day. Both locals and off-worlders have gathered to show off their precision origami skills, with displays ranging from miniature Firebirds to hundreds of thousands of paper cranes, each representing a life lost in the Alpha Wars.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.1
 	tribute 700
 		threshold 3000
@@ -779,6 +800,14 @@ planet Clark
 	description `	The low cost of living and virtually zero unemployment rate make poverty and crime relatively rare occurrences. Instead there is a pioneering spirit, a startup-world attitude that anything is attainable with a bit of hard work and frugality.`
 	spaceport `The spaceport is at the heart of one of Clark's largest cities, surrounded by smokestacks and factories. There are a few hangars owned by different corporations where their cargo ships can load and unload, but you are relegated to a set of concrete landing pads farther from the main buildings. Large trucks rumble by carrying carts loaded down with cargo crates.`
 	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, very different from most of the Dirt Belt worlds you have visited.`
+		to display
+			or
+				"days since year start" <= 35
+				"days since year start" >= 55
+	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boisterous and energetic, bolstered further by the local Remembrance Day celebrations. Locals and tourists take turns downing as many beers as possible as their friends shout Alpha Wars folk songs.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
 	security 0.1
@@ -1794,6 +1823,10 @@ planet Gemstone
 	description `Gemstone is a hot and unpleasant world, mostly due to a smoggy atmosphere high in methane. Much of the surface is covered in rugged mountains, making ground transport very difficult. However, the powerful tectonic forces here have created rich deposits of diamonds, emeralds, and sapphires, which are mined for use in jewelry and certain electronic components.`
 	description `	Mining a tectonically active world is an insane project. Earthquakes cause frequent cave-ins, but the potential for riches draws miners here despite high mortality rates. Most miners are dirt poor as a result of being paid on commission for their finds, but they are full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit.`
 	spaceport `The spaceport is perched on top of a peak in an older and more stable mountain range. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low concrete buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
+	spaceport `	In commemoration of Remembrance Day, a few flags have been set up in the spaceport. You suspect that the risk of an earthquake puts the locals off of setting up anything more elaborate.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.2
 	tribute 500
 		threshold 2500
@@ -2016,6 +2049,7 @@ planet Greenwater
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
+	spaceport `	Like many other Hai planets, the spaceport signs and menus for the largest restaurants are written in both Hai and human. What is unusual, however, is how some shops don't use any Hai text, perhaps due to Greenwater's larger human population.`
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Mon Ki i'Hiya Basics"
 	shipyard "Yeer e Ki Basics"
@@ -2072,6 +2106,7 @@ planet Hai-home
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Yeer e Ki Basics"
 	outfitter "Hai Advanced"
+	outfitter "Hai-home Only"
 	"required reputation" 100
 	bribe 0
 	security 0.4
@@ -2140,6 +2175,10 @@ planet Heartland
 	description `Heartland is a pleasant world, with a geography mostly consisting of low hills, plains, and oceans. The farms here produce bountiful crops, and as a result it has drawn tens of millions of settlers. Many of them now work in factories or assembly lines, in which most of the farm equipment used here and in the surrounding systems is built.`
 	description `	Tractors from Heartland are trusted to be well-built and sturdy, and easy to repair; some are still in use that were built over a century ago.`
 	spaceport `The spaceport is a cluster of low buildings. At the center of the port is a special, taller building with glass walls on all sides. It houses the tractor showroom. The farmers visiting the showroom look about as excited as you do when touring a large and well-appointed shipyard. There are tractors with rubber wheels, spiked wheels, and tracks; with plows, combines, balers, and chaser bins; tractors barely big enough to sit on and tractors the size of a small freighter. It's somewhat overwhelming.`
+	spaceport `	One section of the tractor showcase appears to currently be dedicated to antique tractors back from the Alpha Wars. On one landing pad, you spot some dock workers unloading a gigantic wheeled harvester out of a Bulk Freighter's hold.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	security 0.2
@@ -2256,6 +2295,10 @@ planet Hopper
 	description `	The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; Earth fish could not be introduced successfully here.`
 	spaceport `The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn.`
 	spaceport `	Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees.`
+	spaceport `	The inn has been repurposed for hosting Remembrance Day celebrations. A canvas just above its entrance reads, "For those who have fallen, and those who may fall." It is already blotchy.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Ammo South"
 	security 0.05
 	tribute 300
@@ -2394,6 +2437,10 @@ planet Ingot
 	description `	Because Ingot has almost no atmosphere to slow them down, meteorites are a constant danger to the colonists. The shells of the buildings have multiple layers, designed to be self-sealing in any but the largest of impacts. Most of the mining is done remotely by robotic vehicles, but someone still needs to be present to control them and to make repairs when something goes wrong.`
 	spaceport `In this spaceport, ships dock inside a hangar whose ceiling protects them from meteorite impacts. The hangar is not pressurized, so there are also landing tubes that connect to each of the visiting ships. Many of the people inside are carrying emergency oxygen masks in case a sudden impact ruptures the building.`
 	spaceport `	In addition to being the spaceport, this complex is also the repair and control center for the mining robots. There are a handful of buildings elsewhere on Ingot, but not many. You cannot imagine spending so much time with so little space or change of scenery.`
+	spaceport `	The decorations for Remembrance Day on this planet amount to a batch of flags placed near a trading hub. The spirit of the locals, however, is undeniable; you can feel folk songs echo through the metal corridors.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Basic Outfits"
 	security 0.1
 	tribute 200
@@ -2633,7 +2680,7 @@ planet Khosa-Kella-Oa
 	description `Devoid of atmosphere, this small and rocky world sits at the very edge of the galaxy. This may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			not "known to the successors"
-	description `Devoid of atmosphere, this small and rocky world sits at the eastern end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
+	description `Devoid of atmosphere, this small and rocky world sits at the western end of Successor space, orbiting a dim star. Because of the Successors' location on the rim of the galaxy, this may very well be the last planet for millions of light years, the furthest child of the Milky Way.`
 		to display
 			has "known to the successors"
 
@@ -3314,6 +3361,10 @@ planet "New Argentina"
 	description `New Argentina is a world that is ideal for ranching but suitable for little else. Ranchers live as individual families or small communities surrounded by hectares of grazing land for cattle. As a result, the population is still quite low here, and the locals live isolated lives, with most families living many kilometers away from the nearest school or hospital or even from their nearest neighbor.`
 	description `	Cattle handlers here do their work on horseback, because they believe modern vehicles are more likely to spook the animals.`
 	spaceport `The spaceport is on the outskirts of one of New Argentina's largest towns... which has a population of barely ten thousand people. Many of the dock workers are teenagers or barely past their teens, children of ranchers who are not drawn to the solitary sort of life that their parents enjoy. Aside from the church and the hospital, the largest building in town is "The Grange," a function hall with a sign out front advertising square dances and line dances three nights a week.`
+	spaceport `	The Grange is currently set up for Remembrance Day celebrations. The population inside consists mostly of the older residents of the planet, many of them likely having traveled tens of thousands of kilometers to arrive here.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	security 0.05
@@ -3329,6 +3380,10 @@ planet "New Austria"
 	description `	For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
 	spaceport `The spaceport is nothing but a couple of landing pads on the outskirts of one of the larger mining villages, high up on a mountain ridge to allow easy access for starships. A few roads lead down from there to the village, where you can trade for local goods or get food from the miners' cafeteria.`
 	spaceport `	By the time you have walked to the center of the town, several people have already tried to sell you large "diamonds" that you strongly suspect are just clear sapphires.`
+	spaceport `	The village itself is abuzz for Remembrance Day. Various exhibits have been set up, displaying either replicas of the planet's largest sapphires, or the real deals. You recall seeing a cheesy Remembrance Day movie about a heist for one such sapphire when you were younger.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 500
 		threshold 3000
@@ -3341,6 +3396,10 @@ planet "New Boston"
 	description `	Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
 	spaceport `Someday New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, and are now tilted and uneven.`
 	spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
+	spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occurring on New Boston.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
@@ -3356,6 +3415,10 @@ planet "New Britain"
 	description `	Among the native life forms, the most striking are the many species of large and colorful birds, most of which have learned to give the cities and the spaceport a wide berth.`
 	spaceport `The spaceport is a granite ziggurat, a step pyramid with landing pads and hangars on each level. On the top levels are the dining areas and meeting rooms for corporate visitors; the lower floors provide warehouse and storage space.`
 	spaceport `	Compared to the relatively traditional architecture of the city nearby, the spaceport looks out of place, even absurd. But to the locals, it is meant as a clear display to visitors that even though they are in a region of space known for poor and sparsely populated worlds, this particular world is far more developed.`
+	spaceport `	In celebration of Remembrance Day, the night sky above the port is densely occupied by choreographed drone formations, starship stunt flying, and firework showcases.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	shipyard "Basic Ships"
 	shipyard "Tarazed Basics"
 	outfitter "Common Outfits"
@@ -3399,8 +3462,12 @@ planet "New Greenland"
 	description `New Greenland was first settled about six hundred years ago, at the peak of the "Turf Wars" era where most planets were controlled by powerful corporations and their struggles often turned into outright warfare with privately owned fleets and armies. The people who came to New Greenland were looking for a world so marginal and undesirable that they could live here in peace without being caught in the crossfire.`
 	description `	The locals here grow food in greenhouses and specialize in making warm winter clothing, which is this planet's only export.`
 	spaceport `The spaceport is near the equator, but it is still cold enough that there is always some snow on the ground.`
-	spaceport `	You have never seen as many people in fur coats as there are here; what might be considered a luxury in other parts of the galaxy is a necessity here, where the cheapest clothing material is the pelts of indigenous animals.`
+	spaceport `	You have never seen as many people in fur coats as there are here; what might be considered a luxury elsewhere is a necessity here, where the cheapest clothing material is the pelts of indigenous animals.`
 	spaceport `	From the size of the claws hanging decoratively off some of the coats, you have to give a grudging respect to the hunters. High fashion is not an industry that usually involves risk of dismemberment.`
+	spaceport `	New Greenland was one of the worlds occupied during the Alpha Wars. Despite this, Remembrance Day celebrations on New Greenland are quite humble, with most simply going about business as usual.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 200
 		threshold 2000
@@ -3412,6 +3479,10 @@ planet "New Holland"
 	description `Like its namesake on ancient Earth, New Holland is a world of oceans and low country. It is an old planet, its tectonic activity long since silenced, worn smooth by eons of weather. For those who live here, flooding is a constant threat, requiring a vast network of dikes and levees. But the floods also refresh the soil, making this one of the most fertile farming worlds in the region.`
 	description `	As the population has boomed, and as the farms have been consolidated and become more mechanized, large cities have grown to house factories and workers.`
 	spaceport `The spaceport is on the fringes of one of the factory towns. In the distance are row after row of identical brick buildings; in the opposite direction, a safe distance from the city, are the cooling towers of several nuclear power plants. The port itself is laid out for maximum efficiency in loading and unloading cargo regardless of the weather or time of day: a row of hangars, open at one side to ships coming in and departing, and on the other to a road carrying a steady stream of trucks.`
+	spaceport `	Modest Remembrance Day decorations have been set up around the spaceport, along with a sampling of the planet's produce. In the distance, you can see marginally more lavish decorations set up within the main city.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	outfitter "Delta V Basics"
@@ -3427,6 +3498,10 @@ planet "New Iceland"
 	description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
 	spaceport `Almost as soon as you stepped off your ship, your eyes began to sting. You try to breathe as shallowly as possible.`
 	spaceport `	This port consists of a single large hangar, only big enough for two or three Bulk Freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day.`
+	spaceport `	The caustic climate makes it difficult for the local populace to celebrate Remembrance Day properly, though a small entourage has gathered in the cafeteria regardless.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 300
 		threshold 2000
@@ -3439,6 +3514,10 @@ planet "New India"
 	description `	The farms grow both food crops and cotton, and very recently they have begun manufacturing their own textiles instead of just shipping the raw cotton off-world for processing.`
 	spaceport `New India's spaceport is a ring of low wooden buildings around a wide landing area paved with concrete slabs. Around the perimeter carts of trade goods are driven, some being pulled by tractors and others, by horses or oxen. You even think you see a few carts being pulled by water buffalo.`
 	spaceport `	Most of the buildings are for storage, but from somewhere nearby you can smell fresh-baked bread.`
+	spaceport `	Despite the relative recency of settlement, Remembrance Day celebrations appear to be occurring, with Alpha Wars ballads audible from one of the spaceport buildings.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Ammo South"
 	security 0.05
 	tribute 200
@@ -3451,6 +3530,10 @@ planet "New Kansas"
 	description `Wool clothing is considered a luxury in most of human space, because enough oil is mined on most planets to make synthetic clothing much cheaper than raising and shearing sheep. However, here on New Kansas, wool is the primary industry.`
 	description `	The land is mostly rolling green hills and shallow streams, ideal for grazing. However, unwary travelers hiking through the idyllic countryside have been known to be attacked by savage packs of feral sheep, so this world is not without unique dangers of its own.`
 	spaceport `The spaceport includes several stores selling wool garments, each worth easily ten times as much as the clothes you are wearing. A few of the visitors milling around seem genuinely interested in the clothing, but most of them, like you, are just ship captains who see wool clothing as nothing more than a pricey luxury good that can be sold elsewhere for a good profit.`
+	spaceport `	In the western part of the spaceport, you can see several people showing off knitted Remembrance Day memorabilia, both for sale and personal display.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	spaceport `	The port authority employs several people on horseback whose sole job is to keep the landing pads clear of wild sheep.`
 	security 0.05
 	tribute 300
@@ -3463,6 +3546,10 @@ planet "New Portland"
 	description `New Portland is a cloudy planet orbiting a dim star; the only reason it is not completely frozen is because of the heat trapped by its upper atmosphere. There are only a handful of towns here, and nothing big enough to warrant being called a city. Most of the settlers are subsistence farmers who can only dream about life on other worlds. Many houses here do not even have running water or personal computers.`
 	description `	Some of the farms near the spaceport are planted with different crops forming abstract patterns visible from the air. Such a whimsical extravagance seems particularly odd when you consider that the owners will never be able to afford to see their fields from that angle. But perhaps that is precisely the point.`
 	spaceport `The largest town on New Portland has set aside a landing area for ships, but it is barely what could be called a spaceport. Aside from the refueling station and a few sheds, there are no other buildings, just an open field of packed gravel, with grass and weeds peeking up in places where it has avoided the blast from landing spacecraft. A few farmers have parked wagons here and are trading food and other goods with the visiting ships.`
+	spaceport `	It appears that the spaceport has not been embellished for Remembrance Day. The main celebrations are likely taking place in the planet's individual towns.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 200
 		threshold 2000
@@ -3474,6 +3561,10 @@ planet "New Sahara"
 	description `New Sahara is mostly desert and savanna, with very little precipitation.`
 	description `	A century ago, some entrepreneurs settled here and built a factory complex that is entirely powered by wind and solar energy, because there are so few cloudy days here and the wind and sunshine are so reliable. The factory is mostly autonomous, with only a few thousand people living here to perform maintenance or to grow crops in irrigated fields.`
 	spaceport `The spaceport consists of a few large concrete slabs, each big enough for a dozen small ships or a pair of Bulk Freighters to land on. Farther away are fields of solar panels and the factories that they power. The spaceport buildings themselves, however, are underground, where less energy is needed to keep the air cool. Light pipes bring sunlight down from the surface to illuminate the subterranean storage caverns and living quarters, while keeping the searing heat of the sunlight out.`
+	spaceport `	The living quarters have been modestly decorated for Remembrance Day, with ceremonial flags displayed inside the dining hall and Alpha Wars medals set up along a corridor, each one belonging to an ancestor of those who immigrated here.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 400
 		threshold 3000
@@ -3499,6 +3590,10 @@ planet "New Tibet"
 	description `	In the lowlands, large farms support sprawling cities full of factories, a striking contrast to the simplicity and isolation of the mountain villages.`
 	spaceport `The spaceport is in a hilly region, just outside of the largest city, with a view of a valley full of farms that stretch for tens of kilometers, all the way down to the ocean.`
 	spaceport `	The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because the focus has been on improving life for the locals, not for their occasional visitors.`
+	spaceport `	Befitting their isolationist stance, the port has not been dolled up for Remembrance Day, though you are able to make out a celebration taking place in the city below.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.1
 
 planet "New Tortuga"
@@ -3538,6 +3633,10 @@ planet "New Wales"
 	description `	Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
 	spaceport `The warehouses at the spaceport are kept under continuous guard due to the high value of the refined metals they contain. There are several missile silos and surface-to-air laser turrets as well; New Wales has survived multiple pirate attacks in the last decade.`
 	spaceport `	Within the spaceport cafeteria, however, the locals are quite friendly and excited to connect with visitors and hear news of the outside world. The cafeteria is cooking lamb stew, and the smell of it pervades the whole building.`
+	spaceport `	Some of the locals discuss their Remembrance Day plans in the cafeteria. One of them asks you how other planets celebrate the day.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	security 0.2
@@ -3552,6 +3651,10 @@ planet "New Washington"
 	description `	The only villages are in the twilight region in between, and there the settlers make a living by mining for metal and for oil, a relic of a warmer period when more life flourished here and the planet spun more quickly on its axis.`
 	spaceport `In this narrow ring between the baking sun of New Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them.`
 	spaceport `	Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatoes. You are almost certain the stew is made with rat meat.`
+	spaceport `	The cafeteria is littered with Remembrance Day memorabilia: flags of corporations from a long gone era, recruitment posters for a war that has ended, banners for a victory still ongoing. Judging by how haphazardly everything is strewn about, you assume that whoever put the decorations out must be rather lazy.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 200
 		threshold 2000
@@ -3643,6 +3746,10 @@ planet Oblivion
 	description `The atmosphere here is a toxic mix of ammonia, sulfur, and methane. Although breathable by human beings if necessary, the locals use masks to reduce the risk of chronic respiratory problems. Even so, the life expectancy here is short, but that is partly because the two best-paying industries are oil drilling and mining for radioactive elements.`
 	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar. Inside are stacked lead-lined crates of radioactive materials for sale.`
 	spaceport `	Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
+	spaceport `	The people of Oblivion are not particularly keen on celebrating Remembrance Day. It appears that the younger population of the planet have little concern for events from several centuries ago.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Ammo South"
 	security 0.05
 	tribute 500
@@ -3857,6 +3964,10 @@ planet Poisonwood
 	description `	Today, most of the inhabitants are children of the liberated slaves, and like their parents they remain grateful and fiercely loyal to the Republic.`
 	spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals are unusually courteous and proud to welcome you to their planet.`
 	spaceport `	The tavern in the center of the port is named The Parting Glass. The walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away, and friends left behind. It is a strange feeling to sit here so deeply immersed in signs of a history that you had no part in.`
+	spaceport `	A sign advertises a Remembrance Day special for half-price drinks.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Ammo South"
 	"required reputation" 2
 	bribe 0.04
@@ -4021,6 +4132,10 @@ planet Rand
 	description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south.`
 	description `	Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 	spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
+	spaceport `	Remembrance Day celebrations on Rand are sparse. It appears that most people have opted to return to their families on other planets to celebrate the day, though in one corner of the spaceport, you can hear a group of friends singing Alpha Wars folk songs.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 500
 		threshold 3000
@@ -4232,7 +4347,7 @@ planet Sandsnap
 	attributes hai station uninhabited
 	landscape land/station40
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	A tourist FAQ in the docking area cheerily informs any visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately, it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
+	description `	A tourist FAQ in the docking area cheerily informs visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a destination for humans looking to settle in Hai space. The station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately, it was decided that the slow trickle of human settlers did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -4584,6 +4699,10 @@ planet Sinter
 	landscape land/nasa2
 	description `Sinter is a world where life never developed; the atmosphere is unbreathable, but warm enough and dense enough that people can survive here in pressurized homes or outside when wearing oxygen tanks. The only industry here is mining, which is mostly done with remotely controlled robots, so the population of the entire planet is only a few thousand people.`
 	spaceport `The spaceport is built next to a large smelter where ore is processed into metal ingots. Even on a planet as inhospitable as this one, the cost of extracting metal from ore is still cheaper than the cost of shipping the ore off-world for processing. A long enclosed terminal building extends out from the smelter, with docking tubes and landing pads every few hundred meters for connecting to visiting ships. Small robotic trolleys carry cargo crates back and forth; only a handful of people are walking around here, and most of them are probably off-worlders.`
+	spaceport `	The only sign that Remembrance Day is celebrated on this planet is a single monitor in the spaceport displaying the text, "Happy Remembrance Day!"`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	security 0.05
 	tribute 400
 		threshold 3000
@@ -5148,6 +5267,10 @@ planet Tundra
 	description `	The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing.`
 	spaceport `The spaceport village consists of several large domes which keep out the wind and driving snow. Ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through.`
 	spaceport `	Every decade or so, enough snow piles up on top of one of the domes that it is in danger of collapsing under its own weight; the locals simply move out of that dome and build another one higher up on the snowpack.`
+	spaceport `	For Remembrance Day, several stalls have been set up to showcase items of clothing made with the planet's synthetic fabrics. However, glancing at the labels, only a small number of the items were tailored here on Tundra.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	outfitter "Ammo South"
 	security 0.1
 	tribute 400
@@ -5270,6 +5393,10 @@ planet Valhalla
 	description `	The shipyards of Lionheart Industries are located here. Centuries ago, warships built here turned the tide of the Alpha War, and today the ships designed and built in the Deep continue to be some of the most technologically advanced ships in human space - and the most expensive.`
 	spaceport `Surrounding the spaceport is a metropolis of skyscrapers and factories that spreads all the way to the horizon in every direction.`
 	spaceport `	The spaceport itself is an imposing building, composed of three towers rising over a hundred stories into the air and connected at various levels by bridges. The docking bays are on the higher levels, with warehouse space lower down and loading platforms for trucks at ground level. Massive cargo elevators run up and down in the center of each building, and the hallways are all wide enough to allow small robotic carts and forklifts in addition to foot traffic.`
+	spaceport `	Despite the Deep's importance to defeating the Alphas, Remembrance Day is seldom observed in the region. The only thing you see out of the ordinary is a milk dish on the counter of an information booth.`
+		to display
+			"days since year start" > 35
+			"days since year start" < 55
 	shipyard "Basic Ships"
 	shipyard "Lionheart Basics"
 	shipyard "Lionheart Advanced"
