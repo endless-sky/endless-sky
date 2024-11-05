@@ -4446,7 +4446,7 @@ planet Sandsnap
 	attributes hai station uninhabited
 	landscape land/station40
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	A tourist FAQ in the docking area cheerily informs any visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately, it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
+	description `	A tourist FAQ in the docking area cheerily informs visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a destination for humans looking to settle in Hai space. The station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately, it was decided that the slow trickle of human settlers did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
 	government Uninhabited
 	bribe 0
 	security 0

@@ -2859,7 +2859,7 @@ news "betelgeuse stolen ship advisory"
 		word
 			" "
 		word
-			"has the time-tested quality that Betelgeuse is known for"
+			"has the longevity that Betelgeuse is known for"
 			"will live up to your high expectations"
 			"is the genuine article"
 		word

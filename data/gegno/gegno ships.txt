@@ -628,7 +628,7 @@ ship "Slate"
 	leak "leak" 60 50
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description `Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry several Gegno cadets along with a small cargo load.`
+	description `Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry a few Gegno cadets, along with a decently increased cargo capacity.`
 
 
 
