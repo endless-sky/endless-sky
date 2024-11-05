@@ -500,7 +500,7 @@ ship "Behemoth"
 		"required crew" 12
 		"bunks" 30
 		"mass" 1120
-		"drag" 18.2
+		"drag" 14.6
 		"heat dissipation" .26
 		"fuel capacity" 600
 		"cargo space" 490
@@ -752,7 +752,7 @@ ship "Bulk Freighter"
 		"required crew" 12
 		"bunks" 21
 		"mass" 1510
-		"drag" 21
+		"drag" 16.8
 		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 640
@@ -972,7 +972,7 @@ ship "Class C Freighter"
 		"required crew" 18
 		"bunks" 43
 		"mass" 1525
-		"drag" 21
+		"drag" 16.8
 		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 20
@@ -1154,7 +1154,7 @@ ship "Container Transport"
 		"required crew" 6
 		"bunks" 18
 		"mass" 1525
-		"drag" 26.4
+		"drag" 21.1
 		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 550
