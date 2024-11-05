@@ -1251,7 +1251,7 @@ event "Thule becomes independent"
 		fleet "Large Free Worlds" 1500
 	planet "Thule"
 		add attributes "ex-pirate"
-		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the government on Earth did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so.`
+		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the government on Earth did not yet have the strength to control any system but its own. As such, Thule refused to join the Republic when it was formed, and has since repulsed all efforts to force them to do so.`
 		description `	Until recently, Thule was a well-known den of pirate activity, but the major tribal authorities have now forsworn piracy in the interest of keeping the Free Worlds from further meddling in their affairs. However, it is likely that all manner of illegal activity is still going on in secret here.`
 	planet "Smuggler's Den"
 		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates, and became a haven for all manner of smugglers and privateers. Now, at least in theory, it is an independent station no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
