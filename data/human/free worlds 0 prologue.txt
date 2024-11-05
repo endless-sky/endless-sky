@@ -815,7 +815,7 @@ mission "FW Escort 2"
 	
 	on offer
 		conversation
-			`Tomek is waiting on <origin>'s spaceport to receive the freighters. After double-checking that the cargo is all intact, he turns to you and the rest of the escort captains and says, "All of you have done a great service for the Free Worlds." He walks over and personally presents a credit chip to each captain.`
+			`Tomek is waiting in <origin>'s spaceport to receive the freighters. After double-checking that the cargo is all intact, he turns to you and the rest of the escort captains and says, "All of you have done a great service for the Free Worlds." He walks over and personally presents a credit chip to each captain.`
 			`	After handing over your payment, Tomek announces, "The convoy is heading back out for <planet> immediately. Same deal as before: 400,000 credits for the safe return of the freighters, their crew, and their cargo. And I swear your courage will never be forgotten by the Council or the Free Worlds. If you wish to volunteer a second time, please stay here."`
 			`	Tomek leaves, presumably to gather replacements for the captains who have already run off.`
 			choice
