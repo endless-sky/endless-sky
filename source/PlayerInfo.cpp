@@ -1950,7 +1950,7 @@ void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
 	auto it = specialLogs.find(type);
 	if(it == specialLogs.end())
 		return;
-	auto &nameMap = *it;
+	auto &nameMap = (*it).second;
 	auto eit = nameMap.find(name);
 	if(eit != nameMap.end())
 		nameMap.erase(eit);
