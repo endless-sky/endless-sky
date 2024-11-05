@@ -333,7 +333,7 @@ mission "FW Recon 1"
 			`When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Captain <last>. One of my officers told me to keep an eye out for you. Would you be willing to do another small service for the Free Worlds?"`
 			choice
 				`	"Perhaps. What do you want me to do?"`
-				`	"I only agreed to a transport mission. I want no part in your rebellion."`
+				`	"I only agreed to a transport job. I want no part in your rebellion."`
 					decline
 			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The outfitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
@@ -1469,7 +1469,7 @@ mission "FW Katya Alt 2"
 			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds Council, and I'm hoping you'd reconsider working with me."`
 			choice
 				`	"Okay, as long as you don't point any more guns at me."`
-				`	"No. I don't like you. Or the Free Worlds."`
+				`	"No. I just don't like you. Or the Free Worlds."`
 					decline
 			`	"Great," she says. "Here's the deal. I have a friend named Mr. Eyes, who needs a lift from <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though. Can you give him a lift?"`
 			choice
