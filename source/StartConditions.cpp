@@ -381,12 +381,22 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 		info.system = value;
 	else if(key == "planet" && hasValue)
 		info.planet = value;
+	// Format date, credits and debt where applicable.
 	else if(key == "date" && hasValue)
-		info.date = value;
+		if(child.Size() >= valueIndex + 3)
+			info.date = Date(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2)).ToString();
+		else
+			info.date = value;
 	else if(key == "credits" && hasValue)
-		info.credits = value;
+		if(child.IsNumber(value))
+			info.credits = Format::Credits(child.Value(value));
+		else
+			info.credits = value;
 	else if(key == "debt" && hasValue)
-		info.debt = value;
+		if(child.IsNumber(value))
+			info.debt = Format::Credits(child.Value(value));
+		else
+			info.debt = value;
 	else
 		return false;
 	return true;

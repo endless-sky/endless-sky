@@ -67,17 +67,20 @@ start "hai space"
 	system "Fah Soom"
 	planet "Greenwater"
 	date 16 11 3013
+	on display
+		description `This start is locked.`
 	to reveal
 		has "Ask the Hai about the Unfettered"
 	on reveal
 		name "Hai Origins"
 		description `You grew up on Greenwater, a Hai world with a rich and mixed culture thanks to its climate. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. To reach that goal, you worked hard at a travel company, recommending locations in human space.`
 		description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
+		description `	To unlock this start, complete the main human campaign.`
 		system "Fah Soom"
 		planet "Greenwater"
-		date "Tue, 16 Nov 3013"
-		credits "1.431M"
-		debt "1.431M"
+		date 16 11 3013
+		credits 1431000
+		debt 1431000
 	to unlock
 		has "main plot completed"
 		has "Ask the Hai about the Unfettered"
