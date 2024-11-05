@@ -262,7 +262,7 @@ void GameAction::Save(DataWriter &out) const
 		if(it.second.empty())
 			out.Write("remove", "log", it.first);
 		else
-			for(const string &&jt : it.second)
+			for(auto &&jt : it.second)
 				out.Write("remove", "log", it.first, jt);
 	}
 	for(auto &&it : giftShips)
