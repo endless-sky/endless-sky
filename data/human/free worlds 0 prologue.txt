@@ -1469,7 +1469,7 @@ mission "FW Katya Alt 2"
 			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds Council, and I'm hoping you'd reconsider working with me."`
 			choice
 				`	"Okay, as long as you don't point any more guns at me."`
-				`	"No. I just really don't like you. Or the Free Worlds."`
+				`	"No. I don't like you. Or the Free Worlds."`
 					decline
 			`	"Great," she says. "Here's the deal. I have a friend named Mr. Eyes, who needs a lift from <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though. Can you give him a lift?"`
 			choice
