@@ -29,15 +29,31 @@ mission "Intro [0]"
 			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 		conversation
+			branch lampyrid
+				has "flagship model: Lampyrid Mk. II"
 			`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
 			`	"Nothing quite like buying your very first starship," he says.`
+				goto firstStarship
+			label lampyrid
+			`With some trepidation, you show the shipyard comptroller your license and registration. They look it over briefly before grunting and waving for you to continue on your way. Within minutes you liftoff for a test drive, piloting your Lampyrid out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look over the ship, thinking about how much of a wreck it was when you first found it. You are busy checking the torque on a recalcitrant nut when an old man in grease-stained coveralls walks up.`
+			`	"Nothing quite like your first time at the controls," he says.`
+			label firstStarship
 			choice
 				`	"Yeah, I'm still kind of in shock over how much money I spent."`
+					to display
+						not "flagship model: Lampyrid Mk. II"
 					goto money
+				`	"It took a lot of work, but it feels awesome!"`
+					to display
+						has "flagship model: Lampyrid Mk. II"
+					goto hard_work
 				`	"Well, I don't plan to get too attached to this one. I'll be flying something much nicer before long."`
 					goto bigger
 				`	"Beat it, old-timer, I've got more important things to do than chat with you."`
 					decline
+			label hard_work
+			`	He grins. "It takes a lot of knowledge and skill to get a ship running. Good thing you aren't depending on a loan. It's a crime how much interest the banks charge to first-timers. It's been that way ever since when I first started out."`
+				goto captain
 			label money
 			`	He grins. "I know the feeling. It's a crime how much interest the banks charge to first-timers. It's been that way ever since when I first started out."`
 				goto captain
@@ -73,6 +89,12 @@ mission "Intro [0]"
 			`	"<first> <last>?" he stops for a moment. "I've heard that name before. Reminds me of someone famous, I think," says James. "Anyways, I'm looking forward to traveling with you."`
 			label advice
 			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While they don't sell much here compared to on the big manufacturing worlds, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
+			branch registration
+				has "flagship model: Lampyrid Mk. II"
+			`	With that, he settles down to wait for departure.`
+				accept
+			label registration
+			`	He frowns down at his commlink, then smiles. "I see you haven't even finished the registration process yet. You should probably pull up your pilot information and register a name for your ship. If they haven't changed the forms since I last did it, you should just need to click on the ship tab, and then click on the blank where your ship name should be. Then you will be all legal."`
 				accept
 	
 	on accept

@@ -17,7 +17,7 @@ start "default"
 	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of working at a textile mill, you've finally saved enough credits to apply for a pilot's license from the Republic.`
 	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to take out a loan on your first ship...`
 	thumbnail "scene/lobby"
-	date 16 11 3013
+	date 16 5 3013
 	system "Rutilicus"
 	planet "New Boston"
 	conversation "default intro"
@@ -66,7 +66,7 @@ start "hai space"
 	thumbnail "scene/hai start"
 	system "Fah Soom"
 	planet "Greenwater"
-	date 16 11 3013
+	date 16 05 3013
 	on display
 		description `This start is locked.`
 	to reveal
@@ -78,7 +78,7 @@ start "hai space"
 		description `	To unlock this start, you must complete the main human campaign.`
 		system "Fah Soom"
 		planet "Greenwater"
-		date 16 11 3013
+		date 16 05 3013
 		credits 1431000
 		debt 1431000
 	to unlock
@@ -224,3 +224,101 @@ substitutions
 	"<starting planet>" "New Boston"
 	"<starting planet>" "Greenwater"
 		has "hai space start"
+
+
+
+start "lampyrid"
+	name "Lampyrid Start"
+	description `You grew up on New Boston, a world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport, and years later you managed to acquire the wreck of an old Lampyrid-class transport.`
+	description `	After many long years of working at a textile mill during the day and working on your ship during the night, you've finally saved enough credits to apply for a pilot's license from the Republic and take to the skies in the old ship.`
+	thumbnail "scene/lobby"
+	date 16 5 3013
+	system "Rutilicus"
+	planet "New Boston"
+	to reveal
+		has "tranquility achieved"
+	conversation "lampyrid intro"
+	account
+		credits 300000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	ship "Lampyrid Mk. II"
+		sprite "ship/lampyrid"
+		thumbnail "thumbnail/lampyrid"
+		attributes
+			category "Transport"
+			"cost" 2760000
+			"shields" 5400
+			"hull" 4400
+			"required crew" 5
+			"bunks" 14
+			"mass" 240
+			"drag" 8.5
+			"heat dissipation" .7
+			"fuel capacity" 700
+			"cargo space" 160
+			"outfit space" 300
+			"engine capacity" 130
+			"weapon capacity" 50
+			"reverse thruster slot" 1
+			"steering slot" 1
+			"thruster slot" 1
+			weapon
+				"blast radius" 100
+				"shield damage" 1000
+				"hull damage" 500
+				"hit force" 1500
+		outfits
+			"Anti-Missile Turret"
+			"S3 Thermionic"
+			"LP036a Battery Pack"
+			"D67-TM Shield Generator"
+			"Large Radar Jammer"
+			"Ramscoop"
+		
+			"Impala Plasma Thruster"
+			"Impala Plasma Steering"
+			"Hyperdrive"
+
+		engine -64 28 0.7
+		engine 0 80 1.8
+		engine 0 100 1.2
+		engine 64 28 0.7
+		"reverse engine" -64.5 -31.5 0.7
+		"reverse engine" 64.5 -31.5 0.7
+		"steering engine" -64.5 -31.5 0.7
+			angle -180
+			left
+		"steering engine" 64 28 0.7
+			left
+		"steering engine" -64 28 0.7
+			right
+		"steering engine" 64.5 -31.5 0.7
+			angle -180
+			right
+		turret 0 9 "Anti-Missile Turret"
+		bay "Fighter" -26.5 9.5 under
+		bay "Fighter" 26.5 9.5 under
+		explode "tiny explosion" 10
+		explode "small explosion" 25
+		explode "medium explosion" 30
+		explode "large explosion" 15
+		"final explode" "final explosion medium" 1
+
+
+conversation "lampyrid intro"
+	scene "scene/lobby"
+	`The bank's architecture is what you would have called "futuristic" back when you dreamed that the future would be less squalid than the present: story above story of curves and spires and balconies, all in gleaming metal. A doorman stands by each of the heavy glass doors. You are wearing your very best clothes, but you feel shabby next to them.`
+	`	The loan broker's office is equally intimidating. Large computer monitors fill the walls, with stock quotes and other information spilling down them almost too fast to read. You occasionally glimpse the names of places that you have only seen in movies: Aldebaran. Tarazed. Earth.`
+	`	The pen is heavy as lead but glides almost without friction as you print your initials on the bottom of page after page of ominous legal documents and sign several dozen statements, notices, and agreements. The banker, a balding middle-aged man in a suit that you suspect costs more than the value of the ship you have been working on, flips the pages past you quickly, uttering a curt, "Sign here. Now here," as he points to each page. He moves swiftly, mechanically.`
+	`	The only moment when he becomes truly animated is when explaining the Truth in Lending statement to you. "You are borrowing 480,000 credits," he says, "to be repaid over the course of one year. 180,000 will be paid directly to the bureau of registrars for your license and ship registration, with the remainder deposited in your account. Your daily interest rate is 0.4%, which means that your daily payments are 2,503 credits, and by the end of the year you will have paid... 433,567 credits in interest. Sign here." He grins.`
+	`	You sign your name one final time:`
+	name
+	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
+	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range, but the one that stands out is the one off to the side on a private pad.`
+	`	A Lampyrid Mk. II, an antique that was old back when Firebirds were just starting to make a name for themselves. Your repairs over the past few years have not been enough to give it the 'like-new' shine that a collector would want, but it has been more than enough to get it flying. The only things holding it back was your lack of a license and the payment of the ship registration fee. Now it beckons to you, ready to take you up into space, eager to repay your hard work with the adventure of a lifetime.`
+	`	The final step is to pull up your pilot profile and register the name of your ship.`

@@ -34,6 +34,8 @@ ship "Aerie" "Aerie (Miner)"
 		"Hyperdrive"
 	gun "Mining Laser"
 	gun "Mining Laser"
+	pylon
+	pylon
 	turret "Tractor Beam"
 	turret "Mining Laser Turret"
 	turret "Mining Laser Turret"
@@ -126,6 +128,52 @@ ship "Arrow" "Arrow (Hai)"
 
 
 
+ship "Auxiliary" "Auxiliary (Cargo)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+	pylon -12 -186
+	pylon 12.5 -186
+	turret 0 -72 "Heavy Anti-Missile Turret"
+	turret 0 -20
+	turret 0 32
+	turret 0 83 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -72
+		"launch effect" "human internal"
+	bay "Fighter" 0 -20
+		"launch effect" "human internal"
+	bay "Fighter" 0 32
+		"launch effect" "human internal"
+	bay "Fighter" 0 83
+		"launch effect" "human internal"
+
+
+ship "Auxiliary" "Auxiliary (Transport)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	add attributes
+		"bunks" 112
+		"cargo space" -200
+	pylon -12 -186
+	pylon 12.5 -186
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 20
+	turret 0 78 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+		"launch effect" "human internal"
+	bay "Fighter" 0 -17
+		"launch effect" "human internal"
+	bay "Fighter" 0 20
+		"launch effect" "human internal"
+	bay "Fighter" 0 78
+		"launch effect" "human internal"
+
+
 ship "Auxiliary" "Auxiliary (Mark II)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -142,7 +190,7 @@ ship "Auxiliary" "Auxiliary (Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -169,7 +217,7 @@ ship "Auxiliary" "Auxiliary (Cargo Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -196,7 +244,7 @@ ship "Auxiliary" "Auxiliary (Transport Mark II)"
 		"Catalytic Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 
@@ -226,8 +274,8 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"A525 Atomic Steering"
 		"Laser Rifle" 362
 		"Fragmentation Grenades" 500
-	gun -12 -186
-	gun 12.5 -186
+	pylon -12 -186
+	pylon 12.5 -186
 	turret 0 -74 "Heavy Anti-Missile Turret"
 	turret 0 -17
 	turret 0 20
@@ -281,8 +329,12 @@ ship "Bactrian" "Bactrian (Hai Weapons)"
 		"Hyperdrive"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon
+	pylon
 	turret "Chameleon Anti-Missile"
 	turret "Heavy Laser Turret"
 	turret "Pulse Turret"
@@ -350,7 +402,7 @@ ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
 		"Liquid Nitrogen Cooler"
 		"Plasma Cannon" 4
 		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
+		# "A255 Atomic Steering" # Extra steering
 		"A525 Atomic Steering"
 		"Fission Reactor"
 		"Quad Blaster Turret" 3
@@ -475,10 +527,12 @@ ship "Bastion" "Bastion (Scanner)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-	gun "Heavy Rocket Launcher"
+	gun
 	gun "Plasma Cannon"
-	gun "Heavy Rocket Launcher"
+	gun
 	gun "Plasma Cannon"
+	pylon "Heavy Rocket Launcher"
+	pylon "Heavy Rocket Launcher"
 
 
 
@@ -496,7 +550,7 @@ ship "Behemoth" "Behemoth (Hai)"
 		"Outfits Expansion" 6
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` Extra thruster
 		"Hyperdrive"
 
 
@@ -569,7 +623,7 @@ ship "Behemoth" "Behemoth (Proton)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 6
 		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
+		# "A125 Atomic Steering" # Extra thruster
 		"A375 Atomic Steering"
 		"Scram Drive"
 	turret "Proton Turret"
@@ -592,7 +646,7 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 6
 		"A250 Atomic Thruster"
-		"A125 Atomic Steering"
+		# "A125 Atomic Steering" # Extra steering
 		"A375 Atomic Steering"
 		"Scram Drive"
 
@@ -764,7 +818,7 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 		"Pulse Rifle" 4
 		"X3700 Ion Thruster"
 		`"Benga" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Scram Drive"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
@@ -813,7 +867,7 @@ ship "Bulk Freighter" "Bulk Freighter (Long Haul)"
 		"Laser Rifle" 6
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"X1200 Ion Steering"
+		# "X1200 Ion Steering" # Extra steering
 		"Scram Drive"
 	turret "Anti-Missile Turret"
 	turret "Laser Turret"
@@ -864,10 +918,12 @@ ship "Bulwark" "Bulwark (Heavy)"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 	
-	gun "Torpedo Launcher"
+	gun
 	gun "Plasma Cannon"
-	gun "Torpedo Launcher"
+	gun
 	gun "Plasma Cannon"
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
 	turret "Heavy Laser Turret"
 	turret "Anti-Missile Turret"
 	turret "Anti-Missile Turret"
@@ -897,12 +953,12 @@ ship "Carrier" "Carrier (Jump)"
 		"Jump Drive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
@@ -932,12 +988,12 @@ ship "Carrier" "Carrier (Mark II)"
 		"Hyperdrive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
@@ -1158,10 +1214,14 @@ ship "Corvette" "Corvette (Missile)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
+	gun
+	gun
+	gun
+	gun
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
 	turret "Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 
@@ -1269,14 +1329,20 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Brig"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-		"X2200 Ion Steering"
+		# "X2200 Ion Steering" # Extra steering
 		"Scram Drive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Heavy Rocket Launcher"
-	gun "Heavy Rocket Launcher"
+	gun
+	gun
+	pylon "Heavy Rocket Launcher"
+	pylon "Heavy Rocket Launcher"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret "Quad Blaster Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
@@ -1305,12 +1371,18 @@ ship "Cruiser" "Cruiser (Jump)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Typhoon Launcher"
-	gun "Typhoon Launcher"
 	gun
 	gun
+	gun
+	gun
+	gun
+	gun
+	pylon
+	pylon
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Typhoon Launcher"
+	pylon "Typhoon Launcher"
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Electron Turret"
@@ -1339,12 +1411,18 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 		"Outfits Expansion"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
 	gun
-	gun "Typhoon Launcher"
-	gun "Typhoon Launcher"
+	gun
+	gun
+	gun
+	gun
+	gun
+	pylon
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Typhoon Launcher"
+	pylon "Typhoon Launcher"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
 	turret "Electron Turret"
@@ -1376,12 +1454,18 @@ ship "Cruiser" "Cruiser (Republic Intelligence)"
 		"Cargo Scanner" 2
 		"Catalytic Ramscoop"
 		"Outfits Expansion"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
 	gun
-	gun "Typhoon Launcher"
-	gun "Typhoon Launcher"
+	gun
+	gun
+	gun
+	gun
+	gun
+	pylon
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Typhoon Launcher"
+	pylon "Typhoon Launcher"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
 	turret "Electron Turret"
@@ -1451,10 +1535,12 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 		"A520 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-	gun -21.5 -18 "Heavy Rocket Pod"
-	gun 21.5 -18 "Heavy Rocket Pod"
+	gun -21.5 -18
+	gun 21.5 -18
 	gun -11 -8.5 "Twin Modified Blaster"
 	gun 11 -8.5 "Twin Modified Blaster"
+	pylon -21.5 -18 "Heavy Rocket Pod"
+	pylon 21.5 -18 "Heavy Rocket Pod"
 
 
 
@@ -1571,10 +1657,14 @@ ship "Falcon" "Falcon (Heavy)"
 		"Hyperdrive"
 		"Supercapacitor"
 		"Outfits Expansion"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	gun
+	gun
+	gun
+	gun
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
 
 
 ship "Falcon" "Falcon (Prisoner Transport)"
@@ -1662,6 +1752,10 @@ ship "Falcon" "Falcon (Tractor Beam)"
 	gun "Proton Gun"
 	gun "Proton Gun"
 	gun "Proton Gun"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret "Heavy Anti-Missile Turret"
 	turret "Tractor Beam"
 	turret "Quad Blaster Turret"
@@ -1763,10 +1857,14 @@ ship "Firebird" "Firebird (Missile)"
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
+	gun
+	gun
+	gun
+	gun
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
 	turret "Laser Turret"
 	turret "Heavy Laser Turret"
 
@@ -1803,7 +1901,7 @@ ship "Firebird" "Firebird (CCOR)"
 		"Outfit Scanner"
 		"Laser Rifle" 22
 		"Security Station"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering" # Extra Steering
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
@@ -2137,6 +2235,21 @@ ship "Fury" "Fury (Missile)"
 		"Hyperdrive"
 
 
+ship "Fury" "Fury (Thermal Scanner)"
+	outfits
+		"Energy Blaster" 2
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Thermal Scanner" 3
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
 
 ship "Gunboat" "Gunboat (Mark II)"
 	outfits
@@ -2187,7 +2300,7 @@ ship "Hauler II" "Hauler II (CCOR)"
 		"Laser Rifle" 12
 		"Security Station" 2
 		"Capybara Reverse Thruster"
-		"Chipmunk Plasma Thruster"
+		# "Chipmunk Plasma Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Scram Drive"
@@ -2458,7 +2571,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Security Station"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering"
 		"Scram Drive"
 
 
@@ -2512,10 +2625,14 @@ ship "Leviathan" "Leviathan (Heavy)"
 		"Volcano Afterburner"
 		"Scram Drive"
 		"Ramscoop"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
+	gun
+	gun
+	gun
+	gun
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
@@ -2602,12 +2719,12 @@ ship "Manta" "Manta (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
-	gun "Sidewinder Missile Launcher"
-	gun
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
+	pylon "Sidewinder Missile Launcher"
+	pylon
 
 
 ship "Manta" "Manta (Nuclear)"
@@ -2622,12 +2739,12 @@ ship "Manta" "Manta (Nuclear)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Nuclear Missile"
-	gun "Nuclear Missile"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
+	pylon "Nuclear Missile"
+	pylon "Nuclear Missile"
 
 
 ship "Manta" "Manta (Proton)"
@@ -2642,12 +2759,36 @@ ship "Manta" "Manta (Proton)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
 	gun "Proton Gun"
 	gun "Proton Gun"
 	gun "Proton Gun"
 	gun "Proton Gun"
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
+	
+
+ship "Manta" "Manta (Miner)"
+	outfits
+		"Cargo Expansion"
+		"D23-QP Shield Generator"
+		"Heavy Laser" 4
+		Hyperdrive
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Laser Rifle"
+		"Meteor Missile" 60
+		"Meteor Missile Launcher" 2
+		"NT-200 Nucleovoltaic"
+		Supercapacitor 4
+		"X1700 Ion Thruster"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
 
 
 
@@ -2681,7 +2822,7 @@ ship "Marauder Firebird" "Marauder Firebird (Hai)"
 		"Outfits Expansion"
 		"Laser Rifle" 25
 		`"Biroo" Atomic Thruster`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 
@@ -2929,8 +3070,8 @@ ship "Nest" "Nest (Miner)"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
 		"Scram Drive"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
 	turret "Mining Laser Turret"
 	turret "Tractor Beam"
 	turret "Tractor Beam"
@@ -2953,6 +3094,26 @@ ship "Nest" "Nest (Sidewinder)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
+
+
+ship "Nighthawk" "Nighthawk (New Tortuga)"
+	outfits
+		"A370 Atomic Thruster"
+		"Cooling Ducts"
+		"D41-HY Shield Generator"
+		"Fission Reactor"
+		"Fragmentation Grenades" 16
+		"Laser Rifle" 24
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+		"Ramscoop"
+		"Proton Turret" 2
+		"Tactical Scanner"
+		"Water Coolant System"
+	description `This expensive modification of the Blackbird was not invented at New Tortuga, but is a reproduction. The first New Tortuga Nighthawk was seized from slavers who used it for kidnappings. Seeing the obvious uses for smuggling, the local shipyards reproduced them for their own purposes. Ironically, this means the Nighthawks, originally designed for enslavement, are used just as often for freeing slaves.`
 
 
 ship "Nighthawk" "Nighthawk (Raider)"
@@ -3046,10 +3207,14 @@ ship "Osprey" "Osprey (Missile)"
 		"A520 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Heavy Rocket Launcher"
-	gun "Heavy Rocket Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
+	gun
+	gun
+	gun
+	gun
+	pylon "Heavy Rocket Launcher"
+	pylon "Heavy Rocket Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
 
 
 # This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
@@ -3087,6 +3252,8 @@ ship "Protector" "Protector (Laser)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+	pylon
+	pylon
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret
@@ -3112,6 +3279,8 @@ ship "Protector" "Protector (Proton)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+	pylon
+	pylon
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret
@@ -3215,10 +3384,12 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 		"Scram Drive"
 	gun
 	gun
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon
+	pylon
+	pylon
 
 
 ship "Rainmaker" "Rainmaker (Mark II Old Weapons)"
@@ -3266,8 +3437,10 @@ ship "Raven" "Raven (Heavy)"
 		"Hyperdrive"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	gun
+	gun
+	pylon "Meteor Missile Launcher"
+	pylon "Meteor Missile Launcher"
 
 
 
@@ -3320,7 +3493,7 @@ ship "Saber" "Saber (CCOR Javelin)"
 		"Laser Rifle" 16
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"Chipmunk Plasma Steering"
+		# "Chipmunk Plasma Steering" # Extra steering
 		"Hyperdrive"
 
 
@@ -3623,13 +3796,20 @@ ship "Vanguard" "Vanguard (Missile)"
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
-	gun "Torpedo Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Torpedo Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
+	pylon "Sidewinder Missile Launcher"
 
 
 ship "Vanguard" "Vanguard (Particle)"
@@ -3676,10 +3856,12 @@ ship "Wasp" "Wasp (Javelin)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 	gun
-	gun "Javelin Pod"
-	gun "Javelin Pod"
 	gun
 	gun
+	gun
+	gun
+	pylon "Javelin Pod"
+	pylon "Javelin Pod"
 	
 
 ship "Wasp" "Wasp (Meteor)"
@@ -3694,8 +3876,10 @@ ship "Wasp" "Wasp (Meteor)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 	gun "Energy Blaster"
-	gun "Meteor Missile Pod"
-	gun "Meteor Missile Pod"
+	gun
+	gun
+	pylon "Meteor Missile Pod"
+	pylon "Meteor Missile Pod"
 
 
 ship "Wasp" "Wasp (Plasma)"

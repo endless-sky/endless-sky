@@ -148,7 +148,10 @@ namespace {
 				<< DataWriter::Quote("heat dissipation") << ',' << DataWriter::Quote("required crew") << ',' << "bunks" << ','
 				<< DataWriter::Quote("cargo space") << ',' << "fuel" << ',' << DataWriter::Quote("outfit space") << ','
 				<< DataWriter::Quote("weapon capacity") << ',' << DataWriter::Quote("engine capacity") << ','
+				<< DataWriter::Quote("engine mod space") << ',' << DataWriter::Quote("reverse thruster slot") << ','
+				<< DataWriter::Quote("steering slot") << ',' << DataWriter::Quote("thruster slot") << ','
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
+				<< DataWriter::Quote("missile pylons") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << '\n';
 
 			for(auto &it : GameData::Ships())
@@ -179,6 +182,10 @@ namespace {
 				cout << attributes.Get("outfit space") << ',';
 				cout << attributes.Get("weapon capacity") << ',';
 				cout << attributes.Get("engine capacity") << ',';
+				cout << attributes.Get("engine mod space") << ',';
+				cout << attributes.Get("reverse thruster slot") << ',';
+				cout << attributes.Get("steering slot") << ',';
+				cout << attributes.Get("thruster slot") << ',';
 
 				int numTurrets = 0;
 				int numGuns = 0;
@@ -202,11 +209,14 @@ namespace {
 			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ',' << "hull" << ',' << "mass" << ','
 				<< DataWriter::Quote("required crew") << ',' << "bunks" << ',' << DataWriter::Quote("cargo space") << ','
 				<< "fuel" << ',' << DataWriter::Quote("outfit space") << ',' << DataWriter::Quote("weapon capacity") << ','
-				<< DataWriter::Quote("engine capacity") << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
+				<< DataWriter::Quote("engine capacity") << ',' << DataWriter::Quote("engine mod space") << ','
+				<< DataWriter::Quote("reverse thruster slot") << ',' << DataWriter::Quote("steering slot") << ','
+				<< DataWriter::Quote("thruster slot") << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 				<< DataWriter::Quote("energy generation") << ',' << DataWriter::Quote("max energy usage") << ','
 				<< DataWriter::Quote("energy capacity") << ',' << DataWriter::Quote("idle/max heat") << ','
 				<< DataWriter::Quote("max heat generation") << ',' << DataWriter::Quote("max heat dissipation") << ','
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
+				<< DataWriter::Quote("missile pylons") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << ',' << "deterrence" << '\n';
 
 			for(auto &it : GameData::Ships())
@@ -234,6 +244,10 @@ namespace {
 				cout << ship.BaseAttributes().Get("outfit space") << ',';
 				cout << ship.BaseAttributes().Get("weapon capacity") << ',';
 				cout << ship.BaseAttributes().Get("engine capacity") << ',';
+				cout << ship.BaseAttributes().Get("engine mod space") << ',';
+				cout << ship.BaseAttributes().Get("reverse thruster slot") << ',';
+				cout << ship.BaseAttributes().Get("steering slot") << ',';
+				cout << ship.BaseAttributes().Get("thruster slot") << ',';
 				cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << ',';
 				cout << 3600. * attributes.Get("thrust") / mass << ',';
 				cout << 60. * attributes.Get("turn") / mass << ',';
@@ -439,9 +453,13 @@ namespace {
 
 		auto PrintEngineStats = []() -> void
 		{
-			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << DataWriter::Quote("outfit space") << ','
-				<< DataWriter::Quote("engine capacity") << ',' << "thrust/s" << ',' << DataWriter::Quote("thrust energy/s") << ','
-				<< DataWriter::Quote("thrust heat/s") << ',' << "turn/s" << ',' << DataWriter::Quote("turn energy/s") << ','
+			cout << DataWriter::Quote("name") << ',' << DataWriter::Quote("cost") << ','
+				<< DataWriter::Quote("mass") << ',' << DataWriter::Quote("outfit space") << ','
+				<< DataWriter::Quote("engine capacity") << ',' << DataWriter::Quote("engine mod space") << ','
+				<< DataWriter::Quote("reverse thruster slot") << DataWriter::Quote("steering slot") << ','
+				<< DataWriter::Quote("thruster slot") << ',' << DataWriter::Quote("thrust/s") << ','
+				<< DataWriter::Quote("thrust energy/s") << ',' << DataWriter::Quote("thrust heat/s") << ','
+				<< DataWriter::Quote("turn/s") << ',' << DataWriter::Quote("turn energy/s") << ','
 				<< DataWriter::Quote("turn heat/s") << ',' << DataWriter::Quote("reverse thrust/s") << ','
 				<< DataWriter::Quote("reverse energy/s") << ',' << DataWriter::Quote("reverse heat/s") << ','
 				<< DataWriter::Quote("afterburner thrust/s") << ',' << DataWriter::Quote("afterburner energy/s") << ','
@@ -459,6 +477,10 @@ namespace {
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
 				cout << outfit.Get("engine capacity") << ',';
+				cout << outfit.Get("engine mod space") << ',';
+				cout << outfit.Get("reverse thruster slot") << ',';
+				cout << outfit.Get("steering slot") << ',';
+				cout << outfit.Get("thruster slot") << ',';
 				cout << outfit.Get("thrust") * 3600. << ',';
 				cout << outfit.Get("thrusting energy") * 60. << ',';
 				cout << outfit.Get("thrusting heat") * 60. << ',';
