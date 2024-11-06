@@ -438,6 +438,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
+		// Pool cargo together, so that the cargo number on the trading panel
+		// is still accurate while the popup is active.
+		player.PoolCargo();
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
@@ -452,9 +455,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
-		TakeOff(false);
-	else
-		player.PoolCargo();
+		TakeOff(true);
 }
 
 
