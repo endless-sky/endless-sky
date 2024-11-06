@@ -17,7 +17,7 @@ ship "Subsidurial"
 	thumbnail "thumbnail/subsidurial"
 	"never disabled"
 	attributes
-		category "Light Freighter"
+		category "Unclassified"
 		"hull" 11600
 		"automaton" 1
 		"mass" 1050
@@ -68,7 +68,7 @@ ship "Void Sprite"
 	thumbnail "thumbnail/void sprite adult"
 	"never disabled"
 	attributes
-		category "Medium Warship"
+		category "Unclassified"
 		"hull" 9600
 		"required crew" 4
 		"bunks" 4
@@ -125,7 +125,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 	thumbnail "thumbnail/void sprite infant"
 	"never disabled"
 	attributes
-		category "Light Warship"
+		category "Unclassified Minor"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
@@ -171,7 +171,7 @@ ship "Ember Waste Node"
 	thumbnail "thumbnail/ember waste node"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"hull" 19600
 		"shields" 5000
 		"required crew" 5
@@ -229,7 +229,7 @@ ship "Embershade"
 		rewind
 	"never disabled"
 	attributes
-		category "Light Warship"
+		category "Unclassified"
 		"hull" 9600
 		"required crew" 1
 		"bunks" 1
@@ -269,7 +269,7 @@ ship "Embersylph"
 		"random start frame"
 	"never disabled"
 	attributes
-		category "Light Warship"
+		category "Unclassified"
 		"shields" 4400
 		"hull" 900
 		"required crew" 1

@@ -45,10 +45,11 @@ namespace {
 
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
-	bool isTurret, bool isUnder, const Outfit *outfit)
+	bool isTurret, bool isPylon, bool isUnder, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
-	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
+	isTurret(isTurret), isPylon(isPylon), isParallel(baseAttributes.isParallel), isUnder(isUnder)
 {
+	isGun = !isTurret && !isPylon;
 	UpdateArc();
 }
 
@@ -129,6 +130,21 @@ Angle Hardpoint::HarmonizedAngle() const
 bool Hardpoint::IsTurret() const
 {
 	return isTurret;
+}
+
+
+
+// Find out if this is a pylon hardpoint (whether or not it has a weapon installed).
+bool Hardpoint::IsPylon() const
+{
+	return isPylon;
+}
+
+
+
+bool Hardpoint::IsGun() const
+{
+	return isGun;
 }
 
 
@@ -479,6 +495,7 @@ void Hardpoint::UpdateArc()
 	// Restore the initial value (from baseAttributes).
 	isOmnidirectional = baseAttributes.isOmnidirectional;
 	baseAngle = baseAttributes.baseAngle;
+
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);

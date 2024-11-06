@@ -28,6 +28,9 @@ ship "Earth Shaper"
 		"cargo space" 27
 		"outfit space" 59
 		"engine capacity" 26
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"atmosphere scan" 100
 		weapon
 			"blast radius" 10
@@ -65,6 +68,9 @@ ship "Flycatcher"
 		"outfit space" 86
 		"weapon capacity" 28
 		"engine capacity" 26
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -101,7 +107,7 @@ ship "Summer Leaf"
 		"hull" 6700
 		"required crew" 6
 		"bunks" 15
-		"mass" 174
+		"mass" 220
 		"drag" 3.0
 		"heat dissipation" .7
 		"fuel capacity" 800
@@ -109,6 +115,9 @@ ship "Summer Leaf"
 		"outfit space" 320
 		"weapon capacity" 84
 		"engine capacity" 103
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 70
 			"shield damage" 700
@@ -130,6 +139,8 @@ ship "Summer Leaf"
 	engine 18 64
 	gun -29 -9
 	gun 29 -9
+	pylon -35 16
+	pylon 35 16
 	explode "tiny explosion" 40
 	explode "small explosion" 20
 	explode "medium explosion" 10
@@ -151,7 +162,7 @@ ship "Autumn Leaf"
 		"hull" 7400
 		"required crew" 8
 		"bunks" 16
-		"mass" 228
+		"mass" 260
 		"drag" 3.5
 		"heat dissipation" .67
 		"fuel capacity" 1000
@@ -159,6 +170,9 @@ ship "Autumn Leaf"
 		"outfit space" 361
 		"weapon capacity" 103
 		"engine capacity" 117
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -180,6 +194,8 @@ ship "Autumn Leaf"
 	engine 18 64
 	gun -25 -22
 	gun 25 -22
+	pylon -31 34
+	pylon 31 34
 	turret 0 28
 	explode "tiny explosion" 50
 	explode "small explosion" 30
@@ -213,7 +229,7 @@ ship "Strong Wind"
 		"hull" 19600
 		"required crew" 17
 		"bunks" 39
-		"mass" 561
+		"mass" 1040
 		"drag" 6.6
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -221,6 +237,9 @@ ship "Strong Wind"
 		"outfit space" 493
 		"weapon capacity" 198
 		"engine capacity" 114
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"asteroid scan power" 100
 		"atmosphere scan" 100
 		"tactical scan power" 25
@@ -249,8 +268,8 @@ ship "Strong Wind"
 	gun 64 13 "Sunbeam"
 	gun -57 21 "Sunbeam"
 	gun 57 21 "Sunbeam"
-	gun -32 57 "Thunderhead Launcher"
-	gun 32 57 "Thunderhead Launcher"
+	pylon -32 57 "Thunderhead Launcher"
+	pylon 32 57 "Thunderhead Launcher"
 	explode "small explosion" 60
 	explode "medium explosion" 40
 	explode "large explosion" 20
@@ -271,7 +290,7 @@ ship "Tempest"
 		"hull" 25900
 		"required crew" 38
 		"bunks" 53
-		"mass" 830
+		"mass" 1280
 		"drag" 9.6
 		"heat dissipation" 0.42
 		"fuel capacity" 600
@@ -279,6 +298,9 @@ ship "Tempest"
 		"outfit space" 607
 		"weapon capacity" 271
 		"engine capacity" 122
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 280
 			"shield damage" 2800
@@ -303,8 +325,12 @@ ship "Tempest"
 	engine 22 129
 	gun -16 -100 "Sunbeam"
 	gun 16 -100 "Sunbeam"
-	gun -21 -83 "Thunderhead Launcher"
-	gun 21 -83 "Thunderhead Launcher"
+	gun -21 -83
+	gun 21 -83
+	pylon -43 64 "Thunderhead Launcher"
+	pylon 43 64 "Thunderhead Launcher"
+	pylon -56 61
+	pylon 56 61
 	turret 0 -37 "Dual Sunbeam Turret"
 	turret -32 87 "Wanderer Anti-Missile"
 	turret 32 87 "Wanderer Anti-Missile"
@@ -328,7 +354,7 @@ ship "Tempest" "Tempest (Heavy)"
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
-		"Type 2 Radiant Steering"
+		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
 	
 	turret "Dual Sunbeam Turret"
@@ -394,7 +420,7 @@ ship "Derecho"
 		"hull" 32700
 		"required crew" 53
 		"bunks" 82
-		"mass" 1475
+		"mass" 4320
 		"drag" 14.8
 		"heat dissipation" 0.36
 		"fuel capacity" 500
@@ -402,6 +428,9 @@ ship "Derecho"
 		"outfit space" 796
 		"weapon capacity" 342
 		"engine capacity" 164
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 340
 			"shield damage" 3400
@@ -422,17 +451,19 @@ ship "Derecho"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
-		"Type 1 Radiant Thruster"
+		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
-		"Type 3 Radiant Steering"
+		# "Type 3 Radiant Steering" # Extra steering
 		"Hyperdrive"
 		
 	engine -16 177
 	engine 16 177
 	gun -12 -156 "Sunbeam"
 	gun 12 -156 "Sunbeam"
-	gun -17 -134 "Thunderhead Launcher"
-	gun 17 -134 "Thunderhead Launcher"
+	gun -17 -134
+	gun 17 -134
+	pylon -30 -49 "Thunderhead Launcher"
+	pylon 30 -49 "Thunderhead Launcher"
 	turret -28 -45 "Dual Sunbeam Turret"
 	turret 28 -45 "Dual Sunbeam Turret"
 	turret -38 95 "Wanderer Anti-Missile"
@@ -456,9 +487,9 @@ ship "Derecho" "Derecho (Turret)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
-		"Type 2 Radiant Thruster"
+		# "Type 2 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
-		"Type 2 Radiant Steering"
+		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
 
 ship "Derecho" "Derecho (Tough)"
@@ -473,7 +504,7 @@ ship "Derecho" "Derecho (Tough)"
 		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
-		"Type 4 Radiant Steering" 2
+		"Type 4 Radiant Steering" # Extra steering
 		"Hyperdrive"
 	
 	turret "Dual Sunbeam Turret"
@@ -496,9 +527,9 @@ ship "Derecho" "Derecho (Moonbeam)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
-		"Type 1 Radiant Thruster"
+		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
-		"Type 3 Radiant Steering"
+		# "Type 3 Radiant Steering" # Extra steering
 		"Hyperdrive"
 	
 	gun "Moonbeam"
@@ -524,7 +555,7 @@ ship "Hurricane"
 		"hull" 46500
 		"required crew" 76
 		"bunks" 117
-		"mass" 2414
+		"mass" 6160
 		"drag" 23.2
 		"heat dissipation" 0.29
 		"fuel capacity" 500
@@ -532,6 +563,9 @@ ship "Hurricane"
 		"outfit space" 960
 		"weapon capacity" 428
 		"engine capacity" 140
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 4000
@@ -550,7 +584,7 @@ ship "Hurricane"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
-		"Type 2 Radiant Steering"
+		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
 		
 	engine -23 181
@@ -561,6 +595,10 @@ ship "Hurricane"
 	gun 85 21
 	gun -62 32
 	gun 62 32
+	pylon -40 28
+	pylon 40 28
+	pylon -53 61
+	pylon 53 61
 	turret -27 -80 "Dual Sunbeam Turret"
 	turret 27 -80 "Dual Sunbeam Turret"
 	turret 0 -33
@@ -584,7 +622,7 @@ ship "Hurricane" "Hurricane (Turret)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
-		"Type 2 Radiant Thruster"
+		# "Type 2 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 
@@ -603,17 +641,21 @@ ship "Hurricane" "Hurricane (Tough)"
 		"Outfits Expansion" 2
 		
 		"Type 4 Radiant Thruster"
-		"Type 1 Radiant Thruster"
+		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
-		"Type 1 Radiant Steering"
+		# "Type 1 Radiant Steering" # Extra steering
 		"Hyperdrive"
 
 	gun "Sunbeam"
 	gun "Sunbeam"
-	gun "Thunderhead Launcher"
-	gun "Thunderhead Launcher"
-	gun "Thunderhead Launcher"
-	gun "Thunderhead Launcher"
+	gun
+	gun
+	gun
+	gun
+	pylon "Thunderhead Launcher"
+	pylon "Thunderhead Launcher"
+	pylon "Thunderhead Launcher"
+	pylon "Thunderhead Launcher"
 	turret "Dual Sunbeam Turret"
 	turret "Dual Sunbeam Turret"
 	turret
@@ -635,7 +677,7 @@ ship "Hurricane" "Hurricane (Moonbeam)"
 		
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering"
-		"Type 2 Radiant Steering"
+		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
 	
 	gun "Moonbeam"
@@ -644,6 +686,10 @@ ship "Hurricane" "Hurricane (Moonbeam)"
 	gun "Sunbeam"
 	gun "Moonbeam"
 	gun "Moonbeam"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret "Moonbeam Turret"
 	turret "Moonbeam Turret"
 	turret "Moonbeam Turret"
@@ -672,6 +718,9 @@ ship "Cool Breeze"
 		"outfit space" 192
 		"weapon capacity" 41
 		"engine capacity" 62
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 360
@@ -691,6 +740,8 @@ ship "Cool Breeze"
 	engine 10 47
 	gun -15 -10
 	gun 15 -10
+	pylon -23 15
+	pylon 23 15
 	explode "tiny explosion" 30
 	explode "small explosion" 10
 	"final explode" "final explosion small"
@@ -721,7 +772,7 @@ ship "Winter Gale"
 		"hull" 14800
 		"required crew" 14
 		"bunks" 23
-		"mass" 455
+		"mass" 480
 		"drag" 7.3
 		"heat dissipation" .54
 		"fuel capacity" 600
@@ -729,6 +780,9 @@ ship "Winter Gale"
 		"outfit space" 478
 		"weapon capacity" 171
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -744,7 +798,7 @@ ship "Winter Gale"
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
-		"Type 3 Radiant Steering"
+		# "Type 3 Radiant Steering" # Extra steering
 		"Hyperdrive"
 		
 	engine -13 94
@@ -755,6 +809,10 @@ ship "Winter Gale"
 	gun 20 -48 "Moonbeam"
 	gun -41 -10 "Sunbeam"
 	gun 41 -10 "Sunbeam"
+	pylon -21 5
+	pylon 21 5
+	pylon -34 -2
+	pylon 34 -2
 	turret 0 -28 "Wanderer Anti-Missile"
 	explode "tiny explosion" 20
 	explode "small explosion" 40
@@ -771,9 +829,9 @@ ship "Winter Gale" "Winter Gale (Heavy)"
 		"Dark Storm Shielding"
 		
 		"Type 3 Radiant Thruster"
-		"Type 1 Radiant Thruster"
+		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
-		"Type 1 Radiant Steering"
+		# "Type 1 Radiant Steering" # Extra steering
 		"Hyperdrive"
 		
 	engine -13 94
@@ -802,12 +860,16 @@ ship "Winter Gale" "Winter Gale (Missile)"
 		
 	engine -13 94
 	engine 13 94
-	gun "Thunderhead Launcher"
-	gun "Thunderhead Launcher"
-	gun "Thunderhead Launcher"
-	gun "Thunderhead Launcher"
+	gun
+	gun
+	gun
+	gun
 	gun "Moonbeam"
 	gun "Moonbeam"
+	pylon "Thunderhead Launcher"
+	pylon "Thunderhead Launcher"
+	pylon "Thunderhead Launcher"
+	pylon "Thunderhead Launcher"
 	turret "Wanderer Anti-Missile"
 
 
@@ -824,7 +886,7 @@ ship "Deep River"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 22
-		"mass" 1362
+		"mass" 6000
 		"drag" 14.6
 		"heat dissipation" .4
 		"fuel capacity" 500
@@ -832,6 +894,9 @@ ship "Deep River"
 		"outfit space" 363
 		"weapon capacity" 177
 		"engine capacity" 83
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 280
 			"shield damage" 2800
@@ -855,10 +920,18 @@ ship "Deep River"
 	engine -53 345 .7
 	gun -56 -217
 	gun 56 -217
-	gun -40 -217
-	gun 40 -217
-	gun -18 -217
-	gun 18 -217
+	pylon -49 -72
+		angle 270
+	pylon 49 -72
+		angle 90
+	pylon -49 62
+		angle 270
+	pylon 49 62
+		angle 90
+	pylon -49 195
+		angle 270
+	pylon 49 195
+		angle 90
 	explode "small explosion" 80
 	explode "medium explosion" 60
 	explode "large explosion" 30
@@ -913,7 +986,7 @@ ship "Deep River Transport"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 166
-		"mass" 1339
+		"mass" 6000
 		"drag" 14.6
 		"heat dissipation" .39
 		"fuel capacity" 500
@@ -921,6 +994,9 @@ ship "Deep River Transport"
 		"outfit space" 321
 		"weapon capacity" 114
 		"engine capacity" 83
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 280
 			"shield damage" 2800
@@ -940,6 +1016,20 @@ ship "Deep River Transport"
 	engine 53 345 .7
 	engine 0 345
 	engine -53 345 .7
+	gun -56 -217
+	gun 56 -217
+	pylon -49 -72
+		angle 270
+	pylon 49 -72
+		angle 90
+	pylon -49 62
+		angle 270
+	pylon 49 62
+		angle 90
+	pylon -49 195
+		angle 270
+	pylon 49 195
+		angle 90
 	turret -36 -205 "Wanderer Anti-Missile"
 	turret 36 -205 "Wanderer Anti-Missile"
 	turret -36 330 "Wanderer Anti-Missile"
@@ -965,7 +1055,7 @@ ship "Riptide"
 		"hull" 22350
 		"required crew" 47
 		"bunks" 233
-		"mass" 994
+		"mass" 2000
 		"drag" 11
 		"heat dissipation" .47
 		"fuel capacity" 800
@@ -973,6 +1063,9 @@ ship "Riptide"
 		"outfit space" 488
 		"weapon capacity" 98
 		"engine capacity" 186
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -987,12 +1080,16 @@ ship "Riptide"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
-		"Type 2 Radiant Thruster"
+		# "Type 2 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
-		"Type 3 Radiant Steering"
+		# "Type 3 Radiant Steering" # Extra steering
 		"Hyperdrive"
 	engine 30 165
 	engine -30 165
+	pylon -13 139
+		angle 160
+	pylon 13 139
+		angle 200
 	turret 0 -28 "Sunbeam Turret"
 	turret 40 110 "Wanderer Anti-Missile"
 	turret -40 110 "Wanderer Anti-Missile"

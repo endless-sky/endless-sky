@@ -60,9 +60,9 @@ ship "Rano'erek" "Rano'erek (Crippled)"
 		
 		"Reverser (Lunar Class)"
 		"Steering (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Hyperdrive"
 		"Jump Drive (Broken)"
 		
@@ -208,8 +208,8 @@ ship "Palavret" "Palavret (Blaze)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
@@ -232,16 +232,16 @@ ship "Palavret" "Palavret (Crippled)"
 		"Outfits Expansion"
 		
 		"Bow Drive (Meteor Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Thruster (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Steering (Lunar Class)"
 		"Afterburner (Asteroid Class)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
-	gun
-	gun "Firelight Missile Bank"
+	pylon
+	pylon "Firelight Missile Bank"
 	turret
 	turret
 	turret "Grab-Strike Turret"
@@ -274,8 +274,8 @@ ship "Palavret" "Palavret (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -306,8 +306,8 @@ ship "Palavret" "Palavret (Ember Blaze)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
@@ -340,8 +340,8 @@ ship "Palavret" "Palavret (Ember Shunt)"
 		"Jump Drive"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
@@ -372,8 +372,8 @@ ship "Palavret" "Palavret (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -405,13 +405,13 @@ ship "Tubfalet" "Tubfalet (Crippler)"
 		"Thermal Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
+		# "Thruster (Lunar Class)" # Extra thruster
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
 	gun "Korath Detainer"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Shield Disruptor Turret"
 	turret "Grab-Strike Turret"
@@ -445,12 +445,12 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 
 	gun "Korath Detainer"
 	gun "Korath Detainer"
-	gun "Piercer Missile Launcher"
-	gun "Piercer Missile Launcher"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon "Piercer Missile Launcher"
+	pylon "Piercer Missile Launcher"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Thermal Repeater Turret"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
@@ -487,11 +487,11 @@ ship "'olofez" "'olofez (World-Ship)"
 		"atmosphere scan" 1
 	outfits
 		"Generator (Candle Class)"
-		"Systems Core (Tiny)"
+		# "Systems Core (Tiny)" Removed in favor of the Engine for compatibility with the slots system. If the Korath had a smaller generator (<=9, then using that instead of the candle would be better)
 		"Small Bunk Room"
 		"Thermal Repeater Rifle" 3
 		
-		"Steering (Asteroid Class)"
+		"Engine (Meteor Class)"
 		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
 
@@ -534,7 +534,7 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 		"Microbot Defense Station" 13
 		
 		"Afterburner (Comet Class)"
-		"Bow Drive (Meteor Class)"
+		# "Bow Drive (Meteor Class)" Extra reverse thruster
 		"Reverser (Planetary Class)"
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -571,18 +571,21 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 		"Systems Core (Small)"
 		
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Steering (Lunar Class)"
-		"Steering (Comet Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Comet Class)" # Extra steering
+		# "Steering (Asteroid Class)" # Extra steering
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun
-	gun
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
 	turret
 	turret "Shunt-Strike Turret"
 	turret
@@ -623,8 +626,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
@@ -664,8 +670,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"
 	turret "Grab-Strike Turret"
@@ -707,8 +716,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
 	gun "Fire-Lance"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
+	pylon
+	pylon
+	pylon
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Korath Inferno"
 	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
@@ -749,8 +761,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 	gun "Husk-Slice"
 	gun "Husk-Slice"
 	gun "Husk-Slice"
-	gun "Cluster Mine Layer"
-	gun "Cluster Mine Layer"
+	pylon
+	pylon
+	pylon
+	pylon "Cluster Mine Layer"
+	pylon "Cluster Mine Layer"
 	turret "Husk-Slice Turret"
 	turret "Shield Disruptor Turret"
 	turret "Husk-Slice Turret"
@@ -791,8 +806,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	gun "Korath Detainer"
 	gun "Korath Detainer"
 	gun "Korath Detainer"
-	gun "Piercer Missile Launcher"
-	gun "Piercer Missile Launcher"
+	pylon
+	pylon
+	pylon
+	pylon "Piercer Missile Launcher"
+	pylon "Piercer Missile Launcher"
 	turret "Thermal Repeater Turret"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"
@@ -839,9 +857,9 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
 		"Thermal Repeater Rifle" 351
 		
 		"Steering (Lunar Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Jump Drive (Broken)"
 
 	turret "Langrage Hyper-Heaver"
@@ -967,7 +985,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 		"Microbot Defense Station" 15
 
 		"Reverser (Lunar Class)"
-		"Bow Drive (Meteor Class)"
+		# "Bow Drive (Meteor Class)" # Extra reverse thruster
 		"Afterburner (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -1168,6 +1186,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
 	turret "Banisher Grav-Turret"
@@ -1190,10 +1212,6 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 	turret "Shunt-Strike Turret"
 	turret "Banisher Grav-Turret"
 	turret "Grab-Strike Turret"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
@@ -1227,6 +1245,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Langrage Hyper-Heaver"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
@@ -1249,10 +1271,6 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
 	turret "Warder Anti-Missile"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
@@ -1282,6 +1300,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
+	pylon "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
@@ -1304,10 +1326,6 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 	turret "Banisher Grav-Turret"
 	turret "Banisher Grav-Turret"
 	turret "Warder Anti-Missile"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
 
 
 
@@ -1327,7 +1345,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 		"Control Transceiver"
 		
 		"Thruster (Planetary Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Steering (Stellar Class)"
 		Hyperdrive
 	
@@ -1395,6 +1413,10 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	gun "Korath Detainer"
 	gun
 	gun
+	pylon
+	pylon
+	pylon
+	pylon
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
 	turret "Grab-Strike Turret"
@@ -1473,12 +1495,14 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 		
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
-		"Steering (Comet Class)"
+		# "Steering (Comet Class)" # Extra steering
 		"Hyperdrive"
 	
 	gun "Korath Detainer"
-	gun "Piercer Missile Launcher"
-	gun "Piercer Missile Launcher"
+	gun
+	gun
+	pylon "Piercer Missile Launcher"
+	pylon "Piercer Missile Launcher"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"
 	turret
