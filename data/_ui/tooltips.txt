@@ -441,6 +441,12 @@ tip "jump speed:"
 tip "jump fuel:"
 	`Fuel consumed when jumping between systems using this drive.`
 
+tip "hyperdrive fuel"
+	`Fuel consumed when jumping between systems using this hyperdrive.`
+
+tip "jump drive fuel"
+	`Fuel consumed when jumping between systems using this jump drive.`
+
 tip "jump range:"
 	`The maximum distance this drive can jump.`
 
