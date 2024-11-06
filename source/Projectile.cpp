@@ -72,6 +72,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	// Set an intial confusion turn direction.
+	if(weapon->Homing())
+		ConfusionDirection();
 }
 
 
@@ -98,6 +102,10 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	// Set an intial confusion turn direction.
+	if(weapon->Homing())
+		ConfusionDirection();
 }
 
 
@@ -163,9 +171,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		CheckLock(*target);
 		CheckConfused(*target);
 	}
-	// Make sure to set a confusion direction if there isn't one.
-	if(!Random::Int(ceil(180 / turn)) || confusionDirection == 0)
-		confusionDirection = Random::Int(2) ? -1 : 1;
+	if(!Random::Int(ceil(180 / turn)))
+		ConfusionDirection();
 	if(target && homing && hasLock)
 	{
 		// Vector d is the direction we want to turn towards.
@@ -438,7 +445,10 @@ void Projectile::CheckLock(const Ship &target)
 void Projectile::CheckConfused(const Ship &target)
 {
 	if(hasLock)
+	{
+		isConfused = false;
 		return;
+	}
 
 	bool trackingConfused = true;
 	bool infraredConfused = true;
@@ -474,6 +484,13 @@ void Projectile::CheckConfused(const Ship &target)
 	}
 
 	isConfused = trackingConfused && infraredConfused && opticalConfused && radarConfused;
+}
+
+
+
+void Projectile::ConfusionDirection()
+{
+	confusionDirection = Random::Int(2) ? -1 : 1; 
 }
 
 

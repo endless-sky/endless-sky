@@ -113,6 +113,7 @@ public:
 private:
 	void CheckLock(const Ship &target);
 	void CheckConfused(const Ship &target);
+	void ConfusionDirection();
 
 
 private:
