@@ -171,6 +171,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		CheckLock(*target);
 		CheckConfused(*target);
 	}
+	// Update the confusion direction after the projectile turns about
+	// 180 degrees away from its target.
 	if(!Random::Int(ceil(180 / turn)))
 		ConfusionDirection();
 	if(target && homing && hasLock)
@@ -490,7 +492,7 @@ void Projectile::CheckConfused(const Ship &target)
 
 void Projectile::ConfusionDirection()
 {
-	confusionDirection = Random::Int(2) ? -1 : 1; 
+	confusionDirection = Random::Int(2) ? -1 : 1;
 }
 
 
