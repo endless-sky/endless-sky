@@ -717,11 +717,12 @@ void Engine::Step(bool isActive)
 					bool isBlind = hardpoint.IsBlind();
 					if(Preferences::GetTurretOverlays() == Preferences::TurretOverlays::BLINDSPOTS_ONLY && !isBlind)
 						continue;
-					turretOverlays.emplace_back(
 					// TODO: once Apple Clang adds support for C++20 aggregate initialization,
 					// this can be removed.
 #ifdef __APPLE__
-					{
+					turretOverlays.push_back({
+#else
+					turretOverlays.emplace_back(
 #endif
 						(flagship->Position() - center
 							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
