@@ -3661,7 +3661,6 @@ ship "Splinter" "Splinter (Proton)"
 
 ship "Splinter" "Splinter (Tractor Beam)"
 	outfits
-	outfits
 		"Twin Modified Blaster" 2
 		"Proton Turret" 2
 		"Tractor Beam"

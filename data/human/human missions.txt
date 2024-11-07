@@ -5859,7 +5859,7 @@ mission "Quicksilver Mixup 1"
 				has "took picture of quicksilver package"
 
 			label picture
-			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package sent to the wrong place. You politely inform him that, had he wanted a smoother delivery, he should've filed a proper job listing and made sure that he placed the correct address.`
 			branch "picture success" "picture failure"
 				random < 50
 
@@ -5902,7 +5902,7 @@ mission "Quicksilver Mixup 2"
 	on offer
 		conversation
 			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
-			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month - some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
 			choice
 				`	"Oh, so you guys did set up that regular shipment after all!"`
 					goto context
@@ -7112,7 +7112,7 @@ mission "Adelita 1"
 				goto directions
 
 			label "know about disaster"
-			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijes while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijs while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 
 			label directions
 			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
