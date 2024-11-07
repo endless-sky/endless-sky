@@ -2685,7 +2685,7 @@ Files:
  images/planet/ringworld?broken?right*
  images/planet/ringworld?left*
  images/planet/ringworld?right*
- images/ship/carrier/*
+ images/ship/*carrier*
  images/ship/combat?drone*
  images/ship/corvette*
  images/ship/cruiser*
@@ -2698,7 +2698,7 @@ Files:
  images/ship/raven*
  images/ship/splinter*
  images/ship/surveillance?drone*
- images/thumbnail/carrier/*
+ images/thumbnail/*carrier*
  images/thumbnail/combat?drone*
  images/thumbnail/corvette*
  images/thumbnail/cruiser*
