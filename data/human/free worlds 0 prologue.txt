@@ -624,8 +624,7 @@ mission "FW Escort: Escorts"
 	to offer
 		has "FW Escort 0: done"
 	to fail
-		or
-			has "chosen sides"
+		has "chosen sides"
 	to complete
 		never
 	npc
