@@ -10754,15 +10754,15 @@ system "Delta Sagittarii"
 			period 28.9594
 
 system "Delta Velorum"
-	pos -699 130
+	pos -740 96
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
 	habitable 1080
 	belt 1221
 	haze _menu/haze-67
-	link Gacrux
-	link Ipsing
+	link Fala
+	link Muscida
 	link Turais
 	asteroids "small rock" 6 2.775
 	asteroids "medium rock" 39 2.8875
@@ -13836,8 +13836,8 @@ system Fala
 	habitable 1250
 	belt 1264
 	link Algorel
+	link "Delta Velorum"
 	link Muscida
-	link Turais
 	asteroids "small rock" 2 3.0464
 	asteroids "medium rock" 91 2.8672
 	asteroids "large rock" 2 2.0832
@@ -15345,9 +15345,8 @@ system Gacrux
 	habitable 530
 	belt 1188
 	link "Cor Caroli"
-	link "Delta Velorum"
 	link Muhlifain
-	remove link Turais
+	link Turais
 	asteroids "medium rock" 20 1.8354
 	asteroids "large rock" 1 2.2862
 	asteroids "small metal" 7 2.8336
@@ -18512,8 +18511,8 @@ system Ipsing
 	haze _menu/haze-67
 	link Algorel
 	link "Cor Caroli"
-	link "Delta Velorum"
 	link Mizar
+	link Turais
 	asteroids "large metal" 1 1.1424
 	trade Clothing 231
 	trade Electronics 712
@@ -25404,10 +25403,10 @@ system Muscida
 	belt 1323 3
 	belt 2082 7
 	belt 2512 5
+	link "Delta Velorum"
 	link Fala
 	link Mora
 	link "Tania Australis"
-	link Turais
 	asteroids "small rock" 1 4.352
 	asteroids "medium rock" 3 5.189
 	asteroids "large rock" 8 8.37
@@ -34619,15 +34618,15 @@ system Tscera
 		period 1576.32
 
 system Turais
-	pos -740 96
+	pos -699 130
 	government Republic
 	attributes "dirt belt"
 	arrival 500
 	habitable 135
 	belt 1471
 	link "Delta Velorum"
-	link Fala
-	link Muscida
+	link Gacrux
+	link Ipsing
 	asteroids "small rock" 16 3.075
 	asteroids "medium rock" 37 4.2
 	asteroids "large rock" 7 4.35
