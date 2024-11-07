@@ -718,12 +718,20 @@ void Engine::Step(bool isActive)
 					if(Preferences::GetTurretOverlays() == Preferences::TurretOverlays::BLINDSPOTS_ONLY && !isBlind)
 						continue;
 					turretOverlays.emplace_back(
+					// TODO: once Apple Clang adds support for C++20 aggregate initialization,
+					// this can be removed.
+#ifdef __APPLE__
+					{
+#endif
 						(flagship->Position() - center
 							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
 							* static_cast<double>(zoom),
 						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
 						flagship->Zoom() * static_cast<double>(zoom),
 						isBlind
+#ifdef __APPLE__
+					}
+#endif
 					);
 				}
 		// Update the planet label positions.
