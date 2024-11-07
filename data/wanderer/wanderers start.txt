@@ -1168,6 +1168,8 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 
 
 ship "Carrier" "Carrier (Alpha)"
+	sprite "ship/carrier b"
+	thumbnail "thumbnail/carrier b"
 	add attributes
 		"weapon capacity" 120
 
