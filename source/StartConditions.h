@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "Date.h"
 #include "ExclusiveItem.h"
 
 #include <string>
@@ -55,7 +56,8 @@ public:
 		std::string system;
 		std::string planet;
 
-		std::string date;
+		Date date;
+		std::string dateString;
 		std::string credits;
 		std::string debt;
 	};

@@ -174,6 +174,10 @@ namespace {
 		{"turn multiplier", -1.}
 	};
 
+	constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
+	constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
+	constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
+
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
@@ -328,10 +332,26 @@ void Outfit::Load(const DataNode &node)
 					+ pluralName + "\".");
 	}
 
+	// Set the default jump fuel if not defined.
+	bool isHyperdrive = attributes.Get("hyperdrive");
+	bool isScramDrive = attributes.Get("scram drive");
+	bool isJumpDrive = attributes.Get("jump drive");
+	if((isHyperdrive || isScramDrive) && attributes.Get("hyperdrive fuel") <= 0.)
+	{
+		double jumpFuel = attributes.Get("jump fuel");
+		attributes["hyperdrive fuel"] = (jumpFuel > 0. ? jumpFuel
+			: isScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
+	}
+	if(isJumpDrive && attributes.Get("jump drive fuel") <= 0.)
+	{
+		double jumpFuel = attributes.Get("jump fuel");
+		attributes["jump drive fuel"] = (jumpFuel > 0. ? jumpFuel : DEFAULT_JUMP_DRIVE_COST);
+	}
+
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+	if(isJumpDrive && attributes.Get("jump range"))
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
