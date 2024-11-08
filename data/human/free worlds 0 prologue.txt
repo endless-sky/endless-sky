@@ -1655,6 +1655,8 @@ mission "FW Katya 3"
 			label decision
 			choice
 				`	"Fine, I'll do it. But I still think it's an unwise idea."`
+				`	"Even still, that doesn't justify destroying Navy property. Count me out."`
+					decline
 				`	"If this is the sort of reasoning the Free Worlds runs on, then you can kiss goodbye to working with me ever again."`
 					decline
 			
