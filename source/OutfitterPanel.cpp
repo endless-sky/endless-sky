@@ -476,7 +476,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	else
 	{
 		string errorMessage = "There are several reasons why you cannot " +
-			string(onlyOwned ? "load" : "buy") + " this outfit:\n";
+			string(onlyOwned ? "install" : "buy") + " this outfit:\n";
 		for(size_t i = 0; i < errors.size(); ++i)
 			errorMessage += "- " + errors[i] + "\n";
 		return errorMessage;
