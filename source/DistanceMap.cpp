@@ -287,6 +287,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 
 		// Check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
+		// This check will also adjust the fuel cost based on the player's knowledge of hyperlinks.
 		if(!CheckLink(*currentSystem, *link, linked, useJump, fuelCost))
 			continue;
 
