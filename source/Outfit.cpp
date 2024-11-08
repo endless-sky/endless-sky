@@ -28,6 +28,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+constexpr double Outfit::DEFAULT_HYPERDRIVE_COST = 100.;
+constexpr double Outfit::DEFAULT_SCRAM_DRIVE_COST = 150.;
+constexpr double Outfit::DEFAULT_JUMP_DRIVE_COST = 200.;
+
 namespace {
 	const double EPS = 0.0000000001;
 
@@ -173,10 +177,6 @@ namespace {
 		{"acceleration multiplier", -1.},
 		{"turn multiplier", -1.}
 	};
-
-	constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
-	constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
-	constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
