@@ -1526,7 +1526,6 @@ ship "Feldspar"
 		"launch effect" "scin launch"
 		angle -180
 		over
-		"launch effect" "scin launch"
 	bay "Fighter" 65.5 120
 		"launch effect" "scin launch"
 		angle -180
