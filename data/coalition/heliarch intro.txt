@@ -558,7 +558,7 @@ mission "Heliarch Recon 1"
 	to offer
 		"reputation: Quarg" >= 0
 		"coalition jobs" >= 55
-		has "outfit: Jump Drive"
+		has "flagship attribute: jump drive"
 		has "visited planet: Lagrange"
 		has "visited planet: Alta Hai"
 		has "visited planet: Kuwaru Efreti"
