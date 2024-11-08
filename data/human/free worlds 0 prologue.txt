@@ -1765,7 +1765,7 @@ mission "FW Katya 5"
 			choice
 				`	"Fine, I'm in."`
 					accept
-				`	"I'd rather be shooting down pirates. I'm done with helping the Free Worlds."`
+				`	"Sorry, but I think I'm done with helping the Free Worlds. I'd rather strike out on my own."`
 					decline
 	
 	on visit
