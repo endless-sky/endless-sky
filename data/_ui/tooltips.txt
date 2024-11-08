@@ -441,6 +441,12 @@ tip "jump speed:"
 tip "jump fuel:"
 	`Fuel consumed when jumping between systems using this drive.`
 
+tip "hyperdrive fuel"
+	`Fuel consumed when jumping between systems using this hyperdrive.`
+
+tip "jump drive fuel"
+	`Fuel consumed when jumping between systems using this jump drive.`
+
 tip "jump range:"
 	`The maximum distance this drive can jump.`
 
@@ -641,6 +647,9 @@ tip "high shield permeability:"
 
 tip "low shield permeability:"
 	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
+
+tip "cloaked shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull while you are cloaked.`
 
 tip "shields (charge):"
 	`Total shield strength and regeneration rate per second.`
