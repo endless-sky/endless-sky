@@ -1172,7 +1172,6 @@ ship "Carrier" "Carrier (Alpha)"
 	thumbnail "thumbnail/carrier b"
 	add attributes
 		"weapon capacity" 120
-
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
