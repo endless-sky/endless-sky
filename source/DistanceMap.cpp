@@ -265,7 +265,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 	const System *currentSystem = curEdge.prev;
 
 	// JumpNeighbors will use the system's jump range, overriding jumpRangeMax.
-	// JumpNeighbors also includes normal hyperspace Links. Remember that jump drives
+	// JumpNeighbors also includes normal hyperspace links. Remember that jump drives
 	// can use hyperlanes, though it still costs more fuel.
 	auto links = currentSystem->Links();
 	for(const System *link : (jumpRangeMax > 0 ? currentSystem->JumpNeighbors(jumpRangeMax) : links))
