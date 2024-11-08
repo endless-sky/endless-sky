@@ -283,7 +283,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 			fuelCost = jumpType.second;
 		}
 		else
-			fuelCost = linked ? ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST: ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST;
+			fuelCost = linked ? ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST : ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST;
 
 		// Check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
