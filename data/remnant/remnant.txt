@@ -430,7 +430,7 @@ phrase "remnant uncontacted hostile"
 
 phrase "remnant uncontacted hostile"
 	word
-		"(They send you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
+		"(They send you a hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
 		"(They sign so quickly that your hail receiver can't process it all.)"
 		"(It seems you are not welcome here.)"
 
