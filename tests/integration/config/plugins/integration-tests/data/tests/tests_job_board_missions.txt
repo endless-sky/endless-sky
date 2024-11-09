@@ -152,7 +152,7 @@ test "Job Board Mission From Planet Test"
 		inject "Job Board Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: JOB BOARD MISSION OFFER" = 1
+			"TEST: JOB BOARD MISSION OFFER" = 1
 		call "Trigger Job Board Mission From Planet"
 		call "Skip Mission"
 		call "Depart"
@@ -169,7 +169,7 @@ test "Job Board Mission From Map Test"
 		inject "Job Board Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: JOB BOARD MISSION OFFER" = 1
+			"TEST: JOB BOARD MISSION OFFER" = 1
 		call "Trigger Job Board Mission From Map"
 		call "Skip Mission"
 		call "Exit Map"
@@ -187,7 +187,7 @@ test "Job Board During Mission Test"
 		inject "Job Board Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: JOB BOARD MISSION OFFER" = 1
+			"TEST: JOB BOARD MISSION OFFER" = 1
 		call "Trigger Job Board Mission From Planet"
 		call "Go To Mission Panel"
 		call "Skip Mission"
