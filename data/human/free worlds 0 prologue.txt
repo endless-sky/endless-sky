@@ -942,7 +942,7 @@ mission "FW Escort 3"
 			`When you walk into the bar, Tomek looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
-				`	"Escort duty was one thing, but now you're ordering me around like you're my superior? I'm out."`
+				`	"Sorry, no. I'm a merchant captain with bills to pay. I'm not going to go search for your missing ships in the middle of nowhere."`
 					decline
 		
 			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if pirates board them before you get there, so get moving quickly."`
