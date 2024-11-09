@@ -606,8 +606,11 @@ void Engine::Step(bool isActive)
 	// Add the flagship outline last to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
-		outlines.emplace_back(flagship->GetSprite(), (flagship->Center() - center) * zoom, flagship->Unit() * zoom,
-			flagship->GetFrame(), *GameData::Colors().Get("flagship highlight"));
+		outlines.emplace_back(flagship->GetSprite(),
+			(flagship->Center() - center) * zoom,
+			flagship->Unit() * zoom * flagship->Scale(),
+			flagship->GetFrame(),
+			*GameData::Colors().Get("flagship highlight"));
 	}
 
 	// Any of the player's ships that are in system are assumed to have
@@ -2044,7 +2047,7 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
 									+ " refuse to let you land.", Messages::Importance::Highest);
-						else
+						else if(!flagship->IsDestroyed())
 						{
 							activeCommands |= Command::LAND;
 							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
