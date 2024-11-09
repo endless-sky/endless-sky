@@ -565,7 +565,7 @@ phrase "high houses friendly hail"
 		"Our wrath stands equal to our love"
 		"Our might exceeds the basest foe"
 		"Our duty 'mplores us to defend"
-		"We shan't permit a violent foe"
+		"We shan't abide a violent foe"
 	word
 		"."
 		"!"
