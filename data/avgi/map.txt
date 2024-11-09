@@ -61,8 +61,8 @@ system Anax
 	trade Metal 255
 	trade Plastic 330
 	fleet "Avgi Scouts" 24000
-	fleet "Small Aberrant" 1800
-	fleet "Large Aberrant" 3400
+	fleet "Small Aberrant" 900
+	fleet "Large Aberrant" 3600
 	object
 		sprite star/f3
 		period 10
@@ -87,7 +87,7 @@ system Anax
 		distance 812
 		period 197.325
 		offset 30
-		hazard "Microwave Power Transmission" 1
+		hazard "Avgi Beamed Power" 1
 	object
 		sprite planet/station-solar-a0-broken
 			scale 0.5
@@ -100,7 +100,7 @@ system Anax
 		distance 812
 		period 197.325
 		offset 150
-		hazard "Microwave Power Transmission" 1
+		hazard "Avgi Beamed Power" 1
 	object
 		sprite planet/station-solar-a1-broken
 			scale 0.5

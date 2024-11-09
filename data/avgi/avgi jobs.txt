@@ -133,6 +133,41 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 	destination
 		government "Avgi (Twilight Guard)"
 	npc
+		government "Avgi"
+		personality coward harvests timid secretive surveillance
+			confusion 20
+		system
+			distance 1 2
+		fleet "Small Avgi Merchants"
+	npc
+		government "Avgi"
+		personality coward harvests timid secretive surveillance
+			confusion 20
+		system
+			distance 1 2
+		fleet "Small Avgi Merchants"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 30000
+		dialog phrase "avgi nuclear materials"
+
+mission "Avgi: Special Nuclear Material Shipment 2"
+	job
+	repeat
+	name "Special nuclear materials to <planet>"
+	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	deadline
+	cargo "Avgi Radioisotopes" 3 6 .3
+	to offer
+		has "Avgi: Nuclear Material Supply Jobs"
+		not "Avgi: Fissiles Shortage"
+		random < 9
+	source
+		government "Avgi (Twilight Guard)"
+	destination
+		government "Avgi (Twilight Guard)"
+	npc
 		government "Avgi (Dissonance)"
 		personality coward harvests timid secretive surveillance
 			confusion 20
@@ -150,9 +185,9 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 30000
-		dialog phrase "avgi cylinder materials"
+		dialog phrase "avgi nuclear materials"
 
-mission "Avgi: Special Nuclear Material Shipment 2"
+mission "Avgi: Special Nuclear Material Shipment 3"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
@@ -185,7 +220,7 @@ mission "Avgi: Special Nuclear Material Shipment 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 30000
-		dialog phrase "avgi cylinder materials"
+		dialog phrase "avgi nuclear materials"
 
 
 phrase "avgi infocourier delivery"

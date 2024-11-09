@@ -236,7 +236,7 @@ mission "Avgi: First Contact"
 				`	"Do you speak my language?"`
 					goto next
 				`	(Shoot them.)`
-			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off alien body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your short-lived victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
+			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off alien body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your short-lived victory, however, before a flash of unfathomably bright blue-green light turns you into a rapidly expanding cloud of hot vapor.`
 				die
 
 			label next

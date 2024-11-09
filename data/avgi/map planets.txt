@@ -107,7 +107,7 @@ planet Entantel
 
 planet Livolua
 	attributes avgi "avgi core" "aberrant siege" rich urban
-	landscape land/water24
+	landscape land/water32
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
 	spaceport `The primary spaceport was built into the center of the first settlement to be established on the planet, which received incoming starships for decades. Since then, it was expanded upwards into a surprisingly tall cylinder of basalt and steel, itself housing over a million Avgi.`
 	government Avgi
@@ -217,7 +217,7 @@ planet Amathil
 
 planet Felorap
 	attributes ocean uninhabited
-	landscape land/water22
+	landscape land/water30
 	description `Felorap is a hot, steamy ocean world, with a thick atmosphere of carbon dioxide and water vapor. Despite being a fairly old planet, periodic asteroid bombardment has deprived it of the reprieve needed to develop complex life, and so the biosphere remains confined to extremophiles around the many hydrothermal vents that can be found on the ocean floor.`
 	description `	In a layer of oceanic sediment not too far from the surface, the fossilized remains of a few invertebrate multicellular creatures can be found, the last remnants of an evolutionary line that died with a cataclysmic impact event a few million years ago.`
 	government Uninhabited
