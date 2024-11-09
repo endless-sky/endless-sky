@@ -3103,7 +3103,7 @@ system Ain
 		distance 554
 		period 554.87708
 	object
-		sprite "planet/asteroid base"
+		sprite planet/gas4
 		distance 1243
 		period 1864.8282
 	object
@@ -18868,7 +18868,7 @@ system Syrma
 		distance 789
 		period 916.05512
 		object
-			sprite "planet/asteroid base"
+			sprite planet/rhea
 			distance 247
 			period 101.59283
 	object
@@ -36034,7 +36034,7 @@ system Tidursangat
 		distance 2215
 		period 3099.4262
 		object
-			sprite "planet/asteroid base"
+			sprite planet/callisto
 			distance 247
 			period 101.59283
 
@@ -39021,8 +39021,8 @@ system Zaurak
 	belt 1130
 	haze _menu/haze-133
 	link Alcyone
-	link Sheratan
 	link Electra
+	link Sheratan
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
 	asteroids "large rock" 11 1.82
