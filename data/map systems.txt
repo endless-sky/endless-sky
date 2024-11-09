@@ -75,7 +75,7 @@ galaxy "label south"
 	sprite label/south
 
 galaxy "label successors"
-	pos -122 1385
+	pos -122 1345
 
 galaxy "label wanderers"
 	pos -145 -753
@@ -8713,7 +8713,7 @@ system Chy'chra
 			period 80.0847
 
 system Chyyra-Osolaa
-	pos -241 1365
+	pos -261 1320
 	government Successor
 	attributes successor
 	arrival 2560
@@ -19917,7 +19917,7 @@ system "Kaus Borealis"
 			period 35.2227
 
 system Kella-Uoasa
-	pos -359 1511
+	pos -439 1260
 	government "People's Houses"
 	attributes successor
 	arrival 5000
@@ -19945,8 +19945,8 @@ system Kella-Uoasa
 	fleet "Small Successor Transport" 9000
 	fleet "People's Houses Raiders" 3000
 	fleet "Small New Houses" 15000
-	haze _menu/haze-none
-	"starfield density" 0.7
+	haze _menu/haze-33
+	"starfield density" 0.6
 	object
 		sprite star/o8
 	object
@@ -22333,7 +22333,7 @@ system Lurata
 		period 1774.16
 
 system Luue-Saqru
-	pos -319 1432
+	pos -343 1265
 	government Successor
 	attributes successor
 	arrival 500
@@ -22362,7 +22362,7 @@ system Luue-Saqru
 	fleet "Small New Houses" 3000
 	fleet "Successor Miners" 9000
 	fleet "Successor Miners (Well-Defended)" 6000
-	haze _menu/haze-none
+	haze _menu/haze-67
 	"starfield density" 0.7
 	object
 		sprite star/k0
@@ -22760,7 +22760,7 @@ system Markeb
 		period 2775.06
 
 system Maspa-Cavaasa
-	pos -534 1426
+	pos -532 1353
 	government Successor
 	attributes successor
 	arrival 2310
@@ -22814,7 +22814,7 @@ system Maspa-Cavaasa
 			period 173.691
 
 system Maspa-Mavra
-	pos -514 1571
+	pos -502 1499
 	government Uninhabited
 	attributes successor
 	arrival 500
@@ -22835,7 +22835,7 @@ system Maspa-Mavra
 		period 1000
 
 system Maspa-Raaqa
-	pos -334 1614
+	pos -502 1216
 	government Successor
 	attributes successor
 	arrival 500
@@ -22851,8 +22851,8 @@ system Maspa-Raaqa
 	fleet "People's Houses" 2000
 	fleet "People's Houses Raiders" 4000
 	fleet "Small New Houses" 10000
-	haze _menu/haze-none
-	"starfield density" 0.5
+	haze _menu/haze-33
+	"starfield density" 0.6
 	object
 		sprite star/protostar-orange
 	object Giiq-Oj-Sol
@@ -25058,7 +25058,7 @@ system Muphrid
 		period 1191.15
 
 system Myiara-Nnesa
-	pos -247 1273
+	pos -224 1273
 	government "New Houses"
 	attributes successor
 	arrival 3450
@@ -26326,7 +26326,7 @@ system Orvala
 			period 14.1511
 
 system Osolaa-Uuoru
-	pos -446 1453
+	pos -441 1378
 	government Successor
 	attributes successor
 	arrival 5000
@@ -26347,7 +26347,7 @@ system Osolaa-Uuoru
 	trade Metal 386
 	trade Plastic 331
 	haze _menu/haze-none
-	"starfield density" 0.4
+	"starfield density" 0.2
 	object
 		sprite star/o0
 	object Maspa-Viir-Kella
@@ -27055,7 +27055,7 @@ system "Pedita Sec"
 		period 363.737
 
 system Pelaa-Muora
-	pos -168 1322
+	pos -168 1342
 	government Successor
 	attributes successor
 	arrival 2895
@@ -29046,7 +29046,7 @@ system Queri
 		offset 335
 
 system Raaqa-Ryuit
-	pos -338 1354
+	pos -351 1335
 	government Successor
 	attributes successor
 	arrival 1080
