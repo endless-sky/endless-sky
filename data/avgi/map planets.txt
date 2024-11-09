@@ -201,8 +201,8 @@ planet Cyreal
 planet Palos
 	attributes desert uninhabited
 	landscape land/desert12
-	description `A cool desert world, Palos hosts a surface temperature suitable for habitation, but an unbreathable carbon dioxide atmosphere and deep gravity well has precluded any large scale settlement here. Had it been present in the Anax system, it very likely would have been an attractive target for terraforming, but with the natural beauty of nearby Cyreal free for the taking the Avgi of the Soar system declined to spend their scarce resources on it.`
-	description `Panspermia has spread various anaerobic fungi and bacteria from Cyreal onto Palos long ago, and while they have taken poorly to the planet's conditions you can still occasionally find a bacterial film growing under the surface, or something like lichen spotting a rock.`
+	description `A cool desert world, Palos hosts a surface temperature suitable for habitation, but an unbreathable carbon dioxide atmosphere and deep gravity well has precluded any large scale settlement here. Had it been present in the Anax system, it very likely would have been an attractive target for terraforming, but with the natural beauty of nearby Cyreal free for the taking the Avgi of the Soar system declined to spend their scarce resources on the comparatively barren Palos.`
+	description `Panspermia spread various anaerobic fungi and bacteria from Cyreal to Palos long ago, and while they have taken poorly to the planet's conditions you can still occasionally find a mottled bacterial film growing over the alkaline soil, or something resembling lichen spotting a rock.`
 	government Uninhabited
 
 

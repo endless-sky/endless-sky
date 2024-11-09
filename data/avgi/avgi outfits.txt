@@ -304,7 +304,7 @@ outfit "Magnetoplasma Drive"
 	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
 
 
-outfit `Z-330 "Spark" Fusion Torch`
+outfit `Z-333 "Spark" Fusion Torch`
 	category "Engines"
 	series "Avgi: Engines"
 	index 50
@@ -330,7 +330,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	description "The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
 
-outfit `Z-660 "Zap" Fusion Torch`
+outfit `Z-666 "Zap" Fusion Torch`
 	category "Engines"
 	series "Avgi: Engines"
 	index 60
@@ -355,7 +355,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	description "The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
 
-outfit `Z-990 "Arc" Fusion Torch`
+outfit `Z-999 "Arc" Fusion Torch`
 	category "Engines"
 	series "Avgi: Engines"
 	index 70

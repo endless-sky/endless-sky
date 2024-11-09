@@ -576,7 +576,7 @@ outfit "Orchid Boost"
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
 		"lifetime" 180
-		"acceleration" 0.24
+		"acceleration" 0.36
 		"drag" 0.018
 		"turn" 3
 		"homing" 3
@@ -680,8 +680,8 @@ outfit "Ophrys Active"
 effect "thermonuclear flash"
 	sprite "effect/explosion/nuke"
 		"no repeat"
-		"frame rate" 30
-		"scale" 2
+		"frame rate" 20
+		"scale" 2.5
 	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360

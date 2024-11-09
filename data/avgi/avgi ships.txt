@@ -616,7 +616,7 @@ ship "Frequentia"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 2
 
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"XY-180 Radial Thrusters"
@@ -694,7 +694,7 @@ ship "Polari"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 9
 
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"XY-180 Radial Thrusters"
@@ -905,7 +905,7 @@ ship "Undsyni"
 		"Spectrometer Array" 2
 		"Cargo Expansion" 12
 
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -979,7 +979,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Multispectral Scanner" 2
 		"Spectrometer Array" 2
 
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -1141,7 +1141,7 @@ ship "Tremoros"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
@@ -1224,7 +1224,7 @@ ship "Prismaios"
 		"Optical Lasing Generator"
 		"Optical Laser Rifle" 6
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -1284,7 +1284,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 6
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
@@ -1334,7 +1334,7 @@ ship "Interferos"
 		"Optical Lasing Generator"
 		"Electrostatic Ramscoop"
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"XY-180 Radial Thrusters"
@@ -1391,7 +1391,7 @@ ship "Interferos" "Interferos (Atomic)"
 		"Diffuse Deflector"
 		"Electrostatic Ramscoop"
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"XY-180 Radial Thrusters"
@@ -1449,7 +1449,7 @@ ship "Diaspersi"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 36
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -1529,7 +1529,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 36
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -1588,7 +1588,7 @@ ship "Difraktos"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 42
 
-		`Z-660 "Zap" Fusion Torch`
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
@@ -1666,7 +1666,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 42
 		
-		`Z-330 "Spark" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor" 1
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -1699,7 +1699,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 42
 
-		`Z-660 "Zap" Fusion Torch`
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
@@ -1763,7 +1763,7 @@ ship "Refraktos"
 		"Heatsink Partition"
 		"Optical Laser Rifle" 24
 		
-		`Z-660 "Zap" Fusion Torch`
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 5
 		"Remass Injector" 1
 		"XY-360 Radial Thrusters"
@@ -1865,7 +1865,7 @@ ship "Atenuatia"
 		"Multispectral Scanner" 9
 		"Optical Laser Rifle" 90
 		
-		`Z-660 "Zap" Fusion Torch`
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 3
 		"Remass Injector" 3
 		"XY-720 Radial Thrusters"
@@ -1970,7 +1970,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
 		
-		`Z-660 "Zap" Fusion Torch`
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
@@ -2307,7 +2307,7 @@ ship "Optikon"
 		"outfit scan efficiency" 12
 		"cargo scan power" 42
 		"cargo scan efficiency" 12
-		"tactical scan power" 72
+		"tactical scan power" 144
 		"asteroid scan power" 36
 		weapon
 			"blast radius" 9

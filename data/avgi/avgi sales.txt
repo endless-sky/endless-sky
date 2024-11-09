@@ -107,15 +107,15 @@ outfitter "Avgi Superconductors"
 
 outfitter "Avgi Propulsion"
 	"Magnetoplasma Drive"
-	`Z-330 "Spark" Fusion Torch`
+	`Z-333 "Spark" Fusion Torch`
 	"XY-180 Radial Thrusters"
 	"XY-360 Radial Thrusters"
 	"Inductive Extractor"
 	"Remass Injector"
 
 outfitter "Avgi Torches"
-	`Z-660 "Zap" Fusion Torch`
-	`Z-990 "Arc" Fusion Torch`
+	`Z-666 "Zap" Fusion Torch`
+	`Z-999 "Arc" Fusion Torch`
 	"XY-720 Radial Thrusters"
 
 outfitter "Avgi Militia Surplus"
@@ -163,6 +163,6 @@ outfitter "Avgi Dissonance Smuggling"
 	"Heatsink Partition"
 	"Concealment Lamina"
 	"Diffuse Deflector"
-	`Z-660 "Zap" Fusion Torch`
+	`Z-666 "Zap" Fusion Torch`
 	"Inductive Extractor"
 	"Remass Injector"
