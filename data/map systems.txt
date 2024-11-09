@@ -8713,7 +8713,7 @@ system Chy'chra
 			period 80.0847
 
 system Chyyra-Osolaa
-	pos -261 1320
+	pos -261 1338
 	government Successor
 	attributes successor
 	arrival 2560
@@ -22333,7 +22333,7 @@ system Lurata
 		period 1774.16
 
 system Luue-Saqru
-	pos -343 1265
+	pos -343 1270
 	government Successor
 	attributes successor
 	arrival 500
@@ -27055,7 +27055,7 @@ system "Pedita Sec"
 		period 363.737
 
 system Pelaa-Muora
-	pos -168 1342
+	pos -168 1328
 	government Successor
 	attributes successor
 	arrival 2895
@@ -29046,7 +29046,7 @@ system Queri
 		offset 335
 
 system Raaqa-Ryuit
-	pos -351 1335
+	pos -351 1320
 	government Successor
 	attributes successor
 	arrival 1080
