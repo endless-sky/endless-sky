@@ -796,10 +796,6 @@ mission "FW Escort 1B"
 
 
 
-event "fw escorts abandon timer"
-
-
-
 mission "FW Escort 2"
 	autosave
 	landing
