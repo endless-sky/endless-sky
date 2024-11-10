@@ -618,7 +618,7 @@ mission "FW Escort 0"
 
 
 
-# Deprecated in v0.10.11. This event is preserved in case a now deleted mission calling this event is already active.
+# Deprecated in v0.10.11. This event is preserved in case an older version of the mission "FW Escort 1B" is already active upon updating.
 event "fw escorts abandon timer"
 
 
