@@ -402,7 +402,7 @@ mission "FW Recon 2"
 			choice
 				`	"Sure, I'd be glad to do that."`
 					accept
-				`	"After the way the last captain responded to me scanning him, I'm not risking my head for the Free Worlds again."`
+				`	"Sorry. After the way the last captain responded to me scanning him, I'm not risking my head for the Free Worlds again."`
 					decline
 	
 	npc "scan outfits"
