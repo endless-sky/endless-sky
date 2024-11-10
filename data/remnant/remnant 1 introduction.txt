@@ -3820,7 +3820,6 @@ mission "Remnant: Logistics 1"
 	deadline 2
 	to offer
 		has "remnant: blood test pure"
-		has "Remnant: Defense 1: done"
 		has "Remnant: Technology Available: offered"
 	on offer
 		conversation
