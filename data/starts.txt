@@ -99,7 +99,7 @@ start "hai space"
 	set "First Contact: Unfettered: offered"
 	set "First Contact: Unfettered: declined"
 	set "Ask the Hai about the Unfettered: offered"
-	set "Ask the Hai about the Unfettered: done"
+	set "Ask the Hai about the Unfettered: declined"
 
 
 conversation "hai intro"
