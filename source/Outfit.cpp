@@ -28,10 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-constexpr double Outfit::DEFAULT_HYPERDRIVE_COST = 100.;
-constexpr double Outfit::DEFAULT_SCRAM_DRIVE_COST = 150.;
-constexpr double Outfit::DEFAULT_JUMP_DRIVE_COST = 200.;
-
 namespace {
 	const double EPS = 0.0000000001;
 
