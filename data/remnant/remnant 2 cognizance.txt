@@ -1331,7 +1331,7 @@ mission "Remnant: Cognizance 29"
 		payment 500000
 		conversation
 			`The brutal sun of Caelian hits you like a hammer as you open the hatch to let the evacuees out. A few of the Remnant step into the sun as if relishing the heat, while others move quickly to the shade of a nearby structure to confer. Several, however, need to be carried out to waiting vehicles: it seems that they were hurt in one of the initial raids, and while adrenaline kept them going during the evacuation, their condition deteriorated during the flight back. The Remnant carry them with reverent haste, and then the vehicles they are loaded into vanish quickly into nearby structures.`
-			`	"The Embers saw you safely through." Gestures Torza with a note of appreciation, appearing from a nearby hatch. "The loss of that outpost is unfortunate, but at least most of the Remnant there survived. Thank you for your assistance." He glances at his commlink. "Your logistics adjustment has been added to your account, of course, but I suspect that you are interested in pushing forward the progress in studying Ssil Vida. Meet me in the spaceport when you are ready."`
+			`	"The Embers saw you safely through," gestures Torza with a note of appreciation, appearing from a nearby hatch. "The loss of that outpost is unfortunate, but at least most of the Remnant there survived. Thank you for your assistance." He glances at his commlink. "Your logistics adjustment has been added to your account, of course, but I suspect that you are interested in pushing forward the progress in studying Ssil Vida. Meet me in the spaceport when you are ready."`
 
 
 
