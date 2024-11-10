@@ -4172,7 +4172,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			message += " in the system you are jumping to.";
 			Messages::Add(message, Messages::Importance::Info);
 
-			if(Preferences::Has("Play ding on destination"))
+			if(Preferences::Has("Notify on destination"))
 				Audio::Play(Audio::Get("fail"));
 		}
 		// If any destination was found, find the corresponding stellar object

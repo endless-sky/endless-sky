@@ -1486,5 +1486,5 @@ tip "Date format"
 tip "Show parenthesis"
 	`Toggle parenthesis around the trade prices in the ports map mode.`
 
-tip "Play ding on destination"
-	`If you enter a system with a planet you must land on for a mission, plays a ding.`
+tip "Notify on destination"
+	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`
