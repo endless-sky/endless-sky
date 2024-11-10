@@ -1,0 +1,145 @@
+# Copyright (c) 2021 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+shipyard "Xapleaux Basics"
+	Blastoc
+
+shipyard "Xapleaux Intermediate"
+	Basidio
+
+shipyard "Xapleaux Advanced"
+	Ascomy
+
+outfitter "Xapleaux Basics"
+	"String Drive"
+
+outfitter "Xapleaux Intermediate"
+	`Type I "Lepido" Engine`
+
+outfitter "Xapleaux Advanced"
+	`Type X "Coleo" Engine`
+
+
+fleet "Xapleaux Small Cargo"
+	government Xapleaux
+	names xapleaux
+	commodities Food Clothing Metal Plastic Equipment Medical Industrial Electronics "Heavy Metals" "Luxury Goods"
+	personality
+		timid disables
+	variant
+		Blastoc 2
+
+fleet "Xapleaux Small Passenger"
+	government Xapleaux
+	names xapleaux
+	commodities Food Clothing Metal Plastic Equipment Medical Industrial Electronics "Heavy Metals" "Luxury Goods"
+	personality
+		timid disables
+	variant
+		Basidio 2
+
+fleet "Xapleaux Small Security"
+	government Xapleaux
+	names xapleaux
+	commodities Food Clothing Metal Plastic Equipment Medical Industrial Electronics "Heavy Metals" "Luxury Goods"
+	personality
+		timid disables
+	variant
+		Ascomy
+
+
+phrase xapleaux
+	word
+		Nearolu
+		Swuirelouminore
+		Gleurimuw
+		Prouleah
+		Fourelia
+		Hearaimiumer
+		Feahvir
+		Gwolav
+		Bounera
+		Xialorum
+		Werimoural
+		Pefaerilum
+		Soubiae
+		Beriloumi
+		Geromil
+		Puol
+		Faerilloumier
+		Haforiliour
+		Heffaeriloum
+		Hamlior
+		Babounrier
+		Groundissemour
+		Jarobouillier
+		Svolurealuo
+		Hourimaserai
+		Faoule
+		Learoumera
+		Atch
+		Kexo
+		Xi
+		Moule
+		Jurtwuillemoure
+	word
+		-atch
+		-ibvicklidit
+		-ticska
+		-goxkotrik
+		-icibvirk
+		-jek
+		-ixik
+		-kek
+		-crxst
+		-vikinik
+		-nikt
+		-kechink
+		-xi
+		-cix
+		-ickewqirk
+		-xivik
+		-tock
+		-rikt
+		-tock
+		-dsik
+		-iking
+		-klicklissnika
+		-ceffig
+		-pik
+		-ink
+		-cehikli
+		-ifk
+		-atke
+		-rik
+		-kiteg
+		-vik
+		-dygit
+		-ixikke
+		-xec
+		-retuk
+		-chanxer
+		-kickek
+		-kicheck
+		-txikke
+		-ntic
+		-cehicot
+		-taxerik
+		-tancla
+		-cixeg
+		-kechgorica
+		-quijek
+		-tinikt
+		-tockrig
+		-garikjek
+		-repiker
