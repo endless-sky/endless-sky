@@ -618,6 +618,11 @@ mission "FW Escort 0"
 
 
 
+# This event is no longer used but preserved in case a now deleted mission calling this event is already active.
+event "fw escorts abandon timer"
+
+
+
 mission "FW Escort: Escorts"
 	landing
 	invisible
