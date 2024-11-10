@@ -30221,10 +30221,14 @@ system Sabik
 		sprite planet/forest6-b
 		distance 1424.5
 		period 513.620
+	object Donya
+		sprite planet/clouds0
+		distance 1280.19
+		period 732.877
 	object
 		sprite planet/gas4-b
-		distance 2825.19
-		period 1526.877
+		distance 1594.92
+		period 1052.7301
 	object
 		sprite planet/cloud5
 		distance 3602.62

@@ -1139,6 +1139,13 @@ planet "Dlia Jzaur"
 	description `	Oddly enough, Dlia Jzaur has many unnatural looking formations on the surface that seem to reach up to the sky in areas where eclipses often occur. The formations are hollow underneath, but show no signs of Gegno involvement.`
 	government Uninhabited
 
+planet "Donya"
+	attributes uninhabited
+	landscape land/fields29
+	description `Donya is a lush, green, Earth-like world filled with vegetation and growing matter. With clouds and a blue sky, it was idyllic in the eyes of early settlers and the billionaire philanthropists who funded them.`
+	description `	Despite the beauty and the funding, it remains unsettled, as rains of poisonous acid fall on regular timeframes, rendering the planet uninhabitable to human life. The foliage planted by the initial wave of colonists to scrub the skies of the rain seems to have adjusted to the terrible liquid quite well, although it hasn't managed to eliminate it. The planters, who couldn't bear the dreadful weather, left when they discovered that they couldn't stop the rains.`
+	government Uninhabited
+
 planet "Double Haze"
 	attributes factory farming kimek urban
 	landscape land/fields2
