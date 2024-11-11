@@ -70,9 +70,6 @@ ipch/
 .idea_modules/
 compile_commands.json
 CMakeUserPresets.json
-CMakeSettings.json
-CMakeLists_CLion.txt
-cmake-build-debug/
 .gitmodules
 
 # static code analysis
