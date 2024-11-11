@@ -1471,11 +1471,11 @@ void OutfitterPanel::DrawButtons()
 	// Draw the tooltip for your full number of credits and free cargo space
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
 	if(creditsBox.Contains(hoverPoint))
-		hoverCount += hoverCount < HOVER_TIME;
-	else if(hoverCount)
-		--hoverCount;
+		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
+	else if(ShopPanel::hoverCount)
+		--ShopPanel::hoverCount;
 
-	if(hoverCount == HOVER_TIME)
+	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
 	{
 		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
 			Format::Number(player.Cargo().Free()) + " tons free out of " +
