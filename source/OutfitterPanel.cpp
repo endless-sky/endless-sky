@@ -395,26 +395,32 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				Format::CreditString(cost + licenseCost - credits));
 	}
 
-	// Check if the outfit will fit
+	bool anyShipCanInstall = true;
+	// Check if the outfit will fit.
 	if(!playerShip)
 	{
 		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
 		double freeCargo = player.Cargo().FreePrecise();
-		if(!mass || freeCargo >= mass)
-			return true;
-
-		errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
-			+ Format::CargoString(mass, "mass") + " and your fleet has "
-			+ Format::CargoString(freeCargo, "cargo space") + " free.");
+		if(mass && freeCargo < mass)
+			errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
+				+ Format::CargoString(mass, "mass") + " and your fleet has "
+				+ Format::CargoString(freeCargo, "cargo space") + " free.");
 	}
 	else
 	{
+		anyShipCanInstall = false;
 		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
 			if(ShipCanBuy(ship, selectedOutfit))
-				return true;
+			{
+				anyShipCanInstall = true;
+				break;
+			}
+	}
 
+	if(!anyShipCanInstall)
+	{
 		// If no selected ship can install the outfit,
 		// report error based on playerShip.
 		double outfitNeeded = -selectedOutfit->Get("outfit space");
@@ -464,8 +470,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		// For unhandled outfit requirements, show a catch-all error message.
 		if(errors.empty())
-		errors.push_back("You cannot install this outfit in your ship, "
-			"because it would reduce one of your ship's attributes to a negative amount. "
+			errors.push_back("You cannot install this outfit in your ship, "
+				"because it would reduce one of your ship's attributes to a negative amount. "
 				"For example, it may use up more cargo space than you have left.");
 	}
 
