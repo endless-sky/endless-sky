@@ -401,12 +401,10 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
 		double freeCargo = player.Cargo().FreePrecise();
-		if(!mass || freeCargo >= mass)
-			return true;
-
-		errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
-			+ Format::CargoString(mass, "mass") + " and your fleet has "
-			+ Format::CargoString(freeCargo, "cargo space") + " free.");
+		if(mass && freeCargo < mass)
+			errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
+				+ Format::CargoString(mass, "mass") + " and your fleet has "
+				+ Format::CargoString(freeCargo, "cargo space") + " free.");
 	}
 	else
 	{
