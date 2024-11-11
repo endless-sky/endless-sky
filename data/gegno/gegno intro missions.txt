@@ -705,7 +705,6 @@ mission "Gegno Exploration Nudge"
 	to complete
 		has "Return to Giaru Gegno: offered"
 	on enter
-	on enter
 		conversation
 			branch provocative
 				has "scin: provocative"
