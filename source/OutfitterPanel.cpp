@@ -395,7 +395,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				Format::CreditString(licenseCost - credits));
 	}
 
-	// Check if the outfit will fit
+	// Check if the outfit will fit.
 	if(!playerShip)
 	{
 		// Buying into cargo, so check cargo space vs mass.
