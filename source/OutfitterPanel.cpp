@@ -395,6 +395,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				Format::CreditString(licenseCost - credits));
 	}
 
+	bool anyShipCanInstall = true;
 	// Check if the outfit will fit.
 	if(!playerShip)
 	{
@@ -408,11 +409,18 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 	else
 	{
+		anyShipCanInstall = false;
 		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
 			if(ShipCanBuy(ship, selectedOutfit))
-				return true;
+			{
+				anyShipCanInstall = true;
+				break;
+			}
+	}
 
+	if(!anyShipCanInstall)
+	{
 		// If no selected ship can install the outfit,
 		// report error based on playerShip.
 		double outfitNeeded = -selectedOutfit->Get("outfit space");
