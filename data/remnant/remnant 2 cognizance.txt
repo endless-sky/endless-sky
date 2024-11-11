@@ -1065,7 +1065,7 @@ mission "Remnant: Cognizance 23"
 	on accept
 		give ship Merganser
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality coward target uninterested staying
 		system "Farinus"
 		fleet
@@ -1199,7 +1199,7 @@ mission "Remnant: Cognizance 25"
 					accept
 				`	"No."`
 					decline
-	npc kill
+	npc disable
 		government "Korath"
 		personality target marked waiting
 		system "Egeria"
@@ -1281,7 +1281,7 @@ mission "Remnant: Cognizance 28"
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have set up a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
 	npc
-		government "Korath"
+		government "Kor Isaha"
 		personality heroic plunders harvests waiting staying
 		system "Parca"
 		fleet
@@ -1315,7 +1315,7 @@ mission "Remnant: Cognizance 29"
 			`	The shield opens one final time to allow you to leave, and you practically leap into the teeth of a Korath attack. The anti-air artillery continues its rhythmic barrage against the incoming ships, but it is evident that both it and the shields around the base are failing under the assault. As you head for orbit, the last image you see is the artillery pieces sag and collapse as they melt into the ground. Your sensors record a sudden explosion from the cavern, to which the Remnant give a sad but satisfied nod. "Take us back to Caelian please, Captain."`
 				launch
 	npc
-		government "Korath"
+		government "Kor Isaha"
 		personality heroic plunders harvests waiting launching
 		system "Parca"
 		fleet
