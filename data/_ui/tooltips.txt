@@ -438,13 +438,10 @@ tip "scramble resistance heat:"
 tip "jump speed:"
 	`The maximum velocity the ship can jump at.`
 
-tip "jump fuel:"
-	`Fuel consumed when jumping between systems using this drive.`
-
-tip "hyperdrive fuel"
+tip "hyperdrive fuel:"
 	`Fuel consumed when jumping between systems using this hyperdrive.`
 
-tip "jump drive fuel"
+tip "jump drive fuel:"
 	`Fuel consumed when jumping between systems using this jump drive.`
 
 tip "jump range:"
