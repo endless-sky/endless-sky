@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <limits>
 #include <memory>
-#include <format>
 
 using namespace std;
 
@@ -1462,8 +1461,7 @@ void OutfitterPanel::DrawButtons()
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip;
-	string tooltip_name = std::format("outfitter: {}", hoverButton);
-	tooltip = GameData::Tooltip(tooltip_name);
+	tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
 	if(!tooltip.empty())
 		// Note: there is an offset between the cursor and tooltips in this case so that other
 		// buttons can be seen as the mouse moves around.
