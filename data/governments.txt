@@ -1260,7 +1260,10 @@ government "Kraz Cybernetics"
 	swizzle 2
 	color "governments: Free"
 	"player reputation" 0
-	"friendly hail" "friendly free worlds"
+	"friendly hail" "friendly kraz cybernetics"
+	"attitude toward"
+		"Free Worlds" .01
+		"Pirate" -.01
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
 	"hostile disabled hail" "hostile disabled"

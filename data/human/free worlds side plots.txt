@@ -476,7 +476,7 @@ mission "FW Thermal Scanner 2"
 				`	The captain of the Doombat hails you as you jump into the system. "Now remember," they say. "This is a battle for testing, so be careful not to destroy my ship. I'll make sure not to destroy you either."`
 		on destroy
 			conversation
-				`	As the Doombat begins to explode, you receive a message from Barmy Edward. "Hey! You said you wouldn't destroy that ship! Do you realize what you have done?" He hangs up. It's clear that, at leadt for a while, you won't get any more missions from Kraz Cybernetics.`
+				`	As the Doombat begins to explode, you receive a message from Barmy Edward. "Hey! You said you wouldn't destroy that ship! Do you realize what you have done?" He hangs up. It's clear that, at least for a while, you won't get any more missions from Kraz Cybernetics.`
 		on capture
 			conversation
 				`	Just as the boarding action has been successfully concluded, a message from Barmy Edward, who sounds very angry, comes in. "Hey! Do you know what you have done?" Before you can answer, he hangs up. It's clear you won't be getting any more missions from Kraz Cybernetics in the near future.`
