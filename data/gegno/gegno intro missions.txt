@@ -695,25 +695,26 @@ mission "First Contact: Gegno Scin"
 
 
 mission "Gegno Exploration Nudge"
-	invisible
+	name "Seeking Further Contact"
+	description "There might be other opportunities to learn about the Gegno on other planets you're able to land on. Fly around Gegno space and seek out other encounters that might help you learn more about them."
 	landing
 	source "Yiia Iyr"
 	to offer
 		has "Suspicious Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
-		never
+		has "Return to Giaru Gegno: offered"
 	on enter
 	on enter
-		fail
 		conversation
 			branch provocative
 				has "scin: provocative"
-			`After leaving Ilirco, you recall that the map device showed markings for a few other uninhabited planets throughout Gegno space as well. From what you can remember, one of them was a desert planet, another was a terrestrial world, and another a small moon. Perhaps these are other possible locations you could encounter the Gegno at in order to try and find a way to learn more about them.`
-				decline
-			
+			`After leaving <origin>, you recall that the map device curiously showed markings for several other uninhabited planets throughout Gegno space. Perhaps there are other possible locations you could encounter the Gegno in order to try and find a way to learn more about them.`
+				accept
+
 			label provocative
-			`After the aggressive encounter on <origin>, you recall that the map device showed markings for a few other uninhabited planets throughout Gegno space as well. From what you can remember, one of them was a desert planet, another was a terrestrial world, and another a small moon. For them to be intentionally marked in such a way could suggest there are other places you could run into the Gegno again, though it might be best to practice caution moving forward.`
+			`After the aggressive encounter on <origin>, you recall that the map device showed markings for a few other uninhabited planets throughout Gegno space. For them to have been intentionally marked in such a way could suggest there are other places you could run into the Gegno again, though it might be best to practice caution moving forward.`
+				accept
 
 
 # Gegno Superheavy Missions
