@@ -676,24 +676,24 @@ interface "hud"
 		size 2
 	visible if "flagship data display"
 	sprite "ui/tactical/velocity"
-		from -110 230
+		from -114 230
 		align top left
 	string "flagship speed"
-		from -90 237
+		from -94 237
 		color "medium"
 		align left
 	sprite "ui/tactical/acceleration"
-		from -110 250
+		from -114 250
 		align top left
 	string "flagship acceleration"
-		from -90 257
+		from -94 257
 		color "medium"
 		align left
 	sprite "ui/tactical/turn"
-		from -110 270
+		from -114 270
 		align top left
 	string "flagship turn"
-		from -90 277
+		from -94 277
 		color "medium"
 		align left
 	sprite "ui/thrust bar frame"
@@ -715,21 +715,57 @@ interface "hud"
 		color "heat"
 		size 2
 
+	# If the player has a ship mass display, then this will display their flagship's mass in the HUD.
+	visible if "flagship mass display"
+	sprite "ui/tactical/mass"
+		from -116 328
+		align top left
+	string "flagship mass"
+		from -94 337
+		color "medium"
+		align left
+
+	# If the player has the relevant fuel cost calculator display, this will show that element in the HUD.
+	visible if "flagship hyper fuel display"
+	sprite "ui/tactical/hyperjump"
+		from -116 350
+		align top left
+	string "flagship hyperdrive fuel per hyperjump"
+		from -94 359
+		color "medium"
+		align left
+	visible if "flagship scram fuel display"
+	sprite "ui/tactical/scramjump"
+		from -116 372
+		align top left
+	string "flagship scram drive fuel per hyperjump"
+		from -94 381
+		color "medium"
+		align left
+	visible if "flagship jump fuel display"
+	sprite "ui/tactical/jumpdrivejump"
+		from -116 394
+		align top left
+	string "flagship jump drive fuel per hyperjump"
+		from -94 403
+		color "medium"
+		align left
+
 	visible if "flagship ramscoop display"
 	sprite "ui/tactical/ramscoop"
-		from -114 290
+		from -118 290
 		align top left
 	string "flagship ramscoop"
-		from -90 297
+		from -94 297
 		color "medium"
 		align left
 
 	visible if "flagship solar display"
 	sprite "ui/tactical/solar"
-		from -110 308
+		from -114 308
 		align top left
 	string "flagship solar"
-		from -90 317
+		from -94 317
 		color "medium"
 		align left
 

@@ -262,7 +262,7 @@ start "lampyrid"
 			"mass" 240
 			"drag" 8.5
 			"heat dissipation" .7
-			"fuel capacity" 700
+			"fuel capacity" 850
 			"cargo space" 160
 			"outfit space" 300
 			"engine capacity" 130

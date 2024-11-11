@@ -36,6 +36,7 @@ ship "Subsidurial"
 		"inscrutable" 1
 		"gaslining" 1
 		"hyperdrive" 1
+		"jump fuel" 100
 		"jump speed" .2
 	outfits
 		Mouthparts? 3
@@ -179,7 +180,7 @@ ship "Ember Waste Node"
 		"mass" 1500
 		"drag" 12.3
 		"heat dissipation" .67
-		"fuel capacity" 250
+		"fuel capacity" 275
 		"cargo space" 39
 		"outfit space" 0
 		"thrust" 120
@@ -237,7 +238,7 @@ ship "Embershade"
 		"drag" 6.3
 		"heat dissipation" .54
 		"cargo space" 40
-		"fuel capacity" 100
+		"fuel capacity" 275
 		"thrust" 30
 		"turn" 1350
 		"energy capacity" 500
@@ -247,6 +248,7 @@ ship "Embershade"
 		"cloaking energy" 5
 		"hyperdrive" 1
 		"jump speed" .1
+		"jump fuel" 75
 		"ramscoop" .05
 		"gaslining" 1
 		"inscrutable" 1
@@ -278,7 +280,7 @@ ship "Embersylph"
 		"drag" 4.8
 		"heat dissipation" .47
 		"cargo space" 0
-		"fuel capacity" 100
+		"fuel capacity" 75
 		"thrust" 15
 		"reverse thrust" 4.5
 		"turn" 150
@@ -287,8 +289,9 @@ ship "Embersylph"
 		"hull repair rate" 2
 		"shield generation" 2
 		"scram drive" 0.4
-		"jump fuel" 100
+		"jump fuel" 75
 		"hyperdrive" 1
+		"jump fuel" 50
 		"ramscoop" 1.5
 		"gaslining" 1
 		"inscrutable" 1

@@ -102,7 +102,7 @@ ship "Nimbus"
 		"steering slot" 1
 		"thruster slot" 1
 		"gaslining" 1
-		"fuel capacity" 200
+		"fuel capacity" 325
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -220,7 +220,7 @@ ship "Nimbo Cirrus"
 		"steering slot" 1
 		"thruster slot" 1
 		"gaslining" 1
-		"fuel capacity" 200
+		"fuel capacity" 225
 		weapon
 			"blast radius" 22.5
 			"shield damage" 225
@@ -262,7 +262,7 @@ ship "Gero"
 		"steering slot" 1
 		"thruster slot" 1
 		"gaslining" 1
-		"fuel capacity" 200
+		"fuel capacity" 225
 		weapon
 			"blast radius" 26.5
 			"shield damage" 265

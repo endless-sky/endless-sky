@@ -485,7 +485,7 @@ ship "Lampyrid-Class Transport"
 		"mass" 960
 		"drag" 12
 		"heat dissipation" .47
-		"fuel capacity" 700
+		"fuel capacity" 850
 		"cargo space" 160
 		"outfit space" 260
 		"engine capacity" 105
@@ -637,7 +637,7 @@ ship "Modified Osprey"
 		"mass" 1416
 		"drag" 22.65
 		"heat dissipation" .4
-		"fuel capacity" 625
+		"fuel capacity" 1350
 		"cargo space" 80
 		"outfit space" 2172
 		"weapon capacity" 851
@@ -813,7 +813,7 @@ ship "Ursa Polaris"
 		"mass" 7356
 		"drag" 18
 		"heat dissipation" .6
-		"fuel capacity" 600
+		"fuel capacity" 2950
 		"solar collection" 15
 		"afterburner thrust" 300
 		"turn" 6007.5
@@ -1249,7 +1249,7 @@ ship "Marauder Bactrian"
 		"mass" 5200
 		"drag" 22.5
 		"heat dissipation" 0.33
-		"fuel capacity" 800
+		"fuel capacity" 2725
 		"cargo space" 80
 		"outfit space" 1526
 		"weapon capacity" 1000
@@ -1454,7 +1454,7 @@ ship "Modified Boxwing"
 		"mass" 90
 		"drag" 3.875
 		"heat dissipation" .18
-		"fuel capacity" 500
+		"fuel capacity" 450
 		"cargo space" 80
 		"outfit space" 350
 		"weapon capacity" 130
@@ -1563,7 +1563,7 @@ ship "Modified Battleship"
 		"mass" 8080
 		"drag" 29.1
 		"heat dissipation" .24
-		"fuel capacity" 1000
+		"fuel capacity" 4400
 		"cargo space" 30
 		"outfit space" 1152
 		"weapon capacity" 592
@@ -1807,7 +1807,7 @@ ship "Modified Ladybug"
 		"mass" 1200
 		"drag" 8.1
 		"heat dissipation" .58
-		"fuel capacity" 900
+		"fuel capacity" 1300
 		"cargo space" 91
 		"outfit space" 647
 		"weapon capacity" 206
@@ -2199,7 +2199,7 @@ ship "Modified Hauler VI"
 		"mass" 1240
 		"drag" 21.7
 		"heat dissipation" .43
-		"fuel capacity" 800
+		"fuel capacity" 1475
 		"cargo space" 780
 		"outfit space" 900
 		"weapon capacity" 430

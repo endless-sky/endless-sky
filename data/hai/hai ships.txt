@@ -24,7 +24,7 @@ ship "Aphid"
 		"mass" 130
 		"drag" 2.1
 		"heat dissipation" .82
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 51
 		"outfit space" 185
 		"weapon capacity" 37
@@ -252,7 +252,7 @@ ship "Cicada"
 		"mass" 1200
 		"drag" 6.1
 		"heat dissipation" .58
-		"fuel capacity" 500
+		"fuel capacity" 675
 		"cargo space" 143
 		"outfit space" 323
 		"weapon capacity" 89
@@ -361,7 +361,7 @@ ship "Geocoris"
 		"mass" 6480
 		"drag" 26.5
 		"heat dissipation" 0.3
-		"fuel capacity" 800
+		"fuel capacity" 3050
 		"cargo space" 761
 		"outfit space" 582
 		"weapon capacity" 172
@@ -450,7 +450,7 @@ ship "Grasshopper"
 		"mass" 124
 		"drag" 1.65
 		"heat dissipation" .78
-		"fuel capacity" 300
+		"fuel capacity" 250
 		"cargo space" 29
 		"outfit space" 198
 		"weapon capacity" 47
@@ -671,7 +671,7 @@ ship "Ladybug"
 		"mass" 1120
 		"drag" 7.8
 		"heat dissipation" .59
-		"fuel capacity" 900
+		"fuel capacity" 1200
 		"cargo space" 91
 		"outfit space" 460
 		"weapon capacity" 170
@@ -831,7 +831,7 @@ ship "Pond Strider"
 		"drag" 5.33
 		"hull repair rate" 1
 		"heat dissipation" .34
-		"fuel capacity" 300
+		"fuel capacity" 350
 		"cargo space" 71
 		"outfit space" 354
 		"weapon capacity" 144
@@ -989,7 +989,7 @@ ship "Sea Scorpion"
 		"mass" 1280
 		"drag" 7.8
 		"heat dissipation" .47
-		"fuel capacity" 500
+		"fuel capacity" 700
 		"cargo space" 45
 		"outfit space" 510
 		"weapon capacity" 188
@@ -1153,7 +1153,7 @@ ship "Scarab"
 		"mass" 832
 		"drag" 4.6
 		"heat dissipation" .73
-		"fuel capacity" 400
+		"fuel capacity" 450
 		"cargo space" 44
 		"outfit space" 231
 		"weapon capacity" 49
@@ -1207,7 +1207,7 @@ ship "Shield Beetle"
 		"mass" 5200
 		"drag" 16.3
 		"heat dissipation" .33
-		"fuel capacity" 500
+		"fuel capacity" 1575
 		"cargo space" 142
 		"outfit space" 798
 		"weapon capacity" 333
@@ -1685,7 +1685,7 @@ ship "Emperor Beetle"
 		"heat dissipation" 0.38
 		"tactical scan power" 30
 		"ramscoop" .5
-		"fuel capacity" 600
+		"fuel capacity" 2300
 		weapon
 			"shield damage" 5000
 			"hull damage" 2500
@@ -1799,7 +1799,7 @@ ship "Solifuge"
 		"mass" 7400
 		"drag" 30
 		"heat dissipation" .22
-		"fuel capacity" 600
+		"fuel capacity" 2425
 		"cargo space" 142
 		"outfit space" 828
 		"weapon capacity" 342
@@ -2081,7 +2081,7 @@ ship "Water Bug"
 		"mass" 1080
 		"drag" 7.7
 		"heat dissipation" .58
-		"fuel capacity" 600
+		"fuel capacity" 800
 		"cargo space" 197
 		"outfit space" 368
 		"weapon capacity" 145

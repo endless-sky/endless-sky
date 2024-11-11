@@ -335,6 +335,14 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
+	bool HyperDriveFuelBar() const;
+	bool ScramDriveFuelBar() const;
+	bool JumpDriveFuelBar() const;
+	double FixedScaleFuelBar() const;
+	bool DisplayMass() const;
+	bool DisplayHyperFuelCost() const;
+	bool DisplayScramFuelCost() const;
+	bool DisplayJumpFuelCost() const;
 	double DisplaySolar() const;
 	double DisplayRamScoop() const;
 	// These are for the thruster activity bars

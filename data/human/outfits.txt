@@ -170,8 +170,11 @@ outfit "Hyperdrive"
 	"outfit space" -20
 	"jump speed" .2
 	"jump fuel" 100
+	"jump mass cost" 4
+	"jump base mass" 900
 	"hyperdrive" 1
 	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
+	description "	The fuel required to power hyperdrives varies depending on the size of the ship. So long as the ship's total mass including cargo is less than 900, then each hyperjump will cost less than 100 fuel. How much less depends on how light the ship is. Ships that have more than 900 total mass will see the fuel per jump increase significantly."
 	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
 
 outfit "Scram Drive"
@@ -182,8 +185,11 @@ outfit "Scram Drive"
 	"outfit space" -30
 	"scram drive" .2
 	"jump fuel" 150
+	"jump mass cost" 6
+	"jump base mass" 900
 	"hyperdrive" 1
 	description "A scram drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
+	description "	The fuel required to power scram drives varies depending on the size of the ship. So long as the ship's total mass including cargo is less than 900, then each hyperjump will cost less than 150 fuel. How much less depends on how light the ship is. Ships that have more than 900 total mass will see the fuel per jump increase significantly."
 
 outfit "Jump Drive"
 	category "Systems"
@@ -193,6 +199,8 @@ outfit "Jump Drive"
 	"outfit space" -20
 	"jump speed" .3
 	"jump fuel" 200
+	"jump mass cost" 8
+	"jump base mass" 900
 	"jump drive" 1
 	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 

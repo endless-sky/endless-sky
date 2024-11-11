@@ -24,7 +24,7 @@ ship "Earth Shaper"
 		"mass" 35
 		"drag" .95
 		"heat dissipation" .86
-		"fuel capacity" 300
+		"fuel capacity" 225
 		"cargo space" 27
 		"outfit space" 59
 		"engine capacity" 26
@@ -110,7 +110,7 @@ ship "Summer Leaf"
 		"mass" 220
 		"drag" 3.0
 		"heat dissipation" .7
-		"fuel capacity" 800
+		"fuel capacity" 725
 		"cargo space" 41
 		"outfit space" 320
 		"weapon capacity" 84
@@ -165,7 +165,7 @@ ship "Autumn Leaf"
 		"mass" 260
 		"drag" 3.5
 		"heat dissipation" .67
-		"fuel capacity" 1000
+		"fuel capacity" 925
 		"cargo space" 45
 		"outfit space" 361
 		"weapon capacity" 103
@@ -232,7 +232,7 @@ ship "Strong Wind"
 		"mass" 1040
 		"drag" 6.6
 		"heat dissipation" .5
-		"fuel capacity" 600
+		"fuel capacity" 775
 		"cargo space" 68
 		"outfit space" 493
 		"weapon capacity" 198
@@ -293,7 +293,7 @@ ship "Tempest"
 		"mass" 1280
 		"drag" 9.6
 		"heat dissipation" 0.42
-		"fuel capacity" 600
+		"fuel capacity" 875
 		"cargo space" 47
 		"outfit space" 607
 		"weapon capacity" 271
@@ -423,7 +423,7 @@ ship "Derecho"
 		"mass" 4320
 		"drag" 14.8
 		"heat dissipation" 0.36
-		"fuel capacity" 500
+		"fuel capacity" 1375
 		"cargo space" 56
 		"outfit space" 796
 		"weapon capacity" 342
@@ -558,7 +558,7 @@ ship "Hurricane"
 		"mass" 6160
 		"drag" 23.2
 		"heat dissipation" 0.29
-		"fuel capacity" 500
+		"fuel capacity" 1800
 		"cargo space" 98
 		"outfit space" 960
 		"weapon capacity" 428
@@ -713,7 +713,7 @@ ship "Cool Breeze"
 		"mass" 86
 		"drag" 2.1
 		"heat dissipation" .79
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 14
 		"outfit space" 192
 		"weapon capacity" 41
@@ -775,7 +775,7 @@ ship "Winter Gale"
 		"mass" 480
 		"drag" 7.3
 		"heat dissipation" .54
-		"fuel capacity" 600
+		"fuel capacity" 625
 		"cargo space" 28
 		"outfit space" 478
 		"weapon capacity" 171
@@ -889,7 +889,7 @@ ship "Deep River"
 		"mass" 6000
 		"drag" 14.6
 		"heat dissipation" .4
-		"fuel capacity" 500
+		"fuel capacity" 1850
 		"cargo space" 1140
 		"outfit space" 363
 		"weapon capacity" 177
@@ -989,7 +989,7 @@ ship "Deep River Transport"
 		"mass" 6000
 		"drag" 14.6
 		"heat dissipation" .39
-		"fuel capacity" 500
+		"fuel capacity" 1625
 		"cargo space" 74
 		"outfit space" 321
 		"weapon capacity" 114
@@ -1058,7 +1058,7 @@ ship "Riptide"
 		"mass" 2000
 		"drag" 11
 		"heat dissipation" .47
-		"fuel capacity" 800
+		"fuel capacity" 1400
 		"cargo space" 164
 		"outfit space" 488
 		"weapon capacity" 98

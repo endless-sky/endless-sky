@@ -28,7 +28,7 @@ ship "Shale"
 		"mass" 114
 		"drag" 2
 		"heat dissipation" 0.73
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 54
 		"outfit space" 113
 		"weapon capacity" 0
@@ -71,7 +71,7 @@ ship "Dolomite"
 		"mass" 2160
 		"drag" 6.7
 		"heat dissipation" 0.42
-		"fuel capacity" 500
+		"fuel capacity" 850
 		"cargo space" 200
 		"outfit space" 152
 		"weapon capacity" 0
@@ -119,7 +119,7 @@ ship "Conglomerate"
 		"mass" 3620
 		"drag" 20.9
 		"heat dissipation" 0.4
-		"fuel capacity" 500
+		"fuel capacity" 1200
 		"cargo space" 415
 		"outfit space" 253
 		"weapon capacity" 0
@@ -172,7 +172,7 @@ ship "Granofel"
 		"mass" 1367
 		"drag" 16.3
 		"heat dissipation" 0.39
-		"fuel capacity" 500
+		"fuel capacity" 775
 		"cargo space" 560
 		"outfit space" 230
 		"weapon capacity" 0
@@ -225,7 +225,7 @@ ship "Gypsum"
 		"mass" 720
 		"drag" 3.9
 		"heat dissipation" 0.62
-		"fuel capacity" 600
+		"fuel capacity" 675
 		"cargo space" 160
 		"outfit space" 240
 		"weapon capacity" 42
@@ -280,7 +280,7 @@ ship "Corundum"
 		"mass" 880
 		"drag" 4.5
 		"heat dissipation" 0.64
-		"fuel capacity" 600
+		"fuel capacity" 725
 		"cargo space" 140
 		"outfit space" 316
 		"weapon capacity" 64
@@ -363,7 +363,7 @@ ship "Protolith"
 		"mass" 37520
 		"drag" 131
 		"heat dissipation" 0.18
-		"fuel capacity" 2100
+		"fuel capacity" 34975
 		"cargo space" 1160
 		"outfit space" 942
 		"weapon capacity" 0
@@ -477,7 +477,7 @@ ship "Augen"
 		"mass" 30000
 		"drag" 120
 		"heat dissipation" 0.17
-		"fuel capacity" 500
+		"fuel capacity" 6775
 		"cargo space" 84
 		"outfit space" 1868
 		"weapon capacity" 1073
@@ -603,7 +603,7 @@ ship "Slate"
 		"mass" 140
 		"drag" 2.2
 		"heat dissipation" 0.73
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 81
 		"outfit space" 122
 		"weapon capacity" 0
@@ -647,7 +647,7 @@ ship "Schist"
 		"mass" 2240
 		"drag" 8.5
 		"heat dissipation" 0.5
-		"fuel capacity" 500
+		"fuel capacity" 875
 		"cargo space" 140
 		"outfit space" 298
 		"weapon capacity" 100
@@ -730,7 +730,7 @@ ship "Rhyolite"
 		"mass" 225
 		"drag" 4
 		"heat dissipation" 0.64
-		"fuel capacity" 400
+		"fuel capacity" 350
 		"cargo space" 30
 		"outfit space" 220
 		"weapon capacity" 78
@@ -784,7 +784,7 @@ ship "Eclogite"
 		"mass" 550
 		"drag" 4.6
 		"heat dissipation" 0.56
-		"fuel capacity" 400
+		"fuel capacity" 425
 		"cargo space" 70
 		"outfit space" 285
 		"weapon capacity" 96
@@ -839,7 +839,7 @@ ship "Diorite"
 		"mass" 952
 		"drag" 7.54
 		"heat dissipation" 0.56
-		"fuel capacity" 500
+		"fuel capacity" 625
 		"cargo space" 40
 		"outfit space" 453
 		"weapon capacity" 195
@@ -912,7 +912,7 @@ ship "Hornfel"
 		"mass" 2960
 		"drag" 10.1
 		"heat dissipation" 0.38
-		"fuel capacity" 600
+		"fuel capacity" 1275
 		"cargo space" 120
 		"outfit space" 508
 		"weapon capacity" 240
@@ -1044,7 +1044,7 @@ ship "Gneiss"
 		"mass" 8256
 		"drag" 24.5
 		"heat dissipation" 0.22
-		"fuel capacity" 500
+		"fuel capacity" 2200
 		"cargo space" 95
 		"outfit space" 841
 		"weapon capacity" 504
@@ -1121,7 +1121,7 @@ ship "Granulite"
 		"mass" 10080
 		"drag" 44.7
 		"heat dissipation" 0.22
-		"fuel capacity" 900
+		"fuel capacity" 4750
 		"cargo space" 718
 		"outfit space" 651
 		"weapon capacity" 216
@@ -1252,7 +1252,7 @@ ship "Mica"
 		"mass" 90
 		"drag" 1.9
 		"heat dissipation" 0.6
-		"fuel capacity" 400
+		"fuel capacity" 300
 		"cargo space" 36
 		"outfit space" 118
 		"weapon capacity" 0
@@ -1296,7 +1296,7 @@ ship "Coesite"
 		"mass" 460
 		"drag" 4.6
 		"heat dissipation" 0.61
-		"fuel capacity" 500
+		"fuel capacity" 475
 		"cargo space" 40
 		"outfit space" 264
 		"weapon capacity" 86
@@ -1355,7 +1355,7 @@ ship "Tridymite"
 		"mass" 380
 		"drag" 4.2
 		"heat dissipation" 0.59
-		"fuel capacity" 800
+		"fuel capacity" 725
 		"cargo space" 56
 		"outfit space" 200
 		"weapon capacity" 0
@@ -1412,7 +1412,7 @@ ship "Felsic"
 		"mass" 2260
 		"drag" 8.3
 		"heat dissipation" 0.5
-		"fuel capacity" 500
+		"fuel capacity" 875
 		"cargo space" 150
 		"outfit space" 322
 		"weapon capacity" 109
@@ -1469,7 +1469,7 @@ ship "Feldspar"
 		"mass" 8720
 		"drag" 26.2
 		"heat dissipation" 0.3
-		"fuel capacity" 600
+		"fuel capacity" 2675
 		"cargo space" 82
 		"outfit space" 566
 		"weapon capacity" 234
@@ -1559,7 +1559,7 @@ ship "Epidote"
 		"mass" 9168
 		"drag" 28.2
 		"heat dissipation" 0.32
-		"fuel capacity" 600
+		"fuel capacity" 2850
 		"cargo space" 430
 		"outfit space" 552
 		"weapon capacity" 166
@@ -1627,7 +1627,7 @@ ship "Kyanite"
 		"mass" 5910
 		"drag" 22.6
 		"heat dissipation" 0.33
-		"fuel capacity" 400
+		"fuel capacity" 1300
 		"cargo space" 76
 		"outfit space" 380
 		"weapon capacity" 202

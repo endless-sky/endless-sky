@@ -1052,7 +1052,7 @@ ship "Geodesic Geocoris"
 		"mass" 7640
 		"drag" 21.3
 		"heat dissipation" 0.4
-		"fuel capacity" 800
+		"fuel capacity" 3500
 		"cargo space" 1003
 		"outfit space" 555
 		"weapon capacity" 250

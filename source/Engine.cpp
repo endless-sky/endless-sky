@@ -234,7 +234,6 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .00625;
-	const double MAX_FUEL_DISPLAY = 5000.;
 
 	const double CAMERA_VELOCITY_TRACKING = 0.1;
 	const double CAMERA_POSITION_CENTERING = 0.01;
@@ -790,18 +789,74 @@ void Engine::Step(bool isActive)
 			info.SetCondition("flagship solar display");
 			info.SetString("flagship solar", to_string(flagshipSolar));
 		}
+		// These check for the attribute to determine if the pilot has installed
+		// outfits that give a live display of ship mass and jump fuel costs.
+		bool flagshipMassDisplay = flagship->DisplayMass();
+		bool flagshipHyperDisplay = flagship->DisplayHyperFuelCost();
+		bool flagshipScramDisplay = flagship->DisplayScramFuelCost();
+		bool flagshipJumpDisplay = flagship->DisplayJumpFuelCost();
+		// These are to get the method of scaling the fuel bar segments.
+		bool flagshipHyperFuelBar = flagship->HyperDriveFuelBar();
+		bool flagshipScramFuelBar = flagship->ScramDriveFuelBar();
+		bool flagshipJumpFuelBar = flagship->JumpDriveFuelBar();
+		double flagshipFixedFuelBar = flagship->FixedScaleFuelBar();
+		// Transfers that information into the info setconditions.
+		if(flagshipMassDisplay)
+			info.SetCondition("flagship mass display");
+		if(flagshipHyperDisplay)
+			info.SetCondition("flagship hyper fuel display");
+		if(flagshipScramDisplay)
+			info.SetCondition("flagship scram fuel display");
+		if(flagshipJumpDisplay)
+			info.SetCondition("flagship jump fuel display");
+		// Calculates the mass, as well as hyper, scram, and jump drive fuel costs
+		double flagshipMass = flagship->InertialMass();
+		int flagshipMassNumber = round(flagshipMass);
+		info.SetString("flagship mass", to_string(flagshipMassNumber));
+		double relativeFlagshipMass = ((flagshipMass - 900.) / 100.);
+		double flagshipHyperDriveFuel = 100. + (relativeFlagshipMass * 4.);
+		int flagshipHyperDriveFuelDisplay = round(flagshipHyperDriveFuel);
+		info.SetString("flagship hyperdrive fuel per hyperjump", to_string(flagshipHyperDriveFuelDisplay));
+		double flagshipScramDriveFuel = 150. + (relativeFlagshipMass * 6.);
+		int flagshipScramDriveFuelDisplay = round(flagshipScramDriveFuel);
+		info.SetString("flagship scram drive fuel per hyperjump", to_string(flagshipScramDriveFuelDisplay));
+		double flagshipJumpDriveFuel = 200. + (relativeFlagshipMass * 8.);
+		int flagshipJumpDriveFuelDisplay = round(flagshipJumpDriveFuel);
+		info.SetString("flagship jump drive fuel per hyperjump", to_string(flagshipJumpDriveFuelDisplay));
 		// new thrust/turn/lateral bars.
 		info.SetBar("thrust", flagship->DisplayThrust());
 		info.SetBar("turn", flagship->DisplayTurn());
 		info.SetBar("lateralthrust", flagship->DisplayLateralThrust());
 		// Get the flagship's fuel capacity
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
-		// If the flagship has a large amount of fuel, display a solid bar.
-		// Otherwise, display a segment for every 100 units of fuel.
-		if(fuelCap <= MAX_FUEL_DISPLAY)
-			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+
+		// If the flagship has an outfit that forces a specific scale for the fuel bar, use that. If it has multiple,
+		// then the priority order is HD, then SD, then JD, then fixed quantity. If none, the default is HD.
+		// In every case, if the player is trying to force a fuel bar that will result in 31 or more segments, then
+		// fall back to a solid bar.
+		double fuelToEvaluate = flagshipHyperDriveFuel;
+		double fallBackSegmentation = 1.;
+		if(flagshipHyperFuelBar)
+		{
+			fuelToEvaluate = flagshipHyperDriveFuel;
+		}
+		else if(flagshipScramFuelBar)
+		{
+			fuelToEvaluate = flagshipScramDriveFuel;
+		}
+		else if(flagshipJumpFuelBar)
+		{
+			fuelToEvaluate = flagshipJumpDriveFuel;
+		}
+		else if(flagshipFixedFuelBar)
+		{
+			fuelToEvaluate = flagshipFixedFuelBar;
+		}
+		if((fuelCap / fuelToEvaluate) < 31.)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap / fuelToEvaluate);
 		else
-			info.SetBar("fuel", flagship->Fuel());
+			info.SetBar("fuel", flagship->Fuel(), fallBackSegmentation);
+
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));

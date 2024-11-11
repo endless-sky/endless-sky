@@ -75,7 +75,7 @@ ship "Sasumata"
 		"mass" 710
 		"drag" 7.05
 		"heat dissipation" 0.54
-		"fuel capacity" 700
+		"fuel capacity" 800
 		"cargo space" 32
 		"outfit space" 397
 		"weapon capacity" 122
@@ -142,7 +142,7 @@ ship "Tanto"
 		"mass" 508
 		"drag" 3.9
 		"heat dissipation" 0.7
-		"fuel capacity" 600
+		"fuel capacity" 625
 		"cargo space" 219
 		"outfit space" 231
 		"weapon capacity" 56
@@ -197,7 +197,7 @@ ship "Ararebo"
 		"mass" 1780
 		"drag" 19.7
 		"heat dissipation" 0.53
-		"fuel capacity" 700
+		"fuel capacity" 1250
 		"cargo space" 414
 		"outfit space" 594
 		"weapon capacity" 112
@@ -326,7 +326,7 @@ ship "Kunai"
 		"mass" 740
 		"drag" 6.8
 		"heat dissipation" 0.66
-		"fuel capacity" 700
+		"fuel capacity" 800
 		"cargo space" 28
 		"outfit space" 407
 		"weapon capacity" 158
@@ -387,7 +387,7 @@ ship "Kama"
 		"mass" 2320
 		"drag" 12.6
 		"heat dissipation" 0.5
-		"fuel capacity" 800
+		"fuel capacity" 1475
 		"cargo space" 56
 		"outfit space" 573
 		"weapon capacity" 247
@@ -463,7 +463,7 @@ ship "Chigiriki"
 		"mass" 5200
 		"drag" 16.54
 		"heat dissipation" 0.4
-		"fuel capacity" 900
+		"fuel capacity" 2800
 		"cargo space" 102
 		"outfit space" 747
 		"weapon capacity" 504

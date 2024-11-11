@@ -26,7 +26,7 @@ ship "Arach Courier"
 		"mass" 125
 		"drag" 3.2
 		"heat dissipation" .6
-		"fuel capacity" 300
+		"fuel capacity" 250
 		"cargo space" 94
 		"outfit space" 148
 		"weapon capacity" 39
@@ -90,7 +90,7 @@ ship "Arach Freighter"
 		"mass" 1520
 		"drag" 14.8
 		"heat dissipation" .4
-		"fuel capacity" 500
+		"fuel capacity" 775
 		"cargo space" 372
 		"outfit space" 349
 		"weapon capacity" 132
@@ -166,7 +166,7 @@ ship "Arach Hulk"
 		"mass" 5360
 		"drag" 29.3
 		"heat dissipation" .33
-		"fuel capacity" 500
+		"fuel capacity" 1650
 		"cargo space" 688
 		"outfit space" 520
 		"weapon capacity" 208
@@ -248,7 +248,7 @@ ship "Arach Spindle"
 		"mass" 1360
 		"drag" 16.7
 		"heat dissipation" .36
-		"fuel capacity" 500
+		"fuel capacity" 775
 		"cargo space" 392
 		"outfit space" 434
 		"weapon capacity" 138
@@ -366,7 +366,7 @@ ship "Arach Transport"
 		"mass" 560
 		"drag" 9
 		"heat dissipation" .48
-		"fuel capacity" 400
+		"fuel capacity" 450
 		"cargo space" 228
 		"outfit space" 281
 		"weapon capacity" 96
@@ -440,7 +440,7 @@ ship "Heliarch Breacher"
 		"heat dissipation" .62
 		"ion protection" .1
 		"scramble protection" .1
-		"fuel capacity" 800
+		"fuel capacity" 775
 		"cargo space" 13
 		"outfit space" 372
 		"weapon capacity" 112
@@ -568,7 +568,7 @@ ship "Heliarch Hunter"
 		"heat dissipation" .5
 		"ion protection" .2
 		"scramble protection" .2
-		"fuel capacity" 1500
+		"fuel capacity" 2350
 		"cargo space" 27
 		"outfit space" 552
 		"weapon capacity" 201
@@ -772,7 +772,7 @@ ship "Heliarch Interdictor"
 		"heat dissipation" .47
 		"ion protection" .2
 		"scramble protection" .2
-		"fuel capacity" 800
+		"fuel capacity" 1400
 		"cargo space" 79
 		"outfit space" 544
 		"weapon capacity" 179
@@ -956,7 +956,7 @@ ship "Heliarch Judicator"
 		"heat dissipation" .45
 		"ion protection" .2
 		"scramble protection" .2
-		"fuel capacity" 900
+		"fuel capacity" 1525
 		"cargo space" 136
 		"outfit space" 524
 		"weapon capacity" 164
@@ -1151,7 +1151,7 @@ ship "Heliarch Neutralizer"
 		"heat dissipation" .6
 		"ion protection" .1
 		"scramble protection" .1
-		"fuel capacity" 1000
+		"fuel capacity" 1050
 		"cargo space" 36
 		"outfit space" 367
 		"weapon capacity" 72
@@ -1287,7 +1287,7 @@ ship "Heliarch Punisher"
 		"heat dissipation" .35
 		"ion protection" .3
 		"scramble protection" .3
-		"fuel capacity" 600
+		"fuel capacity" 2150
 		"cargo space" 94
 		"outfit space" 885
 		"weapon capacity" 352
@@ -1745,7 +1745,7 @@ ship "Kimek Briar"
 		"mass" 360
 		"drag" 4.8
 		"heat dissipation" .6
-		"fuel capacity" 700
+		"fuel capacity" 650
 		"cargo space" 23
 		"outfit space" 245
 		"weapon capacity" 89
@@ -1811,7 +1811,7 @@ ship "Kimek Spire"
 		"mass" 4560
 		"drag" 13
 		"heat dissipation" .39
-		"fuel capacity" 800
+		"fuel capacity" 2175
 		"cargo space" 70
 		"outfit space" 489
 		"weapon capacity" 256
@@ -1888,7 +1888,7 @@ ship "Kimek Thistle"
 		"mass" 540
 		"drag" 8.1
 		"heat dissipation" .5
-		"fuel capacity" 700
+		"fuel capacity" 725
 		"cargo space" 32
 		"outfit space" 321
 		"weapon capacity" 118
@@ -1983,7 +1983,7 @@ ship "Kimek Thorn"
 		"mass" 90
 		"drag" 1.9
 		"heat dissipation" .77
-		"fuel capacity" 600
+		"fuel capacity" 450
 		"cargo space" 13
 		"outfit space" 133
 		"weapon capacity" 40
@@ -2047,7 +2047,7 @@ ship "Saryd Runabout"
 		"mass" 280
 		"drag" 3.2
 		"heat dissipation" .61
-		"fuel capacity" 400
+		"fuel capacity" 350
 		"cargo space" 46
 		"outfit space" 172
 		"weapon capacity" 44
@@ -2109,7 +2109,7 @@ ship "Saryd Sojourner"
 		"mass" 5120
 		"drag" 20
 		"heat dissipation" .33
-		"fuel capacity" 800
+		"fuel capacity" 2475
 		"cargo space" 312
 		"outfit space" 568
 		"weapon capacity" 202
@@ -2210,7 +2210,7 @@ ship "Saryd Traveler"
 		"mass" 1400
 		"drag" 7.7
 		"heat dissipation" .43
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 164
 		"outfit space" 466
 		"weapon capacity" 177
@@ -2291,7 +2291,7 @@ ship "Saryd Visitor"
 		"mass" 540
 		"drag" 5.5
 		"heat dissipation" .52
-		"fuel capacity" 400
+		"fuel capacity" 425
 		"cargo space" 108
 		"outfit space" 320
 		"weapon capacity" 90

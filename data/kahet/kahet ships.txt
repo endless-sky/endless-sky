@@ -28,7 +28,7 @@ ship "Maeri'het"
 		"heat dissipation" .31
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.3
-		"fuel capacity" 800
+		"fuel capacity" 925
 		"ramscoop" 0.58
 		"cargo space" 43
 		"outfit space" 383
@@ -136,7 +136,7 @@ ship "Telis'het"
 		"heat dissipation" .24
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.2
-		"fuel capacity" 800
+		"fuel capacity" 1825
 		"ramscoop" 0.82
 		"cargo space" 71
 		"outfit space" 673
@@ -282,7 +282,7 @@ ship "Vareti'het"
 		"heat dissipation" 0.18
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.4
-		"fuel capacity" 700
+		"fuel capacity" 4200
 		"ramscoop" 0.97
 		"cargo space" 108
 		"outfit space" 914

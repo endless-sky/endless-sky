@@ -29,7 +29,7 @@ ship "Aaulqra"
 		"mass" 650
 		"drag" 8.75
 		"heat dissipation" 0.49
-		"fuel capacity" 600
+		"fuel capacity" 700
 		"cargo space" 15
 		"outfit space" 550
 		"weapon capacity" 240
@@ -127,7 +127,7 @@ ship "Ejniisde"
 		"mass" 350
 		"drag" 4.6
 		"heat dissipation" 0.67
-		"fuel capacity" 700
+		"fuel capacity" 650
 		"cargo space" 50
 		"outfit space" 265
 		"weapon capacity" 85
@@ -208,7 +208,7 @@ ship "Kaskhorade"
 		"mass" 990
 		"drag" 13.6
 		"heat dissipation" .5
-		"fuel capacity" 600
+		"fuel capacity" 800
 		"cargo space" 140
 		"outfit space" 570
 		"weapon capacity" 280
@@ -309,7 +309,7 @@ ship "Kvelqde"
 		"mass" 110
 		"drag" 2.25
 		"heat dissipation" 0.82
-		"fuel capacity" 500
+		"fuel capacity" 400
 		"cargo space" 25
 		"outfit space" 160
 		"weapon capacity" 55
@@ -393,7 +393,7 @@ ship "Kvelqde-Khora"
 		"mass" 158
 		"drag" 2.95
 		"heat dissipation" 0.78
-		"fuel capacity" 500
+		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 197
 		"weapon capacity" 63
@@ -477,7 +477,7 @@ ship "Myaede"
 		"mass" 500
 		"drag" 7.1
 		"heat dissipation" 0.62
-		"fuel capacity" 500
+		"fuel capacity" 525
 		"cargo space" 125
 		"outfit space" 275
 		"weapon capacity" 125
@@ -648,7 +648,7 @@ ship "Nnesaarau"
 		"mass" 90
 		"drag" 2.1
 		"heat dissipation" 0.86
-		"fuel capacity" 600
+		"fuel capacity" 475
 		"cargo space" 8
 		"outfit space" 175
 		"weapon capacity" 30
@@ -723,7 +723,7 @@ ship "Ojde"
 		"mass" 1190
 		"drag" 15.5
 		"heat dissipation" 0.5
-		"fuel capacity" 500
+		"fuel capacity" 725
 		"cargo space" 450
 		"outfit space" 330
 		"weapon capacity" 180
@@ -897,7 +897,7 @@ ship "Stolsaqra"
 		"mass" 120
 		"drag" 2.75
 		"heat dissipation" 0.79
-		"fuel capacity" 300
+		"fuel capacity" 250
 		"cargo space" 5
 		"outfit space" 212
 		"weapon capacity" 90
@@ -991,7 +991,7 @@ ship "Veusade"
 		"mass" 360
 		"drag" 5.45
 		"heat dissipation" .62
-		"fuel capacity" 500
+		"fuel capacity" 475
 		"cargo space" 15
 		"outfit space" 370
 		"weapon capacity" 96
@@ -1089,7 +1089,7 @@ ship "Vujlet"
 		"mass" 230
 		"drag" 3.8
 		"heat dissipation" .68
-		"fuel capacity" 600
+		"fuel capacity" 525
 		"cargo space" 10
 		"outfit space" 280
 		"weapon capacity" 105

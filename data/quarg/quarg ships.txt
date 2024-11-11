@@ -24,7 +24,7 @@ ship "Quarg Skylark"
 		"mass" 3680
 		"drag" 18.5
 		"heat dissipation" .47
-		"fuel capacity" 1000
+		"fuel capacity" 2450
 		"cargo space" 200
 		"outfit space" 600
 		"weapon capacity" 200
@@ -81,7 +81,7 @@ ship "Quarg Wardragon"
 		"mass" 2880
 		"drag" 14
 		"heat dissipation" .34
-		"fuel capacity" 800
+		"fuel capacity" 1675
 		"cargo space" 50
 		"outfit space" 600
 		"weapon capacity" 200

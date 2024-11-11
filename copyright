@@ -2335,6 +2335,10 @@ Files:
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rogue*
  images/planet/browndwarf-y*
+ images/ui/tactical/hyperjump*
+ images/ui/tactical/jumpdrivejump*
+ images/ui/tactical/mass*
+ images/ui/tactical/scramjump*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 
@@ -3691,6 +3695,7 @@ Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/cockpit?software*
  images/ui/tactical/crew*
  images/ui/tactical/energy*
  images/ui/tactical/fuel*
@@ -3698,6 +3703,15 @@ Files:
 Copyright: Zitchas
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/cockpit?hyperjump?software*
+ images/outfit/cockpit?jumpdrive?software*
+ images/outfit/cockpit?mass?software*
+ images/outfit/cockpit?scramjump?software*
+Copyright: Zitchas & Lia Gerty
+License: CC-BY-SA-4.0
+Comment: Derived from works by Iaz Poolar, Michael Zahniser, and Lia Gerty (under the same license).
 
 Files:
  images/_menu/haze-brown*

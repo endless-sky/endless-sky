@@ -27,7 +27,7 @@ ship "Archon"
 		"mass" 2150
 		"drag" 40.5
 		"heat dissipation" 27
-		"fuel capacity" 800
+		"fuel capacity" 1650
 		"cargo space" 0
 		"outfit space" 1300
 		"weapon capacity" 1125

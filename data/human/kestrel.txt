@@ -290,7 +290,7 @@ ship "Unknown Ship Type"
 		"mass" 5920
 		"drag" 20.9
 		"heat dissipation" .32
-		"fuel capacity" 500
+		"fuel capacity" 1725
 		"cargo space" 120
 		"outfit space" 810
 		"weapon capacity" 390
@@ -354,7 +354,7 @@ ship "Kestrel"
 		"mass" 5920
 		"drag" 20.9
 		"heat dissipation" .32
-		"fuel capacity" 500
+		"fuel capacity" 1725
 		"cargo space" 120
 		"outfit space" 810
 		"weapon capacity" 390
@@ -416,7 +416,7 @@ ship "Kestrel" "Kestrel (More Engines)"
 	add attributes
 		"drag" -1.9
 		"engine capacity" 30
-		"fuel capacity" 100
+		"fuel capacity" 475 # Improvised amount should be a bit over 1 additional jump.
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -465,6 +465,7 @@ ship "Kestrel" "Kestrel (More Bays)"
 	add attributes
 		"mass" 60
 		"weapon capacity" -20
+		"fuel capacity" 275 # This is an improvised stopgap to handle increased carrier mass.
 	outfits
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2

@@ -27,7 +27,7 @@ ship "Korath Dredger"
 		"mass" 12024
 		"drag" 17.1
 		"heat dissipation" .45
-		"fuel capacity" 900
+		"fuel capacity" 5475
 		"cargo space" 675
 		"outfit space" 763
 		"weapon capacity" 276
@@ -107,7 +107,7 @@ ship "Korath Raider"
 		"mass" 2880
 		"drag" 12
 		"heat dissipation" .5
-		"fuel capacity" 600
+		"fuel capacity" 1325
 		"cargo space" 175
 		"outfit space" 777
 		"weapon capacity" 339
@@ -224,7 +224,7 @@ ship "Korath World-Ship"
 		"mass" 13880
 		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 1000
+		"fuel capacity" 6700
 		"cargo space" 264
 		"outfit space" 839
 		"weapon capacity" 314

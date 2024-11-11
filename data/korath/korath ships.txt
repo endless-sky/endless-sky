@@ -26,7 +26,7 @@ ship "Rano'erek"
 		"mass" 12024
 		"drag" 32.5
 		"heat dissipation" .24
-		"fuel capacity" 900
+		"fuel capacity" 5475
 		"cargo space" 675
 		"outfit space" 763
 		"weapon capacity" 276
@@ -112,7 +112,7 @@ ship "Palavret"
 		"mass" 2880
 		"drag" 20.4
 		"heat dissipation" .3
-		"fuel capacity" 600
+		"fuel capacity" 1325
 		"cargo space" 175
 		"outfit space" 777
 		"weapon capacity" 339
@@ -192,7 +192,7 @@ ship "Tubfalet"
 		"heat dissipation" .36
 		"heat protection" 0.1
 		"hull protection" 0.1
-		"fuel capacity" 700
+		"fuel capacity" 1825
 		"cargo space" 163
 		"outfit space" 871
 		"weapon capacity" 377
@@ -309,7 +309,7 @@ ship "'nra'ret"
 		"mass" 7832
 		"drag" 18.7
 		"heat dissipation" .39
-		"fuel capacity" 900
+		"fuel capacity" 3800
 		"cargo space" 50
 		"outfit space" 943
 		"weapon capacity" 407
@@ -475,7 +475,7 @@ ship "Rai'alorej"
 		"mass" 13280
 		"drag" 53.8
 		"heat dissipation" .19
-		"fuel capacity" 700
+		"fuel capacity" 4550
 
 		"cargo space" 351
 		"outfit space" 856
@@ -560,7 +560,7 @@ ship "Ikatila'ej"
 		"mass" 32280
 		"drag" 133.4
 		"heat dissipation" .13
-		"fuel capacity" 800
+		"fuel capacity" 11650
 		"cargo space" 845
 		"outfit space" 1314
 		"weapon capacity" 440
@@ -641,7 +641,7 @@ ship "Lor'kas Ik 577"
 		"mass" 15080
 		"drag" 39
 		"heat dissipation" .2
-		"fuel capacity" 1000
+		"fuel capacity" 7650
 		"cargo space" 1375
 		"outfit space" 883
 		"weapon capacity" 338
@@ -725,7 +725,7 @@ ship "Ra'gru Ik 618"
 		"mass" 13960
 		"drag" 44.1
 		"heat dissipation" .23
-		"fuel capacity" 1000
+		"fuel capacity" 6900
 		"cargo space" 191
 		"outfit space" 1278
 		"weapon capacity" 633
@@ -818,7 +818,7 @@ ship "Kas'lor Ik 582"
 		"drag" 34.9
 		"heat dissipation" .18
 		"solar collection" 3.8
-		"fuel capacity" 32700
+		"fuel capacity" 242650
 		"cargo space" 734
 		"outfit space" 839
 		"weapon capacity" 321
@@ -899,7 +899,7 @@ ship "Lor'nag Ik 590"
 		"drag" 36.9
 		"heat dissipation" .19
 		"solar collection" 5.6
-		"fuel capacity" 1000
+		"fuel capacity" 7350
 		"cargo space" 264
 		"outfit space" 856
 		"weapon capacity" 321
@@ -982,7 +982,7 @@ ship "Ra'at Ik 621"
 		"mass" 14040
 		"drag" 55.4
 		"heat dissipation" .2
-		"fuel capacity" 1000
+		"fuel capacity" 6825
 		"cargo space" 228
 		"outfit space" 999
 		"weapon capacity" 407
@@ -1078,7 +1078,7 @@ ship "Kasichara A'awoj"
 		"drag" 50.4
 		"heat dissipation" .21
 		"solar collection" 12.7
-		"fuel capacity" 600
+		"fuel capacity" 4850
 		"cargo space" 532
 		"outfit space" 1038
 		"weapon capacity" 331
@@ -1151,7 +1151,7 @@ ship "Korsmanath A'awoj"
 		"drag" 231
 		"heat dissipation" .08
 		"solar collection" 4.2
-		"fuel capacity" 1000
+		"fuel capacity" 26925
 		"cargo space" 1864
 		"outfit space" 3180
 		"weapon capacity" 1148
@@ -1389,7 +1389,7 @@ ship "Echo-Galleon"
 		"mass" 12280
 		"drag" 42
 		"heat dissipation" .3
-		"fuel capacity" 600
+		"fuel capacity" 3725
 		"cargo space" 734
 		"outfit space" 721
 		"weapon capacity" 285
@@ -1454,7 +1454,7 @@ ship "Arch-Carrack"
 		"mass" 8616
 		"drag" 22.3
 		"heat dissipation" .34
-		"fuel capacity" 600
+		"fuel capacity" 2775
 		"cargo space" 635
 		"outfit space" 582
 		"weapon capacity" 193
@@ -1521,7 +1521,7 @@ ship "Charm-Shallop"
 		"mass" 990
 		"drag" 10.5
 		"heat dissipation" .5
-		"fuel capacity" 500
+		"fuel capacity" 675
 		"cargo space" 194
 		"outfit space" 473
 		"weapon capacity" 158
@@ -1583,7 +1583,7 @@ ship "Kar Ik Vot 349"
 		"mass" 10800
 		"drag" 33.6
 		"heat dissipation" .25
-		"fuel capacity" 400
+		"fuel capacity" 2200
 		"cargo space" 87
 		"outfit space" 1054
 		"weapon capacity" 447
@@ -1662,7 +1662,7 @@ ship "Tek Far 71 - Lek"
 		"mass" 2440
 		"drag" 14.9
 		"heat dissipation" .39
-		"fuel capacity" 400
+		"fuel capacity" 750
 		"cargo space" 36
 		"outfit space" 533
 		"weapon capacity" 235
@@ -1758,7 +1758,7 @@ ship "Tek Far 78 - Osk"
 		"mass" 2760
 		"drag" 16.3
 		"heat dissipation" .35
-		"fuel capacity" 400
+		"fuel capacity" 825
 		"cargo space" 43
 		"outfit space" 611
 		"weapon capacity" 272
@@ -1850,7 +1850,7 @@ ship "Tek Far 109"
 		"mass" 2160
 		"drag" 13.7
 		"heat dissipation" .44
-		"fuel capacity" 400
+		"fuel capacity" 700
 		"cargo space" 31
 		"outfit space" 491
 		"weapon capacity" 217
@@ -1946,7 +1946,7 @@ ship "Met Par Tek 53"
 		"mass" 840
 		"drag" 8.6
 		"heat dissipation" .54
-		"fuel capacity" 400
+		"fuel capacity" 500
 		"cargo space" 26
 		"outfit space" 610
 		"weapon capacity" 213
@@ -2102,7 +2102,7 @@ ship "Model 8"
 		"mass" 160
 		"drag" 3.7
 		"heat dissipation" 1.3
-		"fuel capacity" 200
+		"fuel capacity" 175
 		"cargo space" 29
 		"outfit space" 220
 		"weapon capacity" 49
@@ -2153,7 +2153,7 @@ ship "Model 16"
 		"mass" 500
 		"drag" 8.3
 		"heat dissipation" 1.09
-		"fuel capacity" 400
+		"fuel capacity" 425
 		"cargo space" 7
 		"outfit space" 426
 		"weapon capacity" 149
@@ -2213,7 +2213,7 @@ ship "Model 32"
 		"mass" 740
 		"drag" 11.7
 		"heat dissipation" 1.0
-		"fuel capacity" 400
+		"fuel capacity" 475
 		"cargo space" 16
 		"outfit space" 481
 		"weapon capacity" 205
@@ -2274,7 +2274,7 @@ ship "Model 64"
 		"mass" 2320
 		"drag" 16.1
 		"heat dissipation" .76
-		"fuel capacity" 400
+		"fuel capacity" 750
 		"cargo space" 34
 		"outfit space" 567
 		"weapon capacity" 263
@@ -2339,7 +2339,7 @@ ship "Model 128"
 		"mass" 3120
 		"drag" 20.5
 		"heat dissipation" .65
-		"fuel capacity" 400
+		"fuel capacity" 900
 		"cargo space" 53
 		"outfit space" 713
 		"weapon capacity" 344
@@ -2405,7 +2405,7 @@ ship "Model 256"
 		"mass" 7760
 		"drag" 26.8
 		"heat dissipation" .52
-		"fuel capacity" 400
+		"fuel capacity" 1675
 		"cargo space" 78
 		"outfit space" 857
 		"weapon capacity" 393
@@ -2475,7 +2475,7 @@ ship "Model 512"
 		"mass" 9200
 		"drag" 33.9
 		"heat dissipation" .42
-		"fuel capacity" 400
+		"fuel capacity" 1925
 		"cargo space" 107
 		"outfit space" 994
 		"weapon capacity" 440

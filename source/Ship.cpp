@@ -2814,6 +2814,79 @@ double Ship::Energy() const
 
 
 
+// Determine if the player has a HUD fuel bar scale modifier. There are four options: Hyperdrive, Scram drive,
+// Jump drive, and fixed scale. The first three are boolean, but the fixed scale can be any integer. In use, the
+// first three trigger automatic calculations that will split the fuel bar into segments equal to a jump of
+// their respective type. The fourth lets content creators and players force bar segments of a specific length.
+bool Ship::HyperDriveFuelBar() const
+{
+	bool displayHyperFuelBar = attributes.Get("hyperdrive fuel bar scale");
+	return displayHyperFuelBar;
+}
+
+
+
+bool Ship::ScramDriveFuelBar() const
+{
+	bool displayScramFuelBar = attributes.Get("scram drive fuel bar scale");
+	return displayScramFuelBar;
+}
+
+
+
+bool Ship::JumpDriveFuelBar() const
+{
+	bool displayJumpFuelBar = attributes.Get("jump drive fuel bar scale");
+	return displayJumpFuelBar;
+}
+
+
+
+double Ship::FixedScaleFuelBar() const
+{
+	double displayFixedScaleFuelBar = attributes.Get("fixed scale fuel bar scale");
+	return displayFixedScaleFuelBar;
+}
+
+
+
+// Determine if the player has an in-flight mass display installed
+bool Ship::DisplayMass() const
+{
+	bool displayMass = attributes.Get("mass display");
+	return displayMass;
+}
+
+
+
+// Determine if the player has a hyperdrive fuel cost display installed
+bool Ship::DisplayHyperFuelCost() const
+{
+	bool displayHD = attributes.Get("hyperdrive fuel cost display");
+	return displayHD;
+}
+
+
+
+// Determine if the player has a scram drive fuel cost display installed
+bool Ship::DisplayScramFuelCost() const
+{
+	bool displaySD = attributes.Get("scram drive fuel cost display");
+	return displaySD;
+}
+
+
+
+// Determine if the player has a jump drive fuel cost display installed
+bool Ship::DisplayJumpFuelCost() const
+{
+	bool displayJD = attributes.Get("jump drive fuel cost display");
+	return displayJD;
+}
+
+
+
+// Calculate the ship's current solar energy.
 double Ship::DisplaySolar() const
 {
 	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
@@ -2824,6 +2897,7 @@ double Ship::DisplaySolar() const
 
 
 
+// Calculate the ship's current ramscooop.
 double Ship::DisplayRamScoop() const
 {
 	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
