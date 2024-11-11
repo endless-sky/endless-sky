@@ -44,20 +44,21 @@ class ShopPanel : public Panel {
 public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 
-	virtual void Step() override;
-	virtual void Draw() override;
+	void Step() override;
+	void Draw() override;
 
 
 protected:
-	// BuyResult holds the result of an attempt to buy. It is implicitly
-	// created from a string or boolean in code. Any string indicates failure.
-	// True indicates success, of course, while false (without a string)
-	// indicates failure, but no need to pop up a message about it.
-	class BuyResult {
+	// TransactionResult holds the result of an attempt to do a transaction.
+	// It is implicitly created from a string or boolean in code. Any string
+	// indicates failure. True indicates success, of course, while false
+	// (without a string) indicates failure, but no need to pop up a message
+	// about it.
+	class TransactionResult {
 	public:
-		BuyResult(const char *error) : success(false), message(error) {}
-		BuyResult(std::string error) : success(false), message(std::move(error)) {}
-		BuyResult(bool result) : success(result), message() {}
+		TransactionResult(const char *error) : success(false), message(error) {}
+		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(bool result) : success(result), message() {}
 
 		explicit operator bool() const noexcept { return success; }
 
@@ -74,36 +75,47 @@ protected:
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
-	void CheckForMissions(Mission::Location location);
+	static void DrawTooltip(const std::string &text, const Point &hoverPoint, const Color &textColor,
+		const Color &backColor);
+
+	void CheckForMissions(Mission::Location location) const;
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point) = 0;
-	virtual int DividerOffset() const = 0;
+	virtual double ButtonPanelHeight() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
-	virtual void Buy(bool onlyOwned = false) = 0;
-	virtual bool CanSell(bool toStorage = false) const = 0;
-	virtual void Sell(bool toStorage = false) = 0;
-	virtual void FailSell(bool toStorage = false) const;
+	virtual void DrawButtons() = 0;
+	virtual char CheckButton(int x, int y) = 0;
+	virtual TransactionResult CanBuyToCargo() const;
+	virtual void BuyIntoCargo();
+	virtual TransactionResult CanDoBuyButton () const;
+	virtual void DoBuyButton ();
+	virtual TransactionResult CanSell() const = 0;
+	virtual void Sell(bool storeOutfits);
+	virtual void Sell();
+	virtual TransactionResult CanInstall() const;
+	virtual void Install();
+	virtual TransactionResult CanUninstall() const;
+	virtual void Uninstall();
+	virtual bool CanMoveToCargoFromStorage() const;
+	virtual void MoveToCargoFromStorage();
+	virtual TransactionResult CanMoveToStorage() const;
+	virtual void RetainInStorage();
 	virtual bool CanSellMultiple() const;
-	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);
-	virtual void DrawKey();
-	virtual void ToggleForSale();
-	virtual void ToggleStorage();
-	virtual void ToggleCargo();
+	virtual void DrawKey() {};
 
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
-	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
-	virtual bool Scroll(double dx, double dy) override;
+	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	bool Click(int x, int y, int clicks) override;
+	bool Hover(int x, int y) override;
+	bool Drag(double dx, double dy) override;
+	bool Release(int x, int y) override;
+	bool Scroll(double dx, double dy) override;
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
@@ -139,9 +151,10 @@ protected:
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
 	static constexpr int INFOBAR_WIDTH = 300;
 	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static constexpr int BUTTON_HEIGHT = 70;
+	static constexpr int BUTTON_HEIGHT = 30;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
+	static constexpr int HOVER_TIME = 60;
 
 
 protected:
@@ -189,14 +202,20 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
+	bool delayedAutoScroll = false;
+	Point hoverPoint;
+	int hoverCount = 0;
+
 
 private:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	void DrawButtons();
 	void DrawMain();
 
 	int DrawPlayerShipInfo(const Point &point);
+
+	TransactionResult CanDoTransaction(SDL_Keycode key) const;
+	void DoTransaction(SDL_Keycode key);
 
 	bool DoScroll(double dy, int steps = 5);
 	bool SetScrollToTop();
@@ -210,16 +229,9 @@ private:
 	void MainDown();
 	void CategoryAdvance(const std::string &category);
 	std::vector<Zone>::const_iterator Selected() const;
-	// Check if the given point is within the button zone, and if so return the
-	// letter of the button (or ' ' if it's not on a button).
-	char CheckButton(int x, int y);
 
 
 private:
-	bool delayedAutoScroll = false;
-
-	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	int hoverCount = 0;
 };
