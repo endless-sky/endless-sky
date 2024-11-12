@@ -4662,8 +4662,8 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai: declined"
-			has "First Contact: Unfettered: declined"
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
@@ -4676,8 +4676,8 @@ mission "Hai Wormhole Warning"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai: declined"
-			has "First Contact: Unfettered: declined"
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 		not "hr: meet the team"
