@@ -4960,7 +4960,7 @@ mission "Dangerous Games 1"
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
 				accept
 			label money
-			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <stopovers> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
 			choice
 				`	"Works for me. We leave tomorrow."`
 					goto accept
@@ -5016,7 +5016,6 @@ mission "Dangerous Games 1"
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
-
 
 
 mission "Dangerous Games 2"
