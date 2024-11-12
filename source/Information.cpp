@@ -43,11 +43,12 @@ bool Information::HasCustomRegion() const
 
 
 
-void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame)
+void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame, int swizzle)
 {
 	sprites[name] = sprite;
 	spriteUnits[name] = unit;
 	spriteFrames[name] = frame;
+	spriteSwizzles[name] = swizzle;
 }
 
 
@@ -76,6 +77,14 @@ float Information::GetSpriteFrame(const string &name) const
 {
 	auto it = spriteFrames.find(name);
 	return (it == spriteFrames.end()) ? 0.f : it->second;
+}
+
+
+
+int Information::GetSwizzle(const string &name) const
+{
+	auto it = spriteSwizzles.find(name);
+	return (it == spriteSwizzles.end()) ? 0 : it->second;
 }
 
 
