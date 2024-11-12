@@ -703,7 +703,11 @@ mission "Gegno Exploration Nudge"
 		has "Suspicious Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
-		has "Return to Giaru Gegno: offered"
+		never
+	to fail
+		or
+			has "Return to Giaru Gegno: offered"
+			has "Gegno Suspicions: offered"
 	on enter
 		conversation
 			branch provocative
