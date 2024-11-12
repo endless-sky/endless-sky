@@ -2254,3 +2254,141 @@ ship "Modified Hauler VI"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Hauler cargo ships are considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."
+
+
+
+person "Random Author"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"Forget your worries, come on, get happy!"
+			"Akunamatata! (Did I spell that right? I'm never sure.)"
+			"Dance like no-one is watching."
+			"Dance like you've got bigger things to worry about than what people think about you waving your arms."
+			"Hope for the best!"
+			"Prepare for the worst, but hope for the best."
+			"The journey of a thousand miles begins with a single step."
+			"Journey before Destination."
+			"If all you've got left is hope, then ask for help!"
+			"Someone cares. Never forget that."
+			"If in doubt, ask for help!"
+			"Even if you don't doubt, ask for help!"
+			"It may not always be apparent, but you have friends."
+			"No matter your place in the world, you matter."
+			"You are important to someone."
+			"Time for flashy lights!"
+			"Which way to the rave?"
+			"The best rave I've ever been to was in... uh... what town was that again?"
+	ship "Modified Protector" "Disco Ball"
+		"never disabled"
+
+
+
+ship "Protector" "Modified Protector"
+	sprite "ship/protector"
+	thumbnail "thumbnail/protector"
+	attributes
+		category "Heavy Warship"
+		"cost" 5500000
+		"shields" 20000
+		"hull" 15600
+		"required crew" 30
+		"bunks" 69
+		"mass" 5000
+		"drag" 20
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 974
+		"weapon capacity" 455
+		"engine capacity" 307
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Beam Laser"
+		"Electron Beam"
+		"Fire-Lance"
+		"Heavy Laser"
+		"Mining Laser" 2
+		"Moonbeam"
+		"Sunbeam"
+		"Meteor Missile Launcher" 3
+		"Meteor Missile" 90
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 180
+		"Quad Blaster Turret" 6
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP576a Battery Pack"
+		"D67-TM Shield Generator"
+		"Luxury Accommodations"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 69
+		
+		"Tyrant Plasma Thruster"
+		"Tyrant Plasma Steering"
+		"Hyperdrive"
+		
+	engine -12 122.5
+	engine 12 122.5
+	gun -17.5 -101 "Mining Laser"
+		parallel
+	gun -68 -68.5 "Beam Laser"
+		"angle" -45
+	gun -97.5 -1.5 "Heavy Laser"
+		"angle" -90
+	gun -70 66.5 "Electron Beam"
+		"angle" -135
+	gun 68.5 69 "Sunbeam"
+		"angle" 135
+	gun 97.5 0.5 "Moonbeam"
+		"angle" 90
+	gun 67.5 -71 "Fire-Lance"
+		"angle" 45
+	gun 17.5 -101 "Mining Laser"
+		parallel
+	pylon -68 -68.5 "Sidewinder Missile Launcher"
+		"angle" -45
+	pylon -97.5 -1.5 "Meteor Missile Launcher"
+		"angle" -90
+	pylon -70 66.5 "Sidewinder Missile Launcher"
+		"angle" -135
+	pylon 68.5 69 "Meteor Missile Launcher"
+		"angle" 135
+	pylon 97.5 0.5 "Sidewinder Missile Launcher"
+		"angle" 90
+	pylon 67.5 -71 "Meteor Missile Launcher"
+		"angle" 45
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
+	turret -48.5 -48.5 "Quad Blaster Turret"
+		"angle" -45
+	turret 48.5 -48.5 "Quad Blaster Turret"
+		"angle" 45
+	turret -68.5 0 "Quad Blaster Turret"
+		"angle" -90
+	turret 68.5 0 "Quad Blaster Turret"
+		"angle" 90
+	turret -48.5 48.5 "Quad Blaster Turret"
+		"angle" -135
+	turret 48.5 48.5 "Quad Blaster Turret"
+		"angle" 135
+	turret 0 30 "Heavy Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 20 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion large"
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than eight turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
