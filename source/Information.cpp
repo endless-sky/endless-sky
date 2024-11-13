@@ -84,7 +84,7 @@ float Information::GetSpriteFrame(const string &name) const
 int Information::GetSwizzle(const string &name) const
 {
 	auto it = spriteSwizzles.find(name);
-	return (it == spriteSwizzles.end()) ? 0 : it->second;
+	return it == spriteSwizzles.end() ? 0 : it->second;
 }
 
 
