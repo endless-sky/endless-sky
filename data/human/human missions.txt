@@ -7462,7 +7462,7 @@ event "stone waiting most"
 
 mission "Stone to Hope"
 	name "Bring Tosti's stone to <planet>"
-	description "Take Tosti's family stone to <destination>, where they used to live before they immigrated to <origin>."
+	description "Take Tosti's family stone to <destination>, where the Snaiwaz clan used to live before they immigrated to <origin>."
 	to offer
 		random < 60
 		has "Stone of our Fathers 5: done"
@@ -7474,10 +7474,10 @@ mission "Stone to Hope"
 		conversation
 			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming. There's never many staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
 			`	Helm, with his sandy hair and short beard, approaches you with a young man in tow. "<first>! It's well to see you again.`
-			`	"So..." he says conspiratorially, "... there is no date yet, but a certain red haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
+			`	"So..." he says conspiratorially, "... there is no date yet, but a certain red-haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
 			choice
 				`	"That's great news!"`
-				`	"Do you know when?!"`
+				`	"Do you know when?"`
 				`	"Who are you talking about?"`
 					goto who
 				`	"I don't really care."`
@@ -7496,7 +7496,7 @@ mission "Stone to Hope"
 
 			label hopestone
 			`	Standing beside Helm is an unremarkable young man with a sunburnt face, calloused hands, and threadbare garb. "Ca-Captain <last>?" he says nervously, "I'm sorry to be a bothering you, ser. But I heard tell what you did for Thorleif, and I thought maybe you were the like to do a good turn by me."`
-			`	Sensing his discomfort Helm puts an arm on the young man's shoulder. "It's alright, Tosti, we're all friends on Norn."`
+			`	Sensing his discomfort, Helm puts an arm on the young man's shoulder. "It's alright, Tosti, we're all friends on Norn."`
 			`	The young man staightens up a bit at Helm's reassurance and looks you in the eyes. "My da, well, he liked the waves well enough, but never really settled here, you see? In his heart that is.`
 			`	"He never really left our old home. We were refugees and were ever so glad to be taken in by Norn, but he never felt so tall as when he thought about Hope, about home."`
 			choice
@@ -7525,14 +7525,14 @@ mission "Stone to Hope"
 			label hopeno
 			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame. "Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
 			`	Tosti is red and shaking, and mumbles some apologies before slinking away from you and Helm.`
-			`	Helm gives you a nod and says, "Thanks for listening, at least."`
+			`	Helm gives you a nod and says, "Thank you for listening, at least."`
 				decline
 
 			label hopeprice
 			`	He grimaces, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
 			`	His eyes remain downcast and tears slide down his smooth face. His whole body seems to shake with the shame of what he just admitted.`
 			choice
-				`	"I might be in the area. No promises though.`
+				`	"I might be in the area. No promises though."`
 				`	"Alright. I'll do it."`
 				`	"Sorry. I don't work for free."`
 					goto hopeno
@@ -7540,7 +7540,7 @@ mission "Stone to Hope"
 			label hopeyes
 			`	The young man's eyes light up as he drags them off the floor and focuses on your face once more. "Really? Truly? I didn't dare hope..."`
 			`	His body weight shifts and it looks as though he's about to hug you before he abruptly stops himself and tries to regain a little composure.`
-			`	"Thorleif was right about you," he says as he presses the small, cool stone into your hand. "The Family-Cairn is not far from where the last spaceport used to be. Just by the cliffs, family name was Snaiwaz."`
+			`	"Thorleif was right about you," he says as he presses the small, cool stone into your hand. "The Family-Cairn is not far from where the last spaceport used to be. Just by the cliffs, and the family name was Snaiwaz."`
 			`	With the stone firmly in your fist, he takes his leave from you, saying "thank you" over and over again before he's finally gone.`
 			`	Helm silently watches him go and then turns back to you, shaking his head. "You're not like any off-worlder I've ever known. Most would have laughed in that boy's face, let alone done him a good turn for free."`
 			`	He smiles at you and says, "You really are one of us."`
@@ -7593,7 +7593,7 @@ conversation "Ice Queen"
 
 	label explore
 	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
-	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
+	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow.`
 	`	You work around the silent spaceport, where the half-buried hangars are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
 	`	The sun begins to set, and you can already feel the temperature beginning to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
 		goto building
@@ -7613,7 +7613,7 @@ conversation "Ice Queen"
 
 	label cairnsearch
 	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
-	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
+	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow.`
 	`	You work around the silent spaceport, where the half-buried hangars are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you find the cliffs that Tosti spoke of, and the many dozens of Family-Cairns piled along side it. Silent watchers of the churning glaciers.`
 	`	You see a nearly toppled Family-Cairn with the name "Snaiwaz" at its base.`
 	choice
@@ -7627,6 +7627,8 @@ conversation "Ice Queen"
 		decline
 
 	label placestone
+	action
+		set "placed tosti's stone"
 	`	Carefully you place Tosti's stone with the others. The act is greeted only by the deafening silence and the icy air of the abandoned world.`
 	choice
 		`	(Head back.)`
@@ -7654,7 +7656,7 @@ conversation "Ice Queen"
 	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit, the kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
 	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
 	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
-	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravado there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she says, through gritted teeth.`
+	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravado there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she asks, through gritted teeth.`
 	choice
 		`	(Tell her who you are, and how you were just delivering a stone.)`
 			to display
@@ -7674,10 +7676,10 @@ conversation "Ice Queen"
 		`	"I'll get you out of here. After that, no promises."`
 			goto comewithme
 		`	"I don't have time for wretches. You're on your own."`
-		`	"How about I kill you, and take your stuff.`
+		`	"How about I kill you, and take your stuff?"`
 
 	`	Ildico, her eyes still closed, makes a swift motion with her hand and flicks her wrist toward you. Before you have a chance to react, her knife is embedded deep in your throat.`
-	`	You're on the ground now. Ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
+	`	You're on the ground now, with ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
 	`	As the world fades to black, you hear her talking, though her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
 	`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
 		die
@@ -7716,11 +7718,12 @@ conversation "Ice Queen End"
 	`Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport. Ildico, looking less pale and significantly more sturdy, waits by the exit.`
 	`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again. If they do, I will remember this small kindness."`
 	`	She gives you a stern nod, and then exits your ship and into the chaos of Clark.`
-		decline
+		goto end
 
 	label helpildico
 	`Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport. Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
 	`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit."`
+	label end
 
 
 mission "Ice Queen 2"
@@ -7741,7 +7744,7 @@ mission "Ice Queen 2"
 			`	Among these you find the offices of "Clark's Third Law Terraformists." Ildico steps in front of you and enters first.`
 			`	An older man with greying hair and a bit of a paunch looks up from his desk. He stands up genially as both of you approach and says, "Howdy friends, I am Eustace Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustace flashes a wide open smile.`
 			`	"Yes. I'd like to terraform the planet Hope." Ildico says flatly.`
-			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't..." Eustace looks at both of you carefully before saying, "I don't think you could pay for it either."`
+			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't... we can't terraform a world, and I don't..." Eustace looks at both of you carefully before saying, "I don't think you could pay for it either."`
 			`	Ildico leaps over the desk and grabs Eustace by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
 			`	Eustace pales and holds out his hands. "Please, let me go. I meant no insult."`
 			choice
@@ -7782,14 +7785,14 @@ mission "Ice Queen 3"
 			choice
 				`	(Continue filling out forms.)`
 			
-			`The receptionist brings a few of the earlier forms you filled out and helpfully points out a few mistakes for you to fix.`
+			`	The receptionist brings a few of the earlier forms you filled out and helpfully points out a few mistakes for you to fix.`
 			choice
 				`	(Fix the forms you already filled out.)`
 			choice
 				`	(Fill out the final set of forms.)`
 
 			`	A few painfully tedious hours later, all the right forms have been filled out and you're met by an intern in a small vehicle.`
-			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is only a few kilometers away."`
+			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is a few kilometers away."`
 			`	Ildico glares at the young woman suspiciously, then turns to you. "Can we trust her?"`
 			`	The intern looks confused and a little hurt, but says nothing.`
 			choice
@@ -7821,7 +7824,7 @@ mission "Ice Queen 3"
 			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
 			`	Ian laughs. "Oh, of course, a job like that would have been quite simple."`
 			`	"Then why didn't you?" The tension is obvious in Ildico's voice.`
-			`	Ian shrugs. "Though he could afford it there were other concerns."`
+			`	Ian shrugs. "Though he could afford it, there were other concerns."`
 			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
 			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a Second Degree Terraformer, and after the initial meeting I wasn't privy to the details. But someone, or some government or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
 			`	Ildico seems to deflate. "Ask him? Is he here?"`
@@ -7852,8 +7855,8 @@ mission "Ice Queen 4"
 			`	"Why. Didn't. You. Come?" Ildico forces out each word.`
 			`	"I sent for you. They told me you were all dead. They found bodies... and the generator blown."`
 			`	"The accident..." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father. Everything forgiven.`
-			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died.. including Hogne." She glances at you and says, "He was my older brother."`
-			`	She continues, "I salvaged what I could and set up at home. I've been at home the whole time."`
+			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died... including Hogne." She glances at you and says, "He was my older brother."`
+			`	She continues, "I salvaged what I could and set up at home. I've been there the whole time."`
 			`	"It's my fault," Deoric says. "I should have gone and looked for you myself. I would have known where to look."`
 			`	They talk about family, the time apart, and what happened back on Hope. Finally, Ildico turns her attention back to you.`
 			`	"Thank you for bringing me here, <first>. For sticking with me. I appreciate it." She gives you the first real genuine smile you've seen on her face.`
@@ -7928,7 +7931,7 @@ mission "Ice Queen 6"
 			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? She cracked long before that. An entitled debutant like her had no chance in that hellhole, and I? I needed to eat."`
 			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."`
 			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
-			`	Ildico stands over him. "You are a coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. He tries to speak as his dying body squirms, but no words materialize and he goes still."`
+			`	Ildico stands over him. "You are a coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. He tries to speak as his dying body squirms, but no words materialize and he goes still.`
 			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here."`
 			`	Ildico walks back to corner far from any of the fighting, and retrieves a bundled baby you'd neglected to notice until now.`
 			choice
@@ -7945,14 +7948,14 @@ mission "Ice Queen 6"
 			choice
 				`	"Go where?"`
 
-			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will hunted for this. We need to go to <planet>. And you should probably not let anyone scan your ship until we get there."`
+			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>. And you should probably not let anyone scan your ship until we get there."`
 			`	The two of you escape out into the night and onto your ship.`
 				launch
 
 			label arrest
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek. She moves, too fast for you to react, and her dagger is in your throat.`
 			`	You lay on the ground, bleeding out, dying. Ildico standing above you, a broken expression on her face. "I thought I had one friend. What a fool I was. I'll never make that mistake again."`
-			`	She leaves you to die. The world grows dim, and hazy. You remember... you remember... someone....`
+			`	She leaves you to die. The world grows dim, and hazy. You remember... you remember... someone...`
 				die
 
 			label leave
@@ -8016,7 +8019,7 @@ mission "Ice Queen 7"
 
 mission "Ice Queen 8"
 	name "Defeat Ildico's rivals"
-	description "Ildico has requested you to destroy a fleet of marauder ships near the <system> system. Once you're done, return to <planet>."
+	description "Ildico has requested you to destroy a fleet of Marauder ships near the <system> system. Once you're done, return to <planet>."
 	source "Haven"
 	to offer
 		has "Ice Queen 7: done"
@@ -8053,7 +8056,7 @@ mission "Ice Queen 8"
 			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and I own part of a hangar elsewhere. Not too many ships yet, but I intend to change that soon."`
 			`	Ildico holsters her gun right next to where she keeps her dagger and continues. "But making moves is hard. Everyone wants to be on top. Which is why I need you."`
 			`	She looks you in the eye and says, "There's a rival gang right next door to us. They have a lot more firepower, but if they could be removed, we could easily double our territory.`
-			`	"I don't have the ships," she glances at her gang in the distance, "or the quality of crew, to deal with them."`
+			`	"I don't have the ships," she glances at her gang in the distance, "or the quality of crew, to deal with them.`
 			`	"But, I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. What do you say?"`
 			choice
 				`	"Sure, I'll help."`
@@ -8062,7 +8065,7 @@ mission "Ice Queen 8"
 				`	"Not interested."`
 					goto uninterested
 
-			`	Her smile nearly lights up the dim room. "I always know I can count on you. And only you."`
+			`	Her smile nearly lights up the dim room. "I always know I can count on you. And only you.`
 			`	"I fed the gang some false information. They have their entire fleet right now looking for some juicy merchant ships that don't actually exist, so they're not expecting a captain like you to take them on and blow them out of the sky.`
 			`	"Check out the nearby systems and look for a ship called the <npc>, which is their flagship. Kill them all, and come back here. To me."`
 				accept
@@ -8077,7 +8080,7 @@ mission "Ice Queen 8"
 
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic nemesis staying target
 		system
 			distance 1 2
 		fleet "Marauder fleet IV"
@@ -8089,7 +8092,7 @@ mission "Ice Queen 8"
 	on complete
 		conversation
 			`There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo as you make your way through the rubble and around the fire.`
-			`	A group of injured, but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ilidco walks up to you, smiling. She is trailed by a small incongruous toddler with short black hair and lopsided grin.`
+			`	A group of injured but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ildico walks up to you, smiling. She is trailed by a small incongruous toddler with short black hair and lopsided grin.`
 			`	"Perfect. They never had a chance." She wipes the blood off her dagger, and notices your gaze.`
 			`	"The safest place for her was by my side," she says matter-of-factly to you, then she kneels down to her daughter. "Randalin, this is <first>. You met them long ago when you were a baby. <first> is my friend."`
 			`	She stands up again and looks back at you. "And <first>, this is Randalin. She's grown a bit since you saw her last."`
@@ -8124,7 +8127,7 @@ mission "Ice Queen 8"
 			`	Ildico returns to her group, barking orders and gesturing at the rubble and leaving you to your own devices.`
 
 
-mission "News Queen"
+mission "Ice Queen: News"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		near "Arneb" 10
@@ -8157,7 +8160,7 @@ mission "Skadenga: Blood of Surtr"
 				`	(Don't visit Hrithfjall at all.)`
 					decline
 
-			`	You fly past Hjrithfjall without landing and continue on your way.`
+			`	You fly past Hrithfjall without landing and continue on your way.`
 				defer
 
 			label hrithland
@@ -8170,13 +8173,13 @@ mission "Skadenga: Blood of Surtr"
 				`	"I've come to show you something."`
 					goto something
 				`	"What do you know about other stones like the Tear of Skade?"`
-			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe.`
+			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe."`
 				goto something
 
 			label who
 			`	The Ondurdis steps away from the group and takes you aside, leaving Aldfrith to continue talking with them.`
 			`	"They are from Alfheim. They say their culture and world dying and they look for new home before old one gone." She pats your arm gently.`
-			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life."`
+			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life.`
 			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
 
 			label something
@@ -8223,6 +8226,8 @@ mission "Stone to Hope: Thanks"
 			choice
 				`	"I found the Family-Cairn and left the stone there."`
 					goto where
+					to display
+						has "placed tosti's stone"
 				`	"I chucked the stone out of a hatch, but it's at least on Hope now."`
 					goto threw
 					to display
@@ -8242,6 +8247,6 @@ mission "Stone to Hope: Thanks"
 			`	Helm stops what's he doing and looks up at you searchingly. "Best keep that to yourself, then. You of all people should know that folks around here take stone-bearing pretty seriously."`
 			`	He sighs, "Still, better than not being on Hope at all, I suppose. As for Tosti, he's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
 			`	He turns and looks out over Norn's endless oceans. "I'll have a message sent to him so he knows he can rest easy. I'll of course leave out the part about you tossing the stone. No reason to give him grief."`
-			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but a good deed is its own reward, isn't it?"`
-			`	"At least that's what I believe." He says more to himself than to you.`
+			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but a good deed is its own reward, isn't it?`
+			`	"At least that's what I believe," he says more to himself than to you.`
 				decline
