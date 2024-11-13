@@ -52,14 +52,14 @@ namespace {
 	constexpr int checkboxSpacing = 20;
 
 	// Button size/placement info:
-	constexpr double BUTTON_ROW_PAD = 5.;
-	constexpr double BUTTON_COL_PAD = 5.;
-	// These button widths need to add up to 220 with the current right panel
-	// width and column padding:
-	constexpr double BUTTON_1_WIDTH = 37.;
-	constexpr double BUTTON_2_WIDTH = 73.;
-	constexpr double BUTTON_3_WIDTH = 55.;
-	constexpr double BUTTON_4_WIDTH = 55.;
+	constexpr double BUTTON_ROW_PAD = 10.;
+	constexpr double BUTTON_COL_PAD = 10.;
+	// These button widths need to add up to 200 with the current right panel
+	// width and column padding (above):
+	constexpr double BUTTON_1_WIDTH = 35.;
+	constexpr double BUTTON_2_WIDTH = 70.;
+	constexpr double BUTTON_3_WIDTH = 50.;
+	constexpr double BUTTON_4_WIDTH = 50.;
 
 	constexpr char SELL = 's';
 	constexpr char UNINSTALL = 'u';
@@ -1328,10 +1328,10 @@ void OutfitterPanel::DrawButtons()
 	//  [ Buy  ] [  Install  ] [ Cargo ]
 	//  [ Sell ] [ Uninstall ] [ Keep  ] [ Leave ]
 	// Calculate row locations from bottom to top:
-	const double rowTwoY = Screen::BottomRight().Y() - .5 * BUTTON_HEIGHT - 2. * BUTTON_ROW_PAD;
+	const double rowTwoY = Screen::BottomRight().Y() - .5 * BUTTON_HEIGHT - BUTTON_ROW_PAD;
 	const double rowOneY = rowTwoY - BUTTON_HEIGHT - BUTTON_ROW_PAD;
 	// Calculate button positions from right to left:
-	const double buttonFourX = Screen::BottomRight().X() - .5 * BUTTON_4_WIDTH - 2. * BUTTON_COL_PAD;
+	const double buttonFourX = Screen::BottomRight().X() - .5 * BUTTON_4_WIDTH - BUTTON_COL_PAD;
 	const double buttonThreeX = buttonFourX - (.5 * BUTTON_4_WIDTH + .5 * BUTTON_3_WIDTH) - BUTTON_COL_PAD;
 	const double buttonTwoX = buttonThreeX - (.5 * BUTTON_3_WIDTH + .5 * BUTTON_2_WIDTH) - BUTTON_COL_PAD;
 	const double buttonOneX = buttonTwoX - (.5 * BUTTON_2_WIDTH + .5 * BUTTON_1_WIDTH) - BUTTON_COL_PAD;
@@ -1376,28 +1376,32 @@ void OutfitterPanel::DrawButtons()
 	const Point buttonTwoSize = Point(BUTTON_2_WIDTH, BUTTON_HEIGHT);
 	const Point buttonThreeSize = Point(BUTTON_3_WIDTH, BUTTON_HEIGHT);
 	const Point buttonFourSize = Point(BUTTON_4_WIDTH, BUTTON_HEIGHT);
+	const Point buttonBorderOffset = Point(2, 2);
 
 	// Draw the first row of buttons.
 	static const string BUY = "_Buy";
 	const Point buyCenter = Point(buttonOneX, rowOneY);
-	FillShader::Fill(buyCenter, buttonOneSize, back);
 	textColor = !CanDoBuyButton() ? &inactive : (hoverButton == 'b') ? &hover : &active;
+	FillShader::Fill(buyCenter, buttonOneSize + buttonBorderOffset, *textColor);
+	FillShader::Fill(buyCenter, buttonOneSize, back);
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		*textColor);
 
 	static const string INSTALL = "_Install";
 	const Point installCenter = Point(buttonTwoX, rowOneY);
-	FillShader::Fill(installCenter, buttonTwoSize, back);
 	textColor = !CanInstall() ? &inactive : (hoverButton == 'i') ? &hover : &active;
+	FillShader::Fill(installCenter, buttonTwoSize + buttonBorderOffset, *textColor);
+	FillShader::Fill(installCenter, buttonTwoSize, back);
 	bigFont.Draw(INSTALL,
 		installCenter - .5 * Point(bigFont.Width(INSTALL), bigFont.Height()),
 		*textColor);
 
 	static const string CARGO = "_Cargo";
 	const Point cargoCenter = Point(buttonThreeX, rowOneY);
-	FillShader::Fill(cargoCenter, buttonThreeSize, back);
 	textColor = !(CanMoveToCargoFromStorage() || CanBuyToCargo()) ? &inactive : (hoverButton == 'c') ? &hover : &active;
+	FillShader::Fill(cargoCenter, buttonThreeSize + buttonBorderOffset, *textColor);
+	FillShader::Fill(cargoCenter, buttonThreeSize, back);
 	bigFont.Draw(CARGO,
 		cargoCenter - .5 * Point(bigFont.Width(CARGO), bigFont.Height()),
 		*textColor);
@@ -1405,8 +1409,9 @@ void OutfitterPanel::DrawButtons()
 	// Draw the second row of buttons.
 	static const string SELL = "_Sell";
 	const Point sellCenter = Point(buttonOneX, rowTwoY);
-	FillShader::Fill(sellCenter, buttonOneSize, back);
 	textColor = !CanSell() ? &inactive : hoverButton == 's' ? &hover : &active;
+	FillShader::Fill(sellCenter, buttonOneSize + buttonBorderOffset, *textColor);
+	FillShader::Fill(sellCenter, buttonOneSize, back);
 	// The `Sell` text was too far right, hence the adjustment.
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL) + 2, bigFont.Height()),
@@ -1414,17 +1419,19 @@ void OutfitterPanel::DrawButtons()
 
 	static const string UNINSTALL = "_Uninstall";
 	const Point uninstallCenter = Point(buttonTwoX, rowTwoY);
-	FillShader::Fill(uninstallCenter, buttonTwoSize, back);
 	// CanMoveToStorage is here intentionally to support U moving items from Cargo to Storage.
 	textColor = !(CanUninstall() || CanMoveToStorage()) ? &inactive : (hoverButton == 'u') ? &hover : &active;
+	FillShader::Fill(uninstallCenter, buttonTwoSize + buttonBorderOffset, *textColor);
+	FillShader::Fill(uninstallCenter, buttonTwoSize, back);
 	bigFont.Draw(UNINSTALL,
 		uninstallCenter - .5 * Point(bigFont.Width(UNINSTALL), bigFont.Height()),
 		*textColor);
 
 	static const string STORE = "Sto_re";
 	const Point storageCenter = Point(buttonThreeX, rowTwoY);
-	FillShader::Fill(storageCenter, buttonThreeSize, back);
 	textColor = !CanMoveToStorage() ? &inactive : (hoverButton == 'r') ? &hover : &active;
+	FillShader::Fill(storageCenter, buttonThreeSize + buttonBorderOffset, *textColor);
+	FillShader::Fill(storageCenter, buttonThreeSize, back);
 	// The `Sto_re` text was too far right, hence the adjustment.
 	bigFont.Draw(STORE,
 		storageCenter - .5 * Point(bigFont.Width(STORE) + 1, bigFont.Height()),
@@ -1432,6 +1439,7 @@ void OutfitterPanel::DrawButtons()
 
 	static const string LEAVE = "_Leave";
 	const Point leaveCenter = Point(buttonFourX, rowTwoY);
+	FillShader::Fill(leaveCenter, buttonFourSize + buttonBorderOffset, *textColor);
 	FillShader::Fill(leaveCenter, buttonFourSize, back);
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
@@ -1498,10 +1506,10 @@ char OutfitterPanel::CheckButton(int x, int y)
 		return '\0';
 
 	// Calculate the tops of the button rows, from bottom to top.
-	const double rowTwoTop = Screen::Bottom() - BUTTON_HEIGHT - 2. * BUTTON_ROW_PAD;
+	const double rowTwoTop = Screen::Bottom() - BUTTON_HEIGHT - BUTTON_ROW_PAD;
 	const double rowOneTop = rowTwoTop - BUTTON_HEIGHT - BUTTON_ROW_PAD;
 	// Calculate the left side of the buttons, from right to left.
-	const double buttonFourLeft = Screen::Right() - BUTTON_4_WIDTH - 2. * BUTTON_COL_PAD;
+	const double buttonFourLeft = Screen::Right() - BUTTON_4_WIDTH - BUTTON_COL_PAD;
 	const double buttonThreeLeft = buttonFourLeft - (.5 * BUTTON_4_WIDTH + .5 * BUTTON_3_WIDTH) - BUTTON_COL_PAD;
 	const double buttonTwoLeft = buttonThreeLeft - (.5 * BUTTON_3_WIDTH + .5 * BUTTON_2_WIDTH) - BUTTON_COL_PAD;
 	const double buttonOneLeft = buttonTwoLeft - (.5 * BUTTON_2_WIDTH + .5 * BUTTON_1_WIDTH) - BUTTON_COL_PAD;
