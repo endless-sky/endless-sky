@@ -224,13 +224,14 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if(stringFun && (mod & KMOD_CTRL) && (key == 'c' || key == 'v')) {
+	if(stringFun && (mod & KMOD_CTRL) && (key == 'c' || key == 'v'))
+	{
 		if(key == 'c')
 			SDL_SetClipboardText(input.c_str());
 		else if(SDL_HasClipboardText())
 		{
 			input.clear();
-			char* clipboardText = SDL_GetClipboardText();
+			char *clipboardText = SDL_GetClipboardText();
 			int n = 0;
 			for(auto cp = clipboardText; *cp && n < 120; cp++, n++)
 				if(*cp >= ' ' && *cp <= '~')
