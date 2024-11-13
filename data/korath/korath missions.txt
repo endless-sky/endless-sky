@@ -273,7 +273,7 @@ mission "Efreti: Distress Call 1"
 	to offer
 		not "event: wanderers: kor mereti friendly"
 		has "First Contact: Karek Fornati: offered"
-		has "First Contact: Hai: declined"
+		has "First Contact: Hai: offered"
 		has "visited system: Fah Soom"
 		random < 30
 		"combat rating" > 250
