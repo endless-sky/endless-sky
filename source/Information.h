@@ -56,7 +56,6 @@ public:
 	const Color &GetOutlineColor() const;
 
 
-
 private:
 	Rectangle region;
 	bool hasCustomRegion = false;
