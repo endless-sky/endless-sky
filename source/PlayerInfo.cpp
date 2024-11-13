@@ -1903,7 +1903,7 @@ const CargoHold &PlayerInfo::DistributeCargo()
 			else
 			{
 				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
+				desiredCrew = ship->PreferredCrew();
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
 				for(const auto &it : cargo.PassengerList())
 					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
