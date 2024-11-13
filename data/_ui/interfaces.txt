@@ -1028,18 +1028,18 @@ interface "spaceport"
 
 interface "news"
 	sprite "ui/news"
-		center -160 -45
+		center -100 -45
 	image "portrait"
-		center 20 -40
+		center 80 -40
 	string "name"
-		from -400 -100
+		from -340 -100
 		align center left
 		color "bright"
 	box "message portrait"
-		from -400 -80
+		from -340 -80
 		to -50 10
 	box "message"
-		from -400 -80
+		from -340 -80
 		to 80 10
 
 
