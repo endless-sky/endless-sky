@@ -117,7 +117,7 @@ ship "Sasumata"
 	explode "large explosion" 5
 	"final explode" "final explosion small"
 	description "The Sasumata is the chief scout ship of the Bunrodea. While not designed for combat, this stealth transport vessel is still capable of holding its own against some smaller warships; its four fighter bays turn the Sasumata into a force to be reckoned with when its fighters are deployed."
-	description "	The cloaking technology is built into the Saumata's hull; it cannot be removed or transferred to another ship."
+	description "	The cloaking technology is built into the Sasumata's hull; it cannot be removed or transferred to another ship."
 
 
 
