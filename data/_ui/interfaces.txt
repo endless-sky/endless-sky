@@ -928,21 +928,21 @@ interface "escort element"
 
 interface "planet"
 	image "land"
-		center -60 -140
+		center 0 -140
 	sprite "ui/planet dialog"
-		center -60 0
+		center 0 0
 	button l
-		center -60 -140
+		center 0 -140
 		dimensions 720 360
 
 	box "content"
-		from -300 80 to 180 355
+		from -240 80 to 240 355
 
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
-		center 280 90
+		center 340 90
 	button s "_Shipyard"
-		center 280 90
+		center 340 90
 		dimensions 140 40
 		size 18
 		align right
@@ -950,9 +950,9 @@ interface "planet"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 280 150
+		center 340 150
 	button o "_Outfitter"
-		center 280 150
+		center 340 150
 		dimensions 140 40
 		size 18
 		align right
@@ -960,18 +960,18 @@ interface "planet"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -400 150
+		center -340 150
 	button j "_Job Board"
-		center -400 150
+		center -340 150
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 280 210
+		center 340 210
 	button h "_Hire Crew"
-		center 280 210
+		center 340 210
 		dimensions 140 40
 		size 18
 		align right
@@ -979,9 +979,9 @@ interface "planet"
 	
 	visible if "has trade"
 	sprite "ui/planet dialog button"
-		center -400 90
+		center -340 90
 	button t "_Trading"
-		center -400 90
+		center -340 90
 		dimensions 140 40
 		size 18
 		align left
@@ -989,9 +989,9 @@ interface "planet"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -400 210
+		center -340 210
 	button b "_Bank"
-		center -400 210
+		center -340 210
 		dimensions 140 40
 		size 18
 		align left
@@ -999,9 +999,9 @@ interface "planet"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -400 270
+		center -340 270
 	"dynamic button" p "port name"
-		center -400 270
+		center -340 270
 		dimensions 140 40
 		size 18
 		align left
@@ -1010,9 +1010,9 @@ interface "planet"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 280 270
+		center 340 270
 	button d "_Depart"
-		center 280 270
+		center 340 270
 		dimensions 140 40
 		size 18
 		align right
@@ -1022,7 +1022,7 @@ interface "planet"
 
 interface "spaceport"
 	box "content"
-		from -300 80 to 180 355
+		from -240 80 to 240 355
 
 
 
@@ -1156,144 +1156,144 @@ interface "boarding"
 # The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
 interface "hiring"
 	label "flagship"
-		center -70 85
+		center -10 85
 		color "bright"
 		align right
 	label "entire fleet"
-		center 50 85
+		center 110 85
 		color "bright"
 		align right
 	label "salary"
-		center 170 85
+		center 230 85
 		color "bright"
 		align right
 	
 	line
-		center -60 95
+		center 0 95
 		dimensions 480 1
 
 	label "bunks"
-		center -290 110
+		center -350 110
 		align left
 	string "flagship bunks"
-		center -70 110
+		center -10 110
 		align right
 	string "fleet bunks"
-		center 50 110
+		center 110 110
 		align right
 	
 	label "required crew"
-		center -290 130
+		center -230 130
 		align left
 	string "flagship required"
-		center -70 130
+		center -10 130
 		align right
 	string "fleet required"
-		center 50 130
+		center 110 130
 		align right
 	string "salary required"
-		center 170 130
+		center 230 130
 		align right
 	
 	label "extra crew"
-		center -290 150
+		center -230 150
 		align left
 	string "flagship extra"
-		center -70 150
+		center -10 150
 		align right
 	string "salary extra"
-		center 170 150
+		center 230 150
 		align right
 	
 	active if "can hire"
 	sprite "ui/dialog cancel"
-		center 140 355
+		center 200 355
 	button h "_Hire"
-		center 140 355
+		center 200 355
 		dimensions 80 40
 	
 	active if "can fire"
 	sprite "ui/dialog cancel"
-		center 60 355
+		center 120 355
 	button f "_Fire"
-		center 60 355
+		center 120 355
 		dimensions 80 40
 	
 	active
 	string "modifier"
-		from -65 150
+		from -5 150
 		color "dim"
 		align left
 	
 	label "passenger space"
-		center -290 180
+		center -230 180
 		align left
 	string "flagship unused"
-		center -70 180
+		center -10 180
 		align right
 	string "fleet unused"
-		center 50 180
+		center 110 180
 		align right
 	
 	label "passengers"
-		center -290 200
+		center -230 200
 		align left
 	string "passengers"
-		center 50 200
+		center 110 200
 		align right
 	
 	label "(Extra crew for your flagship increases your odds of capturing ships,"
-		center -60 290
+		center 0 290
 	label "and once you capture a ship you need crew members to serve on it.)"
-		center -60 310
+		center 0 310
 
 
 
 interface "trade"
 	box "content"
-		from -310 80 to 190 355
+		from -240 80 to 250 355
 
 	line
-		center -60 95
+		center 0 95
 		dimensions 480 1
 
 	active if "can buy"
 	sprite "ui/dialog cancel"
-		center 40 355
+		center 100 355
 	button u "B_uy All"
-		center 40 355
+		center 100 355
 		dimensions 70 30
 	
 	sprite "ui/wide button"
-		center 130 355
+		center 190 355
 	
 	active if "can sell"
 	visible if "!can sell outfits"
 	button e "S_ell All"
-		center 130 355
+		center 190 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
 	visible if "can sell outfits"
 	button e "S_ell Outfits"
-		center 130 355
+		center 190 355
 		dimensions 90 30
 
 
 
 interface "bank"
 	box "content"
-		from -310 78 to 190 355
+		from -250 78 to 250 355
 
 	line
-		center -60 95
+		center 0 95
 		dimensions 480 1
 
 	active if "can pay"
 	sprite "ui/dialog cancel"
-		center 140 355
+		center 200 355
 	button a "Pay _All"
-		center 140 355
+		center 200 355
 		dimensions 80 40
 
 
