@@ -4087,7 +4087,7 @@ void PlayerInfo::CreateRandomStock()
 	int day = GetDate().DaysSinceEpoch();
 	for(const auto &rStock : planet->OutfitRandomStock())
 		for(const auto &stockItem : *rStock)
-			if(Random::Int(100) < stockItem.probability)
+			// if PlayerInfo() = rStock.stockItem;
 			{
 				outfitStock[stockItem.item] += stockItem.quantity;
 				for(unsigned int i = 0; i < stockItem.quantity; i++)
@@ -4096,7 +4096,7 @@ void PlayerInfo::CreateRandomStock()
 
 	for(const auto &rStock : planet->ShipRandomStock())
 		for(const auto &stockItem : *rStock)
-			if(Random::Int(100) < stockItem.probability)
+			// if(Random::Int(100) < stockItem.probability)
 			{
 				shipStock[stockItem.item] += stockItem.quantity;
 				for(unsigned int i = 0; i < stockItem.quantity; i++)

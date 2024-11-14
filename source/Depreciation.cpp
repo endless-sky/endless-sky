@@ -63,22 +63,6 @@ double Depreciation::Full()
 
 
 
-// Calculate the value fraction for an item of the given age.
-double Depreciation::Depreciate(int age)
-{
-	if(age <= GracePeriod())
-		return 1.;
-
-	if(age >= MaxAge())
-		return Min();
-
-	double daily = pow(Daily(), age - GracePeriod());
-	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
-	return Min() + (1. - Min()) * daily * linear;
-}
-
-
-
 // Calculate how old an item needs to be for a target amount of depreciation, if possible.
 int Depreciation::AgeForDepreciation(double depreciation)
 {
@@ -94,6 +78,22 @@ int Depreciation::AgeForDepreciation(double depreciation)
 	while(Depreciate(age) > depreciation)
 		age++;
 	return age;
+}
+
+
+
+// Calculate the value fraction for an item of the given age.
+double Depreciation::Depreciate(int age)
+{
+	if(age <= GracePeriod())
+		return 1.;
+
+	if(age >= MaxAge())
+		return Min();
+
+	double daily = pow(Daily(), age - GracePeriod());
+	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
+	return Min() + (1. - Min()) * daily * linear;
 }
 
 

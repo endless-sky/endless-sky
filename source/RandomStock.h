@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionSet.h"
 #include "DataNode.h"
 #include "Depreciation.h"
 #include "Set.h"
@@ -28,8 +29,6 @@ template <class Item>
 struct RandomStockItem
 {
 	const Item *item;
-	// Probability this item is in stock, as a percentage.
-	unsigned int probability = 100;
 	// The number of such a set of items in stock.
 	unsigned int quantity = 1;
 	// Days of depreciation.
@@ -44,6 +43,8 @@ class RandomStock : public std::list<RandomStockItem<Item>>
 {
 public:
 	void Load(const DataNode &node, const Set<Item> &items);
+
+	ConditionSet toStock;
 };
 
 
@@ -71,8 +72,8 @@ void RandomStock<Item>::Load(const DataNode &node, const Set<Item> &items)
 				const std::string &grandToken = grand.Token(0);
 				if(grand.Size() < 2)
 					grand.PrintTrace("Error: Expected key to have a value:");
-				else if(grandToken == "probability")
-					rs.probability = grand.Value(1);
+				else if(grand.Token(0) == "to" && grand.Token(1) == "stock")
+					toStock.Load(grand);
 				else if(grandToken == "quantity")
 					rs.quantity = grand.Value(1);
 				else if(grandToken == "depreciation")
