@@ -432,6 +432,7 @@ outfit "Tear of Skade"
 
 outfit "Tear of Skade (Harmonized)"
 	category "Systems"
+	"display name" "Tear of Skade"
 	thumbnail "outfit/skadetear"
 	"cooling" 7
 	"unique" 1
