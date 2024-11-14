@@ -15,7 +15,7 @@ License: CC-BY-SA-4.0
 Files: images/land/*
 Copyright: Various
 License: public-domain
- Taken from morgue-file.com, a collection of photographs that have been donated
+ Taken from morguefile.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
 Files: images/scene/*
@@ -3786,6 +3786,12 @@ Files:
 Copyright: None (placed in public domain by an anonymous author)
 License: CC0
 Comment: Uses public domain textures from texture.ninja. Meshes were made by an anonymous author in 2023-2024.
+
+Files: images/outfit/puny.png
+Copyright: Various
+License: public-domain
+ Taken from morguefile.com, a collection of photographs that have been donated
+ and placed in the public domain, and artisitically enhanced and cropped.
 
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
