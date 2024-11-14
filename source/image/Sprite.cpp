@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageBuffer.h"
 #include "../Preferences.h"
 #include "../Screen.h"
-
 #include "../opengl.h"
+
 #include <SDL2/SDL.h>
 
 #include <algorithm>
