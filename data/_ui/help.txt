@@ -26,7 +26,7 @@ help "basics 2"
 	`For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
 
 help "basics 3"
-	`To see help messages again, press <Show help> or go to the main menu, go to preferences, go to settings, go to page two, then select "Reactivate first-time help."`
+	`To see a help messages again, press <Show help>. To see all help messages again, go to the main menu, go to preferences, go to settings, go to page two, then select "Reactivate first-time help."`
 
 help "dead"
 	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
