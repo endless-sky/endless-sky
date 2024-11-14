@@ -47,9 +47,9 @@ fleet "Small Aberrant"
 	variant 5
 		"Aberrant Junior (Disable-able)"
 	variant 20
-		"Aberrant Traincar"
+		"Aberrant Icebreaker"
 	variant 5
-		"Aberrant Traincar (Disable-able)"
+		"Aberrant Icebreaker (Disable-able)"
 	variant 20
 		"Aberrant Pike"
 	variant 5
@@ -83,10 +83,10 @@ fleet "Small Aberrant"
 		"Aberrant Junior"
 		"Aberrant Junior (Disable-able)"
 	variant 10
-		"Aberrant Traincar" 2
+		"Aberrant Icebreaker" 2
 	variant 3
-		"Aberrant Traincar"
-		"Aberrant Traincar (Disable-able)"
+		"Aberrant Icebreaker"
+		"Aberrant Icebreaker (Disable-able)"
 	variant 10
 		"Aberrant Pike" 2
 	variant 3

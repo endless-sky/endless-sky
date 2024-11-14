@@ -31,9 +31,9 @@ ship "Aberrant Latte"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 82
-		"outfit space" 403
-		"weapon capacity" 194
-		"engine capacity" 96
+		"outfit space" 173
+		"weapon capacity" 64
+		"engine capacity" 66
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -86,7 +86,7 @@ ship "Aberrant Chomper"
 	thumbnail "thumbnail/aberrant chomper"
 	"never disabled"
 	attributes
-		category "Interceptor"
+		category "Light Warship"
 		"cost" 5700000
 		"shields" 6400
 		"hull" 14400
@@ -98,9 +98,9 @@ ship "Aberrant Chomper"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 61
-		"outfit space" 421
-		"weapon capacity" 237
-		"engine capacity" 96
+		"outfit space" 321
+		"weapon capacity" 189
+		"engine capacity" 62
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -172,9 +172,9 @@ ship "Aberrant Pileup"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 123
-		"outfit space" 443
-		"weapon capacity" 194
-		"engine capacity" 101
+		"outfit space" 184
+		"weapon capacity" 94
+		"engine capacity" 66
 		"energy capacity" 17000
 		"inscrutable" 1
 		"energy generation" 39
@@ -228,7 +228,7 @@ ship "Aberrant Hugger"
 	thumbnail "thumbnail/aberrant hugger"
 	"never disabled"
 	attributes
-		category "Interceptor"
+		category "Light Warship"
 		"cost" 5700000
 		"shields" 9600
 		"hull" 14400
@@ -240,9 +240,9 @@ ship "Aberrant Hugger"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 82
-		"outfit space" 403
-		"weapon capacity" 223
-		"engine capacity" 96
+		"outfit space" 251
+		"weapon capacity" 144
+		"engine capacity" 93
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -298,7 +298,7 @@ ship "Aberrant Longfellow"
 	thumbnail "thumbnail/aberrant longfellow"
 	"never disabled"
 	attributes
-		category "Interceptor"
+		category "Light Warship"
 		"cost" 5700000
 		"shields" 10800
 		"hull" 17200
@@ -310,9 +310,9 @@ ship "Aberrant Longfellow"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 82
-		"outfit space" 453
-		"weapon capacity" 194
-		"engine capacity" 154
+		"outfit space" 289
+		"weapon capacity" 72
+		"engine capacity" 135
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -460,9 +460,9 @@ ship "Aberrant Junior"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 393
-		"weapon capacity" 191
-		"engine capacity" 93
+		"outfit space" 245
+		"weapon capacity" 92
+		"engine capacity" 62
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -512,11 +512,11 @@ ship "Aberrant Junior" "Aberrant Junior (Disable-able)"
 	"uncapturable"
 
 
-ship "Aberrant Traincar"
-	"display name" `K-IIB "Traincar"`
-	plural "Traincars"
-	sprite "ship/aberrant traincar"
-	thumbnail "thumbnail/aberrant traincar"
+ship "Aberrant Icebreaker"
+	"display name" `K-IIB "Icebreaker"`
+	plural "Icebreakers"
+	sprite "ship/aberrant Icebreaker"
+	thumbnail "thumbnail/aberrant Icebreaker"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -531,9 +531,9 @@ ship "Aberrant Traincar"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 407
-		"weapon capacity" 199
-		"engine capacity" 98
+		"outfit space" 255
+		"weapon capacity" 103
+		"engine capacity" 73
 		"energy capacity" 15000
 		"inscrutable" 1
 		"energy generation" 39
@@ -579,8 +579,8 @@ ship "Aberrant Traincar"
 	description "This variant in particular seems to be in the process of growing more elongated, and has a tougher hull than most other variants."
 
 
-ship "Aberrant Traincar" "Aberrant Traincar (Disable-able)"
-	"display name" `K-IIB "Traincar"`
+ship "Aberrant Icebreaker" "Aberrant Icebreaker (Disable-able)"
+	"display name" `K-IIB "Icebreaker"`
 	"uncapturable"
 
 
@@ -603,9 +603,9 @@ ship "Aberrant Pike"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 393
-		"weapon capacity" 191
-		"engine capacity" 93
+		"outfit space" 241
+		"weapon capacity" 102
+		"engine capacity" 62
 		"energy capacity" 18000
 		"inscrutable" 1
 		"energy generation" 39
@@ -662,7 +662,7 @@ ship "Aberrant Mole"
 	thumbnail "thumbnail/aberrant mole"
 	"never disabled"
 	attributes
-		category "Interceptor"
+		category "Light Warship"
 		"cost" 5700000
 		"shields" 6600
 		"hull" 15200
@@ -674,9 +674,9 @@ ship "Aberrant Mole"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 393
-		"weapon capacity" 208
-		"engine capacity" 93
+		"outfit space" 276
+		"weapon capacity" 148
+		"engine capacity" 52
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -747,9 +747,9 @@ ship "Aberrant Whiskers"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 393
-		"weapon capacity" 191
-		"engine capacity" 93
+		"outfit space" 212
+		"weapon capacity" 64
+		"engine capacity" 72
 		"energy capacity" 12000
 		"inscrutable" 1
 		"energy generation" 39
@@ -815,7 +815,7 @@ ship "Aberrant Trip"
 		"cargo space" 77
 		"outfit space" 339
 		"weapon capacity" 185
-		"engine capacity" 201
+		"engine capacity" 61
 		"energy capacity" 13000
 		"inscrutable" 1
 		"energy generation" 39
@@ -893,7 +893,7 @@ ship "Aberrant Triplet"
 		"cargo space" 126
 		"outfit space" 429
 		"weapon capacity" 266
-		"engine capacity" 244
+		"engine capacity" 92
 		"energy capacity" 23000
 		"inscrutable" 1
 		"energy generation" 39

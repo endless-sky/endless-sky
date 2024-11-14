@@ -1596,8 +1596,6 @@ ship "Difraktos"
 
 
 	gun 0 -156
-	gun -9 -156
-	gun 9 -156
 	gun -21 -75
 		angle -90
 	gun 21 -75
@@ -1705,8 +1703,6 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
-	gun
-	gun
 	gun
 	gun "External Launch Tube"
 	gun "External Launch Tube"
