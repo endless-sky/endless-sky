@@ -606,8 +606,11 @@ void Engine::Step(bool isActive)
 	// Add the flagship outline last to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
-		outlines.emplace_back(flagship->GetSprite(), (flagship->Center() - center) * zoom, flagship->Unit() * zoom,
-			flagship->GetFrame(), *GameData::Colors().Get("flagship highlight"));
+		outlines.emplace_back(flagship->GetSprite(),
+			(flagship->Center() - center) * zoom,
+			flagship->Unit() * zoom * flagship->Scale(),
+			flagship->GetFrame(),
+			*GameData::Colors().Get("flagship highlight"));
 	}
 
 	// Any of the player's ships that are in system are assumed to have
@@ -724,7 +727,8 @@ void Engine::Step(bool isActive)
 		if(Preferences::Has("Rotate flagship in HUD"))
 			shipFacingUnit = flagship->Facing().Unit();
 
-		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
+		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step),
+			flagship->GetSwizzle());
 	}
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
@@ -810,7 +814,8 @@ void Engine::Step(bool isActive)
 		info.SetSprite("target sprite",
 			targetAsteroid->GetSprite(),
 			targetAsteroid->Facing().Unit(),
-			targetAsteroid->GetFrame(step));
+			targetAsteroid->GetFrame(step),
+			0);
 		info.SetString("target name", targetAsteroid->DisplayName() + " " + targetAsteroid->Noun());
 
 		targetVector = targetAsteroid->Position() - center;
@@ -827,14 +832,14 @@ void Engine::Step(bool isActive)
 	{
 		if(target->GetSystem() == player.GetSystem() && !target->IsCloaked())
 			targetUnit = target->Facing().Unit();
-		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
+		targetSwizzle = target->GetSwizzle();
+		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step), targetSwizzle);
 		info.SetString("target name", target->Name());
 		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
-		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		int targetType = RadarType(*target, step);
@@ -2044,7 +2049,7 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
 									+ " refuse to let you land.", Messages::Importance::Highest);
-						else
+						else if(!flagship->IsDestroyed())
 						{
 							activeCommands |= Command::LAND;
 							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
