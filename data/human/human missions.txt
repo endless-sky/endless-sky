@@ -8138,7 +8138,7 @@ mission "Ice Queen: News"
 		conversation
 			`A news kiosk is doing a segment on the growing threat of pirates around Haven. A certain name catches your eye, and you read:`
 			`	Self-styled "pirate queen" Ildico Drifa continues to expand her territory and reach. While there is some concern this growing centralization of power could result in greater threats to trade and stability in the Far North, most analysts think it is quite unlikely.`
-			`	Professor Grenwhich Millstone, foremost authority on the Economy and History of the Northern Pariah worlds, had this to say about Drifa:`
+			`	Professor Grenwich Millstone, foremost authority on the Economy and History of the Northern Pariah worlds, had this to say about Drifa:`
 			`	"It is patently inconceivable that any single magnate could consolidate power on Haven. It is culturally anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new boogieman, and then another."`
 			`	The segment ends, and the news kiosk automatically scrolls down to the next article.`
 				decline
