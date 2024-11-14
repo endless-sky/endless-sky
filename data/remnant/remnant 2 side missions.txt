@@ -555,7 +555,7 @@ mission "Remnant: Shattered Light 4"
 		government "Kor Isaha"
 		personality entering plunders harvests
 		system "Lucina"
-		fleet "Korath Isaha Raid"
+		fleet "Kor Isaha Raid"
 	on complete
 		payment 250000
 		outfit "NDR-114 Android" 5
