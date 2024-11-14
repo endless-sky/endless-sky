@@ -185,6 +185,7 @@ outfitter "Independent (Korath-Allied)"
 	# Widely available
 	"S3 Thermionic"
 	"Anti-Missile Turret"
+	"Beam Laser"
 	"Heavy Laser"
 	"A120 Atomic Thruster"
 	"A125 Atomic Steering"
