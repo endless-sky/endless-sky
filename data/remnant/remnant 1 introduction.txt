@@ -361,7 +361,7 @@ mission "Remnant: Defense 3"
 	on accept
 		event "remnant: surveillance begin"
 	npc kill
-		government "Korath"
+		government "Kor Isaha"
 		personality heroic nemesis staying
 		system "Parca"
 		fleet
