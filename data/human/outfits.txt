@@ -439,6 +439,7 @@ outfit "Tear of Skade (Harmonized)"
 
 outfit "Blood of Surtr (Harmonized)"
 	category "Systems"
+	"display name" "Blood of Surtr"
 	thumbnail "outfit/surtrblood"
 	"energy generation" 3
 	"heat generation" 4
