@@ -4192,7 +4192,7 @@ mission "Syndicate Defectors [0]"
 		dialog phrase "generic passenger dropoff payment"
 	npc
 		government "Bounty Hunter"
-		personality heroic unconstrained nemesis plunders harvests waiting
+		personality harvests heroic nemesis plunders unconstrained waiting
 		fleet "Bounty Hunters"
 		system
 			distance 1 2
@@ -4436,7 +4436,7 @@ mission "Emancipation Raid Escort [0]"
 	name "Emancipation escort: <planet stopovers>"
 	job
 	repeat
-	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
+	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. The Syndicate and bounty hunters will attack you, but you will have a passcode for landing clearance."
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		"combat rating" > 50
@@ -4624,7 +4624,7 @@ mission "Transport recruiters [0]"
 	repeat
 	description `Transport a <origin> recruiter and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
 	passengers 1
-	cargo 2 5 0.8
+	cargo "recruiting supplies" 2 5 0.8
 	deadline 5 3
 	to offer
 		random < 40

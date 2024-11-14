@@ -812,7 +812,7 @@ government "Independent (Killable)"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
 
-# These are Korath- and pirate-friendly humans that dislike the Syndicate
+# These are Korath- and pirate-friendly humans that dislike the Syndicate.
 government "Independent (Korath-Allied)"
 	swizzle 9
 	color "governments: Independent"

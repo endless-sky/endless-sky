@@ -2544,7 +2544,7 @@ planet "La'ab Bamen"
 	# juvenile and adult forms, swimming in the extremely specific environment they require
 	# to survive.
 	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains precise conditions, including typical ocean temperatures and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
-	description `At the surface of the asteroid, there are hidden hangar doors disguised as craters, leading to bays designed for ships larger than anything the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
+	description `	At the surface of the asteroid, there are hidden hangar doors disguised as craters, leading to bays designed for ships larger than anything the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
 	spaceport `This spaceport is tightly compartmentalized, with zones carefully marked out for certain purposes. Each zone can only be accessed by an elevator-like system that moves both horizontally and vertically. With this setup, it is nearly impossible for one group of visitors to see another inside the spaceport. The only shared area is the gigantic hangar bays, which are few in number, but those too seem to be divided by purpose.`
 	government "Independent (Korath-Allied) Restricted"
 	"required reputation" 100
@@ -3222,7 +3222,7 @@ planet "New Tibet"
 planet "New Tortuga"
 	# Although New Tortuga is not a pirate-run planet, there are pirates, so it has to retain the pirate-related attributes.
 	# The planet is self-sufficient, hence the many other attributes.
-	attributes core "core pirate" factory pirate religious fishing research mining "slavery ban" "pirate-friendly" "Independent (Korath-Allied)"
+	attributes core "core pirate" factory fishing mining pirate "pirate-friendly" religious research "slavery ban" "Independent (Korath-Allied)"
 	landscape land/fog6
 	# This description barely fits; any new hyphens or commas will break it.
 	description `A planet of violent storms and frequent earthquakes, New Tortuga looks on the surface to be uninhabitable. The few cities on the planet are built underground, far from any fault lines, with only obscure, hardened access areas. With fortress-like blast doors protecting all entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
@@ -3659,9 +3659,9 @@ planet Quirinal
 	security 0
 
 planet "Rabasot Pa'ah"
-	attributes ocean uninhabited fishing korath "korath exiles"
+	attributes fishing korath "korath exiles" ocean uninhabited
 	landscape land/rough-seas
-	description `This tectonically active ocean world has unpredictable weather, frequent tsunamis, and unusual electrical activity. Although there are a few islands, the terrain is so harsh that it is nearly impossible to land and the atmosphere is bathed in radiation from Kor Ak'Mari's death throes. There's almost no vegetation in sight, but the sea is filled with microscopic lifeforms. It seems the violent conditions on this planet have held back evolution.`
+	description `This tectonically active ocean world has unpredictable weather, frequent tsunamis, and unusual electrical activity. Although there are a few islands, the terrain is so harsh that it is nearly impossible to land, and the atmosphere is bathed in radiation from Kor Ak'Mari's death throes. There is almost no vegetation in sight, but the sea is filled with microscopic lifeforms. It seems the violent conditions on this planet have held back evolution.`
 	government Uninhabited
 	security 0
 
