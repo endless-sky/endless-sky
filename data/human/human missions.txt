@@ -8726,7 +8726,7 @@ mission "Weland 2"
 			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. These are my chains, and this is my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
 				goto questions
 			label dragon
-			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dirt Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, delapidated, hard to piece much of it together. Suffice to say, they were big brutes, they had big space ships, and they've been dead for a helluva long time."`
+			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dirt Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, dilapidated, hard to piece much of it together. Suffice to say, they were big brutes, they had big space ships, and they've been dead for a helluva long time."`
 			`	He looks over at your artifact, "And you, well, you found somethin' of theirs."`
 				goto questions
 			label next
