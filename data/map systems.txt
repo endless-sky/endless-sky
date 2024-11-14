@@ -74,6 +74,9 @@ galaxy "label south"
 	pos -566 501
 	sprite label/south
 
+galaxy "label successors"
+	pos -122 1385
+
 galaxy "label wanderers"
 	pos -145 -753
 
@@ -1797,6 +1800,74 @@ system "9 Spring Above"
 			sprite planet/rock3-b
 			distance 415
 			period 28.1138
+
+system Aaura-Kaska
+	pos -86 1298
+	government Successor
+	attributes successor
+	arrival 1313.28
+	habitable 1313.28
+	link Myruet-Kvelq
+	link Pelaa-Muora
+	link Stiidej-Nnesa
+	link Tuur-Kella
+	asteroids "medium rock" 11 3.12
+	asteroids "large rock" 6 3.463
+	asteroids "small metal" 17 4.43
+	asteroids "medium metal" 70 4.181
+	asteroids "large metal" 14 3.775
+	trade Clothing 282
+	trade Electronics 745
+	trade Equipment 491
+	trade Food 505
+	trade "Heavy Metals" 849
+	trade Industrial 635
+	trade "Luxury Goods" 1159
+	trade Medical 480
+	trade Metal 402
+	trade Plastic 272
+	fleet "Medium Successor Freight" 1000
+	fleet "Small Successor Transport" 2000
+	fleet "Small Old Houses" 3000
+	fleet "Small New Houses" 3000
+	fleet "Large Old Houses" 7000
+	fleet "Large New Houses" 7000
+	fleet "Old Houses Surveillance" 6000
+	fleet "New Houses Surveillance" 6000
+	haze _menu/haze-67
+	object
+		sprite star/g0
+		distance 21.316
+		period 14.51
+	object
+		sprite star/m4
+		distance 98.684
+		period 14.51
+		offset 180
+	object
+		sprite planet/dust6
+		distance 317.774
+		period 62.526
+	object
+		sprite planet/desert9
+		distance 568.214
+		period 149.503
+	object
+		sprite planet/mercury
+		distance 841.254
+		period 269.322
+	object
+		sprite planet/gas2
+		distance 1456
+		period 378.715
+		object Mosaa-Oa-Vyret
+			sprite planet/rhea
+			distance 300
+			period 200
+	object
+		sprite planet/gas7
+		distance 3071.33
+		period 1878.76
 
 system Ablodab
 	pos -854.587 592.051
@@ -6258,6 +6329,31 @@ system Auhru
 		distance 5000
 		period 1520.57
 
+system Avasaa-Novaa
+	shrouded
+	pos 71 917.52
+	government Uninhabited
+	attributes predecessor
+	arrival 500
+	habitable 320
+	hazard "Predecessors Base Spatial Decay" 400
+	hazard "Predecessors Spatial Rift Weak" 10000
+	haze _menu/haze-tear
+	object
+		sprite star/m0
+	object
+		sprite planet/titan
+		distance 980
+		period 980
+	object
+		sprite planet/tethys-b
+		distance 1112
+		period 1112
+	object
+		sprite planet/gas2
+		distance 3502
+		period 3502
+
 system Avior
 	pos -658 -317
 	government Republic
@@ -8632,6 +8728,58 @@ system Chy'chra
 			distance 614
 			period 80.0847
 
+system Chyyra-Osolaa
+	pos -241 1365
+	government Successor
+	attributes successor
+	arrival 2560
+	habitable 2560
+	link Luue-Saqru
+	link Myiara-Nnesa
+	link Pelaa-Muora
+	link Raaqa-Ryuit
+	asteroids "large rock" 8 1
+	asteroids "small rock" 4 1
+	trade Clothing 248
+	trade Electronics 699
+	trade Equipment 523
+	trade Food 570
+	trade "Heavy Metals" 729
+	trade Industrial 492
+	trade "Luxury Goods" 1227
+	trade Medical 546
+	trade Metal 382
+	trade Plastic 314
+	fleet "Small New Houses" 3000
+	fleet "Large New Houses" 4000
+	fleet "Medium Successor Freight" 800
+	fleet "Small Successor Transport" 1600
+	fleet "People's Houses" 8000
+	fleet "People's Houses Raiders" 12000
+	fleet "Aqrabe Home" 1200
+	haze _menu/haze-67
+	object
+		sprite star/f0
+	object
+		sprite planet/lava4
+		distance 300
+		period 189
+	object Vyraa-Viir-Kella
+		sprite planet/water1
+		distance 1800
+		period 1800
+		object
+			sprite planet/luna-b
+			distance 320
+	object
+		sprite planet/gas8
+		distance 3240
+		period 3240
+	object Kasii-Cavasaa-Oa
+		sprite planet/ice4-b
+		distance 3688
+		period 3688
+
 system Cinxia
 	pos 265.87 415.242
 	government Remnant
@@ -8765,6 +8913,7 @@ system Citadelle
 
 system Clepsydra
 	pos 264 -874
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 4050
 	habitable 4050
@@ -9230,6 +9379,7 @@ system "Cura Dic"
 
 system Currus
 	pos 260.583 -987.75
+	government Uninhabited
 	arrival 500
 	habitable 10
 	belt 1198 4
@@ -12771,6 +12921,7 @@ system "Epsilon Leonis"
 
 system Equus
 	pos 313.25 -1051.08
+	government Uninhabited
 	attributes "neutron" "notable star"
 	arrival 500
 	habitable 405
@@ -13266,6 +13417,30 @@ system Esix
 		sprite planet/wormhole-red
 		distance 3618.74
 		period 1163.59
+
+system "Eta Carinae"
+	shrouded
+	pos -212.62 928.99
+	government Uninhabited
+	attributes predecessor
+	arrival 5000
+	habitable 36800
+	asteroids "small rock" 1 4.65
+	asteroids "large rock" 1 4.237
+	asteroids "large metal" 1 2.55
+	haze _menu/haze-tear
+	object
+		sprite star/wr
+			scale 2.0
+		distance 200
+		period 300
+		offset 180
+		object
+			sprite star/o-supergiant
+	object
+		sprite star/o-giant
+		distance 400
+		period 300
 
 system Eteron
 	pos -330 33
@@ -16759,7 +16934,7 @@ system Heutesl
 		period 60.0582
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
-		distance 1000
+		distance 820
 		period 349.481
 	object
 		sprite planet/gas4
@@ -17206,6 +17381,7 @@ system Host
 
 system Hui'uc
 	pos 248.933 -792.506
+	government Uninhabited
 	arrival 1505
 	habitable 1505
 	belt 1246
@@ -17381,6 +17557,7 @@ system Huud
 
 system Ianua
 	pos 371.917 -995.75
+	government Uninhabited
 	arrival 500
 	habitable 35
 	belt 1472
@@ -19501,6 +19678,106 @@ system Kashikt
 			distance 297
 			period 13.0737
 
+system Kasii-Cavaasa
+	shrouded
+	pos -21.76 909.31
+	government Uninhabited
+	attributes predecessor
+	arrival 5000
+	habitable 17025
+	link Mavra-Ijsola
+	hazard "Predecessors Base Spatial Decay" 400
+	asteroids "small rock" 1 1
+	asteroids "small metal" 3 1
+	haze _menu/haze-tear
+	object
+		sprite star/b-supergiant
+	object
+		sprite planet/lava0
+		distance 2250
+		period 2000
+	object Cavaasa-Vasa-Tej
+		sprite planet/dust7-b
+		distance 3890
+		period 3000
+
+system Kasii-Sola
+	shrouded
+	pos -23 1089.98
+	government Uninhabited
+	attributes predecessor
+	arrival 500
+	habitable 320
+	link Vasa-Oorua
+	hazard "Predecessors Base Spatial Decay" 600
+	asteroids "small rock" 1 1.005
+	asteroids "small metal" 1 1.17
+	haze _menu/haze-tear
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/gas14-b
+		distance 1186.32
+		period 913.667
+		object
+			sprite planet/luna-b
+			distance 266
+			period 17.668
+		object Raaqa-Uur-Kaav
+			sprite planet/ocean0-b
+			distance 422
+			period 31.607
+	object
+		sprite planet/cloud0
+		distance 2600
+		period 2600
+		object
+			sprite planet/desert4
+			distance 235.36
+			period 32
+	object
+		sprite planet/gas2
+		distance 3991.81
+		period 5639.49
+		object
+			sprite planet/rhea
+			distance 209
+			period 18.308
+		object
+			sprite planet/dust3
+			distance 322
+			period 35.011
+	object
+		sprite planet/rock13
+		distance 5600
+		period 10000
+
+system Kasi-Vasa-Novaa
+	shrouded
+	pos -149.44 989.64
+	government Uninhabited
+	attributes predecessor
+	arrival 500
+	habitable 10
+	link Kiiraj-Luue
+	hazard "Predecessors Base Spatial Decay" 600
+	haze _menu/haze-tear
+	object
+		sprite planet/browndwarf-l-rogue
+	object
+		sprite planet/ganymede
+		distance 800
+		period 800
+	object
+		sprite planet/desert4
+		distance 1250
+		period 2000
+	object
+		sprite planet/dust0
+		distance 4000
+		period -8000
+
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
@@ -19662,6 +19939,161 @@ system "Kaus Borealis"
 			sprite planet/rock14-b
 			distance 371
 			period 35.2227
+
+system Kella-Uoasa
+	pos -359 1511
+	government "People's Houses"
+	attributes successor
+	arrival 5000
+	habitable 8650
+	link Luue-Saqru
+	link Maspa-Raaqa
+	asteroids "large metal" 58 4.5
+	asteroids "small rock" 32 3.317
+	asteroids "medium rock" 18 3.445
+	asteroids "large rock" 12 3.156
+	minables iron 14 4.5
+	minables silver 1 8
+	trade Clothing 370
+	trade Electronics 767
+	trade Equipment 464
+	trade Food 542
+	trade "Heavy Metals" 654
+	trade Industrial 698
+	trade "Luxury Goods" 994
+	trade Medical 792
+	trade Metal 469
+	trade Plastic 267
+	fleet "People's Houses" 800
+	fleet "Light Successor Freight" 9000
+	fleet "Small Successor Transport" 9000
+	fleet "People's Houses Raiders" 3000
+	fleet "Small New Houses" 15000
+	haze _menu/haze-none
+	"starfield density" 0.7
+	object
+		sprite star/o8
+	object
+		sprite planet/callisto
+		distance 2500
+		period 3000
+	object
+		sprite planet/gas0-hot
+		distance 5000
+		period 5000
+		object Kasii-Tuur-Saqru
+			sprite "planet/station successor 2"
+			distance 180
+			period 64
+		object
+			sprite planet/ice8
+			distance 700
+			period 1000
+	object Giiq-Sou-Kella
+		sprite planet/ocean9
+		distance 9270
+		period 10000
+
+system Khasola-Ryuit
+	shrouded
+	pos -71.87 833.59
+	government Uninhabited
+	attributes predecessor
+	arrival 5000
+	habitable 12000
+	hazard "Predecessors Base Spatial Decay" 600
+	asteroids "small metal" 2 1.5
+	asteroids "large metal" 1 1.3
+	haze _menu/haze-tear
+	object
+		sprite star/a-supergiant
+		distance 200
+		period 200
+	object
+		sprite star/o-dwarf
+		distance 600
+		period 600
+	object
+		sprite planet/browndwarf-y
+		distance 6240
+		period 6240
+		object
+			sprite planet/ice4
+			distance 520
+			period 520
+
+system Khosa-Kaska
+	pos 201 1279
+	government Successor
+	attributes successor
+	arrival 5000
+	habitable 5000
+	link Vade-Staja
+	asteroids "small metal" 8 1.5
+	asteroids "small rock" 9 1.8
+	asteroids "large metal" 1 1.2
+	minables lead 3 2.2
+	fleet "Small Old Houses" 2500
+	fleet "Successor Miners" 2000
+	fleet "Medium Successor Freight" 4000
+	fleet "Small Successor Transport" 2000
+	haze _menu/haze-67
+	object
+		sprite star/a0
+		distance 75
+		period 30
+	object
+		sprite star/o-dwarf
+		distance 120
+		period 30
+		offset 180
+	object
+		sprite planet/lava3
+		distance 1500
+		period 1500
+	object
+		sprite planet/lava0
+		distance 1732
+		period 2000
+	object Kuj-Sol-Nnesa
+		sprite planet/desert0-b
+		distance 4972
+		period 6000
+		object
+			sprite planet/rock0-b
+			distance 182
+			period 71
+
+system Kiiraj-Luue
+	shrouded
+	pos -125.52 955.66
+	government Uninhabited
+	attributes predecessor
+	arrival 2560
+	habitable 2560
+	link Kasi-Vasa-Novaa
+	hazard "Predecessors Base Spatial Decay" 200
+	hazard "Predecessors Spatial Rift Weak" 10000
+	hazard "Predecessors Spatial Rift Intense" 20000
+	haze _menu/haze-tear
+	object
+		sprite star/f0
+	object
+		sprite planet/gas2
+		distance 1230
+		period 1230
+		object
+			sprite planet/luna
+			distance 350
+			period 350
+		object
+			sprite planet/ice0
+			distance 500
+			period 500
+	object
+		sprite planet/forest1
+		distance 2890
+		period 2890
 
 system "Ki War Ek"
 	pos -1106.63 368.214
@@ -20428,7 +20860,7 @@ system "Kor En'lakfar"
 	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
-	fleet "Korsmanath A'awojs" 2000
+	fleet "Korsmanath A'awojs" 4000
 	object
 		sprite star/g0
 		period 10
@@ -20498,7 +20930,7 @@ system "Kor Fel'tar"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korath Surveillance" 24000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/k3
 		period 10
@@ -20572,7 +21004,7 @@ system "Kor Men"
 	fleet "Korath Surveillance" 46000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 8000
-	fleet "Korsmanath A'awojs" 2808
+	fleet "Korsmanath A'awojs" 5616
 	object
 		sprite star/f5
 		distance 28.0824
@@ -20643,7 +21075,7 @@ system "Kor Nor'peli"
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
-	fleet "Korsmanath A'awojs" 1100
+	fleet "Korsmanath A'awojs" 2200
 	object
 		sprite star/k3
 		distance 22.4307
@@ -20720,7 +21152,7 @@ system "Kor Tar'bei"
 	fleet "Korath Ember Waste Raid" 6100
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/m3
 		period 10
@@ -20779,7 +21211,7 @@ system "Kor Zena'i"
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Surveillance" 31000
 	fleet "Korath Civilian Large" 845
-	fleet "Korsmanath A'awojs" 2500
+	fleet "Korsmanath A'awojs" 5000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -21937,6 +22369,57 @@ system Lurata
 		distance 2068.68
 		period 1774.16
 
+system Luue-Saqru
+	pos -319 1432
+	government Successor
+	attributes successor
+	arrival 500
+	habitable 490
+	link Chyyra-Osolaa
+	link Kella-Uoasa
+	link Raaqa-Ryuit
+	asteroids "small rock" 32 6
+	asteroids "large rock" 16 2
+	asteroids "small metal" 24 4
+	asteroids "large metal" 32 3
+	minables silicon 8 6
+	minables aluminum 12 3.5
+	trade Clothing 291
+	trade Electronics 674
+	trade Equipment 553
+	trade Food 512
+	trade "Heavy Metals" 752
+	trade Industrial 643
+	trade "Luxury Goods" 1122
+	trade Medical 439
+	trade Metal 368
+	trade Plastic 324
+	fleet "People's Houses" 2000
+	fleet "People's Houses Raiders" 10000
+	fleet "Small New Houses" 3000
+	fleet "Successor Miners" 9000
+	fleet "Successor Miners (Well-Defended)" 6000
+	haze _menu/haze-none
+	"starfield density" 0.7
+	object
+		sprite star/k0
+	object
+		sprite planet/dust4
+		distance 1250
+		period 1200
+	object
+		sprite planet/dust0-b
+		distance 1880
+		period 1800
+	object Chyyra-Raaqa-Tuur
+		sprite planet/ice6
+		distance 3220
+		period 3000
+		object Vade-Osolaa-Kaska
+			sprite "planet/station successor 3"
+			distance 450
+			period 32
+
 system M-1188
 	shrouded
 	pos 1124.66 -607.233
@@ -22313,6 +22796,119 @@ system Markeb
 		distance 2787.49
 		period 2775.06
 
+system Maspa-Cavaasa
+	pos -534 1426
+	government Successor
+	attributes successor
+	arrival 2310
+	habitable 2310
+	link Osolaa-Uuoru
+	asteroids "large metal" 12 1.5
+	minables lead 8 1.5
+	minables silicon 4 2
+	minables tungsten 9 1
+	trade Clothing 264
+	trade Electronics 715
+	trade Equipment 491
+	trade Food 545
+	trade "Heavy Metals" 710
+	trade Industrial 617
+	trade "Luxury Goods" 1068
+	trade Medical 452
+	trade Metal 397
+	trade Plastic 320
+	fleet "Small Successor Transport" 3000
+	fleet "Successor Miners" 4000
+	fleet "Small New Houses" 8000
+	haze _menu/haze-none
+	"starfield density" 0.6
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite star/g-dwarf
+		distance 92
+		period 10
+	object
+		sprite planet/gas3
+		distance 1200
+		period 323.262
+	object Kasi-Osolaa-Sossa
+		sprite planet/ocean7
+		distance 2500
+		period 680.325
+	object Vyraa-Giiq-Sora
+		sprite planet/forest4
+		distance 3000
+		period 1011.154
+	object
+		sprite planet/uranus
+		distance 4000
+		period 2272.498
+		object
+			sprite planet/ice0
+			distance 250
+			period 173.691
+
+system Maspa-Mavra
+	pos -514 1571
+	government Uninhabited
+	attributes successor
+	arrival 500
+	habitable 320
+	link Osolaa-Uuoru
+	asteroids "small metal" 1 1
+	asteroids "large metal" 1 1
+	minables gold 1 1
+	fleet "Small New Houses" 10000
+	fleet "Successor Miners" 5000
+	haze _menu/haze-none
+	"starfield density" 0.05
+	object
+		sprite star/m0
+	object Khosa-Kella-Oa
+		sprite planet/rock0-b
+		distance 1000
+		period 1000
+
+system Maspa-Raaqa
+	pos -334 1614
+	government Successor
+	attributes successor
+	arrival 500
+	habitable 370
+	link Kella-Uoasa
+	asteroids "small rock" 12 8
+	asteroids "large metal" 13 3
+	asteroids "small metal" 54 3
+	minables aluminum 12 5
+	minables iron 8 4
+	fleet "Successor Miners" 5000
+	fleet "Successor Miners (Well-Defended)" 3000
+	fleet "People's Houses" 2000
+	fleet "People's Houses Raiders" 4000
+	fleet "Small New Houses" 10000
+	haze _menu/haze-none
+	"starfield density" 0.5
+	object
+		sprite star/protostar-orange
+	object Giiq-Oj-Sol
+		sprite planet/desert0
+		distance 1425
+		period 512
+	object
+		sprite planet/gas4
+		distance 3200
+		period 1678
+		object
+			sprite planet/mercury-b
+			distance 300
+			period 300
+		object Myiara-Sola-Tej
+			sprite "planet/station successor 4"
+			distance 510
+			period 510
+
 system Matar
 	pos -218 272
 	government Syndicate
@@ -22371,6 +22967,35 @@ system Matar
 			sprite planet/luna
 			distance 332
 			period 23.3043
+
+system Mavra-Ijsola
+	shrouded
+	pos -68.67 883.61
+	government Uninhabited
+	attributes predecessor
+	arrival 3000
+	habitable 3000
+	hazard "Predecessors Base Spatial Decay" 200
+	hazard "Predecessors Spatial Rift Weak" 10000
+	hazard "Predecessors Spatial Rift Intense" 20000
+	link Kasii-Cavaasa
+	haze _menu/haze-tear
+	object
+		sprite star/carbon-core
+	object
+		sprite star/carbon
+	object
+		sprite planet/lava3
+		distance 2300
+		period 2300
+		object
+			sprite planet/dust0
+			distance 223
+			period 223
+	object
+		sprite planet/desert10-b
+		distance 3430
+		period 3430
 
 system Mebla
 	pos -814.587 555.051
@@ -24283,6 +24908,63 @@ system Mora
 			distance 402
 			period 24.168
 
+system Mosaa-Iyra
+	pos 121 1459
+	government Successor
+	attributes successor
+	arrival 2900
+	habitable 2900
+	belt 2240 3
+	link Ojstaan-Sola
+	asteroids "small rock" 22 4
+	asteroids "large rock" 12 3
+	asteroids "small metal" 18 5
+	minables silicon 11 9
+	minables lead 18 4
+	minables gold 2 8
+	trade Clothing 378
+	trade Electronics 739
+	trade Equipment 428
+	trade Food 429
+	trade "Heavy Metals" 748
+	trade Industrial 629
+	trade "Luxury Goods" 1402
+	trade Medical 482
+	trade Metal 324
+	trade Plastic 399
+	fleet "Successor Miners" 3000
+	fleet "Small Successor Transport" 1500
+	fleet "Light Successor Freight" 1500
+	fleet "Small Old Houses" 2000
+	haze _menu/haze-none
+	"starfield density" 0.7
+	object
+		sprite star/m0
+	object
+		sprite planet/gas2
+		distance 800
+		period 250
+		object
+			sprite planet/mercury
+			distance 250
+			period 300
+		object
+			sprite planet/miranda
+			distance 325
+			period 380
+	object
+		sprite planet/gas3-b
+		distance 2870
+		period 1678
+		object Iyra-Ijasa-Iret
+			sprite planet/water0-b
+			distance 330
+			period 320
+		object
+			sprite planet/europa
+			distance 500
+			period 800
+
 system Msalbit
 	pos 986.052 -277.73
 	government Uninhabited
@@ -24418,6 +25100,132 @@ system Muphrid
 		sprite planet/dust1
 		distance 2405.68
 		period 1191.15
+
+system Myiara-Nnesa
+	pos -247 1273
+	government "New Houses"
+	attributes successor
+	arrival 3450
+	habitable 3450
+	belt 1179 3
+	link Chyyra-Osolaa
+	link Pelaa-Muora
+	asteroids "large metal" 10 3.062
+	minables iron 8 1.5
+	trade Clothing 264
+	trade Electronics 715
+	trade Equipment 552
+	trade Food 305
+	trade "Heavy Metals" 790
+	trade Industrial 617
+	trade "Luxury Goods" 1068
+	trade Medical 452
+	trade Metal 452
+	trade Plastic 320
+	fleet "Small New Houses" 1500
+	fleet "Large New Houses" 2000
+	fleet "New Houses Surveillance" 2500
+	fleet "Medium Successor Freight" 1000
+	fleet "Successor Miners" 6000
+	fleet "Seineq Home" 1000
+	haze _menu/haze-67
+	object
+		sprite star/m-giant
+		period 10
+	object
+		sprite planet/gas6-b
+		distance 1311
+		period 323.262
+	object
+		distance 2153
+		period 680
+		object Yoqqa-Vasa-Vasa
+			sprite planet/ice8
+			distance 120
+			period 140
+		object O-Vasa-Oa
+			sprite planet/dust0-b
+			distance 120
+			period 140
+			offset 180
+	object
+		sprite planet/browndwarf-t
+		distance 2804
+		period 1011.154
+	object
+		sprite planet/neptune
+		distance 4811
+		period 2272.498
+		object
+			sprite planet/miranda
+			distance 238
+			period 173.691
+	object
+		sprite planet/jupiter
+		distance 9120
+		period 5931.202
+		object
+			sprite planet/desert4-b
+			distance 263
+			period 201.765
+	object
+		sprite planet/browndwarf-y
+		distance 11064
+		period 7925.354
+		object
+			sprite planet/rock7-b
+			distance 293
+			period 237.254
+		object
+			sprite planet/oberon-b
+			distance 398
+			period 489.011
+
+system Myruet-Kvelq
+	pos -104 1378
+	government Successor
+	attributes successor
+	arrival 1715
+	habitable 1715
+	link Aaura-Kaska
+	asteroids "small rock" 27 4.785
+	asteroids "medium rock" 67 3.924
+	asteroids "large rock" 4 2.233
+	asteroids "large metal" 20 3.222
+	trade Clothing 282
+	trade Electronics 745
+	trade Equipment 491
+	trade Food 505
+	trade "Heavy Metals" 849
+	trade Industrial 635
+	trade "Luxury Goods" 1159
+	trade Medical 480
+	trade Metal 402
+	trade Plastic 272
+	haze _menu/haze-33
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/cloud4
+		distance 180.84
+		period 23.489
+	object
+		sprite planet/gas9
+		distance 1481.98
+		period 551.051
+	object Uuoru-Veldt-Stir
+		sprite planet/rock11
+		distance 1683.69
+		period 870
+	object "Successor Wormhole"
+		sprite planet/wormhole-red
+		distance 2240
+		period 1400
+	object
+		sprite planet/gas1
+		distance 3735.87
+		period 2205.54
 
 system Naos
 	pos -653 -396
@@ -25217,6 +26025,90 @@ system Oihaug
 		distance 8308
 		period 23946.6
 
+system Ojstaan-Sola
+	pos 72 1379
+	government Successor
+	attributes successor
+	arrival 625
+	habitable 625
+	link Stiidej-Nnesa
+	link Uuoru-Kella
+	link Mosaa-Iyra
+	asteroids "small rock" 4 2.215
+	asteroids "medium rock" 32 3.553
+	asteroids "large rock" 29 3.887
+	asteroids "small metal" 10 3.804
+	asteroids "medium metal" 1 5.643
+	asteroids "large metal" 1 2.675
+	minables iron 8 2.5
+	minables silver 5 3
+	minables silicon 16 3.3
+	trade Clothing 363
+	trade Electronics 641
+	trade Equipment 401
+	trade Food 286
+	trade "Heavy Metals" 1022
+	trade Industrial 640
+	trade "Luxury Goods" 1278
+	trade Medical 778
+	trade Metal 586
+	trade Plastic 369
+	fleet "Small Old Houses" 1500
+	fleet "Large Old Houses" 3000
+	fleet "Old Houses Surveillance" 2000
+	fleet "Medium Successor Freight" 1200
+	fleet "Small Successor Transport" 1200
+	fleet "Myurej Home" 1000
+	haze _menu/haze-33
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/desert8
+		distance 264.25
+		period 68.729
+		object
+			sprite planet/europa
+			distance 116
+			period 16.025
+	object Raaqa-Kvelq-Ryuit
+		sprite planet/forest2-b
+		distance 1000.41
+		period 400.255
+		object Saska-Aa-Noorr
+			sprite "planet/station successor 1"
+			distance 300
+			period 30
+			offset 2
+	object
+		sprite planet/gas15
+		distance 2305.5
+		period 846.677
+		object
+			sprite planet/io
+			distance 208
+			period 15.79
+	object
+		sprite planet/jupiter
+		distance 4488.75
+		period 2194.731
+		object
+			sprite planet/dust7
+			distance 283
+			period 14.96
+		object
+			sprite planet/lava0
+			distance 423
+			period 27.338
+		object
+			sprite planet/ice8
+			distance 531
+			period 38.451
+		object
+			sprite planet/ice7
+			distance 727
+			period 61.598
+
 system Ookmya
 	pos 633.6 -610.17
 	government "Gegno Vi"
@@ -25482,6 +26374,44 @@ system Orvala
 			distance 202
 			period 14.1511
 
+system Osolaa-Uuoru
+	pos -446 1453
+	government Successor
+	attributes successor
+	arrival 5000
+	habitable 13720
+	link Maspa-Cavaasa
+	link Raaqa-Ryuit
+	link Maspa-Mavra
+	asteroids "small rock" 8 7
+	asteroids "large rock" 7 8
+	trade Clothing 284
+	trade Electronics 723
+	trade Equipment 569
+	trade Food 512
+	trade "Heavy Metals" 796
+	trade Industrial 611
+	trade "Luxury Goods" 1022
+	trade Medical 443
+	trade Metal 386
+	trade Plastic 331
+	haze _menu/haze-none
+	"starfield density" 0.4
+	object
+		sprite star/o0
+	object Maspa-Viir-Kella
+		sprite planet/ocean0
+		distance 3000
+		period 3000
+		object
+			sprite planet/callisto-b
+			distance 300
+			period 300
+	object
+		sprite planet/dust0
+		distance 4500
+		period 4500
+
 system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
@@ -25554,6 +26484,39 @@ system Ossipago
 		sprite planet/wormhole-red
 		distance 3674.15
 		period 1486.78
+
+system Oublaa-Khora
+	pos 24 1122
+	government Uninhabited
+	attributes predecessor
+	arrival 2160
+	habitable 2160
+	asteroids "small rock" 1 2
+	asteroids "small metal" 2 3
+	hazard "Predecessors Base Spatial Decay" 600
+	haze _menu/haze-tear
+	object
+		sprite star/g0-old
+	object Myiara-Aret-Iir
+		sprite planet/rock13
+		distance 2480
+		period 2480
+	object
+		sprite planet/gas14-b
+		distance 5289
+		period 5289
+		object
+			sprite planet/io
+			distance 528
+			period 528
+		object
+			sprite planet/rhea-b
+			distance 850
+			period 850
+		object "Successor Wormhole"
+			sprite planet/wormhole-red
+			distance 1200
+			period 1200
 
 system "Over the Rainbow"
 	pos 9904 7176
@@ -26071,6 +27034,7 @@ system Peacock
 
 system "Pedita Pri"
 	pos 207.333 -936
+	government Uninhabited
 	arrival 5000
 	habitable 10030
 	belt 1909
@@ -26117,6 +27081,7 @@ system "Pedita Pri"
 
 system "Pedita Sec"
 	pos 185.333 -888
+	government Uninhabited
 	arrival 1080
 	habitable 1080
 	belt 1554
@@ -26140,6 +27105,80 @@ system "Pedita Sec"
 		sprite planet/mercury-b
 		distance 2193
 		period 363.737
+
+system Pelaa-Muora
+	pos -168 1322
+	government Successor
+	attributes successor
+	arrival 2895
+	habitable 2895
+	belt 1841 4
+	belt 1916 3
+	link Aaura-Kaska
+	link Chyyra-Osolaa
+	link Myiara-Nnesa
+	asteroids "small rock" 9 5.325
+	asteroids "medium rock" 83 4.2
+	asteroids "large rock" 7 6.825
+	asteroids "small metal" 9 6.375
+	asteroids "medium metal" 3 5.25
+	asteroids "large metal" 2 5.775
+	minables neodymium 7 6.338
+	minables copper 12 7.083
+	minables gold 4 4
+	minables silver 8 5.1
+	trade Clothing 406
+	trade Electronics 720
+	trade Equipment 464
+	trade Food 534
+	trade "Heavy Metals" 775
+	trade Industrial 638
+	trade "Luxury Goods" 1119
+	trade Medical 472
+	trade Metal 338
+	trade Plastic 295
+	fleet "Small Successor Transport" 1200
+	fleet "Light Successor Freight" 1200
+	fleet "Successor Miners" 600
+	fleet "Small New Houses" 1400
+	haze _menu/haze-33
+	object
+		sprite star/f-dwarf
+		distance 161.974
+		period 88.77
+		offset 180
+	object
+		sprite star/f3
+		distance 117.026
+		period 88.77
+	object
+		sprite planet/lava2-b
+		distance 474
+		period 36.23
+	object
+		sprite planet/lava1
+		distance 836
+		period 84.862
+	object Shassa-Wyra-Orrou
+		sprite planet/rock13-b
+		distance 2600
+		period 137.629
+	object
+		sprite planet/gas13
+		distance 2880
+		period 369.46
+	object
+		sprite planet/gas1-b
+		distance 3567
+		period 685.909
+		object Uo-Oraa-Vayya
+			sprite planet/callisto-b
+			distance 502
+			period 294.356
+	object
+		sprite planet/gas4-b
+		distance 6701
+		period 1925.801
 
 system Pelubta
 	pos -757.587 575.051
@@ -27195,6 +28234,7 @@ system Porrima
 
 system "Porta Terra"
 	pos 202.6 -825.506
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
@@ -28060,6 +29100,64 @@ system Queri
 		period 349.820
 		offset 335
 
+system Raaqa-Ryuit
+	pos -338 1354
+	government Successor
+	attributes successor
+	arrival 1080
+	habitable 1080
+	link Chyyra-Osolaa
+	link Luue-Saqru
+	link Osolaa-Uuoru
+	asteroids "small rock" 14 4
+	asteroids "small metal" 8 12
+	trade Clothing 337
+	trade Electronics 762
+	trade Equipment 357
+	trade Food 434
+	trade "Heavy Metals" 728
+	trade Industrial 751
+	trade "Luxury Goods" 1380
+	trade Medical 839
+	trade Metal 496
+	trade Plastic 285
+	fleet "People's Houses" 3000
+	fleet "Medium Successor Freight" 2000
+	fleet "Small Successor Transport" 1100
+	fleet "Large New Houses" 5000
+	fleet "Kaatrij Home" 1500
+	haze _menu/haze-33
+	object
+		sprite star/g0
+	object
+		sprite planet/callisto
+		distance 600
+		period 500
+	object Raaqa-Puan-Uuoru
+		sprite planet/cloud0-b
+		distance 1000
+		period 1000
+	object
+		sprite planet/gas2-b
+		distance 2200
+		period 2200
+		object Qasa-Sija-Iri
+			sprite planet/dust0-b
+			distance 250
+			period 250
+		object
+			sprite planet/rock17-b
+			distance 410
+			period 410
+	object Aqra-Kvel-Taaq
+		sprite planet/ice1
+		distance 3420
+		period 3000
+		object
+			sprite planet/ice8-b
+			distance 380
+			period 300
+
 system Rajak
 	pos -270 -236
 	government Republic
@@ -28828,6 +29926,7 @@ system Ritilas
 
 system Rota
 	pos 193.25 -1029.75
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 7160
@@ -29892,7 +30991,7 @@ system Scija
 			period 413.1
 	object
 		sprite planet/saturn
-		distance 8500
+		distance 9400
 		period 4188.84
 		object
 			sprite planet/europa
@@ -29901,6 +31000,7 @@ system Scija
 
 system Sedes
 	pos 301.917 -948.417
+	government Uninhabited
 	attributes "bright star" "giant star" "notable star"
 	arrival 500
 	habitable 100
@@ -32010,6 +33110,59 @@ system Stercutus
 		distance 2557.67
 		period 1305.80
 
+system Stiidej-Nnesa
+	pos -13 1358
+	government Successor
+	attributes successor
+	arrival 4020
+	habitable 4020
+	link Aaura-Kaska
+	link Ojstaan-Sola
+	link Tuur-Kella
+	asteroids "small rock" 32 16
+	asteroids "large rock" 28 17
+	asteroids "small metal" 44 18
+	asteroids "large metal" 18 20
+	minables lead 15 18
+	minables neodymium 12 21
+	trade Clothing 350
+	trade Electronics 665
+	trade Equipment 408
+	trade Food 272
+	trade "Heavy Metals" 978
+	trade Industrial 610
+	trade "Luxury Goods" 1353
+	trade Medical 588
+	trade Metal 513
+	trade Plastic 334
+	fleet "Small Old Houses" 1200
+	fleet "Large Old Houses" 2400
+	fleet "Old Houses Surveillance" 4000
+	fleet "Successor Miners" 1000
+	fleet "Medium Successor Freight" 1000
+	object
+		sprite star/a0
+	object
+		sprite star/k8
+		distance 104
+		period 24
+	object
+		sprite planet/rock10
+		distance 2440
+		period 2500
+	object
+		sprite planet/gas1
+		distance 4500
+		period 4500
+		object
+			sprite planet/callisto
+			distance 450
+			period 450
+		object Mavra-Sol-Kvel
+			sprite planet/forest6
+			distance 890
+			period 900
+
 system Suhail
 	pos -774 -338
 	government Republic
@@ -32204,6 +33357,7 @@ system Sumprast
 
 system Supra
 	pos 319 -820
+	government Uninhabited
 	arrival 5000
 	habitable 11635
 	belt 1481
@@ -32582,6 +33736,7 @@ system Tebuteb
 
 system Tectum
 	pos 399.25 -933.083
+	government Uninhabited
 	arrival 5000
 	habitable 29300
 	belt 1350 7
@@ -33136,6 +34291,56 @@ system Turais
 		sprite planet/gas10
 		distance 2424.17
 		period 4109.01
+
+system Tuur-Kella
+	pos -5 1269
+	government Successor
+	attributes successor
+	arrival 5000
+	habitable 6300
+	link Aaura-Kaska
+	link Stiidej-Nnesa
+	link Uuoru-Kella
+	asteroids "small metal" 85 8
+	asteroids "large metal" 64 7
+	minables tungsten 16 9
+	trade Clothing 286
+	trade Electronics 716
+	trade Equipment 458
+	trade Food 458
+	trade "Heavy Metals" 932
+	trade Industrial 595
+	trade "Luxury Goods" 1251
+	trade Medical 588
+	trade Metal 369
+	trade Plastic 258
+	fleet "Small Old Houses" 1000
+	fleet "Large Old Houses" 1400
+	fleet "Old Houses Surveillance" 2000
+	fleet "Chydiyi Home" 2500
+	haze _menu/haze-67
+	object
+		sprite star/b3
+	object
+		sprite planet/gas0-hot
+		distance 1200
+		period 1000
+	object
+		sprite planet/gas1-b
+		distance 3800
+		period 3000
+		object Tuur-Aasa-Kaska
+			sprite planet/rock1-b
+			distance 550
+			period 500
+		object Tuur-Oa-Sola
+			sprite planet/io-b
+			distance 300
+			period 300
+	object
+		sprite planet/ice8
+		distance 7500
+		period 10000
 
 system U-5188
 	shrouded
@@ -33732,6 +34937,111 @@ system Uttna
 			distance 350
 			period 247.515
 
+system Uuoru-Kella
+	pos 63 1317
+	government "Old Houses"
+	attributes successor
+	arrival 2300
+	habitable 2300
+	belt 1631 6
+	link Ojstaan-Sola
+	link Valkraa-Uuoru
+	link Vade-Staja
+	link Tuur-Kella
+	asteroids "small metal" 14 4.805
+	asteroids "medium metal" 146 4.93
+	asteroids "large metal" 1 6.178
+	minables titanium 4 8.02
+	minables iron 39 9.789
+	trade Clothing 341
+	trade Electronics 678
+	trade Equipment 431
+	trade Food 409
+	trade "Heavy Metals" 1082
+	trade Industrial 674
+	trade "Luxury Goods" 1245
+	trade Medical 673
+	trade Metal 473
+	trade Plastic 323
+	fleet "Light Successor Freight" 500
+	fleet "Medium Successor Freight" 1000
+	fleet "Small Old Houses" 1000
+	fleet "Large Old Houses" 2000
+	fleet "Old Houses Surveillance" 1000
+	haze _menu/haze-67
+	object
+		sprite star/f3
+	object Aava-Aasa-Khora
+		sprite planet/cloud2
+		distance 2500
+		period 400
+		object Kua-Oa-Aava
+			sprite planet/rock7
+			distance 300
+			period 500
+	object
+		sprite planet/ocean2-b
+		distance 3940
+		period 700
+	object
+		sprite planet/gas2-b
+		distance 6000
+		period 1000
+		object
+			sprite planet/ice8-b
+			distance 500
+			period 500
+		object
+			sprite planet/io-b
+			distance 750
+			period 700
+			offset 32
+
+system Uuoru-Sossa
+	shrouded
+	pos -58 976.13
+	government Uninhabited
+	attributes predecessor
+	arrival 2700
+	habitable 2700
+	hazard "Predecessors Base Spatial Decay" 100
+	hazard "Predecessors Spatial Rift Intense" 8000
+	haze _menu/haze-tear
+	object
+		sprite star/void-scar
+			scale 8.0
+		distance 2200
+		period 2000
+		hazard "Predecessors Void Scar Erosion" 6
+	object
+		sprite star/f0
+		distance 40
+		period 80
+	object
+		sprite star/k-dwarf
+		distance 200
+		period 80
+	object
+		sprite planet/gas5
+		distance 2200
+		period 2000
+		object Kella-Uuoru-Sossa
+			sprite planet/dust6-b
+			distance 380
+			period 60
+		object
+			sprite planet/ice0
+			distance 840
+			period 72
+	object
+		sprite planet/gas12
+		distance 5000
+		period 5000
+	object
+		sprite planet/ice5
+		distance 8000
+		period 12000
+
 system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
@@ -33902,6 +35212,76 @@ system V-2189
 			distance 508
 			period 299.64
 
+system Vade-Staja
+	pos 152 1341
+	government Successor
+	attributes successor
+	arrival 2560
+	habitable 2560
+	link Khosa-Kaska
+	link Uuoru-Kella
+	link Valkraa-Uuoru
+	asteroids "small rock" 2 3.8
+	asteroids "medium rock" 20 5.603
+	asteroids "large rock" 1 4.444
+	asteroids "small metal" 30 5.023
+	asteroids "medium metal" 31 3.993
+	asteroids "large metal" 82 6.118
+	minables neodymium 2 9.03
+	minables silver 6 6.166
+	minables lead 8 7.544
+	trade Clothing 251
+	trade Electronics 723
+	trade Equipment 526
+	trade Food 422
+	trade "Heavy Metals" 955
+	trade Industrial 643
+	trade "Luxury Goods" 1167
+	trade Medical 468
+	trade Metal 396
+	trade Plastic 286
+	fleet "Small Successor Transport" 1000
+	fleet "Light Successor Freight" 1500
+	fleet "Small Old Houses" 4000
+	fleet "Old Houses Surveillance" 7500
+	fleet "Sioeora Home" 2000
+	haze _menu/haze-67
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/desert9
+		distance 328
+		period 28.4
+	object
+		sprite planet/rock6
+		distance 1554
+		period 292.879
+	object Staja-Kella-Oa
+		sprite planet/cloud3
+		distance 2870
+		period 580.451
+		object
+			sprite planet/callisto
+			distance 192
+			period 125.853
+	object
+		sprite planet/gas12
+		distance 3648
+		period 967.97
+		object
+			sprite planet/rock3
+			distance 307
+			period 331.285
+		object
+			sprite planet/rock8
+			distance 413
+			period 397.042
+	object
+		sprite planet/gas9
+		distance 4549
+		period 1466.847
+
 system Vaiov
 	pos 631.5 -347
 	government Uninhabited
@@ -33940,6 +35320,76 @@ system Vaiov
 		period 2026.72
 		offset 180
 
+system Valkraa-Uuoru
+	pos 114 1257
+	government Successor
+	attributes successor
+	arrival 3651.37
+	habitable 3651.37
+	link Uuoru-Kella
+	link Vade-Staja
+	trade Clothing 347
+	trade Electronics 664
+	trade Equipment 419
+	trade Food 323
+	trade "Heavy Metals" 1052
+	trade Industrial 640
+	trade "Luxury Goods" 1217
+	trade Medical 691
+	trade Metal 423
+	trade Plastic 248
+	fleet "Large Old Houses" 1600
+	fleet "Old Houses Surveillance" 2000
+	fleet "Medium Successor Freight" 1400
+	fleet "Small Successor Transport" 2000
+	fleet "Chydiyi Home" 800
+	haze _menu/haze-67
+	object
+		sprite star/k0
+		distance 155.228
+		period 61.049
+		offset 180
+	object
+		sprite star/a0
+		distance 40.772
+		period 61.049
+	object Naph-Naap-Kella
+		sprite planet/cloud0
+		distance 902
+		period 53.355
+	object
+		sprite planet/gas6-hot
+		distance 1608
+		period 426.836
+		object Khora-Uurau-Uuoru
+			sprite planet/rock14-b
+			distance 246
+			period 100.976
+	object
+		sprite planet/desert4-b
+		distance 2129
+		period 650.273
+	object
+		sprite planet/gas1
+		distance 3859.251
+		period 1149.358
+		object
+			sprite planet/dust7
+			distance 419.157
+			period 408.756
+		object Khora-Vasa-Reyyaa
+			sprite planet/cloud4
+			distance 603
+			period 460.526
+	object
+		sprite planet/gas12
+		distance 5626
+		period 2793.391
+		object
+			sprite planet/ice0-b
+			distance 286
+			period 182.831
+
 system Vanguwo
 	pos 965.152 -237.39
 	government Uninhabited
@@ -33973,6 +35423,31 @@ system Vanguwo
 		sprite planet/gas11
 		distance 7325
 		period 3940.43
+
+system Vasa-Oorua
+	shrouded
+	pos 31.3947 1014.88
+	government Uninhabited
+	attributes predecessor
+	arrival 1705
+	habitable 1705
+	link Kasii-Sola
+	hazard "Predecessors Base Spatial Decay" 400
+	hazard "Predecessors Spatial Rift Weak" 10000
+	haze _menu/haze-tear
+	asteroids "small rock" 2 5
+	asteroids "small metal" 1 5.5
+	minables tungsten 3 6.5
+	object
+		sprite star/g0
+	object
+		sprite planet/gas10
+		distance 1800
+		period 2000
+	object Osolaa-Val-Mavra
+		sprite planet/ice7
+		distance 2390
+		period 2000
 
 system Vaticanus
 	pos 324 112
@@ -35653,7 +37128,7 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 650
+		distance 1080
 		period 321.540
 		object Cipi
 			sprite planet/ice7-b

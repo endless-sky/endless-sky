@@ -2,18 +2,20 @@ name: CI
 
 on:
   push:
-    # Run for pushes to master or a release branch, e.g. a PR was merged ...
+    # Run for pushes to master, e.g. a PR was merged ...
     branches:
       - master
-      - releases/v[0-9]+.[0-9]+.[0-9]+
     # ... and only when we've possibly changed how the game will function.
     paths:
     - 'source/**'
     - 'data/**'
     - 'tests/**'
     - '.github/workflows/**'
+    - '.github/path-filters.yml'
+    - 'steam/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - Doxyfile
     - keys.txt
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
@@ -23,8 +25,11 @@ on:
     - 'data/**'
     - 'tests/**'
     - '.github/workflows/**'
+    - '.github/path-filters.yml'
+    - 'steam/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - Doxyfile
     - keys.txt
 
 
@@ -56,7 +61,7 @@ jobs:
     - name: Install development dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
@@ -72,7 +77,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -80,6 +85,36 @@ jobs:
         testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
+
+
+  build_steam:
+    name: Steam
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' || needs.changed.outputs.steam == 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-steam-ci-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-steam-ci-sccache-refs/heads/master
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
+      - name: Build Endless Sky
+        run: |
+          cd steam
+          docker compose run steam-x64
+      - name: Test Endless Sky
+        run: |
+          cd steam
+          docker compose run test-steam-x64
 
 
   build_windows:
@@ -105,7 +140,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -148,7 +183,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'clang-cl-ci'
@@ -183,7 +218,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'
@@ -191,6 +226,25 @@ jobs:
         testPreset: 'macos-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
+
+
+  build_documentation_doxygen:
+    name: Documentation Doxygen
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.doxygen_config == 'true' || needs.changed.outputs.ci_config == 'true'}}
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Install development dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends doxygen graphviz clang
+    - name: Run Doxygen
+      run: doxygen
 
 
   test-parse:

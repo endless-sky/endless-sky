@@ -67,7 +67,7 @@ outfit "Stagnation Beam"
 		sound "stagnation beam"
 		"hit effect" "stagnation beam impact"
 		"inaccuracy" .5
-		"turret turn" 3
+		"turret turn" 2.1
 		"velocity" 600
 		"lifetime" 1
 		"reload" 1
@@ -146,7 +146,7 @@ effect "star tail hit"
 	sprite "effect/star tail hit"
 		"no repeat"
 		"frame rate" 40
-	sound "star tail hit"
+	sound "explosion small"
 	"lifetime" 30
 	"velocity scale" 0.
 

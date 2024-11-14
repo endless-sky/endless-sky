@@ -2500,8 +2500,17 @@ event "terraforming follow-up"
 		add attributes "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has led to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
+		spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
+		spaceport `	For once, the spaceport is lively during Remembrance Day. It appears that more and more people are choosing to invite their family over to Rand to commemorate the day instead of traveling to another planet.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
 	planet "Tundra"
 		spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Before the planet was terraformed, enough snow would pile up on top of one of the domes every decade or so that it became a danger of collapsing under its own weight; the locals would simply move out of that dome and build another one higher up on the snowpack, but the changing climate has reduced the amount of snow enough that the locals may never need to build another dome again.`
+		spaceport `	For Remembrance Day, several stalls have been set up to showcase items of clothing made with the planet's synthetic fabrics. A new addition to the event is a group of stalls dedicated to presenting clothing tailored here on Tundra.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
 
 
 
@@ -3907,6 +3916,10 @@ mission "Human to Hai Space"
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
 			choice
+				`	"'Heard tell'? I'm from Hai space!"`
+					to display
+						has "hai space start"
+					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
@@ -3917,15 +3930,27 @@ mission "Human to Hai Space"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
+			label origin
+			`	He seems shocked. "Really? I can give you <payment> to get to <planet>."`
+				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			label choice
 			choice
+				`	"Actually, I'm from <planet>."`
+					to display
+						has "hai space start"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
 					decline
 				`	"Why would you want to go all the way out to <planet>?"`
+					goto explain
+			`	"No way, you as well?" He stops for a second to process. "They say the universe is a small place, but I never believed any of that. Until now, that is. And to think I'd meet someone like you on my first time out of the wormhole."`
+				goto humanspace
+			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
+			label humanspace
 			choice
 				`	"Really? How did you like human space?"`
 					goto travel
@@ -3949,12 +3974,30 @@ mission "Human to Hai Space"
 			choice
 				`	(Leave.)`
 					decline
+				`	(Approach them.)`
+					to display
+						has "hai space start"
+					goto haistart
 				`	"That's your family?"`
+					to display
+						not "hai space start"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
 				`	"No problem, I hope you enjoyed the trip."`
+			label end
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+				decline
+			label haistart
+			`	Benjamin notices you approaching, and says, "These are my parents, Yeerto and Taepip." His father Yeerto then says, "We checked the travel agencies here on Greenwater, but it turned out to be much cheaper to get a merchant to bring Benjamin to human space. I guess we learned why that was cheaper the hard way."`
+			`	"You said you used to work at a travel agency, right?" Benjamin adds with a smile on his face. "Funny we almost found each other then."`
+			`	Benjamin's mother Taepip softly places her hand on his shoulder before continuing, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
+			choice
+				`	"Sure."`
+				`	"Sorry, I have other pressing matters."`
+					goto end
+			`	You spend a long evening with them, talking about your upbringing on <planet> and your experiences in human space. Yeerto then tells you about the local news here, and you catch up with what's happened on your home planet since you left.`
+			`	It begins to get dark, and after a final goodbye you head back to your ship.`
 
 
 
@@ -4619,8 +4662,8 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai: declined"
-			has "First Contact: Unfettered: declined"
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
@@ -4633,11 +4676,12 @@ mission "Hai Wormhole Warning"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai: declined"
-			has "First Contact: Unfettered: declined"
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 		not "hr: meet the team"
+		not "hai space start"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -5808,12 +5852,12 @@ mission "Quicksilver Mixup 1"
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???"`
-			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO!!!"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
 			label picture
-			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package sent to the wrong place. You politely inform him that, had he wanted a smoother delivery, he should've filed a proper job listing and made sure that he placed the correct address.`
 			branch "picture success" "picture failure"
 				random < 50
 
@@ -5856,7 +5900,7 @@ mission "Quicksilver Mixup 2"
 	on offer
 		conversation
 			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
-			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month - some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
 			choice
 				`	"Oh, so you guys did set up that regular shipment after all!"`
 					goto context
@@ -6412,7 +6456,7 @@ mission "Moving House 1"
 				decline
 				
 			label sure
-			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
+			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour."`
 			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
 			choice
 				`	(Shake their hand.)`
@@ -6886,7 +6930,7 @@ mission "Hogshead's Dilemma"
 				`	What Asteroid`
 			action
 				event "hogshead poll" 7
-			`	After you made your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
+			`	After you make your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
 				decline
 
 event "hogshead poll"
@@ -6899,7 +6943,6 @@ mission "Hogshead's Dilemma II"
 		has "Hogshead's Dilemma: offered"
 		has "event: hogshead poll"
 	on offer
-		clear "hogshead poll"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
@@ -7067,7 +7110,7 @@ mission "Adelita 1"
 				goto directions
 
 			label "know about disaster"
-			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijes while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijs while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 
 			label directions
 			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
@@ -7259,7 +7302,7 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll to film the conditions in a secret Syndicate sweatshop.`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll film the conditions in a secret Syndicate sweatshop.`
 			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
 			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			choice
