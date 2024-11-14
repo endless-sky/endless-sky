@@ -7623,7 +7623,7 @@ conversation "Ice Queen"
 
 	action
 		set "threw tosti's stone"
-	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it. Never to find rest by his kindred-stones.`
+	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it. Forever separated from its kindred-stones.`
 		decline
 
 	label placestone
