@@ -531,7 +531,7 @@ double Weapon::Range() const
 		return calculatedRange;
 
 	auto rv = RangeAndEndVelocity(0.);
-	calculatedRange =  rv.first;
+	calculatedRange = rv.first;
 	return calculatedRange;
 }
 
@@ -583,7 +583,7 @@ std::pair<double, double> Weapon::RangeAndEndVelocity(double parentVelocity) con
 	for(const auto &it : submunitions)
 	{
 		auto subRV = it.weapon->RangeAndEndVelocity(endVelocity);
-		if (subRV.first <= subRange)
+		if(subRV.first <= subRange)
 			continue;
 		subRange = subRV.first;
 		subVelocity = subRV.second;
