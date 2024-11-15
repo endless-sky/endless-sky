@@ -1405,7 +1405,7 @@ system Stream
 system Ensemble
 	hidden
 	shrouded
-	pos -523 1154
+	pos -508 1168
 	government "Avgi (Consonance)"
 	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3250
@@ -1945,7 +1945,7 @@ system Sail
 		period 14367.268
 
 system Interlude
-	pos -684 1245
+	pos -715 1248
 	government "Avgi (Dissonance)"
 	attributes avgi "bright star" dissonance "giant star" multi-star "notable star" "tangled shroud"
 	habitable 7906.478
@@ -2189,7 +2189,7 @@ system Vorpal
 			period 449.031
 
 system Concerto
-	pos -486 1231
+	pos -465 1234
 	government Avgi
 	attributes avgi "bright star" consonance "notable star" "outer limits"
 	habitable 3650
@@ -2469,7 +2469,7 @@ system Prelude
 			period 178.034
 
 system Symphony
-	pos -423 1260
+	pos -347 1253
 	government "Avgi (Consonance)"
 	attributes avgi consonance "outer limits"
 	habitable 450
@@ -2925,7 +2925,7 @@ system Mellow
 
 system Postlude
 	shrouded
-	pos -276 967
+	pos -230 977
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 1330.038
@@ -3982,7 +3982,7 @@ system Wake
 system O-16
 	hidden
 	shrouded
-	pos -356 1098
+	pos -305 1117
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4015,7 +4015,7 @@ system O-16
 system Li-7
 	hidden
 	shrouded
-	pos -348 1045
+	pos -320 1055
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 14.142
@@ -4165,7 +4165,7 @@ system S-32
 system Be-9
 	hidden
 	shrouded
-	pos -265 994
+	pos -238 1005
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3400
@@ -4279,7 +4279,7 @@ system Br-80
 system H-1
 	hidden
 	shrouded
-	pos -346 999
+	pos -333 999
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 135
@@ -4350,7 +4350,7 @@ system H-1
 system B-11
 	hidden
 	shrouded
-	pos -277 1089
+	pos -241 1112
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4472,7 +4472,7 @@ system Mg-24
 system As-75
 	hidden
 	shrouded
-	pos -706 962
+	pos -740 979
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4518,7 +4518,7 @@ system As-75
 system Na-23
 	hidden
 	shrouded
-	pos -484 1074
+	pos -480 1070
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 135
@@ -4570,7 +4570,7 @@ system Na-23
 system Ca-40
 	hidden
 	shrouded
-	pos -637 1017
+	pos -646 1007
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4613,7 +4613,7 @@ system Ca-40
 system F-19
 	hidden
 	shrouded
-	pos -361 1136
+	pos -328 1153
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 450
@@ -4654,7 +4654,7 @@ system F-19
 system P-31
 	hidden
 	shrouded
-	pos -655 1070
+	pos -664 1060
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4684,7 +4684,7 @@ system P-31
 system Cl-35
 	hidden
 	shrouded
-	pos -454 1100
+	pos -446 1101
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 500.1
@@ -4716,7 +4716,7 @@ system Cl-35
 system K-39
 	hidden
 	shrouded
-	pos -452 1131
+	pos -440 1141
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4748,7 +4748,7 @@ system K-39
 system C-12
 	hidden
 	shrouded
-	pos -396 1075
+	pos -376 1093
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4891,7 +4891,7 @@ system Si-28
 system Kr-84
 	hidden
 	shrouded
-	pos -709 920
+	pos -768 919
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 2160
@@ -4994,7 +4994,7 @@ system Ar-40
 system N-14
 	hidden
 	shrouded
-	pos -222 1081
+	pos -170 1104
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -5025,7 +5025,7 @@ system N-14
 			period 178.034
 
 system Rhapsody
-	pos -367 1237
+	pos -320 1202
 	government Uninhabited
 	attributes "outer limits"
 	habitable 1080
@@ -5077,7 +5077,7 @@ system Rhapsody
 			period 264.681
 
 system Acapella
-	pos -475 1336
+	pos -450 1348
 	government Uninhabited
 	attributes "outer limits"
 	habitable 1080
@@ -5135,7 +5135,7 @@ system Acapella
 		period 17218.976
 
 system Anthem
-	pos -615 1207
+	pos -641 1207
 	government Uninhabited
 	attributes "outer limits"
 	habitable 425
@@ -5196,7 +5196,7 @@ system Anthem
 		period 6785.99
 
 system Madrigal
-	pos -715 1172
+	pos -821 1113
 	government Uninhabited
 	attributes "outer limits"
 	habitable 425
@@ -5308,7 +5308,7 @@ system Ballad
 		period 13333.382
 
 system Cantata
-	pos -551 1268
+	pos -534 1307
 	government Uninhabited
 	attributes "outer limits"
 	habitable 450
@@ -5362,7 +5362,7 @@ system Cantata
 			period 733.833
 
 system Sonata
-	pos -635 1153
+	pos -696 1144
 	government Uninhabited
 	attributes "outer limits"
 	habitable 980
@@ -5456,7 +5456,7 @@ system Axiom
 			period 195.437
 
 system Serenade
-	pos -602 1253
+	pos -612 1274
 	government Uninhabited
 	attributes "outer limits"
 	habitable 2160
@@ -5509,7 +5509,7 @@ system Serenade
 		period 7519.364
 
 system Chorale
-	pos -670 1190
+	pos -732 1185
 	government Uninhabited
 	attributes "outer limits"
 	habitable 230
