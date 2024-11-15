@@ -597,11 +597,11 @@ outfit "Anomalous Mass"
 
 
 outfit "Trefoil Board"
-	category "Unique"
-	cost 300
+	category "Hand to Hand"
+	cost 30000
 	thumbnail "outfit/trefoil board"
 	"capture attack" 0.3
-	"capture defense" 0.6
+	"capture defense" 0.9
 	"unique" 1
 	"unplunderable" 1
 	description "A fine board for the Avgi game of Trefoil, handcrafted from rare Integral Wood and gifted to you by Speaker Wisteria. The wood is engraved and inlaid with bands of silver, while the three sets of stones are made from polished lapis, jade, and garnet, well-worn from countless games."
