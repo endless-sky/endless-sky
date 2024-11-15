@@ -370,7 +370,7 @@ phrase "avgi places"
 		Issa
 		Itanos
 		Ithaca
-		Juktas 
+		Juktas
 		Kaiete
 		Kallipolis
 		Kamares
@@ -466,7 +466,7 @@ phrase "avgi places"
 		Nicopolis
 		Nirou Hani
 		Nymphaion
-		Nysa 
+		Nysa
 		Odessos
 		Oenoe
 		Oenus
@@ -474,7 +474,7 @@ phrase "avgi places"
 		Olous
 		Olympia
 		Olynthus
-		Onchesmos 
+		Onchesmos
 		Opus
 		Orchomenus
 		Orestias
@@ -495,7 +495,7 @@ phrase "avgi places"
 		Patrae
 		Pavlopetri
 		Pegai
-		Peiraieús
+		Peiraieus
 		Pella
 		Percote
 		Perga
@@ -509,7 +509,6 @@ phrase "avgi places"
 		Pharnacia
 		Pharos
 		Phaselis
-		Phasis
 		Pherae
 		Philippi
 		Philippopolis
@@ -546,7 +545,7 @@ phrase "avgi places"
 		Rhodes
 		Rhyndacum
 		Rhypes
-		Rizinia 
+		Rizinia
 		Salamis
 		Same
 		Samos
@@ -601,7 +600,7 @@ phrase "avgi places"
 		Tiruns
 		Tithoraea
 		Tomis
-		Toróne
+		Torone
 		Trachis
 		Tragurion
 		Trapeze
@@ -615,7 +614,7 @@ phrase "avgi places"
 		Tyritake
 		Tyros
 		Vasiliki
-		Vathypetros 
+		Vathypetros
 		Zakros
 		Zakynthos
 		Zankle

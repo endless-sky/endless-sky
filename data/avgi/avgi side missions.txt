@@ -54,7 +54,7 @@ mission "Avgi Culture: Park Politics"
 				`"Red"`
 				`"Green"`
 				`"Blue"`
-			`	"Acknowledgement. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle" he explains, demonstrating with a stone, then showing you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape.`
+			`	"Acknowledgment. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle" he explains, demonstrating with a stone, then showing you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape.`
 			`	You delicately take a seat on the rail. It's at least only a little worse than a park bench, and you're thankful for the lower gravity on Peripheria.`
 			choice
 				`	"But there's three sides and only two of us."`
@@ -77,7 +77,7 @@ mission "Avgi Culture: Park Politics"
 			label blockwisteria1
 			action
 				"avgi: trefoil aggressive" ++
-			`	"Amusement. Ah, already moving to block me, I see. That is often an approach taken by more advanced players, but I must warn you, executing it succesfully is difficult."`
+			`	"Amusement. Ah, already moving to block me, I see. That is often an approach taken by more advanced players, but I must warn you, executing it successfully is difficult."`
 				goto next1
 
 			label blockthird1
@@ -94,7 +94,7 @@ mission "Avgi Culture: Park Politics"
 				`(Move one of the Third's stones towards Wisteria's side, to block him in the future.)`
 					goto blockwisteria2
 				`(Move one of the Third's stones towards its own exit. Why not)`
-					goto escapethird2		
+					goto escapethird2
 
 			label escape2
 			action
@@ -125,7 +125,7 @@ mission "Avgi Culture: Park Politics"
 					goto safe
 
 			label fighting
-			`	"Contemplation. Yes. Fighting. A vice we have never quite been able to escape, and yet some would say we should be grateful for that now. For without the long millenia to sharpen the spear of war, how much worse would we have fared against the Aberrant, question? And yet my old bones grow weary with every failed expedition to reclaim Aviskir, and I hear the voices crying out that enough is enough, and to give up on our old worlds and build a new life out here."
+			`	"Contemplation. Yes. Fighting. A vice we have never quite been able to escape, and yet some would say we should be grateful for that now. For without the long millennia to sharpen the spear of war, how much worse would we have fared against the Aberrant, question? And yet my old bones grow weary with every failed expedition to reclaim Aviskir, and I hear the voices crying out that enough is enough, and to give up on our old worlds and build a new life out here."
 				goto next3
 
 			label hardlife
@@ -250,7 +250,7 @@ mission "Avgi Culture: Park Politics"
 				`	"Corporations are part of the government? I've seen that one before."`
 					goto syndicate
 
-			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time committment to make."`
+			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
 			`	"But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
 				goto nextassembly
 
@@ -614,8 +614,8 @@ mission "Avgi: Infocourier Encounter"
 				`	"Why is that?"`
 				`	"What do couriers do?"`
 					goto couriers
-			`	"Hmm. Consideration. Decades ago, before the hyperdrive, the arrival of an interstellar courier ship would be a cause for celeberation. Entire planets would rejoice to recieve news of the sciences and arts of other stars, which were cherished. You see, interstellar visits were rare during those days, only a few times a year at most. There was remote communication, of course, with bright x-ray lasers and telescopes to recieve them, but the transfer rates were too slow for information to be shared in bulk."`
-			`	"A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nontheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
+			`	"Hmm. Consideration. Decades ago, before the hyperdrive, the arrival of an interstellar courier ship would be a cause for celeberation. Entire planets would rejoice to receive news of the sciences and arts of other stars, which were cherished. You see, interstellar visits were rare during those days, only a few times a year at most. There was remote communication, of course, with bright x-ray lasers and telescopes to receive them, but the transfer rates were too slow for information to be shared in bulk."`
+			`	"A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nonetheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
 			choice
 				`	"What changed?"`
 			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course-- it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system adapted, and now the system is just that, a system. Regular. Predictable. And ultimately unexciting."`
@@ -670,7 +670,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`You find yourself wandering into what looks like the Avgi version of a spaceport bar. A circular ampitheatre provides seating and tables around the dance floor, with drinks served at a long raised bar that curves around the rim of the room. Curious, you get in line, attracting more than a few interested stares from the aliens, until you reach the bar.`
 			`	"Hey you, want a drink, question?" the bartender asks with a wave, your translator receiving the musical tone. You look behind him, expecting shelves of bottles or barrels, but instead the space behind the bar looks more like a greenhouse, with rows of colorful flowers and plants growing in troughs under blue-violet lights.`
 			`	"Is this stuff safe for humans?" you ask.`
-			`	The bartender splays his arms in what might be a shrug. "Nonchalance. Who knows? Anyway, you want a drink or not?"` 
+			`	The bartender splays his arms in what might be a shrug. "Nonchalance. Who knows? Anyway, you want a drink or not?"`
 			choice
 				`"I'll pass."`
 					goto no
@@ -780,7 +780,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	She looks a little happier at your question. "Explanation. Quickly and decisively. High intensity battles, to knock out the enemy as quickly as possible while expending as few resources as possible. You spend days, maybe even weeks, just watching to try and pin down your enemy, and then you launch everything you have. Missiles loosed from extreme range, and then long ranged beams to defend yourself as you close with the enemy fleet. Each ship would have a dedicated role, designed to support each other and the overall fleet with specific capabilities while countering those same capabilities held by the enemy."`
 
 			label aberrant
-			`	Claret seems to deflate. "Embarassment. Yes. Well. That wasn't the core of the problem we had against the Aberrant, I think. The admirals will tell you it was because we weren't united enough, that there was too much disagreement between the fleets sent to stop them, or that the Aberrant simply had stronger ships, but the truth is that our fleets were designed to fight other Avgi, not an unknown race of aliens that simply didn't fit into our doctrine. We built them to fight ourselves so well they weren't equipped to fight someone who didn't play by our rules."`
+			`	Claret seems to deflate. "Embarrassment. Yes. Well. That wasn't the core of the problem we had against the Aberrant, I think. The admirals will tell you it was because we weren't united enough, that there was too much disagreement between the fleets sent to stop them, or that the Aberrant simply had stronger ships, but the truth is that our fleets were designed to fight other Avgi, not an unknown race of aliens that simply didn't fit into our doctrine. We built them to fight ourselves so well they weren't equipped to fight someone who didn't play by our rules."`
 			choice
 				`	"What happened in those first battles?"`
 				`	"So how has your doctrine changed since then?"`
@@ -851,7 +851,7 @@ mission "Avgi: Atomics Testing 1"
 				`	"Sorry, am I not supposed to be here?"`
 			`	"Oh. Amusement," she thrums in laughter for a moment, "it isn't that, I've just never met an alien before."`
 			"Oh. That makes sense," you say, feeling a bit stupid.
-			`	" I'm Alizarin, but you can call me Aliza. I'm a senior research fellow here at Ergastirio," she says with a touch of pride.`
+			`	"I'm Alizarin, but you can call me Aliza. I'm a senior research fellow here at Ergastirio," she says with a touch of pride.`
 			choice
 				`	"What kind of stuff do you do here?"`
 				`	"What do you research?"`
@@ -876,10 +876,10 @@ mission "Avgi: Atomics Testing 1"
 					goto coward
 				`	"Actually, I have. It wasn't pretty" you say.`
 					to display
+					goto actually
 						or
 							"has: FW Syndicate Capture 1B: offered
-							"has: FWC Cebalrai 1: offered"		
-					goto actually				
+							"has: FWC Cebalrai 1: offered"			
 
 			label actually
 			`	"Surprise. I thought you had some kind of taboo around them, no?"`
@@ -956,7 +956,7 @@ mission "Avgi: Atomics Testing 2"
 
 
 			label next
-			`	At Aliza's direction, you set the <ship> down on a icy pad by one of the small buildings. A few Avgi come out to greet you, wearing silver-colored spacesuits with comically large bubble helmets.`
+			`	At Aliza's direction, you set the <ship> down on an icy pad by one of the small buildings. A few Avgi come out to greet you, wearing silver-colored spacesuits with comically large bubble helmets.`
 			choice
 				`	"What now?"`
 				`	"How long until the test?"`
@@ -973,7 +973,7 @@ mission "Avgi: Atomics Testing 2"
 
 			label boom
 			`	A few hours later, and a quick skim over Dokimi's surface in an Akoustiki Excursion Vehicle, you find yourself in a bunker dug into the ice a few dozen kilometers away. Up in the mountains, you have direct line of sight to the range, which sits just on the horizon.`
-			`	You stand in silence, hunched over in a bunker not designed to accomodate one of your stature. A few Avgi shuffle awkwardly and try to make small talk, but it invariably trails away into the silence. Someone near the back coughs, an odd whistling sound, as you all stare at the room's sole window, tinted dark enough so as to be black. Finally, over the hum of electric lights, a nameless technician begins counting down together with the clock. "Twelve, eleven, ten, nine..."`
+			`	You stand in silence, hunched over in a bunker not designed to accommodate one of your stature. A few Avgi shuffle awkwardly and try to make small talk, but it invariably trails away into the silence. Someone near the back coughs, an odd whistling sound, as you all stare at the room's sole window, tinted dark enough so as to be black. Finally, over the hum of electric lights, a nameless technician begins counting down together with the clock. "Twelve, eleven, ten, nine..."`
 			`	You find yourself holding your breath as the countdown inches to zero. "Three, two, one...`
 			choice
 				`	"...Zero."`
@@ -1000,23 +1000,25 @@ mission "Avgi: Atomics Testing 2"
 
 	on complete
 		conversation
-			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes, waving, she drags you over to a dark blue Avgi in dark, steel grey clothing.`
+			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes, waving, she drags you over to a dark blue Avgi in dark, steel gray clothing.`
 			`	"This is my colleague, Yinmn," she says. And this is Captain <first> <last>.`
 			`	"Greetings. Hey there. I work in the accounting section for Ergastirio. And you're of course Captain <last>, the alien everyone's been talking about."
 			choice
 				`	"Huh, what do you do there?"`
 					goto skip
 				`	"Accounting? That's an odd job for a lab."`
+
 			`	Yinmn hums with laughter. "Amusement, not that kind of accounting. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."
 
 			label skip
 			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."
 			`	Aliza chimes in. "And a lot of people, especially the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
-			`	"Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by "merchants" apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance.`
+			`	"Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by "merchants" apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
 			choice
 				`	"Wait, so do they have nukes too?"`
 					goto proliferation
 				`	"Have you ever lost any nuclear material to them?"`
+
 			`	"Pride. Not under my watch. But, well, I'm not exactly the only Accountant in the Consonance. So yes, material has gone missing before. Rarely through overt piracy, but usually because someone 'forgot' to record the true amount in a shipment, or because it was allocated to a captain that didn't really exist."`
 				goto help
 
@@ -1028,10 +1030,12 @@ mission "Avgi: Atomics Testing 2"
 			choice
 				`	"Sounds like you could use some help with security."`
 				`	"Is there a way I could help escort those shipments?"`
+
 			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties-- as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
 			action
 				set "avgi: Nuclear Material Transport Jobs"
 			choice
 				`	"I will."`
 				`	"Sounds good."`
+
 			`	"Appreciation. Well, it was a pleasure to meet you, <first>, but I've got to go start analyzing the data from the test," Aliza says. "If you're ever around Ergastirio or Dokimi, feel free to stop by and chat. I'm sure we'll see more of each other in the future."`

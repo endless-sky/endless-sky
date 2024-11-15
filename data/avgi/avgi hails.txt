@@ -55,7 +55,7 @@ phrase "friendly twilight guard"
 phrase "hostile twilight guard"
 	phrase
 		"twilight guard angry" 3
-		"avgi rememberance"
+		"avgi remembrance"
 
 phrase "friendly disabled twilight guard"
 	phrase

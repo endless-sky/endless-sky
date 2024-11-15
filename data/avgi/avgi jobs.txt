@@ -234,7 +234,7 @@ phrase "avgi infocourier delivery"
 	word
 		` of `
 	word
-		`<commodity> at a designated terminal and recieve <payment> in payment.`
+		`<commodity> at a designated terminal and receive <payment> in payment.`
 
 mission "Avgi: Information Courier"
 	job
@@ -279,7 +279,7 @@ mission "Avgi: Information Courier Rush"
 
 phrase "avgi twilight guards dropoff"
 	word
-		`You say your goodbyes to the Twilight Guardsmen and recieve <payment> in payment.`
+		`You say your goodbyes to the Twilight Guardsmen and receive <payment> in payment.`
 
 mission "Avgi: Twilight Guardsmen Transport"
 	name "Twilight Guardsmen to <planet>"

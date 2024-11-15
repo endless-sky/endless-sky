@@ -326,7 +326,7 @@ news "avgi student frustrated"
 	message
 		word
 			`"Frustration. I wanted to study political science, but all they teach out here is 'practical' subjects. And people wonder why the Assembly is filled with incompetents..."`
-			`"Depression. I was going to study linguistics, but the univeristy made me go into engineering instead. We already have enough engineers, what we need out here is culture!"`
+			`"Depression. I was going to study linguistics, but the university made me go into engineering instead. We already have enough engineers, what we need out here is culture!"`
 			`"Anger. I wanted to study the arts, but I was ridiculed and accused of being a dead weight on society. Well, a society without art is no society at all!"`
 			`"Anger. I wanted to study history, but that apparently isn't 'useful' to the War. Fools, the lot of them!"`
 			`"Worry. I hope I can find a good job once I'm out of school, but I might have to just work in the shipyards for a few years."`
@@ -426,7 +426,7 @@ news "avgi artist"
 	name
 		word
 			"Avgi" 6
-			"Reknowned"
+			"Renowned"
 			"Talented" 3
 			"Fledgling" 6
 			"Struggling" 6
@@ -456,7 +456,7 @@ news "avgi performer"
 	name
 		word
 			"Avgi" 6
-			"Reknowned"
+			"Renowned"
 			"Talented" 3
 			"Fledgling" 6
 			"Struggling" 6
