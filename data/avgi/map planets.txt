@@ -418,7 +418,7 @@ planet Ashkelon
 
 planet "Feo Platform"
 	attributes avgi station "twilight guard" military
-	landscape land/station53
+	landscape land/station54
 	description `Hastily assembled from the parts of a mothballed interstellar laser driver, the Feo Platform is an enormous free electron laser intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines.`
 	spaceport `The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with dry docks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud.`
 	government "Avgi (Twilight Guard)"
