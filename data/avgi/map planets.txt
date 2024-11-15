@@ -141,7 +141,7 @@ planet Iconil
 
 planet Saeketer
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/clouds10
+	landscape land/clouds14
 	description `This large ice giant hosts a layer in its upper atmosphere where the pressure and temperature are both close to Aviskir's at sea level. Beyond this, the gravity at this altitude is only slightly stronger than what a typical Avgi is used to, creating a paradoxically habitable area in the skies of a gas planet.`
 	description `If Saeketer was in the Anax system, it is likely some enterprising group of Avgi in the pre-hyperdrive era would have colonized its skies in aerostat habitats and floating colonies. The newly available real estate in the form of practically pristine terrestrial worlds has unfortunately devalued opportunities such as this, with there being less of a drive to colonize and exploit every body in a given star system.`
 	government Uninhabited
@@ -519,7 +519,7 @@ planet Weledos
 
 planet Aspar
 	attributes avgi "avgi diaspora" poisonous uninhabited
-	landscape land/forest11
+	landscape land/forest15
 	description `A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Settlement has been light, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir. As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that the plants brought by the Avgi are stunted even if they manage to survive.`
 	government Uninhabited
 
