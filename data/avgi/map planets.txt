@@ -37,7 +37,7 @@ planet Melatos
 
 planet Aviskir
 	attributes avgi "avgi core" "aberrant siege" rich urban
-	landscape land/mountain39
+	landscape land/forest13
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
 	spaceport `The largest spaceports once hosted 'beanstalks,' space elevators capable of lifting cargo en masse to geostationary orbit. After the invention of the gravity repulsor, they were largely relegated to historical curiosities, but the Aberrant still severed them during their attack on Aviskir's orbital infrastructure.`
@@ -215,6 +215,14 @@ planet Amathil
 	outfitter "Avgi General"
 	
 
+planet Steli
+	attributes uninhabited
+	landscape land/water31
+	description `The small tectonic plates on Steli move especially slowly, as though they are almost locked in place. Most of the mountain ranges here are eroded, worn down by time and the moon's extensive hydrosphere, which lends it a cool, temperate climate.`
+	description `	Frequent hot spots trickle lava and heat through the otherwise lethargic crust, and Steli has one of the highest rates of hot springs in all of the Twilight. Only its distance from the core of Avgi space precluded its widespread settlement, though it is rumored that hidden villages and nomadic groups are scattered across the surface.`
+	government Uninhabited
+
+
 planet Felorap
 	attributes ocean uninhabited
 	landscape land/water30
@@ -357,7 +365,7 @@ planet Janalos
 planet Yiddoi
 	attributes uninhabited
 	landscape land/mountain41
-	description `Yiddoi appears to be the product of a failed attempt at terraforming predating the Avgi, or one that was abandoned before it was complete. A blend of clearly synthetic reflective compounds was at one point injected into the moon's atmosphere, ostensibly to reduce incoming sunlight and cool its boiled surface.`
+	description `Yiddoi appears to be the product of a failed attempt at terraforming predating the Avgi, or one that was abandoned before it was complete. A blend of clearly synthetic reflective compounds was at one point injected into the moon's atmosphere, ostensibly to reduce incoming sunlight and cool its boiling surface.`
 	government Uninhabited
 
 
@@ -532,6 +540,19 @@ planet Viso
 	description `Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
 	government Uninhabited
 
+planet Nilokep
+	attributes uninhabited
+	landscape land/sky14
+	description `Silently orbiting its distant parent, Nilokep is a dead, airless world of stony flats and salt plains. Granite mountains jut up at the poles, but any tectonic activity this small world may have once had has long since faded.`
+	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing particulates of uranium, across its surface.`
+	government Uninhabited
+
+planet Gestli
+	attributes uninhabited
+	landscape land/mountain45
+	description `Despite its smooth appearance from orbit, the surface of Gestli is a fractured mess of jagged mountains and rough hills. The tectonic activity of its moon, large enough to qualify as a binary pair, causes an almost perpetual global earthquake that can be felt by simply standing on the planet.`
+	description `The planet's parent stars offer the planet little warmth, and a thin atmosphere of nitrogen and carbon dioxide has managed to hold on to only scattered swathes of ice and snow, with far too little water or heat to support an active hydrological cycle. The anemic erosion, as a result, has done little to smooth the scars left by the influence of the tidal forces that wrack Gestli's surface.`
+	government Uninhabited
 
 planet "Tilo Station"
 	attributes avgi "avgi diaspora" dissonance station

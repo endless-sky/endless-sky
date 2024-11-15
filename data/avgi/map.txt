@@ -3748,8 +3748,8 @@ system Current
 		sprite planet/gas5
 		distance 1399.641
 		period 592.42
-		object
-			sprite planet/cloud8-b
+		object Steli
+			sprite planet/earth-b
 				scale 0.5
 			distance 342.442
 			period 222
@@ -4106,11 +4106,11 @@ system Ne-20
 		sprite star/m3
 		period 10
 	object
-		sprite planet/lava6
+		sprite planet/gas5-b
 		distance 862
 		period 667.509
-	object
-		sprite planet/gas5-b
+	object Nilokep
+		sprite planet/desert4-b
 		distance 2189
 		period 2701.25
 	object
@@ -4978,7 +4978,7 @@ system Ar-40
 		sprite planet/ganymede-b
 		distance 833.273
 		period 759.903
-	object
+	object Gestli
 		sprite planet/ice5
 		distance 1673.739
 		period 2163.258
