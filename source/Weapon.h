@@ -226,6 +226,7 @@ protected:
 
 private:
 	double TotalDamage(int index) const;
+	std::pair<double, double> RangeAndEndVelocity(double parentVelocity) const;
 
 
 private:
@@ -367,6 +368,7 @@ private:
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
 	mutable double totalLifetime = -1.;
+	mutable double calculatedRange = -1.;
 };
 
 

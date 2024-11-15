@@ -523,22 +523,74 @@ double Weapon::TotalLifetime() const
 
 double Weapon::Range() const
 {
-	if(rangeOverride > 0) return rangeOverride;
-	double time = TotalLifetime();
-	if(velocityOverride > 0) return velocityOverride * time;
-	if(acceleration == 0) return velocity * time;
-	// Without drag there is no terminal velocity, only lifetime limits range:
-	// Note the classic formula would subtract the `1` - but Projectile::Move applies acceleration _first_.
-	if(drag == 0) return time * velocity + time * (time+1) * acceleration / 2;
-	// Math to solve distance travelled as function of initial velocity, acceleration, drag and time elapsed
-	// adapted from https://physicscourses.colorado.edu/phys2210/phys2210_fa20/lecture/lec09-power-series/
-	// Problem: This calculates linearly, while Projectile::Move computes per frame, updating velocity first and then
-	// applying it as if it had been in effect the entire tick that just passed. Thus this formula falls short a little.
-	double terminalVelocity = acceleration / drag;
-	return terminalVelocity * time - (terminalVelocity - velocity) / drag * (1.0 - exp(-time * drag));
+	if(rangeOverride > 0)
+		return rangeOverride;
+	if(velocityOverride > 0)
+		return velocityOverride * TotalLifetime();
+	if(calculatedRange >= 0)
+		return calculatedRange;
+
+	auto rv = RangeAndEndVelocity(0.);
+	calculatedRange =  rv.first;
+	return calculatedRange;
 }
 
 
+std::pair<double, double> Weapon::RangeAndEndVelocity(double parentVelocity) const
+{
+	double range, endVelocity;
+	double initialVelocity = parentVelocity + velocity + randomVelocity / 2;
+	int time = lifetime + randomLifetime / 2;
+
+	if(acceleration == 0)
+	{
+		range = initialVelocity * time;
+		endVelocity = initialVelocity;
+	}
+	else if(drag == 0)
+	{
+		// Without drag, we have constant acceleration, so use the kinematic equation.
+		// The slight deviation (adding 1 to the time in one place)
+		// is because Projectile::Move applies acceleration first.
+		range = (time * initialVelocity) + (time * (time + 1) * acceleration / 2);
+		endVelocity = initialVelocity + time * acceleration;
+	}
+	else
+	{
+#if false
+		// Math to solve distance traveled as function of initial velocity, acceleration, drag and time elapsed
+		// adapted from https://physicscourses.colorado.edu/phys2210/phys2210_fa20/lecture/lec09-power-series/
+		// Problem: This calculates linearly, while Projectile::Move computes per frame, updating velocity first and
+		// then applying it as if it had been in effect the entire tick that just passed.
+		// Thus this formula deviates a little, depending on relation of initial to terminal velocity.
+		double terminalVelocity = acceleration / drag;
+		range = terminalVelocity * time - (terminalVelocity - initialVelocity) / drag * (1.0 - exp(-time * drag));
+		endVelocity = ??;
+#else
+		// iterative approach - models the Projectile::Move behaviour
+		double v = initialVelocity;
+		range = 0.0;
+		for(int i = 0; i < time; ++i)
+		{
+			v = v * (1.0 - drag) + acceleration;
+			range += v;
+		}
+		endVelocity = v;
+#endif
+	}
+
+	double subRange = 0.0, subVelocity = endVelocity;
+	for(const auto &it : submunitions)
+	{
+		auto subRV = it.weapon->RangeAndEndVelocity(endVelocity);
+		if (subRV.first <= subRange)
+			continue;
+		subRange = subRV.first;
+		subVelocity = subRV.second;
+	}
+
+	return make_pair(range + subRange, subVelocity);
+}
 
 // Calculate the fraction of full damage that this weapon deals given the
 // distance that the projectile traveled if it has a damage dropoff range.
