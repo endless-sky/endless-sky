@@ -80,6 +80,7 @@ mission "Avgi Culture: Zapchannel Ad"
 			branch language
 				has "language: Avgi (Written)"
 			`A cheap electronic sign, haphazardly stuck to a wall, flashes a series of colorful symbols, sharp and angular. You aren't able to understand it, but guess it's probably an advertisement or notice of some kind.`
+				decline
 
 			label language
 			`A cheap electronic sign, haphazardly stuck to a wall, flashes a message in the colorful written language of the Avgi. "Zapchannel Ray Energy! With over three quadrillion gamma decays per serving, one dose provides enough energy for life! Buy today!"`
@@ -99,6 +100,7 @@ mission "Avgi Culture: Dissonance Protest 1"
 			branch language
 				has "language: Avgi (Written)"
 			`A line of angry-looking Avgi march in a wide circle around the spaceport, while others dart overhead in a similar pattern. Most of them seem to be waving colorful flags, while a few of the Avgi in the air are trailing banners with large, angular letters in bright colors written on them. All of the Avgi, which seem to be participating in some kind of protest, are wearing bright magenta ribbons around their arms, a color that seems to be likewise prominent on their flags and banners.`
+				decline
 
 			label language
 			`A line of angry-looking Avgi march in a wide circle around the spaceport, while others dart overhead in a similar pattern. Most of them seem to be waving colorful flags, while a few of the Avgi in the air are trailing banners with colorful slogans on them. "STOP CONSONANCE TAXES," "ABOLISH MINING FEUDALISM," and "STOP SENDING US TO DIE" are just a few of the messages you can make out, all in the angular Avgi script. All of the Avgi, which seem to be participating in some kind of protest, are wearing bright magenta ribbons around their arms, a color that seems to be likewise prominent on their flags and banners.`
@@ -118,6 +120,7 @@ mission "Avgi Culture: Dissonance Graffiti 1"
 			branch language
 				has "language: Avgi (Written)"
 			`You find colorful, curvy symbols scrawled all across the walls, floor, and ceiling of <planet>'s spaceport terminal, and you can see a handful of Avgi with brushes and mops attempting to remove them. You aren't sure what they say, but other Avgi seems to be laughing and pointing as they stroll by. The workers scrubbing the graffiti away seem to be less than amused, however.`
+				decline
 
 			label language
 			`Colorful, curvy symbols are scrawled all across the walls, floor, and ceiling of <planet>'s spaceport terminal, and you can see a handful of Avgi with brushes and mops attempting to remove them. Much of the paint has run down the walls or overlaps with other symbols, and what you can see is sloppy, but you can make out words like 'taxes' and 'defenestrate' and the phrase 'Twilight Guard? More like Twilight Gourd.'`
@@ -176,7 +179,7 @@ mission "Avgi Culture: General Ripper"
 		random < 3
 	on offer
 		conversation
-			`An Avgi stands at a crossroads, waving a sign and a laser rifle. "Declaration. The Aberrant are polluting our precious bodily fluids, citizens! Take action now! We must not allow a fluid gap!`
+			`An Avgi stands at a crossroads, waving a sign and a laser rifle. "Declaration. The Aberrant are polluting our precious bodily fluids, citizens! Take action now! We must not allow a fluid gap!"`
 			`	Security personnel soon arrive and begin trying to talk the Avgi down, eyeing the laser rifle nervously.`
 				decline
 
