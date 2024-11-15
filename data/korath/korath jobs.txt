@@ -243,3 +243,593 @@ mission "Kor Efreti to Wanderers: Farming"
 	on complete
 		payment 10000 200
 		dialog `When you return, the Korath move their hands in a circular motion with their palms toward you as a sign of gratitude. They hand you <payment> and disembark your ship.`
+
+# This is your key to entering La'ab Bamen without a bribe.
+# Hence the lack of randomness.
+mission "New Tortuga Fish Trade (small)"
+	name "New Tortuga fish trade"
+	job
+	repeat
+	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "New Tortuga trade" 5 10 0.8
+	illegal 50000
+	deadline 7
+	source "New Tortuga"
+	destination "New Tortuga"
+	stopover "La'ab Bamen"
+	to offer
+		has "event: know about Korath fish jobs"
+		not "New Tortuga Fish Trade (small): active"
+		"reputation: Korath" > -3000
+	on stopover
+		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
+	on complete
+		payment 25000 500
+		dialog "An inventory officer meets you to trade your cargo for <payment>."
+		"reputation: Korath" += 2
+
+mission "New Tortuga Fish Trade (medium)"
+	name "New Tortuga fish trade"
+	job
+	repeat
+	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
+	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "New Tortuga trade" 15 50 0.8
+	illegal 100000
+	deadline 7
+	source "New Tortuga"
+	destination "New Tortuga"
+	stopover "La'ab Bamen"
+	to offer
+		random < 20
+		has "event: know about Korath fish jobs"
+		not "New Tortuga Fish Trade (medium): active"
+		"cargo space" > 20
+		"reputation: Korath" > -3000
+	on stopover
+		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
+	on complete
+		payment 35000 400
+		dialog "An inventory officer meets you to trade your cargo for <payment>."
+		"reputation: Korath" += 4
+
+mission "New Tortuga Fish Trade (bulk)"
+	name "New Tortuga fish trade"
+	job
+	repeat
+	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "New Tortuga trade" 40 300 0.8
+	illegal 150000
+	deadline 7
+	source "New Tortuga"
+	destination "New Tortuga"
+	stopover "La'ab Bamen"
+	to offer
+		random < 5
+		has "event: know about Korath fish jobs"
+		not "New Tortuga Fish Trade (bulk): active"
+		"cargo space" > 50
+		"reputation: Korath" > -3000
+	on stopover
+		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
+	on complete
+		payment 45000 350
+		dialog "An inventory officer meets you to trade your cargo for <payment>."
+		"reputation: Korath" += 7
+
+mission "Korath: Retrieve livestock [0]"
+	name "Livestock from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique livestock and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "livestock trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
+
+mission "Korath: Retrieve livestock [1]"
+	name "Livestock from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare livestock and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "livestock trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
+
+mission "Korath: Retrieve livestock [2]"
+	name "Livestock from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous livestock and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "livestock trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
+
+mission "Korath: Retrieve livestock [3]"
+	name "Livestock from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "livestock trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
+
+mission "Korath: Retrieve livestock [4]"
+	name "Livestock from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "livestock trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of livestock."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the livestock and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
+
+mission "Korath: Retrieve crops [0]"
+	name "Crops from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique crops and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "crops trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
+
+mission "Korath: Retrieve crops [1]"
+	name "Crops from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare crops and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "crops trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
+
+mission "Korath: Retrieve crops [2]"
+	name "Crops from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous crops and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "crops trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
+
+mission "Korath: Retrieve crops [3]"
+	name "Crops from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "crops trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
+
+mission "Korath: Retrieve crops [4]"
+	name "Crops from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "crops trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+	to offer
+		random < 40
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of crops."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the crops and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
+
+mission "Korath: Retrieve fish [0]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique fish and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "fish trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
+
+mission "Korath: Retrieve fish [1]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare fish and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "fish trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
+
+mission "Korath: Retrieve fish [2]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous fish and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "fish trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 40
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
+
+mission "Korath: Retrieve fish [3]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "fish trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 40
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
+
+mission "Korath: Retrieve fish [4]"
+	name "Fish from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "fish trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes fishing
+	to offer
+		random < 40
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of fish."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the fish and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
+
+mission "Korath: Retrieve flora and fauna [0]"
+	name "Flora and fauna from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique flora and fauna and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "flora and fauna trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
+
+mission "Korath: Retrieve flora and fauna [1]"
+	name "Flora and fauna from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare flora and fauna and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "flora and fauna trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
+
+mission "Korath: Retrieve flora and fauna [2]"
+	name "Flora and fauna from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous flora and fauna and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "flora and fauna trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 40
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
+
+mission "Korath: Retrieve flora and fauna [3]"
+	name "Flora and fauna from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "flora and fauna trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 40
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
+
+mission "Korath: Retrieve flora and fauna [4]"
+	name "Flora and fauna from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "flora and fauna trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes forest
+	to offer
+		random < 40
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of flora and fauna."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the flora and fauna and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12
+
+mission "Korath: Retrieve domestic pets [0]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique domestic pets and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "domestic pets trade" 1 4 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 2
+
+mission "Korath: Retrieve domestic pets [1]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare domestic pets and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "domestic pets trade" 3 10 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 40
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 4
+
+mission "Korath: Retrieve domestic pets [2]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous domestic pets and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "domestic pets trade" 7 25 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 40
+		"cargo space" > 10
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 7
+
+mission "Korath: Retrieve domestic pets [3]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "domestic pets trade" 16 80 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 40
+		"cargo space" > 20
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 10
+
+mission "Korath: Retrieve domestic pets [4]"
+	name "Domestic pets from <stopovers>"
+	job
+	repeat
+	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
+	cargo "domestic pets trade" 35 300 0.8
+	source "La'ab Bamen"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+	to offer
+		random < 40
+		"cargo space" > 50
+	on stopover
+		dialog "A local contact takes the trade goods from <origin> and gives you <tons> of domestic pets."
+	on complete
+		payment 30000 180
+		dialog "An inventory officer examines the domestic pets and confirms the trade. You receive <payment>."
+		"reputation: Korath" += 12

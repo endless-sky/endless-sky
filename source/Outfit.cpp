@@ -64,6 +64,7 @@ namespace {
 		{"thrusting burn", 0.},
 		{"thrusting disruption", 0.},
 		{"thrusting slowing", 0.},
+		{"lateral thrust ratio", 0.},
 
 		{"turning shields", 0.},
 		{"turning hull", 0.},
@@ -243,6 +244,11 @@ void Outfit::Load(const DataNode &node)
 		{
 			steeringFlareSprites.emplace_back(Body(), 1);
 			steeringFlareSprites.back().first.LoadSprite(child);
+		}
+		else if(child.Token(0) == "lateral flare sprite" && child.Size() >= 2)
+		{
+			lateralFlareSprites.emplace_back(Body(), 1);
+			lateralFlareSprites.back().first.LoadSprite(child);
 		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
@@ -560,6 +566,8 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
+	for(const auto & it : other.lateralFlareSprites)
+		AddFlareSprites(lateralFlareSprites, it, count);
 	MergeMaps(flareSounds, other.flareSounds, count);
 	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);
 	MergeMaps(steeringFlareSounds, other.steeringFlareSounds, count);
@@ -611,6 +619,13 @@ const vector<pair<Body, int>> &Outfit::ReverseFlareSprites() const
 const vector<pair<Body, int>> &Outfit::SteeringFlareSprites() const
 {
 	return steeringFlareSprites;
+}
+
+
+
+const vector<pair<Body, int>>& Outfit::LateralFlareSprites() const
+{
+	return lateralFlareSprites;
 }
 
 

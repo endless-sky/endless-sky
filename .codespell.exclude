@@ -1,3 +1,5 @@
+			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw several smaller ones, facing each other. "Korath," they say again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
+			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small spiders, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
 		"Ikrehpeb haslrikpeb ikpecem sara nives"      # Stop acting like a child
 		"akmac pano nives ralret umsab lravriv" # a pasta of small snakes with mice meatballs
 		"haet sunt"                     # heat shunt (mispronounced)
@@ -91,7 +93,6 @@ planet "Sies Upi"
 			`		MSGT IRENE BROWER`
 			`As you step out of your ship, you spot a familiar face: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
-		"Brin"
 		"exis"
 			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
 			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`

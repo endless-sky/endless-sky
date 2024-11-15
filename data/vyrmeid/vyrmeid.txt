@@ -191,7 +191,7 @@ ship "Astral Cetacean"
 		"mass" 1800
 		"drag" 23.6
 		"heat dissipation" 0.46
-		"fuel capacity" 200
+		"fuel capacity" 275
 		"cargo space" 0
 		"outfit space" 0
 		"weapon capacity" 0

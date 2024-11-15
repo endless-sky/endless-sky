@@ -277,10 +277,10 @@ tip "fuel protection:"
 	`Protection provided against fuel damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in fuel damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "gun ports needed:"
-	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
+	`This weapon uses up a gun port. Guns always fire on a specified angle, which is usually forwards.`
 
 tip "gun ports free:"
-	`How many guns this ship can hold. This includes most missiles and secondary weapons that fire straight forward.`
+	`How many guns this ship can hold. This includes all primary weapons that fire in a fixed direction.`
 
 tip "heat dissipation:"
 	`How effectively this ship radiates excess heat.`
@@ -537,6 +537,12 @@ tip "piercing protection:"
 tip "piercing resistance:"
 	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
 
+tip "pylons needed:"
+	`This weapon uses up a missile pylon. Pylons always fire on a set angle, which is often forward but may be on an angle to provide counter-flanking or counter-pursuit fire.`
+
+tip "missile pylons free:"
+	`How many pylons this ship can hold. This includes all rockets, missiles, torpedoes and similar secondary weapons.`
+
 tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
@@ -693,8 +699,53 @@ tip "solar collection:"
 tip "solar heat:"
 	`Heat produced depending on how far this ship is from the star at the center of the system.`
 
+tip "strategic scan power:"
+	`Strategic scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, current speed, maximum acceleration, and turning speed when it is within range. The range is proportional to the square root of this value.`
+
 tip "tactical scan power:"
-	`Allows viewing your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "acceleration scan power:"
+	`Mobility scanners allow you to view your current target's current maximum acceleration when it is within range. The range is proportional to the square root of this value.`
+
+tip "crew scan power:"
+	`Crew scanners allow you to view your current target's crew complement when it is within range. The range is proportional to the square root of this value.`
+
+tip "energy scan power:"
+	`Energy scanners allow you to view your current target's energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "fuel scan power:"
+	`Fuel scanners allow you to view your current target's fuel levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "maneuver scan power:"
+	`Maneuver scanners allow you to view your current target's current maximum turn speed when it is within range. The range is proportional to the square root of this value.`
+
+tip "mobility scan power:"
+	`Mobility scanners allow you to view your current target's current speed and maximum acceleration when it is within range. The range is proportional to the square root of this value.`
+
+tip "range finder power:"
+	`Range finders allow you to view the distance from the center of your ship to the center of your current target. There is no range limit.`
+
+tip "thermal scan power:"
+	`Thermal scanners allow you to view your current target's thermal level when it is within range. The range is proportional to the square root of this value.`
+
+tip "velocity scan power:"
+	`Mobility scanners allow you to view your current target's current speed when it is within range. The range is proportional to the square root of this value.`
+
+tip "weapon scan power:"
+	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scaner range is proportional to the square root of this value.`
+
+tip "max speed:"
+	`The fastest this ship can travel when using ordinary thrusters (that is, without afterburner).`
+
+tip "acceleration:"
+	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+
+tip "movement:"
+	`How quickly this ship can accelerate and turn.`
+
+tip "movement (full - no cargo):"
+	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
 
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
@@ -787,10 +838,10 @@ tip "turning disruption:"
 	`Accumulated shield interference per second when turning.`
 
 tip "turret mounts needed:"
-	`This weapon can fire in any direction, tracking your currently selected target. It uses up one of your ship's turret mounts.`
+	`This weapon can fire in any direction, tracking your currently selected target or closest enemy ship depending on your preferences. It uses up one of your ship's turret mounts.`
 
 tip "turret mounts free:"
-	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
+	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns. Some turret mounts may have a limited range of fire.`
 
 tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`

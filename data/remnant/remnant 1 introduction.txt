@@ -273,9 +273,9 @@ mission "Remnant: Defense 1"
 		personality staying uninterested disables plunders
 		fleet "Large Remnant"
 	npc evade
-		government "Korath"
+		government "Kor Alaji"
 		personality staying heroic plunders harvests target
-		fleet "Korath Ember Waste Raid" 6
+		fleet "Kor Alaji Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -316,7 +316,7 @@ mission "Remnant: Defense 2"
 			`	"Thank you," she sings. "It keeps jumping between systems in our territory. Maybe its jump drive was damaged or something, and it cannot escape. I will spread the information that you've taken on the bounty for hunting it, so others will not risk their lives fighting it."`
 				accept
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality coward target uninterested marked waiting
 		system
 			distance 1 2
@@ -361,7 +361,7 @@ mission "Remnant: Defense 3"
 	on accept
 		event "remnant: surveillance begin"
 	npc kill
-		government "Korath"
+		government "Kor Isaha"
 		personality heroic nemesis staying
 		system "Parca"
 		fleet
@@ -2238,9 +2238,9 @@ mission "Remnant: Salvage 2"
 		personality staying uninterested disables plunders
 		fleet "Large Remnant" 2
 	npc evade
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic plunders harvests target
-		fleet "Korath Ember Waste Raid" 7
+		fleet "Kor Alaji Raid" 7
 		fleet
 			names "korath"
 			cargo 3
@@ -2323,7 +2323,7 @@ mission "Remnant: Salvage 4"
 			`	"Thank you," he signs. "It is acting oddly, jumping around destroying ships instead of looting and running. If it simply looted and left we would be pleased, but now it is learning about us instead, so it has reached the end of its usefulness. Please disable it so that we can salvage parts from it." He pauses, then continues, "I doubt we'll be able to salvage the ship itself - they pack those things with soldiers - and we do not want it to be captured, even if that is possible for you. The ship and crew should remain intact, and we will salvage what we can after you have it disabled. If you salvage anything we will happily compensate you for it in the outfitter, but do not feel obliged to do so. Destroying the ship should be a last resort."`
 				accept
 	npc save disable
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -3275,7 +3275,7 @@ ship "Starling" "Starling (Keystone)"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
-		"Crucible-Class Steering"
+		# "Crucible-Class Steering" # Extra steering
 		"Hyperdrive"
 
 
@@ -3685,6 +3685,7 @@ ship "_Ion Timer Ship"
 	# The _Ion Storm Timer: Generator outfit counteracts this until there is an ion storm
 	# sprite "ship/shuttle" # uncomment this for debugging
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 1.0
 		"mass" 100
