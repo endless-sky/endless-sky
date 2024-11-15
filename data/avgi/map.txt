@@ -4306,7 +4306,7 @@ system H-1
 	object
 		sprite star/m8
 		period 10
-	object
+	object Viso
 		sprite planet/ocean4-b
 		distance 480
 		period 362.039
@@ -4896,7 +4896,7 @@ system Kr-84
 	attributes "tangled shroud"
 	habitable 2160
 	belt 1811 4
-	"jump range" 30
+	"jump range" 90
 	haze _menu/haze-67
 	link As-75
 	asteroids "large metal" 1 3.325

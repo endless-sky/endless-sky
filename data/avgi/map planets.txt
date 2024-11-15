@@ -57,7 +57,7 @@ planet Aviskir
 
 
 planet Sela
-	attributes avgi moon "ice moon" frozen uninhabited
+	attributes avgi frozen moon "ice moon" uninhabited
 	landscape land/snow37
 	description `A former planetoid captured into Aviskir's orbit only a few hundred million years ago, Sela is unusual for large moons in that it is not tidally locked, instead having a rapid rotational period of only forty-two hours. Almost one third of the moon is covered in a glassy plain of ice, smoothed by seasonal melting and refreezing. This is thought to have been deposited by a cometary impact relatively recently, and has been steadily sublimating away into space ever since.`
 	description `An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear explosives behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system.`
@@ -68,7 +68,7 @@ planet Sela
 
 planet Thilos
 	attributes avgi "aberrant siege" frozen
-	landscape land/snow24
+	landscape land/snow38
 	description `The Avgi were fortunate to have this nearly habitable planet in their home system. Covered in a thick crust of ice, a deep subsurface ocean lies just below the surface, heated by the radioactive decay of isotopes in its rocky core.`
 	description `This planet was the first to be settled by the Avgi, who almost immediately began thickening its atmosphere, oxygenating it, and warming the surface with orbital mirrors. Despite beginning this process nearly three centuries ago, it will likely be another century before Thilos becomes warm enough to live on, though its atmosphere is already breathable.`
 	spaceport `The primary spaceport is located near a region where the icy crust is thin. The landing pads are built from enormous slabs of ice, thick enough to absorb the plume of a fusion torch. During the summer, the plumes of cryovolcanoes often surround the spaceport, tinging the tenuous sky with pale blue streaks.`
@@ -97,8 +97,8 @@ planet "Nisos Cylinder"
 
 
 planet Entantel
-	attributes avgi moon "ice moon" frozen uninhabited
-	landscape land/snow25
+	attributes avgi frozen moon "ice moon" uninhabited
+	landscape land/snow39
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size.`
 	description `Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system.`
 	spaceport `The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel here to fill a few large tankers.`
@@ -133,9 +133,9 @@ planet Calesi
 
 
 planet Iconil
-	attributes uninhabited
-	landscape land/snow25
-	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and clearly visible ice deposits, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livoula: the Avgi's first interstellar colony.`
+	attributes frozen uninhabited
+	landscape land/snow26
+	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and visible patches of sparkling ice, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livoula: the Avgi's first interstellar colony.`
 	government Uninhabited
 
 
@@ -148,7 +148,7 @@ planet Saeketer
 
 
 planet Naphir
-	attributes avgi moon uninhabited
+	attributes avgi frozen moon "ice moon" uninhabited
 	landscape land/snow27
 	description `Naphir was the chosen destination, and ultimately the final resting place, of an ill-fated early interstellar expedition. The Avgi pioneers who volunteered for the mission knew well in advance that the system lacked any garden planets, but set out regardless; all of them were well prepared to spend the rest of their lives in orbital stations. Finding a cool, airless moon around a gas giant, the colonists settled down and began constructing habitats and gathering essential resources.`
 	description `Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. Their precision machining equipment was still located on their orbiting starship, and was severely damaged; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day.`
@@ -518,10 +518,18 @@ planet Weledos
 
 
 planet Aspar
-	attributes avgi "avgi diaspora" poisonous uninhabited
+	attributes poisonous uninhabited
 	landscape land/forest15
 	description `A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Widespread settlement has been prevented, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir.`
 	description `As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that imported plants tend to be stunted even if they manage to survive.`
+	government Uninhabited
+
+
+planet Viso
+	attributes frozen uninhabited
+	landscape land/snow33
+	description `A world of ice and ammonia, Viso is home to a curious ecosystem of ammonia-breathing bacteria, deep red algae, and small, cold amphibians. The planet's proximity to its host star, a red dwarf, amplifies the interactions between the solar wind and Viso's magnetic field, producing auroras that often reach the equator.`
+	description `Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
 	government Uninhabited
 
 

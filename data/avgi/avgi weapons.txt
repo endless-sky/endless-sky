@@ -614,7 +614,7 @@ outfit "Orchid Terminal"
 		"lifetime" 120
 		"acceleration" 0.12
 		"drag" 0.018
-		"trigger radius" 150
+		"trigger radius" 90
 		"blast radius" 300
 		"shield damage" 18000
 		"hull damage" 12000
