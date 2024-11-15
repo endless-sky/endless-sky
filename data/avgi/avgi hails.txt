@@ -16,12 +16,12 @@
 
 phrase "friendly avgi"
 	phrase
-		"avgi warm greetings" 3
+		"avgi warm greetings" 6
 		"avgi cold greetings"
 		"avgi warnings" 3
 		"avgi complaints"
 		"avgi questions" 3
-		"avgi commerce" 6
+		"avgi commerce" 9
 
 phrase "hostile avgi"
 	phrase
@@ -55,6 +55,7 @@ phrase "friendly twilight guard"
 phrase "hostile twilight guard"
 	phrase
 		"twilight guard angry" 3
+		"avgi rememberance"
 
 phrase "friendly disabled twilight guard"
 	phrase
@@ -101,6 +102,7 @@ phrase "hostile disabled dissonance"
 	phrase
 		"dissonance rude playername"
 
+
 phrase "avgi polite playername"
 	word
 		"alien"
@@ -134,6 +136,7 @@ phrase "avgi polite playername"
 		"visitor"
 		"voyager"
 		"wanderer"
+
 
 phrase "avgi rude playername"
 	word
@@ -171,6 +174,7 @@ phrase "avgi rude playername"
 		"stranger"
 		"xeno"
 
+
 phrase "dissonance polite playername"
 	word
 		"fellow"
@@ -187,6 +191,7 @@ phrase "dissonance polite playername"
 		"dissident"
 		"friend"
 		"supporter"
+
 
 phrase "dissonance rude playername"
 	word
@@ -208,6 +213,7 @@ phrase "dissonance rude playername"
 		"thief"
 		"traitor"
 		"xeno"
+
 
 phrase "avgi warm acknowledgment"
 	word
@@ -342,6 +348,7 @@ phrase "twilight guard greeting"
 	word
 		"."
 		"!"
+
 
 phrase "avgi warnings"
 	word
@@ -561,6 +568,7 @@ phrase "avgi complaints"
 		"!"
 		", anger!"
 
+
 phrase "avgi questions"
 	word
 		"Confused"
@@ -759,6 +767,8 @@ phrase "avgi commerce win"
 		"I'm glad we're safe here."
 		"Life is great."
 		"Things are looking up!"
+
+
 phrase "avgi commerce loss"
 	word
 		"Anger"
@@ -797,6 +807,7 @@ phrase "avgi commerce loss"
 		"Why can't goods be sold at a profit?"
 		"Why can't things be different, question?"
 
+
 phrase "avgi commerce neutral"
 	word
 		"Resolve"
@@ -819,7 +830,6 @@ phrase "avgi commerce neutral"
 		"I've heard of an independent group of hiders, neither Consonance or Dissonance. They're prepared for what's coming."
 		"I heard that a group set out before the Incursion to hide from existential threats. I need to join them."
 		"This war won't be won without people like me."
-
 
 
 phrase "avgi friendly help"
@@ -895,7 +905,6 @@ phrase "avgi angry help"
 		"Remain in place"
 		"Stay away from me"
 		"Stay away"
-
 
 
 phrase "twilight guard friendly help"
@@ -1071,3 +1080,18 @@ phrase "twilight guard angry"
 		"."
 		"!"
 
+phrase "avgi remembrance"
+	word
+		"Anger"
+		"Dutiful"
+		"Enthusiasm"
+		"Reluctance"
+		"Resolve"
+	word
+		"Fight for "
+		"Remember "
+		"Never forget "
+	phrase
+		"avgi places"
+	word
+		"!"
