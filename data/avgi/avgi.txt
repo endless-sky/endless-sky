@@ -35,7 +35,7 @@ phrase "avgi military names"
 
 phrase "avgi military names"
 	phrase
-		"avgi names"
+		"avgi places"
 
 phrase "avgi fighter names"
 	phrase
@@ -464,7 +464,7 @@ phrase "avgi places"
 		Nemea
 		Nicaea
 		Nicopolis
-		Nirou Hani
+		"Nirou Hani"
 		Nymphaion
 		Nysa
 		Odessos
