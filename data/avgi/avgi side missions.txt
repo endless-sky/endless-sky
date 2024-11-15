@@ -398,7 +398,7 @@ mission "Avgi Culture: Park Politics"
 
 			label roll
 			branch win
-				random < (("avgi: trefoil classical" + "avgi: trefoil aggressive") * 10 + (random - 50) * "avgi: trefoil chaotic" * 10)
+				random < "avgi: trefoil classical" * 10 + "avgi: trefoil aggressive" * 10 + (random - 50) * "avgi: trefoil chaotic" * 10
 
 			label lose
 			`	In the end Wisteria is able to pull ahead and get the last of his pieces off the board before you, and you suspect it was only as close as it was due to him humoring you.`
