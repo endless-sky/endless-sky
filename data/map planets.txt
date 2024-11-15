@@ -2051,7 +2051,7 @@ planet Greenwater
 	security 0.4
 
 planet "Gresku Fodar"
-	attributes korath station "korath exile"
+	attributes "korath exile" korath station
 	landscape land/station29
 	music ambient/machinery
 	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
