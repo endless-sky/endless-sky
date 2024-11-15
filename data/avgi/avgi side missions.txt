@@ -45,7 +45,7 @@ mission "Avgi Culture: Park Politics"
 				`	"I'll stand, I think."`
 			`	"Amusement. The other humans had chairs made to suit your forms, they did. Folded them up and carried them everywhere."
 			`	"Did you meet them?" you ask.`
-			`	"Yes, yes. Several times. Only the angry one was any good at Trefoil, sadly. Speaking of which--" he deftly rearranges the colored stones, arranging them into a neat pattern. Three triangles, one of each color, angled with their topmost points touching at the center of a six-sided board.`
+			`	"Yes, yes. Several times. Only the angry one was any good at Trefoil, sadly. Speaking of which -" he deftly rearranges the colored stones, arranging them into a neat pattern. Three triangles, one of each color, angled with their topmost points touching at the center of a six-sided board.`
 
 			scene "scene/trefoil"
 
@@ -58,7 +58,7 @@ mission "Avgi Culture: Park Politics"
 			`	You delicately take a seat on the rail. It's at least only a little worse than a park bench, and you're thankful for the lower gravity on Peripheria.`
 			choice
 				`	"But there's three sides and only two of us."`
-			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It --the Third-- is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape "`
+			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Third - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape "`
 
 			choice
 				`(Focus on getting your stones out. Move a stone towards your color's escape.)`
@@ -243,7 +243,7 @@ mission "Avgi Culture: Park Politics"
 
 			label assembly
 			`	"Explanation. The Assembly of Polities, as it is formally named, is a rather complicated institution. As its name suggests, it is, well, an assembly of polities. Polities being... associations, or identities. I have read of your human histories, and you could perhaps consider them an analog of nations, but with two key differences."`
-			`	Wisteria raises a sharp finger. "One, they are not geographically bounded. Oh, many will perhaps have ownership over various pieces of land and space stations, but that is in constant flux, and they are rarely joined into a contiguous whole. And two, an individual Avgi can belong to any number of polities at the same time. Citizenship, you may think of it, is shared --and diluted-- between as many polities as an Avgi wishes to belong to. Religion, ethnic heritage, economic sector, and even common interests are the most common lines by which polities might base themselves around, but there is one for almost any group imaginable. Even major corporations, or industries that have banded together."`
+			`	Wisteria raises a sharp finger. "One, they are not geographically bounded. Oh, many will perhaps have ownership over various pieces of land and space stations, but that is in constant flux, and they are rarely joined into a contiguous whole. And two, an individual Avgi can belong to any number of polities at the same time. Citizenship, you may think of it, is shared - and diluted - between as many polities as an Avgi wishes to belong to. Religion, ethnic heritage, economic sector, and even common interests are the most common lines by which polities might base themselves around, but there is one for almost any group imaginable. Even major corporations, or industries that have banded together."`
 			`	He spreads his arms out as if presenting a great circle. "The Assembly was an attempt at securing harmony between these polities, to prevent conflicts, and when that became impossible, to set the rules and limits of war. One representative, an Elector, per polity, with a vote weighted by the number of Avgi belonging to it, and by how those Avgi had chosen to dilute their own membership among the various polities. And from they select three Speakers, a Trirumvirate to lead the leaders."`
 			choice
 				`	"Do the Avgi in a polity elect their Elector?"`
@@ -618,7 +618,7 @@ mission "Avgi: Infocourier Encounter"
 			`	"A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nonetheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
 			choice
 				`	"What changed?"`
-			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course-- it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system adapted, and now the system is just that, a system. Regular. Predictable. And ultimately unexciting."`
+			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system adapted, and now the system is just that, a system. Regular. Predictable. And ultimately unexciting."`
 			label couriers
 			`	"Today, we make the rounds in ships that are fast, but have the room for enough storage media to update a planet's entire network. In our heyday, before the Incursion, a courier ship would visit a world every day to upload its database, but since then we've struggled to keep each system controlled by the Consonance updated once per week."`
 			label ask
@@ -628,7 +628,7 @@ mission "Avgi: Infocourier Encounter"
 					goto diamond
 				`	"Sounds like an interesting job. Is there any way I could take infocourier missions?"`
 					goto job
-			`	"Consideration. Many reasons, some of which are even good ones. Mostly because what makes them excellent research and scout vessels also makes them excellent courier ships-- fast, while also having large integrated memory banks and a reasonable amount space for cargo. It helps that the Twilight Guard has been decommissioning so many Polari lately, with how fragile they are against the Aberrant. Anticipation. It wouldn't surprise me if they designed a successor to them, if you ask me."`
+			`	"Consideration. Many reasons, some of which are even good ones. Mostly because what makes them excellent research and scout vessels also makes them excellent courier ships - fast, while also having large integrated memory banks and a reasonable amount space for cargo. It helps that the Twilight Guard has been decommissioning so many Polari lately, with how fragile they are against the Aberrant. Anticipation. It wouldn't surprise me if they designed a successor to them, if you ask me."`
 				goto ask
 
 			label diamond
@@ -738,7 +738,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				`	"Well, the Republic isn't the only government in human space these days. The Free Worlds might try to help you."`
 					to show
 						has "event: war begins"
-			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either-- they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use."`
+			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use."`
 				goto humans
 
 			label exploit
@@ -794,7 +794,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	"That stopped the bloodletting, for a while. Apprehension. Until the front lines began to run low on missiles. When it takes a ship's entire magazine to kill an Aberrant before it has to retreat and resupply, it simply isn't sustainable. And the particle beams wielded by some of our ships, the ones that could fight at long range, were simply absorbed by the Aberrant's shields, something we're still trying to overcome. But for a while it seemed like nothing was working."`
 
 			label changes
-			`	"Praise. We had to completely throw out everything we thought we knew and start over. We ended up bringing back coilguns and kinetic kill vehicles -- ridiculously short range weapons compared to a serious beam or missile. But it's what we could field at short notice, and build in the numbers needed to at least hold the Aberrant at bay. What we fly these days would probably be slaughtered by a pre-Incursion fleet, but the Aberrant fight at a much shorter range anyway, and our modern fleets have much better endurance when it comes to ammunition."`
+			`	"Praise. We had to completely throw out everything we thought we knew and start over. We ended up bringing back coilguns and kinetic kill vehicles - ridiculously short range weapons compared to a serious beam or missile. But it's what we could field at short notice, and build in the numbers needed to at least hold the Aberrant at bay. What we fly these days would probably be slaughtered by a pre-Incursion fleet, but the Aberrant fight at a much shorter range anyway, and our modern fleets have much better endurance when it comes to ammunition."`
 			`	Claret thrums with laughter. "If you had told a planner that we'd be fighting with coilguns and kinetic kill vehicles, before the Incursion you'd have been laughed out of the room. But we're lucky that the Aberrant's weapons are short ranged, such that we can actually hit them at the range of a dumb projectile from a coilgun without being instantly swatted out of the sky."`
 
 			choice
@@ -910,8 +910,8 @@ mission "Avgi: Atomics Testing 1"
 			`	"Annoyance. That was Trypan. My point of contact with a group of wealthy individuals with far too much influence and not enough sense. For years they've been convinced we just need 'one more prototype, just one more experiment' to produce a breakthrough to win the War. She sighs. "No one really takes them seriously anymore, not after all the failed projects they've sponsored, but they do shell out the equipment we need for free, so we have to at least act like we're listening to their 'new ideas.' That they have a few seats in the Consonance between them doesn't hurt either, when we need more resources or funding."`
 
 			label wunderwaffe
-			`	"Trypan and his technocrat friends are convinced they're on the verge of a breakthrough to 'win the War,' as they love to claim. For a while they were obsessed with absurd superweapons-- had us actually try again to develop a hyperspace weapon, despite everyone trying that for decades. There's basically no theory behind the idea anyway, trust me," she assures you. "Now they're convinced we can cook up a supermaterial of some kind that will be invulnerable to the Aberrant beams, when we still don't even really know how they work."`
-			`	She shakes her head animatedly, looking rather put off. "He and the group backing him have been having us run their 'prototype' samples through our linear accelerator-- this big 'ol electron beam in the Third Wing of the station. We use it for all sorts of research, and we do conduct material testing with it, but it's gotten ridiculous lately. They keep acting surprised when we burn through their plates of whatever alloy they've cooked up in a fraction of a second." She gives you an amused look. "At least that makes each beam run short, but cleaning out the accelerator is more annoying than you'd think."`
+			`	"Trypan and his technocrat friends are convinced they're on the verge of a breakthrough to 'win the War,' as they love to claim. For a while they were obsessed with absurd superweapons - had us actually try again to develop a hyperspace weapon, despite everyone trying that for decades. There's basically no theory behind the idea anyway, trust me," she assures you. "Now they're convinced we can cook up a supermaterial of some kind that will be invulnerable to the Aberrant beams, when we still don't even really know how they work."`
+			`	She shakes her head animatedly, looking rather put off. "He and the group backing him have been having us run their 'prototype' samples through our linear accelerator - this big 'ol electron beam in the Third Wing of the station. We use it for all sorts of research, and we do conduct material testing with it, but it's gotten ridiculous lately. They keep acting surprised when we burn through their plates of whatever alloy they've cooked up in a fraction of a second." She gives you an amused look. "At least that makes each beam run short, but cleaning out the accelerator is more annoying than you'd think."`
 			`	She looks past you, towards a door. "Ah, my colleagues. We were going to catch an Akoustiki down to the surface, but you have a ship, right? Want to be our ride?"`
 			choice
 				`	"Of course"`
@@ -1031,7 +1031,7 @@ mission "Avgi: Atomics Testing 2"
 				`	"Sounds like you could use some help with security."`
 				`	"Is there a way I could help escort those shipments?"`
 
-			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties-- as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
+			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
 			action
 				set "avgi: Nuclear Material Transport Jobs"
 			choice
