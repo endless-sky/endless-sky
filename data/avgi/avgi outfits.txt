@@ -604,7 +604,7 @@ outfit "Trefoil Board"
 	"capture defense" 0.6
 	"unique" 1
 	"unplunderable" 1
-	description "A fine board for the Avgi game of Trefoil, handcrafted from rare Integral Wood and gifted to you by Wisteria. The wood is engraved and inlaid with silver, while the three sets of stones are made from polished lapis, jade, and garnet, well-worn from countless games."
+	description "A fine board for the Avgi game of Trefoil, handcrafted from rare Integral Wood and gifted to you by Speaker Wisteria. The wood is engraved and inlaid with bands of silver, while the three sets of stones are made from polished lapis, jade, and garnet, well-worn from countless games."
 	description "You suppose the dense wood would make an adequate blunt weapon in a pinch, though it would be a shame to damage such a fine piece in something so crass as melee combat."
 
 
