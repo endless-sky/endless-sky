@@ -601,7 +601,7 @@ ship "Frequentia"
 		"fuel capacity" 2400
 		"cargo space" 240
 		"outfit space" 186
-		"engine capacity" 60
+		"engine capacity" 66
 		"anchor point" 1
 		weapon
 			"blast radius" 360
@@ -672,7 +672,7 @@ ship "Polari"
 		"cargo space" 42
 		"outfit space" 294
 		"weapon capacity" 36
-		"engine capacity" 60
+		"engine capacity" 66
 		"asteroid scan power" 72
 		"anchor point" 1
 		weapon
@@ -1125,7 +1125,7 @@ ship "Tremoros"
 		"cargo space" 12
 		"outfit space" 210
 		"weapon capacity" 60
-		"engine capacity" 63
+		"engine capacity" 69
 		"anchor point" 1
 		weapon
 			"blast radius" 90
@@ -1317,7 +1317,7 @@ ship "Interferos"
 		"cargo space" 12
 		"outfit space" 288
 		"weapon capacity" 99
-		"engine capacity" 60
+		"engine capacity" 66
 		"anchor point" 1
 		weapon
 			"blast radius" 210
@@ -1564,7 +1564,7 @@ ship "Difraktos"
 		"cargo space" 60
 		"outfit space" 540
 		"weapon capacity" 252
-		"engine capacity" 132
+		"engine capacity" 142
 		"anchor point" 1
 		weapon
 			"blast radius" 420
@@ -1739,7 +1739,7 @@ ship "Refraktos"
 		"cargo space" 60
 		"outfit space" 516
 		"weapon capacity" 150
-		"engine capacity" 144
+		"engine capacity" 168
 		"anchor point" 1
 		weapon
 			"blast radius" 420
@@ -1838,7 +1838,7 @@ ship "Atenuatia"
 		"cargo space" 120
 		"outfit space" 690
 		"weapon capacity" 180
-		"engine capacity" 174
+		"engine capacity" 186
 		"anchor point" 1
 		weapon
 			"blast radius" 540

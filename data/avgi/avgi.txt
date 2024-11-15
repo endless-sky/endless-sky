@@ -329,7 +329,7 @@ phrase "avgi places"
 		Ephyra
 		Epidamnos
 		Epidauros
-		Epizephyrian Locris
+		"Epizephyrian Locris"
 		Eresos
 		Eretria
 		Erythrae
@@ -344,8 +344,8 @@ phrase "avgi places"
 		Gortyn
 		Gournia
 		Gythium
-		Hagia Triada
-		Hagios Onouphrios
+		"Hagia Triada"
+		"Hagios Onouphrios"
 		Halicarnassus
 		Halieis
 		Helike
@@ -358,9 +358,9 @@ phrase "avgi places"
 		Hierapolis
 		Himera
 		Histria
-		Hubla Gereatis
-		Hubla Heraea
-		Hubla Minor
+		"Hubla Gereatis"
+		"Hubla Heraea"
+		"Hubla Minor"
 		Hyele
 		Ialysos
 		Iasus
@@ -430,7 +430,7 @@ phrase "avgi places"
 		Media
 		Megalopolis
 		Megara
-		Megara Hublaea
+		"Megara Hublaea"
 		Melaena
 		Mesembria
 		Messene
@@ -553,7 +553,7 @@ phrase "avgi places"
 		Scidrus
 		Scolacium
 		Scyllaeum
-		Seleucia Pieria
+		"Seleucia Pieria"
 		Selinus
 		Semasus
 		Sestos

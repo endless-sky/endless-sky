@@ -14,24 +14,22 @@
 
 mission "Avgi Culture: Park Politics"
 	invisible
-	spaceport
 	to offer
 		not "avgi: lost in twilight"
 		random < 30
 	source
 		planet "Peripheria"
-		spaceport
 	on offer
 		conversation
 			action
-				set: "avgi: met wisteria"
+				set "avgi: met wisteria"
 			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise industrial facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mezmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
-			`	"Is this one of the humans I have heard so much about, question?"` the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of you, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
+			`	"Is this one of the humans I have heard so much about, question?" the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of you, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
 			choice
 				`	"Hello there."`
 				`	"Hi, I'm Captain <first> <last>."`
 					goto name
-			`	"Courteous introduction. I am called Wisteria. Would you grace me with your own name?"
+			`	"Courteous introduction. I am called Wisteria. Would you grace me with your own name?"`
 			`	"I'm Captain <first> <last>," you say.`
 			label name
 			`	"Appreciated meeting. A pleasure to meet you, Captain <last>. Would you like to join old Wisteria at a game of Space Chess, question? I would be happy to teach you how to play, of course."`
@@ -43,13 +41,13 @@ mission "Avgi Culture: Park Politics"
 			choice
 				`	"That sure looks comfortable."`
 				`	"I'll stand, I think."`
-			`	"Amusement. The other humans had chairs made to suit your forms, they did. Folded them up and carried them everywhere."
+			`	"Amusement. The other humans had chairs made to suit your forms, they did. Folded them up and carried them everywhere."`
 			`	"Did you meet them?" you ask.`
 			`	"Yes, yes. Several times. Only the angry one was any good at Trefoil, sadly. Speaking of which -" he deftly rearranges the colored stones, arranging them into a neat pattern. Three triangles, one of each color, angled with their topmost points touching at the center of a six-sided board.`
 
 			scene "scene/trefoil"
 
-			`	"Respectful deference. Which color would you like to play as, question? There is no real difference between them, as far as the game plays."
+			`	"Respectful deference. Which color would you like to play as, question? There is no real difference between them, as far as the game plays."`
 			choice
 				`"Red"`
 				`"Green"`
@@ -125,7 +123,7 @@ mission "Avgi Culture: Park Politics"
 					goto safe
 
 			label fighting
-			`	"Contemplation. Yes. Fighting. A vice we have never quite been able to escape, and yet some would say we should be grateful for that now. For without the long millennia to sharpen the spear of war, how much worse would we have fared against the Aberrant, question? And yet my old bones grow weary with every failed expedition to reclaim Aviskir, and I hear the voices crying out that enough is enough, and to give up on our old worlds and build a new life out here."
+			`	"Contemplation. Yes. Fighting. A vice we have never quite been able to escape, and yet some would say we should be grateful for that now. For without the long millennia to sharpen the spear of war, how much worse would we have fared against the Aberrant, question? And yet my old bones grow weary with every failed expedition to reclaim Aviskir, and I hear the voices crying out that enough is enough, and to give up on our old worlds and build a new life out here."`
 				goto next3
 
 			label hardlife
@@ -175,7 +173,7 @@ mission "Avgi Culture: Park Politics"
 
 			label escape3b
 			action
-				"avgi: trefoil classical" +=2
+				"avgi: trefoil classical" += 2
 			`	"Consideration. You are focused on escape, with no inclination towards hindering me. A good strategy for the first few moves, but winning almost always requires some form of interference with the other side, even if it means entangling your pieces in defensive formations."`
 				goto next4
 
@@ -429,11 +427,10 @@ mission "Avgi Culture: Zapchannel Energy"
 		random < 30
 	source
 		government "Avgi (Consonance)"
-		spaceport
 	on offer
 		conversation
 			action
-				set: "avgi: met nikkio"
+				set "avgi: met nikkio"
 			`You are on your way back to the <ship> after a stroll through the spaceport when a bright yellow Avgi lands in front of you. "Hey, you! Enthusiasm! I am Nikkio, famed medician and traveling salesman. Do you, alien sojourner, care for your health?"`
 			choice
 				`"I guess so."`
@@ -460,7 +457,7 @@ mission "Avgi Culture: Zapchannel Energy"
 				`"I'm not drinking that."`
 			`	"Dismissal. Nonsense, this formula is perfectly safe! A serum for the health, proven to kill over three thousand forms of cancer, you should know." As if on cue, the glow pulses menacingly.`
 			choice
-				'"Yeah, that doesn't look safe. I'm calling the authorities."'
+				`"Yeah, that doesn't look safe. I'm calling the authorities."`
 					goto nope
 				`"Alright, I'll give it a shot."`
 			branch superpowers
@@ -469,10 +466,11 @@ mission "Avgi Culture: Zapchannel Energy"
 			label superpowers
 			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in center of your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your skin begins to glow a vibrant blue.`
 			`	"Surprise. You surely are, ah, a worthy captain!" says Nikkio, shock evident on his face. He begins to sidle away, glancing in all directions as though he isn't sure what's going on. "Hurry. I must be on my way, goodbye for now, captain!"`
+			action
 				set "damselflyman"
 				accept
 			label nope
-			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"
+			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"`
 				decline
 	on accept
 		outfit "Damselflyman"
@@ -494,10 +492,8 @@ mission "Avgi: Cylinder Construction"
 	landing
 	to offer
 		not "avgi: lost in twilight"
-		random < 30
 	source
 		planet "Aktina Cylinder"
-		spaceport
 	on offer
 		conversation
 			`You are struck by just how massive this space station is, even in its incomplete state. At three kilometers in diameter, it is only a small fraction of the size of the ones back in Avgi space, but even so it overshadows any human orbital construction. The site is an active construction zone, based on what you've heard, though you see little evidence of activity. A few Avgi lounge about in the small, temporary living quarters for the construction workers, but all of the Akoustiki Excursion Vehicles with their welding arms and nanofilament spinners are docked and powered down.`
@@ -506,10 +502,11 @@ mission "Avgi: Cylinder Construction"
 				`	(Yes.)`
 				`	(Not right now.)`
 					defer
+
 			action
 				set "avgi: met gamboge"
 			`	You find a deep yellow Avgi, dressed in metallic blue-colored bangles around his limbs and forward body, perched in a makeshift office behind a pile of boxes. "Hey, do you mind if I ask some questions about this station?" you say.`
-			`	"Curiosity. Of course, alien traveler," he says, waving an arm at you. "My name is Gamboge, and I direct the construction effort on the Aktina Cylinder. What would you like to know?"
+			`	"Curiosity. Of course, alien traveler," he says, waving an arm at you. "My name is Gamboge, and I direct the construction effort on the Aktina Cylinder. What would you like to know?"`
 			label questions
 			choice
 				`	"How long until the cylinder is done?"`
@@ -527,10 +524,6 @@ mission "Avgi: Cylinder Construction"
 				`	"That's all the questions I have, thank you."`
 					goto conclusion
 					to display
-						or
-							"avgi: asked about whenupdate"
-							"avgi: asked about oneil"
-							"avgi: asked about housing"
 
 			label whenupdate
 			action
@@ -539,6 +532,7 @@ mission "Avgi: Cylinder Construction"
 			choice
 				`	"Well, it makes sense that fighting the Aberrant would take priority."`
 				`	"Is building this station as important as fighting the Aberrant?"`
+
 			`	"Clarification. By no means do I begrudge the Assembly's decision. Without the Twilight Guard I would not be alive to complain about being paid to sit around all day, though that burden truly does pain me. But when I am asked by important delegates and electors why there is not yet an abundance of space with which to house their people, I am obliged to tell them that the decision rests with them, not with me."`
 				goto questions
 
@@ -550,6 +544,7 @@ mission "Avgi: Cylinder Construction"
 				`	"What do they do?"`
 					goto nerds
 				`	"That sounds like a lot"`
+
 			`	"Appreciation. Oh, it is. Over seven hundred megatons of raw material, scraped off moons and torn from asteroids. But it will be worth it, in the end."`
 
 			label nerds
@@ -559,7 +554,8 @@ mission "Avgi: Cylinder Construction"
 			label housing
 			`	"Consideration. A place to live, with enough space to be a real home, not just a temporary outpost with a few houseplants. You should know, we had thousands of cylinders far larger than this one back in Anax and around our other colonies. Billions of Avgi, housed not on planets but in space. This is but a pale imitation of what we once had, but it is needed all the same. Do you know the most pressing question faced by the Assembly?"`
 			choice
-			`	"No."`
+				`	"No."`
+
 			`	"Mild surprise. It is oft spoken of. The Assembly must decide the fate of the millions of Avgi in cryogenic storage, frozen during our evacuation to facilitate their transportation. A scarce few thousand are thawed every year, the best and brightest we can find among them woken to fight the Aberrant, all because we lack the food and living space to support the rest. This cylinder here, Aktina, could support them."`
 				goto questions
 
@@ -573,12 +569,14 @@ mission "Avgi: Cylinder Construction"
 				`	"Sure."`
 				`	"I don't have time for anything, sorry."`
 					decline
+
 			`	"I hope I have impressed the importance of this project upon you. But, despite the scale of the resources required to truly complete it, we do not need an unreasonable amount to continue construction on the most essential elements. As a starship captain, independent of the requisitions and allocations of the Consonance, would you be willing to assist us in gathering the materials we need?"`
 			choice
 				`	"Yes."`
 				`	"For the right pay."`
 				`	"Sorry, no."`
 					decline
+
 			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
 			action
 				set "avgi: aktina cylinder supply jobs"
@@ -587,20 +585,18 @@ mission "Avgi: Cylinder Construction"
 
 mission "Avgi: Infocourier Encounter"
 	invisible
-	landing
 	to offer
 		not "avgi: lost in twilight"
 		random < 6
 	source
 		government "Avgi (Consonance)"
-		spaceport
 	on offer
 		conversation
 			`While admiring the ships in <origin>'s spaceport, you notice a Polari painted in civilian Avgi colors, rather than usual deep blue of the Twilight Guard. All of the scouts you've seen before have been commissioned ships of the Guard, but it seems like this one might be privately owned.`
 			choice
-			`	(Ask around about who the Polari belongs to.)`
-			`	(It's not that interesting. You have better things to do.)`
-				defer
+				`	(Ask around about who the Polari belongs to.)`
+				`	(It's not that interesting. You have better things to do.)`
+					defer
 			`	You ask a few passing Avgi, and eventually one is able to answer your question.`
 			`	"Probably an infocourier ship, hauling information and databases instead of cargo. The Guard sometimes sends ships to market if they've taken a beating and aren't worth fixing up to combat standards, which is probably what happened there.`
 			`	You thank the Avgi for their time, and are about to leave when you spot a pale yellow Avgi climbing on board the exact ship you've been talking about. You might as well see if he's willing to chat.`
@@ -608,8 +604,8 @@ mission "Avgi: Infocourier Encounter"
 			`	The Avgi looks down from atop the Polari. "Invitation, I do. The name's Hansa, and you are?"`
 			`	"Captain <first> <last>," you say. "Are you one of the infocouriers?"`
 			action
-				set: "avgi: met hansa"
-			`	`Hansa clicks his arms together. "Mild surprise. Indeed I am, but I'm surprised you've heard of us. Not a lot of people talk about the courier system these days."`
+				set "avgi: met hansa"
+			`	Hansa clicks his arms together. "Mild surprise. Indeed I am, but I'm surprised you've heard of us. Not a lot of people talk about the courier system these days."`
 			choice
 				`	"Why is that?"`
 				`	"What do couriers do?"`
@@ -658,13 +654,11 @@ mission "Avgi: Infocourier Encounter"
 
 mission "Avgi Culture: Twilight Tavern Guard"
 	invisible
-	landing
 	to offer
 		not "avgi: lost in twilight"
 		random < 30
 	source
 		attributes "twilight guard"
-		spaceport
 	on offer
 		conversation
 			`You find yourself wandering into what looks like the Avgi version of a spaceport bar. A circular ampitheatre provides seating and tables around the dance floor, with drinks served at a long raised bar that curves around the rim of the room. Curious, you get in line, attracting more than a few interested stares from the aliens, until you reach the bar.`
@@ -673,59 +667,71 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	The bartender splays his arms in what might be a shrug. "Nonchalance. Who knows? Anyway, you want a drink or not?"`
 			choice
 				`"I'll pass."`
-					goto no
+					goto claret
 				`"Sure. What would you recommend?"`
+
 			`	He gives you a look. "Amusement. You're no regular so I'll start you off with a quis nectar. On the house." He turns around, deftly snatching up something close to a cocktail glass, and pulls out a big, dangerous-looking glass pipette from somewhere under the bar. Smoothly dipping it into something that looks like a large pitcher plant, he draws out a clear, slightly pink-tinged liquid before depositing it in the glass. "Enjoy, amusement."`
 			choice
 				`	Gulp it down. "Bottoms up."`
 					goto toomuch
 				`	Take a sip. "Thanks."`
+
 			`	The liquid is pleasantly light and sweet, with a bit of bitterness behind it. It doesn't taste anything like alcohol, but you can feel the lights in the room become a little sharper and brighter.`
-				goto attention
+				goto claret
+
 			label toomuch
 			`	You toss back your glass in a swift movement, swallowing the alien liquid in one smooth gulp. It's pleasantly light, and quite sweet. You can't taste any alcohol, but the room seems to light up as every detail becomes crisp and defined.`
 
-			label no
+			label claret
 			`	Another bar patron sidles up next to you. "Hey, you must be one of those aliens, right, question?" The Avgi is a warm, wine-red color, matching the color of her drink.`
 			choice
 				`	"Yep, that's me. How'd you know?"`
 					goto confirm
 				`	"No, you must have had a bit too much to drink."`
-			`	"Unamused. Very funny, but I'm not quite that wired."
+			`	"Unamused. Very funny, but I'm not quite that wired."`
 				goto next
+
 			label confirm
 			`	"Amusment. That was rhetorical." She takes a sip from her own drink.`
+
 			label next
 			action
-				set: "avgi: met claret"
+				set "avgi: met claret"
 			`	"The name's Claret." She extends an arm, which you reach out to shake, she instead taps her forearm to yours. "You're a hot topic among the Guard, you know?" She peers at you with unscrutable compound eyes.`
 			choice
 				`	"The Guard?"`
 				`	"Why is that?"`
 					goto why
+
 			`	Claret flares her wings out and raises her arms in an exaggerated pose. "Inflated boast. The Twilight Guard. You know, us brave warriors that are the last line of defense between the murderous Aberrant and the last bastion of Avgi civilization. Well, except for the people stuck back on Aviskir, but we don't talk about that, heh." She waves an arm. "But back to you, Captain <last>."`
+
 			label why
 			`	She points at you dramatically. "You're an alien, and you fought the Aberrant. Even though we've seen a few of you people around, none of them have flown a starship quite like yours. Of course we've been talking about you. Wouldn't surprise me if half the Consonance was, really."`
 			choice
 				`	"Well, what do they say about me?`
 					goto gossip
 				`	"All good things, I hope"`
+
 			`	"Dismissive. Of course, everyone is singing your praises. Except for the ones who claim you aren't one of those 'humans' at all, and are secretly an Aberrant in the shape of one waiting for the perfect moment to strike and eat our children." Claret gives you a serious look. "You aren't, right?"`
 			choice
 				`	"Not last I checked"`
 				`	"Nope."`
 				`	"Well, you've caught me."`
 					goto caught
+
 			label caught
 				`"Oh no." she says in a completely flat voice. "I am absolutely terrified." She takes a deep drink before sighing contentedly.`
+
 			label gossip
 				`	"Some say that the humans will soon arrive to save us with their superior technology. Others say you'll be the next aliens to invade us, and finish the job the Aberrant started."`
 			choice
 				`	"And which do you believe?"`
-					believe
+					goto believe
 				`	"Very contradictory rumors."`
+
 			`	She gives you an incredulous look. "Scorn. When are they not? I don't know about you humans, but ask three Avgi the same question and you'll get six different answers. We are a fractious lot, us Avgi, and that will be true until the stars burn out and the moons fall from the sky."`
-			goto humans
+				goto humans
+
 			label believe
 				`	"Amusement. Neither. Either one would be too easy, and that of course can't be allowed, not in this universe. I expect your Republic would spend years and years debating whether to even acknowledge our existence, let alone take any kind of action."`
 			choice
@@ -736,8 +742,9 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				`	"Maybe, but there are others that would try to exploit you. That's just human nature."`
 					goto exploit
 				`	"Well, the Republic isn't the only government in human space these days. The Free Worlds might try to help you."`
-					to show
+					to display
 						has "event: war begins"
+
 			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use."`
 				goto humans
 
@@ -803,12 +810,12 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				`	"And now you're able to hold your own against them?"`
 
 			`	"Discomfort. Maybe at first, when we could count on having a numerical advantage, but the Aberrant continue to reproduce at a faster rate than we can build ships. And these new weapons, well, they were considered obsolete for a reason. We need something that can dish out more damage, and at a longer range, without being as expensive and resource-intensive as a missile."`
-				goto next
+				goto shields
 
 			label technology
 				`	"Oh, yes, appreciation. But they don't use it to its full extent, probably because they aren't intelligent beings in their own right. They just make more of each other, without any changes other than occasional mistakes. And their weapons don't seem like they were meant to be weapons, if that makes sense. More of a cutting beam than a true weaponized laser."`
 
-			label next
+			label shields
 			`	"That's why things really were desperate, until you humans came around. That changed everything, knowing there was a non-hostile, if not outright friendly, alien power nearby. Even though it sounds like your government isn't able to help directly, given the lack of connecting starways, technological support from a more advanced species could be enough for us to win. Shields, shared by your people, were already a game changer by themselves"`
 
 			choice
@@ -843,14 +850,14 @@ mission "Avgi: Atomics Testing 1"
 	on offer
 		conversation
 			action
-				set: "avgi: met aliza"
+				set "avgi: met aliza"
 			`Ergastirio Station is quiet as you disembark from the <ship>. Everyone you see seems purposeful and deliberate, moving as if they all know exactly where they need to be. Wandering about as you are, you can't help but feel that you stand out, a feeling that proves warranted when a female Avgi stops you, a vibrant red tinged with purple.`
 			`	"Curiosity, hello. Who are you?"`
 			choice
 				`	"Sorry, I was just looking around."`
 				`	"Sorry, am I not supposed to be here?"`
 			`	"Oh. Amusement," she thrums in laughter for a moment, "it isn't that, I've just never met an alien before."`
-			"Oh. That makes sense," you say, feeling a bit stupid.
+			`"Oh. That makes sense," you say, feeling a bit stupid.`
 			`	"I'm Alizarin, but you can call me Aliza. I'm a senior research fellow here at Ergastirio," she says with a touch of pride.`
 			choice
 				`	"What kind of stuff do you do here?"`
@@ -860,9 +867,9 @@ mission "Avgi: Atomics Testing 1"
 				`	"Nuclear weapons? Fascinating."`
 					goto cool
 				`	"Nuclear weapons? That's... interesting, I guess."`
-				`	"Nuclear weapons? I'm not a fan honestly."
+				`	"Nuclear weapons? I'm not a fan honestly."`
 			`	"Ah, well. Not everyone can appreciate art. But you'll see the light, hehe, when the Aberrant come knocking. Nothing else hits 'em the same way, appreciation."`
-			goto wannasee
+				goto wannasee
 
 			label cool
 			`	"Enthusiasm. They are! I wish there was time to explain the fine art of weapons design, but alas, I have an appointment in less than an hour... Consideration. Actually, I've just had an idea," she says, looking thoughtful.`
@@ -967,8 +974,8 @@ mission "Avgi: Atomics Testing 2"
 			choice
 				`	"So that's an Avgi atomic."`
 				`	(Continue working.)`
-				goto boom
-			`	"Yep. This is a mid-sized device, only sixty megatons. Weighs a bit under three tons, so it's a bit large for the tiny little missiles we've been stuck with since the Incursion drove us out here, but I've heard there's a team working on spooling up a production line for a more capable missile bus so that we can get these deployed."
+					goto boom
+			`	"Yep. This is a mid-sized device, only sixty megatons. Weighs a bit under three tons, so it's a bit large for the tiny little missiles we've been stuck with since the Incursion drove us out here, but I've heard there's a team working on spooling up a production line for a more capable missile bus so that we can get these deployed."`
 			`	She looks suddenly embarrassed. "Worry. But you didn't hear that from me, of course. Information security is a lot more relaxed now that we're all mostly on the same side, but still... can't hurt to be safe."`
 
 			label boom
@@ -991,7 +998,7 @@ mission "Avgi: Atomics Testing 2"
 
 
 
-			`	"Would you mind giving me a ride back up to Ergastirio, question?"
+			`	"Would you mind giving me a ride back up to Ergastirio, question?"`
 			choice
 				`	"Sure."`
 					accept
@@ -1002,13 +1009,13 @@ mission "Avgi: Atomics Testing 2"
 		conversation
 			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes, waving, she drags you over to a dark blue Avgi in dark, steel gray clothing.`
 			`	"This is my colleague, Yinmn," she says. And this is Captain <first> <last>.`
-			`	"Greetings. Hey there. I work in the accounting section for Ergastirio. And you're of course Captain <last>, the alien everyone's been talking about."
+			`	"Greetings. Hey there. I work in the accounting section for Ergastirio. And you're of course Captain <last>, the alien everyone's been talking about."`
 			choice
 				`	"Huh, what do you do there?"`
 					goto skip
 				`	"Accounting? That's an odd job for a lab."`
 
-			`	Yinmn hums with laughter. "Amusement, not that kind of accounting. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."
+			`	Yinmn hums with laughter. "Amusement, not that kind of accounting. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`
 
 			label skip
 			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`

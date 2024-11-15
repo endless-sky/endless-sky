@@ -560,12 +560,12 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Traincar"
+				"Aberrant Icebreaker"
 				"Aberrant Mole" 2
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Traincar" 2
+				"Aberrant Icebreaker" 2
 				"Aberrant Mole"
 		fleet
 			names "aberrant names"
@@ -737,7 +737,7 @@ mission "Avgi: Frontline Combat"
 			names "aberrant names"
 			variant
 				"Aberrant Junior"
-				"Aberrant Traincar"
+				"Aberrant Icebreaker"
 	npc kill
 		government "Aberrant"
 		personality

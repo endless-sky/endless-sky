@@ -178,7 +178,7 @@ fleet "Avgi Scouts"
 	government "Avgi (Twilight Guard)"
 	names "avgi civilian names"
 	cargo 3
-	commodities
+	commodities "Food" "Equipment" "Medical"
 	fighters
 		names "avgi fighter names"
 	personality

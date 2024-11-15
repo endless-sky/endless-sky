@@ -293,7 +293,7 @@ outfit "Electron Bunch"
 		"inaccuracy" 0.6
 		"shield damage" 1.2
 		"hull damage" 1.8
-		"scramble damage" 0.006
+		"scrambling damage" 0.006
 		"piercing" 0.3
 		"penetration count" 3
 

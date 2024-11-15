@@ -172,7 +172,7 @@ ship "Aberrant Pileup"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 123
-		"outfit space" 184
+		"outfit space" 194
 		"weapon capacity" 94
 		"engine capacity" 66
 		"energy capacity" 17000
