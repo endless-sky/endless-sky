@@ -97,7 +97,7 @@ phrase "unfettered challenger"
 	word
 		"my brethren"
 		"fellow Unfettered"
-		"all true Hai"
+		"all True Hai"
 	word
 		" "
 	word

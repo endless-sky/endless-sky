@@ -562,7 +562,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				`	"I'd be happy to do that."`
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
-				`	"I'd prefer not to intervene in your conflict with the Unfettered."`
+				`	"I'd prefer not to intervene on your side in the conflict with the Unfettered."`
 					decline
 			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
 				accept
