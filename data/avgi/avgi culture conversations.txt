@@ -53,7 +53,7 @@ mission "Avgi Culture: Playfight"
 				decline
 
 
-mission "Avgi Culture: Playfight"
+mission "Avgi Culture: Cocoon"
 	minor
 	invisible
 	source
@@ -134,7 +134,7 @@ mission "Avgi Culture: We Live In A Society"
 		random < 3
 	on offer
 		conversation
-			`An Avgi passes you, head buried in something that looks remarkably like a newspaper. You hear him mutter as he strolls by, "Unbelievable. We truly live in a society, consideration"`
+			`An Avgi passes you, head buried in something that looks remarkably like a newspaper. You hear him mutter as he strolls by, "Unbelievable. We truly live in a society, consideration."`
 				decline
 
 

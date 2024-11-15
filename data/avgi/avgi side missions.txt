@@ -878,7 +878,7 @@ mission "Avgi: Atomics Testing 1"
 					to display
 					goto actually
 						or
-							"has: FW Syndicate Capture 1B: offered
+							"has: FW Syndicate Capture 1B: offered"
 							"has: FWC Cebalrai 1: offered"
 
 			label actually
