@@ -472,7 +472,6 @@ outfit "Nettle Active"
 		sprite "projectile/nettle"
 			"scale" 0.5
 		"hit effect" "missile hit"
-		"live effect"
 		"die effect" "nettle split" 30
 		"lifetime" 300
 		"split range" 180
