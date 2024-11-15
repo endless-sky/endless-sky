@@ -25,16 +25,16 @@ phrase empty
 		" "
 
 
-mission "Gossamer Activity"
+mission "Gossamer Sailors"
 	invisible
 	landing
 	repeat
 	to offer
-		not "Gossamer Activity: active"
+		not "Gossamer Sailors: active"
 	to complete
 		never
 	on offer
-		fail "Gossamer Activity"
+		fail "Gossamer Sailors"
 	npc save
 		government "Indigenous Lifeform (Tree)"
 		personality fleeing surveillance
@@ -100,7 +100,7 @@ outfit "Pinecone Launcher"
 		"homing" 5
 		"tracking" .5
 		"missile strength" 40
-	description "When there is no one left to speak for the trees, these cannons will do all the talking. No, they don't cause any damage."
+	description "When there is no one left to speak for the trees, these cannons will do all the talking."
 
 
 outfit "Pollen"
@@ -444,5 +444,4 @@ ship "Sprout"
 		"Pollen" 5
 
 	explode "pug tiny explosion" 2
-	description "Marginally tamer than a free floating pollen granule, this sprouting terror is not to be underestimated."
-
+	description "Marginally tamer than a free floating pollen granule, this sprouting terror is still not to be underestimated."

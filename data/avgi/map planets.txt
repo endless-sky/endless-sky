@@ -520,7 +520,8 @@ planet Weledos
 planet Aspar
 	attributes avgi "avgi diaspora" poisonous uninhabited
 	landscape land/forest15
-	description `A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Settlement has been light, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir. As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that the plants brought by the Avgi are stunted even if they manage to survive.`
+	description `A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Widespread settlement has been prevented, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir.`
+	description `As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that imported plants tend to be stunted even if they manage to survive.`
 	government Uninhabited
 
 

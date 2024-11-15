@@ -4922,6 +4922,11 @@ system Kr-84
 		sprite planet/gas14-b
 		distance 1813.594
 		period 664.727
+		object Aspar
+			sprite planet/ocean8-b
+				scale 0.5
+			distance 260
+			period 74
 	object
 		sprite planet/gas13-b
 		distance 4824.842
