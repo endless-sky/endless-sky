@@ -448,7 +448,7 @@ outfit `"Nettle" KKV`
 	thumbnail "outfit/nettle kkv"
 	"mass" 0.15
 	"nettle capacity" -1
-	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to reliably shoot down."
+	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, an octaazacubane thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to completely eliminate."
 	description "The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array or Nettle Magazine to store them in you cannot purchase or use Nettle KKVs."
 
 
@@ -472,7 +472,7 @@ outfit "Nettle Active"
 		sprite "projectile/nettle"
 			"scale" 0.5
 		"hit effect" "missile hit"
-		"live effect" "nettle exhaust" 18000
+		"live effect"
 		"die effect" "nettle split" 30
 		"lifetime" 300
 		"split range" 180
@@ -505,16 +505,10 @@ outfit "Nettle Flecks"
 		"hit force" 45
 		"missile strength" 3
 
-effect "nettle exhaust"
-	sprite "effect/avgi flare/rcs"
-		"random start frame"
-		"scale" 0.5
-
 effect "nettle split"
 	sprite "effect/emp spark"
 		"no repeat"
 		"frame rate" 120
-	"sound" clink
 	"lifetime" 60
 	"random angle" 180
 	"random velocity" 15
@@ -570,7 +564,7 @@ outfit "Orchid Boost"
 	weapon
 		sprite "projectile/missile"
 			"frame rate" 2.4
-		"live effect" "nettle exhaust" 1800
+		"live effect" "avgi missile exhaust" 1800
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
@@ -676,6 +670,10 @@ outfit "Ophrys Active"
 		"hit force" 6000
 		"missile strength" 36
 
+effect "avgi missile exhaust"
+	sprite "effect/avgi flare/rcs"
+		"random start frame"
+		"scale" 0.5
 
 effect "thermonuclear flash"
 	sprite "effect/explosion/nuke"
