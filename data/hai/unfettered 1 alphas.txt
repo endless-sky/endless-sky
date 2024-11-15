@@ -79,7 +79,6 @@ outfitter "Korath Drones Alpha Loot"
 	"Fuel Processor"
 	"Systems Core (Small)"
 	"Systems Core (Medium)"
-	"Thermal Repeater Rifle"
 	"Banisher Grav-Turret"
 
 # The Unfettered do not give any prototype weaponry, but do give advanced things, including Wanderer loot.
@@ -258,7 +257,7 @@ mission "<uhai> 5: Scan Auxiliary"
 				to display
 					has "<uhai> 4: Scan Geocoris: done"
 			`	"Before you go, I must remind you that you need to use one of our Value Detectors to scan the ship, like before. I'd advise you to do it quickly, in the lab, before you go."`
-			`	She then moves away, visibly exited, "This data will be interesting!" She appears to be speaking to herself but she could also be in a call.`
+			`	She then moves away, visibly exited, "This data will be interesting!" She appears to be speaking to herself, but she could also be in a call.`
 				accept
 	waypoint "Hi Yahr"
 	on waypoint
@@ -324,13 +323,13 @@ mission "<uhai> 5: Scan Auxiliary"
 		ship "Far Osk 27" "Envy"
 		ship "Far Osk 27" "Pride"
 	on visit
-		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of essence, so take off and scan its cargo as soon as possible!"
+		dialog "You have landed on <destination>, but you did not scan the Auxiliary yet. Time is of essence, so take off and scan its cargo as soon as possible!"
 	to fail
 		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
-		dialog
+		conversation
 			`You are offered some surprisingly high-quality beverages to keep you waiting, that are much better than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
 			`	One of them comes to talk to you, "I don't know if I should be telling you this, but this ship comes regularly, in the middle and at the end of each month. As far as we are concerned, this is a duel between you and them, meaning so long as they keep coming we will not mind, but make sure you don't scare them off too much, will you? Maybe you should just avoid coming here at these dates, but whatever the case do not destroy them!"`
 			`	After a while, the ship finally leaves for good, meaning you can now go back to <origin> with the scanner logs at your own convenience.`
@@ -363,7 +362,7 @@ mission "<uhai> 5: Auxiliary Scans"
 					goto questions
 				`	"I would prefer not to explain that to you."`
 					decline
-			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
+			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!`
 			label questions
 			action
 				"unfettered rep: Mera" ++
@@ -427,7 +426,7 @@ mission "<uhai> 6 A: Loyal Escort"
 				`	"Why do you need my help specifically?"`
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered captain with this, as they could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision.`
+			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered captain with this, as they could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision."`
 			`	He gets closer to you, and looks around to make sure nobody listens, except for one Unfettered, moving as his shadow, that you assume to be his bodyguard. "I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person. We are worried that another party may interfere with our plans."`
 			choice
 				`	"Nothing would scare me, not even an Unfettered captain."`
@@ -436,13 +435,13 @@ mission "<uhai> 6 A: Loyal Escort"
 			`	"I knew I could count on you! The stories must be true."`
 				goto purposehere
 			label exaggerated
-			`	"What do you mean? Your ship is not as fast as a Mem'he, and as enduring as a To'or? I will not accept excuses or cowardice, if that is the case, the time to prove yourself worthy is now!"`
+			`	"What do you mean? Your ship is not as fast as a Mem'he, and as enduring as a To'or? I will not accept excuses or cowardice, if that is the case, the time to prove yourself worthy is now!`
 			label purposehere
 			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt," he says in an assertive tone.`
 			`	"Usually the Hai do not get this deep into our territory, even the ones who sympathize with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
 				goto choose
 			label busy
-			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in three weeks, and it is of the highest importance that it does so without any trouble."`
+			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in three weeks, and it is of the highest importance that it does so without any trouble," he says in a serious tone.`
 			`	He asks something to his advisor, and gets a positive answer. "Do not worry about the logs, the rush was only for scanning the ship, but you have all the time you need to bring the logs back."`
 				to display
 					has "<uhai> 5: Auxiliary Scans: active"
@@ -481,7 +480,7 @@ mission "<uhai> 6 A: Loyal Escort"
 			conversation
 				branch "feasting wolves"
 					has "<uhai> 6 B: To The Wolves: active"
-				`The governor hails you, "We.. need.. immediate.. assistance..." you can only parse these few words through the chaos but it is clear that your escort is disabled. You must quickly help them or you will have failed your escort duty, and since you did not accept the mysterious deal that was offered to you earlier, you would get no reward for it.`
+				`The governor hails you, "We... need... immediate... assistance..." you can only parse these few words through the chaos but it is clear that your escort is disabled. You must quickly help them or you will have failed your escort duty, and since you did not accept the mysterious deal that was offered to you earlier, you would get no reward for it.`
 				`	If one of the ships was destroyed, it is already too late.`
 					decline
 				label "feasting wolves"
@@ -526,7 +525,7 @@ mission "<uhai> 6 A: Loyal Escort"
 		personality disables plunders vindictive
 		fleet "Marauders" 2
 	on visit
-		dialog "You have arrived at the destination, but either all ships are not presents, or there are dangerous enemies still in orbit."
+		dialog "You have arrived at the destination, but either all the ships are not present, or there are dangerous enemies still in orbit."
 	on fail
 		# The shipment gets lost faster, because if this fails Midas are busy shipping supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
 		event "unfettered: shipment lost" 20
@@ -543,7 +542,7 @@ mission "<uhai> 6 A: Loyal Escort"
 		payment 500000
 		conversation
 			`The governor hails you, "My thanks for the escort, Captain, we would have been lost to those pirates had it not been for your presence there. You should probably go see Sookootow to speak to him in person about this ambush. I am sure he will be interested to know your perspective on it, even if he must already have heard about this petty attempt to kidnap me. I suspected such a thing would happen, but I thought your presence would be sufficient to deter them... apparently I was wrong. Here are your well deserved <payment>," she says, handing you an official credit chip from the Hai government.`
-			`	"However, you should know that the crisis is not over yet. This disaster did more than distress a few people, and it is the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. Some are now starving, and whilst we brought them some rations, along with competent people to help them stabilize the situation, it is not enough."`
+			`	"However, you should know that the crisis is not over yet. This disaster did more than distress a few people, and it is the wind that makes the rotten tree fall. The Unfettered rely on this world for what little food they can still make. Some are now starving, and whilst we brought them some rations, along with competent people to help them stabilize the situation, it is not enough.`
 			`	"In fact, as I am sure you were made aware, there was already a food shortage, which will only be made worse now that the tsunami destroyed some of the plantations and algae farming."`
 				to display
 					has "event: unfettered: need for food"
@@ -551,12 +550,12 @@ mission "<uhai> 6 A: Loyal Escort"
 				`	"What are they going to do then?"`
 				`	"Can we do something about it?"`
 					goto dosmth
-			`	"They will be forced to raid for more food... That said, I am sure that many Hai will come to help alleviate the situation, but I am afraid it may not be enough. But you can help with that, and you would be generously compensated for it.`
+			`	"They will be forced to raid for more food... that said, I am sure that many Hai will come to help alleviate the situation, but I am afraid it may not be enough. But you can help with that, and you would be generously compensated for it.`
 				goto introduce
 			label dosmth
 			`	"Of course you can! Even as we speak many Hai are bringing food to our brethren, and so can you. Due to the exceptional circumstances, more jobs are available to bring food, meaning anyone who helps will be very generously compensated for it.`
 			label introduce
-			`	"Only now I realize I have failed to introduce myself... My name is Vai'chi, and I will probably forever be in your debt," she says whilst respectfully bending the knee. "May the leaves keep on flowing your way, and I hope we see each other again. In the meantime, you should know that the Unfettered will probably be busy for some time solving this food crisis."`
+			`	"Only now I realize I have failed to introduce myself... my name is Vai'chi, and I will probably forever be in your debt," she says whilst respectfully bending the knee. "May the leaves keep on flowing your way, and I hope we see each other again. In the meantime, you should know that the Unfettered will probably be busy for some time solving this food crisis.`
 			`	As you get back to the bridge of your ship you notice an ominous anonymous message: "You will be needed again in a month or two."`
 				to display
 					not "unfettered: warned the hai governor escort about the mercenary attack"
@@ -595,10 +594,10 @@ mission "<uhai> 6: Taking Off With Hai Fleet"
 					to display
 						has "<uhai> 6 B: To The Wolves: declined"
 					goto threat
-			`	"The Unfettered only respect displays of strength, and do not trust those they have not seen in person. The governor is probably hoping to get some Unfettered Hai to come with him on the return trip."`
+			`	"The Unfettered only respect displays of strength, and do not trust those they have not seen in person. The governor is probably hoping to get some Unfettered Hai to come with her on the return trip."`
 				goto leave
 			label trackers
-			`	They do not answer your question, and instead proceed to do a quick investigation.`
+			`	They do not answer your question, and instead proceed to do a quick investigation of the cockpit.`
 				goto leave
 			label threat
 			`	They stand there immobile for a short while, unsure how to respond. "Thank you. We have been told that we should trust you on this by good source, and so we shall. We will commandeer additional ships given the gravity of the situation. I hope it will be enough for whatever threat you refer to. You will have to wait in orbit before they arrive from another system."`
@@ -714,44 +713,43 @@ mission "<uhai> 7: Stolen Cargo"
 			has "<uhai> 6 A: Loyal Escort: failed"
 	on accept
 		conversation
-			`	You go to see Sookootow in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
-			`	"<last>. I am still saddened by what happened to that governor you had to escort... She used to say that all Hai are together, by heart. I will continue to honor her memories."`
+			`You go to see Sookootow in order to discuss this job in greater detail, and easily find him by asking around, as everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
+			`	"<last>. I am still saddened by what happened to that governor you had to escort... she used to say that all Hai are together, by heart. I will continue to honor her memories.`
 				to display
 					has "<uhai> 6 A: Loyal Escort: failed"
-			`	"<last>! I was hoping to find you here."`
+			`	"<last>! I was hoping to find you here.`
 				to display
 					has "<uhai> 6 A: Loyal Escort: done"
-			`	"I just happen to be in need of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, <abducted> the governor."`
-			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, albeit without following it in an obvious way either, of course." He was about to continue but is stopped by an advisor to deal with an urgent matter, and deals with them swiftly.`
+			`	"I just happen to be in need of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, <abducted> the governor.`
+			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleets' attention on it, albeit without following it in an obvious way either, of course." He was about to continue but is stopped by an advisor to deal with an urgent matter, and deals with them swiftly.`
 			choice
 				`	"What about this cargo, then?"`
 					goto specialcargo
 				`	"Before we speak about this cargo, last mission I warned for the attack, but then took a fine..?"`
 					to display
 						has "unfettered: warned the hai governor escort about the mercenary attack"
-			`	He was about to say something but stops as he takes a look around. "Let us go to a more quiet place to talk." He says. After you followed him to some place far away from the crowd he feels more confident to speak. "This is where I often come to recollect myself, because I like to be able to think alone, and nobody comes here, because they believe this is a bad sign," he says, designating an old rotten tree that looks like it used to be massive.`
+			`	He was about to say something but stops as he takes a look around. "Let us go to a more quiet place to talk," he says. After you followed him to some place far away from the crowd he feels more confident to speak. "This is where I often come to recollect myself, because I like to be able to think alone, and nobody comes here, because they believe this is a bad sign," he says, designating an old rotten tree that looks like it used to be massive.`
 			`	"We Unfettered are not as united as we would like you to believe. There are many different factions, with supporters even outside our government. For instance, not everyone agrees on attacking the Wanderers, although when the time comes we will of course strike as one. Some, on the other hand, are fully with the Alphas."`
 			choice
 				`	"You were saying something about this special cargo?"`
 					goto specialcargo
-				`	"Can you tell me more? The message was signed with 'nemo me impune lacessit'."`
+				`	"Can you tell me more? The message was signed with 'Nemo Me Impune Lacessit'."`
 			`	His mood darkens. "No, I will not tell you any more. If you want my advice, stop looking for answers there, it is not worth the risks. Let us go back to where we were, to not attract suspicion. I will continue speaking as if we did not have this conversation."`
 			`	Once there, he resumes as if you asked what was special about the cargo he was mentioning.`
 			label specialcargo
-			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as it sometimes happens. But in that case we should at least have gotten a message by now. It's been too long and I've grown quite worried that they may not make it here after all."`
+			`	"Well, this one happens somewhat more regularly, although it often has unpredictable delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as it sometimes happens. But in that case we should at least have gotten a message by now. It's been too long and I've grown quite worried that they may not make it here after all.`
 			`	"The materials they supply us with are not urgently required, but they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
 			`	"We need at the very least 142 tons of this cargo back, and that is conveniently the amount our Shield Beetles can carry."`
 			choice
 				`	"Do you have any idea where the stolen cargo could be?"`
 					goto cargo
 				`	"Why not just buy these materials again?"`
-					goto buyagain
 			label buyagain
 			`	"Whilst the cargo itself has no real value, the trip bringing it here costs significantly more, and we do not want to have to pay for it twice. Then there is also the concern that paying for it again will only result in it getting 'lost' a second time... If there is a problem with our supply chain we need it dealt with first. You must be wondering who took the cargo, well...`
 			label cargo
 			`	"From what I was told, there are two main human factions in the area, as well as the unfettered humans. The ship always maintains a low profile and poses as a merchant. The Syndicate would not mind a bit of smuggling, and the Navy would only take it in the unlikely event that their cover was blown and they could not escape.`
 			`	"Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way.`
-			`	"Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-east of human space, so you should probably start looking in that general area. They could also be in the north-west. Your ship will be able to identify the enemy vessel once you enter its system."`
+			`	"Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-east of human space, so you should probably start looking in that general area. The base could also be in the north-west. Your ship will be able to identify the enemy vessel once you enter its system."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
@@ -776,9 +774,9 @@ mission "<uhai> 7: Stolen Cargo"
 			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the funds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say? Can you find that cargo and bring it to us?"`
 				goto choose
 			label whatevercost
-			`	He seems a bit wary of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials."`
+			`	He seems a bit wary of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials.`
 			label finalmention
-			`	"You can either fit all of the cargo on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-east of human space."`
+			`	"You can either fit all of the cargo on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-east of human space.`
 			action
 				clear "unfettered: worthless question"
 				clear "unfettered: why not hire another question"
@@ -788,7 +786,7 @@ mission "<uhai> 7: Stolen Cargo"
 				to display
 					has "unfettered: hunger"
 					credits < 32000000
-			`	"I would advise you to lead this mission with a Shield Beetle, like a true warrior. You deserve it, and it could prove useful."`
+			`	"I would advise you to lead this mission with a Shield Beetle, like a true warrior. You deserve it, and it could prove useful.`
 			label nvm
 			`	"It would also probably be best to limit yourself to, say, two heavy warships so you don't attract too much attention."`
 			# no need to accept because this is a job; it was already accepted.
@@ -807,7 +805,7 @@ mission "<uhai> 7: Stolen Cargo"
 			`	"If I laid down at every threat I received, the Masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
 				goto over
 			label intention
-			`	"That's none of your business, but if it can help you get away... my Masters are coming soon to retrieve the cargo quite a few systems away from here, and if it ain't there I'll be the one they 'retrieve' instead. So forget about it!" He says, before abruptly closing the communication.`
+			`	"That's none of your business, but if it can help you get away... my Masters are coming soon to retrieve the cargo quite a few systems away from here, and if it ain't there I'll be the one they 'retrieve' instead. So forget about it!" he says, before abruptly closing the communication.`
 			label over
 			`	They quickly land on the planet, probably in order to avoid a fight, or maybe just to win some time... It looks like you will have to land too in order to retrieve the cargo.`
 	on enter "Alcyone" "Durax"
@@ -833,7 +831,7 @@ mission "<uhai> 7: Stolen Cargo"
 			`	They laugh a bit, hearing the way you referenced their leader, "Yes, you could call her that.`
 				goto leave
 			label weapons
-			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough."`
+			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough.`
 			label leave
 			`	"She of the Void does not forget. Nemo Me Impune Lacessit, <last>. Do not presume to attempt to betray us again or there will be consequences."`
 				to display
@@ -906,7 +904,7 @@ conversation "cerberus reinforcements"
 		has "unfettered: cleaned up cerberus"
 	action
 		"unfettered: cleaned up cerberus" ++
-	`Now that all pirate reinforcements have been taken care of, and it is time to board the flagship and take their loot.`
+	`Now that all pirate reinforcements have been taken care of, it is time to board the flagship and take their loot.`
 		to display
 			"unfettered: cleaned up cerberus" == 2
 		decline
@@ -933,7 +931,7 @@ mission "<uhai> 7: Cavalry Arrives"
 				launch
 	on enter
 		conversation
-			"As you enter the system it becomes clear: Cerberus have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
+			`As you enter the system it becomes clear: Cerberus has called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates. Maybe the 'contact' has provided help as well?`
 			`	The two mysterious black ships hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs' presence in our space. If some Korath come to help, do not open fire on them, understood?" The other one then speaks, "We'll let you deal with that Bactrian, but I would recommend bribing 'neutral' pirates<, unfettered title>!" They then end the hail, making it clear they will not take no for an answer. They probably are allies of the 'contact' Sookootow referred to, but in the chaos the Unfettered would never know if something happened to the ships.`
 	npc save
 		government "Shadow"
@@ -1110,7 +1108,7 @@ mission "<uhai> 8: Unfettered Humans? Hint"
 			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
 				to display
 					not "unfettered: it's the Alphas!"
-			`	"Congratulations. It seemed that you did not need our help to find these Alphas."`
+			`	"Congratulations. It seems that you did not need our help to find these Alphas."`
 				to display
 					has "unfettered: it's the Alphas!"
 			`	Shortly after, you receive a second message, "You need to handle the matter of the supplies first, however."`
@@ -1176,8 +1174,8 @@ mission "<uhai> 8: It's The Alphas"
 			choice
 				`	"Surely there is something you can tell me?"`
 					goto hint
-				`	(Threaten them).`
-				`	(Leave).`
+				`	(Threaten them.)`
+				`	(Leave.)`
 					decline
 			`	You move your arm to reach your weapon or a communicator to call reinforcements, but before you can reach it you find yourself shot from all directions by what appears to be ion based weapons, not unlike the Hai pulse rifles. You may have been able to survive a few shots, but given the sheer amount of fire from all directions, you never wake up again.`
 				die
@@ -1214,7 +1212,7 @@ mission "<uhai> 9: Alpha Quest"
 			label hate
 			`	"Perfect! We want you to prove your worth. Beat that 'Alpha' Auxiliary and return here for the greatest reward you can imagine."`
 			label next
-			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on these 'Alphas', by bringing their ship back."`
+			`	Sookootow continues, "And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on these 'Alphas', by bringing their ship back."`
 			choice
 				`	"How can I find them?"`
 				`	"I already know the way."`
@@ -1271,7 +1269,6 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	"The damage was done by some kind of beam weapon, and a very strong one at that. It looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "That would explain why it's forbidden for us to venture east with jump drives. We lack any hull repair capabilities, and to be honest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
 			choice
 				`	"They seemed to be using the same weapon against me."`
-					goto logs
 				`	"What can we use that information for?"`
 					goto information
 			label logs
@@ -1286,7 +1283,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 					to display
 						has "unfettered: scanned auxiliary's outfits"
 					goto scanned
-			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
+			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship."`
 				goto information
 			label scanned
 			action
@@ -1299,12 +1296,12 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	She looks down once more, "Be careful, <last>. Something is not right here," she says, not willing to reveal more.`
 			label information
 			`	Her ears move slightly, as she starts to explain technical things to you, "Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and antimatter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?"`
-			`	She shakes her head, getting focused again. "It doesn't matter much anyway, and I must be boring you with this stuff," she says with a chuckle. "I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only the Quarg and Korath have a similar level of technology, and those are the races that are rumoured to have invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
+			`	She shakes her head, getting focused again. "It doesn't matter much anyway, and I must be boring you with this stuff," she says with a chuckle. "I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only the Quarg and Korath have a similar level of technology, and those are the races that are rumored to have invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods.`
 			branch nogift
 				"unfettered rep: Mera" < 2
-			`	"In fact, here is a gift for you to help with that: a Fuel Processor. Don't ask how I got it and you can keep it, deal?`
+			`	"In fact, here is a gift for you to help with that: a Fuel Processor. Don't ask how I got it and you can keep it, deal?"`
 			`	She also hands you a small tablet that automatically unlocks as you touch it. "Whilst we're exchanging presents... This will allow us to communicate privately over large distances, should the circumstances require it."`
 			action
 				outfit "Fuel Processor"
@@ -1489,7 +1486,7 @@ mission "<uhai> 9: Alpha Base"
 			`	You find a few squirrel symbols, and a fist that could indicate they were coerced. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye next to it. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 			label warning
-			`	"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all ten jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."`
+			`	Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all ten jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system.`
 			# She will warn you if she likes you.
 			branch accept
 				"unfettered rep: Mera" > 0
