@@ -216,8 +216,6 @@ outfit "Fuel Module"
 
 outfit "Decoy Plating"
 	category "Systems"
-	licenses
-		Coalition
 	cost 93000
 	thumbnail "outfit/decoy plating"
 	"mass" 7
@@ -229,8 +227,6 @@ outfit "Decoy Plating"
 
 outfit "Refueling Module"
 	category "Systems"
-	licenses
-		Coalition
 	cost 822000
 	thumbnail "outfit/refueling module"
 	"mass" 10
@@ -243,8 +239,6 @@ outfit "Refueling Module"
 
 outfit "Shield Refactor Module"
 	category "Systems"
-	licenses
-		Coalition
 	cost 3248000
 	thumbnail "outfit/shield refactor module"
 	"mass" 7
@@ -259,8 +253,6 @@ outfit "Shield Refactor Module"
 
 outfit "Small Recovery Module"
 	category "Systems"
-	licenses
-		Coalition
 	cost 625000
 	thumbnail "outfit/small recovery module"
 	"mass" 25
@@ -269,8 +261,8 @@ outfit "Small Recovery Module"
 	"shield energy" .43
 	"shield heat" .7
 	"hull repair rate" .43
-	"hull energy" .19
-	"hull heat" .31
+	"hull energy" .97
+	"hull heat" .07
 	description "By combining the Coalition's shield generation and hull repair technologies into one piece of equipment, the Lunarium has increased the effectiveness of both, allowing for better defenses against Heliarch weaponry."
 
 outfit "Scanning Module"
