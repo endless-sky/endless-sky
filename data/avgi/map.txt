@@ -1405,7 +1405,7 @@ system Stream
 system Ensemble
 	hidden
 	shrouded
-	pos -508 1168
+	pos -519 1151
 	government "Avgi (Consonance)"
 	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3250
@@ -4716,7 +4716,7 @@ system Cl-35
 system K-39
 	hidden
 	shrouded
-	pos -440 1141
+	pos -481 1174
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
