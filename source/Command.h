@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMMAND_H_
-#define COMMAND_H_
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -152,7 +151,3 @@ private:
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NPC_H_
-#define NPC_H_
+#pragma once
 
 #include "Conversation.h"
 #include "EsUuid.h"
@@ -110,8 +109,8 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
-			const System *origin, const System *destination, int jumps, int64_t payload) const;
+	NPC Instantiate(const PlayerInfo &player, std::map<std::string, std::string> &subs, const System *origin,
+			const System *destination, int jumps, int64_t payload) const;
 
 
 private:
@@ -173,7 +172,3 @@ private:
 	// The NPCActions that this NPC can run on certain events/triggers.
 	std::map<Trigger, NPCAction> npcActions;
 };
-
-
-
-#endif

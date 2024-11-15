@@ -13,11 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEXT_AREA_H
-#define TEXT_AREA_H
+#pragma once
 
 #include "Color.h"
 #include "Panel.h"
+#include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "text/WrappedText.h"
 
@@ -76,8 +76,6 @@ private:
 	ScrollVar<double> scroll;
 	bool dragging = false;
 	bool hovering = false;
+
+	ScrollBar scrollBar;
 };
-
-
-
-#endif

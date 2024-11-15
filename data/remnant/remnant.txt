@@ -362,7 +362,7 @@ phrase "remnant"
 
 phrase "remnant uncontacted"
 	word
-		"(They sent you a hail consisting of a sign language you don't understand.)"
+		"(They send you a hail consisting of a sign language you don't understand.)"
 		"(You hear a short song about how scanning them will be considered a hostile action.)"
 		`"If you value the continued survival of humanity, do not scan our ships," a strangely melodic voice says.`
 		`"If you value your continued survival, do not scan our ships." The voice speaks with a tone reminiscent of singing.`
@@ -430,7 +430,7 @@ phrase "remnant uncontacted hostile"
 
 phrase "remnant uncontacted hostile"
 	word
-		"(They sent you hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
+		"(They send you a hail consisting of a sign language you don't understand, and it doesn't seem friendly.)"
 		"(They sign so quickly that your hail receiver can't process it all.)"
 		"(It seems you are not welcome here.)"
 
@@ -876,7 +876,7 @@ phrase "remnant friendly (aliens?)"
 		"How strong are they"
 		"What are the odds of capturing their ships"
 		"Has your government met them"
-		"Is it worth trying to get my hands on their tech?"
+		"Is it worth trying to get my hands on their tech"
 	word
 		"?"
 
@@ -975,8 +975,8 @@ phrase "remnant hostile (you were)"
 		"not hostile"
 		"friendly"
 		"good"
-		"teammates"
-		"allies"
+		"a teammate"
+		"an ally"
 
 
 

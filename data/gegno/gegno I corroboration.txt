@@ -249,6 +249,7 @@ mission "Battle over Zydee"
 			`	However, a few moments later, the Scin suddenly start scurrying to their ships. Based on your experiences so far, you haven't gotten close enough to alarm them. They begin taking off one by one in a hurried fashion, but not toward you - the <ship>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
 				accept
 	on enter "Kneirc"
+		event "gegno: vi occupy zydee" 1 3
 		fail
 
 	npc
@@ -313,6 +314,21 @@ mission "Battle over Zydee"
 				"Coesite" 4
 				"Halite" 6
 
+# Zydee becomes occupied by the Vi even if the player doesn't find the above mission.
+mission "Vi Occupy Zydee"
+	invisible
+	landing
+	to offer
+		or
+			has "Gegno Anticipation: offered"
+			has "Gegno Apprehension: offered"
+		not "event: gegno: vi occupy zydee"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on offer
+		fail
+		event "gegno: vi occupy zydee" 1 3
 
 mission "Curious Civilians"
 	invisible
@@ -420,7 +436,7 @@ mission "Gegno Suspicions"
 				decline
 
 	on decline
-		event "gegno: quarg talks" 11
+		event "gegno: quarg talks" 8
 
 
 mission "Under the Nose"
@@ -548,7 +564,6 @@ mission "Return to Giaru Gegno"
 		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
-			accept
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
@@ -565,6 +580,7 @@ mission "Gegno Anticipation"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offered"
+		not "Gegno Intervention: offered"
 		not "event: gegno: apprehension"
 		"reputation: Gegno Vi" > -100
 		"reputation: Gegno Scin" > -50
@@ -911,6 +927,7 @@ mission "Gegno Intervention"
 	to offer
 		has "event: gegno: apprehension"
 		not "Gegno Genocide Defense: offered"
+		not "Gegno Anticipation: offered"
 	source "Giaru Gegno"
 	destination "Dueyu Eitch"
 	deadline 8

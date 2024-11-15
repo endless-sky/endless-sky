@@ -1244,7 +1244,12 @@ mission "Deep: Project Hawking: Prime"
 			`	"Let me answer that question with a short story of my life." Pierre clears his throat and puffs up his chest a little, as if preparing himself to tell a great epic. He may enjoy talking about himself a little too much...`
 			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law.`
 			`	"How about you?"`
-			`	You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
+			`	You tell Pierre about your life on <starting planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
+				to display
+					has "human space start"
+			`	Making sure to not bring up <starting planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could.`
+				to display
+					has "hai space start"
 			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
 			`	"The cargo is all in, Captain!" Garrison yells down from the platform above. "We're ready when you are!"`
 				accept
@@ -2608,7 +2613,7 @@ mission "Stone of our Fathers 3"
 				decline
 			label accept
 			`	You're surprised at how cool the smooth stone feels in your palm.`
-			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	And with that, the man disappears into the crowd.`
 				accept
 	on complete
@@ -2715,7 +2720,7 @@ mission "Stone of our Fathers 4"
 			label treasure
 			`	You could always use a little extra money, and this trip, while engaging, has certainly not made you any richer, so you ask about hidden treasures. Helm and Thorleif both grin at this and glance at each other knowingly. They launch into tales of the riches of lost civilizations, or forgotten pirate hoards, or even early human kingdoms. It's easy to lose things on a fog-covered ocean world with floating islands, all too easy.`
 			`	When they are done regaling you with tales, they mention to you that maybe some other time they'll take you out into the deep ocean and perhaps you'll find what you're looking for. They smile wolfishly at that, and you think they might be putting you on. "Have you ever found treasure out here?" you ask.`
-			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our descendants felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
+			`	Thorleif shrugs. "Coming here... from Alfheim long ago, our antecedents felt that the world itself was the real treasure. We have no need to go chasing dreams in the abyss."`
 			label family
 			`	As the conversation winds down and the hour grows late Helm excuses himself to bed, for he, like the rest of you, is dog tired after the day's events. You stand too, feeling your own need for sleep.`
 			`	"<first>," Thorleif says without looking up from the fire. "I've been thinking. I can never forgive my father for what he did. Leaving me and mom like that. But I can, I think, make peace with it. I can accept the stone." He looks up and smiles, "You brought some luck with you, and a man should never argue with luck."`

@@ -76,7 +76,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
-		"turret turn" 3.5
+		"turret turn" 2
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -152,7 +152,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
-		"turret turn" 2.4
+		"turret turn" 1.2
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5
@@ -405,7 +405,7 @@ outfit "Teciimach Pod"
 		"ion damage" 60
 		"scrambling damage" 60
 		"energy damage" 2000
-		"hit force"135
+		"hit force" 135
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."

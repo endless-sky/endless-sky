@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENGINE_H_
-#define ENGINE_H_
+#pragma once
 
 #include "AI.h"
 #include "AlertLabel.h"
@@ -127,8 +126,18 @@ private:
 
 	class Status {
 	public:
+		enum class Type {
+			FLAGSHIP,
+			FRIENDLY,
+			HOSTILE,
+			NEUTRAL,
+			SCAN,
+			COUNT // This item should always be the last in this list.
+		};
+
+	public:
 		constexpr Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.)
+			double disabled, double radius, Type type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
@@ -137,7 +146,7 @@ private:
 		double inner;
 		double disabled;
 		double radius;
-		int type;
+		Type type;
 		float alpha;
 		double angle;
 	};
@@ -184,7 +193,7 @@ private:
 
 	void CreateStatusOverlays();
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
-		int value, double cloak);
+		Status::Type type, double cloak);
 
 
 private:
@@ -296,7 +305,3 @@ private:
 	int loadCount = 0;
 	double loadSum = 0.;
 };
-
-
-
-#endif

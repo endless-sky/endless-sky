@@ -29,8 +29,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
-	Audio.cpp
-	Audio.h
 	BankPanel.cpp
 	BankPanel.h
 	BatchDrawList.cpp
@@ -151,10 +149,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
-	ImageBuffer.cpp
-	ImageBuffer.h
-	ImageSet.cpp
-	ImageSet.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -188,10 +182,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -210,8 +200,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
-	Music.cpp
-	Music.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
@@ -277,11 +265,17 @@ target_sources(EndlessSkyLib PRIVATE
 	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
+	RouteEdge.cpp
+	RouteEdge.h
+	RoutePlan.cpp
+	RoutePlan.h
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollBar.cpp
+	ScrollBar.h
 	ScrollVar.h
 	Set.h
 	Shader.cpp
@@ -298,18 +292,14 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
+	ShipNameDialog.cpp
+	ShipNameDialog.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
 	ShopPanel.h
-	Sound.cpp
-	Sound.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	Sprite.cpp
-	Sprite.h
-	SpriteSet.cpp
-	SpriteSet.h
 	SpriteShader.cpp
 	SpriteShader.h
 	StarField.cpp
@@ -327,12 +317,6 @@ target_sources(EndlessSkyLib PRIVATE
 	SystemEntry.h
 	TaskQueue.cpp
 	TaskQueue.h
-	Test.cpp
-	Test.h
-	TestContext.cpp
-	TestContext.h
-	TestData.cpp
-	TestData.h
 	TextArea.cpp
 	TextArea.h
 	TextReplacements.cpp
@@ -361,11 +345,35 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	audio/Audio.cpp
+	audio/Audio.h
+	audio/Music.cpp
+	audio/Music.h
+	audio/Sound.cpp
+	audio/Sound.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/ImageBuffer.cpp
+	image/ImageBuffer.h
+	image/ImageSet.cpp
+	image/ImageSet.h
+	image/Mask.cpp
+	image/Mask.h
+	image/MaskManager.cpp
+	image/MaskManager.h
+	image/Sprite.cpp
+	image/Sprite.h
+	image/SpriteSet.cpp
+	image/SpriteSet.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	test/Test.cpp
+	test/Test.h
+	test/TestContext.cpp
+	test/TestContext.h
+	test/TestData.cpp
+	test/TestData.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

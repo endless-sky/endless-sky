@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 
 #include "AlertLabel.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Collision.h"
@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "MapPanel.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -59,14 +59,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "SystemEntry.h"
-#include "Test.h"
+#include "test/Test.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -100,36 +100,10 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	template <class Type>
-	void Prune(vector<Type> &objects)
-	{
-		// First, erase any of the old objects that should be removed.
-		typename vector<Type>::iterator in = objects.begin();
-		while(in != objects.end() && !in->ShouldBeRemoved())
-			++in;
-
-		typename vector<Type>::iterator out = in;
-		while(in != objects.end())
-		{
-			if(!in->ShouldBeRemoved())
-				*out++ = std::move(*in);
-			++in;
-		}
-		if(out != objects.end())
-			objects.erase(out, objects.end());
-	}
-
-	template <class Type>
-	void Prune(list<shared_ptr<Type>> &objects)
-	{
-		for(auto it = objects.begin(); it != objects.end(); )
-		{
-			if((*it)->ShouldBeRemoved())
-				it = objects.erase(it);
-			else
-				++it;
-		}
-	}
+	constexpr auto PrunePointers = [](auto &objects) { erase_if(objects,
+			[](const auto &obj) { return obj->ShouldBeRemoved(); }); };
+	constexpr auto Prune = [](auto &objects) { erase_if(objects,
+			[](const auto &obj) { return obj.ShouldBeRemoved(); }); };
 
 	template <class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
@@ -632,8 +606,11 @@ void Engine::Step(bool isActive)
 	// Add the flagship outline last to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
-		outlines.emplace_back(flagship->GetSprite(), (flagship->Center() - center) * zoom, flagship->Unit() * zoom,
-			flagship->GetFrame(), *GameData::Colors().Get("flagship highlight"));
+		outlines.emplace_back(flagship->GetSprite(),
+			(flagship->Center() - center) * zoom,
+			flagship->Unit() * zoom * flagship->Scale(),
+			flagship->GetFrame(),
+			*GameData::Colors().Get("flagship highlight"));
 	}
 
 	// Any of the player's ships that are in system are assumed to have
@@ -716,7 +693,7 @@ void Engine::Step(bool isActive)
 					break;
 				}
 			const System *system = escort->GetSystem();
-			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
+			escorts.Add(*escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
@@ -750,7 +727,8 @@ void Engine::Step(bool isActive)
 		if(Preferences::Has("Rotate flagship in HUD"))
 			shipFacingUnit = flagship->Facing().Unit();
 
-		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step));
+		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step),
+			flagship->GetSwizzle());
 	}
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
@@ -836,7 +814,8 @@ void Engine::Step(bool isActive)
 		info.SetSprite("target sprite",
 			targetAsteroid->GetSprite(),
 			targetAsteroid->Facing().Unit(),
-			targetAsteroid->GetFrame(step));
+			targetAsteroid->GetFrame(step),
+			0);
 		info.SetString("target name", targetAsteroid->DisplayName() + " " + targetAsteroid->Noun());
 
 		targetVector = targetAsteroid->Position() - center;
@@ -853,14 +832,14 @@ void Engine::Step(bool isActive)
 	{
 		if(target->GetSystem() == player.GetSystem() && !target->IsCloaked())
 			targetUnit = target->Facing().Unit();
-		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
+		targetSwizzle = target->GetSwizzle();
+		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step), targetSwizzle);
 		info.SetString("target name", target->Name());
 		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
 			info.SetString("target government", target->GetGovernment()->GetName());
-		targetSwizzle = target->GetSwizzle();
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		int targetType = RadarType(*target, step);
@@ -915,7 +894,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			0., 10. + max(20., width * .5), 4, 1.f, Angle(pos).Degrees() + 180.);
+			0., 10. + max(20., width * .5), Status::Type::SCAN, 1.f, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -989,7 +968,7 @@ void Engine::Step(bool isActive)
 				bool inRange = offset.LengthSquared() <= scanRangeMetric;
 
 				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
-				if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
+				if(shouldCatalogAsteroids && !asteroidsScanned.contains(minable->DisplayName()))
 				{
 					scanComplete = false;
 					if(!Random::Int(10) && inRange)
@@ -1098,16 +1077,19 @@ void Engine::Draw() const
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
+		int colorIndex = static_cast<int>(it.type);
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer,
-				Color::Multiply(it.alpha, color[it.type]), 0.f, it.angle);
-		double dashes = (it.type >= 5) ? 0. : 20. * min<double>(1., zoom);
+				Color::Multiply(it.alpha, color[colorIndex]), 0.f, it.angle);
+		double dashes = (it.type >= Status::Type::SCAN) ? 0. : 20. * min<double>(1., zoom);
+		colorIndex += static_cast<int>(Status::Type::COUNT);
 		if(it.inner > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.inner,
-				Color::Multiply(it.alpha, color[5 + it.type]), dashes, it.angle);
+				Color::Multiply(it.alpha, color[colorIndex]), dashes, it.angle);
+		colorIndex += static_cast<int>(Status::Type::COUNT);
 		if(it.disabled > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.disabled,
-				Color::Multiply(it.alpha, color[10 + it.type]), dashes, it.angle);
+				Color::Multiply(it.alpha, color[colorIndex]), dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -1491,7 +1473,11 @@ void Engine::CalculateStep()
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(jumpSounds.empty())
+		if(flagship->Attributes().Get("silent jumps"))
+		{
+			// No sounds.
+		}
+		else if(jumpSounds.empty())
 			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
 		else
 			for(const auto &sound : jumpSounds)
@@ -1519,7 +1505,7 @@ void Engine::CalculateStep()
 		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
-	Prune(ships);
+	PrunePointers(ships);
 
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
@@ -1529,7 +1515,7 @@ void Engine::CalculateStep()
 	// checks if any ship has picked it up.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		it->Move(newVisuals);
-	Prune(flotsam);
+	PrunePointers(flotsam);
 
 	// Move the projectiles.
 	for(Projectile &projectile : projectiles)
@@ -1726,6 +1712,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			for(const auto &bay : ship->Bays())
 				if(bay.ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
+			// If this is a player ship, make sure it's no longer selected.
+			if(ship->IsYours())
+				player.DeselectShip(ship.get());
 		}
 		return;
 	}
@@ -1741,7 +1730,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
-			if(jumpSounds.empty())
+			if(ship->Attributes().Get("silent jumps"))
+			{
+				// No sounds.
+			}
+			else if(jumpSounds.empty())
 				Audio::Play(Audio::Get(isJump ? "jump out" : "hyperdrive out"), position);
 			else
 				for(const auto &sound : jumpSounds)
@@ -1753,7 +1746,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
-			if(jumpSounds.empty())
+			if(ship->Attributes().Get("silent jumps"))
+			{
+				// No sounds.
+			}
+			else if(jumpSounds.empty())
 				Audio::Play(Audio::Get(isJump ? "jump in" : "hyperdrive in"), position);
 			else
 				for(const auto &sound : jumpSounds)
@@ -1853,7 +1850,7 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// Although an attempt to spawn a person is specified by a gamerule,
 	// that attempt can still fail due to an added weight for no person to spawn.
 	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
@@ -2052,7 +2049,7 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
 									+ " refuse to let you land.", Messages::Importance::Highest);
-						else
+						else if(!flagship->IsDestroyed())
 						{
 							activeCommands |= Command::LAND;
 							Messages::Add("Landing on " + planet->Name() + ".", Messages::Importance::High);
@@ -2460,12 +2457,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Unless something went wrong while forming the message, display it.
-	if(!message.empty())
-	{
-		int free = collector->Cargo().Free();
-		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
-		Messages::Add(message, Messages::Importance::High);
-	}
+	if(message.empty())
+		return;
+
+	int free = collector->Cargo().Free();
+	int total = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == player.GetSystem())
+			total += ship->Cargo().Free();
+
+	message += " (" + Format::CargoString(free, "free space") + " remaining";
+	if(free == total)
+		message += ".)";
+	else
+		message += ", " + Format::MassString(total) + " in fleet.)";
+	Messages::Add(message, Messages::Importance::High);
 }
 
 
@@ -2665,7 +2671,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
-	if(grudge.count(attacker))
+	if(grudge.contains(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		// If the previous ship is destroyed, or was able to send a
@@ -2759,21 +2765,26 @@ void Engine::CreateStatusOverlays()
 		if(it->IsDestroyed())
 			continue;
 
+		static auto FLAGSHIP = Preferences::OverlayType::FLAGSHIP;
+		static auto FRIENDLY = Preferences::OverlayType::ESCORT;
+		static auto HOSTILE = Preferences::OverlayType::ENEMY;
+		static auto NEUTRAL = Preferences::OverlayType::NEUTRAL;
+
 		if(it == flagship)
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[FLAGSHIP], Status::Type::FLAGSHIP, it->Cloaking());
 		else if(it->GetGovernment()->IsEnemy())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 2, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[HOSTILE], Status::Type::HOSTILE, it->Cloaking());
 		else if(it->IsYours() || it->GetPersonality().IsEscort())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 1, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[FRIENDLY], Status::Type::FRIENDLY, it->Cloaking());
 		else
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 3, it->Cloaking());
+			EmplaceStatusOverlay(it, overlaySettings[NEUTRAL], Status::Type::NEUTRAL, it->Cloaking());
 	}
 }
 
 
 
 void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting,
-	int type, double cloak)
+	Status::Type type, double cloak)
 {
 	if(overlaySetting == Preferences::OverlayState::OFF)
 		return;
