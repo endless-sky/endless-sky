@@ -17,7 +17,7 @@ ship "Venta"
 	"thumbnail" thumbnail/venta
 	"swizzle" 0
 	attributes
-		"category" "Heavy Warship"
+		category "Heavy Warship"
 		licenses
 			"Hicemus Conflict"
 		"cost" 25000000
@@ -34,6 +34,11 @@ ship "Venta"
 		"engine capacity" 130
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 224
+			"shield damage" 2240
+			"hull damage" 1120
+			"hit force" 3360
 	outfits
 		"Liquid-Class Shield"
 		"Liquid-Class Shield"
@@ -69,7 +74,7 @@ ship "Nimbus"
 	"thumbnail" thumbnail/nimbus
 	"swizzle" 0
 	attributes
-		"category" "Medium Warship"
+		category "Medium Warship"
 		licenses
 			"Hicemus Conflict"
 		"cost" 3250000
@@ -86,6 +91,11 @@ ship "Nimbus"
 		"engine capacity" 85
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
 	outfits
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -125,7 +135,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 4
-		"Stagnation Beam" # to be replaced with a flotsam tractor beam
+		"Horizon Grappler"
 		"Cloud Piercer" 20
 
 		"MH Red-Class Thruster"
@@ -137,7 +147,7 @@ ship "Nimbo Stratus"
 	"thumbnail" thumbnail/stratus
 	"swizzle" 0
 	attributes
-		"category" "Utility"
+		category "Utility"
 		"cost" 460000
 		"hull" 500
 		"shields" 700
@@ -152,7 +162,11 @@ ship "Nimbo Stratus"
 		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
-
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -175,7 +189,7 @@ ship "Nimbo Cirrus"
 	"thumbnail" thumbnail/cirrus
 	"swizzle" 0
 	attributes
-		"category" "Light Freighter"
+		category "Light Freighter"
 		"cost" 330000
 		"hull" 750
 		"shields" 1500
@@ -189,6 +203,11 @@ ship "Nimbo Cirrus"
 		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 22.5
+			"shield damage" 225
+			"hull damage" 113
+			"hit force" 350
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"
@@ -209,7 +228,7 @@ ship "Gero"
 	"thumbnail" thumbnail/gero
 	"swizzle" 0
 	attributes
-		"category" "Transport"
+		category "Transport"
 		"cost" 985000
 		"hull" 850
 		"shields" 1700
@@ -223,6 +242,11 @@ ship "Gero"
 		"engine capacity" 54
 		"gaslining" 1
 		"fuel capacity" 200
+		weapon
+			"blast radius" 26.5
+			"shield damage" 265
+			"hull damage" 133
+			"hit force" 400
 	outfits
 		"Gas-Class Shield"
 		"Metallic Hydrogen Cell"

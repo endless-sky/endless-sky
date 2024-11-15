@@ -232,4 +232,3 @@ hazard "Smoke Ring Drag"
 		"shield damage" 0.6
 		"heat damage" 6
 		"relative heat damage" 0.006
-

@@ -65,7 +65,7 @@ outfit "Drak Draining Field"
 		"scrambling damage" .5
 		"disruption damage" 1
 		"safe"
-	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+	description "This device is the Archon's primary defensive tool: not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 
 
 outfit "Drak Draining Field (Augmented)"
@@ -96,7 +96,7 @@ outfit "Drak Draining Field (Augmented)"
 		"scrambling damage" 1
 		"disruption damage" 2
 		"safe"
-	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+	description "This device is the Archon's primary defensive tool: not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 	description "	While normally kept at minimal strength, the Archons have demonstrated the ability to ramp up the field to be vastly stronger when faced with a serious threat."
 
 
@@ -164,7 +164,7 @@ outfit "Drak Turret"
 		"shield damage" 256
 		"hull damage" 256
 		"hit force" 180
-	description "This is a turret based cannon with significant range and accuracy."
+	description "This is a turret-based cannon with significant range and accuracy."
 
 
 outfit "Drak Turret (Augmented)"
@@ -192,7 +192,7 @@ outfit "Drak Turret (Augmented)"
 		"shield damage" 2560
 		"hull damage" 2560
 		"hit force" 180
-	description "This is a turret based cannon with significant range and accuracy."
+	description "This is a turret-based cannon with significant range and accuracy."
 	description "	Against most threats, Archons respond with their weapons set to very low levels. They are, however, more than capable of dealing much more damage when the situation requires it."
 
 effect "drak bolt impact"

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ASTEROID_FIELD_H_
-#define ASTEROID_FIELD_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -92,7 +91,3 @@ private:
 	CollisionSet asteroidCollisions;
 	CollisionSet minableCollisions;
 };
-
-
-
-#endif

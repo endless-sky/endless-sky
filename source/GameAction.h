@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_ACTION_H_
-#define GAME_ACTION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ShipManager.h"
@@ -90,6 +89,7 @@ private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<ShipManager> giftShips;
@@ -112,7 +112,3 @@ private:
 
 	ConditionSet conditions;
 };
-
-
-
-#endif
