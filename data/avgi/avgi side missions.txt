@@ -466,7 +466,7 @@ mission "Avgi Culture: Zapchannel Energy"
 			label superpowers
 			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in center of your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your skin begins to glow a vibrant blue.`
 			`	"Surprise. You surely are, ah, a worthy captain!" says Nikkio, shock evident on his face. He begins to sidle away, glancing in all directions as though he isn't sure what's going on. "Hurry. I must be on my way, goodbye for now, captain!"`
-			accept
+				accept
 			action
 				set "damselflyman"
 			label nope
