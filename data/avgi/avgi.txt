@@ -574,7 +574,7 @@ phrase "avgi places"
 		Stratos
 		Stymphalos
 		Sybaris
-		Syrakousai 
+		Syrakousai
 		Tanagra
 		Tanais
 		Taras

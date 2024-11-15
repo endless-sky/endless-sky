@@ -290,6 +290,7 @@ news "avgi student happy"
 			"researcher"
 			"student"
 	message
+		word
 			`"Happiness. I'm about to graduate with my mastery in physics!"`
 			`"Happiness. I'm about to graduate with my mastery in economics!"`
 			`"Happiness. I'm about to graduate with my mastery in engineering!"`

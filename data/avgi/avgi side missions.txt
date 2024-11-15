@@ -879,7 +879,7 @@ mission "Avgi: Atomics Testing 1"
 					goto actually
 						or
 							"has: FW Syndicate Capture 1B: offered
-							"has: FWC Cebalrai 1: offered"			
+							"has: FWC Cebalrai 1: offered"
 
 			label actually
 			`	"Surprise. I thought you had some kind of taboo around them, no?"`
@@ -894,7 +894,7 @@ mission "Avgi: Atomics Testing 1"
 					goto coward
 
 			label coward
-			`	"Dissapointment. You're missing out, but oh well. Anyway, I gotta go, catch ya later!" Aliza scampers off towards a few Avgi waving at her by a door.`
+			`	"Disappointment. You're missing out, but oh well. Anyway, I gotta go, catch ya later!" Aliza scampers off towards a few Avgi waving at her by a door.`
 				decline
 
 			label connoisseur
@@ -969,7 +969,7 @@ mission "Avgi: Atomics Testing 2"
 				`	(Continue working.)`
 				goto boom
 			`	"Yep. This is a mid-sized device, only sixty megatons. Weighs a bit under three tons, so it's a bit large for the tiny little missiles we've been stuck with since the Incursion drove us out here, but I've heard there's a team working on spooling up a production line for a more capable missile bus so that we can get these deployed."
-			`	She looks suddenly embarassed. "Worry. But you didn't hear that from me, of course. Information security is a lot more relaxed now that we're all mostly on the same side, but still... can't hurt to be safe."`
+			`	She looks suddenly embarrassed. "Worry. But you didn't hear that from me, of course. Information security is a lot more relaxed now that we're all mostly on the same side, but still... can't hurt to be safe."`
 
 			label boom
 			`	A few hours later, and a quick skim over Dokimi's surface in an Akoustiki Excursion Vehicle, you find yourself in a bunker dug into the ice a few dozen kilometers away. Up in the mountains, you have direct line of sight to the range, which sits just on the horizon.`
@@ -1011,7 +1011,7 @@ mission "Avgi: Atomics Testing 2"
 			`	Yinmn hums with laughter. "Amusement, not that kind of accounting. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."
 
 			label skip
-			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."
+			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`
 			`	Aliza chimes in. "And a lot of people, especially the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
 			`	"Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by "merchants" apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
 			choice
