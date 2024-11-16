@@ -3036,8 +3036,11 @@ system Caesura
 	attributes "black hole" "notable star" twilight
 	ramscoop
 		multiplier 1.2
-	habitable 3450
+	habitable 60000
 	haze _menu/haze-twilight-thin
+	hazard "Black Hole Accretion Disk" 3
+	hazard "Black Hole Event Horizon" 3
+	hazard "Black Hole Gravity" 3
 	object
 		sprite star/black-hole-core
 		period 10

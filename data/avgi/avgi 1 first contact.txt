@@ -756,7 +756,7 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Dancer"
+				"Aberrant Triplet"
 	npc kill
 		government "Aberrant"
 		personality
@@ -908,8 +908,8 @@ mission "Avgi: Twilight Escape 1"
 			`	"I'm going to get some fresh air," says Sora, stepping in front of an outraged Leon out of nowhere, a reluctant Darius dragged along with her. "We'll be in the spaceport, so try not to leave without us."`
 			`	Leon, consigned to being the last one out, stops just before he leaves the <ship>, turning to you. "<first>. Thank you." He is uncharacteristically somber, his usual sense of disdain for the world missing, for the moment.`
 			choice
-				"Don't worry about it."
-				"I'm glad I was able to help."
+				`"Don't worry about it."`
+				`"I'm glad I was able to help."`
 			`	"No, really. I was expecting to die back there, with those Avgi. Six years... I don't know how to thank you, but if you're ever in the area and you need anything don't hesitate to give me a call." With that, he shakes your hand and sets off in the direction Sora and Darius went, toward Vinci's spaceport.`
 
 
