@@ -1001,6 +1001,8 @@ ship "Modified Tachytia"
 		"drag" 6
 		"heat dissipation" 0.66
 		"fuel capacity" 60000
+		"hull repair rate" 0.3
+		"hull repair energy" 3
 		"cargo space" 1200
 		"outfit space" 1440
 		"weapon capacity" 180

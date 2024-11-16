@@ -540,6 +540,7 @@ planet Viso
 	description `Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
 	government Uninhabited
 
+
 planet Nilokep
 	attributes uninhabited
 	landscape land/sky14
@@ -547,12 +548,14 @@ planet Nilokep
 	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing particulates of uranium, across its surface.`
 	government Uninhabited
 
+
 planet Gestli
 	attributes uninhabited
 	landscape land/mountain45
 	description `Despite its smooth appearance from orbit, the surface of Gestli is a fractured mess of jagged mountains and rough hills. The tectonic activity of its moon, large enough to qualify as a binary pair, causes an almost perpetual global earthquake that can be felt by simply standing on the planet.`
 	description `The planet's parent stars offer the planet little warmth, and a thin atmosphere of nitrogen and carbon dioxide has managed to hold on to only scattered swathes of ice and snow, with far too little water or heat to support an active hydrological cycle. The anemic erosion, as a result, has done little to smooth the scars left by the influence of the tidal forces that wrack Gestli's surface.`
 	government Uninhabited
+
 
 planet "Tilo Station"
 	attributes avgi "avgi diaspora" dissonance station

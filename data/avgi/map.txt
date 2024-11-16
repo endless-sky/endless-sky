@@ -1411,6 +1411,8 @@ system Ensemble
 	habitable 3250
 	belt 1401 5
 	"jump range" 30
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link K-39
 	asteroids "large metal" 1 6.84
 	trade Clothing 240
@@ -2405,6 +2407,8 @@ system Prelude
 	habitable 2300
 	belt 1664 5
 	"jump range" 30
+	hazard "Predecessors Base Spatial Decay" 1200
+	hazard "Predecessors Spatial Rift Weak" 15000
 	haze _menu/haze-twilight-thin
 	link Si-28
 	asteroids "small rock" 3 4.111
@@ -2930,7 +2934,7 @@ system Postlude
 	attributes "tangled shroud"
 	habitable 1330.038
 	belt 1814 6
-	haze _menu/haze-133
+	haze _menu/haze-tear
 	asteroids "medium metal" 13 5.468
 	asteroids "large metal" 1 6.634
 	minables lead 1 8.654
@@ -3988,7 +3992,9 @@ system O-16
 	habitable 10
 	belt 1487
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 900
+	hazard "Predecessors Spatial Rift Weak" 12000
+	haze _menu/haze-tear
 	link Li-7
 	asteroids "medium rock" 7 3.937
 	asteroids "large rock" 1 4.043
@@ -4022,6 +4028,9 @@ system Li-7
 	belt 1565 2
 	belt 2323 10
 	belt 2984 7
+	hazard "Predecessors Base Spatial Decay" 900
+	hazard "Predecessors Spatial Rift Weak" 12000
+	haze _menu/haze-tear
 	link B-11
 	link Be-9
 	link C-12
@@ -4084,7 +4093,9 @@ system Ne-20
 	belt 1601 6
 	belt 1914
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 900
+	hazard "Predecessors Spatial Rift Weak" 12000
+	haze _menu/haze-tear
 	link C-12
 	link Cl-35
 	link Na-23
@@ -4135,7 +4146,8 @@ system S-32
 	habitable 10
 	belt 1131 4
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ar-40
 	link Mg-24
 	asteroids "small rock" 3 2.05
@@ -4171,6 +4183,10 @@ system Be-9
 	habitable 3400
 	belt 1490 8
 	"jump range" 30
+	hazard "Predecessors Base Spatial Decay" 600
+	hazard "Predecessors Spatial Rift Weak" 6000
+	hazard "Predecessors Spatial Rift Intense" 18000
+	haze _menu/haze-tear
 	link Li-7
 	asteroids "medium rock" 4 5.116
 	asteroids "large rock" 3 4.953
@@ -4225,7 +4241,8 @@ system Br-80
 	attributes "tangled shroud"
 	habitable 10
 	belt 1989 5
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ge-73
 	asteroids "small rock" 1 1.61
 	asteroids "large rock" 6 2.383
@@ -4285,7 +4302,9 @@ system H-1
 	habitable 135
 	belt 1692 7
 	"jump range" 30
-	haze _menu/haze-67
+	hazard "Predecessors Base Spatial Decay" 900
+	hazard "Predecessors Spatial Rift Weak" 18000
+	haze _menu/haze-tear
 	link Arche
 	link Li-7
 	asteroids "small rock" 1 1.548
@@ -4356,7 +4375,10 @@ system B-11
 	habitable 10
 	belt 1448 7
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 900
+	hazard "Predecessors Spatial Rift Weak" 9000
+	hazard "Predecessors Spatial Rift Intense" 36000
+	haze _menu/haze-tear
 	link Li-7
 	link N-14
 	asteroids "small rock" 3 3.139
@@ -4391,7 +4413,8 @@ system Ge-73
 	belt 1758 6
 	belt 1846 9
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ar-40
 	link Ballad
 	link Br-80
@@ -4427,7 +4450,8 @@ system Mg-24
 	habitable 3000
 	belt 1078
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ge-73
 	link Na-23
 	link S-32
@@ -4479,7 +4503,8 @@ system As-75
 	belt 1315 10
 	belt 2249 8
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ca-40
 	link Kr-84
 	asteroids "small rock" 2 2.228
@@ -4524,7 +4549,9 @@ system Na-23
 	habitable 135
 	belt 1511 9
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	hazard "Predecessors Spatial Rift Weak" 30000
+	haze _menu/haze-tear
 	link Cl-35
 	link Mg-24
 	link Ne-20
@@ -4576,7 +4603,8 @@ system Ca-40
 	habitable 10
 	belt 1137 4
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ar-40
 	link As-75
 	link P-31
@@ -4620,7 +4648,7 @@ system F-19
 	belt 1588 2
 	belt 1771 3
 	"jump range" 30
-	haze _menu/haze-none
+	haze _menu/haze-tear
 	link C-12
 	asteroids "medium rock" 11 4.392
 	asteroids "large rock" 1 5.544
@@ -4660,7 +4688,8 @@ system P-31
 	habitable 10
 	belt 1352 7
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ca-40
 	asteroids "medium metal" 6 3.29
 	fleet "Small Avgi Merchants" 36000
@@ -4691,7 +4720,9 @@ system Cl-35
 	belt 1606 5
 	belt 2416
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	hazard "Predecessors Spatial Rift Weak" 30000
+	haze _menu/haze-tear
 	link K-39
 	link Na-23
 	link Ne-20
@@ -4722,7 +4753,9 @@ system K-39
 	habitable 10
 	belt 1927 8
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	hazard "Predecessors Spatial Rift Weak" 30000
+	haze _menu/haze-tear
 	link Cl-35
 	link Ensemble
 	asteroids "medium rock" 3 3.618
@@ -4754,7 +4787,9 @@ system C-12
 	habitable 10
 	belt 1985 4
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 900
+	hazard "Predecessors Spatial Rift Weak" 24000
+	haze _menu/haze-tear
 	link F-19
 	link Li-7
 	link Ne-20
@@ -4785,7 +4820,7 @@ system He-4
 	habitable 10
 	belt 1514 3
 	"jump range" 30
-	haze _menu/haze-none
+	haze _menu/haze-tear
 	link Arche
 	asteroids "small rock" 16 1.903
 	asteroids "medium rock" 10 2.808
@@ -4828,7 +4863,9 @@ system Si-28
 	habitable 10
 	belt 1086
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	hazard "Predecessors Spatial Rift Weak" 15000
+	haze _menu/haze-tear
 	link Mg-24
 	link Prelude
 	asteroids "small rock" 3 1.994
@@ -4897,7 +4934,8 @@ system Kr-84
 	habitable 2160
 	belt 1811 4
 	"jump range" 90
-	haze _menu/haze-67
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link As-75
 	asteroids "large metal" 1 3.325
 	fleet "Small Avgi Merchants" 42000
@@ -4940,13 +4978,14 @@ system Ar-40
 	hidden
 	shrouded
 	pos -596 1043
-	government Uninhabited
+	government "Avgi (Dissonance)"
 	attributes avgi dissonance "tangled shroud"
 	habitable 160.312
 	belt 1885 3
 	belt 2084 8
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 1200
+	haze _menu/haze-tear
 	link Ca-40
 	link Ge-73
 	link S-32
@@ -5006,7 +5045,10 @@ system N-14
 	belt 1578 5
 	belt 2409
 	"jump range" 30
-	haze _menu/haze-none
+	hazard "Predecessors Base Spatial Decay" 600
+	hazard "Predecessors Spatial Rift Weak" 9000
+	hazard "Predecessors Spatial Rift Intense" 30000
+	haze _menu/haze-tear
 	link B-11
 	asteroids "large metal" 2 4.844
 	fleet "Small Avgi Merchants" 36000
