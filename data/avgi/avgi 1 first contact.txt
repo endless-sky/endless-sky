@@ -493,7 +493,6 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "avgi military names"
 			variant
-				"Interferos"
 				"Prismaios"
 				"Prismaios (Atomic)"
 				"Tremoros" 3
@@ -504,7 +503,6 @@ mission "Avgi: Defend Ensemble 2"
 			names "avgi military names"
 			variant
 				"Difraktos (Atomic)"
-				"Difraktos (Missile)"
 				"Refraktos"
 				"Atenuatia (Atomic)"
 				"Vibratia" 22
@@ -516,12 +514,12 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "avgi military names"
 			variant
-				"Prismaios"
+				"Prismaios" 2
 				"Tremoros" 6
-				"Difraktos"
+				"Difraktos (Missile)"
 				"Refraktos"
 				"Diaspersi"
-				"Vibratia" 8
+				"Vibratia" 6
 				"Photikon" 2
 	npc
 		government "Avgi (Twilight Guard)"
@@ -542,26 +540,26 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Latte" 4
+				"Aberrant Latte" 2
 				"Aberrant Chomper (Disable-able)" 2
-				"Aberrant Pileup" 2
+				"Aberrant Pileup"
 		fleet
 			names "aberrant names"
 			variant
 				"Aberrant Latte" 2
 				"Aberrant Chomper"
-				"Aberrant Whiskers" 2
+				"Aberrant Whiskers"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Latte" 2
+				"Aberrant Latte"
 				"Aberrant Chomper" 2
 				"Aberrant Whiskers"
 		fleet
 			names "aberrant names"
 			variant
 				"Aberrant Icebreaker"
-				"Aberrant Mole" 2
+				"Aberrant Mole"
 		fleet
 			names "aberrant names"
 			variant
@@ -570,7 +568,7 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Trip" 3
+				"Aberrant Trip"
 				"Aberrant Triplet (Disable-able)" 2
 
 	on complete
