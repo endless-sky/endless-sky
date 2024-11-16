@@ -322,6 +322,7 @@ ship "Flea" "Flea (Pulse)"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
 
+
 ship "Geocoris"
 	plural "Geocoris"
 	sprite "ship/hai geocoris"
@@ -747,6 +748,111 @@ ship "Ladybug" "Ladybug (Tracker)"
 	turret "Pulse Turret"
 
 
+ship "Modified Shield Beetle"
+	sprite "ship/hai modified shield beetle"
+	thumbnail "thumbnail/hai modified shield beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 25400000
+		"shields" 40000
+		"hull" 10000
+		"required crew" 59
+		"bunks" 78
+		"mass" 2060
+		"drag" 16.9
+		"heat dissipation" .19
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 855
+		"weapon capacity" 336
+		"engine capacity" 145
+		# any ship with this can be remotely blown by the Alphas or Unfettered
+		"unfettered remote" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 5500
+			"hull damage" 3000
+			"hit force" 3600
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Tracker Storage Pod" 2
+		"Ionic Turret Prototype" 2
+		"Warder Anti-Missile"
+		"Value Detector"
+		"Hai Cuttlefish Jammer" 2
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 252
+		"Outfits Expansion" 4
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone" 2
+	engine -45 123
+	engine 45 123
+	gun -22 -103
+	gun 22 -103
+	gun -34.5 -68
+	gun 34.5 -68
+	gun -48 -53.5 "Hai Tracker Pod"
+	gun 48 -53.5 "Hai Tracker Pod"
+	gun -61.5 -23 "Hai Tracker Pod"
+	gun 61.5 -23 "Hai Tracker Pod"
+	turret 0 5 "Warder Anti-Missile"
+	turret -55.5 74.5
+	turret 55.5 74.5
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as most other components of the ship, but this process has sacrificed stability and increased heat generation."
+
+# Si-Ra will use this modified beetle when provoked,
+# he risked everything to upgrade his ship and to kill you so that he can get back into Midas
+ship "Modified Shield Beetle" "Si-Ra's angry Beetle"
+	add attributes
+		"shields" -2000
+		"heat dissipation" .05
+		"cargo space" -20
+		"outfit space" 19
+		"weapon capacity" 3
+	outfits
+		"Tripulse Shredder" 5
+		"Pulse Cannon" 3
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+
+		"Hai Octopus Jammer" 2
+		"Large Heat Shunt" 2
+		"Hai Zephyr Cooling"
+		"Quantum Keystone" 4
+		"Outfits Expansion" 3
+		"Fuel Processor"
+		"Hyperdrive"
+		"Value Detector" 2
+		"Dark Storm Shielding"
+		"S-970 Regenerator"
+		"Systems Core (Medium)"
+
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		"Hai Gorge Batteries"
+
+		"Pulse Rifle" 70
+		"Dual Pulse Pistols" 8
+
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+
+
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	thumbnail "thumbnail/hai pond strider"
@@ -983,21 +1089,26 @@ ship "Sea Scorpion" "Sea Scorpion (Tracker)"
 		"Value Detector"
 		"Hyperdrive"
 
+# somewhat too high energy usage, not so fast
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
 		"Pulse Cannon" 4
 		"Pulse Turret" 2
 		"Boulder Reactor"
+		"Supercapacitor"
 		"Hai Williwaw Cooling" 2
 		"Hai Ravine Batteries"
-		"Supercapacitor" 5
+		"Hai Octopus Jammer"
+		"Hai Cuttlefish Jammer"
+		"Quantum Keystone"
 		"Hai Diamond Regenerator" 2
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 30
 
+# bad dps
 ship "Sea Scorpion" "Sea Scorpion (Ion)"
 	outfits
 		"Ion Cannon" 3
@@ -1006,43 +1117,90 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hai Tracker" 84
 		"Boulder Reactor"
 		"Hai Fissure Batteries"
-		"Hai Diamond Regenerator" 2
+		"Hai Diamond Regenerator"
+		"Hai Corundum Regenerator" 2
+		"Hai Williwaw Cooling" 2
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 30
 
+# overheated easily
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
 		"Chameleon Anti-Missile"
-		"Hai Corundum Regenerator"
+		"Hai Corundum Regenerator" 3
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
+		"Supercapacitor"
+		"Outfits Expansion" 2
+		"Quantum Keystone"
 		"Hyperdrive"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
+# doesn't regen that well/weak to missiles
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
-		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Steering`
 		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
+		"Geode Reactor" 2
 		"Bullfrog Anti-Missile"
-		"Hai Diamond Regenerator" 2
+		"Hai Diamond Regenerator"
 		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling" 5
+		"Hai Octopus Jammer"
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
+
+ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Geode Reactor"
+		"Sand Cell"
+		"Bullfrog Anti-Missile" 2
+		"Hai Diamond Regenerator" 4
+		"Hai Ravine Batteries"
+		"Hai Tracker" 280
+		"Hai Tracker Pod" 4
+		"Tracker Storage Pod" 2
+		Hyperdrive
+		"Outfits Expansion" 2
+		"Pulse Rifle" 30
+
+ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
+	add attributes
+		# so it can follow you along easier
+		"fuel capacity" 300
+		"cargo space" -5
+		"engine capacity" -24
+	outfits
+		"Hai Tracker" 420
+		"Hai Tracker Pod" 4
+		"Tracker Storage Pod" 7
+		"Shield Disruptor Turret"
+		"Husk-Slice Turret"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer" 2
+		"Outfits Expansion" 2
+		Hyperdrive
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
 
 
 
@@ -1481,6 +1639,252 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+# low dps but huge ion dmg, use missiles
+ship "Shield Beetle" "Shield Beetle (Ion-ic?)"
+	outfits
+		`"Bondir" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Corundum Regenerator" 2
+		"Hai Diamond Regenerator" 3
+		"Hai Octopus Jammer" 2
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 2
+		"Hai Zephyr Cooling" 2
+		Hyperdrive
+		"Ion Cannon" 6
+		"Ionic Blaster Prototype" 2
+		"Outfits Expansion" 6
+		"Pulse Rifle" 55
+
+# heat vulnerability (and low turning, but high speed)
+ship "Shield Beetle" "Shield Beetle (Ionic)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Diamond Regenerator" 2
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 2
+		"Hyperdrive"
+		"Ion Cannon" 2
+		"Ionic Blaster Prototype" 4
+		"Ionic Turret Prototype" 2
+		"Pulse Cannon" 2
+		"Pulse Rifle" 95
+		"Hai Octopus Jammer"
+		"Value Detector"
+		"Quantum Keystone"
+		"Supercapacitor" 2
+
+# vulnerability: ion
+ship "Shield Beetle" "Shield Beetle (Sunbeam)"
+	outfits
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Boulder Reactor"
+		"Sand Cell" 2
+		"Hai Octopus Jammer" 3
+		"Cargo Expansion"
+		"Quantum Keystone"
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator"
+		"Hai Valley Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hyperdrive"
+		"Pulse Rifle" 90
+		"Sunbeam" 8
+
+# slow, waste ammo
+ship "Shield Beetle" "Shield Beetle (Thunderhead)"
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Hai Diamond Regenerator" 5
+		"Hai Ravine Batteries"
+		"Hyperdrive"
+		"Outfit Scanner" 4
+		"Pulse Rifle" 80
+		"Pulse Turret" 2
+		"Thunderhead Launcher" 8
+		"Thunderhead Missile" 160
+
+
+# He Yi's Beetle (has flamethrower variant defined in the side missions, provided you sell flamers)
+# also has an ion variant with a nullifier you will bring him, for part 2
+ship "Stag Beetle"
+	sprite "ship/hai stag beetle"
+	thumbnail "thumbnail/hai stag beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 30400000
+		"shields" 39000
+		"hull" 11000
+		"required crew" 70
+		"bunks" 78
+		"mass" 2040
+		"drag" 16.8
+		"cloak" .01
+		"cloaking energy" 5
+		"cloaking fuel" .5
+		"cloaking heat" 5
+		"heat dissipation" .25
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 834
+		"weapon capacity" 353
+		"engine capacity" 145
+		"spinal mount" 1
+		"scrambling resistance" .25
+		"unfettered remote" 1
+		weapon
+			"blast radius" 515
+			"shield damage" 6000
+			"hull damage" 3500
+			"hit force" 4000
+	outfits
+		"Sunbeam" 2
+		"Fire-Lance" 2
+		"Plasma Cannon" 2
+		"Thermal Repeater" 2
+		"Korath Detainer"
+		"Grab-Strike Turret"
+		"Bullfrog Anti-Missile" 4
+		
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
+		"Systems Core (Large)"
+		"Dark Storm Shielding"
+		"Hai Zephyr Cooling"
+		"Outfits Expansion" 4
+		"Fuel Processor"
+		"Large Heat Shunt"
+		"Jump Drive"
+		
+		"Type 4 Radiant Steering"
+		"Afterburner (Comet Class)"
+		"Type 3 Radiant Thruster"
+		
+		"Triple Plasma Core"
+		"Small Biochemical Cell"
+		"Supercapacitor"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 47
+		"Dual Pulse Pistols" 10
+		"Unfettered License"
+	engine -45 123
+	engine 45 123
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Fire-Lance"
+	gun 34 -68 "Fire-Lance"
+	gun -49 -38 "Plasma Cannon"
+	gun 49 -38 "Plasma Cannon"
+	gun -61 -14
+	gun 61 -14
+	turret -51 21.5
+	turret 51 21.5
+	turret -56.5 75
+	turret 56.5 75
+	turret 0 85.5 "Grab-Strike Turret"
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 65
+	explode "small explosion" 53
+	explode "medium explosion" 56
+	explode "large explosion" 55
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "At the core of this vessel are the ancient remains of a Korath raider that, despite making good use of a cloaking device, harassed the Unfettered one too many times. Although it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
+	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
+
+ship "Stag Beetle" "Stag Beetle (Flamer)"
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Grab-Strike Turret"
+		"Banisher Grav-Turret"
+		"Bullfrog Anti-Missile" 3
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 47
+		"Dual Pulse Pistols" 10
+		"Unfettered License"
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Grab-Strike Turret"
+	turret 51 21.5
+	turret -56.5 75 "Banisher Grav-Turret"
+	turret 56.5 75
+	turret 0 85.5
+
+ship "Stag Beetle" "Stag Beetle (Ion)"
+	outfits
+		"Ka'het Nullifier"
+		"Ion Cannon" 2
+		"Ionic Blaster Prototype" 2
+		"Railgun" 2
+		"Railgun Slug" 2000
+		"Ionic Turret Prototype" 2
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 47
+		"Dual Pulse Pistols" 10
+	gun 0 -7 "Ka'het Nullifier"
+	gun -22 -102 "Ion Cannon"
+	gun 22 -102 "Ion Cannon"
+	gun -34 -68 "Ionic Blaster Prototype"
+	gun 34 -68 "Ionic Blaster Prototype"
+	gun -49 -38 "Railgun"
+	gun 49 -38 "Railgun"
+	gun -61 -14
+	gun 61 -14
+	turret -51 21.5 "Ionic Turret Prototype"
+	turret 51 21.5 "Ionic Turret Prototype"
+	turret -56.5 75
+	turret 56.5 75
+	turret 0 85.5
 
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
@@ -1594,14 +1998,13 @@ ship "Emperor Beetle"
 	description "	More than just a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai, but the military leaders of the Unfettered leading at the front of those they command. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. This ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
 
 
-
 ship "Solifuge"
 	sprite "ship/hai solifuge"
 	thumbnail "thumbnail/hai solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"Unfettered Militia"
+			"Unfettered"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000

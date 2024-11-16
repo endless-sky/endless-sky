@@ -32,7 +32,7 @@ shipyard "Mon Ki o'Uden Advanced"
 	"Sea Scorpion"
 	"Shield Beetle (Unfettered Shipyards)"
 	# Has "Solifuge" and "Violin Spider" added by event.
-	# Technically has the specs for the "Ladybug" but not the resources to build it.
+	# Technically has the specs for the "Ladybug" but not the resources or interest to build it.
 
 
 # Mon Ki i'Hiya Consortium (loyalist) shipyards:
@@ -184,6 +184,7 @@ outfitter "Hai Security"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
+
 outfitter "Unfettered Basics"
 	"Pulse Cannon"
 	"Hai Tracker"
@@ -209,6 +210,48 @@ outfitter "Unfettered Basics"
 	"Asteroid Scanner"
 	"Outfit Scanner"
 	"Phantom Pallet"
+
+
+# When possible add all outfits not here but in the Hai shipyards at 1.5x the cost.
+# Includes the ion cannon, the reverse thrusters, the Valley Batteries and the biggest engines.
+outfitter "Unfettered"
+	"Pulse Turret"
+	"Chameleon Anti-Missile"
+	"Hai Tracker Pod"
+	"Tracker Storage Pod"
+	"Bunk Room"
+	"Outfits Expansion"
+	"Hai Diamond Regenerator"
+	"Hai Gorge Batteries"
+	"Hai Ravine Batteries"
+	"Boulder Reactor"
+	"Pebble Core"
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
+	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic Steering`
+	`"Bufaer" Atomic Steering`
+
+
+outfitter "Mera's Lab"
+	"Hai Tracker"
+	"Chameleon Anti-Missile"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Hai Octopus Jammer"
+	"Value Detector"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Hyperdrive"
+	"Hai Williwaw Cooling"
+	"Pebble Core"
+	"Supercapacitor"
+	"Pulse Rifle"
+	"Asteroid Scanner"
+	"Fuel Pod"
+
 
 # For ships, stations, or corporations.
 phrase "hai"

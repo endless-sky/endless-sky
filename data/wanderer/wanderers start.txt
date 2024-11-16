@@ -53,9 +53,18 @@ mission "First Contact: Wanderer"
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
+			branch normal
+				not "<uhai> 18: Hai Language: active"
+			`	It seems like they do not trust you; they are very hesitant to come your way. They probably somehow know that you've worked with the Unfettered.`
+			choice
+				`	"I come to learn more about you, on behalf of the Unfettered."`
+					goto tryunderstand
+			label normal
 			choice
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
+			
+			label tryunderstand
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
 				goto hai
 			
@@ -70,6 +79,10 @@ mission "First Contact: Wanderer"
 				`	"Sorry, I don't speak their language."`
 				`	"Are there any Hai here?"`
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think they are telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
+			branch accept
+				not "<uhai> 18: Hai Language: active"
+			`	You should probably go back to the Unfettered and speak to them about the need for a diplomat, or any way to understand these aliens. He-Yi should be able to help you with this.`
+			`	Alternatively, you could go to the Hai and ask them for a translator instead, although He-Yi will probably respect you less.`
 				accept
 	on visit
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" they seem to ask, once again mimicking the rodent-like ears of the Hai with their feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
@@ -100,6 +113,8 @@ mission "Wanderers: Unfettered Diplomat"
 		not "unfettered know of wanderers"
 		not "Wanderers: Hai Diplomat: offered"
 		not "Wanderers: Diplomacy: offered"
+		not "<uhai> 18: Hai Language: active"
+		not "language: Hai"
 	on offer
 		conversation
 			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
@@ -192,6 +207,7 @@ mission "Wanderers: Diplomacy"
 	passengers 1
 	to offer
 		has "First Contact: Wanderer: offered"
+		not "language: Wanderer"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
@@ -547,6 +563,8 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 			`	"At the [body, planet] named Vara Ke'sok, there are [raids, conquests] by Unfettered that take place. During these, various structures get [damaged, hurt]. We wish you to help [fix, mend] these by carrying <tons> of [supplies, materials]."`
 			choice
 				`	"I'd be happy to do that."`
+				`	"I'd prefer not to intervene in your conflict with the Unfettered."`
+					decline
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
 			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
@@ -601,7 +619,12 @@ mission "Wanderers: Defend Vara Ke'sok"
 		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
 	on complete
 		event "Sich'ka'ara restored"
-	
+	on enter
+		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like you doing this far out in the void? Be ye lost, landlubber? This be yer last warning! Take arms to defend this world against us, and ye will be considered Fettered forever. Make yer choice carefully, Cap'n. I strongly council ye to abort this mission, savvy?"`
+	on fail
+		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful matey back in Unfettered space... Feel free to visit Darkcloak. I'll be there once I'm done with this raid. Speaking of which, ye were tagged as loot so I'd recommend ye run off for the time being!"`
+		"reputation: Hai (Unfettered)" >?= 100
+
 	npc
 		government "Wanderer"
 		personality derelict fleeing uninterested waiting pacifist
@@ -907,6 +930,10 @@ mission "Unfettered: Jump Drive Source"
 		conversation
 			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
 			choice
+				`	(No. I will not betray them.)`
+					to display
+						has "salary: Unfettered"
+					decline
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
@@ -999,7 +1026,17 @@ mission "Wanderers: Alpha Surveillance A"
 				`	"Is it possible that they have a hidden base on one of your worlds?"`
 				`	"Do you know where they went when you banned them from your space?"`
 					goto where
+				`	"I'm pretty sure I found one of their old bases."`
+					to display
+						has "alpha: host found"
+					goto oldbase
 			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
+			`	"Then where could they have gone?" you ask.`
+				goto where
+			label oldbase
+			action
+				set "told wanderers the alpha base location"
+			`	"An old base, you say? They probably no longer operate there anymore then. I would advise against going there again, because it will most likely have traps."`
 			`	"Then where could they have gone?" you ask.`
 			label where
 			`	"We do not know," he says. "It is not our business to track the doings of other species, outside our territory. And during the time of the Korath raids, we would not have had the capacity to track them, anyway."`
@@ -1211,6 +1248,16 @@ mission "Wanderers: Alpha Surveillance D"
 			has "Wanderers: Alpha Surveillance C (Naughty): done"
 	passengers 1
 	blocked "You need a bunk free in order to take on this mission."
+	substitutions
+		"<base found>" "It appears that you have found the Alpha base."
+		"<base found>" "You were right all along, this is indeed the Alpha base, right where you said it would be."
+			has "told wanderers the alpha base location"
+		"<base found>" "It appears that the base is not as old and abandoned as it first seemed."
+			not "told wanderers the alpha base location"
+			has "alpha: host found"
+		<guess> `".`
+		<guess> `". This will probably be the same path as last time.`
+			has "alpha: host found"
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
@@ -1231,7 +1278,7 @@ mission "Wanderers: Alpha Surveillance D"
 				accept
 	
 	on enter "Hi Yahr"
-		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
+		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space<guess>`
 	on enter "Celeborim"
 		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
 	on enter "Asikafarnut"
@@ -1243,7 +1290,15 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
-		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+		conversation
+			`When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+			branch nothing
+				not "flagship base attribute: unfettered remote"
+			`	You start preparing for the fight, but seconds later you notice an orange light on your console, blinking slowly.`
+			`	Time seems to slow down as it starts flashing faster and faster, and you finally realize what it must be.`
+			`	A self-destruct indicator! Maybe coming here with the <ship> as your flagship was not the best idea.`
+				explode
+			label nothing
 	
 	npc
 		government "Kor Sestor"
@@ -1290,9 +1345,15 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 	source "Avalon"
 	to offer
 		has "Wanderers: Alpha Surveillance D: active"
+	substitutions
+		<sensors> "but your sensors are not able to locate it, and even if you could"
+		<sensors> "you are able to locate it after some time. However,"
+			"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
+		<sensors> "you still know the location from last time. However, it is heavily guarded this time, and"
+			has "alpha: host found"
 	on offer
 		conversation
-			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, but your sensors are not able to locate it, and even if you could you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
+			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, <sensors> you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
 				decline
 
 

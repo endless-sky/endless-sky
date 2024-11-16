@@ -2111,7 +2111,10 @@ Files:
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
+ images/ship/hai?sea?dragon*
  images/ship/hai?sea?scorpion*
+ images/ship/hai?stag?beetle*
+ images/ship/hai?modified?shield?beetle*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -2123,7 +2126,10 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/thumbnail/hai?sea?dragon*
  images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/hai?stag?beetle*
+ images/thumbnail/hai?modified?beetle*
  images/thumbnail/ibis*
  images/thumbnail/merganser*
  images/thumbnail/penguin*
@@ -2203,6 +2209,11 @@ Files:
 Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
 Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
+
+Files:
+ images/outfit/gold?bars*
+Copyright: Red-57 (github.com/Red-57)
+License: CC-BY-SA-4.0
 
 Files:
  images/effect/firestorm?ring*
@@ -2714,6 +2725,18 @@ Files:
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/hai?dual?pulse?pistol*
+ images/outfit/ionic?blade*
+Copyright: Michael Arsollon
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license) and Evan Fluharty (from under the same license).
+
+Files:
+ images/outfit/true?unfettered?license*
+Copyright: todd1010
+License: CC-BY-SA-4.0
 
 Files:
  images/ship/auxiliary*
@@ -3372,6 +3395,11 @@ Files:
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
+Files:
+ images/scene/chootk?firelode*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
 
 Files:
  images/land/badlands13*

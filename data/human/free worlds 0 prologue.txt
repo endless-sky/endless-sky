@@ -2250,11 +2250,16 @@ mission "Defend Sabik"
 		conversation
 			`When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
 			`	"Very well," he says, "we'll have to pray that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
+			`	He eyes the color scheme of your ship disapprovingly. "I'm pretty sure the current paint job on the <ship> is not legal anyway. You should have been flying merchant colors."`
+				to display
+					or
+						has "event: joined midas"
+						has "event: joined the unfettered"
 			`	He is carrying a paintbrush and a very large can of green paint. "Would you like to do the honors?" he asks.`
 			choice
 				`	"Sure."`
 					goto paint
-				`	"I can't just keep flying merchant colors?"`
+				`	"I can't just keep flying my colors?"`
 			
 			`	"No," he says, "it would be dishonest, and if you were to fight alongside us you would be classified as a partisan, a criminal rather than an enemy combatant. Believe it or not, you're better off as an official prisoner of war than as a partisan, if you ever do get captured. So, time to start painting."`
 			

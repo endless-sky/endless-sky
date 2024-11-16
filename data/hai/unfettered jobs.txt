@@ -28,23 +28,24 @@ mission "Unfettered Tribute 1"
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 80
 	cargo "food (tribute)" 25 2 .05
-	on complete
-		payment 5000 1600
-		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
 	stopover
 		distance 3 4
 		attributes "hai"
 		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 80 + "unfettered: hunger" * 20
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 5000 1600
+		dialog phrase "unfettered tribute payment dialog"
+		"unfettered: hunger stops" += 20
 
 mission "Unfettered Tribute 2"
 	name "Hai Tribute from <planet stopovers>"
@@ -52,23 +53,24 @@ mission "Unfettered Tribute 2"
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 60
 	cargo "food (tribute)" 35 2 .05
-	on complete
-		payment 7000 2000
-		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
 	stopover
 		distance 4 5
 		attributes "hai"
 		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 60 + "unfettered: hunger" * 30
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 7000 2000
+		dialog phrase "unfettered tribute payment dialog"
+		"unfettered: hunger stops" += 40
 
 mission "Unfettered Tribute 3"
 	name "Hai Tribute from <planet stopovers>"
@@ -76,23 +78,25 @@ mission "Unfettered Tribute 3"
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 40
 	cargo "food (tribute)" 45 2 .05
-	on complete
-		payment 9000 2400
-		dialog phrase "unfettered tribute payment dialog"
 	source
 		attributes "unfettered"
 	stopover
 		distance 5 6
 		attributes "hai"
 		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		random < 40 + "unfettered: hunger" * 40
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 9000 2400
+		dialog phrase "unfettered tribute payment dialog"
+		"unfettered: hunger stops" += 70
+
 
 
 mission "Unfettered Jump Drive 4"
@@ -124,14 +128,48 @@ mission "Unfettered Jump Drive 4"
 				goto trade
 
 			label "want outfits"
-			`The Unfettered's usual deal of trading a jump drive for weapons still stands.`
+			`The Unfettered usual deal of trading a jump drive for weapons still stands.`
+			branch "has respect"
+				has "ships model (all): Modified Shield Beetle"
 			choice
-				`	(Take two Tripulse Shredders.)`
+				`	(Take two tripulse shredders.)`
+				`	(Take money instead.)`
+					goto money
+			label tripulse
+			action
+				outfit "Tripulse Shredder" 2
+			`	The two shredders are loaded on your ship, in exchange for your Jump Drive.`
+				goto trade
+
+			label "has respect"
+			`	They add that since you still have the Modified Shield Beetle, you may access the special weaponry intended for it.`
+			choice
+				`	(Take two tripulse shredders.)`
+					goto tripulse
+				`	(Take 4 ionic blasters.)`
+					to display
+						"unfettered: prototypes exchanged" < 5
+				`	(Take 1 ionic turret.)`
+					to display
+						"unfettered: prototypes exchanged" < 5
+					goto turret
 				`	(Take money instead.)`
 					goto money
 			action
-				outfit "Tripulse Shredder" 2
-			`	The two Shredders are loaded onto your ship, in exchange for your jump drive.`
+				outfit "Ionic Blaster Prototype" 4
+			`	The four blasters are loaded on your ship, in exchange for your Jump Drive.`
+				goto prototype
+
+			label turret
+			action
+				outfit "Ionic Turret Prototype"
+			`	The turret is loaded on your ship, in exchange for your Jump Drive.`
+			label prototype
+			action
+				"unfettered: prototypes exchanged" ++
+			`	The shipyard authorities come to you with a grave look. "Unfortunately we cannot trade any more ionic weapons with you. Do note you can still exchange shredders for jump drives."`
+				to display
+					"unfettered: prototypes exchanged" > 5
 
 			label trade
 			branch cargo
@@ -142,6 +180,7 @@ mission "Unfettered Jump Drive 4"
 			action
 				outfit "Jump Drive" -1
 				"reputation: Hai (Unfettered)" >?= 40
+
 
 
 phrase "unfettered mining payment dialog"
@@ -300,6 +339,27 @@ mission "Unfettered Lead Asteroid Mining 2"
 		outfit "Lead" -70
 
 
+mission "Unfettered Titanium Asteroid Mining"
+	job
+	repeat
+	name "Gather Titanium from asteroids"
+	description "Mine and collect 50 tons of titanium, then bring the minerals to <destination> for <payment>."
+	source
+		attributes "unfettered"
+		not planet "Warfeed"
+	destination
+		attributes "unfettered"
+		not planet "Warfeed"
+	to offer
+		random < 40
+		"cargo space" > 30
+		has "<uhai> 10: Belt Materials: done"
+	on complete
+		payment 400000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Titanium" -50
+
+
 phrase "unfettered medicals pickup dialog"
 	word
 		`As usual, the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies onto your ship.`
@@ -364,3 +424,419 @@ mission "Unfettered Big Medicals Rush"
 	on complete
 		payment 8000 2800
 		dialog phrase "unfettered medicals payment dialog"
+
+
+# When we have custom prices in outfitters these will just "show" to the player they can sell those outfits for a good price (hence why no repeat).
+mission "Unfettered Bring Reverse Engine"
+	job
+	name "Bring Hai reverse engines"
+	description "An Unfettered captain wants to try out the reverse engines the Hai are selling. Bring 1 of each size to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 10
+		has "Unfettered Jump Drive 1: done"
+	on accept
+		conversation
+			`As it is the first time you have accepted this job, the captain who offered it sends the details to you: "Hello<, unfettered title> <last>. I need you to bring me a reverse engine of each size, in order to test them on the different ships in my fleet. I expect the Basrem engines to be quite useful for the smaller ships such as the Lightning Bug, especially when equipped with Ion Cannons, but I am unsure whether or not it is enough thrust to keep its distance from enemies, or if I need more of those. Of course, the same logic applies to bigger ships as well. Oh, and before I forget, you need to bring them to <destination>, because that is where I am going to be moving in a few days."`
+			choice
+				`	"I'll go and bring those engines back, then."`
+					accept
+				`	"Where can I buy these from?"`
+			`	"To my knowledge, every Hai outfitter sells them, or almost every one, so you should not have any trouble finding them."`
+				accept
+	on complete
+		outfit `"Basrem" Reverse Thruster` -1
+		outfit `"Benga" Reverse Thruster` -1
+		outfit `"Biroo" Reverse Thruster` -1
+		payment 2000000
+		dialog `The captain is really happy when you deliver the reverse engines to him. "I must try these on my Sea Scorpion and Shield Beetle to see what I can come up with, these look promising with long range weapons..." It looks like he could have kept on talking forever but he must have noticed you looking at him insistently. "Oh, right, here is your payment of <payment>. Sorry, I almost forgot!"`
+
+
+mission "Unfettered Bring Batteries"
+	job
+	name "Bring Hai Valley Batteries"
+	description "The Unfettered are running out of the biggest batteries, so the manager of the outfitter wants you to bring Valley Batteries so they can still sell the right model to his client, before the <date>. They are willing to offer you <payment> for them."
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	deadline 14
+	to offer
+		random < 10
+		has "Unfettered Jump Drive 1: done"
+	on accept
+		conversation
+			`As you accept the job, one of the workers of the outfitter comes to speak to you. "Do you have any questions regarding this job?" he asks. "And you do understand that it must be done as fast as possible, because our new ships are in great need of these."`
+			label choose
+			choice
+				`	"Everything sounds clear."`
+					accept
+				`	"Why would you need such big batteries?"`
+				`	"Where can I get these batteries?"`
+					goto where
+				`	"Can't you just make your own batteries?"`
+					goto why
+			`	"Well, as you have probably noticed, a lot of Hai use Ion Cannons in order to disable ships without doing too much damage to the crew. That in itself is a very good thing, but it also means that we need to actively work against it. Bigger batteries mean the guns will be less scrambled, and diminishes the risk of being completely stranded in space."`
+				goto choose
+			label where
+			`	"These batteries are pretty big, so I would expect them to mostly be in big outfitters, such as the Makerplace one. They should not be too hard to find."`
+				goto choose
+			label why
+			`	"That is what we usually do, except that the need for those has increased recently, and we lack sufficient production to keep up with it. So we ask Hai Sympathizers and privateers like yourself to get them for us when we are in big need. Our navy must not seem weak or the Hai could see that as an opportunity to strike."`
+				goto choose
+	on complete
+		outfit "Hai Valley Batteries" -1
+		payment 500000
+		dialog `You bring the batteries to the dock workers, who seem to be in a hurry to put them to use. "About time! Had it been any later it would have probably been too late! Here are your <payment>."`
+
+
+mission "Unfettered Bring Ion Cannons"
+	job
+	name "Bring Ion Cannons"
+	description "Bring 2 Ion Cannons to the Unfettered on <destination>. They are willing to offer you <payment> for it."
+	source
+		attributes "unfettered"
+	destination "Darkcloak"
+	to offer
+		random < 15
+		has "Unfettered Jump Drive 1: done"
+	on accept
+		conversation
+			`After accepting this job, you go look for the captain who placed it in order to ask for more detailed information. It does not take long to find her, and it seems like she is willing to answer at least some of your questions. "Curious, are we, <first>? Oh, may I call you <first>? You reputation of selling jump drives precedes you," she says with a wink.`
+			choice
+				`	"Sure."`
+					goto sure
+				`	"I prefer we stick to a professional relation, so call me <last>."`
+			`	"Very well, not that it matters much anyway."`
+			label sure
+			`	"Oh, I almost forgot my manners. I hope you will have a good raiding, <last>. I am Binkeili." she says with a smile.`
+			`	"Now about this request, I want to make sure you understand, so allow me to be blunt: if we use Ion Cannons, it is not to avoid casualties amongst our brethren, like others may say. That may be a noble cause indeed, but do those bring you food? Ha!"`
+			`	"No. If we do it, it is because it forces the Hai to use more batteries on their ships, as to not be disabled too easily, or become defenseless because of weapon jamming. So, we do not use ion weapons most of the time, but sometimes we surprise them with a big amount of them. Expecting this, the Hai are always forced to keep a good amount of batteries, and to not use too many jammers, since we rely so heavily on trackers. As they make space for batteries, they have to sacrifice armament, or defense!"`
+			choice
+				`	"Thank you for the explanation, I will bring you these Ion Cannons."`
+					goto money
+				`	"And where can I find these Ion Cannons? Are they not restricted?"`
+				`	"What did you mean, 'you hope I have a good raiding'?"`
+					goto raiding
+			`	"The Hai let anyone buy them, provided you have the money, of course."`
+			label money
+			action
+				payment 1000000
+				log "Minor People" "Binkeili" `An Unfettered that was interested in weapons dealing, and maybe something else, too.`
+			`	"I will give you <payment> already, to make sure you can easily buy these Ion Cannons. Do not even think about trying to steal that money, captain. You will receive the rest later."`
+				accept
+			label raiding
+			`	"Oh, that is just an expression we use, since we never know when we will see each other again, if at all. Too many do not come back from the raids, or even worse, they could come back with an empty cargo bay. Now, back to the task at hand!"`
+				goto money
+	on abort
+		dialog `You receive a message from the captain. "Did you really think you could scam me like this? Think again."`
+		fine 1600000
+	on complete
+		outfit "Ion Cannon" -2
+		payment 600000
+		dialog `You bring the Ion Cannons personally to the captain, who is very excited about the news. "Thanks, I will bring those to my warlord as soon as possible. Here is an extra <payment> for the journey. I wish you safe travels!" She seems in a bit of a rush, and leaves straight away.`
+
+
+
+phrase "jump drive or stopover"
+	word
+		`You have a mission to bring jump drives to <planet>, from <stopovers>. You may have left your escort allocated to carrying the devices behind, or you have not retrieved the precious cargo yet.`
+
+phrase "unfettered jump drive pickup dialog"
+	word
+		"You manage to land and retrieve the precious cargo without too much trouble. Do not rely on luck too long though - you should depart quickly!"
+		"You find a few pirates in the vault, but they are quickly disposed of. You proceed to pick up the cargo; do not wait too long, or reinforcements could arrive."
+		"It was easy - almost too easy - to pick up the jump drives. Better depart before your luck runs out."
+		"You receive a warning from the vault about an intrusion, but cannot find anyone. The cargo is swiftly transferred into your ship, and you should probably get on your way now."
+		"The vault is secured, and you can easily and safely pick up the jump drives."
+		"Given how hard it can be to collect these jump drives, you sometimes wonder if they actually belong to the Unfettered."
+
+phrase "unfettered jump drive payment dialog"
+	word
+		"The Unfettered are more than content with paying <payment> in exchange for your precious cargo."
+		"The Unfettered are in a rush to get the devices, hoping to install them on their ships. They give you <payment>."
+		"Every time you bring jump drives back, it seems to be a cause for celebration for the Unfettered. This time is no different, and they almost forget to give you the <payment>."
+		"Your cargo is unloaded, and the Unfettered give you <payment> for it. Curious about the source, you pay attention to a conversation between two members of the same crew and hear something about unfettered humans."
+		"After unloading the cargo, you try your luck asking about who places these jump drives you're collecting, but, as usual, the Unfettered workers give you no information about it. Fortunately, they still give you <payment>."
+
+mission "Unfettered Get Jump Drives [1]"
+	job
+	repeat
+	name "Collect a jump drive"
+	description "Go to the pirate world of <stopovers> to recover a jump drive from a vault, then bring it to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	stopover
+		distance 12 18
+		government "Pirate"
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
+	destination "Darkcloak"
+	to offer
+		random < 30
+		has "Unfettered: Prove your strength 2: done"
+	on stopover
+		dialog phrase "unfettered jump drive pickup dialog"
+		outfit "Jump Drive"
+		"spawn jd fleet 1" ++
+	npc evade
+		government "Cerberus"
+		to spawn
+			# This means that if you have multiple missions for 1 jump drive each, you will get attacked by multiple fleets at the same time.
+			# I'd like to make it random, but that would mean they can spawn in other systems than the one you take the JD from.
+			"spawn jd fleet 1" == "Get Jump Drives (1): offered"
+		personality disables plunders vindictive waiting
+		fleet "Small Northern Pirates" 2
+	on visit
+		dialog phrase "jump drive or stopover"
+	on complete
+		payment 500000
+		outfit "Jump Drive" -1
+		dialog phrase "unfettered jump drive payment dialog"
+
+mission "Unfettered Get Jump Drives [2]"
+	job
+	repeat
+	name "Collect 2 jump drives"
+	description "Go to the pirate world of <stopovers> and recover 2 jump drives from a vault, then bring those to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	stopover
+		distance 12 18
+		government "Pirate"
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
+	destination "Darkcloak"
+	to offer
+		random < 15
+		has "Unfettered: Prove your strength 2: done"
+	on stopover
+		dialog phrase "unfettered jump drive pickup dialog"
+		outfit "Jump Drive" 2
+		"spawn jd fleet 2" ++
+	npc evade
+		government "Cerberus"
+		to spawn
+			"spawn jd fleet 2" == "Get Jump Drives (2): offered"
+		personality disables plunders vindictive launching
+		fleet "Large Northern Pirates"
+	on visit
+		dialog phrase "jump drive or stopover"
+	on complete
+		payment 1000000
+		outfit "Jump Drive" -2
+		dialog phrase "unfettered jump drive payment dialog"
+
+mission "Unfettered Get Jump Drives [3]"
+	job
+	repeat
+	name "Collect 3 jump drives"
+	description "Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring those to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	stopover "Deadman's Cove"
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
+	destination "Darkcloak"
+	to offer
+		random < 5
+		has "Unfettered: Prove your strength 2: done"
+	on stopover
+		dialog phrase "unfettered jump drive pickup dialog"
+		outfit "Jump Drive" 3
+		"spawn jd fleet 3" ++
+	npc evade
+		government "Cerberus"
+		to spawn
+			"spawn jd fleet 3" == "Get Jump Drives (3): offered"
+		personality disables plunders vindictive entering
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+	on visit
+		dialog phrase "jump drive or stopover"
+	on complete
+		payment 1500000
+		outfit "Jump Drive" -3
+		dialog phrase "unfettered jump drive payment dialog"
+
+
+
+mission "Unfettered Bring True Hai"
+	job
+	repeat
+	name `Bring True Hai`
+	description `Land on <stopovers> and bring back <bunks> True Hai to where they belong, on <destination>, for <payment>.`
+	passengers 5 8 .2
+	source
+		attributes "unfettered"
+	stopover
+		distance 3 6
+		government "Hai"
+		attributes "spaceport"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 75
+		has "Unfettered: Jump Drive 1: offered"
+	on stopover
+		dialog `You have picked up all <bunks> Hai. Now all that is left is to bring them to <destination>.`
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		payment
+		payment 150000
+		dialog `You feel good that you managed to bring these Hai to their true home. The Unfettered hand you the agreed payment of <payment>.`
+
+
+
+mission "Unfettered Darkcloak Ship Materials"
+	job
+	repeat
+	name `Ship materials from <stopovers>`
+	description `The shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <stopovers> to get <tons> of materials for building new ships, and bring them back to <destination> by <date> for <payment>.`
+	deadline 15 1
+	source `Darkcloak`
+	stopover
+		distance 12 18
+		government "Pirate"
+	clearance "When you tell the pirates you are here on behalf of the Unfettered, they immediately allow you to land without asking any questions."
+	cargo "ship materials" 50 15 .015
+	to offer
+		random < 50
+		has "Unfettered Jump Drive 3: done"
+		has "<uhai> 17: Spy On Hai A: offered"
+	on stopover
+		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		payment 50000 7000
+		dialog `The Unfettered promise you that many new, grandiose ships will be built with this new material. As long as you get your <payment>, that seems fine with you.`
+
+
+
+ship "Bastion" "Bastion (Materials)"
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Blaster Turret" 3
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Laser Rifle" 5
+		"Cargo Scanner"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	cargo
+		outfits
+			"Building Materials" 100
+
+ship "Argosy" "Argosy (Materials)"
+	outfits
+		"Proton Gun" 2
+		"Proton Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	cargo
+		outfits
+			"Building Materials" 100
+
+phrase "unfettered cargo interception payment dialog"
+	word
+		"The Unfettered unloading your cargo of materials gives you <payment>. A significant amount for the cargo itself, but considering what it took to get it, the price is certainly fair."
+		`An Unfettered unloading the materials comes to you. "It looks like the Elders are keeping their promises to rebuild, no matter the cost. Here are your <payment>."`
+		`As you land, you are directed instead to bring the materials directly to their destination. It is a short trip, considering you are used to traveling in space. There, you receive <payment> for your troubles, before heading back to the spaceport.`
+		`An Unfettered comes to you during the unloading of your cargo, "My deepest thanks, this will help in the repairs. We do not nearly produce enough materials to do it on our own." He then gives you <payment>.`
+		"A spaceport worker gives you <payment> for the materials, without any further ceremony."
+		`The leader of the Unfettered team that collects your cargo comes to you, "This is good, but we need more. Recently, an entire area collapsed because of lack of maintenance." He then hands you the chip worth <payment>.`
+
+
+mission "Unfettered Cargo Interception West"
+	job
+	repeat
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen urban materials, in western pirate space, and bring them back to <destination> for <payment>. You may need to scan the cargo of ships to figure out which one has the materials.`
+	source
+		attributes "unfettered"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 30
+		has "<uhai> 7: Stolen Cargo: done"
+	npc board
+		government "Pirate"
+		personality disables plunders harvests staying
+		system "Almaaz" "Alnilam" "Arneb"
+		fleet
+			names "pirate"
+			variant
+				"Bastion (Materials)"
+			variant
+				"Argosy (Materials)"
+		dialog "This ship indeed contains the materials you are looking for. You should take them, and bring them to <destination> to receive your payment."
+	on visit
+		dialog `You do not have the materials yet. Go look for them in western pirate space.`
+	on complete
+		outfit "Building Materials" -100
+		payment 1000000
+		dialog phrase "unfettered cargo interception payment dialog"
+
+
+mission "Unfettered Cargo Interception East"
+	job
+	repeat
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen urban materials, in eastern pirate space, and bring them back to <destination> for <payment>. You may need to scan the cargo of ships to figure out which one has the materials.`
+	source
+		attributes "unfettered"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 20
+		has "<uhai> 7: Stolen Cargo: done"
+	npc board
+		government "Pirate"
+		personality disables plunders harvests staying
+		system "Alcyone" "Misam"
+		fleet
+			names "pirate"
+			variant
+				"Bastion (Materials)"
+			variant
+				"Argosy (Materials)"
+		dialog "This pirate ship indeed contains the materials you are looking for. You should take them, and bring them to <destination> to receive your payment."
+	on visit
+		dialog "You do not have the materials yet. Go look for them in eastern pirate space."
+	on complete
+		outfit "Building Materials" -100
+		payment 1000000
+		dialog phrase "unfettered cargo interception payment dialog"
+
+
+
+mission "Unfettered Bring More Coolers"
+	job
+	repeat
+	name "Bring 10 Liquid Nitrogen Coolers"
+	description "The Unfettered want more nitrogen coolers in order to convert them into Zephyr Coolers. Bring 10 of them to <destination> for <payment>."
+	source
+		attributes "unfettered"
+	destination "Firelode"
+	to offer
+		has "unfettered: new cooling system"
+		random < 20
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Liquid Nitrogen Cooler" -10
+		dialog `You deliver the coolers to the usual contact of Mera, and she thanks you personally. "You must have made a long trip to bring these here, for which I thank you. Here are <payment>. Whilst the price is not that high, your biggest reward is being continuously able to buy the new Zephyr Coolers."`
+		payment 1250000
+
