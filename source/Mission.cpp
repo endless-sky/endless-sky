@@ -141,6 +141,8 @@ void Mission::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
+	if(!DataNode::IsConditionName(name))
+		node.PrintTrace("Error: Invalid mission name");
 
 	for(const DataNode &child : node)
 	{
