@@ -539,15 +539,6 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 
 
 
-void System::UpdateObjectVisibilities(const Ship *flagship)
-{
-	if(flagship)
-		for(auto &object : objects)
-			object.UpdateDistanceVisibility(flagship);
-}
-
-
-
 // Modify a system's links.
 void System::Link(System *other)
 {
@@ -1058,9 +1049,9 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.offset = node.Value(1);
 	else if(key == "visibility" && hasValue)
 	{
-		object.trueDistanceInvisible = node.Value(1);
+		object.distanceInvisible = node.Value(1);
 		if(node.Size() >= 3)
-			object.trueDistanceVisible = node.Value(2);
+			object.distanceVisible = node.Value(2);
 	}
 	else if(removing && (key == "hazard" || key == "object"))
 		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");

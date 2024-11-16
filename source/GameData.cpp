@@ -538,15 +538,6 @@ void GameData::UpdateSystems()
 
 
 
-
-void GameData::UpdateSystem(const std::string &name, const Ship *flagship)
-{
-	if(flagship && objects.systems.Find(name))
-		objects.systems.Get(name)->UpdateObjectVisibilities(flagship);
-}
-
-
-
 void GameData::AddJumpRange(double neighborDistance)
 {
 	objects.neighborDistances.insert(neighborDistance);
