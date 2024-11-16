@@ -153,7 +153,7 @@ mission "Avgi: First Contact"
 
 			label transmission
 			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
-			`	The message includes an alien-looking star chart, with a trail of marked systems leading to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked past a certain point and are instead labeled as "tangled," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
+			`	The message includes an alien-looking star chart, with a trail of marked systems leading to a system far to the south. Something appears to have been lost in translation, as the systems are unmarked past a certain point and are instead labeled as "shrouded," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
 				launch
 
 	npc
@@ -162,8 +162,8 @@ mission "Avgi: First Contact"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Latte" 3
-				"Aberrant Whiskers" 2
+				"Aberrant Latte" 2
+				"Aberrant Whiskers"
 
 	npc
 		government "Aberrant"
@@ -174,7 +174,7 @@ mission "Avgi: First Contact"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Chomper" 2
+				"Aberrant Chomper"
 
 	npc
 		government "Aberrant"
