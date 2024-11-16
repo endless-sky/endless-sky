@@ -24,7 +24,7 @@ mission "Avgi Culture: Park Politics"
 			action
 				set "avgi: met wisteria"
 			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise industrial facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mezmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
-			`	"Is this one of the humans I have heard so much about, question?" the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of you, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
+			`	"Is this one of the humans I have heard so much about, question?" the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of him, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
 			choice
 				`	"Hello there."`
 				`	"Hi, I'm Captain <first> <last>."`
@@ -52,11 +52,11 @@ mission "Avgi Culture: Park Politics"
 				`"Red"`
 				`"Green"`
 				`"Blue"`
-			`	"Acknowledgment. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle" he explains, demonstrating with a stone, then showing you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape.`
+			`	"Acknowledgment. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle," he explains, demonstrating with a stone, then showing you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape."`
 			`	You delicately take a seat on the rail. It's at least only a little worse than a park bench, and you're thankful for the lower gravity on Peripheria.`
 			choice
 				`	"But there's three sides and only two of us."`
-			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Third - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape "`
+			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Third - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape."`
 
 			choice
 				`(Focus on getting your stones out. Move a stone towards your color's escape.)`
@@ -85,7 +85,7 @@ mission "Avgi Culture: Park Politics"
 				goto next1
 
 			label next1
-			`	"Now, after each of our turns, we shall move one of the Third's pieces. You should focus on moving them to your advantage, whether that be by blocking my pieces or keeping them out of the way of your own."`
+			`	Slightly adjusting his position on the bench, the Avgi continues. "Now, after each of our turns, we shall move one of the Third's pieces. You should focus on moving them to your advantage, whether that be by blocking my pieces or keeping them out of the way of your own."`
 			choice
 				`(Move one of the Third's stones towards your own side, to start building a link.)`
 					goto escape2
