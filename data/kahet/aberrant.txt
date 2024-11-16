@@ -29,7 +29,7 @@ fleet "Small Aberrant"
 		cargo 0
 	personality
 		confusion 40
-		hunting coward vindictive unconstrained harvests mining secretive
+		hunting coward vindictive harvests mining secretive
 	variant 20
 		"Aberrant Latte"
 	variant 5
@@ -110,7 +110,7 @@ fleet "Large Aberrant"
 		cargo 0
 	personality
 		confusion 40
-		hunting coward vindictive unconstrained harvests mining secretive
+		hunting coward vindictive harvests mining secretive
 	variant 10
 		"Aberrant Hugger"
 	variant 5
