@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
-#include "Ship.h"
 
 #include <algorithm>
 

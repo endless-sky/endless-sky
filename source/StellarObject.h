@@ -19,8 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "RandomEvent.h"
 
-#include <set>
-
 class Planet;
 class Ship;
 
