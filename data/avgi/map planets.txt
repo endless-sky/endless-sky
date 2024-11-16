@@ -334,7 +334,7 @@ planet Kapnos
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds9
 	description `Kapnos is the heart of one of the most spectacular sights in the Milky Way. The gas giant is composed of largely molecular oxygen, despite the seeming impossibility of such an occurrence in nature. Its abnormally rapid spin, which causes the planet to bulge wildly at the equator, throws oxygen and water vapor off the top of its atmosphere to form the famous Gossamer "gas torus," something that has sparked awe in the entire Avgi civilization from the moment of its discovery.`
-	description `	The fact that there is more gas in the torus than one gas giant can account for has not been unnoticed, however, and many among the Avgi believe the entire system to be an artificial construct engineered by the long dead Predecessors.`
+	description `	The fact that there is more gas in the torus than one gas giant can account for has not been unnoticed, however, and many among the Avgi believe the entire system to be an artificial construct engineered by the long dead Antecessors.`
 	government Uninhabited
 	security 0
 
@@ -393,15 +393,15 @@ planet Anatrefo
 
 
 planet Gamla
-	attributes predecessor moon uninhabited
+	attributes antecessor moon uninhabited
 	landscape land/desert19
 	description `Unlike most fictional portrayals of precursor species, the previous inhabitants of this dry, salty moon did not leave behind any ancient technological ruins or monolithic stone constructs. Instead, the evidence of their past existence is in the form of tapped mineral veins, concentrations of unmistakably artificial radioisotopes, and a wide belt of orbiting debris degraded to little more than lumps of metal and dust.`
-	description `Before they were able to penetrate deeper into the Ember Waste, Gamla was the first evidence the Avgi found of the Predecessors, a species thought to have inhabited the eastern part of their space millions of years ago. While the moon contains no surviving examples of Predecessor technology, it engrossed xenoarcheologists for years.`
+	description `Before they were able to penetrate deeper into the Ember Waste, Gamla was the first evidence the Avgi found of the Antecessors, a species thought to have inhabited the eastern part of their space millions of years ago. While the moon contains no surviving examples of Antecessor technology, it engrossed xenoarcheologists for years.`
 	government Uninhabited
 
 
 planet Masada
-	attributes predecessor uninhabited
+	attributes antecessor uninhabited
 	landscape land/canyon18
 	description `Masada is an old world, one that was dying long before humanity was born. Its tectonic activity ended long ago, and the eons of erosion has worn its terrain down to the bedrock. Most of the surface is bone dry, with the only water trapped in a small chain of cold, brackish seas near the equator. Little rain falls outside their drainage basins, but what does is bitter and alkaline. The broken remains of what might have once been cities, worn down to little more than circular arrangements of rubble, hints that there is much history here - but no future.`
 	description `In orbit, the Avgi left behind a constellation of satellites to map the surface, but little else. The lack of anything left by the planet's original inhabitants is a reminder of just how old this world is - old enough for even the highest orbits to decay.`
@@ -409,15 +409,15 @@ planet Masada
 
 
 planet Silwan
-	attributes predecessor forest uninhabited
+	attributes antecessor forest uninhabited
 	landscape land/fog12
 	description `Silwan is a wet, misty world shrouded in a permanent blanket of fog, which covers the entire planet year-round. The little light that makes it to the surface reveals a bleak landscape, eroded to a nearly uniform flatness from the eons of constant rains. Only at the equator is the layer of fog burned off by sunlight, feeding humid forests of fern-like trees.`
-	description `Even less evidence of the Predecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plants and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
+	description `Even less evidence of the Antecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plants and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
 	government Uninhabited
 
 
 planet Ashkelon
-	attributes predecessor uninhabited
+	attributes antecessor uninhabited
 	landscape land/mountain33
 	description `An otherwise mundane rocky world, Ashkelon is littered with thousands of basalt monoliths. Most are cracked, many others reduced to rubble, and a scant few are intact enough for the deep carvings that cover their surface to be read. These glyphs were seemingly designed to be easily translated, which Avgi researchers quickly did. There was much excitement when it was realized that the monoliths contained instructions and advice on various technologies, but this quickly turned to disappointment when a years-long survey revealed that no monolith had information on anything more advanced than the steam engine.`
 	description `Whoever left the monoliths here either never documented their more advanced technologies, or someone went to the trouble of destroying the monoliths that contained them.`
