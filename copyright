@@ -1665,6 +1665,12 @@ Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by RisingLeaf.
 
+Files:
+ images/scene/ranger?baker*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Lawrence Livermore National Laboratory.
+
 Files: sounds/*
 Copyright: Various
 License: public-domain
