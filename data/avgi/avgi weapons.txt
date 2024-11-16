@@ -572,7 +572,7 @@ outfit "Orchid Boost"
 		"acceleration" 0.36
 		"drag" 0.018
 		"turn" 3
-		"homing" 3
+		"homing" 4
 		"radar tracking" 0.9
 		"split range" 300
 		"submunition" "Orchid Coast"
