@@ -2392,3 +2392,48 @@ ship "Protector" "Modified Protector"
 	explode "large explosion" 8
 	"final explode" "final explosion large"
 	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than eight turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
+
+
+
+person "Sanujab"
+	government "Hai"
+	frequency 100
+	personality
+		disables harvests timid
+	system
+		government "Hai" "Quarg (Hai)"
+	phrase
+		word
+			"Hey there!"
+			"Vai bin so."
+			"You're a human, right?"
+			"Remember, only those of peace are allowed in Hai space."
+			"I've never owned a Shield Beetle, and have got no intention of ever upgrading."
+			"Nobody knows how I think. Not even myself."
+			"I don't like fighting the Unfettered. Their Trackers are a nuisance."
+			"They say Quantum Keystones make you lucky. Guess I'm in luck."
+			"Do you know what time it is on ${deep planets}?" 2
+			"Better get a pen and pencil ready, I'm about to ask a whole bunch of questions!"
+			"Did you know that we Hai already had a mountain named ${mountains} before we met you?"
+			"Have you ever seen a ship named ${civilian}? It's an interesting name."
+			"I can't decide what planet I'm from. Maybe ${hai planets}?"
+	ship "Cicada (Sanujab)" "No Lee Mon"
+
+
+
+ship "Cicada" "Cicada (Sanujab)"
+	outfits
+		"Ion Cannon"
+		"Bullfrog Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone" 3
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	pylon
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
+	turret
+	turret

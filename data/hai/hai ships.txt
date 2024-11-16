@@ -281,6 +281,7 @@ ship "Cicada"
 		"Hyperdrive"
 	engine -6 75
 	engine 6 75
+	gun 0 -76
 	pylon 0 -76 "Hai Tracker Pod"
 	turret 34.5 -16.5 "Chameleon Anti-Missile"
 	turret -34.5 -16.5 "Chameleon Anti-Missile"
