@@ -14,15 +14,12 @@
 
 galaxy "label twilight"
 	pos -420 750
-	sprite label/twilight
 
 galaxy "label tangled shroud"
 	pos -480 1020
-	sprite "label/tangled shroud"
 
 galaxy "label outer limits"
 	pos -510 1200
-	sprite "label/outer limits"
 
 system Anax
 	pos -463 699

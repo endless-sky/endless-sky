@@ -41,6 +41,7 @@ mission "Avgi: First Contact"
 	clearance
 	on offer
 		set "avgi: aberrant siege"
+		event "twilight label"
 		event "tangled shroud label"
 		conversation
 			branch aviskir
@@ -206,11 +207,10 @@ mission "Avgi: First Contact"
 		"reputation: Avgi" >?= 5
 		"reputation: Avgi (Consonance)" >?= 5
 		"reputation: Avgi (Twilight Guard)" >?= 5
-		event "twilight label"
 		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi."`
 
 	on fail
-		dialog `The alien ship has been destroyed. If you want to complete the Avgi story, revert to the autosave or another earlier snapshot of the game.`
+		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
 	on visit
 		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to to properly introduce you.`
