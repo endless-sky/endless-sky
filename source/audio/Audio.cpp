@@ -111,9 +111,11 @@ namespace {
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
 
-	// Whether the next step should pause or resume the audio sources.
-	bool shouldPause = false;
-	bool shouldResume = false;
+	// The number of Pause vs Resume requests received.
+	int pauseChangeCount = 0;
+	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
+	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -1;
 }
 
 
@@ -310,7 +312,7 @@ void Audio::PlayMusic(const string &name)
 // Pause all active playback streams. Doesn't cause new streams to be paused, and doesn't pause the music source.
 void Audio::Pause()
 {
-	shouldPause = true;
+	pauseChangeCount++;
 }
 
 
@@ -318,7 +320,7 @@ void Audio::Pause()
 // Resumes all paused streams.
 void Audio::Resume()
 {
-	shouldResume = true;
+	pauseChangeCount--;
 }
 
 
@@ -457,29 +459,35 @@ void Audio::Step()
 			alSourcePlay(musicSource);
 	}
 
-	if(shouldResume)
+	if(pauseChangeCount > 0)
 	{
-		ALint state;
-		for(const Source &source : sources)
+		if(pauseCount += pauseChangeCount)
 		{
-			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-			if(state == AL_PAUSED)
-				alSourcePlay(source.ID());
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PLAYING)
+					alSourcePause(source.ID());
+			}
 		}
-		shouldResume = false;
-		shouldPause = false;
 	}
-	else if(shouldPause)
+	else if(pauseChangeCount < 0)
 	{
-		ALint state;
-		for(const Source &source : sources)
+		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
+		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
 		{
-			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-			if(state == AL_PLAYING)
-				alSourcePause(source.ID());
+			pauseCount = 0;
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PAUSED)
+					alSourcePlay(source.ID());
+			}
 		}
-		shouldPause = false;
 	}
+	pauseChangeCount = 0;
 }
 
 

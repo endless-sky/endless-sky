@@ -54,7 +54,7 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels, bool pauseAudio)
+MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), mainMenuUi(GameData::Interfaces().Get("main menu"))
 {
 	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
@@ -96,8 +96,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels, bool pauseAudio)
 		scrollSpeed = 1;
 
 	// When the player is in the menu, pause the game sounds.
-	if(pauseAudio)
-		Audio::Pause();
+	Audio::Pause();
 }
 
 

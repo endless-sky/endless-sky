@@ -292,7 +292,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_9)
 			{
 				isPaused = !isPaused;
 				if(isPaused)
