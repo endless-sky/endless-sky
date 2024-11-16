@@ -756,7 +756,6 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Longfellow" 2
 				"Aberrant Dancer"
 	npc kill
 		government "Aberrant"
@@ -767,9 +766,7 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Aberrant Latte"
 				"Aberrant Chomper" 2
-				"Aberrant Pileup"
 
 	on complete
 		conversation

@@ -514,7 +514,7 @@ planet Weledos
 	attributes avgi "avgi diaspora" frontier
 	landscape land/water3
 	description `Weledos was colonized even before the Avgi evacuated their orbital assets to the Tangled Shroud. A few brave pioneers were willing to settle within the unpredictable systems of the Shroud to escape the planetary governments of Avgi space. They are said to have surveyed and colonized the planet before most explorers had even reached the entrance to the Shroud, surprising early scouts with their presence.`
-	description `	Unfortunately, Weledos and the Ensemble system in general are poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system has forced the Avgi diaspora to settle deeper into the Tangled Shroud, despite calls to deposit more civilians here.`
+	description `	Unfortunately, the Ensemble system is poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system coupled with the hostility of the Tangled Shroud forced the Avgi diaspora to settle further beyond Ensemble, despite calls to deposit more civilians here.`
 	spaceport `The spaceport here is large but spartan, equipped as a midway point for convoys and warships transiting between the front lines of the war and the depths of the Tangled Shroud.`
 	"required reputation" 10
 	government "Avgi"
