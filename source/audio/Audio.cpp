@@ -317,7 +317,8 @@ void Audio::Pause()
 
 
 
-// Resumes all paused streams.
+// Resumes all paused sound sources. If Pause() was called multiple times,
+// you have to call Resume() the same number of times to resume the sound sources.
 void Audio::Resume()
 {
 	pauseChangeCount--;
