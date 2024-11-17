@@ -496,13 +496,12 @@ outfit "Nettle Flecks"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 30
 			narrow
-		"lifetime" 120
+		"lifetime" 60
 		"random lifetime" 30
 		"random velocity" 6
 		"shield damage" 6
 		"hull damage" 9
 		"hit force" 45
-		"missile strength" 3
 
 effect "nettle split"
 	sprite "effect/emp spark"

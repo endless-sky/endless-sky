@@ -624,7 +624,7 @@ ship "Frequentia"
 
 	engine 0 75
 		gimbal 6
-		scale 0.6
+		zoom 0.6
 	"reverse engine" -3 75
 		angle -30
 	"reverse engine" 3 75
@@ -710,7 +710,7 @@ ship "Polari"
 
 	engine 0 69
 		gimbal 6
-		scale 0.6
+		zoom 0.6
 	"reverse engine" -6 66
 		angle -30
 	"reverse engine" 6 66
@@ -1159,7 +1159,7 @@ ship "Tremoros"
 
 	engine 0 51
 		gimbal 6
-		scale 0.6
+		zoom 0.6
 	"reverse engine" -3 -33
 		angle 30
 	"reverse engine" 3 -33
