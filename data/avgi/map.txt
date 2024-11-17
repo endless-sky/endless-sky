@@ -4399,7 +4399,7 @@ system B-11
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 9000
 	object
-		sprite planet/browndwarf-l-rogue
+		sprite planet/browndwarf-t-rogue
 		period 10
 	object
 		sprite planet/europa-b
@@ -4755,7 +4755,7 @@ system K-39
 	pos -477 1184
 	government Uninhabited
 	attributes "tangled shroud"
-	habitable 10
+	habitable 980
 	belt 1927 8
 	"jump range" 30
 	hazard "Predecessors Base Spatial Decay" 1800
@@ -4779,7 +4779,7 @@ system K-39
 	fleet "Small Aberrant" 4200
 	fleet "Large Aberrant" 8400
 	object
-		sprite planet/browndwarf-l-rogue
+		sprite star/k0-old
 		period 204.702
 
 system C-12
@@ -5102,7 +5102,7 @@ system N-14
 	pos -170 1104
 	government Uninhabited
 	attributes "tangled shroud"
-	habitable 10
+	habitable 1250
 	belt 1578 5
 	belt 2409
 	"jump range" 30
@@ -5121,12 +5121,12 @@ system N-14
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
-		sprite planet/browndwarf-t-rogue
+		sprite star/g5-old
 		period 10
 	object
 		sprite planet/gas3-b
 		distance 8162
-		period 93272.771
+		period 8342.57
 		object
 			sprite planet/rhea-b
 			distance 320

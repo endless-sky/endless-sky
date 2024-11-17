@@ -484,7 +484,7 @@ outfit "Nettle Active"
 		"shield damage" -108
 		"hull damage" -162
 		"missile strength" 12
-		"submunition" "Nettle Flecks" 36
+		"submunition" "Nettle Flecks" 18
 
 outfit "Nettle Flecks"
 	plural "Nettle Flecks"
@@ -494,13 +494,13 @@ outfit "Nettle Flecks"
 			"no repeat"
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 30
+		"inaccuracy" 15
 			narrow
 		"lifetime" 60
 		"random lifetime" 30
 		"random velocity" 6
-		"shield damage" 6
-		"hull damage" 9
+		"shield damage" 12
+		"hull damage" 18
 		"hit force" 45
 
 effect "nettle split"
