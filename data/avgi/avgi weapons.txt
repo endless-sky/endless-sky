@@ -334,7 +334,7 @@ outfit "External Launch Rail"
 	licenses
 		"Avgi Atomics"
 	cost 80000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/external launch rail"
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -9
@@ -370,7 +370,7 @@ outfit "External Launch Tube"
 	licenses
 		"Twilight Guard"
 	cost 1370000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/external launch tube"
 	"mass" 6
 	"outfit space" -24
 	"weapon capacity" -24
