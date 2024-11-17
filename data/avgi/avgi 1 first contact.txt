@@ -337,7 +337,7 @@ mission "Avgi: First Contact"
 			`	Asime continues for him. "Apprehension. The humans that came here before you, I must confess are still here for a reason. Perhaps they can give more details, but they have told us that when they first entered our space, they immediately attempted to leave. For whatever reason, they were unable to. I do not know the means by which you were able to travel to our space, but perhaps you will be able to return, and take these stranded humans with you."`
 			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
 			choice
-				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space," you say.`
+				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space."`
 				`	"I have a device that lets me go where I please, but it isn't working at the moment."`
 
 			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
