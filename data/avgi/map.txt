@@ -1944,6 +1944,8 @@ system Sail
 		period 14367.268
 
 system Interlude
+	hidden
+	shrouded
 	pos -596 1043
 	government "Avgi (Dissonance)"
 	attributes avgi "bright star" dissonance "giant star" multi-star "notable star" "tangled shroud"
