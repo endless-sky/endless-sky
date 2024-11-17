@@ -667,10 +667,10 @@ tip "shield protection:"
 	`Protection against shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "silent jumps:"
-	`Prevents a ship from playing sounds when making a hyperjump, even the default sounds that are played when no other sound is defined.`
+	`Prevents a ship from emitting sounds when entering or leaving a system via hyperjump.`
 
 tip "silent scans:"
-	`Prevents a ship from playing scan sounds, even the default ones, while scanning other ships.`
+	`Prevents a ship from emitting sounds while scanning other ships.`
 
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
