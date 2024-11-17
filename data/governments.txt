@@ -190,6 +190,10 @@ government "Avgi (Wandering Fleet)"
 	"travel restrictions"
 		system "Arche"
 		system "Ballad"
+		system "Weledos"
+		system "Prelude"
+		system "Demilude"
+		system "Interlude"
 
 government "Bad Trip"
 	swizzle 0
