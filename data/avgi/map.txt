@@ -3159,6 +3159,7 @@ system Twirl
 	asteroids "large metal" 1 1.625
 	minables uranium 3 4.255
 	minables gold 6 1.872
+	hazard "Neutron Star Magnetic Field" 1
 	fleet "Avgi Scouts" 18000
 	object
 		sprite star/neutron-core
