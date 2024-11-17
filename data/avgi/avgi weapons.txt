@@ -608,8 +608,8 @@ outfit "Orchid Terminal"
 		"drag" 0.018
 		"trigger radius" 90
 		"blast radius" 300
-		"shield damage" 18000
-		"hull damage" 12000
+		"shield damage" 12000
+		"hull damage" 18000
 		"hit force" 6000
 		"missile strength" 18
 
@@ -661,12 +661,12 @@ outfit "Ophrys Active"
 		"turn" 6
 		"homing" 2
 		"optical tracking" 0.72
-		"trigger radius" 60
+		"trigger radius" 30
 		"blast radius" 300
-		"shield damage" 18000
-		"hull damage" 12000
+		"shield damage" 12000
+		"hull damage" 18000
 		"hit force" 6000
-		"missile strength" 36
+		"missile strength" 72
 
 effect "avgi missile exhaust"
 	sprite "effect/avgi flare/rcs"
