@@ -2399,7 +2399,7 @@ person "Sanujab"
 	government "Hai"
 	frequency 100
 	personality
-		disables harvests timid
+		disables getaway harvests timid
 	system
 		government "Hai" "Quarg (Hai)"
 	phrase
@@ -2437,3 +2437,102 @@ ship "Cicada" "Cicada (Sanujab)"
 	turret "Bullfrog Anti-Missile"
 	turret
 	turret
+
+
+
+person "Intola"
+	government "Merchant"
+	frequency 100
+	personality
+		disables hunting plunders secretive
+	system
+		government "Free Worlds" "Neutral" "Pirate" "Republic" "Syndicate"
+	phrase
+		word
+			"Do you know how useless radar jammers are?"
+			"I love exploring."
+			"I got my atomic engines from ${deep planets}. Not exactly legitimately..."
+			"The best thing in the universe to do is shoot pirates!"
+			"Pirates are sometimes annoying, but I've figured out how to deal with the scoundrels."
+			"Speed is better then power."
+			"Lots of people like weapons, but I wouldn't trade my engines for anything."
+			"Ramscoops are excellent when you're exploring, but they take up a lot of space otherwise."
+			"Never run out of power. A doomed ship is a dead ship."
+			"You want to know why I don't have any cooling? I don't like being cold."
+			"Pirates are all over the galaxy, aren't they?"
+			"Those Quarg; so powerful!"
+			"Which would you prefer, a Scout or a Bounder? Answer in five seconds, and my guns are trained on you."
+			"There are interesting anomalies in this galaxy. I wonder what lies on the other side?"
+			"Cargo hauling is the least glamorous way to make a living I've ever heard of."
+	ship "Scout (Intola)" "Intola"
+
+
+
+ship "Scout" "Scout (Intola)"
+	outfits
+		"Heavy Laser" 2
+
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Ramscoop" 3
+
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	pylon
+	pylon
+	turret
+
+
+
+person "Verdorve"
+	government "Merchant"
+	frequency 100
+	personality
+		heroic opportunistic vindictive
+	system
+		government "Free Worlds" "Pirate" "Republic" "Syndicate"
+	phrase
+		word
+			"When you scan my ship, you see the Power of Plasma."
+			"The default Splinter comes equipped for speed, not power. I changed that."
+			"Plasma weapons are great at overheating. The only problem is, I overheat myself."
+			"Shooting pirates is the only worthwhile thing to do."
+			"There are these strange 'bad guys' appearing out of nowhere near where I got this ship. I really like them; they seem to be overheaters. Just like me." # This allusion to the Korath may be too obvious, but it's a great reference.
+			"Guess what. The Republic leader is an Alpha. I wish I could be teleported to Earth."
+			"Nunki once paid me tribute, but no more. Or was it Bloodsea?"
+			"Shoot 'em. Bang bang."
+			"Gatling Guns are ridiculously overpowered and expensive."
+			"Exploring the Confederated Councils of the Outer Rim's former territory is a nightmare. How do they have so many Leviathans?"
+			"You'll never guess where I got my name... or what it is."
+			"The Splinter is Megaparsec's best ship. Those Protectors are too slow, and Quicksilvers can't hold Plasma Turrets."
+			"Plasma, plasma. Overheat, overheat. Shoot, shoot."
+			"I wish I could join the Navy, but they won't let me. I refuse to give up this Splinter."
+			"I wish I could join the Syndicate, but they won't let me. For some reason, the corporate leaders have a prejudice against Southbound-sold weapons. Poor plasma."
+	ship "Splinter (Verdorve)" "Verdorve"
+
+
+
+ship "Splinter" "Splinter (Verdorve)"
+	outfits
+		"Plasma Turret" 2
+
+		"Liquid Sodium Cooler" 2
+		"RT-I Radiothermal"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+
+		"Impala Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Volcano Afterburner"
+		"Hyperdrive"
+	gun
+	gun
+	pylon
+	pylon
+	turret
+	turret "Plasma Turret"
+	turret "Plasma Turret"
