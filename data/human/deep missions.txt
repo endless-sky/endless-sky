@@ -2665,7 +2665,7 @@ mission "Stone of our Fathers 4"
 			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour gray building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
 			`	When you arrive at the hardy and sea-stained wooden door, Helm knocks thunderously upon it and calls out, "Thorleif, open up!"`
 			`	After a brief wait the door opens ponderously, revealing a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
-			`	Thorlief then notices you and frowns. "And who have you brought with you?"`
+			`	Thorleif then notices you and frowns. "And who have you brought with you?"`
 			choice
 				`	(Answer for myself.)`
 				`	(Let Helm answer for me.)`
@@ -3139,12 +3139,12 @@ mission "Home for Skadenga 1"
 			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an unusual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
 			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more. Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
-			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
+			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that, the Ondurdis leaves you.`
 			choice
 				`	(Head to the shuttle.)`
 					goto shuttle
-				`	(Take a moment to investigate Goddess-Stone.)`
-			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
+				`	(Take a moment to investigate the Goddess-Stone.)`
+			`	You walk toward the park filled with stone cairns, wooden pillars, and the Goddess-Stone.`
 			`	At this distance, you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read and appear to be family names. Myrlinga, Baning, and Amalung are the few you can read.`
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr, you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
 			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exotic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
@@ -3157,7 +3157,7 @@ mission "Home for Skadenga 1"
 			`	"I just vant to thank you." Hjlod's gray-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
 				goto lopsided
 			label threefingers
-			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "Stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
+			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
 			label lopsided
 			`	Hjlod offers one of her lopsided grins and then leaves you alone with the shuttle. It is time to go.`
 				accept
