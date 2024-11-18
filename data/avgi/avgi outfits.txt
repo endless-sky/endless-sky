@@ -171,7 +171,7 @@ outfit "Diffuse Deflector"
 	"delayed shield energy" 1.8
 	"delayed shield heat" 4.8
 	"shield delay" 3
-	description "The Avgi never developed shields indigenously, instead being first introduced to the technology by lost explorers from the Deep. Directly copying the technique used in human shields proved unappealing to Avgi scientists, in part due to the totally alien principles involved, so instead they attempted to tap into the shield effect via enormous superconducting magnets, for them a far more mature technology."
+	description "The Avgi never developed shields indigenously, instead being first introduced to the technology by lost explorers from the Deep. Directly copying the technique used in human shields proved unappealing to Avgi scientists, in part due to the totally alien principles involved, so instead they attempted to tap into the shield effect via enormous superconducting magnets, for them a much more mature technology."
 	description "Unfortunately, for its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about half as strong, while also consuming far more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield, resulting in a generator that can be generously described as anemic."
 
 

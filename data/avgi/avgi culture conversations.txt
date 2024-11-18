@@ -103,7 +103,7 @@ mission "Avgi Culture: Dissonance Protest 1"
 				decline
 
 			label language
-			`A line of angry-looking Avgi march in a wide circle around the spaceport, while others dart overhead in a similar pattern. Most of them seem to be waving colorful flags, while a few of the Avgi in the air are trailing banners with colorful slogans on them. "STOP CONSONANCE TAXES," "ABOLISH MINING FEUDALISM," and "STOP SENDING US TO DIE" are just a few of the messages you can make out, all in the angular Avgi script. All of the Avgi, which seem to be participating in some kind of protest, are wearing bright magenta ribbons around their arms, a color that seems to be likewise prominent on their flags and banners.`
+			`A line of angry-looking Avgi march in a wide circle around the spaceport, while others dart overhead in a similar pattern. Most of them seem to be waving colorful flags, while a few of the Avgi in the air are trailing banners with colorful slogans on them. "STOP CONSONANCE TAXES," "ABOLISH MINERAL FEUDALISM," and "STOP SENDING US TO DIE" are just a few of the messages you can make out, all in the angular Avgi script. All of the Avgi are wearing bright magenta ribbons around their arms, a color that seems to be likewise prominent on their flags and banners.`
 				decline
 
 

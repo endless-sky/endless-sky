@@ -12,9 +12,6 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-# Cargo Jobs
-
-
 # Transport Jobs
 
 phrase "avgi specialists complete"

@@ -464,7 +464,7 @@ outfit "Nettle Magazine"
 	"outfit space" -12
 	"nettle capacity" 60
 	ammo `"Nettle" KKV`
-	description "To improve the combat endurance of ships relying on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
+	description "To improve the combat endurance of ships that rely on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
 
 
 outfit "Nettle Active"

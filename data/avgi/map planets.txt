@@ -617,7 +617,7 @@ planet "Outpost Tekis"
 planet "Outpost Leto"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	landscape land/station30
-	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot its icy surface, which is slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
+	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot the icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
 	spaceport `The spaceport is hosted in one of the many pressurized domes adorning the surface of the planetoid, with a large airlock in the ceiling enabling passage between the station itself and the cold black of space outside.`
 	"required reputation" 10
 	government "Avgi (Dissonance)"

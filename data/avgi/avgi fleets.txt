@@ -35,8 +35,6 @@ fleet "Avgi Core Defense"
 	variant 10
 		"Refraktos"
 	variant 10
-		"Difraktos"
-	variant 10
 		"Difraktos (Missile)"
 	variant 10
 		"Prismaios" 2
