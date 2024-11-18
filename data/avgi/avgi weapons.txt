@@ -407,7 +407,7 @@ outfit "Vertical Launch Array"
 	licenses
 		"Twilight Guard"
 	cost 1370000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/vertical launch array"
 	"mass" 9
 	"outfit space" -45
 	"weapon capacity" -45
