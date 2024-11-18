@@ -507,8 +507,6 @@ const vector<Weapon::Submunition> &Weapon::Submunitions() const
 
 double Weapon::TotalLifetime() const
 {
-	if(rangeOverride)
-		return rangeOverride / WeightedVelocity();
 	if(totalLifetime < 0.)
 	{
 		totalLifetime = 0.;
