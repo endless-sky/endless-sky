@@ -73,11 +73,11 @@ test-data "Job Board Mission Save"
 test-data "Job Board Mission"
 	category mission
 	contents
-		mission "%TEST%: JOB BOARD MISSION"
+		mission "TEST: JOB BOARD MISSION"
 			"job board"
 			source "Ruin"
 			to offer
-				has "%TEST%: JOB BOARD MISSION OFFER"
+				has "TEST: JOB BOARD MISSION OFFER"
 			on offer
 				conversation
 					`This is a job board mission.`
