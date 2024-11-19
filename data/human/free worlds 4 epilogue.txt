@@ -171,7 +171,7 @@ mission "FW Epilogue: Freya"
 			label heritage
 			`	You try to recall exactly where you've heard those names before, racking your brain for any information on these vaguely familiar names, then all of a sudden, it hits you. Marcus and Lavinia were two of your great-grandparents. You wonder why someone you've never met until around the time you joined the Free Worlds is suddenly asking about your ancestors. Maybe she was thinking of a different Marcus and Lavinia.`
 			`	"Yeah, I do know a Marcus and Lavinia, but they're my great-grandparents. Are you sure you're asking the right person?" you ask.`
-			`	"Oh my god," Freya says. "I can't believe it."`
+			`	"Oh my God," Freya says. "I can't believe it."`
 			`	"What?"`
 			`	"I think we're related. Second cousins. Marcus and Lavinia Winters are also my great-grandparents."`
 			choice
