@@ -6753,7 +6753,7 @@ mission "FW Refugees to Humanika"
 			label "quarg"
 			action
 				set "FW Refugees to Humanika: quarg"
-			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more."`
+			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more.`
 				to display
 					not "First Contact: Quarg: offered"
 			`	"There's a planet they control that has too much gravity for them, but is just right for humans, so they let humans settle there under their protection. Or at least that's what I've heard."`
@@ -6796,7 +6796,6 @@ mission "Derelict Treasure Map: Ion Cannons"
 			`	Opening the cache reveals a large store of credits along with two Hai Ion Cannons. These must be the alien weapons the map's owner wrote about.`
 			choice
 				`	(Loot the treasure.)`
-					goto end
 			label end
 			`	You grab the <payment> credits, and with the assistance of some machinery you bring the weapons back to your ship.`
 
