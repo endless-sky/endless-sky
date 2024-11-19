@@ -327,6 +327,8 @@ conversation "edward epilogue"
 	
 	label combined
 	`	You follow Barmy into the bar. Even with the smear of grease still on his face, he fits in with the crowd. You both stand at the bar and order your drinks. Barmy's order catches you off guard, and he notices your expression. "What? A man who works with his hands can't enjoy a drink with some age?" You chuckle, and you both tell stories of your early lives. He tells how he had some exciting adventures in his youth among the stars, but found his passion tinkering and finding ways to improve on outdated equipment.`
+	branch end
+		not "human space start"
 	`	He's shocked to discover your origins on New Boston. "You're really from that backwater planet? I'm surprised you were able to escape the racket they have going on there. I was lucky to get out myself!"`
 	choice
 		`	"Wait, you're from New Boston too?"`

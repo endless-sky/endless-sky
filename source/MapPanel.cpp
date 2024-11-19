@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Preferences.h"
 #include "RingShader.h"
+#include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
@@ -165,17 +166,17 @@ namespace {
 				if(Preferences::Has("Deadline blink by distance"))
 				{
 					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(mission.Destination()->GetSystem()))
+					if(distance.HasRoute(*mission.Destination()->GetSystem()))
 					{
 						set<const System *> toVisit;
 						for(const Planet *stopover : mission.Stopovers())
 						{
-							if(distance.HasRoute(stopover->GetSystem()))
+							if(distance.HasRoute(*stopover->GetSystem()))
 								toVisit.insert(stopover->GetSystem());
 							--daysLeft;
 						}
 						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(waypoint))
+							if(distance.HasRoute(*waypoint))
 								toVisit.insert(waypoint);
 
 						int systemCount = toVisit.size();
@@ -184,16 +185,16 @@ namespace {
 							const System *closest;
 							int minimalDist = numeric_limits<int>::max();
 							for(const System *sys : toVisit)
-								if(distance.Days(sys) < minimalDist)
+								if(distance.Days(*sys) < minimalDist)
 								{
 									closest = sys;
-									minimalDist = distance.Days(sys);
+									minimalDist = distance.Days(*sys);
 								}
-							daysLeft -= distance.Days(closest);
+							daysLeft -= distance.Days(*closest);
 							distance = DistanceMap(player, closest);
 							toVisit.erase(closest);
 						}
-						daysLeft -= distance.Days(mission.Destination()->GetSystem());
+						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
 					}
 				}
 				int blinkFactor = min(6, max(1, daysLeft));
@@ -406,7 +407,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 	// Draw a warning if the selected system is not routable.
 
-	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
+	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
@@ -797,28 +798,23 @@ void MapPanel::Select(const System *system)
 	}
 	else if(shift)
 	{
-		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Days(system) <= 0)
+		const System *planEnd = plan.front();
+		if(system == planEnd)
 			return;
 
-		auto it = plan.begin();
-		while(system != *it)
-		{
-			it = ++plan.insert(it, system);
-			system = localDistance.Route(system);
-		}
+		RoutePlan addedRoute(*planEnd, *system, &player);
+		if(!addedRoute.HasRoute())
+			return;
+
+		vector<const System *> newPlan = addedRoute.Plan();
+		plan.insert(plan.begin(), newPlan.begin(), newPlan.end());
 	}
-	else if(distance.Days(system) > 0)
+	else if(distance.HasRoute(*system))
 	{
-		plan.clear();
 		if(!isJumping)
 			flagship->SetTargetSystem(nullptr);
 
-		while(system != source)
-		{
-			plan.push_back(system);
-			system = distance.Route(system);
-		}
+		plan = distance.Plan(*system);
 		if(isJumping)
 			plan.push_back(source);
 	}
@@ -1234,8 +1230,8 @@ void MapPanel::DrawSelectedSystem()
 	auto it = find(plan.begin(), plan.end(), selectedSystem);
 	if(it != plan.end())
 		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
+	else if(distance.HasRoute(*selectedSystem))
+		jumps = distance.Days(*selectedSystem);
 
 	if(jumps == 1)
 		text += " (1 jump away)";

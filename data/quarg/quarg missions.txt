@@ -438,6 +438,12 @@ mission "Ask Quarg About Coalition Late"
 			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
 			choice
 				`	"I come from New Boston, on the Dirt Belt."`
+					to display
+						has "human space start"
+					goto planet
+				`	"I come from Greenwater, in Hai space."`
+					to display
+						has "hai space start"
 					goto planet
 				`	"My ship is my home."`
 					goto ship
