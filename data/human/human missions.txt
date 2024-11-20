@@ -4495,7 +4495,7 @@ mission "Fumbling Mugger"
 			
 			label threaten
 			`	You take out your gun and aim it at the woman's head. "Drop the gun," you say, "or I'll shoot."`
-			`	She seizes up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
+			`	She sizes you up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
 			choice
 				`	"Why do you want to go to <planet>?"`
 					goto why2
@@ -4587,7 +4587,7 @@ mission "Laborer"
 		random < 15
 	on offer
 		conversation
-			`Upon entering the spaceport, you see a young man in laborer's clothing is arguing with a woman in a flight suit.`
+			`Upon entering the spaceport, you see a young man in laborer's clothing arguing with a woman in a flight suit.`
 			choice
 				`	(Go see what the laborer is arguing about.)`
 				`	(Ignore them.)`
