@@ -7913,7 +7913,7 @@ mission "Stone Harmonization 3skade"
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
 			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am someone else's property."`
-			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it."`
+			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it.`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
 			`	"Still, they had their ways, the things they've implanted, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
@@ -8019,8 +8019,8 @@ mission "Stone Harmonization 3surtr"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am someone else's property."`
-			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it."`
+			`	"Well, as you may have surmised," he nods toward his covered feet that were until recently chained, "I am someone else's property."`
+			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it.`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
 			`	"Still, they had their ways, the things they've implanted, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
