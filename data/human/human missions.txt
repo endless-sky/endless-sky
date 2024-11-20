@@ -8296,7 +8296,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Without looking your way she continues, "It was a pleasure to see you again, Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
 			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 			action
-				log `I met Union-Colonel Wynnfrith, Timothy Radickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. I showed her Timothy's list, and she said I could find the survival suit on Dancer, the medication on New Britian, and the Fake ID on Shaula. She provided me with the gun and bomb Timothy asked for.`
+				log `I met Union-Colonel Wynnfrith, Timothy Radickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. I showed her Timothy's list, and she said I could find the survival suit on Dancer, the medication on New Britain, and the Fake ID on Shaula. She provided me with the gun and bomb Timothy asked for.`
 
 
 
