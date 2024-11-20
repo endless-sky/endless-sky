@@ -365,7 +365,7 @@ bool OutfitterPanel::IsInShop() const
 // Return true if the player is able to purchase the item from the outfitter or
 // previously sold stock and can afford it and is properly licensed (availability,
 // payment, licensing).
-ShopPanel::TransactionResult OutfitterPanel::CanPurchase(bool checkSpecialItems = true) const
+ShopPanel::TransactionResult OutfitterPanel::CanPurchase(bool checkSpecialItems) const
 {
 	if(!planet || !selectedOutfit)
 		return "No outfit selected.";
@@ -519,7 +519,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanBeInstalled() const
 		return errors[0];
 
 	string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
-	for(const auto & error : errors)
+	for(const string &error : errors)
 		errorMessage += "- " + error + "\n";
 
 	return errorMessage;
@@ -605,7 +605,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 
 // Uninstall outfits from selected ships, redeem credits if it was a sale.
 // This also handles ammo dependencies.
-// Note: This will remove ONE outfit from EACH selected ship which has the outfit.
+// Note: This will remove one outfit from each selected ship which has the outfit.
 void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 {
 	// Key:
@@ -615,7 +615,8 @@ void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 	//		Uninstall from ship and keep the item in Storage.
 
 	// Get the ships that have the most of this outfit installed.
-	if(const vector<Ship *> shipsToOutfit = GetShipsToOutfit(); !shipsToOutfit.empty())
+	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
+	if(!shipsToOutfit.empty())
 	{
 		// Note: to get here, we have already confirmed that every ship in the selection
 		// has the outfit and it is able to be uninstalled in the first place.
@@ -623,7 +624,7 @@ void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 		{
 			// Uninstall the outfit.
 			ship->AddOutfit(selectedOutfit, -1);
-			if((selectedOutfit->Get("required crew")))
+			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			ship->Recharge();
 
@@ -645,7 +646,7 @@ void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 			const Outfit *ammo = selectedOutfit->Ammo();
 			if(ammo && ship->OutfitCount(ammo))
 			{
-				// Determine how many of this ammo we must Uninstall to also Uninstall the launcher.
+				// Determine how many of this ammo we must uninstall to also uninstall the launcher.
 				int mustUninstall = 0;
 				for(const pair<const char *, double> &it : ship->Attributes().Attributes())
 					if(it.second < 0.)
@@ -685,23 +686,23 @@ void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 
 
 // Check if the outfit can be purchased (availability, payment, licensing) and
-// if it can be installed on ANY of the selected ships.
+// if it can be installed on any of the selected ships.
 // If not, return the reasons why not.
-ShopPanel::TransactionResult OutfitterPanel::CanDoBuyButton () const
+ShopPanel::TransactionResult OutfitterPanel::CanDoBuyButton() const
 {
-	if(TransactionResult result = CanPurchase(); !result)
-		return result;
-	return CanBeInstalled();
+	TransactionResult result = CanPurchase();
+	return result ? CanBeInstalled() : result;
 }
 
 
 
-// Buy and install the <modifier> outfits into EACH selected ship.
+// Buy and install the <modifier> outfits into each selected ship.
 // By definition Buy is from Outfitter (only).
 void OutfitterPanel::BuyFromShopAndInstall() const
 {
 	// Buy the required license.
-	if(int64_t licenseCost = LicenseCost(selectedOutfit, false))
+	int64_t licenseCost = LicenseCost(selectedOutfit, false);
+	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
@@ -727,13 +728,13 @@ void OutfitterPanel::BuyFromShopAndInstall() const
 	}
 
 	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanDoBuyButton (); ++i)
+	for(int i = 0; i < modifier && CanDoBuyButton(); ++i)
 	{
 		// Find the ships with the fewest number of these outfits.
 		const vector<Ship *> shipsToOutfit = GetShipsToOutfit(true);
 		for(Ship *ship : shipsToOutfit)
 		{
-			if(!CanDoBuyButton ())
+			if(!CanDoBuyButton())
 				return;
 
 			// Pay for it and remove it from available stock.
@@ -753,8 +754,8 @@ void OutfitterPanel::BuyFromShopAndInstall() const
 
 
 
-// Buy and install up to <modifier> outfits for EACH selected ship.
-void OutfitterPanel::DoBuyButton ()
+// Buy and install up to <modifier> outfits for each selected ship.
+void OutfitterPanel::DoBuyButton()
 {
 	BuyFromShopAndInstall();
 }
@@ -762,9 +763,9 @@ void OutfitterPanel::DoBuyButton ()
 
 
 // Return true if the player is able to purchase the item from the outfitter or
-// previously sold stock AND can afford it AND the player is properly licensed,
-// that is: availability, payment, and licensing. ALONG WITH wheter the outfit
-// will fit in Cargo.
+// previously sold stock and can afford it and the player is properly licensed,
+// that is: availability, payment, and licensing, along with wheter the outfit
+// will fit in cargo.
 ShopPanel::TransactionResult OutfitterPanel::CanBuyToCargo() const
 {
 	if(!planet || !selectedOutfit)
@@ -789,7 +790,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanBuyToCargo() const
 void OutfitterPanel::BuyIntoCargo()
 {
 	// Buy the required license.
-	if(int64_t licenseCost = LicenseCost(selectedOutfit, false))
+	int64_t licenseCost = LicenseCost(selectedOutfit, false);
+	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
@@ -835,17 +837,17 @@ ShopPanel::TransactionResult OutfitterPanel::CanSell() const
 	if(player.Storage().Get(selectedOutfit))
 		return true;
 
-	// There are reasons that Selling may fail related to availability of outfits
+	// There are reasons that selling may fail related to availability of outfits
 	// on ships based on ship selection.
 	return CanSellOrUninstall("sell");
 }
 
 
 
-// Sell <modifier> outfits, sourcing from Cargo (first) OR Storage (second) OR else the
-// selected Ships.
-// Note: When selling from Cargo or Storage, up to <modifier> outfit will be sold in total,
-// but when selling from the selected ships, up to <modifier> outfit will be sold from EACH ship.
+// Sell <modifier> outfits, sourcing from cargo (first) or storage (second) or else the
+// selected ships.
+// Note: When selling from cargo or storage, up to <modifier> outfit will be sold in total,
+// but when selling from the selected ships, up to <modifier> outfit will be sold from each ship.
 void OutfitterPanel::Sell()
 {
 	int modifier = Modifier();
@@ -872,15 +874,15 @@ void OutfitterPanel::Sell()
 		}
 	// And lastly, sell from the selected Ships, if any.
 	// Get the ships that have the most of this outfit installed.
-	else if(const vector<Ship *> shipsToOutfit = GetShipsToOutfit(); !shipsToOutfit.empty())
+	else if(!GetShipsToOutfit().empty())
 		for(int i = 0; i < modifier && CanSellOrUninstall("sell"); ++i)
 			SellOrUninstallOne(SELL);
 }
 
 
 
-// Check if the outfit is available to Install (from already owned stores) as well as
-// if it can actually be installed on ANY of the selected ships.
+// Check if the outfit is available to install (from already owned stores) as well as
+// if it can actually be installed on any of the selected ships.
 // If not, return the reasons why not.
 ShopPanel::TransactionResult OutfitterPanel::CanInstall() const
 {
@@ -896,8 +898,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanInstall() const
 
 
 
-// Install from already owned stores: Cargo or Storage.
-// Note: Up to <modifier> for EACH selected ship will be installed.
+// Install from already owned stores: cargo or storage.
+// Note: Up to <modifier> for each selected ship will be installed.
 void OutfitterPanel::Install()
 {
 	int modifier = Modifier();
@@ -943,9 +945,9 @@ ShopPanel::TransactionResult OutfitterPanel::CanUninstall() const
 
 
 
-// Uninstall up to <modifier> outfits from EACH of the selected ships and move them to Storage,
-// OR, if none are installed, move up to <modifier> of the selected outfit from fleet Cargo to
-// Storage.
+// Uninstall up to <modifier> outfits from each of the selected ships and move them to storage,
+// or, if none are installed, move up to <modifier> of the selected outfit from fleet cargo to
+// storage.
 void OutfitterPanel::Uninstall()
 {
 	int modifier = Modifier();
@@ -955,7 +957,7 @@ void OutfitterPanel::Uninstall()
 		for(int i = 0; i < modifier && CanSellOrUninstall("move to storage"); ++i)
 			SellOrUninstallOne(UNINSTALL);
 	}
-	// otherwise, move up to <modifier> of the selected outfit from fleet Cargo to Storage.
+	// Otherwise, move up to <modifier> of the selected outfit from fleet cargo to storage.
 	else if(int cargoCount = player.Cargo().Get(selectedOutfit); cargoCount)
 	{
 		// Transfer <cargoCount> outfits from Cargo to Storage.
@@ -1029,9 +1031,9 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveToStorage() const
 
 
 
-// Move up to <modifier> of the selected outfit from fleet Cargo to Storage, or,
-// if none are available in Cargo, uninstall up to <modifier> outfits from EACH of the
-// selected ships and move them to Storage.
+// Move up to <modifier> of the selected outfit from fleet cargo to storage, or,
+// if none are available in cargo, uninstall up to <modifier> outfits from each of the
+// selected ships and move them to storage.
 void OutfitterPanel::RetainInStorage()
 {
 	int modifier = Modifier();
@@ -1044,7 +1046,7 @@ void OutfitterPanel::RetainInStorage()
 		player.Cargo().Remove(selectedOutfit, howManyToMove);
 		player.Storage().Add(selectedOutfit, howManyToMove);
 	}
-	// Otherwise, uninstall and move up to <modifier> selected outfits to storage from EACH
+	// Otherwise, uninstall and move up to <modifier> selected outfits to storage from each
 	// selected ship:
 	else
 		for(int i = 0; i < modifier && CanSellOrUninstall("move to storage"); ++i)
@@ -1061,7 +1063,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	// If we're hovering above a button that can modify ship outfits, highlight
 	// the ship.
 	if(hoverButton == 'b')
-		return CanDoBuyButton () && ShipCanAdd(ship, selectedOutfit);
+		return CanDoBuyButton() && ShipCanAdd(ship, selectedOutfit);
 	if(hoverButton == 'i')
 		return CanInstall() && ShipCanAdd(ship, selectedOutfit);
 	if(hoverButton == 's')
@@ -1085,9 +1087,9 @@ void OutfitterPanel::DrawKey()
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
 	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() + checkboxSpacing / 2.);
-	const Point off = Point(10., -.5 * font.Height());
-	const Point checkboxSize = Point(180., checkboxSpacing);
-	const Point checkboxOffset = Point(80., 0.);
+	const Point off{10., -.5 * font.Height()};
+	const Point checkboxSize{180., checkboxSpacing};
+	const Point checkboxOffset{80., 0.};
 
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
@@ -1153,7 +1155,7 @@ void OutfitterPanel::ToggleCargo()
 
 
 
-// Returns true if this ship can Install the selected Outfit.
+// Returns true if this ship can install the selected outfit.
 bool OutfitterPanel::ShipCanAdd(const Ship *ship, const Outfit *outfit)
 {
 	return (ship->Attributes().CanAdd(*outfit, 1) > 0);
@@ -1161,7 +1163,7 @@ bool OutfitterPanel::ShipCanAdd(const Ship *ship, const Outfit *outfit)
 
 
 
-// Returns true if this ship can Uninstall the selected Outfit.
+// Returns true if this ship can uninstall the selected outfit.
 bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 {
 	if(!ship->OutfitCount(outfit))
