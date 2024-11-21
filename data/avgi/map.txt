@@ -839,7 +839,7 @@ system Decet
 		period 1
 	object
 		sprite star/magnetar
-			"frame rate" 12
+			"frame rate" 15
 			"rewind"
 		period 1
 

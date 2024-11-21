@@ -28,7 +28,7 @@ phrase "avgi specialists complete"
 		`experts`
 		`academics`
 	word
-		` on <planet> as they chatter excitedly about their subjects of expertise, collecting <payment> in payment.`
+		` on <planet> as they chatter excitedly about their subjects of expertise. You collect <payment> in payment.`
 
 mission "Avgi: Specialized Workers 1"
 	job

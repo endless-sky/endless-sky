@@ -2156,7 +2156,7 @@ Files:
  images/ship/aberrant?mole*
  images/ship/aberrant?pike*
  images/ship/aberrant?pileup*
- images/ship/aberrant?traincar**
+ images/ship/aberrant?traincar*
  images/ship/aberrant?trip*
  images/ship/aberrant?triplet*
  images/ship/aberrant?whiskers*
@@ -2190,29 +2190,29 @@ Files:
  images/ship/avgi?undsyni*
  images/ship/avgi?undulon*
  images/ship/avgi?vibratia*
- images/thumb/avgi?akoustiki*
- images/thumb/avgi?atenuatia*
- images/thumb/avgi?avlaki*
- images/thumb/avgi?diaspersi*
- images/thumb/avgi?difraktos*
- images/thumb/avgi?entasi*
- images/thumb/avgi?frequentia*
- images/thumb/avgi?harmonikos*
- images/thumb/avgi?intereros*
- images/thumb/avgi?koryfi/*
- images/thumb/avgi?melodikos/*
- images/thumb/avgi?optikon*
- images/thumb/avgi?phononos*
- images/thumb/avgi?photikon*
- images/thumb/avgi?polari*
- images/thumb/avgi?prismaios*
- images/thumb/avgi?refraktos*
- images/thumb/avgi?sonikis*
- images/thumb/avgi?tachytia/*
- images/thumb/avgi?tremoros*
- images/thumb/avgi?undsyni*
- images/thumb/avgi?undulon*
- images/thumb/avgi?vibratia*
+ images/thumbnail/avgi?akoustiki*
+ images/thumbnail/avgi?atenuatia*
+ images/thumbnail/avgi?avlaki*
+ images/thumbnail/avgi?diaspersi*
+ images/thumbnail/avgi?difraktos*
+ images/thumbnail/avgi?entasi*
+ images/thumbnail/avgi?frequentia*
+ images/thumbnail/avgi?harmonikos*
+ images/thumbnail/avgi?intereros*
+ images/thumbnail/avgi?koryfi/*
+ images/thumbnail/avgi?melodikos/*
+ images/thumbnail/avgi?optikon*
+ images/thumbnail/avgi?phononos*
+ images/thumbnail/avgi?photikon*
+ images/thumbnail/avgi?polari*
+ images/thumbnail/avgi?prismaios*
+ images/thumbnail/avgi?refraktos*
+ images/thumbnail/avgi?sonikis*
+ images/thumbnail/avgi?tachytia/*
+ images/thumbnail/avgi?tremoros*
+ images/thumbnail/avgi?undsyni*
+ images/thumbnail/avgi?undulon*
+ images/thumbnail/avgi?vibratia*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Detailed by Azure.
@@ -2363,20 +2363,10 @@ Files:
  images/ship/avgi?refraktos@sw*
  images/ship/avgi?tachytia/tachytia@sw*
  images/ship/avgi?undsyni@sw*
- images/thumb/avgi?atenuatia@sw*
- images/thumb/avgi?avlaki@sw*
- images/thumb/avgi?diaspersi@sw*
- images/thumb/avgi?difraktos@sw*
- images/thumb/avgi?entasi@sw*
- images/thumb/avgi?frequentia@sw*
- images/thumb/avgi?harmonikos@sw*
- images/thumb/avgi?interferos@sw*
- images/thumb/avgi?melodikos@sw*
- images/thumb/avgi?polari@sw*
- images/thumb/avgi?prismaios@sw*
- images/thumb/avgi?refraktos@sw*
- images/thumb/avgi?tachytia/tachytia@sw*
- images/thumb/avgi?undsyni@sw*
+ images/thumbnail/avgi?atenuatia@sw
+ images/thumbnail/avgi?avlaki@sw*
+ images/thumbnail/avgi?harmonikos@sw*
+ images/thumbnail/avgi?melodikos@sw*
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso.
@@ -2999,9 +2989,9 @@ Files:
  images/projectile/strange?ray*
  images/scene/incipias?message*
  images/star/a-eater*
+ images/star/magnetar*
  images/star/neutron-small*
  images/star/proto-planetary-disk*
- images/star/magnetar*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 

@@ -20,9 +20,7 @@ news "avgi siege civilian"
 		attributes "aberrant siege"
 	name
 		word
-			"Avgi"
-		word
-			" "
+			"Avgi "
 		word
 			"civilian"
 			"citizen"
@@ -206,6 +204,8 @@ news "avgi safety advisory"
 			`Large Aberration swarm reported to have entered the Tangled Shroud."`
 			`Missing convoy reported; suspected stranded in the Tangled Shroud."`
 			`Missing convoy reported; suspected lost in the Tangled Shroud."`
+			`Missing fleet reported; suspected stranded in the Tangled Shroud."`
+			`Missing fleet reported; suspected lost in the Tangled Shroud."`
 			`The defensive cordon at Arche is not impenetrable. Remain vigilant."`
 			`Report all Aberration sightings as soon as possible."`
 			"The message board chirps in an Avgi language your translator does not appear to be compatible with."
@@ -235,7 +235,9 @@ news "avgi missing advisory"
 		word
 			"Convoy"
 			"Fleet"
+			"Patrol"
 			"Independent ship"
+			"Scout"
 		word
 			" "
 		word
@@ -261,6 +263,7 @@ news "avgi missing advisory"
 			"the Ensemble system"
 			"the Interlude system"
 			"the Prelude system"
+			"the Demilude system"
 			"the Concerto system"
 			"the Ballad system"
 			"the Arche system"
@@ -268,6 +271,7 @@ news "avgi missing advisory"
 			"Weledos"
 			"Outpost Enka"
 			"Outpost Tekis"
+			"Outpost Leto"
 		word
 			`.`
 
@@ -286,9 +290,8 @@ news "avgi student happy"
 		word
 			" "
 		word
-			"student"
+			"student" 3
 			"researcher"
-			"student"
 	message
 		word
 			`"Happiness. I'm about to graduate with my mastery in physics!"`
@@ -321,9 +324,8 @@ news "avgi student frustrated"
 		word
 			" "
 		word
-			"student"
+			"student" 3
 			"researcher"
-			"student"
 	message
 		word
 			`"Frustration. I wanted to study political science, but all they teach out here is 'practical' subjects. And people wonder why the Assembly is filled with incompetents..."`
@@ -362,7 +364,7 @@ news "avgi physicist"
 		word
 			`"Gratitude. It is fortunate that the sum of our knowledge has been preserved, even in the most remote depths of space."`
 			`"Frustation. Energy shields should not work in the way they do. They make no sense!"`
-			`"Frustation. Even now, decades after we invented the hyperdrive, only a small group of experts can truly claim to understand the way they work."`
+			`"Frustation. Even now, decades after we invented the hyperdrive, only a small group of experts can truly claim to understand the way it works."`
 			`"Pride. I did my thesis on a new type of solar cell junction. Now I see them on half the ships in the sky!"`
 			`"Amusement. You always see bright up-and-coming students claim to have invented a new kind of faster than light drive. Eighty years ago, one of them was actually right!"`
 			`"Curiosity. It's a wonder that once wormholes were considered the most likely option for traveling faster than light. I wonder how the hyperdrive was invented first?"`

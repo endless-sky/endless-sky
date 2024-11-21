@@ -309,7 +309,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 	series "Avgi: Engines"
 	index 50
 	licenses
-		"Twilight Guard"
+		"Avgi Torch"
 	"cost" 660000
 	thumbnail "outfit/spark fusion torch"
 	"mass" 99
@@ -335,7 +335,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 	series "Avgi: Engines"
 	index 60
 	licenses
-		"Twilight Guard"
+		"Avgi Torch"
 	"cost" 1440000
 	thumbnail "outfit/zap fusion torch"
 	"mass" 198
@@ -360,7 +360,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 	series "Avgi: Engines"
 	index 70
 	licenses
-		"Twilight Guard"
+		"Avgi Torch"
 	"cost" 2760000
 	thumbnail "outfit/arc fusion torch"
 	"mass" 297
@@ -404,7 +404,7 @@ outfit "Remass Injector"
 	index 100
 	category "Engines"
 	licenses
-		"Twilight Guard"
+		"Avgi Torch"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
 	"mass" 3
@@ -424,7 +424,7 @@ outfit "Inductive Extractor"
 	index 90
 	category "Engines"
 	licenses
-		"Twilight Guard"
+		"Avgi Torch"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -445,7 +445,7 @@ outfit "Magnozzle Storage Loop"
 	index 95
 	category "Engines"
 	licenses
-		"Twilight Guard"
+		"Avgi Torch"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
 	"mass" 9
@@ -461,8 +461,6 @@ outfit "XY-180 Radial Thrusters"
 	series "Avgi: Engines"
 	index 10
 	category "Engines"
-	licenses
-		"Twilight Guard"
 	"cost" 221000
 	thumbnail "outfit/rcs small"
 	"mass" 18
@@ -490,8 +488,6 @@ outfit "XY-360 Radial Thrusters"
 	series "Avgi: Engines"
 	index 20
 	category "Engines"
-	licenses
-		"Twilight Guard"
 	"cost" 473000
 	thumbnail "outfit/rcs medium"
 	"mass" 36
@@ -519,8 +515,6 @@ outfit "XY-720 Radial Thrusters"
 	series "Avgi: Engines"
 	index 30
 	category "Engines"
-	licenses
-		"Twilight Guard"
 	"cost" 1077000
 	thumbnail "outfit/rcs large"
 	"mass" 72
@@ -627,6 +621,10 @@ outfit "Lancet Adamant"
 
 
 outfit "Twilight Guard License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+
+outfit "Avgi Torch License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
 

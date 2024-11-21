@@ -391,7 +391,7 @@ phrase "avgi warnings"
 		"shadow monsters" 2
 		"tangling yourself in the hyperlanes" 3
 		"tax collectors" 3
-		"the Aberations" 12
+		"the Aberrations" 12
 		"the Aberrant" 6
 		"the invaders" 6
 		"the invading aliens" 6
@@ -1087,6 +1087,9 @@ phrase "avgi remembrance"
 		"Enthusiasm"
 		"Reluctance"
 		"Resolve"
+	word
+		", "
+		"; "
 	word
 		"Fight for "
 		"Remember "
