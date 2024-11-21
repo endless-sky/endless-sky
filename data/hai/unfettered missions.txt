@@ -159,7 +159,7 @@ mission "Acorn Delights: Part 5"
 			`	You reach a high floor, filled with personal offices. Eeeya takes you to a door at the end of a long hallway.`
 			choice
 				`	(Open the door.)`
-			`	 After the door opens, Eeeya and Anoo run to each other's arms. A few minutes later, they begin to speak. Eventually the conversation turns to Anoo's new occupation.`
+			`	After the door opens, Eeeya and Anoo run to each other's arms. A few minutes later, they begin to speak. Eventually the conversation turns to Anoo's new occupation.`
 			`	"Why did you come here, Anoo? The Unfettered hate us."`
 			`	"They don't hate US, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our race is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.`
 			`	"We think of them as mindless brutes, but they're not! They have scientists, doctors, musicians, and writers. Our resources dwarf theirs, but they thrive with what little they have. Soon the Unfettered will have many more planets and almost unlimited resources. The era of scarcity will be over, and they'll have the power to choose their future.`
