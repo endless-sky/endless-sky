@@ -286,7 +286,8 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, static_cast<bool>(CanSellOrUninstall("sell")), collapsed.contains(DESCRIPTION));
+		outfitInfo.Update(*selectedOutfit, player, static_cast<bool>(CanSellOrUninstall("sell")),
+			collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -1367,7 +1368,9 @@ void OutfitterPanel::DrawButtons()
 	static const string UNINSTALL = "_Uninstall";
 	const Point uninstallCenter = Point(buttonTwoX, rowTwoY);
 	// CanSellOrUninstall("store") is here intentionally to support U moving items from Cargo to Storage.
-	textColor = !(CanSellOrUninstall("uninstall") || CanSellOrUninstall("store")) ? &inactive : (hoverButton == 'u') ? &hover : &active;
+	// CanSellOrUninstall("store") is wholly inclusive of CanSellOrUninstall("uninstall"), no need to check both here,
+	// otherwise this would check if we can "store" or "uninstall".
+	textColor = !CanSellOrUninstall("store") ? &inactive : (hoverButton == 'u') ? &hover : &active;
 	FillShader::Fill(uninstallCenter, buttonTwoSize + buttonBorderOffset, *textColor);
 	FillShader::Fill(uninstallCenter, buttonTwoSize, back);
 	bigFont.Draw(UNINSTALL,
