@@ -4587,7 +4587,7 @@ mission "Laborer"
 		random < 15
 	on offer
 		conversation
-			`Upon entering the spaceport, you see a young man in laborer's clothing is arguing with a woman in a flight suit.`
+			`Upon entering the spaceport, you see a young man in laborer's clothing arguing with a woman in a flight suit.`
 			choice
 				`	(Go see what the laborer is arguing about.)`
 				`	(Ignore them.)`
@@ -4960,7 +4960,7 @@ mission "Dangerous Games 1"
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
 				accept
 			label money
-			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <stopovers> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
 			choice
 				`	"Works for me. We leave tomorrow."`
 					goto accept
@@ -5016,7 +5016,6 @@ mission "Dangerous Games 1"
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
-
 
 
 mission "Dangerous Games 2"
@@ -6754,7 +6753,7 @@ mission "FW Refugees to Humanika"
 			label "quarg"
 			action
 				set "FW Refugees to Humanika: quarg"
-			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more."`
+			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more.`
 				to display
 					not "First Contact: Quarg: offered"
 			`	"There's a planet they control that has too much gravity for them, but is just right for humans, so they let humans settle there under their protection. Or at least that's what I've heard."`
@@ -6797,7 +6796,6 @@ mission "Derelict Treasure Map: Ion Cannons"
 			`	Opening the cache reveals a large store of credits along with two Hai Ion Cannons. These must be the alien weapons the map's owner wrote about.`
 			choice
 				`	(Loot the treasure.)`
-					goto end
 			label end
 			`	You grab the <payment> credits, and with the assistance of some machinery you bring the weapons back to your ship.`
 
