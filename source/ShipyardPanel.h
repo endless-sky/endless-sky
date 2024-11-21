@@ -44,11 +44,9 @@ protected:
 	bool HasItem(const std::string &name) const override;
 	void DrawItem(const std::string &name, const Point &point) override;
 	double ButtonPanelHeight() const override;
-	int DetailWidth() const override;
 	double DrawDetails(const Point &center) override;
-	TransactionResult CanDoBuyButton () const override;
-	void DoBuyButton () override;
-	TransactionResult CanSell() const override;
+	TransactionResult CanDoBuyButton() const override;
+	void DoBuyButton() override;
 	void Sell(bool storeOutfits) override;
 	char CheckButton(int x, int y) override;
 	void DrawButtons() override;

@@ -51,21 +51,18 @@ protected:
 	bool HasItem(const std::string &name) const override;
 	void DrawItem(const std::string &name, const Point &point) override;
 	double ButtonPanelHeight() const override;
-	int DetailWidth() const override;
 	double DrawDetails(const Point &center) override;
 	TransactionResult CanBuyToCargo() const override;
 	void BuyIntoCargo() override;
-	TransactionResult CanDoBuyButton () const override;
-	void DoBuyButton () override;
-	TransactionResult CanSell() const override;
-	void Sell() override;
+	TransactionResult CanDoBuyButton() const override;
+	void DoBuyButton() override;
+	TransactionResult CanSellOrUninstall(const std::string &verb) const override;
+	void Sell(bool /* storeOutfits */) override;
 	TransactionResult CanInstall() const override;
 	void Install() override;
-	TransactionResult CanUninstall() const override;
 	void Uninstall() override;
 	bool CanMoveToCargoFromStorage() const override;
 	void MoveToCargoFromStorage() override;
-	TransactionResult CanMoveToStorage() const override;
 	void RetainInStorage() override;
 	bool ShouldHighlight(const Ship *ship) override;
 	void DrawKey() override;
@@ -86,11 +83,9 @@ private:
 	std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
 
 	// Helper functions to make the cargo management code more readable.
-	TransactionResult CanPurchase(bool checkSpecialItems) const;
+	TransactionResult CanPurchase(bool checkSpecialItems = true) const;
 	TransactionResult CanBeInstalled() const;
 	TransactionResult CanFitInCargo(bool returnReason = false) const;
-	TransactionResult CanSellOrUninstall(const std::string &verb) const;
-	bool IsInShop() const;
 	void BuyFromShopAndInstall() const;
 	void SellOrUninstallOne(SDL_Keycode contextKey) const;
 

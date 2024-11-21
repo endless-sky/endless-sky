@@ -112,13 +112,6 @@ double ShipyardPanel::ButtonPanelHeight() const
 
 
 
-int ShipyardPanel::DetailWidth() const
-{
-	return 3 * ItemInfoDisplay::PanelWidth();
-}
-
-
-
 double ShipyardPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "No Ship Selected";
@@ -234,7 +227,7 @@ ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton () const
 
 
 
-void ShipyardPanel::DoBuyButton ()
+void ShipyardPanel::DoBuyButton()
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -255,13 +248,6 @@ void ShipyardPanel::DoBuyButton ()
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
 	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
-}
-
-
-
-ShopPanel::TransactionResult ShipyardPanel::CanSell() const
-{
-	return playerShip;
 }
 
 
@@ -430,7 +416,7 @@ void ShipyardPanel::DrawButtons()
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	const Color *buyTextColor = !CanDoBuyButton () ? &inactive : hoverButton == 'b' ? &hover : &active;
+	const Color *buyTextColor = !CanDoBuyButton() ? &inactive : hoverButton == 'b' ? &hover : &active;
 	string BUY = "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
@@ -441,7 +427,7 @@ void ShipyardPanel::DrawButtons()
 	static const string SELL = "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		CanSell() ? hoverButton == 's' ? hover : active : inactive);
+		playerShip ? hoverButton == 's' ? hover : active : inactive);
 
 	// TODO: Add button for sell but retain outfits.
 
