@@ -2115,8 +2115,6 @@ mission "Acorn Delights: Part 1"
 	to offer
 		random < 40
 		has "First Contact: Unfettered: offered"
-	on visit
-		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 	on offer
 		conversation
 			`As you pass by a kitchen supply store in the spaceport, a dishevelled elderly Hai looks towards you with a face of deep concern. She waves you down.`
@@ -2155,6 +2153,8 @@ mission "Acorn Delights: Part 1"
 			label accept
 			`	"She always talked about doing volunteer work for those who couldn't afford medical treatment. When she was little, her mother would take her to Stonebreak to help at local shelters. Let's start there."`
 				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 
 mission "Acorn Delights: Part 2"
 	landing
@@ -2166,13 +2166,13 @@ mission "Acorn Delights: Part 2"
 	cargo "acorn cookies" 3
 	to offer
 		has "Acorn Delights: Part 1: done"
-	on visit
-		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 	on offer
 		conversation
 			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, woman's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth.`
 			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Sometimes very gifted students are allowed to study with the Quarg for a year after they graduate. There are trillions of Quarg on Alta Hai, so it wouldn't be surprising if she got lost. Let's go there next."`
 				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 
 mission "Acorn Delights: Part 3"
 	landing
@@ -2184,13 +2184,13 @@ mission "Acorn Delights: Part 3"
 	cargo "acorn cookies" 3
 	to offer
 		has "Acorn Delights: Part 2: done"
-	on visit
-		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 	on offer
 		conversation
 			`The Quarg on Alta Hai have a convenient information desk in the Alta Hai main spaceport. They tell Eeeya that Anoo was invited to study at Alta Hai, but turned down the offer for unknown reasons.`
 			`	Eeeya says, "If Anoo isn't studying, and isn't in a public hospital, she could be in the military. Let's go to Cloudfire and talk to the commanding officer."`
 				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 			
 mission "Acorn Delights: Part 4"
 	name "Acorns for Anoo"
@@ -2203,8 +2203,6 @@ mission "Acorn Delights: Part 4"
 	cargo "acorn cookies" 3
 	to offer
 		has "Acorn Delights: Part 3: done"
-	on visit
-		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 	on offer
 		conversation
 			`Eeeya takes you to the visitor's office and asks to see the Cloudfire military commander. Upon refusal, Eeeya throws a fit; after an hour of her panicking they agree to let her speak with the commander.`
@@ -2231,6 +2229,8 @@ mission "Acorn Delights: Part 4"
 			label accept
 			`	"If Anoo went anywhere, it would be Darkcloak. The largest Unfettered hospital is there. Many soldiers come back from raids injured on Darkcloak. A trauma surgeon would have a lot of work to do."`
 				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 			
 mission "Acorn Delights: Part 5"
 	landing
@@ -2242,8 +2242,6 @@ mission "Acorn Delights: Part 5"
 	cargo "acorn cookies" 3
 	to offer
 		has "Acorn Delights: Part 4: done"
-	on visit
-		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 	on offer
 		"salary: Acorn Delights Dividends" = 500
 		payment 30000
@@ -2265,3 +2263,5 @@ mission "Acorn Delights: Part 5"
 			`	"I only have 30,000 credits with me, but I'll transfer some Acorn Delights stocks to your name. Your quarterly dividends will be divided into daily payments of 500 credits."`
 			`	Before you leave, Eeeya unpacks a feast of cookies for Anoo and her patients. Their aromatic fragrance quickly overpowers the wounds and suffering from war. Every cookie has perfect imperfections of crackled texture over the chewy center which melts into your mouth. If food could win wars, this would be the Unfettered's secret weapon.`
 				decline
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
