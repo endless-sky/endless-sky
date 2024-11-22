@@ -210,9 +210,6 @@ private:
 
 	int DrawPlayerShipInfo(const Point &point);
 
-	TransactionResult CanDoTransaction(SDL_Keycode key) const;
-	void DoTransaction(SDL_Keycode key);
-
 	bool DoScroll(double dy, int steps = 5);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();

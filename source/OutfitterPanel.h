@@ -57,7 +57,7 @@ protected:
 	TransactionResult CanDoBuyButton() const override;
 	void DoBuyButton() override;
 	TransactionResult CanSellOrUninstall(const std::string &verb) const override;
-	void Sell(bool /* storeOutfits */) override;
+	void Sell(bool) override;
 	TransactionResult CanInstall() const override;
 	void Install() override;
 	void Uninstall() override;
