@@ -17,10 +17,11 @@ outfit "Volcano Afterburner"
 	index 10
 	"cost" 70000
 	thumbnail "outfit/afterburner"
+	"engine mod space" -0.76
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"afterburner thrust" 40.65
+	"afterburner thrust" 54
 	"afterburner fuel" .125
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
@@ -43,10 +44,11 @@ outfit "Caldera Afterburner"
 	index 20
 	"cost" 390000
 	thumbnail "outfit/caldera afterburner"
+	"engine mod space" -1.08
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
-	"afterburner thrust" 180.0
+	"afterburner thrust" 240
 	"afterburner fuel" .5
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
@@ -70,10 +72,11 @@ outfit "Ionic Afterburner"
 	index 30
 	"cost" 340000
 	thumbnail "outfit/ionic afterburner"
+	"engine mod space" -0.87
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"afterburner thrust" 47.1
+	"afterburner thrust" 62
 	"afterburner fuel" .03
 	"afterburner energy" 5.1
 	"afterburner heat" 4.0
@@ -100,10 +103,13 @@ outfit "X1050 Ion Engines"
 	index 10
 	"cost" 20000
 	thumbnail "outfit/tiny ion engines"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 0.79
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 9.3
+	"thrust" 10
 	"thrusting energy" .4
 	"thrusting heat" .6
 	"turn" 198
@@ -115,6 +121,12 @@ outfit "X1050 Ion Engines"
 	"steering flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"steering flare sound" "ion tiny"
+	"reverse thrust" 1
+	"reverse thrusting energy" .04
+	"reverse thrusting heat" .06
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
 
 
@@ -125,15 +137,23 @@ outfit "X1700 Ion Thruster"
 	index 17
 	"cost" 12000
 	thumbnail "outfit/tiny ion thruster"
+	"thruster slot" -1
+	"engine mod space" 0.8
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"thrust" 13.545
+	"thrust" 14
 	"thrusting energy" .6
 	"thrusting heat" .9
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"
+	"reverse thrust" 1.4
+	"reverse thrusting energy" .06
+	"reverse thrusting heat" .09
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "This is the smallest thruster that you can buy, so weak that anything larger than a drone will accelerate quite slowly when using this engine. On the other hand, it is also very energy-efficient."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -143,15 +163,23 @@ outfit "X2700 Ion Thruster"
 	index 27
 	"cost" 26000
 	thumbnail "outfit/small ion thruster"
+	"thruster slot" -1
+	"engine mod space" 1.01
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 24.075
+	"thrust" 24
 	"thrusting energy" 1.1
 	"thrusting heat" 1.7
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.1
 	"flare sound" "ion small"
+	"reverse thrust" 2.4
+	"reverse thrusting energy" .11
+	"reverse thrusting heat" .17
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X2700 Ion Thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -161,15 +189,23 @@ outfit "X3700 Ion Thruster"
 	index 37
 	"cost" 58000
 	thumbnail "outfit/medium ion thruster"
+	"thruster slot" -1
+	"engine mod space" 1.19
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
-	"thrust" 43.275
+	"thrust" 43
 	"thrusting energy" 1.9
 	"thrusting heat" 3.2
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.0
 	"flare sound" "ion medium"
+	"reverse thrust" 4.3
+	"reverse thrusting energy" .19
+	"reverse thrusting heat" .32
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X3700 Ion Thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -179,15 +215,23 @@ outfit "X4700 Ion Thruster"
 	index 47
 	"cost" 128000
 	thumbnail "outfit/large ion thruster"
+	"thruster slot" -1
+	"engine mod space" 1.35
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
-	"thrust" 80.4
+	"thrust" 80
 	"thrusting energy" 3.5
 	"thrusting heat" 6.2
 	"flare sprite" "effect/ion flare/large"
 		"frame rate" 0.9
 	"flare sound" "ion large"
+	"reverse thrust" 8
+	"reverse thrusting energy" .35
+	"reverse thrusting heat" .62
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X4700 Ion Thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -197,15 +241,23 @@ outfit "X5700 Ion Thruster"
 	index 57
 	"cost" 281000
 	thumbnail "outfit/huge ion thruster"
+	"thruster slot" -1
+	"engine mod space" 1.48
 	"mass" 121
 	"outfit space" -121
 	"engine capacity" -121
-	"thrust" 134.925
+	"thrust" 134
 	"thrusting energy" 6.3
 	"thrusting heat" 11.7
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 0.8
 	"flare sound" "ion huge"
+	"reverse thrust" 13.4
+	"reverse thrusting energy" .63
+	"reverse thrusting heat" 1.17
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -216,6 +268,7 @@ outfit "X1200 Ion Steering"
 	index 12
 	"cost" 10000
 	thumbnail "outfit/tiny ion steering"
+	"steering slot" -1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -234,6 +287,7 @@ outfit "X2200 Ion Steering"
 	index 22
 	"cost" 21000
 	thumbnail "outfit/small ion steering"
+	"steering slot" -1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -252,6 +306,7 @@ outfit "X3200 Ion Steering"
 	index 32
 	"cost" 46000
 	thumbnail "outfit/medium ion steering"
+	"steering slot" -1
 	"mass" 35
 	"outfit space" -35
 	"engine capacity" -35
@@ -270,6 +325,7 @@ outfit "X4200 Ion Steering"
 	index 42
 	"cost" 102000
 	thumbnail "outfit/large ion steering"
+	"steering slot" -1
 	"mass" 59
 	"outfit space" -59
 	"engine capacity" -59
@@ -288,10 +344,11 @@ outfit "X5200 Ion Steering"
 	index 52
 	"cost" 225000
 	thumbnail "outfit/huge ion steering"
+	"steering slot" -1
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
-	"turn" 3913.5
+	"turn" 3914
 	"turning energy" 3.5
 	"turning heat" 7.3
 	"steering flare sprite" "effect/ion flare/huge"
@@ -307,10 +364,11 @@ outfit "X1100 Ion Reverse Thruster"
 	index 18
 	"cost" 12000
 	thumbnail "outfit/reverse thruster ion"
+	"reverse thruster slot" -1
 	"mass" 16
 	"outfit space" -16
 	"weapon capacity" -16
-	"reverse thrust" 13.545
+	"reverse thrust" 13.55
 	"reverse thrusting energy" .6
 	"reverse thrusting heat" .9
 	"reverse flare sprite" "effect/ion flare/tiny"
@@ -327,15 +385,23 @@ outfit "Chipmunk Plasma Thruster"
 	index 15
 	"cost" 20000
 	thumbnail "outfit/tiny plasma thruster"
+	"thruster slot" -1
+	"engine mod space" 0.88
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 21.75
+	"thrust" 22
 	"thrusting energy" 1.0
 	"thrusting heat" 1.8
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse thrust" 2.2
+	"reverse thrusting energy" 0.1
+	"reverse thrusting heat" 0.18
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -345,15 +411,23 @@ outfit "Greyhound Plasma Thruster"
 	index 25
 	"cost" 45000
 	thumbnail "outfit/small plasma thruster"
+	"thruster slot" -1
+	"engine mod space" 1.1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"thrust" 38.85
+	"thrust" 38
 	"thrusting energy" 1.8
 	"thrusting heat" 3.4
 	"flare sprite" "effect/plasma flare/small"
 		"frame rate" 6
 	"flare sound" "plasma small"
+	"reverse thrust" 3.8
+	"reverse thrusting energy" 0.18
+	"reverse thrusting heat" 0.34
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -363,15 +437,23 @@ outfit "Impala Plasma Thruster"
 	index 35
 	"cost" 99000
 	thumbnail "outfit/medium plasma thruster"
+	"thruster slot" -1
+	"engine mod space" 1.25
 	"mass" 58
 	"outfit space" -58
 	"engine capacity" -58
-	"thrust" 69.9
+	"thrust" 69
 	"thrusting energy" 3.2
 	"thrusting heat" 6.5
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
+	"reverse thrust" 6.9
+	"reverse thrusting energy" 0.32
+	"reverse thrusting heat" 0.65
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -381,15 +463,23 @@ outfit "Orca Plasma Thruster"
 	index 45
 	"cost" 217000
 	thumbnail "outfit/large plasma thruster"
+	"thruster slot" -1
+	"engine mod space" 1.43
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
-	"thrust" 128.4
+	"thrust" 128
 	"thrusting energy" 5.8
 	"thrusting heat" 12.3
 	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
+	"reverse thrust" 12.8
+	"reverse thrusting energy" 0.58
+	"reverse thrusting heat" 1.23
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -399,15 +489,23 @@ outfit "Tyrant Plasma Thruster"
 	index 55
 	"cost" 389000
 	thumbnail "outfit/huge plasma thruster"
+	"thruster slot" -1
+	"engine mod space" 1.5
 	"mass" 129
 	"outfit space" -129
 	"engine capacity" -129
-	"thrust" 180.225
+	"thrust" 180
 	"thrusting energy" 8.6
 	"thrusting heat" 19.1
 	"flare sprite" "effect/plasma flare/huge"
 		"frame rate" 9
 	"flare sound" "plasma huge"
+	"reverse thrust" 18.0
+	"reverse thrusting energy" 0.86
+	"reverse thrusting heat" 1.91
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -418,6 +516,7 @@ outfit "Chipmunk Plasma Steering"
 	index 12
 	"cost" 16000
 	thumbnail "outfit/tiny plasma steering"
+	"steering slot" -1
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
@@ -436,6 +535,7 @@ outfit "Greyhound Plasma Steering"
 	index 22
 	"cost" 36000
 	thumbnail "outfit/small plasma steering"
+	"steering slot" -1
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
@@ -454,10 +554,11 @@ outfit "Impala Plasma Steering"
 	index 32
 	"cost" 79000
 	thumbnail "outfit/medium plasma steering"
+	"steering slot" -1
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
-	"turn" 1699.5
+	"turn" 1700
 	"turning energy" 1.6
 	"turning heat" 4.1
 	"steering flare sprite" "effect/plasma flare/medium"
@@ -472,10 +573,11 @@ outfit "Orca Plasma Steering"
 	index 42
 	"cost" 174000
 	thumbnail "outfit/large plasma steering"
+	"steering slot" -1
 	"mass" 74
 	"outfit space" -74
 	"engine capacity" -74
-	"turn" 3424.5
+	"turn" 3425
 	"turning energy" 2.9
 	"turning heat" 7.7
 	"steering flare sprite" "effect/plasma flare/large"
@@ -490,10 +592,11 @@ outfit "Tyrant Plasma Steering"
 	index 52
 	"cost" 324700
 	thumbnail "outfit/huge plasma steering"
+	"steering slot" -1
 	"mass" 101
 	"outfit space" -101
 	"engine capacity" -101
-	"turn" 5323.5
+	"turn" 5324
 	"turning energy" 4.4
 	"turning heat" 12.5
 	"steering flare sprite" "effect/plasma flare/huge"
@@ -509,6 +612,7 @@ outfit "Capybara Reverse Thruster"
 	index 18
 	"cost" 20000
 	thumbnail "outfit/reverse thruster plasma"
+	"reverse thruster slot" -1
 	"mass" 20
 	"outfit space" -20
 	"weapon capacity" -20
@@ -529,15 +633,23 @@ outfit "A120 Atomic Thruster"
 	index 15
 	"cost" 140000
 	thumbnail "outfit/tiny atomic thruster"
+	"thruster slot" -1
+	"engine mod space" 0.93
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 28.02
+	"thrust" 29
 	"thrusting energy" 1.8
 	"thrusting heat" 3.5
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
+	"reverse thrust" 2.9
+	"reverse thrusting energy" 0.18
+	"reverse thrusting heat" 0.35
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
 
 outfit "A250 Atomic Thruster"
@@ -546,15 +658,23 @@ outfit "A250 Atomic Thruster"
 	index 25
 	"cost" 280000
 	thumbnail "outfit/small atomic thruster"
+	"thruster slot" -1
+	"engine mod space" 1.08
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"thrust" 45.9375
+	"thrust" 45
 	"thrusting energy" 3.1
 	"thrusting heat" 6.1
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
+	"reverse thrust" 4.5
+	"reverse thrusting energy" 0.31
+	"reverse thrusting heat" 0.61
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "Deep Sky's atomic thrusters have been in production for centuries, but remain a niche product due to their high prices and high energy requirements."
 
 outfit "A370 Atomic Thruster"
@@ -563,15 +683,23 @@ outfit "A370 Atomic Thruster"
 	index 35
 	"cost" 560000
 	thumbnail "outfit/medium atomic thruster"
+	"thruster slot" -1
+	"engine mod space" 1.21
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
-	"thrust" 75.375
+	"thrust" 75
 	"thrusting energy" 5.1
 	"thrusting heat" 10.3
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
+	"reverse thrust" 7.5
+	"reverse thrusting energy" 0.51
+	"reverse thrusting heat" 1.03
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
 
 outfit "A520 Atomic Thruster"
@@ -580,15 +708,23 @@ outfit "A520 Atomic Thruster"
 	index 45
 	"cost" 1120000
 	thumbnail "outfit/large atomic thruster"
+	"thruster slot" -1
+	"engine mod space" 1.37
 	"mass" 82
 	"outfit space" -82
 	"engine capacity" -82
-	"thrust" 122.85
+	"thrust" 122
 	"thrusting energy" 8.3
 	"thrusting heat" 17.4
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
+	"reverse thrust" 12.2
+	"reverse thrusting energy" 0.83
+	"reverse thrusting heat" 1.74
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."
 
 outfit "A860 Atomic Thruster"
@@ -597,15 +733,23 @@ outfit "A860 Atomic Thruster"
 	index 55
 	"cost" 2240000
 	thumbnail "outfit/huge atomic thruster"
+	"thruster slot" -1
+	"engine mod space" 1.49
 	"mass" 127
 	"outfit space" -127
 	"engine capacity" -127
-	"thrust" 199.95
+	"thrust" 199
 	"thrusting energy" 13.3
 	"thrusting heat" 29.1
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
 	"flare sound" "atomic huge"
+	"reverse thrust" 19.9
+	"reverse thrusting energy" 1.33
+	"reverse thrusting heat" 2.91
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "The A860 Atomic Thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 
@@ -615,6 +759,7 @@ outfit "A125 Atomic Steering"
 	index 12
 	"cost" 120000
 	thumbnail "outfit/tiny atomic steering"
+	"steering slot" -1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -632,6 +777,7 @@ outfit "A255 Atomic Steering"
 	index 22
 	"cost" 240000
 	thumbnail "outfit/small atomic steering"
+	"steering slot" -1
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
@@ -649,6 +795,7 @@ outfit "A375 Atomic Steering"
 	index 32
 	"cost" 480000
 	thumbnail "outfit/medium atomic steering"
+	"steering slot" -1
 	"mass" 38
 	"outfit space" -38
 	"engine capacity" -38
@@ -666,10 +813,11 @@ outfit "A525 Atomic Steering"
 	index 42
 	"cost" 960000
 	thumbnail "outfit/large atomic steering"
+	"steering slot" -1
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
-	"turn" 3151.5
+	"turn" 3152
 	"turning energy" 4.1
 	"turning heat" 10.5
 	"steering flare sprite" "effect/atomic flare/large"
@@ -683,10 +831,11 @@ outfit "A865 Atomic Steering"
 	index 52
 	"cost" 1920000
 	thumbnail "outfit/huge atomic steering"
+	"steering slot" -1
 	"mass" 92
 	"outfit space" -92
 	"engine capacity" -92
-	"turn" 5395.5
+	"turn" 5396
 	"turning energy" 6.6
 	"turning heat" 17.5
 	"steering flare sprite" "effect/atomic flare/huge"
@@ -701,6 +850,7 @@ outfit "AR120 Reverse Thruster"
 	index 18
 	"cost" 140000
 	thumbnail "outfit/reverse thruster"
+	"reverse thruster slot" -1
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22

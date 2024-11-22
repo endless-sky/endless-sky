@@ -372,7 +372,7 @@ string Format::PlayTime(double timeVal)
 		if(i < PERIOD.size())
 			timeValFormat /= PERIOD[i];
 		i++;
-	} while (timeValFormat && i < SUFFIX.size());
+	} while(timeValFormat && i < SUFFIX.size());
 
 	reverse(result.begin(), result.end());
 	return result;
