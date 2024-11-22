@@ -9052,6 +9052,7 @@ event "timothy radrickson forever"
 
 
 mission "Timothy Radrickson 7: Monk"
+	minor
 	source "New Tibet"
 	to offer
 		random < 35
