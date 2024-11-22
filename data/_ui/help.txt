@@ -27,7 +27,7 @@ help "basics 2"
 
 help "dead"
 	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
-	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Load / Save" and "Enter Ship."`
+	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Manage Pilots" and "Enter Ship."`
 
 help "disabled"
 	`Your ship just got disabled! Before an enemy ship finishes you off, you should find someone to help you.`

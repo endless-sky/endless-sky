@@ -503,7 +503,6 @@ ship "Behemoth"
 		"required crew" 12
 		"bunks" 30
 		"mass" 4320
-		"drag" 11.7
 		"drag" 18.2
 		"heat dissipation" .26
 		"fuel capacity" 1675

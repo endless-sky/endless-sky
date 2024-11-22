@@ -5442,7 +5442,7 @@ planet Tuur-Aasa-Kaska
 	government "Old Houses"
 	shipyard "Successor Basics"
 	outfitter "High Houses Light"
-	"required reputation" 15
+	"required reputation" 1
 
 planet Tuur-Oa-Sola
 	attributes "bold tourism" successor uninhabited
