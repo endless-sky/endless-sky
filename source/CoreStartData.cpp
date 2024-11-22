@@ -69,18 +69,18 @@ Date CoreStartData::GetDate() const
 
 const Planet &CoreStartData::GetPlanet() const
 {
-	return planet ? *planet : *GameData::Planets().Get("New Boston");
+	return (planet && planet->IsValid()) ? *planet : *GameData::Planets().Get("New Boston");
 }
 
 
 
 const System &CoreStartData::GetSystem() const
 {
-	if(system)
+	if(system && system->IsValid())
 		return *system;
 	const System *planetSystem = GetPlanet().GetSystem();
 
-	return planetSystem ? *planetSystem : *GameData::Systems().Get("Rutilicus");
+	return (planetSystem && planetSystem->IsValid()) ? *planetSystem : *GameData::Systems().Get("Rutilicus");
 }
 
 
