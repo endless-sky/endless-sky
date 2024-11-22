@@ -9138,7 +9138,7 @@ mission "Timothy Radrickson 7: Monk"
 			label offer2
 			action
 				log "Found Timothy alive and well on New Tibet, living a simple, but happy life as a monk."
-				log "Timotyh Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help he now lives as simple monk. He seems happy.`
+				log "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help, he now lives as simple monk. He seems happy.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
