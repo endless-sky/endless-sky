@@ -2252,10 +2252,10 @@ mission "Acorn Delights: Part 5"
 			`	"If enough good people join the Unfettered, we can change their minds and set them on a more productive path. They'll need good doctors."`
 			`	"But-" Eeeya objects.`
 			choice
-				`	"Anoo is right; the Unfettered are prestigous. I would recommend joining them."`
+				`	"Anoo is right; the Unfettered are prestigious. I would recommend joining them."`
 					goto joinuhai
 				`	"There's no good reason to join the Unfettered. What have they ever done except kill innocent Hai?"`
-			`		goto "don't join"
+					goto "don't join"
 			label joinuhai
 			`	"Well... I really don't know... but how can I refuse when both my granddaughter and <first> tell me to?"`
 			choice
@@ -2280,8 +2280,7 @@ mission "Acorn Delights: Part 5"
 			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the True Hai, which I have now decided to do. Could you take me back to <planet> so that I can sell off the factory? And Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies!"`
 			choice
 				`	"Sure thing. I'd be glad to take you back."`
-				
-	accept
+					accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 
