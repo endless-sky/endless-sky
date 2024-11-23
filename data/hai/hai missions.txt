@@ -2310,10 +2310,7 @@ mission "Acorn Delights: Part 6"
 	on complete
 		payment 1000000
 		conversation
-			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits. But before you are allowed to leave your ship, an Unfettered security officer arrives. "`
-				goto questions
-			label accept
-			`	"If Anoo went anywhere, it would be Darkcloak. The largest Unfettered hospital is there. Many soldiers come back from raids injured on Darkcloak. A trauma surgeon would have a lot of work to do."`
-				accept
+			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits and thanking you for the third time. But before you are allowed to leave your ship, an Unfettered security officer arrives. "Come with me<, unfettered title>, we have something to say to you."`
+			`	"Why?" you ask. The Unfettered leads you to an office without answering. "We would like to thank you for recruiting a Hai - especially one as renowned as Chef Eeeya. You are being paid an additional five hundred thousand credits; do not think it is too much. You are dismissed." As you head back to <ship>, your communicator receives a receipt for the promised payment.`
 	on visit
 		dialog "Eeeya is not in the system. Maybe she's in one of your escorts?"
