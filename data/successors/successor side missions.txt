@@ -16,6 +16,7 @@ mission "Successors: Predecessor Research 1"
 	landing
 	name "Assist Predecessor Research"
 	description "Transport these <bunks> scholars researching the Predecessors to <planet stopovers> and back home to <destination> by <date>."
+	clearance
 	passengers 7
 	deadline 30
 	to offer
@@ -289,9 +290,17 @@ mission "Successors: Stargazing 1"
 			`	"From where on the map dost thou hail, captain?" Nnesa roughly gestures to an area of their map that you recognize as human space.`
 			choice
 				`	(Indicate Rutilicus.)`
+					to display
+						has "human space start"
 					goto rutilicus
 				`	(Indicate Sol.)`
+					to display
+						has "human space start"
 					goto sol
+				`	(Indicate Fah Soom.)`
+					to display
+						has "hai space start"
+					goto "fah soom"
 				`	(Gesture broadly to the expanse of space depicted on the map.)`
 			`	"Oh!" says Nnesa, "Thou art a scion of the constellations, first and foremost to the stars? 'Tis fair. Thou hast a galaxy to wander, a nearly endless sky. The things that there must be to see-"`
 				goto interrupt
@@ -299,10 +308,16 @@ mission "Successors: Stargazing 1"
 			`	"Oh!" says Nnesa, "I am not sure I know the name for that one, captain. What dost thou call thy home?"`
 			choice
 				`	"Rutilicus."`
-			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
-				goto interrupt
+					goto "novel name"
 			label sol
 			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the northernmost extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
+				goto interrupt
+			label "fah soom"
+			`	"Oh!" says Nnesa. "That far to the north? Thy kind must have spread far for thee to have such a place as thy home. What dost thou call it?"`
+			choice
+				`	"Fah Soom."`
+			label "novel name"
+			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
 			label interrupt
 			`	The two of you are interrupted by Jaasora, who needs Nnesa's help to pack the now-deflating tent back in its cart, and once that is done they indicate that they are ready to return home.`
 	on complete
@@ -435,6 +450,7 @@ mission "Successors: Unified Defense"
 			`	A wave of bristling black runs over the Successor's body before they end the transmission.`
 			label end
 			branch "uninhabited end"
+				has "flagship planet attribute: uninhabited"
 			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
 				flee
 			label "uninhabited end"

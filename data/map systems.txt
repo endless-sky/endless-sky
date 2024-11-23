@@ -8896,6 +8896,7 @@ system Citadelle
 
 system Clepsydra
 	pos 264 -874
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 4050
 	habitable 4050
@@ -9359,6 +9360,7 @@ system "Cura Dic"
 
 system Currus
 	pos 260.583 -987.75
+	government Uninhabited
 	arrival 500
 	habitable 10
 	belt 1198 4
@@ -12896,6 +12898,7 @@ system "Epsilon Leonis"
 
 system Equus
 	pos 313.25 -1051.08
+	government Uninhabited
 	attributes "neutron" "notable star"
 	arrival 500
 	habitable 405
@@ -16907,7 +16910,7 @@ system Heutesl
 		period 60.0582
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
-		distance 1000
+		distance 820
 		period 349.481
 	object
 		sprite planet/gas4
@@ -17354,6 +17357,7 @@ system Host
 
 system Hui'uc
 	pos 248.933 -792.506
+	government Uninhabited
 	arrival 1505
 	habitable 1505
 	belt 1246
@@ -17529,6 +17533,7 @@ system Huud
 
 system Ianua
 	pos 371.917 -995.75
+	government Uninhabited
 	arrival 500
 	habitable 35
 	belt 1472
@@ -20829,7 +20834,7 @@ system "Kor En'lakfar"
 	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
-	fleet "Korsmanath A'awojs" 2000
+	fleet "Korsmanath A'awojs" 4000
 	object
 		sprite star/g0
 		period 10
@@ -20898,7 +20903,7 @@ system "Kor Fel'tar"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korath Surveillance" 24000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/k3
 		period 10
@@ -20971,7 +20976,7 @@ system "Kor Men"
 	fleet "Korath Surveillance" 46000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 8000
-	fleet "Korsmanath A'awojs" 2808
+	fleet "Korsmanath A'awojs" 5616
 	object
 		sprite star/f5
 		distance 28.0824
@@ -21040,7 +21045,7 @@ system "Kor Nor'peli"
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
-	fleet "Korsmanath A'awojs" 1100
+	fleet "Korsmanath A'awojs" 2200
 	object
 		sprite star/k3
 		distance 22.4307
@@ -21115,7 +21120,7 @@ system "Kor Tar'bei"
 	fleet "Korath Ember Waste Raid" 3050
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/m3
 		period 10
@@ -21173,7 +21178,7 @@ system "Kor Zena'i"
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Surveillance" 31000
 	fleet "Korath Civilian Large" 845
-	fleet "Korsmanath A'awojs" 2500
+	fleet "Korsmanath A'awojs" 5000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -26977,6 +26982,7 @@ system Peacock
 
 system "Pedita Pri"
 	pos 207.333 -936
+	government Uninhabited
 	arrival 5000
 	habitable 10030
 	belt 1909
@@ -27023,6 +27029,7 @@ system "Pedita Pri"
 
 system "Pedita Sec"
 	pos 185.333 -888
+	government Uninhabited
 	arrival 1080
 	habitable 1080
 	belt 1554
@@ -28172,6 +28179,7 @@ system Porrima
 
 system "Porta Terra"
 	pos 202.6 -825.506
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
@@ -29863,6 +29871,7 @@ system Ritilas
 
 system Rota
 	pos 193.25 -1029.75
+	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 7160
@@ -30927,7 +30936,7 @@ system Scija
 			period 413.1
 	object
 		sprite planet/saturn
-		distance 8500
+		distance 9400
 		period 4188.84
 		object
 			sprite planet/europa
@@ -30936,6 +30945,7 @@ system Scija
 
 system Sedes
 	pos 301.917 -948.417
+	government Uninhabited
 	attributes "bright star" "giant star" "notable star"
 	arrival 500
 	habitable 100
@@ -33287,6 +33297,7 @@ system Sumprast
 
 system Supra
 	pos 319 -820
+	government Uninhabited
 	arrival 5000
 	habitable 11635
 	belt 1481
@@ -33665,6 +33676,7 @@ system Tebuteb
 
 system Tectum
 	pos 399.25 -933.083
+	government Uninhabited
 	arrival 5000
 	habitable 29300
 	belt 1350 7
@@ -37054,7 +37066,7 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 650
+		distance 1080
 		period 321.540
 		object Cipi
 			sprite planet/ice7-b

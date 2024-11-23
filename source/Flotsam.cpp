@@ -67,6 +67,17 @@ void Flotsam::Place(const Ship &source)
 
 
 
+// Place this flotsam with its starting position at the specified bay of the source ship,
+// instead of the center of the ship.
+void Flotsam::Place(const Ship &source, size_t bayIndex)
+{
+	Place(source);
+	if(source.Bays().size() > bayIndex)
+		position += source.Facing().Rotate(source.Bays()[bayIndex].point);
+}
+
+
+
 // Place flotsam coming from something other than a ship. Optionally specify
 // the maximum relative velocity, or the exact relative velocity as a vector.
 void Flotsam::Place(const Body &source, double maxVelocity)

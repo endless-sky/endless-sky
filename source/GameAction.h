@@ -89,6 +89,7 @@ private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<ShipManager> giftShips;
