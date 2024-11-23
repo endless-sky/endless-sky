@@ -3117,6 +3117,7 @@ mission "Coalition: Outskirts Gauger Ready"
 				decline
 
 
+
 mission "Heliarchs Buy Jump Drive Mission"
 	minor
 	landing
