@@ -43,18 +43,23 @@ using Conditions = std::map<std::string, int64_t>;
 
 // #region unit tests
 SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
+
+	OutputSink warnings(std::cerr);
+
 	GIVEN( "no arguments" ) {
 		const auto set = ConditionSet{};
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
+			REQUIRE( set.IsValid() );
 		}
 	}
 	GIVEN( "a node with no children" ) {
-		auto childlessNode = AsDataNode("never");
+		auto childlessNode = AsDataNode("childless");
 		const auto set = ConditionSet{childlessNode};
 
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
 		}
 	}
 	GIVEN( "a node with valid children" ) {
@@ -63,6 +68,82 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 
 		THEN( "a non-empty ConditionSet is created" ) {
 			REQUIRE_FALSE( set.IsEmpty() );
+			REQUIRE( set.IsValid() );
+		}
+	}
+	GIVEN( "a simple incomplete arithmetic add expression" ) {
+		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 +");
+		const auto set = ConditionSet{nodeWithIncompleteAdd};
+		THEN( "the expression should be identified as invalid" ) {
+			const std::string validationWarning = "Error: expected terminal after infix operator \"+\":\n";
+			const std::string invalidNodeText = "toplevel\n";
+			const std::string invalidNodeTextInWarning = "L2:   4 +";
+
+			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+			}
+		}
+	}
+	GIVEN( "a longer incomplete arithmetic add expression" ) {
+		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 + 6 +");
+		const auto set = ConditionSet{nodeWithIncompleteAdd};
+		THEN( "the expression should be identified as invalid" ) {
+			const std::string validationWarning = "Error: expected terminal after infix operator \"+\":\n";
+			const std::string invalidNodeText = "toplevel\n";
+			const std::string invalidNodeTextInWarning = "L2:   4 + 6 +";
+
+			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+			}
+		}
+	}
+	GIVEN( "a longer incomplete arithmetic subtract expression" ) {
+		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 - 6 -");
+		const auto set = ConditionSet{nodeWithIncompleteAdd};
+		THEN( "the expression should be identified as invalid" ) {
+			const std::string validationWarning = "Error: expected terminal after infix operator \"-\":\n";
+			const std::string invalidNodeText = "toplevel\n";
+			const std::string invalidNodeTextInWarning = "L2:   4 - 6 -";
+
+			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+			}
+		}
+	}
+	GIVEN( "an invalid expression of two numerical terminals" ) {
+		auto nodeWithTwoTerminals = AsDataNode("toplevel\n\t4 77");
+		const auto set = ConditionSet{nodeWithTwoTerminals};
+		THEN( "the expression should be identified as invalid" ) {
+			const std::string validationWarning = "Error: expected infix operator instead of \"77\":\n";
+			const std::string invalidNodeText = "toplevel\n";
+			const std::string invalidNodeTextInWarning = "L2:   4 77";
+
+			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+			}
+		}
+	}
+	GIVEN( "an invalid token instead of a terminal" ) {
+		auto nodeWithIncompleteTerminal = AsDataNode("toplevel\n\t%%percentFail");
+		const auto set = ConditionSet{nodeWithIncompleteTerminal};
+		THEN( "the expression should be identified as invalid" ) {
+			const std::string validationWarning = "Error: expected terminal or open-bracket:\n";
+			const std::string invalidNodeText = "toplevel\n";
+			const std::string invalidNodeTextInWarning = "L2:   %%percentFail";
+
+			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
+			AND_THEN( "a log message is printed to assist the user" ) {
+				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+			}
 		}
 	}
 }
@@ -74,21 +155,24 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 	GIVEN( "an empty ConditionSet" ) {
 		auto set = ConditionSet{};
 		REQUIRE( set.IsEmpty() );
+		REQUIRE( set.IsValid() );
 
 		THEN( "no expressions are added from empty nodes" ) {
-			const std::string validationWarning = "Error: Loading empty (sub)condition:\ntoplevel\n\n";
+			const std::string validationWarning = "Error: child-nodes expected, found none:\ntoplevel\n\n";
 			set.Load(AsDataNode("toplevel"));
 			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
 				REQUIRE( warnings.Flush() == validationWarning );
 			}
 		}
 		THEN( "no expressions are added from invalid nodes" ) {
-			const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+			const std::string validationWarning = "Error: has keyword requires a single condition:\n";
 			const std::string invalidNodeText = "and\n\thas";
 			const std::string invalidNodeTextInWarning = "and\nL2:   has";
 			set.Load(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
+			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
 				REQUIRE( warnings.Flush() == validationWarning + invalidNodeTextInWarning + '\n' + '\n');
 			}
@@ -96,6 +180,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		THEN( "new expressions can be added from valid nodes" ) {
 			set.Load(AsDataNode("and\n\tnever"));
 			REQUIRE_FALSE( set.IsEmpty() );
+			REQUIRE( set.IsValid() );
 			REQUIRE( warnings.Flush() == "" );
 		}
 	}
@@ -105,11 +190,13 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
+		REQUIRE( emptySet.IsValid() );
 
 		AND_GIVEN( "an empty list of Conditions" ) {
 			const auto emptyConditionList = ConditionsStore{};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(emptyConditionList) );
+				REQUIRE( emptySet.IsValid() );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
@@ -118,12 +205,14 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(conditionList) );
+				REQUIRE( emptySet.IsValid() );
 			}
 		}
 	}
 	GIVEN( "a set containing 'never'" ) {
 		const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
 		REQUIRE_FALSE( neverSet.IsEmpty() );
+		REQUIRE( neverSet.IsValid() );				
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
 			const auto listWithNever = ConditionsStore {
@@ -131,10 +220,117 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE_FALSE( neverSet.Test(listWithNever) );
+				REQUIRE( neverSet.IsValid() );
 			}
 		}
 	}
-}
+
+	GIVEN( "a single number" ) {
+		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t2")};
+		REQUIRE_FALSE( numberSet.IsEmpty() );
+		REQUIRE( numberSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			THEN( "the ConditionSet is not satisfied" ) {
+				REQUIRE( numberSet.Test(storeWithData) );
+				REQUIRE( numberSet.IsValid() );
+				REQUIRE( numberSet.Evaluate(storeWithData) == 2 );
+			}
+		}
+	}
+	GIVEN( "a simple arithmetic add expression" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 + 6")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 8 );
+		}
+	}
+	GIVEN( "a somewhat longer arithmetic add expression" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 + 6 + 8 + 40")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 56 );
+		}
+	}
+	GIVEN( "a somewhat longer arithmetic multiply expression" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 * 6 * 8 * 40")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 3840 );
+		}
+	}
+	GIVEN( "an arithmetic set with multiplication and add" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 * 6 + 8")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 20 );
+		}
+	}
+	GIVEN( "an arithmetic set with add and multiplication" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 + 6 * 8")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 50 );
+		}
+	}
+	GIVEN( "an arithmetic set with multiplication and bracketed add" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 * ( 6 + 8 )")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 28 );
+		}
+	}
+	GIVEN( "an arithmetic set with bracketed add and multiplication" ) {
+		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t( 2 + 6 ) * 8")};
+		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
+		REQUIRE( arithmeticSet.IsValid() );
+		THEN( "The condition evaluates to the correct number" ) {
+			const auto storeWithData = ConditionsStore {
+				{"someData", 100},
+			};
+			REQUIRE( arithmeticSet.Test(storeWithData) );
+			REQUIRE( arithmeticSet.IsValid() );
+			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 64 );
+		}
+	}}
 
 // #endregion unit tests
 

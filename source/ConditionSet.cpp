@@ -24,205 +24,75 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <utility>
 #include <set>
 
 using namespace std;
 
-namespace {
-	typedef int64_t (*BinFun)(int64_t, int64_t);
-	BinFun Op(const string &op)
-	{
-		// This map defines functions that each "operator" should be mapped to.
-		// In each function "a" is the condition's current value and "b" is the
-		// integer value given as the other argument of the operator.
-		// Test operators return 0 (false) or 1 (true).
-		// "Apply" operators return the value that the condition should have
-		// after applying the expression.
-		static const map<string, BinFun> opMap = {
-			{"==", [](int64_t a, int64_t b) -> int64_t { return a == b; }},
-			{"!=", [](int64_t a, int64_t b) -> int64_t { return a != b; }},
-			{"<", [](int64_t a, int64_t b) -> int64_t { return a < b; }},
-			{">", [](int64_t a, int64_t b) -> int64_t { return a > b; }},
-			{"<=", [](int64_t a, int64_t b) -> int64_t { return a <= b; }},
-			{">=", [](int64_t a, int64_t b) -> int64_t { return a >= b; }},
-			{"=", [](int64_t a, int64_t b) { return b; }},
-			{"*=", [](int64_t a, int64_t b) { return a * b; }},
-			{"+=", [](int64_t a, int64_t b) { return a + b; }},
-			{"-=", [](int64_t a, int64_t b) { return a - b; }},
-			{"/=", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }},
-			{"<?=", [](int64_t a, int64_t b) { return min(a, b); }},
-			{">?=", [](int64_t a, int64_t b) { return max(a, b); }},
-			{"%", [](int64_t a, int64_t b) { return (a % b); }},
-			{"*", [](int64_t a, int64_t b) { return a * b; }},
-			{"+", [](int64_t a, int64_t b) { return a + b; }},
-			{"-", [](int64_t a, int64_t b) { return a - b; }},
-			{"/", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
-		};
+namespace
+{
+	/// Map string tokens to precedence and internal operators.
+	const auto CS_TOKEN_CONVERSION = map<const string, ConditionSet::ExpressionOp>{
+		// Infix arithmetic multiply, divide and modulo have a higher precedence than add and subtract.
+		{ "*", ConditionSet::ExpressionOp::OP_MUL },
+		{ "/", ConditionSet::ExpressionOp::OP_DIV },
+		{ "%", ConditionSet::ExpressionOp::OP_MOD },
+		// Infix arithmetic operators add and subtract have the same precedence.
+		{ "+", ConditionSet::ExpressionOp::OP_ADD },
+		{ "-", ConditionSet::ExpressionOp::OP_SUB },
+		// Infix boolean equality operators have a lower precedence than their arithmetic counterparts.
+		{ "==", ConditionSet::ExpressionOp::OP_EQ },
+		{ "!=", ConditionSet::ExpressionOp::OP_NE },
+		{ ">", ConditionSet::ExpressionOp::OP_GT },
+		{ "<", ConditionSet::ExpressionOp::OP_LT },
+		{ ">=", ConditionSet::ExpressionOp::OP_GE },
+		{ "<=", ConditionSet::ExpressionOp::OP_LE },
+		// Parent-type operators have a low precedence in Endless-Sky, because they are on outer parent/child sections.
+		{ "and", ConditionSet::ExpressionOp::OP_AND },
+		{ "or", ConditionSet::ExpressionOp::OP_OR },
+	};
 
-		auto it = opMap.find(op);
-		return (it != opMap.end() ? it->second : nullptr);
-	}
 
-	// Indicate if the operation is a comparison or modifies the condition.
-	bool IsComparison(const string &op)
+	/// Get the precedence of an operator.
+	int Precedence(const ConditionSet::ExpressionOp op)
 	{
-		static const set<string> comparison = {
-			"==", "!=", "<", ">", "<=", ">="
-		};
-		return comparison.contains(op);
-	}
-
-	bool IsAssignment(const string &op)
-	{
-		static const set<string> assignment = {
-			"=", "+=", "-=", "*=", "/=", "<?=", ">?="
-		};
-		return assignment.contains(op);
-	}
-
-	bool IsSimple(const string &op)
-	{
-		static const set<string> simple = {
-			"(", ")", "+", "-", "*", "/", "%"
-		};
-		return simple.contains(op);
-	}
-
-	int Precedence(const string &op)
-	{
-		static const map<string, int> precedence = {
-			{"(", 0}, {")", 0},
-			{"+", 1}, {"-", 1},
-			{"*", 2}, {"/", 2}, {"%", 2}
-		};
-		return precedence.at(op);
-	}
-
-	// Test to determine if unsupported operations are requested.
-	bool HasInvalidOperators(const vector<string> &tokens)
-	{
-		static const set<string> invalids = {
-			"{", "}", "[", "]", "|", "^", "&", "!", "~",
-			"||", "&&", "&=", "|=", "<<", ">>"
-		};
-		for(const string &str : tokens)
-			if(invalids.contains(str))
-				return true;
-		return false;
-	}
-
-	// Ensure the ConditionSet line has balanced parentheses on both sides.
-	bool HasUnbalancedParentheses(const vector<string> &tokens)
-	{
-		int parentheses = 0;
-		for(const string &str : tokens)
+		switch(op)
 		{
-			if(parentheses < 0)
-				return true;
-			else if(parentheses && (IsAssignment(str) || IsComparison(str)))
-				return true;
-			else if(str == "(")
-				++parentheses;
-			else if(str == ")")
-				--parentheses;
+			case ConditionSet::ExpressionOp::OP_INVALID:
+				return 9;
+			case ConditionSet::ExpressionOp::OP_LIT:
+			case ConditionSet::ExpressionOp::OP_VAR:
+				return 8;
+			case ConditionSet::ExpressionOp::OP_MUL:
+			case ConditionSet::ExpressionOp::OP_DIV:
+			case ConditionSet::ExpressionOp::OP_MOD:
+				return 6;
+			case ConditionSet::ExpressionOp::OP_ADD:
+			case ConditionSet::ExpressionOp::OP_SUB:
+				return 5;
+			case ConditionSet::ExpressionOp::OP_EQ:
+			case ConditionSet::ExpressionOp::OP_NE:
+			case ConditionSet::ExpressionOp::OP_GT:
+			case ConditionSet::ExpressionOp::OP_LT:
+			case ConditionSet::ExpressionOp::OP_GE:
+			case ConditionSet::ExpressionOp::OP_LE:
+				return 3;
+			default:
+				break;
 		}
-		return parentheses;
+		// Precedence for OP_AND, OP_OR
+		return 0;
 	}
 
-	// Perform a preliminary assessment of the input condition, to determine if it is remotely well-formed.
-	// The final assessment of its validity will be whether it parses into an evaluable Expression.
-	bool IsValidCondition(const DataNode &node)
+
+	ConditionSet::ExpressionOp ParseOperator(const string &stringToken)
 	{
-		const vector<string> &tokens = node.Tokens();
-		int assigns = count_if(tokens.begin(), tokens.end(), IsAssignment);
-		int compares = count_if(tokens.begin(), tokens.end(), IsComparison);
-		if(assigns + compares != 1)
-			node.PrintTrace("Error: An expression must either perform a comparison or assign a value:");
-		else if(HasInvalidOperators(tokens))
-			node.PrintTrace("Error: Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
-		else if(HasUnbalancedParentheses(tokens))
-			node.PrintTrace("Error: Unbalanced parentheses in condition expression:");
-		else if(count_if(tokens.begin(), tokens.end(), [](const string &token)
-				{ return token.size() > 1 && token.front() == '('; }))
-			node.PrintTrace("Error: Parentheses must be separate from tokens:");
-		else
-			return true;
+		auto it = CS_TOKEN_CONVERSION.find(stringToken);
+		if(it != CS_TOKEN_CONVERSION.end())
+			return it->second;
 
-		return false;
-	}
-
-	// Converts the given vector of condition tokens (like "reputation: Republic",
-	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions)
-	{
-		auto result = vector<int64_t>();
-		result.reserve(side.size());
-		for(const string &str : side)
-		{
-			int64_t value = 0;
-			if(str == "random")
-				value = Random::Int(100);
-			else if(DataNode::IsNumber(str))
-				value = static_cast<int64_t>(DataNode::Value(str));
-			else
-			{
-				const auto perm = conditions.Get(str);
-				if(perm)
-					value = perm;
-			}
-			result.emplace_back(value);
-		}
-		return result;
-	}
-
-	bool UsedAll(const vector<bool> &status)
-	{
-		for(auto v : status)
-			if(!v)
-				return false;
-		return true;
-	}
-
-	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
-	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices,
-		const size_t &opIndex, bool getLeft)
-	{
-		// Start at the operator index (left), or just past it (right).
-		size_t index = opIndex + !getLeft;
-		if(getLeft)
-			while(tokens.at(index).empty() && index > 0)
-				--index;
-		else
-			while(tokens.at(index).empty() && index < tokens.size() - 2)
-				++index;
-		// Trace any used data to find the latest result.
-		while(resultIndices.at(index) > 0)
-			index = resultIndices.at(index);
-
-		return index;
-	}
-
-	void PrintConditionError(const vector<string> &side)
-	{
-		string message = "Error decomposing complex condition expression:\nFound:\t";
-		for(const string &str : side)
-			message += " \"" + str + "\"";
-		Logger::LogError(message);
-	}
-
-	bool IsUnrepresentable(const string &token)
-	{
-		if(DataNode::IsNumber(token))
-		{
-			auto value = DataNode::Value(token);
-			if(value > static_cast<double>(numeric_limits<int64_t>::max()) ||
-					value < static_cast<double>(numeric_limits<int64_t>::min()))
-				return true;
-		}
-		// It's possible that a condition uses purely representable values, but performs math
-		// that result in unrepresentable values. However, that situation cannot be detected
-		// during expression construction, only during execution.
-		return false;
+		// If nothing matches, then we get the default OP_INVALID value.
+		return ConditionSet::ExpressionOp::OP_INVALID;
 	}
 }
 
@@ -236,14 +106,21 @@ ConditionSet::ConditionSet(const DataNode &node)
 
 
 
+// Construct a terminal with a literal value;
+ConditionSet::ConditionSet(int64_t newLiteral)
+{
+	expressionOperator = OP_LIT;
+	literal = newLiteral;
+}
+
+
+
 // Load a set of conditions from the children of this node.
 void ConditionSet::Load(const DataNode &node)
 {
-	isOr = (node.Token(0) == "or");
-	if(!node.HasChildren())
-		node.PrintTrace("Error: Loading empty (sub)condition:");
-	for(const DataNode &child : node)
-		Add(child);
+	// The top-node is always an 'and' node, without the keyword.
+	expressionOperator = OP_AND;
+	ParseBooleanChildren(node);
 }
 
 
@@ -251,36 +128,133 @@ void ConditionSet::Load(const DataNode &node)
 // Save a set of conditions.
 void ConditionSet::Save(DataWriter &out) const
 {
-	for(const Expression &expression : expressions)
-		expression.Save(out);
-
-	for(const ConditionSet &child : children)
+	if(expressionOperator == OP_AND)
 	{
-		out.Write(child.isOr ? "or" : "and");
+		// Default should be AND, so if it is, then just write the subsets
 		out.BeginChild();
+		for(const auto &child: children)
 		{
-			child.Save(out);
+			child.SaveSubset(out);
+			out.Write();
 		}
+		out.EndChild();
+	}
+	else
+	{
+		// If this condition got optimized beyond OP_AND, then re-add the OP_AND here by writing under a child.
+		out.BeginChild();
+		SaveSubset(out);
+		out.Write();
 		out.EndChild();
 	}
 }
 
 
 
+// Save a subset of conditions, by writing out tokens (without a newline).
+void ConditionSet::SaveSubset(DataWriter &out) const
+{
+	string opTxt = "";
+	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
+		[this](const std::pair<const string, ConditionSet::ExpressionOp> &e) {
+			return e.second == expressionOperator;
+		});
+	if(it != CS_TOKEN_CONVERSION.end())
+		opTxt = it->first;
+
+	switch(expressionOperator)
+	{
+	case OP_INVALID:
+		out.WriteToken("never");
+		break;
+	case OP_VAR:
+		out.WriteToken(conditionName);
+		break;
+	case OP_LIT:
+		out.WriteToken(literal);
+		break;
+	case OP_ADD:
+	case OP_SUB:
+	case OP_MUL:
+	case OP_DIV:
+	case OP_MOD:
+	case OP_EQ:
+	case OP_NE:
+	case OP_LE:
+	case OP_GE:
+	case OP_LT:
+	case OP_GT:
+		if(children.empty())
+		{
+			out.WriteToken("never");
+			break;
+		}
+		out.WriteToken("(");
+		children[0].SaveSubset(out);
+		out.WriteToken(")");
+		for(unsigned int i = 1; i < children.size(); ++i)
+		{
+			out.WriteToken(opTxt);
+			out.WriteToken("(");
+			children[i].SaveSubset(out);
+			out.WriteToken(")");
+		}
+		break;
+	case OP_AND:
+	case OP_OR:
+		out.Write(opTxt);
+		out.BeginChild();
+		for(const auto &child: children)
+		{
+			child.SaveSubset(out);
+			out.Write();
+		}
+		out.EndChild();
+		break;
+	case OP_NOT:
+	case OP_HAS:
+		if(children.empty())
+		{
+			out.WriteToken("never");
+			break;
+		}
+		out.WriteToken(opTxt);
+		out.WriteToken("(");
+		children[0].SaveSubset(out);
+		out.WriteToken(")");
+		break;
+	default:
+		out.WriteToken("never");
+		break;
+	};
+}
+
+
+
 void ConditionSet::MakeNever()
 {
-	// Add the equivalent "never" condition, `"'" != 0`.
-	// TODO: change the ConditionSet to contain "false" literal, instead of a comparison that should return "false".
-	// TODO: Validate if condition-names are valid. (The "'" character by itself should not pass as a valid condition.)
-	Add("has", "'");
+	children.clear();
+	expressionOperator = OP_LIT;
+	literal = 0;
 }
 
 
 
 // Check if there are any entries in this set.
+// Invalid ConditionSets are also considered empty.
 bool ConditionSet::IsEmpty() const
 {
-	return expressions.empty() && children.empty();
+	return
+		(expressionOperator == OP_AND && children.size() == 0) ||
+		(expressionOperator == OP_INVALID);
+}
+
+
+
+// Check if the conditionset contains valid data
+bool ConditionSet::IsValid() const
+{
+	return expressionOperator != OP_INVALID;
 }
 
 
@@ -288,26 +262,85 @@ bool ConditionSet::IsEmpty() const
 // Check if the given condition values satisfy this set of conditions.
 bool ConditionSet::Test(const ConditionsStore &conditions) const
 {
-	// All expressions should be testable: assign-conditions should only be used for ConditionAssignments.
-	for(const Expression &expression : expressions)
-		if(expression.IsTestable())
-		{
-			bool result = expression.Test(conditions);
-			// If this is a set of "and" conditions, bail out as soon as one of them
-			// returns false. If it is an "or", bail out if anything returns true.
-			if(result == isOr)
-				return result;
-		}
+	return Evaluate(conditions);
+}
 
-	for(const ConditionSet &child : children)
+
+
+int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
+{
+	int64_t result = 0;
+
+	switch(expressionOperator)
 	{
-		bool result = child.Test(conditions);
-		if(result == isOr)
+		case ExpressionOp::OP_VAR:
+			return conditionsStore.Get(conditionName);
+		case ExpressionOp::OP_LIT:
+			return literal;
+
+		case ExpressionOp::OP_ADD:
+			for(const ConditionSet &child : children)
+				result += child.Evaluate(conditionsStore);
 			return result;
+		case ExpressionOp::OP_SUB:
+			for(const ConditionSet &child : children)
+				result -= child.Evaluate(conditionsStore);
+			return result;
+		case ExpressionOp::OP_MUL:
+			result = 1;
+			for(const ConditionSet &child : children)
+				result *= child.Evaluate(conditionsStore);
+			return result;
+		case ExpressionOp::OP_DIV:
+			// TODO: check for division by zero
+			return children[0].Evaluate(conditionsStore) / children[1].Evaluate(conditionsStore);
+		case ExpressionOp::OP_MOD:
+			// TODO: check for division by zero
+			return children[0].Evaluate(conditionsStore) % children[1].Evaluate(conditionsStore);
+
+		case ExpressionOp::OP_EQ:
+			return children[0].Evaluate(conditionsStore) == children[1].Evaluate(conditionsStore);
+		case ExpressionOp::OP_NE:
+			return children[0].Evaluate(conditionsStore) != children[1].Evaluate(conditionsStore);
+		case ExpressionOp::OP_LE:
+			return children[0].Evaluate(conditionsStore) <= children[1].Evaluate(conditionsStore);
+		case ExpressionOp::OP_GE:
+			return children[0].Evaluate(conditionsStore) >= children[1].Evaluate(conditionsStore);
+		case ExpressionOp::OP_LT:
+			return children[0].Evaluate(conditionsStore) < children[1].Evaluate(conditionsStore);
+		case ExpressionOp::OP_GT:
+			return children[0].Evaluate(conditionsStore) > children[1].Evaluate(conditionsStore);
+		
+		case ExpressionOp::OP_AND:
+			// An empty AND section returns true.
+			if(children.empty())
+				return 1;
+
+			for(const ConditionSet &child : children)
+			{
+				int64_t childResult = child.Evaluate(conditionsStore);
+				// Assign the first non-zero result to the result variable.
+				if(!childResult)
+					return 0;
+				// Assign the first non-zero result to the result variable.
+				if(result == 0)
+					result = childResult;
+			}
+			return result;
+		case ExpressionOp::OP_OR:
+			for(const ConditionSet &child : children)
+			{
+				int64_t childResult = child.Evaluate(conditionsStore);
+				// Return the first non-zero result.
+				if(childResult)
+					return childResult;
+			}
+			return result;
+
+		default:
+			break;
 	}
-	// If this is an "and" condition, all the above conditions were true, so return
-	// true. If it is an "or," no condition returned true, so return false.
-	return !isOr;
+	return result;
 }
 
 
@@ -316,10 +349,9 @@ bool ConditionSet::Test(const ConditionsStore &conditions) const
 set<string> ConditionSet::RelevantConditions() const
 {
 	set<string> result;
-	// Add the names from the expressions.
-	// TODO: also sub-expressions?
-	for(const auto &expr : expressions)
-		result.emplace(expr.Name());
+	// Add the name from this set, if it is a VAR type operator.
+	if(expressionOperator == OP_VAR)
+		result.emplace(conditionName);
 	// Add the names from the children.
 	for(const auto &child : children)
 		for(const auto &rc : child.RelevantConditions())
@@ -328,477 +360,298 @@ set<string> ConditionSet::RelevantConditions() const
 }
 
 
-
-// Read a single condition from a data node.
-void ConditionSet::Add(const DataNode &node)
+bool ConditionSet::ParseNode(const DataNode &node)
 {
-	// Special keywords have a node size of 1 (never, and, or), or 2 (unary operators).
-	// Simple conditions have a node size of 3, while complex conditions feature a single
-	// non-simple operator (e.g. <=) and any number of simple operators.
-	static const string UNRECOGNIZED = "Warning: Unrecognized condition expression:";
-	static const string UNREPRESENTABLE = "Error: Unrepresentable condition value encountered:";
-	if(node.Size() == 2)
+	// Special handling for 'and' and 'or' nodes.
+	if(node.Size() == 1)
 	{
-		if(IsUnrepresentable(node.Token(1)))
-			node.PrintTrace(UNREPRESENTABLE);
-		else if(!Add(node.Token(0), node.Token(1)))
-			node.PrintTrace(UNRECOGNIZED);
-	}
-	else if(node.Size() == 1 && node.Token(0) == "never")
-		expressions.emplace_back("'", "!=", "0");
-	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
-	{
-		// The "and" and "or" keywords introduce a nested condition set.
-		children.emplace_back(node);
-		// Warn if a child node has assignment operators, because those will be ignored.
-		if(children.back().hasAssign)
-			node.PrintTrace("Error: Assignment expressions contained within and/or groups is not supported.");
-	}
-	else if(IsValidCondition(node))
-	{
-		// This is a valid condition containing a single assignment or comparison operator.
-		if(node.Size() == 3)
+		if(node.Token(0) == "and")
 		{
-			if(IsUnrepresentable(node.Token(0)) || IsUnrepresentable(node.Token(2)))
-				node.PrintTrace(UNREPRESENTABLE);
-			else if(!Add(node.Token(0), node.Token(1), node.Token(2)))
-				node.PrintTrace(UNRECOGNIZED);
+			expressionOperator = OP_AND;
+			return ParseBooleanChildren(node);
 		}
-		else
+		if(node.Token(0) == "or")
 		{
-			// Split the DataNode into left- and right-hand sides.
-			auto lhs = vector<string>();
-			auto rhs = vector<string>();
-			string op;
-			for(const string &token : node.Tokens())
-			{
-				if(IsUnrepresentable(token))
-				{
-					node.PrintTrace(UNREPRESENTABLE);
-					return;
-				}
-				else if(!op.empty())
-					rhs.emplace_back(token);
-				else if(IsComparison(token))
-					op = token;
-				else if(IsAssignment(token))
-				{
-					if(lhs.size() == 1)
-						op = token;
-					else
-					{
-						node.PrintTrace("Error: Assignment operators must be the second token:");
-						return;
-					}
-				}
-				else
-					lhs.emplace_back(token);
-			}
-			if(!Add(lhs, op, rhs))
-				node.PrintTrace(UNRECOGNIZED);
+			expressionOperator = OP_OR;
+			return ParseBooleanChildren(node);
 		}
 	}
-	if(!expressions.empty() && expressions.back().IsEmpty())
+
+	// Nodes beyond this point should not have children.
+	if(node.HasChildren())
+		return FailParse(node, "unexpected child-nodes under toplevel");
+
+	// Special handling for 'never', 'has' and 'not' nodes.
+	if(node.Token(0) == "never")
 	{
-		node.PrintTrace("Warning: Condition parses to an empty set:");
-		expressions.pop_back();
+		if(node.Size() > 1)
+			return FailParse(node, "tokens found after never keyword");
+
+		expressionOperator = OP_LIT;
+		literal = 0;
+		return true;
 	}
+	if(node.Token(0) == "has")
+	{
+		if( node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)) )
+			return FailParse(node, "has keyword requires a single condition");
+
+		// Convert has keyword directly to the variable.
+		expressionOperator = OP_VAR;
+		conditionName = node.Token(1);
+		return true;
+	}
+	if(node.Token(0) == "not")
+	{
+		if( node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)) )
+			return FailParse(node, "not keyword requires a single condition");
+
+		// Create `conditionName == 0` expression.
+		expressionOperator = OP_EQ;
+		children.emplace_back();
+		children.back().expressionOperator = OP_VAR;
+		children.back().conditionName = node.Token(1);
+		children.emplace_back(0);
+		return true;
+	}
+
+	int tokenNr = 0;
+	return ParseNode(node, tokenNr);
 }
 
 
 
-// Add a unary operator line to the list of expressions.
-bool ConditionSet::Add(const string &firstToken, const string &secondToken)
+bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 {
-	// Each "unary" operator can be mapped to an equivalent binary expression.
-	if(firstToken == "not" && DataNode::IsConditionName(secondToken))
-		expressions.emplace_back(secondToken, "==", "0");
-	else if(firstToken == "has" && DataNode::IsConditionName(secondToken))
-		expressions.emplace_back(secondToken, "!=", "0");
-	else if(firstToken == "set" && DataNode::IsConditionName(secondToken))
-		expressions.emplace_back(secondToken, "=", "1");
-	else if(firstToken == "clear" && DataNode::IsConditionName(secondToken))
-		expressions.emplace_back(secondToken, "=", "0");
-	else if(secondToken == "++" && DataNode::IsConditionName(firstToken))
-		expressions.emplace_back(firstToken, "+=", "1");
-	else if(secondToken == "--" && DataNode::IsConditionName(firstToken))
-		expressions.emplace_back(firstToken, "-=", "1");
+	// Nodes beyond this point should not have children.
+	if(node.HasChildren())
+		return FailParse(node, "unexpected child-nodes under arithmetic expression");
+
+	// Parse initial expression.
+	if(!ParseMini(node, tokenNr))
+		return FailParse();
+
+	// Check if we are done with just one expression.
+	if(tokenNr >= node.Size())
+		return true;
+
+	// If there are more tokens, then we need to have an infix operator here.
+	if(!ParseFromInfix(node, tokenNr, OP_AND))
+		return FailParse();
+
+	// Parsing from infix should have consumed and parsed all tokens.
+	if(tokenNr < node.Size())
+		return FailParse(node, "tokens found after parsing full expression");
+
+	return true;
+}
+
+
+
+bool ConditionSet::ParseBooleanChildren(const DataNode &node)
+{
+	if(!node.HasChildren())
+		return FailParse(node, "child-nodes expected, found none");
+	
+	// Load all child nodes.
+	for(const DataNode &child : node)
+	{
+		children.emplace_back();
+		children.back().ParseNode(child);
+
+		if(children.back().expressionOperator == OP_INVALID)
+			return FailParse();
+	}
+
+	// TODO: boolean optimizations. (For example pre-processing for nodes that never change.)
+	return true;
+}
+
+
+
+bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
+{
+	if(tokenNr >= node.Size())
+		return FailParse(node, "expected terminal or sub-expression, found none");
+
+	// Any (sub)expression should start with one of the following:
+	// - an opening bracket.
+	// - a literal number terminal.
+	// - an condition name terminal.
+	// - has keyword (but this is already handled at a higher level)
+	// - not keyword (but this is already handled at a higher level)
+
+	// Handle any first open bracket, if we had any.
+	bool hadOpenBracket = false;
+	if(node.Token(tokenNr) == "(")
+	{
+		hadOpenBracket = true;
+		++tokenNr;
+		if(tokenNr >= node.Size())
+			return FailParse(node, "missing sub-expression and closing bracket");
+	}
+
+	if(node.IsNumber(tokenNr))
+	{
+		expressionOperator = OP_LIT;
+		literal = node.Value(tokenNr);
+		++tokenNr;
+	}
+	else if(DataNode::IsConditionName(node.Token(tokenNr)))
+	{
+		expressionOperator = OP_VAR;
+		conditionName = node.Token(tokenNr);
+		++tokenNr;
+	}
+	else if(node.Token(tokenNr) == "(")
+	{
+		// We must already have handled an open-bracket to get here; this one goes into a sub-expression.
+		children.emplace_back();
+		children.back().ParseMini(node, tokenNr);
+	}
 	else
-		return false;
+		return FailParse(node, "expected terminal or open-bracket");
 
-	hasAssign |= !expressions.back().IsTestable();
-	return true;
-}
-
-
-
-// Add a simple condition expression to the list of expressions.
-bool ConditionSet::Add(const string &name, const string &op, const string &value)
-{
-	// If the operator is recognized, map it to a binary function.
-	BinFun fun = Op(op);
-	// For assignments we only allow condition-names on the left side.
-	// For all others we allow numbers and condition-names on both sides.
-	if(!fun || (!DataNode::IsConditionName(name) && !DataNode::IsNumber(name)) ||
-			(DataNode::IsNumber(name) && IsAssignment(op)) ||
-			(!DataNode::IsConditionName(value) && !DataNode::IsNumber(value)))
-		return false;
-
-	hasAssign |= !IsComparison(op);
-	expressions.emplace_back(name, op, value);
-	return true;
-}
-
-
-
-// Add a complex condition expression to the list of expressions.
-bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector<string> &rhs)
-{
-	BinFun fun = Op(op);
-	if(!fun)
-		return false;
-
-	hasAssign |= !IsComparison(op);
-	expressions.emplace_back(lhs, op, rhs);
-	return true;
-}
-
-
-
-// Constructor for complex expressions.
-ConditionSet::Expression::Expression(const vector<string> &left, const string &op, const vector<string> &right)
-	: op(op), fun(Op(op)), left(left), right(right)
-{
-}
-
-
-
-// Constructor for simple expressions.
-ConditionSet::Expression::Expression(const string &left, const string &op, const string &right)
-	: op(op), fun(Op(op)), left(left), right(right)
-{
-}
-
-
-
-void ConditionSet::Expression::Save(DataWriter &out) const
-{
-	for(const string &str : left.ToStrings())
-		out.WriteToken(str);
-	out.WriteToken(op);
-	for(const string &str : right.ToStrings())
-		out.WriteToken(str);
-	out.Write();
-}
-
-
-
-// Create a loggable string (for PrintTrace).
-string ConditionSet::Expression::ToString() const
-{
-	return left.ToString() + " \"" + op + "\" " + right.ToString();
-}
-
-
-
-// Checks if either side of the expression is tokenless.
-bool ConditionSet::Expression::IsEmpty() const
-{
-	return left.IsEmpty() || right.IsEmpty();
-}
-
-
-
-// Returns everything to the left of the main assignment or comparison operator.
-// In an assignment expression, this should be only a single token.
-string ConditionSet::Expression::Name() const
-{
-	return left.ToString();
-}
-
-
-
-// Returns true if the operator is a comparison and false otherwise.
-bool ConditionSet::Expression::IsTestable() const
-{
-	return IsComparison(op);
-}
-
-
-
-// Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
-bool ConditionSet::Expression::Test(const ConditionsStore &conditions) const
-{
-	int64_t lhs = left.Evaluate(conditions);
-	int64_t rhs = right.Evaluate(conditions);
-	return fun(lhs, rhs);
-}
-
-
-
-// Assign the computed value to the desired condition.
-void ConditionSet::Expression::Apply(ConditionsStore &conditions) const
-{
-	auto &c = conditions[Name()];
-	int64_t value = right.Evaluate(conditions);
-	c = fun(c, value);
-}
-
-
-
-// Constructor for one side of a complex expression (supports multiple simple operators and parentheses).
-ConditionSet::Expression::SubExpression::SubExpression(const vector<string> &side)
-{
-	if(side.empty())
-		return;
-
-	ParseSide(side);
-	GenerateSequence();
-}
-
-
-
-// Simple condition constructor. For legacy support of the 'never' condition,
-// replace the empty string argument with a bare quote.
-ConditionSet::Expression::SubExpression::SubExpression(const string &side)
-{
-	tokens.emplace_back(side.empty() ? "'" : side);
-}
-
-
-// Convert the tokens and operators back to a string, for use in logging.
-const string ConditionSet::Expression::SubExpression::ToString() const
-{
-	string out;
-	static const string SPACE = " ";
-	size_t i = 0;
-	for( ; i < operators.size(); ++i)
+	// Keep parsing until we get to the closing bracket, if we had an open bracket.
+	while(hadOpenBracket)
 	{
-		if(!tokens[i].empty())
+		if(tokenNr >= node.Size())
+			return FailParse(node, "missing closing bracket");
+		else if(node.Token(tokenNr) == ")")
 		{
-			out += tokens[i];
-			out += SPACE;
-		}
-		out += operators[i];
-		if(i != operators.size() - 1)
-			out += SPACE;
-	}
-	// The tokens vector contains more values than the operators vector.
-	for( ; i < tokens.size(); ++i)
-	{
-		if(i != 0)
-			out += SPACE;
-		out += tokens[i];
-	}
-	return out;
-}
-
-
-
-// Interleave the tokens and operators, for use in the save file.
-const vector<string> ConditionSet::Expression::SubExpression::ToStrings() const
-{
-	auto out = vector<string>();
-	out.reserve(tokens.size() + operators.size());
-	size_t i = 0;
-	for( ; i < operators.size(); ++i)
-	{
-		if(!tokens[i].empty())
-			out.emplace_back(tokens[i]);
-		out.emplace_back(operators[i]);
-	}
-	for( ; i < tokens.size(); ++i)
-		if(!tokens[i].empty())
-			out.emplace_back(tokens[i]);
-	return out;
-}
-
-
-// Check if this SubExpression was able to build correctly.
-bool ConditionSet::Expression::SubExpression::IsEmpty() const
-{
-	return tokens.empty();
-}
-
-
-
-// Evaluate the SubExpression using the given condition maps.
-int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions) const
-{
-	// Sanity check.
-	if(tokens.empty())
-		return 0;
-
-	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
-	// of only the condition or numeric value to be returned as-is after substitution.
-	auto data = SubstituteValues(tokens, conditions);
-
-	if(!sequence.empty())
-	{
-		// Each Operation adds to the end of the data vector.
-		data.reserve(operatorCount + data.size());
-		for(const Operation &op : sequence)
-			data.emplace_back(op.fun(data[op.a], data[op.b]));
-	}
-
-	return data.back();
-}
-
-
-
-// Parse the input vector into the tokens and operators vectors. Parentheses are
-// considered simple operators, and also insert an empty string into tokens.
-void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &side)
-{
-	static const string EMPTY;
-	int parentheses = 0;
-	// Construct the tokens and operators vectors.
-	for(size_t i = 0; i < side.size(); ++i)
-	{
-		if(side[i] == "(" || side[i] == ")")
-		{
-			// Ensure reconstruction by adding a blank token.
-			tokens.emplace_back(EMPTY);
-			operators.emplace_back(side[i]);
-			++parentheses;
-		}
-		else if(IsSimple(side[i]))
-		{
-			// Normal operators do not need a token insertion.
-			operators.emplace_back(side[i]);
-			++operatorCount;
+			// Remove the closing bracket.
+			++tokenNr;
+			hadOpenBracket = false;
 		}
 		else
-			tokens.emplace_back(side[i]);
+			// If there are more tokens, then we need to have an infix operator here.
+			// Use the precedence of the AND operator, since we want to parse to the closing bracket.
+			if(!ParseFromInfix(node, tokenNr, OP_AND))
+				return FailParse();
 	}
-
-	if(tokens.empty() || !operatorCount)
-		operators.clear();
-	else if(parentheses % 2 != 0)
-	{
-		// This should have been caught earlier, but just in case.
-		PrintConditionError(side);
-		tokens.clear();
-		operators.clear();
-	}
-	// Remove empty strings that wrap simple conditions, so any token
-	// wrapped by only parentheses simplifies to just the token.
-	if(operators.empty() && !tokens.empty())
-		tokens.erase(remove_if(tokens.begin(), tokens.end(),
-			[](const string &token) { return token.empty(); }), tokens.end());
+	return true;
 }
 
 
 
-// Parse the token and operators vectors to make the sequence vector.
-void ConditionSet::Expression::SubExpression::GenerateSequence()
+bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp)
 {
-	// Simple conditions have only a single token and no operators.
-	if(tokens.empty() || operators.empty())
-		return;
-	// Use a boolean vector to indicate when an operator has been used.
-	auto usedOps = vector<bool>(operators.size(), false);
-	// Read the operators vector just once by using a stack.
-	auto opStack = vector<size_t>();
-	// Store the data index for each Operation, for use by later Operations.
-	size_t destinationIndex = tokens.size();
-	auto dataDest = vector<int>(destinationIndex + operatorCount, -1);
-	size_t opIndex = 0;
-	while(!UsedAll(usedOps))
+	// Keep on parsing until we reach an end-state (error, end-of-tokens, closing-bracket, lower precedence token)
+	while(true)
 	{
-		while(true)
+		// At this point, we can expect one of the following:
+		// - an infix-operator
+		// - a closing bracket (hopefully matching an earlier open bracket)
+		// - end of the tokens.
+		
+		// Reaching the end is fine, since we should have parsed a full terminal before this one.
+		// Reaching a closing bracket also means we are done (the parent should handle it).
+		if(tokenNr >= node.Size() || node.Token(tokenNr) == ")")
+			return true;
+
+		// Consume token and process it.
+		ExpressionOp infixOp = ParseOperator(node.Token(tokenNr));
+		switch(infixOp)
 		{
-			// Stack ops until one of lower or equal precedence is found, then evaluate the higher one first.
-			if(opStack.empty() || operators.at(opIndex) == "("
-					|| (Precedence(operators.at(opIndex)) > Precedence(operators.at(opStack.back()))))
+			case OP_ADD:
+			case OP_SUB:
+			case OP_MUL:
+			case OP_DIV:
+			case OP_MOD:
+			case OP_EQ:
+			case OP_NE:
+			case OP_LE:
+			case OP_GE:
+			case OP_LT:
+			case OP_GT:
 			{
-				opStack.push_back(opIndex);
-				// Mark this operator as used and advance.
-				usedOps.at(opIndex++) = true;
-				break;
-			}
+				if(tokenNr + 1 >= node.Size())
+					return FailParse(node, "expected terminal after infix operator \"" + node.Token(tokenNr) + "\"");
 
-			size_t workingIndex = opStack.back();
-			opStack.pop_back();
-
-			// A left parentheses results in a no-op step.
-			if(operators.at(workingIndex) == "(")
-			{
-				if(operators.at(opIndex) != ")")
+				// If the precedence of the new operator is less or equal than the parents operator, then let the parent handle it.
+				if(Precedence(infixOp) <= Precedence(parentOp))
+					return true;
+				
+				// If the precedence of the new operator is higher than the current operator, then parse the next
+				// terminal into a new sub-expression.
+				if((children.size() > 1) && (Precedence(expressionOperator) < Precedence(infixOp)))
 				{
-					Logger::LogError("Did not find matched parentheses:");
-					PrintConditionError(ToStrings());
-					tokens.clear();
-					operators.clear();
-					sequence.clear();
-					return;
+					if(!PushDownLast(node))
+						return FailParse();
+					if(!children.back().ParseFromInfix(node, tokenNr, expressionOperator))
+						return FailParse();
+					// The parser for the sub-expression handled everything with higher precedence. Start the loop over
+					// to check what this parser needs to do next.
+					continue;
 				}
-				// "Use" the parentheses and advance operators.
-				usedOps.at(opIndex++) = true;
-				break;
-			}
-			else if(!AddOperation(dataDest, destinationIndex, workingIndex))
-				return;
-		}
-	}
-	// Handle remaining operators (which cannot be parentheses).
-	while(!opStack.empty())
-	{
-		size_t workingIndex = opStack.back();
-		opStack.pop_back();
 
-		if(operators.at(workingIndex) == "(" || operators.at(workingIndex) == ")")
-		{
-			Logger::LogError("Mismatched parentheses:" + ToString());
-			tokens.clear();
-			operators.clear();
-			sequence.clear();
-			return;
+				// If the expression currently contains a terminal, then push it down.
+				// Also push down the current expression if it has a higher or equal precedence to the new operator.
+				if((children.size() == 0) || (children.size() > 1 && Precedence(expressionOperator) >= Precedence(infixOp) && infixOp != expressionOperator))
+					if(!PushDownFull(node))
+						return FailParse();
+
+				// If this expression contains only a single sub-expression, then we can apply the operator directly.
+				if(children.size() == 1)
+					expressionOperator = infixOp;
+
+				// If we get the same operator as that we had, then let's just process it and continue the loop.
+				if(infixOp == expressionOperator)
+				{
+					++tokenNr;
+					if(!((children.emplace_back()).ParseMini(node, tokenNr)))
+						return FailParse();
+
+					continue;
+				}
+				return FailParse(node, "precedence confusion on infix operator");
+			}
+			default:
+				return FailParse(node, "expected infix operator instead of \"" + node.Token(tokenNr) + "\"");
 		}
-		else if(!AddOperation(dataDest, destinationIndex, workingIndex))
-			return;
 	}
-	// All operators and tokens should now have been used.
 }
 
 
 
-// Use a valid working index and data pointer vector to create an evaluable Operation.
-bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, size_t &index, const size_t &opIndex)
+bool ConditionSet::PushDownFull(const DataNode &node)
 {
-	// Obtain the operand indices. The operator is never a parentheses. The
-	// operator index never exceeds the size of the tokens vector.
-	size_t leftIndex = FindOperandIndex(tokens, data, opIndex, true);
-	size_t rightIndex = FindOperandIndex(tokens, data, opIndex, false);
-
-	// Bail out if the pointed token is in-bounds and empty.
-	if((leftIndex < tokens.size() && tokens.at(leftIndex).empty())
-			|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
-	{
-		Logger::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
-		PrintConditionError(tokens);
-		tokens.clear();
-		operators.clear();
-		sequence.clear();
-		return false;
-	}
-
-	// Record use of an operand by writing where its latest value is found.
-	data.at(leftIndex) = index;
-	data.at(rightIndex) = index;
-	// Create the Operation.
-	sequence.emplace_back(operators.at(opIndex), leftIndex, rightIndex);
-	// Update the pointed index for the next operation.
-	++index;
+	ConditionSet ce(*this);
+	children.clear();
+	children.emplace_back(ce);
+	expressionOperator = OP_AND;
 
 	return true;
 }
 
 
 
-// Constructor for an Operation, indicating the binary function and the
-// indices of its operands within the evaluation-time data vector.
-ConditionSet::Expression::SubExpression::Operation::Operation(const string &op, size_t &a, size_t &b)
-	: fun(Op(op)), a(a), b(b)
+bool ConditionSet::PushDownLast(const DataNode &node)
 {
+	// Can only perform push-down if there is at least one expression to push down.
+	if(children.empty())
+		return FailParse(node, "cannot create sub-expression from void");
+
+	ConditionSet ce = children.back();
+	children.pop_back();
+	children.emplace_back();
+	children.back().children.push_back(std::move(ce));
+	return true;
+}
+
+
+
+bool ConditionSet::FailParse()
+{
+	expressionOperator = OP_INVALID;
+	children.clear();
+	return false;
+}
+
+
+
+bool ConditionSet::FailParse(const DataNode &node, const string &failText)
+{
+	node.PrintTrace("Error: " + failText + ":");
+	return FailParse();
 }

@@ -60,7 +60,7 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no assignments are added from empty nodes" ) {
-			const std::string validationWarning = "Error: Loading empty (sub)condition:\ntoplevel\n\n";
+			const std::string validationWarning = "Error: Loading empty set of assignments\ntoplevel\n\n";
 			set.Load(AsDataNode("toplevel"));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
@@ -68,7 +68,7 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 			}
 		}
 		THEN( "no assignments are added from invalid nodes" ) {
-			const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+			const std::string validationWarning = "Error: Incomplete assignment\n";
 			const std::string invalidNodeText = "apply\n\thas";
 			const std::string invalidNodeTextInWarning = "apply\nL2:   has";
 			set.Load(AsDataNode(invalidNodeText));
