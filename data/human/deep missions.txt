@@ -5557,7 +5557,7 @@ mission "Hroar's Haulers 14"
 		label yngvarswears
 		`	Yngvar swears under his breath, "Syndicate Enforcers. Here to arrest as many of us as they can for trumped up charges, no doubt."`
 		`	He pulls himself to his feet and grumbles to you, "The best thing for the Haulers would be to just get out of this with as few of us arrested as possible. No brawls. That'd put the contract at risk."`
-		`	Yngvar puts his hands to his mouth, and his voice booms throghout the estbalishment, "Haulers, out!"`
+		`	Yngvar cups his mouth with his hands, and his voice booms throughout the establishment, "Haulers, out!"`
 		choice
 			`	(Follow Yngvar out.)`
 				goto leavewithyngvar
@@ -5585,8 +5585,42 @@ mission "Hroar's Haulers 14"
 		`	Ignoring Yngvar's command, you leap onto the table and pump your fist in the air.`
 		`	"Haulers!" Your voice cuts through the din and everyone, even the Enforcers, turn to look at you.`
 		choice
-		`	"`
+			`	"Leave no Hauler behind! Fight! Fight for your comrads!"`
+			`	"Send then back to the Gap!"`
+			`	"For Hroar!"`
+		
+		`	Your heroic words bounce harmlessly off the assembled crowd. If anything you seem to have deflated them. You hear a few mutters of, "Yngvar knows best," and "What's a greenhorn known about being a Hauler?"`
+		`	The unarrested Haulers quickly pile out of the Watering Hole, a few of them casting glances at you and shaking your head.`
+		choice
+			`	(Follow the Haulers out.)`
+				goto followhaulersout
+			`	(Fight the Enforcers alone.)`
+				goto fightalone
+			`	(Sit at your table.)`
+		`	The room quickly empties and you find yourself alone with a few remaining Syndicate Security guards who are filling out some digital paperwork. Every so often they look up at you with a pained expression. Finally, one of them approaches you.`
+		`	"Listen, we're not going to arrest you. We think you've suffered enough. Just go. Please."`
+		`	He points to the door. "It's just sad, ya know."`
+		choice
+			`	"Never!"`
+			`	"I refuse to yield to you jackboot thugs!"`
+				goto refusethugs
+			`	"Okay, thanks officer."`
+			`	"Yeah, yeah. I'll go."`
 
+		label followhaulersouts
+		`	Yngar, Bolverka, and a very drunk Gunhilda, with most of the Haulers, are gathered just outside the bar. Yngvar shakes his head as he sees you approach, and pulls you aside.`
+		`	"Brave and stupid are the same side of one sided coin. Bein' a Hauler is about knowing to choose your battles, and more importantly, knowin' about who will back in those battles."`
+		`	He sighs, "You're still a greeny, and you aint yet earned their respect. But there's time. Anyhow, we got bigger problems than your pride."`
+		`	Yngvar pushes into the middle of the Haulers and whistles until the their chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+			goto followyngvar
+
+		label fightalone
+		
 
 
 
