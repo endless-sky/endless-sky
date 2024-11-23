@@ -165,6 +165,10 @@ void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
+		// Let's just silently forget this condition that once existed, but that no longer has a valid name.
+		if(child.Token(0).starts_with("00 Spaceport Reminder: "))
+			continue;
+
 		if(!DataNode::IsConditionName(child.Token(0)))
 			child.PrintTrace("Invalid condition during savegame-load:");
 		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
