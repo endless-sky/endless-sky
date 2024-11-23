@@ -263,7 +263,7 @@ ship "Melodikos"
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
 
-	description "The Melodikos is a large passenger transport built on the same propulsion and structural frame as the Koryfi and Avlaki, but with a vastly enlarged solar array, as well as a spacious centrifuge habitat. Once used as an interplanetary cycler, it is now used for mass transit between the stars."
+	description "The Melodikos is a large passenger transport built around a similar propulsion and structural frame as the Koryfi and Avlaki, but with a vastly enlarged solar array, as well as a spacious centrifuge habitat. Once used as an interplanetary cycler, it is now used for mass transit between the stars."
 	description "While not as modular as the Koryfi and Avlaki designs, the Melodikos shares the same solar array and structural frame as the Harmonikos. Refits to swap the centrifuge for a set of cargo pods are uncommon due to the work involved, but still possible."
 	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Melodikos' constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
@@ -517,8 +517,8 @@ ship "Harmonikos"
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
 
-	description "The Harmonikos is a large freighter built on the same propulsion and structural frame as the Koryfi and Avlaki, but with a vastly enlarged solar array, as well as a huge assembly of cargo modules towed behind the main truss. Once used as an interplanetary cycler, it is now used for mass transit between the stars."
-	description "While not as modular as the Koryfi and Avlaki designs, the Harmonikos shares the same solar array and structural frame as the Melodikos. Refits to swap the centrifuge for a set of cargo pods are uncommon due to the work involved, but still possible."
+	description "The Harmonikos is a large freighter built around a similar propulsion and structural frame as the Koryfi and Avlaki, but with a vastly enlarged solar array, as well as a huge assembly of cargo modules towed behind the main truss. Once used as an interplanetary bulk freighter, it is now used for shipping cargo between the stars."
+	description "While not as modular as the Koryfi and Avlaki designs, the Harmonikos shares the same solar array and structural frame as the Melodikos. Its generous caro space is occasionally seen filled with equipment and bunks to create an ad-hoc passenger transport, albeit one lacking the artificial gravity of the Melodikos."
 	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Harmonikos' constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
 

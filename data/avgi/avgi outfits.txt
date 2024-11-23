@@ -426,7 +426,7 @@ outfit "Inductive Extractor"
 	licenses
 		"Avgi Torch"
 	"cost" 2760000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/inductive extractor"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
