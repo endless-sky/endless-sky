@@ -2106,14 +2106,12 @@ mission "Acorn Delights: Part 1"
 	minor
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
-	source
-		attributes "hai"
-		not planet "Stonebreak"
+	source "Allhome"
 	destination "Stonebreak"
 	passengers 1
 	cargo "acorn cookies" 3
 	to offer
-		random < 40
+		random < 85
 		has "First Contact: Unfettered: offered"
 	on offer
 		conversation
@@ -2186,7 +2184,7 @@ mission "Acorn Delights: Part 3"
 		has "Acorn Delights: Part 2: done"
 	on offer
 		conversation
-			`The Quarg on Alta Hai have a convenient information desk in the Alta Hai main spaceport. They tell Eeeya that Anoo was invited to study at Alta Hai, but turned down the offer for unknown reasons.`
+			`The Quarg on Alta Hai have a convenient information desk in the main spaceport. They tell Eeeya that Anoo was invited to study at Alta Hai, but turned down the offer for unknown reasons.`
 			`	Eeeya says, "If Anoo isn't studying, and isn't in a public hospital, she could be in the military. Let's go to Cloudfire and talk to the commanding officer."`
 				accept
 	on visit
@@ -2205,7 +2203,7 @@ mission "Acorn Delights: Part 4"
 		has "Acorn Delights: Part 3: done"
 	on offer
 		conversation
-			`Eeeya takes you to the visitor's office and asks to see the Cloudfire military commander. Upon refusal, Eeeya throws a fit; after an hour of her panicking they agree to let her speak with the commander.`
+			`Eeeya takes you to the visitor's office and asks to see the Cloudfire military commander. Upon refusal, Eeeya throws a fit; after an hour of her panic they agree to let her speak with the commander.`
 			`	After a few minutes, she comes back looking despondent, and you lead her back to the <ship>.`
 			`	"They said she doesn't work for them. I think they know where she is, but they won't tell me anything.`
 			`	"There's one more place we can try, but I don't think you're going to like it. She may have joined the Unfettered Hai."`
@@ -2215,7 +2213,7 @@ mission "Acorn Delights: Part 4"
 					goto mention
 				`	"Why would a doctor join a band of warmongers?"`
 					goto warmonger
-				`	"Let's go find her!"`
+				`	"As the honorable captain <first> <last>, I say let's go find her!"`
 					goto accept
 				`	"Unfettered space is too dangerous for me. You will have to find another captain."`
 					decline
@@ -2234,18 +2232,15 @@ mission "Acorn Delights: Part 4"
 			
 mission "Acorn Delights: Part 5"
 	landing
-	invisible
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
 	source "Darkcloak"
+	destination "Allhome"
 	passengers 1
-	cargo "acorn cookies" 3
 	to offer
 		has "Acorn Delights: Part 4: done"
 	on offer
-		"salary: Acorn Delights Dividends" = 500
-		payment 30000
-		log `Helped the famous Hai chef Eeeya find her granddaughter, a trauma surgeon named Anoo. Both joined the Unfettered hoping they can "set them on a more productive path." Received shares of Acorn Delights stock which pay 500 credits a day in dividends.`
+		payment 3000
 		conversation
 			`You're ushered from the landing platform to a nearby hospital when Eeeya finally manages to convey your intent. A few Unfettered Hai nearby are muttering in their language, and you keep hearing the Hai word for "cookies" as they watch Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. Unlike their southern brethren, it seems the Unfettered value function and progress over aesthetics and comfort like their southern brethren.`
 			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this hospital is to heal them quickly to fight again.`
@@ -2255,13 +2250,37 @@ mission "Acorn Delights: Part 5"
 			`	"They don't hate us in particular, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our race is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.` # "us in particular" should be changed to "us" and italicized if/when support for that is ever implemented.
 			`	"We think of them as mindless brutes, but they're not! They have scientists, doctors, musicians, and writers. Our resources dwarf theirs, but they thrive with what little they have. Soon the Unfettered will have many more planets and almost unlimited resources. The era of scarcity will be over, and they'll have the power to choose their future.`
 			`	"If enough good people join the Unfettered, we can change their minds and set them on a more productive path. They'll need good doctors."`
-			`	Eeeya smiles at her granddaughter. "They'll need a good cook too."`
+			`	"But-" Eeeya objects.`
 			choice
-				`	"I'm glad to have reunited you."`
-				`	"I'd like to be paid now."`
-			`	Eeeya turns to you and says, "I've found my new home, Captain <last>. I suppose payment is in order. I'm the owner of Eeeya's Acorn Delights, a luxury baked goods company based on Allhome. My apologies for not telling you before - I've been too worried.`
-			`	"I only have 30,000 credits with me, but I'll transfer some Acorn Delights stocks to your name. Your quarterly dividends will be divided into daily payments of 500 credits."`
-			`	Before you leave, Eeeya unpacks a feast of cookies for Anoo and her patients. Their aromatic fragrance quickly overpowers the wounds and suffering from war. Every cookie has perfect imperfections of crackled texture over the chewy center which melts into your mouth. If food could win wars, this would be the Unfettered's secret weapon.`
-				decline
+				`	"Anoo is right; the Unfettered are prestigous. I would recommend joining them."`
+					goto joinuhai
+				`	"There's no good reason to join the Unfettered. What have they ever done except kill innocent Hai?"`
+			`		goto "don't join"
+			label joinuhai
+			`	"Well... I really don't know... but how can I refuse when both my granddaughter and <first> tell me to?"`
+			choice
+				`	"Never mind, you're right. Joining the Unfettered is a bad idea after all."`
+				`	"I stand by my guns. The Unfettered are honorable."`
+					goto reallyjoin
+			label "don't join"
+			`	"I'm sorry, Anoo, but I really think Captain <first> is right. While the Unfettered may be kind enough to shelter Hai who come bereaved from their own shots, they do have much starvation. And also, I can't sell cookies here. I will come visit occasionally though.`
+			`	"Captain, could you take me back to <planet> please? I'd like to sign the forms and give you some stock in my Acorn Delights factory. In the meantime, here is <payment> for what you've done so far."`
+			choice
+				`	"I'd be glad to take you back."`
+				`	"I'll take you, but I'll notice that you haven't mentioned what we came so far for."`
+			`	Eeeya smiles at her granddaughter. "Before I leave, I was just reminded about a present I have for you." She leads you and Anoo back to <ship>. "Captain, could you open the cargo hold and take us inside?" Anoo is astonished at the tons of acorn cookies waiting for her inside. "Thank you so much, grandma!"`
+			choice
+				`	"We should get going."`
+			`	Eeeya turns to you and says, "You're right, we should. Thank you so much for reuniting us." She gives Anoo one last hug, and boards your ship.`
+				accept
+
+			label reallyjoin
+			action
+				set "acorn delights: eeeya has joined"
+			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the True Hai, which I have now decided to do. Could you take me back to <planet> so that I can sell off the factory? And Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies!"`
+			choice
+				`	"Sure thing. I'd be glad to take you back."`
+				
+	accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
