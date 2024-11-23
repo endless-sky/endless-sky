@@ -5148,7 +5148,7 @@ mission "Hroar's Haulers 14"
 		label unferthjerk
 		`	Captain Unferth's eyes narrow when he sees you approach, "Thought you were too good to mingle with us lowly dust-hounds. S'posing I should be thanking you for deigning to grace us with your presence?"`
 		`	Gunhilda sighs, "Don't mind him. We're all happy to have you keeping an eye on our oversized convoy."`
-		`	Unferth gulps down a shot,"Mayhaps. You might be mean, but Hartha-Hroar has an eye for talent. I'll work with anyone that man tells me to. Just be remebering whose side you're on when pirates show up."`
+		`	Unferth gulps down a shot, "Mayhaps. You might be a curr, but Hartha-Hroar has an eye for talent. I'll work with anyone that man tells me to. Just be remebering whose side you're on when pirates show up."`
 		choice
 			`	"Good. Glad you know your place."`
 			`	"I don't know why you're so upset. But you're lucky we're on the same side."`
@@ -5161,11 +5161,11 @@ mission "Hroar's Haulers 14"
 			goto nicesolvi
 		
 		label knowyourplace
-			`	Unferth shrugs and takes another shot, and wabbles away from you in disgust. He finds his way to four unstable Haulers who have launched into an impromptu drinking song. Unferth joins them with reckless vocal gusto.`
+			`	Unferth shrugs and takes another shot, and wabbles away from you in disgust. He finds his way to four euqally tipsy Haulers who have launched into an impromptu drinking song. Unferth joins them with reckless vocal gusto.`
 			goto gunhilda
 
 		label unferth
-		`	Captain Unferth's eyes light up when he sees you approach, "Why if it isn't the greenhorn, Captain <last>!" He slaps you on the back, "About time you joined us!"`
+		`	Captain Unferth's eyes light up when he sees you approach, "Why if it isn't the greenhorn, Captain <last>!" He slaps you on the back, "'Bout time you joined us!"`
 		`	Gunhilda shakes her head, "Don't mind him. We're all happy to have you keeping an eye on our oversized convoy."`
 		`	Unferth gulps down a shot, "Aint that the truth! You might be green, but Hartha-Hroar has an eye for talent. Glad you're on our side."`
 		label nicesolvi
@@ -5187,11 +5187,11 @@ mission "Hroar's Haulers 14"
 		label gunhilda
 		`	"Well, howdy there star-child." Gunhilda says as she saddles up next to you at the bar.`
 		`	She gives you an impish grin, her large gray eyes taking you in, and says, "You're not like the rest of us. Your aura dances in hues of royal purple and deep dreaming blues."`
-		`	She leans a little a closer to you, the alcohol thick on her breath," So, what's a royal dreamer such as yourself doing amongst us lowly rusty-brown haulers?"`
+		`	She leans a little a closer to you, the alcohol thick on her breath, "So, what's a royal dreamer such as yourself doing amongst us lowly rusty-brown haulers?"`
 		choice
 			`	(Tell her your story.)`
 		`	She slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littlest of them all."`
-		`	She sips her beer, "As with most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up onto one off-red whole."`
+		`	She sips her beer, "As with most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up into one off-red whole."`
 		`	Her eyes twinkle, "In other words, we're really just one large dysnfunctional family."`
 		choice
 			`	"I am not like Hroar."`
@@ -5201,12 +5201,12 @@ mission "Hroar's Haulers 14"
 			`	"So you're all related?"`
 		`	She laughs and pushes a strand of thick black hair back behind her ear, "Why, Captain <last>, it's a little early to be meeting my mom, isn't it?"`
 		`	Gunhilda downs her glass, her face flush with effects of alcohol, "Don't be so serious, my royal dreamer, I only kid. To answer your question; yes and no. It's all about your beginnings, you see."`
-		`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Or there are those who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, or trapped in beige tinted lives, that find their way to one of our mines on Muspel or Helheim. Those guest workers who work there up and into our extended family."`
+		`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Then there are those born strangers who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, trapped in beige tinted lives, that find their way to one of our mines on Muspel or Helheim. Those guest workers who work there up and into our red-tangled tribe."`
 		`	"However," she pauses to gulp down some of her refilled beverage, "it's not long before the new Haulers marry the old Haulers, and we're back to where we started, one big cosmic family."`
 			goto gunext
 
 		label hroar
-		`	"Now, now, my royal dreamer, it's all about perspective, isn't it? To some, he may appear to be a prickly man in a dive bar on a forgrettable world. But to others, a Prince of a dynasty, a leader to a clan of earth-and-starborn children that yearn for more than life's fetid lot. A harbinger of change, and heir to a better future. A royal dreamer."`
+		`	"Now, now, my royal dreamer, it's all about perspective, isn't it? To some, he may appear to be a prickly man in a dive bar on a forgrettable world. But to others; a Prince of a dynasty, a leader to a clan of earth-and-starborn children that yearn for more than life's fetid lot. A harbinger of change, and heir to a better future. A royal dreamer."`
 		`	She laughs and pushes a strand of thick black hair back behind her ear, "You see now, Captain <last>? Does that really sound so different from yourself?"`
 		choice
 			`	"I see now."`
@@ -5216,12 +5216,13 @@ mission "Hroar's Haulers 14"
 			goto gunext
 
 		label red
-		`	"My, Hroar really does like his greenhorns tender. Here you are leading us around without knowing the first thing about us." She knocks back another drink," To most it simply means being born, or raised a Hauler. Whether that be in the mines, or on the Haul. But it is more than that, it's about letting the red into your soul. I can see it, you know, even now in the majesty of your purple and blue aura, there is small dull redness in the pit of your heart. Will you let it in, royal dreamer? Will you truly become one of us?"`
+		`	"My, Hroar really does like his greenhorns tender. Here you are leading us around without knowing the first thing about us." She knocks back another drink, "To most it simply means being born, or raised a Hauler. Whether that be in the mines, or on the Haul. But it is more than that, it's about letting the red into your soul."`
+		`	She jabs you lightly in the arm, "I can see it, you know, even now in the iridescent majesty of your purple and blue aura, there is small dull redness in the pit of your heart. Will you let it in, royal dreamer? Will you truly become one of us?"`
 		`	She winks at you, "As for me, my mother was a miner on Muspel. I spent much of my childhood learning at her knee. Her aura was mix of red rocks and blue sky, of hard earth, and warm stars. And, I daresay, my aura is much the same. Just a child born on the red."`
 
 		label gunext
-		`	As Captain Gunhilda downs another drink your attention to drawn to loud arguing coming from the vicinity of Captain Unferth and his merry choir.`
-		`	Arguing turns to screams as batons flash in the crowd before you. You hear Yngvar's clear voice cut through the noise.`
+		`	As Captain Gunhilda downs another drink your attention is to drawn to loud arguing coming from the vicinity of Captain Unferth and his merry choir.`
+		`	Arguing turns to screams as batons flash in the crowd before you. You hear Yngvar's clear voice cut through the din.`
 		`	"Haulers, out!"`
 		`	Gunhilda is swaying next to you, clearly unaware of what is going on.`
 		choice
@@ -5230,8 +5231,8 @@ mission "Hroar's Haulers 14"
 			`	(Try to help Gunhilda to the exit.)`
 				goto helpgun
 			`	(Stay with Gunhilda.)`
-		`	Gunhilda while nursing another drink, is talking aimlessly about the time she and her ma,  "found the motherlode on Muspel". The aruging and shouts draws nearer and nearer to you. Four riot-gear toting Syndicate Enforcers surround both of you.`
-		`	"You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment." The nearest one nearly shouts.`
+		`	Gunhilda while nursing another drink, is talking aimlessly about the time she and her ma, "found the motherlode on Muspel". The aruging and shouts draws nearer and nearer to you. Four riot-gear toting Syndicate Enforcers surround both of you.`
+		`	"You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment." The nearest one shouts.`
 		choice
 			`	(Comply.)`
 				goto comply
@@ -5258,9 +5259,9 @@ mission "Hroar's Haulers 14"
 
 		label "50 percent chance"
 		`	You do your best to help Gunhilda to her feet, but she's sluggish and confused. "Wh-what are you..?"`
-		`	Unsteadily you manage to get your arm around her to help her toward the exit. However, after on a few steps she stumbles and pulls you down with her.`
-		`	The two of you awkwardly fall to the floor in a heap of misplaced appendages. You try to untangle yourself from Gunhilda, but before you can you feel a boot on your chest.`
-		`	Four baton-wielding membeters of the Syndicate Enforcers are looming over. The one with her foot on your chest gives you a cheerless grin, "You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment."`
+		`	Unsteadily you manage to get your arm around her to help her toward the exit. However, after only a few steps she stumbles and pulls you down with her.`
+		`	The two of you awkwardly fall to the floor in a heap of misplaced appendages. You try to untangle yourself from Gunhilda, but before you can, you feel a boot on your chest.`
+		`	Four baton-wielding members of the Syndicate Enforcers are looming over. The one with her foot on your chest gives you a cheerless grin, "You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment."`
 		choice
 			`	(Comply)`
 				goto comply
@@ -5309,13 +5310,13 @@ mission "Hroar's Haulers 14"
 			`	(Say nothing.)`
 		`	Solvi laughs and holds up his hands, "Alright! Alright! The Ballad of Hel-Hrut it is!"`
 		`	Solvi launches, alone, into song, "Before the rust, when we nearly went bust, and the contracts sank, and bank went blank - who should appear and show no fear, but..."`
-		`	"Hel-Hruty!" The crowd, larger now than earlier, roared.`
+		`	"Hel-Hruty!" The crowd, larger now, roars.`
 		`	Captain Unferth continued, "When the lanes went dark, and the stars wouldn't spark, and the Syndies came and took our mark - who stood tall and refused to fall, but..."`
 		choice
 			`	"Hel-Hruty!"`
 			`	(Say nothing.)`
 		`	"Hel-Hruty!" The majority of the Haulers in the Watering Hole all shout in unison.`
-		`	You notice what look like local police quietly filing into the bar from a back entrance.`
+		`	You notice what looks like local police quietly filing into the bar from a back entrance.`
 		`	"Who led his crew into the maw! Who battled the Syndies and won it all! Who brought back the largest Long Haul, but..."`
 		choice
 			`	"Hel-Hruty!"`
