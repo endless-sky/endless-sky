@@ -2276,7 +2276,7 @@ mission "Acorn Delights: Part 5"
 
 			label reallyjoin
 			action
-				set "acorn delights: eeeya has joined"
+				set "acorn delights: eeeya joined"
 			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the True Hai, which I have now decided to do. Could you take me back to <planet> so that I can sell off the factory? And Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies!"`
 			choice
 				`	"Sure thing. I'd be glad to take you back."`
@@ -2284,3 +2284,36 @@ mission "Acorn Delights: Part 5"
 	accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
+
+mission "Acorn Delights: Part 6"
+	name "Eeeya to Anoo"
+	description "Bring Eeeya to <destination> to join the Unfettered and be near her granddaughter."
+	landing
+	clearance `The Darkcloak flight controller lets you land when they hear that Eeeya is joining the Unfettered.`
+	source "Allhome"
+	destination "Darkcloak"
+	passengers 1
+	to offer
+		has "Acorn Delights: Part 5: done"
+	on offer
+		conversation
+			branch uhai
+				has "acorn delights: eeeya joined"
+			action
+				"salary: Acorn Delights" = 250
+			`Eeeya immediately gets off the ship and goes to check on the acorn cookie shop. A few minutes later, she is back with documents for you to sign.`
+			`	"These will set you up with about a tenth of the stock in my company; you'll receive two hundred and fifty credits daily." As you sign the documents, she continues, "I'd just like to thank you again for helping me find Anoo. It means a lot." You check that the stocks have been transferred to your account, and Eeeya heads off.`
+				decline
+			label uhai
+			`Eeeya heads off to sell Acorn Delights' shop while you finish the landing procedure. Soon, she is back. "Well, there was a Hai who paid thirty million credits for that small place. I wonder why he thought it was worth so much - I sure don't. But I won't argue with that nutty person." She seems much merrier now that Anoo has been found. "I'll be ready to go when you are."`
+				accept
+	on complete
+		payment 1000000
+		conversation
+			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits. But before you are allowed to leave your ship, an Unfettered security officer arrives. "`
+				goto questions
+			label accept
+			`	"If Anoo went anywhere, it would be Darkcloak. The largest Unfettered hospital is there. Many soldiers come back from raids injured on Darkcloak. A trauma surgeon would have a lot of work to do."`
+				accept
+	on visit
+		dialog "Eeeya is not in the system. Maybe she's in one of your escorts?"
