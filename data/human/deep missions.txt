@@ -5602,7 +5602,7 @@ mission "Hroar's Haulers 14"
 		`	He points to the door. "It's just sad, ya know."`
 		choice
 			`	"Never!"`
-			`	"I refuse to yield to you jackboot thugs!"`
+			`	"I refuse to yield to jackboot thugs!"`
 				goto refusethugs
 			`	"Okay, thanks officer."`
 			`	"Yeah, yeah. I'll go."`
@@ -5620,7 +5620,7 @@ mission "Hroar's Haulers 14"
 			goto followyngvar
 
 		label fightalone
-		
+
 
 
 
