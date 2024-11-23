@@ -54,7 +54,7 @@ mission "Korath Far'en Lai Prayer"
 				`	"I'm sorry, but I have nothing to offer. Goodbye."`
 					goto end
 			`	You remember the picture of your hometown back in <starting planet> you tend to carry around, and start searching for it. Sure enough, you find it inside your back pocket, straighten it out as best as you can, and go to add it to the pile. The Korath stops you, however, holding your arm, and stretching her hand carefully, as if asking for the picture. You hand it to her, and she brings it very close to her eyes. The elderly Korath who wailed before appears beside her, and she shows him the picture. He seems to stare at it for minutes on end, and you begin to wonder if you somehow offended them with your choice. Then, he hands her back the picture, and seems to nod slightly. She heads close to the shrine, and places the picture at the top level, with the feather, shell and flower. The elderly Korath faces you, looking deeply into your eyes, then raises his palms toward you, letting out a faint bark. You notice all other Korath around the shrine are doing the same. When they've all acknowledged your contribution, the Korath who drew the spiral arms comes to you again, looking thoroughly impressed.`
-        goto end
+				goto end
 			label "small credits"
 			action
 				payment -100
