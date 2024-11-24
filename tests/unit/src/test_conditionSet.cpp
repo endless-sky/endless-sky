@@ -187,39 +187,42 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 }
 
 SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage]" ) {
+	const auto storeWithData = ConditionsStore {
+		{"event: war begins", 1},
+		{"someData", 100},
+	};
+
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
 		REQUIRE( emptySet.IsValid() );
 
 		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyConditionList = ConditionsStore{};
+			const auto emptyStore = ConditionsStore{};
 			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(emptyConditionList) );
+				REQUIRE( emptySet.Test(emptyStore) );
 				REQUIRE( emptySet.IsValid() );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = ConditionsStore {
-				{"event: war begins", 1},
-			};
 			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(conditionList) );
+				REQUIRE( emptySet.Test(storeWithData) );
 				REQUIRE( emptySet.IsValid() );
 			}
 		}
 	}
 	GIVEN( "a set containing 'never'" ) {
+		// This test might need to be removed once keywords cannot be used as conditions.
 		const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 		REQUIRE( neverSet.IsValid() );				
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionsStore {
+			const auto storeWithNever = ConditionsStore {
 				{"never", 1},
 			};
 			THEN( "the ConditionSet is not satisfied" ) {
-				REQUIRE_FALSE( neverSet.Test(listWithNever) );
+				REQUIRE_FALSE( neverSet.Test(storeWithNever) );
 				REQUIRE( neverSet.IsValid() );
 			}
 		}
@@ -230,9 +233,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( numberSet.IsEmpty() );
 		REQUIRE( numberSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE( numberSet.Test(storeWithData) );
 				REQUIRE( numberSet.IsValid() );
@@ -245,9 +245,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 8 );
@@ -258,9 +255,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 56 );
@@ -271,9 +265,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 3840 );
@@ -284,9 +275,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 20 );
@@ -297,9 +285,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 50 );
@@ -310,9 +295,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 28 );
@@ -323,9 +305,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
 		REQUIRE( arithmeticSet.IsValid() );
 		THEN( "The condition evaluates to the correct number" ) {
-			const auto storeWithData = ConditionsStore {
-				{"someData", 100},
-			};
 			REQUIRE( arithmeticSet.Test(storeWithData) );
 			REQUIRE( arithmeticSet.IsValid() );
 			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 64 );
