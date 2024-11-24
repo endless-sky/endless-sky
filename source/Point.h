@@ -50,11 +50,16 @@ public:
 	friend Point operator*(double scalar, const Point &point);
 	Point &operator*=(double scalar);
 	Point operator/(double scalar) const;
+	friend Point operator/(double scalar, const Point &point);
 	Point &operator/=(double scalar);
 
 	// Multiply the respective components of each Point.
 	Point operator*(const Point &other) const;
 	Point &operator*=(const Point &other);
+
+	// Divide the respective components by another Point
+	Point operator/(const Point &other) const;
+	Point &operator/=(const Point &other);
 
 	double &X();
 	const double &X() const noexcept;
