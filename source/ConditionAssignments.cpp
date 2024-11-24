@@ -121,10 +121,10 @@ void ConditionAssignments::Apply(ConditionsStore &conditions) const
 				ce = static_cast<int64_t>(ce) / newValue;
 				break;
 			case AO_LT:
-				ce = max(static_cast<int64_t>(ce), newValue);
+				ce = min(static_cast<int64_t>(ce), newValue);
 				break;
 			case AO_GT:
-				ce = min(static_cast<int64_t>(ce), newValue);
+				ce = max(static_cast<int64_t>(ce), newValue);
 				break;
 		}
 	}

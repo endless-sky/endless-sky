@@ -116,6 +116,30 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 			CHECK( store["year"] == 3013 );
 		}
 	}
+	GIVEN( "valid ConditionAssignments" ) {
+		auto storeWithData = ConditionsStore {
+			{"event: war begins", 1},
+			{"someData", 100},
+			{"moreData", 100},
+			{"otherData", 100},
+		};
+
+		auto expressionAndOutcome = GENERATE(table<std::string, std::string, int64_t>({
+			{"year = 3013", "year", 3013},
+			{"myVariable = -223", "myVariable", -223},
+			{"someData >?= -223", "someData", 100},
+			{"someData <?= -223", "someData", -223},
+			{"someData += 223", "someData", 323},
+			{"someData -= 223", "someData", -123},
+			{"someData /= 50", "someData", 2},
+		}));
+
+		const auto applySet = ConditionAssignments{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndOutcome))};
+		THEN( "The expression \'" + std::get<0>(expressionAndOutcome) + "\' assigns the expected number" ) {
+			applySet.Apply(storeWithData);
+			REQUIRE( storeWithData[std::get<1>(expressionAndOutcome)] == std::get<2>(expressionAndOutcome) );
+		}
+	}
 }
 
 // #endregion unit tests
