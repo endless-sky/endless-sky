@@ -503,7 +503,10 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame, unit);
+	{
+		int swizzle = info.GetSwizzle(name);
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), swizzle, frame, unit);
+	}
 }
 
 
@@ -623,7 +626,7 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 {
 	if(buttonKey && panel)
-		panel->AddZone(bounds, buttonKey);
+		panel->AddZone(bounds, buttonKey, {visibleIf, activeIf});
 }
 
 
