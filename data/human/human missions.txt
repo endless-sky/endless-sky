@@ -9003,7 +9003,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label getmed
 			action
 				set "med2"
-				"timothy radrickson medicine" = 2
+				"timothy radrickson	medicine" = 2
 				payment -50000
 			`	"Trust me, it's still good," the drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
 				goto greenoptions
