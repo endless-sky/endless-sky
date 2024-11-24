@@ -990,7 +990,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
-		"frame rate" 7.5
+		"frame rate" 12
 	thumbnail "thumbnail/avgi tachytia"
 	attributes
 		category "Utility"
@@ -1036,16 +1036,16 @@ ship "Modified Tachytia"
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
-	turret 36 183 "Blue Optical Laser"
-	turret -36 183 "Blue Optical Laser"
-	turret -44 354 "Blue Optical Laser"
-	turret 44 354 "Blue Optical Laser"
-	turret -28.5 -333 "Blue Optical Laser"
-	turret 28.5 -333 "Blue Optical Laser"
-	turret 0 6 "Green Optical Laser"
-	turret 0 -367 "Green Optical Laser"
-	turret 0 480 "Green Optical Laser"
 	gun 0 -384 "Plasmadyne Ramscoop"
+	turret -27 162 "Blue Optical Laser"
+	turret 27 162 "Blue Optical Laser"
+	turret -27 -324 "Blue Optical Laser"
+	turret 27 -324 "Blue Optical Laser"
+	turret -42 330 "Blue Optical Laser"
+	turret 42 330 "Blue Optical Laser"
+	turret 0 -3 "Green Optical Laser"
+	turret 0 -360 "Green Optical Laser"
+	turret 0 450 "Green Optical Laser"
 
 	bay "Drone" -18 420
 	bay "Drone" 18 420
@@ -1064,16 +1064,16 @@ ship "Modified Tachytia"
 	bay "Fighter" -21 459
 	bay "Fighter" 21 459
 
-	engine -215 -475
+	engine -201 -465
 		angle 9
 		zoom 2
-	engine 215 -475
+	engine 201 -465
 		angle -9
 		zoom 2
-	engine -186 -450
+	engine -177 -435
 		angle 9
 		zoom 2
-	engine 186 -450
+	engine 177 -435
 		angle -9
 		zoom 2
 
