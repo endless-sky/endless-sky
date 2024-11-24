@@ -900,8 +900,8 @@ mission "Avgi: Atomics Testing 1"
 					goto actually
 					to display
 						or
-							has: "FW Syndicate Capture 1B: offered"
-							has: "FWC Cebalrai 1: offered"
+							has "FW Syndicate Capture 1B: offered"
+							has "FWC Cebalrai 1: offered"
 
 			label actually
 			`	"Surprise. I thought you had some kind of taboo around them, no?"`
