@@ -5544,7 +5544,7 @@ mission "Hroar's Haulers 14"
 		`	"Hel-Hruty!" nearly the entire bar chants back.`
 		`	Yngvar, hearing it, scowls. Bolverka puts her hand on his.`
 		`	"Let them have their fun." She says softly to Yngvar.`
-		`	"Hrut, that damned fool." Yngvar growls and then holds up his radation burnt hand,"If he just listened to me we could have saved so many, he could have been..."`
+		`	"Hrut, that damned fool." Yngvar growls and then holds up his radation burnt hand, "If he'd a just listened to me we could have saved so many, he could have been..."`
 		`	Yngvar stops talking as the singing abruptly dies out. He stands up and peers across the bar. You look and notice multiple people in riot gear have surrounded Captain Unferth and those nearest him.`
 			goto yngvarswears
 
@@ -5590,7 +5590,7 @@ mission "Hroar's Haulers 14"
 			`	"For Hroar!"`
 		
 		`	Your heroic words bounce harmlessly off the assembled crowd. If anything you seem to have deflated them. You hear a few mutters of, "Yngvar knows best," and "What's a greenhorn known about being a Hauler?"`
-		`	The unarrested Haulers quickly pile out of the Watering Hole, a few of them casting glances at you and shaking your head.`
+		`	The unarrested Haulers quickly pile out of the Watering Hole, a few of them casting glances at you and shaking their heads.`
 		choice
 			`	(Follow the Haulers out.)`
 				goto followhaulersout
@@ -5620,6 +5620,39 @@ mission "Hroar's Haulers 14"
 			goto followyngvar
 
 		label fightalone
+		`	You dive head first in the column of Syndicate Enforcers. Despite your enthuasiam, they outnumber you 20 to 1. You are quickly, and easily detained. They don't even deign to strike you with their batons. You're not the worth the trouble. The drag you, along with the other Hauler's they've arrested, to their holding area.`
+			goto arrested
+
+		label refusethugs
+		`	The Enforcer sighs, and with the help of their partner pull you out of your seat and handcuff you.`
+		`	"You're in violation of Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment. You're coming with us." One of the Enforcers say as they drag you toward the exit, and the waiting holding cell.`
+			goto arrested
+
+		label fightnice
+		`	Ignoring Yngvar's command, you leap onto the table and pump your fist in the air.`
+		`	"Haulers!" Your voice cuts through the din and everyone, even the Enforcers, turn to look at you.`
+		choice
+			`	"Leave no Hauler behind! Fight! Fight for your comrads!"`
+			`	"Send then back to the Gap!"`
+			`	"For Hroar!"`
+		`	From somewhere near the front of the bar you hear loud familiar voice of Captain Unferth, "You heard the hirthr! Let's make these Syndies see red!"`
+		`	The Hauler host roars in eager agreement and suddenly everything about the skrimish changes. The officers and crews from your huge convoy surge into the outnumbered and beleguared Syndicate Enforcers.`
+		`	Throughout the fighting various chants and warcries can be heard.`
+		`	"For Hroar!"`
+		`	"For Hel-Hrut!"`
+		`	"For the Haulers!"`
+		`	Finally, some silent order must have been given, as the Enforcers give up their positions and retreat en masse.`
+		`	Sudden cheers fill the bar and various hands clap you on the back. Bruised and bloody Yngvar makes his way to you.`
+		choice
+			`	"Looks like you stayed and fought after all."`
+				goto stayedandfought
+			`	"What do we do now?"`
+			`	(Say nothing.)`
+				goto timetogo
+		
+		label followyngvar
+		`	Yngvar walks with a certainty borne out of familiarity. It's obvious he knows the way to the holding cells, this is not the first time he's had to deal with the local Syndicate leaders here.`
+		`	`
 
 
 
