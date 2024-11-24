@@ -213,12 +213,16 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			}
 		}
 	}
-	GIVEN( " various correct expression(s) as conditionSet " ) {
+	GIVEN( "various correct expression(s) as conditionSet" ) {
 		auto expressionAndAnswer = GENERATE(table<std::string, int64_t>({
+
+			// Tests with simple expressions.
 			{"never", 0},
 			{"0", 0},
 			{"1", 1},
 			{"2", 2},
+
+			// Add and multiply arithmetic tests.
 			{"2 + 6", 8},
 			{"2 + 6 + 8 + 40", 56},
 			{"2 * 6 * 8 * 40", 3840},
@@ -229,11 +233,15 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"100 - 100", 0},
 			{"100 - 200", -100},
 			{"100 + -200", -100},
+
+			// Division and multiply tests.
 			{"60 / 5", 12},
 			{"60 / 5 / 3", 4},
 			{"60 % 5", 0},
 			{"60 % 0", 60},
 			{"60 % 50", 10},
+
+			// Tests for comparisons.
 			{"10 > 20", 0},
 			{"10 < 20", 1},
 			{"10 == 20", 0},
@@ -242,6 +250,8 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"10 == 10", 1},
 			{"10 >= 10", 1},
 			{"10 <= 10", 1},
+
+			// Tests with variables.
 			{"someData + 5 > moreData", 1},
 			{"someData + 5 < moreData", 0},
 			{"someData <= moreData", 1},
@@ -255,12 +265,23 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"otherData - 10 - 50 + -200", -160},
 			{"otherData - otherData", 0},
 			{"10 * otherData", 1000},
+
+			// Some tests for brackets
 			{"( ( ( ( 1000 ) ) ) )", 1000},
 			{"( ( 20 - ( ( 1000 ) ) + 50 ) )", -930},
 			{"( ( 20 - ( 1 ) ) ) + ( ( 1000 ) ) + 50", 1069},
+
+			// Tests for and and or conditions, the first one is the implicit version.
+			{"3\n\t2\n\t5", 3},
+			{"and\n\t\t11\n\t\t2\n\\tt5", 11},
+			{"and\n\t\t14\n\t\t0\n\\tt5", 0},
+			{"or\n\t\t8\n\t\t2\n\\tt5", 8},
+			{"or\n\t\t9\n\t\t0\n\\tt5", 9},
+
 			// Black magic below; parser might need to handle this, but nobody should ever write comparisons like this.
 			{"1 > 2 == 0", 1},
 			{"11 == 11 == 1", 1},
+
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer))};
 		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
