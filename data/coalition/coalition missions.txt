@@ -3217,7 +3217,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 	on stopover
 		payment -40
 		conversation
-                       `You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Kachachee.`
+			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Kachachee.`
 	on complete
 		event "coalition citizens discover fangvin" 20 40
 		payment 180000
@@ -3271,11 +3271,11 @@ mission "Coalition: Book Discovered 2"
 				`	(Forget about it.)`
 					decline
 			label "another copy"
-			`	You meet Anna once again, and ask her for another copy of Beyond the Hyperdrive. You mention that you have a friend named Kachachee who wanted you to provide them with a copy. Accepting this explanation, Anna takes out another copy, signs it, and gives it to you.`
+			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, I don't think there will even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of Beyond the Hyperdrive to <destination>. You should head there to receive it and gift it to Kachachee.`
 				accept
 	on complete
 		conversation
-			`You get in contact with Kachachee again, informing them you have a copy of Beyond the Hyperdrive. They respond, telling you to meet them at a public square within the spaceport.`
+			`After receiving the book from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of Beyond the Hyperdrive. They respond, telling you to meet them at a public square within the spaceport.`
 			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 		payment 7000
 
