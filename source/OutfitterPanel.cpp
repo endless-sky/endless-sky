@@ -600,7 +600,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 	int i = 1;
 	for(const auto &[shipName, errors] : dependentOutfitErrors)
 	{
-		if (playerShips.size() > 1)
+		if(playerShips.size() > 1)
 		{
 			errorMessage += to_string(i++) + ". You cannot " + verb + " this outfit from \"";
 			errorMessage += shipName + "\" because:\n";
