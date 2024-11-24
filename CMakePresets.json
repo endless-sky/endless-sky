@@ -218,6 +218,22 @@
 			}
 		},
 		{
+			"name": "macos-arm-ci",
+			"displayName": "MacOS ARM CI",
+			"description": "Builds for MacOS ARM for CI purposes",
+			"inherits": "ci",
+			"architecture": {
+				"value": "arm64",
+				"strategy": "external"
+			},
+			"cacheVariables": {
+				"VCPKG_HOST_TRIPLET": "macos-arm64-ci",
+				"VCPKG_TARGET_TRIPLET": "macos-arm64-ci",
+				"CMAKE_OSX_ARCHITECTURES": "arm64",
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "11"
+			}
+		},
+		{
 			"name": "clang-cl-ci",
 			"displayName": "clang-cl CI",
 			"description": "Builds with clang-cl for CI purposes",
@@ -432,6 +448,12 @@
 			"name": "macos-ci",
 			"displayName": "MacOS CI build",
 			"configurePreset": "macos-ci",
+			"inherits": "ci"
+		},
+		{
+			"name": "macos-arm-ci",
+			"displayName": "MacOS ARM CI build",
+			"configurePreset": "macos-arm-ci",
 			"inherits": "ci"
 		},
 		{
@@ -842,6 +864,18 @@
 			"name": "macos-ci-benchmark",
 			"displayName": "MacOS CI Benchmarks",
 			"configurePreset": "macos-ci",
+			"inherits": "ci-benchmark"
+		},
+		{
+			"name": "macos-arm-ci",
+			"displayName": "MacOS CI Tests",
+			"configurePreset": "macos-arm-ci",
+			"inherits": "ci-integration"
+		},
+		{
+			"name": "macos-arm-ci-benchmark",
+			"displayName": "MacOS ARM CI Benchmarks",
+			"configurePreset": "macos-arm-ci",
 			"inherits": "ci-benchmark"
 		},
 		{
