@@ -3824,9 +3824,9 @@ mission "Remnant: Logistics 1"
 		has "Remnant: Defense 1: done"
 	on offer
 		conversation
-			`You step out of the <ship> amidst the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
+			`You step into the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
 			`	The woman working the desk seems startled to see you when you walk up. You can see the realization dawn on her as she looks you over with a practiced eye. "Ah," she sings, "you are the ancestral sojourner among us."`
-			`	It is typical for people to gawk at you, so you respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
+			`	It is typical for people to gawk at you, so you respond by singing, "I've been guided to friends I didn't know, and your message invited me to meet a new one."`
 			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she sings, "Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
 			choice
 				`	"Certainly!"`
