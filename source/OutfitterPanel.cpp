@@ -552,11 +552,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 		if(ShipCanRemove(ship, selectedOutfit))
 			return true;
 
-	// Something is being blocked from being sold or we don't have any.
-	// Check if we have one available or not, and then whether other outfit depend on it,
-	// if so dependent outfits must be uninstalled first.
-	// Collect the reasons that the outfit can't be sold or uninstalled.
-	vector<string> errors;
+	// None of the selected ships have any of this outfit in a state where it could be sold.
+	// Either none of the ships even have the outfit:
 	bool hasOutfit = false;
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(selectedOutfit))
@@ -568,40 +565,49 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 	if(!hasOutfit)
 		return "You don't have any of these outfits to " + verb + ".";
 
+	// At least one of the outfit is installed on at least one of the selected ships.
+	// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
+	// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
+	// <verb>'d. Make a list of ship to errors to assemble into a string later on:
+	vector<pair<string, vector<string>>> dependentOutfitErrors;
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(selectedOutfit))
+		{
+			vector<string> errorDetails = {};
 			for(const pair<const char *, double> &it : selectedOutfit->Attributes())
 				if(ship->Attributes().Get(it.first) < it.second)
 				{
-					bool detailsFound = false;
 					for(const auto &sit : ship->Outfits())
-						if(sit.first->Get(it.first) < 0.)
-						{
-							errors.push_back("You cannot " + verb + " this outfit, "
-								"because that would cause your ship \"" + ship->Name() + "\"'s " +
-								"\"" + it.first + "\" value to be reduced to less than zero. " +
-								"To " + verb + " this outfit, you must " + verb + " the " +
-								sit.first->DisplayName() + " outfit first.");
-							detailsFound = true;
-						}
-					if(!detailsFound)
 					{
-						errors.push_back("You cannot " + verb + " this outfit, "
-							"because that would cause your ship \"" + ship->Name() + "\"'s \"" +
-							it.first + "\" value to be reduced to less than zero.");
+						if(sit.first->Get(it.first) < 0.)
+							errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
+								"depends on this outfit and must be uninstalled first");
 					}
+					if(errorDetails.empty())
+						errorDetails.emplace_back(
+							string("\"") + it.first + "\" value would be reduced to less than zero");
 				}
+			if(!errorDetails.empty())
+				dependentOutfitErrors.emplace_back(pair<string, vector<string>>{ship->Name(), errorDetails});
+		}
 
 	// Return the errors in the appropriate format.
-	if(errors.empty())
+	if(dependentOutfitErrors.empty())
 		return true;
 
-	if(errors.size() == 1)
-		return errors[0];
-
-	string errorMessage = "There are several reasons why you cannot " + verb + " this outfit:\n";
-	for(const auto & error : errors)
-		errorMessage += "- " + error + "\n";
+	string errorMessage = "You cannot " + verb + " this from " +
+		((playerShips.size() > 1) ? "any of the selected ships" : "your ship") + " because:\n";
+	int i = 1;
+	for(const auto &[shipName, errors] : dependentOutfitErrors)
+	{
+		if (playerShips.size() > 1)
+		{
+			errorMessage += to_string(i++) + ". You cannot " + verb + " this outfit from \"";
+			errorMessage += shipName + "\" because:\n";
+		}
+		for(const string &error : errors)
+			errorMessage += "- " + error + "\n";
+	}
 	return errorMessage;
 }
 
