@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <numeric>
 #include <utility>
 #include <set>
 
@@ -31,6 +32,33 @@ using namespace std;
 
 namespace
 {
+	typedef int64_t (*BinFun)(int64_t, int64_t);
+	BinFun Op(ConditionSet::ExpressionOp op)
+	{
+		// This map defines functions that each "operator" should be mapped to.
+		// In each function "a" is the condition's current value and "b" is the
+		// integer value given as the other argument of the operator.
+		// Test operators return 0 (false) or 1 (true).
+		// "Apply" operators return the value that the condition should have
+		// after applying the expression.
+		static const map<ConditionSet::ExpressionOp, BinFun> opMap = {
+			{ConditionSet::ExpressionOp::OP_EQ, [](int64_t a, int64_t b) -> int64_t { return a == b; }},
+			{ConditionSet::ExpressionOp::OP_NE, [](int64_t a, int64_t b) -> int64_t { return a != b; }},
+			{ConditionSet::ExpressionOp::OP_GT, [](int64_t a, int64_t b) -> int64_t { return a < b; }},
+			{ConditionSet::ExpressionOp::OP_LT, [](int64_t a, int64_t b) -> int64_t { return a > b; }},
+			{ConditionSet::ExpressionOp::OP_GE, [](int64_t a, int64_t b) -> int64_t { return a <= b; }},
+			{ConditionSet::ExpressionOp::OP_LE, [](int64_t a, int64_t b) -> int64_t { return a >= b; }},
+			{ConditionSet::ExpressionOp::OP_MOD, [](int64_t a, int64_t b) { return (a % b); }},
+			{ConditionSet::ExpressionOp::OP_MUL, [](int64_t a, int64_t b) { return a * b; }},
+			{ConditionSet::ExpressionOp::OP_ADD, [](int64_t a, int64_t b) { return a + b; }},
+			{ConditionSet::ExpressionOp::OP_SUB, [](int64_t a, int64_t b) { return a - b; }},
+			{ConditionSet::ExpressionOp::OP_DIV, [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
+		};
+
+		auto it = opMap.find(op);
+		return (it != opMap.end() ? it->second : nullptr);
+	}
+
 	/// Map string tokens to precedence and internal operators.
 	const auto CS_TOKEN_CONVERSION = map<const string, ConditionSet::ExpressionOp>{
 		// Infix arithmetic multiply, divide and modulo have a higher precedence than add and subtract.
@@ -269,75 +297,30 @@ bool ConditionSet::Test(const ConditionsStore &conditions) const
 
 int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 {
-	int64_t result = 0;
-
 	switch(expressionOperator)
 	{
 		case ExpressionOp::OP_VAR:
 			return conditionsStore.Get(conditionName);
 		case ExpressionOp::OP_LIT:
 			return literal;
-
-		case ExpressionOp::OP_ADD:
-			for(const ConditionSet &child : children)
-				result += child.Evaluate(conditionsStore);
-			return result;
-		case ExpressionOp::OP_SUB:
-		{
-			bool firstChild = true;
-			for(const ConditionSet &child : children)
-			{
-				if(firstChild)
-				{
-					firstChild = false;
-					result = child.Evaluate(conditionsStore);
-				}
-				else
-					result -= child.Evaluate(conditionsStore);
-			}
-			return result;
-		}
-		case ExpressionOp::OP_MUL:
-			result = 1;
-			for(const ConditionSet &child : children)
-				result *= child.Evaluate(conditionsStore);
-			return result;
-		case ExpressionOp::OP_DIV:
-			// TODO: check for division by zero
-			return children[0].Evaluate(conditionsStore) / children[1].Evaluate(conditionsStore);
-		case ExpressionOp::OP_MOD:
-			// TODO: check for division by zero
-			return children[0].Evaluate(conditionsStore) % children[1].Evaluate(conditionsStore);
-
-		case ExpressionOp::OP_EQ:
-			return children[0].Evaluate(conditionsStore) == children[1].Evaluate(conditionsStore);
-		case ExpressionOp::OP_NE:
-			return children[0].Evaluate(conditionsStore) != children[1].Evaluate(conditionsStore);
-		case ExpressionOp::OP_LE:
-			return children[0].Evaluate(conditionsStore) <= children[1].Evaluate(conditionsStore);
-		case ExpressionOp::OP_GE:
-			return children[0].Evaluate(conditionsStore) >= children[1].Evaluate(conditionsStore);
-		case ExpressionOp::OP_LT:
-			return children[0].Evaluate(conditionsStore) < children[1].Evaluate(conditionsStore);
-		case ExpressionOp::OP_GT:
-			return children[0].Evaluate(conditionsStore) > children[1].Evaluate(conditionsStore);
-		
 		case ExpressionOp::OP_AND:
+		{
 			// An empty AND section returns true.
 			if(children.empty())
 				return 1;
 
+			int64_t result = 0;
 			for(const ConditionSet &child : children)
 			{
 				int64_t childResult = child.Evaluate(conditionsStore);
-				// Assign the first non-zero result to the result variable.
 				if(!childResult)
 					return 0;
 				// Assign the first non-zero result to the result variable.
-				if(result == 0)
+				if(!result)
 					result = childResult;
 			}
 			return result;
+		}
 		case ExpressionOp::OP_OR:
 			for(const ConditionSet &child : children)
 			{
@@ -346,12 +329,21 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 				if(childResult)
 					return childResult;
 			}
-			return result;
-
+			return 0;
 		default:
 			break;
 	}
-	return result;
+
+	// If we have an accumulator function and children, then let's use the accumulator on the children.
+	BinFun accumulatorOp = Op(expressionOperator);
+	if(accumulatorOp != nullptr && !children.empty())
+		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(conditionsStore),
+			[&accumulatorOp, &conditionsStore](int64_t accumulated, ConditionSet b) -> int64_t {
+				return accumulatorOp(accumulated, b.Evaluate(conditionsStore));
+		});
+
+	// If we don't have an accumulator function, or no children, then return the default value.
+	return 0;
 }
 
 
