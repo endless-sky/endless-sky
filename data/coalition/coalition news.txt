@@ -452,8 +452,7 @@ news "fangvin beyond the hyperdrive news"
 			"Saryd"
 			"Kimek"
 			"Arach"
-			"Visitor"
-			"Civilian"
+			"Tourist"
 	message
 		word
 			`"`
@@ -464,6 +463,7 @@ news "fangvin beyond the hyperdrive news"
 			`Read all of 'Beyond the Hyperdrive', I did! Inspired at those who stole from our oppressors, I was!`
 		word
 			`"`
+
 news "lunarium charity"
 	location
 		government "Coalition"

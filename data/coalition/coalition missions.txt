@@ -3175,6 +3175,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 
 
 mission "Coalition: Struggling Author - Human Media 1"
+	minor
 	name "Give Kachachee Cultural Information"
 	description "A group of Coalition citizens have asked you for information on the human race."
 	source "Ki Patek Ka"
@@ -3192,7 +3193,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 				`	"Sorry, I'm not interested."`
 					decline
 				`	"I'm in. What do you want me to collect?"`
-			`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, a great story about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
+			`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, a great story about dictatorships and brave battles, tyrants and rebels, we want. Histories of humanity's resistance movements, we seek, but not anti-Heliarch, must they be."`
 			choice
 				`	"I'm not interested. Sorry."`
 					decline
@@ -3226,12 +3227,11 @@ mission "Coalition: Struggling Author - Book Discovered"
 			``
 			`		Dear <first>,`
 			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
-			`	On Ki Patek Ka we live, so the book, once in your possession, it is, contact us, and meet you at the spaceport, we will.`
 			choice
 				`	(Look for Anna Fangvin.)`
 				`	(Disregard the message.)`
 					decline
-			`	A quick look through your encyclopedia reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview.`
+			`	A quick look through your encyclopedia reveals nothing. However, checking a copy of the data chip that you gave the Coalition citizens reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview.`
 				accept
 	on complete
 		conversation
@@ -3498,7 +3498,7 @@ mission "Coalition: Struggling Author 4"
 			`	After a few minutes of walking, there is an office with another Kimek and a team of five Heliarchs sitting. The Kimek directing you points toward that room and leaves.`
 			`	As you enter, Anna puts down the copy of her book on the table, and the two of you take a seat. The Kimek that led you here briefly speaks to the other Kimek sitting at the interview table, before leaving.`
 			`	The Kimek's translation device begins to speak.`
-			`	"Greetings. Ikiyachee, my name is, and head editor of Kimek Reader Publishing, I am. To see an alien want to publish a book, interesting and unexpected it was, in my time here, 70 years long," the Kimek says.`
+			`	"Greetings. Ikiyachee, my name is, and head editor of Kimek Reader Publishing, I am. To see an alien want to publish a book, interesting and unexpected it was, in my time here, 50 years long," the Kimek says.`
 			`	"Hello, I am Anna Fangvin, and this is my friend <first> <last>, who has been very helpful in bringing me here." Anna says, somewhat flustered.`
 			choice
 				`	"Yes, I am <first>, and that is my friend."`
@@ -3629,7 +3629,7 @@ mission "Coalition: Struggling Author 5A"
 				accept
 	on complete
 		payment 50000
-		"salary: Beyond the Hyperdrive" = 800
+		"salary: Beyond the Hyperdrive" = 100
 		conversation "anna invites you to book signing"
 
 mission "Coalition: Struggling Author 5B"
