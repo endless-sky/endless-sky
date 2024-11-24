@@ -3179,9 +3179,10 @@ mission "Coalition: Struggling Author - Human Media 1"
 	name "Give Kachachee Cultural Information"
 	description "A group of Coalition citizens have asked you for information on the human race."
 	source "Ki Patek Ka"
+	stopover "Alexandria"
+	destination "Ki Patek Ka"
 	to offer
 		has "First Contact: Coalition: done"
-		has "human cultural data"
 	on offer
 		conversation
 			`As you walk through the spaceport, you see a group of Coalition citizens seated by a table speaking to each other. One of them glances toward you. As if something suddenly clicked, the group quickly rises from their seats and begin approaching you.`
@@ -3199,8 +3200,10 @@ mission "Coalition: Struggling Author - Human Media 1"
 					decline
 				`	"I see. I will bring you all the knowledge you want."`
 			`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
-			`	You suddenly recall that on your ship is a datachip containing a copy of Alexandria's archives, which may be what the group wants. You walk to your ship, make a copy of the datachip, and return to the group.`
-			`	Kachachee then approaches you, as you hand them the datachip. "Very speedy, your return was."`
+			branch "don't have"
+				not "human cultural data"
+			`	You recall that on your ship is a datachip containing a copy of Alexandria's archives, which may be what the group wants. You walk to your ship, make a copy of the datachip, and return to the group.`
+			`	Kachachee then approaches you as you hand them the datachip. "Very speedy, your return was."`
 			choice
 				`	"You're welcome. I hope you enjoy whatever my race has to offer for you."`
 			action
@@ -3208,6 +3211,18 @@ mission "Coalition: Struggling Author - Human Media 1"
 				payment 180000
 			`	"Thank you. Enlighten me and my friends, this datachip will. And as promised, a chip of 180,000 credits, we have." Kachachee places it within your hand.`
 				decline
+			label "don't have"
+			`	You return to your ship and prepare for the journey to <destination>.`
+				accept
+	on stopover
+		payment -40
+		conversation
+                        `You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Kachachee.`
+	on complete
+		event "coalition citizens discover fangvin" 20 40
+		payment 180000
+		conversation
+			`You head to the bar where Kachachee met you first. When you arrive, the Kimek greets you, "Thank you. Enlighten me and my friends, this datachip will. And as promised, a chip of 180,000 credits, we have." Kachachee places it within your hand.`
 
 
 event "coalition citizens discover fangvin"
@@ -3223,13 +3238,13 @@ mission "Coalition: Struggling Author - Book Discovered"
 		has "event: coalition citizens discover fangvin"
 	on offer
 		conversation
-			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing the a copy of Alexandria's archive.`
+			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing a copy of Alexandria's archive.`
 			``
 			`		Dear <first>,`
 			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
 			choice
 				`	(Look for Anna Fangvin.)`
-				`	(Disregard the message.)`
+				`	(Discard the message.)`
 					decline
 			`	A quick look through your encyclopedia reveals nothing. However, checking a copy of the data chip that you gave the Coalition citizens reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview.`
 				accept
@@ -3274,18 +3289,15 @@ mission "Coalition: Struggling Author 1"
 		has "Coalition: Struggling Author - Book Discovered: done"
 	on offer
 		conversation
-			`Upon entering the spaceport, you walk past a restaurant. A woman then raises her arms, waving towards you. She must be Anna Fangvin, the author the Coalition citizens showed interest in.`
+			`Upon entering the spaceport, you walk past a restaurant. A woman raises her arms, waving towards you. She must be Anna Fangvin, the author the Coalition citizens showed interest in.`
 			choice
 				`	(Approach her.)`
-			`	You approach the woman and sit right next to her. "Hello, are you <first>?" she asks.`
+			`	You approach the woman and sit next to her. "Hello, are you <first>?" she asks.`
 			choice
 				`	"Yes, I am. What do you write?"`
 			label "genre"
-			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy!"`
-			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg ship, and skimming front and back flaps, confirms most of what Anna told you about it. Her signature is on the title page.`
-			action
-				set "coalition: struggling author - beyond the hyperdrive"
-			`	"You'll like it, I promise. It's a signed copy too, just for you."`
+			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, take a look!"`
+			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon, and skimming front and back flaps, you confirm most of what Anna told you about it. Her signature is on the title page.`
 			choice
 				`	"How long is the book?`
 					goto "book length"
@@ -3299,7 +3311,7 @@ mission "Coalition: Struggling Author 1"
 					goto "short stories"
 				`	"How about your previous books?"`
 			label "previous books"
-			`	"They weren't really successful. I'm still struggling. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one remains unpublished; all the publishers rejected it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell."`
+			`	"They weren't really successful. I'm still struggling. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one remains unpublished; all the publishers rejected it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell.`
 			`	"'Beyond the Hyperdrive' is the fifth one, and I'm hoping it will sell better than the previous four."`
 			choice
 				`	"How about short stories?"`
@@ -3347,21 +3359,22 @@ mission "Coalition: Struggling Author 1"
 			choice
 				`	"They have a translation device."`
 				`	"I'm sure they can learn the language."`
-			`	"That's reassuring... but, how am I even going to get there?" she queries. "I'll take you there," you say. "Do I have to pay anything? As a struggling author, I can't afford off-world transport at all, let alone to a completely different alien race!"`
+			`	"That's reassuring... but, how am I even going to get there?" she queries. "I'll take you there," you say. "Do I have to pay anything? As a struggling author, I can't afford off-world transport at all, let alone to a completely different alien race! Actually, I know - I'll give you a copy of Beyond the Hyperdrive!"`
 			choice
-				`	"It's okay. I'm willing to make an exception for you."`
+				`	"Sounds good."`
 			`	"Thank you so much! Just wait for a while. I'll go over to my house and bring what I'll need for the trip, and then we can go to whatever this Coalition thing is," says Anna. You reply, "Alright, I'll be waiting for you."`
 			`	As you wait for Anna, you look over your maps of Coalition space to determine the most suitable place for Anna. After much deliberation and thought, you decide on <destination>.`
 			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk and inform her of the destination. You prepare to leave the spaceport.`
 				accept
 	on complete
+		set "coalition: struggling author - beyond the hyperdrive"
 		conversation
-			`You leave the ship with Anna following you. The moment you are out of your ship, three Kimek surround you and Anna. The Kimek in the middle speaks, and then brief silence. The silence is broken as their translation box speaks.`
+			`Anna gives you the book, and then you leave the ship. The moment you are out, three Kimek approach you and Anna. The Kimek in the middle speaks, and then a brief silence occurs. It is broken as their translation box speaks.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
-			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself. "About what, do you write?" asks the Kimek. "Oh, I write science fiction books," says Anna.`
+			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself. "About what, do you write?" asks the Kimek. "Oh, I write science fiction books," replies Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
 			`	Then, switching back to your language, the Kimek explains that Anna is welcome to be with you, but states that she will not be allowed to do much unless she registers. "Register?" asks Anna.`
-			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, that's where you can complete the registration process." you say.`
+			`	"You have to register yourself with the Coalition before you can do most stuff here. I'll take you to the Ring of Friendship, which is where you can complete the registration process." you say.`
 			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and meet me there."`
 
 
