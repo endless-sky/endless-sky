@@ -283,9 +283,20 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 				result += child.Evaluate(conditionsStore);
 			return result;
 		case ExpressionOp::OP_SUB:
+		{
+			bool firstChild = true;
 			for(const ConditionSet &child : children)
-				result -= child.Evaluate(conditionsStore);
+			{
+				if(firstChild)
+				{
+					firstChild = false;
+					result = child.Evaluate(conditionsStore);
+				}
+				else
+					result -= child.Evaluate(conditionsStore);
+			}
 			return result;
+		}
 		case ExpressionOp::OP_MUL:
 			result = 1;
 			for(const ConditionSet &child : children)
