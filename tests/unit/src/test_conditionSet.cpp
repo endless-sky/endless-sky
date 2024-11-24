@@ -82,7 +82,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
@@ -97,7 +97,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
@@ -112,7 +112,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
@@ -127,7 +127,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
@@ -142,7 +142,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() ==  validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}

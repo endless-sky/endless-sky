@@ -25,8 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <numeric>
-#include <utility>
 #include <set>
+#include <utility>
 
 using namespace std;
 
@@ -160,7 +160,7 @@ void ConditionSet::Save(DataWriter &out) const
 	{
 		// Default should be AND, so if it is, then just write the subsets
 		out.BeginChild();
-		for(const auto &child: children)
+		for(const auto &child : children)
 		{
 			child.SaveSubset(out);
 			out.Write();
@@ -232,7 +232,7 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 	case OP_OR:
 		out.Write(opTxt);
 		out.BeginChild();
-		for(const auto &child: children)
+		for(const auto &child : children)
 		{
 			child.SaveSubset(out);
 			out.Write();
@@ -396,7 +396,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	}
 	if(node.Token(0) == "has")
 	{
-		if( node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)) )
+		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 			return FailParse(node, "has keyword requires a single condition");
 
 		// Convert has keyword directly to the variable.
@@ -406,7 +406,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	}
 	if(node.Token(0) == "not")
 	{
-		if( node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)) )
+		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 			return FailParse(node, "not keyword requires a single condition");
 
 		// Create `conditionName == 0` expression.
@@ -593,7 +593,8 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 
 				// If the expression currently contains a terminal, then push it down.
 				// Also push down the current expression if it has a higher or equal precedence to the new operator.
-				if((children.size() == 0) || (children.size() > 1 && Precedence(expressionOperator) >= Precedence(infixOp) && infixOp != expressionOperator))
+				if((children.size() == 0) || (children.size() > 1 && infixOp != expressionOperator &&
+						Precedence(expressionOperator) >= Precedence(infixOp)))
 					if(!PushDownFull(node))
 						return FailParse();
 

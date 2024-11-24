@@ -170,7 +170,7 @@ void ConditionAssignments::Add(const DataNode &node)
 		assignments.back().assignOperator = AssignOp::AO_ASSIGN;
 		assignments.back().expressionToEvaluate = ConditionSet(node.Token(0) == "set" ? 1 : 0);
 	}
-	else if(node.Size() == 2 && ( node.Token(1) == "++" || node.Token(1) == "--"))
+	else if(node.Size() == 2 && (node.Token(1) == "++" || node.Token(1) == "--"))
 	{
 		if(!DataNode::IsConditionName(node.Token(0)))
 		{
@@ -202,7 +202,7 @@ void ConditionAssignments::Add(const DataNode &node)
 		// Parse the expression.
 		ConditionSet expr;
 		int tokenNr = 2;
-		if( !expr.ParseNode(node, tokenNr) )
+		if(!expr.ParseNode(node, tokenNr))
 			return;
 
 		// Add the assignment when all parsing succeeded.

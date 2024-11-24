@@ -96,7 +96,7 @@ public:
 		OP_GT, ///< Tests for greater than ( > ).
 
 		// Boolean combination operators, return 0 or 1
-		OP_AND, ///< Boolean 'and' operator; returns value of first sub-condition if all sub-conditions are non-zero, zero otherwise.
+		OP_AND, ///< Boolean 'and' operator; returns 0 on first 0 subcondition, value of first sub-condition otherwise.
 		OP_OR, ///< Boolean 'or' operator; returns value of first non-zero sub-condition, or zero if all are zero.
 
 		// Single boolean operators
