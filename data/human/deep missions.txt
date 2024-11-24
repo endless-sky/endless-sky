@@ -4919,7 +4919,7 @@ mission "Hroar's Haulers 10"
 
 
 
-mission "Hroar's Haulers 10"
+mission "Hroar's Haulers 11"
 	name "The Long Haul"
 	passengers 1
 	cargo "Long Haul Cargo" 430
@@ -5046,24 +5046,24 @@ mission "Hroar's Haulers 10"
 
 
 
-mission "Hroar's Haulers 11"
+mission "Hroar's Haulers 12"
 	landing
 	name "The Long Haul"
 	source "Earth"
 	destination 
 	to offer
-		has "Hroar's Haulers 10: active"
+		has "Hroar's Haulers 11: active"
 	on offer
 		dialog
 			`The Long Haul convory sets down in one of Earth's sprawling mega-cities. Most of the fleet focuses on refueling and minor repairs, while Captain Unferth's ships begin the unboard process. Yngvar tells you to meet him in the spaceport.`
 			decline
 
-mission "Hroar's Haulers 12"
+mission "Hroar's Haulers 13"
 	name "The Long Haul"
 	source "Earth"
 	destination 
 	to offer
-		has "Hroar's Haulers 10: active"
+		has "Hroar's Haulers 11: active"
 	on offer
 		conversation
 			`	You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
@@ -5099,27 +5099,27 @@ mission "Hroar's Haulers 12"
 			`	He glances back at the shuffling bodies, "I'll cover things here. You can head on back to the ship if you'd like. Next stop won't be quite so easy, it's a Syndie world so there might be a little more gravel at the spaceport, if you get my drift. Anyways, I'll meet'chya back at the <ship>."`
 				decline
 
-mission "Hroar's Haulers 13"
+mission "Hroar's Haulers 14"
 	landing
 	name "The Long Haul"
 	source "Maker"
 	destination 
 	to offer
-		has "Hroar's Haulers 10: active"
-		has "Hroar's Haulers 12: declined"
+		has "Hroar's Haulers 11: active"
+		has "Hroar's Haulers 13: declined"
 	on offer
 		dialog
 			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and caro trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the local watering hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 			decline
 
 
-mission "Hroar's Haulers 14"
+mission "Hroar's Haulers 15"
 	name "The Long Haul"
 	source "Maker"
 	destination "Rand"
 	to offer
-		has "Hroar's Haulers 10: active"
-		has "Hroar's Haulers 12: declined"
+		has "Hroar's Haulers 11: active"
+		has "Hroar's Haulers 13: declined"
 	on offer
 		conversation
 		`	The large spaceport is remarkably easy to navigate. With clear signs and purpose-built walkways you easily find yourway to the local pub, which is called the 'Watering Hole.'`
@@ -5651,8 +5651,9 @@ mission "Hroar's Haulers 14"
 				goto timetogo
 		
 		label followyngvar
-		`	Yngvar walks with a certainty borne out of familiarity. It's obvious he knows the way to the holding cells, this is not the first time he's had to deal with the local Syndicate leaders here.`
-		`	`
+		`	The Syndicate Spaceport Authority is flanked by multiple gigantic holding blocks. These huge cells are large enough to comfortably inter a large ship's crew and entire passenger manifest. Right now, they are mostly empty, except for the most immedate cell that has a few scores of mulling red-brown jacketed haulers.`
+		`	In front of the cells is a white rectangular desk. It's spotless surface nearly reflecting the smug smile of the slick haired uniformed man behind it.`
+		`	"`
 
 
 
