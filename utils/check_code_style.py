@@ -227,6 +227,8 @@ def sanitize(lines, skip_checks=False):
 				continue
 			# Handling comments
 			first_two = line[i:i + 2]
+			first_three = line[i:i + 3]
+			first_four = line[i:i + 4]
 			if is_multiline_comment:
 				if first_two == "*/":
 					if not skip_checks:
@@ -239,7 +241,25 @@ def sanitize(lines, skip_checks=False):
 					i += 1
 					start_index = i + 1
 				continue
-			if (not is_string) and first_two == "//":
+			if (not is_string) and first_four == "///<":
+				segments.append(line[start_index:i].rstrip())
+				if not skip_checks:
+					# Checking for space after comment
+					if len(line) > i + 4:
+						if re.search(after_comment, line[i + 4:i + 5]):
+							errors.append(Error(line[i:i + 5], line_count,
+												"missing space after beginning of single-line Doxygen back comment"))
+				break
+			else if (not is_string) and first_three == "///":
+				segments.append(line[start_index:i].rstrip())
+				if not skip_checks:
+					# Checking for space after comment
+					if len(line) > i + 3:
+						if re.search(after_comment, line[i + 3:i + 4]):
+							errors.append(Error(line[i:i + 4], line_count,
+												"missing space after beginning of single-line Doxygen comment"))
+				break
+			else if (not is_string) and first_two == "//":
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
 					# Checking for space after comment
