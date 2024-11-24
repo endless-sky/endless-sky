@@ -522,6 +522,9 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 			// Remove the closing bracket.
 			++tokenNr;
 			hadOpenBracket = false;
+			// Make sure that this bracketed section gets used as a single terminal.
+			if(!PushDownFull(node))
+				return FailParse();
 		}
 		else
 			// If there are more tokens, then we need to have an infix operator here.
