@@ -190,6 +190,8 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	const auto storeWithData = ConditionsStore {
 		{"event: war begins", 1},
 		{"someData", 100},
+		{"moreData", 100},
+		{"otherData", 100},
 	};
 
 	GIVEN( "an empty ConditionSet" ) {
@@ -211,105 +213,34 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			}
 		}
 	}
-	GIVEN( "a set containing 'never'" ) {
-		// This test might need to be removed once keywords cannot be used as conditions.
-		const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
-		REQUIRE_FALSE( neverSet.IsEmpty() );
-		REQUIRE( neverSet.IsValid() );				
-
-		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto storeWithNever = ConditionsStore {
-				{"never", 1},
-			};
-			THEN( "the ConditionSet is not satisfied" ) {
-				REQUIRE_FALSE( neverSet.Test(storeWithNever) );
-				REQUIRE( neverSet.IsValid() );
-			}
+	GIVEN( " various correct expression(s) as conditionSet " ) {
+		auto expressionAndAnswer = GENERATE(table<std::string, int64_t>({
+			{"never", 0},
+			{"0", 0},
+			{"1", 1},
+			{"2", 2},
+			{"2 + 6", 8},
+			{"2 + 6 + 8 + 40", 56},
+			{"2 * 6 * 8 * 40", 3840},
+			{"2 * 6 + 8", 20},
+			{"2 + 6 * 8", 50},
+			{"2 * ( 6 + 8 )", 28},
+			{"( 2 + 6 ) * 8", 64},
+			{"100 - 100", 0},
+			{"100 - 200", -100},
+			{"100 + -200", -100},
+			{"someData", 100},
+			{"moreData - 100", 0},
+			{"otherData - 10 - 50 + -200", -160},
+		}));
+		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer))};
+		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
+			REQUIRE_FALSE( numberSet.IsEmpty() );
+			REQUIRE( numberSet.IsValid() );
+			REQUIRE( numberSet.Evaluate(storeWithData) == std::get<1>(expressionAndAnswer) );
 		}
 	}
-
-	GIVEN( "a single number" ) {
-		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t2")};
-		REQUIRE_FALSE( numberSet.IsEmpty() );
-		REQUIRE( numberSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			THEN( "the ConditionSet is not satisfied" ) {
-				REQUIRE( numberSet.Test(storeWithData) );
-				REQUIRE( numberSet.IsValid() );
-				REQUIRE( numberSet.Evaluate(storeWithData) == 2 );
-			}
-		}
-	}
-	GIVEN( "a simple arithmetic add expression" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 + 6")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 8 );
-		}
-	}
-	GIVEN( "a somewhat longer arithmetic add expression" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 + 6 + 8 + 40")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 56 );
-		}
-	}
-	GIVEN( "a somewhat longer arithmetic multiply expression" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 * 6 * 8 * 40")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 3840 );
-		}
-	}
-	GIVEN( "an arithmetic set with multiplication and add" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 * 6 + 8")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 20 );
-		}
-	}
-	GIVEN( "an arithmetic set with add and multiplication" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 + 6 * 8")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 50 );
-		}
-	}
-	GIVEN( "an arithmetic set with multiplication and bracketed add" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t2 * ( 6 + 8 )")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 28 );
-		}
-	}
-	GIVEN( "an arithmetic set with bracketed add and multiplication" ) {
-		const auto arithmeticSet = ConditionSet{AsDataNode("toplevel\n\t( 2 + 6 ) * 8")};
-		REQUIRE_FALSE( arithmeticSet.IsEmpty() );
-		REQUIRE( arithmeticSet.IsValid() );
-		THEN( "The condition evaluates to the correct number" ) {
-			REQUIRE( arithmeticSet.Test(storeWithData) );
-			REQUIRE( arithmeticSet.IsValid() );
-			REQUIRE( arithmeticSet.Evaluate(storeWithData) == 64 );
-		}
-	}}
+}
 
 // #endregion unit tests
 
