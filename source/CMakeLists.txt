@@ -11,6 +11,10 @@ else()
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
+if(ES_ENABLE_WAYLAND)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_ENABLE_WAYLAND)
+endif()
+
 # Every source file (and header file) should be listed here, except main.cpp.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyLib PRIVATE
