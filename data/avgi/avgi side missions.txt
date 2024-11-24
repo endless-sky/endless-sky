@@ -59,11 +59,11 @@ mission "Avgi Culture: Park Politics"
 			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Third - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape."`
 
 			choice
-				`(Focus on getting my stones out. Move a stone towards my color's escape.)`
+				`	(Focus on getting my stones out. Move a stone towards my color's escape.)`
 					goto escape1
-				`(Focus on blocking Wisteria. Move a stone towards his triangle.)`
+				`	(Focus on blocking Wisteria. Move a stone towards his triangle.)`
 					goto blockwisteria1
-				`(Focus on blocking the third color. Move a stone towards its triangle.)`
+				`	(Focus on blocking the third color. Move a stone towards its triangle.)`
 					goto blockthird1
 
 			label escape1
@@ -87,11 +87,11 @@ mission "Avgi Culture: Park Politics"
 			label next1
 			`	Slightly adjusting his position on the bench, the Avgi continues. "Now, after each of our turns, we shall move one of the Third's pieces. You should focus on moving them to your advantage, whether that be by blocking my pieces or keeping them out of the way of your own."`
 			choice
-				`(Move one of the Third's stones towards my own side, to start building a link.)`
+				`	(Move one of the Third's stones towards my own side, to start building a link.)`
 					goto escape2
-				`(Move one of the Third's stones towards Wisteria's side, to block him in the future.)`
+				`	(Move one of the Third's stones towards Wisteria's side, to block him in the future.)`
 					goto blockwisteria2
-				`(Move one of the Third's stones towards its own exit. Why not?)`
+				`	(Move one of the Third's stones towards its own exit. Why not?)`
 					goto escapethird2
 
 			label escape2
@@ -137,31 +137,31 @@ mission "Avgi Culture: Park Politics"
 			`	"Regardless, I wonder what you would think of us, had you arrived before the Aberrant threw us from our homes. Conflict. It is almost a shame to me that you have to see us in our current state, but then I think of the unity and selflessness that we have found in each other, and that fills me with pride."`
 			`	You play a few more rounds back and forth, each of you advancing towards your respective exits. It is once more your turn.`
 			choice
-				`(Move a stone towards my escape.)`
+				`	(Move a stone towards my escape.)`
 					goto escape3a
 					to display
 						not "avgi: trefoil classical"
-				`(Move a new stone towards my escape.)`
+				`	(Move a new stone towards my escape.)`
 					goto escape3b
 					to display
 						has "avgi: trefoil classical"
-				`(Move my stone further towards my escape.)`
+				`	(Move my stone further towards my escape.)`
 					goto escape3c
 					to display
 						has "avgi: trefoil classical"
-				`(Prepare to block Wisteria. Move a stone towards his triangle.)`
+				`	(Prepare to block Wisteria. Move a stone towards his triangle.)`
 					goto blockwisteria3a
 					to display
 						not "avgi: trefoil aggressive"
-				`(Further block Wisteria. Move a new stone towards his side)`
+				`	(Further block Wisteria. Move a new stone towards his side)`
 					goto blockwisteria3b
 					to display
 						has "avgi: trefoil aggressive"
-				`(Move my blocking stone further towards Wisteria's side)`
+				`	(Move my blocking stone further towards Wisteria's side)`
 					goto blockwisteria3c
 					to display
 						has "avgi: trefoil aggressive"
-				`(Move a stone towards the Third triangle. Why not?)`
+				`	(Move a stone towards the Third triangle. Why not?)`
 					goto blockthird3
 
 			label escape3a
@@ -210,11 +210,11 @@ mission "Avgi Culture: Park Politics"
 			`	Wisteria quickly completes his own move, as well as his movement of the Third. Now he seems to be moving a piece in your direction, perhaps to block you. After a few more back-and-forth moves between the two of you, he asks you another question.`
 			`	"So, Captain <last>. I am curious. If you found yourself in our place, an invincible enemy placed between yourself, armed with the last dredges of your people's spacefaring strength, and the bulk of your people, held hostage on their very planets but otherwise unharmed, what would you do, question? Would you abandon them to their fate to build a new life out amongst the stars, or gamble your remaining strength on a bet to liberate them?"`
 			choice
-				`"You can't just abandon everyone on your planets. Surely there's a way to win against the Aberrant, even if it takes sacrifice."`
+				`	"You can't just abandon everyone on your planets. Surely there's a way to win against the Aberrant, even if it takes sacrifice."`
 					goto liberate
-				`"If the Aberrant aren't attacking the surfaces of the Avgi worlds, maybe you should focus on making life better out here first. After all, you have people out here to take care of too."`
+				`	"If the Aberrant aren't attacking the surfaces of the Avgi worlds, maybe you should focus on making life better out here first. After all, you have people out here to take care of too."`
 					goto abandon
-				`"I would find another way. Communicating with the Aberrant maybe, or finding a way to both fight the war and help the people out here."`
+				`	"I would find another way. Communicating with the Aberrant maybe, or finding a way to both fight the war and help the people out here."`
 					goto anotherway
 
 			label liberate
@@ -271,17 +271,17 @@ mission "Avgi Culture: Park Politics"
 			`	"And of course the Twilight Guard is its own faction, as much as they will emphasize their neutrality. They have their supporters and detractors, but none can oppose them entirely, for they are all that stands between us and the Aberrant."`
 			`	With that, he deftly moves a Third piece, trapping a cluster of your stones behind a wall.`
 			choice
-				`(Try to break the wall and turn it into a chain.)`
+				`	(Try to break the wall and turn it into a chain.)`
 					goto breakwall4a
 					to display
 						"avgi: trefoil classical" >= 2
-				`(Try to break the wall and turn it into a chain.)`
+				`	(Try to break the wall and turn it into a chain.)`
 					goto breakwall4b
 					to display
 						"avgi: trefoil classical" < 2
-				`(Evacuate my other stones.)`
+				`	(Evacuate my other stones.)`
 					goto escape4
-				`(Retaliate by trapping the rest of Wisteria's stones.)`
+				`	(Retaliate by trapping the rest of Wisteria's stones.)`
 					goto blockwisteria4
 					to display
 						"avgi: trefoil aggressive" >= 1
@@ -432,36 +432,37 @@ mission "Avgi Culture: Zapchannel Energy"
 				set "avgi: met nikkio"
 			`You are on your way back to the <ship> after a stroll through the spaceport when a bright yellow Avgi lands in front of you. "Hey, you! Enthusiasm! I am Nikkio, famed medician and traveling salesman. Do you, alien sojourner, care for your health?"`
 			choice
-				`"I guess so."`
+				`	"I guess so."`
 					goto scam
-				`"Whatever you're selling, I'm not interested."`
+				`	"Whatever you're selling, I'm not interested."`
 
 			`	You try to step around him and continue on your way, but he mirrors you, dancing backwards to remain in your face. "Sincerity! You are making a terrible mistake! I have something that could help with your energy, yes?"`
 			choice
-				`"Alright, alright. What is it?"`
+				`	"Alright, alright. What is it?"`
 					goto scam
-				`"Not interested. Now move before I call the authorities."`
+				`	"Not interested. Now move before I call the authorities."`
 					goto nope
 
 			label scam
 			`	"Excitement! Wonderful! I have just the thing, certified by the Consonance Health Committee itself, surely!" he says animatedly, arms and wings waving as he dances in front of you. "But, reservation. Hmm. Only the most enterprising of captains could benefit from what I am about to bestow upon you. Are you certain you have what it takes to try Zapchannel Ray Energy?"`
 			choice
-				`"Yes, I'm very experienced, seen the galaxy and all. Now show me what you're talking about."`
+				`	"Yes, I'm very experienced, seen the galaxy and all. Now show me what you're talking about."`
 					goto glow
-				`"Alright, that's it. Get out of here before I call the authorities."`
+				`	"Alright, that's it. Get out of here before I call the authorities."`
 					goto nope
 
 			label glow
 				`"Excitement, excellent! I can see you are clearly a very intelligent and discerning captain. Anticipation. This serum was invented by yours truly, capable of resolving all of your worldly woes! Only 3,000 credits!" He proudly holds out a vial of cloudy white liquid, glowing a bright, intense pale blue.`
 			choice
-				`"Uh, what is this?"`
-				`"Is this radioactive?"`
-				`"I'm not drinking that."`
+				`	"Uh, what is this?"`
+				`	"Is this radioactive?"`
+				`	"I'm not drinking that."`
+
 			`	"Dismissal. Nonsense, this formula is perfectly safe! A serum for the health, proven to kill over three thousand forms of cancer, you should know." As if on cue, the glow pulses menacingly.`
 			choice
-				`"Yeah, that doesn't look safe. I'm calling the authorities."`
+				`	"Yeah, that doesn't look safe. I'm calling the authorities."`
 					goto nope
-				`"Alright, I'll give it a shot."`
+				`	"Alright, I'll give it a shot."`
 
 			branch superpowers
 				random < 99
@@ -528,7 +529,6 @@ mission "Avgi: Cylinder Construction"
 						not "avgi: asked about housing"
 				`	"That's all the questions I have, thank you."`
 					goto conclusion
-					to display
 
 			label whenupdate
 			action
@@ -602,6 +602,7 @@ mission "Avgi: Infocourier Encounter"
 				`	(Ask around about who the Polari belongs to.)`
 				`	(It's not that interesting. I have better things to do.)`
 					defer
+
 			`	You ask a few passing Avgi, and eventually one is able to answer your question.`
 			`	"Probably an infocourier ship, hauling information and databases instead of cargo. The Guard sometimes sends ships to market if they've taken a beating and aren't worth fixing up to combat standards, which is probably what happened there.`
 			`	You thank the Avgi for their time, and are about to leave when you spot a pale yellow Avgi climbing on board the exact ship you've been talking about. You might as well see if he's willing to chat.`
@@ -615,10 +616,12 @@ mission "Avgi: Infocourier Encounter"
 				`	"Why is that?"`
 				`	"What do couriers do?"`
 					goto couriers
+
 			`	"Hmm. Consideration. Decades ago, before the hyperdrive, the arrival of an interstellar courier ship would be a cause for celeberation. Entire planets would rejoice to receive news of the sciences and arts of other stars, which were cherished. You see, interstellar visits were rare during those days, only a few times a year at most. There was remote communication, of course, with bright x-ray lasers and telescopes to receive them, but the transfer rates were too slow for information to be shared in bulk."`
 			`	"A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nonetheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
 			choice
 				`	"What changed?"`
+
 			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system adapted, and now the system is just that, a system. Regular. Predictable. And ultimately unexciting."`
 			label couriers
 			`	"Today, we make the rounds in ships that are fast, but have the room for enough storage media to update a planet's entire network. In our heyday, before the Incursion, a courier ship would visit a world every day to upload its database, but since then we've struggled to keep each system controlled by the Consonance updated once per week."`
@@ -629,6 +632,7 @@ mission "Avgi: Infocourier Encounter"
 					goto diamond
 				`	"Sounds like an interesting job. Is there any way I could take infocourier missions?"`
 					goto job
+
 			`	"Consideration. Many reasons, some of which are even good ones. Mostly because what makes them excellent research and scout vessels also makes them excellent courier ships - fast, while also having large integrated memory banks and a reasonable amount of space for cargo. It helps that the Twilight Guard has been decommissioning so many Polari lately, with how fragile they are against the Aberrant. Anticipation. It wouldn't surprise me if they designed a successor to them, if you ask me."`
 				goto ask
 
@@ -643,11 +647,13 @@ mission "Avgi: Infocourier Encounter"
 				`	"Yes, I'd like that"`
 					goto end
 				`	"How much are you normally paid for ferrying information?"`
+
 			`	Hansa laughs. "Too much, if you ask anyone else. The Assembly recognizes how critical it is to maintain lines of communication, especially now, with the War, so we haven't suffered nearly as much as most. Amusement. It would be rare indeed to find a captain that would turn down a courier job, but a ship has to be fast and willing to drop everything to rush to a particular system as often as possible, with little time for breaks. Does that sound like the kind of job for you?"`
 			choice
 				`	"I think I'm interested."`
 					goto end
 				`	"Not really."`
+
 			`	"Sympathy. I understand, it's not the easiest work around, nor the most exciting for someone with their own starship, which is why it can be so hard to find enough couriers to keep the system running."`
 				decline
 			label end
@@ -766,6 +772,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			choice
 				`	"Yes, they are."`
 				`	"Eh, they're not so strong. I've faced a few."`
+
 			`	"Modest, aren't we, amusement." she says. "Captain Darius told me much about the weapons technology you use, which I was quite fascinated by. But even more interesting is your Navy's doctrine, in my opinion."`
 			choice
 				`	"What's so interesting about that?"`
@@ -861,18 +868,21 @@ mission "Avgi: Atomics Testing 1"
 			choice
 				`	"Sorry, I was just looking around."`
 				`	"Sorry, am I not supposed to be here?"`
+
 			`	"Oh. Amusement," she thrums in laughter for a moment, "it isn't that, I've just never met an alien before."`
 			`"Oh. That makes sense," you say, feeling a bit stupid.`
 			`	"I'm Alizarin, but you can call me Aliza. I'm a senior research fellow here at Ergastirio," she says with a touch of pride.`
 			choice
 				`	"What kind of stuff do you do here?"`
 				`	"What do you research?"`
+
 			`	"Well, I'm a shockwave dynamics specialist, though I dabble in accelerator testing occasionally. My work with both of those is in nuclear weapons design, mostly in implosion and ablation modeling. We do all sorts of stuff here though, but it's all weapons related. Not much of a choice with the War, you know."`
 			choice
 				`	"Nuclear weapons? Fascinating."`
 					goto cool
 				`	"Nuclear weapons? That's... interesting, I guess."`
 				`	"Nuclear weapons? I'm not a fan honestly."`
+
 			`	"Ah, well. Not everyone can appreciate art. But you'll see the light, heh heh, when the Aberrant come knocking. Nothing else hits 'em the same way, appreciation."`
 				goto wannasee
 
@@ -887,8 +897,8 @@ mission "Avgi: Atomics Testing 1"
 				`	"I'll pass."`
 					goto coward
 				`	"Actually, I have. It wasn't pretty."`
-					to display
 					goto actually
+					to display
 						or
 							"has: FW Syndicate Capture 1B: offered"
 							"has: FWC Cebalrai 1: offered"
@@ -919,6 +929,7 @@ mission "Avgi: Atomics Testing 1"
 				`	"Who was that?"`
 				`	"What did he mean by 'impenetrable armor?'"`
 					goto wunderwaffe
+
 			`	"Annoyance. That was Trypan. My point of contact with a group of wealthy individuals with far too much influence and not enough sense. For years they've been convinced we just need 'one more prototype, just one more experiment' to produce a breakthrough to win the War. She sighs. "No one really takes them seriously anymore, not after all the failed projects they've sponsored, but they do shell out the equipment we need for free, so we have to at least act like we're listening to their 'new ideas.' That they have a few seats in the Consonance between them doesn't hurt either, when we need more resources or funding."`
 
 			label wunderwaffe
@@ -948,12 +959,14 @@ mission "Avgi: Atomics Testing 2"
 				`	"Yeah. Why do testing out here instead of in empty space?"`
 				`	"Do you just test nukes here?"`
 					goto fun
+
 			`	"It's nice to have a big mass to brace experiments against and bury sensors in, explanation. Plus we get to see the effects of weapons on bulk mass, like all this ice and the occasional rock outcropping. It makes quite the blast plume," she adds happily.`
 			`	"We used to use some big asteroids for this, but we kept blowing through them, amusement. Relocating our lab after every big test was getting annoying, so we picked this planetoid out and stuck an outpost on it."`
 			choice
 				`	"Why this planet in particular?"`
 				`	"Blowing through asteroids? Just how big are these nukes?"`
 					goto big
+
 			`	"Consideration." She looks thoughtful. "Well, the lab managers told us to go somewhere far enough from the Navigeo Yards to be out of the way of anything important, so that they don't have to worry about getting flashed with radiation every week. But really I think it's because they wanted their own little planetoid as a personal fief where no one could tell them what to do, and Dokimi is so utterly unremarkable that no one else wanted it for anything else."`
 				goto next
 
@@ -965,7 +978,6 @@ mission "Avgi: Atomics Testing 2"
 			`	"Nah, we run all sorts of fun stuff that we can't test on Ergastirio, appreciation. The really big particle beams, for example, and reactor pumped lasers that would be annoying to shield on the station."`
 			`	She gestures out the window, towards some stony mountains. "You can find a valley out that way with all sorts of tracks carved in the ice. I wrote my name in a patch of stone, actually.`
 				goto next
-
 
 			label next
 			`	At Aliza's direction, you set the <ship> down on an icy pad by one of the small buildings. A few Avgi come out to greet you, wearing silver-colored spacesuits with comically large bubble helmets.`
@@ -980,6 +992,7 @@ mission "Avgi: Atomics Testing 2"
 				`	"So that's an Avgi atomic."`
 				`	(Continue working.)`
 					goto boom
+
 			`	"Yep. This is a mid-sized device, only sixty megatons. Weighs a bit under three tons, so it's a bit large for the tiny little missiles we've been stuck with since the Incursion drove us out here, but I've heard there's a team working on spooling up a production line for a more capable missile bus so that we can get these deployed."`
 			`	She looks suddenly embarrassed. "Worry. But you didn't hear that from me, of course. Information security is a lot more relaxed now that we're all mostly on the same side, but still... can't hurt to be safe."`
 
@@ -998,6 +1011,7 @@ mission "Avgi: Atomics Testing 2"
 			choice
 				`	"Incredible."`
 				`	"Terrifying."`
+
 			`	"Contemplation. Indeed it is." You turn and see Aliza watching the fireball with you, along with a few others. The rest are dutifully staring at instrument readouts and sensor logs, collecting whatever esoteric knowledge they sought to gain from this test.`
 
 
