@@ -16,7 +16,7 @@
 
 ship "Koryfi"
 	sprite "ship/avgi koryfi/koryfi"
-		"frame rate" 30
+		"frame rate" 24
 	thumbnail "thumbnail/avgi koryfi"
 	attributes
 		category "Transport"
@@ -990,7 +990,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
-		"frame rate" 15
+		"frame rate" 24
 	thumbnail "thumbnail/avgi tachytia"
 	attributes
 		category "Utility"
