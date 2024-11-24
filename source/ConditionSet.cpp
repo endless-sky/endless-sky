@@ -455,7 +455,7 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 {
 	if(!node.HasChildren())
 		return FailParse(node, "child-nodes expected, found none");
-	
+
 	// Load all child nodes.
 	for(const DataNode &child : node)
 	{
@@ -549,7 +549,7 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 		// - an infix-operator
 		// - a closing bracket (hopefully matching an earlier open bracket)
 		// - end of the tokens.
-		
+
 		// Reaching the end is fine, since we should have parsed a full terminal before this one.
 		// Reaching a closing bracket also means we are done (the parent should handle it).
 		if(tokenNr >= node.Size() || node.Token(tokenNr) == ")")
@@ -577,7 +577,7 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 				// If the precedence of the new operator is less or equal than the parents operator, then let the parent handle it.
 				if(Precedence(infixOp) <= Precedence(parentOp))
 					return true;
-				
+
 				// If the precedence of the new operator is higher than the current operator, then parse the next
 				// terminal into a new sub-expression.
 				if((children.size() > 1) && (Precedence(expressionOperator) < Precedence(infixOp)))
