@@ -2500,8 +2500,17 @@ event "terraforming follow-up"
 		add attributes "tourism"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Due to the results of recent terraforming experiments, Rand has become a moderately more habitable place. Fascination with this change in climate has led to Rand becoming a semi-popular tourist destination of the Dirt Belt.`
+		spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
+		spaceport `	For once, the spaceport is lively during Remembrance Day. It appears that more and more people are choosing to invite their family over to Rand to commemorate the day instead of traveling to another planet.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
 	planet "Tundra"
 		spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Before the planet was terraformed, enough snow would pile up on top of one of the domes every decade or so that it became a danger of collapsing under its own weight; the locals would simply move out of that dome and build another one higher up on the snowpack, but the changing climate has reduced the amount of snow enough that the locals may never need to build another dome again.`
+		spaceport `	For Remembrance Day, several stalls have been set up to showcase items of clothing made with the planet's synthetic fabrics. A new addition to the event is a group of stalls dedicated to presenting clothing tailored here on Tundra.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
 
 
 
@@ -3907,6 +3916,10 @@ mission "Human to Hai Space"
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
 			choice
+				`	"'Heard tell'? I'm from Hai space!"`
+					to display
+						has "hai space start"
+					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
@@ -3917,15 +3930,27 @@ mission "Human to Hai Space"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
+			label origin
+			`	He seems shocked. "Really? I can give you <payment> to get to <planet>."`
+				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			label choice
 			choice
+				`	"Actually, I'm from <planet>."`
+					to display
+						has "hai space start"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
 					decline
 				`	"Why would you want to go all the way out to <planet>?"`
+					goto explain
+			`	"No way, you as well?" He stops for a second to process. "They say the universe is a small place, but I never believed any of that. Until now, that is. And to think I'd meet someone like you on my first time out of the wormhole."`
+				goto humanspace
+			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
+			label humanspace
 			choice
 				`	"Really? How did you like human space?"`
 					goto travel
@@ -3949,12 +3974,30 @@ mission "Human to Hai Space"
 			choice
 				`	(Leave.)`
 					decline
+				`	(Approach them.)`
+					to display
+						has "hai space start"
+					goto haistart
 				`	"That's your family?"`
+					to display
+						not "hai space start"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
 				`	"No problem, I hope you enjoyed the trip."`
+			label end
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+				decline
+			label haistart
+			`	Benjamin notices you approaching, and says, "These are my parents, Yeerto and Taepip." His father Yeerto then says, "We checked the travel agencies here on Greenwater, but it turned out to be much cheaper to get a merchant to bring Benjamin to human space. I guess we learned why that was cheaper the hard way."`
+			`	"You said you used to work at a travel agency, right?" Benjamin adds with a smile on his face. "Funny we almost found each other then."`
+			`	Benjamin's mother Taepip softly places her hand on his shoulder before continuing, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
+			choice
+				`	"Sure."`
+				`	"Sorry, I have other pressing matters."`
+					goto end
+			`	You spend a long evening with them, talking about your upbringing on <planet> and your experiences in human space. Yeerto then tells you about the local news here, and you catch up with what's happened on your home planet since you left.`
+			`	It begins to get dark, and after a final goodbye you head back to your ship.`
 
 
 
@@ -4310,8 +4353,8 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# Use of "00" at the start of the mission name is to make it offer only if no other missions have.
-mission "00 Spaceport Reminder Resetter"
+# Use of "aa" at the start of the mission name is to make it offer only if no other missions have.
+mission "aa Spaceport Reminder Resetter"
 	minor
 	invisible
 	repeat
@@ -4544,7 +4587,7 @@ mission "Laborer"
 		random < 15
 	on offer
 		conversation
-			`Upon entering the spaceport, you see a young man in laborer's clothing is arguing with a woman in a flight suit.`
+			`Upon entering the spaceport, you see a young man in laborer's clothing arguing with a woman in a flight suit.`
 			choice
 				`	(Go see what the laborer is arguing about.)`
 				`	(Ignore them.)`
@@ -4619,8 +4662,8 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai: declined"
-			has "First Contact: Unfettered: declined"
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
@@ -4633,11 +4676,12 @@ mission "Hai Wormhole Warning"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai: declined"
-			has "First Contact: Unfettered: declined"
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 		not "hr: meet the team"
+		not "hai space start"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -4916,7 +4960,7 @@ mission "Dangerous Games 1"
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
 				accept
 			label money
-			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <stopovers> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
 			choice
 				`	"Works for me. We leave tomorrow."`
 					goto accept
@@ -4972,7 +5016,6 @@ mission "Dangerous Games 1"
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
-
 
 
 mission "Dangerous Games 2"
@@ -5808,12 +5851,12 @@ mission "Quicksilver Mixup 1"
 			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
 			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
 			`	"WHAT TOOK YOU SO LONG???"`
-			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO!!!"`
 			branch picture "didn't take picture"
 				has "took picture of quicksilver package"
 
 			label picture
-			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package sent to the wrong place. You politely inform him that, had he wanted a smoother delivery, he should've filed a proper job listing and made sure that he placed the correct address.`
 			branch "picture success" "picture failure"
 				random < 50
 
@@ -5856,7 +5899,7 @@ mission "Quicksilver Mixup 2"
 	on offer
 		conversation
 			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
-			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month - some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
 			choice
 				`	"Oh, so you guys did set up that regular shipment after all!"`
 					goto context
@@ -6412,7 +6455,7 @@ mission "Moving House 1"
 				decline
 				
 			label sure
-			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
+			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour."`
 			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
 			choice
 				`	(Shake their hand.)`
@@ -6710,7 +6753,7 @@ mission "FW Refugees to Humanika"
 			label "quarg"
 			action
 				set "FW Refugees to Humanika: quarg"
-			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more."`
+			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more.`
 				to display
 					not "First Contact: Quarg: offered"
 			`	"There's a planet they control that has too much gravity for them, but is just right for humans, so they let humans settle there under their protection. Or at least that's what I've heard."`
@@ -6753,7 +6796,6 @@ mission "Derelict Treasure Map: Ion Cannons"
 			`	Opening the cache reveals a large store of credits along with two Hai Ion Cannons. These must be the alien weapons the map's owner wrote about.`
 			choice
 				`	(Loot the treasure.)`
-					goto end
 			label end
 			`	You grab the <payment> credits, and with the assistance of some machinery you bring the weapons back to your ship.`
 
@@ -7066,7 +7108,7 @@ mission "Adelita 1"
 				goto directions
 
 			label "know about disaster"
-			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijes while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijs while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 
 			label directions
 			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
@@ -7258,7 +7300,7 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll to film the conditions in a secret Syndicate sweatshop.`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll film the conditions in a secret Syndicate sweatshop.`
 			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
 			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			choice
@@ -7453,3 +7495,1849 @@ mission "Adelita 5"
 			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
 			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
 			`	She starts off to join River and Bunker out in the spaceport before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
+
+
+
+mission "Timothy Radrickson 1: Stowaway"
+	invisible
+	landing
+	source
+		near "Zeta Aquilae" 3 10
+		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
+	destination "Rand"
+	passengers 1
+	to offer
+		random < 2
+	on enter
+
+	# You will see this conversation after the first jump you make.
+	on enter
+		conversation
+			`Upon completing your jump, one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report: apparently there is a non-negligible heat source detected in the food storage of your ship.`
+			`	As problems go, it is not a particularly alarming one: there are plenty of reasons there may be a heat spike in storage, and most of them would not require the captain of the ship to investigate.`
+			`	It is unusual, however.`
+			choice
+				`	(Investigate.)`
+					goto check
+				`	(Ignore the sensor.)`
+
+			action
+				fail
+				event "timothy radrickson: mummy" 41
+			`	You turn off the alarm and return your focus to piloting your ship.`
+				decline
+
+			label check
+			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a foodstuff crate you recently took on. It has yet to be opened, but you can tell its seal has already been tampered with.`
+			choice
+				`	(Open the crate.)`
+					goto crate
+				`	(Dump the crate out the airlock.)`
+
+			action
+				fail
+			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anomalous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
+				decline
+
+			label crate
+			`	You pry open the crate. It should be full of meals for your journey, but after removing the lid you discover a dirty, disheveled man.`
+			`	Before you have a chance to say anything, the man looks up at you with narrowed, pained eyes, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
+			choice
+				`	"Who are you?"`
+				`	"Where's my food?"`
+
+			`	"T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owed money. I had nothing. Please. Any other world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back, I swear. I swear. I will. I swear."`
+			choice
+				`	"Is there somewhere you'd like to go?"`
+					goto somewhere
+				`	"Fine. I'll drop you off at the next port."`
+					goto port
+				`	"I know where you're going. The airlock."`
+
+			action
+				fail
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him past the bulkhead seals. He falls to his knees shuddering, and he scrunches up with terror. You close the airlock, silencing his shrill screams, and hit the button to open the outside airlock. The man is promptly sucked out into cold, cruel space and crystallizes before becoming this system's newest comet.`
+				decline
+
+			label port
+			action
+				fail
+				set "timothy radrickson: port"
+			`	"Thank you," he whispers as tears squeeze out of his eyes. "Thank you."`
+			`	You get the man cleaned up and settled, and then go back to running your ship.`
+				decline
+
+			label somewhere
+			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
+			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
+			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
+			`	You help him out of the crate and get him cleaned up.`
+				accept
+
+	on complete
+		log "People" "Timothy Radickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
+		event "timothy radrickson: on rand" 340
+		conversation
+			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
+			`	"I mean it, from the bottom of my heart. You've saved my life, and given me hope. I won't forget this; or you. I could never thank you enough."`
+			`	His eyes glistening, Timothy turns from you and exits your ship.`
+
+
+mission "Timothy Radrickson 1a: Accepted"
+	landing
+	name "Stowaway to <planet>"
+	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
+	destination "Rand"
+	to offer
+		has "Timothy Radrickson 1: Stowaway: active"
+	on abort
+		fail "Timothy Radrickson 1: Stowaway"
+
+
+event "timothy radrickson: on rand"
+event "timothy radrickson: mummy"
+
+
+mission "Timothy Radrickson 2: mummy"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 1: Stowaway: failed"
+		has "event: timothy radrickson: mummy"
+	on enter
+
+	on enter
+		conversation
+			`For days there's been an odd lingering scent filtering in from your pressurized cargo, but finally the smell has permeated your command deck. A ship-wide search leads you to a unopened foodstuff crate. Although the crate is unopened, the seal on it appears tampered with and you surmise that the food has gone bad.`
+			`	Upon opening it you discover that is in fact, not the case. Instead you discover the decaying body of a dead and forgotten stowaway; the entire crate promptly finds its way to your airlock. Despite the diligent work of your ship's air filters, you can't quite rid the ship of the smell.`
+
+
+mission "Timothy Radrickson 2: Interlude"
+	landing
+	to offer
+		has "Timothy Radrickson 1: Stowaway: failed"
+		has "timothy radrickson: port"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on offer
+		conversation
+			`Blinking at the light, Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
+			`	Timothy opens the hatch and looks back at you. "You s-s-saved my life. I won't forget. I won't."`
+			`	With that, Timothy exits your ship and begins his new life.`
+
+
+mission "Timothy Radrickson 2: Good Interlude"
+	source
+		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
+	landing
+	invisible
+	to offer
+		has "event: timothy radrickson: on rand"
+	on offer
+		log "People" "Timothy Radickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log `Despite starting over with nothing, Timothy has sent credits for that passage I gave him over a year ago.`
+		payment 50000
+		event "timothy radrickson: governor" 3600
+		conversation
+			`After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
+			choice
+				`	(Play the message.)`
+
+			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
+			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
+			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
+			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
+			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
+			`	Timothy waves, and the video ends.`
+				decline
+
+
+event "timothy radrickson: governor"
+
+
+mission "Timothy Radrickson 3: Governor Notification"
+	name "Visit the Governor of <planet>"
+	description "The governor of <planet> has invited you to speak with them."
+	to offer
+		has "event: timothy radrickson: governor"
+		has "main plot completed"
+	destination "Rand"
+	landing
+	on offer
+		conversation
+			`An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
+			choice
+				`	(Play the message.)`
+			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
+				accept
+
+	on complete
+		conversation
+			`Upon landing you are met by a squat, heavy-set woman in her late forties. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the mayor of this town, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready."`
+
+
+mission "Timothy Radrickson 3a: Rescue the Convoy"
+	name "Rescue <origin> convoy"
+	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
+	source "Rand"
+	priority
+	destination "Greenrock"
+	deadline 7
+	clearance
+	to offer
+		has "Timothy Radrickson 3: Governor Notification: done"
+	on offer
+		conversation
+			`Regina, her driver, and a sleek black vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and thin topsoil is a terrible combination.`
+			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invade the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
+			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial gravity drives; the same sort of drives ships use to maintain gravity onboard, but for an entire estate.`
+			choice
+				`	(Say nothing.)`
+					goto nothing
+				`	(Ask about the artificial gravity drives.)`
+
+			`	Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard-working 'servants of the state.'" The way she says "servants of the state" makes it sound like some kind of inside joke. She turns away from you before you have a chance to say anything else.`
+
+			label nothing
+			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
+			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>. It truly was an honor meeting you."`
+			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at the mansion's entrance.`
+			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me." He turns and heads into the building.`
+			choice
+				`	(Follow the attendant.)`
+
+			`	Upon entering the mansion you feel your weight shift. It's still a little less than 1 g, but close. There's a young well-dressed woman, the same who you saw in your message, waiting for you inside. The attendant leaves you with her.`
+			`	The woman smiles pleasantly. "We are all so pleased you could make it here. Forgive me for not meeting you outside, but I find the gravity of this world distressing. I am Wynnafrith, the governor's executive assistant, and will be pleased to announce that you are here.`
+			`	Wynnafrith says a few quiet words into an intercom, and a door behind her opens. "The Governor is ready for you."`
+			choice
+				`	(Enter the room.)`
+
+			`	You enter a large, richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
+			`	"Ah, Captain <last>. At last we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, for it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
+			`	"I was a stowaway on your ship. You found me in a food crate, and you took me here. I'm Timothy Radrickson, Governor Timothy Radrickson now."`
+			`	Timothy sits back down and indicates that you should do the same. "It took me some time. But through some good decisions, and quite a bit of luck, I've been able to claw my way to a level of respectability and wealth. I've really been able to make something of myself."`
+			`	His face opens up into a large grin. "Then again, compared to what you've done in all this time, my successes hardly register. Still, as meager as they may be, I owe it all to you and your kind gesture. Which is why I've invited you here, to thank you and pay you back properly."`
+			`	Timothy taps a display on his desk. "First, I am transferring 125,000 credits to your account to pay you back for the crate of food, the fuel, and the additional expenses of taking care of me on your ship; plus interest, of course."`
+			choice
+				`	(Accept the money.)`
+					goto moneyaccept
+				`	(Refuse the money.)`
+
+			`	You begin to refuse the generous offer, but Timothy holds up a hand to stop you. "I am doing quite well, and this discharges a debt that has been weighing on me. Besides, the money's already been sent!"`
+
+			label moneyaccept
+			`	Timothy pulls out a bottle beneath his desk and two glass cups. "To celebrate our reunion."`
+			`	He pours the brown liquid in the cups and pushes one to you. "Things have gone well for me, and are only going to get better from here on out."`
+			`	He takes a sip and says, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes. "When it returns from Wayfarer, the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
+			choice
+				`	"Congratulations Timothy. You're really outdone yourself."`
+				`	(Take a sip from your glass.)`
+				`	"Don't forget your humble beginnings, Timothy. The workers here seem to be suffering, while the rich thrive."`
+				`	"You're proof that hard work is all it takes to succeed. I don't know how you can stand living on a world filled with lazy workers all demanding hand outs."`
+
+			`	His eyes refocus on you. "You'd be proud, <first>. I am going to make a real difference here..."`
+			`	Timothy is suddenly interrupted by an incessant notification coming from his desk. He glowers and says, "Excuse me for a moment, <last>," sits up straight, turns on his ear piece and answers the call.`
+			`	"What?!" He nearly shouts after ten seconds of listening, followed by "How can that be?" and finally, "What about the Navy or the militias, where are they!?" His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy "uh huhs" before finally hanging up.`
+			`	"Never mind." He rubs his forehead and closes his eyes before saying, "Rand's future is gone. It's just been hijacked by marauders."`
+			`	He stands up and starts pacing around the room. "I'm sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's mineral wealth, has been taken. To make matters worse, in order to make this shipment happen I had to hire a private outfit from the Deep, and neither the Navy nor the Free Worlds militias are going to intervene on their behalf. Which means this entire world, and myself, are finished."`
+			`	He collapses back in his chair with his head in his hands. "I'm sorry. There will be a car waiting for you at the entrance."`
+			choice
+				`	"I could help you recover the fleet."`
+					goto helptim
+				`	(Apologize for his predicament and leave.)`
+				`	(Leave without saying anything.)`
+
+			label nope
+			`	The doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape, back to the dirty, shabby spaceport where your ship awaits.`
+				decline
+
+			label helptim
+			`	Timothy jerks up to look at you, his eyes wide and searching. "Really? I... Rand... we don't have anything left to pay you, and who knows how dangerous those marauders are... but we'll take any help we can get if you're up for it."`
+			choice
+				`	(Agree to help.)`
+					goto agreehelp
+				`	(Back out.)`
+
+			`	The light drains from his eyes and he nods tiredly. "I understand."`
+				goto nope
+
+			label agreehelp
+			`	Color returns to Timothy's face and he immediately straightens up. "Hroar's Haulers were contracted to deliver our freight to Wayfarer. We lost contact with them in the Peacock system. There was a report from some local merchants who sighted a large group of marauders in Lesath escorting a freighter fleet in merchant colors. They tracked their movements to Shaula."`
+			`	He frowns as he considers something, then says, "If you hurry, you might be able to get there before they've had time to move the goods or deal with their crews... no more than a week at most... but who knows, they're pirates." Timothy hits a few more buttons on his display screen, then he continues, "I've just sent your ship the tracking beacon for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
+			`	"I am sorry I can't offer you more help." He stands up and hits the button opening up the exit door. "But, please, save that fleet."`
+				accept
+
+	on decline
+		event "timothy radrickson imprisoned" 400
+
+
+mission "Timothy Radrickson 3b: Pirate Base"
+	landing
+	name "Defeat the pirate fleet"
+	description "Destroy the pirate fleet that is holding Rand's convoy hostage, then try and recover it."
+	source "Greenrock"
+	clearance
+	to offer
+		has "Timothy Radrickson 3a: Rescue the Convoy: done"
+	on offer
+		conversation
+			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large encampment situated in a valley a bit under fifty kilometers northeast of the planetary spaceport - close enough to do business, but far enough away to maintain strict security.`
+			`	As you approach the beacon's ping from the safety of the hills around the valley, you survey the base from afar. It clearly appears to be built around a set of underground blast doors, from where the beacon - and presumably the fleet - is located. Your ship also identifies numerous parked pirate vessels inside and outside the base.`
+			`	The pirates haven't realized you're hostile yet, and you have an opportunity to seize the initiative and do a surprise attack. Or, you could get closer and continue surveying the base to see if there's any way in.`
+			choice
+				`	(Do a surprise attack!)`
+					to display
+						"armament deterrence" > 0
+					goto surprise
+				`	(Get closer.)`
+				`	(Hail the pirates and use diplomacy.)`
+					goto diplomacy
+				`	(This is too dangerous. Leave.)`
+					flee
+
+			`	Getting as far as you can toward the base without compromising your position, you notice the base is surrounded by an array of laser turrets and ground-to-air missile systems, which makes further approach highly risky. Furthermore, the ships outside the base appear to be highly modified. You don't see any other entrance to the base, however; it looks like you'll have to force the pirates out, one way or another.`
+			`	It still seems as if the pirates don't see you. With a little movement, you could strafe the encampment and take out a fair few of the parked ships if you can avoid the turrets.`
+			choice
+				`	(Strafe the parked pirate vessels.)`
+					to display
+						"armament deterrence" > 0
+				`	(Hail the pirates and use diplomacy.)`
+					goto diplomacy
+				`	(This is too dangerous. Leave.)`
+					flee
+
+			action
+				set "diminished greenrock pirate fleet"
+			`	Carefully maneuvering into position, your ship flies out of the hills that hid it and lets loose a withering barrage over the parked pirate vessels. You manage to destroy a number of the ships while their shields are down, before the defense turrets force you to fly back up into space as the surviving ships sortie after you.`
+				launch
+
+			label diplomacy
+			action
+				set "big greenrock pirate fleet"
+				set "Timothy Radrickson 3b: diplomacy"
+			`	You broadcast a message to the ships parked in the encampment, declaring that you wish them no harm and inviting them to parley over the Rand convoy.`
+			`	Their only response is to launch their entire fleet after you. You're forced back into space to fight them.`
+				launch
+
+			label surprise
+			action
+				set "big greenrock pirate fleet"
+			`	You shunt your thrusters to full speed and fly into the valley, straight for the largest cluster of parked ships outside the blast doors.`
+			`	That is, until your sensors run hot with a multitude of approaching enemy warnings and missile locks. Without the protection of the hills that were hiding your ship, it looks like the pirates' early warning system detected you before you could get into position to attack. You're forced to turn back as an entire fleet of marauders fire up their engines and chase you into space.`
+				launch
+
+	on visit
+		dialog `There are still marauder ships flying overhead. Take off and defeat them before finding the fleet.`
+
+	npc kill
+		to spawn
+			has "big greenrock pirate fleet"
+		government "Pirate"
+		personality launching nemesis target plunders
+		fleet
+			names "pirate"
+			variant
+				"Marauder Falcon (Engines)"
+				"Falcon (Javelin)"
+				"Marauder Firebird (Weapons)"
+				"Firebird"
+
+				"Marauder Raven"
+				"Modified Argosy (Gatling)" 2
+				"Osprey (Missile)"
+
+				"Hawk (Plasma)"
+				"Quicksilver" 2
+				"Headhunter"
+				"Fury (Gatling)" 3
+		on kill
+				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+
+	npc kill
+		to spawn
+			has "diminished greenrock pirate fleet"
+		government "Pirate"
+		personality launching nemesis target plunders
+		fleet
+			names "pirate"
+			variant
+				"Marauder Falcon (Engines)"
+				"Falcon (Javelin)"
+				"Marauder Firebird (Weapons)"
+				"Firebird"
+
+				"Modified Argosy (Gatling)"
+				"Osprey (Missile)"
+
+				"Hawk (Plasma)"
+				"Fury (Gatling)"
+		on kill
+				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+
+mission "Timothy Radrickson 3c: Escort the Convoy"
+	landing
+	name "Escort the Convoy"
+	source "Greenrock"
+	destination "Wayfarer"
+	to offer
+		has "Timothy Radrickson 3b: Pirate Base: done"
+	on offer
+		conversation
+			`The sky burns red as detritus from the fierce battle rains down on Greenrock. The destruction of a major pirate gang's fleet has resulted in panic and chaos over the region as rival pirate groups battle it out in the skies to claim the defeated's turf. Although a few ships take pot shots at you as you descend into the atmosphere, everybody is too busy brawling to notice you as you approach the pirates' encampment from where you still register the ping of the beacon.`
+			`	The valley where the encampment is located, however, is surprisingly quiet, though it's similarly littered with the remains of small ships. As you move towards it you notice that the blast doors of the underground base have been opened. What you also notice is that the defense turrets are all still working and are very much trained upon you.`
+			choice
+				`	(Hail the occupants of the base.)`
+				`	(Approach the base.)`
+					goto approach
+				`	(Leave.)`
+					flee
+
+			`	"This is Captain <last>, commander of the <ship>," you say. "We have defeated the fleet that occupies this base and demand entry. Disable your turrets or we will fire upon them."`
+			branch "did it already"
+				has "Timothy Radrickson 3b: diplomacy"
+
+			`	You receive a response promptly. "And what makes you think we will let ya' in?"`
+				goto next
+
+			label "did it already"
+			`	This time, you get a response promptly. "And what makes you think we will let ya' in?"`
+				goto next
+
+			label approach
+			`	You advance towards the encampment for about five seconds before you receive a hail coming from behind the blast doors. "Hey, hey! What makes you think we'll let ya' in?"`
+
+			label next
+			choice
+				`	"Right of conquest."`
+					goto right
+				`	"Because I defeated your fleet."`
+					goto "defeated your fleet"
+				`	"Because I'm here to rescue the Rand convoy, and you can't stop me."`
+
+			`	You hear a hearty laugh from the other end. "What makes you think they're still here?" the voice replies.`
+				goto inside
+
+			label right
+			`	You hear a hearty laugh from the other end. "Right of conquest? I thought you were here to save us!" the voice replies.`
+				goto inside
+
+			label "defeated your fleet"
+			`	You hear a hearty laugh from the other end. "That fleet? Just a trifle. We've got the Sol Home Fleet behind these doors," the voice replies.`
+
+			label inside
+			`	A moment passes before it says, "We're just pulling your leg, <last>. We can see your tracking beacon reflecting our own, so we know it's you. Come on in." The turrets shortly depower and you gently put your ship down through the blast doors.`
+			`	Inside the bay's walls you can make out the moored and apparently intact freighter fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have been too busy going after you.`
+			`	As you exit your ship a woman wearing a captain's hat approaches you and then flashes a reluctant smile at you. "Name's Hrodny. Capt'n Hrodny of Hroar's Haulers. You probably heard Alan on the radio," she says, flicking her eyes to the control room.`
+			`	"Well, thanks for the distraction. Once you got the fleet out of here we overpowered what little detail they kept here and took control of the turrets." She looks around to the blast doors where the depowered turrets once guarded. "Been waitin' for the right moment to move outta this place."`
+			`	Hrodny turns her piercing green eyes back on you. "We got 'em in here easy, but we can't fight past whatever is out there. I'm presuming you're not just a lost mercenary and are in fact our cavalry?"`
+			choice
+				`	"Don't worry. I can escort your fleet to Wayfarer."`
+				`	"It's your lucky day. Getting you to Wayfarer will be a piece of cake."`
+				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
+				`	"You do your job. I'll do mine."`
+
+			`	Hrodny grins. "Great. We weren't too keen on stickin' around these parts anyhow."`
+			`	She looks back at her ships, whistles, and points toward the ships. A group of Haulers turn and run toward them, preparing them for takeoff. She then looks back at you. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships, while a number of crew are draining the base's deuterium tanks and filling up the ships inside.`
+			`	"Hazard pay," Hrodny says, winking at you. "You head back your ship, and by the time you get there we'll be ready to launch. We'll follow ya out."`
+			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
+				accept
+
+	on complete
+		conversation
+			`The freighter fleet sets down to some minor fanfare; there are likely more than a few middlemen here who would have been hard-pressed by the loss of the fleet's valuable cargo.`
+			`	Not long after landing, Captain Hrodny seeks you out. "Didn't have much time back there for pleasantries, but gotta say I am mighty thankful you showed up when you did."`
+			`	She extends her hand to you.`
+			choice
+				`	(Shake Hrodny's hand.)`
+					goto shake
+				`	(Don't shake her hand.)`
+
+			`	She shrugs and withdraws her hand. "Different customs I suppose."`
+			`	Hrodny pauses for a moment, then says, "Gotta say you handled yourself well out there. Always good to see a capt'n worth more than the dust on their boots." She gives you an approving nod.`
+				goto nextup
+
+			label shake
+			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a capt'n worth more than the dust on their boots." She gives you an approving nod.`
+
+			label nextup
+			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
+			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of yourself, Capt'n."`
+			`	With that she heads back to her freighter fleet.`
+
+	npc accompany save
+		government "Merchant" # 3880 cargo capacity
+		personality escort timid
+		ship "Behemoth" "H.H.H. Gullveig's Revenge"
+		ship "Hauler" "H.H.H. Hard and Fast"
+		ship "Hauler" "H.H.H. Red Rambler"
+		ship "Hauler III" "H.H.H. Heavy Haulage"
+		ship "Hauler III" "H.H.H. Hroar's Heavy Hitter"
+		ship "Hauler II" "H.H.H. First Last Chance"
+		ship "Hauler II" "H.H.H. Lucky Hauler"
+		ship "Mule" "H.H.H. Herald of Vermilion"
+		ship "Boxwing" "H.H.H. Dirt-In-My-Eye"
+		ship "Bulk Freighter" "H.H.H. Cardinal Conveyor"
+		ship "Bulk Freighter" "H.H.H. Muspel Zipper"
+		ship "Freighter" "H.H.H. Ruby Rails"
+		ship "Freighter" "H.H.H. Dusty Boots"
+
+
+mission "Timothy Radrickson 3d: Return to Rand"
+	landing
+	name "Return to Rand"
+	source "Wayfarer"
+	destination "Rand"
+	to offer
+		has "Timothy Radrickson 3c: Escort the Convoy: done"
+	on complete
+		conversation
+			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
+			`	"Captain <last>! You're the talk of the world! The savior of Rand." She gives you an open and earnest smile.`
+			`	"I've been sent by the Governor to drive you straight to his estate. Please come with me."`
+			choice
+				`	(Go to the Governor's Mansion.)`
+
+			`	In the evening the passing landscape is too dark to see, so instead you focus on the glittering stars overhead. Eventually your ride slows as you seem to be caught up in traffic near the Governor's mansion. As you approach you pass streets crowded with parked personal vehicles.`
+			`	The mansion is lit up with dozens of flood lights, and brimming with fabulously dressed people. Wynnafrith turns her vehicle over to a valet and opens your door to let you out.`
+			`	She gives you a mischievous grin. "Apologies, Captain <last>. I forgot to mention the Governor was holding a little get-together. Please follow me."`
+			choice
+				`	(Follow Wynnafrith.)`
+			`	She leads you through an army of valets, waiters, and attendants as you weave in and out of the various rooms and halls. Many of the guests appear to recognize you and offer you earnest congratulations. Eventually you are ushered to the table of honor where Wynnafrith introduces you to a half dozen company bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
+			`	Not long after being seated Governor Timothy appears, and after making small talk with many of the gathered illuminaries, sits beside you. "I have something to admit," he says quietly to you.`
+			`	He gives you a sheepish smile and says, "This is a celebration in your honor, Hero of Rand."`
+			choice
+				`	"Hero of Rand?"`
+				`	"What do mean?"`
+				`	"So you lied to me."`
+			`	He shrugs. "I just thought it would be more fun this way. Who doesn't like surprises?"`
+			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn the population into indentured servants. The whole world would have been their debtor's prison."`
+			`	He pauses to consider his words. "I mean, the language they would have used would be different, but that is what it would have amounted to. But you saved us, and more than that, we're now quite a bit more wealthy than we were before."`
+			`	Timothy snatches a glass and holds it up to you and says, "From ruin to riches! The Hero of Rand!"`
+			`	A few others lift their glasses as well. They clink and Timothy then gulps the whole thing down, and after that the group breaks apart into smaller conversations.`
+			`	Eventually, the party settles down and Timothy leaves you to step up to the podium. He launches into a speech highlighting your career. The great changes you have wrought, the battles you have won, the legends of your ship. The crowd eats it all up, many having heard of some, or all of these exploits. But then Timothy takes a more somber note. He talks quietly about the troubles on his old world. On how as a starving, homeless fugitive he had recklessly hidden aboard the first ship he could find. How you had found him, half dead, in an empty crate. And how, instead of tossing him out an airlock, or dropping off at the nearest world, you took him where he asked. How you took care of him, and how through your generosity, you had given him a second chance.`
+			`	Light reflects off the tears that cling to Timothy's eyes as he tells the assembled crowd that, for him, that was your greatest moment, your most heroic action, that nothing you've done, or ever will do, compares to that simple act of mercy. And that this, to him, alone, is what makes you great.`
+			`	From here his story shifts to your selfless offer to help save Rand, even though they could promise no reward, of your stunning victory over Greenrock, and your daring liberation of the fleet on the ground. He ends with you triumphant, and Rand saved.`
+			`	The assembled guests stand, clap and cheer. They look at you, at your seat of honor, and raise their glasses to you. Eventually as the cheers and hoots die down, the Governor declares you a Hero of Rand, and thanks you for your service.`
+			choice
+				`	(Say a few words.)`
+				`	(Mingle with the crowd.)`
+					goto mingle
+				`	(Skip the party.)`
+					goto skip
+
+			`	You walk up to the podium, past the governor and turn to address the assembled guests.`
+			choice
+				`	(Humbly thank them.)`
+					goto thankthem
+				`	(Tell them it is well deserved.)`
+					goto deserved
+				`	(Dress them down for being capitalist pigs.)`
+
+			`	You address the crowd. You compliment them on how well dressed they all are, how lavish this mansion is, how wealthy they all appear. They clap, and laugh at your apt observations. But, then you talk about how poor, dirty, and shabby things are outside of this mansion, with its fake gravity, and fake greenery. You declare you want no praise from them, no flattery, and no accolades. There are a million Heroes of Rand, outside these baroque walls, toiling away in dirty, dangerous mines. All for what? So that these company-bosses and fat-cat politicians can pat each other on the back and live in obscene luxury in the middle of a squalid world? You rail, you rant, you break them down, and you dare them to do something about it. Instead of angry shouts, or acidic boos, you are met with condescending indifference. Even the serving staff look bored, as though they've heard it all before. Finally, your speech ends with not with applause, or even angry glares, but with the sounds of numerous muffled conversations. You've been forgotten, and ignored.`
+			`	Before you have time to say more, Timothy and Wynnafrith have whisked you away from the podium. Timothy, clearly embarrassed by your speech, helps you into an unmarked vehicle that takes you away from the party, and back toward the spaceport and your ship.`
+				decline
+
+			label thankthem
+			`	You thank your host, and the assembled notables for their gracious fanfare. You note, however, that you are just one person, and you've done nothing that any one else in your shoes wouldn't have done. The guests clap as you step away from the podium.`
+				goto mingle
+
+			label deserved
+			`	You launch into a speech about how you alone are special. How most people are cold and empty robots, but that a fire burns inside your breast. That you are the linchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
+				goto mingle
+
+			label skip
+			action
+				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
+				"salary: Hero of Rand" = 200
+				payment 1000000
+				event "timothy radrickson imprisoned" 400
+			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence.`
+			`	After a while, a gentle knock on the door and Timothy pushes his way into the room.`
+			`	"I see you've found my office, Captain <last>. I'd like to apologize. I was hoping you'd appreciate the party, but, I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd, and there are things I've had to do for them I am not proud of..." He trails off.`
+			`	"But still, I'm glad you're here. Even tucked away in my office. I wanted to let you know that there are credits associated with tonight's prize. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me.`
+				goto jumpskip
+
+			label mingle
+			action
+				log "People" "Timothy Radickson" `Timothy has since become the governor of Rand.`
+				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
+				"salary: Hero of Rand" = 200
+				payment 1000000
+				event "timothy radrickson imprisoned" 400
+			`	With the speeches done, you mingle with the crowd, making small talk with various dignitaries and company-bosses. You even say a few words to Regina. Everyone is pleased to meet you, and a few people ask for your autograph. Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
+			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me."`
+			
+			label jumpskip
+			`	Timothy pats you on the back. "Just another way for me to thank you for saving me all those years ago, and now my world as well."`
+			`	You nod politely, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
+			choice
+				`	"Thanks for inviting me. I've had a great time."`
+					goto thanks
+				`	"Are you a stalker?"`
+
+			`	Timothy puts his glass down and holds his hands out pleading. "No, no. It's not like that."`
+			`	He gestures towards the images on the wall. "I had no family, I had no... past. My life, my life started with you. This is my way of celebrating my past. No, don't you worry, I am not infatuated or anything."`
+			`	You realize that it has been almost a decade since you heard from him last.`
+			choice
+				`	"Thanks for inviting me. I've had a great time."`
+				`	(Go back to your ship.)`
+					goto ship
+
+			label thanks
+			`	"Oh, it's nothing compared to what you did for me. What you saved me from, and what you did to bring me here. And then how you bailed me and Rand out again." Timothy glances away from you, as if embarrassed all he did tonight wasn't enough.`
+			choice
+				`	(Keep talking with Timothy.)`
+				`	(Excuse yourself and go back to your ship.)`
+					goto ship
+
+			`	You talk with him for hours. About his life on Rand, the hardships of the mines, how he clawed his way out of it. But also about you, the challenges of running a ship, the battles, the close calls, and the joys of triumph.`
+			`	As you talk you come to realize there is a sadness at the edges of Timothy's stories about being governor. His words seem tinged with regret, though he says nothing specifically regretful. You get the feeling he isn't telling you the whole story.`
+
+			label end
+			`	As the sun rises your conversation winds to a close. Timothy escorts you back to a waiting vehicle and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green and warmth.`
+				decline
+
+			label ship
+			`	Timothy acquiesces and escorts you back to a waiting vehicle, and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green and warmth.`
+				decline
+
+
+event "timothy radrickson imprisoned"
+
+
+mission "Timothy Radrickson 4: Imprisoned"
+	to offer
+		has "event: timothy radrickson imprisoned"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Oblivion"
+	deadline 1800
+	invisible
+	on offer
+		conversation
+			`As you stroll through the spaceport, a name blaring on a nearby news screen catches your attention.`
+			choice
+				`	(Watch the news.)`
+					goto news
+				`	(Ignore it.)`
+			`	You keep walking. It's probably nothing worth your time.`
+				decline
+			label news
+			`	You turn to check out the screen. The talking heads are discussing some sort of huge scandal and the arrest of a prominent governor.`
+			`	"That's right, Ann," the anchor on the screen says. "With 8 counts of tax evasion, racketeering, and various corruption charges, Timothy Radrickson - former Governor of Rand - will likely spend the next 20 years behind bars."`
+			`	"Where he's going there will be no bars, Tom," Ann quips. "They plan to send him to a work detail on Oblivion."`
+			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years. Anything more than 5 years on Oblivion is a life sentence."`
+			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
+				accept
+	to complete
+		never
+
+mission "Timothy Radrickson 5: Oblivion Meeting"
+	landing
+	to offer
+		random < 90
+		has "Timothy Radrickson 4: Imprisoned: active"
+	source "Oblivion"
+	deadline 1
+	invisible
+	on offer
+		log "People" "Timothy Radickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		log `Oblivion had not been kind to Timothy. The last time he had been seen alive he was dying the slow, toxic death that world is famed for. Asked me to help him.`
+		conversation
+			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
+			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
+			`	"Captain <last>," he says, suffering a coughing fit. There's now red specks on his lips.`
+			`	"It's me. Timothy, remember? Boy, it's been a while. I'm a prisoner now. Chain-ganged here. Probably until the end." He spits his words out in short bursts, careful not to start coughing again.`
+			choice
+				`	"I'm sorry, Timothy."`
+				`	"Is there any way I can help?"`
+				`	"Shouldn't have broken the law."`
+
+			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
+			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
+				accept
+	to complete
+		never
+
+
+mission "Timothy Radrickson 5a: Timshank Redemption"
+	name "Meet Tim's contact on <planet>"
+	description "Tim would like you to collect some supplies for him, but first he asked you to meet someone on <stopovers> who could help you out. Tim has 18 days (<date>) before he is reassigned to a camp down south."
+	cargo "Tim's equipment" 1
+	deadline 18
+	source Oblivion
+	stopover Rand
+	to complete
+		"timothy radrickson medicine" >= 1
+		"timothy radrickson suit" >= 1
+		"timothy radrickson id" >= 1
+	to offer
+		has "Timothy Radrickson 5: Oblivion Meeting: active"
+	on offer
+		conversation
+			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
+			choice
+				`	(Approach the truck.)`
+				`	(Leave. Tim doesn't deserve another chance.)`
+					goto leave
+
+			`	By the truck you make out the silhouette of a man heaving heavy equipment in the dim light of the loading bay. He turns to look at you as you come closer.`
+			`	"Captain?"`
+			choice
+				`	"It's me, <last>."`
+				`	(Say nothing, turn away and leave.)`
+					goto leave
+
+			`	Timothy leans against the nearest wall, and for a moment the only noise in the darkness is his ragged breathing. Finally he says, "In a couple of weeks I go south. Far side of the world. I'll last maybe months. Probably less. I need a chance. I need to get out."`
+			`	His voice gets more animated as he speaks and he nearly launches into another coughing fit before catching himself and taking several uneven breaths. "They're watching me. I can't leave with you. But with the right supplies. Right tools. I can make it."`
+			`	His red eyes rimmed with bloody tears look directly into yours. "Please. Don't let me die here. At least.. give me a chance."`
+			choice
+				`	"Alright. What do you need?"`
+					goto agree
+				`	(Refuse to help him.)`
+
+			`	You shake your head slowly. "I'm sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."`
+			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out?" He almost laughs, "When I'm out!"`
+			`	He turns his face towards the truck, before looking back at you. "Goodbye, old friend."`
+			`	The weak, broken man returns to loading up the heavy equipment, slower than before.`
+				decline
+
+			label agree
+			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Have to go off world. Here's a list of what I need. Go to Rand first - address on paper. Norwen mines. Old friend. She will point you in the right direction."`
+			`	He abruptly turns away from you and goes back to loading equipment, but slower now, buying for time.`
+			`	"Eighteen days," he says wearily. "Then I go south. Lost in the maze of rigs." He pauses before saying more quietly, "and then I die." He looks back at you one last time. "Always owe you." His face cracks in one painful looking grin. "Good luck, my good friend."`
+			`	As you walk away from the Stephenson warehouse you take a look at his list. Initially it's various survival items; backpacks, camping equipment and the like. There's also a specialized survival suit, and some heavy duty detoxification medication here as well. More alarmingly, however, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
+			`	You're not sure exactly what his crimes were, but you seem to recall them being mostly white-collar. Yet, you could potentially be arming a terrorist with these items.`
+			choice
+				`	(Keep the list.)`
+					goto keep
+				`	(Throw away the list.)`
+
+			`	You toss the crumpled list into the trash and leave Timothy to his fate.`
+				decline
+
+			label keep
+			`	You decide to give Timothy another chance. You put the list back into your pocket and walk back to your ship.`
+				accept
+
+			label leave
+			`	As you walk away, you hear the sound of a large garage door shuttering, the racket reverberating around the yard, followed shortly by the rumble of a truck's unhealthy engine revving up for a one way trip.`
+				decline
+
+	on stopover
+		conversation
+			`The Norwen mines are on no current map, and your initial searches for it come up empty. Eventually you're able to find an old news article about a company mining town by the name of Norwen that attempted to unionize, and how the authorities heroically and humanely put down the uprising. The article briefly mentions that the mine was closed down shortly afterward for unrelated reasons. You're able to use the information from the article and the shakily scrawn partial address that Timothy wrote down to get a good idea where to find the mine.`
+			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles down outside the mine's entrance.`
+			choice
+				`	(Leave your ship.)`
+			`	It's dark and dusty outside. The planet's gravity makes you feel slow, and the air uncomfortably heavy in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
+			`	"Don't move, or we will end you!" comes a shout from within the darkness of the mine. "Identify yourself, now!"`
+			choice
+				`	"I'm Captain <last>, veteran of the human civil war!"`
+					goto timsbud
+				`	"I'm a friend of Timothy Radrickson!"`
+					goto timsbud
+				`	"I'm the Hero of Rand!"`
+					goto timsbud
+					to display
+						has "Timothy Radrickson 3d: Return to Rand: done"
+				`	"I'm just a merchant! My name's Captain <last>!"`
+					goto timsbud
+				`	"Mind your own business, I answer to no one!"`
+				`	(Run back to your ship.)`
+					goto "to the ship"
+
+			`	Your response is followed by a short moment of stunned silence, a snicker, and then the click of a trigger.`
+			`	There is a brief, almost pleasant, moment of calm as the inevitability of the situation sinks in... unfortunately, that is the last moment of calm you ever experience, as your body is riddled with bullet rounds mere seconds later.`
+				die
+
+			label timsbud
+			`	There is a brief, low conversation, followed by what sounds like a voice on a radio. Then finally, "If you're who you say you are, how did you first meet Governor Radrickson?"`
+			choice
+				`	"I ran into him at the Rand spaceport."`
+				`	"He sent me a message that he wanted to meet me."`
+				`	"I found him in an old equipment locker."`
+				`	"He was hiding in a food crate on my ship."`
+					goto right
+
+			`	You hear someone swear and say, "We gotta move now! Everything we can't carry, burn; they're onto us!" Some commotion ensues and you hear a few individuals run into the cave.`
+			`	The remaining guard hears something on the radio and then says, "No loose ends. Got it."`
+			choice
+				`	(Run after them into the cave.)`
+				`	(Run back to your ship.)`
+					goto "to the ship"
+			`	You run straight for the cave, hand on pistol and heart racing. Unfortunately for you, instead of the cave you run right into a bullet. The last thing you see is the guard's dirtied face looking over your body before he finishes the job.`
+				die
+
+			label "to the ship"
+			`	You turn around and dash back to your ship, and find that a few bullet rounds followed you as well. You quickly take off, expecting ships to come after you; however, none do.`
+				flee
+
+			label right
+			`	Despite not being able to see your potential assailants you can feel an immediate shift in the tension.`
+			`	"Good," one of them says, seemingly more to themselves than to you. "That's real good." You hear a loud sigh and then, "Alright, Hero of Rand, you're good to approach. The boss wants to see you."`
+				to display
+					has "Timothy Radrickson 3d: Return to Rand: done"
+			`	Dark shapes materialize from the corners of the entrance, and one of them gently ushers you forward further into the oppressive atmosphere of the old mine.`
+			choice
+				`	(Follow them into the mine.)`
+
+			`	You walk in darkness over uneven terrain for what seems like hours before seeing the first glimmers of light.`
+			`	The dull fluorescent lights reveal a small group of haggard young men and women moonlighting as soldiers. There is nothing uniform about the costumes they are wearing, and what little equipment they have looks old, broken or cobbled together. Everything stinks, and the people themselves look stoned, miserable or both.`
+			`	Finally your escort stops outside a door built into the cavern walls. "She's just in here. Behave."`
+			choice
+				`	(Walk inside.)`
+
+			`	The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familiar about her face. You've met her before...`
+			`	"Captain <last>!" She says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
+			`	She glances down at herself as if recognizing her body's transformation from offworld waif to native Rander. "I dare say the world has changed me now that I'm away from the gravity generators.`
+			`	"Although I am no longer a secretary, I am Union-Colonel Wynnfrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
+			`	She tilts her head slightly. "But that's enough about me. What possible reason could you have for coming here?" Her face is open and friendly, but she casually rests her hand on her side arm.`
+			choice
+				`	(Tell her about Timothy.)`
+					goto Timmy
+				`	(Tell her you just wanted to say hi.)`
+				`	(Tell her it is none of her business.)`
+
+			`	She frowns and aims her gun squarely at your chest. "It's been too long since I've last seen you. And though you were once Governor Radrickson's friend, things have changed quite a bit since then."`
+			`	She gives you a nonchalant shrug. "If that's all you have to say, then I am afraid there is no good reason to let you leave here alive." She favors you with a brief smile. "Operational security, you know how it goes."`
+			`	She switches off the safety.`
+			choice
+				`	"Wait! Timothy sent me!"`
+					goto sayso
+				`	"Take your best shot."`
+			`	She does indeed take her best shot, and the sudden hole in your torso proves to be quite terminal.`
+				die
+
+			label sayso
+				`	She shakes her head. "Well, why didn't you just say so? What does our Governor ask of us?" She holsters her sidearm.`
+
+			label Timmy
+			`	Union-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
+			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
+			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
+			`	"Sure, he made some mistakes. No one becomes governor here without out getting a little dirt of their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"And when he wouldn't budge they finally got him on trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
+			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
+			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
+			choice
+				`	(Take it.)`
+
+			`	"And this should take care of his need for a gun. As for the other items on there..." She turns to a torn and faded star chart taped on the rocky cavern wall.`
+			`	Grabbing a small stick leaning from the wall, she points to Rastaban. "Dancer would be the best world to find a survival suit rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmaceuticals."`
+			`	The pointing stick falls on Shaula next. "The best place for a fake ID would be the 'independent' world of Greenrock." She taps her chin before continuing, "It would be tight though getting to all three of these worlds and back to the governor in time. Any of these worlds may also have the other equipment you need, but the quality likely wouldn't be as good."`
+			`	She turns back to you. "I am sorry we couldn't be more help, but hopefully it's enough."`
+			`	After putting the pointing stick back in its place, Wynnafrith steps through the door, indicating for you to follow her.`
+			choice
+				`	(Follow her.)`
+
+			`	Once again in the larger cavern she turns and points at the guard. "Grab our explosive and carefully accompany Captain <last> with it back to his ship."`
+			`	The guard frowns. "But it's our only one..."`
+			`	"Now!" She cuts him off, and watches as he sullenly slumps away.`
+			`	Without looking your way she continues, "It was a pleasure to see you again, Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
+			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
+			action
+				log `Met Union-Colonel Wynnfrith, Timothy Radickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. Showed her Timothy's list, and she said I could find a survival suit on Dancer, the medication on New Britain, and a fake ID on Shaula. Provided me with the gun and bomb Timothy asked for.`
+
+
+
+mission "Timothy Radrickson 5b: New Britain"
+	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find detoxification medication for Tim."
+	landing
+	name "Supplies on New Britain"
+	source "Rand"
+	destination "New Britain"
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: active"
+	on complete
+		conversation
+			`With a little effort you're able to navigate New Britain's labyrinthian ziggurat masquerading as a spaceport. The lower levels are dedicated to a bustling trade sector where merchants, traders, and producers from all over the Dirt Belt haggle to sell their raw materials, and purchase complex equipment and refined products.`
+			label options
+			choice
+				`	(Find the detoxification medicine.)`
+					goto med1
+					to display
+						not "med1"
+				`	(Haggle with the medicine salesman again.)`
+					goto med2
+					to display
+						has "med1"
+						not "med2"
+				`	(Look for the survival suit.)`
+					goto suit1
+					to display
+						"timothy radrickson suit" <= 1
+						not "suit1"
+				`	(Return to the shop to buy the survival suit.)`
+					goto suit2
+					to display
+						has "suit1"
+						not "suit2"
+				`	(Find someone that can procure a fake ID for you.)`
+					goto id1
+					to display
+						"timothy radrickson id" == 0
+						not "id1"
+				`	(Leave the trade sector.)`
+					goto end
+
+			label med1
+			action
+				set "med1"
+			`	You make your way to the pharmaceutical wing, through crowds of representatives from large conglomerates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
+			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why, you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
+			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.`
+			choice
+				`	(Purchase the medicine for Tim.)`
+					goto "med 140"
+				`	(Haggle for a lower price.)`
+					goto haggle
+				`	(Pass.)`
+			`	That price is too steep. You return to the central atrium of the trade sector to consider your options.`
+				goto options
+			
+			label haggle
+			`The salesman's eyes narrow and his face suddenly looks vaguely reptilian. "I'm already giving you the best price. The literal shirt off my back!"`
+			choice
+				`	(Offer 60,000 for the meds.)`
+				`	(Offer 120,000 for the meds.)`
+					goto justright
+				`	(Agree to pay 140,000 for the meds.)`
+					goto "med 140"
+				
+			`	The drug salesman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice that!"`
+			`	He begins packing up his equipment. "I'm charging you full price, 140,000 or nothing. Last chance."`
+			choice
+				`	(Purchase the medicine for Tim.)`
+					goto "med 140"
+				`	(Pass.)`
+			action
+				set "med2"
+			`	That price is too high; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options.`
+				goto options
+
+			label justright
+			`	The salesman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
+				goto "med 120"
+
+			label med2
+			action
+				set "med2"
+			`	You decide to go back the pharmaceutical wing to reconsider the deal.`
+			`	"Here's the captain again!" says the salesman, as if he'd known you for years. He leans in uncomfortably close to you and says, "I can tell you're a discerning customer, so here's what I will let these go for: 120,000 credits. That's almost wholesale price! I'm barely making a cent, but I really need to unload all these drugs."`
+			`	He favors you with an unnaturally white, toothy grin.`
+			choice
+				`	(Purchase the discounted medicine for Tim.)`
+					goto "med 120"
+				`	(Haggle for an even lower price.)`
+					goto haggle2
+				`	(Pass.)`
+			`	Again, the medicine just costs too much; Tim will have to survive with something less potent.`
+			`	The salesman's eyes bulge, and his smooth face is suddenly crisscrossed on unattractive wrinkles. "Fine. I have another buyer anyways," he half-growls at you. He begins packing up his stall, muttering and shaking his head to himself as he does so.`
+			`	You return to the central atrium of the trade sector to consider your other options.`
+				goto options
+			
+			label haggle2
+			`	The drug salesman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice what I've offered you!"`
+			`	He begins packing up his equipment. "For wasting my time I'm charging you full price, 140,000 or nothing. Last chance."`
+			choice
+				`	(Purchase the medcine for Tim.)`
+					goto "med 140"
+				`	(Pass.)`
+			`	That price is still too expensive. You'll have to see if you can purchase a less potent and cheaper drug elsewhere.`
+			`	You return to the central atrium of the trade sector to consider your other options.`
+				goto options
+
+
+			label "med 140"
+			action
+				set "med2"
+				"timothy radrickson medicine" = 3
+				payment -140000
+			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he gives you the medicine, boxed and in a bag. You hope it'll save Timothy.`
+				goto options
+
+			label "med 120"
+			action
+				set "med2"
+				"timothy radrickson medicine" = 3
+				payment -120000
+			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he gives you the medicine, boxed and in a bag. You hope it'll save Timothy.`
+				goto options
+
+			label suit1
+			action
+				set "suit1"
+			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types. Hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
+			`	There's a store named "Explorer's Element" not far from the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
+			choice
+				`	(Get the survival suit for Tim.)`
+					goto getsuit
+				`	(Pass.)`
+			`	The suit's value is probably a good indicator of its usefulness, and you pass up on the option to buy it. You return to the central atrium of the trade sector to consider your options.`
+				goto options
+
+			label suit2
+			action
+				set "suit2"
+			`	You return to the store and locate the rack filled with the hobbyist survival suits. The price is still 99,999 credits.`
+			choice
+				`	(Get the survival suit for Tim.)`
+					goto getsuit
+				`	(Pass.)`
+			`	You just can't pull the trigger. You return to the terminal area to consider your other options.`
+				goto options
+			
+			label getsuit
+			action
+				set "suit2"
+				"timothy radrickson suit" = 2
+				payment -99999
+			`	The sales associate is delighted to remove the tags and wrap up your brand new survival suit. He tells you about how his cousin used one just last month to visit a mildly chilly beach a few hours north of the spaceport.`
+			`	You pay the <payment>, and he hands you the bag.`
+				goto options
+
+			label id1
+			action
+				set "id1"
+			`	The trade sector has all manner of ID services and consultants, but you find none of the respectable ones are willing to talk to you after you explain the ID has to be prepared "in absentia," and the unrespectable ones appear to be lacking here given the presence of the spaceport gendarme at every corner. Frustrated, you decide to take a walk outside the spaceport proper.`
+			choice
+				`	(Give up and go get something else.)`
+					goto options
+				`	(Keep walking about.)`
+			`	You eventually reach a little forested garden area with a few benches, by one of the parking lots that serve the spaceport. The suns of Dabih are out in full force today, and you're glad to be in the shade.`
+			`	As you recover from the heat you notice that, sitting over in the parking lot, there's a few teenagers chatting amongst themselves. The sort that look like they'd know where to get a false ID if they needed one. Perhaps they could give you some pointers.`
+			choice
+				`	(Give up and go get something else.)`
+					goto options
+				`	(Approach the teenagers for help about the ID.)`
+
+			`	The teenagers, two of them boys and one a girl, grin at you like fresh meat as you near them.`
+			`	The guy in the middle says, "What'dya need, boss? Wanna get high? Wanna get low? Wanna get out?" Apparently this group is used to working with frustrated castouts from the overly legal spaceport emporium.`
+			choice
+				`	(Ask them about where you could get a fake ID.)`
+					goto hookmeup
+				`	(Politely decline and head back to your ship.)`
+					goto options
+				`	(Threaten to call the police.)`
+
+			`	They back away from you and frown. The middle one lowers his hand to some concealed weapon, but stops himself when he notices your own holstered gun.`
+			`	The girl next to him mutters, "Ain't worth it. Let's roll." The kids promptly walk off, leaving you alone in the park.`
+			choice
+				`	(Head back to the spaceport.)`
+					goto options
+			
+			label hookmeup
+			`	The three of them look at each other and then give you a carnivorous grin.`
+			`	"Sure thing," he smirks. "Easy as rain. It'll cost ya 'bout 20,000 cred." They look at you expectantly.`
+			choice
+				`	(Give them the credits.)`
+					goto buyid
+				`	"Wait! Show me how you're going to do it first."`
+				`	(Turn them down.)`
+					goto refuseid
+
+			`	He sighs. "Fine. I know a guy in the city, he snags us fake IDs all the time, gets us into bars, clubs, all sorts. All we need is how ya want this false guy to look, we'll take it to him and get the ID, and you'll be sweet.`
+			`	"So, ya gonna take it?"`
+			choice
+				`	(Give them the credits.)`
+					goto buyid
+				`	(Turn them down.)`
+
+			label refuseid
+			`	Collectively they frown. "Your loss," the middle guy says, before leaving you alone to return to the spaceport.`
+				goto options
+
+			label buyid
+			action
+				payment -20000
+			`	"Alrighty then, it's a done deal," he says, stashing the credit chip away. He then pulls out a datapad and asks you a few questions about what to put on the ID. You try to answer as best you can in regards to Timothy (and change a few of the more obviously incriminating details). They say to meet you here in a couple hours once they've got the ID sorted in the city.`
+			choice
+				`	(Wait.)`
+
+			`	Two and a half hours pass as you wait for the teens in the garden, but there's no sign of them yet. You wonder if you've just given 20,000 credits away for nothing.`
+			choice
+				`	(Leave.)`
+					goto leaveid
+				`	(Wait.)`
+
+			`	Another thirty minutes pass, but just as you're about to leave the three teens show themselves again, ID in hand.`
+			`	"We thought you're gonna bail out on us for bein' late. Thankfully you got the sense not to. And now ya get the goods in exchange." The middle kid hands you the ID. "Good dealin' with ya," he says as they walk off.`
+			`	As you go back to the spaceport, you take a look at the ID for the first time.`
+			`	Whoever made this clearly wasn't a professional. It looks like they've somehow botched the bar code, given the smear on the print, and the duplication of the emblem of the planetary authority of New Britain on the back is rather dodgy. But unless you can find a better alternative, it'll have to do.`
+				goto options
+
+			label leaveid
+			`	You sigh, having learnt a lesson that teenagers in parking lots probably aren't the most trustworthy of people. Back to the spaceport.`
+				goto options
+
+			label end
+			action
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
+			`	After a long day of walking about the New British spaceport and wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
+				decline
+	to fail
+		or
+			has "Timothy Radrickson 5a: Timshank Redemption: done"
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
+
+
+mission "Timothy Radrickson 5c: Dancer"
+	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a survival suit for Tim."
+	name "Supplies on Dancer"
+	landing
+	source "Rand"
+	destination "Dancer"
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: active"
+	on complete
+		conversation
+			`Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull overcast light of a subdued day on Dancer.`
+			`	Around the quiet spaceport there's a smattering of low reinforced buildings linked together by weather-worn trails dug into the ground with protective earth on either side. You see one leading to a spacious, if squat, clearing house.`
+			choice
+				`	(Enter the clearing house.)`
+			`	There is an eclectic assortment of gear, goods, supplies and equipment here, some new, some used to the point of ruin. Unsurprisingly, given the primary industry of this world, much of it is scientific.`
+			`	A middle aged woman with deep windburned scars and a striking shock of white between her otherwise dark hair greets you as you come in. "Anything worth having on Dancer can be found here. Just take a look around and let Bertha know if you find anything to your liking."`
+			label danceroptions
+			choice
+				`	(Look at the survival suits.)`
+					goto suit1
+					to display
+						not "suit1"
+				`	(Look at the survival suits again.)`
+					goto suit2
+					to display
+						has "suit1"
+						not "suit2"
+				`	(Check the medicine shelves.)`
+					goto med1
+					to display
+						"timothy radrickson medicine" == 0
+						not "med1"
+				`	(Return to the medicine shelves.)`
+					goto med2
+					to display
+						has "med1"
+						not "med2"
+				`	(Rummage around for old IDs.)`
+					goto id1
+					to display
+						"timothy radrickson id" <= 1
+						not "id1"
+				`	(Go back to where you found the ID.)`
+					goto id2
+					to display
+						has "id1"
+						not "id2"
+				`	(Leave the clearing house.)`
+					goto end
+
+			label suit1
+			action
+				set "suit1"
+			`	There are a handful of survival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
+			`	Bertha notices your attention and walks up to you. "Going anywhere overland on Dancer without one of these beauties is a death wish."`
+			`	She winks at you, as if she knows something you don't. "Worry not though, hun. We only sell the highest rated and best-tested suits here. I won't have anyone's death on my conscience - 'sides, it's bad for business."`
+			`	She pinches some of the dense microwoven fabric of the nearest suit. "It's not cheap, but neither is your life. I'll sell ya one of these for 300,000 credits."`
+			choice
+				`	(Purchase a survival suit for Tim.)`
+					goto getsuit
+				`	(Haggle to try and lower the price.)`
+					goto haggle
+				`	(Pass.)`
+
+			`	You decide that 300,000 credits is way too much. The woman shrugs and steps away as you turn your attention back to the rest of the store.`
+				goto danceroptions
+			
+			label haggle
+			`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling, hun. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
+			`	She folds her arms. "Now, it's 300,000 credits or nothing."`
+			choice
+				`	(Purchase the survival suit for Tim.)`
+					goto getsuit
+				`	(Pass.)`
+
+			`	Bertha sighs and then shrugs, and leaves you alone to continue browsing through her clearing house.`
+				goto danceroptions
+				
+			label suit2
+			action
+				set "suit2"
+			`	You loop back to where the well-crafted survival suits hang. The price is still 300,000 credits.`
+			choice
+				`	(Purchase a survival suit for Tim.)`
+					goto getsuit
+				`	(Go back to browsing.)`
+
+			`	Not ready to make a purchase, you return to perusing the store.`
+				goto danceroptions
+
+			label getsuit
+			action
+				set "suit2"
+				"timothy radrickson suit" = 3
+				payment -300000
+			`	Bertha is happy to ring you up, and gives you the carefully packaged and sealed survival suit for <payment>.`
+				goto danceroptions
+		
+			label med1
+			action
+				set "med1"
+			`	There's numerous shelves filled with all kinds of drugs, and it takes you a few minutes to find the detoxification medicine. By then Bertha is at your side.`
+			`	"Foul winds are known to kick up toxic dust in the atmosphere, and if you plan on staying here long you're likely going to need to take a few of these." She looks at you curiously, and then adds, "However, you may find them less useful on other worlds."`
+			`	"Still, if you think you could use them I'd sell them to you for 10,000 credits," she adds helpfully.`
+			choice
+				`	(Buy Dancer's medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+
+			`	Bertha nods. "You have the windless look of a tourist. Best to leave these for those who are going to spend some real time on Dancer."`
+				goto danceroptions
+
+			label med2
+			action
+				set "med2"
+			`	The shelves of medication are just where you left them. You can grab a kit of Dancer detoxification drugs for 10,000 credits.`
+			choice
+				`	(Buy Dancer's medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+
+			`	You leave the drugs where they are and return to looking through the clearance house.`
+				goto danceroptions
+			
+			label getmed
+			action
+				"timothy radrickson medicine" = 1
+				payment -10000
+			`	Bertha packages the drugs for you and looks at with mild concern. "Remember. These really are only rated for Dancer. I do not advise using them offworld."`
+			`	She takes your <payment>, and hands you the drugs.`
+				goto danceroptions
+
+			label id1
+			action
+				set "id1"
+			`	Toward the back you find various bins that are filled with what look like the unsorted personal belongings of scientists.`
+			`	Bertha sees you in the back but doesn't join you. Instead she just hollers, "Scientists are always coming and going and sometimes leave a lot behind. I'd be as pleased as a wind vane on a calm day if you took any of that off my hands. Whatever you find I'll give to ya for 1,000 credits."`
+			`	You sift through the items - which are mostly clothes and old lab coats - before coming across a scientist's ID card. The name reads 'Skounce Yarling' and the picture, to your surprise, looks a little like Timothy's.`
+			choice
+				`	(Buy the old ID.)`
+					goto getid
+				`	(Pass.)`
+
+			`	The old ID might work, but it would also be quite a risk. You leave it where you found it and go back to wandering around the store.`
+				goto danceroptions
+
+			label id2
+			action
+				set "id2"
+			`	You return to the bin with Skounce Yarling's ID sitting on the top of his forlorn refuse.`
+			choice
+				`	(Buy the ID for Tim.)`
+					goto getid
+				`	(Pass.)`
+			`	You let sleeping IDs lie, and return to the rest of the store.`
+				goto danceroptions
+
+			label getid
+			action
+				set "id2"
+				"timothy radrickson id" = 2
+				payment -1000
+			`	Bertha favors you with a mischievous grin and combs her black hair behind her ears. "I must admit, I have a thing for danger." Her eyes sparkle and her voice is a little huskier than before as she says, "I'm not sure whatchya need this for, and I certainly don't want you to tell me. But I hope you pull it off."`
+			`	She takes your <payment> and hands you the old ID, her eyes lingering on you.`
+				goto danceroptions
+
+			label end
+			action
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
+				clear "id2"
+			`	Bertha gives you a friendly nod as you make your way back outside into Dancer's foreboding weather, and the rest of the spaceport.`
+				decline
+	to fail
+		or
+			has "Timothy Radrickson 5a: Timshank Redemption: done"
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
+
+
+mission "Timothy Radrickson 5d: Greenrock"
+	name "Supplies on <planet>"
+	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a fake ID for Tim."
+	landing
+	source Rand
+	destination Greenrock
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: active"
+	on offer
+	on complete
+		conversation
+			`You feel the pressure of many unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium, where everything and everyone is for sale.`
+			`	Greenrock looks a little more civil than when you were racing around saving captured freighter fleets, but only just a little. There is a wildness here and violence simmers just beneath the surface of every interaction. Luckily, no one seems to remember or care about the fleet you destroyed.`
+				to display
+					has "Timothy Radrickson 3d: Return to Rand: done"
+			`	The civic infrastructure leaves something to be desired; you can pretty much taste the city's squalid sewer in the air. While trying to get a sense of the area, you weave past various hucksters all trying to get your attention for whatever or whoever they're selling.`
+			`	Finally you reach the center of the emporium and discover a crudely drawn map of the spaceport. It's not much, but at least it tells you where you can find what you're looking for.`
+			label greenoptions
+			choice
+				`	(Find someone that can produce a fake ID for you.)`
+					goto id1
+					to display
+						not "id1"
+				`	(Go back to Ivaldur's forging stall for the fake ID.)`
+					goto id2
+					to display
+						has "id1"
+						not "id2"
+				`	(Look for a survival suit.)`
+					goto suit1
+					to display
+						"timothy radrickson suit" == 0
+						not "suit1"
+				`	(Return to the shop to buy the survival suit.)`
+					goto suit2
+					to display
+						has "suit1"
+						not "suit2"
+				`	(Find the detoxification medicine.)`
+					goto med1
+					to display
+						"timothy radrickson id" <= 1
+						not "id1"
+				`	(Go back to the drug dealer to get the detoxification medicine.)`
+					goto med2
+					to display
+						has "med1"
+						not "med2"
+				`	(Leave the emporium.)`
+					goto end
+			
+			label id1
+			action
+				set "id1"
+			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boastful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has the look of a respectable watchmaker.`
+			`	He nods at you politely as you approach. "Good day to you. I am Ivaldur the Forger, and what can I do for you?"`
+			choice
+				`	(Ask about producing a fake ID.)`
+					goto ask
+				`	(Turn around and leave.)`
+
+			`	For whatever reason you are not interested in doing business with Ivaldur the Forger, and promptly head back out into the emporium.`
+				goto greenoptions
+			
+			label ask
+			`	The old man smiles at you good-naturedly. "Simple enough request. I can provide you with an ID, and a complex matching background that will pass all but the most exhaustive of checks."`
+			`	He gives off an aura of quiet confidence as he speaks. "My service is thorough and, as you'll find, quite unmatched. Unless your friend is someone being hunted by Navy Intelligence, he will be able to seamlessly integrate into life on any human world."`
+			`	He pauses as if considering something, and then adds, "If he is also a war criminal on the run from someone like, I don't know, Deep Security or Republic Intelligence... I could also come up with something, but that would be a premium service I doubt you need at the moment."`
+			`	Ivaldur adjusts his spectacles thoughtfully. "The going rate for my basic service is 350,000 credits."`
+			`	He looks at you expectantly and waits.`
+			choice
+				`	(Pay 350,000 credits for a fake ID and history for Tim.)`
+					goto getid
+				`	(Pass.)`
+
+			`	He simply nods and gives you a knowing look. "I acknowledge the fee seems high, but rest assured the service I provide is well worth it.`
+			`	"I'll be here if you change your mind."`
+				goto greenoptions
+
+			label id2
+			action
+				set "id2"
+			`	Your return to Ivaldur the Forger's stall, and the old man gives you a curt nod as you approach. "Back so soon? I hope you have made your decision."`
+			choice
+				`	(Pay 350,000 credits for a fake ID and history for Tim.)`
+					goto getid
+				`	(Pass.)`
+
+			`	Without speaking you again leave Ivaldur's stall.`
+				goto greenoptions
+
+			label getid
+			action
+				set "id2"
+				"timothy radrickson id" = 3
+				payment -350000
+			`	Ivaldur's eyes light up and he immediately gets to work. From his panel he backdoors his way into various databases, diving into the code with an obvious alacrity and unbridled joy.`
+			`	Whole histories, lives, records and attachments burst into existence in a dozen corners of official networks and reports. It becomes apparent that he is not really creating a fake ID; the ID he creates is real. It is sanctioned, stamped, and endorsed by multiple governing bodies, uploaded to and referenced by institutional records, and given the appropriate checks and markers.`
+			`	In fact, what Ivaldur has done is create a fake person, and this is that person's real ID.`
+			`	When he finishes he says nothing and instead basks in a job well done. Finally, he turns to you for payment. <payment> is transferred into his account, and he hands you Tim's brand new ID card.`
+			`	"It was a pleasure," he says in a satisfied voice, and bids you well.`
+				goto greenoptions
+		
+			label suit1
+			action
+				set "suit1"
+			`	You find a large stall boasting all the survival equipment an enterprising pirate could ever need. Inside there's various used gear, some more used than others, and only a few well weathered survival suits.`
+			`	The proprietor appears out of nowhere and immediately begins flogging his goods to you. "Ah! Yes, with any of these you can survive the harshest of climates!"`
+			`	He takes one suit off the rack and begins, "Notice the intricate mesh weave on this state of the art-" the suit comes apart at its seams in his hands. The proprietor frowns, but then quickly tosses it to the side.`
+			`	"A, uh, defunct specimen. Happens from time to time. Rest assured I never would have sold it to you." He looks at you unconvincingly.`
+			`	He pulls another suit down which, to his obvious relief, doesn't simply fall apart in his hands.`
+			`	"Now as I was saying, top of the line mesh weaves. Great comfort and breathability. For tough spots..."`
+			`	You look carefully at the suit as the proprietor's words drift uselessly out of his mouth. It has patches on top of patches, and its seals look worn and corroded. It looks like a death trap.`
+			`	"...and look just how clean it looks inside." The proprietor opens up one the seals, revealing quite a bit of dried blood staining its insides. He quickly closes the seal and wipes some sweat from his brow.`
+			`	"Perfectly normal to find in a suit. Totally unrelated to its operation. You know, pirates... just bleed a lot in general. Part of the lifestyle and all that."`
+			`	He looks at you with earnest, bulging eyes. "So what do you think? I'd be willing to sell this baby to you for 400,000 credits."`
+			choice
+				`	(Purchase the patched survival suit for Tim.)`
+					goto getgear
+				`	(Haggle for a lower price.)`
+					goto haggle
+				`	(Pass.)`
+
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
+			
+			label haggle
+			`	The proprietor's eyes dart back and forth, and then he nods vigorously.`
+			`	"Of course. Of course. Given its... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
+			`	"But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
+			`	He gives a nervous yet earnest smile.`
+			choice
+				`	(Offer 20,000 for the suit.)`
+					goto getgear2
+				`	(Offer 100,000 for the suit.)`
+					goto getgear3
+				`	(Offer 250,000 for the suit.)`
+					goto getgear4
+				`	(Pass.)`
+
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
+				
+			label suit2
+			action
+				set "suit2"
+			`	You return to the clothing stall, where the proprietor immediately hounds you again for the suit. The suit you were shown before looks just as patched, worn and corroded as before. The few other options next to it are even worse.`
+			`	The proprietor reminds you the price is still 400,000 credits for this 'lightly used' and 'field tested' state of the art survival suit.`
+			choice
+				`	(Purchase the patched survival suit for Tim.)`
+					goto getgear
+				`	(Haggle for a lower price.)`
+					goto haggle
+				`	(Pass.)`
+
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
+
+			label getgear
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -400000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label getgear2
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -20000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label getgear3
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -100000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label getgear4
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -250000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label med1
+			action
+				set "med1"
+			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well. The man running it is sallow and pock-marked, but his eyes are keen. He almost hisses as he greets you.`
+			`	"Whatever you need, wherever you're going, I have you covered."`
+			choice
+				`	(Ask about detoxification medicine for Oblivion.)`
+					goto askdrugs
+				`	(Leave.)`
+
+			`	This is not the place for you. You take your leave and return to the emporium at large.`
+				goto greenoptions
+
+			label askdrugs
+			`	The drug dealer flashes you with his yellow teeth and unnerving smile. "For every kind of toxic environment under any sun." He jolts towards his little wall of drawers, pulling out one labeled "Oblivion detoxifiers." From the drawer he picks a bottle up, checking its label.`
+			`	"It says it expired a few years ago, but that's just so the corpos can squeeze the common man, ya know? Stuff's still good." He shrugs.`
+			`	"So what'dya say? It'll cost'ya a cool 50,000 credits. But trust me, that's way cheaper than what you'll find elsewhere."`
+			choice
+				`	(Buy the expired detoxification medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+
+			`	The drug-dealer says as you go away, "You won't find a better deal than this. I'll be here if you change your mind."`
+				goto greenoptions
+
+			label med2
+			action
+				set "med2"
+			`	The drug-dealer's knowing smile is almost a sneer as you return to his stall. He waits to see if you're ready to buy something.`
+			choice
+				`	(Buy the expired detoxification medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+
+			`	You leave the drug-dealer behind and head back into the emporium.`
+				goto greenoptions
+			
+			label getmed
+			action
+				set "med2"
+				"timothy radrickson medicine" = 2
+				payment -50000
+			`	"Trust me, it's still good," the drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
+				goto greenoptions
+
+			label end
+			action
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
+				clear "id2"
+			`	It's never wise to linger in a place like this, especially aimlessly. With your business concluded you leave Greenrock's stalls behind.`
+				decline
+	to fail
+		or
+			has "Timothy Radrickson 5a: Timshank Redemption: done"
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
+
+
+mission "Timothy Radrickson 5e: Back to Oblivion"
+	source Oblivion
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: done"
+	on offer
+		"timothy radrickson zpreparedness" = "timothy radrickson medicine" + "timothy radrickson suit" + "timothy radrickson id"
+		conversation
+			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
+			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood-red eyes rise to meet yours, and despite their milky gloss, a glimmer of hope burns within them.`
+			`	"You did it?" His words more strained than the last time you spoke. "You got the gear?"`
+			`	He looks down at your dolly expectantly.`
+			choice
+				`	"It's all here."`
+				`	"Of course I did."`
+				`	"Yep, but you owe me big."`
+
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
+			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
+			branch unprepared
+				"timothy radrickson zpreparedness" < 6
+
+			branch "decently prepared"
+				"timothy radrickson zpreparedness" >= 6
+				"timothy radrickson zpreparedness" <= 7
+
+			branch "well prepared"
+				"timothy radrickson zpreparedness" > 7
+
+			label unprepared
+			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He seems to deflate a little.`
+			`	Finally, he straightens back up. "You did the best you could. I'm sure." He eyes the gear wearily. "At least it's a chance."`
+				goto end
+
+			label "decently prepared"
+			`	As he inspects the suit, drugs, and ID you he nods to himself satisfactorily.`
+			`	Finally, he straightens back up. "It'll do," he says as he eyes the gear. "It'll do."`
+				goto end
+
+			label "well prepared"
+			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He looks less weak, less sickly, and more confident.`
+			`	Finally, he straightens back up. "It's perfect." He eyes the gear with awe and shakes his head. "Don't know how you did it. But with this I can't fail."`
+
+			label end
+			`	Timothy turns from you and uses the dolly to load the gear into one of the trucks in the warehouse. Once done he turns back to you, his eyes wide and rimmed with bloody tears. "Always at my lowest." He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
+			`	Timothy looks like he wants to hug you, but he just nods. He hits a button on the wall and the garage door opens, exposing the warehouse to the night air.`
+			`	"Captain," he says in way of a farewell, and then he climbs aboard the truck and drives off.`
+
+
+mission "Timothy Radrickson 6: News of Death"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "urban"
+	to offer
+		has "Timothy Radrickson 5e: Back to Oblivion: offered"
+		random < 15
+	on offer
+		log "People" "Timothy Radickson" `Tried to help Timothy escape from his prison sentence there.`
+		log "Timothy is dead - or at least that is what's being reported in the news. Perhaps the plot to break him free really did work."
+		event "timothy radrickson forever"
+		conversation
+			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, and a familiar name leaps out at you. Your attention piqued, you turn to watch.`
+			`	"News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radrickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard but fair justice for a man who..."`
+			`	The news broadcast continues to blare, but you aren't able to follow any more than that.`
+				decline
+
+
+event "timothy radrickson forever"
+
+
+mission "Timothy Radrickson 7: Monk"
+	minor
+	source "New Tibet"
+	to offer
+		random < 35
+		has "event: timothy radrickson forever"
+		"timothy radrickson zpreparedness" > 7
+	on offer
+		conversation
+			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
+			`	"Are you Captain <last>?" they ask.`
+			choice
+				`	"Why?"`
+					goto why
+				`	"Yes."`
+					goto why
+				`	"None of your business."`
+
+			`	"Of course," the monk says. He drops his head and rejoins his brothers.`
+				decline
+
+			label why
+			`	The monk lowers his head in a sign of respect. "Although we live in the mountains and interact rarely with outsiders, we have heard much of your exploits. You are an agent of change, and worthy of consideration."`
+			`	"I thank you for giving us much to ponder on. I also have one small request; there is one within our monastery who is a great admirer of yours. It would mean much if you would be willing to meet him."`
+			choice
+				`	"I'd be honored to meet him."`
+					goto whyyes
+				`	"Why not. I got nothing to better to do."`
+					goto whyyes
+				`	"I don't have time for fans."`
+
+			`	"Of course," the monk says, "you are a busy person." He returns to his brothers.`
+				decline
+
+			label whyyes
+			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
+			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, vibrant green life, and distant valleys.`
+			`	After several arduous hours, you clear a peak, and discover a vast stone building waiting for you. "We have arrived," the guide says almost anticlimactically. Perhaps the fact he lives here makes it less grand to him than it ought to be.`
+			`	Your guide leaves you outside the entrance, and disappears within for a few minutes before returning with another monk.`
+			`	The new monk looks at you with an open, serene expression, that quickly breaks into a wide grin. Although much about his face has changed, whether from wear or surgery, you recognize that grin.`
+			choice
+				`	"Timothy!"`
+				`	"Oh, it's you."`
+
+			`	Timothy Radrickson, former prison-worker on Oblivion, Governor of Rand, and stowaway of your ship, hugs you.`
+			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, I can't leave here, and I can't send any messages." He steps back to look at you.`
+			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only modestly.`
+			`	"It was difficult for me to speak when last we met on Oblivion, but you're my oldest and best friend. At my lowest points you were always there for me. I just wanted to thank you for that."`
+			`	You spend the day chatting with with Timothy, before it's time to leave.`
+			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
+			label goodbyes
+			choice
+				`	(Offer to transfer the Hero of Rand award and stipend to Timothy.)`
+					goto offer
+					to display
+						not "offers"
+						has "Timothy Radrickson 3d: Return to Rand: done"
+				`	(Shake his hand and say goodbye.)`
+					goto shake
+				`	(Give him a hug and say goodbye.)`
+
+			action
+				clear "offers"
+			`	You lean in and give him a warm, earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free you see a tear his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+				decline
+
+			label shake
+			action
+				clear "offers"
+			`	You shake his hand; he swallows and clears his throat as he tries to keep himself from crying, nods to you one last time, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+				decline
+		
+			label offer
+			action
+				set "offers"
+			`	Timothy's eyes go wide. "No, you couldn't. It's yours. You've given me too much already."`
+			choice
+				`	(Tell him about what Wynnafrith said, and how he is the real Hero of Rand.)`
+					goto offer2
+				`	(Tell him you don't need the money, but he does.)`
+					goto offer2
+				`	(Agree with him and rescind your offer.)`
+					goto goodbyes
+			
+			label offer2
+			action
+				log "Found Timothy alive and well on New Tibet, living a simple, but happy life as a monk."
+				log "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help, he now lives as simple monk. He seems happy.`
+				clear "salary: Hero of Rand"
+				clear "offers"
+			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
+			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head at you and gives you a deep solemn bow.`
+			`	Timothy stays to watch as you begin your slow descent down the mountain, and back to civilization.`
+			decline
+
+
+
+mission "Timothy Radrickson 7: Hospice"
+	source "New Tibet"
+	to offer
+		"timothy radrickson zpreparedness" >= 6
+		"timothy radrickson zpreparedness" <= 7
+		random < 25
+		has "event: timothy radrickson forever"
+	on offer
+		conversation
+			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
+			`	"Are you Captain <last>?" They ask.`
+			choice
+				`	"Why?"`
+					goto why
+				`	"Yes."`
+					goto why
+				`	"None of your business."`
+
+			`	"Of course," the monk says. He drops his head and rejoins his brothers.`
+				decline
+
+			label why
+			`	The monk lowers his head in a sign of respect. "Although we spend most our time mediating and healing the sick, we have heard much of your exploits. You are an agent of change, and worthy of consideration."`
+			`	"I thank you for giving us much to ponder on. I also have one small request; there is one within our hospital who is a great admirer of yours. It would mean much if you would be willing to meet him."`
+			choice
+				`	"I'd be honored to meet him."`
+					goto whyyes
+				`	"Why not. I've got nothing to better to do."`
+					goto whyyes
+				`	"I don't have time for fans."`
+
+			`	"Of course," the monk says, "you are a busy person." He returns to his brothers.`
+				decline
+
+			label whyyes
+			`	The monk beams. "Wonderful. It's not far from here."`
+			`	You take the spaceport train with him to a nearby hospital, beneath the impressive jungled mountains of New Tibet. In contrast with the other worlds of the Dirt Belt, this hospital is new, clean, and filled with a slew of monks, doctors, and patients. Your escort leads wildly past crowded bedsides and through diverse rooms until, at last, you arrive at a respiration and burns unit situated deep in the hospital's guts.`
+			`	"We have arrived," your guide says, and as soon as you look into the ward he seems to disappear into the crowds of the sprawling hospital.`
+			`	In the ward you find a maimed man with burn scars and slightly labored breathing. His face lights up when he looks at you, and despite his scars you recognize him. It's Timothy Radrickson.`
+			choice
+				`	"Timothy!"`
+				`	"Oh, it's you."`
+
+			`	Timothy Radrickson, former prison-worker on Oblivion, Governor of Rand, and stowaway of your ship, beckons you step closer to him with his good hand.`
+			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, not to mention my health, I can't leave here, and I can't send any messages." His eyes linger on you, as though he is taking a mental picture. Or just enjoying the sight of a good friend returned.`
+			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only weakly given his condition. He coughs a bit, and takes a few slow, deep breaths before continuing.`
+			`	"It's still a little difficult for me to speak, but I feel much better than when last we met on Oblivion. I just wanted you to know you're my oldest and best friend. At my lowest points you were always there for me. So thank you for that."`
+			`	You spend the day in the hospital room chatting with with Timothy, before finally having to leave.`
+			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
+			label goodbyes
+			choice
+				`	(Offer to transfer the Hero of Rand award and stipend to Timothy.)`
+					goto offer
+					to display
+						not "offers"
+						has "Timothy Radrickson 3d: Return to Rand: done"
+				`	(Shake his hand and say goodbye.)`
+					goto shake
+				`	(Give him a hug and say goodbye.)`
+
+			action
+				clear "offers"
+			`	You lean over and give him a partial hug in his sick bed. He wraps his one good arm around you and squeezes. When he finally breaks free you see a tear.`
+			`	You leave him bedridden in the hospital, and to your surprise you find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
+				decline
+
+			label shake
+			action
+				clear "offers"
+			`	You lean in to shake his good hand. He swallows and clears his throat, trying to keep himself from crying.`
+			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
+				decline
+		
+			label offer
+			action
+				set "offers"
+			`	Timothy's eyes go wide. "No, you couldn't. It's yours. You've given me too much already."`
+			choice
+				`	(Tell him about what Wynnafrith said, and how he is the real Hero of Rand.)`
+					goto offer2
+				`	(Tell him you don't need the money, but he does.)`
+					goto offer2
+				`	(Agree with him and rescind your offer.)`
+					goto goodbyes
+			
+			label offer2
+			action
+				log "Found Timothy alive, but not in great shape. He is thankful for the rescue nonetheless. Can't shake the feeling that there was more that I could have done for him."
+				log "Timothy Radrickson" `The once stowaway, governor, and prisoner Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
+				clear "salary: Hero of Rand"
+				clear "offers"
+			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for a hug.`
+			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head and bows it before you in deep respect.`
+			`	"Always." He manages to whisper through phlegm and weakened lungs as you turn to leave, "always you."`
+			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room.`
+			`	"His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	He leads you back to the train station, and from there you take the brief journey back to New Tibet's spaceport.`
+
+
+mission "Timothy Radrickson 7: Grave"
+	source "Oblivion"
+	to offer
+		random < 25
+		has "event: timothy radrickson forever"
+		or
+			"timothy radrickson zpreparedness" < 6
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
+	on offer
+		conversation
+			`Oblivion's spaceport is the kind of place that, despite being in constant motion, never really changes. Humanity, driven by its constant thirst for resources, scurries over this unremarkable world like a hive of angry bees, but for all their furious effort it looks no different than any of the previous times you've been here.`
+			`	Except, of course, the lack of one familiar face. A doomed and disgraced ex-governor who had been sent here, and last you heard, had died here.`
+			`	With that heavy thought on your mind you notice a sign which promises to lead you to the local graveyard.`
+			choice
+				`	(Head to the graveyard.)`
+					goto graveyard
+				`	(Head back to your ship.)`
+
+			`	You see no point in wasting your time at this place's graveyard, so you head back to your ship.`
+				decline
+			
+			label graveyard
+			`	Oblivion's evening sky is lit up by unnumbered rigs and natural gas burners that dot the region. These red fires turn the normally dark blue atmosphere a shade of smoldering purple.`
+			`	It's beneath that purple hue you see a countless expanse of small flat gravestones uniformly placed in Oblivion's sterile dirt. Despite the number of headstones there is no one else here, and only a few graves show any evidence of being visited.`
+			`	It seems as though those buried here are mostly forgotten.`
+			choice
+				`	(Search for Timothy Radrickson's grave.)`
+					goto search
+				`	(Leave.)`
+
+			`	You've seen all you wanted to see of this place, and you leave this unloved graveyard to its forlorn dead.`
+				decline
+
+			label search
+			action
+				log "Timothy is dead. It seems the plan to break him free failed."
+				log "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and what is left of his buried beneath a neat unremarkable gravestone on Oblivion.`
+			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy to find Timothy's.`
+			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C."`
+			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
+			choice
+				`	(Stay a while and contemplate.)`
+				`	(Leave.)`
+					goto end
+
+			`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poison ground, and you alone in the vast empty graveyard.`
+			`	Your thoughts drift to the man buried beneath your feet.`
+			label end
+			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
+				decline

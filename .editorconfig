@@ -14,6 +14,8 @@ indent_style = tab
 # Code files
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
+cpp_space_pointer_reference_alignment = right
+cpp_space_after_keywords_in_control_flow_statements = false
 
 # Changelog file
 [changelog]
