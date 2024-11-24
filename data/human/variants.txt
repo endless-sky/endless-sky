@@ -99,6 +99,23 @@ ship "Argosy" "Argosy (Proton)"
 		"Hyperdrive"
 
 
+ship "Argosy" "Argosy (Raider)"
+	outfits
+		"Energy Blaster" 4
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
+		"Blaster Turret"
+		"Tractor Beam"
+		"D14-RN Shield Generator"
+		"Cargo Expansion"
+		"LP072a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"Capybara Reverse Thruster"
+		"X3200 Ion Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+
+
 ship "Argosy" "Argosy (Turret)"
 	outfits
 		"Heavy Laser Turret" 2
@@ -1028,6 +1045,24 @@ ship "Clipper" "Clipper (Nuclear)"
 		"Volcano Afterburner"
 
 
+ship "Clipper" "Clipper (Raider)"
+	outfits
+		"Plasma Cannon" 2
+		"Energy Blaster" 2
+		"LP072a Battery Pack"
+		"KP-6 Photovoltaic Panel" 3
+		"nGVF-CC Fuel Cell"
+		"D14-RN Shield Generator"
+		"Interference Plating" 2
+		"Cargo Expansion"
+		"Rangefinder Scanner"
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Volcano Afterburner"
+		Hyperdrive
+
+
+
 ship "Clipper" "Clipper (Speedy)"
 	outfits
 		"Heavy Laser" 4
@@ -1224,6 +1259,42 @@ ship "Corvette" "Corvette (Missile)"
 	pylon "Torpedo Launcher"
 	turret "Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
+
+
+ship "Corvette" "Corvette (Raider)"
+	outfits
+		"Energy Blaster" 4
+		"Torpedo Pod"
+		Torpedo 3
+		"Meteor Missile Launcher"
+		"Meteor Missile" 30
+		"Heavy Laser Turret"
+		"Anti-Missile Turret"
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Cargo Expansion" 3
+		"Cargo Scanner" 2
+		"Interference Plating" 2
+		"Fuel Pod" 2
+		"Laser Rifle" 3
+		"Water Coolant System"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+		"Volcano Afterburner"
+		Hyperdrive
+	gun
+	gun
+	gun
+	gun
+	pylon "Meteor Missile Launcher"
+	pylon "Torpedo Pod"
+	pylon
+	pylon
+	turret "Anti-Missile Turret"
+	turret "Heavy Laser Turret"
 
 
 ship "Corvette" "Corvette (Speedy)"
@@ -1885,6 +1956,35 @@ ship "Firebird" "Firebird (Plasma)"
 		"Hyperdrive"
 
 
+ship "Firebird" "Firebird (Raider)"
+	outfits
+		"Plasma Cannon" 4
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
+		"Quad Blaster Turret"
+		"Anti-Missile Turret"
+		"Cargo Expansion" 2
+		"Cargo Scanner" 2
+		"D14-RN Shield Generator"
+		"LP144a Battery Pack"
+		"RT-I Radiothermal"
+		"Laser Rifle" 3
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+		"Volcano Afterburner"
+		Hyperdrive
+	gun
+	gun
+	gun
+	gun
+	pylon "Meteor Missile Pod"
+	pylon "Meteor Missile Pod"
+	pylon
+	pylon
+	turret "Quad Blaster Turret"
+	turret "Anti-Missile Turret"
+
+
 ship "Firebird" "Firebird (CCOR)"
 	outfits
 		"Twin Modified Blaster" 4
@@ -2235,6 +2335,35 @@ ship "Fury" "Fury (Missile)"
 		"Hyperdrive"
 
 
+ship "Fury" "Fury (Raider)"
+	outfits
+		"Modified Blaster" 4
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+		"Cargo Expansion"
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Volcano Afterburner"
+		Hyperdrive
+
+
+ship "Fury" "Fury (Raider Missile)"
+	outfits
+		"Modified Blaster" 4
+		"Javelin Mini Pod"
+		Javelin 30
+		"Meteor Missile Pod"
+		"Meteor Missile" 7
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"Cargo Expansion"
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Volcano Afterburner"
+		Hyperdrive
+
+
 ship "Fury" "Fury (Thermal Scanner)"
 	outfits
 		"Energy Blaster" 2
@@ -2401,6 +2530,21 @@ ship "Hawk" "Hawk (Plasma)"
 		"X2700 Ion Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Raider)"
+	outfits
+		"Beam Laser" 2
+		"KP-6 Photovoltaic Panel" 4
+		"LP072a Battery Pack"
+		"nGVF-AA Fuel Cell"
+		"Cargo Expansion"
+		"Small Radar Jammer"
+		"D23-QP Shield Generator"
+		"Volcano Afterburner"
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
 
 
 ship "Hawk" "Hawk (Rocket)"
