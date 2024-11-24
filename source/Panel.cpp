@@ -101,9 +101,15 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 
-void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
+void Panel::AddZone(const Rectangle &rect, SDL_Keycode key, const vector<string> &conditionsToEnable)
 {
-	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
+	AddZone(rect, [this, key, conditionsToEnable]()
+	{
+		for(const string &condition : conditionsToEnable)
+			if(!info.HasCondition(condition))
+				return;
+		this->KeyDown(key, 0, Command(), true);
+	});
 }
 
 
