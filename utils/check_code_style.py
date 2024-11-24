@@ -250,7 +250,7 @@ def sanitize(lines, skip_checks=False):
 							errors.append(Error(line[i:i + 5], line_count,
 												"missing space after beginning of single-line Doxygen back comment"))
 				break
-			else if (not is_string) and first_three == "///":
+			elif (not is_string) and first_three == "///":
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
 					# Checking for space after comment
@@ -259,7 +259,7 @@ def sanitize(lines, skip_checks=False):
 							errors.append(Error(line[i:i + 4], line_count,
 												"missing space after beginning of single-line Doxygen comment"))
 				break
-			else if (not is_string) and first_two == "//":
+			elif (not is_string) and first_two == "//":
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
 					# Checking for space after comment
