@@ -255,6 +255,12 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"otherData - 10 - 50 + -200", -160},
 			{"otherData - otherData", 0},
 			{"10 * otherData", 1000},
+			{"( ( ( ( 1000 ) ) ) )", 1000},
+			{"( ( 20 - ( ( 1000 ) ) + 50 ) )", -930},
+			{"( ( 20 - ( 1 ) ) ) + ( ( 1000 ) ) + 50", 1069},
+			// Black magic below; parser might need to handle this, but nobody should ever write comparisons like this.
+			{"1 > 2 == 0", 1},
+			{"11 == 11 == 1", 1},
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer))};
 		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
