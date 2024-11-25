@@ -119,7 +119,7 @@ void ShipInfoPanel::Draw()
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
 	infoPanelUi->Draw(info, this);
-	// int infoPanelLine = 0; Removed by the 20241125conflictupdate not sure if it is upstream or Delta's.
+	int infoPanelLine = 0;
 
 	// Draw all the different information sections.
 	ClearZones();
@@ -127,23 +127,23 @@ void ShipInfoPanel::Draw()
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	// Draws "name: " and the ship name.
-	info.DrawShipName(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipName(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// Draws "model: " and the ship model name.
-	info.DrawShipModelStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipModelStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays the shield and hull.
-	info.DrawShipHealthStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipHealthStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays mass, cargo, bunks, and fuel
-	info.DrawShipCarryingCapacities(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipCarryingCapacities(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays "outfit space free: " and outfit space
-	info.DrawShipOutfitStat(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipOutfitStat(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays max speed, thrust, reverse, lateral, and turn
-	info.DrawShipManeuverStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipManeuverStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// infoPanelLine++; // This makes a one-text-line gap in the display of text.
-	info.DrawShipEnergyHeatStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipEnergyHeatStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// DrawShipStats(infoPanelUi->GetBox("stats")); // This is the old method that drew all the stats
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
 	DrawSprite(infoPanelUi->GetBox("ship info sprite"));
