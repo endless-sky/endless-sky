@@ -567,15 +567,15 @@ outfit "Orchid Boost"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"lifetime" 120
-		"acceleration" 0.36
+		"lifetime" 180
+		"acceleration" 0.3
 		"drag" 0.018
 		"turn" 3
 		"homing" 4
 		"radar tracking" 0.9
 		"split range" 300
 		"submunition" "Orchid Coast"
-		"submunition" "Orchid Boost Stage"
+		"submunition" "Orchid Boost Stage Expended"
 		"missile strength" 36
 
 outfit "Orchid Coast"
@@ -614,7 +614,7 @@ outfit "Orchid Divert"
 		"radar tracking" 0.9
 		"split range" 600
 		"submunition" "Orchid Terminal"
-		"submunition" "Orchid Divert Stage"
+		"submunition" "Orchid Divert Stage Expended"
 		"missile strength" 24
 
 outfit "Orchid Terminal"
@@ -635,7 +635,7 @@ outfit "Orchid Terminal"
 		"hit force" 6000
 		"missile strength" 18
 
-outfit "Orchid Boost Stage"
+outfit "Orchid Boost Stage Expended"
 	weapon
 		sprite "projectile/orchid boost stage"
 			"scale" 0.5
@@ -650,7 +650,7 @@ outfit "Orchid Boost Stage"
 		"hit force" 900
 		"missile strength" 12
 
-outfit "Orchid Divert Stage"
+outfit "Orchid Divert Stage Expended"
 	weapon
 		sprite "projectile/orchid divert stage"
 			"scale" 0.5
