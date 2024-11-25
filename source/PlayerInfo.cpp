@@ -1964,6 +1964,28 @@ void PlayerInfo::AddSpecialLog(const string &type, const string &name, const str
 
 
 
+void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
+{
+	auto it = specialLogs.find(type);
+	if(it == specialLogs.end())
+		return;
+	auto &nameMap = it->second;
+	auto eit = nameMap.find(name);
+	if(eit != nameMap.end())
+		nameMap.erase(eit);
+}
+
+
+
+void PlayerInfo::RemoveSpecialLog(const string &type)
+{
+	auto it = specialLogs.find(type);
+	if(it != specialLogs.end())
+		specialLogs.erase(it);
+}
+
+
+
 bool PlayerInfo::HasLogs() const
 {
 	return !logbook.empty() || !specialLogs.empty();
