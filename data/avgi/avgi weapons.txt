@@ -702,7 +702,7 @@ outfit "Ophrys Stockpile"
 outfit "Ophrys Active"
 	weapon
 		sprite "projectile/orchid terminal"
-			"scale 0.5"
+			"scale" 0.5
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
