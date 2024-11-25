@@ -4794,20 +4794,20 @@ mission "Hroar's Haulers 9"
 				`	"Since when do you give me orders?"`
 					goto orders
 				`	"Okay."`
-			`	He smiles and gives you a respecful nod. "Great. We're losing daylight somewhere. So let's go."`
+			`	He smiles and gives you a respecful nod. "Great. We're losing daylight somewhere. Let's go."`
 			`	Yngvar pulls out his respirator and waves his hand toward the door, "After you."`
 				accept
 
 			label orders
 			`	His old wrinkled face rolls up into a deeply unimpressed frown. "Something wrong with you? I'm as sure as vacuum is cold that Hartha-Hroar told you what my role is here."`
-			`	He leans in until his disapproving face is only a few inches from yours, "I am the logistics officer on this on Haul. Either get out of both our ways and help me get this Haul done. Or go find work somewhere else. Ain't no room in the Haulers for a trumped up Captain who thinks their exhaust don't stink." `
+			`	He leans in until his disapproving face is only a few inches from yours, "I am the logistics officer on this on Haul. Either get out of both our ways and help me get this Haul done, or go find work somewhere else. Ain't no room in the Haulers for a trumped up Captain who thinks their exhaust don't stink." `
 			`	Yngvar leans back and his one good eye narrows, "Now, you gonna take us to Helheim, or you gonna keep making an ass out of yourself?"`
 			choice
 				`	"Alright, fine. I'll take you to Helheim."`
 				`	"Sorry, I didn't mean no disrepect. Let's go to Helheim."`
 					goto fine
 				`	"Forget it. I am out."`
-			`	Yngvar looks like he's about to lose his temper, when suddenly he breaks into a loud hardy laughter. "Kid, you just saved us all a lot of hurt and time. Consider your time as a Hauler over."`
+			`	Yngvar looks like he's about to lose his temper, when suddenly he breaks into a loud hardy laughter. "Kid, you just saved us all a lot of hurt and time. Consider your stint as a Hauler over."`
 			`	The old man turns away from you and makes his way to comms station.`
 			`	You're suddenly left alone, and no longer employeed by Hardy Hroar's Haulers.`
 				decline
@@ -5714,8 +5714,39 @@ mission "Hroar's Haulers 15"
 		label brasstax
 		`	Leland nods, "Very well, Captain <last>.`
 		label prisonchat
-		`	`
+		`	Leland hits a button and a holographic screen expands above his desk.`
+		`	"I am holding 48 crew members from the following vessels; H.H.H. Red Ruin, H.H.H. Winsome Hope, H.H.H. Red Roamer, H.H.H. Dirty Destiny and H.H.H. Iron Siren. They are being held for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment."`
+		`	He pauses and looks up at you, "Do you deny these charges?"`
+		`	Yngvar holds up a silencing hand.`
+		choice
+			`	(Say nothing.)`
+				goto nothing
+			`	"I deny the charges!"`
+				goto deny
+			`	"I don't deny the charges."`
+		`	Leland tilts his head and frowns, "How... progressive of you. Very well. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+		choice
+			`	"Fine. I'll pay it."`
+			`	"Ha, that's chump change to me."`
+				goto Ipay
+			`	"Yngvar, can you cover that?"`
+			`	"I am not paying for this. This isn't my problem."`
+		`	Yngvar holds his hands up, "Sorry, `
 
+		label Ipay
+		`	Leland smile widens, "Excellent. We will still need to process all of these crew members, and their ships will be impounded in the meantime, but once we are done they will all be released."`
+		`	"And how long you reckon that'll take?" Yngvar grumbles, "We're on a schedule."`
+		`	"Oh, no time at all. In cases like this we should have everyone processed in about 6 months." Leland shrugs.`
+		`	"That'll ruin us" Yngvar growls. "That's unacceptable."`
+		`	Somehow, Leland's hyena grin stretches even further. "We could expedite the processing, but that would incur an additional fee."`
+		`	"How much?" Yngvar barks.`
+		`	"An additional 10,000 credits per incident. The total for the entire fine would now be 720,000 credits, but you'd be able to leave immediately."`
+		`	Yngvar turns to you, "There aint no rainy day fund for this kind of shake down. How you handle it is up to you. We can continue on without 'em, or you can find a way to spring them. But there's no gurantee you'll ever get your credits back."`
+		choice
+			`	"I'll pay the 720,000. We need them in the convoy now."`
+			`	"I'll pay the 240,000. At least they'll eventually be free."`
+			`	"I can't afford any of this. Is there something else we can offer?"`
+			`	"No deal. They are on their own. We'll move on without them."`
 
 
 mission "Hroar's Haulers 9"
