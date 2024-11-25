@@ -620,12 +620,12 @@ outfit "Orchid Divert"
 outfit "Orchid Terminal"
 	weapon
 		sprite "projectile/orchid terminal"
-			"scale 0.5"
+			"scale" 0.5
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"lifetime" 120
+		"lifetime" 180
 		"acceleration" 0.12
 		"drag" 0.012
 		"trigger radius" 90
