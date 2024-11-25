@@ -377,9 +377,8 @@ outfit "External Launch Tube"
 	"gun ports" -1
 	"orchid capacity" 6
 	weapon
-		sprite "projectile/shardactive"
-			"no repeat"
-			"frame rate" .25
+		sprite "projectile/orchid inactive"
+			"scale" 0.5
 		sound "bounce"
 		ammo `"Orchid" Nuclear Missile`
 		icon "icon/nuke"
@@ -544,8 +543,8 @@ outfit "Orchid Magazine"
 
 outfit "Orchid Active"
 	weapon
-		sprite "projectile/missile"
-			"frame rate" 2.4
+		sprite "projectile/orchid inactive"
+			"scale" 0.5
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
@@ -560,9 +559,10 @@ outfit "Orchid Active"
 
 outfit "Orchid Boost"
 	weapon
-		sprite "projectile/missile"
-			"frame rate" 2.4
-		"live effect" "avgi missile exhaust" 1800
+		sprite "projectile/orchid boost"
+			"scale" 0.5
+			"frame rate" 3
+			"rewind"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
@@ -575,30 +575,52 @@ outfit "Orchid Boost"
 		"radar tracking" 0.9
 		"split range" 300
 		"submunition" "Orchid Coast"
+		"submunition" "Orchid Boost Stage"
 		"missile strength" 36
 
 outfit "Orchid Coast"
 	weapon
-		sprite "projectile/missile"
-			"frame rate" 2.4
+		sprite "projectile/orchid coast"
+			"scale" 0.5
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"lifetime" 900
+		"lifetime" 300
 		"acceleration" 0.03
 		"drag" 0.006
 		"turn" 1.5
 		"homing" 4
 		"radar tracking" 0.9
+		"split range" 1200
+		"submunition" "Orchid Divert"
+		"missile strength" 24
+
+outfit "Orchid Divert"
+	weapon
+		sprite "projectile/orchid divert"
+			"scale" 0.5
+			"frame rate" 3
+			"rewind"
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 240
+		"die effect" "missile death"
+		"lifetime" 900
+		"acceleration" 0.09
+		"drag" 0.006
+		"turn" 3
+		"homing" 4
+		"radar tracking" 0.9
 		"split range" 600
 		"submunition" "Orchid Terminal"
+		"submunition" "Orchid Divert Stage"
 		"missile strength" 24
 
 outfit "Orchid Terminal"
 	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 2.4
+		sprite "projectile/orchid terminal"
+			"scale 0.5"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
@@ -612,6 +634,30 @@ outfit "Orchid Terminal"
 		"hull damage" 18000
 		"hit force" 6000
 		"missile strength" 18
+
+outfit "Orchid Boost Stage"
+	weapon
+		sprite "projectile/orchid boost stage"
+			"scale" 0.5
+		"die effect" "missile death"
+		"lifetime" 300
+		"velocity" -9
+		"random velocity" 3
+		"inaccuracy" 30
+		"drag" 0.6
+		"missile strength" 12
+
+outfit "Orchid Divert Stage"
+	weapon
+		sprite "projectile/orchid divert stage"
+			"scale" 0.5
+		"die effect" "missile death"
+		"lifetime" 300
+		"velocity" -9
+		"random velocity" 3
+		"inaccuracy" 30
+		"drag" 0.6
+		"missile strength" 12
 
 
 outfit `"Ophrys" Nuclear Torpedo`
