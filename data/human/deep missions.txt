@@ -5745,8 +5745,8 @@ mission "Hroar's Haulers 15"
 		choice
 			`	"I'll pay the 720,000. We need them in the convoy now."`
 			`	"I'll pay the 240,000. At least they'll eventually be free."`
-			`	"I can't afford any of this. Is there something else we can offer?"`
-			`	"No deal. They are on their own. We'll move on without them."`
+			`	"I can't afford any of this. Is there anything else we can offer?"`
+			`	"No deal. They are on their own."`
 
 
 mission "Hroar's Haulers 9"
