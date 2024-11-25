@@ -841,7 +841,7 @@ void Engine::Step(bool isActive)
 		// in the current system and targetable, or owned by the player.
 		int targetType = RadarType(*target, step);
 		const bool blinking = targetType == Radar::BLINK;
-		if(!blinking || ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
+		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
 			lastTargetType = targetType;
 		if(blinking)
 			info.SetOutlineColor(GetTargetOutlineColor(Radar::BLINK));
