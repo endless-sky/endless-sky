@@ -891,7 +891,7 @@ mission "Successors: Trusted"
 	destination "Aava-Aasa-Khora"
 	to offer
 		has "language: Successor"
-		has "successor jobs" >= 10
+		"successor jobs" >= 10
 	to fail
 		has "Successors: Unified Defense: offered"
 	substitutions
