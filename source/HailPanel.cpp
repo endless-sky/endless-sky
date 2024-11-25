@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Dialog.h"
 #include "DrawList.h"
 #include "text/Font.h"
@@ -47,6 +48,7 @@ using namespace std;
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
 	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)), facing(ship->Facing())
 {
+	Audio::Pause();
 	SetInterruptible(false);
 
 	const Government *gov = ship->GetGovernment();
@@ -134,6 +136,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	: player(player), object(object), planet(object->GetPlanet()), facing(object->Facing())
 {
+	Audio::Pause();
 	SetInterruptible(false);
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
@@ -171,6 +174,13 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 				SetMessage("I'm afraid we can't permit you to land here.");
 		}
 	}
+}
+
+
+
+HailPanel::~HailPanel()
+{
+	Audio::Resume();
 }
 
 

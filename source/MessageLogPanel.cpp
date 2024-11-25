@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MessageLogPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "FillShader.h"
@@ -44,7 +45,15 @@ namespace {
 MessageLogPanel::MessageLogPanel()
 	: messages(Messages::GetLog()), width(GameData::Interfaces().Get("message log")->GetValue("width"))
 {
+	Audio::Pause();
 	SetInterruptible(false);
+}
+
+
+
+MessageLogPanel::~MessageLogPanel()
+{
+	Audio::Resume();
 }
 
 

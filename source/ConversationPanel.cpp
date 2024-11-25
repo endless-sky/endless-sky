@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
@@ -68,6 +69,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
 #endif
+	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
@@ -90,6 +92,13 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 	// Begin at the start of the conversation.
 	Goto(0);
+}
+
+
+
+ConversationPanel::~ConversationPanel()
+{
+	Audio::Resume();
 }
 
 
