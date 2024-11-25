@@ -119,7 +119,7 @@ void ShipInfoPanel::Draw()
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
 	infoPanelUi->Draw(info, this);
-	# int infoPanelLine = 0; Removed by the 20241125conflictupdate not sure if it is upstream or Delta's.
+	// int infoPanelLine = 0; Removed by the 20241125conflictupdate not sure if it is upstream or Delta's.
 
 	// Draw all the different information sections.
 	ClearZones();
