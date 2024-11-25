@@ -3264,14 +3264,12 @@ mission "Coalition: Book Discovered 2"
 	destination "Ki Patek Ka"
 	on offer
 		conversation
-			`Sorting through messages you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's 'Beyond the Hyperdrive'. You now have a copy you can give to them.`
+			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's 'Beyond the Hyperdrive'. You now know her.`
 			choice
 				`	(Ask Anna for another copy of the book.)`
-					goto "another copy"
 				`	(Forget about it.)`
 					decline
-			label "another copy"
-			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, I don't think there will even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of Beyond the Hyperdrive to <destination>. You should head there to receive it and gift it to Kachachee.`
+			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, I don't think there will even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of Beyond the Hyperdrive to <destination>. You should head there to receive and gift it to Kachachee.`
 				accept
 	on complete
 		conversation
@@ -3499,11 +3497,11 @@ mission "Coalition: Struggling Author 4"
 				`	"Wait for me!"`
 			`	Anna stops, waiting for you to catch up. "In the message they sent me, they included instructions on how to reach their offices," she explains. "Let's go!"`
 			`	You begin following Anna to the publisher's offices. You walk through the spaceport and its endless rows of shops and streets, eventually approaching what looks like a train station. Anna looks at the message again and tells you which platform to go to and which train to take. After a few minutes the train arrives. You and Anna board the train and travel to a neighborhood, with a large white building dominating the skyline.`
-			`	Once the train stops, you get off onto the platform, and out of the station. Then, you walk around the building to find an entrance, before you see one. The entrance is busy; with many Kimek and the occasional Saryd and Arachi entering and exiting. Anna looks for a front desk, before she sees one and directs you to walk to a Kimek who looks like a receptionist.`
+			`	Once the train stops, you get off onto the platform, and out of the station. Then, you walk around the building to find an entrance, before you see one. The entrance is busy with many Kimek and the occasional Saryd and Arachi entering and exiting. Anna looks for a front desk and directs you to walk to a Kimek who looks like a receptionist.`
 			choice
 				`	"Hello, do you happen to know where Kimek Reader Publishing is?"`
 			`	"On the 16th floor, Kimek Reader Publishing is. Over there, the elevators are," says the seeming receptionist.`
-			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded-looking one.`
+			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded one.`
 			`	You and Anna walk to and enter the elevator, as Anna presses a button. You hear the noises of the Kimek communicating in their native languages and get the feeling they are speaking of you.`
 			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek with a necklace around it with ornate jewelry and a translation device.`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," says the Kimek through its translation box.`
@@ -3518,7 +3516,6 @@ mission "Coalition: Struggling Author 4"
 			`	"From the introduction and the first few pages, interesting it sounded, but run it past the Heliarch censors, we must. So, <first>, long and intensive, this interview will be. As very unique, to meet a human like her is, and to adapt her book to our culture, a long and drawn out process it will be."`
 			choice
 				`	"How long will I have to wait?"`
-					goto "wait time"
 				`	"Should I stay here to accompany Anna?`
 					goto "accompany"
 			label "wait time"
@@ -3569,7 +3566,6 @@ mission "Coalition: Struggling Author 4"
 				`	"I don't want to talk to you."`
 					goto "kst-1 ignore"
 				`	"Yes, I am <first> <last>. Glad to meet you."`
-					goto "kst-1 glad to meet you"
 				`	"Well, I'm not the only alien."`
 					goto "kst-1 not only alien"
 				`	"We call ourselves humans, not aliens."`
@@ -3597,9 +3593,9 @@ mission "Coalition: Struggling Author 4"
 			`	The Kimek walks away after the two of you exchange farewells, leaving you to your own devices.`
 				goto "anna approaches"
 			label "kst-1 ignore"
-			`	"Sorry for invading your personal space, I am." The Kimek quickly walks away.`
+			`	"Apologies for invading your personal space, I give." The Kimek quickly walks away.`
 			label "anna approaches"
-			`	After a few hours, you see Anna enter the lounge and walk toward you. She takes a seat right next to you.`
+			`	After a few hours, you see Anna enter the lounge and walk toward you. She takes a seat next to you.`
 			choice
 				`	"How did the interview go?"`
 			`	"They told me that due to the censorship and review process, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please remember to come back and meet me."`
@@ -3659,13 +3655,13 @@ mission "Coalition: Struggling Author 5B"
 				accept
 	on complete
 		payment 50000
-		"salary: Beyond the Hyperdrive" = 800
+		"salary: Beyond the Hyperdrive" = 100
 		conversation "anna invites you to book signing"
 
 
 conversation "anna invites you to book signing"
 	action
-		log "People" "Anna Fangvin" "Anna is a science fiction writer. She was a struggling author in human space, but found success upon publishing her novel 'Beyond the Hyperdrive' in Coalition space. Her book is a bestseller in Kimek space."
+		log "People" "Anna Fangvin" `Anna is a science fiction writer. She was a struggling author in human space, but found success upon publishing her novel 'Beyond the Hyperdrive' in Coalition space. Her book is a bestseller in Kimek space.`
 		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg. Also found out she was ambidextrous."
 		event "beyond the hyperdrive payment" 40
 		set "beyond the hyperdrive news can show now"
@@ -3683,12 +3679,12 @@ conversation "anna invites you to book signing"
 	choice
 		`	(Say nothing.)`
 			goto continue
-		`	"Are you left or right handed?"`
+		`	"Are you left- or right-handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
 	label continue
 	`	The signing continues for several more hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
 	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
-	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 800 credits daily, a small but significant portion of my royalties."`
+	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 100 credits daily, a small but significant portion of my royalties."`
 	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version sold in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
 	choice
 		`	"Anna, why is this book so different from the copies sold in human space?"`
@@ -3709,5 +3705,5 @@ mission "Beyond the Hyperdrive Gratitude Payment"
 	on offer
 		payment 2000000
 		conversation
-			`You are shocked to see an extra <payment> in your account. Checking your messages you open a message from Anna, the author whose book 'Beyond the Hyperdrive' was published in Coalition space a few months ago. She explains that the book has been selling very well in Coalition space; alongside an expression of gratitude. Given the <payment> you received this is likely an understatement.`
+			`You are shocked to see an extra <payment> in your account. Checking your messages you open a message from Anna, the author whose book 'Beyond the Hyperdrive' was published in Coalition space a few months ago. She explains that the book has been selling very well in Coalition space and sends an expression of gratitude. Given the <payment> you received this is likely an understatement.`
 				decline
