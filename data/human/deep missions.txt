@@ -5610,7 +5610,7 @@ mission "Hroar's Haulers 15"
 		label followhaulersouts
 		`	Yngar, Bolverka, and a very drunk Gunhilda, with most of the Haulers, are gathered just outside the bar. Yngvar shakes his head as he sees you approach, and pulls you aside.`
 		`	"Brave and stupid are the same side of one sided coin. Bein' a Hauler is about knowing to choose your battles, and more importantly, knowin' about who will back in those battles."`
-		`	He sighs, "You're still a greeny, and you aint yet earned their respect. But there's time. Anyhow, we got bigger problems than your pride."`
+		`	He sighs, "You're still a greeny, and you ain't yet earned their respect. But there's time. Anyhow, we got bigger problems than your pride."`
 		`	Yngvar pushes into the middle of the Haulers and whistles until the their chatter dies down.`
 		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
 		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
@@ -5649,12 +5649,52 @@ mission "Hroar's Haulers 15"
 			`	"What do we do now?"`
 			`	(Say nothing.)`
 				goto timetogo
-		
+
 		label followyngvar
 		`	The Syndicate Spaceport Authority is flanked by multiple gigantic holding blocks. These huge cells are large enough to comfortably inter a large ship's crew and entire passenger manifest. Right now, they are mostly empty, except for the most immedate cell that has a few scores of mulling red-brown jacketed haulers.`
-		`	In front of the cells is a white rectangular desk. It's spotless surface nearly reflecting the smug smile of the slick haired uniformed man behind it.`
-		`	"`
+		`	In front of the cells is a white rectangular desk. Its spotless surface nearly reflecting the smug smile of the slick haired uniformed man behind it.`
+		`	"How may the Authority be of service." The man says with a hungry smile.`
+		`	"Cut the skitr, Leland." Yngvar growls, "You know damn well why we're here."`
+		`	"Hauler Yngvar," Leland says sweetly. "I'd say it was lovely to see you again, but, well, you know."`
+		`	Leland gestures at his face, indicating the vaccuum scars on Yngvar's, "You know there are treatments. You could probably even do something about that ghastly eye of yours."`
+		`	Yngvar folds his arms, "Ain't here for the pleasantries, Leland. 'Sides my backsides a more welcome visage than that overgrown thumb you call a face."`
+		`	Leland's smile turns feral, "Very well, Yngvar." He says between grit teeth. "I was doing my best not to assume you had any association with the rioters we apprenhended earlier, but clearly my good manners are wasted upon you Hauler flith."`
+		`	"I ain't seen no riots. Just a couple fella's enjoying themselves after some long days on the haul. But, I ain't tellin' ya something you don't already know am I?" Yngvar's words sound tired.`
+		`	Leland ignores Yngvar and turns his attention to you, "Forgive me rudeness, we've not been formally introduced. This is the Syndicate Spaceport Authority, and I am the First Authority, Leland Hemshaw. And you are?"`
+		choice
+			`	"Captain <last> of the <ship>."`
+				goto lastship
+			`	"Just call me <first>."`
+			`	"I am the Hauler's hirthr, and those are my folk you got locked up."`
+			`	"Just think of me as a friend of Yngvar's."`
 
+		label lastship
+		`	"A fine ship, I'm sure." Leland nods, "You don't have the look of a Hauler, but I take it you're with Yngvar? Perhap some mark he's scamming?"`
+		`	"Captain <last> is our hirthr. A position of great respect." Yngvar interjects.`
+		`	"Hoother?" Leland mispronounces. "Another example of the Hauler's colorful colloquial nonsense I am sure."`
+		`	Leland leans toward you with a conspiratorial expression, "You look capable. Trust me, slumping around the galaxy with barely civilized Haulers is a losers game. Join up with the Transport Union if you're looking for respectable work."`
+		`	"Enough." Yngvar says angrily. "Your words are more crooked than a Dusty's teeth."`
+		choice
+			`	"We're here to talk about the people imprisoned behind you."`
+			`	"I am a Hauler, through and through, now let's focus on the matter at hand. My people that you're holding."`
+				goto brasstax
+			`	"Your words are wasted upon me, for I am the Royal Dreamer of the Haulers. And I will paint the universe in the dirt-born hues of rust-red! But first, let my people go!"`
+				goto purplehues
+				to display
+					has "savedgunhilda"
+			`	"Tell me more about the Transport Union."`
+		`	Leland's eyes light up, "The Deep Transport Union are the future of bulk goods transport in civilized space. Punctional, professional, and law-a-biding they control most contracts from here to Alfheim. No dirty old spacers pretending to cowboys, no brawls, no nonsense. In a few years the Haulers will be nothing but a memory, and the Transport Union will control all the major trade. Best join up with the winning team before it's too late."`
+		choice
+			`	"Wait, do you work for the Transport Union? You sound like you work for them."`
+			`	"If the Transport Union is so good, then why do you do business with the Haulers?"`
+			`	"I've heard enough. Let's talk about the people you got imprisoned behind you."`
+				goto prisonchat
+		label purplehues
+		`	Leland Hemshaw's face scrunches up in disgust as he leans back, "Clearly I misjudged you. These space-savages have already rotted away your feeble mind."`
+		`	Yngvar chuckles, "Bolverka just won herself a bet. But enough games, lets talk about those fine folk you got hog-tied behind these doors."`
+		label prisonchat
+
+		
 
 
 
