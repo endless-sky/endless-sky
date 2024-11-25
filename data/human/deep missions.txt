@@ -5588,7 +5588,7 @@ mission "Hroar's Haulers 15"
 			`	"Leave no Hauler behind! Fight! Fight for your comrads!"`
 			`	"Send then back to the Gap!"`
 			`	"For Hroar!"`
-		
+
 		`	Your heroic words bounce harmlessly off the assembled crowd. If anything you seem to have deflated them. You hear a few mutters of, "Yngvar knows best," and "What's a greenhorn known about being a Hauler?"`
 		`	The unarrested Haulers quickly pile out of the Watering Hole, a few of them casting glances at you and shaking their heads.`
 		choice
@@ -5667,9 +5667,12 @@ mission "Hroar's Haulers 15"
 			`	"Just call me <first>."`
 			`	"I am the Hauler's hirthr, and those are my folk you got locked up."`
 			`	"Just think of me as a friend of Yngvar's."`
+		`	"Charmed." Leland says in a voice that sounds anything, but.`
+			goto hrithhello
 
 		label lastship
 		`	"A fine ship, I'm sure." Leland nods, "You don't have the look of a Hauler, but I take it you're with Yngvar? Perhap some mark he's scamming?"`
+		label hrithhello
 		`	"Captain <last> is our hirthr. A position of great respect." Yngvar interjects.`
 		`	"Hoother?" Leland mispronounces. "Another example of the Hauler's colorful colloquial nonsense I am sure."`
 		`	Leland leans toward you with a conspiratorial expression, "You look capable. Trust me, slumping around the galaxy with barely civilized Haulers is a losers game. Join up with the Transport Union if you're looking for respectable work."`
@@ -5678,7 +5681,7 @@ mission "Hroar's Haulers 15"
 			`	"We're here to talk about the people imprisoned behind you."`
 			`	"I am a Hauler, through and through, now let's focus on the matter at hand. My people that you're holding."`
 				goto brasstax
-			`	"Your words are wasted upon me, for I am the Royal Dreamer of the Haulers. And I will paint the universe in the dirt-born hues of rust-red! But first, let my people go!"`
+			`	"Your words are wasted on me, for I am the Royal Dreamer of the Haulers. And I will paint the universe in the dirt-born hues of rust-red! But first, let my people go!"`
 				goto purplehues
 				to display
 					has "savedgunhilda"
@@ -5686,16 +5689,32 @@ mission "Hroar's Haulers 15"
 		`	Leland's eyes light up, "The Deep Transport Union are the future of bulk goods transport in civilized space. Punctional, professional, and law-a-biding they control most contracts from here to Alfheim. No dirty old spacers pretending to cowboys, no brawls, no nonsense. In a few years the Haulers will be nothing but a memory, and the Transport Union will control all the major trade. Best join up with the winning team before it's too late."`
 		choice
 			`	"Wait, do you work for the Transport Union? You sound like you work for them."`
+				goto workforthem
 			`	"If the Transport Union is so good, then why do you do business with the Haulers?"`
+				goto whyhaulers
 			`	"I've heard enough. Let's talk about the people you got imprisoned behind you."`
 				goto prisonchat
 		label purplehues
 		`	Leland Hemshaw's face scrunches up in disgust as he leans back, "Clearly I misjudged you. These space-savages have already rotted away your feeble mind."`
 		`	Yngvar chuckles, "Bolverka just won herself a bet. But enough games, lets talk about those fine folk you got hog-tied behind these doors."`
+			goto prisonchat
+		label workforthem
+		`	Sweat suddenly appears on Leland's brow, "Oh, what? No, no." He laughs nervously, "Of course not. The Syndicate and the Deep Trade Union are entirely seperate entities."`
+		`	"I was just... passing on some information I heard is all. Not need to think too hard about it. Perhaps it's best if we moved on." Leland says as he wrings his hands.`
+		`	"Yes." Yngvar agrees, "Lets talk about those fine folk you got hog-tied behind these doors."`
+			goto prisonchat
+		label whyhaulers
+		`	Leland clears his throat, "A few decades ago there was an unfortunate -situation- that rendered the Transport Union unable to move our goods."`
+		`	Yngvar snorts, "The blue caps bit off more than they could chew. Couldn't get the job done."`
+		`	"Yes." Leland says through clenched teeth, "The Transport Union, or blue caps, as you call them, broke their contract with us and we were forced to make a deal with the... Haulers."`
+		`	"Don't act like you're doing anyone a favor." Yngvar says, "You're still making credits hand over fist."`
+		`	Leland nods slowly, "True, but we would much prefer to work with a more professional outfit." He points behind him at the locked up Haulers. "Case in point."`
+		` 	"Finally." Yngvar says, "Enough of this ramblin', lets talk about those fine folk you got hog-tied behind these doors."`
+			goto prisonchat
+		label brasstax
+		`	Leland nods, "Very well, Captain <last>.`
 		label prisonchat
-
-		
-
+		`	`
 
 
 
