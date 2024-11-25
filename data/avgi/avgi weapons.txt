@@ -567,7 +567,7 @@ outfit "Orchid Boost"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"lifetime" 180
+		"lifetime" 120
 		"acceleration" 0.36
 		"drag" 0.018
 		"turn" 3
@@ -586,7 +586,7 @@ outfit "Orchid Coast"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"lifetime" 300
+		"lifetime" 180
 		"acceleration" 0.03
 		"drag" 0.006
 		"turn" 1.5
@@ -606,7 +606,7 @@ outfit "Orchid Divert"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"lifetime" 900
+		"lifetime" 300
 		"acceleration" 0.09
 		"drag" 0.006
 		"turn" 3
@@ -627,7 +627,7 @@ outfit "Orchid Terminal"
 		"die effect" "missile death"
 		"lifetime" 120
 		"acceleration" 0.12
-		"drag" 0.018
+		"drag" 0.012
 		"trigger radius" 90
 		"blast radius" 300
 		"shield damage" 12000
@@ -641,10 +641,13 @@ outfit "Orchid Boost Stage"
 			"scale" 0.5
 		"die effect" "missile death"
 		"lifetime" 300
-		"velocity" -9
+		"velocity" -12
 		"random velocity" 3
 		"inaccuracy" 30
-		"drag" 0.6
+		"drag" 1.2
+		"shield damage" 300
+		"hull damage" 600
+		"hit force" 900
 		"missile strength" 12
 
 outfit "Orchid Divert Stage"
@@ -653,10 +656,13 @@ outfit "Orchid Divert Stage"
 			"scale" 0.5
 		"die effect" "missile death"
 		"lifetime" 300
-		"velocity" -9
+		"velocity" -12
 		"random velocity" 3
 		"inaccuracy" 30
-		"drag" 0.6
+		"drag" 1.2
+		"shield damage" 300
+		"hull damage" 600
+		"hit force" 900
 		"missile strength" 12
 
 
@@ -695,8 +701,8 @@ outfit "Ophrys Stockpile"
 
 outfit "Ophrys Active"
 	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 2.4
+		sprite "projectile/orchid terminal"
+			"scale 0.5"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
