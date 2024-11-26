@@ -139,7 +139,7 @@ void PreferencesPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	Information info;
+	info.ClearConditions();
 	info.SetBar("volume", Audio::Volume());
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
