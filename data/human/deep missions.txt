@@ -5724,7 +5724,9 @@ mission "Hroar's Haulers 15"
 			`	"I deny the charges!"`
 				goto deny
 			`	"I don't deny the charges."`
+		label dontdeny
 		`	Leland tilts his head and frowns, "How... progressive of you. Very well. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+		label choicenothing
 		choice
 			`	"Fine. I'll pay it."`
 			`	"Ha, that's chump change to me."`
@@ -5751,6 +5753,27 @@ mission "Hroar's Haulers 15"
 		choice
 			`	(Launch your ship.)`
 			launch
+		
+		label nothing
+		`	Yngvar clears his throat, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
+		`	Leland nods slowly, "Refusal to address the charges results in an automatic guilty verdict. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+			goto choicenothing
+
+		label deny
+		`	Leland nods vigerously, "How forthright of you. This will, of course, incur an additional denial of charge fee. Which..." The Syndicate Authority taps a few keys,"...comes out to roughly 3,500 credits per case; a total 168,000 credits for all of them,"`
+		`	Yngvar is now pointedly shaking his head at you.`
+		choice
+			`	"Nevermind, I don't deny the charges."`
+				goto dontdeny`
+			`	"Fine I know they're innocent, I'll pay it."`
+		`	Yngvar lets out a frusterated sigh.`
+		`	"Wonderful." Leland Hemshaw says and then taps a few more keys, "I have processed your denial of the charges. Now just wait one moment."`
+		`	A few seconds pass before a digital bell rings and Leland opens up a new message, "After careful analysis of records the judicial algorithm for non-Syndicate citizens has found all Haulers guilty of breaking ordinance C7-A2."`
+		`	He looks up at you, "Now, would you like to pay their fine?"`
+		`	"Sorry, kid." Yngvar says, "Tried to warn ya. Let's just get this over with."`
+		`	Yngvar glares at Leland, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
+		`	Leland nods helpfully, "The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+			goto choicenothing
 
 		label Ipay
 		`	Leland smile widens, "Excellent. We will still need to process all of these crew members, and their ships will be impounded in the meantime, but once we are done they will all be released."`
