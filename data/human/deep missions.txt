@@ -5731,19 +5731,40 @@ mission "Hroar's Haulers 15"
 				goto Ipay
 			`	"Yngvar, can you cover that?"`
 			`	"I am not paying for this. This isn't my problem."`
-		`	Yngvar holds his hands up, "Sorry, `
+		`	Yngvar pulls out his handheld computer and looks at it for a moment, "There ain't no rainy day fund for this kinda shakedown. Best we can do is a collection."`
+		`	He turns the screen so you can see it, "Between all the crews we've raised about 120,000 credits."`
+		`	Leland shrugs, "That would cover about half the crews. Is that all you'll provide?" He turns to face you.`
+		choice
+			`	"I'll cover the other 120,000 Credits."`
+				goto Ipay
+			`	"You're not getting any of my money."`
+		`	Leland nods and then trades fiancial codes with Yngvar, a moment later all 120,000 credits are deposited in the Syndicate's account.`
+		`	The Authority flashes a cruel grin, "After some routine processing your crew members will be released in around six months."`
+		`	"What!" Yngvar slams his sturdy fist on the spotless desk. "You little..."`
+		`	"Now, now. You didn't pay additional fee to expedite the process, and you certainly couldn't afford it."`
+		`	"We'll remember this next time you find yourself in a bind, mark my words you Syndie snake. The Hauler's won't forget." Yngvar spits on the ground and turns away from the man.`
+		`	"Lets go, <last>. Every minute we be spendin' in this snake-pit is bad for all our healths." Yngvar says without looking back.`
+		`	"Barbarians." Leland says beneath his breath.`
+		choice
+			`	(Follow Yngvar to the hanger.)`
+			`Yngvar climbs aboard your ship after your ship and signals all the remaining haulers to launch. "Let's move, <last!>."`
+		choice
+			`	(Launch your ship.)`
+			launch
 
 		label Ipay
 		`	Leland smile widens, "Excellent. We will still need to process all of these crew members, and their ships will be impounded in the meantime, but once we are done they will all be released."`
 		`	"And how long you reckon that'll take?" Yngvar grumbles, "We're on a schedule."`
 		`	"Oh, no time at all. In cases like this we should have everyone processed in about 6 months." Leland shrugs.`
-		`	"That'll ruin us" Yngvar growls. "That's unacceptable."`
+		`	"That'll ruin us," Yngvar growls. "That's unacceptable."`
 		`	Somehow, Leland's hyena grin stretches even further. "We could expedite the processing, but that would incur an additional fee."`
 		`	"How much?" Yngvar barks.`
 		`	"An additional 10,000 credits per incident. The total for the entire fine would now be 720,000 credits, but you'd be able to leave immediately."`
-		`	Yngvar turns to you, "There aint no rainy day fund for this kind of shake down. How you handle it is up to you. We can continue on without 'em, or you can find a way to spring them. But there's no gurantee you'll ever get your credits back."`
+		`	Yngvar slams his fist on the spotless desk, "That's highway robbery!"`
+		`	Leland just keeps on smiling.`
+		`	Yngvar turns to you, "It's your call hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
 		choice
-			`	"I'll pay the 720,000. We need them in the convoy now."`
+			`	"I'll pay the 720,000. The Long Haul is what's important."`
 			`	"I'll pay the 240,000. At least they'll eventually be free."`
 			`	"I can't afford any of this. Is there anything else we can offer?"`
 			`	"No deal. They are on their own."`
