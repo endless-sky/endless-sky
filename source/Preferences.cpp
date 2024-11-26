@@ -347,7 +347,7 @@ Preferences::DateFormat Preferences::GetDateFormat()
 
 const string &Preferences::DateFormatSetting()
 {
-	return NOTIF_OPTIONS[notifOptionsIndex];
+	return DATEFMT_OPTIONS[dateFormatIndex];
 }
 
 
