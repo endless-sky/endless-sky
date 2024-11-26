@@ -369,7 +369,7 @@ Preferences::NotificationSetting Preferences::GetNotificationSetting()
 
 
 
-const string &Preferences::NotificationSetting()
+const string &Preferences::NotificationSettingString()
 {
 	return NOTIF_OPTIONS[notifOptionsIndex];
 }

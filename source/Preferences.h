@@ -129,7 +129,7 @@ public:
 	// Notification preferences.
 	static void ToggleNotificationSetting();
 	static NotificationSetting GetNotificationSetting();
-	static const std::string &NotificationSetting();
+	static const std::string &NotificationSettingString();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();

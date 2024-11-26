@@ -821,7 +821,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == NOTIFY_ON_DEST)
 		{
-			text = Preferences::NotificationSetting();
+			text = Preferences::NotificationSettingString();
 			isOn = text != "off";
 		}
 		else if(setting == FLOTSAM_SETTING)
