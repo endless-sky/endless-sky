@@ -1248,6 +1248,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == DATE_FORMAT)
 		Preferences::ToggleDateFormat();
+	else if(str == NOTIFY_ON_DEST)
+		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
 	// All other options are handled by just toggling the boolean state.
