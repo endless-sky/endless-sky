@@ -54,7 +54,7 @@ namespace {
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, false), modifier(0)
+	: ShopPanel(player, Mission::SHIPYARD), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
@@ -64,16 +64,6 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
-}
-
-
-
-void ShipyardPanel::Step()
-{
-	ShopPanel::Step();
-	ShopPanel::CheckForMissions(Mission::SHIPYARD);
-	if(GetUI()->IsTop(this))
-		DoHelp("shipyard");
 }
 
 
