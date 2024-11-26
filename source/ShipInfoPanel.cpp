@@ -93,32 +93,32 @@ void ShipInfoPanel::Draw()
 	DrawBackdrop();
 
 	// Fill in the information for how this interface should be drawn.
-	Information interfaceInfo;
-	interfaceInfo.SetCondition("ship tab");
+	info.ClearConditions();
+	info.SetCondition("ship tab");
 	if(panelState.CanEdit() && shipIt != panelState.Ships().end()
 			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
 		if(!(*shipIt)->IsDisabled())
-			interfaceInfo.SetCondition("can park");
-		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
-		interfaceInfo.SetCondition("show disown");
+			info.SetCondition("can park");
+		info.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
+		info.SetCondition("show disown");
 	}
 	else if(!panelState.CanEdit())
 	{
-		interfaceInfo.SetCondition("show dump");
+		info.SetCondition("show dump");
 		if(CanDump())
-			interfaceInfo.SetCondition("enable dump");
+			info.SetCondition("enable dump");
 	}
 	if(player.Ships().size() > 1)
-		interfaceInfo.SetCondition("five buttons");
+		info.SetCondition("five buttons");
 	else
-		interfaceInfo.SetCondition("three buttons");
+		info.SetCondition("three buttons");
 	if(player.HasLogs())
-		interfaceInfo.SetCondition("enable logbook");
+		info.SetCondition("enable logbook");
 
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
-	infoPanelUi->Draw(interfaceInfo, this);
+	infoPanelUi->Draw(info, this);
 	int infoPanelLine = 0;
 
 	// Draw all the different information sections.
@@ -127,23 +127,23 @@ void ShipInfoPanel::Draw()
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	// Draws "name: " and the ship name.
-	info.DrawShipName(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipName(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// Draws "model: " and the ship model name.
-	info.DrawShipModelStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipModelStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays the shield and hull.
-	info.DrawShipHealthStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipHealthStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays mass, cargo, bunks, and fuel
-	info.DrawShipCarryingCapacities(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipCarryingCapacities(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays "outfit space free: " and outfit space
-	info.DrawShipOutfitStat(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipOutfitStat(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays max speed, thrust, reverse, lateral, and turn
-	info.DrawShipManeuverStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipManeuverStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// infoPanelLine++; // This makes a one-text-line gap in the display of text.
-	info.DrawShipEnergyHeatStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	infoDisplay.DrawShipEnergyHeatStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// DrawShipStats(infoPanelUi->GetBox("stats")); // This is the old method that drew all the stats
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
 	DrawSprite(infoPanelUi->GetBox("ship info sprite"));
@@ -151,7 +151,7 @@ void ShipInfoPanel::Draw()
 	DrawCargo(cargoBounds);
 
 	// If the player hovers their mouse over a ship attribute, show its tooltip.
-	info.DrawTooltips();
+	infoDisplay.DrawTooltips();
 }
 
 
@@ -317,7 +317,7 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 bool ShipInfoPanel::Hover(int x, int y)
 {
 	Point point(x, y);
-	info.Hover(point);
+	infoDisplay.Hover(point);
 	return Hover(point);
 }
 
@@ -350,7 +350,7 @@ void ShipInfoPanel::UpdateInfo()
 		return;
 
 	const Ship &ship = **shipIt;
-	info.Update(ship, player);
+	infoDisplay.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 
@@ -392,7 +392,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 
 	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
 
-	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
+	infoDisplay.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
 
 
@@ -740,7 +740,7 @@ void ShipInfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 
-	info.Update(**shipIt, player);
+	infoDisplay.Update(**shipIt, player);
 	if(loss)
 		Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
 			, Messages::Importance::High);
@@ -756,7 +756,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player);
+		infoDisplay.Update(**shipIt, player);
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
@@ -776,7 +776,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player);
+		infoDisplay.Update(**shipIt, player);
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
