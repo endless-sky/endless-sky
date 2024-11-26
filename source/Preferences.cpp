@@ -43,6 +43,9 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
+	const vector<string> NOTIF_OPTIONS = {"off", "message", "message + audio"};
+	int notifOptionsIndex = 0;
+
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
@@ -222,6 +225,8 @@ void Preferences::Load()
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
+		else if(node.Token(0) == "notification settings")
+			dateFormatIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -342,7 +347,31 @@ Preferences::DateFormat Preferences::GetDateFormat()
 
 const string &Preferences::DateFormatSetting()
 {
-	return DATEFMT_OPTIONS[dateFormatIndex];
+	return NOTIF_OPTIONS[notifOptionsIndex];
+}
+
+
+
+void Preferences::ToggleNotificationSetting()
+{
+	if(notifOptionsIndex == static_cast<int>(NOTIF_OPTIONS.size() - 1))
+		notifOptionsIndex = 0;
+	else
+		++notifOptionsIndex;
+}
+
+
+
+Preferences::NotificationSetting Preferences::GetNotificationSetting()
+{
+	return static_cast<NotificationSetting>(notifOptionsIndex);
+}
+
+
+
+const string &Preferences::NotificationSetting()
+{
+	return NOTIF_OPTIONS[notifOptionsIndex];
 }
 
 
