@@ -5740,7 +5740,7 @@ mission "Hroar's Haulers 15"
 			`	"I'll cover the other 120,000 Credits."`
 				goto Ipay
 			`	"You're not getting any of my money."`
-		`	Leland nods and then trades fiancial codes with Yngvar, a moment later all 120,000 credits are deposited in the Syndicate's account.`
+		`	Leland nods and then trades fiancial codes with Yngvar, a moment later all of the collected 120,000 credits are deposited in the Syndicate's account.`
 		`	The Authority flashes a cruel grin, "After some routine processing your crew members will be released in around six months."`
 		`	"What!" Yngvar slams his sturdy fist on the spotless desk. "You little..."`
 		`	"Now, now. You didn't pay additional fee to expedite the process, and you certainly couldn't afford it."`
@@ -5786,12 +5786,39 @@ mission "Hroar's Haulers 15"
 		`	Yngvar slams his fist on the spotless desk, "That's highway robbery!"`
 		`	Leland just keeps on smiling.`
 		`	Yngvar turns to you, "It's your call, hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
+		label fineoptions
 		choice
 			`	"I'll pay the 720,000. The Long Haul is what's important."`
 			`	"I'll pay the 240,000. At least they'll eventually be free."`
 			`	"I can't afford any of this. Is there anything else we can offer?"`
+				goto newdeal
+				to display
+					not "otheroptions"
 			`	"No deal. They are on their own."`
+		`	Yngvar presses a button and desposits all 120,000 of the collected credits into the Syndicate account. "That'll be enough to free most of the Iron Siren's crew. Thisaway it'll only be Solvi's fleet suffering."`
+		`	He turns his back to Leland Hemshaw and starts walking out of the office. "I'll be a waitin' on your ship when you're ready to launch, Captain <last>. Try not to be too long, the sooner we leave this snake-den, the better."`
+			decline
 
+		label newdeal
+		`	The Syndicate Authority raises an intrigued eyebrow, "Why, friends, there is another way." He quickly taps a few keys and turns the screen to face you, it's asking for a signature. "Merely sign here to end the contract the Haulers have with the Syndicate world of Maker, and I will free all your crew members immediately."`
+		`	"You must be denser than a white dwarf if you think I'd sign something like that." Yngvar says tersely.`
+		`	Leland's eyes rest on you, "Not you, the hirthr. The hirthr speaks for the fleet, do they not? They have the legal power to end this contract, and free your friends. What do you say, Captain <last>?"`
+		`	"Don't." Yngvar hisses.`
+		choice
+			`	"No deal."`
+				goto nodeal
+			`	"Sure, I'll sign it. Anything to get out of here."`
+		`	Yngvar glares at you, "Kid, I won't dress you down in front of company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done here."`
+		`	The old spacer turns and leaves.`
+		`	Leland claps and the holding doors open up behind.`
+		`	"An absolute pleasure doing business with you, Captain <last>." He practically purrs.`
+			accept 
+
+		label nodeal
+		action
+			set "otheroptions"
+		`	"Fine." Leland glares at you, "Your loss. So, you gonna pay the fines or not?"`
+			goto fineoptions
 
 mission "Hroar's Haulers 9"
 	name "The Long Haul"
