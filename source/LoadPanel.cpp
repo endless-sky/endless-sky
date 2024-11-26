@@ -137,7 +137,7 @@ void LoadPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
 
-	info.ClearConditions();
+	Information info;
 	if(loadedInfo.IsLoaded())
 	{
 		info.SetString("pilot", loadedInfo.Name());

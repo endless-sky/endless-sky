@@ -209,7 +209,7 @@ void TradingPanel::Draw()
 	if(showProfit)
 		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
 
-	info.ClearConditions();
+	Information info;
 	if(sellOutfits)
 		info.SetCondition("can sell outfits");
 	else if(player.Cargo().HasOutfits() || canSell)

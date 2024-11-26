@@ -333,7 +333,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	// Remember which buttons we're showing.
 	MapPanel::buttonCondition = buttonCondition;
 
-	info.ClearConditions();
+	Information info;
 	info.SetCondition(buttonCondition);
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
