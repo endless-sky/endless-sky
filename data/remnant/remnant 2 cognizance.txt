@@ -1679,3 +1679,4 @@ mission "Remnant: Cognizance 39"
 		has "Remnant: Cognizance 38: done"
 	on offer
 		event "remnant: cognizance calm" 5
+		fail
