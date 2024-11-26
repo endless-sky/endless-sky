@@ -5785,7 +5785,7 @@ mission "Hroar's Haulers 15"
 		`	"An additional 10,000 credits per incident. The total for the entire fine would now be 720,000 credits, but you'd be able to leave immediately."`
 		`	Yngvar slams his fist on the spotless desk, "That's highway robbery!"`
 		`	Leland just keeps on smiling.`
-		`	Yngvar turns to you, "It's your call hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
+		`	Yngvar turns to you, "It's your call, hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
 		choice
 			`	"I'll pay the 720,000. The Long Haul is what's important."`
 			`	"I'll pay the 240,000. At least they'll eventually be free."`
