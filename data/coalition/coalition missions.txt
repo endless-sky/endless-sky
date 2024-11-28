@@ -895,7 +895,7 @@ mission "Kimek Gift"
 		conversation
 			`Apparently the Saryd in question doesn't live here in the spaceport village, so you must take a train to go to his home. Thankfully, a train ticket was attached to the package, so you waste no time and get on the next train there.`
 			`	Even for a world without too large a population, the train wagons here feel unusually empty, with only a handful of other passengers on the one you settle in. The trip takes a few hours, so you have plenty of time to look out the window and gaze at the sights of the seemingly infinite winter forest.`
-			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, but now they are serving something akin to hot chocolate - only it is instead a blue, creamy substance.`
+			`	Halfway through, a blizzard makes it tough to see much outside. The ticket inspectors come through again, now serving a creamy blue drink which seems to be their equivalent of hot chocolate.`
 			`	Once you arrive at the village, you follow the makeshift map of the streets the Kimek included and deliver the present to her Saryd friend. Apparently the party had just started.`
 			`	When you get back to your ship, <payment> are transferred to your account, and you get a short message from the Kimek researcher, thanking you for helping out.`
 
