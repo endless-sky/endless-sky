@@ -4706,7 +4706,7 @@ mission "Retrieve recruiters [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on stopover
-		dialog phrase "generic passenger stopover pickup"
+		dialog `The recruiter boards your ship, ready to go to <planet>.`
 
 mission "Retrieve recruiters [1]"
 	name "Return recruiters home to <planet>"
