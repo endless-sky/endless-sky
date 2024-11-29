@@ -164,7 +164,7 @@ mission "event: war begins"
 			`The moment you step off your ship you realize something is very wrong. The spaceport is eerily quiet, and a large crowd of people is gathered around a video screen in the local bar.`
 			`	You ask what is happening, and someone explains. Recently, a collection of planetary governments in the southern galactic arm have sent the Republic what amounted to an ultimatum: a refusal to pay taxes until reforms are made in the election of planetary representatives. This group, calling itself the "Free Worlds," has also asked for immediate reevaluation of all existing trade tariffs and regulations concerning pilot registration. Parliament outright refused to consider any of these demands.`
 			`	Then, in the early morning, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
-			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
+			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been just over a year since you bought your ship, and already the galaxy is falling apart on you.`
 				decline
 			
 			label geminus
