@@ -2145,7 +2145,7 @@ mission "Acorn Delights: Part 1"
 				goto questions
 			label authorities
 			`	"I talked to the Central Medical Bureau, and they told me she got clearance for practicing medicine anywhere in Hai space or beyond. They've heard nothing from her since she got clearance. She has to register new prescriptions with the Bureau, so they should have heard from her.`
-			`	"The police told me that several other people have reported Anoo missing, but they refused tell me anything else. They said I had to talk to the military, and the military won't tell me anything.`
+			`	"The police told me that several other people have reported Anoo missing, but they refused to tell me anything else. They said I had to talk to the military, but the military won't tell me anything.`
 			`	"Maybe she's involved in something secret? Or illegal? No, she'd never do that. Where is she?`
 				goto questions
 			label accept
