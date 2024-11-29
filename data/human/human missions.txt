@@ -8377,7 +8377,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Find someone that can procure a fake ID for you.)`
 					goto id1
 					to display
-						"timothy radrickson id" = 0
+						"timothy radrickson id" == 0
 						not "id1"
 				`	(Leave the trade sector.)`
 					goto end
@@ -8617,7 +8617,7 @@ mission "Timothy Radrickson 5c: Dancer"
 				`	(Check the medicine shelves.)`
 					goto med1
 					to display
-						"timothy radrickson medicine" = 0
+						"timothy radrickson medicine" == 0
 						not "med1"
 				`	(Return to the medicine shelves.)`
 					goto med2
@@ -8800,7 +8800,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				`	(Look for a survival suit.)`
 					goto suit1
 					to display
-						"timothy radrickson suit" = 0
+						"timothy radrickson suit" == 0
 						not "suit1"
 				`	(Return to the shop to buy the survival suit.)`
 					goto suit2
@@ -9003,7 +9003,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label getmed
 			action
 				set "med2"
-				"timothy radrickson	medicine" = 2
+				"timothy radrickson medicine" = 2
 				payment -50000
 			`	"Trust me, it's still good," the drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
 				goto greenoptions

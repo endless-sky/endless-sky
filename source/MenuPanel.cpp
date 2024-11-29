@@ -94,6 +94,16 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(!scrollSpeed)
 		scrollSpeed = 1;
+
+	// When the player is in the menu, pause the game sounds.
+	Audio::Pause();
+}
+
+
+
+MenuPanel::~MenuPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -117,7 +127,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	Information info;
+	info.ClearConditions();
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");

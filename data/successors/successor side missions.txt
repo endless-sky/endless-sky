@@ -21,7 +21,7 @@ mission "Successors: Predecessor Research 1"
 	deadline 30
 	to offer
 		has "trusted by the successors"
-		has "flagship attribute: quantum keystone" > 0
+		"flagship attribute: quantum keystone" > 0
 		random < 40
 	to fail
 		has "Successors: Unified Defense: offered"
