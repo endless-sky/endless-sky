@@ -571,7 +571,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	const Ship &ship = **shipIt;
 
 	// Cargo list: Show pooled cargo instead if the ship to display is landed together with the flagship.
-	const bool showPooled = (ship.GetSystem() == player.GetSystem() && player.Cargo().Used());
+	const bool showPooled = ship.GetPlanet() == player.GetPlanet() && player.Cargo().Used();
 	const CargoHold &cargo = (showPooled ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
