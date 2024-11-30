@@ -3011,7 +3011,7 @@ planet Mars
 planet Martini
 	attributes paradise rich tourism
 	landscape land/myrabella4
-	description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship.`
+	description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the Galactic Stock Exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship.`
 	spaceport `The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible.`
 	bribe 0.1
 	security 0.5
@@ -3950,7 +3950,7 @@ planet Poisonwood
 	description `Until very recently, Poisonwood was home to a slave colony run by a powerful outlaw cartel. Tens of thousands of slaves were forced to work in hot, dirty manufacturing plants or irrigating fields out under the burning sun. Finally, in the year 2985, a Republic Navy strike force defeated the cartel and liberated the slaves. The Navy also supplied the manpower and equipment necessary to transform the factories and towns into a more livable setting for those who chose to remain, while giving others free passage off-world.`
 	description `	Today, most of the inhabitants are children of the liberated slaves, and like their parents they remain grateful and fiercely loyal to the Republic.`
 	spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals are unusually courteous and proud to welcome you to their planet.`
-	spaceport `	The tavern in the center of the port is named The Parting Glass. The walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away, and friends left behind. It is a strange feeling to sit here so deeply immersed in signs of a history that you had no part in.`
+	spaceport `	The tavern in the center of the port is named The Parting Glass. Its walls are covered in photographs from after the war, all taken here on Poisonwood: freed slaves boarding Navy ships to leave the planet that brought them so much pain; Navy officers disembarking to retire on the world that they liberated; friends gone away, and friends left behind. It is a strange feeling to sit here so deeply immersed in signs of a history that you had no part in.`
 	spaceport `	A sign advertises a Remembrance Day special for half-price drinks.`
 		to display
 			"days since year start" > 35
@@ -5102,7 +5102,7 @@ planet Thshybothro
 planet Thule
 	attributes frontier pirate south "south pirate"
 	landscape land/dmottl2
-	description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so. It is well-known that the planet sponsors pirate fleets which bring it cheap materials to bolster its economy, but the planet is so far from the center of Republic space that fighting a war here would be prohibitively expensive, and so they remain unopposed.`
+	description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own. As such, Thule refused to join the Republic when it was formed, and has since repulsed all efforts to force it to do so. It is well-known that the planet sponsors pirate fleets which bring it cheap materials to bolster its economy, but the planet is so far from the center of Republic space that fighting a war here would be prohibitively expensive, and so they remain unopposed.`
 	spaceport `The inhabitants of Thule are notoriously suspicious of strangers. They all seem to immediately recognize you as an off-worlder, perhaps by your clothing or your accent. The food sold in the shops is like nothing you have seen elsewhere, and the natives' accents are so strong that they almost seem to be speaking a different language. You feel as if you are visiting an alien world; centuries of separation has created a culture here that is very different from your own.`
 	outfitter "Delta V Advanced"
 	outfitter "Kraz Advanced"
@@ -5285,7 +5285,7 @@ planet Tuur-Aasa-Kaska
 	government "Old Houses"
 	shipyard "Successor Basics"
 	outfitter "High Houses Light"
-	"required reputation" 15
+	"required reputation" 1
 
 planet Tuur-Oa-Sola
 	attributes "bold tourism" successor uninhabited

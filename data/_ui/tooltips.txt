@@ -232,7 +232,7 @@ tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
 
 tip "energy capacity:"
-	`The amount of energy this ship can store. This allows you to temporarily use more power than your generators produce.`
+	`The amount of energy this outfit adds to your ship's energy capacity. This allows you to temporarily use more power than your generators produce.`
 
 tip "energy consumption:"
 	`Energy consumed per second while in flight.`
@@ -438,13 +438,10 @@ tip "scramble resistance heat:"
 tip "jump speed:"
 	`The maximum velocity the ship can jump at.`
 
-tip "jump fuel:"
-	`Fuel consumed when jumping between systems using this drive.`
-
-tip "hyperdrive fuel"
+tip "hyperdrive fuel:"
 	`Fuel consumed when jumping between systems using this hyperdrive.`
 
-tip "jump drive fuel"
+tip "jump drive fuel:"
 	`Fuel consumed when jumping between systems using this jump drive.`
 
 tip "jump range:"
@@ -673,7 +670,7 @@ tip "silent jumps:"
 	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
 
 tip "silent scans:"
-	`Prevents a ship from generating scan sounds.`
+	`Prevents a ship from emitting scan sounds.`
 
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`

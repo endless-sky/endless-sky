@@ -174,10 +174,6 @@ namespace {
 		{"turn multiplier", -1.}
 	};
 
-	constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
-	constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
-	constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
-
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
@@ -347,6 +343,8 @@ void Outfit::Load(const DataNode &node)
 		double jumpFuel = attributes.Get("jump fuel");
 		attributes["jump drive fuel"] = (jumpFuel > 0. ? jumpFuel : DEFAULT_JUMP_DRIVE_COST);
 	}
+	if(attributes.Get("jump fuel"))
+		attributes["jump fuel"] = 0.;
 
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on

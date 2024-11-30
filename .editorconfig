@@ -16,9 +16,6 @@ indent_style = tab
 indent_style = tab
 cpp_space_pointer_reference_alignment = right
 cpp_space_after_keywords_in_control_flow_statements = false
-# Except any third-party libraries
-[catch.hpp]
-indent_style = unset
 
 # Changelog file
 [changelog]
@@ -44,6 +41,9 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
+[*.py]
+indent_style = tab
+
 [*.xml]
 indent_style = space
 indent_size = 2
@@ -51,3 +51,6 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
+
+[*.json]
+indent_style = tab
