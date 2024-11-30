@@ -4009,6 +4009,11 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
+	// Ensure missions are sorted respecting the order field.
+	// This is required so the correct `minor` missions are discarded first, and also orders priority or normal ones.
+	// Delaying the sort for the hasPriorityMissions case would be a tad faster, but IMHO simplicity trumps here.
+	availableMissions.sort();
+
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
 	if(hasPriorityMissions)
@@ -4027,10 +4032,6 @@ void PlayerInfo::CreateMissions()
 	}
 	else if(availableMissions.size() > 1)
 	{
-		// Ensure missions are sorted respecting the order field.
-		// This is required so the correct `minor` missions are discarded first
-		availableMissions.sort();
-
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them. This is to avoid having two
 		// or three missions pop up as soon as you enter the spaceport.
@@ -4153,11 +4154,12 @@ void PlayerInfo::SortAvailable()
 					return false;
 			}
 			// Tiebreaker for equal PAY is ABC.
+			// This uses the Mission class' overridden comparison operator, which orders by 'order' field then name.
 			case ABC:
 			{
-				if(lhs.Name() < rhs.Name())
+				if(&lhs < &rhs)
 					return true;
-				else if(lhs.Name() > rhs.Name())
+				else if(&lhs > &rhs)
 					return false;
 			}
 			// Tiebreaker fallback to keep sorting consistent is unique UUID:

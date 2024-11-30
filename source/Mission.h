@@ -217,8 +217,7 @@ private:
 	//       But: On-demand sort may be faster if the missions come 99% pre-sorted?
 	// TODO: Deprecate "00 Spaceport Reminder Resetter", "aa Spaceport Reminder Resetter" and
 	//       "AA Spaceport Reminder Resetter" properly with a patch for existing saves.
-	// TODO: Change PlayerInfo::SortAvailable so it uses natural sort of the Mission instance, not of the name string
-	//       as tie breaker. Test that the order field can actually reorder over strictly alphabetic.
+	// TODO: Test that the order field can actually reorder jobs over strictly alphabetic.
 	// TODO: Update the wiki.
 
 	bool autosave = false;
