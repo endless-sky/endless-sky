@@ -4354,7 +4354,7 @@ mission "Spaceport Reminder Setter"
 		fail
 
 # minor with order -1 means it is offered only if no other missions apply.
-mission "AA Spaceport Reminder Resetter"
+mission "Spaceport Reminder Resetter"
 	minor
 	order -1
 	invisible
@@ -4365,6 +4365,35 @@ mission "AA Spaceport Reminder Resetter"
 	on offer
 		"spaceport reminder year" = "year"
 		"spaceport reminder month" = "month"
+		fail
+
+# Old names of the mission above.
+disable mission
+	"00 Spaceport Reminder Resetter"
+	"aa Spaceport Reminder Resetter"
+	"AA Spaceport Reminder Resetter"
+
+mission "00 Spaceport Reminder Resetter"
+
+mission "aa Spaceport Reminder Resetter"
+
+mission "AA Spaceport Reminder Resetter"
+
+mission "Spaceport Reminder Resetter Patch"
+	landing
+	invisible
+	to offer
+		or
+			has "00 Spaceport Reminder Resetter: offered"
+			has "aa Spaceport Reminder Resetter: offered"
+			has "aa Spaceport Reminder Resetter: offered"
+	on offer
+		clear "00 Spaceport Reminder Resetter: offered"
+		clear "00 Spaceport Reminder Resetter: failed"
+		clear "aa Spaceport Reminder Resetter: offered"
+		clear "aa Spaceport Reminder Resetter: failed"
+		clear "AA Spaceport Reminder Resetter: offered"
+		clear "AA Spaceport Reminder Resetter: failed"
 		fail
 
 mission "Spaceport Reminder"

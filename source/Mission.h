@@ -215,8 +215,6 @@ private:
 	int order = 0;
 	// TODO: Storage of missions in UniverseObjects sorts during load, which is now redundant.
 	//       But: On-demand sort may be faster if the missions come 99% pre-sorted?
-	// TODO: Deprecate "00 Spaceport Reminder Resetter", "aa Spaceport Reminder Resetter" and
-	//       "AA Spaceport Reminder Resetter" properly with a patch for existing saves.
 	// TODO: Test that the order field can actually reorder jobs over strictly alphabetic.
 	// TODO: Update the wiki.
 

@@ -282,7 +282,10 @@ bool DataNode::IsConditionName(const string &token)
 		(
 			(token == "'") ||
 			(token[0] >= 'a' && token[0] <= 'z') ||
-			(token[0] >= 'A' && token[0] <= 'Z')
+			(token[0] >= 'A' && token[0] <= 'Z') ||
+			// For compatibility only, so pre-0.10.11 saves can be loaded and patched without errors.
+			// TODO: Remove after a grace period.
+			token.starts_with("00 Spaceport Reminder Resetter")
 		);
 }
 
