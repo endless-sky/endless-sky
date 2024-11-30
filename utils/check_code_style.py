@@ -240,7 +240,7 @@ def sanitize(lines, skip_checks=False):
 					start_index = i + 1
 				continue
 			commentMatch = re.search("^//(/<?)?", line[i:i + 4])
-			if (not is_string and not commentMatch is None):
+			if (not is_string and commentMatch):
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
 					cLen = commentMatch.end()
