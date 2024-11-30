@@ -156,25 +156,15 @@ void ConditionSet::Load(const DataNode &node)
 // Save a set of conditions.
 void ConditionSet::Save(DataWriter &out) const
 {
+	// Default should be AND, so if it is, then just write the subsets.
+	// If this condition got optimized beyond OP_AND, then re-add the OP_AND by writing the current condition in full.
 	if(expressionOperator == OP_AND)
-	{
-		// Default should be AND, so if it is, then just write the subsets
-		out.BeginChild();
 		for(const auto &child : children)
-		{
 			child.SaveSubset(out);
-			out.Write();
-		}
-		out.EndChild();
-	}
 	else
-	{
-		// If this condition got optimized beyond OP_AND, then re-add the OP_AND here by writing under a child.
-		out.BeginChild();
 		SaveSubset(out);
-		out.Write();
-		out.EndChild();
-	}
+
+	out.Write();
 }
 
 

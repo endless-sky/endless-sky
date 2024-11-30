@@ -65,7 +65,6 @@ void ConditionAssignments::Load(const DataNode &node)
 // Save a set of conditions.
 void ConditionAssignments::Save(DataWriter &out) const
 {
-	out.BeginChild();
 	for(const Assignment &assignment : assignments)
 	{
 		AssignOp aso = assignment.assignOperator;
@@ -82,7 +81,6 @@ void ConditionAssignments::Save(DataWriter &out) const
 			out.Write();
 		}
 	}
-	out.EndChild();
 }
 
 
