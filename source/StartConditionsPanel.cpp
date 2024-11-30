@@ -296,7 +296,7 @@ void StartConditionsPanel::ScrollToSelected()
 void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
 	// Clear the displayed information.
-	info.ClearConditions();
+	info = Information();
 
 	startIt = it;
 	if(startIt == scenarios.end())
