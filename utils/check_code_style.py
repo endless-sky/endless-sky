@@ -106,6 +106,7 @@ segment_exclude = [re.compile(regex) for regex in [
 after_comment = re.compile("[^\\s#]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
+singleLineComment = re.compile("^//(/<?)?")
 
 # List of "" and <> includes to be treated as the other type;
 # that is, any listed "" include should be grouped with <> includes,
@@ -239,7 +240,7 @@ def sanitize(lines, skip_checks=False):
 					i += 1
 					start_index = i + 1
 				continue
-			commentMatch = re.search("^//(/<?)?", line[i:i + 4])
+			commentMatch = re.search(singleLineComment, line[i:i + 4])
 			if (not is_string and commentMatch):
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
