@@ -249,7 +249,7 @@ def sanitize(lines, skip_checks=False):
 						if re.search(after_comment, line[i + cLen:i + cLen + 1]):
 							errors.append(Error(line[i:i + cLen + 1], line_count,
 												"missing space after beginning of single-line comment"))
-				break;
+				break
 			elif (not is_string) and first_two == "/*":
 				segments.append(line[start_index:i].rstrip())
 				is_multiline_comment = True
