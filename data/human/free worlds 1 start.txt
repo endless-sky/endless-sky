@@ -1015,7 +1015,7 @@ mission "FW Senate 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The Free Worlds have finally elected a Senate, which will be convening for the first time soon on Bourne."
+		log "The Free Worlds has finally elected a Senate, which will be convening for the first time soon on Bourne."
 		conversation
 			`Surprisingly, when you get back to <origin> you find that Tomek is no longer there. A courier hands you a short note: "Captain <last>: because the decision of how to deal with the pirates is of interest to all the Free Worlds, the Council has decided to convene the first session of the Free Worlds Senate ahead of schedule. I have already left for Bourne. You have been assigned to transport Senator Arianna Huygens of <planet>; please pick her up as soon as possible and bring her with you."`
 				accept
