@@ -208,6 +208,8 @@ void Mission::Load(const DataNode &node)
 			hasPriority = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
+		else if(child.Token(0) == "order" && child.Size() >= 2)
+			order = child.Value(1);
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -374,6 +376,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
+		if(order)
+			out.Write("order", order);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -1289,6 +1293,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
+	result.order = order;
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
@@ -1658,4 +1663,13 @@ bool Mission::ParseContraband(const DataNode &node)
 		return false;
 
 	return true;
+}
+
+
+
+const bool Mission::SortHelper(const Mission &a, const Mission &b)
+{
+	if(a.order == b.order)
+		return a.name < b.name;
+	return a.order < b.order;
 }

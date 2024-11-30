@@ -4027,6 +4027,10 @@ void PlayerInfo::CreateMissions()
 	}
 	else if(availableMissions.size() > 1)
 	{
+		// Ensure missions are sorted respecting the order field.
+		// This is required so the correct `minor` missions are discarded first
+		availableMissions.sort();
+
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them. This is to avoid having two
 		// or three missions pop up as soon as you enter the spaceport.

@@ -67,6 +67,10 @@ public:
 	// Add "never" to the toOffer ConditionSet, preventing this mission from offering.
 	void NeverOffer();
 
+	// Sort order should respect the order field before the name
+	const bool operator<(const Mission &other) const { return SortHelper(*this, other); }
+	const bool operator()(Mission &a, Mission &b) const { return SortHelper(a, b); }
+
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
@@ -204,7 +208,19 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+
 	bool isMinor = false;
+	// `order` is a sort override, missions are sorted by order first then alphabetically within each order level.
+	// `minor` missions are implemented by discarding from the sorted beginning, thus negative means decreased priority.
+	int order = 0;
+	// TODO: Storage of missions in UniverseObjects sorts during load, which is now redundant.
+	//       But: On-demand sort may be faster if the missions come 99% pre-sorted?
+	// TODO: Deprecate "00 Spaceport Reminder Resetter", "aa Spaceport Reminder Resetter" and
+	//       "AA Spaceport Reminder Resetter" properly with a patch for existing saves.
+	// TODO: Change PlayerInfo::SortAvailable so it uses natural sort of the Mission instance, not of the name string
+	//       as tie breaker. Test that the order field can actually reorder over strictly alphabetic.
+	// TODO: Update the wiki.
+
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;
@@ -269,4 +285,7 @@ private:
 	std::list<MissionAction> genericOnEnter;
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
+
+	// Comparison by `order` field and then by name.
+	static const bool SortHelper(const Mission &a, const Mission &b);
 };
