@@ -94,6 +94,16 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(!scrollSpeed)
 		scrollSpeed = 1;
+
+	// When the player is in the menu, pause the game sounds.
+	Audio::Pause();
+}
+
+
+
+MenuPanel::~MenuPanel()
+{
+	Audio::Resume();
 }
 
 
