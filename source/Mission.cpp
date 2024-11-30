@@ -141,6 +141,8 @@ void Mission::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
+	if(!DataNode::IsConditionName(name))
+		node.PrintTrace("Error: Invalid mission name");
 
 	for(const DataNode &child : node)
 	{
@@ -485,8 +487,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 void Mission::NeverOffer()
 {
-	// Add the equivalent "never" condition, `"'" != 0`.
-	toOffer.Add("has", "'");
+	toOffer.MakeNever();
 }
 
 

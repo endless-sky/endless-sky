@@ -211,6 +211,8 @@ public:
 	void AddLogEntry(const std::string &text);
 	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
 	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	void RemoveSpecialLog(const std::string &type, const std::string &name);
+	void RemoveSpecialLog(const std::string &type);
 	bool HasLogs() const;
 
 	// Get mission information.
