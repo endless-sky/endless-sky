@@ -24,7 +24,7 @@ mission "FWC Scouting 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Free Worlds is now committed to fighting the Republic to a standstill rather than proving their innocence; the defector has been recaptured by the Syndicate and whatever information he had to share is now lost.`
+		log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Free Worlds are now committed to fighting the Republic to a standstill rather than proving their innocence; the defector has been recaptured by the Syndicate and whatever information he had to share is now lost.`
 		conversation
 			`It was a close battle, and could have gone very differently if it were not for the Wolf Pack strike that happened before you arrived and that disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
 			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon, before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
@@ -540,12 +540,12 @@ mission "FWC Diplomacy 1C"
 	
 	on offer
 		log "Visited Earth with Alondo to try to pressure Parliament into agreeing to a peace deal. The negotiations failed. Only escaped the planet safely because a Free Worlds ship in orbit threatened to bombard the Parliament building."
-		log "Rescued Katya from the Republic's custody. She is not happy about the extreme measures the Free Worlds is taking to win this war."
+		log "Rescued Katya from the Republic's custody. She is not happy about the extreme measures the Free Worlds are taking to win this war."
 		event "fw safe passage ends" 1
 		conversation
 			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
 			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
-			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds is prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
+			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds are prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
 			`	Xao gestures to the guards, and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn-out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
 			choice
 				`	"It was the only way we could resist the Navy."`
@@ -624,7 +624,7 @@ mission "FWC Checkmate 1"
 	on offer
 		event "fwc defend cebalrai"
 		conversation
-			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds has been making. "Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
+			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. "Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
 			choice
 				`	"We only want this war to be over as soon as possible."`
 				`	"We've just been trying to avoid being destroyed by the Navy, and things have gotten a bit out of hand."`
@@ -970,7 +970,7 @@ mission "FWC Checkmate 1C"
 	on visit
 		dialog `You land on <planet>, but you realize that Katya is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
-		log "The Free Worlds has captured the Vega system, only one hyperjump away from Earth. Nuclear-armed Wolf Pack ships will be arriving shortly to spearhead the assault, but the Navy fleet defending Earth will be massive. Casualties on both sides are likely to be extremely high."
+		log "The Free Worlds have captured the Vega system, only one hyperjump away from Earth. Nuclear-armed Wolf Pack ships will be arriving shortly to spearhead the assault, but the Navy fleet defending Earth will be massive. Casualties on both sides are likely to be extremely high."
 		conversation
 			`The Vega system is eerily deserted. You suspect that the Navy must have pulled back all available ships to defend Earth, rather than trying to fight you here. You try not to think about how massive the fleet there must be, and how slim your chances are of destroying it.`
 			`	Katya says, "Well, this is it, the final assault. Meet me in the spaceport when you're ready for the attack on Earth."`
@@ -1415,7 +1415,7 @@ mission "FWC Pug 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "Escaped from the territory captured by the Pug by using a jump drive. Found out that Freya has been captured by the Navy while she was trying to figure out the reason for the hyperspace links disappearing. The Navy thinks that the Free Worlds is behind the hyperspace disruptions. But, making peace with the Navy may be the only way to defeat the Pug."
+		log "Escaped from the territory captured by the Pug by using a jump drive. Found out that Freya has been captured by the Navy while she was trying to figure out the reason for the hyperspace links disappearing. The Navy thinks that the Free Worlds are behind the hyperspace disruptions. But, making peace with the Navy may be the only way to defeat the Pug."
 		event "fwc peace with the navy"
 		set "event: fw armistice"
 		conversation
@@ -2427,7 +2427,7 @@ mission "FWC End"
 		event "fwc kaus borealis ceded back"
 		conversation
 			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya. "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
-			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds has been granted autonomy from the Republic."`
+			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`
 			`	"Also," says Katya, "as their own expression of gratitude, the Syndicate members of Parliament have offered to make some of their new technology, developed during the war, available to us at an affordable price."`
 			choice
 				`	"That's very generous of them."`
