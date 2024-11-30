@@ -210,6 +210,8 @@ public:
 	void AddLogEntry(const std::string &text);
 	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
 	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	void RemoveSpecialLog(const std::string &type, const std::string &name);
+	void RemoveSpecialLog(const std::string &type);
 	bool HasLogs() const;
 
 	// Get mission information.
@@ -307,6 +309,7 @@ public:
 	bool SelectShips(const Rectangle &box, bool hasShift);
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
+	void DeselectShip(const Ship *ship);
 	void SelectGroup(int group, bool hasShift);
 	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetGroup(int group);

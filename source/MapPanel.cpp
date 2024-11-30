@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Preferences.h"
 #include "RingShader.h"
+#include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
@@ -131,7 +132,6 @@ namespace {
 	}
 
 	const Color black(0.f, 1.f);
-	const Color red(1.f, 0.f, 0.f, 1.f);
 
 	// Hovering an escort pip for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
@@ -166,17 +166,17 @@ namespace {
 				if(Preferences::Has("Deadline blink by distance"))
 				{
 					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(mission.Destination()->GetSystem()))
+					if(distance.HasRoute(*mission.Destination()->GetSystem()))
 					{
 						set<const System *> toVisit;
 						for(const Planet *stopover : mission.Stopovers())
 						{
-							if(distance.HasRoute(stopover->GetSystem()))
+							if(distance.HasRoute(*stopover->GetSystem()))
 								toVisit.insert(stopover->GetSystem());
 							--daysLeft;
 						}
 						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(waypoint))
+							if(distance.HasRoute(*waypoint))
 								toVisit.insert(waypoint);
 
 						int systemCount = toVisit.size();
@@ -185,16 +185,16 @@ namespace {
 							const System *closest;
 							int minimalDist = numeric_limits<int>::max();
 							for(const System *sys : toVisit)
-								if(distance.Days(sys) < minimalDist)
+								if(distance.Days(*sys) < minimalDist)
 								{
 									closest = sys;
-									minimalDist = distance.Days(sys);
+									minimalDist = distance.Days(*sys);
 								}
-							daysLeft -= distance.Days(closest);
+							daysLeft -= distance.Days(*closest);
 							distance = DistanceMap(player, closest);
 							toVisit.erase(closest);
 						}
-						daysLeft -= distance.Days(mission.Destination()->GetSystem());
+						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
 					}
 				}
 				int blinkFactor = min(6, max(1, daysLeft));
@@ -407,17 +407,15 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 	// Draw a warning if the selected system is not routable.
 
-	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
+	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
-		const Font &font = FontSet::Get(18);
-
 		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		Point point(-font.Width(message) / 2, Screen::Top() + 40);
-		font.Draw(message, point + Point(1, 1), black);
-		font.Draw(message, point, red);
+		info.SetString("route error", message);
 	}
+
+	mapInterface->Draw(info, this);
 }
 
 
@@ -800,28 +798,23 @@ void MapPanel::Select(const System *system)
 	}
 	else if(shift)
 	{
-		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Days(system) <= 0)
+		const System *planEnd = plan.front();
+		if(system == planEnd)
 			return;
 
-		auto it = plan.begin();
-		while(system != *it)
-		{
-			it = ++plan.insert(it, system);
-			system = localDistance.Route(system);
-		}
+		RoutePlan addedRoute(*planEnd, *system, &player);
+		if(!addedRoute.HasRoute())
+			return;
+
+		vector<const System *> newPlan = addedRoute.Plan();
+		plan.insert(plan.begin(), newPlan.begin(), newPlan.end());
 	}
-	else if(distance.Days(system) > 0)
+	else if(distance.HasRoute(*system))
 	{
-		plan.clear();
 		if(!isJumping)
 			flagship->SetTargetSystem(nullptr);
 
-		while(system != source)
-		{
-			plan.push_back(system);
-			system = distance.Route(system);
-		}
+		plan = distance.Plan(*system);
 		if(isJumping)
 			plan.push_back(source);
 	}
@@ -1212,9 +1205,9 @@ void MapPanel::DrawTravelPlan()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 1.6f, drawColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 3.f, drawColor);
+			LineShader::Draw(from, to, 1.6f, drawColor);
 	}
 }
 
@@ -1237,8 +1230,8 @@ void MapPanel::DrawSelectedSystem()
 	auto it = find(plan.begin(), plan.end(), selectedSystem);
 	if(it != plan.end())
 		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
+	else if(distance.HasRoute(*selectedSystem))
+		jumps = distance.Days(*selectedSystem);
 
 	if(jumps == 1)
 		text += " (1 jump away)";
@@ -1281,11 +1274,14 @@ void MapPanel::DrawEscorts()
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
+					static constexpr float WIDTH = 1.6f;
+
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
-					Point from = pos + angle.Unit() * OUTER;
-					Point to = from + angle.Unit() * 4.f;
-					LineShader::Draw(from, to, 2.f, active);
+					// Account for how rounded caps extend out by an additional WIDTH.
+					Point from = pos + angle.Unit() * (OUTER + WIDTH);
+					Point to = from + angle.Unit() * (4.f - WIDTH);
+					LineShader::Draw(from, to, WIDTH, active);
 				}
 		}
 }

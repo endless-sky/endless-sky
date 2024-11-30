@@ -580,6 +580,7 @@ mission "Gegno Anticipation"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offered"
+		not "Gegno Intervention: offered"
 		not "event: gegno: apprehension"
 		"reputation: Gegno Vi" > -100
 		"reputation: Gegno Scin" > -50
@@ -926,6 +927,7 @@ mission "Gegno Intervention"
 	to offer
 		has "event: gegno: apprehension"
 		not "Gegno Genocide Defense: offered"
+		not "Gegno Anticipation: offered"
 	source "Giaru Gegno"
 	destination "Dueyu Eitch"
 	deadline 8
