@@ -216,11 +216,11 @@ void MissionPanel::Draw()
 	const Color &routeColor = *colors.Get("mission route");
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
-	const System *previous = nullptr;
-	const System *next = selectedSystem;
-	for(; distance.Days(next) > 0; next = previous)
+	const System *previous = player.GetSystem();
+	const vector<const System *> plan = distance.Plan(*selectedSystem);
+	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
-		previous = distance.Route(next);
+		const System *next = *it;
 
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
@@ -239,6 +239,8 @@ void MissionPanel::Draw()
 			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
 			LineShader::Draw(from, to, 3.f, routeColor);
+
+		previous = next;
 	}
 
 	const Color &availableColor = *colors.Get("available back");
@@ -836,7 +838,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 
 void MissionPanel::DrawMissionInfo()
 {
-	Information info;
+	info.ClearConditions();
 
 	// The "accept / abort" button text and activation depends on what mission,
 	// if any, is selected, and whether missions are available.

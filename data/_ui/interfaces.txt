@@ -266,7 +266,7 @@ interface "main menu"
 		dimensions 90 30
 	
 	visible
-	button l "_Load / Save..."
+	button m "_Manage Pilots..."
 		center 300 155
 		dimensions 120 30
 	
