@@ -58,6 +58,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Color.h
 	Command.cpp
 	Command.h
+	ConditionAssignments.cpp
+	ConditionAssignments.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
