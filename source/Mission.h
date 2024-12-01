@@ -87,6 +87,9 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	// Get the ordering value for this mission used for sorting.
+	// Zero for most missions. For minor missions, this controls precedence.
+	int Order() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
@@ -212,7 +215,6 @@ private:
 	// `order` is a sort override, missions are sorted by order first then alphabetically within each order level.
 	// `minor` missions are implemented by discarding from the sorted beginning, thus negative means decreased priority.
 	int order = 0;
-	// TODO: Test that the order field can actually reorder jobs over strictly alphabetic.
 	// TODO: Update the wiki.
 
 	bool autosave = false;

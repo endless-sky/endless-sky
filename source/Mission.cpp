@@ -602,6 +602,15 @@ bool Mission::IsMinor() const
 
 
 
+// Get the ordering value for this mission used for sorting.
+// Zero for most missions. For minor missions, this controls precedence.
+int Mission::Order() const
+{
+	return order;
+}
+
+
+
 bool Mission::IsAtLocation(Location location) const
 {
 	return (this->location == location);

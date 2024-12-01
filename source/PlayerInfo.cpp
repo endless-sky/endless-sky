@@ -4154,12 +4154,16 @@ void PlayerInfo::SortAvailable()
 					return false;
 			}
 			// Tiebreaker for equal PAY is ABC.
-			// This uses the Mission class' overridden comparison operator, which orders by 'order' field then name.
+			// Not using the Mission class' overridden comparison operator, as it orders by id, not display name.
 			case ABC:
 			{
-				if(&lhs < &rhs)
+				if(lhs.Order() < rhs.Order())
 					return true;
-				else if(&lhs > &rhs)
+				else if(lhs.Order() > rhs.Order())
+					return false;
+				if(lhs.Name() < rhs.Name())
+					return true;
+				else if(lhs.Name() > rhs.Name())
 					return false;
 			}
 			// Tiebreaker fallback to keep sorting consistent is unique UUID:
