@@ -127,23 +127,23 @@ void ShipInfoPanel::Draw()
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
 	// Draws "name: " and the ship name.
-	infoDisplay.DrawShipName(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipName(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// Draws "model: " and the ship model name.
-	infoDisplay.DrawShipModelStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipModelStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays the shield and hull.
-	infoDisplay.DrawShipHealthStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipHealthStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays mass, cargo, bunks, and fuel
-	infoDisplay.DrawShipCarryingCapacities(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipCarryingCapacities(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays "outfit space free: " and outfit space
-	infoDisplay.DrawShipOutfitStat(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipOutfitStat(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	infoPanelLine++; // This makes a one-text-line gap in the display of text.
 	// Displays max speed, thrust, reverse, lateral, and turn
-	infoDisplay.DrawShipManeuverStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipManeuverStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// infoPanelLine++; // This makes a one-text-line gap in the display of text.
-	infoDisplay.DrawShipEnergyHeatStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
+	info.DrawShipEnergyHeatStats(**shipIt, infoPanelUi->GetBox("stats"), infoPanelLine);
 	// DrawShipStats(infoPanelUi->GetBox("stats")); // This is the old method that drew all the stats
 	DrawOutfits(infoPanelUi->GetBox("outfits"), cargoBounds);
 	DrawSprite(infoPanelUi->GetBox("ship info sprite"));
