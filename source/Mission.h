@@ -69,7 +69,6 @@ public:
 
 	// Sort order should respect the order field before the name
 	const bool operator<(const Mission &other) const { return SortHelper(*this, other); }
-	const bool operator()(Mission &a, Mission &b) const { return SortHelper(a, b); }
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
@@ -213,8 +212,6 @@ private:
 	// `order` is a sort override, missions are sorted by order first then alphabetically within each order level.
 	// `minor` missions are implemented by discarding from the sorted beginning, thus negative means decreased priority.
 	int order = 0;
-	// TODO: Storage of missions in UniverseObjects sorts during load, which is now redundant.
-	//       But: On-demand sort may be faster if the missions come 99% pre-sorted?
 	// TODO: Test that the order field can actually reorder jobs over strictly alphabetic.
 	// TODO: Update the wiki.
 
