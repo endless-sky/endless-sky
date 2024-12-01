@@ -179,7 +179,7 @@ void HailPanel::Draw()
 {
 	DrawBackdrop();
 
-	info.ClearConditions();
+	Information info;
 	info.SetString("header", header);
 	if(ship)
 	{

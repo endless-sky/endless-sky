@@ -83,7 +83,7 @@ private:
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
 
 	// Information about the currently selected ship.
-	ShipInfoDisplay infoDisplay;
+	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit*>> outfits;
 
 	// Track all the clickable parts of the UI (other than the buttons).

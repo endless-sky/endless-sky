@@ -63,7 +63,7 @@ void MessageLogPanel::Draw()
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + width);
 
-	info.ClearConditions();
+	Information info;
 	if(messages.empty())
 	{
 		info.SetCondition("empty");
