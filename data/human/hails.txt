@@ -944,7 +944,6 @@ phrase "friendly civilian"
 		"How many Moonshakers does it take to change a lightbulb? Zero, it's all out-sourced to off-worlders."
 		"How many Alexandrians does it take to change a lightbulb? One, they are very educated and capable people."
 		"How many Earthlings does it take to change a lightbulb? Three, one to change the lightbulb and two to clear the way through the crowds of people."
-		"How many Venusians does it take to change a lightbulb? Zero, there are no people living on Venus!"
 		"How many Martians does it take to change a lightbulb? Zero, they let the visiting Earthy laborers change their lightbulbs."
 		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
@@ -5069,7 +5068,7 @@ phrase "friendly disabled pirate"
 phrase "friendly author"
 	word
 		"This game"
-		"Endless Sky"
+		"Endless Sky Delta"
 	word
 		" is open source. You can "
 	word
@@ -7376,6 +7375,68 @@ phrase "disabled test dummy"
 		"Hey, can we be friends? Some of my best friends are slimy organics like you."
 		"You may kill me, but you will never kill my dreams of electric sheep."
 
+# Hails from the escort in the Thermal Scanner mission chain.
+phrase "friendly kraz cybernetics"
+	phrase
+		"friendly kraz cybernetics 1" 10
+		"friendly kraz cybernetics 2"
+
+phrase "friendly kraz cybernetics 1"
+	word
+		"" 2
+		"Wanna hear a joke?"
+	word
+		" "
+	word
+		"What did the beaver say to the log? It was nice gnawing you!"
+		"Why did the chicken cross the road? To get to the other side!"
+		"Where do astronauts hang out? At the space bar!"
+		"What is a Syndicate salesman's favorite drink? Whatever the Syndicate tells him it is!"
+		"Why does the Navy hate neighbors? Because the grass is greener on the other side!"
+		"What has two heads, six feet, two arms, and one tail? A person on a horse!"
+		"What's black and white and red all over? A newspaper!"
+		"Getting recruited by the Navy!"
+		"What does 1+1=? A window!"
+		"How did the pond get an A in English? Because it could reed!"
+		"Why do snowmen have noses? Because it s-nose!"
+		"What does a brain and winter have in common? They both s-know!"
+		"What did the system of Kornephoros say after figuring out the meaning of life? That's pretty Deep."
+		"Why do most scientists go diving? Because they love the Deep!"
+		"What did the system of Sabik say after hearing a conspiracy theory? That's a Longjump."
+		"Why did the system of Rastaban want to be a ballerina? Because there was a little Dancer in him!"
+		"Why was the pirate warlord happy after taking Pherkad? Because it gave him Solace!"
+		"Why was the pirate warlord disappointed after taking the system of Kochab? Because it was only a Mere victory!"
+		"Why wasn't anybody concerned when the system of Kaus Australis lost one of its legs? Because it was already a Hopper!"
+		"Where should you go for a horn of plenty? Kappa Centauri!"
+		"What do the Quarg say to people doing annoying things? That's Enif of that!"
+		"What do you call a pointless atmosphere? Skymoot!"
+		"Why is the system of Graffias a bad assassin? Because she can only Poisonwood!"
+		"What music does Girtab like? Pieces with Harmony!"
+		"Why is medical equipment so important in Gamma Corvi? Because lots of people are Bourne there!"
+		"What is a robot's least favorite planet? Rust!"
+		"Why doesn't Barky Edward like living in Kraz? Because all his tools Rust!" 20
+		"What do you call a spaceship with no engines? A groundship!"
+		"Don't trust stairs. They are always up to something."
+		"How many Hestians does it take to change a lightbulb? Four! An electrician does the work, and the butler, manager and housekeeper supervise."
+		"How many Wayfarers does it take to change a lightbulb? Zero, they don't use such old technology there!"
+		"How many Earthlings does it take to change a lightbulb? Three, one to change the lightbulb and two to clear the way through the crowds of people."
+		"How many Venusians does it take to change a lightbulb? Zero, there are no people living on Venus!"
+		"How many Martians does it take to change a lightbulb? Zero, they let the visiting Earthy laborers change their lightbulbs."
+		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
+		"How many Lunatics does it take to change a lightbulb? Don't bother, they light up with anger if you call them Lunatics."
+		"How many New Britons does it take to change a lightbulb? Many, they prefer selling instead of installing lightbulbs on their planet of shopkeepers."
+	word
+		"" 3
+		" What? Not funny?"
+		" Hey, I thought it was good!"
+		" C'mon, at least laugh a little!"
+		" Pretty clever, right?"
+
+phrase "friendly kraz cybernetics 2"
+	word
+		"Sometimes I wonder if even Barmy Edwards knows what he's doing."
+		"We're doing what? Testing heat weapons? Don't make me laugh."
+		"Edwards: brilliant genius or daft inventor?"
 
 # Wormhole Hails
 phrase "wormhole hail"
