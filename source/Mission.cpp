@@ -1673,5 +1673,5 @@ bool Mission::ParseContraband(const DataNode &node)
 
 const bool Mission::SortHelper(const Mission &a, const Mission &b)
 {
-	return (a.order == b.order) ? a.name < b.name : a.order < b.order;
+	return a.order == b.order ? a.name < b.name : a.order < b.order;
 }
