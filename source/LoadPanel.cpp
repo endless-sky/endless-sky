@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "StarField.h"
+#include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -137,7 +137,7 @@ void LoadPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 	const Font &font = FontSet::Get(14);
 
-	info.ClearConditions();
+	Information info;
 	if(loadedInfo.IsLoaded())
 	{
 		info.SetString("pilot", loadedInfo.Name());
