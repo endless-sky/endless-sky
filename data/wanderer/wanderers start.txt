@@ -2465,7 +2465,6 @@ mission "Wanderers: Kort Vek'kri Tribute Patch"
 	invisible
 	to offer
 		has "event: battle for sich'ka'ara ends"
-		not "event: kort vek'kri tribute clear"
 	on offer
 		event "kort vek'kri tribute clear"
 		fail
