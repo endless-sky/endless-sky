@@ -578,6 +578,10 @@ bool Mission::IsValid() const
 		if(!npc.Validate().empty())
 			return false;
 
+	// order makes no sense for jobs, assist or boarding missions
+	if(order && (IsAtLocation(Mission::JOB) || IsAtLocation(Mission::ASSISTING) || IsAtLocation(Mission::BOARDING)))
+		return false;
+
 	return true;
 }
 
@@ -598,15 +602,6 @@ bool Mission::HasPriority() const
 bool Mission::IsMinor() const
 {
 	return isMinor;
-}
-
-
-
-// Get the ordering value for this mission used for sorting.
-// Zero for most missions. For minor missions, this controls precedence.
-int Mission::Order() const
-{
-	return order;
 }
 
 

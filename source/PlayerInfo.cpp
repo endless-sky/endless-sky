@@ -4154,13 +4154,8 @@ void PlayerInfo::SortAvailable()
 					return false;
 			}
 			// Tiebreaker for equal PAY is ABC.
-			// Not using the Mission class' overridden comparison operator, as it orders by id, not display name.
 			case ABC:
 			{
-				if(lhs.Order() < rhs.Order())
-					return true;
-				else if(lhs.Order() > rhs.Order())
-					return false;
 				if(lhs.Name() < rhs.Name())
 					return true;
 				else if(lhs.Name() > rhs.Name())
