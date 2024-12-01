@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Information.h"
 #include "Rectangle.h"
 
 #include <functional>
@@ -68,7 +69,7 @@ public:
 	void ClearZones();
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
-	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	void AddZone(const Rectangle &rect, SDL_Keycode key, const std::vector<std::string> &conditionsToEnable = {});
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
@@ -149,6 +150,10 @@ private:
 	// object. Recursion stops as soon as any child returns true.
 	template<typename...FARGS, typename...ARGS>
 	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
+
+
+protected:
+	Information info;
 
 
 private:
