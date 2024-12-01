@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <iostream>
 #include <map>
 #include <numeric>
 #include <set>
@@ -50,6 +51,7 @@ namespace {
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
 		{Test::TestStep::Type::CALL, "call"},
+		{Test::TestStep::Type::DEBUG, "debug"},
 		{Test::TestStep::Type::INJECT, "inject"},
 		{Test::TestStep::Type::INPUT, "input"},
 		{Test::TestStep::Type::LABEL, "label"},
@@ -239,6 +241,16 @@ void Test::LoadSequence(const DataNode &node)
 				{
 					status = Status::BROKEN;
 					child.PrintTrace("Error: Invalid use of \"call\" without name of called (sub)test:");
+					return;
+				}
+				else
+					step.nameOrLabel = child.Token(1);
+				break;
+			case TestStep::Type::DEBUG:
+				if(child.Size() < 2)
+				{
+					status = Status::BROKEN;
+					child.PrintTrace("Error: Invalid use of \"debug\" without an actual message to print:");
 					return;
 				}
 				else
@@ -470,6 +482,12 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					// Break the loop to switch to the test just pushed.
 				}
 				continueGameLoop = true;
+				break;
+			case TestStep::Type::DEBUG:
+				// Print debugging output directly to the terminal.
+				cout << stepToRun.nameOrLabel << '\n';
+				cout.flush();
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::INJECT:
 				{
