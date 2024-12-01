@@ -480,8 +480,7 @@ void PreferencesPanel::DrawControls()
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD_FIRE,
-		Command::HOLD_POSITION,
+		Command::HOLD,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -694,7 +693,8 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
-		DATE_FORMAT
+		DATE_FORMAT,
+		"Show parenthesis"
 	};
 
 	bool isCategory = true;

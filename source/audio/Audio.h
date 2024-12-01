@@ -63,6 +63,12 @@ public:
 	// Play the given music. An empty string means to play nothing.
 	static void PlayMusic(const std::string &name);
 
+	// Pause all active sound sources. Doesn't cause new streams to be paused, and doesn't pause the music source.
+	static void Pause();
+	// Resumes all paused sound sources. If Pause() was called multiple times,
+	// you have to call Resume() the same number of times to resume the sound sources.
+	static void Resume();
+
 	// Begin playing all the sounds that have been added since the last time
 	// this function was called.
 	static void Step();

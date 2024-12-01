@@ -570,8 +570,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
-	// Cargo list.
-	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
+	// Cargo list: show pooled cargo instead if the ship to display is landed together with the flagship.
+	const bool showPooled = ship.GetPlanet() == player.GetPlanet() && player.Cargo().Used();
+	const CargoHold &cargo = (showPooled ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});

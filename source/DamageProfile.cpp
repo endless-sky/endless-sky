@@ -128,13 +128,13 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			- attributes.Get("piercing resistance")));
 		double highPermeability = attributes.Get("high shield permeability");
 		double lowPermeability = attributes.Get("low shield permeability");
-		double permeability = 0.;
+		double permeability = ship.Cloaking() * attributes.Get("cloaked shield permeability");
 		if(highPermeability || lowPermeability)
 		{
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
 			double shieldPortion = shields / ship.MaxShields();
-			permeability = max((highPermeability * shieldPortion) +
+			permeability += max((highPermeability * shieldPortion) +
 				(lowPermeability * (1. - shieldPortion)), 0.);
 		}
 		shieldFraction = (1. - min(piercing + permeability, 1.)) /

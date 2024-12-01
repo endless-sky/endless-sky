@@ -94,6 +94,16 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(!scrollSpeed)
 		scrollSpeed = 1;
+
+	// When the player is in the menu, pause the game sounds.
+	Audio::Pause();
+}
+
+
+
+MenuPanel::~MenuPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -167,7 +177,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
-	else if(key == 'l')
+	else if(key == 'l' || key == 'm')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
