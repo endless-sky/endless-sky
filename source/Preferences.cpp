@@ -226,7 +226,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else if(node.Token(0) == "notification settings")
-			dateFormatIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
