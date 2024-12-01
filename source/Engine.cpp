@@ -1404,6 +1404,7 @@ void Engine::EnterSystem()
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
+		Messages::Add(GameData::HelpMessage("basics 3"), Messages::Importance::High);
 	}
 }
 
