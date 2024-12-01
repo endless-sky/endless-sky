@@ -103,7 +103,7 @@ void StartConditions::Load(const DataNode &node)
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 			else if(key == "conditions")
-				conditions = ConditionSet();
+				conditions = ConditionAssignments();
 			else
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
@@ -190,7 +190,7 @@ void StartConditions::FinishLoading()
 	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
 	unlocked.planet = GetPlanet().Name();
 	unlocked.system = GetSystem().Name();
-	unlocked.date = GetDate().ToString();
+	unlocked.date = GetDate();
 	unlocked.credits = Format::Credits(GetAccounts().Credits());
 	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
 
@@ -226,7 +226,7 @@ bool StartConditions::IsValid() const
 
 
 
-const ConditionSet &StartConditions::GetConditions() const noexcept
+const ConditionAssignments &StartConditions::GetConditions() const noexcept
 {
 	return conditions;
 }
@@ -292,7 +292,11 @@ const string &StartConditions::GetSystemName() const noexcept
 const string &StartConditions::GetDateString() const noexcept
 {
 	auto it = infoByState.find(state);
-	return it == infoByState.end() ? ILLEGAL : it->second.date;
+	if(it == infoByState.end())
+		return ILLEGAL;
+	if(it->second.date)
+		return it->second.date.ToString();
+	return it->second.dateString;
 }
 
 
@@ -382,11 +386,21 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	else if(key == "planet" && hasValue)
 		info.planet = value;
 	else if(key == "date" && hasValue)
-		info.date = value;
+		if(child.Size() >= valueIndex + 3)
+			info.date = Date(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else
+			info.dateString = value;
+	// Format credits and debt where applicable.
 	else if(key == "credits" && hasValue)
-		info.credits = value;
+		if(child.IsNumber(value))
+			info.credits = Format::Credits(child.Value(value));
+		else
+			info.credits = value;
 	else if(key == "debt" && hasValue)
-		info.debt = value;
+		if(child.IsNumber(value))
+			info.debt = Format::Credits(child.Value(value));
+		else
+			info.debt = value;
 	else
 		return false;
 	return true;
@@ -407,8 +421,8 @@ void StartConditions::FillState(StartState fillState, const Sprite *thumbnail)
 		fill.system = "???";
 	if(fill.planet.empty())
 		fill.planet = "???";
-	if(fill.date.empty())
-		fill.date = "???";
+	if(fill.dateString.empty() && !fill.date)
+		fill.dateString = "???";
 	if(fill.credits.empty())
 		fill.credits = "???";
 	if(fill.debt.empty())

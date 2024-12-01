@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "Date.h"
 #include "ExclusiveItem.h"
 
 #include <string>
@@ -55,7 +56,8 @@ public:
 		std::string system;
 		std::string planet;
 
-		std::string date;
+		Date date;
+		std::string dateString;
 		std::string credits;
 		std::string debt;
 	};
@@ -73,7 +75,7 @@ public:
 	// Any ships given to the player must also be valid models.
 	bool IsValid() const;
 
-	const ConditionSet &GetConditions() const noexcept;
+	const ConditionAssignments &GetConditions() const noexcept;
 	const std::vector<Ship> &Ships() const noexcept;
 
 	// Get this start's intro conversation.
@@ -106,7 +108,7 @@ private:
 
 private:
 	// Conditions that will be set for any pilot that begins with this scenario.
-	ConditionSet conditions;
+	ConditionAssignments conditions;
 	// Ships that a new pilot begins with (rather than being required to purchase one).
 	std::vector<Ship> ships;
 

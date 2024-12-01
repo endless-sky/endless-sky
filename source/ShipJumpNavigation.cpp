@@ -24,10 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-const double ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST = 100.;
-const double ShipJumpNavigation::DEFAULT_SCRAM_DRIVE_COST = 150.;
-const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
-
 
 
 // Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
@@ -199,11 +195,9 @@ bool ShipJumpNavigation::HasJumpDrive() const
 // jump information accordingly.
 void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 {
-	auto CalculateFuelCost = [this, &outfit](double defaultFuel) -> double
+	auto CalculateFuelCost = [this, &outfit](bool isJumpDrive) -> double
 	{
-		double baseCost = outfit.Get("jump fuel");
-		if(baseCost <= 0.)
-			baseCost = defaultFuel;
+		double baseCost = outfit.Get(isJumpDrive ? "jump drive fuel" : "hyperdrive fuel");
 		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
 		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
 		// jump base mass is allowed to have a negative mass cost.
@@ -216,7 +210,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 
 	if(outfit.Get("hyperdrive") && (!hasScramDrive || outfit.Get("scram drive")))
 	{
-		double cost = CalculateFuelCost(hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
+		double cost = CalculateFuelCost(false);
 		if(!hyperdriveCost || cost < hyperdriveCost)
 			hyperdriveCost = cost;
 	}
@@ -225,7 +219,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 		double distance = outfit.Get("jump range");
 		if(distance <= 0.)
 			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
-		double cost = CalculateFuelCost(DEFAULT_JUMP_DRIVE_COST);
+		double cost = CalculateFuelCost(true);
 
 		UpdateJumpDriveCosts(distance, cost);
 	}

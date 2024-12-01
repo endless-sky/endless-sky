@@ -43,6 +43,11 @@ public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
 
+	static constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
+	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
+	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
+
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.

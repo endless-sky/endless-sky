@@ -3,6 +3,7 @@
 "help: bank" 1
 "help: basics 1" 1
 "help: basics 2" 1
+"help: basics 3" 1
 "help: dead" 1
 "help: disabled" 1
 "help: fleet asteroid mining shortcuts" 1

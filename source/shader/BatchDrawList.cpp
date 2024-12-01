@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchDrawList.h"
 
 #include "BatchShader.h"
-#include "Body.h"
-#include "Screen.h"
-#include "image/Sprite.h"
+#include "../Body.h"
+#include "../Screen.h"
+#include "../image/Sprite.h"
 
 #include <cmath>
 
@@ -144,7 +144,7 @@ bool BatchDrawList::Add(const Body &body, Point position, float clip)
 	Point bottomLeft = topLeft + uh;
 	Point bottomRight = bottomLeft + uw;
 
-	float alpha = body.Alpha();
+	float alpha = body.Alpha(center);
 
 	// Push two copies of the first and last vertices to mark the break between
 	// the sprites.

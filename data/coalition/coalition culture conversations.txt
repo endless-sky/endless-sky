@@ -447,7 +447,7 @@ mission "Coalition Incident: Ring of Wisdom"
 	invisible
 	to offer
 		has "Coalition: First Contact: done"
-		random < 1
+		random < 3
 	source "Ring of Wisdom"
 	on offer
 		conversation

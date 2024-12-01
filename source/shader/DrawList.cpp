@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DrawList.h"
 
-#include "Body.h"
-#include "Preferences.h"
-#include "Screen.h"
-#include "image/Sprite.h"
+#include "../Body.h"
+#include "../Preferences.h"
+#include "../Screen.h"
+#include "../image/Sprite.h"
 #include "SpriteShader.h"
 
 #include <cmath>
@@ -162,7 +162,7 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	item.blur[0] = unit.Cross(blur) / (width * 4.);
 	item.blur[1] = -unit.Dot(blur) / (height * 4.);
 
-	item.alpha = 1. - cloak;
+	item.alpha = (1. - cloak) * body.Alpha(center);
 	item.swizzle = swizzle;
 	item.clip = 1.;
 

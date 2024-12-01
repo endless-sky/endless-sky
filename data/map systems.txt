@@ -16910,7 +16910,7 @@ system Heutesl
 		period 60.0582
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
-		distance 1000
+		distance 820
 		period 349.481
 	object
 		sprite planet/gas4
@@ -20834,7 +20834,7 @@ system "Kor En'lakfar"
 	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
-	fleet "Korsmanath A'awojs" 2000
+	fleet "Korsmanath A'awojs" 4000
 	object
 		sprite star/g0
 		period 10
@@ -20903,7 +20903,7 @@ system "Kor Fel'tar"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korath Surveillance" 24000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/k3
 		period 10
@@ -20976,7 +20976,7 @@ system "Kor Men"
 	fleet "Korath Surveillance" 46000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 8000
-	fleet "Korsmanath A'awojs" 2808
+	fleet "Korsmanath A'awojs" 5616
 	object
 		sprite star/f5
 		distance 28.0824
@@ -21045,7 +21045,7 @@ system "Kor Nor'peli"
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
-	fleet "Korsmanath A'awojs" 1100
+	fleet "Korsmanath A'awojs" 2200
 	object
 		sprite star/k3
 		distance 22.4307
@@ -21120,7 +21120,7 @@ system "Kor Tar'bei"
 	fleet "Korath Ember Waste Raid" 3050
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/m3
 		period 10
@@ -21178,7 +21178,7 @@ system "Kor Zena'i"
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Surveillance" 31000
 	fleet "Korath Civilian Large" 845
-	fleet "Korsmanath A'awojs" 2500
+	fleet "Korsmanath A'awojs" 5000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -30936,7 +30936,7 @@ system Scija
 			period 413.1
 	object
 		sprite planet/saturn
-		distance 8500
+		distance 9400
 		period 4188.84
 		object
 			sprite planet/europa
@@ -37066,7 +37066,7 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 650
+		distance 1080
 		period 321.540
 		object Cipi
 			sprite planet/ice7-b

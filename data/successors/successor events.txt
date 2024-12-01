@@ -46,6 +46,9 @@ event "successors: trust 1"
 	planet "Staja-Kella-Oa"
 		add shipyard "Successor Basics"
 		add outfitter "Successor Basics"
+	# Some fleets now have ships with names that include English words.
+	fleet "Kaatrij Home"
+		names "house kaatrij"
 
 event "successors: trust 2"
 	# Associated with "Successors: Trusted" mission.
