@@ -19,13 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "Government.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "pi.h"
 #include "Planet.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Wormhole.h"
@@ -72,7 +72,7 @@ namespace {
 
 
 PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system, const StellarObject &object)
-	: objectPosition(object.Position()), objectRadius(object.Radius())
+	: object(&object)
 {
 	const Planet &planet = *object.GetPlanet();
 	name = planet.Name();
@@ -134,8 +134,9 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 
 void PlanetLabel::Update(const Point &center, const double zoom)
 {
-	position = (objectPosition - center) * zoom;
-	radius = objectRadius * zoom;
+	drawCenter = center;
+	position = (object->Position() - center) * zoom;
+	radius = object->Radius() * zoom;
 }
 
 
@@ -144,11 +145,12 @@ void PlanetLabel::Draw() const
 {
 	// Don't draw if too far away from the center of the screen.
 	const double offset = position.Length() - radius;
-	if(offset >= 600.)
+	const double objectDistanceAlpha = object->DistanceAlpha(drawCenter);
+	if(offset >= 600. || objectDistanceAlpha == 0.)
 		return;
 
 	// Fade label as we get farther from the center of the screen.
-	const Color labelColor = color.Additive(min(.5, .6 - offset * .001));
+	const Color labelColor = color.Additive(min(.5, .6 - offset * .001) * objectDistanceAlpha);
 
 	// The angle of the outer ring should be reduced by just enough that the
 	// circumference is reduced by GAP pixels.
@@ -185,7 +187,7 @@ void PlanetLabel::Draw() const
 void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angle)
 {
 	const Point unit = Angle(angle).Unit();
-	zoomOffset = objectPosition + unit * objectRadius;
+	zoomOffset = object->Position() + unit * object->Radius();
 	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) + GetOffset(unit, labelDimensions),
 		labelDimensions);
 }
