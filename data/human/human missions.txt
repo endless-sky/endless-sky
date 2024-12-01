@@ -6724,7 +6724,7 @@ mission "FW Refugees to Humanika"
 				`	(Approach them.)`
 				`	(Ignore them.)`
 					defer
-			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds is going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
+			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds are going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
 			label "main choice"
 			choice
 				`	"Why were those other captains refusing to take you?"`
