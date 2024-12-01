@@ -152,13 +152,6 @@ bool Information::HasCondition(const string &condition) const
 
 
 
-void Information::ClearConditions()
-{
-	conditions.clear();
-}
-
-
-
 void Information::SetOutlineColor(const Color &color)
 {
 	outlineColor = color;
