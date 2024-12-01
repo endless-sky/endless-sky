@@ -160,11 +160,26 @@ void ConditionSet::Save(DataWriter &out) const
 	// If this condition got optimized beyond OP_AND, then re-add the OP_AND by writing the current condition in full.
 	if(expressionOperator == OP_AND)
 		for(const auto &child : children)
+		{
 			child.SaveSubset(out);
+			out.Write();
+		}
 	else
 		SaveSubset(out);
+}
 
-	out.Write();
+
+
+void ConditionSet::SaveChild(int childNr, DataWriter &out) const
+{
+	const ConditionSet &child = children[childNr];
+	bool needBrackets = child.children.size() > 0;
+
+	if(needBrackets)
+		out.WriteToken("(");
+	children[childNr].SaveSubset(out);
+	if(needBrackets)
+		out.WriteToken(")");
 }
 
 
@@ -207,15 +222,11 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 			out.WriteToken("never");
 			break;
 		}
-		out.WriteToken("(");
-		children[0].SaveSubset(out);
-		out.WriteToken(")");
+		SaveChild(0, out);
 		for(unsigned int i = 1; i < children.size(); ++i)
 		{
 			out.WriteToken(opTxt);
-			out.WriteToken("(");
-			children[i].SaveSubset(out);
-			out.WriteToken(")");
+			SaveChild(i, out);
 		}
 		break;
 	case OP_AND:
@@ -237,9 +248,7 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 			break;
 		}
 		out.WriteToken(opTxt);
-		out.WriteToken("(");
-		children[0].SaveSubset(out);
-		out.WriteToken(")");
+		SaveChild(0, out);
 		break;
 	default:
 		out.WriteToken("never");

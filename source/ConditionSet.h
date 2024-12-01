@@ -46,6 +46,7 @@ public:
 	void Load(const DataNode &node);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
+	void SaveChild(int childNr, DataWriter &out) const;
 	void SaveSubset(DataWriter &out) const;
 
 	// Change this condition to always be false.
