@@ -578,7 +578,7 @@ bool Mission::IsValid() const
 		if(!npc.Validate().empty())
 			return false;
 
-	// `order` makes no sense for jobs, assisting or boarding missions
+	// `order` makes no sense for jobs, assisting or boarding missions.
 	if(order && (IsAtLocation(Mission::JOB) || IsAtLocation(Mission::ASSISTING) || IsAtLocation(Mission::BOARDING)))
 		return false;
 
