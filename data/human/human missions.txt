@@ -4353,7 +4353,9 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# minor with order -1 means it is offered only if no other missions apply.
+# The minor mission with the highest precedence is what gets offered, so use
+# an offer order of -1 so that this mission is discarded first if there are other
+# minor missions available.
 mission "Spaceport Reminder Resetter"
 	minor
 	order -1

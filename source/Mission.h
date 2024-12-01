@@ -209,8 +209,10 @@ private:
 	bool hasPriority = false;
 
 	bool isMinor = false;
-	// `order` is a sort override, missions are sorted by order first then alphabetically within each order level.
-	// `minor` missions are implemented by discarding from the sorted beginning, thus negative means decreased priority.
+	// For overriding the default alphabetical ordering of missions when determining the order in which missions offer.
+	// Higher values result in a later offer order. Values may be negative.
+	// For competing minor missions, the one last in the sort order is offered,
+	// so the order field can be interpreted as precedence.
 	int order = 0;
 
 	bool autosave = false;
@@ -278,6 +280,6 @@ private:
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
 
-	// Comparison by `order` field and then by name.
+	// Comparison by `order` field and then alphabetically by identifier.
 	static const bool SortHelper(const Mission &a, const Mission &b);
 };
