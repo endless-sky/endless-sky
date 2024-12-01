@@ -175,7 +175,7 @@ mission "FW Conservatory 1"
 				goto continue
 			
 			label introduce
-			`When you meet Ijs in the spaceport, he has a man and a woman with him which he introduces as Lynn and Henry Anderson, a top planetary scientist and ex-Navy intel officer who defected from the Republic shortly after the Free Worlds was formed. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
+			`When you meet Ijs in the spaceport, he has a man and a woman with him which he introduces as Lynn and Henry Anderson, a top planetary scientist and ex-Navy intel officer who defected from the Republic shortly after the Free Worlds were formed. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
 			
 			label continue
 			`	"A somewhat run-down community center," adds Henry.`
