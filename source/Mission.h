@@ -67,7 +67,7 @@ public:
 	// Add "never" to the toOffer ConditionSet, preventing this mission from offering.
 	void NeverOffer();
 
-	// Sort order should respect the order field before the name
+	// Sort order should respect the order field before the name.
 	const bool operator<(const Mission &other) const { return SortHelper(*this, other); }
 
 	// Basic mission information.
