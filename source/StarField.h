@@ -57,7 +57,7 @@ private:
 	mutable double transparency = 0.;
 	std::vector<Body> haze[2];
 
-	Shader shader;
+	const Shader *shader;
 	GLuint vao;
 	GLuint vbo;
 

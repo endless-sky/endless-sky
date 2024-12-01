@@ -73,7 +73,7 @@ private:
 
 
 private:
-	Shader shader;
+	const Shader *shader;
 	GLuint texture = 0;
 	GLuint vao = 0;
 	GLuint vbo = 0;

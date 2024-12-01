@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutlineShader.h"
 
 #include "Color.h"
+#include "GameData.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
@@ -24,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	Shader shader;
+	const Shader *shader;
 	GLint scaleI;
 	GLint offI;
 	GLint transformI;
@@ -41,91 +42,17 @@ namespace {
 
 void OutlineShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex outline shader\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 position;\n"
-		"uniform mat2 transform;\n"
+	shader = GameData::Shaders().Get("outline");
+	scaleI = shader->Uniform("scale");
+	offI = shader->Uniform("off");
+	transformI = shader->Uniform("transform");
+	positionI = shader->Uniform("position");
+	frameI = shader->Uniform("frame");
+	frameCountI = shader->Uniform("frameCount");
+	colorI = shader->Uniform("color");
 
-		"in vec2 vert;\n"
-		"in vec2 vertTexCoord;\n"
-
-		"out vec2 fragTexCoord;\n"
-
-		"void main() {\n"
-		"  fragTexCoord = vertTexCoord;\n"
-		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
-		"}\n";
-
-	// The outline shader applies a Sobel filter to an image. The alpha channel
-	// (i.e. the silhouette of the sprite) is given the most weight, but some
-	// weight is also given to the RGB values so that there will be some detail
-	// in the interior of the silhouette as well.
-
-	// To reduce sampling error and bring out fine details, for every output
-	// pixel the Sobel filter is actually applied in a 3x3 neighborhood and
-	// averaged together. That neighborhood's scale is .618034 times the scale
-	// of the Sobel neighborhood (i.e. the golden ratio) to minimize any
-	// aliasing effects between the two.
-	static const char *fragmentCode =
-		"// fragment outline shader\n"
-		"precision mediump float;\n"
-#ifdef ES_GLES
-		"precision mediump sampler2DArray;\n"
-#endif
-		"uniform sampler2DArray tex;\n"
-		"uniform float frame;\n"
-		"uniform float frameCount;\n"
-		"uniform vec4 color;\n"
-		"uniform vec2 off;\n"
-		"const vec4 weight = vec4(.4, .4, .4, 1.);\n"
-
-		"in vec2 fragTexCoord;\n"
-
-		"out vec4 finalColor;\n"
-
-		"float Sobel(float layer) {\n"
-		"  float sum = 0.f;\n"
-		"  for(int dy = -1; dy <= 1; ++dy)\n"
-		"  {\n"
-		"    for(int dx = -1; dx <= 1; ++dx)\n"
-		"    {\n"
-		"      vec2 center = fragTexCoord + .618034 * off * vec2(dx, dy);\n"
-		"      float nw = dot(texture(tex, vec3(center + vec2(-off.x, -off.y), layer)), weight);\n"
-		"      float ne = dot(texture(tex, vec3(center + vec2(off.x, -off.y), layer)), weight);\n"
-		"      float sw = dot(texture(tex, vec3(center + vec2(-off.x, off.y), layer)), weight);\n"
-		"      float se = dot(texture(tex, vec3(center + vec2(off.x, off.y), layer)), weight);\n"
-		"      float h = nw + sw - ne - se + 2.f * (\n"
-		"        dot(texture(tex, vec3(center + vec2(-off.x, 0.f), layer)), weight)\n"
-		"          - dot(texture(tex, vec3(center + vec2(off.x, 0.f), layer)), weight));\n"
-		"      float v = nw + ne - sw - se + 2.f * (\n"
-		"        dot(texture(tex, vec3(center + vec2(0.f, -off.y), layer)), weight)\n"
-		"          - dot(texture(tex, vec3(center + vec2(0.f, off.y), layer)), weight));\n"
-		"      sum += h * h + v * v;\n"
-		"    }\n"
-		"  }\n"
-		"  return sum;\n"
-		"}\n"
-
-		"void main() {\n"
-		"  float first = floor(frame);\n"
-		"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first;\n"
-		"  float sum = mix(Sobel(first), Sobel(second), fade);\n"
-		"  finalColor = color * sqrt(sum / 180.f);\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
-	scaleI = shader.Uniform("scale");
-	offI = shader.Uniform("off");
-	transformI = shader.Uniform("transform");
-	positionI = shader.Uniform("position");
-	frameI = shader.Uniform("frame");
-	frameCountI = shader.Uniform("frameCount");
-	colorI = shader.Uniform("color");
-
-	glUseProgram(shader.Object());
-	glUniform1i(shader.Uniform("tex"), 0);
+	glUseProgram(shader->Object());
+	glUniform1i(shader->Uniform("tex"), 0);
 	glUseProgram(0);
 
 	// Generate the vertex data for drawing sprites.
@@ -144,11 +71,11 @@ void OutlineShader::Init()
 	constexpr auto stride = 4 * sizeof(GLfloat);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+	glEnableVertexAttribArray(shader->Attrib("vert"));
+	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 
-	glEnableVertexAttribArray(shader.Attrib("vertTexCoord"));
-	glVertexAttribPointer(shader.Attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,
+	glEnableVertexAttribArray(shader->Attrib("vertTexCoord"));
+	glVertexAttribPointer(shader->Attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,
 		stride, reinterpret_cast<const GLvoid*>(2 * sizeof(GLfloat)));
 
 	// unbind the VBO and VAO
@@ -161,7 +88,7 @@ void OutlineShader::Init()
 void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size,
 	const Color &color, const Point &unit, float frame)
 {
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindVertexArray(vao);
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
