@@ -211,4 +211,5 @@ void ConditionAssignments::Add(const DataNode &node)
 		node.PrintTrace("Error: Incomplete assignment");
 		return;
 	}
+	// TODO: run optimize here, or in ConditionSet parser (to handle brackets).
 }

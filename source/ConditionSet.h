@@ -67,6 +67,8 @@ public:
 	/// Parse the remainder of a node into this expression.
 	bool ParseNode(const DataNode &node, int &tokenNr);
 
+	/// Optimize this node, this optimization also removes intermediate sections that were used for tracking brackets.
+	bool Optimize(const DataNode &node);
 
 	// Get the names of the conditions that are modified by this ConditionSet.
 	std::set<std::string> RelevantConditions() const;
@@ -130,6 +132,9 @@ private:
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
 	bool ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp);
 
+
+	/// Replace current node by its first child node.
+	bool PromoteFirstChild(const DataNode &node);
 
 	/// Push sub-expressions and the operator from the current expression one level down into a new single
 	/// sub-expression.

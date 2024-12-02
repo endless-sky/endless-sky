@@ -418,7 +418,10 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	}
 
 	int tokenNr = 0;
-	return ParseNode(node, tokenNr);
+	bool returnValue = ParseNode(node, tokenNr);
+	if(returnValue)
+		returnValue = Optimize(node);
+	return returnValue;
 }
 
 
@@ -446,6 +449,60 @@ bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 		return FailParse(node, "tokens found after parsing full expression");
 
 	return true;
+}
+
+
+
+/// Optimize this node, this optimization also removes intermediate sections that were used for tracking brackets.
+bool ConditionSet::Optimize(const DataNode &node)
+{
+	bool returnValue = true;
+	// First optimize all the child nodes below.
+	for(ConditionSet &child : children)
+		if(!child.Optimize(node))
+			returnValue = false;
+
+	switch(expressionOperator)
+	{
+		case OP_AND:
+		case OP_OR:
+			// If we only have a single element, then replace the current OP/AND by its child.
+			if(children.size() == 1)
+				PromoteFirstChild(node);
+
+			break;
+
+		case OP_EQ:
+		case OP_NE:
+		case OP_LE:
+		case OP_GE:
+		case OP_LT:
+		case OP_GT:
+			// TODO: Optimize boolean equality operators.
+			break;
+
+		case OP_ADD:
+		case OP_SUB:
+		case OP_MUL:
+		case OP_DIV:
+		case OP_MOD:
+			// TODO: Optimize arithmetic operators.
+			break;
+
+		case OP_HAS:
+			// Optimize away HAS, we can directly use the expression below it.
+			if(children.size() == 1)
+				PromoteFirstChild(node);
+
+			break;
+
+		case OP_NOT:
+		case OP_LIT:
+		case OP_VAR:
+		case OP_INVALID:
+			break;
+	}
+	return returnValue;
 }
 
 
@@ -616,6 +673,20 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 				return FailParse(node, "expected infix operator instead of \"" + node.Token(tokenNr) + "\"");
 		}
 	}
+}
+
+
+
+bool ConditionSet::PromoteFirstChild(const DataNode &node)
+{
+	// Need to copy first, before moving the vector.
+	ConditionSet cs = children[0];
+	expressionOperator = cs.expressionOperator;
+	literal = cs.literal;
+	conditionName = cs.conditionName;
+	children = cs.children;
+
+	return true;
 }
 
 
