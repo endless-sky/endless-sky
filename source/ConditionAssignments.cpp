@@ -203,6 +203,9 @@ void ConditionAssignments::Add(const DataNode &node)
 		if(!expr.ParseNode(node, tokenNr))
 			return;
 
+		// Perform optimization of the parsed expression.
+		expr.Optimize(node);
+
 		// Add the assignment when all parsing succeeded.
 		assignments.emplace_back(node.Token(0), ao, expr);
 	}
@@ -211,5 +214,4 @@ void ConditionAssignments::Add(const DataNode &node)
 		node.PrintTrace("Error: Incomplete assignment");
 		return;
 	}
-	// TODO: run optimize here, or in ConditionSet parser (to handle brackets).
 }

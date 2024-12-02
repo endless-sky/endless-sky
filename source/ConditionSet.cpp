@@ -418,10 +418,10 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	}
 
 	int tokenNr = 0;
-	bool returnValue = ParseNode(node, tokenNr);
-	if(returnValue)
-		returnValue = Optimize(node);
-	return returnValue;
+	if(!ParseNode(node, tokenNr))
+		return false;
+
+	return Optimize(node);
 }
 
 
@@ -522,7 +522,6 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 			return FailParse();
 	}
 
-	// TODO: boolean optimizations. (For example pre-processing for nodes that never change.)
 	return true;
 }
 
