@@ -7854,7 +7854,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Headhunter"
 				"Fury (Gatling)" 3
 		on kill
-				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+			dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 
 	npc kill
 		to spawn
@@ -7875,7 +7875,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Hawk (Plasma)"
 				"Fury (Gatling)"
 		on kill
-				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+			dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
