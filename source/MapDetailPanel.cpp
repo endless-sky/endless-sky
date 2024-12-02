@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -34,17 +34,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
 #include "Preferences.h"
 #include "Radar.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -798,11 +798,13 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				price += "(";
+				if(Preferences::Has("Show parenthesis"))
+					price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				price += ")";
+				if(Preferences::Has("Show parenthesis"))
+					price += ")";
 			}
 		}
 		else

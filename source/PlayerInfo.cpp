@@ -1796,6 +1796,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	int day = date.DaysSinceEpoch();
 	int64_t sold = cargo.Used();
 	int64_t totalBasis = 0;
+	double stored = 0.;
 	if(sold)
 	{
 		for(const auto &commodity : cargo.Commodities())
@@ -1836,21 +1837,33 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
+				stored += outfit.first->Mass() * outfit.second;
 				cargo.Transfer(outfit.first, outfit.second, Storage());
 			}
 	}
 	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	if(sold)
+	sold -= ceil(stored);
+	if(sold || stored)
 	{
-		// Report how much excess cargo was sold, and what profit you earned.
+		// Report how much excess cargo was sold (and what profit you earned),
+		// and how many tons of outfits were stored.
 		ostringstream out;
-		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
-		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
-		else
-			out << ".";
+		out << "You ";
+		if(sold)
+		{
+			out << "sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
+			if(totalBasis && totalBasis != income)
+				out << " (for a profit of " << Format::CreditString(income - totalBasis) << ")";
+			if(stored)
+				out << ", and ";
+		}
+		if(stored)
+		{
+			out << "stored " << Format::CargoString(stored, "outfits") << " you could not carry";
+		}
+		out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
@@ -1864,9 +1877,15 @@ void PlayerInfo::PoolCargo()
 	// This can only be done while landed.
 	if(!planet)
 		return;
+
+	// To make sure all cargo and passengers get unloaded from each ship,
+	// temporarily uncap the player's cargo and bunk capacity.
+	cargo.SetSize(-1);
+	cargo.SetBunks(-1);
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 			ship->Cargo().TransferAll(cargo);
+	UpdateCargoCapacities();
 }
 
 
@@ -1945,6 +1964,28 @@ void PlayerInfo::AddSpecialLog(const string &type, const string &name, const str
 
 
 
+void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
+{
+	auto it = specialLogs.find(type);
+	if(it == specialLogs.end())
+		return;
+	auto &nameMap = it->second;
+	auto eit = nameMap.find(name);
+	if(eit != nameMap.end())
+		nameMap.erase(eit);
+}
+
+
+
+void PlayerInfo::RemoveSpecialLog(const string &type)
+{
+	auto it = specialLogs.find(type);
+	if(it != specialLogs.end())
+		specialLogs.erase(it);
+}
+
+
+
 bool PlayerInfo::HasLogs() const
 {
 	return !logbook.empty() || !specialLogs.empty();
@@ -1952,8 +1993,9 @@ bool PlayerInfo::HasLogs() const
 
 
 
-// Call this after missions update, or if leaving the outfitter, shipyard, or
-// hiring panel. Updates the information on how much space is available.
+// Call this after missions update, if leaving the outfitter, shipyard, or
+// hiring panel, or after backing out of a take-off warning.
+// Updates the information on how much space is available.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
@@ -3837,9 +3879,9 @@ void PlayerInfo::RegisterDerivedConditions()
 			return -1;
 
 		auto distanceMap = DistanceMap(origin);
-		if(!distanceMap.HasRoute(destination))
+		if(!distanceMap.HasRoute(*destination))
 			return -1;
-		return distanceMap.Days(destination);
+		return distanceMap.Days(*destination);
 	};
 
 	auto &&hyperjumpsToSystemProvider = conditions.GetProviderPrefixed("hyperjumps to system: ");
