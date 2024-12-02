@@ -3940,6 +3940,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		return true;
 	});
 
+	// A condition for returning a random integer in the range [0, 100).
+	auto &&randomProvider = conditions.GetProviderNamed("random");
+	auto randomFun = [this](const string &name) -> int64_t
+	{
+		return Random::Int(100);
+	};
+	randomProvider.SetGetFunction(randomFun);
+
 	// A condition for returning a random integer in the range [0, input). Input may be a number,
 	// or it may be the name of a condition. For example, "roll: 100" would roll a random
 	// integer in the range [0, 100), but if you had a condition "max roll" with a value of 100,
