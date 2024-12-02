@@ -446,7 +446,8 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-		listing[it.first->Category()][it.first->DisplayName()] += it.second;
+		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
+			listing[it.first->Category()][it.first->DisplayName()] += it.second;
 
 	for(const auto &cit : listing)
 	{
