@@ -3942,7 +3942,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// A condition for returning a random integer in the range [0, 100).
 	auto &&randomProvider = conditions.GetProviderNamed("random");
-	auto randomFun = [this](const string &name) -> int64_t
+	auto randomFun = [](const string &name) -> int64_t
 	{
 		return Random::Int(100);
 	};
