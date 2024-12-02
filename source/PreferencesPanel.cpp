@@ -20,21 +20,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Plugins.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -139,7 +139,7 @@ void PreferencesPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	info.ClearConditions();
+	Information info;
 	info.SetBar("volume", Audio::Volume());
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");

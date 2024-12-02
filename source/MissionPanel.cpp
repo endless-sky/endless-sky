@@ -22,25 +22,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -838,7 +838,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 
 void MissionPanel::DrawMissionInfo()
 {
-	info.ClearConditions();
+	Information info;
 
 	// The "accept / abort" button text and activation depends on what mission,
 	// if any, is selected, and whether missions are available.
