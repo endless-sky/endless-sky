@@ -137,7 +137,7 @@ namespace {
 	const Color black(0.f, 1.f);
 
 	// Hovering an escort pip for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
 

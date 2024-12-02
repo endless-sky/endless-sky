@@ -65,7 +65,7 @@ namespace {
 		return ship.GetPlanet() == here;
 	}
 
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 
 	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
 	{

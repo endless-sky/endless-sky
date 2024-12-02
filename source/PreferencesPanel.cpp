@@ -86,7 +86,7 @@ namespace {
 	const int CONTROLS_PAGE_COUNT = 2;
 	const int SETTINGS_PAGE_COUNT = 2;
 	// Hovering a preference for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 }
 
 
