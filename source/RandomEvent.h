@@ -22,10 +22,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <typename T>
 class RandomEvent {
 public:
+	static const int DEFAULT_PERIOD = 200;
+
+
 	constexpr RandomEvent(const T *event, int period) noexcept;
 
 	constexpr const T *Get() const noexcept;
 	constexpr int Period() const noexcept;
+	int &Period() noexcept;
 
 private:
 	const T *event;
@@ -36,7 +40,7 @@ private:
 
 template <typename T>
 constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept
-	: event(event), period(period > 0 ? period : 200)
+	: event(event), period(period > 0 ? period : DEFAULT_PERIOD)
 {
 }
 
@@ -51,3 +55,12 @@ constexpr int RandomEvent<T>::Period() const noexcept
 {
 	return period;
 }
+
+template <typename T>
+int &RandomEvent<T>::Period() noexcept
+{
+	return period;
+}
+
+
+

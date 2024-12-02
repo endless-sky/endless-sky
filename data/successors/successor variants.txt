@@ -34,6 +34,8 @@ ship "Aaulqra" "Aaulqra (Brawler)"
 	gun "Drag Cannon"
 	gun `"Ojet" Bimodal Coilgun`
 	gun `"Ojet" Bimodal Coilgun`
+	pylon
+	pylon
 	turret "Bimodal Coilgun Turret"
 	turret "Bimodal Coilgun Turret"
 
@@ -54,11 +56,13 @@ ship "Aaulqra" "Aaulqra (Sniper)"
 		`"Veusa" Inductive Reverser`
 		"Hyperdrive"
 	gun
-	gun `"Sjeja" Kinetic Lance`
+	gun
 	gun `"Ojet" Bimodal Coilgun`
 	gun `"Ojet" Bimodal Coilgun`
 	gun `"Ojet" Bimodal Coilgun`
 	gun `"Ojet" Bimodal Coilgun`
+	pylon
+	pylon `"Sjeja" Kinetic Lance`
 	turret
 	turret
 
@@ -81,6 +85,8 @@ ship "Kaskhorade" "Kaskhorade (Brawler)"
 	gun
 	gun
 	gun
+	pylon
+	pylon
 	turret "Bimodal Coilgun Turret"
 	turret "Bimodal Coilgun Turret"
 	turret "Bimodal Coilgun Turret"
@@ -101,10 +107,12 @@ ship "Kaskhorade" "Kaskhorade (Sniper)"
 		`"Veusa" Inductive Steering`
 		`"Veusa" Inductive Reverser`
 		"Hyperdrive"
-	gun `"Sjeja" Kinetic Lance`
-	gun `"Sjeja" Kinetic Lance`
 	gun
 	gun
+	gun
+	gun
+	pylon `"Sjeja" Kinetic Lance`
+	pylon `"Sjeja" Kinetic Lance`
 	turret
 	turret
 	turret

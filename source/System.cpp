@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <initializer_list>
 
 using namespace std;
 
@@ -280,7 +281,19 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+			{
+				fleets.emplace_back(fleet);
+				LimitedEvents<Fleet> &fleet = fleets.back();
+
+				if(child.Size() > valueIndex + 1)
+					fleet.Period() = child.Value(valueIndex + 1);
+
+				if(child.HasChildren())
+					LoadFleet(child, fleet);
+
+				if(fleet.Category().empty())
+					fleet.Category() = value + "@" + name;
+			}
 		}
 		else if(key == "raid")
 			RaidFleet::Load(raidFleets, child, remove, valueIndex);
@@ -515,10 +528,14 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
 	solarWind = 0.;
+	mapIcons.clear();
 	for(const StellarObject &object : objects)
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
+		const Sprite *starIcon = GameData::StarIcon(object.GetSprite());
+		if(starIcon)
+			mapIcons.emplace_back(starIcon);
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
@@ -596,6 +613,11 @@ const Government *System::GetGovernment() const
 }
 
 
+// Get this system's map icons.
+const vector<const Sprite *> &System::GetMapIcons() const
+{
+	return mapIcons;
+}
 
 // Get the name of the ambient audio to play in this system.
 const string &System::MusicName() const
@@ -949,7 +971,7 @@ double System::Exports(const string &commodity) const
 
 
 // Get the probabilities of various fleets entering this system.
-const vector<RandomEvent<Fleet>> &System::Fleets() const
+const vector<LimitedEvents<Fleet>> &System::Fleets() const
 {
 	return fleets;
 }
@@ -1084,6 +1106,47 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 		if(&other != this && other.Position().Distance(position) <= distance)
 			neighborSet.insert(&other);
 	}
+}
+
+
+
+void System::LoadFleet(const DataNode &node, LimitedEvents<Fleet> &events)
+{
+	bool defaultFleetCategory = true;
+	for(const DataNode &child : node)
+		if(child.Size() < 1)
+			continue;
+
+		else if(child.Size() >= 3 && child.Token(0) == "ignore" && child.Token(1) == "enemy"
+				&& child.Token(2) == "strength")
+			events.GetFlags() |= Fleet::IGNORE_ENEMY_STRENGTH;
+
+		else if(child.Size() >= 3 && child.Token(0) == "skip" && child.Token(1) == "system"
+				&& child.Token(2) == "entry")
+			events.GetFlags() |= Fleet::SKIP_SYSTEM_ENTRY;
+
+		else if(child.Size() > 1 && child.Token(0) == "category")
+		{
+			events.Category() = child.Token(1);
+			defaultFleetCategory = events.Category().empty();
+		}
+
+		else if(child.Size() > 1 && child.Token(0) == "period")
+			events.Period() = child.Value(1);
+
+		else if(child.Size() > 2 && child.Token(0) == "non-disabled" && child.Token(1) == "limit")
+			events.NonDisabledLimit() = child.Value(2);
+
+		else if(child.Size() > 1 && child.Token(0) == "limit")
+			events.Limit() = child.Value(1);
+
+		else if(child.Size() > 2 && child.Token(0) == "initial" && child.Token(1) == "count")
+			events.InitialCount() = child.Value(2);
+
+		else
+			child.PrintTrace("Unrecognized attribute " + child.Token(0) + " in a random interval fleet.");
+	if(defaultFleetCategory)
+			events.GetFlags() |= Fleet::DEFAULT_FLEET_CATEGORY;
 }
 
 

@@ -32,6 +32,9 @@ ship "Venta"
 		"outfit space" 552
 		"weapon capacity" 240
 		"engine capacity" 130
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
 		weapon
@@ -56,12 +59,18 @@ ship "Venta"
 	engine 0 42
 		"over"
 	engine 90 42
-	gun 58.5 -76.5
-	gun 29 -76.5
+	gun -28 -76.5
 	gun 29 -76.5
 	gun -28 -76.5
-	gun -28 -76.5
+	gun 29 -76.5
 	gun -57 -76
+	gun 58.5 -76.5
+	pylon -28 -76.5
+	pylon 29 -76.5
+	pylon -28 -76.5
+	pylon 29 -76.5
+	pylon -57 -76
+	pylon 58.5 -76.5
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10
@@ -89,8 +98,11 @@ ship "Nimbus"
 		"outfit space" 450
 		"weapon capacity" 120
 		"engine capacity" 85
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
-		"fuel capacity" 200
+		"fuel capacity" 325
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -160,6 +172,9 @@ ship "Nimbo Stratus"
 		"outfit space" 270
 		"weapon capacity" 50
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
 		"fuel capacity" 200
 		weapon
@@ -201,8 +216,11 @@ ship "Nimbo Cirrus"
 		"cargo space" 200
 		"outfit space" 160
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
-		"fuel capacity" 200
+		"fuel capacity" 225
 		weapon
 			"blast radius" 22.5
 			"shield damage" 225
@@ -240,8 +258,11 @@ ship "Gero"
 		"cargo space" 20
 		"outfit space" 158
 		"engine capacity" 54
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"gaslining" 1
-		"fuel capacity" 200
+		"fuel capacity" 225
 		weapon
 			"blast radius" 26.5
 			"shield damage" 265
