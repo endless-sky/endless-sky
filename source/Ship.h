@@ -379,10 +379,12 @@ public:
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
+	// Access how many crew members the player last hired for this ship.
+	int PreferredCrew() const;
 	// Get the reputational value of this ship's crew, which depends
 	// on its crew size and "crew equivalent" attribute.
 	int CrewValue() const;
-	void AddCrew(int count);
+	void AddCrew(int count, bool setPreferredCrew = false);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
 
@@ -667,6 +669,9 @@ private:
 	Point acceleration;
 
 	int crew = 0;
+	// The preferred crew that the player has set, so we can re-hire that number even after landing on a planet without
+	// hiring service (PlayerInfo.desiredCrew was set from Crew() before, leading to a decreasing crew count).
+	int preferredCrew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;
 
