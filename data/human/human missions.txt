@@ -9346,7 +9346,7 @@ mission "Timothy Radrickson 7: Grave"
 
 mission "Tavish and Kormak 1"
 	name "Tavish and Kormak"
-	description "A monumental discovery on <origin> is about to be pulled off by Tavish and Kormak. Take them to <destination> to pick up some mining tools. They won't pay."
+	description "A pair of academics named Tavish and Kormak claim they are about to make a monumental discovery on <origin>. Take them to <destination> to pick up some mining tools. They can't pay you."
 	source "New India"
 	destination "Clark"
 	passengers 2
@@ -9394,17 +9394,27 @@ mission "Tavish and Kormak 1"
 			`	"It is true," Tavish sighs. "Our circumstances are most unfortunate; we are stranded here without money, and have yet to find anyone capable of setting aside their normal preoccuption with short-sighted material gains and instead recognize the more noble pursuit of pure scientific discovery!"`
 			`	"We asked everyone," Kormak says.`
 			`	"And yet we are not the least bit perturbed about our perilous predicament!" Tavish continues. "For such setbacks are to be expected in the pursuit of discovery. And now that we've found you, the famous captain, Captain... Mayflower? We're sure our fortunes are about to change! So what do you say, my good fellow? Are you ready join us on our grand adventure and ferry us to the hardscrabble world of Clark?"`
+			branch mayflower
+				or
+					has "first name: Mayflower"
+					has "last name: Mayflower"
+
 			choice
 				`	"My name is <first> <last>, not Mayflower. You have no idea who I am, do you?"`
+					goto embarrassing
 				`	"I am not Mayflower. My name is Captain <last>."`
-				`	"You have mistaken me for someone else. I am Captain <last>, not Mayflower."`
+					goto embarrassing
+				`	"You've mistaken me for someone else. I am Captain <last>, not Mayflower."`
+					goto embarrassing
+
+			label mayflower
+			choice
 				`	"Uh, yes?"`
 					goto reluctantlyforscience
-					to display
-						or
-							has "first name: Mayflower"
-							has "last name: Mayflower"
+				`	"Sorry, I don't do 'pro bono' work for strangers."`
+					goto notint
 
+			label embarrassing
 			`	"Oh, how mortifing! I..." Tavish's voice drops off as he appears to be, finally, at a loss for words."`
 			`	"Looked in wrong manifest." Kormak seems to be suffering none of Tavish's tongue-tied embarrassment.`
 			`	"Er, yes, about that..." there's a pause before Tavish, his face red, finally says, "We may have been a tad bit desperate, and have been asking every captain who lands here, regardless of reputation."`
@@ -9448,11 +9458,29 @@ mission "Tavish and Kormak 1"
 			`	"Ah yes," Tavish sighs. "Our most unfortunate circumstance, we are stranded here without money, and have yet to find anyone capable of setting aside their normal preoccuption with short-sighted material gains and instead recognize the more noble pursuit of pure scientific discovery!"`
 			`	"We asked everyone." Kormak says.`
 			`	"And yet we are not the least bit perturbed about our perilous predicament!" Tavish continues. "For such setbacks are to be expected in the pursuit of discovery. And now that we've found you, the famous captain, Captain... Mayflower? Our fortunes are already changing for the better! When you are ready escort us to your venerable dirigible and we shall commence with our grand adventure to the hardscabble world of Clark!"`
+			branch mayflower2
+				or
+					has "first name: Mayflower"
+					has "last name: Mayflower"
+
 			choice
 				`	"Yes! To Clark! Although, my name is not Mayflower, it's <last>.`
+					goto embarrassment2
 				`	"Fine, but I better not regret this. Also, my name is <last>, not Mayflower."`
+					goto embarrassment2
 				`	"Sure, whatever, but where did you get Mayflower from? I'm Captain <last>."`
+					goto embarrassment2
 
+			label mayflower2
+choice
+				`	"Yes! To Clark!`
+					accept
+				`	"Fine, but I better not regret this."`
+					accept
+				`	"Sure, whatever."`
+					accept
+
+			label embarrassment2
 			`	"Oh, how mortifing! I..." Tavish's voice drops off as he appears to be, finally, at a loss for words."`
 			`	"Looked in wrong manifest." Kormak seems to be suffering none of Tavish's tongue-tied embarrassment.`
 			`	"Er, yes, about that..." there's a pause before Tavish, his face red, finally says, "We may have been a tad bit desperate, and have been asking every captain who lands here, regardless of reputation." `
@@ -9502,9 +9530,9 @@ mission "Tavish and Kormak 2"
 
 			label nothing
 			`	A subtle change seems to sweep over Tavish. The way he carries himself shifts and suddenly he seems taller, more dignified, more important. His bright eyes soften and somehow seem warmer than before.`
-			`	He steps closer to the SpaceFork associate, "Todd, believe me, I completely understand. I know you're the kind of chap who always follows the rules, because without rules there's chaos."`
+			`	He steps closer to the SpaceFork associate and says, "Todd, believe me, I completely understand. I know you're the kind of chap who always follows the rules, because without rules there's chaos."`
 			`	Todd, the associate, nods slowly.`
-			`	"We need more good fellows like you, Todd. Imagine how much better run Clark would be if more people took their duties seriously." Tavish says in a conspiratorial voice.`
+			`	"We need more good fellows like you, Todd. Imagine how much better run Clark would be if more people took their duties seriously," Tavish suggests in a conspiratorial voice.`
 			`	Todd again nods, this time with some vigor.`
 			`	Tavish then launches into a monologue about systems and rules and how important the human element is to correcting those systems. At one point Tavish pulls out an ID and proclaims he's the "Dean-Praetor of the Oxford-Harvard Science and Research Institute on Chiron."`
 			`	Finally, Tavish finishes his speech and places his hands on Todd's and looks the man square in the eyes. "Todd, my dear man, be the human element in the machine, and take us to our storage container. If not for me, than for science."`
@@ -9515,7 +9543,7 @@ mission "Tavish and Kormak 2"
 			choice
 				`	(Follow them in.)`
 			`	"By Skoll's Fang!" Kormak rumbles.`
-			`	There are torn suitcases, clothes and various personal objects strewn throughout the container. The place has been ransacked and the equipment appears to be missing.`
+			`	There are torn suitcases, clothes and various personal objects strewn throughout the container, and there's no sign of the equipment.`
 			`	Tavish rubs his nose and paces back and forth.`
 			`	"Stole it." Kormak says dryly.`
 			`	"Yes, yes, I know. I suppose we should have accompanied him. Don't say it!" Tavish says with irritation.`
@@ -9605,9 +9633,9 @@ mission "Tavish and Kormak 2"
 			choice
 				`	"You're not the 'Dean-Praetor' of the Oxford-Harvard Science and Research Institute, though, are you?"`
 				`	"I am pretty sure you lied to that SpaceFork employee about being a 'Dean-Praetor'."`
-				`	"Do Dean-Praetor's of Oxford-Harvard normally go around having their colleagues mug security guards?"`
+				`	"Do Dean-Praetors of Oxford-Harvard normally go around having their colleagues mug security guards?"`
 
-			`	"No." Tavish admits, "I am not really the Dean-Praetor of Oxford-Harvard."`
+			`	"No," Tavish admits, "I am not really the Dean-Praetor of Oxford-Harvard."`
 			`	He glances at Kormak and then continues, "We are currently between academic positions. You see, what we study requires a more open mind than most conservative institutions cultivate."`
 			`	"Aliens," Kormak says.`
 			`	Tavish holds up a finger, "No, not, not exactly. Well, yes, but not how it sounds. We search for evidence of crpytids."`
