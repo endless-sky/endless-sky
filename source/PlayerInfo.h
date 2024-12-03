@@ -454,7 +454,7 @@ private:
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
-	// Events that are going to happen some time in the future:
+	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
 	std::multiset<GameEvent> gameEvents;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
