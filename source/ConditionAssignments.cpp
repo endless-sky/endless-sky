@@ -211,7 +211,7 @@ void ConditionAssignments::Add(const DataNode &node)
 
 
 ConditionAssignments::Assignment::Assignment(string conditionToAssignTo, AssignOp assignOperator,
-	ConditionSet expressionToEvaluate):	conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator),
+	ConditionSet expressionToEvaluate) : conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator),
 	expressionToEvaluate(expressionToEvaluate)
 {
 }
