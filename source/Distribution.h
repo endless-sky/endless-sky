@@ -25,6 +25,8 @@ class Angle;
 // given its inaccuracy value and type.
 class Distribution {
 public:
+	// Note the first three are used to index into SMOOTHNESS_TABLE in Distribution.cpp, so don't change the ordinals
+	// without changing the "smoothness" lookup.
 	enum class Type {
 		Narrow = 0,
 		Medium = 1,
