@@ -160,7 +160,7 @@ void ConditionAssignments::Add(const DataNode &node)
 			node.PrintTrace("Parse error; " + node.Token(0) + " keyword requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back(node.Token(1),	AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
+		assignments.emplace_back(node.Token(1), AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
 	}
 	else if(node.Size() == 2 && (node.Token(1) == "++" || node.Token(1) == "--"))
 	{
@@ -210,7 +210,8 @@ void ConditionAssignments::Add(const DataNode &node)
 
 
 
-ConditionAssignments::Assignment::Assignment(string conditionToAssignTo, AssignOp assignOperator, ConditionSet expressionToEvaluate):
-	conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator), expressionToEvaluate(expressionToEvaluate)
+ConditionAssignments::Assignment::Assignment(string conditionToAssignTo, AssignOp assignOperator,
+	ConditionSet expressionToEvaluate):	conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator),
+	expressionToEvaluate(expressionToEvaluate)
 {
 }
