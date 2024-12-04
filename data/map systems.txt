@@ -30222,7 +30222,7 @@ system Sabik
 		distance 1424.5
 		period 513.620
 	object Donya
-		sprite planet/clouds0
+		sprite planet/cloud0
 		distance 1280.19
 		period 732.877
 	object
