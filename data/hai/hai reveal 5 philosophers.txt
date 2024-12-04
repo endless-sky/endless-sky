@@ -114,7 +114,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 			label prepare
 			`	She nods. "Very well, but don't take too long. We'll be waiting here for as long as we're able."`
 				defer
-	npc
+	npc accompany
 		government "Syndicate"
 		personality escort coward opportunistic vindictive
 		fleet
@@ -877,7 +877,7 @@ mission "Hai Reveal [B11] Moving Together"
 			label hai
 			action
 				set "Hai Reveal [B11] Moving Together: label hai"
-			`	Sayari speaks up. "The Elders have accepted the proposed plans, but with this new information we have decided that this organization you've uncovered must still be dealt with directly. It is our main concern now. As long as the Republic remains willing to negotiate on how they deal with smugglers in the future, resolving this one issue will be sufficient for us to move forward. The overwhelming majority of the other groups who appear to have been exploiting Hai seem to have been here on <origin> and so we consider there to have been serious inroads made into resolving the problem more broadly."`
+			`	Sayari speaks up. "The elders have accepted the proposed plans, but with this new information we have decided that this organization you've uncovered must still be dealt with directly. It is our main concern now. As long as the Republic remains willing to negotiate on how they deal with smugglers in the future, resolving this one issue will be sufficient for us to move forward. The overwhelming majority of the other groups who appear to have been exploiting Hai seem to have been here on <origin> and so we consider there to have been serious inroads made into resolving the problem more broadly."`
 				goto briefing
 			label introductions
 			action
