@@ -146,10 +146,7 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 void ConditionAssignments::AddSetCondition(const std::string &name)
 {
-	assignments.emplace_back();
-	assignments.back().conditionToAssignTo = name;
-	assignments.back().assignOperator = AO_ASSIGN;
-	assignments.back().expressionToEvaluate = ConditionSet(1);
+	assignments.emplace_back(name, AO_ASSIGN, ConditionSet(1));
 }
 
 
@@ -163,10 +160,7 @@ void ConditionAssignments::Add(const DataNode &node)
 			node.PrintTrace("Parse error; " + node.Token(0) + " keyword requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back();
-		assignments.back().conditionToAssignTo = node.Token(1);
-		assignments.back().assignOperator = AssignOp::AO_ASSIGN;
-		assignments.back().expressionToEvaluate = ConditionSet(node.Token(0) == "set" ? 1 : 0);
+		assignments.emplace_back(node.Token(1),	AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
 	}
 	else if(node.Size() == 2 && (node.Token(1) == "++" || node.Token(1) == "--"))
 	{
@@ -175,10 +169,8 @@ void ConditionAssignments::Add(const DataNode &node)
 			node.PrintTrace("Parse error; " + node.Token(1) + " operator requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back();
-		assignments.back().conditionToAssignTo = node.Token(0);
-		assignments.back().assignOperator = node.Token(1) == "++" ? AssignOp::AO_ADD : AssignOp::AO_SUB;
-		assignments.back().expressionToEvaluate = ConditionSet(1);
+		assignments.emplace_back(node.Token(0), node.Token(1) == "++" ? AssignOp::AO_ADD : AssignOp::AO_SUB,
+			ConditionSet(1));
 	}
 	else if(node.Size() >= 3)
 	{
@@ -214,4 +206,11 @@ void ConditionAssignments::Add(const DataNode &node)
 		node.PrintTrace("Error: Incomplete assignment");
 		return;
 	}
+}
+
+
+
+ConditionAssignments::Assignment::Assignment(string conditionToAssignTo, AssignOp assignOperator, ConditionSet expressionToEvaluate):
+	conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator), expressionToEvaluate(expressionToEvaluate)
+{
 }

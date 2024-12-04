@@ -76,6 +76,9 @@ public:
 private:
 	// Class that supports a single assignment
 	class Assignment {
+	public:
+		Assignment(std::string conditionToAssignTo, AssignOp assignOperator, ConditionSet expressionToEvaluate);
+
 
 	public:
 		std::string conditionToAssignTo;
