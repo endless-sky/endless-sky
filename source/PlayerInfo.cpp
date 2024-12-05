@@ -4010,7 +4010,7 @@ void PlayerInfo::CreateMissions()
 	}
 
 	// Sort the available missions. This causes the missions to first be sorted
-	// by their `order` field, then in alphabetical order by their identifier.
+	// by their `order` field descending, then in alphabetical order by their identifier.
 	availableMissions.sort();
 
 	// If any of the available missions are "priority" missions, no other
