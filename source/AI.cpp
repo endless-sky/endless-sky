@@ -4173,7 +4173,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			Messages::Add(message, Messages::Importance::Info);
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
-				Audio::Play(Audio::Get("fail"));
+				Audio::Play(Audio::Get("fail"), SoundCategory::ALERT);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
