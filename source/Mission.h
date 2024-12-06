@@ -212,7 +212,7 @@ private:
 	// For overriding the default alphabetical ordering of missions when determining the order in which missions offer.
 	// Higher values result in higher offer priority. Values may be negative.
 	// Minor missions offer in terms of lowest precedence.
-	int order = 0;
+	int precedence = 0;
 
 	bool autosave = false;
 	bool overridesCapture = false;
@@ -279,6 +279,6 @@ private:
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
 
-	// Comparison by `order` field descending and then alphabetically by identifier.
+	// Comparison by `precedence` field descending and then alphabetically by identifier.
 	static const bool SortHelper(const Mission &a, const Mission &b);
 };

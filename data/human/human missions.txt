@@ -4358,7 +4358,7 @@ mission "Spaceport Reminder Setter"
 # minor missions available.
 mission "Spaceport Reminder Resetter"
 	minor
-	order 1
+	precedence 1
 	invisible
 	repeat
 	to offer

@@ -208,8 +208,8 @@ void Mission::Load(const DataNode &node)
 			hasPriority = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
-		else if(child.Token(0) == "order" && child.Size() >= 2)
-			order = child.Value(1);
+		else if(child.Token(0) == "precedence" && child.Size() >= 2)
+			precedence = child.Value(1);
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -376,8 +376,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
-		if(order)
-			out.Write("order", order);
+		if(precedence)
+			out.Write("precedence", precedence);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -578,8 +578,8 @@ bool Mission::IsValid() const
 		if(!npc.Validate().empty())
 			return false;
 
-	// `order` makes no sense for jobs, assisting or boarding missions.
-	if(order && (IsAtLocation(Mission::JOB) || IsAtLocation(Mission::ASSISTING) || IsAtLocation(Mission::BOARDING)))
+	// `precedence` makes no sense for jobs, assisting or boarding missions.
+	if(precedence && (IsAtLocation(Mission::JOB) || IsAtLocation(Mission::ASSISTING) || IsAtLocation(Mission::BOARDING)))
 		return false;
 
 	return true;
@@ -1297,7 +1297,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
-	result.order = order;
+	result.precedence = precedence;
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
@@ -1673,5 +1673,5 @@ bool Mission::ParseContraband(const DataNode &node)
 
 const bool Mission::SortHelper(const Mission &a, const Mission &b)
 {
-	return a.order == b.order ? a.name < b.name : a.order > b.order;
+	return a.precedence == b.precedence ? a.name < b.name : a.precedence > b.precedence;
 }
