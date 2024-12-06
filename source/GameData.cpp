@@ -927,7 +927,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				string name = ImageSet::Name(relative(path, directoryPath));
+				string name = ImageSet::Name(path.lexically_relative(directoryPath));
 
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
