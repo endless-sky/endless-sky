@@ -1490,7 +1490,7 @@ void Engine::EnterSystem()
 
 	doEnter = true;
 	doEnterLabels = true;
-	player.IncrementDate();
+	player.AdvanceDate();
 	const Date &today = player.GetDate();
 
 	const System *system = flagship->GetSystem();
