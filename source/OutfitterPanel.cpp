@@ -183,14 +183,14 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		else
 		{
 			highlightDifferences = true;
-			string lastModelName;
+			string firstModelName;
 			for(const Ship *ship : playerShips)
 			{
 				string modelName = ship->TrueModelName();
-				if(lastModelName.empty())
-					lastModelName = modelName;
+				if(firstModelName.empty())
+					firstModelName = modelName;
 				else
-					highlightDifferences = highlightDifferences && (modelName == lastModelName);
+					highlightDifferences &= (modelName == firstModelName);
 				int count = ship->OutfitCount(outfit);
 				minCount = min(minCount, count);
 				maxCount = max(maxCount, count);
@@ -200,7 +200,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(maxCount)
 		{
 			string label = "installed: " + to_string(minCount);
-			auto color = bright;
+			Color color = bright;
 			if(maxCount > minCount)
 			{
 				label += " - " + to_string(maxCount);
