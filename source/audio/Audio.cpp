@@ -97,6 +97,7 @@ namespace {
 
 	// Queue and thread for loading sound files in the background.
 	map<string, string> loadQueue;
+	std::atomic<bool> queuedAllSounds = false;
 	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
@@ -165,6 +166,7 @@ void Audio::Init(const vector<string> &sources)
 			}
 		}
 	}
+	queuedAllSounds = true;
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
@@ -204,6 +206,9 @@ void Audio::CheckReferences()
 // Report the progress of loading sounds.
 double Audio::GetProgress()
 {
+	if(!queuedAllSounds)
+		return 0.;
+
 	unique_lock<mutex> lock(audioMutex);
 
 	if(loadQueue.empty())
