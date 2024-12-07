@@ -167,6 +167,7 @@ public:
 	static void ToggleTurretOverlays();
 	static TurretOverlays GetTurretOverlays();
 	static const std::string &TurretOverlaysSetting();
+
 	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
