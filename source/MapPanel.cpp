@@ -1468,6 +1468,7 @@ void MapPanel::DrawMissions()
 		else
 			++it.unavailable;
 	}
+	for_each(missionCount.begin(), missionCount.end(), [](auto &it) { it.second.Reserve(); });
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1477,9 +1478,7 @@ void MapPanel::DrawMissions()
 		if(!system)
 			continue;
 
-		// Reserve a maximum of half of the slots for available missions.
 		auto &&it = missionCount[system];
-		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
 		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
 			continue;
 
