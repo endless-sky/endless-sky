@@ -155,7 +155,7 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 		targetAsteroidInvalid = !GetTargetAsteroid();
 		// Asteroids are never out of reach since they're in the same system as flagship.
 	}
-	
+
 	// Clear orders that no longer have a valid and reachable target.
 	if(targetShipInvalid)
 	{
