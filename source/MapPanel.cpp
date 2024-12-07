@@ -1478,7 +1478,7 @@ void MapPanel::DrawMissions()
 		if(!system)
 			continue;
 
-		auto &&it = missionCount[system];
+		auto &it = missionCount[system];
 		if(it.drawn < it.MaximumActive())
 		{
 			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
