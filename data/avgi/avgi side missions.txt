@@ -846,7 +846,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	"I'll keep that in mind," you say.`
 			action
 				set "Avgi: Twilight Guard Transport Jobs"
-				decline
+			decline
 
 
 mission "Avgi: Atomics Testing 1"
