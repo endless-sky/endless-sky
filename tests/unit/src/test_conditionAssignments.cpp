@@ -60,7 +60,7 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no assignments are added from empty nodes" ) {
-			const std::string validationWarning = "Error: Loading empty (sub)condition:\ntoplevel\n\n";
+			const std::string validationWarning = "Error: Loading empty set of assignments\ntoplevel\n\n";
 			set.Load(AsDataNode("toplevel"));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
@@ -68,7 +68,7 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 			}
 		}
 		THEN( "no assignments are added from invalid nodes" ) {
-			const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+			const std::string validationWarning = "Error: Incomplete assignment\n";
 			const std::string invalidNodeText = "apply\n\thas";
 			const std::string invalidNodeTextInWarning = "apply\nL2:   has";
 			set.Load(AsDataNode(invalidNodeText));
@@ -114,6 +114,30 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 			REQUIRE_FALSE( store.PrimariesSize() == 0 );
 			REQUIRE( store.Get("year") );
 			CHECK( store["year"] == 3013 );
+		}
+	}
+	GIVEN( "valid ConditionAssignments" ) {
+		auto storeWithData = ConditionsStore {
+			{"event: war begins", 1},
+			{"someData", 100},
+			{"moreData", 100},
+			{"otherData", 100},
+		};
+
+		auto expressionAndOutcome = GENERATE(table<std::string, std::string, int64_t>({
+			{"year = 3013", "year", 3013},
+			{"myVariable = -223", "myVariable", -223},
+			{"someData >?= -223", "someData", 100},
+			{"someData <?= -223", "someData", -223},
+			{"someData += 223", "someData", 323},
+			{"someData -= 223", "someData", -123},
+			{"someData /= 50", "someData", 2},
+		}));
+
+		const auto applySet = ConditionAssignments{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndOutcome))};
+		THEN( "The expression \'" + std::get<0>(expressionAndOutcome) + "\' assigns the expected number" ) {
+			applySet.Apply(storeWithData);
+			REQUIRE( storeWithData[std::get<1>(expressionAndOutcome)] == std::get<2>(expressionAndOutcome) );
 		}
 	}
 }
