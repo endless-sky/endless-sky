@@ -752,7 +752,7 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(alertSprite, uiPoint + Point(-textMargin / 2., -7. + font.Height() / 2.), alertScale);
 
 	string systemName = player.KnowsName(*selectedSystem) ?
-		selectedSystem->Name() : "Unexplored System";
+		selectedSystem->DisplayName() : "Unexplored System";
 	const auto alignLeft = Layout(145, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
@@ -962,7 +962,7 @@ void MapDetailPanel::DrawOrbits()
 				habitColor[6]);
 
 	// Draw the name of the selected planet.
-	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
+	const string &name = selectedPlanet ? selectedPlanet->DisplayName() : selectedSystem->DisplayName();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
 	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
 		namePos, *GameData::Colors().Get("medium"));

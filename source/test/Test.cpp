@@ -103,7 +103,7 @@ namespace {
 		string description = "name: " + ship.Name();
 		const System *system = ship.GetSystem();
 		const Planet *planet = ship.GetPlanet();
-		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", system: " + (system ? system->TrueName() : "<not set>");
 		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
 		description += ", hull: " + Format::Number(ship.Hull());
 		description += ", shields: " + Format::Number(ship.Shields());
