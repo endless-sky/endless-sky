@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
-#include "StarField.h"
+#include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "text/truncate.hpp"
@@ -296,7 +296,7 @@ void StartConditionsPanel::ScrollToSelected()
 void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
 	// Clear the displayed information.
-	info.ClearConditions();
+	info = Information();
 
 	startIt = it;
 	if(startIt == scenarios.end())

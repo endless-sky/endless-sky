@@ -72,6 +72,8 @@ public:
 
 	const std::list<DataNode> &Changes() const;
 
+	// Comparison operator, based on the date of the event.
+	bool operator<(const GameEvent &other) const;
 
 private:
 	Date date;
