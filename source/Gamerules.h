@@ -46,6 +46,7 @@ public:
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
 	FighterDodgePolicy FightersHitWhenDisabled() const;
+	double DefaultLateralThrustRatio() const;
 
 
 private:
@@ -59,4 +60,5 @@ private:
 	int depreciationGracePeriod = 7;
 	int depreciationMaxAge = 1000;
 	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+	double defaultLateralThrustRatio = 0.25;
 };
