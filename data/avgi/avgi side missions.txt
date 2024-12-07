@@ -841,12 +841,12 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			choice
 				`	"If you say so."`
 				`	"I hope you're right."`
+			action
+				set "Avgi: Twilight Guard Transport Jobs"
 			`	With that, you turn to lighter topics, as Claret finishes her drink. You learn about the new traditions the Twilight Guard is trying to promote to ensure unity and cohesion within its ranks, trying to bind together former members of dozens of independent militaries into a united whole. This apparently involves a lot of travel to promote inter-unit bonding, as well as frequent cycling between the front lines and the Outer Limits.`
 			`	Eventually, Claret is ready to leave. "Anyway, I'll see you around. And, a word of advice. If you're ever on a Twilight Guard station, look out for officers or Guardsmen who are looking for a ride. We often have people trying to make an impromptu trip, and our logistics have been so overstretched lately they're willing to contract with outside captains, if they're trustworthy."`
 			`	"I'll keep that in mind," you say.`
-			action
-				set "Avgi: Twilight Guard Transport Jobs"
-			decline
+				decline
 
 
 mission "Avgi: Atomics Testing 1"
