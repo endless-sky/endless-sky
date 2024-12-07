@@ -3989,6 +3989,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		return true;
 	});
 
+	// A condition for returning a random integer in the range [0, 100).
+	auto &&randomProvider = conditions.GetProviderNamed("random");
+	auto randomFun = [](const string &name) -> int64_t
+	{
+		return Random::Int(100);
+	};
+	randomProvider.SetGetFunction(randomFun);
+
 	auto &&fleetCountProvider = conditions.GetProviderPrefixed("fleet count by name: ");
 	fleetCountProvider.SetGetFunction([this](const string &name) -> int64_t
 	{

@@ -41,6 +41,12 @@ public:
 		YMD      ///< All-numeric ISO 8601. (1941-10-04)
 	};
 
+	enum class NotificationSetting : int_fast8_t {
+		OFF = 0,
+		MESSAGE,
+		BOTH
+	};
+
 	enum class OverlayState : int_fast8_t {
 		OFF = 0,
 		ON,
@@ -126,6 +132,12 @@ public:
 	static DateFormat GetDateFormat();
 	static const std::string &DateFormatSetting();
 
+	// Notification preferences.
+	static void ToggleNotificationSetting();
+	static NotificationSetting GetNotificationSetting();
+	static const std::string &NotificationSettingString();
+
+	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
 
