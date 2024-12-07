@@ -669,6 +669,13 @@ const Set<Sale<Outfit>> &GameData::Outfitters()
 
 
 
+const Set<RandomStock<Outfit>> &GameData::OutfitRandomStocks()
+{
+	return objects.outfitRandomStock;
+}
+
+
+
 const Set<Person> &GameData::Persons()
 {
 	return objects.persons;
@@ -721,6 +728,13 @@ ConditionsStore &GameData::GlobalConditions()
 const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
+}
+
+
+
+const Set<RandomStock<Ship>> &GameData::ShipRandomStocks()
+{
+	return objects.shipRandomStock;
 }
 
 

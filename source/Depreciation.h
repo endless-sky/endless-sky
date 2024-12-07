@@ -30,11 +30,13 @@ class Ship;
 
 // Class for tracking depreciation records, by storing the day on which a given
 // outfit or ship was purchased. Any ship or outfit for which no record exists,
-// for example because it is plunder, counts as full depreciated.
+// for example because it is plunder, counts as fully depreciated.
 class Depreciation {
 public:
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
+	// Calculate how old an item needs to be for the target amount of depreciation, if possible.
+	static int AgeForDepreciation(double depreciation);
 
 
 public:
@@ -68,7 +70,6 @@ private:
 	int Sell(std::map<int, int> &record) const;
 	// Calculate depreciation:
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
-	double Depreciate(int age) const;
 	// Depreciation of an item for which no record exists. If buying, items
 	// default to no depreciation. When selling, they default to full.
 	double DefaultDepreciation() const;
@@ -85,4 +86,9 @@ private:
 
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
+
+
+private:
+	// Calculate the value fraction for an item of the given age.
+	static double Depreciate(int age);
 };
