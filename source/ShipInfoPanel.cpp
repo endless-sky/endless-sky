@@ -27,23 +27,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipNameDialog.h"
 #include "image/Sprite.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
@@ -92,32 +93,32 @@ void ShipInfoPanel::Draw()
 	DrawBackdrop();
 
 	// Fill in the information for how this interface should be drawn.
-	info.ClearConditions();
-	info.SetCondition("ship tab");
+	Information interfaceInfo;
+	interfaceInfo.SetCondition("ship tab");
 	if(panelState.CanEdit() && shipIt != panelState.Ships().end()
 			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
 		if(!(*shipIt)->IsDisabled())
-			info.SetCondition("can park");
-		info.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
-		info.SetCondition("show disown");
+			interfaceInfo.SetCondition("can park");
+		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
+		interfaceInfo.SetCondition("show disown");
 	}
 	else if(!panelState.CanEdit())
 	{
-		info.SetCondition("show dump");
+		interfaceInfo.SetCondition("show dump");
 		if(CanDump())
-			info.SetCondition("enable dump");
+			interfaceInfo.SetCondition("enable dump");
 	}
 	if(player.Ships().size() > 1)
-		info.SetCondition("five buttons");
+		interfaceInfo.SetCondition("five buttons");
 	else
-		info.SetCondition("three buttons");
+		interfaceInfo.SetCondition("three buttons");
 	if(player.HasLogs())
-		info.SetCondition("enable logbook");
+		interfaceInfo.SetCondition("enable logbook");
 
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
-	infoPanelUi->Draw(info, this);
+	infoPanelUi->Draw(interfaceInfo, this);
 
 	// Draw all the different information sections.
 	ClearZones();
@@ -130,7 +131,7 @@ void ShipInfoPanel::Draw()
 	DrawCargo(cargoBounds);
 
 	// If the player hovers their mouse over a ship attribute, show its tooltip.
-	infoDisplay.DrawTooltips();
+	info.DrawTooltips();
 }
 
 
@@ -288,7 +289,7 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 bool ShipInfoPanel::Hover(int x, int y)
 {
 	Point point(x, y);
-	infoDisplay.Hover(point);
+	info.Hover(point);
 	return Hover(point);
 }
 
@@ -321,7 +322,7 @@ void ShipInfoPanel::UpdateInfo()
 		return;
 
 	const Ship &ship = **shipIt;
-	infoDisplay.Update(ship, player);
+	info.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 
@@ -363,7 +364,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 
 	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
 
-	infoDisplay.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
+	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
 
 
@@ -391,8 +392,16 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
 		const string &category = cat.Name();
+		if(category.empty())
+			continue;
 		auto it = outfits.find(category);
 		if(it == outfits.end())
+			continue;
+
+		auto validOutfits = std::ranges::filter_view(it->second,
+			[](const Outfit *outfit){ return outfit->IsDefined() && !outfit->DisplayName().empty(); });
+
+		if(validOutfits.empty())
 			continue;
 
 		// Skip to the next column if there is no space for this category label
@@ -408,7 +417,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		// Draw the category label.
 		table.Draw(category, bright);
 		table.Advance();
-		for(const Outfit *outfit : it->second)
+		for(const Outfit *outfit : validOutfits)
 		{
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
@@ -570,8 +579,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
-	// Cargo list.
-	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
+	// Cargo list: show pooled cargo instead if the ship to display is landed together with the flagship.
+	const bool showPooled = ship.GetPlanet() == player.GetPlanet() && player.Cargo().Used();
+	const CargoHold &cargo = (showPooled ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});
@@ -763,7 +773,7 @@ void ShipInfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 
-	infoDisplay.Update(**shipIt, player);
+	info.Update(**shipIt, player);
 	if(loss)
 		Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
 			, Messages::Importance::High);
@@ -779,7 +789,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		infoDisplay.Update(**shipIt, player);
+		info.Update(**shipIt, player);
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
@@ -799,7 +809,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		infoDisplay.Update(**shipIt, player);
+		info.Update(**shipIt, player);
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
