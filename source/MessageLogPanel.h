@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class MessageLogPanel : public Panel {
 public:
 	MessageLogPanel();
+	virtual ~MessageLogPanel() override;
 
 	virtual void Draw() override;
 
