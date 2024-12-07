@@ -102,12 +102,14 @@ private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
+	// The width of the dialog, excluding margins.
 	int Width() const;
 
 
 protected:
 	std::shared_ptr<TextArea> text;
-	int height;
+	// The number of extra segments in this dialog.
+	int extensionCount;
 
 	std::function<void(int)> intFun;
 	std::function<void(const std::string &)> stringFun;

@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LineShader.h"
 
-#include "Color.h"
-#include "Point.h"
-#include "Screen.h"
+#include "../Color.h"
+#include "../Point.h"
+#include "../Screen.h"
 #include "Shader.h"
 
 #include <stdexcept>
@@ -43,11 +43,13 @@ void LineShader::Init()
 {
 	static const char *vertexCode =
 		"// vertex line shader\n"
+		"precision mediump float;\n"
+		"precision mediump int;\n"
 
 		"uniform vec2 scale;\n"
 
-		"uniform vec2 start;\n"
-		"uniform vec2 end;\n"
+		"uniform highp vec2 start;\n"
+		"uniform highp vec2 end;\n"
 		"uniform float width;\n"
 		"uniform int cap;\n"
 
@@ -58,12 +60,12 @@ void LineShader::Init()
 		// Construct a rectangle around the line that can accommodate a line of width "width".
 		"    vec2 unit = normalize(end - start);\n"
 		// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
-		"    vec2 origin = vert.y > 0.0 ? start : end;\n"
+		"    highp vec2 origin = vert.y > 0.0 ? start : end;\n"
 		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
-		"    float widthOffset = width + 1;\n"
+		"    float widthOffset = width + 1.;\n"
 		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
 		//     "width" from the start/endpoints. This is also padded by 1 to allow for anti-aliasing.
-		"    float capOffset = (cap == 1) ? widthOffset : 1;\n"
+		"    float capOffset = (cap == 1) ? widthOffset : 1.;\n"
 		// The vertex position is the originating position plus an offset away from the line.
 		// The offset is a combination of a perpendicular offset of widthOffset and a normal offset of capOffset
 		//     that is flipped into a different direction for each vertex, resulting in a rectangle that tightly
@@ -79,9 +81,10 @@ void LineShader::Init()
 	static const char *fragmentCode =
 		"// fragment line shader\n"
 		"precision mediump float;\n"
+		"precision mediump int;\n"
 
-		"uniform vec2 start;\n"
-		"uniform vec2 end;\n"
+		"uniform highp vec2 start;\n"
+		"uniform highp vec2 end;\n"
 		"uniform float width;\n"
 		"uniform vec4 color;\n"
 		"uniform int cap;\n"
@@ -91,14 +94,14 @@ void LineShader::Init()
 
 		// From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
 
-		"float sdSegment(vec2 p, vec2 a, vec2 b) {\n"
-		"    vec2 ab = b - a;\n"
-		"    vec2 ap = p - a;\n"
+		"float sdSegment(highp vec2 p, highp vec2 a, highp vec2 b) {\n"
+		"    highp vec2 ab = b - a;\n"
+		"    highp vec2 ap = p - a;\n"
 		"    float h = clamp(dot(ap, ab) / dot(ab, ab), 0.0, 1.0);\n"
 		"    return length(ap - h * ab);\n"
 		"}\n"
 
-		"float sdOrientedBox(vec2 p, vec2 a, vec2 b, float th) {\n"
+		"float sdOrientedBox(highp vec2 p, highp vec2 a, highp vec2 b, highp float th) {\n"
 		"    float l = length(b - a);\n"
 		"    vec2  d = (b - a) / l;\n"
 		"    vec2  q = (p - (a + b) * 0.5);\n"

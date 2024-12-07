@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../Shader.h"
+#include "../shader/Shader.h"
 
 #include "../opengl.h"
 

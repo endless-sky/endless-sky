@@ -1,4 +1,4 @@
-/* Shader.h
+/* RouteEdge.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,30 +13,27 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
-
-#include "opengl.h"
+#include "RouteEdge.h"
 
 
 
-// Class representing a shader, i.e. a compiled GLSL program that the GPU uses
-// in order to draw something. In modern GPL, everything is drawn with shaders.
-// In general, rather than using this class directly, drawing code will use one
-// of the classes representing a particular shader.
-class Shader {
-public:
-	Shader() noexcept = default;
-	Shader(const char *vertex, const char *fragment);
-
-	GLuint Object() const noexcept;
-	GLint Attrib(const char *name) const;
-	GLint Uniform(const char *name) const;
+RouteEdge::RouteEdge(const System *system)
+	: prev(system)
+{
+}
 
 
-private:
-	GLuint Compile(const char *str, GLenum type);
 
+// Sorting operator to prioritize the "best" edges. The priority queue
+// returns the "largest" item, so this should return true if this item
+// is lower priority than the given item.
+bool RouteEdge::operator<(const RouteEdge &other) const
+{
+	if(fuel != other.fuel)
+		return fuel > other.fuel;
 
-private:
-	GLuint program;
-};
+	if(days != other.days)
+		return days > other.days;
+
+	return danger > other.danger;
+}
