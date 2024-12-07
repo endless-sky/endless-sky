@@ -1,4 +1,4 @@
-/* OrderSingle.h
+/* OrderSingle.cpp
 Copyright (c) 2024 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
