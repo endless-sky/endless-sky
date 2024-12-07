@@ -22,7 +22,7 @@ mission "Avgi Culture: Park Politics"
 	on offer
 		conversation
 			action
-				set "avgi: met wisteria"
+				set "Avgi: met wisteria"
 			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise industrial facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mesmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
 			`	"Is this one of the humans I have heard so much about, question?" the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of him, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
 			choice
@@ -429,7 +429,7 @@ mission "Avgi Culture: Zapchannel Energy"
 	on offer
 		conversation
 			action
-				set "avgi: met nikkio"
+				set "Avgi: met nikkio"
 			`You are on your way back to the <ship> after a stroll through the spaceport when a bright yellow Avgi lands in front of you. "Hey, you! Enthusiasm! I am Nikkio, famed medician and traveling salesman. Do you, alien sojourner, care for your health?"`
 			choice
 				`	"I guess so."`
@@ -510,7 +510,7 @@ mission "Avgi: Cylinder Construction"
 					defer
 
 			action
-				set "avgi: met gamboge"
+				set "Avgi: met gamboge"
 			`	You find a deep yellow Avgi, dressed in metallic blue-colored bangles around his limbs and forward body, perched in a makeshift office behind a pile of boxes. "Hey, do you mind if I ask some questions about this station?" you say.`
 			`	"Curiosity. Of course, alien traveler," he says, waving an arm at you. "My name is Gamboge, and I direct the construction effort on the Aktina Cylinder. What would you like to know?"`
 			label questions
@@ -532,7 +532,7 @@ mission "Avgi: Cylinder Construction"
 
 			label whenupdate
 			action
-				set "avgi: asked about whenupdate"
+				set "Avgi: asked about whenupdate"
 			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Napigeo Yards instead of here."`
 			choice
 				`	"Well, it makes sense that fighting the Aberrant would take priority."`
@@ -566,9 +566,9 @@ mission "Avgi: Cylinder Construction"
 
 			label conclusion
 			action
-				clear "avgi: asked about whenupdate"
-				clear "avgi: asked about oneil"
-				clear "avgi: asked about housing"
+				clear "Avgi: asked about whenupdate"
+				clear "Avgi: asked about oneil"
+				clear "Avgi: asked about housing"
 			`	"Appreciation. I was happy to answer them. Though, if I might ask a favor?"`
 			choice
 				`	"Sure."`
@@ -584,7 +584,7 @@ mission "Avgi: Cylinder Construction"
 
 			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
 			action
-				set "avgi: aktina cylinder supply jobs"
+				set "Avgi: aktina cylinder supply jobs"
 			accept
 
 
@@ -610,7 +610,7 @@ mission "Avgi: Infocourier Encounter"
 			`	The Avgi looks down from atop the Polari. "Invitation, I do. The name's Hansa, and you are?"`
 			`	"Captain <first> <last>," you say. "Are you one of the infocouriers?"`
 			action
-				set "avgi: met hansa"
+				set "Avgi: met hansa"
 			`	Hansa clicks his arms together. "Mild surprise. Indeed I am, but I'm surprised you've heard of us. Not a lot of people talk about the courier system these days."`
 			choice
 				`	"Why is that?"`
@@ -660,7 +660,7 @@ mission "Avgi: Infocourier Encounter"
 			`	"Enthusiasm. I'm glad to hear that, there aren't nearly enough couriers plying the starways. I'll have your name passed along, and you should see offers to begin hauling media on the job board within a few days."`
 				decline
 			action
-				set "avgi: infocourier jobs"
+				set "Avgi: infocourier jobs"
 
 
 mission "Avgi Culture: Twilight Tavern Guard"
@@ -707,7 +707,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 
 			label next
 			action
-				set "avgi: met claret"
+				set "Avgi: met claret"
 			`	"The name's Claret." She extends an arm, which you reach out to shake, but she instead taps her forearm to yours. "You're a hot topic among the Guard, you know?" She peers at you with inscrutable compound eyes.`
 			choice
 				`	"The Guard?"`
@@ -731,10 +731,10 @@ mission "Avgi Culture: Twilight Tavern Guard"
 					goto caught
 
 			label caught
-				`"Oh no." she says in a completely flat voice. "I am absolutely terrified." She takes a deep drink before sighing contentedly.`
+			`	"Oh no." she says in a completely flat voice. "I am absolutely terrified." She takes a deep drink before sighing contentedly.`
 
 			label gossip
-				`	"Some say that the humans will soon arrive to save us with their superior technology. Others say you'll be the next aliens to invade us, and finish the job the Aberrant started."`
+			`	"Some say that the humans will soon arrive to save us with their superior technology. Others say you'll be the next aliens to invade us, and finish the job the Aberrant started."`
 			choice
 				`	"And which do you believe?"`
 					goto believe
@@ -744,7 +744,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto humans
 
 			label believe
-				`	"Amusement. Neither. Either one would be too easy, and that of course can't be allowed, not in this universe. I expect your Republic would spend years and years debating whether to even acknowledge our existence, let alone take any kind of action."`
+			`	"Amusement. Neither. Either one would be too easy, and that of course can't be allowed, not in this universe. I expect your Republic would spend years and years debating whether to even acknowledge our existence, let alone take any kind of action."`
 			choice
 				`	"You don't give the Republic enough credit. Parliament can be decisive when it needs to be."`
 				`	"Parliament might be slow, but the Navy is full of good people who would help if they could."`
@@ -764,7 +764,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto humans
 
 			label accurate
-				`	"You humans aren't too different from us then." She looks thoughtful. "Maybe that would help us get along, your Republic and our Consonance bonding over shared bureaucratic torment. Might even be able to work together and invent something even worse." Claret shudders.`
+			`	"You humans aren't too different from us then." She looks thoughtful. "Maybe that would help us get along, your Republic and our Consonance bonding over shared bureaucratic torment. Might even be able to work together and invent something even worse." Claret shudders.`
 					goto humans
 
 			label humans
@@ -844,9 +844,9 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	With that, you turn to lighter topics, as Claret finishes her drink. You learn about the new traditions the Twilight Guard is trying to promote to ensure unity and cohesion within its ranks, trying to bind together former members of dozens of independent militaries into a united whole. This apparently involves a lot of travel to promote inter-unit bonding, as well as frequent cycling between the front lines and the Outer Limits.`
 			`	Eventually, Claret is ready to leave. "Anyway, I'll see you around. And, a word of advice. If you're ever on a Twilight Guard station, look out for officers or Guardsmen who are looking for a ride. We often have people trying to make an impromptu trip, and our logistics have been so overstretched lately they're willing to contract with outside captains, if they're trustworthy."`
 			`	"I'll keep that in mind," you say.`
-			decline
 			action
-				set "avgi: Twilight Guard Transport Jobs"
+				set "Avgi: Twilight Guard Transport Jobs"
+				decline
 
 
 mission "Avgi: Atomics Testing 1"
@@ -862,7 +862,7 @@ mission "Avgi: Atomics Testing 1"
 	on offer
 		conversation
 			action
-				set "avgi: met aliza"
+				set "Avgi: met aliza"
 			`Ergastirio Station is quiet as you disembark from the <ship>. Everyone you see seems purposeful and deliberate, moving as if they all know exactly where they need to be. Wandering about as you are, you can't help but feel that you stand out, a feeling that proves warranted when a female Avgi stops you, a vibrant red tinged with purple.`
 			`	"Curiosity, hello. Who are you?"`
 			choice
@@ -1059,7 +1059,7 @@ mission "Avgi: Atomics Testing 2"
 
 			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
 			action
-				set "avgi: Nuclear Material Transport Jobs"
+				set "Avgi: Nuclear Material Transport Jobs"
 			choice
 				`	"I will."`
 				`	"Sounds good."`

@@ -30,8 +30,8 @@ mission "Avgi: Aberrant Blockade"
 	landing
 	repeat
 	to offer
-		has "avgi: aberrant siege"
-		not "avgi: aberrant blockade respite"
+		has "Avgi: Aberrant Siege"
+		not "Avgi: Aberrant Siege Respite"
 	source
 		attributes "aberrant siege"
 	on offer
@@ -43,28 +43,15 @@ mission "Avgi: Aberrant Blockade"
 
 	npc kill
 		government "Aberrant"
-		personality hunting vindictive unconstrained secretive target launching staying
-		fleet "Small Aberrant"
-		fleet "Small Aberrant"
-		fleet "Small Aberrant"
-		on kill
-			set "avgi: aberrant blockade respite"
-			event "avgi: blockade respite timer" 2 3
-
-	npc kill
-		government "Aberrant"
-		personality hunting vindictive unconstrained secretive target staying
-		system
-			distance 1 3
-		fleet "Large Aberrant"
-		fleet "Large Aberrant"
+		personality hunting vindictive secretive target waiting staying
+		fleet "Small Aberrant" 2
 		fleet "Large Aberrant"
 		on kill
-			set "avgi: aberrant blockade respite"
-			event "avgi: blockade respite timer" 2 3
+			set "Avgi: Aberrant Siege Respite"
+			event "Avgi: Siege Respite Timer" 1 3
 
-event "avgi: blockade respite timer"
-	clear "avgi: aberrant blockade respite"
+event "Avgi: Siege Respite Timer"
+	clear "Avgi: Aberrant Siege Respite"
 
 
 mission "Avgi: Spawn Wandering Fleet"

@@ -17,7 +17,7 @@ mission "Avgi Culture: Verticality"
 	invisible
 	source Peripheria
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 15
 	on offer
 		conversation
@@ -32,7 +32,7 @@ mission "Avgi Culture: Free Fuel"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 15
 	on offer
 		conversation
@@ -45,7 +45,7 @@ mission "Avgi Culture: Playfight"
 	invisible
 	source "Peripheria"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 12
 	on offer
 		conversation
@@ -59,7 +59,7 @@ mission "Avgi Culture: Cocoon"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 12
 	on offer
 		conversation
@@ -73,7 +73,7 @@ mission "Avgi Culture: Zapchannel Ad"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -93,7 +93,7 @@ mission "Avgi Culture: Dissonance Protest 1"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -113,7 +113,7 @@ mission "Avgi Culture: Dissonance Graffiti 1"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -133,7 +133,7 @@ mission "Avgi Culture: We Live In A Society"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -147,7 +147,7 @@ mission "Avgi Culture: Realism"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -161,7 +161,7 @@ mission "Avgi Culture: Doomed Korath"
 	source
 		attributes "avgi siege"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -175,7 +175,7 @@ mission "Avgi Culture: General Ripper"
 	source
 		attributes "avgi siege"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -190,7 +190,7 @@ mission "Avgi Culture: Criminal Mischief"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation
@@ -205,7 +205,7 @@ mission "Avgi Culture: False Alarm"
 	source
 		government "Avgi (Twilight Guard)"
 	to offer
-		not "avgi: lost in twilight"
+		not "Avgi: lost in twilight"
 		random < 3
 	on offer
 		conversation

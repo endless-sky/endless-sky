@@ -161,3 +161,15 @@ outfit "Antimatter Power Cell"
 	"flotsam chance" 0.05
 	"unplunderable" 1
 	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter annihilated, generating more energy than should be possible."
+
+
+# Special
+
+outfit "Anomalous Mass"
+	plural "Anomalous Masses"
+	category "Special"
+	cost 900000
+	thumbnail "outfit/unknown"
+	"flotsam chance" 0.5
+	"unplunderable" 1
+	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, and resists any attempts to probe its makeup."

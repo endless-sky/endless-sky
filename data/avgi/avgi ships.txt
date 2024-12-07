@@ -1077,21 +1077,17 @@ ship "Modified Tachytia"
 		angle -9
 		zoom 2
 
-	"steering engine" -5 498
+	"steering engine" -5 450
 		angle 90
-		zoom 0.1
 		left
-	"steering engine" 5 498
+	"steering engine" 5 450
 		angle -90
-		zoom 0.1
 		right
-	"steering engine" -35 -318
+	"steering engine" -35 -324
 		angle 90
-		zoom 0.1
 		right
-	"steering engine" 35 -318
+	"steering engine" 35 -324
 		angle -90
-		zoom 0.1
 		left
 
 	leak "leak" 60 15

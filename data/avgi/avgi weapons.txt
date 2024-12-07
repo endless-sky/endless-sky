@@ -31,6 +31,7 @@ outfit "Speck Magazine"
 	"mass" 2.4
 	"outfit space" -6
 	"speck capacity" 1200
+	"ammo" "Speck Round"
 	description "While Speckle Coilguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
 
 
@@ -45,8 +46,8 @@ outfit "Speckle Coilgun"
 	"gun ports" -1
 	"speck capacity" 900
 	weapon
-		sound "speckle"
-		ammo "Speck Round"
+		"sound" "speckle"
+		"ammo" "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
 		"velocity" 30
@@ -74,8 +75,8 @@ outfit "Speckle Turret"
 	"turret mounts" -1
 	"speck capacity" 2400
 	weapon
-		sound "speckle"
-		ammo "Speck Round" 2
+		"sound" "speckle"
+		"ammo" "Speck Round" 2
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 6
 		"fire effect" "speckle fire"
@@ -149,7 +150,7 @@ outfit "Green Optical Laser"
 	"lasing power" -1
 	weapon
 		"hardpoint sprite" "hardpoint/avgi green laser"
-		sound "optical laser"
+		"sound" "optical laser"
 		"die effect" "laser ejecta" 4
 		"die effect" "green laser reflection" 30
 		"die effect" "green laser scattering"
@@ -180,7 +181,7 @@ outfit "Blue Optical Laser"
 		"hardpoint sprite" "hardpoint/avgi blue laser"
 		sprite "projectile/avgi laser blue"
 			"frame rate" 1
-		sound "optical laser"
+		"sound" "optical laser"
 		"hit effect" "laser ejecta" 4
 		"hit effect" "blue laser reflection" 30
 		"hit effect" "blue laser scattering"

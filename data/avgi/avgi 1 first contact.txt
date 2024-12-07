@@ -350,7 +350,7 @@ mission "Avgi: First Contact"
 			label buystuff
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase items with your human credits, which we will back with our own currency with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have a small stockpile of your currency available."`
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
-			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard. No military goods, at least not now."`
+			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard."`
 			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the authority of Consonance, but anywhere else, you should find no issues."`
 			`	He twitches his wings. "Satisfaction. For now, we will leave you with some time and space to think. The former captain of the ship that brought the other humans, one Darius Calwell, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him. And should you wish to speak to us as well, there is one last gift we will bestow upon you today that will facilitate that."`
 			`	Before you are dismissed, he holds out a long arm, with a black hairpin-shaped rod clutched between his three sharp fingers, like a smaller version of the translator the Avgi have been using to communicate with you. Tucked behind your ear, this device will translate the speech of the most common Avgi languages as is it spoken around you, quietly whispering the meaning into your ear.`
@@ -383,7 +383,7 @@ mission "Avgi: Defend Ensemble 1"
 	on offer
 		conversation
 			`From afar, the Aktina Cylinder looks like a titanic skeletal tube, with ribs of graphene and a metallic spine. Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews.`
-			`	You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting in the hangar, a look of pure astonishment on his face as your ship settles into a free hangar. You disembark from the <ship> to find Darius waiting right outside the hatch.`
+			`	You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting for you, a look of pure astonishment on his face as your ship settles into a free hangar. You disembark from the <ship> to find Darius waiting right outside the hatch.`
 			choice
 				`	"Hello there."`
 				`	"Greetings, human. I come in peace."`
@@ -493,7 +493,7 @@ mission "Avgi: Defend Ensemble 2"
 				accept
 	npc
 		government "Avgi (Twilight Guard)"
-		personality heroic escort
+		personality heroic frugal escort
 		fleet
 			names "avgi military names"
 			variant
@@ -502,14 +502,14 @@ mission "Avgi: Defend Ensemble 2"
 				"Tremoros" 3
 	npc
 		government "Avgi (Twilight Guard)"
-		personality heroic waiting escort
+		personality heroic frugal waiting escort
 		fleet
 			names "avgi military names"
 			variant
 				"Difraktos (Atomic)"
 				"Refraktos"
 				"Atenuatia (Atomic)"
-				"Vibratia" 22
+				"Vibratia" 20
 				"Photikon (Atomic)" 6
 	npc
 		government "Avgi (Twilight Guard)"

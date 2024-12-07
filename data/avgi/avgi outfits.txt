@@ -554,12 +554,12 @@ outfit `Z-3600 "Beam" Antimatter Torch`
 	"flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
 	"flare sound" "zpinch"
-	"turn" 4200
-	"turning energy" 3.6
-	"turning heat" 2.4
+	"turn" 2100
+	"turning energy" 1.8
+	"turning heat" 1.2
 	"steering flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
-		"scale" 0.125
+		"scale" 0.25
 	"steering flare sound" "remnant afterburner"
 	"magnozzle rings" 18
 	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
@@ -578,16 +578,6 @@ outfit "Optical Laser Rifle"
 	"capture defense" 1.8
 	"unplunderable" 1
 	description "This slim laser rifle can be tuned to produce a beam across a wide spectrum of settings, resulting in a versatile small arm suitable for both ground combat and boarding operations. A solid-state emitter works anywhere between the near-infrared to blue-green, and with a wide range of power and pulse length settings. While the low end of the near-infrared range is nominally eye-safe, even a diffuse reflection of the visible light beam can cause instant blindness, so users of this rifle must wear specialized goggles that darken when exposed to bright light. Incidentally, this makes the Optical Laser Rifle especially dangerous for unprepared foes, such as unwelcome intruders or enemy boarding parties."
-
-
-outfit "Anomalous Mass"
-	plural "Anomalous Masses"
-	category "Special"
-	cost 900000
-	thumbnail "outfit/unknown"
-	"flotsam chance" 0.5
-	"unplunderable" 1
-	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, and resists any attempts to probe its makeup."
 
 
 outfit "Trefoil Board"
