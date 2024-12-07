@@ -62,6 +62,10 @@ ship "Aerie"
 		"launch effect" "human internal"
 	bay "Fighter" 43.5 2
 		"launch effect" "human internal"
+	bay "Fighter" -43.5 2
+		"launch effect" "human internal"
+	bay "Fighter" 43.5 2
+		"launch effect" "human internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -885,7 +889,7 @@ ship "Carrier"
 		"fuel capacity" 700
 		"cargo space" 100
 		"outfit space" 820
-		"weapon capacity" 370
+		"weapon capacity" 240
 		"engine capacity" 210
 		weapon
 			"blast radius" 300
@@ -893,44 +897,50 @@ ship "Carrier"
 			"hull damage" 1500
 			"hit force" 4500
 	outfits
-		"Particle Cannon" 4
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 120
-		"Heavy Laser Turret" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Sidewinder Missile Rack" 8
+		"Sidewinder Missile" 184
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
-		"D94-YV Shield Generator"
+		"D94-YV Shield Generator" 2
 		"Large Radar Jammer" 2
 		"Water Coolant System"
 		"Brig"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
-		"Security Station"
+		"Security Station" 2
 		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
-		
+
 	engine -36.5 200 0.65
 	engine 36.5 200 0.65
-	gun -17.5 -176.5 "Particle Cannon"
-	gun 17.5 -176.5 "Particle Cannon"
-	gun -17.5 -176.5 "Meteor Missile Launcher"
-	gun 17.5 -176.5 "Meteor Missile Launcher"
-	gun -26 -167.5 "Particle Cannon"
-	gun 26 -167.5 "Particle Cannon"
+	gun -17.5 -176.5 "Torpedo Launcher"
+	gun 17.5 -176.5 "Torpedo Launcher"
 	gun -26 -167.5 "Meteor Missile Launcher"
 	gun 26 -167.5 "Meteor Missile Launcher"
 	turret 0 -49 "Heavy Laser Turret"
-	turret 0 14 "Heavy Laser Turret"
 	turret -22 22 "Heavy Anti-Missile Turret"
 	turret 22 22 "Heavy Anti-Missile Turret"
 	bay "Fighter" -38.5 -64.5
 		"launch effect" "human internal"
 	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
 		"launch effect" "human internal"
 	bay "Fighter" -50 40.5
 		"launch effect" "human internal"
@@ -3589,7 +3599,7 @@ ship "Skein"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
+	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry almost as many fighters as the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
 
 
 
