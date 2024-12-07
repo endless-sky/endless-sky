@@ -1479,12 +1479,12 @@ void MapPanel::DrawMissions()
 			continue;
 
 		auto &&it = missionCount[system];
-		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
-			continue;
-
-		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
-		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		if(it.drawn < it.MaximumActive())
+		{
+			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+			bool isSatisfied = IsSatisfied(player, mission) && blink.second;
+			DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		}
 
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
