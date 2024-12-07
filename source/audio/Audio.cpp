@@ -97,6 +97,7 @@ namespace {
 
 	// Queue and thread for loading sound files in the background.
 	map<string, string> loadQueue;
+	std::atomic<bool> queuedAllSounds = false;
 	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
