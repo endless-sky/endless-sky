@@ -104,6 +104,7 @@ namespace {
 	bool preventSpriteUpload = false;
 
 	// Tracks the progress of loading the sprites when the game starts.
+	std::atomic<bool> queuedAllImages = false;
 	std::atomic<int> spriteLoadingProgress = 0;
 	std::atomic<int> totalSprites = 0;
 
