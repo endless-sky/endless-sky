@@ -3997,7 +3997,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	randomProvider.SetGetFunction(randomFun);
 
-  
 	auto &&fleetCountProvider = conditions.GetProviderPrefixed("fleet count by name: ");
 	fleetCountProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
