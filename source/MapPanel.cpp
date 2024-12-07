@@ -1483,7 +1483,8 @@ void MapPanel::DrawMissions()
 		{
 			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 			bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-			DrawPointer(system, it.drawn, it.MaximumActive(), blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+			const Color &color = blink.first ? black : isSatisfied ? currentColor : blockedColor;
+			DrawPointer(system, it.drawn, it.MaximumActive(), color, isSatisfied);
 		}
 
 		for(const System *waypoint : mission.Waypoints())
