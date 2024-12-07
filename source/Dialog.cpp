@@ -230,7 +230,6 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			SDL_SetClipboardText(input.c_str());
 		else if(SDL_HasClipboardText())
 		{
-			input.clear();
 			char *clipboardText = SDL_GetClipboardText();
 			int n = 0;
 			for(auto cp = clipboardText; *cp && n < 120; cp++, n++)
