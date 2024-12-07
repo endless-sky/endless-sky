@@ -104,7 +104,7 @@ namespace {
 	bool preventSpriteUpload = false;
 
 	// Tracks the progress of loading the sprites when the game starts.
-	int spriteLoadingProgress = 0;
+	std::atomic<int> spriteLoadingProgress = 0;
 	std::atomic<int> totalSprites = 0;
 
 	// List of image sets that are waiting to be uploaded to the GPU.
