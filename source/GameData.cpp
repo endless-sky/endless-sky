@@ -215,6 +215,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 					++totalSprites;
 				}
 			}
+			queuedAllImages = true;
 
 			// Launch the tasks to actually load the images, making sure not to exceed the amount
 			// of tasks the main thread can handle in a single frame to limit peak memory usage.
