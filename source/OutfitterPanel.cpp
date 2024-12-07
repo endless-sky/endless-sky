@@ -169,7 +169,6 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &highlight = *GameData::Colors().Get("outfitter difference highlight");
-	// Highlight outfit differences only if several ships of the same model are selected:
 	bool highlightDifferences = false;
 
 	if(playerShip || isLicense || mapSize)
@@ -186,6 +185,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			string firstModelName;
 			for(const Ship *ship : playerShips)
 			{
+				// Highlight differences in installed outfit counts only when all selected ships are of the same model.
 				string modelName = ship->TrueModelName();
 				if(firstModelName.empty())
 					firstModelName = modelName;
