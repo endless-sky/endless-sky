@@ -1483,15 +1483,19 @@ void MapPanel::DrawMissions()
 		{
 			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 			bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-			DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+			DrawPointer(system, it.drawn, it.MaximumActive(), blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 		}
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
+			DrawPointer(waypoint, missionCount[waypoint].drawn, missionCount[waypoint].MaximumActive(), waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		{
+			const System *stopoverSystem = stopover->GetSystem();
+			auto &counts = missionCount[stopoverSystem];
+			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
+		}
 		for(const System *mark : mission.MarkedSystems())
-			DrawPointer(mark, missionCount[mark].drawn, waypointColor);
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
@@ -1499,16 +1503,18 @@ void MapPanel::DrawMissions()
 		const auto &system = it.first;
 		auto &&counters = it.second;
 		for(unsigned i = 0; i < counters.available; ++i)
-			DrawPointer(system, counters.drawn, availableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
-			DrawPointer(system, counters.drawn, unavailableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, unavailableColor);
 	}
 }
 
 
 
-void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger)
 {
+	if(systemCount >= max)
+		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
