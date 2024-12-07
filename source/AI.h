@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "engine/OrderSet.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -179,37 +180,7 @@ private:
 
 
 private:
-	class Orders {
-	public:
-		static const int HOLD_POSITION = 0x000;
-		// Hold active is the same command as hold position, but it is given when a ship
-		// actively needs to move back to the position it was holding.
-		static const int HOLD_ACTIVE = 0x001;
-		static const int MOVE_TO = 0x002;
-		// HARVEST is related to MINE and is for picking up flotsam after
-		// ATTACK.
-		static const int HARVEST = 0x003;
-		static const int KEEP_STATION = 0x100;
-		static const int GATHER = 0x101;
-		static const int ATTACK = 0x102;
-		static const int FINISH_OFF = 0x103;
-		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
-		// to chase and attack the asteroid.
-		static const int MINE = 0x104;
-		// Bit mask to figure out which orders are canceled if their target
-		// ceases to be targetable or present.
-		static const int REQUIRES_TARGET = 0x100;
-
-		int type = 0;
-		std::weak_ptr<Ship> target;
-		std::weak_ptr<Minable> targetAsteroid;
-		Point point;
-		const System *targetSystem = nullptr;
-	};
-
-
-private:
-	void IssueOrders(const Orders &newOrders, const std::string &description);
+	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
 
@@ -246,7 +217,7 @@ private:
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
-	std::map<const Ship *, Orders> orders;
+	std::map<const Ship *, OrderSet> orders;
 
 	// Records of what various AI ships and factions have done.
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
