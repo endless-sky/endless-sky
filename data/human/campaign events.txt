@@ -1512,11 +1512,11 @@ event "navy using mark ii ships"
 			"Rainmaker (Mark II)"
 		add variant 6
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 		add variant 3
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
@@ -1562,11 +1562,11 @@ event "navy using mark ii ships"
 			"Rainmaker (Mark II)"
 		add variant 6
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 		add variant 3
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4

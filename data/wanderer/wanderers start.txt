@@ -1176,6 +1176,10 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 
 
 ship "Carrier" "Carrier (Alpha)"
+	sprite "ship/modified carrier"
+	thumbnail "thumbnail/modified carrier"
+	add attributes
+		"weapon capacity" 120
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
@@ -1195,18 +1199,16 @@ ship "Carrier" "Carrier (Alpha)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun
-	gun
-	pylon "Hai Tracker Pod"
-	pylon "Hai Tracker Pod"
-	pylon "Hai Tracker Pod"
-	pylon "Hai Tracker Pod"
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
+	gun -17 -179 "Ion Cannon"
+	gun 17 -179 "Ion Cannon"
+	pylon -25 -168 "Hai Tracker Pod"
+	pylon 25 -168 "Hai Tracker Pod"
+	pylon -32.5 -163.5 "Hai Tracker Pod"
+	pylon 32.5 -163.5 "Hai Tracker Pod"
+	turret 0 -49 "Shield Disruptor Turret"
+	turret 0 14 "Husk-Slice Turret"
+	turret -22 22 "Shield Disruptor Turret"
+	turret 22 22 "Husk-Slice Turret"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"

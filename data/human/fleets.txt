@@ -1047,10 +1047,10 @@ fleet "Human Miners"
 		"Mining Drone" 2
 	variant
 		"Aerie (Miner)"
-		"Dagger" 2
+		"Dagger" 4
 	variant
 		"Aerie"
-		"Dagger (Miner)" 2
+		"Dagger (Miner)" 4
 	variant
 		"Behemoth (Miner)"
 
@@ -1388,11 +1388,11 @@ fleet "Large Republic"
 		"Rainmaker"
 	variant 2
 		"Carrier"
-		"Lance" 4
+		"Lance" 8
 		"Combat Drone" 6
 	variant 1
 		"Carrier"
-		"Lance" 4
+		"Lance" 8
 		"Combat Drone" 6
 		"Cruiser"
 		"Combat Drone" 4
@@ -1483,7 +1483,7 @@ fleet "Small Deep Merchants"
 		heroic
 	variant 4
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 	variant 6
 		"Mule"
 		"Dagger"
@@ -1517,17 +1517,17 @@ fleet "Large Deep Merchants"
 		heroic
 	variant 5
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Corvette"
 	variant 3
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Raven"
 	variant 3
 		"Headhunter" 2
 	variant 3
 		"Aerie" 2
-		"Dagger" 4
+		"Dagger" 8
 	variant 8
 		"Bactrian"
 		"Dagger" 3
@@ -1536,13 +1536,13 @@ fleet "Large Deep Merchants"
 		"Dagger" 3
 		"Raven"
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 	variant 2
 		"Bactrian"
 		"Dagger" 3
 		"Raven (Heavy)"
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 	variant 5
 		"Bactrian"
 		"Dagger" 3
@@ -1580,7 +1580,7 @@ fleet "Small Deep Security"
 		heroic
 	variant 4
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 	variant 3
 		"Raven"
 	variant 1
@@ -1610,27 +1610,27 @@ fleet "Large Deep Security"
 		heroic
 	variant 5
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Corvette"
 	variant 2
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Corvette (Missile)"
 	variant 2
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Corvette (Speedy)"
 	variant 3
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Raven"
 	variant 1
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Raven (Heavy)"
 	variant 1
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Raven (Afterburner)"
 	variant 4
 		"Raven" 2
@@ -1645,7 +1645,7 @@ fleet "Large Deep Security"
 		"Headhunter (Strike)"
 	variant 3
 		"Aerie" 2
-		"Dagger" 4
+		"Dagger" 8
 	variant 8
 		"Corvette"
 		"Raven"
@@ -1703,11 +1703,11 @@ fleet "Large Oathkeeper"
 		"Rainmaker"
 	variant 2
 		"Carrier"
-		"Lance" 4
+		"Lance" 8
 		"Combat Drone" 6
 	variant 1
 		"Carrier"
-		"Lance" 4
+		"Lance" 8
 		"Combat Drone" 6
 		"Cruiser"
 		"Combat Drone" 4
@@ -2406,10 +2406,10 @@ fleet "Small Northern Pirates"
 		"Sparrow"
 	variant 1
 		"Aerie"
-		"Lance" 2
+		"Lance" 4
 	variant 1
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 	variant 3
 		"Headhunter"
 	variant 2
@@ -2490,22 +2490,22 @@ fleet "Large Northern Pirates"
 		"Headhunter (Strike)"
 	variant 2
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Corvette"
 	variant 2
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 4
 		"Raven"
 	variant 4
 		"Aerie" 2
-		"Dagger" 4
+		"Dagger" 8
 	variant 4
 		"Aerie"
 		"Dagger" 2
 		"Corvette (Raider)"
 	variant 2
 		"Aerie" 2
-		"Dagger" 4
+		"Dagger" 8
 		"Firebird"
 	variant 4
 		"Mule"
@@ -2881,7 +2881,7 @@ fleet "Bounty Hunters"
 		"Fury (Missile)"
 	variant 1
 		"Aerie"
-		"Lance" 2
+		"Lance" 4
 	variant 1
 		"Corvette"
 		"Fury (Missile)"
@@ -3470,7 +3470,7 @@ fleet "Human Wormhole Guards"
 	variant 2
 		"Carrier (Mark II)"
 		"Combat Drone" 6
-		"Lance (Gatling)" 4
+		"Lance (Gatling)" 8
 	variant 1
 		"Auxiliary (Transport Mark II)"
 	variant 2

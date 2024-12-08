@@ -570,7 +570,7 @@ mission "Deep: Mystery Cubes 4"
 			variant
 				"Carrier"
 				"Combat Drone" 6
-				"Dagger" 4
+				"Dagger" 8
 	npc
 		government "Merchant"
 		personality staying vindictive
@@ -602,7 +602,7 @@ mission "Deep: Mystery Cubes 4"
 				names "deep fighter"
 			variant
 				"Aerie" 2
-				"Dagger" 4
+				"Dagger" 8
 				"Corvette (Speedy)"
 	npc
 		government "Republic"
@@ -616,7 +616,7 @@ mission "Deep: Mystery Cubes 4"
 				"Carrier"
 				"Cruiser" 2
 				"Combat Drone" 14
-				"Lance" 4
+				"Lance" 8
 				"Frigate" 2
 	npc evade
 		government "Pirate"
@@ -2210,7 +2210,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 				names "deep fighter"
 			variant
 				"Aerie"
-				"Dagger" 2
+				"Dagger" 4
 
 
 
