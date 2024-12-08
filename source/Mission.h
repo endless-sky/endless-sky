@@ -82,7 +82,7 @@ public:
 	// This is to be used for missions that are part of a series.
 	bool HasPriority() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
-	// offered if no other missions (minor or otherwise) are being offered.
+	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
@@ -204,6 +204,7 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+	bool isNonBlocking = false;
 	bool isMinor = false;
 	bool autosave = false;
 	bool overridesCapture = false;
