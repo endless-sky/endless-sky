@@ -57,6 +57,7 @@ ship "Aberrant Latte"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 29
 
 	gun -12 -31 "Ka'het Ravager Beam"
 	gun 12 -31 "Ka'het Ravager Beam"
@@ -126,6 +127,7 @@ ship "Aberrant Chomper"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 30
 
 	gun -13.5 -36.5 "Ka'het Ravager Beam"
 	gun 13.5 -36.5 "Ka'het Ravager Beam"
@@ -199,6 +201,7 @@ ship "Aberrant Pileup"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 35
 
 	gun -11 -40.5
 	gun 11 -40.5
@@ -267,6 +270,7 @@ ship "Aberrant Hugger"
 
 		"Ka'het Compact Engine" 3
 		"Hyperdrive"
+		"Anomalous Mass" 24
 
 	gun -16.5 -8.5 "Ka'het Ravager Beam"
 	gun 16.5 -8.5 "Ka'het Ravager Beam"
@@ -337,6 +341,7 @@ ship "Aberrant Longfellow"
 
 		"Ka'het Compact Engine" 5
 		"Hyperdrive"
+		"Anomalous Mass" 30
 
 	gun -14.5 -63.5 "Ka'het Ravager Beam"
 	gun 14.5 -63.5 "Ka'het Ravager Beam"
@@ -414,6 +419,7 @@ ship "Aberrant Dancer"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 47
 
 	gun -34.5 -58
 	gun 34.5 -58
@@ -487,6 +493,7 @@ ship "Aberrant Junior"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 32
 
 	gun -9.5 -27.5 "Ka'het Ravager Beam"
 	gun 9.5 -27.5 "Ka'het Ravager Beam"
@@ -556,9 +563,11 @@ ship "Aberrant Icebreaker"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
 		"Anomalous Shield Restorer"
+		"Anomalous Mass" 22
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 35
 
 	gun -10.5 -42.5 "Ka'het Ravager Beam"
 	gun 10.5 -42.5 "Ka'het Ravager Beam"
@@ -630,6 +639,7 @@ ship "Aberrant Pike"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 40
 
 	gun -9.5 -39 "Ka'het Ravager Beam"
 	gun 9.5 -39 "Ka'het Ravager Beam"
@@ -701,6 +711,7 @@ ship "Aberrant Mole"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 32
 
 	gun -3.5 -35.5 "Ka'het Ravager Beam"
 	gun 3.5 -35.5 "Ka'het Ravager Beam"
@@ -773,6 +784,7 @@ ship "Aberrant Whiskers"
 
 		"Ka'het Compact Engine" 3
 		"Hyperdrive"
+		"Anomalous Mass" 33
 
 	gun -9 -46.5 "Ka'het Ravager Beam"
 	gun 9 -46.5 "Ka'het Ravager Beam"
@@ -842,6 +854,7 @@ ship "Aberrant Trip"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 44
 
 	gun -2 -37 "Nucleolysis Beam"
 	gun 16 -37 "Nucleolysis Beam"
@@ -885,7 +898,7 @@ ship "Aberrant Triplet"
 		"hull" 33800
 		"required crew" 1
 		"bunks" 1
-		"mass" 444
+		"mass" 666
 		"drag" 6.7
 		"heat dissipation" .65
 		"fuel capacity" 900
@@ -920,6 +933,7 @@ ship "Aberrant Triplet"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
+		"Anomalous Mass" 67
 
 	gun -8.5 -42 "Nucleolysis Beam"
 	gun 8.5 -42 "Nucleolysis Beam"

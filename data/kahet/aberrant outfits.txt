@@ -169,7 +169,13 @@ outfit "Anomalous Mass"
 	plural "Anomalous Masses"
 	category "Special"
 	cost 900000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/anomalous mass"
+	"flotsam sprite" "effect/anomalous mass flotsam"
 	"flotsam chance" 0.5
+	"mass" 2.72
+	"outfit space" -1
+	"heat generation" 0.07
+	"drag" 0.02
+	"inertia reduction" 0.001
 	"unplunderable" 1
-	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, and resists any attempts to probe its makeup."
+	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of fleshy yet crystalline material is characterized by the very difficulty of classifying it. Webs of anomalous material embedded in the mass seems not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This are thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."

@@ -117,7 +117,7 @@ outfit "Heatsink Partition"
 	index 50
 	category "Systems"
 	cost 84000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heatsink partition"
 	"mass" 9
 	"outfit space" -3
 	"fuel capacity" -100
