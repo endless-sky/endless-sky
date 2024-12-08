@@ -808,6 +808,15 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
+// Get the map icon of the given stellar object sprite.
+const Sprite *GameData::StarIcon(const Sprite *sprite)
+{
+	const auto it = objects.starIcons.find(sprite);
+	return (it == objects.starIcons.end() ? nullptr : it->second);
+}
+
+
+
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
