@@ -374,6 +374,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
+		if(isNonBlocking)
+			out.Write("non-blocking");
 		if(isMinor)
 			out.Write("minor");
 		if(autosave)
