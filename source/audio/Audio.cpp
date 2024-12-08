@@ -206,9 +206,6 @@ void Audio::CheckReferences()
 // Report the progress of loading sounds.
 double Audio::GetProgress()
 {
-	if(!queuedAllSounds)
-		return 0.;
-
 	unique_lock<mutex> lock(audioMutex);
 
 	if(loadQueue.empty())
