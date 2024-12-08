@@ -538,7 +538,7 @@ ship "Aberrant Icebreaker"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 290
+		"outfit space" 293
 		"weapon capacity" 103
 		"engine capacity" 73
 		"energy capacity" 15000
