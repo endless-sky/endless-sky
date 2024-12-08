@@ -166,7 +166,6 @@ void Audio::Init(const vector<string> &sources)
 			}
 		}
 	}
-	queuedAllSounds = true;
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
