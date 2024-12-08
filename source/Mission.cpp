@@ -206,6 +206,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "non-blocking")
+			isNonBlocking = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
 		else if(child.Token(0) == "autosave")
