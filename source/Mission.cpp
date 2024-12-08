@@ -589,6 +589,15 @@ bool Mission::HasPriority() const
 
 
 
+// Check if this mission is a "non-blocking" mission.
+// Such missions will not prevent minor missions from being offered alongside them.
+bool Mission::IsNonBlocking() const
+{
+	return isNonBlocking;
+}
+
+
+
 // Check if this mission is a "minor" mission. Minor missions will only be
 // offered if no other missions (minor or otherwise) are being offered.
 bool Mission::IsMinor() const
