@@ -4167,3 +4167,279 @@ mission "Republic Navy Advisory System [wildfire firefighters]"
 	on complete
 		payment 9000 85
 		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."
+
+mission "Mineral Shortages (Silicon)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 7
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Silicon"
+		"<amount>" "120"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 120
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 55200
+		outfit "Silicon" -120
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Lead)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 7
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Lead"
+		"<amount>" "120"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 120
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 124200
+		outfit "Lead" -120
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Iron)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 7
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Iron"
+		"<amount>" "120"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 120
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 165600
+		outfit "Iron" -120
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Aluminum)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 7
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Aluminum"
+		"<amount>" "90"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 186300
+		outfit "Aluminum" -90
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Titanium)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 7
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Titanium"
+		"<amount>" "90"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 258750
+		outfit "Titanium" -90
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Copper)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 7
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Copper"
+		"<amount>" "90"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 310500
+		outfit "Copper" -90
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Neodymium)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 14
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Neodymium"
+		"<amount>" "60"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 262200
+		outfit "Neodymium" -60
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Tungsten)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 14
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Tungsten"
+		"<amount>" "60"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 310500
+		outfit "Tungsten" -60
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Uranium)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 14
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Uranium"
+		"<amount>" "60"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 345000
+		outfit "Uranium" -60
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Silver)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 28
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Silver"
+		"<amount>" "30"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 207000
+		outfit "Silver" -30
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Gold)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 28
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Gold"
+		"<amount>" "30"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 276000
+		outfit "Gold" -30
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Platinum)"
+	name "Mineral shortages on <planet>"
+	job
+	repeat
+	deadline 28
+	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Platinum"
+		"<amount>" "30"
+	to offer
+		random < 5
+	to accept
+		"cargo space" >= 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 345000
+		outfit "Platinum" -30
+		dialog phrase "generic mineral delivery payment"
