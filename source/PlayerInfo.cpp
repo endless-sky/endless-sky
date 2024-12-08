@@ -4009,6 +4009,7 @@ void PlayerInfo::CreateMissions()
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
+	int nonBlockingMissions = 0;
 	for(const auto &it : GameData::Missions())
 	{
 		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
@@ -4025,7 +4026,10 @@ void PlayerInfo::CreateMissions()
 			if(missions.back().IsFailed(*this))
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
+			{
 				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
 		}
 	}
 
