@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# Initial, new, post-war, news items that appear to lay the groundwork for Hai Reveal.
 news "alien paranoia: generic citizen"
 	to show
 		has "main plot completed"
@@ -487,8 +488,7 @@ phrase "My (person in my life) must be"
 		" must be"
 		" could be"
 
-# A person who provides you a service, is a major part of your life,
-# or lives near you. Must not be a genetic relative.
+# A person who provides you a service, is a major part of your life, or lives near you. Must not be a genetic relative.
 phrase "person you could suspect to be aliens"
 	word
 		"landlord"
@@ -518,6 +518,7 @@ phrase "person you could suspect to be aliens"
 
 
 
+# Responses to the starting events of Hai Reveal.
 news "Hai video: human response"
 	to show
 		has "hr: secret leaks"
@@ -549,7 +550,7 @@ news "Hai video: human response"
 			`"`
 
 
-
+# Responses to the cover up story in Hai Reveal.
 news "Hai roleplay station: human response"
 	to show
 		has "event: news: hai video clip debunked"
@@ -577,7 +578,7 @@ news "Hai roleplay station: human response"
 			`"`
 
 
-
+# Post-crisis news items after the functional completion of Hai Reveal.
 news "Hai news: generic citizen"
 	to show
 		has "Hai Reveal [D01] Cleanup: done"
