@@ -36,13 +36,13 @@ namespace {
 
 
 
-bool Sound::Load(const string &path, const string &name)
+bool Sound::Load(const filesystem::path &path, const string &name)
 {
-	if(path.length() < 5 || path.compare(path.length() - 4, 4, ".wav"))
+	if(path.extension() != ".wav")
 		return false;
 	this->name = name;
 
-	isLooped = path[path.length() - 5] == '~';
+	isLooped = path.stem().string().ends_with('~');
 
 	File in(path);
 	if(!in)

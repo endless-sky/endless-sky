@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Set.h"
 
+#include <filesystem>
 #include <set>
 #include <string>
 
@@ -48,7 +49,7 @@ struct Plugin {
 	// The name that identifies this plugin.
 	std::string name;
 	// The path to the plugin's folder.
-	std::string path;
+	std::filesystem::path path;
 	// The about text, if any, of this plugin.
 	std::string aboutText;
 	// The version of the plugin as defined by the authors.
@@ -75,13 +76,13 @@ struct Plugin {
 class Plugins {
 public:
 	// Attempt to load a plugin at the given path.
-	static const Plugin *Load(const std::string &path);
+	static const Plugin *Load(const std::filesystem::path &path);
 
 	static void LoadSettings();
 	static void Save();
 
 	// Whether the path points to a valid plugin.
-	static bool IsPlugin(const std::string &path);
+	static bool IsPlugin(const std::filesystem::path &path);
 	// Returns true if any plugin enabled or disabled setting has changed since
 	// launched via user preferences.
 	static bool HasChanged();

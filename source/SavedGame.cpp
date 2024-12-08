@@ -25,14 +25,14 @@ using namespace std;
 
 
 
-SavedGame::SavedGame(const string &path)
+SavedGame::SavedGame(const filesystem::path &path)
 {
 	Load(path);
 }
 
 
 
-void SavedGame::Load(const string &path)
+void SavedGame::Load(const filesystem::path &path)
 {
 	Clear();
 	DataFile file(path);
@@ -80,7 +80,7 @@ void SavedGame::Load(const string &path)
 
 
 
-const string &SavedGame::Path() const
+const filesystem::path &SavedGame::Path() const
 {
 	return path;
 }
