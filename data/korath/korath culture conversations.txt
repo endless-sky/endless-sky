@@ -15,7 +15,9 @@ mission "Korath Far'en Lai Prayer"
 	minor
 	invisible
 	to offer
-		random < 5
+		day >= 13
+		day < 18
+		random < 35
 	source
 		attributes efret
 		not attributes station
