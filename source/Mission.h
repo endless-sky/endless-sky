@@ -67,6 +67,9 @@ public:
 	// Add "never" to the toOffer ConditionSet, preventing this mission from offering.
 	void NeverOffer();
 
+	// Sort order should respect the order field before the name.
+	const bool operator<(const Mission &other) const { return SortHelper(*this, other); }
+
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
@@ -204,7 +207,13 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+
 	bool isMinor = false;
+	// For overriding the default alphabetical ordering of missions when determining the order in which missions offer.
+	// Higher values result in higher offer priority. Values may be negative.
+	// Minor missions offer in terms of lowest precedence.
+	int precedence = 0;
+
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;
@@ -269,4 +278,7 @@ private:
 	std::list<MissionAction> genericOnEnter;
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
+
+	// Comparison by `precedence` field descending and then alphabetically by identifier.
+	static const bool SortHelper(const Mission &a, const Mission &b);
 };
