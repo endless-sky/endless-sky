@@ -178,4 +178,4 @@ outfit "Anomalous Mass"
 	"drag" 0.02
 	"inertia reduction" 0.001
 	"unplunderable" 1
-	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of fleshy yet crystalline material is characterized by the very difficulty of classifying it. Webs of anomalous material embedded in the mass seems not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This are thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."
+	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of fleshy yet crystalline material is characterized by the very difficulty of classifying it. Webs of anomalous material embedded in the mass seem not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This is thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."
