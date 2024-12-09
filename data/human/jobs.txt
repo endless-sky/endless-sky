@@ -4179,6 +4179,7 @@ mission "Mineral Shortages (Silicon)"
 		"<amount>" "120"
 	to offer
 		random < 5
+		"outfit (all): Silicon" < 30
 	to accept
 		"cargo space" >= 120
 	source
@@ -4202,6 +4203,7 @@ mission "Mineral Shortages (Lead)"
 		"<amount>" "120"
 	to offer
 		random < 5
+		"outfit (all): Lead" < 30
 	to accept
 		"cargo space" >= 120
 	source
@@ -4225,6 +4227,7 @@ mission "Mineral Shortages (Iron)"
 		"<amount>" "120"
 	to offer
 		random < 5
+		"outfit (all): Iron" < 30
 	to accept
 		"cargo space" >= 120
 	source
@@ -4248,6 +4251,7 @@ mission "Mineral Shortages (Aluminum)"
 		"<amount>" "90"
 	to offer
 		random < 5
+		"outfit (all): Aluminum" < 20
 	to accept
 		"cargo space" >= 90
 	source
@@ -4271,6 +4275,7 @@ mission "Mineral Shortages (Titanium)"
 		"<amount>" "90"
 	to offer
 		random < 5
+		"outfit (all): Titanium" < 20
 	to accept
 		"cargo space" >= 90
 	source
@@ -4294,6 +4299,7 @@ mission "Mineral Shortages (Copper)"
 		"<amount>" "90"
 	to offer
 		random < 5
+		"outfit (all): Copper" < 20
 	to accept
 		"cargo space" >= 90
 	source
@@ -4317,6 +4323,7 @@ mission "Mineral Shortages (Neodymium)"
 		"<amount>" "60"
 	to offer
 		random < 5
+		"outfit (all): Neodymium" < 10
 	to accept
 		"cargo space" >= 60
 	source
@@ -4340,6 +4347,7 @@ mission "Mineral Shortages (Tungsten)"
 		"<amount>" "60"
 	to offer
 		random < 5
+		"outfit (all): Tungsten" < 10
 	to accept
 		"cargo space" >= 60
 	source
@@ -4363,6 +4371,7 @@ mission "Mineral Shortages (Uranium)"
 		"<amount>" "60"
 	to offer
 		random < 5
+		"outfit (all): Uranium" < 10
 	to accept
 		"cargo space" >= 60
 	source
@@ -4386,6 +4395,7 @@ mission "Mineral Shortages (Silver)"
 		"<amount>" "30"
 	to offer
 		random < 5
+		"outfit (all): Silver" < 5
 	to accept
 		"cargo space" >= 30
 	source
@@ -4409,6 +4419,7 @@ mission "Mineral Shortages (Gold)"
 		"<amount>" "30"
 	to offer
 		random < 5
+		"outfit (all): Gold" < 5
 	to accept
 		"cargo space" >= 30
 	source
@@ -4432,6 +4443,7 @@ mission "Mineral Shortages (Platinum)"
 		"<amount>" "30"
 	to offer
 		random < 5
+		"outfit (all): Platinum" < 5
 	to accept
 		"cargo space" >= 30
 	source
