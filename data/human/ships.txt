@@ -74,7 +74,7 @@ ship "Aerie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "The Lionheart Aerie is a light carrier, designed to be just big enough for two fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
+	description "The Lionheart Aerie is a light carrier, designed to be just big enough for four fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
 
 
 
