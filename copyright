@@ -2694,6 +2694,7 @@ Files:
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
+ images/ship/modified?carrier*
  images/ship/rainmaker*
  images/ship/raven*
  images/ship/splinter*
@@ -2707,6 +2708,7 @@ Files:
  images/thumbnail/frigate*
  images/thumbnail/gunboat*
  images/thumbnail/lance*
+ images/thumbnail/modified?carrier*
  images/thumbnail/rainmaker*
  images/thumbnail/raven*
  images/thumbnail/splinter*

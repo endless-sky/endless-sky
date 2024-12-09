@@ -2285,7 +2285,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3
@@ -2300,7 +2300,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3
