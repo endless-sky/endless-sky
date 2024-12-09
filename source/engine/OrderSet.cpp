@@ -165,6 +165,12 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 	}
 	if(targetAsteroidInvalid)
 		types &= ~HAS_TARGET_ASTEROID;
+	
+	// Reset targets that are no longer needed.
+	if((types & (HAS_TARGET_SHIP | HAS_TARGET_SHIP_OR_ASTEROID)).none())
+		targetShip.reset();
+	if((types & (HAS_TARGET_ASTEROID | HAS_TARGET_SHIP_OR_ASTEROID)).none())
+		targetAsteroid.reset();
 }
 
 
