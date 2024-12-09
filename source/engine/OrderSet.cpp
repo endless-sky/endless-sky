@@ -42,15 +42,23 @@ namespace {
 
 	// Orders not included in the bitset should be removed when the given order is issued.
 	constexpr array<bitset<Orders::TYPES_COUNT>, Orders::TYPES_COUNT> SIMULTANEOUS{{
-		{}, // HOLD_POSITION
-		{}, // HOLD_ACTIVE
-		{}, // MOVE_TO
-		{}, // KEEP_STATION
-		{}, // GATHER
+		{(1 << Orders::HOLD_FIRE)}, // HOLD_POSITION
+		{(1 << Orders::HOLD_FIRE)}, // HOLD_ACTIVE
+		{(1 << Orders::HOLD_FIRE)}, // MOVE_TO
+		{(1 << Orders::HOLD_FIRE)}, // KEEP_STATION
+		{(1 << Orders::HOLD_FIRE)}, // GATHER
 		{}, // ATTACK
 		{}, // FINISH_OFF
+		{
+			(1 << Orders::HOLD_POSITION) +
+			(1 << Orders::HOLD_ACTIVE) +
+			(1 << Orders::MOVE_TO) +
+			(1 << Orders::KEEP_STATION) +
+			(1 << Orders::GATHER) +
+			(1 << Orders::HARVEST)
+		}, // HOLD_FIRE
 		{}, // MINE
-		{}, // HARVEST
+		{(1 << Orders::HOLD_FIRE)}, // HARVEST
 	}};
 }
 
@@ -165,6 +173,12 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 	}
 	if(targetAsteroidInvalid)
 		types &= ~HAS_TARGET_ASTEROID;
+	
+	// Reset targets that are no longer needed.
+	if((types & (HAS_TARGET_SHIP | HAS_TARGET_SHIP_OR_ASTEROID)).none())
+		targetShip.reset();
+	if((types & (HAS_TARGET_ASTEROID | HAS_TARGET_SHIP_OR_ASTEROID)).none())
+		targetAsteroid.reset();
 }
 
 

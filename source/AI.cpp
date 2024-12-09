@@ -554,7 +554,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
-	if(activeCommands.Has(Command::HOLD) && !shift)
+	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
+	{
+		OrderSingle newOrder{Orders::HOLD_FIRE};
+		IssueOrder(newOrder, "holding fire.");
+	}
+	if(activeCommands.Has(Command::HOLD_POSITION) && !shift)
 	{
 		OrderSingle newOrder{Orders::HOLD_POSITION};
 		IssueOrder(newOrder, "holding position.");
@@ -1426,8 +1431,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.Has(Orders::ATTACK) || it->second.Has(Orders::FINISH_OFF)))
-			return it->second.GetTargetShip();
+		if(it != orders.end())
+		{
+			if(it->second.Has(Orders::ATTACK) || it->second.Has(Orders::FINISH_OFF))
+				return it->second.GetTargetShip();
+			if(it->second.Has(Orders::HOLD_FIRE))
+				return target;
+		}
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -3749,10 +3759,15 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.GetTargetShip() == currentTarget)
+		if(it != orders.end())
 		{
-			disabledOverride = it->second.Has(Orders::FINISH_OFF);
-			friendlyOverride = disabledOverride || it->second.Has(Orders::ATTACK);
+			if(it->second.Has(Orders::HOLD_FIRE))
+				return;
+			if(it->second.GetTargetShip() == currentTarget)
+			{
+				disabledOverride = it->second.Has(Orders::FINISH_OFF);
+				friendlyOverride = disabledOverride || it->second.Has(Orders::ATTACK);
+			}
 		}
 	}
 	bool currentIsEnemy = currentTarget
