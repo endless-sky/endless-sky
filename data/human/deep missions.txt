@@ -5063,7 +5063,6 @@ mission "Hroar's Haulers 12"
 mission "Hroar's Haulers 13"
 	name "The Long Haul"
 	source "Earth"
-	destination 
 	to offer
 		has "Hroar's Haulers 11: active"
 	on offer
@@ -5178,7 +5177,7 @@ mission "Hroar's Haulers 15"
 					goto shake
 				`	(Don't shake his hand.)`
 			`	He shrugs and takes another shot. Right next to him four unstable Haulers have launched into an impromptu drinking song. A tipsy Solvi Unferth joins them.`
-				goto gunhilda	
+				goto gunhilda
 
 			label shake
 			`	He gives you a few firm shakes before he goes back to drinking. Right next to him four unstable Haulers have launched into an impromptu drinking song. A tispy Solvi Unferth joins them.`
@@ -5240,7 +5239,7 @@ mission "Hroar's Haulers 15"
 				`	(Comply.)`
 					goto comply
 				`	(Fight them.)`
-			` 	Despite your best efforts you're quickly overwhelemed. Unfortunately, they don't stop once you are subdued. Red blood trickles into your eyes, and you hear your skull crack beneath repeated baton strikes. Then you hear nothing at all.`
+			`	Despite your best efforts you're quickly overwhelmed. Unfortunately, they don't stop once you are subdued. Red blood trickles into your eyes, and you hear your skull crack beneath repeated baton strikes. Then you hear nothing at all.`
 				die
 
 			label helpgun
@@ -5273,7 +5272,7 @@ mission "Hroar's Haulers 15"
 				set "resist"
 			`	The Syndicate Enforcer above you laughs and presses her foot down harder on your torso; pinning you to the floor, "Not much of a thinker, are we?"`
 			`	One of the other Enforcers kicks you a few times until they see the fight go out of you, and then they cuff you and drag you away.`
-					goto arrested
+				goto arrested
 
 			label comply
 			`	The Syndicate Enforcers seem almost disappointed that you didn't put up more of fight. They briskly pull you and Gunhilda to your feet, where they cuff both of you and haul you away.`
@@ -5714,7 +5713,7 @@ mission "Hroar's Haulers 15"
 			`	"Yes." Leland says through clenched teeth, "The Transport Union, or blue caps, as you call them, broke their contract with us and we were forced to make a deal with the... Haulers."`
 			`	"Don't act like you're doing anyone a favor." Yngvar says, "You're still making credits hand over fist."`
 			`	Leland nods slowly, "True, but we would much prefer to work with a more professional outfit." He points behind him at the locked up Haulers. "Case in point."`
-			` 	"Finally." Yngvar says, "Enough of this ramblin', lets talk about those fine folk you got hog-tied behind these doors."`
+			`	"Finally," Yngvar says. "Enough of this ramblin', let's talk about those fine folk you got hog-tied behind these doors."`
 				goto prisonchat
 			label brasstax
 			`	Leland nods, "Very well, Captain <last>.`
@@ -5816,8 +5815,8 @@ mission "Hroar's Haulers 15"
 			`	Yngvar glares at you, "Kid, I won't dress you down in front of company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done here."`
 			`	The old spacer turns and leaves.`
 			`	Leland claps and the holding doors open up behind.`
-			`	"An absolute pleasure doing business with you, Captain <last>." He practically purrs.`
-				accept 
+			`	"An absolute pleasure doing business with you, Captain <last>," he practically purrs.`
+				accept
 
 			label nodeal
 			action
@@ -5867,8 +5866,8 @@ fleet "The Lost"
 	
 	on complete
 		conversation
-			` Yngvar paces unhappily. "The Iron Siren is filling her holds with old culture; archaeology and the like, we'll get a right decent price for it in the Deep. But, it won't make us whole, not even close. And Captain Bolverka - she's good people. No, none of this sits right with me."`
-			` Finally Yngvar sits down. "I'll keep an ear out for the wherabouts of our people and our cargo, but it's now more important than ever we have a good Haul. Our next stop is Chiron."`
+			`	Yngvar paces unhappily. "The Iron Siren is filling her holds with old culture; archaeology and the like, we'll get a right decent price for it in the Deep. But, it won't make us whole, not even close. And Captain Bolverka - she's good people. No, none of this sits right with me."`
+			`	Finally Yngvar sits down. "I'll keep an ear out for the wherabouts of our people and our cargo, but it's now more important than ever we have a good Haul. Our next stop is Chiron."`
 
 
 			label greenoptions
