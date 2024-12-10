@@ -3164,7 +3164,7 @@ mission "Home for Skadenga 1"
 	on complete
 		event "nifel waiting" 15
 		conversation
-			`	Upon landing, you get a recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
+			`Upon landing, you get a recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
 			`	The message abruptly ends.`
 
 
@@ -3383,7 +3383,7 @@ mission "Home for Skadenga 4"
 				accept
 	on complete
 		conversation
-			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
+			`Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
 			scene "scene/tower"
 			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients.`
 			`	"We've heard that you have this inspiring idea to transport an entire backwater community from one world to another," Kaiden says.`
@@ -4260,12 +4260,9 @@ mission "Hroar's Haulers: Deal 2"
 			`	You're familar with the booth, as you walk back to where handlebar-whiskered Hroar is seated.`
 			`	"Got my message, didja?" He smiles broadly and gestures toward the empty seat in front of him.`
 			`	He pours himself another glass of whiskey from his resident bottle as you slide into the booth.`
-			`
-"Glad to see you've kept your word." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
-			`
-He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position like that filled. Hard to find a Captain who can fill it."`
-			`
-A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. That's the favor I am calling in. I need you to be my 'Specialty-Courier'."`
+			`	"Glad to see you've kept your word." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
+			`	He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position like that filled. Hard to find a Captain who can fill it."`
+			`	A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. That's the favor I am calling in. I need you to be my 'Specialty-Courier'."`
 			choice
 				`	"A deal's a deal. I'll do it."`
 					goto yes
@@ -4274,7 +4271,7 @@ A sly grin spreads across his face, "But you, you're the kind a Captain this job
 				`	"No, thanks."`
 					goto out
 			label pay
-			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
+			`	Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
 			`	"Not bad for a favor, eh?"`
 			choice
 				`	"Okay. I'll do it."`
@@ -4285,7 +4282,7 @@ A sly grin spreads across his face, "But you, you're the kind a Captain this job
 			`	Hroar spits on the floor. "Now, get the Hel out of my booth, out of this saloon, and off this world before I do something you'll regret."`
 				decline
 			label yes
-			`   "Clocked you for a person of their word. Glad, I was right, and happy to have you as the newest member of Hardy Hroar's Haulers." He lifts up his glass and nods to you.`
+			`	"Clocked you for a person of their word. Glad, I was right, and happy to have you as the newest member of Hardy Hroar's Haulers." He lifts up his glass and nods to you.`
 			`	"Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
 				accept
 	on complete
@@ -4339,8 +4336,8 @@ mission "Hroar's Haulers: No Deal"
 				`	"No, thanks."`
 					goto out
 			label pay
-			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
-			`   "So, what'dya say? You in?"`
+			`	Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
+			`	"So, what'dya say? You in?"`
 			choice
 				`	"Yep. Sign me up."`
 					goto yes
@@ -4380,7 +4377,7 @@ mission "Hroar's Haulers: Transit Edition"
 				`	"I'm here about the courier job."`
 					goto job
 				`	"Who says I'm not a local?"`
-			`   The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
+			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
 			`	"Now, either you got business, or you don't. So what are ya here for?" the bartender says with an angry glare.`
 			choice
 				`	"I'm here about the courier job."`
@@ -4393,7 +4390,7 @@ mission "Hroar's Haulers: Transit Edition"
 			`	You walk to the back of the saloon and find an older man with a long grey handlebar mustache seated with his back against the wall, an opaque shot glass in his hand, and a bottle of whiskey on his otherwise empty table.`
 			`	"I heard you did some work with the Transport Union." He smiles broadly and gestures toward the empty seat in front of him.`
 			`	He pours himself a glass of whiskey from his resident bottle as you slide into the booth. "Just so you know, me and them don't see eye to eye. I won't hold it against you though.`
-			`   "Bygones being bygones and all, s'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
+			`	"Bygones being bygones and all, s'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
 			`	He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position filled like that. Hard to find a Captain who can fill it."`
 			`	A sly grin spreads across his face. "But you, you're the kind a Captain this job calls for. Independent, resourceful, and all that. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
 			choice
@@ -4404,7 +4401,7 @@ mission "Hroar's Haulers: Transit Edition"
 				`	"No, thanks."`
 					goto out
 			label pay
-			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
+			`	Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
 			`	"So, what'dya say? You in?"`
 			choice
 				`	"Yep. Sign me up."`
@@ -4446,7 +4443,7 @@ mission "Hroar's Haulers 1"
 				`	"Why do you ask?"`
 					goto why
 				`	"None of your business."`
-			`   He holds up his hands. "Sorry. Didn't mean to pry. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
+			`	He holds up his hands. "Sorry. Didn't mean to pry. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
 					goto bye
 			label yep
 			`	He grins. "I can always tell. This is generally one of the first assignments they send new Haulers on. Here, or Fenrir, not that it matters which, since they head to the other once they are done here. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
@@ -4473,21 +4470,21 @@ mission "Hroar's Haulers 2"
 	on offer
 		conversation
 			`Hroar is in his usual booth in the back of the Red Rock Saloon, and nods to you as you join him.`
-			`   "See." He smiles. "Easy. Now, I am going to need you to head to <destination>, and bring back 120 tons of Helium-3."`
+			`	"See." He smiles. "Easy. Now, I am going to need you to head to <destination>, and bring back 120 tons of Helium-3."`
 			choice
-				`   "Got it, boss."`
+				`	"Got it, boss."`
 					goto ready
-				`   "Fine."`
+				`	"Fine."`
 					goto ready
-				`   "When exactly do I get paid?"`
-			`   Hroar raises a bushy eyebrow. "Paid? You'll get paid when you finish the job. Right now, all you're doing is just gathering the materials for the job. Enough questions, you got work to do."`
+				`	"When exactly do I get paid?"`
+			`	Hroar raises a bushy eyebrow. "Paid? You'll get paid when you finish the job. Right now, all you're doing is just gathering the materials for the job. Enough questions, you got work to do."`
 			label ready
-			`   Hroar points at the exit. "Well, then. Get to it."`
-			`   You walk out of the saloon and back into the spaceport at large. Each footfall leaving a small puff of red dust in your wake.`
+			`	Hroar points at the exit. "Well, then. Get to it."`
+			`	You walk out of the saloon and back into the spaceport at large, each footfall leaving a small puff of red dust in your wake.`
 				accept
 	on complete
 		dialog
-			`   The state of the art station's docking clamps easily slide into place, and make your ship a temporary extenstion of the large rotating habitat ring. The dockmaster lets you know that your Hauler contact is waiting for you in the spaceport.`
+			`The state of the art station's docking clamps easily slide into place, and make your ship a temporary extention of the large rotating habitat ring. The dockmaster lets you know that your Hauler contact is waiting for you in the spaceport.`
 
 
 
@@ -4500,40 +4497,40 @@ mission "Hroar's Haulers 3"
 	destination "Muspel"
 	on offer
 		conversation
-			`   It's rare to see a station so new and clean looking in human space. Most stations have had generations living within their narrow walls, and that kind of useage leaves a mark that can't be scrubbed away. You pass many young bright-eyed workers as you make your way through the immaculate corrdiors to the spaceport.`
-			`   The commodity liaison is waiting for you near the entrance, snacking on a mass-produced nutrient tube, he waves you down, and you join him.`
-			`   "Ah, another greenie, I see." The man who can't be more than twenty smiles at you, unaware that there is nutrient paste smeered on his upper lip.`
+			`It's rare to see a station so new and clean looking in human space. Most stations have had generations living within their narrow walls, and that kind of useage leaves a mark that can't be scrubbed away. You pass many young bright-eyed workers as you make your way through the immaculate corrdiors to the spaceport.`
+			`	The commodity liaison is waiting for you near the entrance, snacking on a mass-produced nutrient tube, he waves you down, and you join him.`
+			`	"Ah, another greenie, I see." The man, who can't be more than twenty, smiles at you, unaware that there is nutrient paste smeared on his upper lip.`
 			choice
-				`   "Let's get this over with."`
+				`	"Let's get this over with."`
 					goto overwith
-				`   "Talk about the pot calling the kettle black."`
-			`   The liaison's brows bunch together with obvious confusion. "What's a kettle?" He asks.`
+				`	"Talk about the pot calling the kettle black."`
+			`	The liaison's brows bunch together with obvious confusion. "What's a kettle?" he asks.`
 			choice
-				`   "Nevermind."`
+				`	"Never mind."`
 					goto overwith
-				`   "You're calling me green, when you look like someone's lost kid!"`
-			`   He frowns, the confusion deepending, "Wait, someone lost a kid? On Fenrir? Why would someone bring a kid here?"`
+				`	"You're calling me green, when you look like someone's lost kid!"`
+			`	He frowns, the confusion deepending, "Wait, someone lost a kid? On Fenrir? Why would someone bring a kid here?"`
 			choice
-				`   "No, nevermind. Forget I said anything."`
+				`	"No, nevermind. Forget I said anything."`
 					goto overwith
-				`   "What I am trying to say is that it is ridiculous for you, with green nutrient-goo smeered all over your teenage baby-face, to be calling me, a veteran space Captain, a greenie."`
-			`   He nods slowly. "Ooooh. Okay, yeah, that makes sense, but, listen." He smiles at you pityingly. "I appreciate the compliment, but you're just not my type. And, as a word of advice, you should probably work on your pick-up lines."`
+				`	"What I am trying to say is that it is ridiculous for you, with green nutrient-goo smeered all over your teenage baby-face, to be calling me, a veteran space Captain, a greenie."`
+			`	He nods slowly. "Ooooh. Okay, yeah, that makes sense, but, listen." He smiles at you pityingly. "I appreciate the compliment, but you're just not my type. And, as a word of advice, you should probably work on your pick-up lines."`
 			choice
-				`   "Sure. Whatever. Let's just get this over with."`
+				`	"Sure. Whatever. Let's just get this over with."`
 					goto overwith
-				`   "What?! I was not trying to hit on you! I was trying to say how inexperienced you look."`
-			`   "Hey, hey, hey, it's alright. No need to get defensive. I'm not saying I could never be attracted to you. In a certain light, in a different place, and time. Maybe if you spruced yourself up a bit. Ya know, put some effort into keeping up with trends. I think you could be a solid 6."`
-			`   "But, listen, it's okay. Just because I am not buying, doesn't mean someone else isn't. There's lots of other comets in the oort-cloud, and some are weird enough to even be into whatever this..." He sort of indicates all of you. "...is. It's just not me." `
-			`   He checks his tablet, "Anyways, I really think we should just talk about business. I am on a tight schedule, as flattering, and confusing, as this chat has been."`
+				`	"What?! I was not trying to hit on you! I was trying to say how inexperienced you look."`
+			`	"Hey, hey, hey, it's alright. No need to get defensive. I'm not saying I could never be attracted to you. In a certain light, in a different place, and time. Maybe if you spruced yourself up a bit. Ya know, put some effort into keeping up with trends. I think you could be a solid 6."`
+			`	"But, listen, it's okay. Just because I am not buying, doesn't mean someone else isn't. There's lots of other comets in the oort-cloud, and some are weird enough to even be into whatever this..." He sort of indicates all of you. "...is. It's just not me." `
+			`	He checks his tablet, "Anyways, I really think we should just talk about business. I am on a tight schedule, as flattering, and confusing, as this chat has been."`
 			label overwith
-			`   The liaison holds up his tablet and brings up the cargo manifest. "I am showing 120 tons of Helium-3 for transport. If that is correct please sign here."`
-			`   You leave your mark on the tablet, and the liaison brings it down to his side.`
-			`   "Excellent," He says, "We'll start loading it up immediately. It's a pretty tall order for Helium-3, usually people want it in smaller amounts, but we're used to you Haulers always asking for it in bulk."`
-			`   The liaison licks his lip and accidently manages to clean off some of the smeered paste, "I've got some Captains to speak to, but it's always a pleasure to meet a new Hauler. I hope you earn your jacket. He flashes you a boyish smile, and walks off.`
+			`	The liaison holds up his tablet and brings up the cargo manifest. "I am showing 120 tons of Helium-3 for transport. If that is correct please sign here."`
+			`	You leave your mark on the tablet, and the liaison brings it down to his side.`
+			`	"Excellent," He says, "We'll start loading it up immediately. It's a pretty tall order for Helium-3, usually people want it in smaller amounts, but we're used to you Haulers always asking for it in bulk."`
+			`	The liaison licks his lip and accidently manages to clean off some of the smeered paste, "I've got some Captains to speak to, but it's always a pleasure to meet a new Hauler. I hope you earn your jacket. He flashes you a boyish smile, and walks off.`
 				accept
 	on complete
 		dialog
-			`   Once more you land in the Hauler portion of the spaceport. Teams begin unloading your cargo, and you head back toward the Saloon to see what you'll be doing next.`
+			`Once more you land in the Hauler portion of the spaceport. Teams begin unloading your cargo, and you head back toward the Saloon to see what you'll be doing next.`
 	on visit
 		dialog phrase "generic cargo on visit"
 
@@ -4547,7 +4544,7 @@ mission "Hroar's Haulers 4"
 	destination "Haze"
 	on offer
 		conversation
-			`	The Red Rock Saloon is crowded with crewmen from various Hauler crews. There is a line of Captains waiting to meet with Hroar, and you find yourself waiting at the bar for the line to clear.`
+			`The Red Rock Saloon is crowded with crewmen from various Hauler crews. There is a line of Captains waiting to meet with Hroar, and you find yourself waiting at the bar for the line to clear.`
 			`	"Can I getch'ya anything?" The grizziled bartender more growls than says.`
 			choice
 				`	"No, thanks. I am good."`
@@ -4585,7 +4582,7 @@ mission "Hroar's Haulers 4"
 			`	"...greenhorn they say, but more experienced then..."`
 			`	"...Hroar gettin' sentimental in his old age..."`
 			`	"...more like senile..."`
-			`	"...shut your mouth. Words like that'll put on the next Long Haul...`
+			`	"...shut your mouth. Words like that'll put on the next Long Haul..."`
 			`	Hroar's voice cuts through the chatter. "<first>, get over here."`
 			choice
 				`	(Join Hroar at his booth.)`
@@ -4613,27 +4610,27 @@ mission "Hroar's Haulers 5"
 		has "Hroar's Haulers 4: done"
 	on offer
 		conversation
-			`   The air is thick with the petrochemical scent of industry, and heavy with the weight of putrid pollution. You note that among the crowds in the spaceport, the more affluent are wearing air-purifying masks, while the rest seen unphased by the grim, grimy air.`
-			`   The cargo-master's station isn't hard to find, and a junior-liaison begins to process your request.`
-			`   "Nice day." He says, making small talk. "Usually can't see across the street; I wish we had more days like this."`
+			`The air is thick with the petrochemical scent of industry, and heavy with the weight of putrid pollution. You note that among the crowds in the spaceport, the more affluent are wearing air-purifying masks, while the rest seen unphased by the grim, grimy air.`
+			`	The cargo-master's station isn't hard to find, and a junior-liaison begins to process your request.`
+			`	"Nice day." He says, making small talk. "Usually can't see across the street; I wish we had more days like this."`
 			choice
-				`   (Nod.)`
+				`	(Nod.)`
 					goto notalk
-				`   "I thought the air was pretty bad why doesn't anyone do anything about it?"`
-			`   The junior-liaison consisders what you've said for a moment, "I guess the air isn't quite so bad on other worlds. But it's all about priorities, really. We have a thriving economy, maybe the best in the entire Deep, with huge growth every single quarter."`
-			`   "And." He waves his hand through the hazey air around him, "This isn't really that big of a hazard. A few treatments a year is enough to reverse the effects it has on your lungs, and you're good to go. Really isn't the worth the trouble to clean up."`
+				`	"I thought the air was pretty bad why doesn't anyone do anything about it?"`
+			`	The junior-liaison consisders what you've said for a moment, "I guess the air isn't quite so bad on other worlds. But it's all about priorities, really. We have a thriving economy, maybe the best in the entire Deep, with huge growth every single quarter."`
+			`	"And." He waves his hand through the hazey air around him, "This isn't really that big of a hazard. A few treatments a year is enough to reverse the effects it has on your lungs, and you're good to go. Really isn't the worth the trouble to clean up."`
 			choice
-				`   "Got it. Is my request processed yet?"`
+				`	"Got it. Is my request processed yet?"`
 					goto notalk
-				`   "How did Haze get its name? It wouldn't have been this polluted before humans arrived."`
-			`   "Ah. That's a pretty common question. In the old language 'hasu' meant gray, or ashen. Haze used to be covered in gray basaltic plains, left overs from an earlier volcanic age. To the first settlers it was a dim gray world, and over time 'hasu' became 'Haze'."`
+				`	"How did Haze get its name? It wouldn't have been this polluted before humans arrived."`
+			`	"Ah. That's a pretty common question. In the old language 'hasu' meant gray, or ashen. Haze used to be covered in gray basaltic plains, left overs from an earlier volcanic age. To the first settlers it was a dim gray world, and over time 'hasu' became 'Haze'."`
 			label notalk
-			`   The computer beeps and the junior-liaison looks down. "Looks like you're good to go. Your materials are being loaded as we speak. And you should be done before you return your ship. Good luck, Captain, and happy hauling."`
-			`   The junior-liaison dimisses you with a nod and indicates to the next person in the line. Your own comm blinks, and you see that the cargo is all loaded up, and you're now good to return to Muspel.`
+			`	The computer beeps and the junior-liaison looks down. "Looks like you're good to go. Your materials are being loaded as we speak. And you should be done before you return your ship. Good luck, Captain, and happy hauling."`
+			`	The junior-liaison dimisses you with a nod and indicates to the next person in the line. Your own comm blinks, and you see that the cargo is all loaded up, and you're now good to return to Muspel.`
 				accept
 	on complete
 		dialog
-			`   The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Construction Material, and let you know that Hroar is waiting for you in his accustomed location within the spaceport.`
+			`	The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Construction Material, and let you know that Hroar is waiting for you in his accustomed location within the spaceport.`
 	on visit
 		dialog phrase "generic cargo on visit"
 
@@ -4692,7 +4689,7 @@ mission "Hroar's Haulers 7"
 		has "Hroar's Haulers 6: done"
 	on offer
 		conversation
-			`	While clean, refreshingly friendly, and impressively green, New Reykjavik still has all the hallmarks of a major city. It's brimming with people, skyscrapers, and industry.  Thankfully, the transport to the spaceport is suprisngly easy to use, and you're able to find your way to the cargo-master's office without much fuss.`
+			`While clean, refreshingly friendly, and impressively green, New Reykjavik still has all the hallmarks of a major city. It's brimming with people, skyscrapers, and industry.  Thankfully, the transport to the spaceport is suprisngly easy to use, and you're able to find your way to the cargo-master's office without much fuss.`
 			`	An older man smiles at you from behind a desk, "How can I help you, ser?"`
 			choice
 				`	(Hand over your cargo requet documents.)`
@@ -4714,7 +4711,7 @@ mission "Hroar's Haulers 7"
 	on complete
 		conversation
 		event "hroar waiting" 13
-			`   The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Mining & Excavation Equipment. Hroar's standing next to a crowd of dockhands.`
+			`	The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Mining & Excavation Equipment. Hroar's standing next to a crowd of dockhands.`
 			`	Hroar nods to your ship, "Appreciate the run. Good to finally have all that equipment collected."`
 			`	He abruptly looks past you and shouts, "Hey! Hey! Careful with that! That drill is worth more your entire pension!"`
 			`	The workers unloading behind you make some apologies and get back to the cargo.`
@@ -4739,25 +4736,25 @@ mission "Hroar's Haulers 8"
 		has "event: hroar waiting"
 	on offer
 		conversation
-			`   You push through the swinging doors of the Red Rock Saloon to find it nearly deserted. The bartender briefly looks up from wiping down glasses and nods toward the back where Hroar is seated as usual.`
-			`   The one other patron in the saloon, a man passed out on the bar, doesn't flinch as you walk past him to Hroar's waiting booth.`
-			`   "There he is, the greenhorn of the hour." Hroar proclaims as you take your seat. "You're just about ready to go on your first Long Haul."`
+			`You push through the swinging doors of the Red Rock Saloon to find it nearly deserted. The bartender briefly looks up from wiping down glasses and nods toward the back where Hroar is seated as usual.`
+			`	The one other patron in the saloon, a man passed out on the bar, doesn't flinch as you walk past him to Hroar's waiting booth.`
+			`	"There he is, the greenhorn of the hour." Hroar proclaims as you take your seat. "You're just about ready to go on your first Long Haul."`
 			choice
-				`   "So, now you want me to do a Long Haul?"`
+				`	"So, now you want me to do a Long Haul?"`
 					goto courier
-				`   "What do you mean 'Long Haul'?"`
-			`   Hroar strokes his beard, "Think of it as an initiation of sorts. Without the Long Haul, there ain't no Haulers. It's our most lucrative run, and without it we'd be another tiny mom and pop outfit, or worse, we'd be Blue Caps forced to work for the Transport Union."`
-			`   "Before you can properly be one of us," Hroar continues. "You have to do a Long Haul. You have to pay your dues, and head out into the Gap." `
+				`	"What do you mean 'Long Haul'?"`
+			`	Hroar strokes his beard, "Think of it as an initiation of sorts. Without the Long Haul, there ain't no Haulers. It's our most lucrative run, and without it we'd be another tiny mom and pop outfit, or worse, we'd be Blue Caps forced to work for the Transport Union."`
+			`	"Before you can properly be one of us," Hroar continues. "You have to do a Long Haul. You have to pay your dues, and head out into the Gap." `
 			choice
-				`   "Wait, so everyone does this? I thought I was a Speciality-Courier. So far nothing I've done has felt special."`
+				`	"Wait, so everyone does this? I thought I was a Speciality-Courier. So far nothing I've done has felt special."`
 					goto courier
-				`   "What is 'the Gap.'"`
-			`   "Old word for space, the void, the dark places 'tween worlds. If you got questions about that sort of thing you best ask old Yngvar when you get the chance. He's an old time spacer from a long line of old time spacers."`
+				`	"What is 'the Gap.'"`
+			`	"Old word for space, the void, the dark places 'tween worlds. If you got questions about that sort of thing you best ask old Yngvar when you get the chance. He's an old time spacer from a long line of old time spacers."`
 			label courier
-			`   "Everyone who wants to be a Hauler, regardless of their place in the organization, has to do a Long Haul. It's that simple. Doesn't matter one lick how special you, or the work you'll be doing, are. The Long Haul is our life blood."`
-			`   Hroar leans forward. "Don't fret too much. It's not like it used to be. Compared to the old days this is almost a milk run, assuming you have the cargo space."`
-			`   He leans back and and smiles amblically. "Now, first off you need to pick up the Long Haul's logistics officer. For you, that'll be ol' Yngvar. He's waiting for you on <destination>. He just secured a deal for some Helium-3, so I am going to be sending 10 tons of it with you. Drop off the Helium-3, and meet Yngvar in the spaceport. Once you're all set head back here to get loaded up for the Long Haul."`
-			`   "It's all pretty straightforward, and once we get this over with, I have a bunch more work for you. So giddup." Hroar points to the door.`
+			`	"Everyone who wants to be a Hauler, regardless of their place in the organization, has to do a Long Haul. It's that simple. Doesn't matter one lick how special you, or the work you'll be doing, are. The Long Haul is our life blood."`
+			`	Hroar leans forward. "Don't fret too much. It's not like it used to be. Compared to the old days this is almost a milk run, assuming you have the cargo space."`
+			`	He leans back and and smiles amblically. "Now, first off you need to pick up the Long Haul's logistics officer. For you, that'll be ol' Yngvar. He's waiting for you on <destination>. He just secured a deal for some Helium-3, so I am going to be sending 10 tons of it with you. Drop off the Helium-3, and meet Yngvar in the spaceport. Once you're all set head back here to get loaded up for the Long Haul."`
+			`	"It's all pretty straightforward, and once we get this over with, I have a bunch more work for you. So giddup." Hroar points to the door.`
 			`	You leave him to his booth.`
 				accept
 	on complete
@@ -4777,23 +4774,23 @@ mission "Hroar's Haulers 9"
 		has "Hroar's Haulers 7: done"
 	on offer
 		conversation
-			`   The spaceport on Memory is a handful of unconnected and hastily constructed buildings that exist on the very edge of the concrete landing field where ships set down. The first few buildings you approach are locked. The next building's door swings open, but you find the inside of it dark and empty. On your forth try the door opens to a warehouse with a couple of startled people. They let you know, in annoyed tones, where the Cantina can be found and suggest that you should head there.`
-			`   The Cantina is a large gray space filled with cheap chairs and wobbly tables. There's a handful of automatic food vendors, and a few clumps of chattering people. You remove your respirator, and notice an old graying man in a faded red hauler jacket walking toward you.`
-			`   "Saw you set down an hour ago. Sure took your time gettin' here." The old man says with a gruff voice as he takes a seat in front of you. He's old, older than you realized, with deep creases crisscrossing his leathery scarred face. One of his eyes is milky white, and surrounded by vacuum burns that stretch into a thin hairline, and past the scarred slit that was once an ear. He lifts up his right hand, its covered with the tale-tell bubbles of severe radition damage, and offers it to you.`
-			`   "Name's Yngvar." He looks at you hard with his one good eye.`
+			`The spaceport on Memory is a handful of unconnected and hastily constructed buildings that exist on the very edge of the concrete landing field where ships set down. The first few buildings you approach are locked. The next building's door swings open, but you find the inside of it dark and empty. On your forth try the door opens to a warehouse with a couple of startled people. They let you know, in annoyed tones, where the Cantina can be found and suggest that you should head there.`
+			`	The Cantina is a large gray space filled with cheap chairs and wobbly tables. There's a handful of automatic food vendors, and a few clumps of chattering people. You remove your respirator, and notice an old graying man in a faded red hauler jacket walking toward you.`
+			`	"Saw you set down an hour ago. Sure took your time gettin' here." The old man says with a gruff voice as he takes a seat in front of you. He's old, older than you realized, with deep creases crisscrossing his leathery scarred face. One of his eyes is milky white, and surrounded by vacuum burns that stretch into a thin hairline, and past the scarred slit that was once an ear. He lifts up his right hand, its covered with the tale-tell bubbles of severe radition damage, and offers it to you.`
+			`	"Name's Yngvar." He looks at you hard with his one good eye.`
 			choice
-				`   (Shake his hand.)`
-			`   He grips your hand with surpising firmness. "Hartha-Hroar said you were some kind of hot shot Captain with something to prove. There ain't nothing to prove on a Long Haul, other than you can mind yourself in the Gap, and behave yourself among landsmen."`
-			`   He squeezes your hand a little harder and leans in, "I trust you can be relied upon to do just that?"`
+				`	(Shake his hand.)`
+			`	He grips your hand with surpising firmness. "Hartha-Hroar said you were some kind of hot shot Captain with something to prove. There ain't nothing to prove on a Long Haul, other than you can mind yourself in the Gap, and behave yourself among landsmen."`
+			`	He squeezes your hand a little harder and leans in, "I trust you can be relied upon to do just that?"`
 			choice
-				`   "Yeah. No problem for me."`
+				`	"Yeah. No problem for me."`
 					goto noproblem
-				`   "I can be relied upon to do whatever I want."`
-			`   Yngvar tugs you even closer, almost into an embrace and says gravely into your ear. "And I can be relied on to throw you out an airlock if you jeopardize the Haul."`
-			`   He releases your hand, straightens up, steps back, and gives you a cold smile.`
+				`	"I can be relied upon to do whatever I want."`
+			`	Yngvar tugs you even closer, almost into an embrace and says gravely into your ear. "And I can be relied on to throw you out an airlock if you jeopardize the Haul."`
+			`	He releases your hand, straightens up, steps back, and gives you a cold smile.`
 
 			label noproblem
-			`   "Good. Now, that we understand each other, let's stop wasting time, I'm gonna need you to swing us by Helheim real quick."`
+			`	"Good. Now, that we understand each other, let's stop wasting time, I'm gonna need you to swing us by Helheim real quick."`
 			choice
 				`	"Helheim? Why there?"`
 				`	"Shouldn't we be head back to Muspel?"`
@@ -4835,7 +4832,7 @@ mission "Hroar's Haulers 9"
 
 	on complete
 		dialog
-			`   Yngvar says little on your trip to Helheim, other than there will be plenty of time later for the two of you to get better aquainted. Once on Helheim he heads straight for the spaceport. You get the impression he expects you to follow him there.`
+			`	Yngvar says little on your trip to Helheim, other than there will be plenty of time later for the two of you to get better aquainted. Once on Helheim he heads straight for the spaceport. You get the impression he expects you to follow him there.`
 	on visit
 		dialog phrase "generic passenger on visit"
 
@@ -4850,7 +4847,7 @@ mission "Hroar's Haulers 10"
 		has "Hroar's Haulers 9: done"
 	on offer
 		conversation
-			`	Helheim's spaceport is crowded with numerous miners all trying to board one of the large space liners docked outside. The miners look tired, sickly, and excited. You catch Yngvar's tall scarred figure standing at the epicenter of the migration with another much younger man.`
+			`Helheim's spaceport is crowded with numerous miners all trying to board one of the large space liners docked outside. The miners look tired, sickly, and excited. You catch Yngvar's tall scarred figure standing at the epicenter of the migration with another much younger man.`
 			choice
 				` (Join Yngvar.)`
 			`	"...will all be loaded and ready to go in the next 30 minutes." The younger man says. He's wearing a red hauler jacket and a captain's hat.`
@@ -4920,7 +4917,7 @@ mission "Hroar's Haulers 10"
 
 	on complete
 		dialog
-			`   Yngvar spends the short trip to Muspel carefully examining every inch of your ship. He says little other than that it, "Pays to know the terrain." Once you're on the red ground of Muspel he immediately leaves for the Red Rock Saloon.`
+			`	Yngvar spends the short trip to Muspel carefully examining every inch of your ship. He says little other than that it, "Pays to know the terrain." Once you're on the red ground of Muspel he immediately leaves for the Red Rock Saloon.`
 	on visit
 		dialog phrase "generic passenger on visit"
 
@@ -4939,15 +4936,15 @@ mission "Hroar's Haulers 11"
 	destination "Lagrange"
 	on offer
 		conversation
-			`   The dusty red saloon is awash in grimy captains, officers and crew members. At the center of the crush of bodies is Hroar. He catches your eye as you enter and then he climbs on top of the bar.`
-			`   "I reckon it's about time we get this here show on the road." Hroar hollars, and the room immedatly quiets down.`
-			`   "Now, as every rock-hopper 'tween here and the twice-cursed Gap knows, we're fixing to go another Long Haul". A brief cheer rises from the crowded bar.` 
-			`   "And everybody knows a Long Haul means we all get paid. So, let's make sure we get this done right."`
-			`   Hroar pulls brass specticals out of his breast pocket and balances them on his nose. He then carefully unfolds a brown stained piece of paper and reads, "This here run will be shepherded by Captain <last>. He'll be our hirthr from Lagrange and back."`
-			`   This news is followed by some unhappy grunts. "Now, now. Don't you fret over this greenhorn, he'll have ol' Yngvar on his ship to keep him in line." `
-			`   Hroar continues, "For this Long Haul we have three convoy's lined up that Captain <last> will escort; Captain Unferth of the Red Ruin's convoy, along with the convoys of Captain Bolverka of the Iron Siren, and Captain Gunhilda's of the Fimbulvintr. Don't forget, Yngvar will be managing the caravan, materials and everything else. He's got the first word, and last, on any world and at any port you find yourselves in." `
-			`   Hroar folds up the brown paper, takes off his glases, and scans the crowd. "Haulers, you have your orders. May the Gap accept you, and the God-Stones watch over you. Now, get to your ships. It's time to haul.`
-			`   With that, the crowd cheers and disperses, and after a few hectic moments you find yourself alone in the bar with Yngvar.`
+			`The dusty red saloon is awash in grimy captains, officers and crew members. At the center of the crush of bodies is Hroar. He catches your eye as you enter and then he climbs on top of the bar.`
+			`	"I reckon it's about time we get this here show on the road." Hroar hollars, and the room immedatly quiets down.`
+			`	"Now, as every rock-hopper 'tween here and the twice-cursed Gap knows, we're fixing to go another Long Haul". A brief cheer rises from the crowded bar.` 
+			`	"And everybody knows a Long Haul means we all get paid. So, let's make sure we get this done right."`
+			`	Hroar pulls brass specticals out of his breast pocket and balances them on his nose. He then carefully unfolds a brown stained piece of paper and reads, "This here run will be shepherded by Captain <last>. He'll be our hirthr from Lagrange and back."`
+			`	This news is followed by some unhappy grunts. "Now, now. Don't you fret over this greenhorn, he'll have ol' Yngvar on his ship to keep him in line." `
+			`	Hroar continues, "For this Long Haul we have three convoy's lined up that Captain <last> will escort; Captain Unferth of the Red Ruin's convoy, along with the convoys of Captain Bolverka of the Iron Siren, and Captain Gunhilda's of the Fimbulvintr. Don't forget, Yngvar will be managing the caravan, materials and everything else. He's got the first word, and last, on any world and at any port you find yourselves in." `
+			`	Hroar folds up the brown paper, takes off his glases, and scans the crowd. "Haulers, you have your orders. May the Gap accept you, and the God-Stones watch over you. Now, get to your ships. It's time to haul.`
+			`	With that, the crowd cheers and disperses, and after a few hectic moments you find yourself alone in the bar with Yngvar.`
 			choice
 				`	"Guess you're in charge, ol' timer."`
 					goto westart
@@ -5048,7 +5045,7 @@ mission "Hroar's Haulers 11"
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
 	on complete
-		dialog   
+		dialog	
 			`"The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the local watering hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 
 
@@ -5073,7 +5070,7 @@ mission "Hroar's Haulers 13"
 		has "Hroar's Haulers 11: active"
 	on offer
 		conversation
-			`	You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
+			`You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
 			`	He gives you a gruff nod as you arrive.`
 			`	"Smooth run so far. They mostly are. Pirate has to be a few stars short of a galaxy to take on a fleet as big as ours." Yngvar says as his eyes scan the crowd below.`
 			`	"Sometimes fights break out 'tween the guest-workers. Old scores, gambling gone bad on the trip, anything of the like. But so far everything looks good."`
@@ -5333,7 +5330,7 @@ mission "Hroar's Haulers 15"
 		`	Suddenly the Enforcers are everywhere, grabbing everyone, and you hear Yngvar's booming voice cut through the din, "Haulers, out!"`
 		`	An Enforcer grabs you by the arm, "You're in violation of Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment. You're coming with us."`
 		choice
-			`	(Comply).`
+			`	(Comply.)`
 				goto complysong
 			`	(Try to break free and get to the exit.)`
 				goto escapesolvi
