@@ -5875,6 +5875,9 @@ mission "Hroar's Haulers 15"
 		`	Yngvar nods, and says nothing.`
 		`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference reclaims his face, "Always a pleasure `
 
+
+#IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
+
 mission "Hroar's Haulers 9"
 	name "The Long Haul"
 	source "Earth"
