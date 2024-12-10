@@ -5758,14 +5758,32 @@ mission "Hroar's Haulers 15"
 			`	(Follow Yngvar to the hanger.)`
 				to display
 					has "savedgunhilda"
-		`	Yngvar climbs aboard your ship after your ship and signals all the remaining haulers to launch. "Let's move, <last!>."`
+		label byefalicia
+		action
+			set "leftgunhilda"
+		`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last!>."`
 		choice
 			`	(Launch your ship.)`
 			launch
 		
 		label gunhilda2
 		`	"If you want her, that's 15,000 credits." Leland grins.`
-		`	"Hel take you." Yngvar growls, and hastily pulls out his pad, "There! 15,000 of my own money. At least one of Captain's `
+		`	"Hel take you." Yngvar growls. "Ain't got no money left."`
+		`	Leland shrugs, "You'll see her six months."`
+		`	Yngvar bares his stained, chipped teeth, "You best be hoping I never see you again."`
+		choice
+			`	(Say nothing and follow Yngvar out.)`
+				goto byefalicia
+			`	"I'll pay for Captain Gunhilda."`
+		action
+			payment -15000
+		`	"Wonderful." Syndicate Authority Leland says with a smirk, and then releases Gunhilda from her cell after taking your payment.`
+		`	Gunhilda takes a few steps forward and then turns to look back at the all the still imprisoned Haulers. "It's not ride to keep so many wild red souls caged up like this."`
+		`	Leland lets out a derisive laugh, but says nothing.`
+		`	"Come along, Gunhilda." Yngvar says quietly. "Ain't nothing we can do now about the rest of them."`
+		`	She looks at you as she walks past, "Thank you, but..." she pauses, "...no, nevermind. Thanks." She continues on after Yngvar to their the docked ships.`
+			accept
+		
 		
 		label nothing
 		`	Yngvar clears his throat, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
