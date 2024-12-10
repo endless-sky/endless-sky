@@ -105,3 +105,6 @@ system Currus
 		"i' amazin"          # is amazing (mispronounced)
             * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
 			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	Hroar spits on the floor. "Now, get the Hel out of my booth, out of this saloon, and off this world before I do something you'll regret."`
+			`	He gets a wistful look in his eye, "Hel, nearly a quarter of the Haulers you see out there in the Gap started out as Guest-Workers. So, no, <last>, we don't exploit them. One might even argue that we save them."`
+				`	"We do as Yngvar said, and get the hel outta here!"`
