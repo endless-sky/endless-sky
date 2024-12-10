@@ -4560,7 +4560,7 @@ mission "Hroar's Haulers 4"
 				`	(Drink the mug.)`
 			`	You lift the mug to your lips and swallow its mostly carbonated contents, which includes some lumpy bits you try not to think too hard about.`
 			`	You place the empty mug on the table, and notice a lull in the nearby conversations. There are many eyes on you now, some belonging to disgusted faces, others to confused, and still others to laughing ones. The bartender looks at you, his face inscrutable.`
-			apply
+			action
 				set "spit drinker"
 			choice
 				`	"Hey, bartender, I'll take another."`
@@ -4644,37 +4644,37 @@ mission "Hroar's Haulers 6"
 		has "Hroar's Haulers 5: done"
 	on offer
 		conversation
-		`	This time you find Hroar leaning against the bar making small talk with the bartender. When he sees you enter he lifts his crystal class up to you and beckons for you to join him.`
-		choice
-			`	(Join Hroar at the bar.)`
-		`	"Ah, <first>, you're getting to be a right regular around these parts. Why, I think even ol' Havi here is warming up to you!" Hroar nods to the bartender.`
-		`	Havi, the graying bartender with a prosthetic arm only grunts and goes back to cleaning glasses.`
-		`	Hroar chuckles and takes another sip of his drink, "Don't you got fretting much on his account. He's all heart beneath that hard shell. Lost his arm saving more than a few folks in a mine collapse back when Adhara was naught but a Protostar."`
-		choice
-			`	"I am less interested in the bartender, and more interested in what my next job is."`
-			`	"Sorry to hear about his arm, but what's my next job?"`
-			`	(Say nothing.)`
-				goto job
-			`	"Adhara?"`
-		`	Hroar frowns and then points straight up at the ceiling overhead. "Adhara, Canis Majoris A, ya know, the star this here rock orbits?"`
-		`	He shakes his head, "Woulda thought a spacer be a little more aware of where they're at. But, then again, supposin' you see hundreds of stars in your line of a work. Can be hard keeping them all straight. Anyways, we've chewed enough fat, lets get to the brass tax."`
+			`This time you find Hroar leaning against the bar making small talk with the bartender. When he sees you enter he lifts his crystal class up to you and beckons for you to join him.`
+			choice
+				`	(Join Hroar at the bar.)`
+			`	"Ah, <first>, you're getting to be a right regular around these parts. Why, I think even ol' Havi here is warming up to you!" Hroar nods to the bartender.`
+			`	Havi, the graying bartender with a prosthetic arm only grunts and goes back to cleaning glasses.`
+			`	Hroar chuckles and takes another sip of his drink, "Don't you got fretting much on his account. He's all heart beneath that hard shell. Lost his arm saving more than a few folks in a mine collapse back when Adhara was naught but a Protostar."`
+			choice
+				`	"I am less interested in the bartender, and more interested in what my next job is."`
+				`	"Sorry to hear about his arm, but what's my next job?"`
+				`	(Say nothing.)`
+					goto job
+				`	"Adhara?"`
+			`	Hroar frowns and then points straight up at the ceiling overhead. "Adhara, Canis Majoris A, ya know, the star this here rock orbits?"`
+			`	He shakes his head, "Woulda thought a spacer be a little more aware of where they're at. But, then again, supposin' you see hundreds of stars in your line of a work. Can be hard keeping them all straight. Anyways, we've chewed enough fat, lets get to the brass tax."`
 
-		label job
-		`	Hroar finishes off his drink, "Your next stop is Midgard. Gonna need you to pick up 300 tons of mining and excavation equipment, and bring it right back here."`
-		choice
-			`	"Copy that."`
-			`	"Consider it done."`
-			`	"No problem."`
-				goto letsgo
-			`	"How many more of these little jobs are you going to send me on?"`
-		`	Hroar watches the bartender, Havi, refill is drink and then turns back to you and smirks. "Just one or two more, and then the real fun begins. We're almost there, <first>."`
-		`	He turns away from you and goes back to drinking. It's clear he considers the conversation over.`
-			accept
+			label job
+			`	Hroar finishes off his drink, "Your next stop is Midgard. Gonna need you to pick up 300 tons of mining and excavation equipment, and bring it right back here."`
+			choice
+				`	"Copy that."`
+				`	"Consider it done."`
+				`	"No problem."`
+					goto letsgo
+				`	"How many more of these little jobs are you going to send me on?"`
+			`	Hroar watches the bartender, Havi, refill is drink and then turns back to you and smirks. "Just one or two more, and then the real fun begins. We're almost there, <first>."`
+			`	He turns away from you and goes back to drinking. It's clear he considers the conversation over.`
+				accept
 
-		label letsgo
-		`	"Ha!" Hroar grunts and slaps you on the back, "That's the spirit. Best to just get to it when a job needs getting done. Don't worry though, <first>, only one or two more of these prep jobs to go and then the real fun can begin."`
-		`	He turns away from you and goes back to drinking. "Now run along, that equipment isn't about to haul itself."`
-			accept
+			label letsgo
+			`	"Ha!" Hroar grunts and slaps you on the back, "That's the spirit. Best to just get to it when a job needs getting done. Don't worry though, <first>, only one or two more of these prep jobs to go and then the real fun can begin."`
+			`	He turns away from you and goes back to drinking. "Now run along, that equipment isn't about to haul itself."`
+				accept
 
 	on complete
 		dialog
@@ -4896,7 +4896,7 @@ mission "Hroar's Haulers 10"
 			label exploit
 			`	Yngvar shakes his head, "Nothing of the sort. We pay 'em better wages then they'd ever see on Earth, and if they keep their noses clean and stick around for three seasons, we sponsor them and make them full fledged members of our organization. If they keep with it eventually mining crews can even pool together to get their own ship."`
 			`	He gets a wistful look in his eye, "Hel, nearly a quarter of the Haulers you see out there in the Gap started out as Guest-Workers. So, no, <last>, we don't exploit them. One might even argue that we save them."`
-			`	The old man jerks his head at the rapidly dwindling lines of miners, "But not this lot, they still belong to Earth. So we'll move them for a fee and make some extra money on the Long Haul. Can't rightly tra`verse the whole of human space without taking advantage of lucrative stops along the way."`
+			`	The old man jerks his head at the rapidly dwindling lines of miners, "But not this lot, they still belong to Earth. So we'll move them for a fee and make some extra money on the Long Haul. Can't rightly traverse the whole of human space without taking advantage of lucrative stops along the way."`
 			`	Yngvar casts a quick glance at the shirking lines of workers, "Anyways, I am done here. Just needed to check in with Solvi. Didn't want us sitting around on Muspel twiddling our thumbs because of a loggerjam on Helheim. So how abouts you take us to Muspel? Our shipment is waiting for us there, assuming you got space for 430 tons of cargo. But then, what kind of Hauler would you be if you couldn't haul."`
 				accept
 
@@ -5045,7 +5045,7 @@ mission "Hroar's Haulers 11"
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 	on complete
 		dialog
-			`"The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin at the Local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
+			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the Local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 
 
 
@@ -5257,7 +5257,7 @@ mission "Hroar's Haulers 15"
 				set "savedgunhilda"
 			choice
 				`	(Follow Yngvar.)`
-				goto followyngvar
+					goto followyngvar
 
 			label "50 percent chance"
 			`	You do your best to help Gunhilda to her feet, but she's sluggish and confused. "Wh-what are you..?"`
@@ -5496,9 +5496,9 @@ mission "Hroar's Haulers 15"
 				not "generationship"
 
 			choice
-			`	"You think the same ships that brought your family here, also brought the stoners here?"`
-				goto genshipask
-			`	(Say nothing.)`
+				`	"You think the same ships that brought your family here, also brought the stoners here?"`
+					goto genshipask
+				`	(Say nothing.)`
 			label nogenerationshipchoice
 			`	"Anyways, back to the topic at hand, we 'stoners' have just as much fun as anyone else, and you know it, Yng. Besides, you're practically one yourself so stop acting all superior." Bolverka says with more affection than venom.`
 				goto yngcont
@@ -5610,7 +5610,7 @@ mission "Hroar's Haulers 15"
 				`	"Okay, thanks officer."`
 				`	"Yeah, yeah. I'll go."`
 
-			label followhaulersouts
+			label followhaulersout
 			`	Yngar, Bolverka, and a very drunk Gunhilda, with most of the Haulers, are gathered just outside the bar. Yngvar shakes his head as he sees you approach, and pulls you aside.`
 			`	"Brave and stupid are the same side of one sided coin. Bein' a Hauler is about knowing to choose your battles, and more importantly, knowin' about who will back in those battles."`
 			`	He sighs, "You're still a greeny, and you ain't yet earned their respect. But there's time. Anyhow, we got bigger problems than your pride."`
@@ -5765,7 +5765,7 @@ mission "Hroar's Haulers 15"
 			label byefalicia
 			action
 				set "leftgunhilda"
-			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last!>."`
+			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last>!"`
 			choice
 				`	(Launch your ship.)`
 					launch
@@ -5799,7 +5799,7 @@ mission "Hroar's Haulers 15"
 			`	Yngvar is now pointedly shaking his head at you.`
 			choice
 				`	"Nevermind, I don't deny the charges."`
-					goto dontdeny`
+					goto dontdeny
 				`	"Fine I know they're innocent, I'll pay it."`
 			action
 				payment -168000
