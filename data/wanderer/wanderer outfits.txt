@@ -13,6 +13,8 @@
 
 outfit "Sunbeam"
 	category "Guns"
+	series "Guns: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 1390000
@@ -49,6 +51,8 @@ effect "sunbeam impact"
 
 outfit "Sunbeam Turret"
 	category "Turrets"
+	series "Turrets: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 1970000
@@ -79,6 +83,8 @@ outfit "Sunbeam Turret"
 
 outfit "Dual Sunbeam Turret"
 	category "Turrets"
+	series "Turrets: Wanderers"
+	index 30
 	licenses
 		"Wanderer Outfits"
 	cost 3720000
@@ -109,6 +115,8 @@ outfit "Dual Sunbeam Turret"
 
 outfit "Moonbeam"
 	category "Guns"
+	series "Guns: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 760000
@@ -153,6 +161,8 @@ effect "moonbeam impact"
 
 outfit "Moonbeam Turret"
 	category "Turrets"
+	series "Turrets: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 1730000
@@ -186,6 +196,8 @@ outfit "Moonbeam Turret"
 
 outfit "Wanderer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 850000
@@ -216,6 +228,8 @@ effect "wanderer anti-missile"
 
 outfit "Thunderhead Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 450000
@@ -254,6 +268,8 @@ outfit "Thunderhead Launcher"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
+	series "Ammunition: Wanderers"
+	index 10
 	cost 1800
 	thumbnail "outfit/thunderhead"
 	mass .3
@@ -283,6 +299,8 @@ outfit "Thunderhead"
 
 outfit "Thunderhead Storage Array"
 	category "Ammunition"
+	series "Ammunition: Wanderers"
+	index 11
 	licenses
 		"Wanderer Outfits"
 	cost 36000
@@ -295,6 +313,8 @@ outfit "Thunderhead Storage Array"
 
 outfit "Small Biochemical Cell"
 	category "Power"
+	series "Generators: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 230000
@@ -308,6 +328,8 @@ outfit "Small Biochemical Cell"
 
 outfit "Large Biochemical Cell"
 	category "Power"
+	series "Generators: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 940000
@@ -321,6 +343,8 @@ outfit "Large Biochemical Cell"
 
 outfit "Red Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 30
 	licenses
 		"Wanderer Outfits"
 	cost 3800000
@@ -334,6 +358,8 @@ outfit "Red Sun Reactor"
 
 outfit "Yellow Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 40
 	licenses
 		"Wanderer Outfits"
 	cost 7500000
@@ -347,6 +373,8 @@ outfit "Yellow Sun Reactor"
 
 outfit "White Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 50
 	licenses
 		"Wanderer Outfits"
 	cost 13900000
@@ -360,6 +388,8 @@ outfit "White Sun Reactor"
 
 outfit "Blue Sun Reactor"
 	category "Power"
+	series "Generators: Wanderers"
+	index 60
 	licenses
 		"Wanderer Outfits"
 	cost 21500000
@@ -374,6 +404,8 @@ outfit "Blue Sun Reactor"
 
 outfit "Bright Cloud Shielding"
 	category "Systems"
+	series "Shields: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 220000
@@ -386,6 +418,8 @@ outfit "Bright Cloud Shielding"
 
 outfit "Dark Storm Shielding"
 	category "Systems"
+	series "Shields: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	cost 800000
@@ -398,6 +432,8 @@ outfit "Dark Storm Shielding"
 
 outfit "Wanderer Ramscoop"
 	category "Systems"
+	series "Ramscoops: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 460000
@@ -410,6 +446,8 @@ outfit "Wanderer Ramscoop"
 
 outfit "Wanderer Heat Sink"
 	category "Systems"
+	series "Cooling: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	cost 94000
@@ -422,6 +460,8 @@ outfit "Wanderer Heat Sink"
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 11
 	licenses
 		"Wanderer Outfits"
 	"cost" 135000
@@ -440,6 +480,8 @@ outfit "Type 1 Radiant Thruster"
 
 outfit "Type 2 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 21
 	licenses
 		"Wanderer Outfits"
 	"cost" 390000
@@ -458,6 +500,8 @@ outfit "Type 2 Radiant Thruster"
 
 outfit "Type 3 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 31
 	licenses
 		"Wanderer Outfits"
 	"cost" 750000
@@ -476,6 +520,8 @@ outfit "Type 3 Radiant Thruster"
 
 outfit "Type 4 Radiant Thruster"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 41
 	licenses
 		"Wanderer Outfits"
 	"cost" 1370000
@@ -494,6 +540,8 @@ outfit "Type 4 Radiant Thruster"
 
 outfit "Type 1 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 10
 	licenses
 		"Wanderer Outfits"
 	"cost" 115000
@@ -512,6 +560,8 @@ outfit "Type 1 Radiant Steering"
 
 outfit "Type 2 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 20
 	licenses
 		"Wanderer Outfits"
 	"cost" 325000
@@ -530,6 +580,8 @@ outfit "Type 2 Radiant Steering"
 
 outfit "Type 3 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 30
 	licenses
 		"Wanderer Outfits"
 	"cost" 590000
@@ -548,6 +600,8 @@ outfit "Type 3 Radiant Steering"
 
 outfit "Type 4 Radiant Steering"
 	category "Engines"
+	series "Engines: Wanderers"
+	index 40
 	licenses
 		"Wanderer Outfits"
 	"cost" 1100000
@@ -566,15 +620,21 @@ outfit "Type 4 Radiant Steering"
 
 outfit "Wanderer Outfits License"
 	category "Licenses"
+	series "Licenses: Wanderers"
+	index 10
 	thumbnail "outfit/wanderer outfits license"
 	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
 
 outfit "Wanderer License"
 	category "Licenses"
+	series "Licenses: Wanderers"
+	index 20
 	thumbnail "outfit/wanderer license"
 	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 
 outfit "Wanderer Military License"
 	category "Licenses"
+	series "Licenses: Wanderers"
+	index 30
 	thumbnail "outfit/wanderer military license"
 	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
