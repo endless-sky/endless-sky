@@ -169,8 +169,8 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &highlight = *GameData::Colors().Get("outfitter difference highlight");
-	bool highlightDifferences = false;
 
+	bool highlightDifferences = false;
 	if(playerShip || isLicense || mapSize)
 	{
 		int minCount = numeric_limits<int>::max();
