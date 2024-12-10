@@ -4236,8 +4236,7 @@ mission "Hroar's Haulers: Deal"
 
 mission "Hroar's Haulers: Deal 2"
 	name "Hroar's Favor"
-	description "Travel to <destination> to pick up <cargo> for Hroar."
-	cargo "exotic minerals" 150
+	description "Travel to <destination> to pick up cargo for Hroar."
 	to offer
 		has "Hroar's Haulers: Deal: done"
 	source "Muspel"
@@ -4254,10 +4253,8 @@ mission "Hroar's Haulers: Deal 2"
 			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust.`
 			`	"Now, either you got business, or you don't. So what are ya here for?" the bartender says with an angry glare.`
 			choice
-				`
-	"Hroar sent for me."`
-				`
-	"Just here to do Hroar's dirty work."`
+				`	"Hroar sent for me."`
+				`	"Just here to do Hroar's dirty work."`
 			label job
 			`	The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
 			`	You're familar with the booth, as you walk back to where handlebar-whiskered Hroar is seated.`
@@ -4297,8 +4294,7 @@ A sly grin spreads across his face, "But you, you're the kind a Captain this job
 
 mission "Hroar's Haulers: No Deal"
 	name "Becoming a Hauler"
-	description "Travel to <destination> to pick up <cargo> for Hroar."
-	cargo "exotic minerals" 150
+	description "Travel to <destination> to pick up cargo for Hroar."
 	to offer
 		has "event: hroars offer"
 	source "Muspel"
@@ -4320,115 +4316,117 @@ mission "Hroar's Haulers: No Deal"
 					goto job
 				`	"Who says I'm not a local?"`
 			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
-			`   "Now, either ya got business, or you don't. So what are ya here for?" The bartender says with an angry glare.`
+			`	"Now, either ya got business, or you don't. So what are ya here for?" the bartender says with an angry glare.`
 			choice
-				`   "I'm here about the courier job."`
+				`	"I'm here about the courier job."`
 					goto job
-				`   "Nothing. Dump like this is no use to me."`
-			`   "Ha." The bartender barks. "Fine by me. Don't let the door hitchya on your way out."`
+				`	"Nothing. Dump like this is no use to me."`
+			`	"Ha." The bartender barks. "Fine by me. Don't let the door hitchya on your way out."`
 				decline
 			label job
-			`   The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
-			`   You're familar with the booth, as you walk back to where handlebar whiskered Hroar is seated.`
-			`   "Ha, I knew I'd not seen the last of you." He smiles broadly and gestures toward the empty seat in front of him.`
+			`	The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
+			`	You're familar with the booth, so you walk back to where handlebar whiskered Hroar is seated.`
+			`	"Ha, I knew I'd not seen the last of you." He smiles broadly and gestures toward the empty seat in front of him.`
 			`	He pours himself another glass of whiskey from his resident bottle as you slide into the booth.`
-			`   "S'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
-			`   He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position filled like that. Hard to find a Captain who can fill it."`
-			`   A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
+			`	"S'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
+			`	He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position filled like that. Hard to find a Captain who can fill it."`
+			`	A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
 			choice
-				`   "Sure. Sign me up."`
+				`	"Sure. Sign me up."`
 					goto yes
-				`   "How's the pay?".`
+				`	"How's the pay?"`
 					goto pay
-				`   "No, thanks."`
+				`	"No, thanks."`
 					goto out
 			label pay
-			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep."`
+			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
 			`   "So, what'dya say? You in?"`
 			choice
-				`   "Yep. Sign me up."`
+				`	"Yep. Sign me up."`
 					goto yes
-				`   "Nope. I'm out."`
+				`	"Nope. I'm out."`
 			label out
-			`   Hroar frowns and looks at you through his shot glass. "Well, can't say as that was the answer I wanted to hear. But plenty of bucks eager to prove themselves out there in the Gap. You missed out today, Captain. Hope you know it."`
-			`   He puts his shot glass down. "Now, get out of my booth."`
+			`	Hroar frowns and looks at you through his shot glass. "Well, can't say as that was the answer I wanted to hear. But plenty of bucks eager to prove themselves out there in the Gap. You missed out today, Captain. Hope you know it."`
+			`	He puts his shot glass down. "Now, get out of my booth."`
 				decline
 			label yes
-			`   "Well look at that! We're a society and everything. Ain't nothing sweeter than two fellars agreeing to work together." He lifts up his glass and nods to you.`
-			`   "Now," Hroar says, "first thing I need you to do is head over to <destination> pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
+			`	"Well look at that! We're a society and everything. Ain't nothing sweeter than two fellars agreeing to work together." He lifts up his glass and nods to you.`
+			`	"Now," Hroar says, "first thing I need you to do is head over to <destination> pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
 				accept
 	on complete
 		dialog
-			`   The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
+			`The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
 
 mission "Hroar's Haulers: Transit Edition"
 	name "Becoming a Hauler"
+	description "Travel to <destination> to pick up cargo for Hroar."
 	to offer
 		has "Home for Skadenga 7: done"
 	source "Muspel"
 	destination "Bivrost"
 	on offer
 		conversation
-			`   As you wander through the dust-filled spaceport of Muspel, you pass the rickety swinging doors of the Red Rock Saloon. There is a dirty sign posted outside with the words, 'Courier Wanted - See Hardy-Hroar inside'.`
+			`As you wander through the dust-filled spaceport of Muspel, you pass the rickety swinging doors of the Red Rock Saloon. There is a dirty sign posted outside with the words, 'Courier Wanted - See Hardy-Hroar inside'.`
 			choice
-				`   (Inquire about the job.)`
+				`	(Inquire about the job.)`
 					goto inquire
-				`   (Ignore the sign, and keep walking.)`
-			`   You have better things to do than look for a job here. You keep walking.`
+				`	(Ignore the sign, and keep walking.)`
+			`	You have better things to do than look for a job here. You keep walking.`
 				decline
 			label inquire
-			`   You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple dirty faces take quick side-glances as you approach the bar.`
-			`   The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
+			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple dirty faces take quick side-glances as you approach the bar.`
+			`	The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
 			choice
-				`   "I'm here about the courier job."`
+				`	"I'm here about the courier job."`
 					goto job
-				`   "Who says I'm not a local?"`
+				`	"Who says I'm not a local?"`
 			`   The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
-			`   "Now, either you got business, or you don't. So what are ya here for?" The bartender says with an angry glare.`
+			`	"Now, either you got business, or you don't. So what are ya here for?" the bartender says with an angry glare.`
 			choice
-				`   "I'm here about the courier job."`
+				`	"I'm here about the courier job."`
 					goto job
-				`   "Nothing. Dump like this is no use to me."`
-			`   "Ha." The bartender barks. "Fine by me. Don't let the door hitchya on your way out."`
+				`	"Nothing. Dump like this is no use to me."`
+			`	"Ha," the bartender barks. "Fine by me. Don't let the door hitchya on your way out."`
 				decline
 			label job
-			`   The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
-			`	You walk to the back of the saloon and find an older man with long grey handlebar mustache seated with his back against the wall, an opaque shot glass in his hand, and a bottle of whiskey on his otherwise empty table.`
-			`   "I heard you did some work with the Transport Union". He smiles broadly and gestures toward the empty seat in front of him.`
-			`	He pours himself a glass of whiskey from his resident bottle as you slide into the booth. "Just so you know, me and them don't see eye to eye. I won't hold it against you though."`
+			`	The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
+			`	You walk to the back of the saloon and find an older man with a long grey handlebar mustache seated with his back against the wall, an opaque shot glass in his hand, and a bottle of whiskey on his otherwise empty table.`
+			`	"I heard you did some work with the Transport Union." He smiles broadly and gestures toward the empty seat in front of him.`
+			`	He pours himself a glass of whiskey from his resident bottle as you slide into the booth. "Just so you know, me and them don't see eye to eye. I won't hold it against you though.`
 			`   "Bygones being bygones and all, s'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
-			`   He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position filled like that. Hard to find a Captain who can fill it."`
-			`   A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
+			`	He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position filled like that. Hard to find a Captain who can fill it."`
+			`	A sly grin spreads across his face. "But you, you're the kind a Captain this job calls for. Independent, resourceful, and all that. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
 			choice
-				`   "Sure. Sign me up."`
+				`	"Sure. Sign me up."`
 					goto yes
-				`   "How's the pay?".`
+				`	"How's the pay?"`
 					goto pay
-				`   "No, thanks."`
+				`	"No, thanks."`
 					goto out
 			label pay
-			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep."`
-			`   "So, what'dya say? You in?"`
+			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
+			`	"So, what'dya say? You in?"`
 			choice
-				`   "Yep. Sign me up."`
+				`	"Yep. Sign me up."`
 					goto yes
-				`   "Nope. I'm out."`
+				`	"Nope. I'm out."`
 			label out
-			`   Hroar frowns and looks at you through his shot glass. "Well, can't say as that was the answer I wanted to hear. But plenty of bucks eager to prove themselves out there in the Gap. You missed out today, Captain. Hope you know it."`
-			`   He puts his shot glass down. "Now, get out of my booth."`
+			`	Hroar frowns and looks at you through his shot glass. "Well, can't say as that was the answer I wanted to hear. But plenty of bucks eager to prove themselves out there in the Gap. You missed out today, Captain. Hope you know it."`
+			`	He puts his shot glass down. "Now, get out of my booth."`
 				decline
 			label yes
-			`   "Well look at that! We're a society, and everything. Ain't nothing sweeter than two fellars agreeing to work together." He lifts up his glass and nods to you.`
-			`   "Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
+			`	"Well look at that! We're a society, and everything. Ain't nothing sweeter than two fellars agreeing to work together." He lifts up his glass and nods to you.`
+			`	"Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
 				accept
 	on complete
 		dialog
-			`   The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
+			`The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
 
 
 
 mission "Hroar's Haulers 1"
 	name "Hauling Minerals from Bivrost"
+	description "Take <cargo> to <destination> for Hroar."
 	cargo "Radioactive Minerals" 150
 	to offer
 		or
@@ -4439,28 +4437,28 @@ mission "Hroar's Haulers 1"
 	destination "Muspel"
 	on offer
 		conversation
-			`   You delve into the depths of the underground warehouses and storage tunnels within the waxcomb like spaceport. The man leading you, a commodity liaison, talks endlessly about the excavation of new corridors, and the excessive safety procedures that accompany such endeavors. You've lost count of the amount of times he's said 'double-thick lead-lined coating.' Finally, you stop at underlevel C-33.`
-			`   The liaison double-checks his manifest. "This is it, 150 tons of exotic minerals." He looks back at the containers. "Most are quite radioactive, but don't worry, we used double-thick lead-lined coating on them. So, you, and your crew should be fine."`
-			`   He winks as he hands you the touchscreen to sign. "We'll have our boys start loading it up immediatly. You must be a pretty new Hauler, eh?"`
+			`You delve into the depths of the underground warehouses and storage tunnels within the waxcomb like spaceport. The man leading you, a commodity liaison, talks endlessly about the excavation of new corridors, and the excessive safety procedures that accompany such endeavors. You've lost count of the amount of times he's said 'double-thick lead-lined coating.' Finally, you stop at underlevel C-33.`
+			`	The liaison double-checks his manifest. "This is it, 150 tons of exotic minerals." He looks back at the containers. "Most are quite radioactive, but don't worry, we used double-thick lead-lined coating on them. So you, and your crew, should be fine."`
+			`	He winks as he hands you the touchscreen to sign. "We'll have our boys start loading it up immediately. You must be a pretty new Hauler, eh?"`
 			choice 
-				`   "Yep. Just started."`
+				`	"Yep. Just started."`
 					goto yep
-				`   "Why do you ask?"`
+				`	"Why do you ask?"`
 					goto why
-				`   "None of your bussiness."`
-			`   He holds up his hands. "Sorry. Didn't mean to pry. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones." `
+				`	"None of your business."`
+			`   He holds up his hands. "Sorry. Didn't mean to pry. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
 					goto bye
 			label yep
-			`   He grins. "I can always tell. This is generally one of the first assignments they send new Haulers on. Here, or Fenrir, not that it matters which, since they head to the other once they are done here. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
+			`	He grins. "I can always tell. This is generally one of the first assignments they send new Haulers on. Here, or Fenrir, not that it matters which, since they head to the other once they are done here. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
 					goto bye
 			label why
-			`   He shrugs. "I can usually tell, and this is generally one of the first assignments they send new Haulers on. Here, or Fenrir, not that it matters which, since they head to the other once they are done here. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
+			`	He shrugs. "I can usually tell, and this is generally one of the first assignments they send new Haulers on. Here, or Fenrir, not that it matters which, since they head to the other once they are done here. Guys hauling goods out here are a pretty closeknit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they remind me of the early traders and colonizers, the ones who spent years sailing the Gap. They do all kinds of jobs, and they aren't afraid of the really long ones."`
 			label bye
-			`   "Anyways, I won't take any more of your time. Cargo should be loaded momentarily." He nods and heads back towards the elevator. The machines whirr in the background, and utilizing cargo-lifts, the materials are loaded up by the time you return to your ship.`
+			`	"Anyways, I won't take any more of your time. Cargo should be loaded momentarily." He nods and heads back towards the elevator. The machines whirr in the background, and utilizing cargo-lifts, the materials are loaded up by the time you return to your ship.`
 				accept
 	on complete
 		dialog
-			`   You land in the section of the spaceport dedicated to Hroar's Haulers. Hroar's guys immediately leap into action, unloading the cargo from your ship, and moving it to storage. Their supervisor lets you know Hroar is waiting for you in the spaceport.`
+			`You land in the section of the spaceport dedicated to Hroar's Haulers. Hroar's guys immediately leap into action, unloading the cargo from your ship, and moving it to storage. Their supervisor lets you know Hroar is waiting for you in the spaceport.`
 	on visit
 		dialog phrase "generic cargo on visit"
 
@@ -4474,7 +4472,7 @@ mission "Hroar's Haulers 2"
 	destination "Fenrir Station"
 	on offer
 		conversation
-			`   Hroar is in his usual booth in the back of the Red Rock Saloon, and nods to you as you join him.`
+			`Hroar is in his usual booth in the back of the Red Rock Saloon, and nods to you as you join him.`
 			`   "See." He smiles. "Easy. Now, I am going to need you to head to <destination>, and bring back 120 tons of Helium-3."`
 			choice
 				`   "Got it, boss."`
