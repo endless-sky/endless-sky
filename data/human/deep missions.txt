@@ -5045,7 +5045,7 @@ mission "Hroar's Haulers 11"
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 	on complete
 		dialog
-			`"The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the Local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
+			`"The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin at the Local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 
 
 
@@ -5703,7 +5703,7 @@ mission "Hroar's Haulers 15"
 			`	Yngvar chuckles, "Bolverka just won herself a bet. But enough games, lets talk about those fine folk you got hog-tied behind these doors."`
 				goto prisonchat
 			label workforthem
-			`	Sweat suddenly appears on Leland's brow, "Oh, what? No, no." He laughs nervously, "Of course not. The Syndicate and the Deep Trade Union are entirely seperate entities."`
+			`	Sweat suddenly appears on Leland's brow, "Oh, what? No, no." He laughs nervously, "Of course not. The Syndicate and the Deep Trade Union are entirely separate entities."`
 			`	"I was just... passing on some information I heard is all. Not need to think too hard about it. Perhaps it's best if we moved on." Leland says as he wrings his hands.`
 			`	"Yes." Yngvar agrees, "Lets talk about those fine folk you got hog-tied behind these doors."`
 				goto prisonchat
@@ -5713,7 +5713,7 @@ mission "Hroar's Haulers 15"
 			`	"Yes." Leland says through clenched teeth, "The Transport Union, or blue caps, as you call them, broke their contract with us and we were forced to make a deal with the... Haulers."`
 			`	"Don't act like you're doing anyone a favor." Yngvar says, "You're still making credits hand over fist."`
 			`	Leland nods slowly, "True, but we would much prefer to work with a more professional outfit." He points behind him at the locked up Haulers. "Case in point."`
-			` 	"Finally." Yngvar says, "Enough of this ramblin', lets talk about those fine folk you got hog-tied behind these doors."`
+			`	"Finally." Yngvar says, "Enough of this ramblin', let's talk about those fine folk you got hog-tied behind these doors."`
 				goto prisonchat
 			label brasstax
 			`	Leland nods, "Very well, Captain <last>.`
@@ -5773,7 +5773,7 @@ mission "Hroar's Haulers 15"
 			label gunhilda2
 			`	"If you want her, that's 15,000 credits." Leland grins.`
 			`	"Hel take you." Yngvar growls. "Ain't got no money left."`
-			`	Leland shrugs, "You'll see her six months."`
+			`	Leland shrugs, "You'll see her in six months."`
 			`	Yngvar bares his stained, chipped teeth, "You best be hoping I never see you again."`
 			choice
 				`	(Say nothing and follow Yngvar out.)`
@@ -5849,7 +5849,7 @@ mission "Hroar's Haulers 15"
 				`	"Sure, I'll sign it. Anything to get out of here."`
 			`	Yngvar glares at you, "Kid, I won't dress you down in front of company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done selling our future."`
 			`	The old spacer turns and leaves.`
-			`	Leland claps and the holding doors open up behind him. The formely incarcerated Haulers begin making their way back to their ships.`
+			`	Leland claps and the holding doors open up behind him. The formerly incarcerated Haulers begin making their way back to their ships.`
 			action
 				set "brokecontract"
 			`	"Not sure whatchya did. But thanks for getting me outta there." Captain Solvi Unferth says as he unsteadily passes by you.`
@@ -5877,10 +5877,10 @@ mission "Hroar's Haulers 15"
 			action
 				payment -720,000
 			`	Yngvar nods, and says nothing.`
-			`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference reclaims his face, "Always a pleasure `
+			`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference reclaims his face, "Always a pleasure."`
 
 
-#IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
+# IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
 mission "Hroar's Haulers 9"
 	name "The Long Haul"
