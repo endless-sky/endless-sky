@@ -5698,186 +5698,186 @@ mission "Hroar's Haulers 15"
 					goto whyhaulers
 				`	"I've heard enough. Let's talk about the people you got imprisoned behind you."`
 					goto prisonchat
-		label purplehues
-		`	Leland Hemshaw's face scrunches up in disgust as he leans back, "Clearly I misjudged you. These space-savages have already rotted away your feeble mind."`
-		`	Yngvar chuckles, "Bolverka just won herself a bet. But enough games, lets talk about those fine folk you got hog-tied behind these doors."`
-			goto prisonchat
-		label workforthem
-		`	Sweat suddenly appears on Leland's brow, "Oh, what? No, no." He laughs nervously, "Of course not. The Syndicate and the Deep Trade Union are entirely seperate entities."`
-		`	"I was just... passing on some information I heard is all. Not need to think too hard about it. Perhaps it's best if we moved on." Leland says as he wrings his hands.`
-		`	"Yes." Yngvar agrees, "Lets talk about those fine folk you got hog-tied behind these doors."`
-			goto prisonchat
-		label whyhaulers
-		`	Leland clears his throat, "A few decades ago there was an unfortunate -situation- that rendered the Transport Union unable to move our goods."`
-		`	Yngvar snorts, "The blue caps bit off more than they could chew. Couldn't get the job done."`
-		`	"Yes." Leland says through clenched teeth, "The Transport Union, or blue caps, as you call them, broke their contract with us and we were forced to make a deal with the... Haulers."`
-		`	"Don't act like you're doing anyone a favor." Yngvar says, "You're still making credits hand over fist."`
-		`	Leland nods slowly, "True, but we would much prefer to work with a more professional outfit." He points behind him at the locked up Haulers. "Case in point."`
-		` 	"Finally." Yngvar says, "Enough of this ramblin', lets talk about those fine folk you got hog-tied behind these doors."`
-			goto prisonchat
-		label brasstax
-		`	Leland nods, "Very well, Captain <last>.`
-		label prisonchat
-		`	Leland hits a button and a holographic screen expands above his desk.`
-		`	"I am holding 48 crew members from the following vessels; H.H.H. Red Ruin, H.H.H. Winsome Hope, H.H.H. Red Roamer, H.H.H. Dirty Destiny and H.H.H. Iron Siren. They are being held for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment."`
-		`	He pauses and looks up at you, "Do you deny these charges?"`
-		`	Yngvar holds up a silencing hand.`
-		choice
-			`	(Say nothing.)`
-				goto nothing
-			`	"I deny the charges!"`
-				goto deny
-			`	"I don't deny the charges."`
-		label dontdeny
-		`	Leland tilts his head and frowns, "How... progressive of you. Very well. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
-		label choicenothing
-		choice
-			`	"Fine. I'll pay it."`
-			`	"Ha, that's chump change to me."`
-				goto Ipay
-			`	"Yngvar, can you cover that?"`
-			`	"I am not paying for this. This isn't my problem."`
-		`	Yngvar pulls out his handheld computer and looks at it for a moment, "There ain't no rainy day fund for this kinda shakedown. Best we can do is a collection."`
-		`	He turns the screen so you can see it, "Between all the crews we've raised about 120,000 credits."`
-		`	Leland shrugs, "That would cover about half the crews. Is that all you'll provide?" He turns to face you.`
-		choice
-			`	"I'll cover the other 120,000 Credits."`
-				goto Ipay
-			`	"You're not getting any of my money."`
-		`	Leland nods and then trades fiancial codes with Yngvar, a moment later all of the collected 120,000 credits are deposited in the Syndicate's account.`
-		`	The Authority flashes a cruel grin, "After some routine processing your crew members will be released in around six months."`
-		`	"What!" Yngvar slams his sturdy fist on the spotless desk. "You little..."`
-		`	"Now, now. You didn't pay the additional fee to expedite the process, and you certainly couldn't afford it."`
-		`	"We'll remember this next time you find yourself in a bind, mark my words you Syndie snake. The Hauler's won't forget." Yngvar spits on the ground and turns away from the man.`
-		`	"Lets go, <last>. Every minute we be spendin' in this snake-pit is bad for all our healths." Yngvar says without looking back.`
-		`	"Barbarians." Leland says beneath his breath.`
-		`	You hear a bang on the holding cell behind Leland and see a familiar face. Yngvar pauses and turns back around.`
-			to display
-				not "savedgunhilda"
-		choice
-			`	"Gunhilda?"`
-				goto gunhilda2
+			label purplehues
+			`	Leland Hemshaw's face scrunches up in disgust as he leans back, "Clearly I misjudged you. These space-savages have already rotted away your feeble mind."`
+			`	Yngvar chuckles, "Bolverka just won herself a bet. But enough games, lets talk about those fine folk you got hog-tied behind these doors."`
+				goto prisonchat
+			label workforthem
+			`	Sweat suddenly appears on Leland's brow, "Oh, what? No, no." He laughs nervously, "Of course not. The Syndicate and the Deep Trade Union are entirely seperate entities."`
+			`	"I was just... passing on some information I heard is all. Not need to think too hard about it. Perhaps it's best if we moved on." Leland says as he wrings his hands.`
+			`	"Yes." Yngvar agrees, "Lets talk about those fine folk you got hog-tied behind these doors."`
+				goto prisonchat
+			label whyhaulers
+			`	Leland clears his throat, "A few decades ago there was an unfortunate -situation- that rendered the Transport Union unable to move our goods."`
+			`	Yngvar snorts, "The blue caps bit off more than they could chew. Couldn't get the job done."`
+			`	"Yes." Leland says through clenched teeth, "The Transport Union, or blue caps, as you call them, broke their contract with us and we were forced to make a deal with the... Haulers."`
+			`	"Don't act like you're doing anyone a favor." Yngvar says, "You're still making credits hand over fist."`
+			`	Leland nods slowly, "True, but we would much prefer to work with a more professional outfit." He points behind him at the locked up Haulers. "Case in point."`
+			` 	"Finally." Yngvar says, "Enough of this ramblin', lets talk about those fine folk you got hog-tied behind these doors."`
+				goto prisonchat
+			label brasstax
+			`	Leland nods, "Very well, Captain <last>.`
+			label prisonchat
+			`	Leland hits a button and a holographic screen expands above his desk.`
+			`	"I am holding 48 crew members from the following vessels; H.H.H. Red Ruin, H.H.H. Winsome Hope, H.H.H. Red Roamer, H.H.H. Dirty Destiny and H.H.H. Iron Siren. They are being held for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment."`
+			`	He pauses and looks up at you, "Do you deny these charges?"`
+			`	Yngvar holds up a silencing hand.`
+			choice
+				`	(Say nothing.)`
+					goto nothing
+				`	"I deny the charges!"`
+					goto deny
+				`	"I don't deny the charges."`
+			label dontdeny
+			`	Leland tilts his head and frowns, "How... progressive of you. Very well. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+			label choicenothing
+			choice
+				`	"Fine. I'll pay it."`
+				`	"Ha, that's chump change to me."`
+					goto Ipay
+				`	"Yngvar, can you cover that?"`
+				`	"I am not paying for this. This isn't my problem."`
+			`	Yngvar pulls out his handheld computer and looks at it for a moment, "There ain't no rainy day fund for this kinda shakedown. Best we can do is a collection."`
+			`	He turns the screen so you can see it, "Between all the crews we've raised about 120,000 credits."`
+			`	Leland shrugs, "That would cover about half the crews. Is that all you'll provide?" He turns to face you.`
+			choice
+				`	"I'll cover the other 120,000 Credits."`
+					goto Ipay
+				`	"You're not getting any of my money."`
+			`	Leland nods and then trades fiancial codes with Yngvar, a moment later all of the collected 120,000 credits are deposited in the Syndicate's account.`
+			`	The Authority flashes a cruel grin, "After some routine processing your crew members will be released in around six months."`
+			`	"What!" Yngvar slams his sturdy fist on the spotless desk. "You little..."`
+			`	"Now, now. You didn't pay the additional fee to expedite the process, and you certainly couldn't afford it."`
+			`	"We'll remember this next time you find yourself in a bind, mark my words you Syndie snake. The Haulers won't forget." Yngvar spits on the ground and turns away from the man.`
+			`	"Let's go, <last>. Every minute we be spendin' in this snake-pit is bad for all our healths." Yngvar says without looking back.`
+			`	"Barbarians." Leland says beneath his breath.`
+			`	You hear a bang on the holding cell behind Leland and see a familiar face. Yngvar pauses and turns back around.`
 				to display
 					not "savedgunhilda"
-			`	(Follow Yngvar to the hanger.)`
+			choice
+				`	"Gunhilda?"`
+					goto gunhilda2
+					to display
+						not "savedgunhilda"
+				`	(Follow Yngvar to the hanger.)`
+					to display
+						has "savedgunhilda"
+			label byefalicia
+			action
+				set "leftgunhilda"
+			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last!>."`
+			choice
+				`	(Launch your ship.)`
+					launch
+			
+			label gunhilda2
+			`	"If you want her, that's 15,000 credits." Leland grins.`
+			`	"Hel take you." Yngvar growls. "Ain't got no money left."`
+			`	Leland shrugs, "You'll see her six months."`
+			`	Yngvar bares his stained, chipped teeth, "You best be hoping I never see you again."`
+			choice
+				`	(Say nothing and follow Yngvar out.)`
+					goto byefalicia
+				`	"I'll pay for Captain Gunhilda."`
+			action
+				payment -15000
+			`	"Wonderful." Syndicate Authority Leland says with a smirk, and then releases Gunhilda from her cell after taking your payment.`
+			`	Gunhilda takes a few steps forward and then turns to look back at the all the still imprisoned Haulers. "It's not ride to keep so many wild red souls caged up like this."`
+			`	Leland lets out a derisive laugh, but says nothing.`
+			`	"Come along, Gunhilda." Yngvar says quietly. "Ain't nothing we can do now about the rest of them."`
+			`	She looks at you as she walks past, "Thank you, but..." she pauses, "...no, nevermind. Thanks." She continues on after Yngvar to their the docked ships.`
+				accept
+			
+			
+			label nothing
+			`	Yngvar clears his throat, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
+			`	Leland nods slowly, "Refusal to address the charges results in an automatic guilty verdict. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+				goto choicenothing
+
+			label deny
+			`	Leland nods vigerously, "How forthright of you. This will, of course, incur an additional denial of charge fee. Which..." The Syndicate Authority taps a few keys,"...comes out to roughly 3,500 credits per case; a total 168,000 credits for all of them,"`
+			`	Yngvar is now pointedly shaking his head at you.`
+			choice
+				`	"Nevermind, I don't deny the charges."`
+					goto dontdeny`
+				`	"Fine I know they're innocent, I'll pay it."`
+			action
+				payment -168000
+			`	Yngvar lets out a frusterated sigh.`
+			`	"Wonderful." Leland Hemshaw says and then taps a few more keys, "I have processed your denial of the charges. Now just wait one moment."`
+			`	A few seconds pass before a digital bell rings and Leland opens up a new message, "After careful analysis of records the judicial algorithm for non-Syndicate citizens has found all Haulers guilty of breaking ordinance C7-A2."`
+			`	He looks up at you, "Now, would you like to pay their fine?"`
+			`	"Sorry, kid." Yngvar says, "Tried to warn ya. Let's just get this over with."`
+			`	Yngvar glares at Leland, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
+			`	Leland nods helpfully, "The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
+				goto choicenothing
+
+			label Ipay
+			`	Leland smile widens, "Excellent. We will still need to process all of these crew members, and their ships will be impounded in the meantime, but once we are done they will all be released."`
+			`	"And how long you reckon that'll take?" Yngvar grumbles, "We're on a schedule."`
+			`	"Oh, no time at all. In cases like this we should have everyone processed in about 6 months." Leland shrugs.`
+			`	"That'll ruin us," Yngvar growls. "That's unacceptable."`
+			`	Somehow, Leland's hyena grin stretches even further. "We could expedite the processing, but that would incur an additional fee."`
+			`	"How much?" Yngvar barks.`
+			`	"An additional 10,000 credits per incident. The total for the entire fine would now be 720,000 credits, but you'd be able to leave immediately."`
+			`	Yngvar slams his fist on the spotless desk, "That's highway robbery!"`
+			`	Leland just keeps on smiling.`
+			`	Yngvar turns to you, "It's your call, hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
+			label fineoptions
+			choice
+				`	"I'll pay the 720,000. The Long Haul is what's important."`
+					goto payall
+				`	"I'll pay the 240,000. At least they'll eventually be free."`
+					goto paysome
+				`	"I can't afford any of this. Is there anything else we can offer?"`
+					goto newdeal
+					to display
+						not "otheroptions"
+				`	"No deal. They are on their own."`
+			`	Yngvar presses a button and desposits all 120,000 of the collected credits into the Syndicate account. "That'll be enough to free most of the Iron Siren's crew. Thisaway it'll only be Solvi's fleet suffering."`
+			`	He turns his back to Leland Hemshaw and starts walking out of the office. "I'll be a waitin' on your ship when you're ready to launch, Captain <last>. Try not to be too long, the sooner we leave this snake-den, the better."`
+				decline
+
+			label newdeal
+			`	The Syndicate Authority raises an intrigued eyebrow, "Why, friends, there is always another way." He quickly taps a few keys and turns the screen to face you, it's asking for a signature. "Merely sign here to end the contract the Haulers have with the Syndicate world of Maker, and I will free all your crew members immediately."`
+			`	"You must be denser than a white dwarf if you think I'd sign something like that." Yngvar says tersely.`
+			`	Leland's eyes rest on you, "Not you, the hirthr. The hirthr speaks for the fleet, do they not? They have the legal power to end this contract, and free your friends. What do you say, Captain <last>?"`
+			`	"Don't." Yngvar hisses.`
+			choice
+				`	"No deal."`
+					goto nodeal
+				`	"Sure, I'll sign it. Anything to get out of here."`
+			`	Yngvar glares at you, "Kid, I won't dress you down in front of company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done selling our future."`
+			`	The old spacer turns and leaves.`
+			`	Leland claps and the holding doors open up behind him. The formely incarcerated Haulers begin making their way back to their ships.`
+			action
+				set "brokecontract"
+			`	"Not sure whatchya did. But thanks for getting me outta there." Captain Solvi Unferth says as he unsteadily passes by you.`
 				to display
-					has "savedgunhilda"
-		label byefalicia
-		action
-			set "leftgunhilda"
-		`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last!>."`
-		choice
-			`	(Launch your ship.)`
-			launch
-		
-		label gunhilda2
-		`	"If you want her, that's 15,000 credits." Leland grins.`
-		`	"Hel take you." Yngvar growls. "Ain't got no money left."`
-		`	Leland shrugs, "You'll see her six months."`
-		`	Yngvar bares his stained, chipped teeth, "You best be hoping I never see you again."`
-		choice
-			`	(Say nothing and follow Yngvar out.)`
-				goto byefalicia
-			`	"I'll pay for Captain Gunhilda."`
-		action
-			payment -15000
-		`	"Wonderful." Syndicate Authority Leland says with a smirk, and then releases Gunhilda from her cell after taking your payment.`
-		`	Gunhilda takes a few steps forward and then turns to look back at the all the still imprisoned Haulers. "It's not ride to keep so many wild red souls caged up like this."`
-		`	Leland lets out a derisive laugh, but says nothing.`
-		`	"Come along, Gunhilda." Yngvar says quietly. "Ain't nothing we can do now about the rest of them."`
-		`	She looks at you as she walks past, "Thank you, but..." she pauses, "...no, nevermind. Thanks." She continues on after Yngvar to their the docked ships.`
-			accept
-		
-		
-		label nothing
-		`	Yngvar clears his throat, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
-		`	Leland nods slowly, "Refusal to address the charges results in an automatic guilty verdict. The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
-			goto choicenothing
-
-		label deny
-		`	Leland nods vigerously, "How forthright of you. This will, of course, incur an additional denial of charge fee. Which..." The Syndicate Authority taps a few keys,"...comes out to roughly 3,500 credits per case; a total 168,000 credits for all of them,"`
-		`	Yngvar is now pointedly shaking his head at you.`
-		choice
-			`	"Nevermind, I don't deny the charges."`
-				goto dontdeny`
-			`	"Fine I know they're innocent, I'll pay it."`
-		action
-			payment -168000
-		`	Yngvar lets out a frusterated sigh.`
-		`	"Wonderful." Leland Hemshaw says and then taps a few more keys, "I have processed your denial of the charges. Now just wait one moment."`
-		`	A few seconds pass before a digital bell rings and Leland opens up a new message, "After careful analysis of records the judicial algorithm for non-Syndicate citizens has found all Haulers guilty of breaking ordinance C7-A2."`
-		`	He looks up at you, "Now, would you like to pay their fine?"`
-		`	"Sorry, kid." Yngvar says, "Tried to warn ya. Let's just get this over with."`
-		`	Yngvar glares at Leland, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
-		`	Leland nods helpfully, "The fine for a C7-A2 is 5,000 credits. Multiply that by 48 per instance and your organization owes us 240,000 credits."`
-			goto choicenothing
-
-		label Ipay
-		`	Leland smile widens, "Excellent. We will still need to process all of these crew members, and their ships will be impounded in the meantime, but once we are done they will all be released."`
-		`	"And how long you reckon that'll take?" Yngvar grumbles, "We're on a schedule."`
-		`	"Oh, no time at all. In cases like this we should have everyone processed in about 6 months." Leland shrugs.`
-		`	"That'll ruin us," Yngvar growls. "That's unacceptable."`
-		`	Somehow, Leland's hyena grin stretches even further. "We could expedite the processing, but that would incur an additional fee."`
-		`	"How much?" Yngvar barks.`
-		`	"An additional 10,000 credits per incident. The total for the entire fine would now be 720,000 credits, but you'd be able to leave immediately."`
-		`	Yngvar slams his fist on the spotless desk, "That's highway robbery!"`
-		`	Leland just keeps on smiling.`
-		`	Yngvar turns to you, "It's your call, hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
-		label fineoptions
-		choice
-			`	"I'll pay the 720,000. The Long Haul is what's important."`
-				goto payall
-			`	"I'll pay the 240,000. At least they'll eventually be free."`
-				goto paysome
-			`	"I can't afford any of this. Is there anything else we can offer?"`
-				goto newdeal
+					not "savedsolvi"
+					not "jerktosolvi"
+					has "savedsolvi"
+			`	"Sure you fouled this up somehow." Captain Unferth mutters as he unsteadily walks past you.`
 				to display
-					not "otheroptions"
-			`	"No deal. They are on their own."`
-		`	Yngvar presses a button and desposits all 120,000 of the collected credits into the Syndicate account. "That'll be enough to free most of the Iron Siren's crew. Thisaway it'll only be Solvi's fleet suffering."`
-		`	He turns his back to Leland Hemshaw and starts walking out of the office. "I'll be a waitin' on your ship when you're ready to launch, Captain <last>. Try not to be too long, the sooner we leave this snake-den, the better."`
-			decline
+					not "savedsolvi"
+					has "jerktosolvi"
+			`	"My Royal Dreamer," Gunhilda says musically as she steps out of the holding cell with a few other members of her crew, "How gallant." She favors you with a broad honest smile as she continues on toward her ship.`
+				to display
+					not "savedgunhilda"
+			`	"An absolute pleasure doing business with you, Captain <last>," he practically purrs.`
+				accept
 
-		label newdeal
-		`	The Syndicate Authority raises an intrigued eyebrow, "Why, friends, there is always another way." He quickly taps a few keys and turns the screen to face you, it's asking for a signature. "Merely sign here to end the contract the Haulers have with the Syndicate world of Maker, and I will free all your crew members immediately."`
-		`	"You must be denser than a white dwarf if you think I'd sign something like that." Yngvar says tersely.`
-		`	Leland's eyes rest on you, "Not you, the hirthr. The hirthr speaks for the fleet, do they not? They have the legal power to end this contract, and free your friends. What do you say, Captain <last>?"`
-		`	"Don't." Yngvar hisses.`
-		choice
-			`	"No deal."`
-				goto nodeal
-			`	"Sure, I'll sign it. Anything to get out of here."`
-		`	Yngvar glares at you, "Kid, I won't dress you down in front of company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done selling our future."`
-		`	The old spacer turns and leaves.`
-		`	Leland claps and the holding doors open up behind him. The formely incarcerated Haulers begin making their way back to their ships.`
-		action
-			set "brokecontract"
-		`	"Not sure whatchya did. But thanks for getting me outta there." Captain Solvi Unferth says as he unsteadily passes by you.`
-			to display
-				not "savedsolvi"
-				not "jerktosolvi"
-				has "savedsolvi"
-		`	"Sure you fouled this up somehow." Captain Unferth mutters as he unsteadily walks past you.`
-			to display
-				not "savedsolvi"
-				has "jerktosolvi"
-		`	"My Royal Dreamer," Gunhilda says musically as she steps out of the holding cell with a few other members of her crew, "How gallant." She favors you with a broad honest smile as she continues on toward her ship.`
-			to display
-				not "savedgunhilda"
-		`	"An absolute pleasure doing business with you, Captain <last>." He practically purrs.`
-			accept
+			label nodeal
+			action
+				set "otheroptions"
+			`	"Fine." Leland glares at you, "Your loss. So, you gonna pay the fines or not?"`
+				goto fineoptions
 
-		label nodeal
-		action
-			set "otheroptions"
-		`	"Fine." Leland glares at you, "Your loss. So, you gonna pay the fines or not?"`
-			goto fineoptions
-
-		label payall
-		action
-			payment -720,000
-		`	Yngvar nods, and says nothing.`
-		`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference reclaims his face, "Always a pleasure `
+			label payall
+			action
+				payment -720,000
+			`	Yngvar nods, and says nothing.`
+			`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference reclaims his face, "Always a pleasure `
 
 
 #IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
