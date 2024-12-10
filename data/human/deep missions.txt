@@ -4230,87 +4230,96 @@ mission "Hroar's Haulers: Deal"
 			`			"We're an unstoppable force that has never met an immovable object!"`
 	on complete
 		dialog
-			`	The red world of Muspel rushes toward you as your ship rumbles through the atmosphere. Your hatch opens into the billowing dust, and you head out to meet Hroar in the spaceport.`
+			`The red world of Muspel rushes toward you as your ship rumbles through the atmosphere. Your hatch opens into the billowing dust, and you head out to meet Hroar in the spaceport.`
 
 
 
 mission "Hroar's Haulers: Deal 2"
 	name "Hroar's Favor"
+	description "Travel to <destination> to pick up <cargo> for Hroar."
+	cargo "exotic minerals" 150
 	to offer
 		has "Hroar's Haulers: Deal: done"
 	source "Muspel"
 	destination "Bivrost"
 	on offer
 		conversation
-			`	You wander through the dust-filled spaceport of Muspel until you find the the rickety swinging doors of the Red Rock Saloon. `
-			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple dirty faces take quick side-glances as you approach the bar.`
+			`You wander through the dust-filled spaceport of Muspel until you find the the rickety swinging doors of the Red Rock Saloon.`
+			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple of dirty faces take quick side-glances as you approach the bar.`
 			`	The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
 			choice
 				`	"Hroar asked for me."`
 					goto job
 				`	"Who says I'm not a local?"`
-			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
-			`	"Now, either you got business, or you don't. So what are ya here for?" The bartender says with an angry glare.`
+			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust.`
+			`	"Now, either you got business, or you don't. So what are ya here for?" the bartender says with an angry glare.`
 			choice
-				`   "Hroar sent for me."`
-				`   "Just here to do Hroar's dirty work."`
+				`
+	"Hroar sent for me."`
+				`
+	"Just here to do Hroar's dirty work."`
 			label job
-			`   The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
-			`   You're familar with the booth, as you walk back to where handlebar-whiskered Hroar is seated.`
-			`   "Got my message, didja?" He smiles broadly and gestures toward the empty seat in front of him.`
+			`	The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
+			`	You're familar with the booth, as you walk back to where handlebar-whiskered Hroar is seated.`
+			`	"Got my message, didja?" He smiles broadly and gestures toward the empty seat in front of him.`
 			`	He pours himself another glass of whiskey from his resident bottle as you slide into the booth.`
-			`   "Glad to see you've kept your word." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
-			`   He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position like that filled. Hard to find a Captain who can fill it."`
-			`   A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. That's the favor I am calling in. I need you to be my 'Speciality-Courier'."`
+			`
+"Glad to see you've kept your word." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
+			`
+He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position like that filled. Hard to find a Captain who can fill it."`
+			`
+A sly grin spreads across his face, "But you, you're the kind a Captain this job calls for. Indepedent, resourceful, and all that. That's the favor I am calling in. I need you to be my 'Specialty-Courier'."`
 			choice
-				`   "A deal's a deal. I'll do it."`
+				`	"A deal's a deal. I'll do it."`
 					goto yes
-				`   "How's the pay?".`
+				`	"How's the pay?"`
 					goto pay
-				`   "No, thanks."`
+				`	"No, thanks."`
 					goto out
 			label pay
-			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep."`
-			`   "Not bad for a favor, eh?"`
+			`   Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
+			`	"Not bad for a favor, eh?"`
 			choice
-				`   "Okay. I'll do it."`
+				`	"Okay. I'll do it."`
 					goto yes
-				`   "Not interested."`
+				`	"Not interested."`
 			label out
-			`   Hroar frowns and his eyes narrow. "I don't rightly know where you're from, but out here, a person's word means something. We don't casually make promises, and certainly don't go breaking oaths. We could've been good, you and, I, could've made a lot money. Could've helped some folks out even. But we ain't ever going work together now. You're only as good as your word, which makes you no good at all."`
-			`   Hroar spits on the floor. "Now, get the Hel out of my booth, out of this saloon, and off this world before I do something you'll regret."`
+			`	Hroar frowns and his eyes narrow. "I don't rightly know where you're from, but out here, a person's word means something. We don't casually make promises, and certainly don't go breaking oaths. We could've been good, you and, I, could've made a lot money. Could've helped some folks out even. But we ain't ever going work together now. You're only as good as your word, which makes you no good at all."`
+			`	Hroar spits on the floor. "Now, get the Hel out of my booth, out of this saloon, and off this world before I do something you'll regret."`
 				decline
 			label yes
 			`   "Clocked you for a person of their word. Glad, I was right, and happy to have you as the newest member of Hardy Hroar's Haulers." He lifts up his glass and nods to you.`
-			`   "Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
+			`	"Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
 				accept
 	on complete
 		dialog
-			`	The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
+			`The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
 
 mission "Hroar's Haulers: No Deal"
 	name "Becoming a Hauler"
+	description "Travel to <destination> to pick up <cargo> for Hroar."
+	cargo "exotic minerals" 150
 	to offer
 		has "event: hroars offer"
 	source "Muspel"
 	destination "Bivrost"
 	on offer
 		conversation
-			`   As you wander through the dust-filled spaceport of Muspel you pass the rickety swinging doors of the Red Rock Saloon. There is a dirty sign posted outside with the words, 'Courier Wanted - See Hardy-Hroar inside'.`
+			`As you wander through the dust-filled spaceport of Muspel you pass the rickety swinging doors of the Red Rock Saloon. There is a dirty sign posted outside with the words, 'Courier Wanted - See Hardy-Hroar inside'.`
 			choice
-				`   (Inquire about the job.)`
+				`	(Inquire about the job.)`
 					goto inquire
-				`   (Ignore the sign, and keep walking.)`
-			`   You have better things to do than look for a job here. You keep walking.`
+				`	(Ignore the sign, and keep walking.)`
+			`	You have better things to do than look for a job here. You keep walking.`
 				decline
 			label inquire
-			`   You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple dirty faces take quick side-glances as you approach the bar.`
-			`   The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
+			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple of dirty faces take quick side-glances as you approach the bar.`
+			`	The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
 			choice
-				`   "I'm here about the courier job."`
+				`	"I'm here about the courier job."`
 					goto job
-				`   "Who says I'm not a local?"`
-			`   The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
+				`	"Who says I'm not a local?"`
+			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
 			`   "Now, either ya got business, or you don't. So what are ya here for?" The bartender says with an angry glare.`
 			choice
 				`   "I'm here about the courier job."`
