@@ -4353,9 +4353,12 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# Use of "AA" at the start of the mission name is to make it offer only if no other missions have.
-mission "AA Spaceport Reminder Resetter"
+# The minor mission with the lowest precedence is what gets offered, so use
+# an offer order of 1 so that this mission is discarded first if there are other
+# minor missions available.
+mission "Spaceport Reminder Resetter"
 	minor
+	precedence 1
 	invisible
 	repeat
 	to offer
