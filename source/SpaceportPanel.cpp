@@ -30,7 +30,8 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get("spaceport"))
+	: LandedOfferPanel(player, Mission::SPACEPORT), port(player.GetPlanet()->GetPort()),
+		ui(*GameData::Interfaces().Get("spaceport"))
 {
 	SetTrapAllEvents(false);
 
@@ -64,24 +65,6 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	newsMessage.Wrap(news->Message());
-}
-
-
-
-void SpaceportPanel::Step()
-{
-	if(GetUI()->IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
-	{
-		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
-		// Special case: if the player somehow got to the spaceport before all
-		// landing missions were offered, they can still be offered here:
-		if(!mission)
-			mission = player.MissionToOffer(Mission::LANDING);
-		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
-		else
-			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
-	}
 }
 
 
@@ -123,4 +106,11 @@ const News *SpaceportPanel::PickNews() const
 			matches.push_back(&it.second);
 
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
+}
+
+
+
+const Port *SpaceportPanel::GetPort() const
+{
+	return &port;
 }
