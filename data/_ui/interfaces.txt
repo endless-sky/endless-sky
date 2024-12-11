@@ -53,6 +53,7 @@ color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
+color "outfitter difference highlight" 1. .5 0. 1.
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
