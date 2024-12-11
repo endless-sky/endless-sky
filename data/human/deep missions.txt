@@ -3164,7 +3164,7 @@ mission "Home for Skadenga 1"
 	on complete
 		event "nifel waiting" 15
 		conversation
-			`Upon landing, you get a recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
+			`Upon landing, you get a recorded voice message from Hljod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
 			`	The message abruptly ends.`
 
 
