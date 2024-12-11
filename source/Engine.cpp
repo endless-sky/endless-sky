@@ -759,6 +759,11 @@ void Engine::Step(bool isActive)
 			info.SetOutlineColor(Radar::GetColor(1));
 		}
 	}
+	if(player.Flagship())
+		{
+			const Ship &flagship = *player.Flagship();
+			info.SetString("flagship name", flagship.Name());
+		}
 	if(currentSystem)
 		info.SetString("location", currentSystem->Name());
 	info.SetString("date", player.GetDate().ToString());
