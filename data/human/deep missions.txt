@@ -2856,7 +2856,7 @@ mission "Home for Skadenga 1"
 			action
 				payment -2000
 			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
-			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
+			`	She puts her finger to her ear and says, "Hljod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
 			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
 			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mishmash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
@@ -2878,18 +2878,18 @@ mission "Home for Skadenga 1"
 			`	With that, you follow the woman back to the warm and nearly empty spaceport, where she leaves you to return to her forlorn booth.`
 				decline
 			label yolo
-			`	With your signature in hand, the woman's eyes sparkle, and there is a skip in her step as she leads you to the Ice-Crawler. She pulls a lever on the outside of the vehicle that opens a door and releases a ramshackle ramp for you to climb. She indicates that you should walk up the feeble looking ramp. "Hjlod will be your driver and tour-guide for the duration of your excursion. She is waiting for you within. On behalf of Intrepid Ice Adventures Limited, I would like to wish you a happy and safe expedition!"`
+			`	With your signature in hand, the woman's eyes sparkle, and there is a skip in her step as she leads you to the Ice-Crawler. She pulls a lever on the outside of the vehicle that opens a door and releases a ramshackle ramp for you to climb. She indicates that you should walk up the feeble looking ramp. "Hljod will be your driver and tour-guide for the duration of your excursion. She is waiting for you within. On behalf of Intrepid Ice Adventures Limited, I would like to wish you a happy and safe expedition!"`
 			choice
 				`	(Board the Ice-Crawler.)`
 			`	The Ice-Crawler, 'Brunhilda,' smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat and strap in.`
 			`	It is only a little warmer here than it was in the maintenance dock. To your left and right are wide, scratched, and frost-rimmed windows.`
-			`	"Velcome. I am called Hjlod." The thickly accented woman looks back from the driver's seat. She has short blonde hair, and her face and arms are covered in long weaving blue tattoos. "I am from here. I have spent whole life traversing this tundra. I know like back of hand." She gives you a lopsided grin and then pats the steering console. "And Brunhilda here, she never let you down."`
-			`	Hjlod turns away from you and starts pulling some levers. "Now," she says, "let's begin."`
+			`	"Velcome. I am called Hljod." The thickly accented woman looks back from the driver's seat. She has short blonde hair, and her face and arms are covered in long weaving blue tattoos. "I am from here. I have spent whole life traversing this tundra. I know like back of hand." She gives you a lopsided grin and then pats the steering console. "And Brunhilda here, she never let you down."`
+			`	Hljod turns away from you and starts pulling some levers. "Now," she says, "let's begin."`
 			choice
 				`	(Sit back as the motor hums and the Ice-Crawler lurches to a start.)`
-			`	After a few hours of crawling through a bleak, blank wasteland in silence, Hjlod turns the crawler into what looks like a bleaker and blanker wasteland.`
+			`	After a few hours of crawling through a bleak, blank wasteland in silence, Hljod turns the crawler into what looks like a bleaker and blanker wasteland.`
 			scene "scene/iceplains"
-			`	"This is famous Glaesisvellir ice-plain. Story say once whole convoy of researcher disappear here. Can drill hole in ice for fishing. There is very good tasting voolly octopus beneath it." Hjlod slows down and looks back at you. "You have question?"`
+			`	"This is famous Glaesisvellir ice-plain. Story say once whole convoy of researcher disappear here. Can drill hole in ice for fishing. There is very good tasting voolly octopus beneath it." Hljod slows down and looks back at you. "You have question?"`
 			label questions
 			choice
 				`	"What happened to the researchers?"`
@@ -2908,53 +2908,53 @@ mission "Home for Skadenga 1"
 			action
 				set "skadenga: asked about researchers"
 			`	"Long time ago. Researcher convoy look for bacterial pharmaceutical. Many researcher convoy in area. Most smart use native pathfinder, like me. This convoy, they not so smart, they say pathfinder waste of money. They go out in ice alone and they never come back."`
-			`	Hjlod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book dumb."`
+			`	Hljod shrugs. "Maybe they fall in ice. Maybe they get eaten by Ice-Slug. Maybe avalanche fall on them. Maybe fall on own veapon and die. Nobody ever find them. Tour-guide book say that some night you can see their ghost haunting ice. Tour-guide book dumb."`
 			`	"Any more question?"`
 				goto questions
 			label ice
 			action
 				set "skadenga: asked about ice"
-			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
+			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hljod and you not drown and get eaten by Ice-Slug."`
 			`	"You have more question?"`
 				goto questions
 			label monster
 			action
 				set "skadenga: asked about monsters"
 			`	"Every world have animal. Some animal big, some small. Voolly octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
-			`	She smiles at you. "You're not foolish tourist. You are with Hjlod. You are safe."`
+			`	She smiles at you. "You're not foolish tourist. You are with Hljod. You are safe."`
 			`	"Any more question?"`
 				goto questions
 			label noquestion
-			`	"Is smart, not to ask question. Hjlod tell you best parts only." Hjlod gives you a quick grin and swivels back into her makeshift cockpit. "Enough ice-plain, now ve go to next stop."`
+			`	"Is smart, not to ask question. Hljod tell you best parts only." Hljod gives you a quick grin and swivels back into her makeshift cockpit. "Enough ice-plain, now ve go to next stop."`
 			scene "scene/iceplains2"
 			choice
 				`	(Look out at the bright Ice-Plains as they slowly disappear into the dull horizon.)`
-			`	The Ice-Crawler plows through snow, hill, mountain, and tundra for another hour or two before a massive and oddly shaped rock passes into view. Hjlod stops the Ice-Crawler so you can look at it.`
+			`	The Ice-Crawler plows through snow, hill, mountain, and tundra for another hour or two before a massive and oddly shaped rock passes into view. Hljod stops the Ice-Crawler so you can look at it.`
 			scene "scene/lonelyrock"
 			`	"This is rock," she says matter-of-factly. You look at it for a while and realize there is a face half chiseled into it.`
-			`	"You are done looking? Ve are good to move to next stop?" Hjlod asks.`
+			`	"You are done looking? Ve are good to move to next stop?" Hljod asks.`
 			choice
 				`	"Yep, I don't need to look at this rock any longer."`
 					goto riverlike
 				`	"Wait, is that part of a man's face carved into it? What is so special about this rock?"`
-			`	"That rock is supposed to celebrate man who discover Rigellian cure. He was called Hank, or Henry, or Bill, or something." Hjlod shrugs with evident disdain. "The cure was found here, but back when tundra was melting and Nifel was a little varmer. They say this man discover it and they want to make grand statue for him. But it turn out Nifel not so great place for statue. Beside, no one like statue of liar."`
-			`	Hjlod turns back to her controls and gets the Ice-Crawler moving forward again. "That is enough about stupid rock and stupider man.`
+			`	"That rock is supposed to celebrate man who discover Rigellian cure. He was called Hank, or Henry, or Bill, or something." Hljod shrugs with evident disdain. "The cure was found here, but back when tundra was melting and Nifel was a little varmer. They say this man discover it and they want to make grand statue for him. But it turn out Nifel not so great place for statue. Beside, no one like statue of liar."`
+			`	Hljod turns back to her controls and gets the Ice-Crawler moving forward again. "That is enough about stupid rock and stupider man.`
 			label riverlike
 			`	"Now ve go to river," she tells you. The large, oddly shaped rock falls out of your field of view as the Ice-Crawler turns away from it.`
 			scene "scene/snowfield"
-			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow. Somewhere outside, subsequent rumble starts to build rapidly. After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
-			`	Despite her calm demeanor, she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hjlod seems to have retaining traction.`
-			`	"I think-" Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain. You and Hjlod hold tight as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its side.`
+			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow. Somewhere outside, subsequent rumble starts to build rapidly. After Hljod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
+			`	Despite her calm demeanor, she wields the Ice-Crawler with reckless abandon as she tries to avoid the rumbling snow. The machine protests with creaks and whirrs and pops as it strains to claw itself out of the way faster than it has probably gone for hundreds of years. The closer the rumbling gets, the more difficulty Hljod seems to have retaining traction.`
+			`	"I think-" Hljod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain. You and Hljod hold tight as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its side.`
 			`	A few moments later, the rumbling finishes passing you by.`
 			choice
 				`	(Unbuckle the seatbelt and get up.)`
-			`	By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
+			`	By the time you are on your feet, Hljod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hljod not let you die, probably. I can lead us to settlement not far from here."`
 			`	She tosses you an old, scruffy jacket with a tear along one of its arms. "Valking in cold, good for health. Maybe not as far as ve must go, but you laugh about later. Good story to tell back home."`
 			choice
-				`	(Put on the jacket and follow Hjlod out onto the ice.)`
+				`	(Put on the jacket and follow Hljod out onto the ice.)`
 					goto jacket
 				`	"No way. I am done with this. I am calling my ship, or fixing this Ice-Crawler. Either way, I am not going anywhere."`
-			`	Hjlod shrugs. "You may die, or maybe not. Signals vork strange here at times. Good luck and remember. No refund." With that, Hjlod opens the hatch and disappears in the cold white flurry outside.`
+			`	Hljod shrugs. "You may die, or maybe not. Signals vork strange here at times. Good luck and remember. No refund." With that, Hljod opens the hatch and disappears in the cold white flurry outside.`
 			choice
 				`	(Quickly shut the hatch behind her.)`
 			`	Alone, you have a decision to make. You can dismantle portions of the Ice-Crawler and use them to strengthen your personal comms to get a signal out to the <ship>. Or, you can try to repair the Ice-Crawler and get it running again - in which case you wouldn't be able to use its parts to boost your comm signal.`
@@ -2963,7 +2963,7 @@ mission "Home for Skadenga 1"
 				`	(Try to fix the Ice-Crawler.)`
 					goto fixme
 			`	You have much more faith in your ship than some antique vehicle. You spend hours ripping once-vital machinery out of the Ice-Crawler in order to make a signal booster for your comms, eventually cobbling together a functional booster and programming a repeating burst S.O.S. message into it.`
-			`You're certain your ship will eventually pick it up. Unfortunately, the damage you've done to the Ice-Crawler has affected its heater, which gives out during your eighth hour of waiting. In the meantime, you put on the jacket Hjlod left you and stuff it with rags and trash in a bid to keep warm.`
+			`You're certain your ship will eventually pick it up. Unfortunately, the damage you've done to the Ice-Crawler has affected its heater, which gives out during your eighth hour of waiting. In the meantime, you put on the jacket Hljod left you and stuff it with rags and trash in a bid to keep warm.`
 			choice
 				`	(Try to ignore the cold and get some sleep.)`
 			`	As the hours go by, you lose feeling in your hands and feet. There are no rations, and what stale warmth was once here is now gone. Hopefully, you didn't make a mistake waiting here. You know you made a mistake by going on this miserable tour. You just want to be warm again, and you certainly don't want to die here.`
@@ -3000,29 +3000,29 @@ mission "Home for Skadenga 1"
 			`	You breathe easy. You did it! After a few minutes getting accustomed to the controls you manage to pull the Ice-Crawler out of the snow. What will you do now?`
 			scene "scene/icepicture"
 			choice
-				`	(Follow Hjlod's tracks.)`
+				`	(Follow Hljod's tracks.)`
 					goto followher
 				`	(Try and find a way to the spaceport.)`
-			`	You've had enough of this expedition. Hjlod said she was fine, and you'll leave it at that. You turn the Ice-Crawler around and make your way back to the spaceport.`
-			`	It only takes a couple hours, and the controls on the Ice-Crawler are relatively easy. When you pull into the maintenance dock, the sales woman comes to meet you and is dismayed that Hjlod is not with you.`
-			`	She hasn't heard from Hjlod and fears the worst. You hope it all works out as you head back to your ship and as far away from this place as possible.`
+			`	You've had enough of this expedition. Hljod said she was fine, and you'll leave it at that. You turn the Ice-Crawler around and make your way back to the spaceport.`
+			`	It only takes a couple hours, and the controls on the Ice-Crawler are relatively easy. When you pull into the maintenance dock, the sales woman comes to meet you and is dismayed that Hljod is not with you.`
+			`	She hasn't heard from Hljod and fears the worst. You hope it all works out as you head back to your ship and as far away from this place as possible.`
 				decline
 			label followher
-			`	Hjlod's tracks are clearly visible in the crisp snow, and you're able to follow them for hours. Just as the second sun is setting, the footprints come to an end at a mound of snow.`
-			`	You leave the vehicle and investigate. You find an exhausted, freezing Hjlod and help her back into the Ice-Crawler. She does not have the strength to speak, and you worry without immediate medical attention that she won't make it.`
+			`	Hljod's tracks are clearly visible in the crisp snow, and you're able to follow them for hours. Just as the second sun is setting, the footprints come to an end at a mound of snow.`
+			`	You leave the vehicle and investigate. You find an exhausted, freezing Hljod and help her back into the Ice-Crawler. She does not have the strength to speak, and you worry without immediate medical attention that she won't make it.`
 			`	As darkness descends, you see a flickering light in the distance.`
 			choice
 				`	(Drive toward the flickering light.)`
 					goto flicker
 				`	(Drive back to the spaceport.)`
 			`	There is no guarantee that the flicker of light is anything more than a waste of time. You turn the Ice-Crawler around and head back toward the spaceport at the fastest speed you dare.`
-			`	Long hours pass and you press on while Hjlod lays unconscious...`
+			`	Long hours pass and you press on while Hljod lays unconscious...`
 			`	Finally, in the dead of night you arrive back at the spaceport. Medics swarm your vehicle, and while you learn she'll live, you are also told that she will lose her hands and feet to frostbite. The woman who sold you the excursion thanks you profusely for saving her friend, but still refuses to give you a refund.`
 				decline
 			label flicker
 			`	Exhausted, you drive toward the flickering light and discover it is emanating from a small village.`
-			`	Moments after entering what you assume is the village center, people flock toward your idle vehicle. Before you know it, they have the hatch open and have carried Hjlod out.`
-			`	A young woman, bearing facial tattoos similar to Hjlod, approaches you and escorts you to a communal bunk house for the night. You're too tired to get a handle on what is going on and decide that it can wait for tomorrow.`
+			`	Moments after entering what you assume is the village center, people flock toward your idle vehicle. Before you know it, they have the hatch open and have carried Hljod out.`
+			`	A young woman, bearing facial tattoos similar to Hljod, approaches you and escorts you to a communal bunk house for the night. You're too tired to get a handle on what is going on and decide that it can wait for tomorrow.`
 			scene "scene/snowvillage"
 			choice
 				`	(Sleep now, think later.)`
@@ -3031,43 +3031,43 @@ mission "Home for Skadenga 1"
 			action
 				set "put on jacket"
 			`	You throw on the jacket and stuff a few rags in your coat for good measure.`
-			`	Hjlod nods at you and opens the hatch. "It is only meter to surface."`
+			`	Hljod nods at you and opens the hatch. "It is only meter to surface."`
 			`	She plunges into the snow and swim-climbs her way up it. You follow her, and though the cold is shocking, you are relieved when you quickly rise above it into the icy clear air above.`
 			`	"Stay close," she says as she begins to trek through the snow. "Any path but mine is dangerous."`
 			scene "scene/snowplain"
 			choice
-				`	(Walk in Hjlod's footsteps.)`
+				`	(Walk in Hljod's footsteps.)`
 					goto travel
 				`	(Meander around.)`
-			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die."`
+			`	Hljod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die."`
 			choice
-				`	(Walk in Hjlod's footsteps.)`
+				`	(Walk in Hljod's footsteps.)`
 					goto travel
 				`	(Continue to meander.)`
-			`	You walk in your looping meandering pattern, stepping where you want, and not paying any attention to the path Hjlod is taking.`
-			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hjlod was just being bossy. She should have no say over what you are doing; it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
+			`	You walk in your looping meandering pattern, stepping where you want, and not paying any attention to the path Hljod is taking.`
+			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hljod was just being bossy. She should have no say over what you are doing; it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
 			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle. You look down at your feet and see there is not packed snow beneath them, but that a gray-purple blob that has wrapped itself around your leg.`
 			choice
 				`	(Try and shake free.)`
 					goto free
-				`	(Call out to Hjlod for help.)`
-			`	Damn your pride. "Hjlod, help! Something's got my foot!" you cry.`
-			`	Hjlod looks back at you with a dull expression on her face. "Is it purple-gray in color?"`
+				`	(Call out to Hljod for help.)`
+			`	Damn your pride. "Hljod, help! Something's got my foot!" you cry.`
+			`	Hljod looks back at you with a dull expression on her face. "Is it purple-gray in color?"`
 			`	"Yes, yes! Quick, help. I don't know what to do."`
-			`	"Vhat you do is listen to Hjlod, and not make stompy circles in snow like spoilt child."`
-			`	"Please, Hjlod!" You cry as the last of your boot dissolves away and you feel the slimy slug on your exposed foot.`
-			`	"It is too late. Ice-Slug has you. Vhat you do now is die. Horribly." Hjlod turns and starts jogging away from you.`
+			`	"Vhat you do is listen to Hljod, and not make stompy circles in snow like spoilt child."`
+			`	"Please, Hljod!" You cry as the last of your boot dissolves away and you feel the slimy slug on your exposed foot.`
+			`	"It is too late. Ice-Slug has you. Vhat you do now is die. Horribly." Hljod turns and starts jogging away from you.`
 			choice
 				`	(Try and pull free.)`
 			label free
 			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation. Your eyes water and you scream out in pain for help and mercy.`
 			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the gray-purple blob that is forming up behind you.`
-			`	Try as you might, you can't cry out Hjlod's name; instead your screams are savage, hollow noises. You reach for her, you reach for anyone, but it's too late. The Ice-Slug has caught up to you, and you feel its acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
-			`	You look up one last desperate time, hoping to see Hjlod coming to rescue you, but all you see is a gray smudge on the horizon, a distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
+			`	Try as you might, you can't cry out Hljod's name; instead your screams are savage, hollow noises. You reach for her, you reach for anyone, but it's too late. The Ice-Slug has caught up to you, and you feel its acidic tendrils wrapping around your remaining leg and lower torso. The pain is agonizing as your lower body begins to dissolve.`
+			`	You look up one last desperate time, hoping to see Hljod coming to rescue you, but all you see is a gray smudge on the horizon, a distant person who has long left you for dead. You are alone now with the Ice-Slug and the pain. You consider briefly your mistakes before you are dissolved and eaten.`
 				die
 			label travel
 			`	The cold, monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
-			`	Evening and exhaustion approach hand in hand, and as the last sun sets, you're not sure how much farther you can go. "There!" Hjlod breaks the silence of hours as she points at the weak flicker of light in the twilight landscape. "This is good," she admits hoarsely as you both stumble toward the light. "Ve vould have not survived night."`
+			`	Evening and exhaustion approach hand in hand, and as the last sun sets, you're not sure how much farther you can go. "There!" Hljod breaks the silence of hours as she points at the weak flicker of light in the twilight landscape. "This is good," she admits hoarsely as you both stumble toward the light. "Ve vould have not survived night."`
 			`	The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl for as long as you can. And then nothing.`
 			choice
 				`	(Wake up.)`
@@ -3084,22 +3084,22 @@ mission "Home for Skadenga 1"
 				`	"Excuse me?"`
 			`	The crowd steps back, and an elderly woman steps forward. Her gray hair is rolled up into tight, elegant braids, and her face and hands are covered in faded, blue tattoos.`
 			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all." The elderly woman and everyone behind her kneels before you.`
-			branch "withhjlod"
+			branch "withHljod"
 				has "put on jacket"
 			action
-				set "Hjlodsaved"
+				set "Hljodsaved"
 			choice
 				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 					goto woah
-				`	"Your daughter? Hjlod? Is she alright?"`
-			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you, Hjlod will be fine. Had you been any later, she would have lost her hands, or worse. But she is recovering now and will join us later."`
+				`	"Your daughter? Hljod? Is she alright?"`
+			`	The elderly woman smiles warmly. "It is good of you to ask. Thanks to you, Hljod will be fine. Had you been any later, she would have lost her hands, or worse. But she is recovering now and will join us later."`
 			choice
 				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 			label woah
 			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
 			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the electric burn on your arm you received while repairing the Ice-Crawler. "It seems we have been waiting for you."`
 				goto woahafter
-			label withhjlod
+			label withHljod
 			choice
 				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
@@ -3148,13 +3148,13 @@ mission "Home for Skadenga 1"
 			label shuttle
 			branch "threefingers"
 				has "put on jacket"
-			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.`
-			`	"I just vant to thank you." Hjlod's gray-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
+			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hljod.`
+			`	"I just vant to thank you." Hljod's gray-blue eyes glitter in the morning light. "I alvays say Hljod keep tourist safe. But yesterday you save Hljod. I vill not forgot, know this."`
 				goto lopsided
 			label threefingers
-			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "Stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
+			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hljod. "You see," she says, "Stick with Hljod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
 			label lopsided
-			`	Hjlod offers one of her lopsided grins and then leaves you alone with the shuttle. It is time to go.`
+			`	Hljod offers one of her lopsided grins and then leaves you alone with the shuttle. It is time to go.`
 				accept
 	on stopover
 		dialog
@@ -3164,7 +3164,7 @@ mission "Home for Skadenga 1"
 	on complete
 		event "nifel waiting" 15
 		conversation
-			`	Upon landing, you get a recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
+			`	Upon landing, you get a recorded voice message from Hljod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
 			`	The message abruptly ends.`
 
 
@@ -3218,7 +3218,7 @@ mission "Home for Skadenga 2"
 		has "Home for Skadenga 3: offered"
 	on complete
 		conversation
-			`When you enter <planet>'s atmosphere, you receive a message that Hjlod will be waiting for you in the spaceport.`
+			`When you enter <planet>'s atmosphere, you receive a message that Hljod will be waiting for you in the spaceport.`
 			`	Before you have a chance to head into the port however, you are met by a well-dressed administrator and a couple of nondescript guards.`
 			`	"Captain <last>," the administrator says crisply. "You are invited to a meeting in the VIP Conference room. If you would please follow me."`
 			choice
@@ -3267,7 +3267,7 @@ mission "Home for Skadenga 2"
 			`	Jakob interrupts you before you have a chance to finish your sentence. "Now, listen, you just think it over. We don't need your answer now. All we need is for you to guide those people to Asgard. If you do that, the Transport Union on Valhalla will have the ships you need. If you don't, well, things might be more difficult for everyone. And remember, we'll pay you in real credits. Not charm bracelets."`
 			`	"Lars!" Jakob calls, and the administrator and his two guards promptly enter the room. "Show Captain <last> back to their ship. Our meeting is concluded."`
 			`	"Of course, sir," Lars replies.`
-			`	The guards grab you and "escort" you off the premises. With that distraction out of the way, it's time to go meet Hjlod at the spaceport.`
+			`	The guards grab you and "escort" you off the premises. With that distraction out of the way, it's time to go meet Hljod at the spaceport.`
 
 
 
@@ -3344,15 +3344,15 @@ mission "Home for Skadenga 4"
 	destination "Valhalla"
 	on offer
 		conversation
-			`There are no signs of Hjlod when you arrive at the mostly empty spaceport. You spend a few minutes wandering around before you see her heading down the hall toward you. "Sorry to be late, you vould not believe all paper-vork they had for me. I think they aren't happy about Ice-Crawler."`
+			`There are no signs of Hljod when you arrive at the mostly empty spaceport. You spend a few minutes wandering around before you see her heading down the hall toward you. "Sorry to be late, you vould not believe all paper-vork they had for me. I think they aren't happy about Ice-Crawler."`
 			choice
 				`	"That's okay. I didn't mind waiting."`
 					goto waiting
 				`	"I was abducted by the Vice Planetary-Governor."`
-			`	"That is no surprise," Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
-			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
+			`	"That is no surprise," Hljod says nonchalantly. "They alvays do thing like this. It matters not to us."`
+			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hljod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
 			label waiting
-			`	"Now," Hjlod says, "Tell me about Setstokkr. Did you find it?"`
+			`	"Now," Hljod says, "Tell me about Setstokkr. Did you find it?"`
 			choice
 				`	"I found nothing definitive."`
 					goto nothing
@@ -3361,7 +3361,7 @@ mission "Home for Skadenga 4"
 				`	"I found a strange box similar to the Setstokkr on Asgard."`
 			`	"Sounds like herbalist box. Ondurdis had one long before I vas born. Gave it to liar. It not important though, not Setstokkr."`
 			label nothing
-			`	"Sending big piece of vood through space probably not best idea Ondurdis had." Hjlod smirks. "Still, it does not matter so much what you find. Only how you felt. You saw the vorlds. Vhere should ve go?"`
+			`	"Sending big piece of vood through space probably not best idea Ondurdis had." Hljod smirks. "Still, it does not matter so much what you find. Only how you felt. You saw the vorlds. Vhere should ve go?"`
 			choice
 				`	"Windblain."`
 				`	"Asgard."`
@@ -3369,17 +3369,17 @@ mission "Home for Skadenga 4"
 			action
 				set "Nifel"
 			`	You answer, "There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
-			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
+			`	Hljod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
 				goto end
 			label asgard
 			action
 				set "Asgard"
 			`	You answer, "On Asgard, there is a great market built around their God-Stone, and many new homes in need of people to fill them. The people there have lost their way and they need the Skadenga to remind them of who they were."`
-			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
+			`	Hljod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
 			label end
 			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
 			`	You frown and ask, "Did she provide money?"`
-			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you." She turns and leaves.`
+			`	Hljod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you." She turns and leaves.`
 				accept
 	on complete
 		conversation
@@ -3538,8 +3538,8 @@ event "skadenga death"
 
 mission "Skadenga Call 1"
 	landing
-	name "Check on Hjlod"
-	description `Fly to <destination> to see what Hjlod and the Skadenga need from you. Make sure to have 52 bunks spare when you land.`
+	name "Check on Hljod"
+	description `Fly to <destination> to see what Hljod and the Skadenga need from you. Make sure to have 52 bunks spare when you land.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Asgard"
@@ -3548,7 +3548,7 @@ mission "Skadenga Call 1"
 		has "event: skadenga death"
 	on offer
 		dialog
-			`There is a new message in your inbox from Hjlod, one of the Skadenga you helped relocate to <planet>.`
+			`There is a new message in your inbox from Hljod, one of the Skadenga you helped relocate to <planet>.`
 			`	"<first>, we need your help. Come to <planet>, and have space for 52 souls."`
 
 
@@ -3559,82 +3559,82 @@ mission "Skadenga Call 2"
 	description "Take the Skadenga refugees back to <destination>."
 	source "Asgard"
 	destination "Nifel"
-	blocked `You recall that Hjlod wanted you to have 52 bunks spare for the mission. Return when you have enough room.`
+	blocked `You recall that Hljod wanted you to have 52 bunks spare for the mission. Return when you have enough room.`
 	passengers 48
 	to offer
 		has "Skadenga Call 1: done"
 	on offer
 		conversation
-			`The Asgard spaceport hums with a thousand indecipherable conversations. It is a landscape overburdened with kinetic humanity. You spend hours wandering through the crowds for a glimpse of Hjlod. Exhausted, you are ready to throw in the towel when you feel a strong hand grab your arm. You turn to see a familiar tattooed face. Her eyes are dark and dull, her hair thin and unkept, her face creased with unhappiness.`
-			`	"Not a vord." Hjlod says as you walk toward a portion of the spaceport that is marked "Closed - Under Construction." She draws you along. It's strange to see her so changed over such a short period of time. It's only been a year since you brought her here.`
+			`The Asgard spaceport hums with a thousand indecipherable conversations. It is a landscape overburdened with kinetic humanity. You spend hours wandering through the crowds for a glimpse of Hljod. Exhausted, you are ready to throw in the towel when you feel a strong hand grab your arm. You turn to see a familiar tattooed face. Her eyes are dark and dull, her hair thin and unkept, her face creased with unhappiness.`
+			`	"Not a vord." Hljod says as you walk toward a portion of the spaceport that is marked "Closed - Under Construction." She draws you along. It's strange to see her so changed over such a short period of time. It's only been a year since you brought her here.`
 			`	She ushers you past various barriers meant to keep a compliant public out. Finally, she leads you into a long hallway filled with the detritus of life: empty food containers, dirty blankets, other less savory items. People are also here - dirty, clumped together, wretched-looking.`
-			`	Hjlod turns back to you. "It safe to talk novhere. But ve must, so here must do."`
+			`	Hljod turns back to you. "It safe to talk novhere. But ve must, so here must do."`
 			choice
 				`	"What do you want from me?"`
 				`	"Who are these people?"`
 					goto who
-			`	Hjlod glares at you. "From you? Everything. For that is vhat you took from us.`
+			`	Hljod glares at you. "From you? Everything. For that is vhat you took from us.`
 			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
-			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
+			`	Hljod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
 			`	She looks away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget who they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
-			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They vill steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
+			`	Hljod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They vill steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
 			choice
 				`	"I will help you."`
 					goto help
 				`	"I need to think about it."`
-			`	Hjlod grimaces. "Once they know you are here, they vill collect us. Come back here in an hour. Any longer than that, and ve vill be gone." She slumps down on the ground as you exit the dark, dirty tunnel where the remaining Skadenga cling to their fleeting identity.`
+			`	Hljod grimaces. "Once they know you are here, they vill collect us. Come back here in an hour. Any longer than that, and ve vill be gone." She slumps down on the ground as you exit the dark, dirty tunnel where the remaining Skadenga cling to their fleeting identity.`
 			`	Alone, you have a decision to make. You can return to help them escape this world. Or you can find Clara Von Hausen, the Census and Culture Bureau undercover agent, and report to her what is going on. She would probably pay you well for the information.`
 			choice
-				`	(Return to Hjlod and help the Skadenga.)`
-					goto Hjlod
+				`	(Return to Hljod and help the Skadenga.)`
+					goto Hljod
 				`	(Find Carla.)`
-			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as an alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" she says with believable cheerfulness.`
+			`	You leave Hljod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as an alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" she says with believable cheerfulness.`
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
 			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish simpletons would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone.`
 			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye!"`
 				decline
-			label Hjlod
-			`	You return to Hjlod, who is surprised that you came back at all, and let her know that you going to help them.`
+			label Hljod
+			`	You return to Hljod, who is surprised that you came back at all, and let her know that you going to help them.`
 			label help
 			`	Hearing this, the slumped and depressed dredges in the hall stir and rise from their stupor. Hurriedly, some gather items while others race off further into the dark, unused parts of the spaceport.`
-			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and vill pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	"Ve have 52 people that need off this vorld right now." Hljod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and vill pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
 			choice
-				`	(Follow Hjlod.)`
-			`	Once you're back in the operational spaceport, you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship. "Everyone on, quickly!" Hjlod barks at her people.`
-			`	A few moments later, they are all on board. "Asdis, headcount!" Hjlod orders. As you're waiting, two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hjlod. "Ondurdis, 48 total."`
-			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he vas too far."`
+				`	(Follow Hljod.)`
+			`	Once you're back in the operational spaceport, you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship. "Everyone on, quickly!" Hljod barks at her people.`
+			`	A few moments later, they are all on board. "Asdis, headcount!" Hljod orders. As you're waiting, two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hljod. "Ondurdis, 48 total."`
+			`	Hljod frowns. "It's Arnson's family isn't it? I told him he vas too far."`
 			`	A commotion boils up from a few terminals down, and you see some civil servants and local police officers heading your way. Asdis is also watching. "They could still be coming."`
-			`	"It's too late for them." Hjlod shuts the hatch. "<first>, if ever ve vere friends. Take off, now."`
+			`	"It's too late for them." Hljod shuts the hatch. "<first>, if ever ve vere friends. Take off, now."`
 			choice
 				`	(Take off.)`
 					goto takeoff
 				`	(Power down the ship and open the hatch.)`
-			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. Carla Von Hausen, at least two civil service workers, and a squad of police officers arrive within seconds. Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
+			`	You turn off your ship's ignition, pop open the hatch before Hljod can react, and jump out. Carla Von Hausen, at least two civil service workers, and a squad of police officers arrive within seconds. Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
 			`	The police officers enter your ship and start restraining and removing the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment for your aid in the next couple days, after I've gotten it approved." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One, however, is screaming, kicking, and biting.`
-			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hjlod's red and tear-stained face recedes as officers drag her away.`
+			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hljod's red and tear-stained face recedes as officers drag her away.`
 			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>."`
 				decline
 			label takeoff
-			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skade," is all she says.`
+			`	You punch it, and your ship burns for the stars. Hljod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skade," is all she says.`
 				launch
 	on complete
 		payment 12481
 		event "the book" 200
-		event "nifel hjlod" 2700
+		event "nifel Hljod" 2700
 		conversation
 			scene "scene/snowvillage"
 			`Your ship touches down just outside the abandoned village of Udainskar. Silently, your passengers disembark and drift into the world they once knew and thought never to see again. The village appears to have weathered its abandonment well, and it appears the people here will not have too much trouble picking up where they left off.`
-			`	Hjlod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy.`
+			`	Hljod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy.`
 			`	"I do not know vhy you sent us to that place. But I am happy to be home. So go, and maybe one day I vill not hate to see you again."`
 
 
 
-event "nifel hjlod"
+event "nifel Hljod"
 
 
 
@@ -3650,7 +3650,7 @@ mission "Skadenga Call 3"
 		has "Skadenga Call 2: declined"
 	on offer
 		payment 300000
-		event "asgard hjlod" 2000
+		event "asgard Hljod" 2000
 		conversation
 			`You receive a message from your bank that <payment> have been deposited into your account from the Census and Culture Bureau of The Deep. The following memo is attached:`
 			`	"For heroic and selfless service to the ideals and prosperity of The Deep."`
@@ -3658,7 +3658,7 @@ mission "Skadenga Call 3"
 
 
 
-event "asgard hjlod"
+event "asgard Hljod"
 
 
 
@@ -3666,29 +3666,29 @@ mission "Skadenga Call 4"
 	landing
 	source "Nifel"
 	to offer
-		has "event: nifel hjlod"
+		has "event: nifel Hljod"
 	on offer
-		event "hjlod waits again" 360
+		event "Hljod waits again" 360
 		conversation
-			`A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize Hjlod instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember. "<first>, I saw your ship landing, and thought I vould say hello."`
+			`A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize Hljod instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember. "<first>, I saw your ship landing, and thought I vould say hello."`
 			`	You ask her how she has been, and she tells you that the small community of Skadenga have rebuilt and thrived here. That there has even been a small amount of immigration to their tiny town. That word had gotten out about their desperate escape from Asgard.`
 			`	She tells you that she forgives your past actions, and hopes you find whatever it is you are looking for among the stars. She even hugs you before she leaves.`
 				decline
 
 
 
-event "hjlod waits again"
+event "Hljod waits again"
 
 
 
 mission "Skadenga Call 5"
 	landing
 	to offer
-		has "event: asgard hjlod"
+		has "event: asgard Hljod"
 	on offer
 		payment 27
 		conversation
-			`You receive a message from the Census and Culture Bureau of the Deep. The Deep Citizen known as Hjlod has died. The cause of death appeared to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance: <payment>.`
+			`You receive a message from the Census and Culture Bureau of the Deep. The Deep Citizen known as Hljod has died. The cause of death appeared to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance: <payment>.`
 			decline
 
 
@@ -3968,7 +3968,7 @@ mission "Home for Skadenga 13"
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
-			`	You wonder if you're forgetting anything - if you should find Hjlod and speak with her. But she is nowhere in sight, and you realize there will be time to see her again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
+			`	You wonder if you're forgetting anything - if you should find Hljod and speak with her. But she is nowhere in sight, and you realize there will be time to see her again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
 				decline
 
 
@@ -3990,8 +3990,8 @@ mission "Homecoming to Skadenga"
 				`	(Don't visit Hrithfjall.)`
 					decline
 			`	It's a short journey to the outskirts of Hrithfjall. You are evidently spotted from afar, as someone is waiting for you.`
-			`	Hjlod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ran-Folk.`
-			`	She points to a small wooden craft up ahead. "I built her." She says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod will take care of you."`
+			`	Hljod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ran-Folk.`
+			`	She points to a small wooden craft up ahead. "I built her." She says with pride. "No more Ice-Crawler for Hljod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hljod will take care of you."`
 			`	You spend the afternoon in Hrithfjall, where you are treated like a guest of honor. The Ondurdis seems younger than you remember, and also appears quite fond of old Aldfrith. You eat strange fish, listen to unlikely stories, and laugh at outrageous jokes.`
 			`	As the sun sinks in the sky, you announce that you should be heading back. "Wait," the Ondurdis says. "I have task for you. If you are interested."`
 			choice
@@ -4018,11 +4018,11 @@ mission "Homecoming to Skadenga"
 			`	The Ondurdis shakes her head. "You have already done too much for us for too little pay. We can afford to pay you, and we will."`
 			label yes
 			`	"The five Stone-Bearers will accompany you back to your ship. They will pay you <payment> for transport to <planet>. May Skade and Ran watch over your journey." The Ondurdis turns this into a toast, which everyone gladly participates in.`
-			`	Hjlod walks with you and your passengers back to your ship. "Be well, <first>."`
+			`	Hljod walks with you and your passengers back to your ship. "Be well, <first>."`
 				accept
 	on complete
 		payment 50000
-		event "hjlod waits" 360
+		event "Hljod waits" 360
 		conversation
 			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
 			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
@@ -4049,7 +4049,7 @@ event "skadenga mourners"
 
 
 
-event "hjlod waits"
+event "Hljod waits"
 
 
 
@@ -4112,65 +4112,65 @@ mission "Stone-Bearers to Nifel"
 
 
 
-mission "Hjlod Remembers Windblain"
+mission "Hljod Remembers Windblain"
 	landing
-	name "Hjlod Remembers"
-	description `Hjlod wishes to meet with you again on <planet>.`
+	name "Hljod Remembers"
+	description `Hljod wishes to meet with you again on <planet>.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Windblain"
 	destination "Windblain"
 	to offer
-		has "event: hjlod waits"
-		has "Hjlodsaved"
+		has "event: Hljod waits"
+		has "Hljodsaved"
 	on offer
 		dialog
 			`Your inbox hums with a new message from <planet>:`
 			``
 			`Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod`
+			`				Signed, Hljod`
 	on complete
 		outfit "Tear of Skade"
 		conversation
-			`Hjlod is waiting for you when you land. She looks healthy, strong, and happy - less gaunt and stressed then you recall her looking on Nifel when you first met. She gives you a hug. "Alvays good to see you, <first>. I have been thinking, vith all that vent on and needed to be done, I never had chance to thank you for saving me from cold."`
-			`	She reaches into her pocket and pulls out a small pouch. "I have stone that has long been in my family. I wish to give it to you. Keep you cold in hot ship, remind you of Hjlod in far-off galaxy."`
+			`Hljod is waiting for you when you land. She looks healthy, strong, and happy - less gaunt and stressed then you recall her looking on Nifel when you first met. She gives you a hug. "Alvays good to see you, <first>. I have been thinking, vith all that vent on and needed to be done, I never had chance to thank you for saving me from cold."`
+			`	She reaches into her pocket and pulls out a small pouch. "I have stone that has long been in my family. I wish to give it to you. Keep you cold in hot ship, remind you of Hljod in far-off galaxy."`
 			scene "outfit/skadetear"
-			`	Hjlod gives you a glowing blue Tear of Skade, just like the one The Ondurdis gave you sometime before.`
+			`	Hljod gives you a glowing blue Tear of Skade, just like the one The Ondurdis gave you sometime before.`
 			`	"How many of these are there?" you ask.`
 			`	"Only few," she answers. "They were found around the Goddess-Stone in the early days. Passed from Skadenga mother to Skadenga daughter. I have no daughter, but I have you, so this is now yours."`
 			`	You thank her and spend the rest of the day with her, talking, laughing and walking upon the friendly earth of <planet>.`
 
 
 
-mission "Hjlod Remembers Nifel"
+mission "Hljod Remembers Nifel"
 	landing
-	name "Hjlod Remembers"
-	description `Hjlod wishes to meet with you again on <planet>.`
+	name "Hljod Remembers"
+	description `Hljod wishes to meet with you again on <planet>.`
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Nifel"
 	destination "Nifel"
 	to offer
-		has "event: hjlod waits again"
-		has "Hjlodsaved"
+		has "event: Hljod waits again"
+		has "Hljodsaved"
 	on offer
 		dialog
 			`Your inbox hums with a new message from Nifel.`
 			``
 			`Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod`
+			`				Signed, Hljod`
 			
 	on complete
 		outfit "Tear of Skade"
 		conversation
 			`Nifel is colder than you remember. The snow is deeper, and the ice harder. Despite this, the small recolonized settlement of Udainsakr appears to be thriving. Although it started with less than 50 Skadenga, thanks to the steady flow of pilgrims, the village population now numbers over a thousand.`
-			`	Hjlod finds you and gives you a small smile. "I am glad you came."`
-			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
+			`	Hljod finds you and gives you a small smile. "I am glad you came."`
+			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hljod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
 			`	She holds out the box. "This is Tear of Skade. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
 			scene "outfit/skadetear"
-			`	The box opens, displaying a small, blue glowing rock. "Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
+			`	The box opens, displaying a small, blue glowing rock. "Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hljod says, handing it to you.`
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
 			`	She turns and leaves you there, holding a Tear of Skade, and shivering in Nifel's unforgiving cold.`
 
@@ -4186,14 +4186,14 @@ mission "The Book of Skadenga"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
-			`	There's an old-style book there, bound up in an ice-blue cover, titled: "The Skadenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
+			`	There's an old-style book there, bound up in an ice-blue cover, titled: "The Skadenga Saga: Against All Odds, by Hljod Hrimnirsdottir."`
 			choice
 				`	(Ignore the book and move on.)`
 					goto ignore
 				`	(Pick the book up.)`
 			branch windblain
 				has "Home for Skadenga 13: offered"
-			`	The book feels solid in your hands, and you scan through it. There are chapters about near death survival on Nifel, the subtle hostility of Asgard, the sudden death of the old Ondurdis, who you learn was named Eymani, and the triumph of Hjlod and the survivors on Nifel.`
+			`	The book feels solid in your hands, and you scan through it. There are chapters about near death survival on Nifel, the subtle hostility of Asgard, the sudden death of the old Ondurdis, who you learn was named Eymani, and the triumph of Hljod and the survivors on Nifel.`
 				goto end
 			label windblain
 			branch captain
