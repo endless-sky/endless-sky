@@ -202,7 +202,6 @@ test-data "Fighters and Carriers and Escorts Save"
 				"Millennium Cell"
 				"Small Heat Shunt"
 				"Small Steering Module"
-				"Small Thrust Module"
 				Supercapacitor
 				"Thruster (Comet Class)"
 			crew 1
@@ -259,7 +258,6 @@ test-data "Fighters and Carriers and Escorts Save"
 				"Millennium Cell"
 				"Small Heat Shunt"
 				"Small Steering Module"
-				"Small Thrust Module"
 				Supercapacitor
 				"Thruster (Comet Class)"
 				Torpedo 3
@@ -297,18 +295,21 @@ test-data "Fighters and Carriers and Escorts Save"
 			attributes
 				category "Heavy Warship"
 				cost 17600000
-				mass 940
+				mass 7520
 				bunks 245
 				"cargo space" 530
-				drag 16.1
+				drag 30.6
 				"engine capacity" 1800
-				"fuel capacity" 700
+				"fuel capacity" 2950
 				"gun ports" 4
-				"heat dissipation" 0.4
+				"heat dissipation" 0.22
 				hull 8600
 				"outfit space" 7400
 				"required crew" 70
+				"reverse thruster slot" 1
 				shields 17500
+				"steering slot" 1
+				"thruster slot" 1
 				"turret mounts" 6
 				"weapon capacity" 3000
 			outfits
@@ -340,13 +341,25 @@ test-data "Fighters and Carriers and Escorts Save"
 				zoom 1
 				angle 0
 				under
-			gun -15 -226 "Hai Tracker Pod"
+			gun -9 -231.5
 				under
-			gun 15 -226 "Hai Tracker Pod"
+			gun 13.5 -231.5
 				under
-			gun -40 -133 "Sidewinder Missile Launcher"
+			gun 36.5 -197
 				under
-			gun -45 -128 "Sidewinder Missile Launcher"
+			gun 42 -193
+				under
+			pylon -27 -120.5 "Hai Tracker Pod"
+				angle 300
+				under
+			pylon 5.5 -119 "Hai Tracker Pod"
+				angle 45
+				under
+			pylon -29 -27.5 "Sidewinder Missile Launcher"
+				angle 300
+				under
+			pylon 44 119 "Sidewinder Missile Launcher"
+				angle 90
 				under
 			turret -22 -148 "Quarg Skylance"
 				over
@@ -387,14 +400,17 @@ test-data "Fighters and Carriers and Escorts Save"
 				"hull" 1900
 				"required crew" 10
 				"bunks" 28
-				"mass" 130
-				"drag" 4.1
-				"heat dissipation" .7
-				"fuel capacity" 500
+				"mass" 520
+				"drag" 6.15
+				"heat dissipation" .47
+				"fuel capacity" 515
 				"cargo space" 50
 				"outfit space" 3900
 				"weapon capacity" 1500
 				"engine capacity" 950
+				"reverse thruster slot" 1
+				"steering slot" 1
+				"thruster slot" 1
 				weapon
 					"blast radius" 80
 					"shield damage" 800
@@ -424,13 +440,23 @@ test-data "Fighters and Carriers and Escorts Save"
 			position 0 0
 			engine -10 91
 			engine 10 91
-			gun -13 -79 "Sidewinder Missile Launcher"
-			gun 13 -79 "Sidewinder Missile Launcher"
+			gun -13 -79
+			gun 13 -79
+			pylon -58 29 "Sidewinder Missile Launcher"
+				over
+			pylon 58 29 "Sidewinder Missile Launcher"
+				over
 			turret 0 0 "Heavy Anti-Missile Turret"
 			turret -17 14 "Heavy Laser Turret"
 			turret 17 14 "Heavy Laser Turret"
-			bay "Fighter" -42 -2
-			bay "Fighter" 42 2
+			bay "Fighter" -43.5 2
+				"launch effect" "human internal"
+			bay "Fighter" 43.5 2
+				"launch effect" "human internal"
+			bay "Fighter" -43.5 2
+				"launch effect" "human internal"
+			bay "Fighter" 43.5 2
+				"launch effect" "human internal"
 			leak "leak" 50 50
 			leak "flame" 50 80
 			leak "big leak" 90 30
@@ -448,18 +474,21 @@ test-data "Fighters and Carriers and Escorts Save"
 			attributes
 				category Interceptor
 				cost 225000
-				mass 50
+				mass 60
 				bunks 2
 				"cargo space" 15
-				drag 0.9
+				drag 0.95
 				"engine capacity" 400
-				"fuel capacity" 300
+				"fuel capacity" 225
 				"gun ports" 2
 				"heat dissipation" 0.8
 				hull 300
 				"outfit space" 1300
 				"required crew" 1
+				"reverse thruster slot" 1
 				shields 1200
+				"steering slot" 1
+				"thruster slot" 1
 				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
@@ -486,6 +515,10 @@ test-data "Fighters and Carriers and Escorts Save"
 				under
 			gun 7 -10 "Beam Laser"
 				under
+			pylon -20 -3.5
+			pylon 20 -3.5
+			pylon -29 -3
+			pylon 29 -3
 			leak flame 60 80
 			explode "small explosion" 5
 			explode "tiny explosion" 15
@@ -509,7 +542,10 @@ test-data "Fighters and Carriers and Escorts Save"
 				hull 300
 				"outfit space" 1300
 				"required crew" 1
+				"reverse thruster slot" 1
 				shields 1200
+				"steering slot" 1
+				"thruster slot" 1
 				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
@@ -536,6 +572,10 @@ test-data "Fighters and Carriers and Escorts Save"
 				under
 			gun 7 -10 "Beam Laser"
 				under
+			pylon -20 -3.5
+			pylon 20 -3.5
+			pylon -29 -3
+			pylon 29 -3
 			leak flame 60 80
 			explode "small explosion" 5
 			explode "tiny explosion" 15
