@@ -121,10 +121,11 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	{
 		const Government *other = &it.second;
 		double weight = other->AttitudeToward(gov);
+		Government::PenaltyEffect penalty = other->PenaltyFor(eventType, gov);
 
 		// You can provoke a government even by attacking an empty ship, such as
 		// a drone (count = 0, because count = crew).
-		if(eventType & ShipEvent::PROVOKE)
+		if(penalty.specialPenalty == Government::SpecialPenalty::PROVOKE)
 		{
 			if(weight > 0.)
 			{
@@ -140,11 +141,11 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double penalty = (count * weight) * other->PenaltyFor(eventType, gov);
-			if(eventType & ShipEvent::ATROCITY && weight > 0)
+			double reputationChange = (count * weight) * penalty.reputationChange;
+			if(penalty.specialPenalty == Government::SpecialPenalty::ATROCITY && weight > 0)
 				Politics::SetReputation(other, min(0., reputationWith[other]));
 
-			Politics::AddReputation(other, -penalty);
+			Politics::AddReputation(other, -reputationChange);
 		}
 	}
 }
