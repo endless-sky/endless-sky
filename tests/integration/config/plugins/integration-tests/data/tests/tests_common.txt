@@ -178,16 +178,20 @@ test-data "Fighters and Carriers and Escorts Save"
 			attributes
 				category Fighter
 				cost 126000
-				mass 40
+				mass 50
 				bunks 1
-				drag 0.83
+				drag 0.87
 				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
 				hull 200
+				"missile pylons" 2
 				"outfit space" 1100
 				"required crew" 1
+				"reverse thruster slot" 1
 				shields 1100
+				"steering slot" 1
+				"thruster slot" 1
 				"weapon capacity" 200
 			outfits
 				"Emergency Ramscoop"
@@ -214,9 +218,12 @@ test-data "Fighters and Carriers and Escorts Save"
 				zoom 1
 				angle 0
 				under
-			gun -7 -14 "Meteor Missile Launcher"
+			gun -7 -14 Flamethrower
 				under
-			gun 7 -14 Flamethrower
+			gun 7 -14
+			pylon -23 3
+				under
+			pylon 23 3 "Meteor Missile Launcher"
 				under
 			explode "small explosion" 5
 			explode "tiny explosion" 15
@@ -229,16 +236,20 @@ test-data "Fighters and Carriers and Escorts Save"
 			attributes
 				category Fighter
 				cost 126000
-				mass 40
+				mass 50
 				bunks 1
-				drag 0.83
+				drag 0.87
 				"engine capacity" 400
 				"gun ports" 2
-				"heat dissipation" 0.85
+				"heat dissipation" 0.81
 				hull 200
+				"missile pylons" 2
 				"outfit space" 1100
 				"required crew" 1
+				"reverse thruster slot" 1
 				shields 1100
+				"steering slot" 1
+				"thruster slot" 1
 				"weapon capacity" 200
 			outfits
 				"Emergency Ramscoop"
@@ -266,9 +277,13 @@ test-data "Fighters and Carriers and Escorts Save"
 				zoom 1
 				angle 0
 				under
-			gun -7 -14 "Torpedo Pod"
+			gun -7 -14
 				under
-			gun 7 -14 "Javelin Pod"
+			gun 7 -14
+				under
+			pylon -23 3 "Torpedo Pod"
+				under
+			pylon 23 3 "Javelin Pod"
 				under
 			explode "small explosion" 5
 			explode "tiny explosion" 15
