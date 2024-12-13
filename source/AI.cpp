@@ -460,9 +460,10 @@ void AI::IssueFormationChange(PlayerInfo &player)
 void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 {
 	bool isEnemy = target->GetGovernment()->IsEnemy();
-	OrderSingle newOrder{isEnemy ?
+	// TODO: There's an error in the code style ckecker that flags using {} instead of () below.
+	OrderSingle newOrder(isEnemy ?
 		target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK
-		: Orders::KEEP_STATION};
+		: Orders::KEEP_STATION);
 	newOrder.SetTargetShip(target);
 	IssueOrder(newOrder,
 		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\"."));
