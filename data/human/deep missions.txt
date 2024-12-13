@@ -5748,7 +5748,8 @@ mission "Hroar's Haulers 15"
 			`	The Authority flashes a cruel grin, "After some routine processing your crew members will be released in around six months."`
 			`	"What!" Yngvar slams his sturdy fist on the spotless desk. "You little..."`
 			`	"Now, now. You didn't pay the additional fee to expedite the process, and you certainly couldn't afford it."`
-			`	"We'll remember this next time you find yourself in a bind, mark my words you Syndie snake. The Haulers won't forget." Yngvar spits on the ground and turns away from the man.`
+			label whosenext
+			`	"We'll remember this next time you find yourself in a bind, mark my words you Syndie cockroach. The Haulers won't forget." Yngvar spits on the ground and turns away from the man.`
 			`	"Let's go, <last>. Every minute we be spendin' in this snake-pit is bad for all our healths." Yngvar says without looking back.`
 			`	"Barbarians." Leland says beneath his breath.`
 			`	You hear a bang on the holding cell behind Leland and see a familiar face. Yngvar pauses and turns back around.`
@@ -5765,7 +5766,18 @@ mission "Hroar's Haulers 15"
 			label byefalicia
 			action
 				set "leftgunhilda"
+			`	Captain Solvi Unferth is waiting for you, he seems a good deal more sober. "Appreciate you having my back out there, <last>. But I gotta stay behind. They got my crew locked up and I ain't about to abandon them."`
+				to display
+					has "savedsolvi"
+			`	Yngvar puts a weathered hand on Solvi's shoulder. "Man's gotta have a code. Be seein' ya, Solvi."`
+				to display
+					has "savedsolvi"
+			`	Solvi nods, and leaves. Yngvar points to your ship, "Ain't nothing for us here but bad memories and more trouble. Let's go."`
+				to display
+					has "savedsolvi"
 			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last>!"`
+				to display
+					not "savedsolvi"
 			choice
 				`	(Launch your ship.)`
 					launch
@@ -5785,9 +5797,19 @@ mission "Hroar's Haulers 15"
 			`	Gunhilda takes a few steps forward and then turns to look back at the all the still imprisoned Haulers. "It's not ride to keep so many wild red souls caged up like this."`
 			`	Leland lets out a derisive laugh, but says nothing.`
 			`	"Come along, Gunhilda." Yngvar says quietly. "Ain't nothing we can do now about the rest of them."`
-			`	She looks at you as she walks past, "Thank you, but..." she pauses, "...no, nevermind. Thanks." She continues on after Yngvar to their the docked ships.`
+			`	She looks at you as she walks past, "Thank you, but..." she pauses, "...no, nevermind. Thanks." She looks a little hurt as she follows after Yngvar to the hanger.`
+			choice
+				`	(Follow Yngvar and Gunhilda.)`
+			`	You run into Captain Solvi Unferth outside the office. He stops in front of you, "Appreciate you having my back out there, <last>. But I gotta stay behind. They got my crew locked up and I ain't about to abandon them."`
+				to display
+					has "savedsolvi"
+			`	Yngvar puts a weathered hand on Solvi's shoulder. "Man's gotta have a code. Be seein' ya, Solvi."`
+				to display
+					has "savedsolvi"
+			`	Solvi nods, and heads into the office. Yngvar frowns at you, "Ain't nothing for us here but bad memories and more trouble. I'll a waitin' for ya on your ship."`
+				to display
+					has "savedsolvi"
 				accept
-			
 			
 			label nothing
 			`	Yngvar clears his throat, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
@@ -5814,15 +5836,15 @@ mission "Hroar's Haulers 15"
 
 			label Ipay
 			`	Leland smile widens, "Excellent. We will still need to process all of these crew members, and their ships will be impounded in the meantime, but once we are done they will all be released."`
-			`	"And how long you reckon that'll take?" Yngvar grumbles, "We're on a schedule."`
+			`	"And how long you reckon that'll take?" Yngvar grumbles, "Ya mighta not noticed, but we're on a bit of schedule here."`
 			`	"Oh, no time at all. In cases like this we should have everyone processed in about 6 months." Leland shrugs.`
 			`	"That'll ruin us," Yngvar growls. "That's unacceptable."`
 			`	Somehow, Leland's hyena grin stretches even further. "We could expedite the processing, but that would incur an additional fee."`
-			`	"How much?" Yngvar barks.`
+			`	"How much?" Yngvar says between clenched teeth.`
 			`	"An additional 10,000 credits per incident. The total for the entire fine would now be 720,000 credits, but you'd be able to leave immediately."`
 			`	Yngvar slams his fist on the spotless desk, "That's highway robbery!"`
 			`	Leland just keeps on smiling.`
-			`	Yngvar turns to you, "It's your call, hirthr. I've can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
+			`	Yngvar turns to you, "It's your call, hirthr. I can offer about 120,000 credits collected from the crews, but that's it. Ain't no one guaranteeing to pay you back the rest."`
 			label fineoptions
 			choice
 				`	"I'll pay the 720,000. The Long Haul is what's important."`
@@ -5835,6 +5857,9 @@ mission "Hroar's Haulers 15"
 						not "otheroptions"
 				`	"No deal. They are on their own."`
 			`	Yngvar presses a button and desposits all 120,000 of the collected credits into the Syndicate account. "That'll be enough to free most of the Iron Siren's crew. Thisaway it'll only be Solvi's fleet suffering."`
+			`	The old spacer pauses and then levels his good at you, "I know you saved his hide in that fight. But best be expectin' Solvi to hang tight here until his crew his free. He's a good sort that wouldn't leave his people behind."`
+				to display
+					has "savedsolvi"
 			`	He turns his back to Leland Hemshaw and starts walking out of the office. "I'll be a waitin' on your ship when you're ready to launch, Captain <last>. Try not to be too long, the sooner we leave this snake-den, the better."`
 				decline
 
@@ -5864,7 +5889,7 @@ mission "Hroar's Haulers 15"
 			`	"My Royal Dreamer," Gunhilda says musically as she steps out of the holding cell with a few other members of her crew, "How gallant." She favors you with a broad honest smile as she continues on toward her ship.`
 				to display
 					not "savedgunhilda"
-			`	"An absolute pleasure doing business with you, Captain <last>," he practically purrs.`
+			`	"An absolute pleasure doing business with you, Captain <last>." He practically purrs.`
 				accept
 
 			label nodeal
@@ -5877,8 +5902,21 @@ mission "Hroar's Haulers 15"
 			action
 				payment -720,000
 			`	Yngvar nods, and says nothing.`
-			`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference reclaims his face, "Always a pleasure."`
-
+			`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference slides back down his face, "Always a pleasure."`
+			`	He briefly swipes his fingers across a few screens and accepts your payment. A moment later the holding cells open and all of the Haulers begin filing out.`
+			`	"Ships, now", Yngvar orders. "Don't touch nothing, don't speak to nobody, just get to your ships and get ready to go."`
+			`	The empanicpated Haulers nod, or grunt their understanding and begin to quickly exit the office.`
+			`	Leland cannot hide his disdain as he stares daggers at everyone, and refuses to even look at you. Yngvar puts an arm on your shoulder, "That includes us, Captain <last>. I am gonna head straight for your ship. Recommending you do the same."`
+			`	He turns and leaves.`
+				accept
+			
+			label paysome
+			action
+				payment -240000
+			`	Yngvar nods, and says nothing.`
+			`	Leland smiles at you sagely, "You seem like a good person, Captain <last>, I am sorry to see the Haulers using you as their personal piggy-bank." He then taps a few keys and takes your payment.`
+			`	"In roughly six months these crews will be processed and frees. Obviously their ships will be impounded for the time being. The Syndicate thanks you for dedication to justice." Leland Hemshaw grins.`
+				goto whosenext
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
