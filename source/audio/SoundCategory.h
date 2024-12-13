@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+
+
 enum class SoundCategory {
 	// The master controls affect all categories
 	MASTER,

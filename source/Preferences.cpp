@@ -61,18 +61,18 @@ namespace {
 	int cameraAccelerationIndex = 1;
 
 	const map<string, SoundCategory> VOLUME_SETTINGS = {
-			{"volume", SoundCategory::MASTER},
-			{"music volume", SoundCategory::MUSIC},
-			{"ui volume", SoundCategory::UI},
-			{"anti-missile volume", SoundCategory::ANTI_MISSILE},
-			{"weapon volume", SoundCategory::WEAPON},
-			{"engine volume", SoundCategory::ENGINE},
-			{"afterburner volume", SoundCategory::AFTERBURNER},
-			{"jump volume", SoundCategory::JUMP},
-			{"explosion volume", SoundCategory::EXPLOSION},
-			{"scan volume", SoundCategory::SCAN},
-			{"environment volume", SoundCategory::ENVIRONMENT},
-			{"alert volume", SoundCategory::ALERT}
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
 	};
 
 	class OverlaySetting {

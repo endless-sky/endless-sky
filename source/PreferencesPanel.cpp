@@ -89,18 +89,18 @@ namespace {
 	const int HOVER_TIME = 60;
 
 	const map<string, SoundCategory> volumeBars = {
-			{"volume", SoundCategory::MASTER},
-			{"music volume", SoundCategory::MUSIC},
-			{"ui volume", SoundCategory::UI},
-			{"anti-missile volume", SoundCategory::ANTI_MISSILE},
-			{"weapon volume", SoundCategory::WEAPON},
-			{"engine volume", SoundCategory::ENGINE},
-			{"afterburner volume", SoundCategory::AFTERBURNER},
-			{"jump volume", SoundCategory::JUMP},
-			{"explosion volume", SoundCategory::EXPLOSION},
-			{"scan volume", SoundCategory::SCAN},
-			{"environment volume", SoundCategory::ENVIRONMENT},
-			{"alert volume", SoundCategory::ALERT}
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
 	};
 }
 
@@ -160,11 +160,11 @@ void PreferencesPanel::Draw()
 	{
 		double volume = Audio::Volume(category);
 		info.SetBar(bar, volume);
-		if(volume > 0.75)
+		if(volume > .75)
 			info.SetCondition(bar + " max");
-		else if(volume > 0.5)
+		else if(volume > .5)
 			info.SetCondition(bar + " medium");
-		else if(volume > 0.25)
+		else if(volume > .25)
 			info.SetCondition(bar + " low");
 		else
 			info.SetCondition(bar + " none");
@@ -286,11 +286,11 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	Point point(x, y);
 	const Interface *preferencesUI = GameData::Interfaces().Get("preferences");
-	if(preferencesUI->GetBox("volume box").Contains(point))
+	Rectangle volumeBox = preferencesUI->GetBox("volume box");
+	if(volumeBox.Contains(point))
 	{
-		Rectangle box = preferencesUI->GetBox("volume box");
 		double barSize = preferencesUI->GetValue("master volume bar size");
-		double volume = (box.Center().Y() - point.Y()) / barSize + 0.5;
+		double volume = (volumeBox.Center().Y() - point.Y()) / barSize + .5;
 
 		Audio::SetVolume(volume, SoundCategory::MASTER);
 		Audio::Play(Audio::Get("warder"), SoundCategory::MASTER);
@@ -340,7 +340,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Rectangle barZone = audioUI->GetBox(name + " box");
 				if(barZone.Contains(point))
 				{
-					double volume = (point.X() - barZone.Center().X()) / barSize + 0.5;
+					double volume = (point.X() - barZone.Center().X()) / barSize + .5;
 					Audio::SetVolume(volume, category);
 					Audio::Play(Audio::Get("warder"), category);
 					return true;
