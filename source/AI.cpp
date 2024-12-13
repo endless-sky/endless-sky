@@ -460,7 +460,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 {
 	bool isEnemy = target->GetGovernment()->IsEnemy();
-	// TODO: There's an error in the code style ckecker that flags using {} instead of () below.
+	// TODO: There's an error in the code style checker that flags using {} instead of () below.
 	OrderSingle newOrder(isEnemy ?
 		target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK
 		: Orders::KEEP_STATION);
