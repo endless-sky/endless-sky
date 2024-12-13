@@ -5913,10 +5913,14 @@ mission "Hroar's Haulers 15"
 			label paysome
 			action
 				payment -240000
+				set "paidsome"
 			`	Yngvar nods, and says nothing.`
 			`	Leland smiles at you sagely, "You seem like a good person, Captain <last>, I am sorry to see the Haulers using you as their personal piggy-bank." He then taps a few keys and takes your payment.`
 			`	"In roughly six months these crews will be processed and frees. Obviously their ships will be impounded for the time being. The Syndicate thanks you for dedication to justice." Leland Hemshaw grins.`
 				goto whosenext
+
+			label arrested
+			`	The spacious holding cells on Maker...`
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
