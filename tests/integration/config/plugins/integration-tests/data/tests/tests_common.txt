@@ -305,6 +305,7 @@ test-data "Fighters and Carriers and Escorts Save"
 				"heat dissipation" 0.22
 				hull 8600
 				"outfit space" 7400
+				"missile pylons" 4
 				"required crew" 70
 				"reverse thruster slot" 1
 				shields 17500
@@ -484,6 +485,7 @@ test-data "Fighters and Carriers and Escorts Save"
 				"heat dissipation" 0.8
 				hull 300
 				"outfit space" 1300
+				"missile pylons" 4
 				"required crew" 1
 				"reverse thruster slot" 1
 				shields 1200
@@ -541,6 +543,7 @@ test-data "Fighters and Carriers and Escorts Save"
 				"heat dissipation" 0.8
 				hull 300
 				"outfit space" 1300
+				"missile pylons" 4
 				"required crew" 1
 				"reverse thruster slot" 1
 				shields 1200
