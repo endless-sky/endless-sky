@@ -20,21 +20,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Plugins.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -74,6 +74,7 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string DATE_FORMAT = "Date format";
+	const string NOTIFY_ON_DEST = "Notify on destination";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
@@ -694,7 +695,8 @@ void PreferencesPanel::DrawSettings()
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,
-		"Show parenthesis"
+		"Show parenthesis",
+		NOTIFY_ON_DEST
 	};
 
 	bool isCategory = true;
@@ -816,6 +818,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::DateFormatSetting();
 			isOn = true;
+		}
+		else if(setting == NOTIFY_ON_DEST)
+		{
+			text = Preferences::NotificationSettingString();
+			isOn = text != "off";
 		}
 		else if(setting == FLOTSAM_SETTING)
 		{
@@ -1241,6 +1248,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == DATE_FORMAT)
 		Preferences::ToggleDateFormat();
+	else if(str == NOTIFY_ON_DEST)
+		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
 	// All other options are handled by just toggling the boolean state.

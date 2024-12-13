@@ -51,6 +51,7 @@ color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
+color "outfitter difference highlight" 1. .5 0. 1.
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
@@ -266,7 +267,7 @@ interface "main menu"
 		dimensions 90 30
 	
 	visible
-	button l "_Load / Save..."
+	button m "_Manage Pilots..."
 		center 300 155
 		dimensions 120 30
 	
@@ -1147,7 +1148,7 @@ interface "boarding"
 		dimensions 80 30
 	
 	active if "can defend"
-	button d "_Defend"
+	button D "_Defend"
 		center 210 185
 		dimensions 80 30
 
