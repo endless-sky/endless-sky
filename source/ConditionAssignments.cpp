@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 
 #include <algorithm>
+#include <numeric>
 
 using namespace std;
 
@@ -99,26 +100,25 @@ void ConditionAssignments::Apply(ConditionsStore &conditions) const
 		int64_t newValue = assignment.expressionToEvaluate.Evaluate(conditions);
 		switch(assignment.assignOperator)
 		{
-			case AO_ASSIGN:
+			case AssignOp::AO_ASSIGN:
 				ce = newValue;
 				break;
-			case AO_ADD:
+			case AssignOp::AO_ADD:
 				ce += newValue;
 				break;
-			case AO_SUB:
+			case AssignOp::AO_SUB:
 				ce -= newValue;
 				break;
-			case AO_MUL:
+			case AssignOp::AO_MUL:
 				ce = static_cast<int64_t>(ce) * newValue;
 				break;
-			case AO_DIV:
-				// TODO: should be crash-safe implemented on Condition Entry:
+			case AssignOp::AO_DIV:
 				ce = newValue ? static_cast<int64_t>(ce) / newValue : numeric_limits<int64_t>::max();
 				break;
-			case AO_LT:
+			case AssignOp::AO_LT:
 				ce = min(static_cast<int64_t>(ce), newValue);
 				break;
-			case AO_GT:
+			case AssignOp::AO_GT:
 				ce = max(static_cast<int64_t>(ce), newValue);
 				break;
 		}
@@ -143,7 +143,7 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 void ConditionAssignments::AddSetCondition(const std::string &name)
 {
-	assignments.emplace_back(name, AO_ASSIGN, ConditionSet(1));
+	assignments.emplace_back(name, AssignOp::AO_ASSIGN, ConditionSet(1));
 }
 
 
@@ -157,7 +157,7 @@ void ConditionAssignments::Add(const DataNode &node)
 			node.PrintTrace("Parse error; " + node.Token(0) + " keyword requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back(node.Token(1), AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
+		assignments.emplace_back(node.Token(1), AssignOp::AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
 	}
 	else if(node.Size() == 2 && (node.Token(1) == "++" || node.Token(1) == "--"))
 	{

@@ -171,7 +171,7 @@ private:
 	/// combined using the expression operator that determines how the nested
 	/// sets are to be combined.
 	/// Using an `and`-operator with no sub-expressions as safe initial value.
-	ExpressionOp expressionOperator = OP_AND;
+	ExpressionOp expressionOperator = ExpressionOp::OP_AND;
 	/// Literal part of the expression, if this is a literal terminal.
 	int64_t literal = 0;
 	/// Condition variable that is used in this expression, if this is a condition variable.

@@ -105,10 +105,9 @@ namespace
 			case ConditionSet::ExpressionOp::OP_LE:
 				return 3;
 			default:
-				break;
+				// Precedence for OP_AND, OP_OR
+				return 0;
 		}
-		// Precedence for OP_AND, OP_OR
-		return 0;
 	}
 
 
@@ -136,7 +135,7 @@ ConditionSet::ConditionSet(const DataNode &node)
 // Construct a terminal with a literal value;
 ConditionSet::ConditionSet(int64_t newLiteral)
 {
-	expressionOperator = OP_LIT;
+	expressionOperator = ExpressionOp::OP_LIT;
 	literal = newLiteral;
 }
 
@@ -146,7 +145,7 @@ ConditionSet::ConditionSet(int64_t newLiteral)
 void ConditionSet::Load(const DataNode &node)
 {
 	// The top-node is always an 'and' node, without the keyword.
-	expressionOperator = OP_AND;
+	expressionOperator = ExpressionOp::OP_AND;
 	ParseBooleanChildren(node);
 }
 
@@ -157,7 +156,7 @@ void ConditionSet::Save(DataWriter &out) const
 {
 	// Default should be AND, so if it is, then just write the subsets.
 	// If this condition got optimized beyond OP_AND, then re-add the OP_AND by writing the current condition in full.
-	if(expressionOperator == OP_AND)
+	if(expressionOperator == ExpressionOp::OP_AND)
 		for(const auto &child : children)
 		{
 			child.SaveSubset(out);
@@ -196,26 +195,26 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 
 	switch(expressionOperator)
 	{
-	case OP_INVALID:
+	case ExpressionOp::OP_INVALID:
 		out.WriteToken("never");
 		break;
-	case OP_VAR:
+	case ExpressionOp::OP_VAR:
 		out.WriteToken(conditionName);
 		break;
-	case OP_LIT:
+	case ExpressionOp::OP_LIT:
 		out.WriteToken(literal);
 		break;
-	case OP_ADD:
-	case OP_SUB:
-	case OP_MUL:
-	case OP_DIV:
-	case OP_MOD:
-	case OP_EQ:
-	case OP_NE:
-	case OP_LE:
-	case OP_GE:
-	case OP_LT:
-	case OP_GT:
+	case ExpressionOp::OP_ADD:
+	case ExpressionOp::OP_SUB:
+	case ExpressionOp::OP_MUL:
+	case ExpressionOp::OP_DIV:
+	case ExpressionOp::OP_MOD:
+	case ExpressionOp::OP_EQ:
+	case ExpressionOp::OP_NE:
+	case ExpressionOp::OP_LE:
+	case ExpressionOp::OP_GE:
+	case ExpressionOp::OP_LT:
+	case ExpressionOp::OP_GT:
 		if(children.empty())
 		{
 			out.WriteToken("never");
@@ -228,8 +227,8 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 			SaveChild(i, out);
 		}
 		break;
-	case OP_AND:
-	case OP_OR:
+	case ExpressionOp::OP_AND:
+	case ExpressionOp::OP_OR:
 		out.Write(opTxt);
 		out.BeginChild();
 		for(const auto &child : children)
@@ -239,8 +238,8 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 		}
 		out.EndChild();
 		break;
-	case OP_NOT:
-	case OP_HAS:
+	case ExpressionOp::OP_NOT:
+	case ExpressionOp::OP_HAS:
 		if(children.empty())
 		{
 			out.WriteToken("never");
@@ -260,7 +259,7 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 void ConditionSet::MakeNever()
 {
 	children.clear();
-	expressionOperator = OP_LIT;
+	expressionOperator = ExpressionOp::OP_LIT;
 	literal = 0;
 }
 
@@ -271,8 +270,8 @@ void ConditionSet::MakeNever()
 bool ConditionSet::IsEmpty() const
 {
 	return
-		(expressionOperator == OP_AND && children.size() == 0) ||
-		(expressionOperator == OP_INVALID);
+		(expressionOperator == ExpressionOp::OP_AND && children.size() == 0) ||
+		(expressionOperator == ExpressionOp::OP_INVALID);
 }
 
 
@@ -280,7 +279,7 @@ bool ConditionSet::IsEmpty() const
 // Check if the conditionset contains valid data
 bool ConditionSet::IsValid() const
 {
-	return expressionOperator != OP_INVALID;
+	return expressionOperator != ExpressionOp::OP_INVALID;
 }
 
 
@@ -351,7 +350,7 @@ set<string> ConditionSet::RelevantConditions() const
 {
 	set<string> result;
 	// Add the name from this set, if it is a VAR type operator.
-	if(expressionOperator == OP_VAR)
+	if(expressionOperator == ExpressionOp::OP_VAR)
 		result.emplace(conditionName);
 	// Add the names from the children.
 	for(const auto &child : children)
@@ -368,12 +367,12 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	{
 		if(node.Token(0) == "and")
 		{
-			expressionOperator = OP_AND;
+			expressionOperator = ExpressionOp::OP_AND;
 			return ParseBooleanChildren(node);
 		}
 		if(node.Token(0) == "or")
 		{
-			expressionOperator = OP_OR;
+			expressionOperator = ExpressionOp::OP_OR;
 			return ParseBooleanChildren(node);
 		}
 	}
@@ -388,7 +387,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		if(node.Size() > 1)
 			return FailParse(node, "tokens found after never keyword");
 
-		expressionOperator = OP_LIT;
+		expressionOperator = ExpressionOp::OP_LIT;
 		literal = 0;
 		return true;
 	}
@@ -398,7 +397,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 			return FailParse(node, "has keyword requires a single condition");
 
 		// Convert has keyword directly to the variable.
-		expressionOperator = OP_VAR;
+		expressionOperator = ExpressionOp::OP_VAR;
 		conditionName = node.Token(1);
 		return true;
 	}
@@ -408,9 +407,9 @@ bool ConditionSet::ParseNode(const DataNode &node)
 			return FailParse(node, "not keyword requires a single condition");
 
 		// Create `conditionName == 0` expression.
-		expressionOperator = OP_EQ;
+		expressionOperator = ExpressionOp::OP_EQ;
 		children.emplace_back();
-		children.back().expressionOperator = OP_VAR;
+		children.back().expressionOperator = ExpressionOp::OP_VAR;
 		children.back().conditionName = node.Token(1);
 		children.emplace_back(0);
 		return true;
@@ -440,7 +439,7 @@ bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 		return true;
 
 	// If there are more tokens, then we need to have an infix operator here.
-	if(!ParseFromInfix(node, tokenNr, OP_AND))
+	if(!ParseFromInfix(node, tokenNr, ExpressionOp::OP_AND))
 		return FailParse();
 
 	// Parsing from infix should have consumed and parsed all tokens.
@@ -458,46 +457,46 @@ bool ConditionSet::Optimize(const DataNode &node)
 	bool returnValue = true;
 	// First optimize all the child nodes below.
 	for(ConditionSet &child : children)
-		returnValue &= child.Optimize(node)
+		returnValue &= child.Optimize(node);
 
 	switch(expressionOperator)
 	{
-		case OP_AND:
-		case OP_OR:
+		case ExpressionOp::OP_AND:
+		case ExpressionOp::OP_OR:
 			// If we only have a single element, then replace the current OP/AND by its child.
 			if(children.size() == 1)
 				PromoteFirstChild(node);
 
 			break;
 
-		case OP_EQ:
-		case OP_NE:
-		case OP_LE:
-		case OP_GE:
-		case OP_LT:
-		case OP_GT:
+		case ExpressionOp::OP_EQ:
+		case ExpressionOp::OP_NE:
+		case ExpressionOp::OP_LE:
+		case ExpressionOp::OP_GE:
+		case ExpressionOp::OP_LT:
+		case ExpressionOp::OP_GT:
 			// TODO: Optimize boolean equality operators.
 			break;
 
-		case OP_ADD:
-		case OP_SUB:
-		case OP_MUL:
-		case OP_DIV:
-		case OP_MOD:
+		case ExpressionOp::OP_ADD:
+		case ExpressionOp::OP_SUB:
+		case ExpressionOp::OP_MUL:
+		case ExpressionOp::OP_DIV:
+		case ExpressionOp::OP_MOD:
 			// TODO: Optimize arithmetic operators.
 			break;
 
-		case OP_HAS:
+		case ExpressionOp::OP_HAS:
 			// Optimize away HAS, we can directly use the expression below it.
 			if(children.size() == 1)
 				PromoteFirstChild(node);
 
 			break;
 
-		case OP_NOT:
-		case OP_LIT:
-		case OP_VAR:
-		case OP_INVALID:
+		case ExpressionOp::OP_NOT:
+		case ExpressionOp::OP_LIT:
+		case ExpressionOp::OP_VAR:
+		case ExpressionOp::OP_INVALID:
 			break;
 	}
 	return returnValue;
@@ -516,7 +515,7 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 		children.emplace_back();
 		children.back().ParseNode(child);
 
-		if(children.back().expressionOperator == OP_INVALID)
+		if(children.back().expressionOperator == ExpressionOp::OP_INVALID)
 			return FailParse();
 	}
 
@@ -549,13 +548,13 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 
 	if(node.IsNumber(tokenNr))
 	{
-		expressionOperator = OP_LIT;
+		expressionOperator = ExpressionOp::OP_LIT;
 		literal = node.Value(tokenNr);
 		++tokenNr;
 	}
 	else if(DataNode::IsConditionName(node.Token(tokenNr)))
 	{
-		expressionOperator = OP_VAR;
+		expressionOperator = ExpressionOp::OP_VAR;
 		conditionName = node.Token(tokenNr);
 		++tokenNr;
 	}
@@ -585,7 +584,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 		else
 			// If there are more tokens, then we need to have an infix operator here.
 			// Use the precedence of the AND operator, since we want to parse to the closing bracket.
-			if(!ParseFromInfix(node, tokenNr, OP_AND))
+			if(!ParseFromInfix(node, tokenNr, ExpressionOp::OP_AND))
 				return FailParse();
 	}
 	return true;
@@ -612,17 +611,17 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 		ExpressionOp infixOp = ParseOperator(node.Token(tokenNr));
 		switch(infixOp)
 		{
-			case OP_ADD:
-			case OP_SUB:
-			case OP_MUL:
-			case OP_DIV:
-			case OP_MOD:
-			case OP_EQ:
-			case OP_NE:
-			case OP_LE:
-			case OP_GE:
-			case OP_LT:
-			case OP_GT:
+			case ExpressionOp::OP_ADD:
+			case ExpressionOp::OP_SUB:
+			case ExpressionOp::OP_MUL:
+			case ExpressionOp::OP_DIV:
+			case ExpressionOp::OP_MOD:
+			case ExpressionOp::OP_EQ:
+			case ExpressionOp::OP_NE:
+			case ExpressionOp::OP_LE:
+			case ExpressionOp::OP_GE:
+			case ExpressionOp::OP_LT:
+			case ExpressionOp::OP_GT:
 			{
 				if(tokenNr + 1 >= node.Size())
 					return FailParse(node, "expected terminal after infix operator \"" + node.Token(tokenNr) + "\"");
@@ -693,7 +692,7 @@ bool ConditionSet::PushDownFull(const DataNode &node)
 	ConditionSet ce(*this);
 	children.clear();
 	children.emplace_back(ce);
-	expressionOperator = OP_AND;
+	expressionOperator = ExpressionOp::OP_AND;
 
 	return true;
 }
@@ -717,7 +716,7 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 
 bool ConditionSet::FailParse()
 {
-	expressionOperator = OP_INVALID;
+	expressionOperator = ExpressionOp::OP_INVALID;
 	children.clear();
 	return false;
 }
