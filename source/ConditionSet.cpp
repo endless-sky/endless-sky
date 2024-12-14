@@ -141,7 +141,7 @@ ConditionSet::ConditionSet(int64_t newLiteral)
 
 
 
-ConditionSet& ConditionSet::operator=(const ConditionSet&& other) noexcept
+ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 {
 	// Guard against self-assignment as per C++ conventions.
 	if(this == &other)
@@ -166,7 +166,7 @@ ConditionSet& ConditionSet::operator=(const ConditionSet&& other) noexcept
 
 
 
-ConditionSet& ConditionSet::operator=(const ConditionSet& other)
+ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 {
 	// Guard against self-assignment as per C++ conventions.
 	if(this == &other)

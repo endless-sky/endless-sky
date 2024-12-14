@@ -35,8 +35,8 @@ public:
 	ConditionSet() = default;
 	ConditionSet(const ConditionSet &) = default;
 
-	ConditionSet& operator=(const ConditionSet&& other) noexcept;
-	ConditionSet& operator=(const ConditionSet& other);
+	ConditionSet &operator=(const ConditionSet &&other) noexcept;
+	ConditionSet &operator=(const ConditionSet &other);
 
 	// Construct and Load() at the same time.
 	explicit ConditionSet(const DataNode &node);
