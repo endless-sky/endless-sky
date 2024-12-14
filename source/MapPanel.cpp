@@ -75,12 +75,9 @@ namespace {
 	public:
 		// Calculate and check the most number of pointer positions that should be available for active missions.
 		// This can be up to half the maximum number of pointers that can be drawn.
-		void Reserve()
-		{
-			maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
-		}
+		void Reserve();
 
-		unsigned MaximumActive() const { return maximumActive; }
+		unsigned MaximumActive() const;
 
 	public:
 		// Amount of systems already drawn.
@@ -91,6 +88,17 @@ namespace {
 	private:
 		unsigned maximumActive = MAX_MISSION_POINTERS_DRAWN;
 	};
+
+	void PointerDrawCount::Reserve()
+	{
+		maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
+	}
+
+	unsigned PointerDrawCount::MaximumActive() const
+	{
+		return maximumActive;
+	}
+
 
 	// Struct for storing the ends of wormhole links and their colors.
 	struct WormholeArrow {
