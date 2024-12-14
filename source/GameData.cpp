@@ -90,7 +90,7 @@ namespace {
 
 	StarField background;
 
-	vector<string> sources;
+	vector<filesystem::path> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
@@ -148,7 +148,7 @@ namespace {
 			});
 	}
 
-	void LoadPlugin(TaskQueue &queue, const string &path)
+	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -161,15 +161,15 @@ namespace {
 		auto icon = make_shared<ImageSet>(plugin->name);
 
 		// Try adding all the possible icon variants.
-		if(Files::Exists(path + "icon.png"))
-			icon->Add(path + "icon.png");
-		else if(Files::Exists(path + "icon.jpg"))
-			icon->Add(path + "icon.jpg");
+		if(Files::Exists(path / "icon.png"))
+			icon->Add(path / "icon.png");
+		else if(Files::Exists(path / "icon.jpg"))
+			icon->Add(path / "icon.jpg");
 
-		if(Files::Exists(path + "icon@2x.png"))
-			icon->Add(path + "icon@2x.png");
-		else if(Files::Exists(path + "icon@2x.jpg"))
-			icon->Add(path + "icon@2x.jpg");
+		if(Files::Exists(path / "icon@2x.png"))
+			icon->Add(path / "icon@2x.png");
+		else if(Files::Exists(path / "icon@2x.jpg"))
+			icon->Add(path / "icon@2x.jpg");
 
 		if(!icon->IsEmpty())
 		{
@@ -264,16 +264,16 @@ void GameData::CheckReferences()
 void GameData::LoadSettings()
 {
 	// Load the key settings.
-	Command::LoadSettings(Files::Resources() + "keys.txt");
-	Command::LoadSettings(Files::Config() + "keys.txt");
+	Command::LoadSettings(Files::Resources() / "keys.txt");
+	Command::LoadSettings(Files::Config() / "keys.txt");
 }
 
 
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
+	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
 
 	FillShader::Init();
 	FogShader::Init();
@@ -360,7 +360,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 
 
 // Get the list of resource sources (i.e. plugin folders).
-const vector<string> &GameData::Sources()
+const vector<filesystem::path> &GameData::Sources()
 {
 	return sources;
 }
@@ -910,13 +910,13 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
-	for(const string &path : globalPlugins)
+	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
+	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
+	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
@@ -926,18 +926,17 @@ void GameData::LoadSources(TaskQueue &queue)
 map<string, shared_ptr<ImageSet>> GameData::FindImages()
 {
 	map<string, shared_ptr<ImageSet>> images;
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		string directoryPath = source + "images/";
-		size_t start = directoryPath.size();
+		filesystem::path directoryPath = source / "images/";
 
-		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(string &path : imageFiles)
+		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
+		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				string name = ImageSet::Name(path.substr(start));
+				string name = ImageSet::Name(path.lexically_relative(directoryPath));
 
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
