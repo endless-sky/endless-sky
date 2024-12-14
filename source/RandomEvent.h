@@ -19,8 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "DataNode.h"
 
-#include <memory>
-
 
 
 // A class representing an event that triggers randomly
@@ -28,9 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <typename T>
 class RandomEvent {
 public:
-	constexpr RandomEvent(const T *event, int period) noexcept;
-	RandomEvent(const RandomEvent &r);
-	RandomEvent &operator = (const RandomEvent &r);
+	constexpr RandomEvent(const T *event, int period, const DataNode &node) noexcept;
 
 	constexpr const T *Get() const noexcept;
 	constexpr int Period() const noexcept;
@@ -40,35 +36,19 @@ public:
 private:
 	const T *event;
 	int period;
-	std::shared_ptr<ConditionSet> conditions;
+	ConditionSet conditions;
 };
 
 
 
 template <typename T>
-constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept
+constexpr RandomEvent<T>::RandomEvent(const T *event, int period, const DataNode &node) noexcept
 	: event(event), period(period > 0 ? period : 200)
 {
-}
-
-template<typename T>
-RandomEvent<T>::RandomEvent(const RandomEvent &r)
-	: event(r.event), period(r.period), conditions()
-{
-	if(r.conditions)
-		conditions = std::make_shared<ConditionSet>(*r.conditions);
-}
-
-template<typename T>
-RandomEvent<T> &RandomEvent<T>::operator = (const RandomEvent &r)
-{
-	event = r.event;
-	period = r.period;
-	if(r.conditions)
-		conditions = std::make_shared<ConditionSet>(*r.conditions);
-	else
-		conditions = nullptr;
-	return *this;
+	for(auto &child : node)
+		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "spawn")
+			conditions.Load(child);
+		// TODO: else with an error-message?
 }
 
 template <typename T>
@@ -86,14 +66,5 @@ constexpr int RandomEvent<T>::Period() const noexcept
 template <typename T>
 bool RandomEvent<T>::CanTrigger(const ConditionsStore &tester) const
 {
-	return !conditions || conditions->Test(tester);
-}
-
-template <typename T>
-void RandomEvent<T>::AddConditions(const DataNode &node)
-{
-	if(!conditions)
-		conditions = std::make_shared<ConditionSet>(node);
-	else
-		conditions->Load(node);
+	return conditions.IsEmpty() || conditions.Test(tester);
 }
