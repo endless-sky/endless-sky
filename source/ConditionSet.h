@@ -55,7 +55,7 @@ public:
 	// Check if there are any entries in this set.
 	bool IsEmpty() const;
 
-	// Check if this conditionSet contains valid data.
+	// Check if this condition set contains valid data.
 	bool IsValid() const;
 
 	// Check if the given condition values satisfy this set of expressions.
@@ -75,7 +75,7 @@ public:
 
 
 public:
-	enum ExpressionOp
+	enum class ExpressionOp
 	{
 		OP_INVALID, ///< Expression is invalid.
 
@@ -168,7 +168,7 @@ private:
 
 private:
 	/// Sets of condition tests can contain nested sets of tests. Each set is
-	/// combined using the expression-operator that determines how the nested
+	/// combined using the expression operator that determines how the nested
 	/// sets are to be combined.
 	/// Using an `and`-operator with no sub-expressions as safe initial value.
 	ExpressionOp expressionOperator = OP_AND;

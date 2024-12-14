@@ -61,7 +61,7 @@ public:
 
 public:
 	/// Possible assignment operators.
-	enum AssignOp
+	enum class AssignOp
 	{
 		AO_ASSIGN, /// Used for =, set (with 1 as expression), clear ((with 0 as expression)
 		AO_ADD, /// Used for +=, ++ (with 1 as expression)

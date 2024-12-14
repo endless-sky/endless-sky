@@ -458,8 +458,7 @@ bool ConditionSet::Optimize(const DataNode &node)
 	bool returnValue = true;
 	// First optimize all the child nodes below.
 	for(ConditionSet &child : children)
-		if(!child.Optimize(node))
-			returnValue = false;
+		returnValue &= child.Optimize(node)
 
 	switch(expressionOperator)
 	{
@@ -534,7 +533,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 	// Any (sub)expression should start with one of the following:
 	// - an opening bracket.
 	// - a literal number terminal.
-	// - an condition name terminal.
+	// - a condition name terminal.
 	// - has keyword (but this is already handled at a higher level)
 	// - not keyword (but this is already handled at a higher level)
 

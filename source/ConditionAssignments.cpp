@@ -69,10 +69,7 @@ void ConditionAssignments::Save(DataWriter &out) const
 	{
 		AssignOp aso = assignment.assignOperator;
 
-		auto it = find_if(ASSIGN_OP_TO_TEXT.begin(), ASSIGN_OP_TO_TEXT.end(),
-		[&aso](const std::pair<AssignOp, const string> &e) {
-			return e.first == aso;
-		});
+		auto it = ASSIGN_OP_TO_TEXT.find(aso);
 		if(it != ASSIGN_OP_TO_TEXT.end())
 		{
 			out.WriteToken(assignment.conditionToAssignTo);
@@ -116,7 +113,7 @@ void ConditionAssignments::Apply(ConditionsStore &conditions) const
 				break;
 			case AO_DIV:
 				// TODO: should be crash-safe implemented on Condition Entry:
-				ce = static_cast<int64_t>(ce) / newValue;
+				ce = newValue ? static_cast<int64_t>(ce) / newValue : numeric_limits<int64_t>::max();
 				break;
 			case AO_LT:
 				ce = min(static_cast<int64_t>(ce), newValue);
