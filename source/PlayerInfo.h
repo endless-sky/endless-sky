@@ -227,7 +227,6 @@ public:
 	void ToggleSortSeparateDeadline();
 	const bool ShouldSortSeparatePossible() const;
 	void ToggleSortSeparatePossible();
-	// Sort availableJobs using availableSortType and related UI-controlled fields.
 	void SortAvailable();
 
 	const Mission *ActiveBoardingMission() const;
