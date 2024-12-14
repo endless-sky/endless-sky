@@ -842,8 +842,17 @@ void Engine::Step(bool isActive)
 			info.SetString("target government", target->GetGovernment()->GetName());
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
+		// Only update the "active" state shown for the target if it is
+		// in the current system and targetable, or owned by the player.
 		int targetType = RadarType(*target, step);
-		info.SetOutlineColor(GetTargetOutlineColor(targetType));
+		const bool blinking = targetType == Radar::BLINK;
+		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
+			lastTargetType = targetType;
+		if(blinking)
+			info.SetOutlineColor(GetTargetOutlineColor(Radar::BLINK));
+		else
+			info.SetOutlineColor(GetTargetOutlineColor(lastTargetType));
+
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
 			info.SetBar("target shields", target->Shields());
