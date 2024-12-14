@@ -363,7 +363,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(child.Token(0) == "event")
-			gameEvents.emplace_back(child);
+			gameEvents.emplace(GameEvent(child));
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -594,7 +594,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 
 
 // Add an event that will happen at the given date.
-void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
+void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 {
 	// Check if the event should be applied directly.
 	if(date <= this->date)
@@ -606,8 +606,8 @@ void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 	}
 	else
 	{
-		gameEvents.push_back(event);
-		gameEvents.back().SetDate(date);
+		event.SetDate(date);
+		gameEvents.insert(std::move(event));
 	}
 }
 
@@ -721,79 +721,40 @@ const Date &PlayerInfo::GetDate() const
 
 
 
-// Set the date to the next day, and perform all daily actions.
-void PlayerInfo::IncrementDate()
+// Set the date, and perform all daily actions the given number of times.
+void PlayerInfo::AdvanceDate(int amount)
 {
-	++date;
-
-	// Check if any special events should happen today.
-	auto it = gameEvents.begin();
-	list<DataNode> eventChanges;
-	while(it != gameEvents.end())
+	if(amount <= 0)
+		return;
+	while(amount--)
 	{
-		if(date < it->GetDate())
-			++it;
-		else
+		++date;
+
+		// Check if any special events should happen today.
+		auto it = gameEvents.begin();
+		list<DataNode> eventChanges;
+		while(it != gameEvents.end() && date >= it->GetDate())
 		{
-			eventChanges.splice(eventChanges.end(), it->Apply(*this));
+			GameEvent event = *it;
+			eventChanges.splice(eventChanges.end(), event.Apply(*this));
 			it = gameEvents.erase(it);
 		}
-	}
-	if(!eventChanges.empty())
-		AddChanges(eventChanges);
+		if(!eventChanges.empty())
+			AddChanges(eventChanges);
 
-	// Check if any missions have failed because of deadlines and
-	// do any daily mission actions for those that have not failed.
-	for(Mission &mission : missions)
-	{
-		if(mission.CheckDeadline(date) && mission.IsVisible())
-			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
-				Messages::Importance::Highest);
-		if(!mission.IsFailed(*this))
-			mission.Do(Mission::DAILY, *this);
-	}
-
-	// Check what salaries and tribute the player receives.
-	int64_t salariesIncome = accounts.SalariesIncomeTotal();
-	int64_t tributeIncome = GetTributeTotal();
-	FleetBalance b = MaintenanceAndReturns();
-	if(salariesIncome || tributeIncome || b.assetsReturns)
-	{
-		string message = "You receive ";
-		if(salariesIncome)
-			message += Format::CreditString(salariesIncome) + " salary";
-		if(salariesIncome && tributeIncome)
+		// Check if any missions have failed because of deadlines and
+		// do any daily mission actions for those that have not failed.
+		for(Mission &mission : missions)
 		{
-			if(b.assetsReturns)
-				message += ", ";
-			else
-				message += " and ";
+			if(mission.CheckDeadline(date) && mission.IsVisible())
+				Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
+					Messages::Importance::Highest);
+			if(!mission.IsFailed(*this))
+				mission.Do(Mission::DAILY, *this);
 		}
-		if(tributeIncome)
-			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(salariesIncome && tributeIncome && b.assetsReturns)
-			message += ",";
-		if((salariesIncome || tributeIncome) && b.assetsReturns)
-			message += " and ";
-		if(b.assetsReturns)
-			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
-		message += ".";
-		Messages::Add(message, Messages::Importance::High);
-		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
+
+		DoAccounting();
 	}
-
-	// For accounting, keep track of the player's net worth. This is for
-	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
-	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
-
-	// Have the player pay salaries, mortgages, etc. and print a message that
-	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts);
-	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High);
-
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
@@ -910,6 +871,57 @@ const Account &PlayerInfo::Accounts() const
 Account &PlayerInfo::Accounts()
 {
 	return accounts;
+}
+
+
+
+// Handle the daily salaries and payments.
+void PlayerInfo::DoAccounting()
+{
+	// Check what salaries and tribute the player receives.
+	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	int64_t tributeIncome = GetTributeTotal();
+	FleetBalance balance = MaintenanceAndReturns();
+	if(salariesIncome || tributeIncome || balance.assetsReturns)
+	{
+		string message = "You receive ";
+		if(salariesIncome)
+		{
+			message += Format::CreditString(salariesIncome) + " salary";
+			if(tributeIncome)
+			{
+				if(balance.assetsReturns)
+					message += ", ";
+				else
+					message += " and ";
+			}
+		}
+		if(tributeIncome)
+			message += Format::CreditString(tributeIncome) + " in tribute";
+		if(balance.assetsReturns)
+		{
+			if(salariesIncome && tributeIncome)
+				message += ",";
+			if(salariesIncome || tributeIncome)
+				message += " and ";
+			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
+		}
+		message += ".";
+		Messages::Add(message, Messages::Importance::High, true);
+		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+	}
+
+	// For accounting, keep track of the player's net worth. This is for
+	// calculation of yearly income to determine maximum mortgage amounts.
+	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	for(const shared_ptr<Ship> &ship : ships)
+		assets += ship->Cargo().Value(system);
+
+	// Have the player pay salaries, mortgages, etc. and print a message that
+	// summarizes the payments that were made.
+	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
+	if(!message.empty())
+		Messages::Add(message, Messages::Importance::High, true);
 }
 
 
@@ -3940,6 +3952,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		return true;
 	});
 
+	// A condition for returning a random integer in the range [0, 100).
+	auto &&randomProvider = conditions.GetProviderNamed("random");
+	auto randomFun = [](const string &name) -> int64_t
+	{
+		return Random::Int(100);
+	};
+	randomProvider.SetGetFunction(randomFun);
+
 	// A condition for returning a random integer in the range [0, input). Input may be a number,
 	// or it may be the name of a condition. For example, "roll: 100" would roll a random
 	// integer in the range [0, 100), but if you had a condition "max roll" with a value of 100,
@@ -3989,6 +4009,7 @@ void PlayerInfo::CreateMissions()
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
+	unsigned nonBlockingMissions = 0;
 	for(const auto &it : GameData::Missions())
 	{
 		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
@@ -4005,7 +4026,10 @@ void PlayerInfo::CreateMissions()
 			if(missions.back().IsFailed(*this))
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
+			{
 				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
 		}
 	}
 
@@ -4025,18 +4049,18 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
-	else if(availableMissions.size() > 1)
+	else if(availableMissions.size() > 1 + nonBlockingMissions)
 	{
 		// Minor missions only get offered if no other missions (including other
-		// minor missions) are competing with them. This is to avoid having two
-		// or three missions pop up as soon as you enter the spaceport.
+		// minor missions) are competing with them, except for "non-blocking" missions.
+		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
 			if(it->IsMinor())
 			{
 				it = availableMissions.erase(it);
-				if(availableMissions.size() <= 1)
+				if(availableMissions.size() <= 1 + nonBlockingMissions)
 					break;
 			}
 			else

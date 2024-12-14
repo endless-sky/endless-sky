@@ -5205,7 +5205,7 @@ mission "Dangerous Games 2"
 			label east5
 			action
 				set "Jorma and Daciana dead"
-			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
+			`	Small schools of fish flit past as you guide your small fleet to the east. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
 			`	"Last one there's a rotten fish eye!" shouts Jorma, and your screen shows her subpod leap forward and gain on you, followed quickly by Daciana's.`
 			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
 			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
@@ -7852,7 +7852,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Headhunter"
 				"Fury (Gatling)" 3
 		on kill
-				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+			dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 
 	npc kill
 		to spawn
@@ -7873,7 +7873,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				"Hawk (Plasma)"
 				"Fury (Gatling)"
 		on kill
-				dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
+			dialog "After destroying the last of the marauder ships you feel you can safely return to the base."
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing

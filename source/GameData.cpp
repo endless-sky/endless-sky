@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 
 #include "audio/Audio.h"
-#include "BatchShader.h"
+#include "shader/BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
@@ -26,9 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Effect.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "Fleet.h"
-#include "FogShader.h"
+#include "shader/FogShader.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
@@ -37,27 +37,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "image/ImageSet.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "audio/Music.h"
 #include "News.h"
 #include "Outfit.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "Plugins.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "TaskQueue.h"
@@ -104,7 +104,8 @@ namespace {
 	bool preventSpriteUpload = false;
 
 	// Tracks the progress of loading the sprites when the game starts.
-	int spriteLoadingProgress = 0;
+	std::atomic<bool> queuedAllImages = false;
+	std::atomic<int> spritesLoaded = 0;
 	std::atomic<int> totalSprites = 0;
 
 	// List of image sets that are waiting to be uploaded to the GPU.
@@ -139,7 +140,7 @@ namespace {
 			[image, &queue]
 			{
 				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-				++spriteLoadingProgress;
+				++spritesLoaded;
 
 				// Start loading the next image in the queue, if any.
 				lock_guard lock(imageQueueMutex);
@@ -214,6 +215,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 					++totalSprites;
 				}
 			}
+			queuedAllImages = true;
 
 			// Launch the tasks to actually load the images, making sure not to exceed the amount
 			// of tasks the main thread can handle in a single frame to limit peak memory usage.
@@ -290,7 +292,14 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
+	double spriteProgress = 0.;
+	if(queuedAllImages)
+	{
+		if(!totalSprites)
+			spriteProgress = 1.;
+		else
+			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
+	}
 	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
 }
 
