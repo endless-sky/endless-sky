@@ -213,7 +213,6 @@ private:
 	// Higher values result in higher offer priority. Values may be negative.
 	// Minor missions offer in terms of lowest precedence.
 	int precedence = 0;
-
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;
