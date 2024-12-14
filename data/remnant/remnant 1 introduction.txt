@@ -763,10 +763,9 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 
 
 mission "Remnant: Technology Available"
+	landing
 	name "License Training"
 	description "Transport a prefect to <destination> so he can tell you more about the Remnant license."
-	landing
-	invisible
 	source
 		government "Remnant"
 	destination
@@ -1686,6 +1685,8 @@ mission "Remnant: Tech Retrieval"
 			`	Taely looks at you with a blank expression, then chants in a monotone voice "If that is your choice, you are unlikely to find much of interest to do among us." With that, she vaults over the edge of the railing and drops from view. As you quickly peer over the railing, you discover that she had must have caught a handhold somehow, as she is rapidly moving down the wall in a controlled fashion with ease of a spider.`
 				decline
 	to complete
+		never
+	to fail
 		or
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Catalytic Ramscoop: done"
@@ -1693,6 +1694,11 @@ mission "Remnant: Tech Retrieval"
 			has "Remnant: Electron Beam: done"
 			has "Remnant: D94-YV Shield Generator: done"
 			has "Remnant: S-970 Regenerator: done"
+	on fail
+		clear "Remnant: Tech Retrieval: failed"
+		set "Remnant: Tech Retrieval: done"
+	on abort
+		# Empty, just here so aborting this mission doesn't trigger the failure action.
 
 
 
@@ -1953,6 +1959,24 @@ mission "Remnant: S-970 Regenerator"
 
 
 
+# For players who did the original versions of these missions before ccbc671.
+# The main "Remnant: Tech Retrieval" mission did not exist and only the
+# Heavy Laser, Plasma Cannon, and Catalytic Ramscoop missions existed.
+mission "Remnant: Tech Retrieval Patch"
+	landing
+	invisible
+	to offer
+		not "Remnant: Tech Retrieval: offered"
+		or
+			has "Remnant: Heavy Laser: done"
+			has "Remnant: Plasma Cannon: done"
+			has "Remnant: Catalytic Ramscoop: done"
+	on offer
+		set "Remnant: Tech Retrieval: done"
+		fail
+
+
+
 mission "Remnant: Taely Intro Log"
 	invisible
 	source
@@ -2091,6 +2115,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation: Drak" += 1
 		event "remnant: return the samples timer" 2 4
+		set "remnant: return the samples timer triggered"
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
@@ -2102,7 +2127,7 @@ mission "Remnant: Return the Samples Compatibility Patch"
 	invisible
 	to offer
 		has "Remnant: Return the Samples 2: done"
-		not "event: remnant: return the samples timer"
+		not "remnant: return the samples timer triggered"
 	on offer
 		event "remnant: return the samples timer" 2
 		fail
@@ -2116,6 +2141,8 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 	to offer
 		has "event: remnant: return the samples timer"
 		or
+			has "Remnant: Face to Maw 2: done"
+			has "Remnant: Face to Maw 2B: done"
 			and
 				not "Remnant: Face to Maw 1: active"
 				not "Remnant: Face to Maw 1: done"
@@ -2123,9 +2150,6 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 				not "Remnant: Face to Maw 1B: done"
 				not "Remnant: Face to Maw 2: active"
 				not "Remnant: Face to Maw 2B: active"
-			or
-				has "Remnant: Face to Maw 2: done"
-				has "Remnant: Face to Maw 2B: done"
 	on offer
 		event "remnant: wait for plume" 7 14
 		conversation
@@ -2182,11 +2206,7 @@ mission "Remnant: Salvage 1"
 		not "human cultural data"
 		has "Remnant: Learn Sign Follow Up: offered"
 		random < 50
-		or
-			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannon: done"
-			has "Remnant: Heavy Laser: done"
-			has "Remnant: Tech Retrieval: done"
+		has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation "taely cultural data"
 	on visit
@@ -2226,11 +2246,7 @@ mission "Remnant: Salvage 2"
 				has "human cultural data"
 				has "Remnant: Learn Sign Follow Up: offered"
 				random < 50
-				or
-					has "Remnant: Catalytic Ramscoop: done"
-					has "Remnant: Plasma Cannon: done"
-					has "Remnant: Heavy Laser: done"
-					has "Remnant: Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation "taely cultural data"
 	npc
@@ -2418,9 +2434,9 @@ mission "Remnant: Salvage 6"
 
 
 mission "Remnant: Scanning Tolerances"
+	landing
 	name "Deliver Data to <planet>"
 	description `Deliver data crystal to a Remnant named Torza on <destination>.`
-	landing
 	deadline 15
 	source
 		government "Remnant"
@@ -2474,9 +2490,9 @@ mission "Remnant: Scanning Tolerances"
 
 
 mission "Remnant: Expanded Horizons Quarg 1"
+	minor
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see the Quarg."
-	minor
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -2990,9 +3006,9 @@ mission "Remnant: Face to Maw 2B"
 
 
 mission "Remnant: Keystone Research 1"
+	minor
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, starting in <destination>.`
-	minor
 	source "Viminal"
 	destination "Greenwater"
 	cargo "(reserved)" 19
@@ -3093,9 +3109,9 @@ mission "Remnant: Keystone Research 1"
 
 
 mission "Remnant: Keystone Research 2"
+	landing
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, next from <destination>`
-	landing
 	source "Greenwater"
 	destination "Allhome"
 	cargo "Keystones" 2
@@ -3107,9 +3123,9 @@ mission "Remnant: Keystone Research 2"
 
 
 mission "Remnant: Keystone Research 3"
+	landing
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from several Hai worlds, ending on Newhome.`
-	landing
 	source "Allhome"
 	destination "Newhome"
 	stopover "Makerplace"
@@ -3227,10 +3243,10 @@ mission "Remnant: Keystone Research 3G"
 
 
 mission "Remnant: Keystone Research 4"
+	landing
 	name "Retrieve more keystones"
 	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
-	landing
 	source "Newhome"
 	destination "Viminal"
 	cargo "Keystones" 19
@@ -3268,9 +3284,9 @@ ship "Starling" "Starling (Keystone)"
 
 
 mission "Remnant: Keystone Research 5"
+	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the keystone post-wormhole.`
-	landing
 	waypoint "Peragenor"
 	source "Viminal"
 	to offer
@@ -3310,9 +3326,9 @@ mission "Remnant: Keystone Research 5"
 
 
 mission "Remnant: Keystone Research 6"
+	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
-	landing
 	waypoint "Peragenor"
 	source "Viminal"
 	npc "scan outfits" "save"
