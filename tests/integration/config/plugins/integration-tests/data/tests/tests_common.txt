@@ -330,7 +330,7 @@ test-data "Fighters and Carriers and Escorts Save"
 				"X4700 Ion Thruster"
 				"X5200 Ion Steering"
 			crew 72
-			fuel 700
+			fuel 2950
 			shields 17500
 			hull 8600
 			position 0 0
