@@ -4169,11 +4169,11 @@ mission "Republic Navy Advisory System [wildfire firefighters]"
 		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."
 
 mission "Mineral Shortages (Silicon)"
-	name "Mineral shortages on <planet>"
+	name "Harvested silicon to <planet>"
 	job
 	repeat
 	deadline 7
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Silicon"
 		"<amount>" "120"
@@ -4193,11 +4193,11 @@ mission "Mineral Shortages (Silicon)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Lead)"
-	name "Mineral shortages on <planet>"
+	name "Harvested lead to <planet>"
 	job
 	repeat
 	deadline 7
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Lead"
 		"<amount>" "120"
@@ -4217,11 +4217,11 @@ mission "Mineral Shortages (Lead)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Iron)"
-	name "Mineral shortages on <planet>"
+	name "Harvested iron to <planet>"
 	job
 	repeat
 	deadline 7
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Iron"
 		"<amount>" "120"
@@ -4241,11 +4241,11 @@ mission "Mineral Shortages (Iron)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Aluminum)"
-	name "Mineral shortages on <planet>"
+	name "Harvested aluminum to <planet>"
 	job
 	repeat
 	deadline 7
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Aluminum"
 		"<amount>" "90"
@@ -4265,11 +4265,11 @@ mission "Mineral Shortages (Aluminum)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Titanium)"
-	name "Mineral shortages on <planet>"
+	name "Harvested titanium to <planet>"
 	job
 	repeat
 	deadline 7
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Titanium"
 		"<amount>" "90"
@@ -4289,11 +4289,11 @@ mission "Mineral Shortages (Titanium)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Copper)"
-	name "Mineral shortages on <planet>"
+	name "Harvested copper to <planet>"
 	job
 	repeat
 	deadline 7
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Copper"
 		"<amount>" "90"
@@ -4313,11 +4313,11 @@ mission "Mineral Shortages (Copper)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Neodymium)"
-	name "Mineral shortages on <planet>"
+	name "Harvested neodymium to <planet>"
 	job
 	repeat
 	deadline 14
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Neodymium"
 		"<amount>" "60"
@@ -4337,11 +4337,11 @@ mission "Mineral Shortages (Neodymium)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Tungsten)"
-	name "Mineral shortages on <planet>"
+	name "Harvested tungsten to <planet>"
 	job
 	repeat
 	deadline 14
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Tungsten"
 		"<amount>" "60"
@@ -4361,11 +4361,11 @@ mission "Mineral Shortages (Tungsten)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Uranium)"
-	name "Mineral shortages on <planet>"
+	name "Harvested uranium to <planet>"
 	job
 	repeat
 	deadline 14
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Uranium"
 		"<amount>" "60"
@@ -4385,11 +4385,11 @@ mission "Mineral Shortages (Uranium)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Silver)"
-	name "Mineral shortages on <planet>"
+	name "Harvested silver to <planet>"
 	job
 	repeat
 	deadline 28
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Silver"
 		"<amount>" "30"
@@ -4409,11 +4409,11 @@ mission "Mineral Shortages (Silver)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Gold)"
-	name "Mineral shortages on <planet>"
+	name "Harvested gold to <planet>"
 	job
 	repeat
 	deadline 28
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Gold"
 		"<amount>" "30"
@@ -4433,11 +4433,11 @@ mission "Mineral Shortages (Gold)"
 		dialog phrase "generic mineral delivery payment"
 
 mission "Mineral Shortages (Platinum)"
-	name "Mineral shortages on <planet>"
+	name "Harvested platinum to <planet>"
 	job
 	repeat
 	deadline 28
-	description "Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
 	substitutions
 		"<mineral>" "Platinum"
 		"<amount>" "30"

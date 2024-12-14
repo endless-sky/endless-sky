@@ -61,7 +61,7 @@ phrase "generic mineral delivery payment"
 
 phrase "generic mineral on visit"
 	word
-		`You've returned to <origin>, but do not have <amount> tons of <mineral> in your cargo hold. Make sure to mine <amount> tons of <mineral> and collect it into your cargo before you land.`
+		`You've returned to <origin>, but you are not carrying <amount> tons of <mineral> in your cargo hold.`
 
 phrase "generic missing stopover or cargo and passengers"
 	word
