@@ -84,7 +84,7 @@ outfit "Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 6
@@ -110,7 +110,7 @@ outfit "Quad Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 3
@@ -202,7 +202,7 @@ outfit "Modified Blaster Turret"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 10
 		"lifetime" 48
 		"reload" 6
@@ -253,7 +253,7 @@ outfit "Laser Turret"
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"turret turn" 2.2
+		"turret turn" 4
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
@@ -313,7 +313,7 @@ outfit "Heavy Laser Turret"
 		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
-		"turret turn" 1.3
+		"turret turn" 2.2
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -377,7 +377,7 @@ outfit "Mining Laser Turret"
 		sound "mining laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .35
-		"turret turn" 2.4
+		"turret turn" 4.4
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
@@ -458,7 +458,7 @@ outfit "Electron Turret"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
-		"turret turn" 0.8
+		"turret turn" 1.2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -630,7 +630,7 @@ outfit "Proton Turret"
 		sound "proton"
 		"hit effect" "proton impact" 3
 		"inaccuracy" 4
-		"turret turn" 1.4
+		"turret turn" 2.4
 		"submunition" "Proton Fragment" 3
 		"velocity" 24
 		"lifetime" 2
@@ -683,7 +683,7 @@ outfit "Plasma Turret"
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
-		"turret turn" 1
+		"turret turn" 1.6
 		"velocity" 12
 		"lifetime" 40
 		"reload" 9
@@ -1100,7 +1100,7 @@ outfit "Javelin Turret"
 		icon "icon/javelin turret"
 		"hit effect" "tiny explosion"
 		"inaccuracy" 4
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 10
 		"lifetime" 60
 		"reload" 7.5
@@ -1561,7 +1561,7 @@ outfit "Gatling Turret"
 		ammo "Gatling Gun Ammo" 2
 		icon "icon/gat turret"
 		"inaccuracy" 2
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 16
 		"lifetime" 1
 		"reload" 3
