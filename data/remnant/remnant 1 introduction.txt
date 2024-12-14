@@ -2878,10 +2878,14 @@ mission "Remnant: Face to Maw 1"
 				`	(Activate the shields.)`
 				`	(Do not activate the shields.)`
 					goto holdground
+			action
+				set "remnant: face to maw: raised shields"
 			`	You push against the paralysis and trigger the shields in a rush. The millisecond that follows feels like an eternity. The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You carefully scoop up the tendril in a container and seal it. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
-				flee
+				launch
 			label holdground
+			action
+				set "remnant: face to maw: did not raise shields"
 			`	The feeling of paralysis leaves your body as the void sprite is only a few meters away, but you resolve yourself to face down the creature without triggering your shields. Time seems to slow down as the sprite rushes up to you and its leading tentacle reaches out to touch you. As you brace for an impact you realize that the sprite has managed to bring itself to a complete stop and the tentacle has telescoped in on itself slightly. You can see that it is touching you, but you didn't even feel the impact. You and the void sprite stand frozen for a moment, and the force trying to paralyze you snaps off, replaced by a feeling of weightlessness. Moments later the void sprite pulls back and pulses skyward with an unearthly fountain of sounds, spiraling around the <ship> before disappearing into the swirling clouds.`
 			`	As you re-enter the ship, you notice that your suit is covered in some kind of translucent slime. You scrape off as much as you can into a sealed container, but your pressure suit appears to be permanently stained an iridescent purplish color as a result. You resolve to go find Plume, since he will almost certainly find this interesting.`
 				accept
@@ -2889,35 +2893,13 @@ mission "Remnant: Face to Maw 1"
 		fail "Remnant: Face to Maw 1B"
 	on complete
 		conversation
-			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine, you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+			branch threatening
+				has "remnant: face to maw: raised shields"
 			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. Sliding the container into some kind of machine, it immediately starts to whir as he slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the timestamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
-
-
-
-mission "Remnant: Face to Maw 1B"
-	landing
-	name "Talk to Plume about the void sprites"
-	description "Plume would be very interested in a report on what happened with the void sprites."
-	to offer
-		has "event: remnant: return the samples timer"
-		has "flagship model: Puffin"
-		or
-			not "Remnant: Cognizance 1: offered"
-			has "Remnant: Cognizance 19: done"
-	to fail
-		or
-			has "Remnant: Face to Maw 1: done"
-			has "Remnant: Face to Maw 1: active"
-	to complete
-		has "Remnant: Face to Maw 1: declined"
-	source
-		system "Nenia"
-	destination "Aventine"
-	on complete
-		conversation
-			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
-			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+				decline
+			label threatening
 			`	You tell Plume about how you visited Nenia and had a threatening encounter with a void sprite, and offer him the recording and container with the tentacle. Plume recoils from you in disgust. "After all our work rebuilding trust with the Archon and the void sprites, you go and risk it for... what, exactly? Sightseeing? Thrill of the hunt?" His chant settles into an angry tone. "Leave the recording on the console. I want no part of that tentacle, though."`
 			`	As you are leaving Plume's lab a technician pulls you aside. "Our records mention that the tentacles had some interesting properties that were useful in combat. If you are interested, meet me in the spaceport in a few hours."`
 
@@ -2928,6 +2910,7 @@ mission "Remnant: Face to Maw 2"
 	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
 	to offer
 		has "Remnant: Face to Maw 1: done"
+		not "remnant: face to maw: raised shields"
 	source "Aventine"
 	destination "Viminal"
 	cargo "slime sample" 1
@@ -2980,7 +2963,11 @@ mission "Remnant: Face to Maw 2B"
 	name "Bring tentacle to <planet>"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
 	to offer
-		has "Remnant: Face to Maw 1B: done"
+		or
+			has "Remnant: Face to Maw 1B: done"
+			and
+				has "Remnant: Face to Maw 1: done"
+				has "remnant: face to maw: raised shields"
 	source "Aventine"
 	destination "Caelian"
 	cargo "tentacle" 1

@@ -104,7 +104,8 @@ namespace {
 	bool preventSpriteUpload = false;
 
 	// Tracks the progress of loading the sprites when the game starts.
-	int spriteLoadingProgress = 0;
+	std::atomic<bool> queuedAllImages = false;
+	std::atomic<int> spritesLoaded = 0;
 	std::atomic<int> totalSprites = 0;
 
 	// List of image sets that are waiting to be uploaded to the GPU.
@@ -139,7 +140,7 @@ namespace {
 			[image, &queue]
 			{
 				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-				++spriteLoadingProgress;
+				++spritesLoaded;
 
 				// Start loading the next image in the queue, if any.
 				lock_guard lock(imageQueueMutex);
@@ -214,6 +215,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 					++totalSprites;
 				}
 			}
+			queuedAllImages = true;
 
 			// Launch the tasks to actually load the images, making sure not to exceed the amount
 			// of tasks the main thread can handle in a single frame to limit peak memory usage.
@@ -290,7 +292,14 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
+	double spriteProgress = 0.;
+	if(queuedAllImages)
+	{
+		if(!totalSprites)
+			spriteProgress = 1.;
+		else
+			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
+	}
 	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
 }
 
