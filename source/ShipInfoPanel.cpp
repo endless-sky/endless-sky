@@ -27,23 +27,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipNameDialog.h"
 #include "image/Sprite.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
@@ -391,8 +392,16 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
 		const string &category = cat.Name();
+		if(category.empty())
+			continue;
 		auto it = outfits.find(category);
 		if(it == outfits.end())
+			continue;
+
+		auto validOutfits = std::ranges::filter_view(it->second,
+			[](const Outfit *outfit){ return outfit->IsDefined() && !outfit->DisplayName().empty(); });
+
+		if(validOutfits.empty())
 			continue;
 
 		// Skip to the next column if there is no space for this category label
@@ -408,7 +417,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		// Draw the category label.
 		table.Draw(category, bright);
 		table.Advance();
-		for(const Outfit *outfit : it->second)
+		for(const Outfit *outfit : validOutfits)
 		{
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
@@ -570,8 +579,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
-	// Cargo list.
-	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
+	// Cargo list: show pooled cargo instead if the ship to display is landed together with the flagship.
+	const bool showPooled = ship.GetPlanet() == player.GetPlanet() && player.Cargo().Used();
+	const CargoHold &cargo = (showPooled ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});
@@ -668,10 +678,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 
-	LineShader::Draw(from, mid, 3.5f, black);
-	LineShader::Draw(mid, to, 3.5f, black);
-	LineShader::Draw(from, mid, 1.5f, color);
-	LineShader::Draw(mid, to, 1.5f, color);
+	LineShader::Draw(from, mid, 2.f, black);
+	LineShader::Draw(mid, to, 2.f, black);
+	LineShader::Draw(from, mid, 1.f, color);
+	LineShader::Draw(mid, to, 1.f, color);
 }
 
 

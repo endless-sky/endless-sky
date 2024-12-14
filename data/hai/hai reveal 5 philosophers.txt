@@ -107,7 +107,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 				`	"I'm ready now."`
 				`	"I need time to prepare."`
 					goto prepare
-			`	"Very good." So far she hasn't introduced herself, but as she puts the pad away her flight jacket moves enough for you to see 'Captain Valeria Estrada' printed on the jumpsuit underneath. "Now, to bring you up to speed: At least two pirate groups at <planet> have been involved in smuggling or kidnappings. <planet> is a fortress of anonymity and discretion, as well as being a literal fortress. An agreed upon force of overwhelming numbers has been prepared at Mountaintop. The objective is to overwhelm the defenders, prevent any escapes, and occupy the planet while they ferret out all the groups intelligence has flagged.`
+			`	"Very good." So far she hasn't introduced herself, but as she puts the pad away her flight jacket moves enough for you to see 'Captain Valeria Estrada' printed on the jumpsuit underneath. "Now, to bring you up to speed: at least two pirate groups on <planet> have been involved in smuggling or kidnappings. <planet> is a fortress of anonymity and discretion, as well as being a literal fortress. An agreed upon force of overwhelming numbers has been prepared at Mountaintop. The objective is to overwhelm the defenders, prevent any escapes, and occupy the planet while they ferret out all the groups intelligence has flagged.`
 			`	"The Navy, Unfettered, and Hai fleets will travel from Mountaintop to meet you. We must fly with all haste to <waypoints> to meet them, where you will lead the fleet and coordinate the attack. My security force will follow, but until we get to Sumar don't worry about waiting for us. We'll handle ourselves. Once we're all together in Sumar, your job will be to make sure everyone moves as one for each jump from there to <system>."`
 			`	She lowers her voice even further, despite the privacy afforded already. "There will be two Navy Carrier groups, our full Syndicate Special Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce. I haven't heard of a fleet this large in one place since the Alpha Wars. This coordination role is not a joke. There's lots of scope for things to go wrong. We will go in, clean up, and search for Hai. Parliament will reassess the scope of concern later, depending on what we find down there. We follow your lead, Captain <last>."`
 				accept
@@ -304,7 +304,6 @@ mission "Hai Reveal [B03] Contact Giti"
 				`	"I did no more than I would expect anyone else to have done."`
 					goto humble
 				`	"All in a day's work! Excellent work, everyone! Carry on!"`
-					goto offended
 
 			label offended
 			`	Everyone looks surprised or offended, as if you are the court jester who thought he was king. They're dismissive of your comment, as they begin to discuss your departure.`
@@ -356,11 +355,11 @@ mission "Hai Reveal [B04] The Riddle"
 	on offer
 		event "reveal devil-hide"
 		conversation
-			`Once safely parked and hooked into the relay network from Canyon you check timezones and place a call to Giti. Astonishingly, you manage to get a remarkably clean connection and don't have to leave a message. Perhaps by fluke it's night in all the most populous places between here and there. She's at her desk when she answers, and it occurs to you for the first time that a research console on a Navy grade connection probably has pretty good bandwidth. "Oh it's a relief to see you Captain. There's been so much going on, I feared you'd been caught up and detained with all that blockade stuff that all over the news right now. You're lucky though, it's quite late here and I was just about to pack up."`
+			`Once safely parked and hooked into the relay network from Canyon you check timezones and place a call to Giti. Astonishingly, you manage to get a remarkably clean connection and don't have to leave a message. Perhaps by fluke it's night in all the most populous places between here and there. She's at her desk when she answers, and it occurs to you for the first time that a research console on a Navy grade connection probably has pretty good bandwidth. "Oh, it's a relief to see you, Captain. There's been so much going on, I feared you'd been caught up and detained with all that blockade stuff that all over the news right now. You're lucky though, it's quite late here and I was just about to pack up."`
 			choice
 				`	"I was a little caught up, actually."`
 				`	"What do you know about the blockades?"`
-			`	As you draw breath to speak she cuts you off. "I actually don't have a lot of time or I'll miss my ride, so we'll skip the pleasantries. Obviously if you're calling me back you want to know what I found about the notation. That too is something you have good timing on, I was delayed on that until just a couple days ago. Now where was that file... ah here it is.`
+			`	As you draw breath to speak she cuts you off. "I actually don't have a lot of time or I'll miss my ride, so we'll skip the pleasantries. Obviously if you're calling me back you want to know what I found about the notation. That too is something you have good timing on, I was delayed on that until just a couple days ago. Now where was that file... ah, here it is.`
 			`	"So, the notation is actually quite dense which makes perfect translation an uncertain prospect. The first part is some meaningless prose about something called 'Elenchus,' which sounds aspirational. I have its location, in a system called Devil-Hide, far outside of our galaxy to the north-west. The second part contains a riddle, which gives the location of another system, Devil-Run, somewhere near the galactic core. I won't know the exact location until I solve the riddle: 'Where does the soul sleep?'"`
 			choice
 				`	"What is Elenchus?"`
@@ -371,7 +370,7 @@ mission "Hai Reveal [B04] The Riddle"
 				`	"Can you tell me more about the victim support group?"`
 				`	"What is his theory?"`
 				`	(Give up on having any questions answered.)`
-			`	She rummages around and presses a data stick into her terminal. You immediately download it into a data stick of your own. "This has the information he gave me to follow him up. I convinced him to trust me, so hopefully he's receptive to you. It also has all the data that explicitly identifies all the ship IDs that are associated with our suspicious cases. That's the best I've got for you, though. If this doesn't pan out we'll need to go a different way."`
+			`	She rummages around and presses a data stick into her terminal. You immediately download it into a data stick of your own. "This has the information he gave me to follow him up. I convinced him to trust me, so hopefully he's receptive to you. It also has all the data that explicitly identifies all the ship IDs that are associated with our suspicious cases. That's the best I've got for you, though. If this doesn't pan out we'll need to go a different way.`
 			`	"In any event, I really must go. Follow that lead, and then come see me. Fly safe, Captain!"`
 				accept
 

@@ -51,6 +51,7 @@ color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
+color "outfitter difference highlight" 1. .5 0. 1.
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
@@ -118,7 +119,9 @@ color "overlay neutral shields" .43 .55 .70 .75
 color "overlay neutral hull" .45 .5 0. .25
 color "overlay neutral disabled" .5 0. 0. .25
 color "overlay outfit scan" .5 .5 .5 .25
+color "overlay outfit scan out of range" .25 .25 .25 .25
 color "overlay cargo scan" .7 .7 .7 .25
+color "overlay cargo scan out of range" .35 .35 .35 .25
 
 # Colors used when "missile overlays" are enabled
 color "missile enemy" 1. 1. .25 .7
@@ -266,7 +269,7 @@ interface "main menu"
 		dimensions 90 30
 	
 	visible
-	button l "_Load / Save..."
+	button m "_Manage Pilots..."
 		center 300 155
 		dimensions 120 30
 	
@@ -585,7 +588,7 @@ interface "preferences"
 		from 280.5 15
 		dimensions 0 -200
 		color "energy"
-		size 3
+		size 2
 
 
 
@@ -1147,7 +1150,7 @@ interface "boarding"
 		dimensions 80 30
 	
 	active if "can defend"
-	button d "_Defend"
+	button D "_Defend"
 		center 210 185
 		dimensions 80 30
 

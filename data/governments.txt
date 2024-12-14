@@ -769,6 +769,114 @@ government "Hicemus"
 	"friendly disabled hail" "incipias friendly disabled"
 	"hostile disabled hail" "incipias hostile disabled"
 
+government "House Aqrabe"
+	swizzle 3
+	color "governments: New Houses"
+	"attitude toward"
+		Successor 1
+		"New Houses" 1
+		"House Kaatrij" 1
+		"House Seineq" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+	"friendly hail" "aqrabe friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
+government "House Chydiyi"
+	swizzle 5
+	color "governments: Old Houses"
+	"attitude toward"
+		Successor 1
+		"Old Houses" 1
+		"House Myurej" 1
+		"House Sioeora" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+	"friendly hail" "chydiyi friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
+government "House Kaatrij"
+	swizzle 3
+	color "governments: New Houses"
+	"attitude toward"
+		Successor 1
+		"New Houses" 1
+		"House Seineq" 1
+		"House Aqrabe" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+	"friendly hail" "kaatrij friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
+government "House Myurej"
+	swizzle 5
+	color "governments: Old Houses"
+	"attitude toward"
+		Successor 1
+		"House Chydiyi" 1
+		"Old Houses" 1
+		"House Sioeora" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+	"friendly hail" "myurej friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
+government "House Seineq"
+	swizzle 3
+	color "governments: New Houses"
+	"attitude toward"
+		Successor 1
+		"New Houses" 1
+		"House Kaatrij" 1
+		"House Aqrabe" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+	"friendly hail" "seineq friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
+government "House Sioeora"
+	swizzle 5
+	color "governments: Old Houses"
+	"attitude toward"
+		Successor 1
+		"House Chydiyi" 1
+		"House Myurej" 1
+		"Old Houses" 1
+		"People's Houses (Hostile)" -0.01
+	"penalty for"
+		assist 0
+	"friendly hail" "sioeora friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
 government "Incipias Civilian"
 	swizzle 0
 	color 0.5 0.0 0.9
@@ -1114,12 +1222,85 @@ government "Neutral"
 	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
+color "governments: New Houses" .8 0 0.4
+
+government "New Houses"
+	swizzle 3
+	color "governments: New Houses"
+	"attitude toward"
+		Successor 1
+		"House Kaatrij" 1
+		"House Seineq" 1
+		"House Aqrabe" 1
+		"People's Houses (Hostile)" -0.01
+	"bribe" 0
+	"penalty for"
+		assist 0
+	"friendly hail" "new houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
+color "governments: Old Houses" 0.375 0.316 1
+
+government "Old Houses"
+	swizzle 5
+	color "governments: Old Houses"
+	"attitude toward"
+		Successor 1
+		"House Chydiyi" 1
+		"House Myurej" 1
+		"House Sioeora" 1
+		"People's Houses (Hostile)" -0.01
+	"bribe" 0
+	"penalty for"
+		assist 0
+	"friendly hail" "old houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "high houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+	raid "People's Houses Raiders"
+
 government "Parrot"
 	swizzle 2
 	"player reputation" 1
 	"bribe" 0
 	"friendly disabled hail" "friendly disabled"
 	"hostile disabled hail" "hostile disabled"
+
+government "People's Houses"
+	swizzle 6
+	color 0.92 0.29 0.20
+	"attitude toward"
+		Successor 1
+		"People's Houses (Hostile)" 0.2
+	bribe 0.05
+	fine 0
+	"friendly hail" "people's houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "people's houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
+
+government "People's Houses (Hostile)"
+	"display name" "People's Houses"
+	swizzle 6
+	color 0.92 0.29 0.20
+	"player reputation" -10
+	"attitude toward"
+		Author -0.01
+		Successor -0.01
+		"People's Houses" 0.2
+	bribe 0.05
+	fine 0
+	"friendly hail" "people's houses friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "people's houses hostile hail"
+	"hostile disabled hail" "high houses hostile disabled hail"
+	language "Successor"
 
 color "governments: Pirate" .78 0. 0.
 
@@ -1186,6 +1367,9 @@ government "Pirate (Rival)"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
 	raid "pirate raid"
+
+government Predecessor
+	color .7 .7 .7
 
 color "governments: Pug" .99 .89 .70
 
@@ -1606,6 +1790,15 @@ government "Smuggler (Hai Trafficker)"
 		capture 0
 		destroy 0
 		atrocity 0
+
+government Successor
+	swizzle 4
+	color 0 .8 0.653
+	language "Successor"
+	"friendly hail" "successor friendly hail"
+	"friendly disabled hail" "successor friendly disabled hail"
+	"hostile hail" "successor hostile hail"
+	"hostile disabled hail" "successor hostile disabled hail"
 
 color "governments: Syndicate" 0. .41 .71
 

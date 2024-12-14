@@ -1,5 +1,5 @@
 /* ConditionSet.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2024 by Michael Zahniser and others
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Logger.h"
-#include "Random.h"
 
 #include <algorithm>
 #include <cmath>
@@ -153,29 +152,20 @@ namespace {
 
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions,
-		const ConditionsStore &created)
+	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions)
 	{
 		auto result = vector<int64_t>();
 		result.reserve(side.size());
 		for(const string &str : side)
 		{
 			int64_t value = 0;
-			if(str == "random")
-				value = Random::Int(100);
-			else if(DataNode::IsNumber(str))
+			if(DataNode::IsNumber(str))
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				const auto temp = created.Get(str);
-				if(temp)
-					value = temp;
-				else
-				{
-					const auto perm = conditions.Get(str);
-					if(perm)
-						value = perm;
-				}
+				const auto perm = conditions.Get(str);
+				if(perm)
+					value = perm;
 			}
 			result.emplace_back(value);
 		}
@@ -247,6 +237,8 @@ ConditionSet::ConditionSet(const DataNode &node)
 void ConditionSet::Load(const DataNode &node)
 {
 	isOr = (node.Token(0) == "or");
+	if(!node.HasChildren())
+		node.PrintTrace("Error: Loading empty (sub)condition:");
 	for(const DataNode &child : node)
 		Add(child);
 }
@@ -272,10 +264,64 @@ void ConditionSet::Save(DataWriter &out) const
 
 
 
+void ConditionSet::MakeNever()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	// TODO: change the ConditionSet to contain "false" literal, instead of a comparison that should return "false".
+	// TODO: Validate if condition-names are valid. (The "'" character by itself should not pass as a valid condition.)
+	Add("has", "'");
+}
+
+
+
 // Check if there are any entries in this set.
 bool ConditionSet::IsEmpty() const
 {
 	return expressions.empty() && children.empty();
+}
+
+
+
+// Check if the given condition values satisfy this set of conditions.
+bool ConditionSet::Test(const ConditionsStore &conditions) const
+{
+	// All expressions should be testable: assign-conditions should only be used for ConditionAssignments.
+	for(const Expression &expression : expressions)
+		if(expression.IsTestable())
+		{
+			bool result = expression.Test(conditions);
+			// If this is a set of "and" conditions, bail out as soon as one of them
+			// returns false. If it is an "or", bail out if anything returns true.
+			if(result == isOr)
+				return result;
+		}
+
+	for(const ConditionSet &child : children)
+	{
+		bool result = child.Test(conditions);
+		if(result == isOr)
+			return result;
+	}
+	// If this is an "and" condition, all the above conditions were true, so return
+	// true. If it is an "or," no condition returned true, so return false.
+	return !isOr;
+}
+
+
+
+// Get the names of the conditions that are relevant for this ConditionSet.
+set<string> ConditionSet::RelevantConditions() const
+{
+	set<string> result;
+	// Add the names from the expressions.
+	// TODO: also sub-expressions?
+	for(const auto &expr : expressions)
+		result.emplace(expr.Name());
+	// Add the names from the children.
+	for(const auto &child : children)
+		for(const auto &rc : child.RelevantConditions())
+			result.emplace(rc);
+	return result;
 }
 
 
@@ -301,11 +347,9 @@ void ConditionSet::Add(const DataNode &node)
 	{
 		// The "and" and "or" keywords introduce a nested condition set.
 		children.emplace_back(node);
-		// If a child node has assignment operators, warn on load since
-		// these will be processed after all non-child expressions.
+		// Warn if a child node has assignment operators, because those will be ignored.
 		if(children.back().hasAssign)
-			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last."
-			" This may be unexpected.");
+			node.PrintTrace("Error: Assignment expressions contained within and/or groups is not supported.");
 	}
 	else if(IsValidCondition(node))
 	{
@@ -364,17 +408,17 @@ void ConditionSet::Add(const DataNode &node)
 bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 {
 	// Each "unary" operator can be mapped to an equivalent binary expression.
-	if(firstToken == "not")
+	if(firstToken == "not" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "==", "0");
-	else if(firstToken == "has")
+	else if(firstToken == "has" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "!=", "0");
-	else if(firstToken == "set")
+	else if(firstToken == "set" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "=", "1");
-	else if(firstToken == "clear")
+	else if(firstToken == "clear" && DataNode::IsConditionName(secondToken))
 		expressions.emplace_back(secondToken, "=", "0");
-	else if(secondToken == "++")
+	else if(secondToken == "++" && DataNode::IsConditionName(firstToken))
 		expressions.emplace_back(firstToken, "+=", "1");
-	else if(secondToken == "--")
+	else if(secondToken == "--" && DataNode::IsConditionName(firstToken))
 		expressions.emplace_back(firstToken, "-=", "1");
 	else
 		return false;
@@ -390,7 +434,11 @@ bool ConditionSet::Add(const string &name, const string &op, const string &value
 {
 	// If the operator is recognized, map it to a binary function.
 	BinFun fun = Op(op);
-	if(!fun)
+	// For assignments we only allow condition-names on the left side.
+	// For all others we allow numbers and condition-names on both sides.
+	if(!fun || (!DataNode::IsConditionName(name) && !DataNode::IsNumber(name)) ||
+			(DataNode::IsNumber(name) && IsAssignment(op)) ||
+			(!DataNode::IsConditionName(value) && !DataNode::IsNumber(value)))
 		return false;
 
 	hasAssign |= !IsComparison(op);
@@ -410,93 +458,6 @@ bool ConditionSet::Add(const vector<string> &lhs, const string &op, const vector
 	hasAssign |= !IsComparison(op);
 	expressions.emplace_back(lhs, op, rhs);
 	return true;
-}
-
-
-
-// Check if the given condition values satisfy this set of conditions. Performs any assignments
-// on a temporary condition map, if this set mixes comparisons and modifications.
-bool ConditionSet::Test(const ConditionsStore &conditions) const
-{
-	// If this ConditionSet contains any expressions with operators that
-	// modify the condition map, then they must be applied before testing,
-	// to generate any temporary conditions needed.
-	ConditionsStore created;
-	if(hasAssign)
-		TestApply(conditions, created);
-	return TestSet(conditions, created);
-}
-
-
-
-// Modify the given set of conditions.
-void ConditionSet::Apply(ConditionsStore &conditions) const
-{
-	ConditionsStore unused;
-	for(const Expression &expression : expressions)
-		if(!expression.IsTestable())
-			expression.Apply(conditions, unused);
-
-	for(const ConditionSet &child : children)
-		child.Apply(conditions);
-}
-
-
-
-// Get the names of the conditions that are relevant for this ConditionSet.
-set<string> ConditionSet::RelevantConditions() const
-{
-	set<std::string> result;
-	// Add the names from the expressions.
-	// TODO: also sub-expressions?
-	for(const auto &expr : expressions)
-		result.emplace(expr.Name());
-	// Add the names from the children.
-	for(const auto &child : children)
-		for(const auto &rc : child.RelevantConditions())
-			result.emplace(rc);
-	return result;
-}
-
-
-
-// Check if this set is satisfied by either the created, temporary conditions, or the given conditions.
-bool ConditionSet::TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const
-{
-	// Not all expressions may be testable: some may have been used to form the "created" condition map.
-	for(const Expression &expression : expressions)
-		if(expression.IsTestable())
-		{
-			bool result = expression.Test(conditions, created);
-			// If this is a set of "and" conditions, bail out as soon as one of them
-			// returns false. If it is an "or", bail out if anything returns true.
-			if(result == isOr)
-				return result;
-		}
-
-	for(const ConditionSet &child : children)
-	{
-		bool result = child.TestSet(conditions, created);
-		if(result == isOr)
-			return result;
-	}
-	// If this is an "and" condition, all the above conditions were true, so return
-	// true. If it is an "or," no condition returned true, so return false.
-	return !isOr;
-}
-
-
-
-// Construct new, temporary conditions based on the assignment expressions in
-// this ConditionSet and the values in the player's conditions map.
-void ConditionSet::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
-{
-	for(const Expression &expression : expressions)
-		if(!expression.IsTestable())
-			expression.TestApply(conditions, created);
-
-	for(const ConditionSet &child : children)
-		child.TestApply(conditions, created);
 }
 
 
@@ -563,30 +524,20 @@ bool ConditionSet::Expression::IsTestable() const
 
 
 // Evaluate both the left- and right-hand sides of the expression, then compare the evaluated numeric values.
-bool ConditionSet::Expression::Test(const ConditionsStore &conditions, const ConditionsStore &created) const
+bool ConditionSet::Expression::Test(const ConditionsStore &conditions) const
 {
-	int64_t lhs = left.Evaluate(conditions, created);
-	int64_t rhs = right.Evaluate(conditions, created);
+	int64_t lhs = left.Evaluate(conditions);
+	int64_t rhs = right.Evaluate(conditions);
 	return fun(lhs, rhs);
 }
 
 
 
 // Assign the computed value to the desired condition.
-void ConditionSet::Expression::Apply(ConditionsStore &conditions, ConditionsStore &created) const
+void ConditionSet::Expression::Apply(ConditionsStore &conditions) const
 {
 	auto &c = conditions[Name()];
-	int64_t value = right.Evaluate(conditions, created);
-	c = fun(c, value);
-}
-
-
-
-// Assign the computed value to the desired temporary condition.
-void ConditionSet::Expression::TestApply(const ConditionsStore &conditions, ConditionsStore &created) const
-{
-	auto &c = created[Name()];
-	int64_t value = right.Evaluate(conditions, created);
+	int64_t value = right.Evaluate(conditions);
 	c = fun(c, value);
 }
 
@@ -669,8 +620,7 @@ bool ConditionSet::Expression::SubExpression::IsEmpty() const
 
 
 // Evaluate the SubExpression using the given condition maps.
-int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions,
-	const ConditionsStore &created) const
+int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions) const
 {
 	// Sanity check.
 	if(tokens.empty())
@@ -678,7 +628,7 @@ int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore 
 
 	// For SubExpressions with no Operations (i.e. simple conditions), tokens will consist
 	// of only the condition or numeric value to be returned as-is after substitution.
-	auto data = SubstituteValues(tokens, conditions, created);
+	auto data = SubstituteValues(tokens, conditions);
 
 	if(!sequence.empty())
 	{
