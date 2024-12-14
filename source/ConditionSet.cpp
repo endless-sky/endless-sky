@@ -149,6 +149,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 
 	// The other ConditionSet might be a child of the current one, so we
 	// need to keep the children safe until the end of the assignment.
+	// The attribute tells the compiler that oldChildren are actually used.
 	[[maybe_unused]] vector<ConditionSet> oldChildren = std::move(children);
 
 	// Then move over all content.
@@ -156,10 +157,6 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	literal = other.literal;
 	conditionName = std::move(other.conditionName);
 	children = std::move(other.children);
-
-	// Tell the compiler to keep the oldChildren at least until here.
-	// And avoid warning on unused variable (which is not actually unused).
-	(void)oldChildren;
 
 	return *this;
 }
@@ -174,6 +171,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 
 	// The other ConditionSet might be a child of the current one, so we
 	// need to keep the children safe until the end of the assignment.
+	// The attribute tells the compiler that oldChildren are actually used.
 	[[maybe_unused]] vector<ConditionSet> oldChildren = std::move(children);
 
 	// Then copy over all content.
@@ -181,10 +179,6 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 	literal = other.literal;
 	conditionName = other.conditionName;
 	children = other.children;
-
-	// Tell the compiler to keep the oldChildren at least until here.
-	// And avoid warning on unused variable (which is not actually unused).
-	(void)oldChildren;
 
 	return *this;
 }
