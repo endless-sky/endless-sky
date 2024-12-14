@@ -269,6 +269,8 @@ void ConditionSet::MakeNever()
 // Invalid ConditionSets are also considered empty.
 bool ConditionSet::IsEmpty() const
 {
+	// OP_AND is the default toplevel operator for any condition, so whenever we encounter OP_AND without any children
+	// then there was nothing under the toplevel to parse, thus the condition was empty.
 	return
 		(expressionOperator == ExpressionOp::OP_AND && children.size() == 0) ||
 		(expressionOperator == ExpressionOp::OP_INVALID);
