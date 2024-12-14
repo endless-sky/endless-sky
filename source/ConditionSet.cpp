@@ -732,7 +732,7 @@ bool ConditionSet::PushDownFull(const DataNode &node)
 {
 	ConditionSet ce(*this);
 	children.clear();
-	children.emplace_back(ce);
+	children.push_back(std::move(ce));
 	expressionOperator = ExpressionOp::OP_AND;
 
 	return true;
@@ -746,9 +746,14 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 	if(children.empty())
 		return FailParse(node, "cannot create sub-expression from void");
 
-	ConditionSet ce = children.back();
+	// Store and remove the child that we want to push down.
+	ConditionSet ce = std::move(children.back());
 	children.pop_back();
+
+	// Create a new last child.
 	children.emplace_back();
+
+	// Let the earlier removed child become a grandChild.
 	children.back().children.push_back(std::move(ce));
 	return true;
 }
